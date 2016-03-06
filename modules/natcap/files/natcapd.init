@@ -1,0 +1,35 @@
+#!/bin/sh /etc/rc.common
+# Copyright (C) 2006-2011 OpenWrt.org
+
+START=50
+
+DEV=/dev/natcap_ctl
+
+add_server () {
+	echo add $1:0-e >>$DEV
+}
+
+start_instance () {
+	local section="$1"
+	config_get enable  "$section" 'enable'
+	config_get debug  "$section" 'debug'
+	config_get client_forward_mode  "$section" 'client_forward_mode'
+
+	test -n "$debug" && echo debug=$debug >>$DEV
+	test -n "$client_forward_mode" && echo client_forward_mode=$client_forward_mode >>$DEV
+
+	echo clean >>$DEV
+
+	if [ x$enable == x1 ]; then
+		config_list_foreach "$section" server add_server
+	fi
+}
+
+start() {
+	config_load 'natcapd'
+	config_foreach start_instance 'natcapd'
+}
+
+stop() {
+	echo clean >>$DEV
+}

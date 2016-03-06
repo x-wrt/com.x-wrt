@@ -16,11 +16,40 @@ PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.xz
 PKG_SOURCE_SUBDIR:=$(PKG_NAME)-$(PKG_VERSION)
 PKG_SOURCE_URL:=https://dl.dropboxusercontent.com/u/2146530/git/natcap.git
 PKG_SOURCE_PROTO:=git
-PKG_SOURCE_VERSION:=cefe0d1bab72220d446ac25b8f3c099c0a476136
+PKG_SOURCE_VERSION:=61272b79767e57cbc7675758665e40c7ca5faeda
 PKG_MAINTAINER:=Chen Minqiang <ptpt52@gmail.com>
 PKG_LICENSE:=GPL-2.0
 
 include $(INCLUDE_DIR)/package.mk
+
+define Package/natcapd/Default
+  CATEGORY:=Ptpt52
+  SUBMENU:=Natcapd agent
+  AUTOLOAD:=$(call AutoProbe,natcapd)
+  DEPENDS:= +kmod-natcap
+endef
+
+define Package/natcapd
+  $(call Package/natcapd/Default)
+  TITLE:=Natcapd agent for natcap
+endef
+
+define Package/natcapd/description
+ Natcapd agent for natcap
+endef
+
+define Build/Configure
+endef
+
+define Package/natcapd/install
+	$(INSTALL_DIR) $(1)/etc/init.d
+	$(INSTALL_BIN) ./files/natcapd.init $(1)/etc/init.d/natcapd
+	$(INSTALL_DIR) $(1)/etc/config
+	$(INSTALL_DATA) ./files/natcapd.config $(1)/etc/config/natcapd
+endef
+
+define Package/natcapd/conffiles
+endef
 
 define KernelPackage/natcap
   CATEGORY:=Ptpt52
@@ -38,11 +67,6 @@ endef
 
 include $(INCLUDE_DIR)/kernel-defaults.mk
 
-#define Build/Prepare
-#	$(call Build/Prepare/Default)
-#	$(CP) ./* $(PKG_BUILD_DIR)/
-#endef
-
 MAKE_KMOD := $(MAKE) -C "$(LINUX_DIR)" \
 		CROSS_COMPILE="$(TARGET_CROSS)" \
 		ARCH="$(LINUX_KARCH)" \
@@ -50,7 +74,6 @@ MAKE_KMOD := $(MAKE) -C "$(LINUX_DIR)" \
 		SUBDIRS="$(PKG_BUILD_DIR)" \
 
 define Build/Compile
-	# Compile the kernel part
 	$(MAKE_KMOD) \
 		MODFLAGS="-DMODULE" \
 		modules
@@ -58,3 +81,4 @@ define Build/Compile
 endef
 
 $(eval $(call KernelPackage,natcap))
+$(eval $(call BuildPackage,natcapd))
