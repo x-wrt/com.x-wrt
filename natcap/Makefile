@@ -44,8 +44,12 @@ endef
 define Package/natcapd/install
 	$(INSTALL_DIR) $(1)/etc/init.d
 	$(INSTALL_BIN) ./files/natcapd.init $(1)/etc/init.d/natcapd
+	$(INSTALL_DIR) $(1)/etc/hotplug.d/iface
+	$(INSTALL_DATA) ./files/natcapd.hotplug $(1)/etc/hotplug.d/iface/50-natcapd
 	$(INSTALL_DIR) $(1)/etc/config
 	$(INSTALL_DATA) ./files/natcapd.config $(1)/etc/config/natcapd
+	$(INSTALL_DIR) $(1)/usr/sbin
+	$(INSTALL_BIN) ./files/natcap_route_setup.sh $(1)/usr/sbin/natcap_route_setup.sh
 endef
 
 define Package/natcapd/conffiles

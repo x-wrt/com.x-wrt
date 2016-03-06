@@ -22,6 +22,7 @@ start_instance () {
 
 	if [ x$enable == x1 ]; then
 		config_list_foreach "$section" server add_server
+		/usr/sbin/natcap_route_setup.sh &
 	fi
 }
 
