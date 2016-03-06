@@ -24,7 +24,7 @@ include $(INCLUDE_DIR)/package.mk
 
 define Package/natcapd/Default
   CATEGORY:=Ptpt52
-  SUBMENU:=Natcapd agent
+  SUBMENU:=Natcap Support
   AUTOLOAD:=$(call AutoProbe,natcapd)
   DEPENDS:= +kmod-natcap
 endef
