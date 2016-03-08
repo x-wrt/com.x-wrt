@@ -5,13 +5,15 @@ START=50
 
 DEV=/dev/natcap_ctl
 
+_RUNNING=0
+
 add_server () {
 	echo add $1:0-e >>$DEV
+	_RUNNING=1
 }
 
 start_instance () {
 	local section="$1"
-	config_get enable  "$section" 'enable'
 	config_get debug  "$section" 'debug'
 	config_get client_forward_mode  "$section" 'client_forward_mode'
 
@@ -20,10 +22,8 @@ start_instance () {
 
 	echo clean >>$DEV
 
-	if [ x$enable == x1 ]; then
-		config_list_foreach "$section" server add_server
-		/usr/sbin/natcap_route_setup.sh &
-	fi
+	config_list_foreach "$section" server add_server
+	[ "x$_RUNNING" = "x1" ] && /usr/sbin/natcap_route_setup.sh start &
 }
 
 start() {
@@ -33,4 +33,5 @@ start() {
 
 stop() {
 	echo clean >>$DEV
+	/usr/sbin/natcap_route_setup.sh stop &
 }

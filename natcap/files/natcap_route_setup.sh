@@ -1,13 +1,18 @@
 #!/bin/sh
-export PATH="/bin:/sbin:/usr/sbin:/usr/bin"
+
+TID=153
+cmd=$1
+
+if [ x$cmd = xstop ]; then
+	ip route flush table $TID
+	exit 0
+fi
 
 OLDGW=`ip route show | grep '^default' | sed -e 's/default via \([^ ]*\).*/\1/'`
 
 if [ x$OLDGW = x ]; then
     exit 0
 fi
-
-TID=153
 
 ip route flush table $TID
 
