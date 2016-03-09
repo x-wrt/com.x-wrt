@@ -4,7 +4,8 @@
 . /lib/functions.sh
 
 run () {
-	config_get dns_proxy_server 'natcapd' 'dns_proxy_server'
+	local section="$1"
+	config_get dns_proxy_server "$section" 'dns_proxy_server'
 	test -n "$dns_proxy_server" && {
 		iptables -t nat -A OUTPUT -p udp --dport 53 ! -d 127.0.0.1 -j DNAT --to-destination $dns_proxy_server
 		iptables -t nat -A PREROUTING -p udp --dport 53 ! -d 127.0.0.1 -j DNAT --to-destination $dns_proxy_server
@@ -12,4 +13,4 @@ run () {
 }
 
 config_load 'natcapd'
-config_list_foreach run
+config_foreach run 'natcapd'
