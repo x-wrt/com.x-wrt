@@ -50,6 +50,7 @@ define Package/natcapd/install
 	$(INSTALL_DATA) ./files/natcapd.config $(1)/etc/config/natcapd
 	$(INSTALL_DIR) $(1)/usr/sbin
 	$(INSTALL_BIN) ./files/natcap_route_setup.sh $(1)/usr/sbin/natcap_route_setup.sh
+	$(INSTALL_BIN) ./files/natcap_route_setup_no_lock.sh $(1)/usr/sbin/natcap_route_setup_no_lock.sh
 endef
 
 define Package/natcapd/conffiles
