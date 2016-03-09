@@ -66,8 +66,9 @@ define Package/natcapd/install
 	$(INSTALL_DIR) $(1)/usr/share/natcapd
 	$(INSTALL_BIN) ./files/natcap_route_setup.sh $(1)/usr/share/natcapd/natcap_route_setup.sh
 	$(INSTALL_BIN) ./files/natcap_route_setup_no_lock.sh $(1)/usr/share/natcapd/natcap_route_setup_no_lock.sh
-	$(INSTALL_DATA) ./files/natcapd.defaults $(1)/etc/uci-defaults/99-natcapd
 	$(INSTALL_DATA) ./files/firewall.include $(1)/usr/share/natcapd/firewall.include
+	$(INSTALL_DIR) $(1)/etc/uci-defaults
+	$(INSTALL_DATA) ./files/natcapd.defaults $(1)/etc/uci-defaults/99-natcapd
 endef
 
 define KernelPackage/natcap
