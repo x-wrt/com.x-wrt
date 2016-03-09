@@ -23,7 +23,7 @@ start_instance () {
 	echo clean >>$DEV
 
 	config_list_foreach "$section" server add_server
-	[ "x$_RUNNING" = "x1" ] && /usr/sbin/natcap_route_setup.sh start &
+	[ "x$_RUNNING" = "x1" ] && /usr/share/natcapd/natcap_route_setup.sh start &
 }
 
 start() {
@@ -33,5 +33,5 @@ start() {
 
 stop() {
 	echo clean >>$DEV
-	/usr/sbin/natcap_route_setup.sh stop &
+	/usr/share/natcapd/natcap_route_setup.sh stop &
 }

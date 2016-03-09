@@ -41,6 +41,21 @@ endef
 define Build/Configure
 endef
 
+define Package/natcapd/conffiles
+/etc/config/natcapd
+endef
+
+define Package/natcapd/postinst
+#!/bin/sh
+
+if [ -z "$$IPKG_INSTROOT" ]; then
+  ( . /etc/uci-defaults/99-natcapd )
+  rm -f /etc/uci-defaults/99-natcapd
+fi
+
+exit 0
+endef
+
 define Package/natcapd/install
 	$(INSTALL_DIR) $(1)/etc/init.d
 	$(INSTALL_BIN) ./files/natcapd.init $(1)/etc/init.d/natcapd
@@ -48,12 +63,11 @@ define Package/natcapd/install
 	$(INSTALL_DATA) ./files/natcapd.hotplug $(1)/etc/hotplug.d/iface/50-natcapd
 	$(INSTALL_DIR) $(1)/etc/config
 	$(INSTALL_DATA) ./files/natcapd.config $(1)/etc/config/natcapd
-	$(INSTALL_DIR) $(1)/usr/sbin
-	$(INSTALL_BIN) ./files/natcap_route_setup.sh $(1)/usr/sbin/natcap_route_setup.sh
-	$(INSTALL_BIN) ./files/natcap_route_setup_no_lock.sh $(1)/usr/sbin/natcap_route_setup_no_lock.sh
-endef
-
-define Package/natcapd/conffiles
+	$(INSTALL_DIR) $(1)/usr/share/natcapd
+	$(INSTALL_BIN) ./files/natcap_route_setup.sh $(1)/usr/share/natcapd/natcap_route_setup.sh
+	$(INSTALL_BIN) ./files/natcap_route_setup_no_lock.sh $(1)/usr/share/natcapd/natcap_route_setup_no_lock.sh
+	$(INSTALL_DATA) ./files/natcapd.defaults $(1)/etc/uci-defaults/99-natcapd
+	$(INSTALL_DATA) ./files/firewall.include $(1)/usr/share/natcapd/firewall.include
 endef
 
 define KernelPackage/natcap

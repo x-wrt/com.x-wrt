@@ -5,4 +5,4 @@
 
 /etc/init.d/natcapd enabled || exit 0
 
-/etc/init.d/natcapd restart && exit 0
+/etc/init.d/natcapd start && exit 0
