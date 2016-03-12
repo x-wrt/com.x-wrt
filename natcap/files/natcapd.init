@@ -23,7 +23,6 @@ start_instance () {
 	echo clean >>$DEV
 
 	config_list_foreach "$section" server add_server
-	[ "x$_RUNNING" = "x1" ] && /usr/share/natcapd/natcap_route_setup.sh start 2>&1 >/dev/null &
 	/etc/init.d/firewall restart 2>&1 >/dev/null
 }
 
@@ -34,5 +33,4 @@ start() {
 
 stop() {
 	echo clean >>$DEV
-	/usr/share/natcapd/natcap_route_setup.sh stop &
 }

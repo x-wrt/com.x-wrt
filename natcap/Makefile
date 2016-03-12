@@ -16,7 +16,7 @@ PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.xz
 PKG_SOURCE_SUBDIR:=$(PKG_NAME)-$(PKG_VERSION)
 PKG_SOURCE_URL:=https://dl.dropboxusercontent.com/u/2146530/git/natcap.git
 PKG_SOURCE_PROTO:=git
-PKG_SOURCE_VERSION:=7d9df7775d65894a55600f3e98b13f64d9f6a08c
+PKG_SOURCE_VERSION:=754776ab51a9821f81fa341ff8104e81e4f87632
 PKG_MAINTAINER:=Chen Minqiang <ptpt52@gmail.com>
 PKG_LICENSE:=GPL-2.0
 
@@ -64,8 +64,6 @@ define Package/natcapd/install
 	$(INSTALL_DIR) $(1)/etc/config
 	$(INSTALL_DATA) ./files/natcapd.config $(1)/etc/config/natcapd
 	$(INSTALL_DIR) $(1)/usr/share/natcapd
-	$(INSTALL_BIN) ./files/natcap_route_setup.sh $(1)/usr/share/natcapd/natcap_route_setup.sh
-	$(INSTALL_BIN) ./files/natcap_route_setup_no_lock.sh $(1)/usr/share/natcapd/natcap_route_setup_no_lock.sh
 	$(INSTALL_DATA) ./files/firewall.include $(1)/usr/share/natcapd/firewall.include
 	$(INSTALL_DIR) $(1)/etc/uci-defaults
 	$(INSTALL_DATA) ./files/natcapd.defaults $(1)/etc/uci-defaults/99-natcapd
