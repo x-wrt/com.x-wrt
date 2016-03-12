@@ -21,6 +21,7 @@ start_instance () {
 	test -n "$client_forward_mode" && echo client_forward_mode=$client_forward_mode >>$DEV
 
 	echo clean >>$DEV
+	echo clear_dst >>$DEV
 
 	config_list_foreach "$section" server add_server
 	/etc/init.d/firewall restart 2>&1 >/dev/null
