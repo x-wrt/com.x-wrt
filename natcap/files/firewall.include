@@ -14,3 +14,5 @@ run () {
 
 config_load 'natcapd'
 config_foreach run 'natcapd'
+
+exit 0

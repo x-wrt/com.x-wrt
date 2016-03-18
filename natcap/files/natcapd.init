@@ -5,11 +5,8 @@ START=50
 
 DEV=/dev/natcap_ctl
 
-_RUNNING=0
-
 add_server () {
 	echo add $1:0-e >>$DEV
-	_RUNNING=1
 }
 
 start_instance () {
@@ -17,14 +14,16 @@ start_instance () {
 	config_get debug  "$section" 'debug'
 	config_get client_forward_mode  "$section" 'client_forward_mode'
 
-	test -n "$debug" && echo debug=$debug >>$DEV
-	test -n "$client_forward_mode" && echo client_forward_mode=$client_forward_mode >>$DEV
-
+	echo debug=0 >>$DEV
+	echo client_forward_mode=0 >>$DEV
 	echo clean >>$DEV
 	echo clear_dst >>$DEV
 
+	test -n "$debug" && echo debug=$debug >>$DEV
+	test -n "$client_forward_mode" && echo client_forward_mode=$client_forward_mode >>$DEV
+
 	config_list_foreach "$section" server add_server
-	/etc/init.d/firewall restart 2>&1 >/dev/null
+	/etc/init.d/firewall restart >/dev/null 2>&1 || echo /etc/init.d/firewall restart failed
 }
 
 start() {
