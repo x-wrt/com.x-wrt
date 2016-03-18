@@ -65,6 +65,7 @@ define Package/natcapd/install
 	$(INSTALL_DATA) ./files/natcapd.config $(1)/etc/config/natcapd
 	$(INSTALL_DIR) $(1)/usr/share/natcapd
 	$(INSTALL_DATA) ./files/firewall.include $(1)/usr/share/natcapd/firewall.include
+	$(INSTALL_DATA) ./files/natcapd.sh $(1)/usr/share/natcapd/natcapd.sh
 	$(INSTALL_DIR) $(1)/etc/uci-defaults
 	$(INSTALL_DATA) ./files/natcapd.defaults $(1)/etc/uci-defaults/99-natcapd
 endef

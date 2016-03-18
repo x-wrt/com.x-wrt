@@ -24,6 +24,7 @@ start_instance () {
 
 	config_list_foreach "$section" server add_server
 	/etc/init.d/firewall restart >/dev/null 2>&1 || echo /etc/init.d/firewall restart failed
+	sh /usr/share/natcapd/natcapd.sh >/dev/null 2>&1 || true
 }
 
 start() {
