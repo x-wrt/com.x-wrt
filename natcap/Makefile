@@ -65,6 +65,7 @@ define Package/natcapd/install
 	$(INSTALL_DATA) ./files/natcapd.config $(1)/etc/config/natcapd
 	$(INSTALL_DIR) $(1)/usr/share/natcapd
 	$(INSTALL_DATA) ./files/firewall.include $(1)/usr/share/natcapd/firewall.include
+	$(INSTALL_DATA) ./files/accelerated-domains.china.dnsmasq.conf $(1)/usr/share/natcapd/accelerated-domains.china.dnsmasq.conf
 	$(INSTALL_DIR) $(1)/usr/sbin
 	$(INSTALL_BIN) ./files/natcapd.sh $(1)/usr/sbin/natcapd
 	$(INSTALL_DIR) $(1)/etc/uci-defaults

@@ -6,8 +6,12 @@ uci -q batch <<-EOT
 	set firewall.natcapd.type=script
 	set firewall.natcapd.path=/usr/share/natcapd/firewall.include
 	set firewall.natcapd.family=any
-	set firewall.natcapd.reload=1
+	set firewall.natcapd.reload=0
 	commit firewall
+EOT
+
+uci -q batch <<-EOT
+	set dhcp.@dnsmasq[0].serversfile='/usr/share/natcapd/accelerated-domains.china.dnsmasq.conf'
 EOT
 
 exit 0
