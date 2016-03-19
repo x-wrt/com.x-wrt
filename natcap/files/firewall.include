@@ -7,8 +7,8 @@ run () {
 	local section="$1"
 	config_get dns_proxy_server "$section" 'dns_proxy_server'
 	test -n "$dns_proxy_server" && {
-		iptables -t nat -A OUTPUT -p udp --dport 53 ! -d 127.0.0.1 -j DNAT --to-destination $dns_proxy_server
-		iptables -t nat -A PREROUTING -p udp --dport 53 ! -d 127.0.0.1 -j DNAT --to-destination $dns_proxy_server
+		iptables -t nat -A OUTPUT -p udp --dport 53 -d 8.8.8.8 -j DNAT --to-destination $dns_proxy_server
+		iptables -t nat -A PREROUTING -p udp --dport 53 -d 8.8.8.8 -j DNAT --to-destination $dns_proxy_server
 	}
 }
 
