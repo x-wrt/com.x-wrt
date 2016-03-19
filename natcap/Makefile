@@ -49,8 +49,8 @@ define Package/natcapd/postinst
 #!/bin/sh
 
 if [ -z "$$IPKG_INSTROOT" ]; then
-  ( . /etc/uci-defaults/99-natcapd )
-  rm -f /etc/uci-defaults/99-natcapd
+  ( . /etc/uci-defaults/95-natcapd )
+  rm -f /etc/uci-defaults/95-natcapd
 fi
 
 exit 0
@@ -60,14 +60,15 @@ define Package/natcapd/install
 	$(INSTALL_DIR) $(1)/etc/init.d
 	$(INSTALL_BIN) ./files/natcapd.init $(1)/etc/init.d/natcapd
 	$(INSTALL_DIR) $(1)/etc/hotplug.d/iface
-	$(INSTALL_DATA) ./files/natcapd.hotplug $(1)/etc/hotplug.d/iface/50-natcapd
+	$(INSTALL_DATA) ./files/natcapd.hotplug $(1)/etc/hotplug.d/iface/95-natcapd
 	$(INSTALL_DIR) $(1)/etc/config
 	$(INSTALL_DATA) ./files/natcapd.config $(1)/etc/config/natcapd
 	$(INSTALL_DIR) $(1)/usr/share/natcapd
 	$(INSTALL_DATA) ./files/firewall.include $(1)/usr/share/natcapd/firewall.include
-	$(INSTALL_DATA) ./files/natcapd.sh $(1)/usr/share/natcapd/natcapd.sh
+	$(INSTALL_DIR) $(1)/usr/sbin
+	$(INSTALL_BIN) ./files/natcapd.sh $(1)/usr/sbin/natcapd
 	$(INSTALL_DIR) $(1)/etc/uci-defaults
-	$(INSTALL_DATA) ./files/natcapd.defaults $(1)/etc/uci-defaults/99-natcapd
+	$(INSTALL_DATA) ./files/natcapd.defaults $(1)/etc/uci-defaults/95-natcapd
 endef
 
 define KernelPackage/natcap
