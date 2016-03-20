@@ -10,8 +10,4 @@ uci -q batch <<-EOT
 	commit firewall
 EOT
 
-uci -q batch <<-EOT
-	set dhcp.@dnsmasq[0].serversfile='/usr/share/natcapd/accelerated-domains.china.dnsmasq.conf'
-EOT
-
 exit 0

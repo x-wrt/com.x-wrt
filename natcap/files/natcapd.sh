@@ -19,8 +19,17 @@ cleanup () {
 	fi
 }
 
+gfwlist_update_main () {
+	while :; do
+		sleep 60
+		sh /usr/share/natcapd/gfwlist_update.sh
+		sleep 86340
+	done
+}
+
 main() {
 	while :; do
+		sleep 120
 		rm -f /tmp/xx.sh
 		rm -f /tmp/nohup.out
 		ACC=`uci get natcapd.default.account 2>/dev/null`
@@ -33,14 +42,20 @@ main() {
 	done
 }
 
-
+nop_loop () {
+	while :; do
+		sleep 86400
+	done
+}
 
 if mkdir $LOCKDIR 2>/dev/null; then
 	trap "cleanup" EXIT
 
 	echo "Acquired lock, running"
 
-	main
+	gfwlist_update_main &
+	main &
+	nop_loop
 else
 	echo "Could not create lock directory '$LOCKDIR'"
 	exit 0
