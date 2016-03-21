@@ -21,7 +21,7 @@ ipset flush gfwlist
 rm -f /tmp/gfwlist.txt
 rm -f /tmp/accelerated-domains.gfwlist.dnsmasq.conf
 /usr/bin/wget --no-check-certificate -qO /tmp/gfwlist.txt "https://raw.githubusercontent.com/gfwlist/gfwlist/master/gfwlist.txt" && {
-	for w in `echo $EX_DOMAIN`" "`cat /tmp/gfwlist.txt | base64 -d | grep -v ^! | grep -o '[a-zA-Z0-9][-a-zA-Z0-9]*[.][-a-zA-Z0-9.]*[a-zA-Z]$'`; do
+	for w in `echo $EX_DOMAIN`" "`cat /tmp/gfwlist.txt | base64 -d | grep -v ^! | grep -v ^@@ | grep -o '[a-zA-Z0-9][-a-zA-Z0-9]*[.][-a-zA-Z0-9.]*[a-zA-Z]$'`; do
 		echo $w
 	done | sort | uniq | while read line; do
 		echo server=/$line/8.8.8.8 >>/tmp/accelerated-domains.gfwlist.dnsmasq.conf
