@@ -18,6 +18,9 @@ EX_DOMAIN="google.com \
 ipset create gfwlist iphash
 ipset flush gfwlist
 
+ipset destroy cniplist
+ipset restore -f /usr/share/natcapd/cniplist.set
+
 rm -f /tmp/gfwlist.txt
 rm -f /tmp/accelerated-domains.gfwlist.dnsmasq.conf
 /usr/bin/wget --no-check-certificate -qO /tmp/gfwlist.txt "https://raw.githubusercontent.com/gfwlist/gfwlist/master/gfwlist.txt" && {
