@@ -80,7 +80,7 @@ define KernelPackage/natcap
   FILES:=$(PKG_BUILD_DIR)/natcap.ko
   AUTOLOAD:=$(call AutoProbe,natcap)
   KCONFIG:=
-  DEPENDS:=+kmod-nf-conntrack +kmod-nf-nat
+  DEPENDS:=+kmod-nf-conntrack +kmod-nf-nat +kmod-ipt-ipset
 endef
 
 define KernelPackage/natcap/description
