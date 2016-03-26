@@ -6,12 +6,14 @@ START=95
 DEV=/dev/natcap_ctl
 
 add_server () {
-	echo add $1:0-e >>$DEV
+	echo add $1-$2 >>$DEV
 }
 
 start_instance () {
+	local opt="o"
 	local section="$1"
 	config_get debug  "$section" 'debug'
+	config_get enable_encryption  "$section" 'enable_encryption'
 	config_get client_forward_mode  "$section" 'client_forward_mode'
 	config_get clear_dst_on_reload  "$section" 'clear_dst_on_reload'
 	config_get server_persist_timeout  "$section" 'server_persist_timeout'
@@ -21,12 +23,13 @@ start_instance () {
 	echo clean >>$DEV
 	echo server_persist_timeout=0 >>$DEV
 
+	[ "x$enable_encryption" = x1 ] && opt='e'
 	[ "x$clear_dst_on_reload" = x1 ] && echo clear_dst >>$DEV
 	test -n "$debug" && echo debug=$debug >>$DEV
 	test -n "$client_forward_mode" && echo client_forward_mode=$client_forward_mode >>$DEV
 	test -n "$server_persist_timeout" && echo server_persist_timeout=$server_persist_timeout >>$DEV
 
-	config_list_foreach "$section" server add_server
+	config_list_foreach "$section" server add_server $opt
 }
 
 start() {
