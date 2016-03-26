@@ -14,14 +14,17 @@ start_instance () {
 	config_get debug  "$section" 'debug'
 	config_get client_forward_mode  "$section" 'client_forward_mode'
 	config_get clear_dst_on_reload  "$section" 'clear_dst_on_reload'
+	config_get server_persist_timeout  "$section" 'server_persist_timeout'
 
 	echo debug=0 >>$DEV
 	echo client_forward_mode=0 >>$DEV
 	echo clean >>$DEV
+	echo server_persist_timeout=0 >>$DEV
 
 	[ "x$clear_dst_on_reload" = x1 ] && echo clear_dst >>$DEV
 	test -n "$debug" && echo debug=$debug >>$DEV
 	test -n "$client_forward_mode" && echo client_forward_mode=$client_forward_mode >>$DEV
+	test -n "$server_persist_timeout" && echo server_persist_timeout=$server_persist_timeout >>$DEV
 
 	config_list_foreach "$section" server add_server
 }
