@@ -73,6 +73,7 @@ define Package/natcapd/install
 	$(INSTALL_BIN) ./files/natcapd.sh $(1)/usr/sbin/natcapd
 	$(INSTALL_DIR) $(1)/etc/uci-defaults
 	$(INSTALL_DATA) ./files/natcapd.defaults $(1)/etc/uci-defaults/95-natcapd
+	$(INSTALL_DATA) ./files/adv_luci_disabled $(1)/etc/adv_luci_disabled
 endef
 
 define KernelPackage/natcap
