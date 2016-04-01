@@ -6,7 +6,11 @@ START=95
 DEV=/dev/natcap_ctl
 
 add_server () {
-	echo add $1-$2 >>$DEV
+	if echo $1 | grep -q ':'; then
+		echo add $1-$2 >>$DEV
+	else
+		echo add $1:0-$2 >>$DEV
+	fi
 }
 
 start_instance () {
