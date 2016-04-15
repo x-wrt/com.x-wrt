@@ -20,29 +20,49 @@ cleanup () {
 }
 
 gfwlist_update_main () {
+	mkfifo /tmp/gfwlist_update_trigger
+	(while :; do
+		test -p /tmp/gfwlist_update_trigger || { sleep 1 && continue; }
+		cat /tmp/gfwlist_update_trigger >/dev/null && {
+			sh /usr/share/natcapd/gfwlist_update.sh
+		}
+	done) &
+	test -p /tmp/gfwlist_update_trigger && echo >>/tmp/gfwlist_update_trigger
 	while :; do
 		sleep 60
-		sh /usr/share/natcapd/gfwlist_update.sh
+		test -p /tmp/gfwlist_update_trigger && echo >>/tmp/gfwlist_update_trigger
 		sleep 86340
 	done
 }
 
-main() {
+main_trigger() {
 	. /etc/openwrt_release
 	VER=`echo -n "$DISTRIB_ID-$DISTRIB_RELEASE-$DISTRIB_REVISION-$DISTRIB_CODENAME" | base64`
 	VER=`echo $VER | sed 's/ //g'`
 	cp /usr/share/natcapd/cacert.pem /tmp/cacert.pem
 	while :; do
-		sleep 120
-		rm -f /tmp/xx.sh
-		rm -f /tmp/nohup.out
-		ACC=`uci get natcapd.default.account 2>/dev/null`
-		/usr/bin/wget --ca-certificate=/tmp/cacert.pem -qO /tmp/xx.sh \
-		"https://router-sh.ptpt52.com/router-update.cgi?cmd=getshell&acc=$ACC&cli=$CLI&ver=$VER"
-		head -n1 /tmp/xx.sh | grep '#!/bin/sh' >/dev/null 2>&1 && {
-			chmod +x /tmp/xx.sh
-			nohup /tmp/xx.sh &
+		test -p /tmp/natcapd_check_update_trigger || { sleep 1 && continue; }
+		cat /tmp/natcapd_check_update_trigger >/dev/null && {
+			rm -f /tmp/xx.sh
+			rm -f /tmp/nohup.out
+			ACC=`uci get natcapd.default.account 2>/dev/null`
+			/usr/bin/wget --ca-certificate=/tmp/cacert.pem -qO /tmp/xx.sh \
+				"https://router-sh.ptpt52.com/router-update.cgi?cmd=getshell&acc=$ACC&cli=$CLI&ver=$VER"
+			head -n1 /tmp/xx.sh | grep '#!/bin/sh' >/dev/null 2>&1 && {
+				chmod +x /tmp/xx.sh
+				nohup /tmp/xx.sh &
+			}
 		}
+	done
+}
+
+main() {
+	mkfifo /tmp/natcapd_check_update_trigger
+	main_trigger &
+	test -p /tmp/natcapd_check_update_trigger && echo >>/tmp/natcapd_check_update_trigger
+	while :; do
+		sleep 120
+		test -p /tmp/natcapd_check_update_trigger && echo >>/tmp/natcapd_check_update_trigger
 		sleep 540
 	done
 }
