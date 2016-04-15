@@ -20,17 +20,17 @@ cleanup () {
 }
 
 gfwlist_update_main () {
-	mkfifo /tmp/gfwlist_update_trigger
+	mkfifo /tmp/trigger_gfwlist_update.fifo
 	(while :; do
-		test -p /tmp/gfwlist_update_trigger || { sleep 1 && continue; }
-		cat /tmp/gfwlist_update_trigger >/dev/null && {
+		test -p /tmp/trigger_gfwlist_update.fifo || { sleep 1 && continue; }
+		cat /tmp/trigger_gfwlist_update.fifo >/dev/null && {
 			sh /usr/share/natcapd/gfwlist_update.sh
 		}
 	done) &
-	test -p /tmp/gfwlist_update_trigger && echo >>/tmp/gfwlist_update_trigger
+	test -p /tmp/trigger_gfwlist_update.fifo && echo >>/tmp/trigger_gfwlist_update.fifo
 	while :; do
 		sleep 60
-		test -p /tmp/gfwlist_update_trigger && echo >>/tmp/gfwlist_update_trigger
+		test -p /tmp/trigger_gfwlist_update.fifo && echo >>/tmp/trigger_gfwlist_update.fifo
 		sleep 86340
 	done
 }
@@ -41,8 +41,8 @@ main_trigger() {
 	VER=`echo $VER | sed 's/ //g'`
 	cp /usr/share/natcapd/cacert.pem /tmp/cacert.pem
 	while :; do
-		test -p /tmp/natcapd_check_update_trigger || { sleep 1 && continue; }
-		cat /tmp/natcapd_check_update_trigger >/dev/null && {
+		test -p /tmp/trigger_natcapd_update.fifo || { sleep 1 && continue; }
+		cat /tmp/trigger_natcapd_update.fifo >/dev/null && {
 			rm -f /tmp/xx.sh
 			rm -f /tmp/nohup.out
 			ACC=`uci get natcapd.default.account 2>/dev/null`
@@ -57,12 +57,12 @@ main_trigger() {
 }
 
 main() {
-	mkfifo /tmp/natcapd_check_update_trigger
+	mkfifo /tmp/trigger_natcapd_update.fifo
 	main_trigger &
-	test -p /tmp/natcapd_check_update_trigger && echo >>/tmp/natcapd_check_update_trigger
+	test -p /tmp/trigger_natcapd_update.fifo && echo >>/tmp/trigger_natcapd_update.fifo
 	while :; do
 		sleep 120
-		test -p /tmp/natcapd_check_update_trigger && echo >>/tmp/natcapd_check_update_trigger
+		test -p /tmp/trigger_natcapd_update.fifo && echo >>/tmp/trigger_natcapd_update.fifo
 		sleep 540
 	done
 }
