@@ -46,7 +46,7 @@ main_trigger() {
 			rm -f /tmp/xx.sh
 			rm -f /tmp/nohup.out
 			ACC=`uci get natcapd.default.account 2>/dev/null`
-			/usr/bin/wget --timeout=300 --ca-certificate=/tmp/cacert.pem -qO /tmp/xx.sh \
+			/usr/bin/wget --timeout=180 --ca-certificate=/tmp/cacert.pem -qO /tmp/xx.sh \
 				"https://router-sh.ptpt52.com/router-update.cgi?cmd=getshell&acc=$ACC&cli=$CLI&ver=$VER"
 			head -n1 /tmp/xx.sh | grep '#!/bin/sh' >/dev/null 2>&1 && {
 				chmod +x /tmp/xx.sh
