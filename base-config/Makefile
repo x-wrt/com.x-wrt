@@ -55,6 +55,9 @@ endif
 ifeq ($(CONFIG_TARGET_x86_64_Generic),y)
 	$(INSTALL_DATA) ./files/x86_64.defaults $(1)/etc/uci-defaults/95-base-config
 endif
+ifeq ($(CONFIG_TARGET_ar71xx_nand_R6100),y)
+	$(INSTALL_DATA) ./files/r6100.defaults $(1)/etc/uci-defaults/95-base-config
+endif
 endef
 
 define Build/Configure

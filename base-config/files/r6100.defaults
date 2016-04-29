@@ -1,0 +1,22 @@
+#!/bin/sh
+
+BOARD=NETGEAR_R6100
+SSID=${BOARD}
+if test -e /sys/class/net/eth0/address; then
+SSID=${BOARD}_`cat /sys/class/net/eth0/address | sed 's/://g' | tail -c5 | tr a-z A-Z`
+fi
+
+uci -q batch <<-EOT
+delete network.globals
+
+set wireless.radio0.disabled='0'
+set wireless.@wifi-iface[0].ssid='$SSID'
+commit wireless
+
+set system.@system[0].hostname='$BOARD'
+set system.@system[0].zonename='Asia/Shanghai'
+set system.@system[0].timezone='CST-8'
+commit system
+EOT
+
+exit 0
