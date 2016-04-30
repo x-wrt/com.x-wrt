@@ -1,22 +1,60 @@
 #!/bin/sh
 
-BOARD=NETGEAR_R6100
+BOARD=PTPT52
 SSID=${BOARD}
-if test -e /sys/class/net/eth0/address; then
-SSID=${BOARD}_`cat /sys/class/net/eth0/address | sed 's/://g' | tail -c5 | tr a-z A-Z`
-fi
+SSID_PASSWD=153153ptpt52
+
+uci set luci.main.lang='zh_cn'
+uci commit luci
+
+uci get system.@system[0] && {
+	uci -q batch <<-EOT
+		set system.@system[0].hostname='${BOARD}'
+		set system.@system[0].zonename='Asia/Shanghai'
+		set system.@system[0].timezone='CST-8'
+	EOT
+	uci commit system
+}
 
 uci -q batch <<-EOT
 delete network.globals
-
-set wireless.radio0.disabled='0'
-set wireless.@wifi-iface[0].ssid='$SSID'
-commit wireless
-
-set system.@system[0].hostname='$BOARD'
-set system.@system[0].zonename='Asia/Shanghai'
-set system.@system[0].timezone='CST-8'
-commit system
+delete network.lan.ip6assign
+delete network.wan6
 EOT
+uci commit network
+
+uci get wireless.radio0 && {
+	uci -q batch <<-EOT
+		set wireless.radio0.disabled='0'
+		set wireless.radio0.country='CN'
+	EOT
+}
+uci get wireless.radio1 && {
+	uci -q batch <<-EOT
+		set wireless.radio1.disabled='0'
+		set wireless.radio1.country='CN'
+	EOT
+}
+uci get wireless.@wifi-iface[0] && {
+	uci -q batch <<-EOT
+		set wireless.@wifi-iface[0].device='radio0'
+		set wireless.@wifi-iface[0].network='lan'
+		set wireless.@wifi-iface[0].mode='ap'
+		set wireless.@wifi-iface[0].ssid='${SSID}'
+		set wireless.@wifi-iface[0].encryption='psk2'
+		set wireless.@wifi-iface[0].key='${SSID_PASSWD}'
+	EOT
+}
+uci get wireless.@wifi-iface[1] && {
+	uci -q batch <<-EOT
+		set wireless.@wifi-iface[1].device='radio1'
+		set wireless.@wifi-iface[1].network='lan'
+		set wireless.@wifi-iface[1].mode='ap'
+		set wireless.@wifi-iface[1].ssid='${SSID}'
+		set wireless.@wifi-iface[1].encryption='psk2'
+		set wireless.@wifi-iface[1].key='${SSID_PASSWD}'
+	EOT
+}
+uci commit wireless
 
 exit 0
