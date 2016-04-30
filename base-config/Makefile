@@ -34,7 +34,7 @@ define Package/$(PKG_NAME)/description
 endef
 
 define Package/$(PKG_NAME)/conffiles
-/etc/base-config/
+/etc/config/base_config
 endef
 
 define Package/$(PKG_NAME)/postinst
@@ -50,7 +50,8 @@ endef
 
 define Package/$(PKG_NAME)/install
 	$(INSTALL_DIR) $(1)/etc/uci-defaults
-	$(INSTALL_DIR) $(1)/etc/base-config
+	$(INSTALL_DIR) $(1)/etc/config
+	$(INSTALL_DATA) ./files/base_config.config $(1)/etc/config/base_config
 ifeq ($(CONFIG_TARGET_ar71xx_generic_AP9341),y)
 	$(INSTALL_DATA) ./files/ap9341.defaults $(1)/etc/uci-defaults/95-base-config
 endif

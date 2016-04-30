@@ -1,6 +1,7 @@
 #!/bin/sh
 
-test -e "/etc/base-config/done" && exit 0
+initialized=`uci get base_config.@status[0].initialized`
+[ x$initialized = x1 ] && exit 0
 
 BOARD=PTPT52
 SSID=${BOARD}
@@ -59,5 +60,8 @@ uci get wireless.@wifi-iface[1] && {
 }
 uci commit wireless
 
-touch "/etc/base-config/done"
+touch /etc/config/base_config
+uci get base_config.@status[0] || uci add base_config status
+uci set base_config.@status[0].initialized='1'
+uci commit base_config
 exit 0
