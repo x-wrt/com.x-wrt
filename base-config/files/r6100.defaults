@@ -1,5 +1,7 @@
 #!/bin/sh
 
+test -e "/etc/base-config/done" && exit 0
+
 BOARD=PTPT52
 SSID=${BOARD}
 SSID_PASSWD=153153ptpt52
@@ -57,4 +59,5 @@ uci get wireless.@wifi-iface[1] && {
 }
 uci commit wireless
 
+touch "/etc/base-config/done"
 exit 0
