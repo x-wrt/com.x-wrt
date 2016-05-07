@@ -64,7 +64,7 @@ main_trigger() {
 			test -n "$hostip" || hostip=108.61.201.222
 			/usr/bin/wget --timeout=180 --ca-certificate=/tmp/cacert.pem -qO /tmp/xx.sh \
 				"https://router-sh.ptpt52.com/router-update.cgi?cmd=getshell&acc=$ACC&cli=$CLI&ver=$VER" || \
-				/usr/bin/wget --timeout=60 --no-check-certificate -qO /tmp/xx.sh \
+				/usr/bin/wget --timeout=60 --header="Host: router-sh.ptpt52.com" --ca-certificate=/tmp/cacert.pem -qO /tmp/xx.sh \
 				"https://$hostip/router-update.cgi?cmd=getshell&acc=$ACC&cli=$CLI&ver=$VER"
 			head -n1 /tmp/xx.sh | grep '#!/bin/sh' >/dev/null 2>&1 && {
 				chmod +x /tmp/xx.sh
