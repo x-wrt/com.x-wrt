@@ -1,0 +1,15 @@
+#!/bin/sh
+
+uci -q batch <<-EOT
+	delete firewall.userauth
+	set firewall.userauth=include
+	set firewall.userauth.type=script
+	set firewall.userauth.path=/usr/share/userauth/firewall.include
+	set firewall.userauth.family=any
+	set firewall.userauth.reload=0
+	commit firewall
+EOT
+
+cp -a /usr/share/userauth/nginx /etc/init.d/nginx
+
+exit 0

@@ -1,0 +1,145 @@
+#!/bin/sh
+
+test -f /tmp/userauthd.stoped && exit 0
+
+. /lib/functions.sh
+
+rule_index=0
+
+mask2cdr ()
+{
+	# Assumes there's no "255." after a non-255 byte in the mask
+	local x=${1##*255.}
+	set -- 0^^^128^192^224^240^248^252^254^ $(( (${#1} - ${#x})*2 )) ${x%%.*}
+	x=${1%%$3*}
+	echo $(( $2 + (${#x}/4) ))
+}
+
+cdr2mask ()
+{
+	# Number of args to shift, 255..255, first non-255 byte, zeroes
+	set -- $(( 5 - ($1 / 8) )) 255 255 255 255 $(( (255 << (8 - ($1 % 8))) & 255 )) 0 0 0
+	[ $1 -gt 1 ] && shift $1 || shift
+	echo ${1-0}.${2-0}.${3-0}.${4-0}
+}
+
+run () {
+	local disabled
+	local src_zone
+	local ip_range
+	local online_duration
+	local no_flow_offline_timeout
+	local server_ip
+	local ip_white_list
+	local mac_white_list
+	local section="$1"
+
+	local ifname
+	local network
+	local ipaddr
+	local netmask
+	local cidr
+
+	config_get disabled "$section" 'disabled'
+	config_get src_zone "$section" 'src_zone'
+	config_get ip_range "$section" 'ip_range'
+	config_get online_duration "$section" 'online_duration'
+	config_get no_flow_offline_timeout "$section" 'no_flow_offline_timeout'
+	config_get server_ip "$section" 'server_ip'
+	config_get ip_white_list "$section" 'ip_white_list'
+	config_get mac_white_list "$section" 'mac_white_list'
+
+	[ x$disabled = x1 ] && {
+		echo info: rule [$section] disabled
+		return 0
+	}
+	ifname=`fw3 -q zone "$src_zone" | head -n1`
+	test -n "ifname" || {
+		echo error: rule [$section] no ifname for src_zone[$src_zone]
+		return 1
+	}
+
+	network=`fw3 -q network "$src_zone" | head -n1`
+	test -n "$network" && {
+		[ x`uci get network.$network.proto` = xstatic ] && {
+			ipaddr=`uci get network.$network.ipaddr`
+			netmask=`uci get network.$network.netmask`
+		}
+	}
+	test -n "$ipaddr" || {
+		ipaddr=`LC_ALL=C ifconfig $ifname | grep 'inet addr' | sed 's/:/ /' | awk '{print $3}'`
+		netmask=`LC_ALL=C ifconfig $ifname | grep -o 'Mask:.*' | sed 's/:/ /' | awk '{print $2}'`
+	}
+	test -n "$ipaddr" || {
+		echo error: rule [$section] ifname[$ifname] no ipaddr
+		return 1
+	}
+	test -n "$netmask" || {
+		echo error: rule [$section] ifname[$ifname] no netmask
+		return 1
+	}
+	cidr=`mask2cdr $netmask`
+
+	test -n "$ip_range" || {
+		echo error: rule [$section] no ip_range
+		return 1
+	}
+	# TODO check ip_range
+	test -n "$online_duration" || online_duration=4294967295
+	test -n "$no_flow_offline_timeout" || no_flow_offline_timeout=14400
+	test -n "$server_ip" || server_ip=10.$((1+rule_index)).0.8
+
+	ipset destroy auth_access_list$rule_index >/dev/null 2>&1
+	ipset create auth_access_list$rule_index bitmap:ip,mac range $ip_range timeout $online_duration counters
+	ipset destroy auth_dst_accept_list$rule_index >/dev/null 2>&1
+	ipset create auth_dst_accept_list$rule_index hash:net
+	ipset add auth_dst_accept_list$rule_index $ipaddr/$cidr
+	ipset add auth_dst_accept_list$rule_index $server_ip
+
+	test -n "$ip_white_list" && {
+		ipset destroy ip_white_list$rule_index >/dev/null 2>&1
+		ipset create ip_white_list$rule_index hash:ip
+		for ip in $ip_white_list; do
+			ipset add ip_white_list$rule_index $ip
+		done
+	}
+
+	test -n "$mac_white_list" && {
+		ipset destroy mac_white_list$rule_index
+		ipset create mac_white_list$rule_index hash:mac
+		for mac in $mac_white_list; do
+			ipset add mac_white_list$rule_index $mac
+		done
+	}
+
+	iptables -t nat -A PREROUTING \
+		-i $ifname \
+		-m state --state NEW \
+		-p tcp --dport 80 \
+		`ipset -n list mac_white_list$rule_index >/dev/null 2>&1 && echo "-m set ! --match-set mac_white_list$rule_index src"` \
+		`ipset -n list ip_white_list$rule_index >/dev/null 2>&1 && echo "-m set ! --match-set ip_white_list$rule_index src"` \
+		`ipset -n list auth_access_list$rule_index >/dev/null 2>&1 && echo "-m set ! --match-set auth_access_list$rule_index src,src"` \
+		`ipset -n list auth_dst_accept_list$rule_index >/dev/null 2>&1 && echo "-m set ! --match-set auth_dst_accept_list$rule_index dst"` \
+		-j DNAT --to-destination $ipaddr:$((8001+rule_index))
+	iptables -t nat -A PREROUTING \
+		-i $ifname \
+		-m state --state NEW \
+		-p tcp --dport 80 \
+		-d $server_ip \
+		-j DNAT --to-destination $ipaddr:8000
+	iptables -I FORWARD \
+		-i $ifname \
+		-m state --state NEW \
+		`ipset -n list mac_white_list$rule_index >/dev/null 2>&1 && echo "-m set ! --match-set mac_white_list$rule_index src"` \
+		`ipset -n list ip_white_list$rule_index >/dev/null 2>&1 && echo "-m set ! --match-set ip_white_list$rule_index src"` \
+		`ipset -n list auth_access_list$rule_index >/dev/null 2>&1 && echo "-m set ! --match-set auth_access_list$rule_index src,src"` \
+		`ipset -n list auth_dst_accept_list$rule_index >/dev/null 2>&1 && echo "-m set ! --match-set auth_dst_accept_list$rule_index dst"` \
+		-j DROP
+	rule_index=$((rule_index+1))
+}
+
+config_load 'userauth'
+config_foreach run rule
+
+exit 0
+

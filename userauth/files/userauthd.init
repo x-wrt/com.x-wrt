@@ -1,0 +1,16 @@
+#!/bin/sh /etc/rc.common
+# Copyright (C) 2006-2011 OpenWrt.org
+
+START=95
+
+start() {
+	rm -f /tmp/userauthd.stoped
+	/etc/init.d/firewall restart >/dev/null 2>&1 || echo /etc/init.d/firewall restart failed
+	SERVICE_DAEMONIZE=1 service_start /usr/sbin/userauthd start
+}
+
+stop() {
+	/usr/sbin/userauthd stop
+	touch /tmp/userauthd.stoped
+	/etc/init.d/firewall restart >/dev/null 2>&1 || echo /etc/init.d/firewall restart failed
+}
