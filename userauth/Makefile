@@ -20,7 +20,7 @@ include $(INCLUDE_DIR)/package.mk
 define Package/$(PKG_NAME)/Default
   SECTION:=Applications
   CATEGORY:=Ptpt52
-  DEPENDS:= +nginx
+  DEPENDS:= +nginx +etables +iptables-mod-extra
 endef
 
 define Package/$(PKG_NAME)
