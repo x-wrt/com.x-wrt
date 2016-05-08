@@ -138,6 +138,12 @@ run () {
 	rule_index=$((rule_index+1))
 }
 
+for i in `seq 0 255`; do
+	ipset destroy auth_access_list$i >/dev/null 2>&1 || break
+	ipset destroy auth_dst_accept_list$i >/dev/null 2>&1
+	ipset destroy ip_white_list$i >/dev/null 2>&1
+	ipset destroy mac_white_list$i >/dev/null 2>&1
+done
 config_load 'userauth'
 config_foreach run rule
 
