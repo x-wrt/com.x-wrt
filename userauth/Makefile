@@ -25,7 +25,7 @@ endef
 
 define Package/$(PKG_NAME)
   $(call Package/$(PKG_NAME)/Default)
-  TITLE:=$(PKG_NAME)
+  TITLE:=User authentication
 endef
 
 define Package/$(PKG_NAME)/description
