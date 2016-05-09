@@ -18,7 +18,7 @@ nginx_server_conf_tpl="
 nginx_server_conf=""
 
 for i in `seq 0 255`; do
-	ipset -n list auth_access_list$i >/dev/null 2>&1 || break
+	ipset -n list auth_online_list$i >/dev/null 2>&1 || break
 	port=$((8001+i))
 	auth=login-$i
 	nginx_server_conf="$nginx_server_conf$(echo "$nginx_server_conf_tpl" | sed "s/_PORT_/$port/;s/_AUTH_/$auth/")"
