@@ -45,7 +45,7 @@ run () {
 	# TODO check ip_range
 	test -n "$online_duration" || online_duration=2073600
 	test -n "$no_flow_offline_timeout" || no_flow_offline_timeout=14400
-	test -n "$server_ip" || server_ip=10.$((1+rule_index)).0.8
+	test -n "$server_ip" || server_ip=10.$((0+rule_index)).0.8
 
 	ipset destroy auth_online_list$rule_index >/dev/null 2>&1
 	ipset create auth_online_list$rule_index bitmap:ip,mac range $ip_range timeout $online_duration counters || return 1
