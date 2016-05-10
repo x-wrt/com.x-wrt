@@ -14,8 +14,7 @@ nginx_server_conf_tpl="
         listen _PORT_;
         rewrite_by_lua '
             ngx.header.cache_control = \"private, no-cache\";
-            local url = require(\"socket.url\");
-            local req_url = url.escape(ngx.var.scheme .. \"://\" .. ngx.var.host .. ngx.var.request_uri);
+            local req_url = ngx.escape_uri(ngx.var.scheme .. \"://\" .. ngx.var.host .. ngx.var.request_uri);
             return ngx.redirect(\"http://_SERVER_/login.lua?aid=_AID_&ts=\" .. ngx.time() .. \"&url=\" .. req_url);
         ';
     }
