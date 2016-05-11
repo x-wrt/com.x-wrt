@@ -34,16 +34,16 @@ for rule_index in `seq 0 255`; do
 	nginx_server_conf="$nginx_server_conf$(echo "$nginx_server_conf_tpl" | sed "s/_PORT_/$port/;s/_SERVER_/$server_ip/;s/_AID_/$aid/")"
 done
 
+mkdir /tmp/userauth >/dev/null 2>&1 && {
+	test -e /tmp/userauth/www || cp -a /usr/share/userauth/www /tmp/userauth/
+}
+test -d /tmp/userauth && cp -a /usr/share/userauth/lua /tmp/userauth/
+
 rm -f /tmp/nginx.conf.tmp
 cat /usr/share/userauth/nginx.conf >>/tmp/nginx.conf.tmp
 echo "$nginx_server_conf" >>/tmp/nginx.conf.tmp
 echo "}" >>/tmp/nginx.conf.tmp
 mv /tmp/nginx.conf.tmp /tmp/nginx.conf
 /etc/init.d/nginx reload
-
-mkdir /tmp/userauth >/dev/null 2>&1 && {
-	test -e /tmp/userauth/www || ln -s /usr/share/userauth/www /tmp/userauth/www
-}
-test -d /tmp/userauth && cp -a /usr/share/userauth/lua /tmp/userauth/
 
 exit 0
