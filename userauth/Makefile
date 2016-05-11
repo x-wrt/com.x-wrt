@@ -60,9 +60,8 @@ define Package/$(PKG_NAME)/install
 	$(INSTALL_BIN) ./files/nginx.init $(1)/usr/share/userauth/nginx
 	$(INSTALL_DIR) $(1)/usr/share/userauth/www
 	cp -r ./files/www/* $(1)/usr/share/userauth/www/ || true
-	$(INSTALL_DIR) $(1)/usr/share/userauth/cgi-bin
-	cp -r ./files/cgi-bin/* $(1)/usr/share/userauth/cgi-bin || true
-	chmod 755 $(1)/usr/share/userauth/cgi-bin/* || true
+	$(INSTALL_DIR) $(1)/usr/share/userauth/lua
+	cp -r ./files/lua/* $(1)/usr/share/userauth/lua || true
 	$(INSTALL_DIR) $(1)/usr/sbin
 	$(INSTALL_BIN) ./files/userauthd.sh $(1)/usr/sbin/userauthd
 endef

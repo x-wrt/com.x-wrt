@@ -12,11 +12,15 @@
 nginx_server_conf_tpl="
     server {
         listen _PORT_;
-        rewrite_by_lua '
-            ngx.header.cache_control = \"private, no-cache\";
-            local req_url = ngx.escape_uri(ngx.var.scheme .. \"://\" .. ngx.var.host .. ngx.var.request_uri);
-            return ngx.redirect(\"http://_SERVER_/login.lua?aid=_AID_&ts=\" .. ngx.time() .. \"&url=\" .. req_url);
-        ';
+        location / {
+            set \$req_url \$scheme://\$host\$request_uri;
+            set \$aid _AID_;
+            set \$redirect_ip _SERVER_;
+            rewrite_by_lua_file /tmp/userauth/cgi-bin/ngx-auth-redirect.lua;
+            resolver 127.0.0.1;
+            proxy_redirect off;
+            proxy_pass \$scheme://\$host\$request_uri;
+        }
     }
 "
 nginx_server_conf=""
@@ -39,7 +43,6 @@ mv /tmp/nginx.conf.tmp /tmp/nginx.conf
 
 mkdir /tmp/userauth >/dev/null 2>&1 && {
 	test -e /tmp/userauth/www || ln -s /usr/share/userauth/www /tmp/userauth/www
-	test -e /tmp/userauth/cgi-bin || ln -s /usr/share/userauth/cgi-bin /tmp/userauth/cgi-bin
 }
 
 exit 0
