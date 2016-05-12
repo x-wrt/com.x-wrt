@@ -16,7 +16,6 @@ function loadLoginPage(res) {
 $(function() {
 	var params = window.location.search;
 	var args = {};
-	args.uid = 123123;
 	$.post(
 		"/auth-new" + params,
 		args,

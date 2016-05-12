@@ -128,7 +128,6 @@
 	function callWechatBrowser(){
 		var params = window.location.search;
 		var args = {};
-		args.uid = 123123;
 		args.now = new Date().getTime();
 		$.post(
 			"/auth-wechat-info" + params,
