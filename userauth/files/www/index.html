@@ -1,0 +1,39 @@
+<!DOCTYPE HTML>
+<html>
+<head lang="zh-CN">
+<meta http-equiv="content-type" content="text/html;charset=utf-8">
+<script type="text/javascript" src="scripts/jquery-1.12.3.min.js"></script>
+<title>上网认证</title>
+</head>
+<body>Loading...</body>
+<script type="text/javascript">
+function loadLoginPage(res) {
+	if (res && res.success) {
+		var params = window.location.search;
+		window.location.href = "login.html" + params;
+	}
+}
+$(function() {
+	var params = window.location.search;
+	var args = {};
+	args.uid = 123123;
+	$.post(
+		"/auth-new" + params,
+		args,
+		function(res) {
+			setTimeout(function(){
+				loadLoginPage(res);
+			}, 1000);
+		},
+		"json"
+	);
+
+	/* load the page on timeout */
+	var res = {};
+	res.status = 0;
+	setTimeout(function(){
+		loadLoginPage(res);
+	}, 3000);
+});
+</script>
+</html>
