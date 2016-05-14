@@ -47,6 +47,7 @@ for i in `seq 0 255`; do
 done
 
 rm -f /tmp/userauth.fw.rules
+rm -f /tmp/auth-wechat.conf.tmp
 rule_index=0
 for i in `seq 0 255`; do
 	[ x"`uci get userauth.@rule[$i]`" = xrule ] >/dev/null 2>&1 || break
@@ -112,6 +113,10 @@ for i in `seq 0 255`; do
 		secretKey="`uci get userauth.@rule[$i].wechat_secretKey`"
 		authUrl="http://$server_ip/auth-wechat-login"
 		wechatinfo_lua="$wechatinfo_lua$(echo "$wechatinfo_lua_tpl" | sed "s,_shopName_,$shopName,;s,_appId_,$appId,;s,_ssid_,$ssid,;s,_shopId_,$shopId,;s,_secretKey_,$secretKey,;s,_authUrl_,$authUrl,;")"
+		wechat_host_list="`uci get userauth.@rule[$i].wechat_host_list`"
+		for url in $wechat_host_list; do
+			echo "ipset=/$url/auth_dst_white_list$rule_index" >>/tmp/auth-wechat.conf.tmp
+		done
 	fi
 
 	echo "$rule_index $server_ip $port $ifnames" >>/tmp/userauth.fw.rules
@@ -137,5 +142,10 @@ mv /tmp/nginx.conf.tmp /tmp/nginx.conf
 /etc/init.d/nginx restart
 
 sh /usr/share/userauth/firewall.include
+
+test -f /tmp/auth-wechat.conf.tmp && \
+	mkdir -p /tmp/dnsmasq.d && \
+	mv /tmp/auth-wechat.conf.tmp /tmp/dnsmasq.d/auth-wechat.conf && \
+	/etc/init.d/dnsmasq restart
 
 exit 0
