@@ -61,7 +61,7 @@ for i in `seq 0 255`; do
 
 	src_zone="`uci get userauth.@rule[$i].src_zone`"
 	ip_range="`uci get userauth.@rule[$i].ip_range`"
-	online_duration="`uci get userauth.@rule[$i].online_duration`"
+	max_online_time="`uci get userauth.@rule[$i].max_online_time`"
 	no_flow_offline_timeout="`uci get userauth.@rule[$i].no_flow_offline_timeout`"
 	server_ip="`uci get userauth.@rule[$i].server_ip`"
 	ip_white_list="`uci get userauth.@rule[$i].ip_white_list`"
@@ -79,12 +79,12 @@ for i in `seq 0 255`; do
 	}
 
 	# TODO check ip_range
-	test -n "$online_duration" || online_duration=2073600
-	test -n "$no_flow_offline_timeout" || no_flow_offline_timeout=14400
+	test -n "$max_online_time" || max_online_time=2073600
+	test -n "$no_flow_offline_timeout" || no_flow_offline_timeout=3600
 	test -n "$server_ip" || server_ip=10.$((0+rule_index)).0.8
 
 	ipset destroy auth_online_list$rule_index >/dev/null 2>&1
-	ipset create auth_online_list$rule_index bitmap:ip,mac range $ip_range timeout $online_duration counters || {
+	ipset create auth_online_list$rule_index bitmap:ip,mac range $ip_range timeout $max_online_time counters || {
 		echo "error: failed to create ipset 'auth_online_list$rule_index'"
 		continue
 	}
