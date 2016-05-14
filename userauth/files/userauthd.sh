@@ -49,7 +49,7 @@ done
 rm -f /tmp/userauth.fw.rules
 rule_index=0
 for i in `seq 0 255`; do
-	[ x"`uci get userauth.@rule[$i]`" = xrule ] || break
+	[ x"`uci get userauth.@rule[$i]`" = xrule ] >/dev/null 2>&1 || break
 	disabled="`uci get userauth.@rule[$i].disabled`"
 	[ x$disabled = x1 ] && {
 		echo "info: rule [$i] disabled"
@@ -134,7 +134,7 @@ cat /usr/share/userauth/nginx.conf >/tmp/nginx.conf.tmp
 echo "$nginx_server_conf" >>/tmp/nginx.conf.tmp
 echo "}" >>/tmp/nginx.conf.tmp
 mv /tmp/nginx.conf.tmp /tmp/nginx.conf
-/etc/init.d/nginx reload
+/etc/init.d/nginx restart
 
 sh /usr/share/userauth/firewall.include
 
