@@ -18,6 +18,7 @@ setup_fw_rules () {
 			`ipset -n list auth_ip_white_list$rule_index >/dev/null 2>&1 && echo "-m set ! --match-set auth_ip_white_list$rule_index src"` \
 			`ipset -n list auth_online_list$rule_index >/dev/null 2>&1 && echo "-m set ! --match-set auth_online_list$rule_index src,src"` \
 			`ipset -n list auth_dst_white_list$rule_index >/dev/null 2>&1 && echo "-m set ! --match-set auth_dst_white_list$rule_index dst"` \
+			`ipset -n list auth_global_dst_white_list >/dev/null 2>&1 && echo "-m set ! --match-set auth_global_dst_white_list dst"` \
 			-j REDIRECT --to-ports $port
 		iptables -t nat -D PREROUTING \
 			-i $ifname \
@@ -38,6 +39,7 @@ setup_fw_rules () {
 			`ipset -n list auth_ip_white_list$rule_index >/dev/null 2>&1 && echo "-m set ! --match-set auth_ip_white_list$rule_index src"` \
 			`ipset -n list auth_online_list$rule_index >/dev/null 2>&1 && echo "-m set ! --match-set auth_online_list$rule_index src,src"` \
 			`ipset -n list auth_dst_white_list$rule_index >/dev/null 2>&1 && echo "-m set ! --match-set auth_dst_white_list$rule_index dst"` \
+			`ipset -n list auth_global_dst_white_list >/dev/null 2>&1 && echo "-m set ! --match-set auth_global_dst_white_list dst"` \
 			-j DROP
 	done
 	rule_index=$((rule_index+1))
