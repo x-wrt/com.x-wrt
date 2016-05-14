@@ -33,7 +33,7 @@ run () {
 		return 0
 	}
 	ifnames=`fw3 -q zone "$src_zone"`
-	test -n "ifnames" || {
+	test -n "$ifnames" || {
 		echo error: rule [$section] no ifnames for src_zone[$src_zone]
 		return 1
 	}
