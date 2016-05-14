@@ -39,25 +39,84 @@ wechatinfo_lua="
 return {
 "
 
-for rule_index in `seq 0 255`; do
-	ipset -n list auth_online_list$rule_index >/dev/null 2>&1 || break
-	server_ip=`uci get userauth.@rule[$rule_index].server_ip`
+for i in `seq 0 255`; do
+	ipset destroy auth_online_list$i >/dev/null 2>&1 || break
+	ipset destroy auth_dst_white_list$i >/dev/null 2>&1
+	ipset destroy auth_ip_white_list$i >/dev/null 2>&1
+	ipset destroy auth_mac_white_list$i >/dev/null 2>&1
+done
+
+rm -f /tmp/userauth.fw.rules
+rule_index=0
+for i in `seq 0 255`; do
+	[ x"`uci get userauth.@rule[$i]`" = xrule ] || break
+	disabled="`uci get userauth.@rule[$i].disabled`"
+	[ x$disabled = x1 ] && {
+		echo "info: rule [$i] disabled"
+		continue
+	}
+
+	src_zone="`uci get userauth.@rule[$i].src_zone`"
+	ip_range="`uci get userauth.@rule[$i].ip_range`"
+	online_duration="`uci get userauth.@rule[$i].online_duration`"
+	no_flow_offline_timeout="`uci get userauth.@rule[$i].no_flow_offline_timeout`"
+	server_ip="`uci get userauth.@rule[$i].server_ip`"
+	ip_white_list="`uci get userauth.@rule[$i].ip_white_list`"
+	mac_white_list="`uci get userauth.@rule[$i].mac_white_list`"
+
+	ifnames=`fw3 -q zone "$src_zone"`
+	test -n "$ifnames" || {
+		echo "error: rule [$i] no ifnames for src_zone[$src_zone]"
+		continue
+	}
+
+	test -n "$ip_range" || {
+		echo "error: rule [$i] no ip_range"
+		continue
+	}
+
+	# TODO check ip_range
+	test -n "$online_duration" || online_duration=2073600
+	test -n "$no_flow_offline_timeout" || no_flow_offline_timeout=14400
 	test -n "$server_ip" || server_ip=10.$((0+rule_index)).0.8
+
+	ipset destroy auth_online_list$rule_index >/dev/null 2>&1
+	ipset create auth_online_list$rule_index bitmap:ip,mac range $ip_range timeout $online_duration counters || {
+		echo "error: failed to create ipset 'auth_online_list$rule_index'"
+		continue
+	}
+	ipset destroy auth_dst_white_list$rule_index >/dev/null 2>&1
+	ipset create auth_dst_white_list$rule_index hash:net
+	ipset destroy auth_ip_white_list$rule_index >/dev/null 2>&1
+	ipset create auth_ip_white_list$rule_index hash:ip
+	for ip in $ip_white_list; do
+		ipset add auth_ip_white_list$rule_index $ip
+	done
+	ipset destroy auth_mac_white_list$rule_index
+	ipset create auth_mac_white_list$rule_index hash:mac
+	for mac in $mac_white_list; do
+		ipset add auth_mac_white_list$rule_index $mac
+	done
+
 	port=$((8001+rule_index))
 	aid=$rule_index
 	nginx_server_conf="$nginx_server_conf$(echo "$nginx_server_conf_tpl" | sed "s/_PORT_/$port/;s/_SERVER_/$server_ip/;s/_AID_/$aid/")"
 
-	if [ x"`uci get userauth.@rule[$rule_index].wechat_disabled`" = x1 ]; then
+	if [ x"`uci get userauth.@rule[$i].wechat_disabled`" = x1 ]; then
 		wechatinfo_lua="$wechatinfo_lua`echo -e '\n\tnil,'`"
 	else
-		shopName="`uci get userauth.@rule[$rule_index].wechat_shopName`"
-		appId="`uci get userauth.@rule[$rule_index].wechat_appId`"
-		ssid="`uci get userauth.@rule[$rule_index].wechat_ssid`"
-		shopId="`uci get userauth.@rule[$rule_index].wechat_shopId`"
-		secretKey="`uci get userauth.@rule[$rule_index].wechat_secretKey`"
+		shopName="`uci get userauth.@rule[$i].wechat_shopName`"
+		appId="`uci get userauth.@rule[$i].wechat_appId`"
+		ssid="`uci get userauth.@rule[$i].wechat_ssid`"
+		shopId="`uci get userauth.@rule[$i].wechat_shopId`"
+		secretKey="`uci get userauth.@rule[$i].wechat_secretKey`"
 		authUrl="http://$server_ip/auth-wechat-login"
 		wechatinfo_lua="$wechatinfo_lua$(echo "$wechatinfo_lua_tpl" | sed "s,_shopName_,$shopName,;s,_appId_,$appId,;s,_ssid_,$ssid,;s,_shopId_,$shopId,;s,_secretKey_,$secretKey,;s,_authUrl_,$authUrl,;")"
 	fi
+
+	echo "$rule_index $server_ip $port $ifnames" >>/tmp/userauth.fw.rules
+
+	rule_index=$((rule_index+1))
 done
 
 wechatinfo_lua="$wechatinfo_lua`echo -e '\n}'`"
@@ -76,5 +135,7 @@ echo "$nginx_server_conf" >>/tmp/nginx.conf.tmp
 echo "}" >>/tmp/nginx.conf.tmp
 mv /tmp/nginx.conf.tmp /tmp/nginx.conf
 /etc/init.d/nginx reload
+
+sh /usr/share/userauth/firewall.include
 
 exit 0

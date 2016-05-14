@@ -2,65 +2,11 @@
 
 test -f /tmp/userauthd.stoped && exit 0
 
-. /lib/functions.sh
-
-rule_index=0
-
-run () {
-	local disabled
-	local src_zone
-	local ip_range
-	local online_duration
-	local no_flow_offline_timeout
-	local server_ip
-	local ip_white_list
-	local mac_white_list
-	local section="$1"
-
-	local ifnames
-
-	config_get disabled "$section" 'disabled'
-	config_get src_zone "$section" 'src_zone'
-	config_get ip_range "$section" 'ip_range'
-	config_get online_duration "$section" 'online_duration'
-	config_get no_flow_offline_timeout "$section" 'no_flow_offline_timeout'
-	config_get server_ip "$section" 'server_ip'
-	config_get ip_white_list "$section" 'ip_white_list'
-	config_get mac_white_list "$section" 'mac_white_list'
-
-	[ x$disabled = x1 ] && {
-		echo info: rule [$section] disabled
-		return 0
-	}
-	ifnames=`fw3 -q zone "$src_zone"`
-	test -n "$ifnames" || {
-		echo error: rule [$section] no ifnames for src_zone[$src_zone]
-		return 1
-	}
-
-	test -n "$ip_range" || {
-		echo error: rule [$section] no ip_range
-		return 1
-	}
-	# TODO check ip_range
-	test -n "$online_duration" || online_duration=2073600
-	test -n "$no_flow_offline_timeout" || no_flow_offline_timeout=14400
-	test -n "$server_ip" || server_ip=10.$((0+rule_index)).0.8
-
-	ipset destroy auth_online_list$rule_index >/dev/null 2>&1
-	ipset create auth_online_list$rule_index bitmap:ip,mac range $ip_range timeout $online_duration counters || return 1
-	ipset destroy auth_dst_white_list$rule_index >/dev/null 2>&1
-	ipset create auth_dst_white_list$rule_index hash:net
-	ipset destroy auth_ip_white_list$rule_index >/dev/null 2>&1
-	ipset create auth_ip_white_list$rule_index hash:ip
-	for ip in $ip_white_list; do
-		ipset add auth_ip_white_list$rule_index $ip
-	done
-	ipset destroy auth_mac_white_list$rule_index
-	ipset create auth_mac_white_list$rule_index hash:mac
-	for mac in $mac_white_list; do
-		ipset add auth_mac_white_list$rule_index $mac
-	done
+setup_fw_rules () {
+	local rule_index=$1
+	local server_ip=$2
+	local port=$3
+	local ifnames=$4
 
 	for ifname in $ifnames; do
 		iptables -t nat -I PREROUTING \
@@ -72,7 +18,13 @@ run () {
 			`ipset -n list auth_ip_white_list$rule_index >/dev/null 2>&1 && echo "-m set ! --match-set auth_ip_white_list$rule_index src"` \
 			`ipset -n list auth_online_list$rule_index >/dev/null 2>&1 && echo "-m set ! --match-set auth_online_list$rule_index src,src"` \
 			`ipset -n list auth_dst_white_list$rule_index >/dev/null 2>&1 && echo "-m set ! --match-set auth_dst_white_list$rule_index dst"` \
-			-j REDIRECT --to-ports $((8001+rule_index))
+			-j REDIRECT --to-ports $port
+		iptables -t nat -D PREROUTING \
+			-i $ifname \
+			-m state --state NEW \
+			-p tcp --dport 80 \
+			-d $server_ip \
+			-j REDIRECT --to-ports 8000 >/dev/null 2>&1
 		iptables -t nat -I PREROUTING \
 			-i $ifname \
 			-m state --state NEW \
@@ -91,14 +43,9 @@ run () {
 	rule_index=$((rule_index+1))
 }
 
-for i in `seq 0 255`; do
-	ipset destroy auth_online_list$i >/dev/null 2>&1 || break
-	ipset destroy auth_dst_white_list$i >/dev/null 2>&1
-	ipset destroy auth_ip_white_list$i >/dev/null 2>&1
-	ipset destroy auth_mac_white_list$i >/dev/null 2>&1
+cat /tmp/userauth.fw.rules | while read rule_index server_ip port ifnames; do
+	setup_fw_rules "$rule_index" "$server_ip" "$port" "$ifnames"
 done
-config_load 'userauth'
-config_foreach run rule
 
 exit 0
 
