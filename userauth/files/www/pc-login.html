@@ -1,0 +1,68 @@
+
+<!DOCTYPE HTML>
+<html>
+<head lang="zh-CN">
+	<meta charset="UTF-8">
+    <title>微信连Wi-Fi</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no">
+    <script type="text/javascript" src="https://wifi.weixin.qq.com/resources/js/wechatticket/pcauth.js" ></script>
+    <script type="text/javascript" src="scripts/jquery-1.12.3.min.js"></script>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="stylesheet" href="https://wifi.weixin.qq.com/resources/css/style-pcdemo.css">
+</head>
+<body>
+	<div class="container">
+	    <div class="header">
+	        <img src="https://wifi.weixin.qq.com/resources/images/image-logo.png" class="header__logo" alt="商户logo">
+	        <!--建议图片大小为570x140 或 287x70-->
+	    </div>
+	
+	    <div class="main" style="background-image: url(https://wifi.weixin.qq.com/resources/images/image-bg.jpg);">
+	        <!--建议图片大小为 1920x1200 或 1920x1080-->
+	        <div class="main__content">
+	            <h2 class="main__content-title">欢迎使用<em>免费Wi-Fi</em></h2>
+	            <div class="main__content-qrcode" id='qrcode_zone' style="text-align:center;margin:20px auto;width:250px;"></div>
+	            <div class="main__content-info">使用微信扫描二维码</div>
+	        </div>
+	    </div>
+	
+	    <div class="footer">
+	        <div class="footer_copyright"><a href="http://wifi.weixin.qq.com">微信连Wi-Fi详细介绍</a> Copyright © 2011-2016 Tencent. All Rights Reserved.</div>
+	    </div>
+	</div>
+</body>
+<script type="text/javascript">
+	function doCallWechat(res) {
+		if (res && res.success == true) {
+			var info = res.data;
+			JSAPI.auth({
+				target : document.getElementById('qrcode_zone'),
+				appId : info.appId,
+				shopId : info.shopId,
+				extend : info.extend,
+				authUrl : info.authUrl
+			});
+		} else {
+			alert("auth server fail\n" + res ? res.data : "");
+		}
+	}
+	function callWechatBrowser(){
+		var params = window.location.search;
+		var args = {};
+		args.now = new Date().getTime();
+		$.post(
+			"/auth-wechat-info" + params,
+			args,
+			function(res) {
+				doCallWechat(res);
+			},
+			"json"
+		);
+	}
+	callWechatBrowser()
+</script>
+</html>

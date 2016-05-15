@@ -4,7 +4,7 @@ end
 if not request_need_proxypass(ngx) then
 	local data = {}
 	local ua = ngx.req.get_headers()['User-Agent']
-	if ua:match('.*micromessenger.*') then
+	if ua and ua:match('.*micromessenger.*') then
 		local macaddr = get_client_macaddr(ngx) or 'ff:ff:ff:ff:ff:ff'
 		local info = get_wechat_info(ngx.var.aid)
 		if info then
