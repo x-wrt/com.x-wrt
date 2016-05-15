@@ -10,7 +10,7 @@ if not request_need_proxypass(ngx) then
 		if info then
 			local timestamp = ngx.time() * 1000
 			local sign = ngx.md5(string.format('%s%s%s%s%s%s', ngx.var.aid, ngx.var.remote_addr, macaddr, timestamp, info.ssid, info.secretKey))
-			local extend = string.format('%s,%s,%s,%s,%s,%s,', ngx.var.aid, ngx.var.remote_addr, macaddr, timestamp, ngx.encode_base64(info.ssid), sign)
+			local extend = string.format('%s,%s,%s,%s,%s,%s,', ngx.var.aid, ngx.var.remote_addr, macaddr, timestamp, info.ssid, sign)
 			data.authUrl = info.authUrl
 			data.extend = extend
 		end

@@ -71,7 +71,7 @@
 			
 			//将回调函数名称带到服务器端
 			var url = "https://wifi.weixin.qq.com/operator/callWechatBrowser.xhtml?appId=" + appId 
-																				+ "&extend=" + extend 
+																				+ "&extend=" + encodeURIComponent(extend)
 																				+ "&timestamp=" + timestamp 
 																				+ "&sign=" + sign;	
 			
@@ -80,7 +80,7 @@
 				
 				
 				url = "https://wifi.weixin.qq.com/operator/callWechat.xhtml?appId=" + appId 
-																				+ "&extend=" + extend 
+																				+ "&extend=" + encodeURIComponent(extend)
 																				+ "&timestamp=" + timestamp 
 																				+ "&sign=" + sign
 																				+ "&shopId=" + shopId
