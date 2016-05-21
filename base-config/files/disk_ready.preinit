@@ -16,6 +16,13 @@ do_disk_ready() {
 		# [_boot_|_rootfs_...1G...][cfg 1G][data...]
 		echo -ne 'n\np\n3\n1835008\n3932160\nn\np\n3932672\n\nw\n' | fdisk /dev/sda
 		partx -a /dev/sda
+		test -e /dev/sda3 -a -e /dev/sda4  || {
+			MAJOR="`ls -l /dev/sda2 | grep '/dev/sda2' | awk '{print $5}' | grep -o '[0-9]*'`"
+			test -n "$MAJOR" && {
+				mknod /dev/sda3 b $MAJOR 3
+				mknod /dev/sda4 b $MAJOR 4
+			}
+		}
 		echo -ne 'y\n' | mkfs.ext4 /dev/sda3
 		echo -ne 'y\n' | mkfs.ext4 /dev/sda4
 	}
