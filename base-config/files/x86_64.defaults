@@ -1,0 +1,39 @@
+#!/bin/sh
+version=`uci get base_config.@status[0].version`
+test -n "$version" || version=0
+
+test $version -lt 1 && {
+	uci get system.@system[0] && {
+		uci -q batch <<-EOT
+			set system.@system[0].hostname='AC'
+			set system.@system[0].zonename='Asia/Shanghai'
+			set system.@system[0].timezone='CST-8'
+		EOT
+		uci commit system
+	}
+	uci -q batch <<-EOT
+		delete network.globals
+		delete network.lan.ip6assign
+		delete network.wan6
+	EOT
+	uci commit network
+	[ x`uci get firewall.@defaults[0]` = xdefault ] && uci set firewall.@defaults[0].disable_ipv6='1'
+	[ x`uci get firewall.@zone[0].name` = xlan ] && {
+		[ x`firewall.@zone[0].mtu_fix` = x1 ] || uci set firewall.@zone[0].mtu_fix='1'
+	}
+	[ x`uci get firewall.@zone[1].name` = xwan ] && {
+		uci get firewall.@zone[1].network | grep -q wan6 && {
+			uci delete firewall.@zone[1].network
+			uci add_list firewall.@zone[1].network="wan"
+		}
+	}
+	uci commit firewall
+	version=1
+}
+
+touch /etc/config/base_config
+uci get base_config.@status[0] || uci add base_config status
+uci set base_config.@status[0].version=$version
+uci commit base_config
+exit 0
+

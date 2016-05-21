@@ -1,0 +1,24 @@
+#!/bin/sh
+# Copyright (C) 2006 OpenWrt.org
+# Copyright (C) 2010 Vertical Communications
+
+
+do_disk_ready() {
+	diskpart=`fdisk -l /dev/sda | grep '^/dev/sda[0-9]' | wc -l`
+	[ "x$diskpart" = "x4" ] || {
+		disksize="`fdisk -l /dev/sda | grep '/dev/sda:' | head -n1 | awk '{print $5}'`"
+		test -n "$disksize" || return
+		# <= 2GiB && return
+		test $disksize -le 2147483648 && return
+
+		echo -ne 'd\n4\nw\n' | fdisk /dev/sda
+		echo -ne 'd\n3\nw\n' | fdisk /dev/sda
+		# [_boot_|_rootfs_...1G...][cfg 1G][data...]
+		echo -ne 'n\np\n3\n1835008\n3932160\nn\np\n3932672\n\nw\n' | fdisk /dev/sda
+		partx -a /dev/sda
+		echo -ne 'y\n' | mkfs.ext4 /dev/sda3
+		echo -ne 'y\n' | mkfs.ext4 /dev/sda4
+	}
+}
+
+boot_hook_add preinit_main do_disk_ready
