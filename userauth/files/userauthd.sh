@@ -13,6 +13,8 @@ nginx_server_conf_tpl="
     server {
         listen _PORT_;
         location / {
+            if_modified_since off;
+            etag off;
             set \$aid _AID_;
             set \$redirect_ip _SERVER_;
             set \$req_url \$scheme://\$host\$request_uri;
