@@ -22,5 +22,7 @@ if not request_need_proxypass(ngx) then
 	local args = ngx.encode_args(data)
 	local redirect_url = 'http://' .. ngx.var.redirect_ip .. '/index.html?' .. args
 	ngx.header['Cache-Control'] = 'private, max-age=0, no-cache, must-revalidate, proxy-revalidate'
+	ngx.header['Expires'] = 'Tue, 03 Jul 2001 06:00:00 GMT'
+	ngx.header['Last-Modified'] = ngx.http_time(ngx.time())
 	return ngx.redirect(redirect_url, ngx.HTTP_MOVED_TEMPORARILY)
 end
