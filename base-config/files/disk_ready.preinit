@@ -23,7 +23,13 @@ do_disk_ready() {
 				mknod /dev/sda4 b $MAJOR 4
 			}
 		}
+		echo erase >/dev/sda3
+		echo erase >/dev/sda4
+	}
+	[ "x`head -c5 /dev/sda3`" = "xerase" ] && {
 		echo -ne 'y\n' | mkfs.ext4 /dev/sda3
+	}
+	[ "x`head -c5 /dev/sda3`" = "xerase" ] && {
 		echo -ne 'y\n' | mkfs.ext4 /dev/sda4
 	}
 }
