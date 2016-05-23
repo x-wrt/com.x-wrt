@@ -13,6 +13,7 @@ nginx_server_conf_tpl="
     server {
         listen _PORT_;
         location / {
+            keepalive_timeout 0;
             if_modified_since off;
             etag off;
             set \$aid _AID_;
