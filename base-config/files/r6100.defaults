@@ -41,13 +41,21 @@ uci commit firewall
 uci get wireless.radio0 && {
 	uci -q batch <<-EOT
 		set wireless.radio0.disabled='0'
-		set wireless.radio0.country='CN'
+		set wireless.radio0.hwmode='11a'
+		set wireless.radio0.country='US'
+		set wireless.radio0.txpower='29'
+		set wireless.radio0.channel='153'
+		set wireless.radio0.htmode='VHT40'
 	EOT
 }
 uci get wireless.radio1 && {
 	uci -q batch <<-EOT
 		set wireless.radio1.disabled='0'
-		set wireless.radio1.country='CN'
+		set wireless.radio1.hwmode='11g'
+		set wireless.radio1.country='US'
+		set wireless.radio1.txpower='25'
+		set wireless.radio1.channel='auto'
+		set wireless.radio1.htmode='HT20'
 	EOT
 }
 uci get wireless.@wifi-iface[0] && {
