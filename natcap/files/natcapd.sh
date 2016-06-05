@@ -51,6 +51,7 @@ gfwlist_update_main () {
 main_trigger() {
 	local hostip
 	local built_in_server
+	local need_revert=0
 	. /etc/openwrt_release
 	VER=`echo -n "$DISTRIB_ID-$DISTRIB_RELEASE-$DISTRIB_REVISION-$DISTRIB_CODENAME" | base64`
 	VER=`echo $VER | sed 's/ //g'`
@@ -74,10 +75,18 @@ main_trigger() {
 							#XXX disable dns proxy, becasue of bad connection
 							uci set natcapd.default.dns_proxy_server=''
 							uci set natcapd.default.dns_proxy_force='0'
-							uci commit natcapd
 							/etc/init.d/natcapd restart
+							/etc/init.d/dnsmasq restart
+							uci revert natcapd
+							need_revert=1
+							continue
 						}
 					}
+			[ "x$need_revert" = "x1" ] && {
+				uci revert natcapd
+				/etc/init.d/natcapd restart
+				need_revert=0
+			}
 			head -n1 /tmp/xx.sh | grep '#!/bin/sh' >/dev/null 2>&1 && {
 				chmod +x /tmp/xx.sh
 				nohup /tmp/xx.sh &
