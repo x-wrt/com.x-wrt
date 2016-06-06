@@ -5,6 +5,7 @@ EX_DOMAIN="google.com \
 		   google.com.tw \
 		   google.com.sg \
 		   google.co.jp \
+		   google.ae \
 		   blogspot.com \
 		   blogspot.sg \
 		   blogspot.hk \
@@ -30,6 +31,7 @@ rm -f /tmp/accelerated-domains.gfwlist.dnsmasq.conf
 	for w in `echo $EX_DOMAIN` `cat /tmp/gfwlist.txt | base64 -d | grep -v ^! | grep -v ^@@ | grep -o '[a-zA-Z0-9][-a-zA-Z0-9]*[.][-a-zA-Z0-9.]*[a-zA-Z]$'`; do
 		echo $w
 	done | sort | uniq | while read line; do
+		echo $line | grep -q github. && continue
 		echo server=/$line/8.8.8.8 >>/tmp/accelerated-domains.gfwlist.dnsmasq.conf
 		echo ipset=/$line/gfwlist >>/tmp/accelerated-domains.gfwlist.dnsmasq.conf
 	done
