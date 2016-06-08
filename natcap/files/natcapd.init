@@ -21,7 +21,13 @@ start_instance () {
 	config_get client_forward_mode  "$section" 'client_forward_mode'
 	config_get clear_dst_on_reload  "$section" 'clear_dst_on_reload'
 	config_get server_persist_timeout  "$section" 'server_persist_timeout'
+	local account=""
+	config_get account  "$section" 'account'
+	local client_mac=`cat $DEV | grep default_mac_addr | grep -o "[0-9A-F][0-9A-F]:[0-9A-F][0-9A-F]:[0-9A-F][0-9A-F]:[0-9A-F][0-9A-F]:[0-9A-F][0-9A-F]:[0-9A-F][0-9A-F]"`
+	local uhash=`echo -n $client_mac$account | cksum | awk '{print $1}'`
+	uhash=$((uhash%65536))
 
+	echo u_hash=$uhash >>$DEV
 	echo debug=0 >>$DEV
 	echo client_forward_mode=0 >>$DEV
 	echo clean >>$DEV
