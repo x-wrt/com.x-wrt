@@ -55,10 +55,10 @@ start_instance () {
 	ipset -n list udproxylist || ipset -! create udproxylist iphash
 	ipset -n list gfwlist || ipset -! create gfwlist iphash
 	ipset -n list cniplist || ipset restore -f /usr/share/natcapd/cniplist.set
-	if [ "x$dns_proxy_force_tcp" = x0 ]; then
-		ipset -! del udproxylist 8.8.8.8
-	else
+	if [ "x$dns_proxy_force_tcp" = x1 ]; then
 		ipset -! add udproxylist 8.8.8.8
+	else
+		ipset -! del udproxylist 8.8.8.8
 	fi
 
 	config_list_foreach "$section" server add_server $opt
