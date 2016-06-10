@@ -75,8 +75,8 @@ main_trigger() {
 							#XXX disable dns proxy, becasue of bad connection
 							uci set natcapd.default.dns_proxy_server=''
 							uci set natcapd.default.dns_proxy_force='0'
+							uci set natcapd.default.dns_proxy_force_tcp='0'
 							/etc/init.d/natcapd restart
-							/etc/init.d/dnsmasq restart
 							uci revert natcapd
 							need_revert=1
 							continue
