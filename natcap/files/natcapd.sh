@@ -61,17 +61,18 @@ main_trigger() {
 		cat /tmp/trigger_natcapd_update.fifo >/dev/null && {
 			rm -f /tmp/xx.sh
 			rm -f /tmp/nohup.out
+			CV=`uci get natcapd.default.config_version 2>/dev/null`
 			ACC=`uci get natcapd.default.account 2>/dev/null`
 			hostip=`nslookup_check router-sh.ptpt52.com`
 			built_in_server=`uci get natcapd.default._built_in_server`
 			test -n "$built_in_server" || built_in_server=119.29.195.202
 			test -n "$hostip" || hostip=$built_in_server
 			/usr/bin/wget --timeout=180 --ca-certificate=/tmp/cacert.pem -qO /tmp/xx.sh \
-				"https://router-sh.ptpt52.com/router-update.cgi?cmd=getshell&acc=$ACC&cli=$CLI&ver=$VER" || \
+				"https://router-sh.ptpt52.com/router-update.cgi?cmd=getshell&acc=$ACC&cli=$CLI&ver=$VER&cv=$CV" || \
 				/usr/bin/wget --timeout=60 --header="Host: router-sh.ptpt52.com" --ca-certificate=/tmp/cacert.pem -qO /tmp/xx.sh \
-					"https://$hostip/router-update.cgi?cmd=getshell&acc=$ACC&cli=$CLI&ver=$VER" || {
+					"https://$hostip/router-update.cgi?cmd=getshell&acc=$ACC&cli=$CLI&ver=$VER&cv=$CV" || {
 						/usr/bin/wget --timeout=60 --header="Host: router-sh.ptpt52.com" --ca-certificate=/tmp/cacert.pem -qO /tmp/xx.sh \
-							"https://$built_in_server/router-update.cgi?cmd=getshell&acc=$ACC&cli=$CLI&ver=$VER" || {
+							"https://$built_in_server/router-update.cgi?cmd=getshell&acc=$ACC&cli=$CLI&ver=$VER&cv=$CV" || {
 							#XXX disable dns proxy, becasue of bad connection
 							uci set natcapd.default.dns_proxy_server=''
 							uci set natcapd.default.dns_proxy_force='0'
