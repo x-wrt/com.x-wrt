@@ -2,8 +2,8 @@
 
 ACC=$1
 ACC=`echo -n "$ACC" | base64`
-CLI=`cat /dev/natcap_ctl | grep default_mac_addr | grep -o '[0-9A-F][0-9A-F]:[0-9A-F][0-9A-F]:[0-9A-F][0-9A-F]:[0-9A-F][0-9A-F]:[0-9A-F][0-9A-F]:[0-9A-F][0-9A-F]'`
-test -n "$CLI" || CLI=`sed 's/:/-/g' /sys/class/net/eth0/address`
+CLI=`cat /dev/natcap_ctl | grep default_mac_addr | grep -o '[0-9A-F][0-9A-F]:[0-9A-F][0-9A-F]:[0-9A-F][0-9A-F]:[0-9A-F][0-9A-F]:[0-9A-F][0-9A-F]:[0-9A-F][0-9A-F]' | sed 's/:/-/g'`
+test -n "$CLI" || CLI=`sed 's/:/-/g' /sys/class/net/eth0/address | tr a-z A-Z`
 
 cd /tmp
 
