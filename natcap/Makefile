@@ -10,7 +10,7 @@ include $(INCLUDE_DIR)/kernel.mk
 
 PKG_NAME:=natcap
 PKG_VERSION:=4.0.1
-PKG_RELEASE:=393e84b562c1276264dbf0ccda6c8d4ec19eba47
+PKG_RELEASE:=75b327512235e68cc94af1e6612bb63f1fbf1ec0
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION)-$(PKG_RELEASE).tar.xz
 PKG_SOURCE_URL:=https://github.com/ptpt52/natcap.git
