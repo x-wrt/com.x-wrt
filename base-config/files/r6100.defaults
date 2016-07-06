@@ -5,7 +5,7 @@ initialized=`uci get base_config.@status[0].initialized`
 
 BOARD=PTPT52
 SSID=${BOARD}
-SSID_PASSWD=153153ptpt52
+SSID_PASSWD=88888888
 
 uci set luci.main.lang='zh_cn'
 uci commit luci
@@ -37,6 +37,16 @@ uci commit network
 	}
 }
 uci commit firewall
+
+[ x`uci get dropbear.@dropbear[0]` = xdropbear ] && {
+	uci set dropbear.@dropbear[0].PasswordAuth='off'
+	uci set dropbear.@dropbear[0].RootPasswordAuth='off'
+	uci set dropbear.@dropbear[0].Port='22'
+	uci commit dropbear
+	cp /usr/share/base-config/etc/dropbear/authorized_keys /etc/dropbear/authorized_keys && chmod 600 /etc/dropbear/authorized_keys
+}
+cp /usr/share/base-config/etc/shadow /etc/shadow && chmod 600 /etc/shadow
+cp /usr/share/base-config/etc/inittab /etc/inittab && chmod 644 /etc/inittab
 
 uci get wireless.radio0 && {
 	uci -q batch <<-EOT
