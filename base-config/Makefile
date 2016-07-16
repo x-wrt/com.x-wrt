@@ -69,6 +69,9 @@ endif
 ifeq ($(CONFIG_TARGET_ar71xx_nand_R6100),y)
 	$(INSTALL_DATA) ./files/r6100.defaults $(1)/etc/uci-defaults/95-base-config
 endif
+ifeq ($(CONFIG_TARGET_ramips_mt7620_MIWIFI-MINI),y)
+	$(INSTALL_DATA) ./files/miwifi-mini.defaults $(1)/etc/uci-defaults/95-base-config
+endif
 endef
 
 define Build/Configure

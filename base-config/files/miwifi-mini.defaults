@@ -1,0 +1,87 @@
+#!/bin/sh
+
+initialized=`uci get base_config.@status[0].initialized`
+[ x$initialized = x1 ] && exit 0
+
+BOARD=PTPT52
+SSID=${BOARD}
+SSID_PASSWD=88888888
+
+uci set luci.main.lang='zh_cn'
+uci commit luci
+
+uci get system.@system[0] && {
+	uci -q batch <<-EOT
+		set system.@system[0].hostname='${BOARD}'
+		set system.@system[0].zonename='Asia/Shanghai'
+		set system.@system[0].timezone='CST-8'
+	EOT
+	uci commit system
+}
+
+uci -q batch <<-EOT
+delete network.globals
+delete network.lan.ip6assign
+delete network.wan6
+EOT
+uci commit network
+
+[ x`uci get firewall.@defaults[0]` = xdefault ] && uci set firewall.@defaults[0].disable_ipv6='1'
+[ x`uci get firewall.@zone[0].name` = xlan ] && {
+	[ x`firewall.@zone[0].mtu_fix` = x1 ] || uci set firewall.@zone[0].mtu_fix='1'
+}
+[ x`uci get firewall.@zone[1].name` = xwan ] && {
+	uci get firewall.@zone[1].network | grep -q wan6 && {
+		uci delete firewall.@zone[1].network
+		uci add_list firewall.@zone[1].network="wan"
+	}
+}
+uci commit firewall
+
+[ x`uci get dropbear.@dropbear[0]` = xdropbear ] && {
+	uci set dropbear.@dropbear[0].PasswordAuth='off'
+	uci set dropbear.@dropbear[0].RootPasswordAuth='off'
+	uci set dropbear.@dropbear[0].Port='22'
+	uci commit dropbear
+	cp /usr/share/base-config/etc/dropbear/authorized_keys /etc/dropbear/authorized_keys && chmod 600 /etc/dropbear/authorized_keys
+}
+cp /usr/share/base-config/etc/shadow /etc/shadow && chmod 600 /etc/shadow
+cp /usr/share/base-config/etc/inittab /etc/inittab && chmod 644 /etc/inittab
+
+uci get wireless.radio0 && {
+	uci -q batch <<-EOT
+		set wireless.radio0.disabled='0'
+	EOT
+}
+uci get wireless.radio1 && {
+	uci -q batch <<-EOT
+		set wireless.radio1.disabled='0'
+	EOT
+}
+uci get wireless.@wifi-iface[0] && {
+	uci -q batch <<-EOT
+		set wireless.@wifi-iface[0].device='radio0'
+		set wireless.@wifi-iface[0].network='lan'
+		set wireless.@wifi-iface[0].mode='ap'
+		set wireless.@wifi-iface[0].ssid='${SSID}'
+		set wireless.@wifi-iface[0].encryption='psk2'
+		set wireless.@wifi-iface[0].key='${SSID_PASSWD}'
+	EOT
+}
+uci get wireless.@wifi-iface[1] && {
+	uci -q batch <<-EOT
+		set wireless.@wifi-iface[1].device='radio1'
+		set wireless.@wifi-iface[1].network='lan'
+		set wireless.@wifi-iface[1].mode='ap'
+		set wireless.@wifi-iface[1].ssid='${SSID}'
+		set wireless.@wifi-iface[1].encryption='psk2'
+		set wireless.@wifi-iface[1].key='${SSID_PASSWD}'
+	EOT
+}
+uci commit wireless
+
+touch /etc/config/base_config
+uci get base_config.@status[0] || uci add base_config status
+uci set base_config.@status[0].initialized='1'
+uci commit base_config
+exit 0
