@@ -2262,7 +2262,7 @@ CONFIG_PACKAGE_wireless-tools=y
 # CONFIG_PACKAGE_kmod-md-mod is not set
 # CONFIG_PACKAGE_kmod-nbd is not set
 # CONFIG_PACKAGE_kmod-scsi-cdrom is not set
-CONFIG_PACKAGE_kmod-scsi-core=m
+CONFIG_PACKAGE_kmod-scsi-core=y
 # CONFIG_PACKAGE_kmod-scsi-generic is not set
 # CONFIG_PACKAGE_kmod-scsi-tape is not set
 
@@ -2275,14 +2275,14 @@ CONFIG_PACKAGE_kmod-scsi-core=m
 # Cryptographic API modules
 #
 CONFIG_PACKAGE_kmod-crypto-aead=y
-CONFIG_PACKAGE_kmod-crypto-authenc=m
-CONFIG_PACKAGE_kmod-crypto-cbc=m
+CONFIG_PACKAGE_kmod-crypto-authenc=y
+CONFIG_PACKAGE_kmod-crypto-cbc=y
 # CONFIG_PACKAGE_kmod-crypto-ccm is not set
 # CONFIG_PACKAGE_kmod-crypto-cmac is not set
 # CONFIG_PACKAGE_kmod-crypto-crc32c is not set
 # CONFIG_PACKAGE_kmod-crypto-ctr is not set
-CONFIG_PACKAGE_kmod-crypto-deflate=m
-CONFIG_PACKAGE_kmod-crypto-des=m
+CONFIG_PACKAGE_kmod-crypto-deflate=y
+CONFIG_PACKAGE_kmod-crypto-des=y
 CONFIG_PACKAGE_kmod-crypto-ecb=y
 # CONFIG_PACKAGE_kmod-crypto-echainiv is not set
 # CONFIG_PACKAGE_kmod-crypto-fcrypt is not set
@@ -2290,30 +2290,30 @@ CONFIG_PACKAGE_kmod-crypto-ecb=y
 # CONFIG_PACKAGE_kmod-crypto-gf128 is not set
 # CONFIG_PACKAGE_kmod-crypto-ghash is not set
 CONFIG_PACKAGE_kmod-crypto-hash=y
-CONFIG_PACKAGE_kmod-crypto-hmac=m
+CONFIG_PACKAGE_kmod-crypto-hmac=y
 # CONFIG_PACKAGE_kmod-crypto-hw-ccp is not set
 # CONFIG_PACKAGE_kmod-crypto-hw-geode is not set
 # CONFIG_PACKAGE_kmod-crypto-hw-hifn-795x is not set
 # CONFIG_PACKAGE_kmod-crypto-hw-padlock is not set
 # CONFIG_PACKAGE_kmod-crypto-hw-talitos is not set
-CONFIG_PACKAGE_kmod-crypto-iv=m
+CONFIG_PACKAGE_kmod-crypto-iv=y
 CONFIG_PACKAGE_kmod-crypto-manager=y
 # CONFIG_PACKAGE_kmod-crypto-md4 is not set
-CONFIG_PACKAGE_kmod-crypto-md5=m
+CONFIG_PACKAGE_kmod-crypto-md5=y
 # CONFIG_PACKAGE_kmod-crypto-michael-mic is not set
 # CONFIG_PACKAGE_kmod-crypto-misc is not set
 # CONFIG_PACKAGE_kmod-crypto-null is not set
 # CONFIG_PACKAGE_kmod-crypto-ocf is not set
 # CONFIG_PACKAGE_kmod-crypto-pcbc is not set
 CONFIG_PACKAGE_kmod-crypto-pcompress=y
-CONFIG_PACKAGE_kmod-crypto-rng=m
+CONFIG_PACKAGE_kmod-crypto-rng=y
 # CONFIG_PACKAGE_kmod-crypto-seqiv is not set
 CONFIG_PACKAGE_kmod-crypto-sha1=y
-CONFIG_PACKAGE_kmod-crypto-sha256=m
+CONFIG_PACKAGE_kmod-crypto-sha256=y
 # CONFIG_PACKAGE_kmod-crypto-sha512 is not set
 # CONFIG_PACKAGE_kmod-crypto-test is not set
 # CONFIG_PACKAGE_kmod-crypto-user is not set
-CONFIG_PACKAGE_kmod-crypto-wq=m
+CONFIG_PACKAGE_kmod-crypto-wq=y
 # CONFIG_PACKAGE_kmod-crypto-xts is not set
 # CONFIG_PACKAGE_kmod-cryptodev is not set
 # CONFIG_PACKAGE_kmod-loop-aes is not set
@@ -2334,7 +2334,7 @@ CONFIG_PACKAGE_kmod-crypto-wq=m
 # CONFIG_PACKAGE_kmod-fs-cramfs is not set
 # CONFIG_PACKAGE_kmod-fs-exfat is not set
 # CONFIG_PACKAGE_kmod-fs-exportfs is not set
-CONFIG_PACKAGE_kmod-fs-ext4=m
+CONFIG_PACKAGE_kmod-fs-ext4=y
 # CONFIG_PACKAGE_kmod-fs-f2fs is not set
 # CONFIG_PACKAGE_kmod-fs-fscache is not set
 # CONFIG_PACKAGE_kmod-fs-hfs is not set
@@ -2342,14 +2342,14 @@ CONFIG_PACKAGE_kmod-fs-ext4=m
 # CONFIG_PACKAGE_kmod-fs-isofs is not set
 # CONFIG_PACKAGE_kmod-fs-jfs is not set
 # CONFIG_PACKAGE_kmod-fs-minix is not set
-CONFIG_PACKAGE_kmod-fs-msdos=m
-CONFIG_PACKAGE_kmod-fs-nfs=m
-CONFIG_PACKAGE_kmod-fs-nfs-common=m
+CONFIG_PACKAGE_kmod-fs-msdos=y
+CONFIG_PACKAGE_kmod-fs-nfs=y
+CONFIG_PACKAGE_kmod-fs-nfs-common=y
 # CONFIG_PACKAGE_kmod-fs-nfsd is not set
-CONFIG_PACKAGE_kmod-fs-ntfs=m
+CONFIG_PACKAGE_kmod-fs-ntfs=y
 # CONFIG_PACKAGE_kmod-fs-reiserfs is not set
 # CONFIG_PACKAGE_kmod-fs-udf is not set
-CONFIG_PACKAGE_kmod-fs-vfat=m
+CONFIG_PACKAGE_kmod-fs-vfat=y
 # CONFIG_PACKAGE_kmod-fs-xfs is not set
 # CONFIG_PACKAGE_kmod-fuse is not set
 
@@ -2416,7 +2416,7 @@ CONFIG_PACKAGE_kmod-lib-crc16=y
 # CONFIG_PACKAGE_kmod-lib-lz4 is not set
 # CONFIG_PACKAGE_kmod-lib-lzo is not set
 CONFIG_PACKAGE_kmod-lib-textsearch=y
-CONFIG_PACKAGE_kmod-lib-zlib=m
+CONFIG_PACKAGE_kmod-lib-zlib=y
 
 #
 # Native Language Support
@@ -2451,7 +2451,7 @@ CONFIG_PACKAGE_kmod-nls-utf8=y
 # CONFIG_PACKAGE_kmod-ipt-cluster is not set
 # CONFIG_PACKAGE_kmod-ipt-clusterip is not set
 CONFIG_PACKAGE_kmod-ipt-compat-xtables=y
-CONFIG_PACKAGE_kmod-ipt-condition=m
+CONFIG_PACKAGE_kmod-ipt-condition=y
 CONFIG_PACKAGE_kmod-ipt-conntrack=y
 CONFIG_PACKAGE_kmod-ipt-conntrack-extra=y
 CONFIG_PACKAGE_kmod-ipt-core=y
@@ -2460,16 +2460,16 @@ CONFIG_PACKAGE_kmod-ipt-core=y
 # CONFIG_PACKAGE_kmod-ipt-dhcpmac is not set
 # CONFIG_PACKAGE_kmod-ipt-dnetmap is not set
 CONFIG_PACKAGE_kmod-ipt-extra=y
-CONFIG_PACKAGE_kmod-ipt-filter=m
+CONFIG_PACKAGE_kmod-ipt-filter=y
 # CONFIG_PACKAGE_kmod-ipt-fuzzy is not set
 # CONFIG_PACKAGE_kmod-ipt-geoip is not set
 # CONFIG_PACKAGE_kmod-ipt-hashlimit is not set
-CONFIG_PACKAGE_kmod-ipt-iface=m
+CONFIG_PACKAGE_kmod-ipt-iface=y
 CONFIG_PACKAGE_kmod-ipt-ipmark=y
 CONFIG_PACKAGE_kmod-ipt-ipopt=y
 # CONFIG_PACKAGE_kmod-ipt-ipp2p is not set
 CONFIG_PACKAGE_kmod-ipt-iprange=y
-CONFIG_PACKAGE_kmod-ipt-ipsec=m
+CONFIG_PACKAGE_kmod-ipt-ipsec=y
 CONFIG_PACKAGE_kmod-ipt-ipset=y
 # CONFIG_PACKAGE_kmod-ipt-ipv4options is not set
 # CONFIG_PACKAGE_kmod-ipt-led is not set
@@ -2479,17 +2479,17 @@ CONFIG_PACKAGE_kmod-ipt-ipset=y
 # CONFIG_PACKAGE_kmod-ipt-lua is not set
 CONFIG_PACKAGE_kmod-ipt-nat=y
 CONFIG_PACKAGE_kmod-ipt-nat-extra=y
-CONFIG_PACKAGE_kmod-ipt-nathelper-rtsp=m
-CONFIG_PACKAGE_kmod-ipt-nflog=m
+CONFIG_PACKAGE_kmod-ipt-nathelper-rtsp=y
+CONFIG_PACKAGE_kmod-ipt-nflog=y
 # CONFIG_PACKAGE_kmod-ipt-nfqueue is not set
 # CONFIG_PACKAGE_kmod-ipt-psd is not set
-CONFIG_PACKAGE_kmod-ipt-quota2=m
+CONFIG_PACKAGE_kmod-ipt-quota2=y
 # CONFIG_PACKAGE_kmod-ipt-sysrq is not set
 # CONFIG_PACKAGE_kmod-ipt-tarpit is not set
 # CONFIG_PACKAGE_kmod-ipt-tee is not set
 # CONFIG_PACKAGE_kmod-ipt-tproxy is not set
-CONFIG_PACKAGE_kmod-ipt-u32=m
-CONFIG_PACKAGE_kmod-ipt-ulog=m
+CONFIG_PACKAGE_kmod-ipt-u32=y
+CONFIG_PACKAGE_kmod-ipt-ulog=y
 CONFIG_PACKAGE_kmod-nf-conntrack=y
 # CONFIG_PACKAGE_kmod-nf-conntrack-netlink is not set
 CONFIG_PACKAGE_kmod-nf-ipt=y
@@ -2497,7 +2497,7 @@ CONFIG_PACKAGE_kmod-nf-nat=y
 CONFIG_PACKAGE_kmod-nf-nathelper=y
 CONFIG_PACKAGE_kmod-nf-nathelper-extra=y
 CONFIG_PACKAGE_kmod-nfnetlink=y
-CONFIG_PACKAGE_kmod-nfnetlink-log=m
+CONFIG_PACKAGE_kmod-nfnetlink-log=y
 # CONFIG_PACKAGE_kmod-nfnetlink-queue is not set
 
 #
@@ -2558,17 +2558,17 @@ CONFIG_PACKAGE_kmod-8021q=y
 # CONFIG_PACKAGE_kmod-atm is not set
 # CONFIG_PACKAGE_kmod-ax25 is not set
 # CONFIG_PACKAGE_kmod-batman-adv is not set
-CONFIG_PACKAGE_kmod-bonding=m
+CONFIG_PACKAGE_kmod-bonding=y
 CONFIG_PACKAGE_kmod-bridge=y
 # CONFIG_PACKAGE_kmod-capi is not set
 CONFIG_PACKAGE_kmod-dnsresolver=y
 CONFIG_PACKAGE_kmod-gre=y
 # CONFIG_PACKAGE_kmod-ip-vti is not set
 # CONFIG_PACKAGE_kmod-ipip is not set
-CONFIG_PACKAGE_kmod-ipsec=m
-CONFIG_PACKAGE_kmod-ipsec4=m
+CONFIG_PACKAGE_kmod-ipsec=y
+CONFIG_PACKAGE_kmod-ipsec4=y
 CONFIG_PACKAGE_kmod-iptunnel=y
-CONFIG_PACKAGE_kmod-iptunnel4=m
+CONFIG_PACKAGE_kmod-iptunnel4=y
 # CONFIG_PACKAGE_kmod-isdn4linux is not set
 # CONFIG_PACKAGE_kmod-l2tp is not set
 # CONFIG_PACKAGE_kmod-l2tp-eth is not set
@@ -2595,8 +2595,8 @@ CONFIG_PACKAGE_kmod-slhc=y
 # CONFIG_PACKAGE_kmod-slip is not set
 CONFIG_PACKAGE_kmod-stp=y
 # CONFIG_PACKAGE_kmod-trelay is not set
-CONFIG_PACKAGE_kmod-tun=m
-CONFIG_PACKAGE_kmod-udptunnel4=m
+CONFIG_PACKAGE_kmod-tun=y
+CONFIG_PACKAGE_kmod-udptunnel4=y
 # CONFIG_PACKAGE_kmod-veth is not set
 # CONFIG_PACKAGE_kmod-vxlan is not set
 # CONFIG_PACKAGE_kmod-wprobe is not set
@@ -2643,7 +2643,7 @@ CONFIG_PACKAGE_kmod-gpio-button-hotplug=y
 # CONFIG_PACKAGE_kmod-rtc-pt7c4338 is not set
 # CONFIG_PACKAGE_kmod-sdhci is not set
 # CONFIG_PACKAGE_kmod-serial-8250 is not set
-CONFIG_PACKAGE_kmod-softdog=m
+CONFIG_PACKAGE_kmod-softdog=y
 # CONFIG_PACKAGE_kmod-ssb is not set
 # CONFIG_PACKAGE_kmod-zram is not set
 
@@ -2682,7 +2682,7 @@ CONFIG_PACKAGE_kmod-usb-ohci=y
 # CONFIG_PACKAGE_kmod-usb-ohci-pci is not set
 # CONFIG_PACKAGE_kmod-usb-printer is not set
 # CONFIG_PACKAGE_kmod-usb-serial is not set
-CONFIG_PACKAGE_kmod-usb-storage=m
+CONFIG_PACKAGE_kmod-usb-storage=y
 # CONFIG_PACKAGE_kmod-usb-storage-extras is not set
 # CONFIG_PACKAGE_kmod-usb-test is not set
 # CONFIG_PACKAGE_kmod-usb-uhci is not set
