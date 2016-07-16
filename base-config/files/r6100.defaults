@@ -3,8 +3,9 @@
 initialized=`uci get base_config.@status[0].initialized`
 [ x$initialized = x1 ] && exit 0
 
+SUBFIX=`sed 's/://g' /sys/class/net/eth0/address | tr a-z A-Z | tail -c5`
 BOARD=PTPT52
-SSID=${BOARD}
+SSID=${BOARD}_${SUBFIX}
 SSID_PASSWD=88888888
 
 uci set luci.main.lang='zh_cn'
