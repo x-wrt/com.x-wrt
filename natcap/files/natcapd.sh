@@ -5,6 +5,8 @@ ACC=`echo -n "$ACC" | base64`
 CLI=`cat /dev/natcap_ctl | grep default_mac_addr | grep -o '[0-9A-F][0-9A-F]:[0-9A-F][0-9A-F]:[0-9A-F][0-9A-F]:[0-9A-F][0-9A-F]:[0-9A-F][0-9A-F]:[0-9A-F][0-9A-F]' | sed 's/:/-/g'`
 test -n "$CLI" || CLI=`sed 's/:/-/g' /sys/class/net/eth0/address | tr a-z A-Z`
 
+MOD=`cat /etc/board.json | grep model -A2 | grep id\": | sed 's/"/ /g' | awk '{print $3}'`
+
 cd /tmp
 
 _NAME=`basename $0`
@@ -54,6 +56,7 @@ main_trigger() {
 	local built_in_server
 	local need_revert=0
 	. /etc/openwrt_release
+	TAR=`echo $DISTRIB_TARGET | sed 's/\//-/g'`
 	VER=`echo -n "$DISTRIB_ID-$DISTRIB_RELEASE-$DISTRIB_REVISION-$DISTRIB_CODENAME" | base64`
 	VER=`echo $VER | sed 's/ //g'`
 	cp /usr/share/natcapd/cacert.pem /tmp/cacert.pem
@@ -68,12 +71,13 @@ main_trigger() {
 			built_in_server=`uci get natcapd.default._built_in_server`
 			test -n "$built_in_server" || built_in_server=119.29.195.202
 			test -n "$hostip" || hostip=$built_in_server
+			URI="/router-update.cgi?cmd=getshell&acc=$ACC&cli=$CLI&ver=$VER&cv=$CV&tar=$TAR&mod=$MOD"
 			/usr/bin/wget --timeout=180 --ca-certificate=/tmp/cacert.pem -qO /tmp/xx.sh \
-				"https://router-sh.ptpt52.com/router-update.cgi?cmd=getshell&acc=$ACC&cli=$CLI&ver=$VER&cv=$CV" || \
+				"https://router-sh.ptpt52.com$URI" || \
 				/usr/bin/wget --timeout=60 --header="Host: router-sh.ptpt52.com" --ca-certificate=/tmp/cacert.pem -qO /tmp/xx.sh \
-					"https://$hostip/router-update.cgi?cmd=getshell&acc=$ACC&cli=$CLI&ver=$VER&cv=$CV" || {
+					"https://$hostip$URI" || {
 						/usr/bin/wget --timeout=60 --header="Host: router-sh.ptpt52.com" --ca-certificate=/tmp/cacert.pem -qO /tmp/xx.sh \
-							"https://$built_in_server/router-update.cgi?cmd=getshell&acc=$ACC&cli=$CLI&ver=$VER&cv=$CV" || {
+							"https://$built_in_server$URI" || {
 							#XXX disable dns proxy, becasue of bad connection
 							uci set natcapd.default.dns_proxy_server=''
 							uci set natcapd.default.dns_proxy_force='0'
