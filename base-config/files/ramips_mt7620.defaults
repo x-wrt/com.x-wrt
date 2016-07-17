@@ -7,6 +7,7 @@ SUBFIX=`sed 's/://g' /sys/class/net/eth0/address | tr a-z A-Z | tail -c5`
 BOARD=PTPT52
 SSID=${BOARD}_${SUBFIX}
 SSID_PASSWD=88888888
+MODEL=`cat /etc/board.json | grep model -A2 | grep id\": | sed 's/"/ /g' | awk '{print $3}'`
 
 uci set luci.main.lang='zh_cn'
 uci commit luci
@@ -52,21 +53,11 @@ cp /usr/share/base-config/etc/inittab /etc/inittab && chmod 644 /etc/inittab
 uci get wireless.radio0 && {
 	uci -q batch <<-EOT
 		set wireless.radio0.disabled='0'
-		set wireless.radio0.hwmode='11a'
-		set wireless.radio0.country='US'
-		set wireless.radio0.txpower='29'
-		set wireless.radio0.channel='153'
-		set wireless.radio0.htmode='VHT40'
 	EOT
 }
 uci get wireless.radio1 && {
 	uci -q batch <<-EOT
 		set wireless.radio1.disabled='0'
-		set wireless.radio1.hwmode='11g'
-		set wireless.radio1.country='US'
-		set wireless.radio1.txpower='25'
-		set wireless.radio1.channel='auto'
-		set wireless.radio1.htmode='HT20'
 	EOT
 }
 uci get wireless.@wifi-iface[0] && {
@@ -90,6 +81,24 @@ uci get wireless.@wifi-iface[1] && {
 	EOT
 }
 uci commit wireless
+
+case "$MODEL" in
+	"miwifi-mini")
+		uci -q batch <<-EOT
+			delete system.led_power
+			set system.led_power=led
+			set system.led_power.name='power'
+			set system.led_power.default='1'
+			set system.led_power.sysfs='miwifi-mini:blue:status'
+			set system.led_power.trigger='timer'
+			set system.led_power.delayon='1'
+			set system.led_power.delayoff='1'
+		EOT
+		uci commit system
+	;;
+	*)
+	;;
+esac
 
 touch /etc/config/base_config
 uci get base_config.@status[0] || uci add base_config status

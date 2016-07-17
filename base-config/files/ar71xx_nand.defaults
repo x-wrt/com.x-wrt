@@ -16,14 +16,6 @@ uci get system.@system[0] && {
 		set system.@system[0].hostname='${BOARD}'
 		set system.@system[0].zonename='Asia/Shanghai'
 		set system.@system[0].timezone='CST-8'
-		delete system.led_power
-		set system.led_power=led
-		set system.led_power.name='power'
-		set system.led_power.default='1'
-		set system.led_power.sysfs='miwifi-mini:blue:status'
-		set system.led_power.trigger='timer'
-		set system.led_power.delayon='1'
-		set system.led_power.delayoff='1'
 	EOT
 	uci commit system
 }

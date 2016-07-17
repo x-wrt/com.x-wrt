@@ -66,11 +66,11 @@ ifeq ($(CONFIG_TARGET_x86_64_Generic),y)
 	$(INSTALL_DIR) $(1)/lib/preinit
 	$(INSTALL_DATA) ./files/disk_ready.preinit $(1)/lib/preinit/79_disk_ready
 endif
-ifeq ($(CONFIG_TARGET_ar71xx_nand_R6100),y)
-	$(INSTALL_DATA) ./files/r6100.defaults $(1)/etc/uci-defaults/95-base-config
+ifeq ($(CONFIG_TARGET_ar71xx_nand),y)
+	$(INSTALL_DATA) ./files/ar71xx_nand.defaults $(1)/etc/uci-defaults/95-base-config
 endif
-ifeq ($(CONFIG_TARGET_ramips_mt7620_MIWIFI-MINI),y)
-	$(INSTALL_DATA) ./files/miwifi-mini.defaults $(1)/etc/uci-defaults/95-base-config
+ifeq ($(CONFIG_TARGET_ramips_mt7620),y)
+	$(INSTALL_DATA) ./files/ramips_mt7620.defaults $(1)/etc/uci-defaults/95-base-config
 endif
 endef
 
