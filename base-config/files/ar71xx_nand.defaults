@@ -52,11 +52,17 @@ cp /usr/share/base-config/etc/inittab /etc/inittab && chmod 644 /etc/inittab
 uci get wireless.radio0 && {
 	uci -q batch <<-EOT
 		set wireless.radio0.disabled='0'
+		set wireless.radio0.country='CN'
+		set wireless.radio0.txpower='20'
+		set wireless.radio0.channel='auto'
 	EOT
 }
 uci get wireless.radio1 && {
 	uci -q batch <<-EOT
 		set wireless.radio1.disabled='0'
+		set wireless.radio1.country='CN'
+		set wireless.radio1.txpower='20'
+		set wireless.radio1.channel='auto'
 	EOT
 }
 uci get wireless.@wifi-iface[0] && {
