@@ -73,6 +73,18 @@ start() {
 	config_load 'natcapd'
 	config_foreach start_instance 'natcapd'
 
+	uci get firewall.natcapd >/dev/null 2>&1 || {
+		uci -q batch <<-EOT
+			delete firewall.natcapd
+			set firewall.natcapd=include
+			set firewall.natcapd.type=script
+			set firewall.natcapd.path=/usr/share/natcapd/firewall.include
+			set firewall.natcapd.family=any
+			set firewall.natcapd.reload=0
+			commit firewall
+			EOT
+	}
+
 	/etc/init.d/firewall restart >/dev/null 2>&1 || echo /etc/init.d/firewall restart failed
 	test -p /tmp/trigger_gfwlist_update.fifo && {
 		echo >/tmp/trigger_gfwlist_update.fifo &
