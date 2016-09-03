@@ -21,7 +21,7 @@ define Package/$(PKG_NAME)/Default
   SECTION:=Applications
   CATEGORY:=Ptpt52
   SUBMENU:=Base config setup for this board
-  DEPENDS:=
+  DEPENDS:=+dnsmasq-full +dnsmasq_full_ipset +busybox +zoneinfo-asia +zoneinfo-core +openssl-util +ppp +ppp-mod-pppoe +ppp-mod-pptp
 endef
 
 define Package/$(PKG_NAME)
