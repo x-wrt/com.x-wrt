@@ -1855,7 +1855,7 @@ CONFIG_BUSYBOX_CONFIG_LOCK=y
 # CONFIG_BUSYBOX_CONFIG_SETSID is not set
 CONFIG_BUSYBOX_CONFIG_STRINGS=y
 CONFIG_BUSYBOX_CONFIG_TIME=y
-# CONFIG_BUSYBOX_CONFIG_TIMEOUT is not set
+CONFIG_BUSYBOX_CONFIG_TIMEOUT=y
 # CONFIG_BUSYBOX_CONFIG_TTYSIZE is not set
 # CONFIG_BUSYBOX_CONFIG_VOLNAME is not set
 # CONFIG_BUSYBOX_CONFIG_WATCHDOG is not set
@@ -1982,7 +1982,7 @@ CONFIG_BUSYBOX_CONFIG_MPSTAT=y
 # CONFIG_BUSYBOX_CONFIG_NMETER is not set
 # CONFIG_BUSYBOX_CONFIG_PMAP is not set
 # CONFIG_BUSYBOX_CONFIG_POWERTOP is not set
-# CONFIG_BUSYBOX_CONFIG_PSTREE is not set
+CONFIG_BUSYBOX_CONFIG_PSTREE=y
 # CONFIG_BUSYBOX_CONFIG_PWDX is not set
 # CONFIG_BUSYBOX_CONFIG_SMEMCAP is not set
 CONFIG_BUSYBOX_CONFIG_TOP=y
@@ -3025,6 +3025,7 @@ CONFIG_PACKAGE_luasocket=y
 # CONFIG_PACKAGE_python-sqlite3 is not set
 # CONFIG_PACKAGE_python-txsocksx is not set
 # CONFIG_PACKAGE_python-unittest is not set
+# CONFIG_PACKAGE_python-urllib3 is not set
 # CONFIG_PACKAGE_python-webpy is not set
 # CONFIG_PACKAGE_python-xapian is not set
 # CONFIG_PACKAGE_python-xml is not set
@@ -3311,6 +3312,7 @@ CONFIG_PACKAGE_libpolarssl=y
 # CONFIG_PACKAGE_libelektra-core is not set
 # CONFIG_PACKAGE_libelektra-cpp is not set
 # CONFIG_PACKAGE_libelektra-crypto is not set
+# CONFIG_PACKAGE_libelektra-curlget is not set
 # CONFIG_PACKAGE_libelektra-dbus is not set
 # CONFIG_PACKAGE_libelektra-extra is not set
 # CONFIG_PACKAGE_libelektra-lua is not set
@@ -3443,6 +3445,8 @@ CONFIG_LIBCURL_PROXY=y
 # CONFIG_PACKAGE_libdlna is not set
 # CONFIG_PACKAGE_libdmapsharing is not set
 # CONFIG_PACKAGE_libdnet is not set
+# CONFIG_PACKAGE_libdouble-conversion is not set
+# CONFIG_PACKAGE_libdrm is not set
 # CONFIG_PACKAGE_libdvbpsi is not set
 # CONFIG_PACKAGE_libdvdread is not set
 # CONFIG_PACKAGE_libedit is not set
@@ -4379,6 +4383,7 @@ CONFIG_PACKAGE_ddns-scripts=y
 # CONFIG_PACKAGE_djbdns-tools is not set
 # CONFIG_PACKAGE_djbdns-walldns is not set
 # CONFIG_PACKAGE_dnscrypt-proxy is not set
+# CONFIG_PACKAGE_dnscrypt-proxy-resolvers is not set
 # CONFIG_PACKAGE_drill is not set
 # CONFIG_PACKAGE_dudders is not set
 # CONFIG_PACKAGE_ez-ipupdate is not set
@@ -5637,7 +5642,7 @@ CONFIG_PACKAGE_lsof=y
 # CONFIG_PACKAGE_openobex-apps is not set
 # CONFIG_PACKAGE_openocd is not set
 # CONFIG_PACKAGE_opensc-utils is not set
-# CONFIG_PACKAGE_openssl-util is not set
+CONFIG_PACKAGE_openssl-util=y
 # CONFIG_PACKAGE_opus-tools is not set
 # CONFIG_PACKAGE_owipcalc is not set
 # CONFIG_PACKAGE_oww is not set
@@ -5752,6 +5757,11 @@ CONFIG_PACKAGE_uboot-envtools=y
 #
 # Xorg
 #
+
+#
+# font-utils
+#
+# CONFIG_PACKAGE_fontconfig is not set
 
 #
 # libraries
