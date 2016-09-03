@@ -31,11 +31,11 @@ rm -f /tmp/accelerated-domains.gfwlist.dnsmasq.conf
 		echo ipset=/$line/gfwlist >>/tmp/accelerated-domains.gfwlist.dnsmasq.conf
 	done
 	rm -f /tmp/gfwlist.txt
-	mkdir -p /tmp/dnsmasq.d && mv /tmp/accelerated-domains.gfwlist.dnsmasq.conf /tmp/dnsmasq.d/accelerated-domains.gfwlist.dnsmasq.conf && /etc/init.d/dnsmasq reload
+	mkdir -p /tmp/dnsmasq.d && mv /tmp/accelerated-domains.gfwlist.dnsmasq.conf /tmp/dnsmasq.d/accelerated-domains.gfwlist.dnsmasq.conf && /etc/init.d/dnsmasq restart
 }
 
 test -f /tmp/dnsmasq.d/accelerated-domains.gfwlist.dnsmasq.conf && exit 0
 
-mkdir -p /tmp/dnsmasq.d && cp /usr/share/natcapd/accelerated-domains.gfwlist.dnsmasq.conf /tmp/dnsmasq.d/accelerated-domains.gfwlist.dnsmasq.conf && /etc/init.d/dnsmasq reload
+mkdir -p /tmp/dnsmasq.d && cp /usr/share/natcapd/accelerated-domains.gfwlist.dnsmasq.conf /tmp/dnsmasq.d/accelerated-domains.gfwlist.dnsmasq.conf && /etc/init.d/dnsmasq restart
 
 exit 0

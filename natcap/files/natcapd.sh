@@ -140,7 +140,7 @@ connection_track() {
 
 			if [ $score -gt 3 ]; then score=6; fi
 			if [ $score -eq 3 ]; then
-				/etc/init.d/dnsmasq reload
+				/etc/init.d/dnsmasq restart
 			fi
 		fi
 
