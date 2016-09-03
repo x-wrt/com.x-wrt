@@ -90,6 +90,7 @@ start() {
 		echo >/tmp/trigger_gfwlist_update.fifo &
 	}
 	SERVICE_DAEMONIZE=1 service_start /usr/sbin/natcapd
+	/etc/init.d/dnsmasq reload
 }
 
 stop() {
