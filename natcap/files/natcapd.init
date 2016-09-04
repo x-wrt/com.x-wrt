@@ -3,96 +3,22 @@
 
 START=95
 
-DEV=/dev/natcap_ctl
-
-add_server () {
-	if echo $1 | grep -q ':'; then
-		echo server $1-$2 >>$DEV
-	else
-		echo server $1:0-$2 >>$DEV
-	fi
-}
-
-add_udproxylist () {
-	ipset -! add udproxylist $1
-}
-
-add_gfwlist () {
-	ipset -! add gfwlist $1
-}
-
-add_gfwlist_domain () {
-	echo server=/$1/8.8.8.8 >>/tmp/dnsmasq.d/custom-domains.gfwlist.dnsmasq.conf
-	echo ipset=/$1/gfwlist >>/tmp/dnsmasq.d/custom-domains.gfwlist.dnsmasq.conf
-}
-
-start_instance () {
-	local opt="o"
-	local section="$1"
-	config_get debug  "$section" 'debug'
-	config_get enable_encryption  "$section" 'enable_encryption'
-	config_get clear_dst_on_reload  "$section" 'clear_dst_on_reload'
-	config_get server_persist_timeout  "$section" 'server_persist_timeout'
-	config_get dns_proxy_force_tcp  "$section" 'dns_proxy_force_tcp'
-	local account=""
-	config_get account  "$section" 'account'
-	local client_mac=`cat $DEV | grep default_mac_addr | grep -o "[0-9A-F][0-9A-F]:[0-9A-F][0-9A-F]:[0-9A-F][0-9A-F]:[0-9A-F][0-9A-F]:[0-9A-F][0-9A-F]:[0-9A-F][0-9A-F]"`
-	local uhash=`echo -n $client_mac$account | cksum | awk '{print $1}'`
-
-	echo u_hash=$uhash >>$DEV
-	echo debug=0 >>$DEV
-	echo clean >>$DEV
-	echo server_persist_timeout=0 >>$DEV
-
-	[ "x$enable_encryption" = x1 ] && opt='e'
-	[ "x$clear_dst_on_reload" = x1 ] && ipset flush gfwlist
-	test -n "$debug" && echo debug=$debug >>$DEV
-	test -n "$server_persist_timeout" && echo server_persist_timeout=$server_persist_timeout >>$DEV
-
-	ipset -n list udproxylist || ipset -! create udproxylist iphash
-	ipset -n list gfwlist || ipset -! create gfwlist iphash
-	ipset -n list cniplist || ipset restore -f /usr/share/natcapd/cniplist.set
-	if [ "x$dns_proxy_force_tcp" = x1 ]; then
-		ipset -! add udproxylist 8.8.8.8
-	else
-		ipset -! del udproxylist 8.8.8.8
-	fi
-
-	config_list_foreach "$section" server add_server $opt
-
-	config_list_foreach "$section" udproxylist add_udproxylist
-	config_list_foreach "$section" gfwlist add_gfwlist
-
-	rm -f /tmp/dnsmasq.d/custom-domains.gfwlist.dnsmasq.conf
-	mkdir -p /tmp/dnsmasq.d
-	touch /tmp/dnsmasq.d/custom-domains.gfwlist.dnsmasq.conf
-	config_list_foreach "$section" gfwlist_domain add_gfwlist_domain
-}
-
 start() {
-	config_load 'natcapd'
-	config_foreach start_instance 'natcapd'
-
-	uci get firewall.natcapd >/dev/null 2>&1 || {
-		uci -q batch <<-EOT
-			delete firewall.natcapd
-			set firewall.natcapd=include
-			set firewall.natcapd.type=script
-			set firewall.natcapd.path=/usr/share/natcapd/firewall.include
-			set firewall.natcapd.family=any
-			set firewall.natcapd.reload=0
-			commit firewall
-			EOT
-	}
-
-	/etc/init.d/firewall restart >/dev/null 2>&1 || echo /etc/init.d/firewall restart failed
-	test -p /tmp/trigger_gfwlist_update.fifo && {
-		echo >/tmp/trigger_gfwlist_update.fifo &
-	}
-	SERVICE_DAEMONIZE=1 service_start /usr/sbin/natcapd
-	/etc/init.d/dnsmasq restart
+	SERVICE_DAEMONIZE=1 service_start /usr/sbin/natcapd start
+	echo start ok
 }
 
 stop() {
-	echo clean >>$DEV
+	/usr/sbin/natcapd stop
+	echo stop ok
+}
+
+restart() {
+	echo restart
+	start
+}
+
+reload() {
+	echo reload
+	start
 }

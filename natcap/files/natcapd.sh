@@ -1,4 +1,109 @@
 #!/bin/sh
+DEV=/dev/natcap_ctl
+
+[ x$1 = xstop ] && {
+	echo stop
+	echo clean >>$DEV
+	test -f /tmp/natcapd.firewall.sh && sh /tmp/natcapd.firewall.sh >/dev/null 2>&1
+	rm -f /tmp/natcapd.firewall.sh
+	rm -f /tmp/dnsmasq.d/accelerated-domains.gfwlist.dnsmasq.conf
+	rm -f /tmp/dnsmasq.d/custom-domains.gfwlist.dnsmasq.conf
+	/etc/init.d/dnsmasq restart
+	exit 0
+}
+
+[ x$1 = xstart ] || {
+	echo "usage: $0 start|stop"
+	exit 0
+}
+
+add_server () {
+	if echo $1 | grep -q ':'; then
+		echo server $1-$2 >>$DEV
+	else
+		echo server $1:0-$2 >>$DEV
+	fi
+}
+add_udproxylist () {
+	ipset -! add udproxylist $1
+}
+add_gfwlist () {
+	ipset -! add gfwlist $1
+}
+add_gfwlist_domain () {
+	echo server=/$1/8.8.8.8 >>/tmp/dnsmasq.d/custom-domains.gfwlist.dnsmasq.conf
+	echo ipset=/$1/gfwlist >>/tmp/dnsmasq.d/custom-domains.gfwlist.dnsmasq.conf
+}
+
+/etc/init.d/natcapd enabled && {
+
+	debug=`uci get natcapd.default.debug 2>/dev/null|| echo 0`
+	enable_encryption=`uci get natcapd.default.enable_encryption 2>/dev/null|| echo 1`
+	clear_dst_on_reload=`uci get natcapd.default.clear_dst_on_reload 2>/dev/null|| echo 0`
+	server_persist_timeout=`uci get natcapd.default.server_persist_timeout 2>/dev/null|| echo 30`
+	dns_proxy_force_tcp=`uci get natcapd.default.dns_proxy_force_tcp 2>/dev/null|| echo 1`
+	account=`uci get natcapd.default.account 2>/dev/null|| echo ""`
+	client_mac=`cat $DEV | grep default_mac_addr | grep -o "[0-9A-F][0-9A-F]:[0-9A-F][0-9A-F]:[0-9A-F][0-9A-F]:[0-9A-F][0-9A-F]:[0-9A-F][0-9A-F]:[0-9A-F][0-9A-F]"`
+	uhash=`echo -n $client_mac$account | cksum | awk '{print $1}'`
+	dns_proxy_servers=`uci get natcapd.default.dns_proxy_server 2>/dev/null`
+	servers=`uci get natcapd.default.server 2>/dev/null`
+	udproxylist=`uci get natcapd.default.udproxylist 2>/dev/null`
+
+	ipset -n list udproxylist >/dev/null 2>&1 || ipset -! create udproxylist iphash
+	ipset -n list gfwlist >/dev/null 2>&1 || ipset -! create gfwlist iphash
+	ipset -n list cniplist >/dev/null 2>&1 || ipset restore -f /usr/share/natcapd/cniplist.set
+
+	echo u_hash=$uhash >>$DEV
+	echo debug=$debug >>$DEV
+	echo clean >>$DEV
+	echo server_persist_timeout=$server_persist_timeout >>$DEV
+
+	[ "x$clear_dst_on_reload" = x1 ] && ipset flush gfwlist
+	if [ "x$dns_proxy_force_tcp" = x1 ]; then
+		ipset -! add udproxylist 8.8.8.8
+	else
+		ipset -! del udproxylist 8.8.8.8
+	fi
+
+	opt="o"
+	[ "x$enable_encryption" = x1 ] && opt='e'
+	for server in $servers; do
+		add_server $server $opt
+	done
+
+	for u in $udproxylist; do
+		add_udproxylist $u
+	done
+	for g in $gfwlist; do
+		add_gfwlist $g
+	done
+
+	rm -f /tmp/dnsmasq.d/custom-domains.gfwlist.dnsmasq.conf
+	mkdir -p /tmp/dnsmasq.d
+	touch /tmp/dnsmasq.d/custom-domains.gfwlist.dnsmasq.conf
+	for d in $gfwlist_domain; do
+		add_gfwlist_domain $d
+	done
+
+	# reload firewall
+	uci get firewall.natcapd >/dev/null 2>&1 || {
+		uci -q batch <<-EOT
+			delete firewall.natcapd
+			set firewall.natcapd=include
+			set firewall.natcapd.type=script
+			set firewall.natcapd.path=/usr/share/natcapd/firewall.include
+			set firewall.natcapd.family=any
+			set firewall.natcapd.reload=0
+			commit firewall
+		EOT
+	}
+	/etc/init.d/firewall restart >/dev/null 2>&1 || echo /etc/init.d/firewall restart failed
+
+	#reload dnsmasq
+	if test -p /tmp/trigger_gfwlist_update.fifo; then
+		echo >/tmp/trigger_gfwlist_update.fifo &
+	fi
+}
 
 ACC=$1
 ACC=`echo -n "$ACC" | base64`
@@ -155,7 +260,7 @@ nop_loop () {
 	done
 }
 
-if mkdir $LOCKDIR 2>/dev/null; then
+if mkdir $LOCKDIR >/dev/null 2>&1; then
 	trap "cleanup" EXIT
 
 	echo "Acquired lock, running"
