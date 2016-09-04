@@ -9,6 +9,7 @@ DEV=/dev/natcap_ctl
 	rm -f /tmp/dnsmasq.d/accelerated-domains.gfwlist.dnsmasq.conf
 	rm -f /tmp/dnsmasq.d/custom-domains.gfwlist.dnsmasq.conf
 	/etc/init.d/dnsmasq restart
+	rm -f /tmp/natcapd.running
 	exit 0
 }
 
@@ -36,7 +37,7 @@ add_gfwlist_domain () {
 }
 
 /etc/init.d/natcapd enabled && {
-
+	touch /tmp/natcapd.running
 	debug=`uci get natcapd.default.debug 2>/dev/null|| echo 0`
 	enable_encryption=`uci get natcapd.default.enable_encryption 2>/dev/null|| echo 1`
 	clear_dst_on_reload=`uci get natcapd.default.clear_dst_on_reload 2>/dev/null|| echo 0`
@@ -145,7 +146,7 @@ gfwlist_update_main () {
 	(while :; do
 		test -p /tmp/trigger_gfwlist_update.fifo || { sleep 1 && continue; }
 		cat /tmp/trigger_gfwlist_update.fifo >/dev/null && {
-			sh /usr/share/natcapd/gfwlist_update.sh
+			test -f /tmp/natcapd.running && sh /usr/share/natcapd/gfwlist_update.sh
 		}
 	done) &
 	test -p /tmp/trigger_gfwlist_update.fifo && echo >>/tmp/trigger_gfwlist_update.fifo
