@@ -1,9 +1,11 @@
 #!/bin/sh
+
 DEV=/dev/natcap_ctl
 
 [ x$1 = xstop ] && {
 	echo stop
 	echo clean >>$DEV
+	echo disabled=1 >>$DEV
 	test -f /tmp/natcapd.firewall.sh && sh /tmp/natcapd.firewall.sh >/dev/null 2>&1
 	rm -f /tmp/natcapd.firewall.sh
 	rm -f /tmp/dnsmasq.d/accelerated-domains.gfwlist.dnsmasq.conf
@@ -37,6 +39,7 @@ add_gfwlist_domain () {
 }
 
 /etc/init.d/natcapd enabled && {
+	echo disabled=0 >>$DEV
 	touch /tmp/natcapd.running
 	debug=`uci get natcapd.default.debug 2>/dev/null|| echo 0`
 	enable_encryption=`uci get natcapd.default.enable_encryption 2>/dev/null|| echo 1`
