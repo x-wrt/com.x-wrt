@@ -87,7 +87,7 @@ test $version -lt 1 && {
 
 		obj=`uci add wireless wifi-iface`
 		test -n "$obj" && {
-			uci set wireless.$obj.device='radio0'
+			uci set wireless.$obj.device='radio1'
 			uci set wireless.$obj.network='lan'
 			uci set wireless.$obj.mode='ap'
 			uci set wireless.$obj.ssid="${SSID}"
