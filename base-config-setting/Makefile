@@ -20,7 +20,7 @@ include $(INCLUDE_DIR)/package.mk
 define Package/$(PKG_NAME)/Default
   SECTION:=Applications
   CATEGORY:=Ptpt52
-  SUBMENU:=Base config setup for this board
+  SUBMENU:=Base config setting for this board
   DEPENDS:=+dnsmasq-full +dnsmasq_full_ipset +busybox
 endef
 
@@ -30,7 +30,7 @@ define Package/$(PKG_NAME)
 endef
 
 define Package/$(PKG_NAME)/description
-  Base config for this board
+  Base config setting for this board
 endef
 
 define Package/$(PKG_NAME)/conffiles
