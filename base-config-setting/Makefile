@@ -8,7 +8,7 @@
 include $(TOPDIR)/rules.mk
 include $(INCLUDE_DIR)/kernel.mk
 
-PKG_NAME:=base-config
+PKG_NAME:=base-config-setting
 PKG_VERSION:=1.0.0
 PKG_RELEASE:=1
 
@@ -41,8 +41,8 @@ define Package/$(PKG_NAME)/postinst
 #!/bin/sh
 
 if [ -z "$$IPKG_INSTROOT" ]; then
-  ( . /etc/uci-defaults/95-base-config )
-  rm -f /etc/uci-defaults/95-base-config
+  ( . /etc/uci-defaults/95-base-config-setting )
+  rm -f /etc/uci-defaults/95-base-config-setting
 fi
 
 exit 0
@@ -52,10 +52,10 @@ define Package/$(PKG_NAME)/install
 	$(INSTALL_DIR) $(1)/etc/uci-defaults
 	$(INSTALL_DIR) $(1)/etc/config
 	$(INSTALL_DATA) ./files/base_config.config $(1)/etc/config/base_config
-	$(INSTALL_DIR) $(1)/usr/share/base-config
-	cp -r ./files/etc $(1)/usr/share/base-config/
-	cp -r ./files/lib $(1)/usr/share/base-config/
-	$(INSTALL_DATA) ./files/uci.defaults $(1)/etc/uci-defaults/95-base-config
+	$(INSTALL_DIR) $(1)/usr/share/base-config-setting
+	cp -r ./files/etc $(1)/usr/share/base-config-setting/
+	cp -r ./files/lib $(1)/usr/share/base-config-setting/
+	$(INSTALL_DATA) ./files/uci.defaults $(1)/etc/uci-defaults/95-base-config-setting
 ifeq ($(CONFIG_TARGET_x86_64_Generic),y)
 	$(INSTALL_DATA) ./files/fstab.config $(1)/etc/config/fstab
 	$(INSTALL_DIR) $(1)/lib/preinit
@@ -82,4 +82,3 @@ define Build/Compile
 endef
 
 $(eval $(call BuildPackage,$(PKG_NAME)))
-

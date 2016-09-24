@@ -47,12 +47,12 @@ test $version -lt 1 && {
 		uci set dropbear.@dropbear[0].RootPasswordAuth='off'
 		uci set dropbear.@dropbear[0].Port='22'
 		uci commit dropbear
-		cp /usr/share/base-config/etc/dropbear/authorized_keys /etc/dropbear/authorized_keys && chmod 600 /etc/dropbear/authorized_keys
+		cp /usr/share/base-config-setting/etc/dropbear/authorized_keys /etc/dropbear/authorized_keys && chmod 600 /etc/dropbear/authorized_keys
 	}
 
-	cp /usr/share/base-config/etc/shadow /etc/shadow && chmod 600 /etc/shadow
-	cp /usr/share/base-config/etc/inittab /etc/inittab && chmod 644 /etc/inittab
-	cp /usr/share/base-config/lib/network/switch.sh /lib/network/switch.sh && chmod 644 /lib/network/switch.sh
+	cp /usr/share/base-config-setting/etc/shadow /etc/shadow && chmod 600 /etc/shadow
+	cp /usr/share/base-config-setting/etc/inittab /etc/inittab && chmod 644 /etc/inittab
+	cp /usr/share/base-config-setting/lib/network/switch.sh /lib/network/switch.sh && chmod 644 /lib/network/switch.sh
 
 	SUBFIX=`echo -n $MACADDR | sed 's/://g' | tr a-z A-Z | tail -c4`
 	SSID=${DISTRIB_ID}_${SUBFIX}
