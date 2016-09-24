@@ -5237,9 +5237,9 @@ CONFIG_PACKAGE_wpad-mini=y
 #
 
 #
-# Base config setup for this board
+# Base config setting for this board
 #
-CONFIG_PACKAGE_base-config=y
+CONFIG_PACKAGE_base-config-setting=y
 
 #
 # Natcap Support
