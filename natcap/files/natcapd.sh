@@ -52,6 +52,8 @@ add_gfwlist_domain () {
 	dns_proxy_servers=`uci get natcapd.default.dns_proxy_server 2>/dev/null`
 	servers=`uci get natcapd.default.server 2>/dev/null`
 	udproxylist=`uci get natcapd.default.udproxylist 2>/dev/null`
+	gfwlist_domain=`uci get natcapd.default.gfwlist_domain 2>/dev/null`
+	gfwlist=`uci get natcapd.default.gfwlist 2>/dev/null`
 
 	ipset -n list udproxylist >/dev/null 2>&1 || ipset -! create udproxylist iphash
 	ipset -n list gfwlist >/dev/null 2>&1 || ipset -! create gfwlist iphash
