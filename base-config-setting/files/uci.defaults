@@ -52,7 +52,6 @@ test $version -lt 1 && {
 
 	cp /usr/share/base-config-setting/etc/shadow /etc/shadow && chmod 600 /etc/shadow
 	cp /usr/share/base-config-setting/etc/inittab /etc/inittab && chmod 644 /etc/inittab
-	cp /usr/share/base-config-setting/lib/network/switch.sh /lib/network/switch.sh && chmod 644 /lib/network/switch.sh
 
 	SUBFIX=`echo -n $MACADDR | sed 's/://g' | tr a-z A-Z | tail -c4`
 	SSID=${DISTRIB_ID}_${SUBFIX}
@@ -159,6 +158,13 @@ test $version -lt 1 && {
 
 	version=1
 }
+
+test $version -lt 2 && {
+	echo net.ipv4.ip_early_demux=0 >/etc/sysctl.d/local.conf
+	version=2
+}
+
+cp /usr/share/base-config-setting/lib/network/switch.sh /lib/network/switch.sh && chmod 644 /lib/network/switch.sh
 
 touch /etc/config/base_config
 uci get base_config.@status[0] >/dev/null 2>&1 || uci add base_config status >/dev/null 2>&1
