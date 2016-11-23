@@ -223,43 +223,6 @@ main() {
 	done
 }
 
-host_up_count=0
-lost=0
-score=6
-connection_track() {
-	while :; do
-		track_ips=`ip r | grep default | awk '{print $3}'`
-		for track_ip in $track_ips; do
-			ping -c1 -W3 -q $track_ip >/dev/null 2>&1
-			if [ $? -eq 0 ]; then
-				host_up_count=$(($host_up_count+1))
-			else
-				lost=$(($lost+1))
-			fi
-		done
-
-		if [ $host_up_count -lt 1 ] || ! test -n "$track_ips"; then
-			score=$(($score-1))
-
-			if [ $score -lt 3 ]; then score=0 ; fi
-			if [ $score -eq 3 ]; then
-				score=0
-			fi
-		else
-			score=$(($score+1))
-			lost=0
-
-			if [ $score -gt 3 ]; then score=6; fi
-			if [ $score -eq 3 ]; then
-				/etc/init.d/dnsmasq restart
-			fi
-		fi
-
-		host_up_count=0
-		sleep 5
-	done
-}
-
 nop_loop () {
 	while :; do
 		sleep 86400
@@ -271,7 +234,6 @@ if mkdir $LOCKDIR >/dev/null 2>&1; then
 
 	echo "Acquired lock, running"
 
-	connection_track &
 	gfwlist_update_main &
 	main &
 	nop_loop
