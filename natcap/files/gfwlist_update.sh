@@ -26,7 +26,7 @@ rm -f /tmp/accelerated-domains.gfwlist.dnsmasq.conf
 	for w in `echo $EX_DOMAIN` `cat /tmp/gfwlist.txt | base64 -d | grep -v ^! | grep -v ^@@ | grep -o '[a-zA-Z0-9][-a-zA-Z0-9]*[.][-a-zA-Z0-9.]*[a-zA-Z]$'`; do
 		echo $w
 	done | sort | uniq | while read line; do
-		echo $line | grep -q github. && continue
+		echo $line | grep -q github.com && continue
 		echo server=/$line/8.8.8.8 >>/tmp/accelerated-domains.gfwlist.dnsmasq.conf
 		echo ipset=/$line/gfwlist >>/tmp/accelerated-domains.gfwlist.dnsmasq.conf
 	done
