@@ -163,8 +163,9 @@ gfwlist_update_main () {
 }
 
 txrx_vals() {
+	test -f /tmp/natcapd.txrx || echo "0 0" >/tmp/natcapd.txrx
 	cat /tmp/natcapd.txrx | while read tx1 rx1; do
-		cat /dev/natcap_ctl  | grep flow_total_ | cut -d= -f2 | while read tx2 rx2; do
+		echo `cat /dev/natcap_ctl  | grep flow_total_ | cut -d= -f2` | while read tx2 rx2; do
 			tx=$((tx2-tx1))
 			rx=$((rx2-rx1))
 			echo $tx $rx
