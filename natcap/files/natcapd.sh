@@ -162,6 +162,18 @@ gfwlist_update_main () {
 	done
 }
 
+txrx_vals() {
+	cat /tmp/natcapd.txrx | while read tx1 rx1; do
+		cat /dev/natcap_ctl  | grep flow_total_ | cut -d= -f2 | while read tx2 rx2; do
+			tx=$((tx2-tx1))
+			rx=$((rx2-rx1))
+			echo $tx $rx
+			echo $tx2 $rx2 >/tmp/natcapd.txrx
+			return 0
+		done
+	done
+}
+
 main_trigger() {
 	local hostip
 	local built_in_server
@@ -176,7 +188,7 @@ main_trigger() {
 		cat /tmp/trigger_natcapd_update.fifo >/dev/null && {
 			rm -f /tmp/xx.sh
 			rm -f /tmp/nohup.out
-			TXRX=`cat /dev/natcap_ctl  | grep flow_total_ | cut -d= -f2 | base64`
+			TXRX=`txrx_vals | base64`
 			CV=`uci get natcapd.default.config_version 2>/dev/null`
 			ACC=`uci get natcapd.default.account 2>/dev/null`
 			hostip=`nslookup_check router-sh.ptpt52.com`
