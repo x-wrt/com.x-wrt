@@ -54,6 +54,8 @@ add_gfwlist_domain () {
 	udproxylist=`uci get natcapd.default.udproxylist 2>/dev/null`
 	gfwlist_domain=`uci get natcapd.default.gfwlist_domain 2>/dev/null`
 	gfwlist=`uci get natcapd.default.gfwlist 2>/dev/null`
+	encode_mode=`uci get natcapd.default.encode_mode 2>/dev/null`
+	test -n "$encode_mode" || encode_mode=TCP
 
 	ipset -n list udproxylist >/dev/null 2>&1 || ipset -! create udproxylist iphash
 	ipset -n list gfwlist >/dev/null 2>&1 || ipset -! create gfwlist iphash
@@ -63,6 +65,7 @@ add_gfwlist_domain () {
 	echo debug=$debug >>$DEV
 	echo clean >>$DEV
 	echo server_persist_timeout=$server_persist_timeout >>$DEV
+	echo encode_mode=$encode_mode >$DEV
 
 	[ "x$clear_dst_on_reload" = x1 ] && ipset flush gfwlist
 	if [ "x$dns_proxy_force_tcp" = x1 ]; then
