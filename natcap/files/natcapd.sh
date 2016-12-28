@@ -171,6 +171,10 @@ txrx_vals() {
 		echo `cat /dev/natcap_ctl  | grep flow_total_ | cut -d= -f2` | while read tx2 rx2; do
 			tx=$((tx2-tx1))
 			rx=$((rx2-rx1))
+			if test $tx2 -lt $tx1 || test $rx2 -lt $rx1; then
+				tx=$tx2
+				rx=$rx2
+			fi
 			echo $tx $rx
 			echo $tx2 $rx2 >/tmp/natcapd.txrx
 			return 0
