@@ -39,6 +39,7 @@ add_gfwlist_domain () {
 }
 
 /etc/init.d/natcapd enabled && {
+	modprobe natcap >/dev/null
 	echo disabled=0 >>$DEV
 	touch /tmp/natcapd.running
 	debug=`uci get natcapd.default.debug 2>/dev/null|| echo 0`

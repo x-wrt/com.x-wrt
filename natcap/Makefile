@@ -79,7 +79,6 @@ define KernelPackage/natcap
   SUBMENU:=Natcap Support
   TITLE:=Natcap kernel driver
   FILES:=$(PKG_BUILD_DIR)/natcap.ko
-  AUTOLOAD:=$(call AutoLoad,98,natcap)
   KCONFIG:=
   DEPENDS:=+kmod-nf-conntrack +kmod-nf-nat +kmod-ipt-ipset
 endef
