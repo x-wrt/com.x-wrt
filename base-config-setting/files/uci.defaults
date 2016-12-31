@@ -52,7 +52,6 @@ test $version -lt 1 && {
 	}
 
 	cp /usr/share/base-config-setting/etc/shadow /etc/shadow && chmod 600 /etc/shadow
-	cp /usr/share/base-config-setting/etc/inittab /etc/inittab && chmod 644 /etc/inittab
 
 	SUBFIX=`echo -n $MACADDR | sed 's/://g' | tr a-z A-Z | tail -c4`
 	SSID=${DISTRIB_ID}_${SUBFIX}
@@ -174,9 +173,20 @@ test $version -lt 1 && {
 }
 
 test $version -lt 2 && {
-	echo net.ipv4.ip_early_demux=0 >/etc/sysctl.d/local.conf
 	version=2
 }
+
+# sysctl overwrite
+SYSCTL_LOCAL=/etc/sysctl.d/50-local.conf
+mkdir -p /etc/sysctl.d
+echo -n >$SYSCTL_LOCAL
+
+echo net.ipv4.ip_early_demux=0 >>$SYSCTL_LOCAL
+echo net.bridge.bridge-nf-call-iptables=0 >>$SYSCTL_LOCAL
+
+echo net.ipv6.conf.all.disable_ipv6=1 >>$SYSCTL_LOCAL
+echo net.ipv6.conf.default.disable_ipv6=1 >>$SYSCTL_LOCAL
+echo net.ipv6.conf.lo.disable_ipv6=1 >>$SYSCTL_LOCAL
 
 cp /usr/share/base-config-setting/lib/network/switch.sh /lib/network/switch.sh && chmod 644 /lib/network/switch.sh
 
