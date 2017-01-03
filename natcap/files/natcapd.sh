@@ -61,6 +61,7 @@ add_gfwlist_domain () {
 
 	ipset -n list udproxylist >/dev/null 2>&1 || ipset -! create udproxylist iphash
 	ipset -n list gfwlist >/dev/null 2>&1 || ipset -! create gfwlist iphash
+	ipset -n list bypasslist >/dev/null 2>&1 || ipset -! create bypasslist iphash
 	ipset -n list cniplist >/dev/null 2>&1 || ipset restore -f /usr/share/natcapd/cniplist.set
 
 	echo u_hash=$uhash >>$DEV
@@ -118,7 +119,7 @@ add_gfwlist_domain () {
 
 ACC=$1
 ACC=`echo -n "$ACC" | base64`
-CLI=`cat /dev/natcap_ctl | grep default_mac_addr | grep -o '[0-9A-F][0-9A-F]:[0-9A-F][0-9A-F]:[0-9A-F][0-9A-F]:[0-9A-F][0-9A-F]:[0-9A-F][0-9A-F]:[0-9A-F][0-9A-F]' | sed 's/:/-/g'`
+CLI=`cat $DEV | grep default_mac_addr | grep -o '[0-9A-F][0-9A-F]:[0-9A-F][0-9A-F]:[0-9A-F][0-9A-F]:[0-9A-F][0-9A-F]:[0-9A-F][0-9A-F]:[0-9A-F][0-9A-F]' | sed 's/:/-/g'`
 test -n "$CLI" || CLI=`sed 's/:/-/g' /sys/class/net/eth0/address | tr a-z A-Z`
 
 MOD=`cat /etc/board.json | grep model -A2 | grep id\": | sed 's/"/ /g' | awk '{print $3}'`
@@ -170,7 +171,7 @@ gfwlist_update_main () {
 txrx_vals() {
 	test -f /tmp/natcapd.txrx || echo "0 0" >/tmp/natcapd.txrx
 	cat /tmp/natcapd.txrx | while read tx1 rx1; do
-		echo `cat /dev/natcap_ctl  | grep flow_total_ | cut -d= -f2` | while read tx2 rx2; do
+		echo `cat $DEV  | grep flow_total_ | cut -d= -f2` | while read tx2 rx2; do
 			tx=$((tx2-tx1))
 			rx=$((rx2-rx1))
 			if test $tx2 -lt $tx1 || test $rx2 -lt $rx1; then
