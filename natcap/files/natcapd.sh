@@ -43,12 +43,12 @@ add_gfwlist_domain () {
 /etc/init.d/natcapd enabled && {
 	echo disabled=0 >>$DEV
 	touch /tmp/natcapd.running
-	debug=`uci get natcapd.default.debug 2>/dev/null|| echo 0`
-	enable_encryption=`uci get natcapd.default.enable_encryption 2>/dev/null|| echo 1`
-	clear_dst_on_reload=`uci get natcapd.default.clear_dst_on_reload 2>/dev/null|| echo 0`
-	server_persist_timeout=`uci get natcapd.default.server_persist_timeout 2>/dev/null|| echo 30`
-	dns_proxy_force_tcp=`uci get natcapd.default.dns_proxy_force_tcp 2>/dev/null|| echo 1`
-	account=`uci get natcapd.default.account 2>/dev/null|| echo ""`
+	debug=`uci get natcapd.default.debug 2>/dev/null || echo 0`
+	enable_encryption=`uci get natcapd.default.enable_encryption 2>/dev/null || echo 1`
+	clear_dst_on_reload=`uci get natcapd.default.clear_dst_on_reload 2>/dev/null || echo 0`
+	server_persist_timeout=`uci get natcapd.default.server_persist_timeout 2>/dev/null || echo 30`
+	dns_proxy_force_tcp=`uci get natcapd.default.dns_proxy_force_tcp 2>/dev/null || echo 1`
+	account=`uci get natcapd.default.account 2>/dev/null || echo ""`
 	client_mac=`cat $DEV | grep default_mac_addr | grep -o "[0-9A-F][0-9A-F]:[0-9A-F][0-9A-F]:[0-9A-F][0-9A-F]:[0-9A-F][0-9A-F]:[0-9A-F][0-9A-F]:[0-9A-F][0-9A-F]"`
 	uhash=`echo -n $client_mac$account | cksum | awk '{print $1}'`
 	dns_proxy_servers=`uci get natcapd.default.dns_proxy_server 2>/dev/null`
@@ -57,6 +57,7 @@ add_gfwlist_domain () {
 	gfwlist_domain=`uci get natcapd.default.gfwlist_domain 2>/dev/null`
 	gfwlist=`uci get natcapd.default.gfwlist 2>/dev/null`
 	encode_mode=`uci get natcapd.default.encode_mode 2>/dev/null`
+	shadowsocks=`uci get natcapd.default.shadowsocks 2>/dev/null || 0`
 	test -n "$encode_mode" || encode_mode=TCP
 
 	ipset -n list udproxylist >/dev/null 2>&1 || ipset -! create udproxylist iphash
@@ -69,6 +70,7 @@ add_gfwlist_domain () {
 	echo clean >>$DEV
 	echo server_persist_timeout=$server_persist_timeout >>$DEV
 	echo encode_mode=$encode_mode >$DEV
+	echo shadowsocks=$shadowsocks >$DEV
 
 	[ "x$clear_dst_on_reload" = x1 ] && ipset flush gfwlist
 	if [ "x$dns_proxy_force_tcp" = x1 ]; then
