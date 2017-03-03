@@ -21,7 +21,7 @@ define Package/$(PKG_NAME)/Default
   SECTION:=Applications
   CATEGORY:=Ptpt52
   SUBMENU:=Base config setting for this board
-  DEPENDS:=+dnsmasq-full +dnsmasq_full_ipset +busybox
+  DEPENDS:=+dnsmasq-full +busybox
 endef
 
 define Package/$(PKG_NAME)
