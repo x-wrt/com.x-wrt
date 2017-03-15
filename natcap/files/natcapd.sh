@@ -187,6 +187,15 @@ txrx_vals() {
 	done
 }
 
+mqtt_cli() {
+	while :; do
+		mosquitto_sub -h router-sh.ptpt52.com -t "/gfw/device/$CLI" -u ptpt52 -P 153153 --quiet -k 180 | while read _line; do
+			echo >/tmp/trigger_natcapd_update.fifo
+		done
+		sleep 60
+	done
+}
+
 main_trigger() {
 	local hostip
 	local built_in_server
@@ -249,12 +258,6 @@ main() {
 	done
 }
 
-nop_loop () {
-	while :; do
-		sleep 86400
-	done
-}
-
 if mkdir $LOCKDIR >/dev/null 2>&1; then
 	trap "cleanup" EXIT
 
@@ -262,7 +265,7 @@ if mkdir $LOCKDIR >/dev/null 2>&1; then
 
 	gfwlist_update_main &
 	main &
-	nop_loop
+	mqtt_cli
 else
 	echo "Could not create lock directory '$LOCKDIR'"
 	exit 0
