@@ -199,6 +199,7 @@ CONFIG_BUILD_PATENTED=y
 # CONFIG_BUILD_NLS is not set
 CONFIG_SHADOW_PASSWORDS=y
 # CONFIG_CLEAN_IPKG is not set
+# CONFIG_INCLUDE_CONFIG is not set
 # CONFIG_COLLECT_KERNEL_DEBUG is not set
 
 #
@@ -2517,17 +2518,8 @@ CONFIG_PACKAGE_kmod-fs-vfat=y
 #
 # I2C support
 #
-CONFIG_PACKAGE_kmod-i2c-core=m
-CONFIG_PACKAGE_kmod-i2c-algo-bit=m
-CONFIG_PACKAGE_kmod-i2c-algo-pca=m
-CONFIG_PACKAGE_kmod-i2c-algo-pcf=m
-CONFIG_PACKAGE_kmod-i2c-gpio=m
+# CONFIG_PACKAGE_kmod-i2c-core is not set
 # CONFIG_PACKAGE_kmod-i2c-gpio-custom is not set
-CONFIG_PACKAGE_kmod-i2c-mux=m
-CONFIG_PACKAGE_kmod-i2c-mux-gpio=m
-CONFIG_PACKAGE_kmod-i2c-mux-pca9541=m
-CONFIG_PACKAGE_kmod-i2c-mux-pca954x=m
-CONFIG_PACKAGE_kmod-i2c-tiny-usb=m
 
 #
 # Input modules
@@ -2778,7 +2770,7 @@ CONFIG_PACKAGE_kmod-gpio-button-hotplug=y
 # CONFIG_PACKAGE_kmod-gpio-nxp-74hc164 is not set
 # CONFIG_PACKAGE_kmod-gpio-pca953x is not set
 # CONFIG_PACKAGE_kmod-gpio-pcf857x is not set
-CONFIG_PACKAGE_kmod-hsdma-mtk=m
+# CONFIG_PACKAGE_kmod-hsdma-mtk is not set
 # CONFIG_PACKAGE_kmod-iio-core is not set
 # CONFIG_PACKAGE_kmod-ikconfig is not set
 # CONFIG_PACKAGE_kmod-lp is not set
@@ -2792,14 +2784,14 @@ CONFIG_PACKAGE_kmod-hsdma-mtk=m
 # CONFIG_PACKAGE_kmod-random-core is not set
 # CONFIG_PACKAGE_kmod-regmap is not set
 # CONFIG_PACKAGE_kmod-rotary-gpio-custom is not set
-CONFIG_PACKAGE_kmod-rtc-ds1307=m
-CONFIG_PACKAGE_kmod-rtc-ds1374=m
-CONFIG_PACKAGE_kmod-rtc-ds1672=m
-CONFIG_PACKAGE_kmod-rtc-isl1208=m
-CONFIG_PACKAGE_kmod-rtc-pcf2123=m
-CONFIG_PACKAGE_kmod-rtc-pcf8563=m
-CONFIG_PACKAGE_kmod-rtc-pt7c4338=m
-CONFIG_PACKAGE_kmod-rtc-rs5c372a=m
+# CONFIG_PACKAGE_kmod-rtc-ds1307 is not set
+# CONFIG_PACKAGE_kmod-rtc-ds1374 is not set
+# CONFIG_PACKAGE_kmod-rtc-ds1672 is not set
+# CONFIG_PACKAGE_kmod-rtc-isl1208 is not set
+# CONFIG_PACKAGE_kmod-rtc-pcf2123 is not set
+# CONFIG_PACKAGE_kmod-rtc-pcf8563 is not set
+# CONFIG_PACKAGE_kmod-rtc-pt7c4338 is not set
+# CONFIG_PACKAGE_kmod-rtc-rs5c372a is not set
 # CONFIG_PACKAGE_kmod-sdhci is not set
 # CONFIG_PACKAGE_kmod-sdhci-mt7620 is not set
 # CONFIG_PACKAGE_kmod-serial-8250 is not set
@@ -2807,6 +2799,7 @@ CONFIG_PACKAGE_kmod-rtc-rs5c372a=m
 # CONFIG_PACKAGE_kmod-ssb is not set
 # CONFIG_PACKAGE_kmod-tpm is not set
 # CONFIG_PACKAGE_kmod-tpm-i2c-atmel is not set
+# CONFIG_PACKAGE_kmod-tpm-i2c-infineon is not set
 # CONFIG_PACKAGE_kmod-zram is not set
 
 #
@@ -3083,87 +3076,134 @@ CONFIG_PACKAGE_luasocket=y
 # CONFIG_PACKAGE_python is not set
 # CONFIG_PACKAGE_python-attrs is not set
 # CONFIG_PACKAGE_python-base is not set
+# CONFIG_PACKAGE_python-base-src is not set
 # CONFIG_PACKAGE_python-cffi is not set
 # CONFIG_PACKAGE_python-codecs is not set
+# CONFIG_PACKAGE_python-codecs-src is not set
 # CONFIG_PACKAGE_python-compiler is not set
+# CONFIG_PACKAGE_python-compiler-src is not set
 # CONFIG_PACKAGE_python-crcmod is not set
 # CONFIG_PACKAGE_python-crypto is not set
 # CONFIG_PACKAGE_python-cryptography is not set
 # CONFIG_PACKAGE_python-ctypes is not set
+# CONFIG_PACKAGE_python-ctypes-src is not set
 # CONFIG_PACKAGE_python-dateutil is not set
 # CONFIG_PACKAGE_python-db is not set
+# CONFIG_PACKAGE_python-db-src is not set
 # CONFIG_PACKAGE_python-decimal is not set
+# CONFIG_PACKAGE_python-decimal-src is not set
 # CONFIG_PACKAGE_python-dev is not set
+# CONFIG_PACKAGE_python-dev-src is not set
 # CONFIG_PACKAGE_python-distutils is not set
+# CONFIG_PACKAGE_python-distutils-src is not set
 # CONFIG_PACKAGE_python-dns is not set
 # CONFIG_PACKAGE_python-egenix-mx-base is not set
 # CONFIG_PACKAGE_python-email is not set
+# CONFIG_PACKAGE_python-email-src is not set
 # CONFIG_PACKAGE_python-enum34 is not set
 # CONFIG_PACKAGE_python-gdbm is not set
+# CONFIG_PACKAGE_python-gdbm-src is not set
 # CONFIG_PACKAGE_python-gmpy2 is not set
 # CONFIG_PACKAGE_python-idna is not set
 # CONFIG_PACKAGE_python-ipaddress is not set
 # CONFIG_PACKAGE_python-ldap is not set
 # CONFIG_PACKAGE_python-lib2to3 is not set
+# CONFIG_PACKAGE_python-lib2to3-src is not set
 # CONFIG_PACKAGE_python-light is not set
+# CONFIG_PACKAGE_python-light-src is not set
 # CONFIG_PACKAGE_python-logging is not set
+# CONFIG_PACKAGE_python-logging-src is not set
 # CONFIG_PACKAGE_python-multiprocessing is not set
+# CONFIG_PACKAGE_python-multiprocessing-src is not set
 # CONFIG_PACKAGE_python-mysql is not set
 # CONFIG_PACKAGE_python-ncurses is not set
+# CONFIG_PACKAGE_python-ncurses-src is not set
 # CONFIG_PACKAGE_python-openssl is not set
+# CONFIG_PACKAGE_python-openssl-src is not set
 # CONFIG_PACKAGE_python-packages is not set
 # CONFIG_PACKAGE_python-parsley is not set
 # CONFIG_PACKAGE_python-pcapy is not set
 # CONFIG_PACKAGE_python-pip is not set
 # CONFIG_PACKAGE_python-pip-conf is not set
+# CONFIG_PACKAGE_python-pip-src is not set
 # CONFIG_PACKAGE_python-ply is not set
 # CONFIG_PACKAGE_python-psycopg2 is not set
 # CONFIG_PACKAGE_python-pyasn1 is not set
 # CONFIG_PACKAGE_python-pyasn1-modules is not set
 # CONFIG_PACKAGE_python-pycparser is not set
 # CONFIG_PACKAGE_python-pydoc is not set
+# CONFIG_PACKAGE_python-pydoc-src is not set
 # CONFIG_PACKAGE_python-pyopenssl is not set
 # CONFIG_PACKAGE_python-pyptlib is not set
 # CONFIG_PACKAGE_python-pyserial is not set
 # CONFIG_PACKAGE_python-service-identity is not set
 # CONFIG_PACKAGE_python-setuptools is not set
+# CONFIG_PACKAGE_python-setuptools-src is not set
 # CONFIG_PACKAGE_python-six is not set
 # CONFIG_PACKAGE_python-smbus is not set
 # CONFIG_PACKAGE_python-sqlite3 is not set
+# CONFIG_PACKAGE_python-sqlite3-src is not set
+# CONFIG_PACKAGE_python-src is not set
 # CONFIG_PACKAGE_python-txsocksx is not set
 # CONFIG_PACKAGE_python-unittest is not set
+# CONFIG_PACKAGE_python-unittest-src is not set
 # CONFIG_PACKAGE_python-urllib3 is not set
 # CONFIG_PACKAGE_python-xml is not set
+# CONFIG_PACKAGE_python-xml-src is not set
 # CONFIG_PACKAGE_python-yaml is not set
 # CONFIG_PACKAGE_python3 is not set
 # CONFIG_PACKAGE_python3-asyncio is not set
+# CONFIG_PACKAGE_python3-asyncio-src is not set
 # CONFIG_PACKAGE_python3-base is not set
+# CONFIG_PACKAGE_python3-base-src is not set
 # CONFIG_PACKAGE_python3-bottle is not set
 # CONFIG_PACKAGE_python3-cffi is not set
 # CONFIG_PACKAGE_python3-codecs is not set
+# CONFIG_PACKAGE_python3-codecs-src is not set
 # CONFIG_PACKAGE_python3-ctypes is not set
+# CONFIG_PACKAGE_python3-ctypes-src is not set
 # CONFIG_PACKAGE_python3-dbm is not set
+# CONFIG_PACKAGE_python3-dbm-src is not set
 # CONFIG_PACKAGE_python3-decimal is not set
+# CONFIG_PACKAGE_python3-decimal-src is not set
 # CONFIG_PACKAGE_python3-dev is not set
+# CONFIG_PACKAGE_python3-dev-src is not set
 # CONFIG_PACKAGE_python3-distutils is not set
+# CONFIG_PACKAGE_python3-distutils-src is not set
 # CONFIG_PACKAGE_python3-email is not set
+# CONFIG_PACKAGE_python3-email-src is not set
 # CONFIG_PACKAGE_python3-gdbm is not set
+# CONFIG_PACKAGE_python3-gdbm-src is not set
 # CONFIG_PACKAGE_python3-lib2to3 is not set
+# CONFIG_PACKAGE_python3-lib2to3-src is not set
 # CONFIG_PACKAGE_python3-light is not set
+# CONFIG_PACKAGE_python3-light-src is not set
 # CONFIG_PACKAGE_python3-logging is not set
+# CONFIG_PACKAGE_python3-logging-src is not set
 # CONFIG_PACKAGE_python3-lzma is not set
+# CONFIG_PACKAGE_python3-lzma-src is not set
 # CONFIG_PACKAGE_python3-multiprocessing is not set
+# CONFIG_PACKAGE_python3-multiprocessing-src is not set
 # CONFIG_PACKAGE_python3-ncurses is not set
+# CONFIG_PACKAGE_python3-ncurses-src is not set
 # CONFIG_PACKAGE_python3-openssl is not set
+# CONFIG_PACKAGE_python3-openssl-src is not set
 # CONFIG_PACKAGE_python3-pip is not set
+# CONFIG_PACKAGE_python3-pip-src is not set
 # CONFIG_PACKAGE_python3-ply is not set
 # CONFIG_PACKAGE_python3-pycparser is not set
 # CONFIG_PACKAGE_python3-pydoc is not set
+# CONFIG_PACKAGE_python3-pydoc-src is not set
 # CONFIG_PACKAGE_python3-setuptools is not set
+# CONFIG_PACKAGE_python3-setuptools-src is not set
 # CONFIG_PACKAGE_python3-smbus is not set
 # CONFIG_PACKAGE_python3-sqlite3 is not set
+# CONFIG_PACKAGE_python3-sqlite3-src is not set
+# CONFIG_PACKAGE_python3-src is not set
 # CONFIG_PACKAGE_python3-unittest is not set
+# CONFIG_PACKAGE_python3-unittest-src is not set
 # CONFIG_PACKAGE_python3-xml is not set
+# CONFIG_PACKAGE_python3-xml-src is not set
 # CONFIG_PACKAGE_pytz is not set
 # CONFIG_PACKAGE_rcssmin is not set
 # CONFIG_PACKAGE_simplejson is not set
@@ -3865,6 +3905,7 @@ CONFIG_PACKAGE_luci-app-shadowsocks=y
 # CONFIG_PACKAGE_luci-app-shairplay is not set
 # CONFIG_PACKAGE_luci-app-shairport is not set
 # CONFIG_PACKAGE_luci-app-siitwizard is not set
+# CONFIG_PACKAGE_luci-app-simple-adblock is not set
 # CONFIG_PACKAGE_luci-app-splash is not set
 # CONFIG_PACKAGE_luci-app-sqm is not set
 # CONFIG_PACKAGE_luci-app-squid is not set
@@ -4106,6 +4147,7 @@ CONFIG_PACKAGE_luci-i18n-upnp-zh-cn=y
 # CONFIG_PACKAGE_dovecot is not set
 # CONFIG_PACKAGE_emailrelay is not set
 # CONFIG_PACKAGE_fdm is not set
+# CONFIG_PACKAGE_greyfix is not set
 # CONFIG_PACKAGE_mailman is not set
 # CONFIG_PACKAGE_mailsend is not set
 # CONFIG_PACKAGE_mailsend-nossl is not set
@@ -4878,6 +4920,7 @@ CONFIG_PACKAGE_ppp-mod-pptp=y
 # CONFIG_PACKAGE_ser2net is not set
 CONFIG_PACKAGE_shadowsocks-libev=y
 CONFIG_PACKAGE_shadowsocks-libev-server=y
+# CONFIG_PACKAGE_simple-adblock is not set
 # CONFIG_PACKAGE_sipgrep is not set
 # CONFIG_PACKAGE_smartsnmpd is not set
 # CONFIG_PACKAGE_sngrep is not set
@@ -5064,7 +5107,7 @@ CONFIG_PACKAGE_natcapd=y
 # CONFIG_PACKAGE_dosfstools is not set
 # CONFIG_PACKAGE_dumpe2fs is not set
 # CONFIG_PACKAGE_e2freefrag is not set
-CONFIG_PACKAGE_e2fsprogs=m
+# CONFIG_PACKAGE_e2fsprogs is not set
 # CONFIG_PACKAGE_f2fs-tools is not set
 # CONFIG_PACKAGE_f2fsck is not set
 # CONFIG_PACKAGE_filefrag is not set
@@ -5197,6 +5240,7 @@ CONFIG_PACKAGE_e2fsprogs=m
 # CONFIG_PACKAGE_crelay is not set
 # CONFIG_PACKAGE_ct-bugcheck is not set
 # CONFIG_PACKAGE_dbus is not set
+# CONFIG_PACKAGE_dfu-util is not set
 # CONFIG_PACKAGE_dmesg is not set
 # CONFIG_PACKAGE_domoticz is not set
 # CONFIG_PACKAGE_dropbearconvert is not set
@@ -5265,7 +5309,7 @@ CONFIG_PACKAGE_lsof=y
 # CONFIG_PACKAGE_mpack is not set
 # CONFIG_PACKAGE_mt-st is not set
 # CONFIG_PACKAGE_namei is not set
-CONFIG_PACKAGE_nand-utils=m
+CONFIG_PACKAGE_nand-utils=y
 # CONFIG_PACKAGE_oath-toolkit is not set
 # CONFIG_PACKAGE_open-plc-utils is not set
 # CONFIG_PACKAGE_open2300 is not set
@@ -5284,7 +5328,7 @@ CONFIG_PACKAGE_openssl-util=y
 # CONFIG_PACKAGE_pps-tools is not set
 # CONFIG_PACKAGE_prlimit is not set
 CONFIG_PACKAGE_procd-nand=y
-CONFIG_PACKAGE_procd-nand-firstboot=m
+CONFIG_PACKAGE_procd-nand-firstboot=y
 CONFIG_PACKAGE_procps-ng=y
 # CONFIG_PACKAGE_procps-ng-free is not set
 # CONFIG_PACKAGE_procps-ng-kill is not set
