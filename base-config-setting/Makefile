@@ -56,16 +56,14 @@ define Package/$(PKG_NAME)/install
 	cp -r ./files/etc $(1)/usr/share/base-config-setting/
 	cp -r ./files/lib $(1)/usr/share/base-config-setting/
 	$(INSTALL_DATA) ./files/uci.defaults $(1)/etc/uci-defaults/95-base-config-setting
+	$(INSTALL_DIR) $(1)/usr/sbin
+	$(INSTALL_BIN) ./files/system_reset.sh $(1)/usr/sbin/system_reset
 ifeq ($(CONFIG_TARGET_x86_64_Generic),y)
 	$(INSTALL_DATA) ./files/fstab.config $(1)/etc/config/fstab
 	$(INSTALL_DIR) $(1)/lib/preinit
 	$(INSTALL_DATA) ./files/disk_ready.preinit $(1)/lib/preinit/79_disk_ready
-endif
-ifeq ($(CONFIG_TARGET_ar71xx_nand),y)
-	true
-endif
-ifeq ($(CONFIG_TARGET_ramips_mt7620),y)
-	true
+	$(INSTALL_DIR) $(1)/etc/init.d
+	$(INSTALL_BIN) ./files/disk_ready.init $(1)/etc/init.d/disk_ready
 endif
 endef
 
