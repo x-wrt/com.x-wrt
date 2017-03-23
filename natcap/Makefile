@@ -26,7 +26,7 @@ define Package/natcapd/Default
   CATEGORY:=Ptpt52
   SUBMENU:=Natcap Support
   AUTOLOAD:=$(call AutoProbe,natcapd)
-  DEPENDS:= +kmod-natcap
+  DEPENDS:= +kmod-natcap +mosquitto-client
 endef
 
 define Package/natcapd
