@@ -58,7 +58,7 @@ define Package/$(PKG_NAME)/install
 	$(INSTALL_DATA) ./files/uci.defaults $(1)/etc/uci-defaults/95-base-config-setting
 	$(INSTALL_DIR) $(1)/usr/sbin
 	$(INSTALL_BIN) ./files/system_reset.sh $(1)/usr/sbin/system_reset
-ifeq ($(CONFIG_TARGET_x86_64_Generic),y)
+ifeq ($(CONFIG_TARGET_x86_64),y)
 	$(INSTALL_DATA) ./files/fstab.config $(1)/etc/config/fstab
 	$(INSTALL_DIR) $(1)/lib/preinit
 	$(INSTALL_DATA) ./files/disk_ready.preinit $(1)/lib/preinit/79_disk_ready
