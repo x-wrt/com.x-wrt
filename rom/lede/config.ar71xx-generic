@@ -183,6 +183,8 @@ CONFIG_TARGET_MULTI_PROFILE=y
 # CONFIG_TARGET_ar71xx_generic_DEVICE_OM2P is not set
 # CONFIG_TARGET_ar71xx_generic_DEVICE_OM5PAC is not set
 # CONFIG_TARGET_ar71xx_generic_DEVICE_OM5P is not set
+# CONFIG_TARGET_ar71xx_generic_DEVICE_cpe505n is not set
+# CONFIG_TARGET_ar71xx_generic_DEVICE_r602n is not set
 # CONFIG_TARGET_ar71xx_generic_DEVICE_pqi-air-pen is not set
 # CONFIG_TARGET_ar71xx_generic_DEVICE_MZKW04NU is not set
 # CONFIG_TARGET_ar71xx_generic_DEVICE_MZKW300NH is not set
@@ -280,6 +282,8 @@ CONFIG_TARGET_MULTI_PROFILE=y
 # CONFIG_TARGET_ar71xx_generic_DEVICE_tl-wr802n-v1 is not set
 # CONFIG_TARGET_ar71xx_generic_DEVICE_tl-wr802n-v2 is not set
 # CONFIG_TARGET_ar71xx_generic_DEVICE_tl-wr810n is not set
+# CONFIG_TARGET_ar71xx_generic_DEVICE_tl-wr840n-v2 is not set
+# CONFIG_TARGET_ar71xx_generic_DEVICE_tl-wr840n-v3 is not set
 # CONFIG_TARGET_ar71xx_generic_DEVICE_tl-wr841-v1.5 is not set
 # CONFIG_TARGET_ar71xx_generic_DEVICE_tl-wr841-v10 is not set
 # CONFIG_TARGET_ar71xx_generic_DEVICE_tl-wr841-v11 is not set
@@ -501,6 +505,8 @@ CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_wndr3700v2=y
 # CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_OM2P is not set
 # CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_OM5PAC is not set
 # CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_OM5P is not set
+# CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_cpe505n is not set
+# CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_r602n is not set
 # CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_MZKW04NU is not set
 # CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_MZKW300NH is not set
 # CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_cap324 is not set
@@ -599,6 +605,8 @@ CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_qihoo-c301=y
 # CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_tl-wr802n-v1 is not set
 # CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_tl-wr802n-v2 is not set
 # CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_tl-wr810n is not set
+# CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_tl-wr840n-v2 is not set
+# CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_tl-wr840n-v3 is not set
 # CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_tl-wr841-v1.5 is not set
 # CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_tl-wr841-v10 is not set
 # CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_tl-wr841-v11 is not set
@@ -946,7 +954,7 @@ CONFIG_TARGET_INIT_SUPPRESS_STDERR=y
 CONFIG_VERSIONOPT=y
 CONFIG_VERSION_DIST="PTPT52"
 CONFIG_VERSION_NICK="fuckgfw"
-CONFIG_VERSION_NUMBER="3.0.0_build201703250001"
+CONFIG_VERSION_NUMBER="3.0.0_build201703251848"
 CONFIG_VERSION_CODE=""
 CONFIG_VERSION_REPO="http://downloads.openwrt.org/snapshots/trunk/%S/packages"
 CONFIG_VERSION_MANUFACTURER="PTPT52"
