@@ -173,7 +173,7 @@ CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_miwifi-mini=y
 # CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_zbt-wa05 is not set
 # CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_zbt-we2026 is not set
 # CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_zbt-we826 is not set
-# CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_zbt-wr8305rt is not set
+CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_zbt-wr8305rt=y
 # CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_zte-q7 is not set
 # CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_kn_rc is not set
 # CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_kn_rf is not set
