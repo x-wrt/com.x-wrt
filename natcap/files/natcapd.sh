@@ -22,6 +22,10 @@ modprobe natcap >/dev/null
 	exit 0
 }
 
+b64encode() {
+	cat - | base64 | sed -e ':a' -e 'N' -e '$!ba' -e 's/\n/ /g' | sed 's/ //g;s/=/_/g'
+}
+
 add_server () {
 	if echo $1 | grep -q ':'; then
 		echo server $1-$2 >>$DEV
@@ -120,7 +124,7 @@ add_gfwlist_domain () {
 }
 
 ACC=$1
-ACC=`echo -n "$ACC" | base64`
+ACC=`echo -n "$ACC" | b64encode`
 CLI=`cat $DEV | grep default_mac_addr | grep -o '[0-9A-F][0-9A-F]:[0-9A-F][0-9A-F]:[0-9A-F][0-9A-F]:[0-9A-F][0-9A-F]:[0-9A-F][0-9A-F]:[0-9A-F][0-9A-F]' | sed 's/:/-/g'`
 test -n "$CLI" || CLI=`sed 's/:/-/g' /sys/class/net/eth0/address | tr a-z A-Z`
 
@@ -202,15 +206,14 @@ main_trigger() {
 	local need_revert=0
 	. /etc/openwrt_release
 	TAR=`echo $DISTRIB_TARGET | sed 's/\//-/g'`
-	VER=`echo -n "$DISTRIB_ID-$DISTRIB_RELEASE-$DISTRIB_REVISION-$DISTRIB_CODENAME" | base64`
-	VER=`echo $VER | sed 's/ //g'`
+	VER=`echo -n "$DISTRIB_ID-$DISTRIB_RELEASE-$DISTRIB_REVISION-$DISTRIB_CODENAME" | b64encode`
 	cp /usr/share/natcapd/cacert.pem /tmp/cacert.pem
 	while :; do
 		test -p /tmp/trigger_natcapd_update.fifo || { sleep 1 && continue; }
 		cat /tmp/trigger_natcapd_update.fifo >/dev/null && {
 			rm -f /tmp/xx.sh
 			rm -f /tmp/nohup.out
-			TXRX=`txrx_vals | base64`
+			TXRX=`txrx_vals | b64encode`
 			CV=`uci get natcapd.default.config_version 2>/dev/null`
 			ACC=`uci get natcapd.default.account 2>/dev/null`
 			hostip=`nslookup_check router-sh.ptpt52.com`
