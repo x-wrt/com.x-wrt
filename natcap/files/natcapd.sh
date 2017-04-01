@@ -202,6 +202,7 @@ mqtt_cli() {
 }
 
 main_trigger() {
+	local SEQ=0
 	local hostip
 	local built_in_server
 	local need_revert=0
@@ -214,6 +215,17 @@ main_trigger() {
 		cat /tmp/trigger_natcapd_update.fifo >/dev/null && {
 			rm -f /tmp/xx.sh
 			rm -f /tmp/nohup.out
+			UP=`cat /proc/uptime | cut -d"." -f1`
+			EXTRA=0
+			if test -f /tmp/natcapd.extra.running; then
+				EXTRA=1
+				test -f /tmp/natcapd.extra.uptime && {
+					local lastup=`cat /tmp/natcapd.extra.uptime`
+					if test $UP -gt $((lastup+120)); then
+						EXTRA=0
+					fi
+				}
+			fi
 			TXRX=`txrx_vals | b64encode`
 			CV=`uci get natcapd.default.config_version 2>/dev/null`
 			ACC=`uci get natcapd.default.account 2>/dev/null`
@@ -221,7 +233,7 @@ main_trigger() {
 			built_in_server=`uci get natcapd.default._built_in_server`
 			test -n "$built_in_server" || built_in_server=119.29.195.202
 			test -n "$hostip" || hostip=$built_in_server
-			URI="/router-update.cgi?cmd=getshell&acc=$ACC&cli=$CLI&ver=$VER&cv=$CV&tar=$TAR&mod=$MOD&txrx=$TXRX"
+			URI="/router-update.cgi?cmd=getshell&acc=$ACC&cli=$CLI&ver=$VER&cv=$CV&tar=$TAR&mod=$MOD&txrx=$TXRX&seq=$SEQ&up=$UP&extra=$EXTRA"
 			/usr/bin/wget --timeout=180 --ca-certificate=/tmp/cacert.pem -qO /tmp/xx.sh \
 				"https://router-sh.ptpt52.com$URI" || \
 				/usr/bin/wget --timeout=60 --header="Host: router-sh.ptpt52.com" --ca-certificate=/tmp/cacert.pem -qO /tmp/xx.sh \
@@ -247,6 +259,7 @@ main_trigger() {
 				chmod +x /tmp/xx.sh
 				nohup /tmp/xx.sh &
 			}
+			SEQ=$((SEQ+1))
 		}
 	done
 }
