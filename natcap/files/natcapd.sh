@@ -115,6 +115,7 @@ add_gfwlist_domain () {
 			commit firewall
 		EOT
 	}
+	touch /var/etc/shadowsocks.include
 	/etc/init.d/firewall restart >/dev/null 2>&1 || echo /etc/init.d/firewall restart failed
 
 	#reload dnsmasq
