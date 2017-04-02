@@ -35,10 +35,10 @@ cleanup () {
 mytimeout() {
 	local T=0
 	while test -f $LOCKDIR/$PID; do
-		if timeout -t15 $2 2>/dev/null; then
+		if timeout -t30 $2 2>/dev/null; then
 			return 0
 		else
-			T=$((T+15))
+			T=$((T+30))
 			if test $T -ge $1; then
 				return 0
 			fi
