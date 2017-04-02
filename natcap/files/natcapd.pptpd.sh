@@ -49,15 +49,23 @@ uci set pptpd.pptpd.localip='10.8.8.0'
 uci set pptpd.pptpd.remoteip='10.8.8.100-200'
 uci set pptpd.pptpd.natcapd='1'
 while uci delete pptpd.@login[0]; do :; done
-echo ptpt52 153153ptpt52 | while read user pass; do
+index=0
+while :; do
+	user="`uci get natcapd.@pptpuser[$index].username 2>/dev/null`"
+	test -n "$user" || break
+	pass="`uci get natcapd.@pptpuser[$index].password 2>/dev/null`"
+	test -n "$pass" || break
+
 	obj=`uci add pptpd login`
 	test -n "$obj" && {
-		uci set pptpd.$obj.username='ptpt52'
-		uci set pptpd.$obj.password='153153ptpt52'
+		uci set pptpd.$obj.username="\'$user\'"
+		uci set pptpd.$obj.password="\'$pass\'"
 	}
+	index=$((index+1))
 done
 uci commit pptpd
 
+rm -f /var/etc/chap-secrets
 /etc/init.d/pptpd restart
 
 exit 0
