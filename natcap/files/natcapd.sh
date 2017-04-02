@@ -43,7 +43,7 @@ add_gfwlist_domain () {
 	echo ipset=/$1/gfwlist >>/tmp/dnsmasq.d/custom-domains.gfwlist.dnsmasq.conf
 }
 
-/etc/init.d/natcapd enabled && {
+/etc/init.d/natcapd enabled && test -c $DEV && {
 	echo disabled=0 >>$DEV
 	touch /tmp/natcapd.running
 	debug=`uci get natcapd.default.debug 2>/dev/null || echo 0`
@@ -125,7 +125,8 @@ add_gfwlist_domain () {
 
 ACC=$1
 ACC=`echo -n "$ACC" | b64encode`
-CLI=`cat $DEV | grep default_mac_addr | grep -o '[0-9A-F][0-9A-F]:[0-9A-F][0-9A-F]:[0-9A-F][0-9A-F]:[0-9A-F][0-9A-F]:[0-9A-F][0-9A-F]:[0-9A-F][0-9A-F]' | sed 's/:/-/g'`
+CLI=""
+test -c $DEV && CLI=`cat $DEV | grep default_mac_addr | grep -o '[0-9A-F][0-9A-F]:[0-9A-F][0-9A-F]:[0-9A-F][0-9A-F]:[0-9A-F][0-9A-F]:[0-9A-F][0-9A-F]:[0-9A-F][0-9A-F]' | sed 's/:/-/g'`
 test -n "$CLI" || CLI=`sed 's/:/-/g' /sys/class/net/eth0/address | tr a-z A-Z`
 
 MOD=`cat /etc/board.json | grep model -A2 | grep id\": | sed 's/"/ /g' | awk '{print $3}'`
