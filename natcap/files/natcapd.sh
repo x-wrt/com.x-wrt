@@ -60,6 +60,8 @@ add_gfwlist_domain () {
 	encode_mode=`uci get natcapd.default.encode_mode 2>/dev/null`
 	shadowsocks=`uci get natcapd.default.shadowsocks 2>/dev/null || 0`
 	test -n "$encode_mode" || encode_mode=TCP
+	[ x$encode_mode = x0 ] && encode_mode=TCP
+	[ x$encode_mode = x1 ] && encode_mode=UDP
 
 	ipset -n list udproxylist >/dev/null 2>&1 || ipset -! create udproxylist iphash
 	ipset -n list gfwlist >/dev/null 2>&1 || ipset -! create gfwlist iphash
