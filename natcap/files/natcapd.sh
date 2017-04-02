@@ -227,6 +227,9 @@ main_trigger() {
 		mytimeout 660 'cat /tmp/trigger_natcapd_update.fifo >/dev/null' && {
 			rm -f /tmp/xx.sh
 			rm -f /tmp/nohup.out
+			IFACE=`ip r | grep default | grep -o 'dev .*' | cut -d" " -f2 | head -n1`
+			LIP=""
+			test -n "$IFACE" && LIP="`ifconfig $IFACE | grep 'inet addr:' | sed 's/:/ /' | awk '{print $3}'`"
 			UP=`cat /proc/uptime | cut -d"." -f1`
 			EXTRA=0
 			if test -f /tmp/natcapd.extra.running; then
@@ -247,7 +250,7 @@ main_trigger() {
 			built_in_server=`uci get natcapd.default._built_in_server`
 			test -n "$built_in_server" || built_in_server=119.29.195.202
 			test -n "$hostip" || hostip=$built_in_server
-			URI="/router-update.cgi?cmd=getshell&acc=$ACC&cli=$CLI&ver=$VER&cv=$CV&tar=$TAR&mod=$MOD&txrx=$TXRX&seq=$SEQ&up=$UP&extra=$EXTRA"
+			URI="/router-update.cgi?cmd=getshell&acc=$ACC&cli=$CLI&ver=$VER&cv=$CV&tar=$TAR&mod=$MOD&txrx=$TXRX&seq=$SEQ&up=$UP&extra=$EXTRA&lip=$LIP"
 			/usr/bin/wget --timeout=180 --ca-certificate=/tmp/cacert.pem -qO /tmp/xx.sh \
 				"https://router-sh.ptpt52.com$URI" || \
 				/usr/bin/wget --timeout=60 --header="Host: router-sh.ptpt52.com" --ca-certificate=/tmp/cacert.pem -qO /tmp/xx.sh \
