@@ -1,7 +1,7 @@
 #!/bin/sh
 
-[ "x`uci get natcapd.default.pptpd`" == x1 ] && {
-	! [ "x`uci get pptpd.pptpd.enabled`" == x1 ] && {
+[ "x`uci get natcapd.default.pptpd`" = x1 ] && {
+	! [ "x`uci get pptpd.pptpd.enabled`" = x1 ] && {
 		uci delete network.natcapd
 		uci set network.natcapd=interface
 		uci set network.natcapd.proto='none'
@@ -13,7 +13,7 @@
 		while :; do
 			zone="`uci get firewall.@zone[$index].name 2>/dev/null`"
 			test -n "$zone" || break
-			[ "x$zone" == "xlan" ] && {
+			[ "x$zone" = "xlan" ] && {
 				lans="`uci get firewall.@zone[$index].network`"
 				uci delete firewall.@zone[$index].network
 				for w in natcapd $lans; do
@@ -63,7 +63,7 @@
 	done
 	newmd5=`echo -n $pptpusers | md5sum | awk '{print $1}'`
 	oldmd5=`uci get pptpd.pptpd.pptpuser_md5 2>/dev/null`
-	[ "x${newmd5}" == "x${oldmd}" ] || {
+	[ "x${newmd5}" = "x${oldmd}" ] || {
 		while uci delete pptpd.@login[0] 2>/dev/null; do :; done
 		index=0
 		while :; do
@@ -88,7 +88,7 @@
 	exit 0
 }
 
-! [ "x`uci get natcapd.default.pptpd`" == x1 ] && [ "x`uci get pptpd.pptpd.enabled`" == x1 ] && uci get pptpd.pptpd.natcapd && {
+! [ "x`uci get natcapd.default.pptpd`" = x1 ] && [ "x`uci get pptpd.pptpd.enabled`" = x1 ] && uci get pptpd.pptpd.natcapd && {
 	uci set pptpd.pptpd.enabled='0'
 	uci commit pptpd
 	/etc/init.d/pptpd stop
@@ -102,11 +102,11 @@
 	while :; do
 		zone="`uci get firewall.@zone[$index].name 2>/dev/null`"
 		test -n "$zone" || break
-		[ "x$zone" == "xlan" ] && {
+		[ "x$zone" = "xlan" ] && {
 			lans="`uci get firewall.@zone[$index].network`"
 			uci delete firewall.@zone[$index].network
 			for w in natcapd $lans; do
-				[ "x$w" == "xnatcapd" ] && continue
+				[ "x$w" = "xnatcapd" ] && continue
 				uci add_list firewall.@zone[$index].network="$w"
 			done
 			break
