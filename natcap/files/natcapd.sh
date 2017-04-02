@@ -50,11 +50,9 @@ add_gfwlist_domain () {
 	enable_encryption=`uci get natcapd.default.enable_encryption 2>/dev/null || echo 1`
 	clear_dst_on_reload=`uci get natcapd.default.clear_dst_on_reload 2>/dev/null || echo 0`
 	server_persist_timeout=`uci get natcapd.default.server_persist_timeout 2>/dev/null || echo 30`
-	dns_proxy_force_tcp=`uci get natcapd.default.dns_proxy_force_tcp 2>/dev/null || echo 1`
 	account=`uci get natcapd.default.account 2>/dev/null || echo ""`
 	client_mac=`cat $DEV | grep default_mac_addr | grep -o "[0-9A-F][0-9A-F]:[0-9A-F][0-9A-F]:[0-9A-F][0-9A-F]:[0-9A-F][0-9A-F]:[0-9A-F][0-9A-F]:[0-9A-F][0-9A-F]"`
 	uhash=`echo -n $client_mac$account | cksum | awk '{print $1}'`
-	dns_proxy_servers=`uci get natcapd.default.dns_proxy_server 2>/dev/null`
 	servers=`uci get natcapd.default.server 2>/dev/null`
 	udproxylist=`uci get natcapd.default.udproxylist 2>/dev/null`
 	gfwlist_domain=`uci get natcapd.default.gfwlist_domain 2>/dev/null`
@@ -76,11 +74,6 @@ add_gfwlist_domain () {
 	echo shadowsocks=$shadowsocks >$DEV
 
 	[ "x$clear_dst_on_reload" = x1 ] && ipset flush gfwlist
-	if [ "x$dns_proxy_force_tcp" = x1 ]; then
-		ipset -! add udproxylist 8.8.8.8
-	else
-		ipset -! del udproxylist 8.8.8.8
-	fi
 
 	opt="o"
 	[ "x$enable_encryption" = x1 ] && opt='e'
