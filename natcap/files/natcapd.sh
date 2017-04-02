@@ -2,7 +2,6 @@
 
 PID=$$
 DEV=/dev/natcap_ctl
-test -c $DEV || exit 1
 
 [ x$1 = xstop ] && {
 	echo stop
