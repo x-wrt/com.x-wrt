@@ -162,7 +162,7 @@ nslookup_check () {
 mytimeout() {
 	local T=0
 	while test -f $LOCKDIR/$PID; do
-		if timeout -t15 sh -c "$2" 2>/dev/null; then
+		if timeout -t15 "$2" 2>/dev/null; then
 			return 0
 		else
 			T=$((T+15))
@@ -295,11 +295,11 @@ if mkdir $LOCKDIR >/dev/null 2>&1; then
 	main_trigger &
 
 	sleep 10
-	test -p /tmp/trigger_natcapd_update.fifo && timeout -t5 sh -c 'echo >>/tmp/trigger_natcapd_update.fifo'
+	test -p /tmp/trigger_natcapd_update.fifo && timeout -t5 sh -c 'echo >/tmp/trigger_natcapd_update.fifo'
 	sleep 120
-	test -p /tmp/trigger_natcapd_update.fifo && timeout -t5 sh -c 'echo >>/tmp/trigger_natcapd_update.fifo'
+	test -p /tmp/trigger_natcapd_update.fifo && timeout -t5 sh -c 'echo >/tmp/trigger_natcapd_update.fifo'
 	sleep 170
-	test -p /tmp/trigger_gfwlist_update.fifo && timeout -t5 sh -c 'echo >>/tmp/trigger_gfwlist_update.fifo'
+	test -p /tmp/trigger_gfwlist_update.fifo && timeout -t5 sh -c 'echo >/tmp/trigger_gfwlist_update.fifo'
 
 	mqtt_cli
 else
