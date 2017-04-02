@@ -1,7 +1,7 @@
 #!/bin/sh
 
-[ "x`uci get natcapd.default.pptpd`" = x1 ] && {
-	! [ "x`uci get pptpd.pptpd.enabled`" = x1 ] && {
+[ "x`uci get natcapd.default.pptpd`" == x1 ] && {
+	! [ "x`uci get pptpd.pptpd.enabled`" == x1 ] && {
 		uci delete network.natcapd
 		uci set network.natcapd=interface
 		uci set network.natcapd.proto='none'
@@ -13,7 +13,7 @@
 		while :; do
 			zone="`uci get firewall.@zone[$index].name 2>/dev/null`"
 			test -n "$zone" || break
-			[ "x$zone" = "xlan" ] && {
+			[ "x$zone" == "xlan" ] && {
 				lans="`uci get firewall.@zone[$index].network`"
 				uci delete firewall.@zone[$index].network
 				for w in natcapd $lans; do
@@ -41,38 +41,54 @@
 
 		/etc/init.d/network reload
 		/etc/init.d/firewall reload
+
+		uci set pptpd.pptpd=service
+		uci set pptpd.pptpd.enabled='1'
+		uci set pptpd.pptpd.localip='10.8.8.1'
+		uci set pptpd.pptpd.remoteip='10.8.8.10-254'
+		uci set pptpd.pptpd.natcapd='1'
+		uci set pptpd.pptpd.logwtmp='0'
+		uci commit pptpd
 	}
 
-	uci delete pptpd.pptpd
-	uci set pptpd.pptpd=service
-	uci set pptpd.pptpd.enabled='1'
-	uci set pptpd.pptpd.localip='10.8.8.0'
-	uci set pptpd.pptpd.remoteip='10.8.8.100-200'
-	uci set pptpd.pptpd.natcapd='1'
-	uci set pptpd.pptpd.logwtmp='0'
-	while uci delete pptpd.@login[0]; do :; done
+	pptpusers=""
 	index=0
 	while :; do
 		user="`uci get natcapd.@pptpuser[$index].username 2>/dev/null`"
 		test -n "$user" || break
 		pass="`uci get natcapd.@pptpuser[$index].password 2>/dev/null`"
 		test -n "$pass" || break
-
-		obj=`uci add pptpd login`
-		test -n "$obj" && {
-			uci set pptpd.$obj.username="$user"
-			uci set pptpd.$obj.password="$pass"
-		}
+		pptpusers="$pptpusers-$user$pass"
 		index=$((index+1))
 	done
-	uci commit pptpd
+	newmd5=`echo -n $pptpusers | md5sum | awk '{print $1}'`
+	oldmd5=`uci get pptpd.pptpd.pptpuser_md5 2>/dev/null`
+	[ "x${newmd5}" == "x${oldmd}" ] || {
+		while uci delete pptpd.@login[0] 2>/dev/null; do :; done
+		index=0
+		while :; do
+			user="`uci get natcapd.@pptpuser[$index].username 2>/dev/null`"
+			test -n "$user" || break
+			pass="`uci get natcapd.@pptpuser[$index].password 2>/dev/null`"
+			test -n "$pass" || break
+
+			obj=`uci add pptpd login`
+			test -n "$obj" && {
+				uci set pptpd.$obj.username="$user"
+				uci set pptpd.$obj.password="$pass"
+			}
+			index=$((index+1))
+		done
+		uci set pptpd.pptpd.pptpuser_md5="${newmd5}"
+		uci commit pptpd
+	}
 
 	rm -f /var/etc/chap-secrets
 	/etc/init.d/pptpd restart
 	exit 0
 }
 
-! [ "x`uci get natcapd.default.pptpd`" = x1 ] && [ "x`uci get pptpd.pptpd.enabled`" = x1 ] && uci get pptpd.pptpd.natcapd && {
+! [ "x`uci get natcapd.default.pptpd`" == x1 ] && [ "x`uci get pptpd.pptpd.enabled`" == x1 ] && uci get pptpd.pptpd.natcapd && {
 	uci set pptpd.pptpd.enabled='0'
 	uci commit pptpd
 	/etc/init.d/pptpd stop
@@ -86,11 +102,11 @@
 	while :; do
 		zone="`uci get firewall.@zone[$index].name 2>/dev/null`"
 		test -n "$zone" || break
-		[ "x$zone" = "xlan" ] && {
+		[ "x$zone" == "xlan" ] && {
 			lans="`uci get firewall.@zone[$index].network`"
 			uci delete firewall.@zone[$index].network
 			for w in natcapd $lans; do
-				[ "x$w" = "xnatcapd" ] && continue
+				[ "x$w" == "xnatcapd" ] && continue
 				uci add_list firewall.@zone[$index].network="$w"
 			done
 			break
