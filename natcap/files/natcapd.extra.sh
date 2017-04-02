@@ -22,16 +22,17 @@ cd /tmp
 # mytimeout [Time] [cmd]
 mytimeout() {
 	local T=0
-	while test -f $LOCKDIR/$PID; do
-		timeout -t15 sh -c "$2" 2>/dev/null || {
+	while test -f /tmp/natcapd.extra.dir/$PID; do
+		if timeout -t15 sh -c "$2" 2>/dev/null; then
+			return 0
+		else
 			T=$((T+15))
 			if test $T -ge $1; then
 				return 0
 			fi
-		}
-		return 0
+		fi
 	done
-	return -1;
+	return 1
 }
 
 mqtt_cli() {
