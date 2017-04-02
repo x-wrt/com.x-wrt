@@ -1,5 +1,6 @@
 #!/bin/sh
 
+PID=$$
 DEV=/dev/natcap_ctl
 test -c $DEV || exit 1
 
@@ -119,7 +120,7 @@ add_gfwlist_domain () {
 
 	#reload dnsmasq
 	if test -p /tmp/trigger_gfwlist_update.fifo; then
-		echo >/tmp/trigger_gfwlist_update.fifo &
+		timeout -t5 sh -c 'echo >/tmp/trigger_gfwlist_update.fifo'
 	fi
 }
 
@@ -161,17 +162,13 @@ nslookup_check () {
 gfwlist_update_main () {
 	mkfifo /tmp/trigger_gfwlist_update.fifo
 	(while :; do
+		test -f $LOCKDIR/$PID || exit 0
 		test -p /tmp/trigger_gfwlist_update.fifo || { sleep 1 && continue; }
-		cat /tmp/trigger_gfwlist_update.fifo >/dev/null && {
-			test -f /tmp/natcapd.running && sh /usr/share/natcapd/gfwlist_update.sh
-		}
-	done) &
-	test -p /tmp/trigger_gfwlist_update.fifo && echo >>/tmp/trigger_gfwlist_update.fifo
-	while :; do
-		sleep 60
-		test -p /tmp/trigger_gfwlist_update.fifo && echo >>/tmp/trigger_gfwlist_update.fifo
-		sleep 86340
-	done
+		timeout -t86340 sh -c 'cat /tmp/trigger_gfwlist_update.fifo >/dev/null'
+		test -f /tmp/natcapd.running && sh /usr/share/natcapd/gfwlist_update.sh
+	done)&
+	sleep 300
+	test -p /tmp/trigger_gfwlist_update.fifo && timeout -t15 sh -c 'echo >>/tmp/trigger_gfwlist_update.fifo'
 }
 
 txrx_vals() {
@@ -193,8 +190,9 @@ txrx_vals() {
 
 mqtt_cli() {
 	while :; do
+		test -f $LOCKDIR/$PID || exit 0
 		mosquitto_sub -h router-sh.ptpt52.com -t "/gfw/device/$CLI" -u ptpt52 -P 153153 --quiet -k 180 | while read _line; do
-			echo >/tmp/trigger_natcapd_update.fifo
+			timeout -t5 sh -c 'echo >/tmp/trigger_natcapd_update.fifo'
 		done
 		sleep 60
 	done
@@ -210,8 +208,10 @@ main_trigger() {
 	VER=`echo -n "$DISTRIB_ID-$DISTRIB_RELEASE-$DISTRIB_REVISION-$DISTRIB_CODENAME" | b64encode`
 	cp /usr/share/natcapd/cacert.pem /tmp/cacert.pem
 	while :; do
+		test -f $LOCKDIR/$PID || exit 0
 		test -p /tmp/trigger_natcapd_update.fifo || { sleep 1 && continue; }
-		cat /tmp/trigger_natcapd_update.fifo >/dev/null && {
+		timeout -t660 sh -c 'cat /tmp/trigger_natcapd_update.fifo >/dev/null'
+		{
 			rm -f /tmp/xx.sh
 			rm -f /tmp/nohup.out
 			UP=`cat /proc/uptime | cut -d"." -f1`
@@ -219,10 +219,12 @@ main_trigger() {
 			if test -f /tmp/natcapd.extra.running; then
 				EXTRA=1
 				test -f /tmp/natcapd.extra.uptime && {
+					while ! mkdir /tmp/natcapd.extra.lck 2>/dev/null; do sleep 1; done
 					local lastup=`cat /tmp/natcapd.extra.uptime`
 					if test $UP -gt $((lastup+120)); then
 						EXTRA=0
 					fi
+					rmdir /tmp/natcapd.extra.lck
 				}
 			fi
 			TXRX=`txrx_vals | b64encode`
@@ -263,24 +265,22 @@ main_trigger() {
 	done
 }
 
-main() {
-	mkfifo /tmp/trigger_natcapd_update.fifo
-	main_trigger &
-	test -p /tmp/trigger_natcapd_update.fifo && echo >>/tmp/trigger_natcapd_update.fifo
-	while :; do
-		sleep 120
-		test -p /tmp/trigger_natcapd_update.fifo && echo >>/tmp/trigger_natcapd_update.fifo
-		sleep 540
-	done
-}
-
 if mkdir $LOCKDIR >/dev/null 2>&1; then
 	trap "cleanup" EXIT
 
 	echo "Acquired lock, running"
 
+	rm -f $LOCKDIR/*
+	touch $LOCKDIR/$PID
 	gfwlist_update_main &
-	main &
+
+	mkfifo /tmp/trigger_natcapd_update.fifo
+	main_trigger &
+	sleep 10
+	test -p /tmp/trigger_natcapd_update.fifo && timeout -t5 sh -c 'echo >>/tmp/trigger_natcapd_update.fifo'
+	sleep 120
+	test -p /tmp/trigger_natcapd_update.fifo && timeout -t5 sh -c 'echo >>/tmp/trigger_natcapd_update.fifo'
+
 	mqtt_cli
 else
 	echo "Could not create lock directory '$LOCKDIR'"

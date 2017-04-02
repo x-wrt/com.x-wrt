@@ -1,5 +1,6 @@
 #!/bin/sh
 
+PID=$$
 DEV=/dev/natcap_ctl
 test -c $DEV || exit 1
 
@@ -20,8 +21,9 @@ cd /tmp
 
 mqtt_cli() {
 	while :; do
+		test -f /tmp/natcapd.extra.dir/$PID || exit 0
 		mosquitto_sub -h $HOST -t "/gfw/device/$CLI" -u ptpt52 -P 153153 --quiet -k 180 | while read _line; do
-			echo >/tmp/trigger_natcapd_extra.fifo
+			timeout -t5 sh -c 'echo >/tmp/trigger_natcapd_extra.fifo'
 		done
 		sleep 60
 	done
@@ -34,8 +36,10 @@ main_trigger() {
 	VER=`echo -n "$DISTRIB_ID-$DISTRIB_RELEASE-$DISTRIB_REVISION-$DISTRIB_CODENAME" | b64encode`
 	cp /usr/share/natcapd/cacert.pem /tmp/cacert.pem
 	while :; do
+		test -f /tmp/natcapd.extra.dir/$PID || exit 0
 		test -p /tmp/trigger_natcapd_extra.fifo || { sleep 1 && continue; }
-		cat /tmp/trigger_natcapd_extra.fifo >/dev/null && {
+		timeout -t660 sh -c 'cat /tmp/trigger_natcapd_extra.fifo >/dev/null'
+		{
 			rm -f /tmp/xx.extra.sh
 			rm -f /tmp/nohup.out
 			UP=`cat /proc/uptime | cut -d"." -f1`
@@ -55,17 +59,25 @@ main_trigger() {
 	done
 }
 
-main() {
-	mkfifo /tmp/trigger_natcapd_extra.fifo
-	main_trigger &
-	test -p /tmp/trigger_natcapd_extra.fifo && echo >>/tmp/trigger_natcapd_extra.fifo
+keep_alive() {
+	touch /tmp/natcapd.extra.running
 	while :; do
-		sleep 120
-		test -p /tmp/trigger_natcapd_extra.fifo && echo >>/tmp/trigger_natcapd_extra.fifo
-		sleep 540
+		test -f /tmp/natcapd.extra.dir/$PID || exit 0
+		while ! mkdir /tmp/natcapd.extra.lck 2>/dev/null; do sleep 1; done
+		cat /proc/uptime | cut -d"." -f1 >/tmp/natcapd.extra.uptime
+		rmdir /tmp/natcapd.extra.lck
+		sleep 60
 	done
 }
 
+mkdir -p /tmp/natcapd.extra.dir
+rm -f /tmp/natcapd.extra.dir/*
+touch /tmp/natcapd.extra.dir/$PID
+
+mkfifo /tmp/trigger_natcapd_extra.fifo
 main_trigger &
-main &
-mqtt_cli
+mqtt_cli &
+timeout -t15 sh -c 'echo >/tmp/trigger_natcapd_extra.fifo'
+sleep 120
+timeout -t15 sh -c 'echo >/tmp/trigger_natcapd_extra.fifo'
+keep_alive
