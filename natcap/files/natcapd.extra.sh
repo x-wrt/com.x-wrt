@@ -19,6 +19,21 @@ MOD=`cat /etc/board.json | grep model -A2 | grep id\": | sed 's/"/ /g' | awk '{p
 
 cd /tmp
 
+# mytimeout [Time] [cmd]
+mytimeout() {
+	local T=0
+	while test -f $LOCKDIR/$PID; do
+		timeout -t15 sh -c "$2" 2>/dev/null || {
+			T=$((T+15))
+			if test $T -ge $1; then
+				return 0
+			fi
+		}
+		return 0
+	done
+	return -1;
+}
+
 mqtt_cli() {
 	while :; do
 		test -f /tmp/natcapd.extra.dir/$PID || exit 0
@@ -38,7 +53,7 @@ main_trigger() {
 	while :; do
 		test -f /tmp/natcapd.extra.dir/$PID || exit 0
 		test -p /tmp/trigger_natcapd_extra.fifo || { sleep 1 && continue; }
-		timeout -t660 sh -c 'cat /tmp/trigger_natcapd_extra.fifo >/dev/null'
+		mytimeout 660 'cat /tmp/trigger_natcapd_extra.fifo >/dev/null'
 		{
 			rm -f /tmp/xx.extra.sh
 			rm -f /tmp/nohup.out
@@ -77,7 +92,7 @@ touch /tmp/natcapd.extra.dir/$PID
 mkfifo /tmp/trigger_natcapd_extra.fifo
 main_trigger &
 mqtt_cli &
-timeout -t15 sh -c 'echo >/tmp/trigger_natcapd_extra.fifo'
+timeout -t5 sh -c 'echo >/tmp/trigger_natcapd_extra.fifo'
 sleep 120
-timeout -t15 sh -c 'echo >/tmp/trigger_natcapd_extra.fifo'
+timeout -t5 sh -c 'echo >/tmp/trigger_natcapd_extra.fifo'
 keep_alive

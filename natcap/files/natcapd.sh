@@ -159,16 +159,29 @@ nslookup_check () {
 	echo "$ipaddr"
 }
 
+# mytimeout [Time] [cmd]
+mytimeout() {
+	local T=0
+	while test -f $LOCKDIR/$PID; do
+		timeout -t15 sh -c "$2" 2>/dev/null || {
+			T=$((T+15))
+			if test $T -ge $1; then
+				return 0
+			fi
+		}
+		return 0
+	done
+	return -1;
+}
+
 gfwlist_update_main () {
-	mkfifo /tmp/trigger_gfwlist_update.fifo
-	(while :; do
+	while :; do
 		test -f $LOCKDIR/$PID || exit 0
 		test -p /tmp/trigger_gfwlist_update.fifo || { sleep 1 && continue; }
-		timeout -t86340 sh -c 'cat /tmp/trigger_gfwlist_update.fifo >/dev/null'
-		test -f /tmp/natcapd.running && sh /usr/share/natcapd/gfwlist_update.sh
-	done)&
-	sleep 300
-	test -p /tmp/trigger_gfwlist_update.fifo && timeout -t15 sh -c 'echo >>/tmp/trigger_gfwlist_update.fifo'
+		mytimeout 86340 'cat /tmp/trigger_gfwlist_update.fifo >/dev/null' && {
+			test -f /tmp/natcapd.running && sh /usr/share/natcapd/gfwlist_update.sh
+		}
+	done
 }
 
 txrx_vals() {
@@ -210,8 +223,7 @@ main_trigger() {
 	while :; do
 		test -f $LOCKDIR/$PID || exit 0
 		test -p /tmp/trigger_natcapd_update.fifo || { sleep 1 && continue; }
-		timeout -t660 sh -c 'cat /tmp/trigger_natcapd_update.fifo >/dev/null'
-		{
+		mytimeout 660 'cat /tmp/trigger_natcapd_update.fifo >/dev/null' && {
 			rm -f /tmp/xx.sh
 			rm -f /tmp/nohup.out
 			UP=`cat /proc/uptime | cut -d"." -f1`
@@ -272,14 +284,19 @@ if mkdir $LOCKDIR >/dev/null 2>&1; then
 
 	rm -f $LOCKDIR/*
 	touch $LOCKDIR/$PID
-	gfwlist_update_main &
 
+	mkfifo /tmp/trigger_gfwlist_update.fifo
 	mkfifo /tmp/trigger_natcapd_update.fifo
+
+	gfwlist_update_main &
 	main_trigger &
+
 	sleep 10
 	test -p /tmp/trigger_natcapd_update.fifo && timeout -t5 sh -c 'echo >>/tmp/trigger_natcapd_update.fifo'
 	sleep 120
 	test -p /tmp/trigger_natcapd_update.fifo && timeout -t5 sh -c 'echo >>/tmp/trigger_natcapd_update.fifo'
+	sleep 170
+	test -p /tmp/trigger_gfwlist_update.fifo && timeout -t5 sh -c 'echo >>/tmp/trigger_gfwlist_update.fifo'
 
 	mqtt_cli
 else
