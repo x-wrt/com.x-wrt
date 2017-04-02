@@ -25,7 +25,6 @@ include $(INCLUDE_DIR)/package.mk
 define Package/natcapd/Default
   CATEGORY:=Ptpt52
   SUBMENU:=Natcap Support
-  AUTOLOAD:=$(call AutoLoad,96,natcapd)
   DEPENDS:= +kmod-natcap +mosquitto-client
 endef
 
@@ -80,6 +79,7 @@ define KernelPackage/natcap
   TITLE:=Natcap kernel driver
   FILES:=$(PKG_BUILD_DIR)/natcap.ko
   KCONFIG:=
+  AUTOLOAD:=$(call AutoLoad,96,natcap)
   DEPENDS:=+kmod-nf-conntrack +kmod-nf-nat +kmod-ipt-ipset
 endef
 
