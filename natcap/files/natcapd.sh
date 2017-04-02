@@ -121,6 +121,9 @@ add_gfwlist_domain () {
 	if test -p /tmp/trigger_gfwlist_update.fifo; then
 		timeout -t5 sh -c 'echo >/tmp/trigger_gfwlist_update.fifo'
 	fi
+
+	#reload pptpd
+	sh /usr/share/natcapd/natcapd.pptpd.sh
 }
 
 ACC=$1
