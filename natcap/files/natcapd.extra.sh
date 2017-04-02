@@ -1,10 +1,12 @@
 #!/bin/sh
 
+HOST="`uci get natcapd.default.extra_host`"
+test -n "$HOST" || exit 0
+
+touch /tmp/natcapd.extra.running
 PID=$$
 DEV=/dev/natcap_ctl
 test -c $DEV || exit 1
-
-HOST=router-sh.ptpt52.com
 
 b64encode() {
 	cat - | base64 | sed -e ':a' -e 'N' -e '$!ba' -e 's/\n/ /g' | sed 's/ //g;s/=/_/g'
@@ -19,10 +21,20 @@ MOD=`cat /etc/board.json | grep model -A2 | grep id\": | sed 's/"/ /g' | awk '{p
 
 cd /tmp
 
+LOCKDIR=/tmp/natcapd.extra.dir
+cleanup () {
+	if rmdir $LOCKDIR; then
+		echo "Finished"
+	else
+		echo "Failed to remove lock directory '$LOCKDIR'"
+		exit 1
+	fi
+}
+
 # mytimeout [Time] [cmd]
 mytimeout() {
 	local T=0
-	while test -f /tmp/natcapd.extra.dir/$PID; do
+	while test -f $LOCKDIR/$PID; do
 		if timeout -t15 sh -c "$2" 2>/dev/null; then
 			return 0
 		else
@@ -37,7 +49,7 @@ mytimeout() {
 
 mqtt_cli() {
 	while :; do
-		test -f /tmp/natcapd.extra.dir/$PID || exit 0
+		test -f $LOCKDIR/$PID || exit 0
 		mosquitto_sub -h $HOST -t "/gfw/device/$CLI" -u ptpt52 -P 153153 --quiet -k 180 | while read _line; do
 			timeout -t5 sh -c 'echo >/tmp/trigger_natcapd_extra.fifo'
 		done
@@ -52,7 +64,7 @@ main_trigger() {
 	VER=`echo -n "$DISTRIB_ID-$DISTRIB_RELEASE-$DISTRIB_REVISION-$DISTRIB_CODENAME" | b64encode`
 	cp /usr/share/natcapd/cacert.pem /tmp/cacert.pem
 	while :; do
-		test -f /tmp/natcapd.extra.dir/$PID || exit 0
+		test -f $LOCKDIR/$PID || exit 0
 		test -p /tmp/trigger_natcapd_extra.fifo || { sleep 1 && continue; }
 		mytimeout 660 'cat /tmp/trigger_natcapd_extra.fifo >/dev/null'
 		{
@@ -76,9 +88,8 @@ main_trigger() {
 }
 
 keep_alive() {
-	touch /tmp/natcapd.extra.running
 	while :; do
-		test -f /tmp/natcapd.extra.dir/$PID || exit 0
+		test -f $LOCKDIR/$PID || exit 0
 		while ! mkdir /tmp/natcapd.extra.lck 2>/dev/null; do sleep 1; done
 		cat /proc/uptime | cut -d"." -f1 >/tmp/natcapd.extra.uptime
 		rmdir /tmp/natcapd.extra.lck
@@ -86,14 +97,25 @@ keep_alive() {
 	done
 }
 
-mkdir -p /tmp/natcapd.extra.dir
-rm -f /tmp/natcapd.extra.dir/*
-touch /tmp/natcapd.extra.dir/$PID
+if mkdir $LOCKDIR >/dev/null 2>&1; then
+	trap "cleanup" EXIT
 
-mkfifo /tmp/trigger_natcapd_extra.fifo
-main_trigger &
-mqtt_cli &
-timeout -t5 sh -c 'echo >/tmp/trigger_natcapd_extra.fifo'
-sleep 120
-timeout -t5 sh -c 'echo >/tmp/trigger_natcapd_extra.fifo'
-keep_alive
+	echo "Acquired lock, running"
+
+	rm -f $LOCKDIR/*
+	touch $LOCKDIR/$PID
+
+	mkfifo /tmp/trigger_natcapd_extra.fifo
+
+	main_trigger &
+	mqtt_cli &
+
+	timeout -t5 sh -c 'echo >/tmp/trigger_natcapd_extra.fifo'
+	sleep 120
+	timeout -t5 sh -c 'echo >/tmp/trigger_natcapd_extra.fifo'
+
+	keep_alive
+else
+	echo "Could not create lock directory '$LOCKDIR'"
+	exit 0
+fi
