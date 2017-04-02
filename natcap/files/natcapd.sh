@@ -43,7 +43,8 @@ add_gfwlist_domain () {
 	echo ipset=/$1/gfwlist >>/tmp/dnsmasq.d/custom-domains.gfwlist.dnsmasq.conf
 }
 
-/etc/init.d/natcapd enabled && test -c $DEV && {
+enabled="`uci get natcapd.default.enabled 2>/dev/null`"
+[ "x$enabled" = "x1" ] && test -c $DEV && {
 	echo disabled=0 >>$DEV
 	touch /tmp/natcapd.running
 	debug=`uci get natcapd.default.debug 2>/dev/null || echo 0`

@@ -10,4 +10,11 @@ uci -q batch <<-EOT
 	commit firewall
 EOT
 
+uci -q batch <<-EOF >/dev/null
+	delete ucitrack.@natcapd[-1]
+	add ucitrack natcapd
+	set ucitrack.@natcapd[-1].init=natcapd
+	commit ucitrack
+EOF
+
 exit 0
