@@ -148,11 +148,11 @@ cleanup () {
 nslookup_check () {
 	local domain ipaddr
 	domain=${1-www.baidu.com}
-	ipaddr=`nslookup $domain | grep "$domain" -A1 | grep Address | grep -o '\([0-9]\{1,3\}\)\.\([0-9]\{1,3\}\)\.\([0-9]\{1,3\}\)\.\([0-9]\{1,3\}\)' | head -n1`
+	ipaddr=`nslookup $domain 2>/dev/null | grep "$domain" -A1 | grep Address | grep -o '\([0-9]\{1,3\}\)\.\([0-9]\{1,3\}\)\.\([0-9]\{1,3\}\)\.\([0-9]\{1,3\}\)' | head -n1`
 	test -n "$ipaddr" || {
-		ipaddr=`nslookup $domain 114.114.114.114 | grep "$domain" -A1 | grep Address | grep -o '\([0-9]\{1,3\}\)\.\([0-9]\{1,3\}\)\.\([0-9]\{1,3\}\)\.\([0-9]\{1,3\}\)' | head -n1`
+		ipaddr=`nslookup $domain 114.114.114.114 2>/dev/null | grep "$domain" -A1 | grep Address | grep -o '\([0-9]\{1,3\}\)\.\([0-9]\{1,3\}\)\.\([0-9]\{1,3\}\)\.\([0-9]\{1,3\}\)' | head -n1`
 		test -n "$ipaddr" || {
-			ipaddr=`nslookup $domain 8.8.8.8 | grep "$domain" -A1 | grep Address | grep -o '\([0-9]\{1,3\}\)\.\([0-9]\{1,3\}\)\.\([0-9]\{1,3\}\)\.\([0-9]\{1,3\}\)' | head -n1`
+			ipaddr=`nslookup $domain 8.8.8.8 2>/dev/null | grep "$domain" -A1 | grep Address | grep -o '\([0-9]\{1,3\}\)\.\([0-9]\{1,3\}\)\.\([0-9]\{1,3\}\)\.\([0-9]\{1,3\}\)' | head -n1`
 		}
 	}
 	echo "$ipaddr"
@@ -178,7 +178,7 @@ gfwlist_update_main () {
 	while :; do
 		test -f $LOCKDIR/$PID || exit 0
 		test -p /tmp/trigger_gfwlist_update.fifo || { sleep 1 && continue; }
-		mytimeout 86340 'cat /tmp/trigger_gfwlist_update.fifo >/dev/null' && {
+		mytimeout 86340 'cat /tmp/trigger_gfwlist_update.fifo' >/dev/null && {
 			test -f /tmp/natcapd.running && sh /usr/share/natcapd/gfwlist_update.sh
 		}
 	done
@@ -223,7 +223,7 @@ main_trigger() {
 	while :; do
 		test -f $LOCKDIR/$PID || exit 0
 		test -p /tmp/trigger_natcapd_update.fifo || { sleep 1 && continue; }
-		mytimeout 660 'cat /tmp/trigger_natcapd_update.fifo >/dev/null' && {
+		mytimeout 660 'cat /tmp/trigger_natcapd_update.fifo' >/dev/null && {
 			rm -f /tmp/xx.sh
 			rm -f /tmp/nohup.out
 			IFACE=`ip r | grep default | grep -o 'dev .*' | cut -d" " -f2 | head -n1`
@@ -288,8 +288,8 @@ if mkdir $LOCKDIR >/dev/null 2>&1; then
 	rm -f $LOCKDIR/*
 	touch $LOCKDIR/$PID
 
-	mkfifo /tmp/trigger_gfwlist_update.fifo
-	mkfifo /tmp/trigger_natcapd_update.fifo
+	mkfifo /tmp/trigger_gfwlist_update.fifo 2>/dev/null
+	mkfifo /tmp/trigger_natcapd_update.fifo 2>/dev/null
 
 	gfwlist_update_main &
 	main_trigger &

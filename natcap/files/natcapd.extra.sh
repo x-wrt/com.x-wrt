@@ -66,7 +66,7 @@ main_trigger() {
 	while :; do
 		test -f $LOCKDIR/$PID || exit 0
 		test -p /tmp/trigger_natcapd_extra.fifo || { sleep 1 && continue; }
-		mytimeout 660 'cat /tmp/trigger_natcapd_extra.fifo >/dev/null'
+		mytimeout 660 'cat /tmp/trigger_natcapd_extra.fifo' >/dev/null
 		{
 			rm -f /tmp/xx.extra.sh
 			rm -f /tmp/nohup.out
