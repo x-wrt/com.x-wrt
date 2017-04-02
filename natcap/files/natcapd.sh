@@ -1,8 +1,7 @@
 #!/bin/sh
 
 DEV=/dev/natcap_ctl
-
-modprobe natcap >/dev/null
+test -c $DEV || exit 1
 
 [ x$1 = xstop ] && {
 	echo stop

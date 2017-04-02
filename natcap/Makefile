@@ -25,7 +25,7 @@ include $(INCLUDE_DIR)/package.mk
 define Package/natcapd/Default
   CATEGORY:=Ptpt52
   SUBMENU:=Natcap Support
-  AUTOLOAD:=$(call AutoProbe,natcapd)
+  AUTOLOAD:=$(call AutoLoad,96,natcapd)
   DEPENDS:= +kmod-natcap +mosquitto-client
 endef
 
