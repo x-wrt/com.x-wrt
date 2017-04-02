@@ -176,6 +176,12 @@ test $version -lt 2 && {
 	version=2
 }
 
+test $version -lt 3 && {
+	uci set dhcp.@dnsmasq[0].localservice='0'
+	uci commit dhcp
+	version=3
+}
+
 # sysctl overwrite
 SYSCTL_LOCAL=/etc/sysctl.d/50-local.conf
 mkdir -p /etc/sysctl.d
