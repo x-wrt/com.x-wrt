@@ -83,6 +83,10 @@
 		uci commit pptpd
 	}
 
+	cat /etc/ppp/options.pptpd | sed 's/^#ms-dns.*/ms-dns 10.8.8.1/g' >/tmp/options.pptpd
+	diff -q /tmp/options.pptpd /etc/ppp/options.pptpd >/dev/null || cp /tmp/options.pptpd /etc/ppp/options.pptpd
+	rm -f /tmp/options.pptpd
+
 	rm -f /var/etc/chap-secrets
 	/etc/init.d/pptpd restart
 	exit 0
