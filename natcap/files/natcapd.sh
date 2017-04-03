@@ -82,6 +82,10 @@ enabled="`uci get natcapd.default.enabled 2>/dev/null`"
 	[ "x$enable_encryption" = x1 ] && opt='e'
 	for server in $servers; do
 		add_server $server $opt
+		[ "x$shadowsocks" = "x1" ] && {
+			g=`echo $server | sed 's/:/ /' | awk '{print $1}'`
+			add_gfwlist $g
+		}
 	done
 
 	for u in $udproxylist; do
