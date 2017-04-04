@@ -179,6 +179,7 @@ mytimeout() {
 }
 
 gfwlist_update_main () {
+	test -f /tmp/natcapd.running && sh /usr/share/natcapd/gfwlist_update.sh
 	while :; do
 		test -f $LOCKDIR/$PID || exit 0
 		test -p /tmp/trigger_gfwlist_update.fifo || { sleep 1 && continue; }

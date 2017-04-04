@@ -32,6 +32,7 @@ rm -f /tmp/accelerated-domains.gfwlist.dnsmasq.conf
 	done
 	rm -f /tmp/gfwlist.txt
 	mkdir -p /tmp/dnsmasq.d && mv /tmp/accelerated-domains.gfwlist.dnsmasq.conf /tmp/dnsmasq.d/accelerated-domains.gfwlist.dnsmasq.conf && /etc/init.d/dnsmasq restart
+	exit 0
 }
 
 test -f /tmp/dnsmasq.d/accelerated-domains.gfwlist.dnsmasq.conf && exit 0
