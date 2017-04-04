@@ -18,20 +18,16 @@ EX_DOMAIN="google.com \
 		   fastly.net \
 		   amazonaws.com"
 
-rm -f /tmp/gfwlist.txt
-rm -f /tmp/accelerated-domains.gfwlist.dnsmasq.conf
-#echo server=/ptpt52.com/8.8.8.8 >>/tmp/accelerated-domains.gfwlist.dnsmasq.conf
-#echo server=/ptpt52.info/8.8.8.8 >>/tmp/accelerated-domains.gfwlist.dnsmasq.conf
-/usr/bin/wget --timeout=60 --no-check-certificate -qO /tmp/gfwlist.txt "https://raw.githubusercontent.com/gfwlist/gfwlist/master/gfwlist.txt?t=`date '+%s'`" && {
-	for w in `echo $EX_DOMAIN` `cat /tmp/gfwlist.txt | base64 -d | grep -v ^! | grep -v ^@@ | grep -o '[a-zA-Z0-9][-a-zA-Z0-9]*[.][-a-zA-Z0-9.]*[a-zA-Z]$'`; do
+/usr/bin/wget --timeout=60 --no-check-certificate -qO /tmp/gfwlist.$$.txt "https://raw.githubusercontent.com/gfwlist/gfwlist/master/gfwlist.txt?t=`date '+%s'`" && {
+	for w in `echo $EX_DOMAIN` `cat /tmp/gfwlist.$$.txt | base64 -d | grep -v ^! | grep -v ^@@ | grep -o '[a-zA-Z0-9][-a-zA-Z0-9]*[.][-a-zA-Z0-9.]*[a-zA-Z]$'`; do
 		echo $w
 	done | sort | uniq | while read line; do
 		echo $line | grep -q github.com && continue
-		echo server=/$line/8.8.8.8 >>/tmp/accelerated-domains.gfwlist.dnsmasq.conf
-		echo ipset=/$line/gfwlist >>/tmp/accelerated-domains.gfwlist.dnsmasq.conf
+		echo server=/$line/8.8.8.8 >>/tmp/accelerated-domains.gfwlist.dnsmasq.$$.conf
+		echo ipset=/$line/gfwlist >>/tmp/accelerated-domains.gfwlist.dnsmasq.$$.conf
 	done
-	rm -f /tmp/gfwlist.txt
-	mkdir -p /tmp/dnsmasq.d && mv /tmp/accelerated-domains.gfwlist.dnsmasq.conf /tmp/dnsmasq.d/accelerated-domains.gfwlist.dnsmasq.conf && /etc/init.d/dnsmasq restart
+	rm -f /tmp/gfwlist.$$.txt
+	mkdir -p /tmp/dnsmasq.d && mv /tmp/accelerated-domains.gfwlist.dnsmasq.$$.conf /tmp/dnsmasq.d/accelerated-domains.gfwlist.dnsmasq.conf && /etc/init.d/dnsmasq restart
 	exit 0
 }
 
