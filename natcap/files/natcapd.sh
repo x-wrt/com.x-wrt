@@ -213,6 +213,7 @@ mqtt_cli() {
 			timeout -t5 sh -c 'echo >/tmp/trigger_natcapd_update.fifo'
 		done
 		sleep 60
+		timeout -t5 sh -c 'echo >/tmp/trigger_natcapd_update.fifo'
 	done
 }
 
