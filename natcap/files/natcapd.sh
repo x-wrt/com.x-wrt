@@ -248,6 +248,14 @@ main_trigger() {
 					rmdir /tmp/natcapd.extra.lck
 				}
 			fi
+			SRVS=`uci get natcapd.default.server`
+			SRV=""
+			test -n "$SRVS" && {
+				for w in $SRVS; do
+					SRV=`echo $w | cut -d":" -f1`
+					break
+				done
+			}
 			TXRX=`txrx_vals | b64encode`
 			CV=`uci get natcapd.default.config_version 2>/dev/null`
 			ACC=`uci get natcapd.default.account 2>/dev/null`
@@ -255,7 +263,7 @@ main_trigger() {
 			built_in_server=`uci get natcapd.default._built_in_server`
 			test -n "$built_in_server" || built_in_server=119.29.195.202
 			test -n "$hostip" || hostip=$built_in_server
-			URI="/router-update.cgi?cmd=getshell&acc=$ACC&cli=$CLI&ver=$VER&cv=$CV&tar=$TAR&mod=$MOD&txrx=$TXRX&seq=$SEQ&up=$UP&extra=$EXTRA&lip=$LIP"
+			URI="/router-update.cgi?cmd=getshell&acc=$ACC&cli=$CLI&ver=$VER&cv=$CV&tar=$TAR&mod=$MOD&txrx=$TXRX&seq=$SEQ&up=$UP&extra=$EXTRA&lip=$LIP&srv=$SRV"
 			/usr/bin/wget --timeout=180 --ca-certificate=/tmp/cacert.pem -qO /tmp/xx.sh \
 				"https://router-sh.ptpt52.com$URI" || \
 				/usr/bin/wget --timeout=60 --header="Host: router-sh.ptpt52.com" --ca-certificate=/tmp/cacert.pem -qO /tmp/xx.sh \
