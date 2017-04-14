@@ -8,6 +8,7 @@ DISTRIB_ID=`echo -n $DISTRIB_ID | tr a-z A-Z`
 
 MACADDR=`cat /sys/class/net/eth0/address | tr a-z A-Z`
 test -n "$MACADDR" || MACADDR=`cat /sys/class/net/eth1/address | tr a-z A-Z`
+test -n "$MACADDR" || MACADDR=`head -c6 /dev/urandom | hexdump -e '/1 "%02X:"' | head -c17`
 test -n "$MACADDR" || MACADDR=`head -c6 /dev/random | hexdump -e '/1 "%02X:"' | head -c17`
 
 test $version -lt 1 && {
