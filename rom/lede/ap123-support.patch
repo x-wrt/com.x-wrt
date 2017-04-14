@@ -1,0 +1,279 @@
+diff --git a/target/linux/ar71xx/base-files/etc/board.d/02_network b/target/linux/ar71xx/base-files/etc/board.d/02_network
+index b0bf413..9046c0a 100755
+--- a/target/linux/ar71xx/base-files/etc/board.d/02_network
++++ b/target/linux/ar71xx/base-files/etc/board.d/02_network
+@@ -180,6 +180,11 @@ ar71xx_setup_interfaces()
+ 		ucidef_add_switch "switch0" \
+ 			"0@eth0" "2:lan" "3:lan" "4:lan" "5:lan" "1:wan"
+ 		;;
++	ap123)
++		ucidef_set_interfaces_lan_wan "eth1.2" "eth1.1"
++		ucidef_add_switch "switch0" \
++			"0@eth1" "1:wan" "2:lan" "3:lan" "4:lan"
++		;;
+ 	ap135-020|\
+ 	ap136-020|\
+ 	bhr-4grv2|\
+diff --git a/target/linux/ar71xx/base-files/lib/ar71xx.sh b/target/linux/ar71xx/base-files/lib/ar71xx.sh
+index 547e0e4..213740a 100755
+--- a/target/linux/ar71xx/base-files/lib/ar71xx.sh
++++ b/target/linux/ar71xx/base-files/lib/ar71xx.sh
+@@ -413,6 +413,9 @@ ar71xx_board_detect() {
+ 	*"AP132 reference board")
+ 		name="ap132"
+ 		;;
++	*"AP123 reference board")
++		name="ap123"
++		;;
+ 	*"AP135-020 reference board")
+ 		name="ap135-020"
+ 		;;
+diff --git a/target/linux/ar71xx/base-files/lib/upgrade/platform.sh b/target/linux/ar71xx/base-files/lib/upgrade/platform.sh
+index 27b0f8a..9c9f74b 100755
+--- a/target/linux/ar71xx/base-files/lib/upgrade/platform.sh
++++ b/target/linux/ar71xx/base-files/lib/upgrade/platform.sh
+@@ -204,6 +204,7 @@ platform_check_image() {
+ 	airgateway|\
+ 	airrouter|\
+ 	ap132|\
++	ap123|\
+ 	ap531b0|\
+ 	ap90q|\
+ 	archer-c59-v1|\
+diff --git a/target/linux/ar71xx/config-4.4 b/target/linux/ar71xx/config-4.4
+index 6d0941b..b192403 100644
+--- a/target/linux/ar71xx/config-4.4
++++ b/target/linux/ar71xx/config-4.4
+@@ -43,6 +43,7 @@ CONFIG_ATH79_MACH_ANTMINER_S3=y
+ CONFIG_ATH79_MACH_ANTROUTER_R1=y
+ CONFIG_ATH79_MACH_AP121=y
+ CONFIG_ATH79_MACH_AP132=y
++CONFIG_ATH79_MACH_AP123=y
+ CONFIG_ATH79_MACH_AP136=y
+ CONFIG_ATH79_MACH_AP143=y
+ CONFIG_ATH79_MACH_AP147=y
+diff --git a/target/linux/ar71xx/files/arch/mips/ath79/Kconfig.openwrt b/target/linux/ar71xx/files/arch/mips/ath79/Kconfig.openwrt
+index 183e91a..f5cefe2 100644
+--- a/target/linux/ar71xx/files/arch/mips/ath79/Kconfig.openwrt
++++ b/target/linux/ar71xx/files/arch/mips/ath79/Kconfig.openwrt
+@@ -152,6 +152,15 @@ config ATH79_MACH_AP132
+ 	select ATH79_DEV_USB
+ 	select ATH79_DEV_WMAC
+ 
++config ATH79_MACH_AP123
++	bool "Atheros AP123 reference board"
++	select SOC_QCA934X
++	select ATH79_DEV_GPIO_BUTTONS
++	select ATH79_DEV_LEDS_GPIO
++	select ATH79_DEV_M25P80
++	select ATH79_DEV_USB
++	select ATH79_DEV_WMAC
++
+ config ATH79_MACH_AP143
+ 	bool "Atheros AP143 reference board"
+ 	select SOC_QCA953X
+diff --git a/target/linux/ar71xx/files/arch/mips/ath79/Makefile b/target/linux/ar71xx/files/arch/mips/ath79/Makefile
+index 01ec133..5742dce 100644
+--- a/target/linux/ar71xx/files/arch/mips/ath79/Makefile
++++ b/target/linux/ar71xx/files/arch/mips/ath79/Makefile
+@@ -49,6 +49,7 @@ obj-$(CONFIG_ATH79_MACH_ANTMINER_S3)		+= mach-antminer-s3.o
+ obj-$(CONFIG_ATH79_MACH_ANTROUTER_R1)		+= mach-antrouter-r1.o
+ obj-$(CONFIG_ATH79_MACH_AP121)			+= mach-ap121.o
+ obj-$(CONFIG_ATH79_MACH_AP132)			+= mach-ap132.o
++obj-$(CONFIG_ATH79_MACH_AP123)			+= mach-ap123.o
+ obj-$(CONFIG_ATH79_MACH_AP136)			+= mach-ap136.o
+ obj-$(CONFIG_ATH79_MACH_AP143)			+= mach-ap143.o
+ obj-$(CONFIG_ATH79_MACH_AP147)			+= mach-ap147.o
+diff --git a/target/linux/ar71xx/files/arch/mips/ath79/mach-ap123.c b/target/linux/ar71xx/files/arch/mips/ath79/mach-ap123.c
+new file mode 100644
+index 0000000..d46d900
+--- /dev/null
++++ b/target/linux/ar71xx/files/arch/mips/ath79/mach-ap123.c
+@@ -0,0 +1,138 @@
++/*
++ *  TP-LINK TL-WR841N/ND v8/TL-MR3420 v2 board support
++ *
++ *  Copyright (C) 2012 Gabor Juhos <juhosg@openwrt.org>
++ *
++ *  This program is free software; you can redistribute it and/or modify it
++ *  under the terms of the GNU General Public License version 2 as published
++ *  by the Free Software Foundation.
++ */
++
++#include <linux/gpio.h>
++#include <linux/platform_device.h>
++
++#include <asm/mach-ath79/ath79.h>
++#include <asm/mach-ath79/ar71xx_regs.h>
++
++#include "common.h"
++#include "dev-eth.h"
++#include "dev-gpio-buttons.h"
++#include "dev-leds-gpio.h"
++#include "dev-m25p80.h"
++#include "dev-usb.h"
++#include "dev-wmac.h"
++#include "machtypes.h"
++
++#define AP123_GPIO_LED_WLAN	14
++#define AP123_GPIO_LED_WAN	18
++#define AP123_GPIO_LED_LAN1	20
++#define AP123_GPIO_LED_LAN2	22
++#define AP123_GPIO_LED_USB	11
++
++#define AP123_GPIO_BTN_RESET	17
++#define AP123_GPIO_SW_RFKILL	16
++
++#define AP123_KEYS_POLL_INTERVAL	20	/* msecs */
++#define AP123_KEYS_DEBOUNCE_INTERVAL (3 * AP123_KEYS_POLL_INTERVAL)
++
++static const char *ap123_part_probes[] = {
++	"cmdlinepart",
++	NULL,
++};
++
++static struct flash_platform_data ap123_flash_data = {
++	.part_probes	= ap123_part_probes,
++	.name = "ath-nor0",
++};
++
++static struct gpio_led ap123_leds_gpio[] __initdata = {
++	{
++		.name		= "ap123:green:lan1",
++		.gpio		= AP123_GPIO_LED_LAN1,
++		.active_low	= 1,
++	}, {
++		.name		= "ap123:green:lan2",
++		.gpio		= AP123_GPIO_LED_LAN2,
++		.active_low	= 1,
++	}, {
++		.name		= "ap123:green:wan",
++		.gpio		= AP123_GPIO_LED_WAN,
++		.active_low	= 1,
++	}, {
++		.name		= "ap123:green:wlan",
++		.gpio		= AP123_GPIO_LED_WLAN,
++		.active_low	= 1,
++	}, {
++		.name		= "ap123:green:usb",
++		.gpio		= AP123_GPIO_LED_USB,
++		.active_low	= 1,
++	}
++};
++
++static struct gpio_keys_button ap123_gpio_keys[] __initdata = {
++	{
++		.desc		= "Reset button",
++		.type		= EV_KEY,
++		.code		= KEY_RESTART,
++		.debounce_interval = AP123_KEYS_DEBOUNCE_INTERVAL,
++		.gpio		= AP123_GPIO_BTN_RESET,
++		.active_low	= 1,
++	}, {
++		.desc		= "RFKILL switch",
++		.type		= EV_SW,
++		.code		= KEY_RFKILL,
++		.debounce_interval = AP123_KEYS_DEBOUNCE_INTERVAL,
++		.gpio		= AP123_GPIO_SW_RFKILL,
++		.active_low	= 0,
++	}
++};
++
++static void __init ap123_setup(void)
++{
++	u8 *mac = (u8 *) KSEG1ADDR(0x1f01fc00);
++	u8 *ee = (u8 *) KSEG1ADDR(0x1fff1000);
++
++	/* Disable JTAG, enabling GPIOs 0-3 */
++	/* Configure OBS4 line, for GPIO 4*/
++	ath79_gpio_function_setup(AR934X_GPIO_FUNC_JTAG_DISABLE,
++				 AR934X_GPIO_FUNC_CLK_OBS4_EN);
++
++	ath79_register_m25p80(&ap123_flash_data);
++
++	ath79_setup_ar934x_eth_cfg(AR934X_ETH_CFG_SW_PHY_SWAP);
++
++	ath79_register_mdio(1, 0x0);
++
++	ath79_init_mac(ath79_eth0_data.mac_addr, mac, -1);
++	ath79_init_mac(ath79_eth1_data.mac_addr, mac, 0);
++
++	/* GMAC0 is connected to the PHY0 of the internal switch */
++	ath79_switch_data.phy4_mii_en = 1;
++	ath79_switch_data.phy_poll_mask = BIT(0);
++	ath79_eth0_data.phy_if_mode = PHY_INTERFACE_MODE_MII;
++	ath79_eth0_data.phy_mask = BIT(0);
++	ath79_eth0_data.mii_bus_dev = &ath79_mdio1_device.dev;
++	ath79_register_eth(0);
++
++	/* GMAC1 is connected to the internal switch */
++	ath79_eth1_data.phy_if_mode = PHY_INTERFACE_MODE_GMII;
++	ath79_register_eth(1);
++
++	ath79_register_wmac(ee, mac);
++}
++
++static void __init ap123_init(void)
++{
++	ap123_setup();
++
++	ath79_register_leds_gpio(-1, ARRAY_SIZE(ap123_leds_gpio) - 1,
++				 ap123_leds_gpio);
++
++	ath79_register_gpio_keys_polled(1, AP123_KEYS_POLL_INTERVAL,
++					ARRAY_SIZE(ap123_gpio_keys),
++					ap123_gpio_keys);
++}
++
++MIPS_MACHINE(ATH79_MACH_AP123, "AP123", "Atheros AP123 reference board",
++	     ap123_init);
++
+diff --git a/target/linux/ar71xx/files/arch/mips/ath79/machtypes.h b/target/linux/ar71xx/files/arch/mips/ath79/machtypes.h
+index 4278f5e..4ee980e 100644
+--- a/target/linux/ar71xx/files/arch/mips/ath79/machtypes.h
++++ b/target/linux/ar71xx/files/arch/mips/ath79/machtypes.h
+@@ -31,6 +31,7 @@ enum ath79_mach_type {
+ 	ATH79_MACH_AP121,			/* Atheros AP121 reference board */
+ 	ATH79_MACH_AP121_MINI,			/* Atheros AP121-MINI reference board */
+ 	ATH79_MACH_AP132,			/* Atheros AP132 reference board */
++	ATH79_MACH_AP123,			/* Atheros AP123 reference board */
+ 	ATH79_MACH_AP135_020,			/* Atheros AP135-020 reference board */
+ 	ATH79_MACH_AP136_010,			/* Atheros AP136-010 reference board */
+ 	ATH79_MACH_AP136_020,			/* Atheros AP136-020 reference board */
+diff --git a/target/linux/ar71xx/image/legacy-devices.mk b/target/linux/ar71xx/image/legacy-devices.mk
+index b746431..438b593 100644
+--- a/target/linux/ar71xx/image/legacy-devices.mk
++++ b/target/linux/ar71xx/image/legacy-devices.mk
+@@ -73,6 +73,12 @@ define LegacyDevice/AP132
+ endef
+ LEGACY_DEVICES += AP132
+ 
++define LegacyDevice/AP123
++  DEVICE_TITLE := Atheros AP123 reference board
++  DEVICE_PACKAGES := kmod-usb-core
++endef
++LEGACY_DEVICES += AP123
++
+ define LegacyDevice/AP135
+   DEVICE_TITLE := Atheros AP135 reference board
+   DEVICE_PACKAGES := kmod-usb-core kmod-usb2 kmod-usb-storage
+diff --git a/target/linux/ar71xx/image/legacy.mk b/target/linux/ar71xx/image/legacy.mk
+index 7cfc12a..f80779d 100644
+--- a/target/linux/ar71xx/image/legacy.mk
++++ b/target/linux/ar71xx/image/legacy.mk
+@@ -231,6 +231,7 @@ ap96_mtdlayout=mtdparts=spi0.0:192k(u-boot)ro,64k(u-boot-env)ro,6144k(rootfs),17
+ ap121_mtdlayout_8M=mtdparts=spi0.0:256k(u-boot)ro,64k(u-boot-env)ro,6144k(rootfs),1600k(kernel),64k(nvram),64k(art)ro,7744k@0x50000(firmware)
+ ap121_mtdlayout_16M=mtdparts=spi0.0:256k(u-boot)ro,64k(u-boot-env)ro,10944k(rootfs),4992k(kernel),64k(nvram),64k(art)ro,15936k@0x50000(firmware)
+ ap132_mtdlayout=mtdparts=spi0.0:256k(u-boot)ro,64k(u-boot-env)ro,1408k(kernel),6400k(rootfs),64k(art)ro,7808k@0x50000(firmware)
++ap123_mtdlayout=mtdparts=ath-nor0:256k(u-boot),64k(u-boot-env)ro,1408k(kernel),6336k(rootfs),64k(mib0),64k(art),7744k@0x50000(firmware)
+ ap135_mtdlayout=mtdparts=spi0.0:256k(u-boot)ro,64k(u-boot-env)ro,14528k(rootfs),1472k(kernel),64k(art)ro,16000k@0x50000(firmware)
+ ap136_mtdlayout=mtdparts=spi0.0:256k(u-boot)ro,64k(u-boot-env)ro,6336k(rootfs),1408k(kernel),64k(mib0),64k(art)ro,7744k@0x50000(firmware)
+ ap143_mtdlayout_8M=mtdparts=spi0.0:256k(u-boot)ro,64k(u-boot-env)ro,6336k(rootfs),1472k(kernel),64k(art)ro,7744k@0x50000(firmware)
+@@ -889,6 +890,7 @@ $(eval $(call SingleProfile,AthLzma,256k,ALL0315N,all0315n,ALL0315N,ttyS0,115200
+ $(eval $(call SingleProfile,AthLzma,64k,AP121_8M,ap121-8M,AP121,ttyATH0,115200,$$(ap121_mtdlayout_8M),RKuImage))
+ $(eval $(call SingleProfile,AthLzma,64k,AP121_16M,ap121-16M,AP121,ttyATH0,115200,$$(ap121_mtdlayout_16M),RKuImage))
+ $(eval $(call SingleProfile,AthLzma,64k,AP132,ap132,AP132,ttyS0,115200,$$(ap132_mtdlayout),KRuImage))
++$(eval $(call SingleProfile,AthLzma,64k,AP123,ap123,AP123,ttyS0,115200,$$(ap123_mtdlayout),KRuImage))
+ $(eval $(call SingleProfile,AthLzma,64k,AP135,ap135-020,AP135-020,ttyS0,115200,$$(ap135_mtdlayout),RKuImage))
+ $(eval $(call SingleProfile,AthLzma,64k,AP136_010,ap136-010,AP136-010,ttyS0,115200,$$(ap136_mtdlayout),RKuImage))
+ $(eval $(call SingleProfile,AthLzma,64k,AP136_020,ap136-020,AP136-020,ttyS0,115200,$$(ap136_mtdlayout),RKuImage))
