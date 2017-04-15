@@ -59,7 +59,8 @@ enabled="`uci get natcapd.default.enabled 2>/dev/null`"
 	gfwlist_domain=`uci get natcapd.default.gfwlist_domain 2>/dev/null`
 	gfwlist=`uci get natcapd.default.gfwlist 2>/dev/null`
 	encode_mode=`uci get natcapd.default.encode_mode 2>/dev/null`
-	shadowsocks=`uci get natcapd.default.shadowsocks 2>/dev/null || 0`
+	shadowsocks=`uci get natcapd.default.shadowsocks 2>/dev/null || echo 0`
+	sproxy=`uci get natcapd.default.sproxy 2>/dev/null || echo 0`
 	test -n "$encode_mode" || encode_mode=TCP
 	[ x$encode_mode = x0 ] && encode_mode=TCP
 	[ x$encode_mode = x1 ] && encode_mode=UDP
@@ -75,6 +76,7 @@ enabled="`uci get natcapd.default.enabled 2>/dev/null`"
 	echo server_persist_timeout=$server_persist_timeout >>$DEV
 	echo encode_mode=$encode_mode >$DEV
 	echo shadowsocks=$shadowsocks >$DEV
+	echo sproxy=$sproxy >$DEV
 
 	[ "x$clear_dst_on_reload" = x1 ] && ipset flush gfwlist
 
