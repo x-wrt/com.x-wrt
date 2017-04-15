@@ -38,6 +38,9 @@ add_udproxylist () {
 add_gfwlist () {
 	ipset -! add gfwlist $1
 }
+add_knocklist () {
+	ipset -! add knocklist $1
+}
 add_gfwlist_domain () {
 	echo server=/$1/8.8.8.8 >>/tmp/dnsmasq.d/custom-domains.gfwlist.dnsmasq.conf
 	echo ipset=/$1/gfwlist >>/tmp/dnsmasq.d/custom-domains.gfwlist.dnsmasq.conf
@@ -67,6 +70,7 @@ enabled="`uci get natcapd.default.enabled 2>/dev/null`"
 
 	ipset -n list udproxylist >/dev/null 2>&1 || ipset -! create udproxylist iphash
 	ipset -n list gfwlist >/dev/null 2>&1 || ipset -! create gfwlist iphash
+	ipset -n list knocklist >/dev/null 2>&1 || ipset -! create knocklist iphash
 	ipset -n list bypasslist >/dev/null 2>&1 || ipset -! create bypasslist iphash
 	ipset -n list cniplist >/dev/null 2>&1 || ipset restore -f /usr/share/natcapd/cniplist.set
 
@@ -84,10 +88,8 @@ enabled="`uci get natcapd.default.enabled 2>/dev/null`"
 	[ "x$enable_encryption" = x1 ] && opt='e'
 	for server in $servers; do
 		add_server $server $opt
-		[ "x$shadowsocks" = "x1" ] && {
-			g=`echo $server | sed 's/:/ /' | awk '{print $1}'`
-			add_gfwlist $g
-		}
+		g=`echo $server | sed 's/:/ /' | awk '{print $1}'`
+		add_knocklist $g
 	done
 
 	for u in $udproxylist; do
