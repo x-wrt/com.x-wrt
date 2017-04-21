@@ -70,9 +70,9 @@ CONFIG_TARGET_MULTI_PROFILE=y
 #
 # CONFIG_TARGET_ALL_PROFILES is not set
 # CONFIG_TARGET_PER_DEVICE_ROOTFS is not set
-# CONFIG_TARGET_DEVICE_bcm53xx_DEVICE_asus-rt-ac56u is not set
-# CONFIG_TARGET_DEVICE_bcm53xx_DEVICE_asus-rt-ac68u is not set
-# CONFIG_TARGET_DEVICE_bcm53xx_DEVICE_asus-rt-ac87u is not set
+CONFIG_TARGET_DEVICE_bcm53xx_DEVICE_asus-rt-ac56u=y
+CONFIG_TARGET_DEVICE_bcm53xx_DEVICE_asus-rt-ac68u=y
+CONFIG_TARGET_DEVICE_bcm53xx_DEVICE_asus-rt-ac87u=y
 # CONFIG_TARGET_DEVICE_bcm53xx_DEVICE_asus-rt-n18u is not set
 # CONFIG_TARGET_DEVICE_bcm53xx_DEVICE_buffalo-wxr-1900dhp is not set
 # CONFIG_TARGET_DEVICE_bcm53xx_DEVICE_buffalo-wzr-1750dhp is not set
