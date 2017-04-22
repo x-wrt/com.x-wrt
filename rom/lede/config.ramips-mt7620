@@ -4,6 +4,7 @@
 #
 CONFIG_MODULES=y
 CONFIG_HAVE_DOT_CONFIG=y
+CONFIG_DEFAULT_TARGET_ramips_mt7620=y
 # CONFIG_TARGET_arm64 is not set
 # CONFIG_TARGET_sunxi is not set
 # CONFIG_TARGET_apm821xx is not set
@@ -118,7 +119,7 @@ CONFIG_TARGET_MULTI_PROFILE=y
 # Target Devices
 #
 # CONFIG_TARGET_ALL_PROFILES is not set
-# CONFIG_TARGET_PER_DEVICE_ROOTFS is not set
+CONFIG_TARGET_PER_DEVICE_ROOTFS=y
 # CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_ai-br100 is not set
 # CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_rp-n53 is not set
 # CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_rt-n14u is not set
@@ -135,12 +136,17 @@ CONFIG_TARGET_MULTI_PROFILE=y
 # CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_gl-mt300n is not set
 # CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_gl-mt750 is not set
 CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_hc5661=y
+CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt7620_DEVICE_hc5661="kmod-sdhci-mt7620 kmod-usb2 kmod-usb-ledtrig-usbport"
 CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_hc5761=y
+CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt7620_DEVICE_hc5761="kmod-sdhci-mt7620 kmod-usb2 kmod-usb-ledtrig-usbport kmod-usb-ohci"
 CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_hc5861=y
+CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt7620_DEVICE_hc5861="kmod-sdhci-mt7620 kmod-usb2 kmod-usb-ledtrig-usbport kmod-usb-ohci"
 # CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_mlw221 is not set
 # CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_mlwg2 is not set
 CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_y1=y
+CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt7620_DEVICE_y1=""
 CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_y1s=y
+CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt7620_DEVICE_y1s=""
 # CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_e1700 is not set
 # CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_mt7620a_mt7530 is not set
 # CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_mt7620a_mt7610e is not set
@@ -154,7 +160,9 @@ CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_y1s=y
 # CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_wt3020-8M is not set
 # CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_oy-0001 is not set
 CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_psg1208=y
+CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt7620_DEVICE_psg1208=""
 CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_psg1218=y
+CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt7620_DEVICE_psg1218=""
 # CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_cs-qr10 is not set
 # CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_db-wrt01 is not set
 # CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_mzk-750dhp is not set
@@ -167,13 +175,16 @@ CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_psg1218=y
 # CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_ArcherMR200 is not set
 # CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_wrtnode is not set
 CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_miwifi-mini=y
-# CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_youku-yk1 is not set
+CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt7620_DEVICE_miwifi-mini="kmod-usb2 kmod-usb-ohci"
+CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_youku-yk1=y
+CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt7620_DEVICE_youku-yk1=""
 # CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_zbt-ape522ii is not set
 # CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_zbt-cpe102 is not set
 # CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_zbt-wa05 is not set
 # CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_zbt-we2026 is not set
 # CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_zbt-we826 is not set
 CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_zbt-wr8305rt=y
+CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt7620_DEVICE_zbt-wr8305rt=""
 # CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_zte-q7 is not set
 # CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_kn_rc is not set
 # CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_kn_rf is not set
@@ -187,37 +198,65 @@ CONFIG_DEFAULT_TARGET_OPTIMIZATION="-Os -pipe -mno-branch-likely -mips32r2 -mtun
 CONFIG_CPU_TYPE="24kc"
 CONFIG_LINUX_4_4=y
 CONFIG_DEFAULT_base-files=y
+CONFIG_MODULE_DEFAULT_base-files=y
 CONFIG_DEFAULT_busybox=y
+CONFIG_MODULE_DEFAULT_busybox=y
 CONFIG_DEFAULT_dnsmasq=y
+CONFIG_MODULE_DEFAULT_dnsmasq=y
 CONFIG_DEFAULT_dropbear=y
+CONFIG_MODULE_DEFAULT_dropbear=y
 CONFIG_DEFAULT_firewall=y
+CONFIG_MODULE_DEFAULT_firewall=y
 CONFIG_DEFAULT_fstools=y
+CONFIG_MODULE_DEFAULT_fstools=y
 CONFIG_DEFAULT_ip6tables=y
+CONFIG_MODULE_DEFAULT_ip6tables=y
 CONFIG_DEFAULT_iptables=y
+CONFIG_MODULE_DEFAULT_iptables=y
 CONFIG_DEFAULT_iwinfo=y
+CONFIG_MODULE_DEFAULT_iwinfo=y
 CONFIG_DEFAULT_kmod-gpio-button-hotplug=y
+CONFIG_MODULE_DEFAULT_kmod-gpio-button-hotplug=y
 CONFIG_DEFAULT_kmod-leds-gpio=y
+CONFIG_MODULE_DEFAULT_kmod-leds-gpio=y
 CONFIG_DEFAULT_kmod-mt76=y
+CONFIG_MODULE_DEFAULT_kmod-mt76=y
 CONFIG_DEFAULT_kmod-rt2800-pci=y
+CONFIG_MODULE_DEFAULT_kmod-rt2800-pci=y
 CONFIG_DEFAULT_kmod-rt2800-soc=y
-CONFIG_DEFAULT_kmod-sdhci-mt7620=y
-CONFIG_DEFAULT_kmod-usb-ledtrig-usbport=y
-CONFIG_DEFAULT_kmod-usb-ohci=y
-CONFIG_DEFAULT_kmod-usb2=y
+CONFIG_MODULE_DEFAULT_kmod-rt2800-soc=y
+CONFIG_MODULE_DEFAULT_kmod-sdhci-mt7620=y
+CONFIG_MODULE_DEFAULT_kmod-usb-ledtrig-usbport=y
+CONFIG_MODULE_DEFAULT_kmod-usb-ohci=y
+CONFIG_MODULE_DEFAULT_kmod-usb2=y
 CONFIG_DEFAULT_libc=y
+CONFIG_MODULE_DEFAULT_libc=y
 CONFIG_DEFAULT_libgcc=y
+CONFIG_MODULE_DEFAULT_libgcc=y
 CONFIG_DEFAULT_logd=y
+CONFIG_MODULE_DEFAULT_logd=y
 CONFIG_DEFAULT_mtd=y
+CONFIG_MODULE_DEFAULT_mtd=y
 CONFIG_DEFAULT_netifd=y
+CONFIG_MODULE_DEFAULT_netifd=y
 CONFIG_DEFAULT_odhcp6c=y
+CONFIG_MODULE_DEFAULT_odhcp6c=y
 CONFIG_DEFAULT_odhcpd=y
+CONFIG_MODULE_DEFAULT_odhcpd=y
 CONFIG_DEFAULT_opkg=y
+CONFIG_MODULE_DEFAULT_opkg=y
 CONFIG_DEFAULT_ppp=y
+CONFIG_MODULE_DEFAULT_ppp=y
 CONFIG_DEFAULT_ppp-mod-pppoe=y
+CONFIG_MODULE_DEFAULT_ppp-mod-pppoe=y
 CONFIG_DEFAULT_swconfig=y
+CONFIG_MODULE_DEFAULT_swconfig=y
 CONFIG_DEFAULT_uci=y
+CONFIG_MODULE_DEFAULT_uci=y
 CONFIG_DEFAULT_uclient-fetch=y
+CONFIG_MODULE_DEFAULT_uclient-fetch=y
 CONFIG_DEFAULT_wpad-mini=y
+CONFIG_MODULE_DEFAULT_wpad-mini=y
 CONFIG_AUDIO_SUPPORT=y
 CONFIG_GPIO_SUPPORT=y
 CONFIG_PCI_SUPPORT=y
@@ -454,7 +493,7 @@ CONFIG_TARGET_INIT_SUPPRESS_STDERR=y
 CONFIG_VERSIONOPT=y
 CONFIG_VERSION_DIST="PTPT52"
 CONFIG_VERSION_NICK="fuckgfw"
-CONFIG_VERSION_NUMBER="3.0.0_build201704212306"
+CONFIG_VERSION_NUMBER="3.0.0_build201704222035"
 CONFIG_VERSION_CODE=""
 CONFIG_VERSION_REPO="http://downloads.openwrt.org/snapshots/trunk/%S/packages"
 CONFIG_VERSION_MANUFACTURER="PTPT52"
@@ -2266,7 +2305,7 @@ CONFIG_BUSYBOX_CONFIG_LOGGER=y
 # CONFIG_BUSYBOX_CONFIG_SYSLOGD is not set
 # CONFIG_PACKAGE_ca-bundle is not set
 # CONFIG_PACKAGE_ca-certificates is not set
-# CONFIG_PACKAGE_dnsmasq is not set
+CONFIG_PACKAGE_dnsmasq=m
 CONFIG_PACKAGE_dnsmasq-full=y
 CONFIG_PACKAGE_dnsmasq_full_dnssec=y
 # CONFIG_PACKAGE_dnsmasq_full_auth is not set
@@ -2863,7 +2902,7 @@ CONFIG_PACKAGE_kmod-mmc=y
 # CONFIG_PACKAGE_kmod-regmap is not set
 # CONFIG_PACKAGE_kmod-rotary-gpio-custom is not set
 # CONFIG_PACKAGE_kmod-sdhci is not set
-CONFIG_PACKAGE_kmod-sdhci-mt7620=y
+CONFIG_PACKAGE_kmod-sdhci-mt7620=m
 # CONFIG_PACKAGE_kmod-serial-8250 is not set
 # CONFIG_PACKAGE_kmod-softdog is not set
 # CONFIG_PACKAGE_kmod-ssb is not set
@@ -2902,11 +2941,11 @@ CONFIG_PACKAGE_kmod-usb-core=y
 # CONFIG_PACKAGE_kmod-usb-dwc2 is not set
 # CONFIG_PACKAGE_kmod-usb-dwc3 is not set
 # CONFIG_PACKAGE_kmod-usb-dwc3-of-simple is not set
-CONFIG_PACKAGE_kmod-usb-ehci=y
+CONFIG_PACKAGE_kmod-usb-ehci=m
 # CONFIG_PACKAGE_kmod-usb-hid is not set
-CONFIG_PACKAGE_kmod-usb-ledtrig-usbport=y
+CONFIG_PACKAGE_kmod-usb-ledtrig-usbport=m
 # CONFIG_PACKAGE_kmod-usb-net is not set
-CONFIG_PACKAGE_kmod-usb-ohci=y
+CONFIG_PACKAGE_kmod-usb-ohci=m
 # CONFIG_PACKAGE_kmod-usb-ohci-pci is not set
 # CONFIG_PACKAGE_kmod-usb-printer is not set
 # CONFIG_PACKAGE_kmod-usb-serial is not set
@@ -2916,7 +2955,7 @@ CONFIG_PACKAGE_kmod-usb-ohci=y
 # CONFIG_PACKAGE_kmod-usb-uhci is not set
 # CONFIG_PACKAGE_kmod-usb-wdm is not set
 # CONFIG_PACKAGE_kmod-usb-yealink is not set
-CONFIG_PACKAGE_kmod-usb2=y
+CONFIG_PACKAGE_kmod-usb2=m
 # CONFIG_PACKAGE_kmod-usb2-pci is not set
 # CONFIG_PACKAGE_kmod-usb3 is not set
 # CONFIG_PACKAGE_kmod-usbip is not set
@@ -4308,6 +4347,7 @@ CONFIG_PACKAGE_wget=y
 # CONFIG_PACKAGE_ebtables is not set
 # CONFIG_PACKAGE_fwknop is not set
 # CONFIG_PACKAGE_fwknopd is not set
+# CONFIG_PACKAGE_ip6tables is not set
 CONFIG_PACKAGE_iptables=y
 # CONFIG_IPTABLES_CONNLABEL is not set
 # CONFIG_IPTABLES_NFTABLES is not set
@@ -4924,7 +4964,9 @@ CONFIG_PACKAGE_mosquitto-client=y
 # CONFIG_PACKAGE_noping is not set
 # CONFIG_PACKAGE_nut is not set
 # CONFIG_PACKAGE_obfsproxy is not set
-# CONFIG_PACKAGE_odhcpd is not set
+# CONFIG_PACKAGE_odhcp6c is not set
+CONFIG_PACKAGE_odhcpd=m
+CONFIG_PACKAGE_odhcpd_ext_cer_id=0
 # CONFIG_PACKAGE_ola is not set
 # CONFIG_PACKAGE_omcproxy is not set
 # CONFIG_PACKAGE_openldap-server is not set
