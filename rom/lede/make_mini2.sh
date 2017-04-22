@@ -45,3 +45,8 @@ for i in $IDXS; do
 		make -j8 || exit 255
 	done
 done
+
+build_in=$(cd feeds/ptpt52/rom/lede/ && cat $CFGS | grep TARGET_DEVICE_.*=y | sed 's/CONFIG_//;s/=y//' | wc -l)
+build_out=$(find bin/targets/ | grep -- '\(-squashfs\|-ubi\|-factory\|-sysupgrade\)' | grep -v factory | grep ptpt52 | grep -v root | sort | wc -l)
+echo in=$build_in out=$build_out
+echo
