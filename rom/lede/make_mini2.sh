@@ -1,6 +1,18 @@
 #!/bin/sh
 
-CFGS="config.kirkwood-generic config.ipq806x-generic config.bcm53xx-generic config.ar71xx-generic config.ar71xx-nand config.mvebu-generic config.ramips-mt7620 config.ramips-mt7621 config.x86_64"
+#arg1=CFGS
+#arg2=idxs
+CFGS=$1
+IDXS=$2
+
+test -n "$CFGS" || CFGS="config.kirkwood-generic config.ipq806x-generic config.bcm53xx-generic config.ar71xx-generic config.ar71xx-nand config.mvebu-generic config.ramips-mt7620 config.ramips-mt7621 config.x86_64"
+
+test -n "$IDXS" || IDXS="0"
+
+echo build starting
+echo "CFGS=[$CFGS]"
+echo "IDXS=[$IDXS]"
+sleep 1
 
 CONFIG_VERSION_NUMBER="3.0.0_build`date +%Y%m%d%H%M`"
 
@@ -11,7 +23,7 @@ done
 CONFIG_VERSION_DIST="PTPT52"
 CONFIG_VERSION_NICK="fuckgfw"
 CONFIG_VERSION_MANUFACTURER_URL="http://router.ptpt52.com/"
-for i in 0; do
+for i in $IDXS; do
 	[ $i = 1 ] && {
 		CONFIG_VERSION_DIST="BICT"
 		CONFIG_VERSION_NICK="router"
