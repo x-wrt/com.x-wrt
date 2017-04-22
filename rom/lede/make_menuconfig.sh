@@ -4,7 +4,7 @@ CFGS="config.kirkwood-generic config.ipq806x-generic config.bcm53xx-generic conf
 
 VERN=`date +%Y%m%d%H%M`
 
-touch ./package/base-files/Makefile
+find target/linux/ feeds/luci/ feeds/packages/ package/ -name Makefile -exec touch {} \;
 
 for cfg in $CFGS; do
 	cp feeds/ptpt52/rom/lede/$cfg .config
