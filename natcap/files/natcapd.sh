@@ -120,6 +120,7 @@ enabled="`uci get natcapd.default.enabled 2>/dev/null`"
 	}
 	touch /var/etc/shadowsocks.include
 	/etc/init.d/firewall restart >/dev/null 2>&1 || echo /etc/init.d/firewall restart failed
+	test -x /usr/sbin/mwan3 && /usr/sbin/mwan3 restart >/dev/null 2>&1
 
 	#reload dnsmasq
 	if test -p /tmp/trigger_gfwlist_update.fifo; then

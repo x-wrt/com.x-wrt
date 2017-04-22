@@ -2,6 +2,8 @@
 # natcapd integration for firewall3
 
 /etc/init.d/natcapd enabled || exit 0
+enabled="`uci get natcapd.default.enabled 2>/dev/null`"
+[ "x$enabled" = "x1" ] || exit 0
 
 iptables -t nat -C PREROUTING -p udp --dport 53 -j REDIRECT --to-ports 53 2>/dev/null || \
 iptables -t nat -I PREROUTING -p udp --dport 53 -j REDIRECT --to-ports 53
