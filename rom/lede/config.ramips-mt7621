@@ -99,7 +99,8 @@ CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt7621_DEVICE_re6500=""
 # CONFIG_TARGET_DEVICE_ramips_mt7621_DEVICE_mt7621 is not set
 # CONFIG_TARGET_DEVICE_ramips_mt7621_DEVICE_rb750gr3 is not set
 # CONFIG_TARGET_DEVICE_ramips_mt7621_DEVICE_witi is not set
-# CONFIG_TARGET_DEVICE_ramips_mt7621_DEVICE_r6220 is not set
+CONFIG_TARGET_DEVICE_ramips_mt7621_DEVICE_r6220=y
+CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt7621_DEVICE_r6220="kmod-usb3 kmod-usb-ledtrig-usbport block-mount blockd libstdcpp kmod-scsi-core kmod-crypto-crc32c kmod-fs-autofs4 kmod-fs-exfat kmod-fs-ext4 kmod-fs-msdos kmod-fs-ntfs kmod-fs-vfat kmod-lib-crc16 kmod-nls-cp437 kmod-usb-ehci kmod-usb-storage kmod-usb2 libsqlite3 libssh2 libxml2 luci-app-aria2 luci-app-samba luci-i18n-aria2-zh-cn luci-i18n-samba-en luci-i18n-samba-zh-cn webui-aria2 aria2 samba36-server"
 CONFIG_TARGET_DEVICE_ramips_mt7621_DEVICE_wndr3700v5=y
 CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt7621_DEVICE_wndr3700v5="kmod-usb3 block-mount blockd libstdcpp kmod-scsi-core kmod-crypto-crc32c kmod-fs-autofs4 kmod-fs-exfat kmod-fs-ext4 kmod-fs-msdos kmod-fs-ntfs kmod-fs-vfat kmod-lib-crc16 kmod-nls-cp437 kmod-usb-ehci kmod-usb-storage kmod-usb2 libsqlite3 libssh2 libxml2 luci-app-aria2 luci-app-samba luci-i18n-aria2-zh-cn luci-i18n-samba-en luci-i18n-samba-zh-cn webui-aria2 aria2 samba36-server"
 # CONFIG_TARGET_DEVICE_ramips_mt7621_DEVICE_wf-2881 is not set
