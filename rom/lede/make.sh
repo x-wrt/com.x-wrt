@@ -5,7 +5,7 @@
 CFGS=$1
 IDXS=$2
 
-test -n "$CFGS" || CFGS="config.kirkwood-generic config.ipq806x-generic config.bcm53xx-generic config.ar71xx-generic config.ar71xx-nand config.mvebu-generic config.ramips-mt7620 config.ramips-mt7621 config.x86_64"
+test -n "$CFGS" || CFGS="config.apm821xx_nand config.kirkwood-generic config.ipq806x-generic config.bcm53xx-generic config.ar71xx-generic config.ar71xx-nand config.mvebu-generic config.ramips-mt7620 config.ramips-mt7621 config.x86_64"
 
 test -n "$IDXS" || IDXS="0"
 
@@ -47,6 +47,6 @@ for i in $IDXS; do
 done
 
 build_in=$(cd feeds/ptpt52/rom/lede/ && cat $CFGS | grep TARGET_DEVICE_.*=y | sed 's/CONFIG_//;s/=y//' | wc -l)
-build_out=$(find bin/targets/ | grep -- '\(-squashfs\|-factory\|-sysupgrade\)' | grep -v factory | grep ptpt52 | grep -v root | sort | wc -l)
+build_out=$(find bin/targets/ | grep -- '\(-squashfs\|-factory\|-sysupgrade\)' | grep -v factory | grep ptpt52 | grep -v root | grep -v kernel | sort | wc -l)
 echo in=$build_in out=$build_out
 echo
