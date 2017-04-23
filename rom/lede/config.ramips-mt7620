@@ -137,17 +137,17 @@ CONFIG_TARGET_PER_DEVICE_ROOTFS=y
 # CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_gl-mt300n is not set
 # CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_gl-mt750 is not set
 CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_hc5661=y
-CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt7620_DEVICE_hc5661="kmod-sdhci-mt7620 kmod-usb2 kmod-usb-ledtrig-usbport"
+CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt7620_DEVICE_hc5661="kmod-sdhci-mt7620 kmod-usb2 kmod-usb-ledtrig-usbport block-mount blockd kmod-scsi-core kmod-crypto-crc32c kmod-fs-autofs4 kmod-fs-exfat kmod-fs-ext4 kmod-fs-isofs kmod-fs-msdos kmod-fs-ntfs kmod-fs-vfat kmod-lib-crc16 kmod-lib-zlib-inflate kmod-nls-cp437 kmod-usb-ehci kmod-usb-storage libext2fs libblkid libfdisk libsmartcols blkid fdisk badblocks e2fsprogs"
 CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_hc5761=y
-CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt7620_DEVICE_hc5761="kmod-sdhci-mt7620 kmod-usb2 kmod-usb-ledtrig-usbport kmod-usb-ohci"
+CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt7620_DEVICE_hc5761="kmod-sdhci-mt7620 kmod-usb2 kmod-usb-ledtrig-usbport kmod-usb-ohci block-mount blockd kmod-scsi-core kmod-crypto-crc32c kmod-fs-autofs4 kmod-fs-exfat kmod-fs-ext4 kmod-fs-isofs kmod-fs-msdos kmod-fs-ntfs kmod-fs-vfat kmod-lib-crc16 kmod-lib-zlib-inflate kmod-nls-cp437 kmod-usb-ehci kmod-usb-storage libext2fs libblkid libfdisk libsmartcols blkid fdisk badblocks e2fsprogs"
 CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_hc5861=y
-CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt7620_DEVICE_hc5861="kmod-sdhci-mt7620 kmod-usb2 kmod-usb-ledtrig-usbport kmod-usb-ohci"
+CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt7620_DEVICE_hc5861="kmod-sdhci-mt7620 kmod-usb2 kmod-usb-ledtrig-usbport kmod-usb-ohci block-mount blockd kmod-scsi-core kmod-crypto-crc32c kmod-fs-autofs4 kmod-fs-exfat kmod-fs-ext4 kmod-fs-isofs kmod-fs-msdos kmod-fs-ntfs kmod-fs-vfat kmod-lib-crc16 kmod-lib-zlib-inflate kmod-nls-cp437 kmod-usb-ehci kmod-usb-storage libext2fs libblkid libfdisk libsmartcols blkid fdisk badblocks e2fsprogs"
 # CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_mlw221 is not set
 # CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_mlwg2 is not set
 CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_y1=y
-CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt7620_DEVICE_y1=""
+CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt7620_DEVICE_y1="kmod-usb2 block-mount blockd kmod-scsi-core kmod-crypto-crc32c kmod-fs-autofs4 kmod-fs-exfat kmod-fs-ext4 kmod-fs-isofs kmod-fs-msdos kmod-fs-ntfs kmod-fs-vfat kmod-lib-crc16 kmod-lib-zlib-inflate kmod-nls-cp437 kmod-usb-ehci kmod-usb-storage libext2fs libblkid libfdisk libsmartcols blkid fdisk badblocks e2fsprogs"
 CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_y1s=y
-CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt7620_DEVICE_y1s=""
+CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt7620_DEVICE_y1s="kmod-usb2 block-mount blockd kmod-scsi-core kmod-crypto-crc32c kmod-fs-autofs4 kmod-fs-exfat kmod-fs-ext4 kmod-fs-isofs kmod-fs-msdos kmod-fs-ntfs kmod-fs-vfat kmod-lib-crc16 kmod-lib-zlib-inflate kmod-nls-cp437 kmod-usb-ehci kmod-usb-storage libext2fs libblkid libfdisk libsmartcols blkid fdisk badblocks e2fsprogs"
 # CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_e1700 is not set
 # CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_mt7620a_mt7530 is not set
 # CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_mt7620a_mt7610e is not set
@@ -178,9 +178,9 @@ CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt7620_DEVICE_psg1218b=""
 # CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_ArcherMR200 is not set
 # CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_wrtnode is not set
 CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_miwifi-mini=y
-CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt7620_DEVICE_miwifi-mini="kmod-usb2 kmod-usb-ohci"
+CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt7620_DEVICE_miwifi-mini="kmod-usb2 kmod-usb-ohci block-mount blockd kmod-scsi-core kmod-crypto-crc32c kmod-fs-autofs4 kmod-fs-exfat kmod-fs-ext4 kmod-fs-isofs kmod-fs-msdos kmod-fs-ntfs kmod-fs-vfat kmod-lib-crc16 kmod-lib-zlib-inflate kmod-nls-cp437 kmod-usb-ehci kmod-usb-storage libext2fs libblkid libfdisk libsmartcols blkid fdisk badblocks e2fsprogs"
 CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_youku-yk1=y
-CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt7620_DEVICE_youku-yk1=""
+CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt7620_DEVICE_youku-yk1="block-mount blockd kmod-scsi-core kmod-crypto-crc32c kmod-fs-autofs4 kmod-fs-exfat kmod-fs-ext4 kmod-fs-isofs kmod-fs-msdos kmod-fs-ntfs kmod-fs-vfat kmod-lib-crc16 kmod-lib-zlib-inflate kmod-nls-cp437 kmod-usb-ehci kmod-usb-storage libext2fs libblkid libfdisk libsmartcols blkid fdisk badblocks e2fsprogs kmod-usb2"
 # CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_zbt-ape522ii is not set
 # CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_zbt-cpe102 is not set
 # CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_zbt-wa05 is not set
@@ -497,7 +497,7 @@ CONFIG_TARGET_INIT_SUPPRESS_STDERR=y
 CONFIG_VERSIONOPT=y
 CONFIG_VERSION_DIST="PTPT52"
 CONFIG_VERSION_NICK="fuckgfw"
-CONFIG_VERSION_NUMBER="3.0.0_build201704230105"
+CONFIG_VERSION_NUMBER="3.0.0_build201704231451"
 CONFIG_VERSION_CODE=""
 CONFIG_VERSION_REPO="http://downloads.openwrt.org/snapshots/trunk/%S/packages"
 CONFIG_VERSION_MANUFACTURER="PTPT52"
@@ -521,8 +521,8 @@ CONFIG_FEED_ptpt52=y
 # Base system
 #
 CONFIG_PACKAGE_base-files=y
-# CONFIG_PACKAGE_block-mount is not set
-# CONFIG_PACKAGE_blockd is not set
+CONFIG_PACKAGE_block-mount=m
+CONFIG_PACKAGE_blockd=m
 CONFIG_PACKAGE_bridge=y
 CONFIG_PACKAGE_busybox=y
 CONFIG_BUSYBOX_CUSTOM=y
@@ -2541,7 +2541,7 @@ CONFIG_PACKAGE_rt2800-pci-firmware=y
 # CONFIG_PACKAGE_kmod-md-mod is not set
 # CONFIG_PACKAGE_kmod-nbd is not set
 # CONFIG_PACKAGE_kmod-scsi-cdrom is not set
-# CONFIG_PACKAGE_kmod-scsi-core is not set
+CONFIG_PACKAGE_kmod-scsi-core=m
 # CONFIG_PACKAGE_kmod-scsi-generic is not set
 # CONFIG_PACKAGE_kmod-scsi-tape is not set
 
@@ -2558,7 +2558,7 @@ CONFIG_PACKAGE_kmod-crypto-aead=y
 # CONFIG_PACKAGE_kmod-crypto-cbc is not set
 # CONFIG_PACKAGE_kmod-crypto-ccm is not set
 # CONFIG_PACKAGE_kmod-crypto-cmac is not set
-# CONFIG_PACKAGE_kmod-crypto-crc32c is not set
+CONFIG_PACKAGE_kmod-crypto-crc32c=m
 # CONFIG_PACKAGE_kmod-crypto-ctr is not set
 # CONFIG_PACKAGE_kmod-crypto-deflate is not set
 # CONFIG_PACKAGE_kmod-crypto-des is not set
@@ -2598,30 +2598,30 @@ CONFIG_PACKAGE_kmod-crypto-sha1=y
 # Filesystems
 #
 # CONFIG_PACKAGE_kmod-fs-afs is not set
-# CONFIG_PACKAGE_kmod-fs-autofs4 is not set
+CONFIG_PACKAGE_kmod-fs-autofs4=m
 # CONFIG_PACKAGE_kmod-fs-btrfs is not set
 # CONFIG_PACKAGE_kmod-fs-cifs is not set
 # CONFIG_PACKAGE_kmod-fs-configfs is not set
 # CONFIG_PACKAGE_kmod-fs-cramfs is not set
-# CONFIG_PACKAGE_kmod-fs-exfat is not set
+CONFIG_PACKAGE_kmod-fs-exfat=m
 # CONFIG_PACKAGE_kmod-fs-exportfs is not set
-# CONFIG_PACKAGE_kmod-fs-ext4 is not set
+CONFIG_PACKAGE_kmod-fs-ext4=m
 # CONFIG_PACKAGE_kmod-fs-f2fs is not set
 # CONFIG_PACKAGE_kmod-fs-fscache is not set
 # CONFIG_PACKAGE_kmod-fs-hfs is not set
 # CONFIG_PACKAGE_kmod-fs-hfsplus is not set
-# CONFIG_PACKAGE_kmod-fs-isofs is not set
+CONFIG_PACKAGE_kmod-fs-isofs=m
 # CONFIG_PACKAGE_kmod-fs-jfs is not set
 # CONFIG_PACKAGE_kmod-fs-minix is not set
-# CONFIG_PACKAGE_kmod-fs-msdos is not set
+CONFIG_PACKAGE_kmod-fs-msdos=m
 # CONFIG_PACKAGE_kmod-fs-nfs is not set
 # CONFIG_PACKAGE_kmod-fs-nfs-common is not set
 # CONFIG_PACKAGE_kmod-fs-nfsd is not set
-# CONFIG_PACKAGE_kmod-fs-ntfs is not set
+CONFIG_PACKAGE_kmod-fs-ntfs=m
 # CONFIG_PACKAGE_kmod-fs-reiserfs is not set
 # CONFIG_PACKAGE_kmod-fs-squashfs is not set
 # CONFIG_PACKAGE_kmod-fs-udf is not set
-# CONFIG_PACKAGE_kmod-fs-vfat is not set
+CONFIG_PACKAGE_kmod-fs-vfat=m
 # CONFIG_PACKAGE_kmod-fs-xfs is not set
 # CONFIG_PACKAGE_kmod-fuse is not set
 
@@ -2675,11 +2675,12 @@ CONFIG_PACKAGE_kmod-leds-gpio=y
 # CONFIG_PACKAGE_kmod-lib-cordic is not set
 CONFIG_PACKAGE_kmod-lib-crc-ccitt=y
 CONFIG_PACKAGE_kmod-lib-crc-itu-t=y
-# CONFIG_PACKAGE_kmod-lib-crc16 is not set
+CONFIG_PACKAGE_kmod-lib-crc16=m
 # CONFIG_PACKAGE_kmod-lib-crc32c is not set
 # CONFIG_PACKAGE_kmod-lib-crc7 is not set
 # CONFIG_PACKAGE_kmod-lib-crc8 is not set
 CONFIG_PACKAGE_kmod-lib-textsearch=y
+CONFIG_PACKAGE_kmod-lib-zlib-inflate=m
 
 #
 # Native Language Support
@@ -2687,7 +2688,7 @@ CONFIG_PACKAGE_kmod-lib-textsearch=y
 CONFIG_PACKAGE_kmod-nls-base=y
 # CONFIG_PACKAGE_kmod-nls-cp1250 is not set
 # CONFIG_PACKAGE_kmod-nls-cp1251 is not set
-# CONFIG_PACKAGE_kmod-nls-cp437 is not set
+CONFIG_PACKAGE_kmod-nls-cp437=m
 # CONFIG_PACKAGE_kmod-nls-cp775 is not set
 # CONFIG_PACKAGE_kmod-nls-cp850 is not set
 # CONFIG_PACKAGE_kmod-nls-cp852 is not set
@@ -2953,7 +2954,7 @@ CONFIG_PACKAGE_kmod-usb-ohci=m
 # CONFIG_PACKAGE_kmod-usb-ohci-pci is not set
 # CONFIG_PACKAGE_kmod-usb-printer is not set
 # CONFIG_PACKAGE_kmod-usb-serial is not set
-# CONFIG_PACKAGE_kmod-usb-storage is not set
+CONFIG_PACKAGE_kmod-usb-storage=m
 # CONFIG_PACKAGE_kmod-usb-storage-extras is not set
 # CONFIG_PACKAGE_kmod-usb-test is not set
 # CONFIG_PACKAGE_kmod-usb-uhci is not set
@@ -3352,7 +3353,7 @@ CONFIG_PACKAGE_luasocket=y
 #
 # CONFIG_PACKAGE_libacl is not set
 # CONFIG_PACKAGE_libattr is not set
-# CONFIG_PACKAGE_libext2fs is not set
+CONFIG_PACKAGE_libext2fs=m
 # CONFIG_PACKAGE_libfuse is not set
 # CONFIG_PACKAGE_libow is not set
 # CONFIG_PACKAGE_libow-capi is not set
@@ -3609,7 +3610,7 @@ CONFIG_OPENSSL_WITH_SRP=y
 # CONFIG_PACKAGE_libavahi-nodbus-support is not set
 # CONFIG_PACKAGE_libavl is not set
 # CONFIG_PACKAGE_libbfd is not set
-# CONFIG_PACKAGE_libblkid is not set
+CONFIG_PACKAGE_libblkid=m
 CONFIG_PACKAGE_libblobmsg-json=y
 # CONFIG_PACKAGE_libcanfestival is not set
 # CONFIG_PACKAGE_libcap is not set
@@ -3660,7 +3661,7 @@ CONFIG_PACKAGE_libev=y
 # CONFIG_PACKAGE_libglpk is not set
 # CONFIG_PACKAGE_libf2fs is not set
 # CONFIG_PACKAGE_libfaad2 is not set
-# CONFIG_PACKAGE_libfdisk is not set
+CONFIG_PACKAGE_libfdisk=m
 # CONFIG_PACKAGE_libfdt is not set
 # CONFIG_PACKAGE_libffmpeg-audio-dec is not set
 # CONFIG_PACKAGE_libffmpeg-custom is not set
@@ -3790,7 +3791,7 @@ CONFIG_PACKAGE_librpc=y
 # CONFIG_PACKAGE_libshout-full is not set
 # CONFIG_PACKAGE_libshout-nossl is not set
 # CONFIG_PACKAGE_libsigcxx is not set
-# CONFIG_PACKAGE_libsmartcols is not set
+CONFIG_PACKAGE_libsmartcols=m
 # CONFIG_PACKAGE_libsndfile is not set
 # CONFIG_PACKAGE_libsoc is not set
 # CONFIG_PACKAGE_libsocks is not set
@@ -5140,10 +5141,10 @@ CONFIG_PACKAGE_natcapd=y
 # Disc
 #
 # CONFIG_PACKAGE_blkdiscard is not set
-# CONFIG_PACKAGE_blkid is not set
+CONFIG_PACKAGE_blkid=m
 # CONFIG_PACKAGE_cfdisk is not set
 # CONFIG_PACKAGE_cgdisk is not set
-# CONFIG_PACKAGE_fdisk is not set
+CONFIG_PACKAGE_fdisk=m
 # CONFIG_PACKAGE_findfs is not set
 # CONFIG_PACKAGE_gdisk is not set
 # CONFIG_PACKAGE_hd-idle is not set
@@ -5187,14 +5188,14 @@ CONFIG_PACKAGE_natcapd=y
 #
 # CONFIG_PACKAGE_acl is not set
 # CONFIG_PACKAGE_attr is not set
-# CONFIG_PACKAGE_badblocks is not set
+CONFIG_PACKAGE_badblocks=m
 # CONFIG_PACKAGE_btrfs-progs is not set
 # CONFIG_PACKAGE_chattr is not set
 # CONFIG_PACKAGE_debugfs is not set
 # CONFIG_PACKAGE_dosfstools is not set
 # CONFIG_PACKAGE_dumpe2fs is not set
 # CONFIG_PACKAGE_e2freefrag is not set
-# CONFIG_PACKAGE_e2fsprogs is not set
+CONFIG_PACKAGE_e2fsprogs=m
 # CONFIG_PACKAGE_f2fs-tools is not set
 # CONFIG_PACKAGE_f2fsck is not set
 # CONFIG_PACKAGE_filefrag is not set

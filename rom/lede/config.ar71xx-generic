@@ -470,7 +470,7 @@ CONFIG_TARGET_PER_DEVICE_ROOTFS=y
 # CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_gl-inet-6408A-v1 is not set
 # CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_gl-inet-6416A-v1 is not set
 CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_hiwifi-hc6361=y
-CONFIG_TARGET_DEVICE_PACKAGES_ar71xx_generic_DEVICE_hiwifi-hc6361="libext2fs e2fsprogs kmod-fs-ext4 kmod-nls-iso8859-1 kmod-lib-crc16 kmod-usb-storage"
+CONFIG_TARGET_DEVICE_PACKAGES_ar71xx_generic_DEVICE_hiwifi-hc6361="libext2fs e2fsprogs kmod-fs-ext4 kmod-nls-iso8859-1 kmod-lib-crc16 kmod-usb-storage block-mount blockd kmod-scsi-core kmod-crypto-crc32c kmod-fs-autofs4 kmod-fs-exfat kmod-fs-isofs kmod-fs-msdos kmod-fs-ntfs kmod-fs-vfat kmod-lib-crc16 kmod-lib-zlib-inflate kmod-nls-cp437 libext2fs libblkid libfdisk libsmartcols blkid fdisk partx-utils badblocks"
 # CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_JA76PF is not set
 # CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_JA76PF2 is not set
 # CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_JWAP003 is not set
@@ -487,11 +487,11 @@ CONFIG_TARGET_DEVICE_PACKAGES_ar71xx_generic_DEVICE_hiwifi-hc6361="libext2fs e2f
 CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_wndr3700=y
 CONFIG_TARGET_DEVICE_PACKAGES_ar71xx_generic_DEVICE_wndr3700="kmod-leds-wndr3700-usb kmod-usb-ledtrig-usbport kmod-usb-ohci"
 CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_wndr3700v2=y
-CONFIG_TARGET_DEVICE_PACKAGES_ar71xx_generic_DEVICE_wndr3700v2="kmod-leds-wndr3700-usb kmod-usb-ledtrig-usbport kmod-usb-ohci"
+CONFIG_TARGET_DEVICE_PACKAGES_ar71xx_generic_DEVICE_wndr3700v2="kmod-leds-wndr3700-usb kmod-usb-ledtrig-usbport kmod-usb-ohci kmod-usb-storage block-mount blockd kmod-scsi-core kmod-crypto-crc32c kmod-fs-autofs4 kmod-fs-exfat kmod-fs-isofs kmod-fs-msdos kmod-fs-ntfs kmod-fs-vfat kmod-lib-crc16 kmod-lib-zlib-inflate kmod-nls-cp437 libext2fs libblkid libfdisk libsmartcols blkid fdisk partx-utils badblocks"
 CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_wndr3800=y
-CONFIG_TARGET_DEVICE_PACKAGES_ar71xx_generic_DEVICE_wndr3800="kmod-leds-wndr3700-usb kmod-usb-ledtrig-usbport kmod-usb-ohci"
+CONFIG_TARGET_DEVICE_PACKAGES_ar71xx_generic_DEVICE_wndr3800="kmod-leds-wndr3700-usb kmod-usb-ledtrig-usbport kmod-usb-ohci kmod-usb-storage block-mount blockd kmod-scsi-core kmod-crypto-crc32c kmod-fs-autofs4 kmod-fs-exfat kmod-fs-isofs kmod-fs-msdos kmod-fs-ntfs kmod-fs-vfat kmod-lib-crc16 kmod-lib-zlib-inflate kmod-nls-cp437 libext2fs libblkid libfdisk libsmartcols blkid fdisk partx-utils badblocks"
 CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_wndr3800ch=y
-CONFIG_TARGET_DEVICE_PACKAGES_ar71xx_generic_DEVICE_wndr3800ch="kmod-leds-wndr3700-usb kmod-usb-ledtrig-usbport kmod-usb-ohci"
+CONFIG_TARGET_DEVICE_PACKAGES_ar71xx_generic_DEVICE_wndr3800ch="kmod-leds-wndr3700-usb kmod-usb-ledtrig-usbport kmod-usb-ohci kmod-usb-storage block-mount blockd kmod-scsi-core kmod-crypto-crc32c kmod-fs-autofs4 kmod-fs-exfat kmod-fs-isofs kmod-fs-msdos kmod-fs-ntfs kmod-fs-vfat kmod-lib-crc16 kmod-lib-zlib-inflate kmod-nls-cp437 libext2fs libblkid libfdisk libsmartcols blkid fdisk partx-utils badblocks"
 # CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_wndrmac is not set
 # CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_wndrmacv2 is not set
 # CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_REALWNR1000V2 is not set
@@ -527,7 +527,7 @@ CONFIG_TARGET_DEVICE_PACKAGES_ar71xx_generic_DEVICE_wndr3800ch="kmod-leds-wndr37
 # CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_DLRTDEV01 is not set
 # CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_pqi-air-pen is not set
 CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_qihoo-c301=y
-CONFIG_TARGET_DEVICE_PACKAGES_ar71xx_generic_DEVICE_qihoo-c301="ath10k-firmware-qca988x kmod-ath10k kmod-usb-ledtrig-usbport"
+CONFIG_TARGET_DEVICE_PACKAGES_ar71xx_generic_DEVICE_qihoo-c301="ath10k-firmware-qca988x kmod-ath10k kmod-usb-ledtrig-usbport kmod-usb-storage block-mount blockd kmod-scsi-core kmod-crypto-crc32c kmod-fs-autofs4 kmod-fs-exfat kmod-fs-isofs kmod-fs-msdos kmod-fs-ntfs kmod-fs-vfat kmod-lib-crc16 kmod-lib-zlib-inflate kmod-nls-cp437 libext2fs libblkid libfdisk libsmartcols blkid fdisk partx-utils badblocks"
 # CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_AP143_16M is not set
 # CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_AP143_8M is not set
 # CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_AP147_010 is not set
@@ -584,7 +584,7 @@ CONFIG_TARGET_DEVICE_PACKAGES_ar71xx_generic_DEVICE_qihoo-c301="ath10k-firmware-
 # CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_tl-wdr3500-v1 is not set
 # CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_tl-wdr3600-v1 is not set
 CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_tl-wdr4300-v1=y
-CONFIG_TARGET_DEVICE_PACKAGES_ar71xx_generic_DEVICE_tl-wdr4300-v1="kmod-usb-ledtrig-usbport"
+CONFIG_TARGET_DEVICE_PACKAGES_ar71xx_generic_DEVICE_tl-wdr4300-v1="kmod-usb-ledtrig-usbport kmod-usb-storage block-mount blockd kmod-scsi-core kmod-crypto-crc32c kmod-fs-autofs4 kmod-fs-exfat kmod-fs-isofs kmod-fs-msdos kmod-fs-ntfs kmod-fs-vfat kmod-lib-crc16 kmod-lib-zlib-inflate kmod-nls-cp437 libext2fs libblkid libfdisk libsmartcols blkid fdisk partx-utils badblocks"
 # CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_tl-wdr4300-v1-il is not set
 # CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_tl-wdr4310-v1 is not set
 # CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_tl-wdr4900-v2 is not set
@@ -996,7 +996,7 @@ CONFIG_TARGET_INIT_SUPPRESS_STDERR=y
 CONFIG_VERSIONOPT=y
 CONFIG_VERSION_DIST="PTPT52"
 CONFIG_VERSION_NICK="fuckgfw"
-CONFIG_VERSION_NUMBER="3.0.0_build201704230105"
+CONFIG_VERSION_NUMBER="3.0.0_build201704231451"
 CONFIG_VERSION_CODE=""
 CONFIG_VERSION_REPO="http://downloads.openwrt.org/snapshots/trunk/%S/packages"
 CONFIG_VERSION_MANUFACTURER="PTPT52"
@@ -1020,8 +1020,8 @@ CONFIG_FEED_luci=y
 # Base system
 #
 CONFIG_PACKAGE_base-files=y
-# CONFIG_PACKAGE_block-mount is not set
-# CONFIG_PACKAGE_blockd is not set
+CONFIG_PACKAGE_block-mount=m
+CONFIG_PACKAGE_blockd=m
 CONFIG_PACKAGE_bridge=y
 CONFIG_PACKAGE_busybox=y
 CONFIG_BUSYBOX_CUSTOM=y
@@ -3098,30 +3098,30 @@ CONFIG_PACKAGE_kmod-crypto-sha1=y
 # Filesystems
 #
 # CONFIG_PACKAGE_kmod-fs-afs is not set
-# CONFIG_PACKAGE_kmod-fs-autofs4 is not set
+CONFIG_PACKAGE_kmod-fs-autofs4=m
 # CONFIG_PACKAGE_kmod-fs-btrfs is not set
 # CONFIG_PACKAGE_kmod-fs-cifs is not set
 # CONFIG_PACKAGE_kmod-fs-configfs is not set
 # CONFIG_PACKAGE_kmod-fs-cramfs is not set
-# CONFIG_PACKAGE_kmod-fs-exfat is not set
+CONFIG_PACKAGE_kmod-fs-exfat=m
 # CONFIG_PACKAGE_kmod-fs-exportfs is not set
 CONFIG_PACKAGE_kmod-fs-ext4=m
 # CONFIG_PACKAGE_kmod-fs-f2fs is not set
 # CONFIG_PACKAGE_kmod-fs-fscache is not set
 # CONFIG_PACKAGE_kmod-fs-hfs is not set
 # CONFIG_PACKAGE_kmod-fs-hfsplus is not set
-# CONFIG_PACKAGE_kmod-fs-isofs is not set
+CONFIG_PACKAGE_kmod-fs-isofs=m
 # CONFIG_PACKAGE_kmod-fs-jfs is not set
 # CONFIG_PACKAGE_kmod-fs-minix is not set
-# CONFIG_PACKAGE_kmod-fs-msdos is not set
+CONFIG_PACKAGE_kmod-fs-msdos=m
 # CONFIG_PACKAGE_kmod-fs-nfs is not set
 # CONFIG_PACKAGE_kmod-fs-nfs-common is not set
 # CONFIG_PACKAGE_kmod-fs-nfsd is not set
-# CONFIG_PACKAGE_kmod-fs-ntfs is not set
+CONFIG_PACKAGE_kmod-fs-ntfs=m
 # CONFIG_PACKAGE_kmod-fs-reiserfs is not set
 # CONFIG_PACKAGE_kmod-fs-squashfs is not set
 # CONFIG_PACKAGE_kmod-fs-udf is not set
-# CONFIG_PACKAGE_kmod-fs-vfat is not set
+CONFIG_PACKAGE_kmod-fs-vfat=m
 # CONFIG_PACKAGE_kmod-fs-xfs is not set
 # CONFIG_PACKAGE_kmod-fuse is not set
 
@@ -3183,6 +3183,7 @@ CONFIG_PACKAGE_kmod-lib-crc16=m
 # CONFIG_PACKAGE_kmod-lib-crc7 is not set
 # CONFIG_PACKAGE_kmod-lib-crc8 is not set
 CONFIG_PACKAGE_kmod-lib-textsearch=y
+CONFIG_PACKAGE_kmod-lib-zlib-inflate=m
 
 #
 # Native Language Support
@@ -3190,7 +3191,7 @@ CONFIG_PACKAGE_kmod-lib-textsearch=y
 CONFIG_PACKAGE_kmod-nls-base=y
 # CONFIG_PACKAGE_kmod-nls-cp1250 is not set
 # CONFIG_PACKAGE_kmod-nls-cp1251 is not set
-# CONFIG_PACKAGE_kmod-nls-cp437 is not set
+CONFIG_PACKAGE_kmod-nls-cp437=m
 # CONFIG_PACKAGE_kmod-nls-cp775 is not set
 # CONFIG_PACKAGE_kmod-nls-cp850 is not set
 # CONFIG_PACKAGE_kmod-nls-cp852 is not set
@@ -4114,7 +4115,7 @@ CONFIG_OPENSSL_WITH_SRP=y
 # CONFIG_PACKAGE_libavahi-nodbus-support is not set
 # CONFIG_PACKAGE_libavl is not set
 # CONFIG_PACKAGE_libbfd is not set
-# CONFIG_PACKAGE_libblkid is not set
+CONFIG_PACKAGE_libblkid=m
 CONFIG_PACKAGE_libblobmsg-json=y
 # CONFIG_PACKAGE_libcanfestival is not set
 # CONFIG_PACKAGE_libcap is not set
@@ -4165,7 +4166,7 @@ CONFIG_PACKAGE_libev=y
 # CONFIG_PACKAGE_libglpk is not set
 # CONFIG_PACKAGE_libf2fs is not set
 # CONFIG_PACKAGE_libfaad2 is not set
-# CONFIG_PACKAGE_libfdisk is not set
+CONFIG_PACKAGE_libfdisk=m
 # CONFIG_PACKAGE_libfdt is not set
 # CONFIG_PACKAGE_libffmpeg-audio-dec is not set
 # CONFIG_PACKAGE_libffmpeg-custom is not set
@@ -4295,7 +4296,7 @@ CONFIG_PACKAGE_librpc=y
 # CONFIG_PACKAGE_libshout-full is not set
 # CONFIG_PACKAGE_libshout-nossl is not set
 # CONFIG_PACKAGE_libsigcxx is not set
-# CONFIG_PACKAGE_libsmartcols is not set
+CONFIG_PACKAGE_libsmartcols=m
 # CONFIG_PACKAGE_libsndfile is not set
 # CONFIG_PACKAGE_libsoc is not set
 # CONFIG_PACKAGE_libsocks is not set
@@ -5649,10 +5650,10 @@ CONFIG_PACKAGE_uboot-envtools=y
 # Disc
 #
 # CONFIG_PACKAGE_blkdiscard is not set
-# CONFIG_PACKAGE_blkid is not set
+CONFIG_PACKAGE_blkid=m
 # CONFIG_PACKAGE_cfdisk is not set
 # CONFIG_PACKAGE_cgdisk is not set
-# CONFIG_PACKAGE_fdisk is not set
+CONFIG_PACKAGE_fdisk=m
 # CONFIG_PACKAGE_findfs is not set
 # CONFIG_PACKAGE_gdisk is not set
 # CONFIG_PACKAGE_hd-idle is not set
@@ -5660,7 +5661,7 @@ CONFIG_PACKAGE_uboot-envtools=y
 # CONFIG_PACKAGE_lsblk is not set
 # CONFIG_PACKAGE_lvm2 is not set
 # CONFIG_PACKAGE_mdadm is not set
-# CONFIG_PACKAGE_partx-utils is not set
+CONFIG_PACKAGE_partx-utils=m
 # CONFIG_PACKAGE_sfdisk is not set
 # CONFIG_PACKAGE_sgdisk is not set
 # CONFIG_PACKAGE_wipefs is not set
@@ -5696,7 +5697,7 @@ CONFIG_PACKAGE_uboot-envtools=y
 #
 # CONFIG_PACKAGE_acl is not set
 # CONFIG_PACKAGE_attr is not set
-# CONFIG_PACKAGE_badblocks is not set
+CONFIG_PACKAGE_badblocks=m
 # CONFIG_PACKAGE_btrfs-progs is not set
 # CONFIG_PACKAGE_chattr is not set
 # CONFIG_PACKAGE_debugfs is not set

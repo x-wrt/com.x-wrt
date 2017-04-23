@@ -1,6 +1,6 @@
 #!/bin/sh
 
-CFGS="config.apm821xx_nand config.kirkwood-generic config.ipq806x-generic config.bcm53xx-generic config.ar71xx-generic config.ar71xx-nand config.mvebu-generic config.ramips-mt7620 config.ramips-mt7621 config.x86_64"
+CFGS="config.apm821xx_nand config.kirkwood-generic config.ipq806x-generic config.bcm53xx-generic config.ar71xx-generic config.ar71xx-nand config.mvebu-generic config.ramips-mt7620 config.ramips-mt7621"
 
 VERN=`date +%Y%m%d%H%M`
 
