@@ -5,7 +5,7 @@
 CFGS=$1
 IDXS=$2
 
-test -n "$CFGS" || CFGS=`cat feeds/ptpt52/rom/lede/cfg.list`
+test -n "$CFGS" || CFGS="`cat feeds/ptpt52/rom/lede/cfg.list`"
 
 test -n "$IDXS" || IDXS="0"
 

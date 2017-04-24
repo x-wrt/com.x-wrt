@@ -1,6 +1,6 @@
 #!/bin/sh
 
-CFGS=`cat feeds/ptpt52/rom/lede/cfg.list`
+CFGS="`cat feeds/ptpt52/rom/lede/cfg.list`"
 
 VERN=`date +%Y%m%d%H%M`
 
