@@ -1,17 +1,10 @@
 #!/bin/sh
 
-#arg1=CFGS
-#arg2=idxs
-CFGS=$1
-IDXS=$2
-
-test -n "$CFGS" || CFGS="`cat feeds/ptpt52/rom/lede/cfg.list`"
-
-test -n "$IDXS" || IDXS="0"
+CFGS="`cat feeds/ptpt52/rom/lede/cfg.list`"
 
 bins="`find bin/targets/ | grep -- '\(-squashfs\|-factory\|-sysupgrade\)' | grep ptpt52 | grep -v root | grep -v kernel | while read line; do basename $line; done`"
 
-targets=$(cd feeds/ptpt52/rom/lede/ && cat $CFGS | grep TARGET_DEVICE_.*=y | sed 's/CONFIG_//;s/=y//')
+targets=$(cd feeds/ptpt52/rom/lede/ && cat $CFGS | grep TARGET_DEVICE_.*=y | sed 's/CONFIG_//;s/=y//' | sort)
 
 echo -n >map.list
 for t in $targets; do
