@@ -5,7 +5,7 @@
 CFGS=$1
 IDXS=$2
 
-test -n "$CFGS" || CFGS="config.apm821xx_nand config.kirkwood-generic config.ipq806x-generic config.bcm53xx-generic config.ar71xx-generic config.ar71xx-nand config.mvebu-generic config.ramips-mt7620 config.ramips-mt7621"
+test -n "$CFGS" || CFGS=`cat feeds/ptpt52/rom/lede/cfg.list`
 
 test -n "$IDXS" || IDXS="0"
 
