@@ -135,7 +135,7 @@ enabled="`uci get natcapd.default.enabled 2>/dev/null`"
 
 ACC=$1
 ACC=`echo -n "$ACC" | b64encode`
-CLI=`lua /usr/share/natcapd/board_mac.lua`
+CLI=`lua /usr/share/natcapd/board_mac.lua | sed 's/:/-/g' | tr a-z A-Z`
 test -n "$CLI" || CLI=`cat $DEV | grep default_mac_addr | grep -o '[0-9A-F][0-9A-F]:[0-9A-F][0-9A-F]:[0-9A-F][0-9A-F]:[0-9A-F][0-9A-F]:[0-9A-F][0-9A-F]:[0-9A-F][0-9A-F]' | sed 's/:/-/g'`
 test -n "$CLI" || CLI=`sed 's/:/-/g' /sys/class/net/eth0/address | tr a-z A-Z`
 
