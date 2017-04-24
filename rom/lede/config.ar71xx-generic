@@ -499,7 +499,8 @@ CONFIG_TARGET_DEVICE_PACKAGES_ar71xx_generic_DEVICE_wndr3800ch="kmod-leds-wndr37
 # CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_WNR2000 is not set
 # CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_WNR2000V3 is not set
 # CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_WNR2000V4 is not set
-# CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_WNR2200 is not set
+CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_WNR2200=y
+CONFIG_TARGET_DEVICE_PACKAGES_ar71xx_generic_DEVICE_WNR2200="kmod-usb-ledtrig-usbport block-mount blockd kmod-scsi-core kmod-crypto-crc32c kmod-fs-autofs4 kmod-fs-exfat kmod-fs-msdos kmod-fs-ntfs kmod-fs-vfat kmod-lib-crc16 kmod-nls-cp437"
 # CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_REALWNR612V2 is not set
 # CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_WPN824N is not set
 # CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_omy-g1 is not set
