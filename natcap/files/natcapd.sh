@@ -67,6 +67,7 @@ enabled="`uci get natcapd.default.enabled 2>/dev/null`"
 	test -n "$encode_mode" || encode_mode=TCP
 	[ x$encode_mode = x0 ] && encode_mode=TCP
 	[ x$encode_mode = x1 ] && encode_mode=UDP
+	board_mac_addr=`lua /usr/share/natcapd/board_mac.lua`
 
 	ipset -n list udproxylist >/dev/null 2>&1 || ipset -! create udproxylist iphash
 	ipset -n list gfwlist >/dev/null 2>&1 || ipset -! create gfwlist iphash
@@ -81,6 +82,7 @@ enabled="`uci get natcapd.default.enabled 2>/dev/null`"
 	echo encode_mode=$encode_mode >$DEV
 	echo shadowsocks=$shadowsocks >$DEV
 	echo sproxy=$sproxy >$DEV
+	test -n "$board_mac_addr" && echo default_mac_addr=$board_mac_addr >$DEV
 
 	[ "x$clear_dst_on_reload" = x1 ] && ipset flush gfwlist
 
