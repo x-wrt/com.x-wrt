@@ -1,0 +1,208 @@
+
+
+usb2="kmod-usb2 kmod-usb-core kmod-usb-storage kmod-scsi-core kmod-crypto-crc32c kmod-nls-cp437 kmod-lib-crc16 kmod-fs-autofs4 kmod-fs-exfat kmod-fs-ext4 kmod-fs-msdos kmod-fs-ntfs kmod-fs-vfat block-mount blockd"
+usb3="kmod-usb3 kmod-usb-core kmod-usb-storage kmod-scsi-core kmod-crypto-crc32c kmod-nls-cp437 kmod-lib-crc16 kmod-fs-autofs4 kmod-fs-exfat kmod-fs-ext4 kmod-fs-msdos kmod-fs-ntfs kmod-fs-vfat block-mount blockd"
+moreapps="libstdcpp libsqlite3 libssh2 libxml2 luci-app-aria2 luci-app-samba luci-i18n-aria2-zh-cn luci-i18n-samba-en luci-i18n-samba-zh-cn webui-aria2 aria2 samba36-server"
+
+get_modules()
+{
+	local m
+	m=`for m in $@; do echo $m; done | sort | uniq`
+	m="`echo $m`"
+	echo $m
+}
+
+rm -rf /tmp/config_lede
+mkdir /tmp/config_lede
+cat .config | grep TARGET_DEVICE_.*=y | sed 's/CONFIG_//;s/=y//' | while read target; do
+	cat tmp/.config-target.in | grep "menuconfig $target" -A200 | while read line; do
+		test -n "$line" || break
+		echo $line | grep -q 'select MODULE_DEFAULT' && {
+			echo $line | awk '{print $2}' | sed 's/MODULE_DEFAULT_//'
+		}
+	done | sort >/tmp/config_lede/$target
+done
+
+targets=`cd /tmp/config_lede && ls`
+alls=`cat /tmp/config_lede/* | sort | uniq`
+#echo $alls
+
+is_in_set()
+{
+	_i=$1
+	_s=$2
+	for l in `cat $_s`; do
+		[ x$l = x$_i ] && return 0
+	done
+	return 1
+}
+
+uniqs=$(for p in $alls; do
+	for t in $targets; do
+		is_in_set $p /tmp/config_lede/$t || {
+			echo $p
+			break
+		}
+	done
+done | sort | uniq)
+
+echo uniqs=$uniqs
+
+for t in $targets; do
+	us=$(for u in $uniqs; do
+		is_in_set $u /tmp/config_lede/$t && echo $u
+	done)
+	echo $t=`get_modules $us`
+	mods=""
+	case $t in
+		#>8M flash
+		TARGET_DEVICE_ipq806x_DEVICE_R7800|\
+		TARGET_DEVICE_ipq806x_DEVICE_R7500v2|\
+		TARGET_DEVICE_ipq806x_DEVICE_R7500|\
+		TARGET_DEVICE_ipq806x_DEVICE_D7800|\
+		TARGET_DEVICE_kirkwood_DEVICE_linksys-viper|\
+		TARGET_DEVICE_apm821xx_nand_DEVICE_WNDR4700|\
+		TARGET_DEVICE_ar71xx_generic_DEVICE_hiwifi-hc6361|\
+		TARGET_DEVICE_ar71xx_generic_DEVICE_wndr3700v2|\
+		TARGET_DEVICE_ar71xx_generic_DEVICE_wndr3800|\
+		TARGET_DEVICE_ar71xx_generic_DEVICE_wndr3800ch|\
+		TARGET_DEVICE_ar71xx_generic_DEVICE_qihoo-c301|\
+		TARGET_DEVICE_ar71xx_nand_DEVICE_R6100|\
+		TARGET_DEVICE_ar71xx_nand_DEVICE_WNDR3700V4|\
+		TARGET_DEVICE_ar71xx_nand_DEVICE_WNDR4300V1|\
+		TARGET_DEVICE_bcm53xx_DEVICE_asus-rt-ac56u|\
+		TARGET_DEVICE_bcm53xx_DEVICE_asus-rt-ac68u|\
+		TARGET_DEVICE_bcm53xx_DEVICE_asus-rt-ac87u|\
+		TARGET_DEVICE_bcm53xx_DEVICE_asus-rt-n18u|\
+		TARGET_DEVICE_bcm53xx_DEVICE_netgear-r6300-v2|\
+		TARGET_DEVICE_bcm53xx_DEVICE_netgear-r7000|\
+		TARGET_DEVICE_bcm53xx_DEVICE_netgear-r7900|\
+		TARGET_DEVICE_bcm53xx_DEVICE_netgear-r8000|\
+		TARGET_DEVICE_mvebu_DEVICE_linksys-wrt1200ac|\
+		TARGET_DEVICE_mvebu_DEVICE_linksys-wrt1900ac|\
+		TARGET_DEVICE_mvebu_DEVICE_linksys-wrt1900acs|\
+		TARGET_DEVICE_mvebu_DEVICE_linksys-wrt1900acv2|\
+		TARGET_DEVICE_mvebu_DEVICE_linksys-wrt3200acm|\
+		TARGET_DEVICE_ramips_mt7620_DEVICE_hc5661|\
+		TARGET_DEVICE_ramips_mt7620_DEVICE_hc5761|\
+		TARGET_DEVICE_ramips_mt7620_DEVICE_hc5861|\
+		TARGET_DEVICE_ramips_mt7620_DEVICE_y1|\
+		TARGET_DEVICE_ramips_mt7620_DEVICE_y1s|\
+		TARGET_DEVICE_ramips_mt7620_DEVICE_youku-yk1|\
+		TARGET_DEVICE_ramips_mt7621_DEVICE_hc5962|\
+		TARGET_DEVICE_ramips_mt7621_DEVICE_r6220|\
+		TARGET_DEVICE_ramips_mt7621_DEVICE_wndr3700v5|\
+		TARGET_DEVICE_ramips_mt7621_DEVICE_newifi-d1)
+			mods="$mods $us $moreapps"
+		;;
+		#<=8M flash
+		TARGET_DEVICE_ramips_mt7621_DEVICE_re6500|\
+		TARGET_DEVICE_ar71xx_generic_DEVICE_WNR2200|\
+		TARGET_DEVICE_ar71xx_generic_DEVICE_tl-wdr6500-v2|\
+		TARGET_DEVICE_ar71xx_generic_DEVICE_tl-wdr4900-v2|\
+		TARGET_DEVICE_ar71xx_generic_DEVICE_tl-wdr4310-v1|\
+		TARGET_DEVICE_ar71xx_generic_DEVICE_tl-wdr4300-v1-il|\
+		TARGET_DEVICE_ar71xx_generic_DEVICE_tl-wdr4300-v1|\
+		TARGET_DEVICE_ar71xx_generic_DEVICE_tl-wdr3600-v1|\
+		TARGET_DEVICE_ar71xx_generic_DEVICE_tl-wdr3500-v1|\
+		TARGET_DEVICE_ar71xx_generic_DEVICE_wndr3700|\
+		TARGET_DEVICE_ar71xx_generic_DEVICE_WNR2200|\
+		TARGET_DEVICE_ar71xx_generic_DEVICE_tl-wdr4300-v1|\
+		TARGET_DEVICE_ar71xx_generic_DEVICE_tl-wdr4300-v1-il|\
+		TARGET_DEVICE_bcm53xx_DEVICE_tenda-ac9|\
+		TARGET_DEVICE_ramips_mt7620_DEVICE_miwifi-mini|\
+		TARGET_DEVICE_ramips_mt7620_DEVICE_zbt-wr8305rt|\
+		TARGET_DEVICE_ramips_mt7620_DEVICE_psg1208|\
+		TARGET_DEVICE_ramips_mt7620_DEVICE_psg1218a|\
+		TARGET_DEVICE_ramips_mt7620_DEVICE_psg1218b)
+			mods="$mods"
+		;;
+		*)
+			echo not handle moreapps $t
+		;;
+	esac
+	#check usb
+	case $t in
+		#with usb3
+		TARGET_DEVICE_ipq806x_DEVICE_R7800|\
+		TARGET_DEVICE_ipq806x_DEVICE_R7500v2|\
+		TARGET_DEVICE_ipq806x_DEVICE_R7500|\
+		TARGET_DEVICE_ipq806x_DEVICE_D7800|\
+		TARGET_DEVICE_kirkwood_DEVICE_linksys-viper|\
+		TARGET_DEVICE_apm821xx_nand_DEVICE_WNDR4700|\
+		TARGET_DEVICE_bcm53xx_DEVICE_asus-rt-ac56u|\
+		TARGET_DEVICE_bcm53xx_DEVICE_asus-rt-ac68u|\
+		TARGET_DEVICE_bcm53xx_DEVICE_asus-rt-ac87u|\
+		TARGET_DEVICE_bcm53xx_DEVICE_asus-rt-n18u|\
+		TARGET_DEVICE_bcm53xx_DEVICE_netgear-r6300-v2|\
+		TARGET_DEVICE_bcm53xx_DEVICE_netgear-r7000|\
+		TARGET_DEVICE_bcm53xx_DEVICE_netgear-r7900|\
+		TARGET_DEVICE_bcm53xx_DEVICE_netgear-r8000|\
+		TARGET_DEVICE_mvebu_DEVICE_linksys-wrt1200ac|\
+		TARGET_DEVICE_mvebu_DEVICE_linksys-wrt1900ac|\
+		TARGET_DEVICE_mvebu_DEVICE_linksys-wrt1900acs|\
+		TARGET_DEVICE_mvebu_DEVICE_linksys-wrt1900acv2|\
+		TARGET_DEVICE_mvebu_DEVICE_linksys-wrt3200acm|\
+		TARGET_DEVICE_ramips_mt7620_DEVICE_y1s|\
+		TARGET_DEVICE_ramips_mt7620_DEVICE_youku-yk1|\
+		TARGET_DEVICE_ramips_mt7621_DEVICE_hc5962|\
+		TARGET_DEVICE_ramips_mt7621_DEVICE_r6220|\
+		TARGET_DEVICE_ramips_mt7621_DEVICE_wndr3700v5|\
+		TARGET_DEVICE_ramips_mt7621_DEVICE_newifi-d1)
+			mods="$mods $usb2 $usb3"
+		;;
+		#with usb2
+		TARGET_DEVICE_ar71xx_nand_DEVICE_WNDR4300V1|\
+		TARGET_DEVICE_ar71xx_nand_DEVICE_WNDR3700V4|\
+		TARGET_DEVICE_ar71xx_nand_DEVICE_R6100|\
+		TARGET_DEVICE_bcm53xx_DEVICE_tenda-ac9|\
+		TARGET_DEVICE_ar71xx_generic_DEVICE_WNR2200|\
+		TARGET_DEVICE_ar71xx_generic_DEVICE_wndr3800ch|\
+		TARGET_DEVICE_ar71xx_generic_DEVICE_wndr3800|\
+		TARGET_DEVICE_ar71xx_generic_DEVICE_wndr3700v2|\
+		TARGET_DEVICE_ar71xx_generic_DEVICE_wndr3700|\
+		TARGET_DEVICE_ar71xx_generic_DEVICE_tl-wdr6500-v2|\
+		TARGET_DEVICE_ar71xx_generic_DEVICE_tl-wdr4900-v2|\
+		TARGET_DEVICE_ar71xx_generic_DEVICE_tl-wdr4310-v1|\
+		TARGET_DEVICE_ar71xx_generic_DEVICE_tl-wdr4300-v1-il|\
+		TARGET_DEVICE_ar71xx_generic_DEVICE_tl-wdr4300-v1|\
+		TARGET_DEVICE_ar71xx_generic_DEVICE_tl-wdr3600-v1|\
+		TARGET_DEVICE_ar71xx_generic_DEVICE_tl-wdr3500-v1|\
+		TARGET_DEVICE_ar71xx_generic_DEVICE_qihoo-c301|\
+		TARGET_DEVICE_ar71xx_generic_DEVICE_hiwifi-hc6361|\
+		TARGET_DEVICE_ramips_mt7620_DEVICE_hc5661|\
+		TARGET_DEVICE_ramips_mt7620_DEVICE_hc5761|\
+		TARGET_DEVICE_ramips_mt7620_DEVICE_hc5861|\
+		TARGET_DEVICE_ramips_mt7620_DEVICE_y1|\
+		TARGET_DEVICE_ramips_mt7620_DEVICE_miwifi-mini|\
+		TARGET_DEVICE_ramips_mt7620_DEVICE_zbt-wr8305rt)
+			mods="$mods $usb2"
+		;;
+		#no usb
+		TARGET_DEVICE_ramips_mt7621_DEVICE_re6500|\
+		TARGET_DEVICE_ramips_mt7620_DEVICE_psg1208|\
+		TARGET_DEVICE_ramips_mt7620_DEVICE_psg1218a|\
+		TARGET_DEVICE_ramips_mt7620_DEVICE_psg1218b)
+			mods="$mods"
+		;;
+		*)
+			echo no handle usb $t
+		;;
+	esac
+	tname=`echo $t | sed 's/TARGET_DEVICE_/CONFIG_TARGET_DEVICE_PACKAGES_/'`
+	mods=`get_modules $mods`
+	echo $tname
+	sed -i "s/$tname=\".*\"/$tname=\"$mods\"/" ./.config
+done
+
+ms="`cat .config | grep =m | sed 's/CONFIG_PACKAGE_//;s/=m//g'`"
+
+modules=$(for i in $ms; do
+	echo "$uniqs" | grep -q $i$ || echo $i
+done)
+
+echo modules=$modules
+
+rm -rf /tmp/config_lede
+
+#======================
