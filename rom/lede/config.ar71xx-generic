@@ -480,8 +480,10 @@ CONFIG_TARGET_DEVICE_PACKAGES_ar71xx_generic_DEVICE_hiwifi-hc6361="aria2 blockd 
 # CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_WRT400N is not set
 # CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_mr12 is not set
 # CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_mr16 is not set
-# CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_mc-mac1200r is not set
-# CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_mw4530r-v1 is not set
+CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_mc-mac1200r=y
+CONFIG_TARGET_DEVICE_PACKAGES_ar71xx_generic_DEVICE_mc-mac1200r=""
+CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_mw4530r-v1=y
+CONFIG_TARGET_DEVICE_PACKAGES_ar71xx_generic_DEVICE_mw4530r-v1="blockd block-mount kmod-crypto-crc32c kmod-fs-autofs4 kmod-fs-exfat kmod-fs-ext4 kmod-fs-msdos kmod-fs-ntfs kmod-fs-vfat kmod-lib-crc16 kmod-nls-cp437 kmod-scsi-core kmod-usb2 kmod-usb-core kmod-usb-storage"
 # CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_smart-300 is not set
 # CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_WNDAP360 is not set
 CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_wndr3700=y
