@@ -16,7 +16,7 @@ for t in $targets; do
 		test -n "$dis" || {
 			dis=`echo "$text" | grep '$(call Device' | head -n1 | cut -d, -f2 | sed 's/)$//g'`
 		}
-		bin=`echo "$bins" | grep -i "$name-"`
+		bin=`echo "$bins" | grep -i "\($name-s\|$name-f\)"`
 		test -n "$bin" || {
 			bin=$(echo "$bins" | grep -i "`echo $name | head -c5`" | grep $arch)
 		}
