@@ -189,6 +189,9 @@ test $version -lt 4 && {
 	version=4
 }
 
+#fixup for openvpn client
+uci delete openvpn_recipes.client_tun.pkcs12 2>/dev/null && uci commit openvpn_recipes
+
 # sysctl overwrite
 SYSCTL_LOCAL=/etc/sysctl.d/50-local.conf
 mkdir -p /etc/sysctl.d
