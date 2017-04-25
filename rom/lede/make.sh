@@ -1,20 +1,16 @@
 #!/bin/sh
 
-#arg1=CFGS
-#arg2=idxs
-CFGS=$1
-IDXS=$2
-
 test -n "$CFGS" || CFGS="`cat feeds/ptpt52/rom/lede/cfg.list`"
 
 test -n "$IDXS" || IDXS="0"
 
+test -n "$CONFIG_VERSION_NUMBER" || CONFIG_VERSION_NUMBER="3.0.0_build`date +%Y%m%d%H%M`"
+
 echo build starting
 echo "CFGS=[$CFGS]"
 echo "IDXS=[$IDXS]"
-sleep 1
-
-CONFIG_VERSION_NUMBER="3.0.0_build`date +%Y%m%d%H%M`"
+echo "CONFIG_VERSION_NUMBER=$CONFIG_VERSION_NUMBER"
+sleep 5
 
 find feeds/luci/ -type f | grep -v .git\* | while read file; do
 	sed -i 's/192\.168\.1\./192\.168\.15\./g' "$file" && echo modifying $file
