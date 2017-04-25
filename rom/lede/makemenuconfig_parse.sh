@@ -56,6 +56,7 @@ for t in $targets; do
 	mods=""
 	case $t in
 		#>8M flash
+		TARGET_DEVICE_ar71xx_nand_DEVICE_domywifi-dw33d|\
 		TARGET_DEVICE_ipq806x_DEVICE_R7800|\
 		TARGET_DEVICE_ipq806x_DEVICE_R7500v2|\
 		TARGET_DEVICE_ipq806x_DEVICE_R7500|\
@@ -154,6 +155,7 @@ for t in $targets; do
 			mods="$mods $usb2 $usb3"
 		;;
 		#with usb2
+		TARGET_DEVICE_ar71xx_nand_DEVICE_domywifi-dw33d|\
 		TARGET_DEVICE_ar71xx_generic_DEVICE_mw4530r-v1|\
 		TARGET_DEVICE_ar71xx_nand_DEVICE_WNDR4300V1|\
 		TARGET_DEVICE_ar71xx_nand_DEVICE_WNDR3700V4|\
