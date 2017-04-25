@@ -70,15 +70,15 @@ CONFIG_TARGET_MULTI_PROFILE=y
 CONFIG_TARGET_PER_DEVICE_ROOTFS=y
 # CONFIG_TARGET_DEVICE_mvebu_DEVICE_globalscale-mirabox is not set
 CONFIG_TARGET_DEVICE_mvebu_DEVICE_linksys-wrt1200ac=y
-CONFIG_TARGET_DEVICE_PACKAGES_mvebu_DEVICE_linksys-wrt1200ac="aria2 blockd block-mount kmod-crypto-crc32c kmod-fs-autofs4 kmod-fs-exfat kmod-fs-ext4 kmod-fs-msdos kmod-fs-ntfs kmod-fs-vfat kmod-lib-crc16 kmod-nls-cp437 kmod-scsi-core kmod-usb2 kmod-usb3 kmod-usb-core kmod-usb-storage libsqlite3 libssh2 libstdcpp libxml2 luci-app-aria2 luci-app-samba luci-i18n-aria2-zh-cn luci-i18n-samba-en luci-i18n-samba-zh-cn samba36-server webui-aria2"
+CONFIG_TARGET_DEVICE_PACKAGES_mvebu_DEVICE_linksys-wrt1200ac="aria2 blockd block-mount kmod-crypto-crc32c kmod-fs-autofs4 kmod-fs-exfat kmod-fs-ext4 kmod-fs-msdos kmod-fs-ntfs kmod-fs-vfat kmod-lib-crc16 kmod-nls-cp437 kmod-scsi-core kmod-usb2 kmod-usb3 kmod-usb-core kmod-usb-ehci kmod-usb-storage libsqlite3 libssh2 libstdcpp libxml2 luci-app-aria2 luci-app-samba luci-i18n-aria2-zh-cn luci-i18n-samba-en luci-i18n-samba-zh-cn samba36-server webui-aria2"
 CONFIG_TARGET_DEVICE_mvebu_DEVICE_linksys-wrt1900ac=y
-CONFIG_TARGET_DEVICE_PACKAGES_mvebu_DEVICE_linksys-wrt1900ac="aria2 blockd block-mount kmod-crypto-crc32c kmod-fs-autofs4 kmod-fs-exfat kmod-fs-ext4 kmod-fs-msdos kmod-fs-ntfs kmod-fs-vfat kmod-lib-crc16 kmod-nls-cp437 kmod-scsi-core kmod-usb2 kmod-usb3 kmod-usb-core kmod-usb-storage libsqlite3 libssh2 libstdcpp libxml2 luci-app-aria2 luci-app-samba luci-i18n-aria2-zh-cn luci-i18n-samba-en luci-i18n-samba-zh-cn samba36-server webui-aria2"
+CONFIG_TARGET_DEVICE_PACKAGES_mvebu_DEVICE_linksys-wrt1900ac="aria2 blockd block-mount kmod-crypto-crc32c kmod-fs-autofs4 kmod-fs-exfat kmod-fs-ext4 kmod-fs-msdos kmod-fs-ntfs kmod-fs-vfat kmod-lib-crc16 kmod-nls-cp437 kmod-scsi-core kmod-usb2 kmod-usb3 kmod-usb-core kmod-usb-ehci kmod-usb-storage libsqlite3 libssh2 libstdcpp libxml2 luci-app-aria2 luci-app-samba luci-i18n-aria2-zh-cn luci-i18n-samba-en luci-i18n-samba-zh-cn samba36-server webui-aria2"
 CONFIG_TARGET_DEVICE_mvebu_DEVICE_linksys-wrt1900acs=y
-CONFIG_TARGET_DEVICE_PACKAGES_mvebu_DEVICE_linksys-wrt1900acs="aria2 blockd block-mount kmod-crypto-crc32c kmod-fs-autofs4 kmod-fs-exfat kmod-fs-ext4 kmod-fs-msdos kmod-fs-ntfs kmod-fs-vfat kmod-lib-crc16 kmod-nls-cp437 kmod-scsi-core kmod-usb2 kmod-usb3 kmod-usb-core kmod-usb-storage libsqlite3 libssh2 libstdcpp libxml2 luci-app-aria2 luci-app-samba luci-i18n-aria2-zh-cn luci-i18n-samba-en luci-i18n-samba-zh-cn samba36-server webui-aria2"
+CONFIG_TARGET_DEVICE_PACKAGES_mvebu_DEVICE_linksys-wrt1900acs="aria2 blockd block-mount kmod-crypto-crc32c kmod-fs-autofs4 kmod-fs-exfat kmod-fs-ext4 kmod-fs-msdos kmod-fs-ntfs kmod-fs-vfat kmod-lib-crc16 kmod-nls-cp437 kmod-scsi-core kmod-usb2 kmod-usb3 kmod-usb-core kmod-usb-ehci kmod-usb-storage libsqlite3 libssh2 libstdcpp libxml2 luci-app-aria2 luci-app-samba luci-i18n-aria2-zh-cn luci-i18n-samba-en luci-i18n-samba-zh-cn samba36-server webui-aria2"
 CONFIG_TARGET_DEVICE_mvebu_DEVICE_linksys-wrt1900acv2=y
-CONFIG_TARGET_DEVICE_PACKAGES_mvebu_DEVICE_linksys-wrt1900acv2="aria2 blockd block-mount kmod-crypto-crc32c kmod-fs-autofs4 kmod-fs-exfat kmod-fs-ext4 kmod-fs-msdos kmod-fs-ntfs kmod-fs-vfat kmod-lib-crc16 kmod-nls-cp437 kmod-scsi-core kmod-usb2 kmod-usb3 kmod-usb-core kmod-usb-storage libsqlite3 libssh2 libstdcpp libxml2 luci-app-aria2 luci-app-samba luci-i18n-aria2-zh-cn luci-i18n-samba-en luci-i18n-samba-zh-cn samba36-server webui-aria2"
+CONFIG_TARGET_DEVICE_PACKAGES_mvebu_DEVICE_linksys-wrt1900acv2="aria2 blockd block-mount kmod-crypto-crc32c kmod-fs-autofs4 kmod-fs-exfat kmod-fs-ext4 kmod-fs-msdos kmod-fs-ntfs kmod-fs-vfat kmod-lib-crc16 kmod-nls-cp437 kmod-scsi-core kmod-usb2 kmod-usb3 kmod-usb-core kmod-usb-ehci kmod-usb-storage libsqlite3 libssh2 libstdcpp libxml2 luci-app-aria2 luci-app-samba luci-i18n-aria2-zh-cn luci-i18n-samba-en luci-i18n-samba-zh-cn samba36-server webui-aria2"
 CONFIG_TARGET_DEVICE_mvebu_DEVICE_linksys-wrt3200acm=y
-CONFIG_TARGET_DEVICE_PACKAGES_mvebu_DEVICE_linksys-wrt3200acm="aria2 blockd block-mount kmod-crypto-crc32c kmod-fs-autofs4 kmod-fs-exfat kmod-fs-ext4 kmod-fs-msdos kmod-fs-ntfs kmod-fs-vfat kmod-lib-crc16 kmod-mwifiex-sdio kmod-nls-cp437 kmod-scsi-core kmod-usb2 kmod-usb3 kmod-usb-core kmod-usb-storage libsqlite3 libssh2 libstdcpp libxml2 luci-app-aria2 luci-app-samba luci-i18n-aria2-zh-cn luci-i18n-samba-en luci-i18n-samba-zh-cn samba36-server webui-aria2"
+CONFIG_TARGET_DEVICE_PACKAGES_mvebu_DEVICE_linksys-wrt3200acm="aria2 blockd block-mount kmod-crypto-crc32c kmod-fs-autofs4 kmod-fs-exfat kmod-fs-ext4 kmod-fs-msdos kmod-fs-ntfs kmod-fs-vfat kmod-lib-crc16 kmod-mmc kmod-mwifiex-sdio kmod-nls-cp437 kmod-scsi-core kmod-usb2 kmod-usb3 kmod-usb-core kmod-usb-ehci kmod-usb-storage libsqlite3 libssh2 libstdcpp libxml2 luci-app-aria2 luci-app-samba luci-i18n-aria2-zh-cn luci-i18n-samba-en luci-i18n-samba-zh-cn mwifiex-sdio-firmware samba36-server webui-aria2"
 # CONFIG_TARGET_DEVICE_mvebu_DEVICE_armada-370-db is not set
 # CONFIG_TARGET_DEVICE_mvebu_DEVICE_armada-370-rd is not set
 # CONFIG_TARGET_DEVICE_mvebu_DEVICE_armada-385-db-ap is not set
@@ -385,7 +385,7 @@ CONFIG_TARGET_INIT_SUPPRESS_STDERR=y
 CONFIG_VERSIONOPT=y
 CONFIG_VERSION_DIST="PTPT52"
 CONFIG_VERSION_NICK="fuckgfw"
-CONFIG_VERSION_NUMBER="3.0.0_build201704250059"
+CONFIG_VERSION_NUMBER="3.0.0_build201704251130"
 CONFIG_VERSION_CODE=""
 CONFIG_VERSION_REPO="http://downloads.openwrt.org/snapshots/trunk/%S/packages"
 CONFIG_VERSION_MANUFACTURER="PTPT52"

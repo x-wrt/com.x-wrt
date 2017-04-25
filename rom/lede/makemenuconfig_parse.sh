@@ -48,6 +48,42 @@ done | sort | uniq)
 
 echo uniqs=$uniqs
 
+ms="`cat .config | grep =m | sed 's/CONFIG_PACKAGE_//;s/=m//g'`"
+modules=$(for i in $ms; do
+	echo "$uniqs" | grep -q $i$ || echo $i
+done)
+echo modules=$modules
+
+get_deps()
+{
+	local addms_tmp
+	local addms
+	local addm
+	addms_tmp=$(cat tmp/.config-feeds.in tmp/.config-target.in tmp/.config-package.in | grep "config PACKAGE_$1" -A40 | while read line; do
+		test -n "$line" || break
+		echo $line | grep "select PACKAGE_" | awk '{print $2}' | grep PACKAGE_ | sed 's/PACKAGE_//'
+		echo $line | grep "depends on PACKAGE_" | awk '{print $3}' | grep PACKAGE_ | sed 's/PACKAGE_//'
+	done)
+	addms=""
+	for m in $addms_tmp; do
+		for i in $modules; do
+			[ x$m = x$i ] && addms="$addms $m"
+		done
+	done
+	for m in $addms; do
+		addm=`get_deps $m`
+		test -n "$addm" && addms="$addms $addm"
+	done
+	addms_tmp="$addms"
+	addms=""
+	for m in $addms_tmp; do
+		for i in $modules; do
+			[ x$m = x$i ] && addms="$addms $m"
+		done
+	done
+	echo $addms
+}
+
 for t in $targets; do
 	us=$(for u in $uniqs; do
 		is_in_set $u /tmp/config_lede/$t && echo $u
@@ -199,17 +235,14 @@ for t in $targets; do
 	esac
 	tname=`echo $t | sed 's/TARGET_DEVICE_/CONFIG_TARGET_DEVICE_PACKAGES_/'`
 	mods=`get_modules $mods`
-	echo $tname
+	dep_mods=$(for x in $mods; do
+			get_deps $x
+			done)
+	dep_mods=`get_modules $dep_mods`
+	mods=`get_modules $mods $dep_mods`
+	#echo add dep $tname=$dep_mods
 	sed -i "s/$tname=\".*\"/$tname=\"$mods\"/" ./.config
 done
-
-ms="`cat .config | grep =m | sed 's/CONFIG_PACKAGE_//;s/=m//g'`"
-
-modules=$(for i in $ms; do
-	echo "$uniqs" | grep -q $i$ || echo $i
-done)
-
-echo modules=$modules
 
 rm -rf /tmp/config_lede
 

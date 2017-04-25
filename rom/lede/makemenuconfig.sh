@@ -12,6 +12,5 @@ for cfg in $CFGS; do
 	make menuconfig && {
 		sh feeds/ptpt52/rom/lede/makemenuconfig_parse.sh
 		cp .config feeds/ptpt52/rom/lede/$cfg
-		read _
 	}
 done
