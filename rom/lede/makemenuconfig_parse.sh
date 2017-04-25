@@ -92,6 +92,7 @@ for t in $targets; do
 	mods=""
 	case $t in
 		#>8M flash
+		TARGET_DEVICE_ipq806x_DEVICE_EA8500|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_wsr-1166|\
 		TARGET_DEVICE_ar71xx_nand_DEVICE_domywifi-dw33d|\
 		TARGET_DEVICE_ipq806x_DEVICE_R7800|\
@@ -164,6 +165,7 @@ for t in $targets; do
 	#check usb
 	case $t in
 		#with usb3
+		TARGET_DEVICE_ipq806x_DEVICE_EA8500|\
 		TARGET_DEVICE_ipq806x_DEVICE_R7800|\
 		TARGET_DEVICE_ipq806x_DEVICE_R7500v2|\
 		TARGET_DEVICE_ipq806x_DEVICE_R7500|\
