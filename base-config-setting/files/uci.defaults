@@ -189,6 +189,13 @@ test $version -lt 4 && {
 	version=4
 }
 
+test $version -lt 5 && {
+	cat /etc/group | grep -q ^lede: || echo lede:x:1000: >>/etc/group
+	cat /etc/shadow | grep -q ^lede: || echo "lede:*:0:0:99999:7:::" >>/etc/shadow
+	cat /etc/passwd | grep -q ^lede: || echo lede:*:1000:1000:lede:/var:/bin/false >>/etc/passwd
+	version=5
+}
+
 #fixup for openvpn client
 uci delete openvpn_recipes.client_tun.pkcs12 2>/dev/null && uci commit openvpn_recipes
 

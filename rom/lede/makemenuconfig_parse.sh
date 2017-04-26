@@ -188,12 +188,12 @@ for t in $targets; do
 		TARGET_DEVICE_ramips_mt7620_DEVICE_y1s|\
 		TARGET_DEVICE_ramips_mt7620_DEVICE_youku-yk1|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_hc5962|\
-		TARGET_DEVICE_ramips_mt7621_DEVICE_r6220|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_wndr3700v5|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_newifi-d1)
 			mods="$mods $usb2 $usb3"
 		;;
 		#with usb2
+		TARGET_DEVICE_ramips_mt7621_DEVICE_r6220|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_wsr-1166|\
 		TARGET_DEVICE_ar71xx_nand_DEVICE_domywifi-dw33d|\
 		TARGET_DEVICE_ar71xx_generic_DEVICE_mw4530r-v1|\
