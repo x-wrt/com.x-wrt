@@ -138,7 +138,6 @@ for t in $targets; do
 		TARGET_DEVICE_ar71xx_generic_DEVICE_mw4530r-v1|\
 		TARGET_DEVICE_ar71xx_generic_DEVICE_mc-mac1200r|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_re6500|\
-		TARGET_DEVICE_ar71xx_generic_DEVICE_WNR2200|\
 		TARGET_DEVICE_ar71xx_generic_DEVICE_tl-wdr6500-v2|\
 		TARGET_DEVICE_ar71xx_generic_DEVICE_tl-wdr4900-v2|\
 		TARGET_DEVICE_ar71xx_generic_DEVICE_tl-wdr4310-v1|\
@@ -148,8 +147,6 @@ for t in $targets; do
 		TARGET_DEVICE_ar71xx_generic_DEVICE_tl-wdr3500-v1|\
 		TARGET_DEVICE_ar71xx_generic_DEVICE_wndr3700|\
 		TARGET_DEVICE_ar71xx_generic_DEVICE_WNR2200|\
-		TARGET_DEVICE_ar71xx_generic_DEVICE_tl-wdr4300-v1|\
-		TARGET_DEVICE_ar71xx_generic_DEVICE_tl-wdr4300-v1-il|\
 		TARGET_DEVICE_bcm53xx_DEVICE_tenda-ac9|\
 		TARGET_DEVICE_ramips_mt7620_DEVICE_miwifi-mini|\
 		TARGET_DEVICE_ramips_mt7620_DEVICE_zbt-wr8305rt|\
