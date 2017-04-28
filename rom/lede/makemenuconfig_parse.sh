@@ -111,7 +111,7 @@ for t in $targets; do
 		is_in_set $u /tmp/config_lede/$t && echo $u
 	done)
 	echo $t=`get_modules $us`
-	mods=""
+	mods="$us"
 	case $t in
 		#>8M flash
 		TARGET_DEVICE_ipq806x_DEVICE_EA8500|\
@@ -154,7 +154,7 @@ for t in $targets; do
 		TARGET_DEVICE_ramips_mt7621_DEVICE_r6220|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_wndr3700v5|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_newifi-d1)
-			mods="$mods $us $moreapps"
+			mods="$mods $moreapps"
 		;;
 		#<=8M flash
 		TARGET_DEVICE_ar71xx_generic_DEVICE_mw4530r-v1|\
