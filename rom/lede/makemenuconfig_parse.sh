@@ -8,7 +8,7 @@ get_modules()
 {
 	local m
 	m=`for m in $@; do echo $m; done | sort | uniq`
-	m="`echo $m`"
+	m=`echo $m`
 	echo $m
 }
 
@@ -49,17 +49,39 @@ done | sort | uniq)
 echo uniqs=$uniqs
 
 ms="`cat .config | grep =m | sed 's/CONFIG_PACKAGE_//;s/=m//g'`"
+ms=$(for i in $ms; do
+	[ xdnsmasq = x$i ] && continue
+	[ xodhcpd = x$i ] && continue
+	echo $i
+done)
 modules=$(for i in $ms; do
 	echo "$uniqs" | grep -q $i$ || echo $i
 done)
 echo modules=$modules
+
+get_target_mods()
+{
+	local addms_tmp
+	local addms
+	addms_tmp=$(cat tmp/.config-feeds.in tmp/.config-target.in tmp/.config-package.in | grep "config $1$" -A80 | while read line; do
+		test -n "$line" || break
+		echo $line | grep "select MODULE_DEFAULT_" | awk '{print $2}' | grep MODULE_DEFAULT_ | sed 's/MODULE_DEFAULT_//'
+	done)
+	addms=""
+	for m in $addms_tmp; do
+		for i in $modules; do
+			[ x$m = x$i ] && addms="$addms $m"
+		done
+	done
+	echo $addms
+}
 
 get_deps()
 {
 	local addms_tmp
 	local addms
 	local addm
-	addms_tmp=$(cat tmp/.config-feeds.in tmp/.config-target.in tmp/.config-package.in | grep "config PACKAGE_$1" -A40 | while read line; do
+	addms_tmp=$(cat tmp/.config-feeds.in tmp/.config-target.in tmp/.config-package.in | grep "config PACKAGE_$1$" -A40 | while read line; do
 		test -n "$line" || break
 		echo $line | grep "select PACKAGE_" | awk '{print $2}' | grep PACKAGE_ | sed 's/PACKAGE_//'
 		echo $line | grep "depends on PACKAGE_" | awk '{print $3}' | grep PACKAGE_ | sed 's/PACKAGE_//'
@@ -233,13 +255,14 @@ for t in $targets; do
 		;;
 	esac
 	tname=`echo $t | sed 's/TARGET_DEVICE_/CONFIG_TARGET_DEVICE_PACKAGES_/'`
+	mods="$mods `get_target_mods $t`"
 	mods=`get_modules $mods`
 	dep_mods=$(for x in $mods; do
 			get_deps $x
 			done)
 	dep_mods=`get_modules $dep_mods`
 	mods=`get_modules $mods $dep_mods`
-	#echo add dep $tname=$dep_mods
+	#echo add dep $tname=$mods
 	sed -i "s/$tname=\".*\"/$tname=\"$mods\"/" ./.config
 done
 
