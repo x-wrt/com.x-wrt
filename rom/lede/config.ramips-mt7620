@@ -109,7 +109,8 @@ CONFIG_TARGET_MULTI_PROFILE=y
 # CONFIG_TARGET_ramips_mt7620_DEVICE_zbt-cpe102 is not set
 # CONFIG_TARGET_ramips_mt7620_DEVICE_zbt-wa05 is not set
 # CONFIG_TARGET_ramips_mt7620_DEVICE_zbt-we2026 is not set
-# CONFIG_TARGET_ramips_mt7620_DEVICE_zbt-we826 is not set
+# CONFIG_TARGET_ramips_mt7620_DEVICE_zbt-we826-16M is not set
+# CONFIG_TARGET_ramips_mt7620_DEVICE_zbt-we826-32M is not set
 # CONFIG_TARGET_ramips_mt7620_DEVICE_zbt-wr8305rt is not set
 # CONFIG_TARGET_ramips_mt7620_DEVICE_kn_rc is not set
 # CONFIG_TARGET_ramips_mt7620_DEVICE_kn_rf is not set
@@ -184,7 +185,8 @@ CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt7620_DEVICE_youku-yk1="aria2 blockd block
 # CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_zbt-cpe102 is not set
 # CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_zbt-wa05 is not set
 # CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_zbt-we2026 is not set
-# CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_zbt-we826 is not set
+# CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_zbt-we826-16M is not set
+# CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_zbt-we826-32M is not set
 CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_zbt-wr8305rt=y
 CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt7620_DEVICE_zbt-wr8305rt="blockd block-mount kmod-crypto-crc32c kmod-fs-autofs4 kmod-fs-exfat kmod-fs-ext4 kmod-fs-msdos kmod-fs-ntfs kmod-fs-vfat kmod-lib-crc16 kmod-nls-cp437 kmod-scsi-core kmod-usb2 kmod-usb-core kmod-usb-ehci kmod-usb-storage"
 # CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_zte-q7 is not set
@@ -333,7 +335,6 @@ CONFIG_KERNEL_DEBUG_INFO=y
 # CONFIG_KERNEL_DYNAMIC_DEBUG is not set
 # CONFIG_KERNEL_KPROBES is not set
 # CONFIG_KERNEL_AIO is not set
-# CONFIG_KERNEL_DIRECT_IO is not set
 # CONFIG_KERNEL_FHANDLE is not set
 # CONFIG_KERNEL_FANOTIFY is not set
 # CONFIG_KERNEL_BLK_DEV_BSG is not set
@@ -616,7 +617,7 @@ CONFIG_BUSYBOX_DEFAULT_LAST_SUPPORTED_WCHAR=0
 # CONFIG_BUSYBOX_DEFAULT_UNICODE_PRESERVE_BROKEN is not set
 CONFIG_BUSYBOX_DEFAULT_FEATURE_NON_POSIX_CP=y
 # CONFIG_BUSYBOX_DEFAULT_FEATURE_VERBOSE_CP_MESSAGE is not set
-# CONFIG_BUSYBOX_DEFAULT_FEATURE_USE_SENDFILE is not set
+CONFIG_BUSYBOX_DEFAULT_FEATURE_USE_SENDFILE=y
 CONFIG_BUSYBOX_DEFAULT_FEATURE_COPYBUF_KB=4
 # CONFIG_BUSYBOX_DEFAULT_FEATURE_SKIP_ROOTFS is not set
 # CONFIG_BUSYBOX_DEFAULT_MONOTONIC_SYSCALL is not set
