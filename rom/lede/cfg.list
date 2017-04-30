@@ -3,6 +3,7 @@ config.kirkwood-generic
 config.ipq806x-generic
 config.bcm53xx-generic
 config.brcm47xx-generic
+config.brcm47xx-mips74k
 config.ar71xx-generic
 config.ar71xx-nand
 config.mvebu-generic
