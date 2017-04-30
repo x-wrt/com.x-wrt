@@ -48,7 +48,7 @@ done | sort | uniq)
 
 echo uniqs=$uniqs
 
-ms="`cat .config | grep =m | sed 's/CONFIG_PACKAGE_//;s/=m//g'`"
+ms="`cat .config | grep =m$ | sed 's/CONFIG_PACKAGE_//;s/=m//g'`"
 ms=$(for i in $ms; do
 	[ xdnsmasq = x$i ] && continue
 	[ xodhcpd = x$i ] && continue
@@ -114,6 +114,7 @@ for t in $targets; do
 	mods="$us"
 	case $t in
 		#>8M flash
+		TARGET_DEVICE_brcm47xx_generic_DEVICE_linksys-e3000-v1|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_zbt-we1326|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_zbt-wg2626|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_zbt-wg3526-16M|\
@@ -224,6 +225,7 @@ for t in $targets; do
 			mods="$mods $usb2 $usb3"
 		;;
 		#with usb2
+		TARGET_DEVICE_brcm47xx_generic_DEVICE_linksys-e3000-v1|\
 		TARGET_DEVICE_ar71xx_generic_DEVICE_AP152_16M|\
 		TARGET_DEVICE_ar71xx_generic_DEVICE_AP147_010|\
 		TARGET_DEVICE_ar71xx_generic_DEVICE_AP143_8M|\
