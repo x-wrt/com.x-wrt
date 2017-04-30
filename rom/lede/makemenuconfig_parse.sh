@@ -115,7 +115,6 @@ for t in $targets; do
 	case $t in
 		#>8M flash
 		TARGET_DEVICE_brcm47xx_mips74k_DEVICE_linksys-e3200-v1|\
-		TARGET_DEVICE_brcm47xx_generic_DEVICE_linksys-e3000-v1|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_zbt-we1326|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_zbt-wg2626|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_zbt-wg3526-16M|\
@@ -166,6 +165,7 @@ for t in $targets; do
 			mods="$mods $moreapps"
 		;;
 		#<=8M flash
+		TARGET_DEVICE_brcm47xx_generic_DEVICE_linksys-e3000-v1|\
 		TARGET_DEVICE_brcm47xx_mips74k_DEVICE_netgear-wndr3700-v3|\
 		TARGET_DEVICE_ar71xx_generic_DEVICE_AP143_8M|\
 		TARGET_DEVICE_ar71xx_generic_DEVICE_mw4530r-v1|\
