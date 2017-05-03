@@ -68,6 +68,7 @@ define Package/natcapd/install
 	$(INSTALL_DATA) ./files/board_mac.lua $(1)/usr/share/natcapd/board_mac.lua
 	$(INSTALL_DATA) ./files/cniplist.set $(1)/usr/share/natcapd/cniplist.set
 	$(INSTALL_DATA) ./files/cacert.pem $(1)/usr/share/natcapd/cacert.pem
+	$(INSTALL_DATA) ./files/hosts $(1)/usr/share/natcapd/hosts
 	$(INSTALL_DIR) $(1)/usr/sbin
 	$(INSTALL_BIN) ./files/natcapd.sh $(1)/usr/sbin/natcapd
 	$(INSTALL_DIR) $(1)/etc/uci-defaults

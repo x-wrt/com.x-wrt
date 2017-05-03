@@ -71,6 +71,7 @@ enabled="`uci get natcapd.default.enabled 2>/dev/null`"
 
 	ipset -n list udproxylist >/dev/null 2>&1 || ipset -! create udproxylist iphash
 	ipset -n list gfwlist >/dev/null 2>&1 || ipset -! create gfwlist iphash
+	ipset -n list gfwhosts >/dev/null 2>&1 || ipset -! create gfwhosts iphash
 	ipset -n list knocklist >/dev/null 2>&1 || ipset -! create knocklist iphash
 	ipset -n list bypasslist >/dev/null 2>&1 || ipset -! create bypasslist iphash
 	ipset -n list cniplist >/dev/null 2>&1 || ipset restore -f /usr/share/natcapd/cniplist.set
@@ -196,6 +197,22 @@ gfwlist_update_main () {
 	done
 }
 
+natcapd_first_boot() {
+	while :; do
+		ping -q -W3 -c1 114.114.114.114 >/dev/null 2>&1 || ping -q -W3 -c1 8.8.8.8 >/dev/null 2>&1|| {
+			# restart ping after 8 secs
+			sleep 8
+			continue
+		}
+		test -p /tmp/trigger_natcapd_update.fifo && timeout -t5 sh -c 'echo >/tmp/trigger_natcapd_update.fifo'
+		sleep 5
+		test -p /tmp/trigger_gfwlist_update.fifo && timeout -t5 sh -c 'echo >/tmp/trigger_gfwlist_update.fifo'
+		sleep 120
+		test -p /tmp/trigger_natcapd_update.fifo && timeout -t5 sh -c 'echo >/tmp/trigger_natcapd_update.fifo'
+		break
+	done
+}
+
 txrx_vals() {
 	test -f /tmp/natcapd.txrx || echo "0 0" >/tmp/natcapd.txrx
 	cat /tmp/natcapd.txrx | while read tx1 rx1; do
@@ -314,13 +331,7 @@ if mkdir $LOCKDIR >/dev/null 2>&1; then
 
 	gfwlist_update_main &
 	main_trigger &
-
-	sleep 10
-	test -p /tmp/trigger_natcapd_update.fifo && timeout -t5 sh -c 'echo >/tmp/trigger_natcapd_update.fifo'
-	sleep 120
-	test -p /tmp/trigger_natcapd_update.fifo && timeout -t5 sh -c 'echo >/tmp/trigger_natcapd_update.fifo'
-	sleep 170
-	test -p /tmp/trigger_gfwlist_update.fifo && timeout -t5 sh -c 'echo >/tmp/trigger_gfwlist_update.fifo'
+	natcapd_first_boot &
 
 	mqtt_cli
 else
