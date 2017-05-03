@@ -64,6 +64,7 @@ enabled="`uci get natcapd.default.enabled 2>/dev/null`"
 	encode_mode=`uci get natcapd.default.encode_mode 2>/dev/null`
 	shadowsocks=`uci get natcapd.default.shadowsocks 2>/dev/null || echo 0`
 	sproxy=`uci get natcapd.default.sproxy 2>/dev/null || echo 0`
+	enable_hosts=`uci get natcapd.default.enable_hosts 2>/dev/null || echo 0`
 	test -n "$encode_mode" || encode_mode=TCP
 	[ x$encode_mode = x0 ] && encode_mode=TCP
 	[ x$encode_mode = x1 ] && encode_mode=UDP
@@ -83,6 +84,7 @@ enabled="`uci get natcapd.default.enabled 2>/dev/null`"
 	echo encode_mode=$encode_mode >$DEV
 	echo shadowsocks=$shadowsocks >$DEV
 	echo sproxy=$sproxy >$DEV
+	echo enable_hosts=$enable_hosts >$DEV
 	test -n "$board_mac_addr" && echo default_mac_addr=$board_mac_addr >$DEV
 
 	[ "x$clear_dst_on_reload" = x1 ] && ipset flush gfwlist
