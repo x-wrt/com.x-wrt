@@ -151,7 +151,7 @@ _NAME=`basename $0`
 LOCKDIR=/tmp/$_NAME.lck
 
 cleanup () {
-	if rmdir $LOCKDIR; then
+	if rm -f $LOCKDIR; then
 		echo "Finished"
 	else
 		echo "Failed to remove lock directory '$LOCKDIR'"
@@ -200,19 +200,32 @@ gfwlist_update_main () {
 }
 
 natcapd_first_boot() {
+	mkdir /tmp/natcapd.lck/watcher.lck >/dev/null 2>&1 || return
+	local run=0
 	while :; do
 		ping -q -W3 -c1 114.114.114.114 >/dev/null 2>&1 || ping -q -W3 -c1 8.8.8.8 >/dev/null 2>&1|| {
 			# restart ping after 8 secs
 			sleep 8
 			continue
 		}
-		test -p /tmp/trigger_natcapd_update.fifo && timeout -t5 sh -c 'echo >/tmp/trigger_natcapd_update.fifo'
-		sleep 5
-		test -p /tmp/trigger_gfwlist_update.fifo && timeout -t5 sh -c 'echo >/tmp/trigger_gfwlist_update.fifo'
-		sleep 120
-		test -p /tmp/trigger_natcapd_update.fifo && timeout -t5 sh -c 'echo >/tmp/trigger_natcapd_update.fifo'
+		[ x$run = x1 ] || {
+			run=1
+			test -p /tmp/trigger_natcapd_update.fifo && timeout -t5 sh -c 'echo >/tmp/trigger_natcapd_update.fifo'
+			sleep 5
+		}
+		test -f /tmp/natcapd.lck/gfwlist || {
+			test -p /tmp/trigger_gfwlist_update.fifo && timeout -t5 sh -c 'echo >/tmp/trigger_gfwlist_update.fifo'
+			sleep 60
+			continue
+		}
+		test -f /tmp/natcapd.lck/gfwhosts || {
+			test -p /tmp/trigger_gfwlist_update.fifo && timeout -t5 sh -c 'echo >/tmp/trigger_gfwlist_update.fifo'
+			sleep 60
+			continue
+		}
 		break
 	done
+	rmdir /tmp/natcapd.lck/watcher.lck
 }
 
 txrx_vals() {
@@ -337,6 +350,7 @@ if mkdir $LOCKDIR >/dev/null 2>&1; then
 
 	mqtt_cli
 else
+	natcapd_first_boot &
 	echo "Could not create lock directory '$LOCKDIR'"
 	exit 0
 fi

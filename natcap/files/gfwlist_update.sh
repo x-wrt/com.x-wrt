@@ -40,12 +40,18 @@ EX_DOMAIN="google.com \
 			for _ip in `cat /tmp/natcapd.hosts | grep ^[0-9].*. | grep -v localhost | awk '{print $1}' | sort | uniq`; do
 				ipset add gfwhosts $_ip 2>/dev/null
 			done
-			[ x`readlink /etc/hosts` = "x/tmp/natcapd.hosts" ] || ln -sf /tmp/natcapd.hosts /etc/hosts
 			/etc/init.d/dnsmasq restart
+			touch /tmp/natcapd.lck/gfwhosts
 		}
+		[ x`readlink /etc/hosts` = "x/tmp/natcapd.hosts" ] || {
+			test -f /tmp/natcapd.hosts && ln -sf /tmp/natcapd.hosts /etc/hosts
+		}
+		rm -f /tmp/gfwhosts.$$.txt
 	}
+	touch /tmp/natcapd.lck/gfwlist
 	exit 0
 }
+rm -f /tmp/gfwlist.$$.txt
 
 test -f /tmp/dnsmasq.d/accelerated-domains.gfwlist.dnsmasq.conf && exit 0
 
