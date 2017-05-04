@@ -34,7 +34,7 @@ EX_DOMAIN="google.com \
 	mkdir -p /tmp/dnsmasq.d && mv /tmp/accelerated-domains.gfwlist.dnsmasq.$$.conf /tmp/dnsmasq.d/accelerated-domains.gfwlist.dnsmasq.conf && /etc/init.d/dnsmasq restart
 
 	[ x`uci get natcapd.default.enable_hosts 2>/dev/null` = x1 ] && {
-		/usr/bin/wget --timeout=60 --no-check-certificate -qO /tmp/gfwhosts.$$.txt "https://raw.githubusercontent.com/racaljk/hosts/master/hosts?t=`date '+%s'`" && {
+		/usr/bin/wget --timeout=60 --no-check-certificate -qO /tmp/gfwhosts.$$.txt "https://raw.githubusercontent.com/ptpt52/hosts/master/hosts_ok?t=`date '+%s'`" && {
 			ipset flush gfwhosts
 			mv /tmp/gfwhosts.$$.txt /tmp/natcapd.hosts
 			for _ip in `cat /tmp/natcapd.hosts | grep ^[0-9].*. | grep -v localhost | awk '{print $1}' | sort | uniq`; do
