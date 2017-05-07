@@ -134,6 +134,16 @@ enabled="`uci get natcapd.default.enabled 2>/dev/null`"
 
 	#reload pptpd
 	sh /usr/share/natcapd/natcapd.pptpd.sh
+	#reload natcapd_client
+	natcap_redirect_port=`uci get natcapd.default.natcap_redirect_port 2>/dev/null || echo 0`
+	sleep 1 && killall natcapd_client >/dev/null 2>&1 && sleep 2
+	echo natcap_redirect_port=$natcap_redirect_port >$DEV
+	test $natcap_redirect_port -gt 0 && test $natcap_redirect_port -lt 65535 && {
+		(
+		/usr/sbin/natcapd_client -l$natcap_redirect_port >/dev/null 2>&1
+		echo natcap_redirect_port=0 >/dev/natcap_ctl
+		) &
+	}
 }
 
 ACC=$1
