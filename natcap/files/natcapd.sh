@@ -219,9 +219,11 @@ natcapd_first_boot() {
 			continue
 		}
 		test -f /tmp/natcapd.lck/gfwhosts || {
-			test -p /tmp/trigger_gfwlist_update.fifo && timeout -t5 sh -c 'echo >/tmp/trigger_gfwlist_update.fifo'
-			sleep 60
-			continue
+			[ x`uci get natcapd.default.enable_hosts 2>/dev/null` = x1 ] && {
+				test -p /tmp/trigger_gfwlist_update.fifo && timeout -t5 sh -c 'echo >/tmp/trigger_gfwlist_update.fifo'
+				sleep 60
+				continue
+			}
 		}
 		break
 	done
