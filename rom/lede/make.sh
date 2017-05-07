@@ -37,8 +37,8 @@ for i in $IDXS; do
 		sed -i "s%CONFIG_VERSION_MANUFACTURER_URL=\".*\"%CONFIG_VERSION_MANUFACTURER_URL=\"$CONFIG_VERSION_MANUFACTURER_URL\"%" ./.config
 		touch ./package/base-files/files/etc/openwrt_release
 		set +x
-		test -n "$CLEAN" && make clean
-		make -j8 || exit 255
+		test -n "$1" || exit 255
+		$* || exit 255
 	done
 done
 
