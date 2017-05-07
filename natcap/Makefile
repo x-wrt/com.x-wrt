@@ -10,7 +10,7 @@ include $(INCLUDE_DIR)/kernel.mk
 
 PKG_NAME:=natcap
 PKG_VERSION:=5.0.0
-PKG_RELEASE:=9c4925d7b445afe6e991b3ca944b7a4400e8e0a1
+PKG_RELEASE:=75da86ad2c7d9f30fe5d201bde4c8a707c46e794
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION)-$(PKG_RELEASE).tar.xz
 PKG_SOURCE_URL:=https://github.com/ptpt52/natcap.git
@@ -22,10 +22,34 @@ PKG_LICENSE:=GPL-2.0
 
 include $(INCLUDE_DIR)/package.mk
 
+define Package/natcapd_client
+  CATEGORY:=Ptpt52
+  SUBMENU:=Natcap Support
+  DEPENDS:= +libev +libc
+  TITLE:=Natcapd_client agent for natcap
+endef
+
+define Package/natcapd_server
+  CATEGORY:=Ptpt52
+  SUBMENU:=Natcap Support
+  DEPENDS:= +libev +libc
+  TITLE:=Natcapd_server agent for natcap
+endef
+
+define Package/natcapd_client/install
+	$(INSTALL_DIR) $(1)/usr/sbin
+	$(INSTALL_BIN) $(PKG_BUILD_DIR)/natcapd/natcapd_client $(1)/usr/sbin/natcapd_client
+endef
+
+define Package/natcapd_server/install
+	$(INSTALL_DIR) $(1)/usr/sbin
+	$(INSTALL_BIN) $(PKG_BUILD_DIR)/natcapd/natcapd_server $(1)/usr/sbin/natcapd_server
+endef
+
 define Package/natcapd/Default
   CATEGORY:=Ptpt52
   SUBMENU:=Natcap Support
-  DEPENDS:= +kmod-natcap +mosquitto-client
+  DEPENDS:= +kmod-natcap +mosquitto-client +natcapd_client
 endef
 
 define Package/natcapd
@@ -92,18 +116,25 @@ endef
 
 include $(INCLUDE_DIR)/kernel-defaults.mk
 
-MAKE_KMOD := $(MAKE) -C "$(LINUX_DIR)" \
-		CROSS_COMPILE="$(TARGET_CROSS)" \
-		ARCH="$(LINUX_KARCH)" \
-		PATH="$(TARGET_PATH)" \
-		SUBDIRS="$(PKG_BUILD_DIR)" \
+define Build/Compile/natcap
+	$(MAKE) $(KERNEL_MAKEOPTS) SUBDIRS="$(PKG_BUILD_DIR)"
+endef
+
+define Build/Compile/natcapd_client
+	+$(MAKE_VARS) $(MAKE) $(PKG_JOBS) -C $(PKG_BUILD_DIR)/natcapd natcapd_client $(MAKE_FLAGS)
+endef
+
+define Build/Compile/natcapd_server
+	+$(MAKE_VARS) $(MAKE) $(PKG_JOBS) -C $(PKG_BUILD_DIR)/natcapd natcapd_server $(MAKE_FLAGS)
+endef
 
 define Build/Compile
-	$(MAKE_KMOD) \
-		MODFLAGS="-DMODULE" \
-		modules
-	pwd
+	$(call Build/Compile/natcap)
+	$(call Build/Compile/natcapd_client)
+	$(call Build/Compile/natcapd_server)
 endef
 
 $(eval $(call KernelPackage,natcap))
 $(eval $(call BuildPackage,natcapd))
+$(eval $(call BuildPackage,natcapd_client))
+$(eval $(call BuildPackage,natcapd_server))
