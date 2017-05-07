@@ -203,7 +203,7 @@ natcapd_first_boot() {
 	mkdir /tmp/natcapd.lck/watcher.lck >/dev/null 2>&1 || return
 	local run=0
 	while :; do
-		ping -q -W3 -c1 114.114.114.114 >/dev/null 2>&1 || ping -q -W3 -c1 8.8.8.8 >/dev/null 2>&1|| {
+		ping -q -W3 -c1 114.114.114.114 >/dev/null 2>&1 || ping -q -W3 -c1 8.8.8.8 >/dev/null 2>&1 || {
 			# restart ping after 8 secs
 			sleep 8
 			continue
