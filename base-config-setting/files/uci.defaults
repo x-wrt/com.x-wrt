@@ -212,6 +212,7 @@ echo net.ipv6.conf.default.disable_ipv6=1 >>$SYSCTL_LOCAL
 echo net.ipv6.conf.lo.disable_ipv6=1 >>$SYSCTL_LOCAL
 
 echo net.core.default_qdisc=fq >>$SYSCTL_LOCAL
+echo net.ipv4.tcp_congestion_control=htcp >>$SYSCTL_LOCAL
 echo net.ipv4.tcp_congestion_control=bbr >>$SYSCTL_LOCAL
 
 cp /usr/share/base-config-setting/lib/network/switch.sh /lib/network/switch.sh && chmod 644 /lib/network/switch.sh
