@@ -9,7 +9,7 @@ find target/linux/ feeds/luci/ feeds/packages/ package/ -name Makefile -exec tou
 for cfg in $CFGS; do
 	cp feeds/ptpt52/rom/lede/$cfg .config
 	sed -i "s/CONFIG_VERSION_NUMBER=\".*\"/CONFIG_VERSION_NUMBER=\"$CONFIG_VERSION_NUMBER\"/" ./.config
-	make menuconfig && {
+	make menuconfig && make kernel_menuconfig && {
 		sh feeds/ptpt52/rom/lede/makemenuconfig_parse.sh
 		cp .config feeds/ptpt52/rom/lede/$cfg
 	}
