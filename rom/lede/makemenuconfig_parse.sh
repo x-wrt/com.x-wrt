@@ -114,6 +114,9 @@ for t in $targets; do
 	mods="$us"
 	case $t in
 		#>8M flash
+		TARGET_DEVICE_oxnas_DEVICE_pogoplug-pro|\
+		TARGET_DEVICE_oxnas_DEVICE_pogoplug-v3|\
+		TARGET_DEVICE_kirkwood_DEVICE_pogo_e02|\
 		TARGET_DEVICE_brcm47xx_mips74k_DEVICE_linksys-e3200-v1|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_zbt-we1326|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_zbt-wg2626|\
@@ -227,6 +230,9 @@ for t in $targets; do
 			mods="$mods $usb2 $usb3"
 		;;
 		#with usb2
+		TARGET_DEVICE_oxnas_DEVICE_pogoplug-pro|\
+		TARGET_DEVICE_oxnas_DEVICE_pogoplug-v3|\
+		TARGET_DEVICE_kirkwood_DEVICE_pogo_e02|\
 		TARGET_DEVICE_brcm47xx_mips74k_DEVICE_netgear-wndr3700-v3|\
 		TARGET_DEVICE_brcm47xx_mips74k_DEVICE_linksys-e3200-v1|\
 		TARGET_DEVICE_brcm47xx_generic_DEVICE_linksys-e3000-v1|\
