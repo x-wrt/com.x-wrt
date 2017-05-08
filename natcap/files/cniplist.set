@@ -1,4 +1,8 @@
 create cniplist hash:net family inet hashsize 2048 maxelem 65536
+add cniplist 169.254.0.0/16
+add cniplist 127.0.0.0/8
+add cniplist 192.168.0.0/16
+add cniplist 172.16.0.0/12
 add cniplist 103.236.244.0/22
 add cniplist 124.29.0.0/17
 add cniplist 103.32.232.0/22
