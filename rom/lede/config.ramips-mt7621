@@ -422,7 +422,7 @@ CONFIG_TARGET_INIT_SUPPRESS_STDERR=y
 CONFIG_VERSIONOPT=y
 CONFIG_VERSION_DIST="PTPT52"
 CONFIG_VERSION_NICK="fuckgfw"
-CONFIG_VERSION_NUMBER="3.0.0_build201705072324"
+CONFIG_VERSION_NUMBER="3.0.0_build201705130056"
 CONFIG_VERSION_CODE=""
 CONFIG_VERSION_REPO="http://downloads.openwrt.org/snapshots/trunk/%S/packages"
 CONFIG_VERSION_MANUFACTURER="PTPT52"
@@ -2260,6 +2260,7 @@ CONFIG_PACKAGE_lede-keyring=y
 # CONFIG_PACKAGE_libatomic is not set
 CONFIG_PACKAGE_libc=y
 CONFIG_PACKAGE_libgcc=y
+# CONFIG_PACKAGE_libgomp is not set
 CONFIG_PACKAGE_libpthread=y
 CONFIG_PACKAGE_librt=y
 CONFIG_PACKAGE_libstdcpp=m
@@ -3486,6 +3487,7 @@ CONFIG_OPENSSL_WITH_SRP=y
 # CONFIG_PACKAGE_libresample is not set
 # CONFIG_PACKAGE_libspandsp is not set
 # CONFIG_PACKAGE_libsrtp is not set
+# CONFIG_PACKAGE_libsrtp2 is not set
 
 #
 # database
@@ -3564,7 +3566,10 @@ CONFIG_PACKAGE_libcares=y
 # CONFIG_PACKAGE_libcurl is not set
 # CONFIG_PACKAGE_libdaemon is not set
 # CONFIG_PACKAGE_libdaq is not set
+# CONFIG_PACKAGE_libdb47 is not set
+# CONFIG_PACKAGE_libdb47xx is not set
 # CONFIG_PACKAGE_libdbi is not set
+# CONFIG_PACKAGE_libdbus is not set
 # CONFIG_PACKAGE_libdevmapper is not set
 # CONFIG_PACKAGE_libdmapsharing is not set
 # CONFIG_PACKAGE_libdnet is not set
@@ -3572,9 +3577,6 @@ CONFIG_PACKAGE_libcares=y
 # CONFIG_PACKAGE_libdrm is not set
 # CONFIG_PACKAGE_libedit is not set
 # CONFIG_PACKAGE_libelf1 is not set
-# CONFIG_PACKAGE_libdb47 is not set
-# CONFIG_PACKAGE_libdb47xx is not set
-# CONFIG_PACKAGE_libdbus is not set
 # CONFIG_PACKAGE_libecdsautil is not set
 # CONFIG_PACKAGE_libesmtp is not set
 # CONFIG_PACKAGE_libestr is not set
@@ -3592,8 +3594,16 @@ CONFIG_PACKAGE_libev=y
 # CONFIG_PACKAGE_libexpat is not set
 # CONFIG_PACKAGE_libexslt is not set
 # CONFIG_PACKAGE_libextractor is not set
+# CONFIG_PACKAGE_libf2fs is not set
+# CONFIG_PACKAGE_libfaad2 is not set
 # CONFIG_PACKAGE_libfastjson is not set
+# CONFIG_PACKAGE_libfdt is not set
 # CONFIG_PACKAGE_libffi is not set
+# CONFIG_PACKAGE_libffmpeg-audio-dec is not set
+# CONFIG_PACKAGE_libffmpeg-custom is not set
+# CONFIG_PACKAGE_libffmpeg-full is not set
+# CONFIG_PACKAGE_libffmpeg-mini is not set
+# CONFIG_PACKAGE_libflac is not set
 # CONFIG_PACKAGE_libfreetype is not set
 # CONFIG_PACKAGE_libftdi is not set
 # CONFIG_PACKAGE_libftdi1 is not set
@@ -3602,15 +3612,7 @@ CONFIG_PACKAGE_libev=y
 # CONFIG_PACKAGE_libgdbm is not set
 # CONFIG_PACKAGE_libgee is not set
 # CONFIG_PACKAGE_libglpk is not set
-# CONFIG_PACKAGE_libf2fs is not set
-# CONFIG_PACKAGE_libfaad2 is not set
 # CONFIG_PACKAGE_libfdisk is not set
-# CONFIG_PACKAGE_libfdt is not set
-# CONFIG_PACKAGE_libffmpeg-audio-dec is not set
-# CONFIG_PACKAGE_libffmpeg-custom is not set
-# CONFIG_PACKAGE_libffmpeg-full is not set
-# CONFIG_PACKAGE_libffmpeg-mini is not set
-# CONFIG_PACKAGE_libflac is not set
 CONFIG_PACKAGE_libgmp=y
 # CONFIG_PACKAGE_libgnurl is not set
 # CONFIG_PACKAGE_libgpg-error is not set
@@ -3661,6 +3663,7 @@ CONFIG_PACKAGE_libmosquitto-ssl=y
 CONFIG_PACKAGE_libncurses=y
 # CONFIG_PACKAGE_libneon is not set
 # CONFIG_PACKAGE_libnet-1.2.x is not set
+# CONFIG_PACKAGE_libnetconf2 is not set
 # CONFIG_PACKAGE_libnetfilter-acct is not set
 CONFIG_PACKAGE_libnetfilter-conntrack=y
 # CONFIG_PACKAGE_libnetfilter-cthelper is not set
@@ -3748,6 +3751,7 @@ CONFIG_LIBSODIUM_MINIMAL=y
 # CONFIG_PACKAGE_libsoxr is not set
 # CONFIG_PACKAGE_libspeex is not set
 # CONFIG_PACKAGE_libspeexdsp is not set
+# CONFIG_PACKAGE_libssh is not set
 CONFIG_PACKAGE_libssh2=m
 # CONFIG_PACKAGE_libstoken is not set
 # CONFIG_PACKAGE_libstrophe is not set
@@ -3796,6 +3800,7 @@ CONFIG_PACKAGE_libuuid=y
 # CONFIG_PACKAGE_libxerces-c-samples is not set
 CONFIG_PACKAGE_libxml2=m
 # CONFIG_PACKAGE_libxslt is not set
+# CONFIG_PACKAGE_libyang is not set
 # CONFIG_PACKAGE_libzdb is not set
 # CONFIG_PACKAGE_libzmq-curve is not set
 # CONFIG_PACKAGE_libzmq-nc is not set
@@ -4475,7 +4480,6 @@ CONFIG_PACKAGE_libudns=y
 #
 # CONFIG_PACKAGE_bitlbee is not set
 # CONFIG_PACKAGE_irssi is not set
-# CONFIG_PACKAGE_irssi-nossl is not set
 # CONFIG_PACKAGE_ngircd is not set
 # CONFIG_PACKAGE_ngircd-nossl is not set
 # CONFIG_PACKAGE_prosody is not set
@@ -5371,6 +5375,7 @@ CONFIG_PACKAGE_natcapd_client=y
 # CONFIG_PACKAGE_irqbalance is not set
 # CONFIG_PACKAGE_iwcap is not set
 CONFIG_PACKAGE_iwinfo=y
+# CONFIG_PACKAGE_jq is not set
 CONFIG_PACKAGE_jshn=y
 # CONFIG_PACKAGE_kexec-tools is not set
 # CONFIG_PACKAGE_kmod is not set
@@ -5384,6 +5389,7 @@ CONFIG_PACKAGE_jshn=y
 # CONFIG_PACKAGE_libimobiledevice-utils is not set
 CONFIG_PACKAGE_libjson-script=y
 # CONFIG_PACKAGE_libplist-utils is not set
+# CONFIG_PACKAGE_libsysrepo is not set
 # CONFIG_PACKAGE_libusbmuxd-utils is not set
 # CONFIG_PACKAGE_lm-sensors is not set
 # CONFIG_PACKAGE_lm-sensors-detect is not set
@@ -5406,6 +5412,9 @@ CONFIG_PACKAGE_lsof=y
 # CONFIG_PACKAGE_mt-st is not set
 # CONFIG_PACKAGE_namei is not set
 CONFIG_PACKAGE_nand-utils=y
+# CONFIG_PACKAGE_netopeer2-cli is not set
+# CONFIG_PACKAGE_netopeer2-keystored is not set
+# CONFIG_PACKAGE_netopeer2-server is not set
 # CONFIG_PACKAGE_oath-toolkit is not set
 # CONFIG_PACKAGE_open-plc-utils is not set
 # CONFIG_PACKAGE_open2300 is not set
@@ -5443,6 +5452,7 @@ CONFIG_PACKAGE_procps-ng-ps=y
 # CONFIG_PACKAGE_procps-ng-w is not set
 # CONFIG_PACKAGE_procps-ng-watch is not set
 # CONFIG_PACKAGE_progress is not set
+# CONFIG_PACKAGE_prometheus-node-exporter-lua is not set
 # CONFIG_PACKAGE_pv is not set
 # CONFIG_PACKAGE_qrencode is not set
 # CONFIG_PACKAGE_relayctl is not set
@@ -5466,6 +5476,10 @@ CONFIG_PACKAGE_procps-ng-ps=y
 # CONFIG_PACKAGE_strace_libunwind is not set
 # CONFIG_PACKAGE_stress is not set
 # CONFIG_PACKAGE_sumo is not set
+# CONFIG_PACKAGE_sysrepo-plugind is not set
+# CONFIG_PACKAGE_sysrepocfg is not set
+# CONFIG_PACKAGE_sysrepoctl is not set
+# CONFIG_PACKAGE_sysrepod is not set
 # CONFIG_PACKAGE_sysstat is not set
 # CONFIG_PACKAGE_tar is not set
 # CONFIG_PACKAGE_taskwarrior is not set
@@ -5488,6 +5502,7 @@ CONFIG_PACKAGE_ubi-utils=y
 # CONFIG_PACKAGE_wifitoggle is not set
 # CONFIG_PACKAGE_xsltproc is not set
 # CONFIG_PACKAGE_xxd is not set
+# CONFIG_PACKAGE_yanglint is not set
 # CONFIG_PACKAGE_yunbridge is not set
 
 #
