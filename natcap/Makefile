@@ -49,7 +49,7 @@ endef
 define Package/natcapd/Default
   CATEGORY:=Ptpt52
   SUBMENU:=Natcap Support
-  DEPENDS:= +kmod-natcap +mosquitto-client +natcapd_client
+  DEPENDS:= +kmod-natcap +mosquitto-client-ssl +natcapd_client
 endef
 
 define Package/natcapd
