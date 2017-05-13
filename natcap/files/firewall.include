@@ -8,6 +8,9 @@ enabled="`uci get natcapd.default.enabled 2>/dev/null`"
 iptables -t nat -C PREROUTING -p udp --dport 53 -j REDIRECT --to-ports 53 2>/dev/null || \
 iptables -t nat -I PREROUTING -p udp --dport 53 -j REDIRECT --to-ports 53
 
+iptables -t nat -C PREROUTING -p tcp --dport 53 -j REDIRECT --to-ports 53 2>/dev/null || \
+iptables -t nat -I PREROUTING -p tcp --dport 53 -j REDIRECT --to-ports 53
+
 iptables -C FORWARD -m mark --mark 0x99 -j ACCEPT 2>/dev/null || \
 iptables -I FORWARD -m mark --mark 0x99 -j ACCEPT
 
