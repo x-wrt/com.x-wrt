@@ -10,7 +10,7 @@ include $(INCLUDE_DIR)/kernel.mk
 
 PKG_NAME:=natcap
 PKG_VERSION:=5.0.0
-PKG_RELEASE:=76c7443f668f90557cafa65b31b25b6624f87808
+PKG_RELEASE:=8124f7403337d23ae0158eb63740efc25a582b31
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION)-$(PKG_RELEASE).tar.xz
 PKG_SOURCE_URL:=https://github.com/ptpt52/natcap.git
@@ -22,34 +22,34 @@ PKG_LICENSE:=GPL-2.0
 
 include $(INCLUDE_DIR)/package.mk
 
-define Package/natcapd_client
+define Package/natcapd-client
   CATEGORY:=Ptpt52
   SUBMENU:=Natcap Support
   DEPENDS:= +libev +libc
   TITLE:=Natcapd_client agent for natcap
 endef
 
-define Package/natcapd_server
+define Package/natcapd-server
   CATEGORY:=Ptpt52
   SUBMENU:=Natcap Support
   DEPENDS:= +libev +libc
   TITLE:=Natcapd_server agent for natcap
 endef
 
-define Package/natcapd_client/install
+define Package/natcapd-client/install
 	$(INSTALL_DIR) $(1)/usr/sbin
-	$(INSTALL_BIN) $(PKG_BUILD_DIR)/natcapd/natcapd_client $(1)/usr/sbin/natcapd_client
+	$(INSTALL_BIN) $(PKG_BUILD_DIR)/natcapd/natcapd-client $(1)/usr/sbin/natcapd-client
 endef
 
-define Package/natcapd_server/install
+define Package/natcapd-server/install
 	$(INSTALL_DIR) $(1)/usr/sbin
-	$(INSTALL_BIN) $(PKG_BUILD_DIR)/natcapd/natcapd_server $(1)/usr/sbin/natcapd_server
+	$(INSTALL_BIN) $(PKG_BUILD_DIR)/natcapd/natcapd-server $(1)/usr/sbin/natcapd-server
 endef
 
 define Package/natcapd/Default
   CATEGORY:=Ptpt52
   SUBMENU:=Natcap Support
-  DEPENDS:= +kmod-natcap +mosquitto-client-ssl +natcapd_client
+  DEPENDS:= +kmod-natcap +mosquitto-client-ssl +natcapd-client
 endef
 
 define Package/natcapd
@@ -120,21 +120,21 @@ define Build/Compile/natcap
 	$(MAKE) $(KERNEL_MAKEOPTS) SUBDIRS="$(PKG_BUILD_DIR)"
 endef
 
-define Build/Compile/natcapd_client
-	+$(MAKE_VARS) $(MAKE) $(PKG_JOBS) -C $(PKG_BUILD_DIR)/natcapd natcapd_client $(MAKE_FLAGS)
+define Build/Compile/natcapd-client
+	+$(MAKE_VARS) $(MAKE) $(PKG_JOBS) -C $(PKG_BUILD_DIR)/natcapd natcapd-client $(MAKE_FLAGS)
 endef
 
-define Build/Compile/natcapd_server
-	+$(MAKE_VARS) $(MAKE) $(PKG_JOBS) -C $(PKG_BUILD_DIR)/natcapd natcapd_server $(MAKE_FLAGS)
+define Build/Compile/natcapd-server
+	+$(MAKE_VARS) $(MAKE) $(PKG_JOBS) -C $(PKG_BUILD_DIR)/natcapd natcapd-server $(MAKE_FLAGS)
 endef
 
 define Build/Compile
 	$(call Build/Compile/natcap)
-	$(call Build/Compile/natcapd_client)
-	$(call Build/Compile/natcapd_server)
+	$(call Build/Compile/natcapd-client)
+	$(call Build/Compile/natcapd-server)
 endef
 
 $(eval $(call KernelPackage,natcap))
 $(eval $(call BuildPackage,natcapd))
-$(eval $(call BuildPackage,natcapd_client))
-$(eval $(call BuildPackage,natcapd_server))
+$(eval $(call BuildPackage,natcapd-client))
+$(eval $(call BuildPackage,natcapd-server))
