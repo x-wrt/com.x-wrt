@@ -59,7 +59,8 @@ CONFIG_TARGET_MULTI_PROFILE=y
 # CONFIG_TARGET_mvebu_DEVICE_armada-xp-db is not set
 # CONFIG_TARGET_mvebu_DEVICE_armada-xp-gp is not set
 # CONFIG_TARGET_mvebu_DEVICE_armada-388-rd is not set
-# CONFIG_TARGET_mvebu_DEVICE_armada-388-clearfog is not set
+# CONFIG_TARGET_mvebu_DEVICE_armada-388-clearfog-pro is not set
+# CONFIG_TARGET_mvebu_DEVICE_armada-388-clearfog-base is not set
 # CONFIG_TARGET_mvebu_DEVICE_globalscale-mirabox is not set
 
 #
@@ -85,7 +86,8 @@ CONFIG_TARGET_DEVICE_PACKAGES_mvebu_DEVICE_linksys-wrt3200acm="aria2 blockd bloc
 # CONFIG_TARGET_DEVICE_mvebu_DEVICE_armada-xp-db is not set
 # CONFIG_TARGET_DEVICE_mvebu_DEVICE_armada-xp-gp is not set
 # CONFIG_TARGET_DEVICE_mvebu_DEVICE_openblocks-ax3-4 is not set
-# CONFIG_TARGET_DEVICE_mvebu_DEVICE_armada-388-clearfog is not set
+# CONFIG_TARGET_DEVICE_mvebu_DEVICE_armada-388-clearfog-base is not set
+# CONFIG_TARGET_DEVICE_mvebu_DEVICE_armada-388-clearfog-pro is not set
 CONFIG_HAS_DEVICES=y
 CONFIG_TARGET_BOARD="mvebu"
 CONFIG_TARGET_SUBTARGET="generic"
