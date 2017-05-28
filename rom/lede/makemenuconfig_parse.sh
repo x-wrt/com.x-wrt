@@ -114,6 +114,7 @@ for t in $targets; do
 	mods="$us"
 	case $t in
 		#>8M flash
+		TARGET_DEVICE_brcm47xx_mips74k_DEVICE_asus-rt-n16|\
 		TARGET_DEVICE_oxnas_DEVICE_pogoplug-pro|\
 		TARGET_DEVICE_oxnas_DEVICE_pogoplug-v3|\
 		TARGET_DEVICE_kirkwood_DEVICE_pogo_e02|\
@@ -230,6 +231,7 @@ for t in $targets; do
 			mods="$mods $usb2 $usb3"
 		;;
 		#with usb2
+		TARGET_DEVICE_brcm47xx_mips74k_DEVICE_asus-rt-n16|\
 		TARGET_DEVICE_oxnas_DEVICE_pogoplug-pro|\
 		TARGET_DEVICE_oxnas_DEVICE_pogoplug-v3|\
 		TARGET_DEVICE_kirkwood_DEVICE_pogo_e02|\
