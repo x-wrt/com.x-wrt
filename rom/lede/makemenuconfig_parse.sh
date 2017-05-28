@@ -114,6 +114,7 @@ for t in $targets; do
 	mods="$us"
 	case $t in
 		#>8M flash
+		TARGET_DEVICE_ar71xx_generic_DEVICE_gl-inet-6416A-v1|\
 		TARGET_DEVICE_brcm47xx_mips74k_DEVICE_asus-rt-n16|\
 		TARGET_DEVICE_oxnas_DEVICE_pogoplug-pro|\
 		TARGET_DEVICE_oxnas_DEVICE_pogoplug-v3|\
@@ -169,6 +170,7 @@ for t in $targets; do
 			mods="$mods $moreapps"
 		;;
 		#<=8M flash
+		TARGET_DEVICE_ar71xx_generic_DEVICE_gl-inet-6408A-v1|\
 		TARGET_DEVICE_brcm47xx_generic_DEVICE_linksys-e3000-v1|\
 		TARGET_DEVICE_brcm47xx_mips74k_DEVICE_netgear-wndr3700-v3|\
 		TARGET_DEVICE_ar71xx_generic_DEVICE_AP143_8M|\
@@ -231,6 +233,8 @@ for t in $targets; do
 			mods="$mods $usb2 $usb3"
 		;;
 		#with usb2
+		TARGET_DEVICE_ar71xx_generic_DEVICE_gl-inet-6416A-v1|\
+		TARGET_DEVICE_ar71xx_generic_DEVICE_gl-inet-6408A-v1|\
 		TARGET_DEVICE_brcm47xx_mips74k_DEVICE_asus-rt-n16|\
 		TARGET_DEVICE_oxnas_DEVICE_pogoplug-pro|\
 		TARGET_DEVICE_oxnas_DEVICE_pogoplug-v3|\
