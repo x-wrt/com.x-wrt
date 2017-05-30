@@ -3,18 +3,23 @@
 PID=$$
 DEV=/dev/natcap_ctl
 
-[ x$1 = xstop ] && {
+natcapd_stop()
+{
 	echo stop
 	echo clean >>$DEV
 	echo disabled=1 >>$DEV
 	test -f /tmp/natcapd.firewall.sh && sh /tmp/natcapd.firewall.sh >/dev/null 2>&1
 	rm -f /tmp/natcapd.firewall.sh
-	rm -f /tmp/dnsmasq.d/accelerated-domains.gfwlist.dnsmasq.conf
-	rm -f /tmp/dnsmasq.d/custom-domains.gfwlist.dnsmasq.conf
-	/etc/init.d/dnsmasq restart
+	test -f /tmp/dnsmasq.d/accelerated-domains.gfwlist.dnsmasq.conf && {
+		rm -f /tmp/dnsmasq.d/accelerated-domains.gfwlist.dnsmasq.conf
+		rm -f /tmp/dnsmasq.d/custom-domains.gfwlist.dnsmasq.conf
+		/etc/init.d/dnsmasq restart
+	}
 	rm -f /tmp/natcapd.running
-	exit 0
+	return 0
 }
+
+[ x$1 = xstop ] && natcapd_stop && exit 0
 
 [ x$1 = xstart ] || {
 	echo "usage: $0 start|stop"
@@ -47,6 +52,7 @@ add_gfwlist_domain () {
 }
 
 enabled="`uci get natcapd.default.enabled 2>/dev/null`"
+[ "x$enabled" = "x0" ] && natcapd_stop
 [ "x$enabled" = "x1" ] && test -c $DEV && {
 	echo disabled=0 >>$DEV
 	touch /tmp/natcapd.running
