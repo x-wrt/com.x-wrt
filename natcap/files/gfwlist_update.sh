@@ -1,7 +1,7 @@
 #!/bin/sh
 
-[ x`uci get natcapd.default.enable_hosts 2>/dev/null` = x1 ] || {
-	[ x`readlink /etc/hosts` = "x/usr/share/natcapd/hosts" ] || ln -sf /usr/share/natcapd/hosts /etc/hosts
+[ x`uci get natcapd.default.enable_hosts 2>/dev/null` = x0 ] && {
+	test -f /tmp/dnsmasq.d/gfwhosts.conf && rm -f /tmp/dnsmasq.d/gfwhosts.conf && /etc/init.d/dnsmasq restart
 }
 
 EX_DOMAIN="google.com \
@@ -31,24 +31,21 @@ EX_DOMAIN="google.com \
 		echo ipset=/$line/gfwlist >>/tmp/accelerated-domains.gfwlist.dnsmasq.$$.conf
 	done
 	rm -f /tmp/gfwlist.$$.txt
-	mkdir -p /tmp/dnsmasq.d && mv /tmp/accelerated-domains.gfwlist.dnsmasq.$$.conf /tmp/dnsmasq.d/accelerated-domains.gfwlist.dnsmasq.conf && /etc/init.d/dnsmasq restart
+	mkdir -p /tmp/dnsmasq.d && mv /tmp/accelerated-domains.gfwlist.dnsmasq.$$.conf /tmp/dnsmasq.d/accelerated-domains.gfwlist.dnsmasq.conf
 
 	[ x`uci get natcapd.default.enable_hosts 2>/dev/null` = x1 ] && {
-		/usr/bin/wget --timeout=60 --no-check-certificate -qO /tmp/gfwhosts.$$.txt "https://raw.githubusercontent.com/ptpt52/hosts/master/hosts_ok?t=`date '+%s'`" && {
+		/usr/bin/wget --timeout=60 --no-check-certificate -qO /tmp/gfwhosts.$$.txt "https://raw.githubusercontent.com/racaljk/hosts/master/dnsmasq.conf?t=`date '+%s'`" && {
 			ipset flush gfwhosts
-			mv /tmp/gfwhosts.$$.txt /tmp/natcapd.hosts
-			for _ip in `cat /tmp/natcapd.hosts | grep ^[0-9].*. | grep -v localhost | awk '{print $1}' | sort | uniq`; do
+			cat /tmp/gfwhosts.$$.txt | grep -v loopback | grep -v localhost >/tmp/dnsmasq.d/gfwhosts.conf
+			for _ip in `cat /tmp/dnsmasq.d/gfwhosts.conf | grep ^address | grep -o '\([0-9]\{1,3\}\)\.\([0-9]\{1,3\}\)\.\([0-9]\{1,3\}\)\.\([0-9]\{1,3\}\)' | sort | uniq`; do
 				ipset add gfwhosts $_ip 2>/dev/null
 			done
-			/etc/init.d/dnsmasq restart
 			touch /tmp/natcapd.lck/gfwhosts
-		}
-		[ x`readlink /etc/hosts` = "x/tmp/natcapd.hosts" ] || {
-			test -f /tmp/natcapd.hosts && ln -sf /tmp/natcapd.hosts /etc/hosts
 		}
 		rm -f /tmp/gfwhosts.$$.txt
 	}
 	touch /tmp/natcapd.lck/gfwlist
+	/etc/init.d/dnsmasq restart
 	exit 0
 }
 rm -f /tmp/gfwlist.$$.txt
