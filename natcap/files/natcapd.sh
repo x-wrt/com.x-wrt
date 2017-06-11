@@ -81,7 +81,10 @@ enabled="`uci get natcapd.default.enabled 2>/dev/null`"
 	ipset -n list gfwhosts >/dev/null 2>&1 || ipset -! create gfwhosts iphash
 	ipset -n list knocklist >/dev/null 2>&1 || ipset -! create knocklist iphash
 	ipset -n list bypasslist >/dev/null 2>&1 || ipset -! create bypasslist iphash
-	ipset -n list cniplist >/dev/null 2>&1 || ipset restore -f /usr/share/natcapd/cniplist.set
+	ipset -n list cniplist >/dev/null 2>&1 || {
+		ipset -! create cniplist hash:net
+		cat /usr/share/natcapd/cniplist.set | while read line; do ipset add cniplist $line; done
+	}
 
 	echo u_hash=$uhash >>$DEV
 	echo debug=$debug >>$DEV
