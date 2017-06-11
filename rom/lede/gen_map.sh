@@ -23,6 +23,9 @@ for t in $targets; do
 			bin=`echo "$bins" | grep -i "\($name-s\|$name-f\|$name-u\)"`
 			test -n "$bin" || {
 				bin=$(echo "$bins" | grep -i "`echo $name | head -c5`" | grep $arch)
+				test -n "$bin" || {
+					bin=$(echo "$bins" | grep -i "`echo $name | head -c3`" | grep $arch)
+				}
 			}
 		}
 		echo "`echo $dis`:"
