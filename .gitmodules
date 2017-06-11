@@ -1,0 +1,6 @@
+[submodule "luci-app-shadowsocks"]
+	path = luci-app-shadowsocks
+	url = https://github.com/ptpt52/luci-app-shadowsocks.git
+[submodule "openwrt-shadowsocks"]
+	path = openwrt-shadowsocks
+	url = https://github.com/ptpt52/openwrt-shadowsocks.git
