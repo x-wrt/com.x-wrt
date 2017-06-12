@@ -50,6 +50,8 @@ CONFIG_TARGET_ar71xx_generic=y
 # CONFIG_TARGET_ar71xx_mikrotik is not set
 CONFIG_TARGET_MULTI_PROFILE=y
 # CONFIG_TARGET_ar71xx_generic_Default is not set
+# CONFIG_TARGET_ar71xx_generic_DEVICE_carambola2 is not set
+# CONFIG_TARGET_ar71xx_generic_DEVICE_lima is not set
 # CONFIG_TARGET_ar71xx_generic_DEVICE_ALFAAP120C is not set
 # CONFIG_TARGET_ar71xx_generic_DEVICE_ALFAAP96 is not set
 # CONFIG_TARGET_ar71xx_generic_DEVICE_HORNETUB is not set
@@ -99,7 +101,6 @@ CONFIG_TARGET_MULTI_PROFILE=y
 # CONFIG_TARGET_ar71xx_generic_DEVICE_cf-e380ac-v2 is not set
 # CONFIG_TARGET_ar71xx_generic_DEVICE_cf-e520n is not set
 # CONFIG_TARGET_ar71xx_generic_DEVICE_cf-e530n is not set
-# CONFIG_TARGET_ar71xx_generic_DEVICE_carambola2 is not set
 # CONFIG_TARGET_ar71xx_generic_DEVICE_WP543_16M is not set
 # CONFIG_TARGET_ar71xx_generic_DEVICE_WP543_4M is not set
 # CONFIG_TARGET_ar71xx_generic_DEVICE_WP543_8M is not set
@@ -140,17 +141,16 @@ CONFIG_TARGET_MULTI_PROFILE=y
 # CONFIG_TARGET_ar71xx_generic_DEVICE_ESR1750 is not set
 # CONFIG_TARGET_ar71xx_generic_DEVICE_ESR900 is not set
 # CONFIG_TARGET_ar71xx_generic_DEVICE_FR54RTR is not set
+# CONFIG_TARGET_ar71xx_generic_DEVICE_gl-inet-6408A-v1 is not set
+# CONFIG_TARGET_ar71xx_generic_DEVICE_gl-inet-6416A-v1 is not set
+# CONFIG_TARGET_ar71xx_generic_DEVICE_gl-domino is not set
 # CONFIG_TARGET_ar71xx_generic_DEVICE_gl-ar150 is not set
 # CONFIG_TARGET_ar71xx_generic_DEVICE_gl-ar300 is not set
 # CONFIG_TARGET_ar71xx_generic_DEVICE_gl-ar300m is not set
-# CONFIG_TARGET_ar71xx_generic_DEVICE_gl-domino is not set
 # CONFIG_TARGET_ar71xx_generic_DEVICE_gl-mifi is not set
-# CONFIG_TARGET_ar71xx_generic_DEVICE_gl-inet-6408A-v1 is not set
-# CONFIG_TARGET_ar71xx_generic_DEVICE_gl-inet-6416A-v1 is not set
 # CONFIG_TARGET_ar71xx_generic_DEVICE_minibox-v1 is not set
 # CONFIG_TARGET_ar71xx_generic_DEVICE_oolite is not set
 # CONFIG_TARGET_ar71xx_generic_DEVICE_hiwifi-hc6361 is not set
-# CONFIG_TARGET_ar71xx_generic_DEVICE_lima is not set
 # CONFIG_TARGET_ar71xx_generic_DEVICE_WRT160NL is not set
 # CONFIG_TARGET_ar71xx_generic_DEVICE_WRT400N is not set
 # CONFIG_TARGET_ar71xx_generic_DEVICE_mr12 is not set
@@ -208,6 +208,7 @@ CONFIG_TARGET_MULTI_PROFILE=y
 # CONFIG_TARGET_ar71xx_generic_DEVICE_EAP7660D is not set
 # CONFIG_TARGET_ar71xx_generic_DEVICE_WLR8100 is not set
 # CONFIG_TARGET_ar71xx_generic_DEVICE_bsb is not set
+# CONFIG_TARGET_ar71xx_generic_DEVICE_archer-c25-v1 is not set
 # CONFIG_TARGET_ar71xx_generic_DEVICE_archer-c5-v1 is not set
 # CONFIG_TARGET_ar71xx_generic_DEVICE_archer-c59-v1 is not set
 # CONFIG_TARGET_ar71xx_generic_DEVICE_archer-c60-v1 is not set
@@ -308,6 +309,7 @@ CONFIG_TARGET_MULTI_PROFILE=y
 # CONFIG_TARGET_ar71xx_generic_DEVICE_tl-wr941nd-v5 is not set
 # CONFIG_TARGET_ar71xx_generic_DEVICE_tl-wr941nd-v6 is not set
 # CONFIG_TARGET_ar71xx_generic_DEVICE_tl-wr941nd-v6-cn is not set
+# CONFIG_TARGET_ar71xx_generic_DEVICE_tl-wr942n-v1 is not set
 # CONFIG_TARGET_ar71xx_generic_DEVICE_wbs210-v1 is not set
 # CONFIG_TARGET_ar71xx_generic_DEVICE_wbs510-v1 is not set
 # CONFIG_TARGET_ar71xx_generic_DEVICE_TEW632BRP is not set
@@ -340,7 +342,7 @@ CONFIG_TARGET_MULTI_PROFILE=y
 # CONFIG_TARGET_ar71xx_generic_DEVICE_ubnt-unifi-outdoor is not set
 # CONFIG_TARGET_ar71xx_generic_DEVICE_ubnt-unifi-outdoor-plus is not set
 # CONFIG_TARGET_ar71xx_generic_DEVICE_ubdev01 is not set
-# CONFIG_TARGET_ar71xx_generic_DEVICE_WRTNODE2Q is not set
+# CONFIG_TARGET_ar71xx_generic_DEVICE_wrtnode2q is not set
 # CONFIG_TARGET_ar71xx_generic_DEVICE_dr344 is not set
 # CONFIG_TARGET_ar71xx_generic_DEVICE_dr531 is not set
 # CONFIG_TARGET_ar71xx_generic_DEVICE_weio is not set
@@ -370,6 +372,8 @@ CONFIG_TARGET_MULTI_PROFILE=y
 #
 # CONFIG_TARGET_ALL_PROFILES is not set
 CONFIG_TARGET_PER_DEVICE_ROOTFS=y
+# CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_carambola2 is not set
+# CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_lima is not set
 # CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_sc1750 is not set
 # CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_sc300m is not set
 # CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_sc450 is not set
@@ -413,7 +417,6 @@ CONFIG_TARGET_PER_DEVICE_ROOTFS=y
 # CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_WZRHPG300NH is not set
 # CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_WZRHPG300NH2 is not set
 # CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_WZRHPG450H is not set
-# CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_carambola2 is not set
 # CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_cf-e316n-v2 is not set
 # CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_cf-e320n-v2 is not set
 # CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_cf-e380ac-v1 is not set
@@ -466,22 +469,21 @@ CONFIG_TARGET_DEVICE_PACKAGES_ar71xx_generic_DEVICE_DGL5500A1="aria2 ath10k-firm
 # CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_FR54RTR is not set
 # CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_minibox-v1 is not set
 # CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_oolite is not set
-# CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_gl-ar150 is not set
-# CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_gl-ar300 is not set
-# CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_gl-ar300m is not set
-# CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_gl-domino is not set
-# CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_gl-mifi is not set
 CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_gl-inet-6408A-v1=y
 CONFIG_TARGET_DEVICE_PACKAGES_ar71xx_generic_DEVICE_gl-inet-6408A-v1="blockd block-mount kmod-crypto-crc32c kmod-fs-autofs4 kmod-fs-exfat kmod-fs-ext4 kmod-fs-msdos kmod-fs-ntfs kmod-fs-vfat kmod-lib-crc16 kmod-nls-cp437 kmod-scsi-core kmod-usb2 kmod-usb-core kmod-usb-ehci kmod-usb-storage"
 CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_gl-inet-6416A-v1=y
 CONFIG_TARGET_DEVICE_PACKAGES_ar71xx_generic_DEVICE_gl-inet-6416A-v1="aria2 blockd block-mount kmod-crypto-crc32c kmod-fs-autofs4 kmod-fs-exfat kmod-fs-ext4 kmod-fs-msdos kmod-fs-ntfs kmod-fs-vfat kmod-lib-crc16 kmod-nls-cp437 kmod-scsi-core kmod-usb2 kmod-usb-core kmod-usb-ehci kmod-usb-storage libsqlite3 libssh2 libstdcpp libxml2 luci-app-aria2 luci-app-samba luci-i18n-aria2-zh-cn luci-i18n-samba-en luci-i18n-samba-zh-cn samba36-server webui-aria2"
+# CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_gl-domino is not set
+# CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_gl-ar150 is not set
+# CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_gl-ar300 is not set
+# CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_gl-ar300m is not set
+# CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_gl-mifi is not set
 CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_hiwifi-hc6361=y
 CONFIG_TARGET_DEVICE_PACKAGES_ar71xx_generic_DEVICE_hiwifi-hc6361="aria2 blockd block-mount e2fsprogs kmod-crypto-crc32c kmod-fs-autofs4 kmod-fs-exfat kmod-fs-ext4 kmod-fs-msdos kmod-fs-ntfs kmod-fs-vfat kmod-lib-crc16 kmod-nls-cp437 kmod-nls-iso8859-1 kmod-scsi-core kmod-usb2 kmod-usb-core kmod-usb-ehci kmod-usb-storage libext2fs libsqlite3 libssh2 libstdcpp libxml2 luci-app-aria2 luci-app-samba luci-i18n-aria2-zh-cn luci-i18n-samba-en luci-i18n-samba-zh-cn samba36-server webui-aria2"
 # CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_JA76PF is not set
 # CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_JA76PF2 is not set
 # CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_JWAP003 is not set
 # CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_jwap230 is not set
-# CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_lima is not set
 # CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_WRT160NL is not set
 # CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_WRT400N is not set
 # CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_mr12 is not set
@@ -552,6 +554,7 @@ CONFIG_TARGET_DEVICE_PACKAGES_ar71xx_generic_DEVICE_AP152_16M="aria2 blockd bloc
 # CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_WLR8100 is not set
 # CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_bsb is not set
 # CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_tellstick-znet-lite is not set
+# CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_archer-c25-v1 is not set
 # CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_archer-c5-v1 is not set
 # CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_archer-c59-v1 is not set
 # CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_archer-c60-v1 is not set
@@ -659,6 +662,7 @@ CONFIG_TARGET_DEVICE_PACKAGES_ar71xx_generic_DEVICE_tl-wdr6500-v2="ath10k-firmwa
 # CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_tl-wr941nd-v5 is not set
 # CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_tl-wr941nd-v6 is not set
 # CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_tl-wr941nd-v6-cn is not set
+# CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_tl-wr942n-v1 is not set
 # CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_wbs210-v1 is not set
 # CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_wbs510-v1 is not set
 # CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_TEW632BRP is not set
@@ -696,7 +700,7 @@ CONFIG_TARGET_DEVICE_PACKAGES_ar71xx_generic_DEVICE_tl-wdr6500-v2="ath10k-firmwa
 # CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_mynet-n600 is not set
 # CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_mynet-n750 is not set
 # CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_MYNETREXT is not set
-# CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_WRTNODE2Q is not set
+# CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_wrtnode2q is not set
 # CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_ap90q is not set
 # CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_cpe830 is not set
 # CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_cpe870 is not set
@@ -1016,7 +1020,7 @@ CONFIG_TARGET_INIT_SUPPRESS_STDERR=y
 CONFIG_VERSIONOPT=y
 CONFIG_VERSION_DIST="PTPT52"
 CONFIG_VERSION_NICK="fuckgfw"
-CONFIG_VERSION_NUMBER="3.0.0_build201706111423"
+CONFIG_VERSION_NUMBER="3.0.0_build201706130727"
 CONFIG_VERSION_CODE=""
 CONFIG_VERSION_REPO="http://downloads.openwrt.org/snapshots/trunk/%S/packages"
 CONFIG_VERSION_MANUFACTURER="PTPT52"
