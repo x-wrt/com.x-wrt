@@ -10,7 +10,7 @@ include $(INCLUDE_DIR)/kernel.mk
 
 PKG_NAME:=natcap
 PKG_VERSION:=5.0.0
-PKG_RELEASE:=64df5570757b7b6d408e2db13004501b02d256d7
+PKG_RELEASE:=fca68b23537576aed37222afca4bf6a3e89e96ab
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION)-$(PKG_RELEASE).tar.xz
 PKG_SOURCE_URL:=https://github.com/ptpt52/natcap.git
@@ -49,7 +49,7 @@ endef
 define Package/natcapd/Default
   CATEGORY:=Ptpt52
   SUBMENU:=Natcap Support
-  DEPENDS:= +kmod-natcap +mosquitto-client-ssl +natcapd-client
+  DEPENDS:= +kmod-natcap +natcapd-client
 endef
 
 define Package/natcapd

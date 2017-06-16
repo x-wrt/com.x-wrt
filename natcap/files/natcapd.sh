@@ -64,6 +64,7 @@ enabled="`uci get natcapd.default.enabled 2>/dev/null`"
 	client_mac=`cat $DEV | grep default_mac_addr | grep -o "[0-9A-F][0-9A-F]:[0-9A-F][0-9A-F]:[0-9A-F][0-9A-F]:[0-9A-F][0-9A-F]:[0-9A-F][0-9A-F]:[0-9A-F][0-9A-F]"`
 	uhash=`echo -n $client_mac$account | cksum | awk '{print $1}'`
 	servers=`uci get natcapd.default.server 2>/dev/null`
+	dns_server=`uci get natcapd.default.dns_server 2>/dev/null`
 	udproxylist=`uci get natcapd.default.udproxylist 2>/dev/null`
 	gfwlist_domain=`uci get natcapd.default.gfwlist_domain 2>/dev/null`
 	gfwlist=`uci get natcapd.default.gfwlist 2>/dev/null`
@@ -94,6 +95,7 @@ enabled="`uci get natcapd.default.enabled 2>/dev/null`"
 	echo shadowsocks=$shadowsocks >$DEV
 	echo sproxy=$sproxy >$DEV
 	echo enable_hosts=$enable_hosts >$DEV
+	test -n "$dns_server" && echo dns_server=$dns_server >$DEV
 	test -n "$board_mac_addr" && echo default_mac_addr=$board_mac_addr >$DEV
 
 	[ "x$clear_dst_on_reload" = x1 ] && ipset flush gfwlist
