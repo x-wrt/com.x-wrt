@@ -172,6 +172,8 @@ for t in $targets; do
 			mods="$mods $moreapps"
 		;;
 		#<=8M flash
+		TARGET_DEVICE_brcm47xx_generic_DEVICE_linksys-wrt610n-v2|\
+		TARGET_DEVICE_brcm47xx_generic_DEVICE_linksys-wrt610n-v1|\
 		TARGET_DEVICE_ar71xx_generic_DEVICE_gl-inet-6408A-v1|\
 		TARGET_DEVICE_brcm47xx_generic_DEVICE_linksys-e3000-v1|\
 		TARGET_DEVICE_brcm47xx_mips74k_DEVICE_netgear-wndr3700-v3|\
@@ -236,6 +238,8 @@ for t in $targets; do
 			mods="$mods $usb2 $usb3"
 		;;
 		#with usb2
+		TARGET_DEVICE_brcm47xx_generic_DEVICE_linksys-wrt610n-v2|\
+		TARGET_DEVICE_brcm47xx_generic_DEVICE_linksys-wrt610n-v1|\
 		TARGET_DEVICE_ar71xx_generic_DEVICE_DGL5500A1|\
 		TARGET_DEVICE_ar71xx_generic_DEVICE_gl-inet-6416A-v1|\
 		TARGET_DEVICE_ar71xx_generic_DEVICE_gl-inet-6408A-v1|\
