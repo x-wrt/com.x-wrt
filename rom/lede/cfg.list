@@ -9,4 +9,5 @@ config.ar71xx-generic
 config.mvebu-generic
 config.ramips-mt7620
 config.ramips-mt7621
+config.ramips-mt7628
 config.oxnas
