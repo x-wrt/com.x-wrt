@@ -77,6 +77,12 @@ enabled="`uci get natcapd.default.enabled 2>/dev/null`"
 	[ x$encode_mode = x1 ] && encode_mode=UDP
 	board_mac_addr=`lua /usr/share/natcapd/board_mac.lua`
 
+	http_confusion=`uci get natcapd.default.http_confusion 2>/dev/null || echo 0`
+	htp_confusion_host=`uci get natcapd.default.htp_confusion_host 2>/dev/null || echo bing.com`
+
+	macfilter=`uci get natcapd.default.macfilter 2>/dev/null`
+	maclist=`uci get natcapd.default.maclist 2>/dev/null`
+
 	ipset -n list udproxylist >/dev/null 2>&1 || ipset -! create udproxylist iphash
 	ipset -n list gfwlist >/dev/null 2>&1 || ipset -! create gfwlist iphash
 	ipset -n list gfwhosts >/dev/null 2>&1 || ipset -! create gfwhosts iphash
@@ -99,6 +105,26 @@ enabled="`uci get natcapd.default.enabled 2>/dev/null`"
 	test -n "$board_mac_addr" && echo default_mac_addr=$board_mac_addr >$DEV
 
 	[ "x$clear_dst_on_reload" = x1 ] && ipset flush gfwlist
+
+	echo http_confusion=$http_confusion >>$DEV
+	echo htp_confusion_host=$htp_confusion_host >>$DEV
+
+	test -n "$maclist" && {
+		ipset -n list natcap_maclist >/dev/null 2>&1 || ipset -! create natcap_maclist machash
+		ipset flush natcap_maclist
+		for m in $maclist; do
+			ipset -! add natcap_maclist $m
+		done
+	}
+
+	if [ x"$macfilter" == xallow ]; then
+		echo macfilter=1 >>$DEV
+	elif [ x"$macfilter" == xdeny ]; then
+		echo macfilter=2 >>$DEV
+	else
+		echo macfilter=0 >>$DEV
+		ipset destroy natcap_maclist >/dev/null 2>&1
+	fi
 
 	opt="o"
 	[ "x$enable_encryption" = x1 ] && opt='e'
