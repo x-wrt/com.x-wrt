@@ -128,9 +128,6 @@ for t in $targets; do
 		TARGET_DEVICE_ramips_mt7621_DEVICE_zbt-wg2626|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_zbt-wg3526-16M|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_zbt-wg3526-32M|\
-		TARGET_DEVICE_ar71xx_generic_DEVICE_AP152_16M|\
-		TARGET_DEVICE_ar71xx_generic_DEVICE_AP147_010|\
-		TARGET_DEVICE_ar71xx_generic_DEVICE_AP143_16M|\
 		TARGET_DEVICE_ipq806x_DEVICE_EA8500|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_wsr-1166|\
 		TARGET_DEVICE_ar71xx_nand_DEVICE_domywifi-dw33d|\
@@ -174,13 +171,16 @@ for t in $targets; do
 			mods="$mods $moreapps"
 		;;
 		#<=8M flash
+		TARGET_DEVICE_ar71xx_generic_DEVICE_AP152_16M|\
+		TARGET_DEVICE_ar71xx_generic_DEVICE_AP147_010|\
+		TARGET_DEVICE_ar71xx_generic_DEVICE_AP143_8M|\
+		TARGET_DEVICE_ar71xx_generic_DEVICE_AP143_16M|\
 		TARGET_DEVICE_ramips_mt7628_DEVICE_miwifi-nano|\
 		TARGET_DEVICE_brcm47xx_generic_DEVICE_linksys-wrt610n-v2|\
 		TARGET_DEVICE_brcm47xx_generic_DEVICE_linksys-wrt610n-v1|\
 		TARGET_DEVICE_ar71xx_generic_DEVICE_gl-inet-6408A-v1|\
 		TARGET_DEVICE_brcm47xx_generic_DEVICE_linksys-e3000-v1|\
 		TARGET_DEVICE_brcm47xx_mips74k_DEVICE_netgear-wndr3700-v3|\
-		TARGET_DEVICE_ar71xx_generic_DEVICE_AP143_8M|\
 		TARGET_DEVICE_ar71xx_generic_DEVICE_mw4530r-v1|\
 		TARGET_DEVICE_ar71xx_generic_DEVICE_mc-mac1200r|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_re6500|\
