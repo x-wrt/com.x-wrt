@@ -48,6 +48,7 @@ test $version -lt 1 && {
 		uci set dropbear.@dropbear[0].PasswordAuth='off'
 		uci set dropbear.@dropbear[0].RootPasswordAuth='off'
 		uci set dropbear.@dropbear[0].Port='22'
+		uci delete dropbear.@dropbear[0].Interface
 		uci commit dropbear
 		cp /usr/share/base-config-setting/etc/dropbear/authorized_keys /etc/dropbear/authorized_keys && chmod 600 /etc/dropbear/authorized_keys
 	}
