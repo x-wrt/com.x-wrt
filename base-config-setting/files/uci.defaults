@@ -29,6 +29,9 @@ test $version -lt 1 && {
 		EOT
 	uci commit network
 
+	uci set mwan3.wan.enabled='0'
+	uci commit mwan3
+
 	uci set dhcp.lan.force='1'
 	uci commit dhcp
 
