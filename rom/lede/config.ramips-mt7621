@@ -131,7 +131,7 @@ CONFIG_TARGET_SUBTARGET="mt7621"
 CONFIG_TARGET_ARCH_PACKAGES="mipsel_24kc"
 CONFIG_DEFAULT_TARGET_OPTIMIZATION="-Os -pipe -mno-branch-likely -mips32r2 -mtune=24kc"
 CONFIG_CPU_TYPE="24kc"
-CONFIG_LINUX_4_4=y
+CONFIG_LINUX_4_9=y
 CONFIG_DEFAULT_base-files=y
 CONFIG_MODULE_DEFAULT_base-files=y
 CONFIG_DEFAULT_busybox=y
@@ -424,7 +424,7 @@ CONFIG_TARGET_INIT_SUPPRESS_STDERR=y
 CONFIG_VERSIONOPT=y
 CONFIG_VERSION_DIST="PTPT52"
 CONFIG_VERSION_NICK="fuckgfw"
-CONFIG_VERSION_NUMBER="3.0.0_build201707060629"
+CONFIG_VERSION_NUMBER="3.0.0_build201707161407"
 CONFIG_VERSION_CODE=""
 CONFIG_VERSION_REPO="http://downloads.openwrt.org/snapshots/trunk/%S/packages"
 CONFIG_VERSION_MANUFACTURER="PTPT52"
@@ -2340,6 +2340,7 @@ CONFIG_PACKAGE_wireless-tools=y
 #
 # Libraries
 #
+# CONFIG_PACKAGE_libncurses-dev is not set
 # CONFIG_PACKAGE_zlib-dev is not set
 # CONFIG_PACKAGE_ar is not set
 # CONFIG_PACKAGE_autoconf is not set
@@ -2691,6 +2692,7 @@ CONFIG_PACKAGE_kmod-ipt-nathelper-rtsp=y
 # CONFIG_PACKAGE_kmod-ipt-psd is not set
 # CONFIG_PACKAGE_kmod-ipt-quota2 is not set
 # CONFIG_PACKAGE_kmod-ipt-raw is not set
+# CONFIG_PACKAGE_kmod-ipt-rpfilter is not set
 # CONFIG_PACKAGE_kmod-ipt-sysrq is not set
 # CONFIG_PACKAGE_kmod-ipt-tarpit is not set
 # CONFIG_PACKAGE_kmod-ipt-tee is not set
@@ -2845,7 +2847,6 @@ CONFIG_PACKAGE_kmod-mmc=m
 # CONFIG_PACKAGE_kmod-ptp is not set
 # CONFIG_PACKAGE_kmod-random-core is not set
 # CONFIG_PACKAGE_kmod-regmap is not set
-# CONFIG_PACKAGE_kmod-rotary-gpio-custom is not set
 # CONFIG_PACKAGE_kmod-rtc-ds1307 is not set
 # CONFIG_PACKAGE_kmod-rtc-ds1374 is not set
 # CONFIG_PACKAGE_kmod-rtc-ds1672 is not set
@@ -2950,7 +2951,6 @@ CONFIG_PACKAGE_kmod-usb3=m
 #
 # Wireless Drivers
 #
-# CONFIG_PACKAGE_kmod-acx-mac80211 is not set
 # CONFIG_PACKAGE_kmod-adm8211 is not set
 # CONFIG_PACKAGE_kmod-ath is not set
 # CONFIG_PACKAGE_kmod-ath10k is not set
@@ -3170,6 +3170,7 @@ CONFIG_PACKAGE_luasocket=y
 # CONFIG_PACKAGE_python-gdbm is not set
 # CONFIG_PACKAGE_python-gdbm-src is not set
 # CONFIG_PACKAGE_python-gmpy2 is not set
+# CONFIG_PACKAGE_python-gnupg is not set
 # CONFIG_PACKAGE_python-idna is not set
 # CONFIG_PACKAGE_python-ipaddress is not set
 # CONFIG_PACKAGE_python-ldap is not set
@@ -3226,6 +3227,7 @@ CONFIG_PACKAGE_luasocket=y
 # CONFIG_PACKAGE_python3-base-src is not set
 # CONFIG_PACKAGE_python3-bottle is not set
 # CONFIG_PACKAGE_python3-cffi is not set
+# CONFIG_PACKAGE_python3-click is not set
 # CONFIG_PACKAGE_python3-codecs is not set
 # CONFIG_PACKAGE_python3-codecs-src is not set
 # CONFIG_PACKAGE_python3-ctypes is not set
@@ -3240,8 +3242,12 @@ CONFIG_PACKAGE_luasocket=y
 # CONFIG_PACKAGE_python3-distutils-src is not set
 # CONFIG_PACKAGE_python3-email is not set
 # CONFIG_PACKAGE_python3-email-src is not set
+# CONFIG_PACKAGE_python3-flask is not set
 # CONFIG_PACKAGE_python3-gdbm is not set
 # CONFIG_PACKAGE_python3-gdbm-src is not set
+# CONFIG_PACKAGE_python3-gnupg is not set
+# CONFIG_PACKAGE_python3-itsdangerous is not set
+# CONFIG_PACKAGE_python3-jinja2 is not set
 # CONFIG_PACKAGE_python3-lib2to3 is not set
 # CONFIG_PACKAGE_python3-lib2to3-src is not set
 # CONFIG_PACKAGE_python3-light is not set
@@ -3251,6 +3257,7 @@ CONFIG_PACKAGE_luasocket=y
 # CONFIG_PACKAGE_python3-lxml is not set
 # CONFIG_PACKAGE_python3-lzma is not set
 # CONFIG_PACKAGE_python3-lzma-src is not set
+# CONFIG_PACKAGE_python3-markupsafe is not set
 # CONFIG_PACKAGE_python3-multiprocessing is not set
 # CONFIG_PACKAGE_python3-multiprocessing-src is not set
 # CONFIG_PACKAGE_python3-ncurses is not set
@@ -3272,8 +3279,10 @@ CONFIG_PACKAGE_luasocket=y
 # CONFIG_PACKAGE_python3-src is not set
 # CONFIG_PACKAGE_python3-unittest is not set
 # CONFIG_PACKAGE_python3-unittest-src is not set
+# CONFIG_PACKAGE_python3-werkzeug is not set
 # CONFIG_PACKAGE_python3-xml is not set
 # CONFIG_PACKAGE_python3-xml-src is not set
+# CONFIG_PACKAGE_python3-yaml is not set
 # CONFIG_PACKAGE_pytz is not set
 # CONFIG_PACKAGE_rcssmin is not set
 # CONFIG_PACKAGE_simplejson is not set
@@ -3504,6 +3513,8 @@ CONFIG_OPENSSL_WITH_SRP=y
 # CONFIG_PACKAGE_libpq is not set
 CONFIG_PACKAGE_libsqlite3=m
 # CONFIG_PACKAGE_pgsqlodbc is not set
+# CONFIG_PACKAGE_psqlodbca is not set
+# CONFIG_PACKAGE_psqlodbcw is not set
 # CONFIG_PACKAGE_tdb is not set
 # CONFIG_PACKAGE_unixodbc is not set
 
@@ -3829,6 +3840,7 @@ CONFIG_PACKAGE_libxml2=m
 # CONFIG_PACKAGE_poco is not set
 # CONFIG_PACKAGE_protobuf is not set
 # CONFIG_PACKAGE_pthsem is not set
+CONFIG_PACKAGE_rpcd-mod-rrdns=y
 # CONFIG_PACKAGE_rxtx is not set
 # CONFIG_PACKAGE_sbc is not set
 CONFIG_PACKAGE_terminfo=y
@@ -3896,6 +3908,7 @@ CONFIG_PACKAGE_luci-mod-admin-full=y
 # 3. Applications
 #
 # CONFIG_PACKAGE_luci-app-adblock is not set
+# CONFIG_PACKAGE_luci-app-advanced-reboot is not set
 CONFIG_PACKAGE_luci-app-aria2=m
 # CONFIG_PACKAGE_luci-app-asterisk is not set
 # CONFIG_PACKAGE_luci-app-bcp38 is not set
@@ -4228,6 +4241,7 @@ CONFIG_PACKAGE_luci-i18n-upnp-zh-cn=y
 # CONFIG_PACKAGE_msmtp-nossl is not set
 # CONFIG_PACKAGE_mutt is not set
 # CONFIG_PACKAGE_nail is not set
+# CONFIG_PACKAGE_pigeonhole is not set
 # CONFIG_PACKAGE_postfix is not set
 
 #
@@ -4393,6 +4407,7 @@ CONFIG_PACKAGE_iptables-mod-nat-extra=y
 # CONFIG_PACKAGE_iptables-mod-nfqueue is not set
 # CONFIG_PACKAGE_iptables-mod-psd is not set
 # CONFIG_PACKAGE_iptables-mod-quota2 is not set
+# CONFIG_PACKAGE_iptables-mod-rpfilter is not set
 # CONFIG_PACKAGE_iptables-mod-sysrq is not set
 # CONFIG_PACKAGE_iptables-mod-tarpit is not set
 # CONFIG_PACKAGE_iptables-mod-tee is not set
@@ -4915,6 +4930,7 @@ CONFIG_PACKAGE_uhttpd-mod-ubus=y
 # CONFIG_PACKAGE_arp-scan is not set
 # CONFIG_PACKAGE_authsae is not set
 # CONFIG_PACKAGE_batctl is not set
+# CONFIG_PACKAGE_beanstalkd is not set
 # CONFIG_PACKAGE_bmon is not set
 # CONFIG_PACKAGE_bwm-ng is not set
 # CONFIG_PACKAGE_chat is not set
