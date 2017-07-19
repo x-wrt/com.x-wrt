@@ -566,7 +566,8 @@ CONFIG_TARGET_DEVICE_PACKAGES_ar71xx_generic_DEVICE_AP152_16M="ath10k-firmware-q
 # CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_archer-c7-v1 is not set
 # CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_archer-c7-v2 is not set
 # CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_archer-c7-v2-il is not set
-# CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_tl-wdr7500-v3 is not set
+CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_tl-wdr7500-v3=y
+CONFIG_TARGET_DEVICE_PACKAGES_ar71xx_generic_DEVICE_tl-wdr7500-v3="ath10k-firmware-qca988x blockd block-mount kmod-ath10k kmod-crypto-crc32c kmod-fs-autofs4 kmod-fs-exfat kmod-fs-ext4 kmod-fs-msdos kmod-fs-ntfs kmod-fs-vfat kmod-lib-crc16 kmod-nls-cp437 kmod-scsi-core kmod-usb2 kmod-usb-core kmod-usb-ehci kmod-usb-ledtrig-usbport kmod-usb-storage"
 # CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_cpe210-220-v1 is not set
 # CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_cpe510-520-v1 is not set
 # CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_eap120-v1 is not set

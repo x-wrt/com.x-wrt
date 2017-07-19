@@ -171,6 +171,7 @@ for t in $targets; do
 			mods="$mods $moreapps"
 		;;
 		#<=8M flash
+		TARGET_DEVICE_ar71xx_generic_DEVICE_tl-wdr7500-v3|\
 		TARGET_DEVICE_ar71xx_generic_DEVICE_AP152_16M|\
 		TARGET_DEVICE_ar71xx_generic_DEVICE_AP147_010|\
 		TARGET_DEVICE_ar71xx_generic_DEVICE_AP143_8M|\
@@ -242,6 +243,7 @@ for t in $targets; do
 			mods="$mods $usb2 $usb3"
 		;;
 		#with usb2
+		TARGET_DEVICE_ar71xx_generic_DEVICE_tl-wdr7500-v3|\
 		TARGET_DEVICE_ramips_mt7628_DEVICE_hc5661a|\
 		TARGET_DEVICE_brcm47xx_generic_DEVICE_linksys-wrt610n-v2|\
 		TARGET_DEVICE_brcm47xx_generic_DEVICE_linksys-wrt610n-v1|\
