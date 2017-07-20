@@ -171,6 +171,7 @@ for t in $targets; do
 			mods="$mods $moreapps"
 		;;
 		#<=8M flash
+		TARGET_DEVICE_ramips_mt7621_DEVICE_k2p|\
 		TARGET_DEVICE_ar71xx_generic_DEVICE_tl-wdr7500-v3|\
 		TARGET_DEVICE_ar71xx_generic_DEVICE_AP152_16M|\
 		TARGET_DEVICE_ar71xx_generic_DEVICE_AP147_010|\
@@ -292,6 +293,7 @@ for t in $targets; do
 			mods="$mods $usb2"
 		;;
 		#no usb
+		TARGET_DEVICE_ramips_mt7621_DEVICE_k2p|\
 		TARGET_DEVICE_ramips_mt7628_DEVICE_miwifi-nano|\
 		TARGET_DEVICE_ar71xx_generic_DEVICE_mc-mac1200r|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_re6500|\
