@@ -114,6 +114,8 @@ for t in $targets; do
 	mods="$us"
 	case $t in
 		#>8M flash
+		TARGET_DEVICE_kirkwood_DEVICE_on100|\
+		TARGET_DEVICE_kirkwood_DEVICE_linksys-audi|\
 		TARGET_DEVICE_ramips_mt7628_DEVICE_hc5661a|\
 		TARGET_DEVICE_ar71xx_generic_DEVICE_F9K1115V2|\
 		TARGET_DEVICE_ipq806x_DEVICE_AP-DK04.1-C1|\
@@ -245,6 +247,8 @@ for t in $targets; do
 			mods="$mods $usb2 $usb3"
 		;;
 		#with usb2
+		TARGET_DEVICE_kirkwood_DEVICE_on100|\
+		TARGET_DEVICE_kirkwood_DEVICE_linksys-audi|\
 		TARGET_DEVICE_ar71xx_generic_DEVICE_tl-wdr7500-v3|\
 		TARGET_DEVICE_ramips_mt7628_DEVICE_hc5661a|\
 		TARGET_DEVICE_brcm47xx_generic_DEVICE_linksys-wrt610n-v2|\
