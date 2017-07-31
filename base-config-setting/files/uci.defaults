@@ -78,6 +78,7 @@ test $version -lt 1 && {
 			uci set wireless.$obj.mode='ap'
 			uci set wireless.$obj.ssid="${SSID}"
 			uci set wireless.$obj.encryption='psk2'
+			uci set wireless.$obj.wpa_group_rekey='0'
 			uci set wireless.$obj.key="${SSID_PASSWD}"
 		}
 	}
@@ -96,6 +97,7 @@ test $version -lt 1 && {
 			uci set wireless.$obj.mode='ap'
 			uci set wireless.$obj.ssid="${SSID}"
 			uci set wireless.$obj.encryption='psk2'
+			uci set wireless.$obj.wpa_group_rekey='0'
 			uci set wireless.$obj.key="${SSID_PASSWD}"
 		}
 	}
@@ -116,6 +118,7 @@ test $version -lt 1 && {
 			uci set wireless.$obj.mode='ap'
 			uci set wireless.$obj.ssid="${SSID}"
 			uci set wireless.$obj.encryption='psk2'
+			uci set wireless.$obj.wpa_group_rekey='0'
 			uci set wireless.$obj.key="${SSID_PASSWD}"
 		}
 	}
@@ -135,6 +138,7 @@ test $version -lt 1 && {
 			uci set wireless.$obj.mode='ap'
 			uci set wireless.$obj.ssid="${SSID}"
 			uci set wireless.$obj.encryption='psk2'
+			uci set wireless.$obj.wpa_group_rekey='0'
 			uci set wireless.$obj.key="${SSID_PASSWD}"
 		}
 	}
