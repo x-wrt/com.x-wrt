@@ -66,8 +66,8 @@ test $version -lt 1 && {
 	uci get wireless.radio0 >/dev/null 2>&1 && {
 		uci -q batch <<-EOT
 			set wireless.radio0.disabled='0'
-			set wireless.radio0.country='US'
-			set wireless.radio0.txpower='23'
+			set wireless.radio0.country='CN'
+			set wireless.radio0.txpower='20'
 			set wireless.radio0.channel='auto'
 		EOT
 
@@ -85,8 +85,8 @@ test $version -lt 1 && {
 	uci get wireless.radio1 >/dev/null 2>&1 && {
 		uci -q batch <<-EOT
 			set wireless.radio1.disabled='0'
-			set wireless.radio1.country='US'
-			set wireless.radio1.txpower='23'
+			set wireless.radio1.country='CN'
+			set wireless.radio1.txpower='20'
 			set wireless.radio1.channel='auto'
 		EOT
 
@@ -105,8 +105,8 @@ test $version -lt 1 && {
 	uci get wireless.wifi0 >/dev/null 2>&1 && {
 		uci -q batch <<-EOT
 			set wireless.wifi0.disabled='0'
-			set wireless.wifi0.country='US'
-			set wireless.wifi0.txpower='23'
+			set wireless.wifi0.country='CN'
+			set wireless.wifi0.txpower='20'
 			set wireless.wifi0.channel='auto'
 		EOT
 
@@ -125,8 +125,8 @@ test $version -lt 1 && {
 	uci get wireless.wifi1 >/dev/null 2>&1 && {
 		uci -q batch <<-EOT
 			set wireless.wifi1.disabled='0'
-			set wireless.wifi1.country='US'
-			set wireless.wifi1.txpower='23'
+			set wireless.wifi1.country='CN'
+			set wireless.wifi1.txpower='20'
 			set wireless.wifi1.channel='auto'
 		EOT
 
