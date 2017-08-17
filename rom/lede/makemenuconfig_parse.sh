@@ -114,6 +114,7 @@ for t in $targets; do
 	mods="$us"
 	case $t in
 		#>8M flash
+		TARGET_DEVICE_ar71xx_generic_DEVICE_tl-wr1043nd-v4|\
 		TARGET_DEVICE_kirkwood_DEVICE_on100|\
 		TARGET_DEVICE_kirkwood_DEVICE_linksys-audi|\
 		TARGET_DEVICE_ramips_mt7628_DEVICE_hc5661a|\
@@ -173,6 +174,9 @@ for t in $targets; do
 			mods="$mods $moreapps"
 		;;
 		#<=8M flash
+		TARGET_DEVICE_ar71xx_generic_DEVICE_tl-wr1043nd-v3|\
+		TARGET_DEVICE_ar71xx_generic_DEVICE_tl-wr1043nd-v2|\
+		TARGET_DEVICE_ar71xx_generic_DEVICE_tl-wr1043nd-v1|\
 		TARGET_DEVICE_ramips_mt7628_DEVICE_mac1200r-v2|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_k2p|\
 		TARGET_DEVICE_ar71xx_generic_DEVICE_tl-wdr7500-v3|\
@@ -247,6 +251,9 @@ for t in $targets; do
 			mods="$mods $usb2 $usb3"
 		;;
 		#with usb2
+		TARGET_DEVICE_ar71xx_generic_DEVICE_tl-wr1043nd-v4|\
+		TARGET_DEVICE_ar71xx_generic_DEVICE_tl-wr1043nd-v3|\
+		TARGET_DEVICE_ar71xx_generic_DEVICE_tl-wr1043nd-v2|\
 		TARGET_DEVICE_kirkwood_DEVICE_on100|\
 		TARGET_DEVICE_kirkwood_DEVICE_linksys-audi|\
 		TARGET_DEVICE_ar71xx_generic_DEVICE_tl-wdr7500-v3|\
@@ -298,6 +305,7 @@ for t in $targets; do
 			mods="$mods $usb2"
 		;;
 		#no usb
+		TARGET_DEVICE_ar71xx_generic_DEVICE_tl-wr1043nd-v1|\
 		TARGET_DEVICE_ramips_mt7628_DEVICE_mac1200r-v2|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_k2p|\
 		TARGET_DEVICE_ramips_mt7628_DEVICE_miwifi-nano|\
