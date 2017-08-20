@@ -2391,7 +2391,6 @@ CONFIG_PACKAGE_wireless-tools=y
 # CONFIG_PACKAGE_openwisp-config-mbedtls is not set
 # CONFIG_PACKAGE_openwisp-config-nossl is not set
 # CONFIG_PACKAGE_openwisp-config-openssl is not set
-# CONFIG_PACKAGE_openwisp-config-polarssl is not set
 
 #
 # zabbix
