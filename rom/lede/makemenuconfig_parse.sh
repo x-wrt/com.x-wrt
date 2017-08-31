@@ -24,7 +24,7 @@ cat .config | grep TARGET_DEVICE_.*=y | sed 's/CONFIG_//;s/=y//' | while read ta
 done
 
 targets=`cd /tmp/config_lede && ls`
-alls=`cat /tmp/config_lede/* | sort | uniq`
+alls=`cat /tmp/config_lede/* 2>/dev/null | sort | uniq`
 #echo $alls
 
 is_in_set()
@@ -114,10 +114,13 @@ for t in $targets; do
 	mods="$us"
 	case $t in
 		#>8M flash
+		TARGET_DEVICE_ipq806x_DEVICE_RT-AC58U|\
+		TARGET_DEVICE_bcm53xx_DEVICE_netgear-r6250|\
+		TARGET_DEVICE_ramips_mt7621_DEVICE_mir3g|\
 		TARGET_DEVICE_ar71xx_generic_DEVICE_tl-wr1043nd-v4|\
 		TARGET_DEVICE_kirkwood_DEVICE_on100|\
 		TARGET_DEVICE_kirkwood_DEVICE_linksys-audi|\
-		TARGET_DEVICE_ramips_mt7628_DEVICE_hc5661a|\
+		TARGET_DEVICE_ramips_mt76x8_DEVICE_hc5661a|\
 		TARGET_DEVICE_ar71xx_generic_DEVICE_F9K1115V2|\
 		TARGET_DEVICE_ipq806x_DEVICE_AP-DK04.1-C1|\
 		TARGET_DEVICE_ar71xx_generic_DEVICE_DGL5500A1|\
@@ -174,17 +177,19 @@ for t in $targets; do
 			mods="$mods $moreapps"
 		;;
 		#<=8M flash
+		TARGET_DEVICE_ramips_mt76x8_DEVICE_tl-wr841n-v13|\
+		TARGET_DEVICE_ramips_mt76x8_DEVICE_tl-wr840n-v4|\
 		TARGET_DEVICE_ar71xx_generic_DEVICE_tl-wr1043nd-v3|\
 		TARGET_DEVICE_ar71xx_generic_DEVICE_tl-wr1043nd-v2|\
 		TARGET_DEVICE_ar71xx_generic_DEVICE_tl-wr1043nd-v1|\
-		TARGET_DEVICE_ramips_mt7628_DEVICE_mac1200r-v2|\
+		TARGET_DEVICE_ramips_mt76x8_DEVICE_mac1200r-v2|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_k2p|\
 		TARGET_DEVICE_ar71xx_generic_DEVICE_tl-wdr7500-v3|\
 		TARGET_DEVICE_ar71xx_generic_DEVICE_AP152_16M|\
 		TARGET_DEVICE_ar71xx_generic_DEVICE_AP147_010|\
 		TARGET_DEVICE_ar71xx_generic_DEVICE_AP143_8M|\
 		TARGET_DEVICE_ar71xx_generic_DEVICE_AP143_16M|\
-		TARGET_DEVICE_ramips_mt7628_DEVICE_miwifi-nano|\
+		TARGET_DEVICE_ramips_mt76x8_DEVICE_miwifi-nano|\
 		TARGET_DEVICE_brcm47xx_generic_DEVICE_linksys-wrt610n-v2|\
 		TARGET_DEVICE_brcm47xx_generic_DEVICE_linksys-wrt610n-v1|\
 		TARGET_DEVICE_ar71xx_generic_DEVICE_gl-inet-6408A-v1|\
@@ -217,6 +222,9 @@ for t in $targets; do
 	#check usb
 	case $t in
 		#with usb3
+		TARGET_DEVICE_ipq806x_DEVICE_RT-AC58U|\
+		TARGET_DEVICE_bcm53xx_DEVICE_netgear-r6250|\
+		TARGET_DEVICE_ramips_mt7621_DEVICE_mir3g|\
 		TARGET_DEVICE_ar71xx_generic_DEVICE_F9K1115V2|\
 		TARGET_DEVICE_ipq806x_DEVICE_AP-DK04.1-C1|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_zbt-we1326|\
@@ -257,7 +265,7 @@ for t in $targets; do
 		TARGET_DEVICE_kirkwood_DEVICE_on100|\
 		TARGET_DEVICE_kirkwood_DEVICE_linksys-audi|\
 		TARGET_DEVICE_ar71xx_generic_DEVICE_tl-wdr7500-v3|\
-		TARGET_DEVICE_ramips_mt7628_DEVICE_hc5661a|\
+		TARGET_DEVICE_ramips_mt76x8_DEVICE_hc5661a|\
 		TARGET_DEVICE_brcm47xx_generic_DEVICE_linksys-wrt610n-v2|\
 		TARGET_DEVICE_brcm47xx_generic_DEVICE_linksys-wrt610n-v1|\
 		TARGET_DEVICE_ar71xx_generic_DEVICE_DGL5500A1|\
@@ -305,10 +313,12 @@ for t in $targets; do
 			mods="$mods $usb2"
 		;;
 		#no usb
+		TARGET_DEVICE_ramips_mt76x8_DEVICE_tl-wr841n-v13|\
+		TARGET_DEVICE_ramips_mt76x8_DEVICE_tl-wr840n-v4|\
 		TARGET_DEVICE_ar71xx_generic_DEVICE_tl-wr1043nd-v1|\
-		TARGET_DEVICE_ramips_mt7628_DEVICE_mac1200r-v2|\
+		TARGET_DEVICE_ramips_mt76x8_DEVICE_mac1200r-v2|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_k2p|\
-		TARGET_DEVICE_ramips_mt7628_DEVICE_miwifi-nano|\
+		TARGET_DEVICE_ramips_mt76x8_DEVICE_miwifi-nano|\
 		TARGET_DEVICE_ar71xx_generic_DEVICE_mc-mac1200r|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_re6500|\
 		TARGET_DEVICE_ramips_mt7620_DEVICE_psg1208|\
