@@ -79,6 +79,7 @@ enabled="`uci get natcapd.default.enabled 2>/dev/null`"
 
 	http_confusion=`uci get natcapd.default.http_confusion 2>/dev/null || echo 0`
 	htp_confusion_host=`uci get natcapd.default.htp_confusion_host 2>/dev/null || echo bing.com`
+	cnipwhitelist_mode=`uci get natcapd.default.cnipwhitelist_mode 2>/dev/null || echo 0`
 
 	macfilter=`uci get natcapd.default.macfilter 2>/dev/null`
 	maclist=`uci get natcapd.default.maclist 2>/dev/null`
@@ -108,6 +109,7 @@ enabled="`uci get natcapd.default.enabled 2>/dev/null`"
 
 	echo http_confusion=$http_confusion >>$DEV
 	echo htp_confusion_host=$htp_confusion_host >>$DEV
+	echo cnipwhitelist_mode=$cnipwhitelist_mode >>$DEV
 
 	test -n "$maclist" && {
 		ipset -n list natcap_maclist >/dev/null 2>&1 || ipset -! create natcap_maclist machash
