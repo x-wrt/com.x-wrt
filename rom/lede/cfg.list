@@ -2,7 +2,7 @@ config.ar71xx-nand
 config.ar71xx-generic
 config.ramips-mt7620
 config.ramips-mt7621
-config.ramips-mt7628
+config.ramips-mt76x8
 config.bcm53xx-generic
 config.brcm47xx-generic
 config.brcm47xx-mips74k
