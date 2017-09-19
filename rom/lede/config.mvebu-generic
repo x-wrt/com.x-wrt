@@ -78,7 +78,7 @@ CONFIG_TARGET_DEVICE_PACKAGES_mvebu_DEVICE_linksys-wrt1900acs="aria2 blockd bloc
 CONFIG_TARGET_DEVICE_mvebu_DEVICE_linksys-wrt1900acv2=y
 CONFIG_TARGET_DEVICE_PACKAGES_mvebu_DEVICE_linksys-wrt1900acv2="aria2 blockd block-mount kmod-crypto-crc32c kmod-fs-autofs4 kmod-fs-exfat kmod-fs-ext4 kmod-fs-msdos kmod-fs-ntfs kmod-fs-vfat kmod-lib-crc16 kmod-nls-cp437 kmod-scsi-core kmod-usb2 kmod-usb3 kmod-usb-core kmod-usb-ehci kmod-usb-storage libsqlite3 libssh2 libstdcpp libxml2 luci-app-aria2 luci-app-samba luci-i18n-aria2-zh-cn luci-i18n-samba-en luci-i18n-samba-zh-cn samba36-server webui-aria2"
 CONFIG_TARGET_DEVICE_mvebu_DEVICE_linksys-wrt3200acm=y
-CONFIG_TARGET_DEVICE_PACKAGES_mvebu_DEVICE_linksys-wrt3200acm="aria2 blockd block-mount kmod-crypto-crc32c kmod-fs-autofs4 kmod-fs-exfat kmod-fs-ext4 kmod-fs-msdos kmod-fs-ntfs kmod-fs-vfat kmod-lib-crc16 kmod-mmc kmod-mwifiex-sdio kmod-nls-cp437 kmod-scsi-core kmod-usb2 kmod-usb3 kmod-usb-core kmod-usb-ehci kmod-usb-storage libsqlite3 libssh2 libstdcpp libxml2 luci-app-aria2 luci-app-samba luci-i18n-aria2-zh-cn luci-i18n-samba-en luci-i18n-samba-zh-cn mwifiex-sdio-firmware samba36-server webui-aria2"
+CONFIG_TARGET_DEVICE_PACKAGES_mvebu_DEVICE_linksys-wrt3200acm="aria2 blockd block-mount kmod-bluetooth kmod-btmrvl kmod-crypto-cmac kmod-crypto-crc32c kmod-fs-autofs4 kmod-fs-exfat kmod-fs-ext4 kmod-fs-msdos kmod-fs-ntfs kmod-fs-vfat kmod-hid kmod-i2c-core kmod-input-core kmod-input-evdev kmod-lib-crc16 kmod-lib-lzo kmod-mmc kmod-mwifiex-sdio kmod-nls-cp437 kmod-regmap kmod-rfkill kmod-scsi-core kmod-usb2 kmod-usb3 kmod-usb-core kmod-usb-ehci kmod-usb-storage libsqlite3 libssh2 libstdcpp libxml2 luci-app-aria2 luci-app-samba luci-i18n-aria2-zh-cn luci-i18n-samba-en luci-i18n-samba-zh-cn mwifiex-sdio-firmware samba36-server webui-aria2"
 # CONFIG_TARGET_DEVICE_mvebu_DEVICE_armada-370-db is not set
 # CONFIG_TARGET_DEVICE_mvebu_DEVICE_armada-370-rd is not set
 # CONFIG_TARGET_DEVICE_mvebu_DEVICE_armada-385-db-ap is not set
@@ -111,6 +111,7 @@ CONFIG_DEFAULT_ip6tables=y
 CONFIG_MODULE_DEFAULT_ip6tables=y
 CONFIG_DEFAULT_iptables=y
 CONFIG_MODULE_DEFAULT_iptables=y
+CONFIG_MODULE_DEFAULT_kmod-btmrvl=y
 CONFIG_DEFAULT_kmod-gpio-button-hotplug=y
 CONFIG_MODULE_DEFAULT_kmod-gpio-button-hotplug=y
 CONFIG_MODULE_DEFAULT_kmod-mwifiex-sdio=y
@@ -392,7 +393,7 @@ CONFIG_TARGET_INIT_SUPPRESS_STDERR=y
 CONFIG_VERSIONOPT=y
 CONFIG_VERSION_DIST="PTPT52"
 CONFIG_VERSION_NICK="fuckgfw"
-CONFIG_VERSION_NUMBER="3.0.0_build201709121853"
+CONFIG_VERSION_NUMBER="3.0.0_build201709191445"
 CONFIG_VERSION_CODE=""
 CONFIG_VERSION_REPO="http://downloads.openwrt.org/snapshots/trunk/%S/packages"
 CONFIG_VERSION_MANUFACTURER="PTPT52"
@@ -2368,6 +2369,7 @@ CONFIG_PACKAGE_wireless-tools=y
 #
 # Boot Loaders
 #
+# CONFIG_PACKAGE_arm-trusted-firmware-sunxi is not set
 
 #
 # Development
@@ -2438,7 +2440,24 @@ CONFIG_PACKAGE_wireless-tools=y
 # CONFIG_PACKAGE_ibt-firmware is not set
 # CONFIG_PACKAGE_iwl3945-firmware is not set
 # CONFIG_PACKAGE_iwl4965-firmware is not set
-# CONFIG_PACKAGE_iwlwifi-firmware is not set
+# CONFIG_PACKAGE_iwlwifi-firmware-iwl1000 is not set
+# CONFIG_PACKAGE_iwlwifi-firmware-iwl105 is not set
+# CONFIG_PACKAGE_iwlwifi-firmware-iwl135 is not set
+# CONFIG_PACKAGE_iwlwifi-firmware-iwl2000 is not set
+# CONFIG_PACKAGE_iwlwifi-firmware-iwl2030 is not set
+# CONFIG_PACKAGE_iwlwifi-firmware-iwl3160 is not set
+# CONFIG_PACKAGE_iwlwifi-firmware-iwl3168 is not set
+# CONFIG_PACKAGE_iwlwifi-firmware-iwl5000 is not set
+# CONFIG_PACKAGE_iwlwifi-firmware-iwl5150 is not set
+# CONFIG_PACKAGE_iwlwifi-firmware-iwl6000g2 is not set
+# CONFIG_PACKAGE_iwlwifi-firmware-iwl6000g2a is not set
+# CONFIG_PACKAGE_iwlwifi-firmware-iwl6000g2b is not set
+# CONFIG_PACKAGE_iwlwifi-firmware-iwl6050 is not set
+# CONFIG_PACKAGE_iwlwifi-firmware-iwl7260 is not set
+# CONFIG_PACKAGE_iwlwifi-firmware-iwl7265 is not set
+# CONFIG_PACKAGE_iwlwifi-firmware-iwl7265d is not set
+# CONFIG_PACKAGE_iwlwifi-firmware-iwl8260c is not set
+# CONFIG_PACKAGE_iwlwifi-firmware-iwl8265 is not set
 # CONFIG_PACKAGE_libertas-sdio-firmware is not set
 # CONFIG_PACKAGE_libertas-spi-firmware is not set
 # CONFIG_PACKAGE_libertas-usb-firmware is not set
@@ -2526,7 +2545,7 @@ CONFIG_PACKAGE_kmod-crypto-aead=y
 # CONFIG_PACKAGE_kmod-crypto-authenc is not set
 # CONFIG_PACKAGE_kmod-crypto-cbc is not set
 # CONFIG_PACKAGE_kmod-crypto-ccm is not set
-# CONFIG_PACKAGE_kmod-crypto-cmac is not set
+CONFIG_PACKAGE_kmod-crypto-cmac=m
 CONFIG_PACKAGE_kmod-crypto-crc32c=m
 # CONFIG_PACKAGE_kmod-crypto-ctr is not set
 # CONFIG_PACKAGE_kmod-crypto-deflate is not set
@@ -2607,16 +2626,22 @@ CONFIG_PACKAGE_kmod-fs-vfat=m
 #
 # I2C support
 #
-# CONFIG_PACKAGE_kmod-i2c-core is not set
+CONFIG_PACKAGE_kmod-i2c-core=m
+# CONFIG_PACKAGE_kmod-i2c-algo-bit is not set
+# CONFIG_PACKAGE_kmod-i2c-algo-pca is not set
+# CONFIG_PACKAGE_kmod-i2c-algo-pcf is not set
+# CONFIG_PACKAGE_kmod-i2c-gpio is not set
 # CONFIG_PACKAGE_kmod-i2c-gpio-custom is not set
+# CONFIG_PACKAGE_kmod-i2c-mux is not set
+# CONFIG_PACKAGE_kmod-i2c-tiny-usb is not set
 
 #
 # Input modules
 #
-# CONFIG_PACKAGE_kmod-hid is not set
+CONFIG_PACKAGE_kmod-hid=m
 # CONFIG_PACKAGE_kmod-hid-generic is not set
-# CONFIG_PACKAGE_kmod-input-core is not set
-# CONFIG_PACKAGE_kmod-input-evdev is not set
+CONFIG_PACKAGE_kmod-input-core=m
+CONFIG_PACKAGE_kmod-input-evdev=m
 # CONFIG_PACKAGE_kmod-input-gpio-encoder is not set
 # CONFIG_PACKAGE_kmod-input-gpio-keys is not set
 # CONFIG_PACKAGE_kmod-input-gpio-keys-polled is not set
@@ -2648,6 +2673,7 @@ CONFIG_PACKAGE_kmod-lib-crc16=m
 # CONFIG_PACKAGE_kmod-lib-crc32c is not set
 # CONFIG_PACKAGE_kmod-lib-crc7 is not set
 # CONFIG_PACKAGE_kmod-lib-crc8 is not set
+CONFIG_PACKAGE_kmod-lib-lzo=m
 CONFIG_PACKAGE_kmod-lib-textsearch=y
 
 #
@@ -2869,11 +2895,12 @@ CONFIG_PACKAGE_kmod-udptunnel6=y
 # CONFIG_PACKAGE_kmod-6lowpan is not set
 # CONFIG_PACKAGE_kmod-ath3k is not set
 # CONFIG_PACKAGE_kmod-bcma is not set
-# CONFIG_PACKAGE_kmod-bluetooth is not set
+CONFIG_PACKAGE_kmod-bluetooth=m
 # CONFIG_PACKAGE_kmod-bluetooth_6lowpan is not set
 # CONFIG_PACKAGE_kmod-bmp085 is not set
 # CONFIG_PACKAGE_kmod-bmp085-i2c is not set
 # CONFIG_PACKAGE_kmod-bmp085-spi is not set
+CONFIG_PACKAGE_kmod-btmrvl=m
 # CONFIG_PACKAGE_kmod-button-hotplug is not set
 # CONFIG_PACKAGE_kmod-echo is not set
 # CONFIG_PACKAGE_kmod-eeprom-93cx6 is not set
@@ -2888,6 +2915,7 @@ CONFIG_PACKAGE_kmod-gpio-button-hotplug=y
 # CONFIG_PACKAGE_kmod-gpio-pcf857x is not set
 # CONFIG_PACKAGE_kmod-iio-core is not set
 # CONFIG_PACKAGE_kmod-ikconfig is not set
+# CONFIG_PACKAGE_kmod-itco-wdt is not set
 # CONFIG_PACKAGE_kmod-lp is not set
 CONFIG_PACKAGE_kmod-mmc=m
 # CONFIG_PACKAGE_kmod-mtd-rw is not set
@@ -2897,8 +2925,8 @@ CONFIG_PACKAGE_kmod-mmc=m
 # CONFIG_PACKAGE_kmod-pps-ldisc is not set
 # CONFIG_PACKAGE_kmod-ptp is not set
 # CONFIG_PACKAGE_kmod-random-core is not set
-# CONFIG_PACKAGE_kmod-regmap is not set
-# CONFIG_PACKAGE_kmod-rfkill is not set
+CONFIG_PACKAGE_kmod-regmap=m
+CONFIG_PACKAGE_kmod-rfkill=m
 # CONFIG_PACKAGE_kmod-rtc-ds1307 is not set
 # CONFIG_PACKAGE_kmod-rtc-ds1374 is not set
 # CONFIG_PACKAGE_kmod-rtc-ds1672 is not set
@@ -2952,7 +2980,6 @@ CONFIG_PACKAGE_kmod-usb-ehci=m
 # CONFIG_PACKAGE_kmod-usb-net is not set
 # CONFIG_PACKAGE_kmod-usb-ohci is not set
 # CONFIG_PACKAGE_kmod-usb-ohci-pci is not set
-# CONFIG_PACKAGE_kmod-usb-phy-qcom-ipq4019 is not set
 # CONFIG_PACKAGE_kmod-usb-printer is not set
 # CONFIG_PACKAGE_kmod-usb-serial is not set
 CONFIG_PACKAGE_kmod-usb-storage=m
@@ -3205,6 +3232,7 @@ CONFIG_PACKAGE_luasocket=y
 # CONFIG_PACKAGE_python-cryptography is not set
 # CONFIG_PACKAGE_python-ctypes is not set
 # CONFIG_PACKAGE_python-ctypes-src is not set
+# CONFIG_PACKAGE_python-curl is not set
 # CONFIG_PACKAGE_python-dateutil is not set
 # CONFIG_PACKAGE_python-db is not set
 # CONFIG_PACKAGE_python-db-src is not set
@@ -3215,6 +3243,7 @@ CONFIG_PACKAGE_luasocket=y
 # CONFIG_PACKAGE_python-distutils is not set
 # CONFIG_PACKAGE_python-distutils-src is not set
 # CONFIG_PACKAGE_python-dns is not set
+# CONFIG_PACKAGE_python-dpkt is not set
 # CONFIG_PACKAGE_python-egenix-mx-base is not set
 # CONFIG_PACKAGE_python-email is not set
 # CONFIG_PACKAGE_python-email-src is not set
@@ -3523,7 +3552,6 @@ CONFIG_PACKAGE_libxtables=y
 #
 # SSL
 #
-# CONFIG_PACKAGE_libcyassl is not set
 # CONFIG_PACKAGE_libgnutls is not set
 # CONFIG_PACKAGE_libmbedtls is not set
 CONFIG_PACKAGE_libopenssl=y
@@ -3538,6 +3566,7 @@ CONFIG_OPENSSL_WITH_PSK=y
 CONFIG_OPENSSL_WITH_SRP=y
 # CONFIG_OPENSSL_HARDWARE_SUPPORT is not set
 # CONFIG_OPENSSL_ENGINE_CRYPTO is not set
+# CONFIG_PACKAGE_libwolfssl is not set
 
 #
 # Sound
@@ -3806,6 +3835,7 @@ CONFIG_PACKAGE_libpcre=y
 # CONFIG_PACKAGE_libqrencode is not set
 # CONFIG_PACKAGE_libradcli is not set
 # CONFIG_PACKAGE_libreadline is not set
+# CONFIG_PACKAGE_libredblack is not set
 # CONFIG_PACKAGE_libroxml is not set
 CONFIG_PACKAGE_librpc=y
 # CONFIG_PACKAGE_librrd1 is not set
@@ -3839,6 +3869,7 @@ CONFIG_PACKAGE_libssh2=m
 # CONFIG_PACKAGE_libtheora is not set
 # CONFIG_PACKAGE_libtiff is not set
 # CONFIG_PACKAGE_libtiffxx is not set
+# CONFIG_PACKAGE_libtins is not set
 # CONFIG_PACKAGE_libtorrent is not set
 CONFIG_PACKAGE_libubox=y
 # CONFIG_PACKAGE_libubox-lua is not set
@@ -3859,9 +3890,9 @@ CONFIG_PACKAGE_libuclient=y
 # CONFIG_PACKAGE_libusb-1.0 is not set
 # CONFIG_PACKAGE_libusb-compat is not set
 # CONFIG_PACKAGE_libusbmuxd is not set
-# CONFIG_PACKAGE_libustream-cyassl is not set
 # CONFIG_PACKAGE_libustream-mbedtls is not set
 # CONFIG_PACKAGE_libustream-openssl is not set
+# CONFIG_PACKAGE_libustream-wolfssl is not set
 CONFIG_PACKAGE_libuuid=y
 # CONFIG_PACKAGE_libuv is not set
 # CONFIG_PACKAGE_libuvc is not set
@@ -4750,7 +4781,6 @@ CONFIG_PACKAGE_tc=y
 # CONFIG_PACKAGE_baresip is not set
 # CONFIG_PACKAGE_freeswitch is not set
 # CONFIG_PACKAGE_freeswitch-stable is not set
-# CONFIG_PACKAGE_kamailio4 is not set
 # CONFIG_PACKAGE_kamailio5 is not set
 # CONFIG_PACKAGE_miax is not set
 # CONFIG_PACKAGE_pcapsipdump is not set
@@ -5096,6 +5126,7 @@ CONFIG_PACKAGE_mosquitto-client-ssl=y
 # CONFIG_PACKAGE_netdiscover is not set
 # CONFIG_PACKAGE_netperf is not set
 # CONFIG_PACKAGE_nlbwmon is not set
+# CONFIG_PACKAGE_noddos is not set
 # CONFIG_PACKAGE_noping is not set
 # CONFIG_PACKAGE_nut is not set
 # CONFIG_PACKAGE_obfsproxy is not set
@@ -5282,6 +5313,7 @@ CONFIG_PACKAGE_natcapd-client=y
 # CONFIG_PACKAGE_database is not set
 # CONFIG_PACKAGE_fwsecurity is not set
 # CONFIG_PACKAGE_ipcalc is not set
+# CONFIG_PACKAGE_led-ctl-brap9342 is not set
 # CONFIG_PACKAGE_libcjson is not set
 # CONFIG_PACKAGE_libpps is not set
 # CONFIG_PACKAGE_logserver is not set
