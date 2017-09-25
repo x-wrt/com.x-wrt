@@ -1,7 +1,7 @@
 
 
 usb2="kmod-usb2 kmod-usb-core kmod-usb-storage kmod-scsi-core kmod-crypto-crc32c kmod-nls-cp437 kmod-lib-crc16 kmod-fs-autofs4 kmod-fs-exfat kmod-fs-ext4 kmod-fs-msdos kmod-fs-ntfs kmod-fs-vfat block-mount blockd"
-usb3="kmod-usb3 kmod-usb-core kmod-usb-storage kmod-scsi-core kmod-crypto-crc32c kmod-nls-cp437 kmod-lib-crc16 kmod-fs-autofs4 kmod-fs-exfat kmod-fs-ext4 kmod-fs-msdos kmod-fs-ntfs kmod-fs-vfat block-mount blockd"
+usb3="kmod-usb-storage-uas kmod-usb3 kmod-usb-core kmod-usb-storage kmod-scsi-core kmod-crypto-crc32c kmod-nls-cp437 kmod-lib-crc16 kmod-fs-autofs4 kmod-fs-exfat kmod-fs-ext4 kmod-fs-msdos kmod-fs-ntfs kmod-fs-vfat block-mount blockd"
 moreapps="libstdcpp libsqlite3 libssh2 libxml2 luci-app-aria2 luci-app-samba luci-i18n-aria2-zh-cn luci-i18n-samba-en luci-i18n-samba-zh-cn webui-aria2 aria2 samba36-server"
 
 get_modules()
