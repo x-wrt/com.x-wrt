@@ -1,0 +1,12 @@
+#!/bin/sh /etc/rc.common
+# Copyright (C) 2006-2011 OpenWrt.org
+
+START=11
+
+boot() {
+	local DEV=`test -f /rom/etc/sda3.ready && echo /dev/sdb1 || echo /dev/sda1`
+	mkdir /tmp/usb_reset || return 0
+	mount $DEV /tmp/usb_reset || return 0
+	test -f /tmp/usb_reset/ptpt52_reset_factory || test -f /tmp/usb_reset/ptpt52_reset_factory.txt || return 0
+	/usr/sbin/system_reset -h
+}

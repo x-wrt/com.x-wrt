@@ -60,6 +60,8 @@ define Package/$(PKG_NAME)/install
 	$(INSTALL_BIN) ./files/system_reset.sh $(1)/usr/sbin/system_reset
 	$(INSTALL_DIR) $(1)/etc
 	$(INSTALL_DATA) ./files/adv_luci_disabled $(1)/etc/adv_luci_disabled
+	$(INSTALL_DIR) $(1)/etc/init.d
+	$(INSTALL_BIN) ./files/usb_factory_reset.init $(1)/etc/init.d/usb_factory_reset
 ifeq ($(CONFIG_TARGET_x86_64),y)
 	$(INSTALL_DATA) ./files/fstab.config $(1)/etc/config/fstab
 	$(INSTALL_DIR) $(1)/lib/preinit
