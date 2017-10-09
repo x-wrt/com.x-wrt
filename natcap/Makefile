@@ -9,8 +9,8 @@ include $(TOPDIR)/rules.mk
 include $(INCLUDE_DIR)/kernel.mk
 
 PKG_NAME:=natcap
-PKG_VERSION:=5.0.0
-PKG_RELEASE:=c92bda757942e853b2ecaab25e309afc8a2d4377
+PKG_VERSION:=5.0.1
+PKG_RELEASE:=70c06114b0a247076fcd43d69eb0cdb9a9b0f86b
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION)-$(PKG_RELEASE).tar.xz
 PKG_SOURCE_URL:=https://github.com/ptpt52/natcap.git
@@ -90,7 +90,7 @@ define Package/natcapd/install
 	$(INSTALL_DATA) ./files/gfwlist_update.sh $(1)/usr/share/natcapd/gfwlist_update.sh
 	$(INSTALL_DATA) ./files/natcapd.pptpd.sh $(1)/usr/share/natcapd/natcapd.pptpd.sh
 	$(INSTALL_DATA) ./files/board_mac.lua $(1)/usr/share/natcapd/board_mac.lua
-	$(INSTALL_DATA) ./files/cniplist.set $(1)/usr/share/natcapd/cniplist.set
+	$(INSTALL_DATA) $(PKG_BUILD_DIR)/cniplist.set $(1)/usr/share/natcapd/cniplist.set
 	$(INSTALL_DATA) ./files/cacert.pem $(1)/usr/share/natcapd/cacert.pem
 	$(INSTALL_DATA) ./files/hosts $(1)/usr/share/natcapd/hosts
 	$(INSTALL_DIR) $(1)/usr/sbin
