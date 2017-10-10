@@ -10,7 +10,7 @@ include $(INCLUDE_DIR)/kernel.mk
 
 PKG_NAME:=natcap
 PKG_VERSION:=5.0.1
-PKG_RELEASE:=70c06114b0a247076fcd43d69eb0cdb9a9b0f86b
+PKG_RELEASE:=b1bd990fc42b6dfac3c74ff4da7d0cb4c62936c3
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION)-$(PKG_RELEASE).tar.xz
 PKG_SOURCE_URL:=https://github.com/ptpt52/natcap.git
@@ -49,7 +49,7 @@ endef
 define Package/natcapd/Default
   CATEGORY:=Ptpt52
   SUBMENU:=Natcap Support
-  DEPENDS:= +kmod-natcap +natcapd-client +mosquitto-client-ssl +mosquitto-client
+  DEPENDS:= +kmod-natcap +mosquitto-client-ssl +mosquitto-client
 endef
 
 define Package/natcapd
@@ -106,7 +106,7 @@ define KernelPackage/natcap
   FILES:=$(PKG_BUILD_DIR)/natcap.ko
   KCONFIG:=
   AUTOLOAD:=$(call AutoLoad,96,natcap)
-  DEPENDS:=+kmod-nf-conntrack +kmod-nf-nat +kmod-ipt-ipset
+  DEPENDS:= +kmod-ipt-conntrack +kmod-ipt-nat +kmod-ipt-ipset
 endef
 
 define KernelPackage/natcap/description
@@ -116,7 +116,7 @@ endef
 include $(INCLUDE_DIR)/kernel-defaults.mk
 
 define Build/Compile/natcap
-	$(MAKE) $(KERNEL_MAKEOPTS) SUBDIRS="$(PKG_BUILD_DIR)"
+	$(MAKE) $(KERNEL_MAKEOPTS) SUBDIRS="$(PKG_BUILD_DIR)" modules
 endef
 
 define Build/Compile/natcapd-client
@@ -129,8 +129,12 @@ endef
 
 define Build/Compile
 	$(call Build/Compile/natcap)
+ifneq ($(CONFIG_PACKAGE_natcapd-client),)
 	$(call Build/Compile/natcapd-client)
+endif
+ifneq ($(CONFIG_PACKAGE_natcapd-server),)
 	$(call Build/Compile/natcapd-server)
+endif
 endef
 
 $(eval $(call KernelPackage,natcap))
