@@ -2,7 +2,7 @@
 
 CFGS="`cat feeds/ptpt52/rom/lede/cfg.list`"
 
-bins="`find bin/targets/ | grep -- '\(-squashfs\|-factory\|-sysupgrade\)' | grep ptpt52 | grep -v root | grep -v kernel | while read line; do basename $line; done`"
+bins="`find bin/targets/ | grep -- '\(-squashfs\|-factory\|-sysupgrade\|\.bin\)' | grep ptpt52 | grep -v vmlinux | grep -v '\.dtb$' | while read line; do basename $line; done`"
 
 targets=$(cd feeds/ptpt52/rom/lede/ && cat $CFGS | grep TARGET_DEVICE_.*=y | sed 's/CONFIG_//;s/=y//' | sort)
 
