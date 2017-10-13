@@ -110,13 +110,13 @@ msgid "0(not in used)"
 msgstr "0(不使用)"
 
 msgid "1(secondary authenticate)"
-msgstr "二次认证"
+msgstr "1(二次认证)"
 
 msgid "2(post authenticate)"
-msgstr "认证后"
+msgstr "2(认证后)"
 
 msgid "3(pre authenticate)"
-msgstr "认证前"
+msgstr "3(认证前)"
 
 msgid "client version"
 msgstr "客户端版本"
