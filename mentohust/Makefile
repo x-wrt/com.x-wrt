@@ -10,10 +10,10 @@ include $(INCLUDE_DIR)/kernel.mk
 
 PKG_NAME:=mentohust
 PKG_VERSION:=4.0.0
-PKG_RELEASE:=857f5a112213393cf6fb19607fe9da61284c5a50
+PKG_RELEASE:=2f9ef2d6df5d95c0faa2e542f1cb77114824e697
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION)-$(PKG_RELEASE).tar.xz
-PKG_SOURCE_URL:=https://github.com/hyrathb/mentohust.git
+PKG_SOURCE_URL:=https://github.com/HustLion/mentohust.git
 PKG_SOURCE_PROTO:=git
 PKG_SOURCE_VERSION:=$(PKG_RELEASE)
 PKG_SOURCE_SUBDIR:=$(PKG_NAME)-$(PKG_VERSION)
