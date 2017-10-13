@@ -36,7 +36,7 @@ start_service() {
 	echo ShowNotify=$(uci get mentohust.@mentohust[0].ShowNotify) >> $CONF_TMP
 	echo Version=$(uci get mentohust.@mentohust[0].Version) >> $CONF_TMP
 	echo DataFile=$(uci get mentohust.@mentohust[0].DataFile) >> $CONF_TMP
-	echo dhcpscript=$(uci get mentohust.@mentohust[0].dhcpscript) >> $CONF_TMP
+	echo DhcpScript=$(uci get mentohust.@mentohust[0].DhcpScript) >> $CONF_TMP
 
 	[ x`readlink /etc/mentohust.conf` = x$CONF ] || ln -sf $CONF /etc/mentohust.conf
 	mv $CONF_TMP $CONF

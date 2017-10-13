@@ -68,6 +68,6 @@ s:option(Value, "Version", translate("client version"),translate("default to 0.0
 
 s:option(Value, "DataFile", translate("customized data file"),translate("not in used by default")).default="/etc/mentohust"
 
-s:option(Value, "dhcpscript", translate("DHCP script"),translate("use dhclient by default")).default="udhcpc -i"
+s:option(Value, "DhcpScript", translate("DHCP script"),translate("use dhclient by default")).default="udhcpc -i"
 
 return m
