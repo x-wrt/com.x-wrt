@@ -44,6 +44,17 @@ define Package/mentohust/conffiles
 /etc/config/mentohust
 endef
 
+define Package/mentohust/postinst
+#!/bin/sh
+
+if [ -z "$$IPKG_INSTROOT" ]; then
+  ( . /etc/uci-defaults/95-mentohust )
+  rm -f /etc/uci-defaults/95-mentohust
+fi
+
+exit 0
+endef
+
 define Package/mentohust/install
 	$(INSTALL_DIR) $(1)/etc/init.d
 	$(INSTALL_BIN) ./files/mentohust.init $(1)/etc/init.d/mentohust
@@ -51,6 +62,8 @@ define Package/mentohust/install
 	$(INSTALL_DATA) ./files/mentohust.config $(1)/etc/config/mentohust
 	$(INSTALL_DIR) $(1)/usr/sbin
 	$(INSTALL_BIN) $(PKG_BUILD_DIR)/src/mentohust $(1)/usr/sbin/mentohust
+	$(INSTALL_DIR) $(1)/etc/uci-defaults
+	$(INSTALL_DATA) ./files/uci.defaults $(1)/etc/uci-defaults/95-mentohust
 endef
 
 define Build/Configure
