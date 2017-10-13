@@ -179,6 +179,7 @@ for t in $targets; do
 			mods="$mods $moreapps"
 		;;
 		#<=8M flash
+		TARGET_DEVICE_ramips_mt7620_DEVICE_zbt-we2026|\
 		TARGET_DEVICE_ramips_mt76x8_DEVICE_tl-wr841n-v13|\
 		TARGET_DEVICE_ramips_mt76x8_DEVICE_tl-wr840n-v4|\
 		TARGET_DEVICE_ar71xx_generic_DEVICE_tl-wr1043nd-v3|\
@@ -315,6 +316,7 @@ for t in $targets; do
 			mods="$mods $usb2"
 		;;
 		#no usb
+		TARGET_DEVICE_ramips_mt7620_DEVICE_zbt-we2026|\
 		TARGET_DEVICE_ramips_mt76x8_DEVICE_tl-wr841n-v13|\
 		TARGET_DEVICE_ramips_mt76x8_DEVICE_tl-wr840n-v4|\
 		TARGET_DEVICE_ar71xx_generic_DEVICE_tl-wr1043nd-v1|\
