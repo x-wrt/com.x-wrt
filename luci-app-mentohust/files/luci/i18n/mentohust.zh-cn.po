@@ -34,6 +34,12 @@ msgstr "密码"
 msgid "net card name"
 msgstr "网卡"
 
+msgid "ServiceName"
+msgstr "服务名"
+
+msgid "default to 'internet'"
+msgstr "默认是internet"
+
 msgid "IP"
 msgstr "IP"
 

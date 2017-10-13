@@ -31,6 +31,8 @@ for k, v in pairs(luci.sys.net.devices()) do
 	nic:value(v)
 end
 
+s:option(Value, "ServiceName", translate("ServiceName"),translate("default to 'internet'")).default="internet"
+
 s:option(Value, "IP", translate("IP"),translate("default to localhost's IP")).default="0.0.0.0"
 
 s:option(Value, "Mask", translate("netmask"),translate("default to localhost's netmask")).default="255.255.255.0"
