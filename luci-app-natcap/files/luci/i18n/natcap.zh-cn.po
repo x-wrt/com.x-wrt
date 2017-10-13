@@ -1,5 +1,101 @@
 msgid ""
 msgstr "Content-Type: text/plain; charset=UTF-8\n"
 
-msgid "MentoHUST"
-msgstr "MentoHUST"
+msgid "Natcap Service"
+msgstr "Natcap 服务"
+
+msgid "Natcap to avoid censorship/filtering/logging"
+msgstr "Natcap 避免被审查/过滤/记录"
+
+msgid "General Settings"
+msgstr "一般配置"
+
+msgid "Advance Settings"
+msgstr "高级配置"
+
+msgid "Mac Filter"
+msgstr "Mac过滤"
+
+msgid "Enable Natcap"
+msgstr "启用 Natcap"
+
+msgid "Natcap Account"
+msgstr "Natcap 帐号"
+
+msgid "Natcap Servers"
+msgstr "Natcap 服务器"
+
+msgid "Please fill in the server by format (ip:port)"
+msgstr "请按照格式填写服务器（ip:port）"
+
+msgid "Domestic and International Diversion"
+msgstr "启用国内国际分流模式"
+
+msgid "Generally do not need to be enabled unless used to play games."
+msgstr "一般不需要启用，除非用来打游戏。"
+
+msgid "DNS Server"
+msgstr "DNS 服务器"
+
+msgid "Enable Encryption"
+msgstr "启用加密"
+
+msgid "Server Switching Interval (s)"
+msgstr "服务器切换时间（秒）"
+
+msgid "How long to switch the server."
+msgstr "多久切换一次服务器。"
+
+msgid "Local TCP Listening Port"
+msgstr "本地TCP监听端口"
+
+msgid "0 Disabled，Otherwise Enabled"
+msgstr "0 禁用，其它启用"
+
+msgid "Force UDP Mode"
+msgstr "强制UDP模式"
+
+msgid "Do not normally enable unless the normal mode is not working."
+msgstr "一般不要启用，除非正常模式不通。"
+
+msgid "TCP Proxy Acceleration"
+msgstr "TCP代理加速"
+
+msgid "Recommended to use the server's TCP proxy and Google BBR algorithm to accelerate."
+msgstr "推荐使用，利用服务器的TCP代理和谷歌BBR算法加速。"
+
+msgid "HTTP Obfuscation"
+msgstr "启用HTTP混淆"
+
+msgid "Disguise the traffic into HTTP."
+msgstr "把流量伪装成HTTP。"
+
+msgid "Obfuscation Host"
+msgstr "混淆Host"
+
+msgid "Enable The PPTP Server"
+msgstr "启用PPTP服务器"
+
+msgid "Allows you to use VPN to connect to router, the router need to have a public IP."
+msgstr "允许你用VPN连接自己的路由器，路由器需要有公网IP。"
+
+msgid "PPTP Username"
+msgstr "PPTP用户"
+
+msgid "Password"
+msgstr "密码"
+
+msgid "Mac Address Filter"
+msgstr "Mac地址过滤"
+
+msgid "Disabled"
+msgstr "不使用"
+
+msgid "whitelist (Allow to use Natcap)"
+msgstr "白名单（允许列表使用Natcap）"
+
+msgid "blacklist (Forbid to use Natcap)"
+msgstr "黑名单（禁止列表使用Natcap）"
+
+msgid "Mac List"
+msgstr "Mac列表"
