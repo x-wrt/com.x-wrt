@@ -171,8 +171,6 @@ enabled="`uci get natcapd.default.enabled 2>/dev/null`"
 		timeout -t5 sh -c 'echo >/tmp/trigger_gfwlist_update.fifo'
 	fi
 
-	#reload pptpd
-	sh /usr/share/natcapd/natcapd.pptpd.sh
 	#reload natcapd-client
 	natcap_redirect_port=`uci get natcapd.default.natcap_redirect_port 2>/dev/null || echo 0`
 	sleep 1 && killall natcapd-client >/dev/null 2>&1 && sleep 2
@@ -184,6 +182,9 @@ enabled="`uci get natcapd.default.enabled 2>/dev/null`"
 		) &
 	}
 }
+
+#reload pptpd
+sh /usr/share/natcapd/natcapd.pptpd.sh
 
 ACC=$1
 ACC=`echo -n "$ACC" | b64encode`
