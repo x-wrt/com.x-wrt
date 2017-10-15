@@ -9,6 +9,12 @@ CONF=/var/etc/mentohust.conf
 CONF_TMP=${CONF}.tmp
 
 start_service() {
+	if [ "x$(uci get mentohust.@option[0].rproxy)" = x1 ]; then
+		modprobe rproxy 2>/dev/null
+	else
+		rmmod rproxy 2>/dev/null
+	fi
+
 	[ "x$(uci get mentohust.@option[0].enable)" = x1 ] || {
 		test -e /etc/mentohust.conf && /usr/sbin/mentohust -k
 		return 0

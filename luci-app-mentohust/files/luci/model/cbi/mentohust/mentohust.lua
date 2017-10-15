@@ -15,6 +15,7 @@ m:section(SimpleSection).template  = "mentohust/mentohust"
 s = m:section(TypedSection, "option", translate("Start option"),translate("Configure mentohust's start option"))
 s.anonymous = true
 s:option(Flag, "enable", translate("MentoHUST_enable"), translate("enable or disable mentohust")).default="0"
+s:option(Flag, "rproxy", translate("Router Proxy"), translate("router proxy to fake single client")).default="0"
 
 s = m:section(TypedSection, "mentohust", translate("Config mentohust"),translate("The options below are all of mentohust's arguments."))
 s.anonymous = true

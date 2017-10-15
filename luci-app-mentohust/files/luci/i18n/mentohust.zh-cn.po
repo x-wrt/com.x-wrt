@@ -19,6 +19,12 @@ msgstr "启用MentoHUST"
 msgid "enable or disable mentohust"
 msgstr "启用或禁用mentohust"
 
+msgid "Router Proxy"
+msgstr "路由代理伪装"
+
+msgid "router proxy to fake single client"
+msgstr "隐藏代理的多个设备避免因为代理检测断网"
+
 msgid "Config mentohust"
 msgstr "配置mentohust"
 
