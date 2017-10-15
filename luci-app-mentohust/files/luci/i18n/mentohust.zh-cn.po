@@ -4,7 +4,7 @@ msgstr "Content-Type: text/plain; charset=UTF-8\n"
 msgid "MentoHUST"
 msgstr "MentoHUST"
 
-msgid "A Ruijie and Cernet supplicant on Linux and MacOS from HustMoon Studio."
+msgid "A Ruijie and Cernet supplicant on Linux and MacOS"
 msgstr "Linux/MacOS 平台的锐捷认证客户端"
 
 msgid "Start option"
