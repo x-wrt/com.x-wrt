@@ -3,11 +3,20 @@
 usb2="kmod-usb2 kmod-usb-core kmod-usb-storage kmod-scsi-core kmod-crypto-crc32c kmod-nls-cp437 kmod-lib-crc16 kmod-fs-autofs4 kmod-fs-exfat kmod-fs-ext4 kmod-fs-msdos kmod-fs-ntfs kmod-fs-vfat block-mount blockd"
 usb3="kmod-usb-storage-uas kmod-usb3 kmod-usb-core kmod-usb-storage kmod-scsi-core kmod-crypto-crc32c kmod-nls-cp437 kmod-lib-crc16 kmod-fs-autofs4 kmod-fs-exfat kmod-fs-ext4 kmod-fs-msdos kmod-fs-ntfs kmod-fs-vfat block-mount blockd"
 moreapps="libstdcpp libsqlite3 libssh2 libxml2 luci-app-aria2 luci-app-samba luci-i18n-aria2-zh-cn luci-i18n-samba-en luci-i18n-samba-zh-cn webui-aria2 aria2 samba36-server"
+excludes=""
 
 get_modules()
 {
 	local m
-	m=`for m in $@; do echo $m; done | sort | uniq`
+	m=`for i in $@; do echo $i; done | sort | uniq`
+	m=`echo $m`
+	echo $m
+}
+
+exclude_modules()
+{
+	local m
+	m=`for i in $@ $excludes $excludes; do echo $i; done | sort | uniq -c | grep ' 1' | awk '{print $2}' | sort`
 	m=`echo $m`
 	echo $m
 }
@@ -342,6 +351,7 @@ for t in $targets; do
 			done)
 	dep_mods=`get_modules $dep_mods`
 	mods=`get_modules $mods $dep_mods`
+	mods=`exclude_modules $mods`
 	#echo add dep $tname=$mods
 	sed -i "s/$tname=\".*\"/$tname=\"$mods\"/" ./.config
 done
