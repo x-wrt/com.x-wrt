@@ -1,6 +1,6 @@
 #!/bin/sh
 
-CFGS="`cat feeds/ptpt52/rom/lede/cfg.list`"
+CFGS=${CFGS-"`cat feeds/ptpt52/rom/lede/cfg.list`"}
 
 bins="`find bin/targets/ | grep -- '\(-squashfs\|-factory\|-sysupgrade\|\.bin\)' | grep ptpt52 | grep -v vmlinux | grep -v '\.dtb$' | while read line; do basename $line; done`"
 
