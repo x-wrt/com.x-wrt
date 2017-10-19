@@ -196,6 +196,8 @@ for t in $targets; do
 		TARGET_DEVICE_ar71xx_generic_DEVICE_tl-wr1043nd-v1|\
 		TARGET_DEVICE_ramips_mt76x8_DEVICE_mac1200r-v2|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_k2p|\
+		TARGET_DEVICE_ar71xx_generic_DEVICE_archer-c7-v1|\
+		TARGET_DEVICE_ar71xx_generic_DEVICE_archer-c7-v2|\
 		TARGET_DEVICE_ar71xx_generic_DEVICE_tl-wdr7500-v3|\
 		TARGET_DEVICE_ar71xx_generic_DEVICE_AP152_16M|\
 		TARGET_DEVICE_ar71xx_generic_DEVICE_AP147_010|\
@@ -213,7 +215,6 @@ for t in $targets; do
 		TARGET_DEVICE_ar71xx_generic_DEVICE_tl-wdr6500-v2|\
 		TARGET_DEVICE_ar71xx_generic_DEVICE_tl-wdr4900-v2|\
 		TARGET_DEVICE_ar71xx_generic_DEVICE_tl-wdr4310-v1|\
-		TARGET_DEVICE_ar71xx_generic_DEVICE_tl-wdr4300-v1-il|\
 		TARGET_DEVICE_ar71xx_generic_DEVICE_tl-wdr4300-v1|\
 		TARGET_DEVICE_ar71xx_generic_DEVICE_tl-wdr3600-v1|\
 		TARGET_DEVICE_ar71xx_generic_DEVICE_tl-wdr3500-v1|\
@@ -274,6 +275,8 @@ for t in $targets; do
 		TARGET_DEVICE_ar71xx_generic_DEVICE_tl-wr1043nd-v2|\
 		TARGET_DEVICE_kirkwood_DEVICE_on100|\
 		TARGET_DEVICE_kirkwood_DEVICE_linksys-audi|\
+		TARGET_DEVICE_ar71xx_generic_DEVICE_archer-c7-v1|\
+		TARGET_DEVICE_ar71xx_generic_DEVICE_archer-c7-v2|\
 		TARGET_DEVICE_ar71xx_generic_DEVICE_tl-wdr7500-v3|\
 		TARGET_DEVICE_ramips_mt76x8_DEVICE_hc5661a|\
 		TARGET_DEVICE_brcm47xx_generic_DEVICE_linksys-wrt610n-v2|\
@@ -310,7 +313,6 @@ for t in $targets; do
 		TARGET_DEVICE_ar71xx_generic_DEVICE_tl-wdr6500-v2|\
 		TARGET_DEVICE_ar71xx_generic_DEVICE_tl-wdr4900-v2|\
 		TARGET_DEVICE_ar71xx_generic_DEVICE_tl-wdr4310-v1|\
-		TARGET_DEVICE_ar71xx_generic_DEVICE_tl-wdr4300-v1-il|\
 		TARGET_DEVICE_ar71xx_generic_DEVICE_tl-wdr4300-v1|\
 		TARGET_DEVICE_ar71xx_generic_DEVICE_tl-wdr3600-v1|\
 		TARGET_DEVICE_ar71xx_generic_DEVICE_tl-wdr3500-v1|\
