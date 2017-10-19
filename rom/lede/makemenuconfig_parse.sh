@@ -199,6 +199,7 @@ for t in $targets; do
 		TARGET_DEVICE_ar71xx_generic_DEVICE_archer-c7-v1|\
 		TARGET_DEVICE_ar71xx_generic_DEVICE_archer-c7-v2|\
 		TARGET_DEVICE_ar71xx_generic_DEVICE_tl-wdr7500-v3|\
+		TARGET_DEVICE_ar71xx_generic_DEVICE_archer-c7-v4|\
 		TARGET_DEVICE_ar71xx_generic_DEVICE_AP152_16M|\
 		TARGET_DEVICE_ar71xx_generic_DEVICE_AP147_010|\
 		TARGET_DEVICE_ar71xx_generic_DEVICE_AP143_8M|\
@@ -278,6 +279,7 @@ for t in $targets; do
 		TARGET_DEVICE_ar71xx_generic_DEVICE_archer-c7-v1|\
 		TARGET_DEVICE_ar71xx_generic_DEVICE_archer-c7-v2|\
 		TARGET_DEVICE_ar71xx_generic_DEVICE_tl-wdr7500-v3|\
+		TARGET_DEVICE_ar71xx_generic_DEVICE_archer-c7-v4|\
 		TARGET_DEVICE_ramips_mt76x8_DEVICE_hc5661a|\
 		TARGET_DEVICE_brcm47xx_generic_DEVICE_linksys-wrt610n-v2|\
 		TARGET_DEVICE_brcm47xx_generic_DEVICE_linksys-wrt610n-v1|\
