@@ -231,7 +231,7 @@ _NAME=`basename $0`
 LOCKDIR=/tmp/$_NAME.lck
 
 cleanup () {
-	if rm -f $LOCKDIR; then
+	if rm -rf $LOCKDIR; then
 		echo "Finished"
 	else
 		echo "Failed to remove lock directory '$LOCKDIR'"
