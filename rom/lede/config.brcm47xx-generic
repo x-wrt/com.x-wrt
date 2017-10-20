@@ -80,14 +80,14 @@ CONFIG_TARGET_MULTI_PROFILE=y
 CONFIG_TARGET_PER_DEVICE_ROOTFS=y
 # CONFIG_TARGET_DEVICE_brcm47xx_generic_DEVICE_standard is not set
 CONFIG_TARGET_DEVICE_brcm47xx_generic_DEVICE_linksys-e3000-v1=y
-CONFIG_TARGET_DEVICE_PACKAGES_brcm47xx_generic_DEVICE_linksys-e3000-v1="blockd block-mount kmod-b43 kmod-bgmac kmod-crypto-crc32c kmod-fs-autofs4 kmod-fs-exfat kmod-fs-ext4 kmod-fs-msdos kmod-fs-ntfs kmod-fs-vfat kmod-leds-gpio kmod-ledtrig-default-on kmod-ledtrig-netdev kmod-ledtrig-timer kmod-lib-crc16 kmod-nls-cp437 kmod-scsi-core kmod-usb2 kmod-usb-bcma kmod-usb-core kmod-usb-ehci kmod-usb-ohci kmod-usb-ssb kmod-usb-storage"
+CONFIG_TARGET_DEVICE_PACKAGES_brcm47xx_generic_DEVICE_linksys-e3000-v1="blockd block-mount kmod-b43 kmod-bgmac kmod-crypto-crc32c kmod-fs-autofs4 kmod-fs-exfat kmod-fs-ext4 kmod-fs-msdos kmod-fs-vfat kmod-fuse kmod-leds-gpio kmod-ledtrig-default-on kmod-ledtrig-netdev kmod-ledtrig-timer kmod-lib-crc16 kmod-nls-cp437 kmod-scsi-core kmod-usb2 kmod-usb-bcma kmod-usb-core kmod-usb-ehci kmod-usb-ohci kmod-usb-ssb kmod-usb-storage ntfs-3g"
 # CONFIG_TARGET_DEVICE_brcm47xx_generic_DEVICE_linksys-wrt300n-v1.1 is not set
 # CONFIG_TARGET_DEVICE_brcm47xx_generic_DEVICE_linksys-wrt310n-v1 is not set
 # CONFIG_TARGET_DEVICE_brcm47xx_generic_DEVICE_linksys-wrt350n-v1 is not set
 CONFIG_TARGET_DEVICE_brcm47xx_generic_DEVICE_linksys-wrt610n-v1=y
-CONFIG_TARGET_DEVICE_PACKAGES_brcm47xx_generic_DEVICE_linksys-wrt610n-v1="blockd block-mount kmod-b43 kmod-crypto-crc32c kmod-fs-autofs4 kmod-fs-exfat kmod-fs-ext4 kmod-fs-msdos kmod-fs-ntfs kmod-fs-vfat kmod-hwmon-core kmod-leds-gpio kmod-ledtrig-default-on kmod-ledtrig-netdev kmod-ledtrig-timer kmod-lib-crc16 kmod-nls-cp437 kmod-pps kmod-ptp kmod-scsi-core kmod-tg3 kmod-usb2 kmod-usb-bcma kmod-usb-core kmod-usb-ehci kmod-usb-ohci kmod-usb-ssb kmod-usb-storage"
+CONFIG_TARGET_DEVICE_PACKAGES_brcm47xx_generic_DEVICE_linksys-wrt610n-v1="blockd block-mount kmod-b43 kmod-crypto-crc32c kmod-fs-autofs4 kmod-fs-exfat kmod-fs-ext4 kmod-fs-msdos kmod-fs-vfat kmod-fuse kmod-hwmon-core kmod-leds-gpio kmod-ledtrig-default-on kmod-ledtrig-netdev kmod-ledtrig-timer kmod-lib-crc16 kmod-nls-cp437 kmod-pps kmod-ptp kmod-scsi-core kmod-tg3 kmod-usb2 kmod-usb-bcma kmod-usb-core kmod-usb-ehci kmod-usb-ohci kmod-usb-ssb kmod-usb-storage ntfs-3g"
 CONFIG_TARGET_DEVICE_brcm47xx_generic_DEVICE_linksys-wrt610n-v2=y
-CONFIG_TARGET_DEVICE_PACKAGES_brcm47xx_generic_DEVICE_linksys-wrt610n-v2="blockd block-mount kmod-b43 kmod-bgmac kmod-crypto-crc32c kmod-fs-autofs4 kmod-fs-exfat kmod-fs-ext4 kmod-fs-msdos kmod-fs-ntfs kmod-fs-vfat kmod-leds-gpio kmod-ledtrig-default-on kmod-ledtrig-netdev kmod-ledtrig-timer kmod-lib-crc16 kmod-nls-cp437 kmod-scsi-core kmod-usb2 kmod-usb-bcma kmod-usb-core kmod-usb-ehci kmod-usb-ohci kmod-usb-ssb kmod-usb-storage"
+CONFIG_TARGET_DEVICE_PACKAGES_brcm47xx_generic_DEVICE_linksys-wrt610n-v2="blockd block-mount kmod-b43 kmod-bgmac kmod-crypto-crc32c kmod-fs-autofs4 kmod-fs-exfat kmod-fs-ext4 kmod-fs-msdos kmod-fs-vfat kmod-fuse kmod-leds-gpio kmod-ledtrig-default-on kmod-ledtrig-netdev kmod-ledtrig-timer kmod-lib-crc16 kmod-nls-cp437 kmod-scsi-core kmod-usb2 kmod-usb-bcma kmod-usb-core kmod-usb-ehci kmod-usb-ohci kmod-usb-ssb kmod-usb-storage ntfs-3g"
 CONFIG_HAS_SUBTARGETS=y
 CONFIG_HAS_DEVICES=y
 CONFIG_TARGET_BOARD="brcm47xx"
@@ -95,7 +95,7 @@ CONFIG_TARGET_SUBTARGET="generic"
 CONFIG_TARGET_ARCH_PACKAGES="mipsel_mips32"
 CONFIG_DEFAULT_TARGET_OPTIMIZATION="-Os -pipe -mno-branch-likely -mips32 -mtune=mips32"
 CONFIG_CPU_TYPE="mips32"
-CONFIG_LINUX_4_4=y
+CONFIG_LINUX_4_9=y
 CONFIG_DEFAULT_base-files=y
 CONFIG_MODULE_DEFAULT_base-files=y
 CONFIG_DEFAULT_busybox=y
@@ -400,7 +400,7 @@ CONFIG_TARGET_INIT_SUPPRESS_STDERR=y
 CONFIG_VERSIONOPT=y
 CONFIG_VERSION_DIST="PTPT52"
 CONFIG_VERSION_NICK="fuckgfw"
-CONFIG_VERSION_NUMBER="3.0.0_build201710181105"
+CONFIG_VERSION_NUMBER="3.0.0_build201710201202"
 CONFIG_VERSION_CODE=""
 CONFIG_VERSION_REPO="http://downloads.openwrt.org/snapshots/trunk/%S/packages"
 CONFIG_VERSION_MANUFACTURER="PTPT52"
@@ -2557,22 +2557,23 @@ CONFIG_PACKAGE_kmod-crypto-aead=y
 # CONFIG_PACKAGE_kmod-crypto-ccm is not set
 CONFIG_PACKAGE_kmod-crypto-cmac=y
 CONFIG_PACKAGE_kmod-crypto-crc32c=m
-# CONFIG_PACKAGE_kmod-crypto-ctr is not set
+CONFIG_PACKAGE_kmod-crypto-ctr=m
 # CONFIG_PACKAGE_kmod-crypto-deflate is not set
 # CONFIG_PACKAGE_kmod-crypto-des is not set
 CONFIG_PACKAGE_kmod-crypto-ecb=y
 # CONFIG_PACKAGE_kmod-crypto-echainiv is not set
 # CONFIG_PACKAGE_kmod-crypto-fcrypt is not set
-# CONFIG_PACKAGE_kmod-crypto-gcm is not set
-# CONFIG_PACKAGE_kmod-crypto-gf128 is not set
-# CONFIG_PACKAGE_kmod-crypto-ghash is not set
+CONFIG_PACKAGE_kmod-crypto-gcm=m
+CONFIG_PACKAGE_kmod-crypto-gf128=m
+CONFIG_PACKAGE_kmod-crypto-ghash=m
 CONFIG_PACKAGE_kmod-crypto-hash=y
-# CONFIG_PACKAGE_kmod-crypto-hmac is not set
+CONFIG_PACKAGE_kmod-crypto-hmac=m
 # CONFIG_PACKAGE_kmod-crypto-hw-ccp is not set
 # CONFIG_PACKAGE_kmod-crypto-hw-geode is not set
 # CONFIG_PACKAGE_kmod-crypto-hw-hifn-795x is not set
 # CONFIG_PACKAGE_kmod-crypto-hw-padlock is not set
 # CONFIG_PACKAGE_kmod-crypto-hw-talitos is not set
+CONFIG_PACKAGE_kmod-crypto-iv=m
 CONFIG_PACKAGE_kmod-crypto-manager=y
 # CONFIG_PACKAGE_kmod-crypto-md4 is not set
 # CONFIG_PACKAGE_kmod-crypto-md5 is not set
@@ -2581,14 +2582,14 @@ CONFIG_PACKAGE_kmod-crypto-manager=y
 CONFIG_PACKAGE_kmod-crypto-null=y
 # CONFIG_PACKAGE_kmod-crypto-pcbc is not set
 CONFIG_PACKAGE_kmod-crypto-pcompress=y
-# CONFIG_PACKAGE_kmod-crypto-rng is not set
-# CONFIG_PACKAGE_kmod-crypto-seqiv is not set
+CONFIG_PACKAGE_kmod-crypto-rng=m
+CONFIG_PACKAGE_kmod-crypto-seqiv=m
 CONFIG_PACKAGE_kmod-crypto-sha1=y
-# CONFIG_PACKAGE_kmod-crypto-sha256 is not set
+CONFIG_PACKAGE_kmod-crypto-sha256=m
 # CONFIG_PACKAGE_kmod-crypto-sha512 is not set
 # CONFIG_PACKAGE_kmod-crypto-test is not set
 # CONFIG_PACKAGE_kmod-crypto-user is not set
-# CONFIG_PACKAGE_kmod-crypto-wq is not set
+CONFIG_PACKAGE_kmod-crypto-wq=m
 # CONFIG_PACKAGE_kmod-crypto-xts is not set
 # CONFIG_PACKAGE_kmod-cryptodev is not set
 
@@ -2615,13 +2616,13 @@ CONFIG_PACKAGE_kmod-fs-msdos=m
 # CONFIG_PACKAGE_kmod-fs-nfs is not set
 # CONFIG_PACKAGE_kmod-fs-nfs-common is not set
 # CONFIG_PACKAGE_kmod-fs-nfsd is not set
-CONFIG_PACKAGE_kmod-fs-ntfs=m
+# CONFIG_PACKAGE_kmod-fs-ntfs is not set
 # CONFIG_PACKAGE_kmod-fs-reiserfs is not set
 # CONFIG_PACKAGE_kmod-fs-squashfs is not set
 # CONFIG_PACKAGE_kmod-fs-udf is not set
 CONFIG_PACKAGE_kmod-fs-vfat=m
 # CONFIG_PACKAGE_kmod-fs-xfs is not set
-# CONFIG_PACKAGE_kmod-fuse is not set
+CONFIG_PACKAGE_kmod-fuse=m
 
 #
 # FireWire support
@@ -2887,6 +2888,7 @@ CONFIG_PACKAGE_kmod-iptunnel6=y
 CONFIG_PACKAGE_kmod-l2tp=y
 # CONFIG_PACKAGE_kmod-l2tp-eth is not set
 # CONFIG_PACKAGE_kmod-l2tp-ip is not set
+CONFIG_PACKAGE_kmod-macsec=m
 # CONFIG_PACKAGE_kmod-misdn is not set
 # CONFIG_PACKAGE_kmod-mpls is not set
 CONFIG_PACKAGE_kmod-ppp=y
@@ -2957,7 +2959,6 @@ CONFIG_PACKAGE_kmod-ptp=m
 # CONFIG_PACKAGE_kmod-random-core is not set
 # CONFIG_PACKAGE_kmod-regmap is not set
 # CONFIG_PACKAGE_kmod-rfkill is not set
-# CONFIG_PACKAGE_kmod-rotary-gpio-custom is not set
 # CONFIG_PACKAGE_kmod-rtc-ds1307 is not set
 # CONFIG_PACKAGE_kmod-rtc-ds1374 is not set
 # CONFIG_PACKAGE_kmod-rtc-ds1672 is not set
@@ -3070,7 +3071,6 @@ CONFIG_PACKAGE_kmod-usb3=m
 #
 # Wireless Drivers
 #
-# CONFIG_PACKAGE_kmod-acx-mac80211 is not set
 # CONFIG_PACKAGE_kmod-adm8211 is not set
 # CONFIG_PACKAGE_kmod-ath is not set
 # CONFIG_PACKAGE_kmod-ath10k is not set
@@ -5554,7 +5554,8 @@ CONFIG_PACKAGE_uboot-envtools=y
 # CONFIG_PACKAGE_mkhfs is not set
 # CONFIG_PACKAGE_ncdu is not set
 # CONFIG_PACKAGE_nfs-utils is not set
-# CONFIG_PACKAGE_ntfs-3g is not set
+CONFIG_PACKAGE_ntfs-3g=m
+# CONFIG_PACKAGE_NTFS-3G_USE_LIBFUSE is not set
 # CONFIG_PACKAGE_ntfs-3g-low is not set
 # CONFIG_PACKAGE_ntfs-3g-utils is not set
 # CONFIG_PACKAGE_owfs is not set
