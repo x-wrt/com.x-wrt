@@ -66,7 +66,8 @@ CONFIG_TARGET_MULTI_PROFILE=y
 #
 # CONFIG_TARGET_ALL_PROFILES is not set
 CONFIG_TARGET_PER_DEVICE_ROOTFS=y
-# CONFIG_TARGET_DEVICE_ipq806x_DEVICE_FRITZ4040 is not set
+CONFIG_TARGET_DEVICE_ipq806x_DEVICE_FRITZ4040=y
+CONFIG_TARGET_DEVICE_PACKAGES_ipq806x_DEVICE_FRITZ4040="aria2 ath10k-firmware-qca4019 blockd block-mount fritz-caldata fritz-tffs ipq-wifi-fritz4040 kmod-crypto-crc32c kmod-fs-autofs4 kmod-fs-exfat kmod-fs-ext4 kmod-fs-msdos kmod-fs-vfat kmod-fuse kmod-lib-crc16 kmod-nls-cp437 kmod-scsi-core kmod-usb2 kmod-usb3 kmod-usb-core kmod-usb-dwc3 kmod-usb-dwc3-of-simple kmod-usb-ehci kmod-usb-ledtrig-usbport kmod-usb-ohci kmod-usb-phy-qcom-dwc3 kmod-usb-phy-qcom-ipq4019 kmod-usb-storage kmod-usb-storage-uas libsqlite3 libssh2 libstdcpp libxml2 luci-app-aria2 luci-app-samba luci-i18n-aria2-zh-cn luci-i18n-samba-en luci-i18n-samba-zh-cn ntfs-3g samba36-server u-boot-fritz4040 webui-aria2"
 CONFIG_TARGET_DEVICE_ipq806x_DEVICE_EA8500=y
 CONFIG_TARGET_DEVICE_PACKAGES_ipq806x_DEVICE_EA8500="aria2 ath10k-firmware-qca99x0 blockd block-mount kmod-crypto-crc32c kmod-fs-autofs4 kmod-fs-exfat kmod-fs-ext4 kmod-fs-msdos kmod-fs-vfat kmod-fuse kmod-lib-crc16 kmod-nls-cp437 kmod-scsi-core kmod-usb2 kmod-usb3 kmod-usb-core kmod-usb-dwc3 kmod-usb-dwc3-of-simple kmod-usb-ehci kmod-usb-ledtrig-usbport kmod-usb-ohci kmod-usb-phy-qcom-dwc3 kmod-usb-storage kmod-usb-storage-uas libsqlite3 libssh2 libstdcpp libxml2 luci-app-aria2 luci-app-samba luci-i18n-aria2-zh-cn luci-i18n-samba-en luci-i18n-samba-zh-cn ntfs-3g samba36-server webui-aria2"
 CONFIG_TARGET_DEVICE_ipq806x_DEVICE_D7800=y
@@ -84,7 +85,8 @@ CONFIG_TARGET_DEVICE_PACKAGES_ipq806x_DEVICE_AP-DK04.1-C1="aria2 blockd block-mo
 # CONFIG_TARGET_DEVICE_ipq806x_DEVICE_DB149 is not set
 # CONFIG_TARGET_DEVICE_ipq806x_DEVICE_C2600 is not set
 # CONFIG_TARGET_DEVICE_ipq806x_DEVICE_VR2600v is not set
-# CONFIG_TARGET_DEVICE_ipq806x_DEVICE_NBG6817 is not set
+CONFIG_TARGET_DEVICE_ipq806x_DEVICE_NBG6817=y
+CONFIG_TARGET_DEVICE_PACKAGES_ipq806x_DEVICE_NBG6817="aria2 ath10k-firmware-qca9984 blockd block-mount e2fsprogs kmod-crypto-crc32c kmod-fs-autofs4 kmod-fs-exfat kmod-fs-ext4 kmod-fs-msdos kmod-fs-vfat kmod-fuse kmod-lib-crc16 kmod-nls-cp437 kmod-scsi-core kmod-usb2 kmod-usb3 kmod-usb-core kmod-usb-dwc3 kmod-usb-dwc3-of-simple kmod-usb-ehci kmod-usb-ledtrig-usbport kmod-usb-ohci kmod-usb-phy-qcom-dwc3 kmod-usb-storage kmod-usb-storage-uas libblkid libext2fs libsmartcols libsqlite3 libssh2 libstdcpp libxml2 losetup luci-app-aria2 luci-app-samba luci-i18n-aria2-zh-cn luci-i18n-samba-en luci-i18n-samba-zh-cn ntfs-3g samba36-server webui-aria2"
 CONFIG_HAS_DEVICES=y
 CONFIG_TARGET_BOARD="ipq806x"
 CONFIG_TARGET_SUBTARGET="generic"
@@ -103,12 +105,16 @@ CONFIG_DEFAULT_dnsmasq=y
 CONFIG_MODULE_DEFAULT_dnsmasq=y
 CONFIG_DEFAULT_dropbear=y
 CONFIG_MODULE_DEFAULT_dropbear=y
+CONFIG_MODULE_DEFAULT_e2fsprogs=y
 CONFIG_DEFAULT_firewall=y
 CONFIG_MODULE_DEFAULT_firewall=y
+CONFIG_MODULE_DEFAULT_fritz-caldata=y
+CONFIG_MODULE_DEFAULT_fritz-tffs=y
 CONFIG_DEFAULT_fstools=y
 CONFIG_MODULE_DEFAULT_fstools=y
 CONFIG_DEFAULT_ip6tables=y
 CONFIG_MODULE_DEFAULT_ip6tables=y
+CONFIG_MODULE_DEFAULT_ipq-wifi-fritz4040=y
 CONFIG_DEFAULT_iptables=y
 CONFIG_MODULE_DEFAULT_iptables=y
 CONFIG_DEFAULT_iwinfo=y
@@ -135,6 +141,7 @@ CONFIG_DEFAULT_kmod-usb-ohci=y
 CONFIG_MODULE_DEFAULT_kmod-usb-ohci=y
 CONFIG_DEFAULT_kmod-usb-phy-qcom-dwc3=y
 CONFIG_MODULE_DEFAULT_kmod-usb-phy-qcom-dwc3=y
+CONFIG_MODULE_DEFAULT_kmod-usb-phy-qcom-ipq4019=y
 CONFIG_DEFAULT_kmod-usb2=y
 CONFIG_MODULE_DEFAULT_kmod-usb2=y
 CONFIG_DEFAULT_kmod-usb3=y
@@ -145,6 +152,7 @@ CONFIG_DEFAULT_libgcc=y
 CONFIG_MODULE_DEFAULT_libgcc=y
 CONFIG_DEFAULT_logd=y
 CONFIG_MODULE_DEFAULT_logd=y
+CONFIG_MODULE_DEFAULT_losetup=y
 CONFIG_DEFAULT_mtd=y
 CONFIG_MODULE_DEFAULT_mtd=y
 CONFIG_DEFAULT_netifd=y
@@ -161,6 +169,7 @@ CONFIG_DEFAULT_ppp-mod-pppoe=y
 CONFIG_MODULE_DEFAULT_ppp-mod-pppoe=y
 CONFIG_DEFAULT_swconfig=y
 CONFIG_MODULE_DEFAULT_swconfig=y
+CONFIG_MODULE_DEFAULT_u-boot-fritz4040=y
 CONFIG_DEFAULT_uboot-envtools=y
 CONFIG_MODULE_DEFAULT_uboot-envtools=y
 CONFIG_DEFAULT_uci=y
@@ -2401,7 +2410,7 @@ CONFIG_PACKAGE_wireless-tools=y
 #
 # Boot Loaders
 #
-# CONFIG_PACKAGE_u-boot-fritz4040 is not set
+CONFIG_PACKAGE_u-boot-fritz4040=y
 
 #
 # Development
@@ -2444,7 +2453,7 @@ CONFIG_PACKAGE_wireless-tools=y
 #
 # ath10k IPQ4019 Boarddata
 #
-# CONFIG_PACKAGE_ipq-wifi-fritz4040 is not set
+CONFIG_PACKAGE_ipq-wifi-fritz4040=m
 # CONFIG_PACKAGE_ipq-wifi-nbg6617 is not set
 CONFIG_PACKAGE_ipq-wifi-rt-ac58u=m
 # CONFIG_PACKAGE_aircard-pcmcia-firmware is not set
@@ -3453,7 +3462,7 @@ CONFIG_PACKAGE_luasocket=y
 #
 # CONFIG_PACKAGE_libacl is not set
 # CONFIG_PACKAGE_libattr is not set
-# CONFIG_PACKAGE_libext2fs is not set
+CONFIG_PACKAGE_libext2fs=m
 # CONFIG_PACKAGE_libfuse is not set
 # CONFIG_PACKAGE_libow is not set
 # CONFIG_PACKAGE_libow-capi is not set
@@ -3713,7 +3722,7 @@ CONFIG_PACKAGE_libsqlite3=m
 # CONFIG_PACKAGE_libavahi-nodbus-support is not set
 # CONFIG_PACKAGE_libavl is not set
 # CONFIG_PACKAGE_libbfd is not set
-# CONFIG_PACKAGE_libblkid is not set
+CONFIG_PACKAGE_libblkid=m
 CONFIG_PACKAGE_libblobmsg-json=y
 # CONFIG_PACKAGE_libcanfestival is not set
 # CONFIG_PACKAGE_libcap is not set
@@ -3900,7 +3909,7 @@ CONFIG_PACKAGE_librpc=y
 # CONFIG_PACKAGE_libshout-full is not set
 # CONFIG_PACKAGE_libshout-nossl is not set
 # CONFIG_PACKAGE_libsigcxx is not set
-# CONFIG_PACKAGE_libsmartcols is not set
+CONFIG_PACKAGE_libsmartcols=m
 # CONFIG_PACKAGE_libsndfile is not set
 # CONFIG_PACKAGE_libsoc is not set
 # CONFIG_PACKAGE_libsocks is not set
@@ -5297,6 +5306,7 @@ CONFIG_PACKAGE_luci-app-macvlan=y
 CONFIG_PACKAGE_kmod-rproxy=m
 CONFIG_PACKAGE_luci-app-mentohust=m
 CONFIG_PACKAGE_mentohust=m
+# CONFIG_PACKAGE_mentohust-proxy is not set
 
 #
 # Natcap Support
@@ -5529,7 +5539,7 @@ CONFIG_PACKAGE_uboot-envtools=y
 # CONFIG_PACKAGE_dosfstools is not set
 # CONFIG_PACKAGE_dumpe2fs is not set
 # CONFIG_PACKAGE_e2freefrag is not set
-# CONFIG_PACKAGE_e2fsprogs is not set
+CONFIG_PACKAGE_e2fsprogs=m
 # CONFIG_PACKAGE_f2fs-tools is not set
 # CONFIG_PACKAGE_f2fsck is not set
 # CONFIG_PACKAGE_filefrag is not set
@@ -5683,8 +5693,8 @@ CONFIG_PACKAGE_ntfs-3g=m
 # CONFIG_PACKAGE_flashrom-usb is not set
 # CONFIG_PACKAGE_flent-tools is not set
 # CONFIG_PACKAGE_flock is not set
-# CONFIG_PACKAGE_fritz-caldata is not set
-# CONFIG_PACKAGE_fritz-tffs is not set
+CONFIG_PACKAGE_fritz-caldata=m
+CONFIG_PACKAGE_fritz-tffs=m
 # CONFIG_PACKAGE_ftdi_eeprom is not set
 # CONFIG_PACKAGE_gammu is not set
 # CONFIG_PACKAGE_gawk is not set
@@ -5729,7 +5739,7 @@ CONFIG_PACKAGE_libjson-script=y
 # CONFIG_PACKAGE_logger is not set
 # CONFIG_PACKAGE_logrotate is not set
 # CONFIG_PACKAGE_look is not set
-# CONFIG_PACKAGE_losetup is not set
+CONFIG_PACKAGE_losetup=m
 # CONFIG_PACKAGE_lrzsz is not set
 CONFIG_PACKAGE_lsof=y
 # CONFIG_PACKAGE_lxc is not set
