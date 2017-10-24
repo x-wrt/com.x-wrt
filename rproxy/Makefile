@@ -10,7 +10,7 @@ include $(INCLUDE_DIR)/kernel.mk
 
 PKG_NAME:=rproxy
 PKG_VERSION:=0.0.1
-PKG_RELEASE:=28d446d7adb92da4038ed373077112a4101ce3f9
+PKG_RELEASE:=141e123fd7d20b6d67563aad149d699faf5460fa
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION)-$(PKG_RELEASE).tar.xz
 PKG_SOURCE_URL:=https://github.com/ptpt52/rproxy.git
