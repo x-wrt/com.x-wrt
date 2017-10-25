@@ -96,13 +96,15 @@ enabled="`uci get natcapd.default.enabled 2>/dev/null`"
 	udproxylist=`uci get natcapd.default.udproxylist 2>/dev/null`
 	gfwlist_domain=`uci get natcapd.default.gfwlist_domain 2>/dev/null`
 	gfwlist=`uci get natcapd.default.gfwlist 2>/dev/null`
-	encode_mode=`uci get natcapd.default.encode_mode 2>/dev/null`
+	encode_mode=`uci get natcapd.default.encode_mode 2>/dev/null || echo 0`
+	udp_encode_mode=`uci get natcapd.default.udp_encode_mode 2>/dev/null || echo 0`
 	shadowsocks=`uci get natcapd.default.shadowsocks 2>/dev/null || echo 0`
 	sproxy=`uci get natcapd.default.sproxy 2>/dev/null || echo 0`
 	enable_hosts=`uci get natcapd.default.enable_hosts 2>/dev/null || echo 0`
-	test -n "$encode_mode" || encode_mode=TCP
 	[ x$encode_mode = x0 ] && encode_mode=TCP
 	[ x$encode_mode = x1 ] && encode_mode=UDP
+	[ x$udp_encode_mode = x0 ] && udp_encode_mode=UDP
+	[ x$udp_encode_mode = x1 ] && udp_encode_mode=TCP
 	board_mac_addr=`lua /usr/share/natcapd/board_mac.lua`
 
 	http_confusion=`uci get natcapd.default.http_confusion 2>/dev/null || echo 0`
@@ -127,6 +129,7 @@ enabled="`uci get natcapd.default.enabled 2>/dev/null`"
 	echo clean >>$DEV
 	echo server_persist_timeout=$server_persist_timeout >>$DEV
 	echo encode_mode=$encode_mode >$DEV
+	echo udp_encode_mode=$udp_encode_mode >$DEV
 	echo shadowsocks=$shadowsocks >$DEV
 	echo sproxy=$sproxy >$DEV
 	echo enable_hosts=$enable_hosts >$DEV

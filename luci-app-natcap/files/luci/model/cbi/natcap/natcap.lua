@@ -48,7 +48,11 @@ e.datatype = "portrange"
 e.rmempty = true
 e.placeholder = '0'
 
-e = s:taboption("advanced", Flag, "encode_mode", translate("Force UDP Mode"), translate("Do not normally enable unless the normal mode is not working."))
+e = s:taboption("advanced", Flag, "encode_mode", translate("Force TCP encode as UDP"), translate("Do not normally enable unless the normal mode is not working."))
+e.default = e.disabled
+e.rmempty = false
+
+e = s:taboption("advanced", Flag, "udp_encode_mode", translate("Force UDP encode as TCP"), translate("Do not normally enable unless the normal mode is not working."))
 e.default = e.disabled
 e.rmempty = false
 
