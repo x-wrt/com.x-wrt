@@ -1,5 +1,6 @@
 config.ar71xx-nand
 config.ar71xx-generic
+config.ar71xx-generic-nosymbol
 config.ramips-mt7620
 config.ramips-mt7621
 config.ramips-mt76x8
