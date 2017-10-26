@@ -13,6 +13,14 @@ get_modules()
 	echo $m
 }
 
+get_modules_only()
+{
+	local m
+	m=`for i in $@; do grep -q "CONFIG_PACKAGE_$i=m" .config && echo $i; done`
+	m=`echo $m`
+	echo $m
+}
+
 exclude_modules()
 {
 	local m
@@ -123,6 +131,7 @@ for t in $targets; do
 	mods="$us"
 	case $t in
 		#>8M flash
+		TARGET_DEVICE_ar71xx_generic_DEVICE_archer-c59-v1|\
 		TARGET_DEVICE_ipq806x_DEVICE_NBG6817|\
 		TARGET_DEVICE_ipq806x_DEVICE_FRITZ4040|\
 		TARGET_DEVICE_ramips_mt7620_DEVICE_miwifi-mini|\
@@ -190,6 +199,9 @@ for t in $targets; do
 			mods="$mods $moreapps"
 		;;
 		#<=8M flash
+		TARGET_DEVICE_ar71xx_generic_DEVICE_tl-wr902ac-v1|\
+		TARGET_DEVICE_ar71xx_generic_DEVICE_archer-c58-v1|\
+		TARGET_DEVICE_ar71xx_generic_DEVICE_archer-c60-v1|\
 		TARGET_DEVICE_ramips_mt7620_DEVICE_zbt-we2026|\
 		TARGET_DEVICE_ramips_mt76x8_DEVICE_tl-wr841n-v13|\
 		TARGET_DEVICE_ramips_mt76x8_DEVICE_tl-wr840n-v4|\
@@ -275,6 +287,8 @@ for t in $targets; do
 			mods="$mods $usb2 $usb3"
 		;;
 		#with usb2
+		TARGET_DEVICE_ar71xx_generic_DEVICE_tl-wr902ac-v1|\
+		TARGET_DEVICE_ar71xx_generic_DEVICE_archer-c59-v1|\
 		TARGET_DEVICE_ar71xx_generic_DEVICE_tl-wr1043nd-v4|\
 		TARGET_DEVICE_ar71xx_generic_DEVICE_tl-wr1043nd-v3|\
 		TARGET_DEVICE_ar71xx_generic_DEVICE_tl-wr1043nd-v2|\
@@ -333,6 +347,8 @@ for t in $targets; do
 			mods="$mods $usb2"
 		;;
 		#no usb
+		TARGET_DEVICE_ar71xx_generic_DEVICE_archer-c58-v1|\
+		TARGET_DEVICE_ar71xx_generic_DEVICE_archer-c60-v1|\
 		TARGET_DEVICE_ramips_mt7620_DEVICE_zbt-we2026|\
 		TARGET_DEVICE_ramips_mt76x8_DEVICE_tl-wr841n-v13|\
 		TARGET_DEVICE_ramips_mt76x8_DEVICE_tl-wr840n-v4|\
@@ -360,7 +376,8 @@ for t in $targets; do
 	dep_mods=`get_modules $dep_mods`
 	mods=`get_modules $mods $dep_mods`
 	mods=`exclude_modules $mods`
-	#echo add dep $tname=$mods
+	mods=`get_modules_only $mods`
+	#echo $tname=$mods
 	sed -i "s/$tname=\".*\"/$tname=\"$mods\"/" ./.config
 done
 
