@@ -98,9 +98,7 @@ enabled="`uci get natcapd.default.enabled 2>/dev/null`"
 	gfwlist=`uci get natcapd.default.gfwlist 2>/dev/null`
 	encode_mode=`uci get natcapd.default.encode_mode 2>/dev/null || echo 0`
 	udp_encode_mode=`uci get natcapd.default.udp_encode_mode 2>/dev/null || echo 0`
-	shadowsocks=`uci get natcapd.default.shadowsocks 2>/dev/null || echo 0`
 	sproxy=`uci get natcapd.default.sproxy 2>/dev/null || echo 0`
-	enable_hosts=`uci get natcapd.default.enable_hosts 2>/dev/null || echo 0`
 	[ x$encode_mode = x0 ] && encode_mode=TCP
 	[ x$encode_mode = x1 ] && encode_mode=UDP
 	[ x$udp_encode_mode = x0 ] && udp_encode_mode=UDP
@@ -116,7 +114,6 @@ enabled="`uci get natcapd.default.enabled 2>/dev/null`"
 
 	ipset -n list udproxylist >/dev/null 2>&1 || ipset -! create udproxylist iphash
 	ipset -n list gfwlist >/dev/null 2>&1 || ipset -! create gfwlist iphash
-	ipset -n list gfwhosts >/dev/null 2>&1 || ipset -! create gfwhosts iphash
 	ipset -n list knocklist >/dev/null 2>&1 || ipset -! create knocklist iphash
 	ipset -n list bypasslist >/dev/null 2>&1 || ipset -! create bypasslist iphash
 	ipset -n list cniplist >/dev/null 2>&1 || {
@@ -130,9 +127,7 @@ enabled="`uci get natcapd.default.enabled 2>/dev/null`"
 	echo server_persist_timeout=$server_persist_timeout >>$DEV
 	echo encode_mode=$encode_mode >$DEV
 	echo udp_encode_mode=$udp_encode_mode >$DEV
-	echo shadowsocks=$shadowsocks >$DEV
 	echo sproxy=$sproxy >$DEV
-	echo enable_hosts=$enable_hosts >$DEV
 	test -n "$dns_server" && echo dns_server=$dns_server >$DEV
 	test -n "$board_mac_addr" && echo default_mac_addr=$board_mac_addr >$DEV
 
@@ -193,7 +188,6 @@ enabled="`uci get natcapd.default.enabled 2>/dev/null`"
 			commit firewall
 		EOT
 	}
-	touch /var/etc/shadowsocks.include
 	/etc/init.d/firewall restart >/dev/null 2>&1 || echo /etc/init.d/firewall restart failed
 	test -x /usr/sbin/mwan3 && /usr/sbin/mwan3 restart >/dev/null 2>&1
 
@@ -284,13 +278,6 @@ natcapd_first_boot() {
 			test -p /tmp/trigger_gfwlist_update.fifo && mytimeout 5 sh -c 'echo >/tmp/trigger_gfwlist_update.fifo'
 			sleep 60
 			continue
-		}
-		test -f /tmp/natcapd.lck/gfwhosts || {
-			[ x`uci get natcapd.default.enable_hosts 2>/dev/null` = x1 ] && {
-				test -p /tmp/trigger_gfwlist_update.fifo && mytimeout 5 sh -c 'echo >/tmp/trigger_gfwlist_update.fifo'
-				sleep 60
-				continue
-			}
 		}
 		break
 	done
