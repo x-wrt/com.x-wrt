@@ -97,6 +97,16 @@ add_gfwlist_domain () {
 	echo ipset=/$1/gfwlist >>/tmp/dnsmasq.d/custom-domains.gfwlist.dnsmasq.conf
 }
 
+test -c $DEV && {
+	board_mac_addr=`lua /usr/share/natcapd/board_mac.lua`
+	test -n "$board_mac_addr" && {
+		echo default_mac_addr=$board_mac_addr >$DEV
+	}
+	client_mac=`cat $DEV | grep default_mac_addr | grep -o "[0-9A-F][0-9A-F]:[0-9A-F][0-9A-F]:[0-9A-F][0-9A-F]:[0-9A-F][0-9A-F]:[0-9A-F][0-9A-F]:[0-9A-F][0-9A-F]"`
+	uhash=`echo -n $client_mac$account | cksum | awk '{print $1}'`
+	echo u_hash=$uhash >>$DEV
+}
+
 enabled="`uci get natcapd.default.enabled 2>/dev/null`"
 [ "x$enabled" = "x0" ] && natcapd_stop
 [ "x$enabled" = "x1" ] && test -c $DEV && {
@@ -107,8 +117,6 @@ enabled="`uci get natcapd.default.enabled 2>/dev/null`"
 	clear_dst_on_reload=`uci get natcapd.default.clear_dst_on_reload 2>/dev/null || echo 0`
 	server_persist_timeout=`uci get natcapd.default.server_persist_timeout 2>/dev/null || echo 30`
 	account=`uci get natcapd.default.account 2>/dev/null || echo ""`
-	client_mac=`cat $DEV | grep default_mac_addr | grep -o "[0-9A-F][0-9A-F]:[0-9A-F][0-9A-F]:[0-9A-F][0-9A-F]:[0-9A-F][0-9A-F]:[0-9A-F][0-9A-F]:[0-9A-F][0-9A-F]"`
-	uhash=`echo -n $client_mac$account | cksum | awk '{print $1}'`
 	servers=`uci get natcapd.default.server 2>/dev/null`
 	dns_server=`uci get natcapd.default.dns_server 2>/dev/null`
 	udproxylist=`uci get natcapd.default.udproxylist 2>/dev/null`
@@ -121,7 +129,6 @@ enabled="`uci get natcapd.default.enabled 2>/dev/null`"
 	[ x$encode_mode = x1 ] && encode_mode=UDP
 	[ x$udp_encode_mode = x0 ] && udp_encode_mode=UDP
 	[ x$udp_encode_mode = x1 ] && udp_encode_mode=TCP
-	board_mac_addr=`lua /usr/share/natcapd/board_mac.lua`
 
 	http_confusion=`uci get natcapd.default.http_confusion 2>/dev/null || echo 0`
 	htp_confusion_host=`uci get natcapd.default.htp_confusion_host 2>/dev/null || echo bing.com`
@@ -141,7 +148,6 @@ enabled="`uci get natcapd.default.enabled 2>/dev/null`"
 		rm -f /tmp/cniplist.set
 	}
 
-	echo u_hash=$uhash >>$DEV
 	echo debug=$debug >>$DEV
 	echo clean >>$DEV
 	echo server_persist_timeout=$server_persist_timeout >>$DEV
@@ -149,7 +155,6 @@ enabled="`uci get natcapd.default.enabled 2>/dev/null`"
 	echo udp_encode_mode=$udp_encode_mode >$DEV
 	echo sproxy=$sproxy >$DEV
 	test -n "$dns_server" && echo dns_server=$dns_server >$DEV
-	test -n "$board_mac_addr" && echo default_mac_addr=$board_mac_addr >$DEV
 
 	[ "x$clear_dst_on_reload" = x1 ] && ipset flush gfwlist
 

@@ -1,16 +1,12 @@
 <script type="text/javascript">//<![CDATA[
 XHR.poll(5, '<%=luci.dispatcher.build_url("admin/services/natcap/status")%>', null,
 	function(x, data) {
-		var current_server = document.getElementById('current_server');
-		var natcap_uhash = document.getElementById('natcap_uhash');
-		var natcap_recv = document.getElementById('natcap_recv');
-		var natcap_send = document.getElementById('natcap_send');
 		var obj
-		if (data && current_server && natcap_uhash && natcap_recv && natcap_send) {
+		if (data) {
 			if (obj = document.getElementById('current_server'))
 				obj.innerHTML = data.cur_server;
-			if (obj = document.getElementById('natcap_uhash'))
-				obj.innerHTML = data.uhash;
+			if (obj = document.getElementById('natcap_uid'))
+				obj.innerHTML = data.uid;
 			if (obj = document.getElementById('natcap_recv'))
 				obj.innerHTML = data.total_rx;
 			if (obj = document.getElementById('natcap_send'))
@@ -25,7 +21,7 @@ XHR.poll(5, '<%=luci.dispatcher.build_url("admin/services/natcap/status")%>', nu
 	<legend><%:Status%></legend>
 	<table width="100%" cellspacing="10">
 		<tr><td width="33%"><strong><%:Current Server%></strong></td><td id="current_server">-</td></tr>
-		<tr><td width="33%"><strong><%:User ID%></strong></td><td id="natcap_uhash">-</td></tr>
+		<tr><td width="33%"><strong><%:User ID%></strong></td><td id="natcap_uid">-</td></tr>
 		<tr><td width="33%"><strong><%:Total Recv%></strong></td><td id="natcap_recv">-</td></tr>
 		<tr><td width="33%"><strong><%:Total Send%></strong></td><td id="natcap_send">-</td></tr>
 	</table>

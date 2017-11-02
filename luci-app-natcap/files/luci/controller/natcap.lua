@@ -23,12 +23,20 @@ function status()
 	local sys  = require "luci.sys"
 	local http = require "luci.http"
 
+	local text = ut.trim(sys.exec("cat /dev/natcap_ctl"))
+
 	local data = {
-		cur_server = ut.trim(sys.exec("cat /dev/natcap_ctl | grep current_server= | cut -d= -f2")),
-		uhash = ut.trim(sys.exec("cat /dev/natcap_ctl | grep default_u_hash= | cut -d= -f2")),
-		total_rx = tonumber(ut.trim(sys.exec("cat /dev/natcap_ctl | grep flow_total_rx_bytes= | cut -d= -f2"))),
-		total_tx = tonumber(ut.trim(sys.exec("cat /dev/natcap_ctl | grep flow_total_tx_bytes= | cut -d= -f2"))),
+		cur_server = text:gsub(".*current_server=(.-)\n.*", "%1"),
+		uhash = text:gsub(".*default_u_hash=(.-)\n.*", "%1"),
+		client_mac = text:gsub(".*default_mac_addr=(..):(..):(..):(..):(..):(..)\n.*", "%1%2%3%4%5%6"),
+		total_rx = text:gsub(".*flow_total_rx_bytes=(.-)\n.*", "%1"),
+		total_tx = text:gsub(".*flow_total_tx_bytes=(.-)\n.*", "%1"),
 	}
+	data.total_rx = tonumber(data.total_rx)
+	data.total_tx = tonumber(data.total_tx)
+	data.uid = data.client_mac .. "-" .. data.uhash
+	data.client_mac = nil
+	data.uhash = nill
 
 	if data.total_rx >= 1024*1024*1024*1024 then
 		data.total_rx = string.format('<span title="%u B">%u TB</span>', data.total_rx, data.total_rx / (1024*1024*1024*1024))
