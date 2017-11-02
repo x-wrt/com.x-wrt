@@ -102,6 +102,7 @@ test -c $DEV && {
 	test -n "$board_mac_addr" && {
 		echo default_mac_addr=$board_mac_addr >$DEV
 	}
+	account=`uci get natcapd.default.account 2>/dev/null || echo ""`
 	client_mac=`cat $DEV | grep default_mac_addr | grep -o "[0-9A-F][0-9A-F]:[0-9A-F][0-9A-F]:[0-9A-F][0-9A-F]:[0-9A-F][0-9A-F]:[0-9A-F][0-9A-F]:[0-9A-F][0-9A-F]"`
 	uhash=`echo -n $client_mac$account | cksum | awk '{print $1}'`
 	echo u_hash=$uhash >>$DEV
@@ -116,7 +117,6 @@ enabled="`uci get natcapd.default.enabled 2>/dev/null`"
 	enable_encryption=`uci get natcapd.default.enable_encryption 2>/dev/null || echo 1`
 	clear_dst_on_reload=`uci get natcapd.default.clear_dst_on_reload 2>/dev/null || echo 0`
 	server_persist_timeout=`uci get natcapd.default.server_persist_timeout 2>/dev/null || echo 30`
-	account=`uci get natcapd.default.account 2>/dev/null || echo ""`
 	servers=`uci get natcapd.default.server 2>/dev/null`
 	dns_server=`uci get natcapd.default.dns_server 2>/dev/null`
 	udproxylist=`uci get natcapd.default.udproxylist 2>/dev/null`
