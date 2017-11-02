@@ -31,6 +31,24 @@ mytimeout() {
 	fi
 }
 
+natcapd_trigger()
+{
+	local path=$1
+	local opt
+
+	if which timeout >/dev/null 2>&1; then
+		opt=`timeout -t1 pwd >/dev/null 2>&1 && echo "-t"`
+		while test -f $LOCKDIR/$PID; do
+			timeout $opt 5 sh -c "echo >$path" 2>/dev/null
+			return 0
+		done
+		return 1
+	else
+		sh -c "echo >$path"
+		return $?
+	fi
+}
+
 natcapd_stop()
 {
 	echo stop
@@ -195,7 +213,7 @@ enabled="`uci get natcapd.default.enabled 2>/dev/null`"
 
 	#reload dnsmasq
 	if test -p /tmp/trigger_gfwlist_update.fifo; then
-		mytimeout 5 sh -c 'echo >/tmp/trigger_gfwlist_update.fifo'
+		natcapd_trigger '/tmp/trigger_gfwlist_update.fifo'
 	fi
 
 	if which natcapd-client >/dev/null 2>&1; then
@@ -273,11 +291,11 @@ natcapd_first_boot() {
 		}
 		[ x$run = x1 ] || {
 			run=1
-			test -p /tmp/trigger_natcapd_update.fifo && mytimeout 5 sh -c 'echo >/tmp/trigger_natcapd_update.fifo'
+			test -p /tmp/trigger_natcapd_update.fifo && natcapd_trigger '/tmp/trigger_natcapd_update.fifo'
 			sleep 5
 		}
 		test -f /tmp/natcapd.lck/gfwlist || {
-			test -p /tmp/trigger_gfwlist_update.fifo && mytimeout 5 sh -c 'echo >/tmp/trigger_gfwlist_update.fifo'
+			test -p /tmp/trigger_gfwlist_update.fifo && natcapd_trigger '/tmp/trigger_gfwlist_update.fifo'
 			sleep 60
 			continue
 		}
@@ -308,10 +326,10 @@ mqtt_cli() {
 		test -f $LOCKDIR/$PID || exit 0
 		if which mosquitto_sub >/dev/null 2>&1; then
 			mosquitto_sub -h router-sh.ptpt52.com -t "/gfw/device/$CLI" -u ptpt52 -P 153153 --quiet -k 180 | while read _line; do
-				mytimeout 5 sh -c 'echo >/tmp/trigger_natcapd_update.fifo'
+				natcapd_trigger '/tmp/trigger_natcapd_update.fifo'
 			done
 			sleep 60
-			mytimeout 5 sh -c 'echo >/tmp/trigger_natcapd_update.fifo'
+			natcapd_trigger '/tmp/trigger_natcapd_update.fifo'
 		else
 			sleep 60
 		fi
