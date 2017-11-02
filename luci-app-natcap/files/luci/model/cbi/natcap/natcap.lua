@@ -6,6 +6,8 @@ local nt = require "luci.sys".net
 
 local m = Map("natcapd", luci.util.pcdata(translate("Natcap Service")), translate("Natcap to avoid censorship/filtering/logging"))
 
+m:section(SimpleSection).template  = "natcap/natcap"
+
 local s = m:section(TypedSection, "natcapd", "")
 s.addremove = false
 s.anonymous = true

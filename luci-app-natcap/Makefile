@@ -57,6 +57,8 @@ define Package/luci-app-natcap/install
 	$(INSTALL_DATA) ./files/luci/controller/*.lua $(1)/usr/lib/lua/luci/controller/
 	$(INSTALL_DIR) $(1)/usr/lib/lua/luci/model/cbi/natcap
 	$(INSTALL_DATA) ./files/luci/model/cbi/natcap/*.lua $(1)/usr/lib/lua/luci/model/cbi/natcap/
+	$(INSTALL_DIR) $(1)/usr/lib/lua/luci/view/natcap
+	$(INSTALL_DATA) ./files/luci/view/natcap/*.htm $(1)/usr/lib/lua/luci/view/natcap/
 endef
 
 $(eval $(call BuildPackage,luci-app-natcap))
