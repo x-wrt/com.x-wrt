@@ -1,7 +1,22 @@
 <script type="text/javascript">//<![CDATA[
+function natcap_server_change() {
+	var obj = document.getElementById('current_server');
+	if (obj) {
+		obj.innerHTML = "...";
+	}
+
+	(new XHR()).post('<%=luci.dispatcher.build_url("admin/services/natcap/change_server")%>', null,
+		function(x, data) {
+			if (data) {
+				obj.innerHTML = data.cur_server;
+			}
+		}
+	);
+}
+
 XHR.poll(5, '<%=luci.dispatcher.build_url("admin/services/natcap/status")%>', null,
 	function(x, data) {
-		var obj
+		var obj;
 		if (data) {
 			if (obj = document.getElementById('current_server'))
 				obj.innerHTML = data.cur_server;
@@ -20,7 +35,7 @@ XHR.poll(5, '<%=luci.dispatcher.build_url("admin/services/natcap/status")%>', nu
 <fieldset class="cbi-section">
 	<legend><%:Status%></legend>
 	<table width="100%" cellspacing="10">
-		<tr><td width="33%"><strong><%:Current Server%></strong></td><td id="current_server">-</td></tr>
+		<tr><td width="33%"><strong><%:Current Server%></strong></td><td><span id="current_server">-</span>&nbsp;&nbsp;<input type="button" class="cbi-button cbi-button-reload" style="width:80px" onclick="natcap_server_change()" title="<%:Change Server%>" value="<%:Change%>" /></td></tr>
 		<tr><td width="33%"><strong><%:User ID%></strong></td><td id="natcap_uid">-</td></tr>
 		<tr><td width="33%"><strong><%:Total Recv%></strong></td><td id="natcap_recv">-</td></tr>
 		<tr><td width="33%"><strong><%:Total Send%></strong></td><td id="natcap_send">-</td></tr>

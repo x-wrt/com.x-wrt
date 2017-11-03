@@ -7,6 +7,12 @@ msgstr "运行状态"
 msgid "Current Server"
 msgstr "当前服务器"
 
+msgid "Change Server"
+msgstr "切换服务器"
+
+msgid "Change"
+msgstr "切换"
+
 msgid "User ID"
 msgstr "用户标识"
 

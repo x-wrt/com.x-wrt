@@ -16,6 +16,7 @@ function index()
 	page.dependent = true
 
 	entry({"admin", "services", "natcap", "status"}, call("status")).leaf = true
+	entry({"admin", "services", "natcap", "change_server"}, call("change_server")).leaf = true
 end
 
 function status()
@@ -61,6 +62,22 @@ function status()
 	else
 		data.total_tx = string.format('<span title="%u B">%u B</span>', data.total_tx, data.total_tx)
 	end
+
+	http.prepare_content("application/json")
+	http.write_json(data)
+end
+
+function change_server()
+	local ut = require "luci.util"
+	local sys  = require "luci.sys"
+	local http = require "luci.http"
+
+	sys.call("echo change_server >/dev/natcap_ctl")
+
+	local text = ut.trim(sys.exec("cat /dev/natcap_ctl"))
+	local data = {
+		cur_server = text:gsub(".*current_server=(.-)\n.*", "%1"),
+	}
 
 	http.prepare_content("application/json")
 	http.write_json(data)
