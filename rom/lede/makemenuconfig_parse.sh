@@ -131,6 +131,9 @@ for t in $targets; do
 	mods="$us"
 	case $t in
 		#>8M flash
+		TARGET_DEVICE_ramips_mt7620_DEVICE_zbt-we826-32M|\
+		TARGET_DEVICE_ramips_mt7620_DEVICE_zbt-we826-16M|\
+		TARGET_DEVICE_ramips_mt7620_DEVICE_we1026-5g-16m|\
 		TARGET_DEVICE_ar71xx_generic_DEVICE_archer-c59-v1|\
 		TARGET_DEVICE_ipq806x_DEVICE_NBG6817|\
 		TARGET_DEVICE_ipq806x_DEVICE_FRITZ4040|\
@@ -289,6 +292,9 @@ for t in $targets; do
 			mods="$mods $usb2 $usb3"
 		;;
 		#with usb2
+		TARGET_DEVICE_ramips_mt7620_DEVICE_zbt-we826-32M|\
+		TARGET_DEVICE_ramips_mt7620_DEVICE_zbt-we826-16M|\
+		TARGET_DEVICE_ramips_mt7620_DEVICE_we1026-5g-16m|\
 		TARGET_DEVICE_ar71xx_generic_DEVICE_tl-wr902ac-v1|\
 		TARGET_DEVICE_ar71xx_generic_DEVICE_archer-c59-v1|\
 		TARGET_DEVICE_ar71xx_generic_DEVICE_tl-wr1043nd-v4|\
