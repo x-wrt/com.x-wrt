@@ -40,11 +40,11 @@ function status()
 	data.uhash = nill
 
 	if data.total_rx >= 1024*1024*1024*1024 then
-		data.total_rx = string.format('<span title="%u B">%u TB</span>', data.total_rx, data.total_rx / (1024*1024*1024*1024))
+		data.total_rx = string.format('<span title="%u B">%.4f TB</span>', data.total_rx, data.total_rx / (1024*1024*1024*1024))
 	elseif data.total_rx >= 1024*1024*1024 then
-		data.total_rx = string.format('<span title="%u B">%u GB</span>', data.total_rx, data.total_rx / (1024*1024*1024))
+		data.total_rx = string.format('<span title="%u B">%.2f GB</span>', data.total_rx, data.total_rx / (1024*1024*1024))
 	elseif data.total_rx >= 1024*1024 then
-		data.total_rx = string.format('<span title="%u B">%u MB</span>', data.total_rx, data.total_rx / (1024*1024))
+		data.total_rx = string.format('<span title="%u B">%.1f MB</span>', data.total_rx, data.total_rx / (1024*1024))
 	elseif data.total_rx >= 1024 then
 		data.total_rx = string.format('<span title="%u B">%u KB</span>', data.total_rx, data.total_rx / (1024))
 	else
@@ -52,11 +52,11 @@ function status()
 	end
 
 	if data.total_tx >= 1024*1024*1024*1024 then
-		data.total_tx = string.format('<span title="%u B">%u TB</span>', data.total_tx, data.total_tx / (1024*1024*1024*1024))
+		data.total_tx = string.format('<span title="%u B">%.4f TB</span>', data.total_tx, data.total_tx / (1024*1024*1024*1024))
 	elseif data.total_tx >= 1024*1024*1024 then
-		data.total_tx = string.format('<span title="%u B">%u GB</span>', data.total_tx, data.total_tx / (1024*1024*1024))
+		data.total_tx = string.format('<span title="%u B">%.2f GB</span>', data.total_tx, data.total_tx / (1024*1024*1024))
 	elseif data.total_tx >= 1024*1024 then
-		data.total_tx = string.format('<span title="%u B">%u MB</span>', data.total_tx, data.total_tx / (1024*1024))
+		data.total_tx = string.format('<span title="%u B">%.1f MB</span>', data.total_tx, data.total_tx / (1024*1024))
 	elseif data.total_tx >= 1024 then
 		data.total_tx = string.format('<span title="%u B">%u KB</span>', data.total_tx, data.total_tx / (1024))
 	else
