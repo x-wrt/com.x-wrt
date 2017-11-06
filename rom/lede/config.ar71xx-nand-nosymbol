@@ -70,15 +70,13 @@ CONFIG_TARGET_PER_DEVICE_ROOTFS=y
 # CONFIG_TARGET_DEVICE_ar71xx_nand_DEVICE_rambutan is not set
 # CONFIG_TARGET_DEVICE_ar71xx_nand_DEVICE_hiveap-121 is not set
 # CONFIG_TARGET_DEVICE_ar71xx_nand_DEVICE_c-60 is not set
-# CONFIG_TARGET_DEVICE_ar71xx_nand_DEVICE_domywifi-dw33d is not set
+CONFIG_TARGET_DEVICE_ar71xx_nand_DEVICE_domywifi-dw33d=y
+CONFIG_TARGET_DEVICE_PACKAGES_ar71xx_nand_DEVICE_domywifi-dw33d="aria2 ath10k-firmware-qca988x blockd block-mount kmod-ath10k kmod-crypto-crc32c kmod-fs-autofs4 kmod-fs-exfat kmod-fs-ext4 kmod-fs-msdos kmod-fs-vfat kmod-fuse kmod-lib-crc16 kmod-nls-cp437 kmod-scsi-core kmod-usb2 kmod-usb-core kmod-usb-ehci kmod-usb-ledtrig-usbport kmod-usb-ohci kmod-usb-storage kmod-usb-storage-uas libsqlite3 libssh2 libstdcpp libxml2 luci-app-aria2 luci-app-samba luci-i18n-aria2-zh-cn luci-i18n-samba-en luci-i18n-samba-zh-cn ntfs-3g samba36-server webui-aria2"
 # CONFIG_TARGET_DEVICE_ar71xx_nand_DEVICE_mr18 is not set
 # CONFIG_TARGET_DEVICE_ar71xx_nand_DEVICE_z1 is not set
-CONFIG_TARGET_DEVICE_ar71xx_nand_DEVICE_R6100=y
-CONFIG_TARGET_DEVICE_PACKAGES_ar71xx_nand_DEVICE_R6100="aria2 ath10k-firmware-qca988x blockd block-mount kmod-ath10k kmod-crypto-crc32c kmod-fs-autofs4 kmod-fs-exfat kmod-fs-ext4 kmod-fs-msdos kmod-fs-vfat kmod-fuse kmod-lib-crc16 kmod-nls-cp437 kmod-scsi-core kmod-usb2 kmod-usb-core kmod-usb-ehci kmod-usb-ledtrig-usbport kmod-usb-ohci kmod-usb-storage kmod-usb-storage-uas libsqlite3 libssh2 libstdcpp libxml2 luci-app-aria2 luci-app-samba luci-i18n-aria2-zh-cn luci-i18n-samba-en luci-i18n-samba-zh-cn ntfs-3g samba36-server webui-aria2"
-CONFIG_TARGET_DEVICE_ar71xx_nand_DEVICE_WNDR3700V4=y
-CONFIG_TARGET_DEVICE_PACKAGES_ar71xx_nand_DEVICE_WNDR3700V4="aria2 blockd block-mount kmod-crypto-crc32c kmod-fs-autofs4 kmod-fs-exfat kmod-fs-ext4 kmod-fs-msdos kmod-fs-vfat kmod-fuse kmod-lib-crc16 kmod-nls-cp437 kmod-scsi-core kmod-usb2 kmod-usb-core kmod-usb-ehci kmod-usb-ledtrig-usbport kmod-usb-ohci kmod-usb-storage kmod-usb-storage-uas libsqlite3 libssh2 libstdcpp libxml2 luci-app-aria2 luci-app-samba luci-i18n-aria2-zh-cn luci-i18n-samba-en luci-i18n-samba-zh-cn ntfs-3g samba36-server webui-aria2"
-CONFIG_TARGET_DEVICE_ar71xx_nand_DEVICE_WNDR4300V1=y
-CONFIG_TARGET_DEVICE_PACKAGES_ar71xx_nand_DEVICE_WNDR4300V1="aria2 blockd block-mount kmod-crypto-crc32c kmod-fs-autofs4 kmod-fs-exfat kmod-fs-ext4 kmod-fs-msdos kmod-fs-vfat kmod-fuse kmod-lib-crc16 kmod-nls-cp437 kmod-scsi-core kmod-usb2 kmod-usb-core kmod-usb-ehci kmod-usb-ledtrig-usbport kmod-usb-ohci kmod-usb-storage kmod-usb-storage-uas libsqlite3 libssh2 libstdcpp libxml2 luci-app-aria2 luci-app-samba luci-i18n-aria2-zh-cn luci-i18n-samba-en luci-i18n-samba-zh-cn ntfs-3g samba36-server webui-aria2"
+# CONFIG_TARGET_DEVICE_ar71xx_nand_DEVICE_R6100 is not set
+# CONFIG_TARGET_DEVICE_ar71xx_nand_DEVICE_WNDR3700V4 is not set
+# CONFIG_TARGET_DEVICE_ar71xx_nand_DEVICE_WNDR4300V1 is not set
 # CONFIG_TARGET_DEVICE_ar71xx_nand_DEVICE_wi2a-ac200i is not set
 # CONFIG_TARGET_DEVICE_ar71xx_nand_DEVICE_NBG6716 is not set
 CONFIG_HAS_SUBTARGETS=y
@@ -115,6 +113,7 @@ CONFIG_DEFAULT_kmod-gpio-button-hotplug=y
 CONFIG_MODULE_DEFAULT_kmod-gpio-button-hotplug=y
 CONFIG_MODULE_DEFAULT_kmod-usb-core=y
 CONFIG_MODULE_DEFAULT_kmod-usb-ledtrig-usbport=y
+CONFIG_MODULE_DEFAULT_kmod-usb-storage=y
 CONFIG_MODULE_DEFAULT_kmod-usb2=y
 CONFIG_DEFAULT_libc=y
 CONFIG_MODULE_DEFAULT_libc=y
@@ -216,7 +215,7 @@ CONFIG_KERNEL_SWAP=y
 CONFIG_KERNEL_DEBUG_FS=y
 # CONFIG_KERNEL_PERF_EVENTS is not set
 # CONFIG_KERNEL_PROFILING is not set
-CONFIG_KERNEL_KALLSYMS=y
+# CONFIG_KERNEL_KALLSYMS is not set
 # CONFIG_KERNEL_FTRACE is not set
 CONFIG_KERNEL_DEBUG_KERNEL=y
 CONFIG_KERNEL_DEBUG_INFO=y
