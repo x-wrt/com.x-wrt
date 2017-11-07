@@ -22,12 +22,12 @@ test $version -lt 1 && {
 		uci set system.@system[0].ttylogin='1'
 		uci commit system
 	}
-	uci -q batch <<-EOT
-		delete network.globals
-		delete network.lan.ip6assign
-		delete network.wan6
-		EOT
-	uci commit network
+#	uci -q batch <<-EOT
+#		delete network.globals
+#		delete network.lan.ip6assign
+#		delete network.wan6
+#		EOT
+#	uci commit network
 
 	uci set mwan3.wan.enabled='0'
 	uci commit mwan3
@@ -35,16 +35,16 @@ test $version -lt 1 && {
 	uci set dhcp.lan.force='1'
 	uci commit dhcp
 
-	[ x`uci get firewall.@defaults[0] 2>/dev/null` = xdefault ] && uci set firewall.@defaults[0].disable_ipv6='1'
+#	[ x`uci get firewall.@defaults[0] 2>/dev/null` = xdefault ] && uci set firewall.@defaults[0].disable_ipv6='1'
 	[ x`uci get firewall.@zone[0].name 2>/dev/null` = xlan ] && {
 		[ x`uci get firewall.@zone[0].mtu_fix 2>/dev/null` = x1 ] || uci set firewall.@zone[0].mtu_fix='1'
 	}
-	[ x`uci get firewall.@zone[1].name 2>/dev/null` = xwan ] && {
-		uci get firewall.@zone[1].network >/dev/null 2>&1 | grep -q wan6 && {
-			uci delete firewall.@zone[1].network
-			uci add_list firewall.@zone[1].network="wan"
-		}
-	}
+#	[ x`uci get firewall.@zone[1].name 2>/dev/null` = xwan ] && {
+#		uci get firewall.@zone[1].network >/dev/null 2>&1 | grep -q wan6 && {
+#			uci delete firewall.@zone[1].network
+#			uci add_list firewall.@zone[1].network="wan"
+#		}
+#	}
 	uci commit firewall
 
 	[ x`uci get dropbear.@dropbear[0] 2>/dev/null` = xdropbear ] && {
@@ -223,9 +223,9 @@ echo -n >$SYSCTL_LOCAL
 echo net.ipv4.ip_early_demux=0 >>$SYSCTL_LOCAL
 echo net.bridge.bridge-nf-call-iptables=0 >>$SYSCTL_LOCAL
 
-echo net.ipv6.conf.all.disable_ipv6=1 >>$SYSCTL_LOCAL
-echo net.ipv6.conf.default.disable_ipv6=1 >>$SYSCTL_LOCAL
-echo net.ipv6.conf.lo.disable_ipv6=1 >>$SYSCTL_LOCAL
+#echo net.ipv6.conf.all.disable_ipv6=1 >>$SYSCTL_LOCAL
+#echo net.ipv6.conf.default.disable_ipv6=1 >>$SYSCTL_LOCAL
+#echo net.ipv6.conf.lo.disable_ipv6=1 >>$SYSCTL_LOCAL
 
 echo net.core.default_qdisc=fq_codel >>$SYSCTL_LOCAL
 echo net.core.default_qdisc=fq >>$SYSCTL_LOCAL
