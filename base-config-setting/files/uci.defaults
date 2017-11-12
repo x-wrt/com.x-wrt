@@ -234,6 +234,12 @@ echo net.ipv4.tcp_congestion_control=bbr >>$SYSCTL_LOCAL
 
 cp /usr/share/base-config-setting/lib/network/switch.sh /lib/network/switch.sh && chmod 644 /lib/network/switch.sh
 
+#update distfeeds.conf
+cp /etc/opkg/distfeeds.conf /tmp/distfeeds.conf
+sed 's,http://downloads.openwrt.org/snapshots/.*/targets/,http://downloads.lede-project.org/snapshots/targets/,g;s,http://downloads.openwrt.org/snapshots/.*/packages/,http://downloads.lede-project.org/snapshots/packages/,g' -i /tmp/distfeeds.conf
+diff -q /tmp/distfeeds.conf /etc/opkg/distfeeds.conf >/dev/null 2>&1 || cp /tmp/distfeeds.conf /etc/opkg/distfeeds.conf
+rm -f /tmp/distfeeds.conf
+
 touch /etc/config/base_config
 uci get base_config.@status[0] >/dev/null 2>&1 || uci add base_config status >/dev/null 2>&1
 uci set base_config.@status[0].version=$version
