@@ -409,10 +409,10 @@ CONFIG_PER_FEED_REPO_ADD_DISABLED=y
 CONFIG_PER_FEED_REPO_ADD_COMMENTED=y
 CONFIG_FEED_packages=y
 CONFIG_FEED_luci=y
-# CONFIG_FEED_routing is not set
-# CONFIG_FEED_telephony is not set
+CONFIG_FEED_routing=y
+CONFIG_FEED_telephony=y
 # CONFIG_FEED_ptpt52 is not set
-CONFIG_FEED_puppies=y
+# CONFIG_FEED_puppies is not set
 
 #
 # Base system
