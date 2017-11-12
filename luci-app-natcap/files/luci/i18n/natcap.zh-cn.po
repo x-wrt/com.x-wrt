@@ -26,7 +26,7 @@ msgid "Natcap Service"
 msgstr "Natcap 服务"
 
 msgid "Natcap to avoid censorship/filtering/logging"
-msgstr "Natcap 避免被审查/过滤/记录"
+msgstr "Natcap 避免被审查/过滤/记录（加速访问国际服务）"
 
 msgid "General Settings"
 msgstr "一般配置"
@@ -38,13 +38,13 @@ msgid "Mac Filter"
 msgstr "Mac过滤"
 
 msgid "Enable Natcap"
-msgstr "启用 Natcap"
+msgstr "启用"
 
 msgid "Natcap Account"
-msgstr "Natcap 帐号"
+msgstr "帐号"
 
 msgid "Natcap Servers"
-msgstr "Natcap 服务器"
+msgstr "服务器列表"
 
 msgid "Please fill in the server by format (ip:port)"
 msgstr "请按照格式填写服务器（ip:port）"
@@ -56,7 +56,7 @@ msgid "Generally do not need to be enabled unless used to play games."
 msgstr "一般不需要启用，除非用来打游戏。"
 
 msgid "DNS Server"
-msgstr "DNS 服务器"
+msgstr "DNS服务器"
 
 msgid "Enable Encryption"
 msgstr "启用加密"
