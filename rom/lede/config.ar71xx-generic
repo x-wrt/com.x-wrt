@@ -257,6 +257,7 @@ CONFIG_TARGET_MULTI_PROFILE=y
 # CONFIG_TARGET_ar71xx_generic_DEVICE_tl-wa901nd-v2 is not set
 # CONFIG_TARGET_ar71xx_generic_DEVICE_tl-wa901nd-v3 is not set
 # CONFIG_TARGET_ar71xx_generic_DEVICE_tl-wa901nd-v4 is not set
+# CONFIG_TARGET_ar71xx_generic_DEVICE_tl-wa901nd-v5 is not set
 # CONFIG_TARGET_ar71xx_generic_DEVICE_tl-wdr3320-v2 is not set
 # CONFIG_TARGET_ar71xx_generic_DEVICE_tl-wdr3500-v1 is not set
 # CONFIG_TARGET_ar71xx_generic_DEVICE_tl-wdr3600-v1 is not set
@@ -267,6 +268,7 @@ CONFIG_TARGET_MULTI_PROFILE=y
 # CONFIG_TARGET_ar71xx_generic_DEVICE_tl-wdr6500-v2 is not set
 # CONFIG_TARGET_ar71xx_generic_DEVICE_tl-wpa8630-v1 is not set
 # CONFIG_TARGET_ar71xx_generic_DEVICE_tl-wr1041n-v2 is not set
+# CONFIG_TARGET_ar71xx_generic_DEVICE_tl-wr1043n-v5 is not set
 # CONFIG_TARGET_ar71xx_generic_DEVICE_tl-wr1043nd-v1 is not set
 # CONFIG_TARGET_ar71xx_generic_DEVICE_tl-wr1043nd-v2 is not set
 # CONFIG_TARGET_ar71xx_generic_DEVICE_tl-wr1043nd-v3 is not set
@@ -292,6 +294,7 @@ CONFIG_TARGET_MULTI_PROFILE=y
 # CONFIG_TARGET_ar71xx_generic_DEVICE_tl-wr802n-v1 is not set
 # CONFIG_TARGET_ar71xx_generic_DEVICE_tl-wr802n-v2 is not set
 # CONFIG_TARGET_ar71xx_generic_DEVICE_tl-wr810n-v1 is not set
+# CONFIG_TARGET_ar71xx_generic_DEVICE_tl-wr810n-v2 is not set
 # CONFIG_TARGET_ar71xx_generic_DEVICE_tl-wr840n-v2 is not set
 # CONFIG_TARGET_ar71xx_generic_DEVICE_tl-wr840n-v3 is not set
 # CONFIG_TARGET_ar71xx_generic_DEVICE_tl-wr841-v1.5 is not set
@@ -341,16 +344,14 @@ CONFIG_TARGET_MULTI_PROFILE=y
 # CONFIG_TARGET_ar71xx_generic_DEVICE_ubnt-rocket-m is not set
 # CONFIG_TARGET_ar71xx_generic_DEVICE_ubnt-rs is not set
 # CONFIG_TARGET_ar71xx_generic_DEVICE_ubnt-rspro is not set
-# CONFIG_TARGET_ar71xx_generic_DEVICE_ubnt-uap-pro is not set
 # CONFIG_TARGET_ar71xx_generic_DEVICE_ubnt-unifi is not set
 # CONFIG_TARGET_ar71xx_generic_DEVICE_ubnt-unifiac-lite is not set
 # CONFIG_TARGET_ar71xx_generic_DEVICE_ubnt-unifiac-mesh is not set
 # CONFIG_TARGET_ar71xx_generic_DEVICE_ubnt-unifiac-pro is not set
 # CONFIG_TARGET_ar71xx_generic_DEVICE_ubnt-unifi-outdoor is not set
-# CONFIG_TARGET_ar71xx_generic_DEVICE_ubnt-unifi-outdoor-plus is not set
 # CONFIG_TARGET_ar71xx_generic_DEVICE_ubdev01 is not set
 # CONFIG_TARGET_ar71xx_generic_DEVICE_wrtnode2q is not set
-# CONFIG_TARGET_ar71xx_generic_DEVICE_dr344 is not set
+# CONFIG_TARGET_ar71xx_generic_DEVICE_dr342 is not set
 # CONFIG_TARGET_ar71xx_generic_DEVICE_dr531 is not set
 # CONFIG_TARGET_ar71xx_generic_DEVICE_weio is not set
 # CONFIG_TARGET_ar71xx_generic_DEVICE_mynet-n600 is not set
@@ -567,9 +568,12 @@ CONFIG_TARGET_DEVICE_PACKAGES_ar71xx_generic_DEVICE_AP152_16M="ath10k-firmware-q
 # CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_tellstick-znet-lite is not set
 # CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_archer-c25-v1 is not set
 # CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_archer-c5-v1 is not set
-# CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_archer-c58-v1 is not set
-# CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_archer-c59-v1 is not set
-# CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_archer-c60-v1 is not set
+CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_archer-c58-v1=y
+CONFIG_TARGET_DEVICE_PACKAGES_ar71xx_generic_DEVICE_archer-c58-v1="ath10k-firmware-qca9888 kmod-ath10k"
+CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_archer-c59-v1=y
+CONFIG_TARGET_DEVICE_PACKAGES_ar71xx_generic_DEVICE_archer-c59-v1="aria2 ath10k-firmware-qca9888 blockd block-mount kmod-ath10k kmod-crypto-crc32c kmod-fs-autofs4 kmod-fs-exfat kmod-fs-ext4 kmod-fs-msdos kmod-fs-vfat kmod-fuse kmod-lib-crc16 kmod-nls-cp437 kmod-scsi-core kmod-usb2 kmod-usb-core kmod-usb-ehci kmod-usb-ledtrig-usbport kmod-usb-ohci kmod-usb-storage kmod-usb-storage-uas libsqlite3 libssh2 libstdcpp libxml2 luci-app-aria2 luci-app-samba luci-i18n-aria2-zh-cn luci-i18n-samba-en luci-i18n-samba-zh-cn ntfs-3g samba36-server webui-aria2"
+CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_archer-c60-v1=y
+CONFIG_TARGET_DEVICE_PACKAGES_ar71xx_generic_DEVICE_archer-c60-v1="ath10k-firmware-qca9888 kmod-ath10k"
 CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_archer-c7-v1=y
 CONFIG_TARGET_DEVICE_PACKAGES_ar71xx_generic_DEVICE_archer-c7-v1="ath10k-firmware-qca988x blockd block-mount kmod-ath10k kmod-crypto-crc32c kmod-fs-autofs4 kmod-fs-exfat kmod-fs-ext4 kmod-fs-msdos kmod-fs-vfat kmod-fuse kmod-lib-crc16 kmod-nls-cp437 kmod-scsi-core kmod-usb2 kmod-usb-core kmod-usb-ehci kmod-usb-ledtrig-usbport kmod-usb-ohci kmod-usb-storage kmod-usb-storage-uas ntfs-3g"
 CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_archer-c7-v2=y
@@ -615,6 +619,7 @@ CONFIG_TARGET_DEVICE_PACKAGES_ar71xx_generic_DEVICE_archer-c7-v4="ath10k-firmwar
 # CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_tl-wa901nd-v2 is not set
 # CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_tl-wa901nd-v3 is not set
 # CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_tl-wa901nd-v4 is not set
+# CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_tl-wa901nd-v5 is not set
 # CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_tl-wdr3320-v2 is not set
 CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_tl-wdr3500-v1=y
 CONFIG_TARGET_DEVICE_PACKAGES_ar71xx_generic_DEVICE_tl-wdr3500-v1="blockd block-mount kmod-crypto-crc32c kmod-fs-autofs4 kmod-fs-exfat kmod-fs-ext4 kmod-fs-msdos kmod-fs-vfat kmod-fuse kmod-lib-crc16 kmod-nls-cp437 kmod-scsi-core kmod-usb2 kmod-usb-core kmod-usb-ehci kmod-usb-ledtrig-usbport kmod-usb-ohci kmod-usb-storage kmod-usb-storage-uas ntfs-3g"
@@ -631,6 +636,7 @@ CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_tl-wdr6500-v2=y
 CONFIG_TARGET_DEVICE_PACKAGES_ar71xx_generic_DEVICE_tl-wdr6500-v2="ath10k-firmware-qca988x blockd block-mount kmod-ath10k kmod-crypto-crc32c kmod-fs-autofs4 kmod-fs-exfat kmod-fs-ext4 kmod-fs-msdos kmod-fs-vfat kmod-fuse kmod-lib-crc16 kmod-nls-cp437 kmod-scsi-core kmod-usb2 kmod-usb-core kmod-usb-ehci kmod-usb-ledtrig-usbport kmod-usb-ohci kmod-usb-storage kmod-usb-storage-uas ntfs-3g"
 # CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_tl-wpa8630-v1 is not set
 # CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_tl-wr1041n-v2 is not set
+# CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_tl-wr1043n-v5 is not set
 CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_tl-wr1043nd-v1=y
 CONFIG_TARGET_DEVICE_PACKAGES_ar71xx_generic_DEVICE_tl-wr1043nd-v1="kmod-usb2 kmod-usb-core kmod-usb-ehci kmod-usb-ledtrig-usbport"
 CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_tl-wr1043nd-v2=y
@@ -660,6 +666,7 @@ CONFIG_TARGET_DEVICE_PACKAGES_ar71xx_generic_DEVICE_tl-wr1043nd-v4="aria2 blockd
 # CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_tl-wr802n-v1 is not set
 # CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_tl-wr802n-v2 is not set
 # CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_tl-wr810n-v1 is not set
+# CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_tl-wr810n-v2 is not set
 # CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_tl-wr840n-v2 is not set
 # CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_tl-wr840n-v3 is not set
 # CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_tl-wr841-v1.5 is not set
@@ -708,15 +715,13 @@ CONFIG_TARGET_DEVICE_PACKAGES_ar71xx_generic_DEVICE_tl-wr1043nd-v4="aria2 blockd
 # CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_ubnt-rs is not set
 # CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_ubnt-rspro is not set
 # CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_rw2458n is not set
-# CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_ubnt-uap-pro is not set
 # CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_ubdev01 is not set
 # CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_ubnt-unifi is not set
 # CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_ubnt-unifiac-lite is not set
 # CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_ubnt-unifiac-mesh is not set
 # CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_ubnt-unifiac-pro is not set
 # CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_ubnt-unifi-outdoor is not set
-# CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_ubnt-unifi-outdoor-plus is not set
-# CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_dr344 is not set
+# CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_dr342 is not set
 # CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_dr531 is not set
 # CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_weio is not set
 # CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_mynet-n600 is not set
@@ -742,6 +747,7 @@ CONFIG_DEFAULT_TARGET_OPTIMIZATION="-Os -pipe -mno-branch-likely -mips32r2 -mtun
 CONFIG_CPU_TYPE="24kc"
 CONFIG_LINUX_4_9=y
 CONFIG_MODULE_DEFAULT_ath10k-firmware-qca9887=y
+CONFIG_MODULE_DEFAULT_ath10k-firmware-qca9888=y
 CONFIG_MODULE_DEFAULT_ath10k-firmware-qca988x=y
 CONFIG_DEFAULT_base-files=y
 CONFIG_MODULE_DEFAULT_base-files=y
