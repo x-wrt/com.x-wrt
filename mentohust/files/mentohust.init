@@ -11,8 +11,20 @@ CONF_TMP=${CONF}.tmp
 start_service() {
 	if [ "x$(uci get mentohust.@option[0].rproxy)" = x1 ]; then
 		modprobe rproxy 2>/dev/null
+		test -f /tmp/nf_conntrack_max_bak || {
+			cat /proc/sys/net/nf_conntrack_max >/tmp/nf_conntrack_max_bak
+		}
+		nf_limit="$(uci get mentohust.@option[0].nf_limit)"
+		[ "x$nf_limit" = "x0" ] || {
+			echo $nf_limit >/proc/sys/net/nf_conntrack_max
+		}
 	else
 		rmmod rproxy 2>/dev/null
+		sysctl -w `cat /etc/sysctl.conf | grep net.netfilter.nf_conntrack_max`
+		test -f /tmp/nf_conntrack_max_bak && {
+			cat /tmp/nf_conntrack_max_bak >/proc/sys/net/nf_conntrack_max
+			rm -f /tmp/nf_conntrack_max_bak
+		}
 	fi
 
 	[ "x$(uci get mentohust.@option[0].enable)" = x1 ] || {

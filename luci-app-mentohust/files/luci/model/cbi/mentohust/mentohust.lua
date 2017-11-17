@@ -16,6 +16,7 @@ s = m:section(TypedSection, "option", translate("Start option"),translate("Confi
 s.anonymous = true
 s:option(Flag, "enable", translate("MentoHUST_enable"), translate("enable or disable mentohust")).default="0"
 s:option(Flag, "rproxy", translate("Router Proxy"), translate("router proxy to fake single client")).default="0"
+s:option(Value, "nf_limit", translate("max conntrack limits"),translate("0 means no limit, default to 280")).default="280"
 
 s = m:section(TypedSection, "mentohust", translate("Config mentohust"),translate("The options below are all of mentohust's arguments."))
 s.anonymous = true

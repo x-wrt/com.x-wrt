@@ -22,6 +22,12 @@ msgstr "启用或禁用mentohust"
 msgid "Router Proxy"
 msgstr "路由代理伪装"
 
+msgid "max conntrack limits"
+msgstr "最大连接数限制"
+
+msgid "0 means no limit, default to 280"
+msgstr "0表示没有限制，默认限制280"
+
 msgid "router proxy to fake single client"
 msgstr "隐藏代理的多个设备避免因为代理检测断网"
 
