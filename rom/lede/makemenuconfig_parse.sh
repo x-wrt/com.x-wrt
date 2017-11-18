@@ -170,6 +170,7 @@ for t in $targets; do
 		TARGET_DEVICE_ramips_mt7621_DEVICE_puppies|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_zbt-we3526|\
 		TARGET_DEVICE_ar71xx_generic_DEVICE_AC9531_010|\
+		TARGET_DEVICE_ramips_mt7620nand_DEVICE_miwifi-r3|\
 		TARGET_DEVICE_ramips_mt7620_DEVICE_miwifi-r3|\
 		TARGET_DEVICE_ramips_mt7620_DEVICE_zbt-we826-32M|\
 		TARGET_DEVICE_ramips_mt7620_DEVICE_zbt-we826-16M|\
@@ -242,6 +243,7 @@ for t in $targets; do
 			mods="$mods $moreapps"
 		;;
 		#<=8M flash
+		TARGET_DEVICE_ar71xx_generic_DEVICE_tl-wdr6500-v7|\
 		TARGET_DEVICE_ar71xx_generic_DEVICE_archer-c25-v1|\
 		TARGET_DEVICE_ramips_mt76x8_DEVICE_wcr-1166ds|\
 		TARGET_DEVICE_ramips_mt7620_DEVICE_whr-1166d|\
@@ -337,6 +339,7 @@ for t in $targets; do
 		TARGET_DEVICE_ramips_mt7621_DEVICE_puppies|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_zbt-we3526|\
 		TARGET_DEVICE_ar71xx_generic_DEVICE_AC9531_010|\
+		TARGET_DEVICE_ramips_mt7620nand_DEVICE_miwifi-r3|\
 		TARGET_DEVICE_ramips_mt7620_DEVICE_miwifi-r3|\
 		TARGET_DEVICE_ramips_mt7620_DEVICE_zbt-we826-32M|\
 		TARGET_DEVICE_ramips_mt7620_DEVICE_zbt-we826-16M|\
@@ -401,6 +404,7 @@ for t in $targets; do
 			mods="$mods $usb2"
 		;;
 		#no usb
+		TARGET_DEVICE_ar71xx_generic_DEVICE_tl-wdr6500-v7|\
 		TARGET_DEVICE_ar71xx_generic_DEVICE_archer-c25-v1|\
 		TARGET_DEVICE_ramips_mt76x8_DEVICE_wcr-1166ds|\
 		TARGET_DEVICE_ramips_mt7620_DEVICE_whr-1166d|\
