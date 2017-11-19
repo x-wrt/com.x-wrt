@@ -1,5 +1,11 @@
 #!/bin/sh
 
+usbprint="kmod-usb-printer \
+		  p910nd \
+		  luci-app-p910nd \
+		  luci-i18n-p910nd-en \
+		  luci-i18n-p910nd-zh-cn"
+
 usb2="kmod-usb2 \
 	  kmod-usb-core \
 	  kmod-usb-ohci \
@@ -240,7 +246,7 @@ for t in $targets; do
 		TARGET_DEVICE_ramips_mt7621_DEVICE_r6220|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_wndr3700v5|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_newifi-d1)
-			mods="$mods $moreapps"
+			mods="$mods $moreapps $usbprint"
 		;;
 		#<=8M flash
 		TARGET_DEVICE_ar71xx_generic_DEVICE_tl-wdr6500-v7|\
