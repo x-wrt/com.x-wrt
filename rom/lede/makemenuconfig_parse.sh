@@ -43,7 +43,19 @@ usb3="kmod-usb3 \
 	  block-mount \
 	  blockd \
 	  ntfs-3g"
-moreapps="libstdcpp libsqlite3 libssh2 libxml2 luci-app-aria2 luci-app-samba luci-i18n-aria2-zh-cn luci-i18n-samba-en luci-i18n-samba-zh-cn webui-aria2 aria2 samba36-server"
+moreapps="libstdcpp \
+		  libsqlite3 \
+		  libssh2 \
+		  libxml2 \
+		  luci-app-aria2 \
+		  luci-app-samba \
+		  luci-i18n-aria2-zh-cn \
+		  luci-i18n-samba-en \
+		  luci-i18n-samba-zh-cn \
+		  webui-aria2 \
+		  aria2 \
+		  openssl-util \
+		  samba36-server"
 excludes=""
 
 get_modules()
