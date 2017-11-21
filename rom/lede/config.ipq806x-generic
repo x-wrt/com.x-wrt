@@ -67,8 +67,7 @@ CONFIG_TARGET_MULTI_PROFILE=y
 #
 # CONFIG_TARGET_ALL_PROFILES is not set
 CONFIG_TARGET_PER_DEVICE_ROOTFS=y
-CONFIG_TARGET_DEVICE_ipq806x_DEVICE_FRITZ4040=y
-CONFIG_TARGET_DEVICE_PACKAGES_ipq806x_DEVICE_FRITZ4040="aria2 ath10k-firmware-qca4019 blockd block-mount fritz-caldata fritz-tffs ipq-wifi-fritz4040 kmod-crypto-crc32c kmod-fs-autofs4 kmod-fs-exfat kmod-fs-ext4 kmod-fs-msdos kmod-fs-vfat kmod-fuse kmod-lib-crc16 kmod-nls-cp437 kmod-usb2 kmod-usb3 kmod-usb-core kmod-usb-dwc3 kmod-usb-dwc3-of-simple kmod-usb-ehci kmod-usb-ledtrig-usbport kmod-usb-ohci kmod-usb-phy-qcom-dwc3 kmod-usb-printer kmod-usb-storage kmod-usb-storage-uas libsqlite3 libssh2 libstdcpp libxml2 luci-app-aria2 luci-app-p910nd luci-app-samba luci-i18n-aria2-zh-cn luci-i18n-p910nd-en luci-i18n-p910nd-zh-cn luci-i18n-samba-en luci-i18n-samba-zh-cn ntfs-3g openssl-util p910nd samba36-server webui-aria2"
+# CONFIG_TARGET_DEVICE_ipq806x_DEVICE_FRITZ4040 is not set
 CONFIG_TARGET_DEVICE_ipq806x_DEVICE_EA8500=y
 CONFIG_TARGET_DEVICE_PACKAGES_ipq806x_DEVICE_EA8500="aria2 ath10k-firmware-qca99x0 blockd block-mount kmod-crypto-crc32c kmod-fs-autofs4 kmod-fs-exfat kmod-fs-ext4 kmod-fs-msdos kmod-fs-vfat kmod-fuse kmod-lib-crc16 kmod-nls-cp437 kmod-usb2 kmod-usb3 kmod-usb-core kmod-usb-dwc3 kmod-usb-dwc3-of-simple kmod-usb-ehci kmod-usb-ledtrig-usbport kmod-usb-ohci kmod-usb-phy-qcom-dwc3 kmod-usb-printer kmod-usb-storage kmod-usb-storage-uas libsqlite3 libssh2 libstdcpp libxml2 luci-app-aria2 luci-app-p910nd luci-app-samba luci-i18n-aria2-zh-cn luci-i18n-p910nd-en luci-i18n-p910nd-zh-cn luci-i18n-samba-en luci-i18n-samba-zh-cn ntfs-3g openssl-util p910nd samba36-server webui-aria2"
 CONFIG_TARGET_DEVICE_ipq806x_DEVICE_D7800=y
@@ -80,15 +79,13 @@ CONFIG_TARGET_DEVICE_PACKAGES_ipq806x_DEVICE_R7500v2="aria2 ath10k-firmware-qca9
 CONFIG_TARGET_DEVICE_ipq806x_DEVICE_R7800=y
 CONFIG_TARGET_DEVICE_PACKAGES_ipq806x_DEVICE_R7800="aria2 ath10k-firmware-qca9984 blockd block-mount kmod-crypto-crc32c kmod-fs-autofs4 kmod-fs-exfat kmod-fs-ext4 kmod-fs-msdos kmod-fs-vfat kmod-fuse kmod-lib-crc16 kmod-nls-cp437 kmod-usb2 kmod-usb3 kmod-usb-core kmod-usb-dwc3 kmod-usb-dwc3-of-simple kmod-usb-ehci kmod-usb-ledtrig-usbport kmod-usb-ohci kmod-usb-phy-qcom-dwc3 kmod-usb-printer kmod-usb-storage kmod-usb-storage-uas libsqlite3 libssh2 libstdcpp libxml2 luci-app-aria2 luci-app-p910nd luci-app-samba luci-i18n-aria2-zh-cn luci-i18n-p910nd-en luci-i18n-p910nd-zh-cn luci-i18n-samba-en luci-i18n-samba-zh-cn ntfs-3g openssl-util p910nd samba36-server webui-aria2"
 # CONFIG_TARGET_DEVICE_ipq806x_DEVICE_AP-DK01.1-C1 is not set
-CONFIG_TARGET_DEVICE_ipq806x_DEVICE_AP-DK04.1-C1=y
-CONFIG_TARGET_DEVICE_PACKAGES_ipq806x_DEVICE_AP-DK04.1-C1="aria2 blockd block-mount kmod-crypto-crc32c kmod-fs-autofs4 kmod-fs-exfat kmod-fs-ext4 kmod-fs-msdos kmod-fs-vfat kmod-fuse kmod-lib-crc16 kmod-nls-cp437 kmod-usb2 kmod-usb3 kmod-usb-core kmod-usb-dwc3 kmod-usb-dwc3-of-simple kmod-usb-ehci kmod-usb-ledtrig-usbport kmod-usb-ohci kmod-usb-phy-qcom-dwc3 kmod-usb-printer kmod-usb-storage kmod-usb-storage-uas libsqlite3 libssh2 libstdcpp libxml2 luci-app-aria2 luci-app-p910nd luci-app-samba luci-i18n-aria2-zh-cn luci-i18n-p910nd-en luci-i18n-p910nd-zh-cn luci-i18n-samba-en luci-i18n-samba-zh-cn ntfs-3g openssl-util p910nd samba36-server webui-aria2"
+# CONFIG_TARGET_DEVICE_ipq806x_DEVICE_AP-DK04.1-C1 is not set
 # CONFIG_TARGET_DEVICE_ipq806x_DEVICE_AP148 is not set
 # CONFIG_TARGET_DEVICE_ipq806x_DEVICE_AP148-legacy is not set
 # CONFIG_TARGET_DEVICE_ipq806x_DEVICE_DB149 is not set
 # CONFIG_TARGET_DEVICE_ipq806x_DEVICE_C2600 is not set
 # CONFIG_TARGET_DEVICE_ipq806x_DEVICE_VR2600v is not set
-CONFIG_TARGET_DEVICE_ipq806x_DEVICE_NBG6817=y
-CONFIG_TARGET_DEVICE_PACKAGES_ipq806x_DEVICE_NBG6817="aria2 ath10k-firmware-qca9984 blockd block-mount e2fsprogs kmod-crypto-crc32c kmod-fs-autofs4 kmod-fs-exfat kmod-fs-ext4 kmod-fs-msdos kmod-fs-vfat kmod-fuse kmod-lib-crc16 kmod-nls-cp437 kmod-usb2 kmod-usb3 kmod-usb-core kmod-usb-dwc3 kmod-usb-dwc3-of-simple kmod-usb-ehci kmod-usb-ledtrig-usbport kmod-usb-ohci kmod-usb-phy-qcom-dwc3 kmod-usb-printer kmod-usb-storage kmod-usb-storage-uas libblkid libext2fs libsmartcols libsqlite3 libssh2 libstdcpp libxml2 losetup luci-app-aria2 luci-app-p910nd luci-app-samba luci-i18n-aria2-zh-cn luci-i18n-p910nd-en luci-i18n-p910nd-zh-cn luci-i18n-samba-en luci-i18n-samba-zh-cn ntfs-3g openssl-util p910nd samba36-server webui-aria2"
+# CONFIG_TARGET_DEVICE_ipq806x_DEVICE_NBG6817 is not set
 CONFIG_HAS_DEVICES=y
 CONFIG_TARGET_BOARD="ipq806x"
 CONFIG_TARGET_SUBTARGET="generic"
@@ -107,16 +104,12 @@ CONFIG_DEFAULT_dnsmasq=y
 CONFIG_MODULE_DEFAULT_dnsmasq=y
 CONFIG_DEFAULT_dropbear=y
 CONFIG_MODULE_DEFAULT_dropbear=y
-CONFIG_MODULE_DEFAULT_e2fsprogs=y
 CONFIG_DEFAULT_firewall=y
 CONFIG_MODULE_DEFAULT_firewall=y
-CONFIG_MODULE_DEFAULT_fritz-caldata=y
-CONFIG_MODULE_DEFAULT_fritz-tffs=y
 CONFIG_DEFAULT_fstools=y
 CONFIG_MODULE_DEFAULT_fstools=y
 CONFIG_DEFAULT_ip6tables=y
 CONFIG_MODULE_DEFAULT_ip6tables=y
-CONFIG_MODULE_DEFAULT_ipq-wifi-fritz4040=y
 CONFIG_DEFAULT_iptables=y
 CONFIG_MODULE_DEFAULT_iptables=y
 CONFIG_DEFAULT_iwinfo=y
@@ -129,7 +122,6 @@ CONFIG_DEFAULT_kmod-ata-core=y
 CONFIG_MODULE_DEFAULT_kmod-ata-core=y
 CONFIG_DEFAULT_kmod-ath10k=y
 CONFIG_MODULE_DEFAULT_kmod-ath10k=y
-CONFIG_MODULE_DEFAULT_kmod-fs-ext4=y
 CONFIG_DEFAULT_kmod-gpio-button-hotplug=y
 CONFIG_MODULE_DEFAULT_kmod-gpio-button-hotplug=y
 CONFIG_DEFAULT_kmod-leds-gpio=y
@@ -144,7 +136,6 @@ CONFIG_DEFAULT_kmod-usb-ohci=y
 CONFIG_MODULE_DEFAULT_kmod-usb-ohci=y
 CONFIG_DEFAULT_kmod-usb-phy-qcom-dwc3=y
 CONFIG_MODULE_DEFAULT_kmod-usb-phy-qcom-dwc3=y
-CONFIG_MODULE_DEFAULT_kmod-usb-phy-qcom-ipq4019=y
 CONFIG_DEFAULT_kmod-usb2=y
 CONFIG_MODULE_DEFAULT_kmod-usb2=y
 CONFIG_DEFAULT_kmod-usb3=y
@@ -155,7 +146,6 @@ CONFIG_DEFAULT_libgcc=y
 CONFIG_MODULE_DEFAULT_libgcc=y
 CONFIG_DEFAULT_logd=y
 CONFIG_MODULE_DEFAULT_logd=y
-CONFIG_MODULE_DEFAULT_losetup=y
 CONFIG_DEFAULT_mtd=y
 CONFIG_MODULE_DEFAULT_mtd=y
 CONFIG_DEFAULT_netifd=y
@@ -172,7 +162,6 @@ CONFIG_DEFAULT_ppp-mod-pppoe=y
 CONFIG_MODULE_DEFAULT_ppp-mod-pppoe=y
 CONFIG_DEFAULT_swconfig=y
 CONFIG_MODULE_DEFAULT_swconfig=y
-CONFIG_MODULE_DEFAULT_u-boot-fritz4040=y
 CONFIG_DEFAULT_uboot-envtools=y
 CONFIG_MODULE_DEFAULT_uboot-envtools=y
 CONFIG_DEFAULT_uci=y

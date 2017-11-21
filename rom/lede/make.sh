@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 test -n "$CFGS" || CFGS="`cat feeds/ptpt52/rom/lede/cfg.list`"
 
@@ -6,7 +6,9 @@ test -n "$IDXS" || IDXS="0"
 
 test -n "$CONFIG_VERSION_NUMBER" || CONFIG_VERSION_NUMBER="3.0.0_build`date +%Y%m%d%H%M`"
 
+set -x
 test -f .build_ptpt52/env && source .build_ptpt52/env
+set +x
 
 echo build starting
 echo "CFGS=[$CFGS]"

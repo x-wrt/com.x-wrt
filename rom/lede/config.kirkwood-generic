@@ -64,10 +64,8 @@ CONFIG_TARGET_MULTI_PROFILE=y
 #
 # CONFIG_TARGET_ALL_PROFILES is not set
 CONFIG_TARGET_PER_DEVICE_ROOTFS=y
-CONFIG_TARGET_DEVICE_kirkwood_DEVICE_on100=y
-CONFIG_TARGET_DEVICE_PACKAGES_kirkwood_DEVICE_on100="aria2 blockd block-mount kmod-crypto-crc32c kmod-fs-autofs4 kmod-fs-exfat kmod-fs-ext4 kmod-fs-msdos kmod-fs-vfat kmod-fuse kmod-lib-crc16 kmod-nls-cp437 kmod-usb2 kmod-usb-core kmod-usb-ehci kmod-usb-ohci kmod-usb-printer kmod-usb-storage kmod-usb-storage-uas libsqlite3 libssh2 libstdcpp libxml2 luci-app-aria2 luci-app-p910nd luci-app-samba luci-i18n-aria2-zh-cn luci-i18n-p910nd-en luci-i18n-p910nd-zh-cn luci-i18n-samba-en luci-i18n-samba-zh-cn ntfs-3g openssl-util p910nd samba36-server webui-aria2"
-CONFIG_TARGET_DEVICE_kirkwood_DEVICE_pogo_e02=y
-CONFIG_TARGET_DEVICE_PACKAGES_kirkwood_DEVICE_pogo_e02="aria2 blockd block-mount kmod-crypto-crc32c kmod-fs-autofs4 kmod-fs-exfat kmod-fs-ext4 kmod-fs-msdos kmod-fs-vfat kmod-fuse kmod-lib-crc16 kmod-nls-cp437 kmod-usb2 kmod-usb-core kmod-usb-ehci kmod-usb-ohci kmod-usb-printer kmod-usb-storage kmod-usb-storage-uas libsqlite3 libssh2 libstdcpp libxml2 luci-app-aria2 luci-app-p910nd luci-app-samba luci-i18n-aria2-zh-cn luci-i18n-p910nd-en luci-i18n-p910nd-zh-cn luci-i18n-samba-en luci-i18n-samba-zh-cn ntfs-3g openssl-util p910nd samba36-server webui-aria2"
+# CONFIG_TARGET_DEVICE_kirkwood_DEVICE_on100 is not set
+# CONFIG_TARGET_DEVICE_kirkwood_DEVICE_pogo_e02 is not set
 # CONFIG_TARGET_DEVICE_kirkwood_DEVICE_iconnect is not set
 CONFIG_TARGET_DEVICE_kirkwood_DEVICE_linksys-viper=y
 CONFIG_TARGET_DEVICE_PACKAGES_kirkwood_DEVICE_linksys-viper="aria2 blockd block-mount kmod-crypto-crc32c kmod-fs-autofs4 kmod-fs-exfat kmod-fs-ext4 kmod-fs-msdos kmod-fs-vfat kmod-fuse kmod-lib-crc16 kmod-nls-cp437 kmod-usb2 kmod-usb3 kmod-usb-core kmod-usb-ehci kmod-usb-ohci kmod-usb-printer kmod-usb-storage kmod-usb-storage-uas libsqlite3 libssh2 libstdcpp libxml2 luci-app-aria2 luci-app-p910nd luci-app-samba luci-i18n-aria2-zh-cn luci-i18n-p910nd-en luci-i18n-p910nd-zh-cn luci-i18n-samba-en luci-i18n-samba-zh-cn ntfs-3g openssl-util p910nd samba36-server webui-aria2"
@@ -102,7 +100,6 @@ CONFIG_DEFAULT_ip6tables=y
 CONFIG_MODULE_DEFAULT_ip6tables=y
 CONFIG_DEFAULT_iptables=y
 CONFIG_MODULE_DEFAULT_iptables=y
-CONFIG_MODULE_DEFAULT_kmod-i2c-mv64xxx=y
 CONFIG_MODULE_DEFAULT_kmod-mwl8k=y
 CONFIG_DEFAULT_libc=y
 CONFIG_MODULE_DEFAULT_libc=y

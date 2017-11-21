@@ -8,7 +8,6 @@ config.ramips-mt76x8
 config.bcm53xx-generic
 config.brcm47xx-generic
 config.brcm47xx-mips74k
-config.apm821xx_nand
 config.kirkwood-generic
 config.ipq806x-generic
 config.mvebu-generic
