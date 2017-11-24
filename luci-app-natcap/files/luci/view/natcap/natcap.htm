@@ -28,7 +28,7 @@ XHR.poll(5, '<%=luci.dispatcher.build_url("admin/services/natcap/status")%>', nu
 			if (obj = document.getElementById('natcap_send'))
 				obj.innerHTML = data.total_tx;
 			if (obj = document.getElementById('natcap_domain'))
-				obj.innerHTML = data.domain;
+				obj.innerHTML = "<a href='http://" + data.domain + "/'>" + data.domain + "</a>";
 		}
 	}
 );
