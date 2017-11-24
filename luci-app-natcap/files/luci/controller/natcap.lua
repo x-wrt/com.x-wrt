@@ -36,6 +36,7 @@ function status()
 	data.total_rx = tonumber(data.total_rx)
 	data.total_tx = tonumber(data.total_tx)
 	data.uid = data.client_mac .. "-" .. data.uhash
+	data.domain = string.lower(data.client_mac) .. ".dns.ptpt52.com"
 	data.client_mac = nil
 	data.uhash = nill
 

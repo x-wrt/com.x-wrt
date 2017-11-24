@@ -27,6 +27,8 @@ XHR.poll(5, '<%=luci.dispatcher.build_url("admin/services/natcap/status")%>', nu
 				obj.innerHTML = data.total_rx;
 			if (obj = document.getElementById('natcap_send'))
 				obj.innerHTML = data.total_tx;
+			if (obj = document.getElementById('natcap_domain'))
+				obj.innerHTML = data.domain;
 		}
 	}
 );
@@ -40,5 +42,6 @@ XHR.poll(5, '<%=luci.dispatcher.build_url("admin/services/natcap/status")%>', nu
 		<tr><td width="33%"><strong><%:User ID%></strong></td><td id="natcap_uid">-</td></tr>
 		<tr><td width="33%"><strong><%:Total Recv%></strong></td><td id="natcap_recv">-</td></tr>
 		<tr><td width="33%"><strong><%:Total Send%></strong></td><td id="natcap_send">-</td></tr>
+		<tr><td width="33%"><strong><%:VPN Domain%></strong></td><td id="natcap_domain">-</td></tr>
 	</table>
 </fieldset>
