@@ -15,6 +15,15 @@ function natcap_server_change() {
 	);
 }
 
+function bytesToSize(bytes) {
+	var sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB'];
+	var fixed = [0, 1, 2, 3, 4]
+	if (bytes == 0) return '0 Byte';
+	var i = parseInt(Math.floor(Math.log(bytes) / Math.log(1024)));
+	var sz = new Number(bytes / Math.pow(1024, i))
+	return sz.toFixed(fixed[i]) + ' ' + sizes[i];
+}
+
 XHR.poll(5, '<%=luci.dispatcher.build_url("admin/services/natcap/status")%>', null,
 	function(x, data) {
 		var obj;
@@ -29,6 +38,22 @@ XHR.poll(5, '<%=luci.dispatcher.build_url("admin/services/natcap/status")%>', nu
 				obj.innerHTML = data.total_tx;
 			if (obj = document.getElementById('natcap_domain'))
 				obj.innerHTML = "<a href='http://" + data.domain + "/'>" + data.domain + "</a>";
+
+			if (data.flows) {
+				if (obj = document.getElementById('natcap_month0'))
+					obj.innerHTML = data.flows[0].from + "-" + data.flows[0].to;
+				if (obj = document.getElementById('natcap_recv0'))
+					obj.innerHTML = bytesToSize(data.flows[0].rx)
+				if (obj = document.getElementById('natcap_send0'))
+					obj.innerHTML = bytesToSize(data.flows[0].tx)
+
+				if (obj = document.getElementById('natcap_month1'))
+					obj.innerHTML = data.flows[1].from + "-" + data.flows[1].to;
+				if (obj = document.getElementById('natcap_recv1'))
+					obj.innerHTML = bytesToSize(data.flows[1].rx)
+				if (obj = document.getElementById('natcap_send1'))
+					obj.innerHTML = bytesToSize(data.flows[1].tx)
+			}
 		}
 	}
 );
@@ -40,8 +65,8 @@ XHR.poll(5, '<%=luci.dispatcher.build_url("admin/services/natcap/status")%>', nu
 	<table width="100%" cellspacing="10">
 		<tr><td width="33%"><strong><%:Current Server%></strong></td><td><span id="current_server">-</span>&nbsp;&nbsp;<input type="button" class="cbi-button cbi-button-reload" style="width:80px" onclick="natcap_server_change()" title="<%:Change Server%>" value="<%:Change%>" /></td></tr>
 		<tr><td width="33%"><strong><%:User ID%></strong></td><td id="natcap_uid">-</td></tr>
-		<tr><td width="33%"><strong><%:Total Recv%></strong></td><td id="natcap_recv">-</td></tr>
-		<tr><td width="33%"><strong><%:Total Send%></strong></td><td id="natcap_send">-</td></tr>
+		<tr><td width="33%"><strong><%:This Month%></strong>&nbsp;(<span id="natcap_month0">-</span>)</td><td><%:Recv%>:&nbsp;<span id="natcap_recv0">-</span>&nbsp;&nbsp;<%:Send%>:&nbsp;<span id="natcap_send0">-</span></td></tr>
+		<tr><td width="33%"><strong><%:Last Month%></strong>&nbsp;(<span id="natcap_month1">-</span>)</td><td><%:Recv%>:&nbsp;<span id="natcap_recv1">-</span>&nbsp;&nbsp;<%:Send%>:&nbsp;<span id="natcap_send1">-</span></td></tr>
 		<tr><td width="33%"><strong><%:VPN Domain%></strong></td><td id="natcap_domain">-</td></tr>
 	</table>
 </fieldset>

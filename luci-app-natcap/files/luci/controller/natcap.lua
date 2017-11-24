@@ -23,8 +23,10 @@ function status()
 	local ut = require "luci.util"
 	local sys  = require "luci.sys"
 	local http = require "luci.http"
+	local js = require "cjson"
 
 	local text = ut.trim(sys.exec("cat /dev/natcap_ctl"))
+	local flows = sys.exec("cat /tmp/xx.sh")
 
 	local data = {
 		cur_server = text:gsub(".*current_server=(.-)\n.*", "%1"),
@@ -39,6 +41,8 @@ function status()
 	data.domain = string.lower(data.client_mac) .. ".dns.ptpt52.com"
 	data.client_mac = nil
 	data.uhash = nill
+	data.flows = js.decode(flows) or {}
+	data.flows = data.flows.flows
 
 	if data.total_rx >= 1024*1024*1024*1024 then
 		data.total_rx = string.format('<span title="%u B">%.4f TB</span>', data.total_rx, data.total_rx / (1024*1024*1024*1024))

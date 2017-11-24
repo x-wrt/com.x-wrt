@@ -16,10 +16,16 @@ msgstr "切换"
 msgid "User ID"
 msgstr "用户标识"
 
-msgid "Total Recv"
+msgid "This Month"
+msgstr "本月"
+
+msgid "Last Month"
+msgstr "上月"
+
+msgid "Recv"
 msgstr "接收"
 
-msgid "Total Send"
+msgid "Send"
 msgstr "发送"
 
 msgid "VPN Domain"
