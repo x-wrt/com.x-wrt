@@ -42,17 +42,25 @@ XHR.poll(5, '<%=luci.dispatcher.build_url("admin/services/natcap/status")%>', nu
 			if (data.flows) {
 				if (obj = document.getElementById('natcap_month0'))
 					obj.innerHTML = data.flows[0].from + "-" + data.flows[0].to;
-				if (obj = document.getElementById('natcap_recv0'))
+				if (obj = document.getElementById('natcap_recv0')) {
 					obj.innerHTML = bytesToSize(data.flows[0].rx)
-				if (obj = document.getElementById('natcap_send0'))
+					obj.title = data.flows[0].rx + " B"
+				}
+				if (obj = document.getElementById('natcap_send0')) {
 					obj.innerHTML = bytesToSize(data.flows[0].tx)
+					obj.title = data.flows[0].tx + " B"
+				}
 
 				if (obj = document.getElementById('natcap_month1'))
 					obj.innerHTML = data.flows[1].from + "-" + data.flows[1].to;
-				if (obj = document.getElementById('natcap_recv1'))
+				if (obj = document.getElementById('natcap_recv1')) {
 					obj.innerHTML = bytesToSize(data.flows[1].rx)
-				if (obj = document.getElementById('natcap_send1'))
+					obj.title = data.flows[1].rx + " B"
+				}
+				if (obj = document.getElementById('natcap_send1')) {
 					obj.innerHTML = bytesToSize(data.flows[1].tx)
+					obj.title = data.flows[1].tx + " B"
+				}
 			}
 		}
 	}

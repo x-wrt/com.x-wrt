@@ -26,7 +26,11 @@ function status()
 	local js = require "cjson"
 
 	local text = ut.trim(sys.exec("cat /dev/natcap_ctl"))
+	local oldtxrx = ut.trim(sys.exec("cat /tmp/natcapd.txrx"))
 	local flows = sys.exec("cat /tmp/xx.sh")
+
+	local oldrx = oldtxrx:gsub("(%w+) (%w+)", "%1")
+	local oldtx = oldtxrx:gsub("(%w+) (%w+)", "%2")
 
 	local data = {
 		cur_server = text:gsub(".*current_server=(.-)\n.*", "%1"),
@@ -43,6 +47,10 @@ function status()
 	data.uhash = nill
 	data.flows = js.decode(flows) or {}
 	data.flows = data.flows.flows
+	if data.flows and data.flows[1] then
+		data.flows[1].rx = tonumber(data.flows[1].rx) + data.total_rx - tonumber(oldrx)
+		data.flows[1].tx = tonumber(data.flows[1].tx) + data.total_tx - tonumber(oldtx)
+	end
 
 	if data.total_rx >= 1024*1024*1024*1024 then
 		data.total_rx = string.format('<span title="%u B">%.4f TB</span>', data.total_rx, data.total_rx / (1024*1024*1024*1024))
