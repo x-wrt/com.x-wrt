@@ -212,6 +212,12 @@ test $version -lt 5 && {
 	version=5
 }
 
+test $version -lt 6 && {
+	uci set uhttpd.main.rfc1918_filter='0'
+	uci commit uhttpd
+	version=6
+}
+
 #fixup for openvpn client
 uci delete openvpn_recipes.client_tun.pkcs12 2>/dev/null && uci commit openvpn_recipes
 
