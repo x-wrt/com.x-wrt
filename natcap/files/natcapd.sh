@@ -237,6 +237,8 @@ enabled="`uci get natcapd.default.enabled 2>/dev/null`"
 
 #reload pptpd
 sh /usr/share/natcapd/natcapd.pptpd.sh
+#reload openvpn
+sh /usr/share/natcapd/natcapd.openvpn.sh
 
 ACC=$1
 ACC=`echo -n "$ACC" | b64encode`

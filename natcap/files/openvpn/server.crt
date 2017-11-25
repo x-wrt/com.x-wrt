@@ -1,0 +1,100 @@
+Certificate:
+    Data:
+        Version: 3 (0x2)
+        Serial Number: 1 (0x1)
+    Signature Algorithm: sha256WithRSAEncryption
+        Issuer: C=CN, ST=Guangdong, L=Shenzhen, O=PTPT52, OU=PTPT52 OU, CN=PTPT52 CA/name=Natcap/emailAddress=ptpt52@ptpt52.info
+        Validity
+            Not Before: Nov 25 12:22:45 2017 GMT
+            Not After : Nov 23 12:22:45 2027 GMT
+        Subject: C=CN, ST=Guangdong, L=Shenzhen, O=PTPT52, OU=PTPT52 OU, CN=*.dns.ptpt52.com/name=Natcap/emailAddress=ptpt52@ptpt52.info
+        Subject Public Key Info:
+            Public Key Algorithm: rsaEncryption
+                Public-Key: (2048 bit)
+                Modulus:
+                    00:c8:01:ad:66:e4:90:7a:24:92:68:02:dd:0d:f2:
+                    ab:76:45:9a:48:9f:f6:51:5c:ab:1e:d1:88:ef:1d:
+                    2a:4b:06:bb:bb:7b:ca:bc:77:44:99:7e:72:0f:a8:
+                    db:9a:75:ee:c2:e2:85:be:8e:6f:01:fb:b1:fd:aa:
+                    c0:b3:2b:ec:f2:d6:66:75:21:bc:21:f0:7b:38:d4:
+                    d2:b9:4d:52:32:69:bf:23:4c:a7:73:58:b3:4e:0a:
+                    18:a1:f9:00:42:f6:ef:45:8b:6e:1b:86:f8:75:35:
+                    d8:e1:f1:c3:01:d4:6b:3c:1f:34:97:14:03:62:cf:
+                    02:d5:f6:4d:3c:25:3b:ce:29:ef:0d:34:95:8f:9a:
+                    4d:00:96:5e:ca:92:d9:fb:22:0b:7f:e0:6a:27:da:
+                    e2:f3:20:04:7c:f5:4b:de:92:50:00:24:93:b4:dc:
+                    78:33:b7:1d:fe:e9:38:0f:df:4e:bc:9e:c0:db:70:
+                    5d:de:7b:8b:ee:6b:c5:51:45:f2:b6:50:13:7e:69:
+                    e6:38:0a:0c:2a:ef:f1:f9:bd:16:b1:dc:63:6f:f5:
+                    b8:b3:77:9a:fb:43:cf:31:c5:95:d0:2c:3c:92:f4:
+                    68:59:e5:31:96:fd:a6:2a:aa:49:33:ef:93:17:cf:
+                    44:d2:be:4c:54:4d:17:65:bc:f3:31:71:8a:c1:b5:
+                    bf:11
+                Exponent: 65537 (0x10001)
+        X509v3 extensions:
+            X509v3 Basic Constraints: 
+                CA:FALSE
+            Netscape Cert Type: 
+                SSL Server
+            Netscape Comment: 
+                Easy-RSA Generated Server Certificate
+            X509v3 Subject Key Identifier: 
+                C8:D2:F6:9B:02:67:E8:5D:19:E5:DC:43:47:0B:DD:C4:FE:53:A3:C6
+            X509v3 Authority Key Identifier: 
+                keyid:79:BA:23:56:1F:EB:1F:ED:F0:50:D8:82:86:79:EC:C2:5A:A4:8D:1C
+                DirName:/C=CN/ST=Guangdong/L=Shenzhen/O=PTPT52/OU=PTPT52 OU/CN=PTPT52 CA/name=Natcap/emailAddress=ptpt52@ptpt52.info
+                serial:C0:88:3D:60:26:EF:85:6F
+
+            X509v3 Extended Key Usage: 
+                TLS Web Server Authentication
+            X509v3 Key Usage: 
+                Digital Signature, Key Encipherment
+            X509v3 Subject Alternative Name: 
+                DNS:server
+    Signature Algorithm: sha256WithRSAEncryption
+         64:91:6b:74:e2:49:b7:b9:99:c1:b3:18:8e:62:0a:45:09:3c:
+         f0:d5:33:b4:67:ed:04:68:df:b5:fd:9c:47:2e:ca:52:1a:a6:
+         c0:cc:16:cb:3d:d1:7f:ab:56:66:df:cb:4c:f9:05:6e:5a:36:
+         28:fa:0e:1e:b5:7c:c8:fd:03:35:22:e0:c6:18:41:6b:aa:5c:
+         9f:38:13:19:72:2b:e3:e1:41:fa:16:e9:00:5e:92:aa:e7:c5:
+         9b:88:50:02:b6:c6:c9:a0:74:66:13:a8:f3:a3:44:1b:29:55:
+         6e:a6:84:de:87:80:11:76:10:09:47:cd:bd:51:a6:21:57:a8:
+         ce:fe:08:39:8b:b2:79:0f:8a:80:dc:12:ba:bb:0a:b1:78:d2:
+         c4:39:be:72:96:a9:98:1f:c7:98:91:fa:10:74:16:34:3f:b2:
+         88:ec:48:7a:01:82:fb:ba:01:0a:56:4c:7a:e1:42:e5:4e:41:
+         81:8d:a7:cb:c2:5a:0e:04:64:70:0c:9f:de:4a:18:f3:9f:f1:
+         e2:0e:1e:af:69:99:e4:b0:cb:8f:ff:7f:4b:e5:54:68:67:a0:
+         16:ed:d4:6b:02:0f:1a:14:76:b1:5c:a9:b0:54:32:8d:b1:f0:
+         22:3f:3c:84:e8:d0:af:aa:3c:66:ef:3f:ac:ec:3a:70:0c:f4:
+         59:ba:4a:e5
+-----BEGIN CERTIFICATE-----
+MIIFTTCCBDWgAwIBAgIBATANBgkqhkiG9w0BAQsFADCBoTELMAkGA1UEBhMCQ04x
+EjAQBgNVBAgTCUd1YW5nZG9uZzERMA8GA1UEBxMIU2hlbnpoZW4xDzANBgNVBAoT
+BlBUUFQ1MjESMBAGA1UECxMJUFRQVDUyIE9VMRIwEAYDVQQDEwlQVFBUNTIgQ0Ex
+DzANBgNVBCkTBk5hdGNhcDEhMB8GCSqGSIb3DQEJARYScHRwdDUyQHB0cHQ1Mi5p
+bmZvMB4XDTE3MTEyNTEyMjI0NVoXDTI3MTEyMzEyMjI0NVowgagxCzAJBgNVBAYT
+AkNOMRIwEAYDVQQIEwlHdWFuZ2RvbmcxETAPBgNVBAcTCFNoZW56aGVuMQ8wDQYD
+VQQKEwZQVFBUNTIxEjAQBgNVBAsTCVBUUFQ1MiBPVTEZMBcGA1UEAxQQKi5kbnMu
+cHRwdDUyLmNvbTEPMA0GA1UEKRMGTmF0Y2FwMSEwHwYJKoZIhvcNAQkBFhJwdHB0
+NTJAcHRwdDUyLmluZm8wggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEKAoIBAQDI
+Aa1m5JB6JJJoAt0N8qt2RZpIn/ZRXKse0YjvHSpLBru7e8q8d0SZfnIPqNuade7C
+4oW+jm8B+7H9qsCzK+zy1mZ1Ibwh8Hs41NK5TVIyab8jTKdzWLNOChih+QBC9u9F
+i24bhvh1Ndjh8cMB1Gs8HzSXFANizwLV9k08JTvOKe8NNJWPmk0All7Kktn7Igt/
+4Gon2uLzIAR89UveklAAJJO03Hgztx3+6TgP3068nsDbcF3ee4vua8VRRfK2UBN+
+aeY4Cgwq7/H5vRax3GNv9bizd5r7Q88xxZXQLDyS9GhZ5TGW/aYqqkkz75MXz0TS
+vkxUTRdlvPMxcYrBtb8RAgMBAAGjggGFMIIBgTAJBgNVHRMEAjAAMBEGCWCGSAGG
++EIBAQQEAwIGQDA0BglghkgBhvhCAQ0EJxYlRWFzeS1SU0EgR2VuZXJhdGVkIFNl
+cnZlciBDZXJ0aWZpY2F0ZTAdBgNVHQ4EFgQUyNL2mwJn6F0Z5dxDRwvdxP5To8Yw
+gdYGA1UdIwSBzjCBy4AUebojVh/rH+3wUNiChnnswlqkjRyhgaekgaQwgaExCzAJ
+BgNVBAYTAkNOMRIwEAYDVQQIEwlHdWFuZ2RvbmcxETAPBgNVBAcTCFNoZW56aGVu
+MQ8wDQYDVQQKEwZQVFBUNTIxEjAQBgNVBAsTCVBUUFQ1MiBPVTESMBAGA1UEAxMJ
+UFRQVDUyIENBMQ8wDQYDVQQpEwZOYXRjYXAxITAfBgkqhkiG9w0BCQEWEnB0cHQ1
+MkBwdHB0NTIuaW5mb4IJAMCIPWAm74VvMBMGA1UdJQQMMAoGCCsGAQUFBwMBMAsG
+A1UdDwQEAwIFoDARBgNVHREECjAIggZzZXJ2ZXIwDQYJKoZIhvcNAQELBQADggEB
+AGSRa3TiSbe5mcGzGI5iCkUJPPDVM7Rn7QRo37X9nEcuylIapsDMFss90X+rVmbf
+y0z5BW5aNij6Dh61fMj9AzUi4MYYQWuqXJ84ExlyK+PhQfoW6QBekqrnxZuIUAK2
+xsmgdGYTqPOjRBspVW6mhN6HgBF2EAlHzb1RpiFXqM7+CDmLsnkPioDcErq7CrF4
+0sQ5vnKWqZgfx5iR+hB0FjQ/sojsSHoBgvu6AQpWTHrhQuVOQYGNp8vCWg4EZHAM
+n95KGPOf8eIOHq9pmeSwy4//f0vlVGhnoBbt1GsCDxoUdrFcqbBUMo2x8CI/PITo
+0K+qPGbvP6zsOnAM9Fm6SuU=
+-----END CERTIFICATE-----
