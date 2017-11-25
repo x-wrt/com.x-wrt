@@ -31,6 +31,9 @@ msgstr "发送"
 msgid "VPN Domain"
 msgstr "VPN动态域名"
 
+msgid "Download OpenVPN Client Config"
+msgstr "下载OpenVPN客户端配置"
+
 msgid "Natcap Service"
 msgstr "Natcap 服务"
 
@@ -106,8 +109,14 @@ msgstr "把流量伪装成HTTP。"
 msgid "Obfuscation Host"
 msgstr "混淆Host"
 
+msgid "Enable OpenVPN Server"
+msgstr "开启OpenVPN服务"
+
 msgid "Enable The PPTP Server"
 msgstr "启用PPTP服务器"
+
+msgid "Allows you to use OpenVPN to connect to router, the router need to have a public IP."
+msgstr "允许你用OpenVPN连接自己的路由器，路由器需要有公网IP。"
 
 msgid "Allows you to use VPN to connect to router, the router need to have a public IP."
 msgstr "允许你用VPN连接自己的路由器，路由器需要有公网IP。"

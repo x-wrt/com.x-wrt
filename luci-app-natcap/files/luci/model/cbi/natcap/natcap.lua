@@ -70,6 +70,10 @@ e = s:taboption("advanced", Value, "htp_confusion_host", translate("Obfuscation 
 e.rmempty = true
 e.placeholder = 'bing.com'
 
+e = s:taboption("general", Flag, "natcapovpn", translate("Enable OpenVPN Server"), translate("Allows you to use OpenVPN to connect to router, the router need to have a public IP."))
+e.default = e.disabled
+e.rmempty = false
+
 e = s:taboption("general", Flag, "pptpd", translate("Enable The PPTP Server"), translate("Allows you to use VPN to connect to router, the router need to have a public IP."))
 e.default = e.disabled
 e.rmempty = false

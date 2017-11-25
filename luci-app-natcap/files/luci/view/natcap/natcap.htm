@@ -75,6 +75,6 @@ XHR.poll(5, '<%=luci.dispatcher.build_url("admin/services/natcap/status")%>', nu
 		<tr><td width="33%"><strong><%:User ID%></strong></td><td id="natcap_uid">-</td></tr>
 		<tr><td width="33%"><strong><%:This Month%></strong>&nbsp;(<span id="natcap_month0">-</span>)</td><td><%:Recv%>:&nbsp;<span id="natcap_recv0">-</span>&nbsp;&nbsp;<%:Send%>:&nbsp;<span id="natcap_send0">-</span></td></tr>
 		<tr><td width="33%"><strong><%:Last Month%></strong>&nbsp;(<span id="natcap_month1">-</span>)</td><td><%:Recv%>:&nbsp;<span id="natcap_recv1">-</span>&nbsp;&nbsp;<%:Send%>:&nbsp;<span id="natcap_send1">-</span></td></tr>
-		<tr><td width="33%"><strong><%:VPN Domain%></strong></td><td id="natcap_domain">-</td></tr>
+		<tr><td width="33%"><strong><%:VPN Domain%></strong></td><td><span id="natcap_domain">-</span>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="<%=luci.dispatcher.build_url("admin/services/natcap/get_openvpn_client")%>"><%:Download OpenVPN Client Config%></a></td></tr>
 	</table>
 </fieldset>
