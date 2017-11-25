@@ -1,7 +1,8 @@
 #!/bin/sh
 
-[ "x$1" = "xgen_client" ] && {
+gen_client() {
 	rm -rf /tmp/natcap-client
+	mkdir /tmp/natcap-client
 	cp /usr/share/natcapd/openvpn/natcap-client.key /tmp/natcap-client/
 	cp /usr/share/natcapd/openvpn/natcap-client.crt /tmp/natcap-client/
 	cp /usr/share/natcapd/openvpn/ca.crt /tmp/natcap-client/natcap-client-ca.crt
@@ -9,10 +10,14 @@
 	hname=`cat /dev/natcap_ctl  | grep default_mac_addr | grep -o '[0-9A-F][0-9A-F]:[0-9A-F][0-9A-F]:[0-9A-F][0-9A-F]:[0-9A-F][0-9A-F]:[0-9A-F][0-9A-F]:[0-9A-F][0-9A-F]' | sed 's/://g' | tr A-F a-f`
 	cat /usr/share/natcapd/openvpn/natcap-client.conf | sed "s/^remote .*4911$/remote $hname.dns.ptpt52.com 4911/" >/tmp/natcap-client/natcap-client.conf
 	cd /tmp && {
-		tar cvzf /tmp/natcap-client.tgz natcap-client
+		tar czf /tmp/natcap-client.tgz natcap-client
 		rm -rf natcap-client
-		cd -
+		cd - >/dev/null 2>&1
 	}
+}
+
+[ "x$1" = "xgen_client" ] && {
+	gen_client
 	exit 0
 }
 
