@@ -23,7 +23,7 @@ function status()
 	local ut = require "luci.util"
 	local sys  = require "luci.sys"
 	local http = require "luci.http"
-	local js = require "cjson"
+	local js = require "cjson.safe"
 
 	local text = ut.trim(sys.exec("cat /dev/natcap_ctl"))
 	local oldtxrx = ut.trim(sys.exec("cat /tmp/natcapd.txrx"))
