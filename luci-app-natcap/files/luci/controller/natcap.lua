@@ -29,18 +29,18 @@ function status()
 	local oldtxrx = ut.trim(sys.exec("cat /tmp/natcapd.txrx"))
 	local flows = sys.exec("cat /tmp/xx.sh")
 
-	local oldrx = oldtxrx:gsub("(%w+) (%w+)", "%1")
-	local oldtx = oldtxrx:gsub("(%w+) (%w+)", "%2")
+	local oldtx = oldtxrx:gsub("(%w+) (%w+)", "%1")
+	local oldrx = oldtxrx:gsub("(%w+) (%w+)", "%2")
 
 	local data = {
 		cur_server = text:gsub(".*current_server=(.-)\n.*", "%1"),
 		uhash = text:gsub(".*default_u_hash=(.-)\n.*", "%1"),
 		client_mac = text:gsub(".*default_mac_addr=(..):(..):(..):(..):(..):(..)\n.*", "%1%2%3%4%5%6"),
-		total_rx = text:gsub(".*flow_total_rx_bytes=(.-)\n.*", "%1"),
 		total_tx = text:gsub(".*flow_total_tx_bytes=(.-)\n.*", "%1"),
+		total_rx = text:gsub(".*flow_total_rx_bytes=(.-)\n.*", "%1"),
 	}
-	data.total_rx = tonumber(data.total_rx)
 	data.total_tx = tonumber(data.total_tx)
+	data.total_rx = tonumber(data.total_rx)
 	data.uid = data.client_mac .. "-" .. data.uhash
 	data.domain = string.lower(data.client_mac) .. ".dns.ptpt52.com"
 	data.client_mac = nil
@@ -48,32 +48,8 @@ function status()
 	data.flows = js.decode(flows) or {}
 	data.flows = data.flows.flows
 	if data.flows and data.flows[1] then
-		data.flows[1].rx = tonumber(data.flows[1].rx) + data.total_rx - tonumber(oldrx)
 		data.flows[1].tx = tonumber(data.flows[1].tx) + data.total_tx - tonumber(oldtx)
-	end
-
-	if data.total_rx >= 1024*1024*1024*1024 then
-		data.total_rx = string.format('<span title="%u B">%.4f TB</span>', data.total_rx, data.total_rx / (1024*1024*1024*1024))
-	elseif data.total_rx >= 1024*1024*1024 then
-		data.total_rx = string.format('<span title="%u B">%.2f GB</span>', data.total_rx, data.total_rx / (1024*1024*1024))
-	elseif data.total_rx >= 1024*1024 then
-		data.total_rx = string.format('<span title="%u B">%.1f MB</span>', data.total_rx, data.total_rx / (1024*1024))
-	elseif data.total_rx >= 1024 then
-		data.total_rx = string.format('<span title="%u B">%u KB</span>', data.total_rx, data.total_rx / (1024))
-	else
-		data.total_rx = string.format('<span title="%u B">%u B</span>', data.total_rx, data.total_rx)
-	end
-
-	if data.total_tx >= 1024*1024*1024*1024 then
-		data.total_tx = string.format('<span title="%u B">%.4f TB</span>', data.total_tx, data.total_tx / (1024*1024*1024*1024))
-	elseif data.total_tx >= 1024*1024*1024 then
-		data.total_tx = string.format('<span title="%u B">%.2f GB</span>', data.total_tx, data.total_tx / (1024*1024*1024))
-	elseif data.total_tx >= 1024*1024 then
-		data.total_tx = string.format('<span title="%u B">%.1f MB</span>', data.total_tx, data.total_tx / (1024*1024))
-	elseif data.total_tx >= 1024 then
-		data.total_tx = string.format('<span title="%u B">%u KB</span>', data.total_tx, data.total_tx / (1024))
-	else
-		data.total_tx = string.format('<span title="%u B">%u B</span>', data.total_tx, data.total_tx)
+		data.flows[1].rx = tonumber(data.flows[1].rx) + data.total_rx - tonumber(oldrx)
 	end
 
 	http.prepare_content("application/json")
