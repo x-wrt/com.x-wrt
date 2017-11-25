@@ -74,7 +74,7 @@ function change_server()
 end
 
 function get_openvpn_client()
-	local reader = ltn12_popen("sh /usr/share/natcapd/natcapd.openvpn.sh gen_client && cat /tmp/client.ovpn && rm -f /tmp/client.ovpn")
+	local reader = ltn12_popen("sh /usr/share/natcapd/natcapd.openvpn.sh gen_client")
 
 	luci.http.header('Content-Disposition', 'attachment; filename="natcap-client.ovpn"')
 	luci.http.prepare_content("application/x-openvpn-profile")

@@ -4,22 +4,19 @@ make_config()
 {
 	KEY_ID=client
 	KEY_DIR=/usr/share/natcapd/openvpn
-	OUTPUT_DIR=/tmp
 	BASE_CONFIG=/usr/share/natcapd/openvpn/client.conf
 	hname=`cat /dev/natcap_ctl  | grep default_mac_addr | grep -o '[0-9A-F][0-9A-F]:[0-9A-F][0-9A-F]:[0-9A-F][0-9A-F]:[0-9A-F][0-9A-F]:[0-9A-F][0-9A-F]:[0-9A-F][0-9A-F]' | sed 's/://g' | tr A-F a-f`
 
-	cat ${BASE_CONFIG} \
-	<(echo -e '<ca>') \
-	${KEY_DIR}/ca.crt \
-	<(echo -e '</ca>\n<cert>') \
-	${KEY_DIR}/${KEY_ID}.crt \
-	<(echo -e '</cert>\n<key>') \
-	${KEY_DIR}/${KEY_ID}.key \
-	<(echo -e '</key>\n<tls-auth>') \
-	${KEY_DIR}/ta.key \
-	<(echo -e '</tls-auth>') | \
-	sed "s/^remote .*4911$/remote $hname.dns.ptpt52.com 4911/" \
-    > ${OUTPUT_DIR}/${KEY_ID}.ovpn
+	cat ${BASE_CONFIG} | sed "s/^remote .*4911$/remote $hname.dns.ptpt52.com 4911/"
+	echo -e '<ca>'
+	cat ${KEY_DIR}/ca.crt
+	echo -e '</ca>\n<cert>'
+	cat ${KEY_DIR}/${KEY_ID}.crt
+	echo -e '</cert>\n<key>'
+	cat ${KEY_DIR}/${KEY_ID}.key
+	echo -e '</key>\n<tls-auth>'
+	cat ${KEY_DIR}/ta.key
+	echo -e '</tls-auth>'
 }
 
 [ "x$1" = "xgen_client" ] && {
