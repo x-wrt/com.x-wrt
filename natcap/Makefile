@@ -99,9 +99,9 @@ define Package/natcapd/install
 	$(INSTALL_DATA) ./files/natcapd.defaults $(1)/etc/uci-defaults/95-natcapd
 	$(INSTALL_DATA) ./files/natcapd.openvpn.sh $(1)/usr/share/natcapd/natcapd.openvpn.sh
 	$(INSTALL_DIR) $(1)/usr/share/natcapd/openvpn
-	$(INSTALL_DATA) ./files/openvpn/client/natcap-client.conf $(1)/usr/share/natcapd/openvpn/natcap-client.conf
-	$(INSTALL_DATA) ./files/openvpn/client/natcap-client.key $(1)/usr/share/natcapd/openvpn/natcap-client.key
-	$(INSTALL_DATA) ./files/openvpn/client/natcap-client.crt $(1)/usr/share/natcapd/openvpn/natcap-client.crt
+	$(INSTALL_DATA) ./files/openvpn/client.conf $(1)/usr/share/natcapd/openvpn/client.conf
+	$(INSTALL_DATA) ./files/openvpn/client.key $(1)/usr/share/natcapd/openvpn/client.key
+	$(INSTALL_DATA) ./files/openvpn/client.crt $(1)/usr/share/natcapd/openvpn/client.crt
 	$(INSTALL_DATA) ./files/openvpn/dh2048.pem $(1)/usr/share/natcapd/openvpn/dh2048.pem
 	$(INSTALL_DATA) ./files/openvpn/ca.crt $(1)/usr/share/natcapd/openvpn/ca.crt
 	$(INSTALL_DATA) ./files/openvpn/server.crt $(1)/usr/share/natcapd/openvpn/server.crt

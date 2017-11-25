@@ -74,10 +74,10 @@ function change_server()
 end
 
 function get_openvpn_client()
-	local reader = ltn12_popen("sh /usr/share/natcapd/natcapd.openvpn.sh gen_client && cat /tmp/natcap-client.tgz && rm -f /tmp/natcap-client.tgz")
+	local reader = ltn12_popen("sh /usr/share/natcapd/natcapd.openvpn.sh gen_client && cat /tmp/client.ovpn && rm -f /tmp/client.ovpn")
 
-	luci.http.header('Content-Disposition', 'attachment; filename="natcap-client.tar.gz"')
-	luci.http.prepare_content("application/x-targz")
+	luci.http.header('Content-Disposition', 'attachment; filename="natcap-client.ovpn"')
+	luci.http.prepare_content("application/x-openvpn-profile")
 	luci.ltn12.pump.all(reader, luci.http.write)
 end
 
