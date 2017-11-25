@@ -88,7 +88,7 @@ make_config()
 		uci set openvpn.natcapovpn.client_to_client='1'
 		uci add_list openvpn.natcapovpn.push='persist-key'
 		uci add_list openvpn.natcapovpn.push='persist-tun'
-		uci add_list openvpn.natcapovpn.push='redirect-gateway def1'
+		uci add_list openvpn.natcapovpn.push='redirect-gateway def1 bypass-dhcp'
 		uci add_list openvpn.natcapovpn.push='dhcp-option DNS 8.8.8.8'
 		uci set openvpn.natcapovpn.duplicate_cn='1'
 		uci set openvpn.natcapovpn.proto='tcp4'
