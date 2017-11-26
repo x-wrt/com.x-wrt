@@ -6,6 +6,8 @@ make_config()
 	KEY_DIR=/usr/share/natcapd/openvpn
 	BASE_CONFIG=/usr/share/natcapd/openvpn/client.conf
 	hname=`cat /dev/natcap_ctl  | grep default_mac_addr | grep -o '[0-9A-F][0-9A-F]:[0-9A-F][0-9A-F]:[0-9A-F][0-9A-F]:[0-9A-F][0-9A-F]:[0-9A-F][0-9A-F]:[0-9A-F][0-9A-F]' | sed 's/://g' | tr A-F a-f`
+	TA_KEY=${KEY_DIR}/ta.key
+	test -f /etc/openvpn/natcap-ta.key && TA_KEY=/etc/openvpn/natcap-ta.key
 
 	cat ${BASE_CONFIG} | sed "s/^remote .*4911$/remote $hname.dns.ptpt52.com 4911/"
 	echo -e '<ca>'
@@ -15,7 +17,7 @@ make_config()
 	echo -e '</cert>\n<key>'
 	cat ${KEY_DIR}/${KEY_ID}.key
 	echo -e '</key>\n<tls-auth>'
-	cat ${KEY_DIR}/ta.key
+	cat ${TA_KEY}
 	echo -e '</tls-auth>'
 }
 
@@ -90,6 +92,7 @@ make_config()
 		uci set openvpn.natcapovpn.duplicate_cn='1'
 		uci set openvpn.natcapovpn.proto='tcp4'
 		uci set openvpn.natcapovpn.comp_lzo='yes'
+		test -f /etc/openvpn/natcap-ta.key && uci set openvpn.natcapovpn.tls_auth='/etc/openvpn/natcap-ta.key 0'
 		uci commit openvpn
 	}
 
