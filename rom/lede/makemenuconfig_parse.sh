@@ -184,6 +184,7 @@ for t in $targets; do
 	mods="$us"
 	case $t in
 		#>8M flash
+		TARGET_DEVICE_ramips_mt7620_DEVICE_oy-0001|\
 		TARGET_DEVICE_ar71xx_generic_DEVICE_archer-c5-v1|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_puppies|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_zbt-we3526|\
@@ -353,6 +354,7 @@ for t in $targets; do
 			mods="$mods $usb2 $usb3"
 		;;
 		#with usb2
+		TARGET_DEVICE_ramips_mt7620_DEVICE_oy-0001|\
 		TARGET_DEVICE_ar71xx_generic_DEVICE_archer-c5-v1|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_puppies|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_zbt-we3526|\
