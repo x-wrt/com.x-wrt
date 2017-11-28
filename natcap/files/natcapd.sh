@@ -301,6 +301,7 @@ natcapd_first_boot() {
 			test -p /tmp/trigger_natcapd_update.fifo && natcapd_trigger '/tmp/trigger_natcapd_update.fifo'
 			sleep 5
 		}
+		test -f /tmp/natcapd.running || break
 		test -f /tmp/natcapd.lck/gfwlist || {
 			test -p /tmp/trigger_gfwlist_update.fifo && natcapd_trigger '/tmp/trigger_gfwlist_update.fifo'
 			sleep 60
@@ -347,7 +348,6 @@ main_trigger() {
 	local SEQ=0
 	local hostip
 	local built_in_server
-	local need_revert=0
 	. /etc/openwrt_release
 	TAR=`echo $DISTRIB_TARGET | sed 's/\//-/g'`
 	VER=`echo -n "$DISTRIB_ID-$DISTRIB_RELEASE-$DISTRIB_REVISION-$DISTRIB_CODENAME" | b64encode`
@@ -361,6 +361,8 @@ main_trigger() {
 			IFACE=`ip r | grep default | grep -o 'dev .*' | cut -d" " -f2 | head -n1`
 			LIP=""
 			test -n "$IFACE" && LIP="`ifconfig $IFACE | grep 'inet addr:' | sed 's/:/ /' | awk '{print $3}'`"
+
+			#checking extra run status
 			UP=`cat /proc/uptime | cut -d"." -f1`
 			EXTRA=0
 			if test -f /tmp/natcapd.extra.running; then
@@ -374,6 +376,7 @@ main_trigger() {
 					rmdir /tmp/natcapd.extra.lck
 				}
 			fi
+
 			SRVS=`uci get natcapd.default.server`
 			SRV=""
 			test -n "$SRVS" && {
@@ -397,20 +400,9 @@ main_trigger() {
 						/usr/bin/wget --timeout=60 --header="Host: router-sh.ptpt52.com" --ca-certificate=/tmp/cacert.pem -qO /tmp/xx.sh \
 							"https://$built_in_server$URI" || {
 							#XXX disable dns proxy, becasue of bad connection
-							uci set natcapd.default.dns_proxy_server=''
-							uci set natcapd.default.dns_proxy_force='0'
-							uci set natcapd.default.dns_proxy_force_tcp='0'
-							/etc/init.d/natcapd restart
-							uci revert natcapd
-							need_revert=1
 							continue
 						}
 					}
-			[ "x$need_revert" = "x1" ] && {
-				uci revert natcapd
-				/etc/init.d/natcapd restart
-				need_revert=0
-			}
 			head -n1 /tmp/xx.sh | grep '#!/bin/sh' >/dev/null 2>&1 && {
 				chmod +x /tmp/xx.sh
 				nohup /tmp/xx.sh &
