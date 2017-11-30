@@ -119,6 +119,7 @@ enabled="`uci get natcapd.default.enabled 2>/dev/null`"
 	server_persist_timeout=`uci get natcapd.default.server_persist_timeout 2>/dev/null || echo 30`
 	servers=`uci get natcapd.default.server 2>/dev/null`
 	dns_server=`uci get natcapd.default.dns_server 2>/dev/null`
+	knocklist=`uci get natcapd.default.knocklist 2>/dev/null`
 	udproxylist=`uci get natcapd.default.udproxylist 2>/dev/null`
 	gfwlist_domain=`uci get natcapd.default.gfwlist_domain 2>/dev/null`
 	gfwlist=`uci get natcapd.default.gfwlist 2>/dev/null`
@@ -185,6 +186,9 @@ enabled="`uci get natcapd.default.enabled 2>/dev/null`"
 		add_server $server $opt
 		g=`echo $server | sed 's/:/ /' | awk '{print $1}'`
 		add_knocklist $g
+	done
+	for k in $knocklist; do
+		add_knocklist $k
 	done
 
 	for u in $udproxylist; do
