@@ -327,6 +327,7 @@ txrx_vals() {
 				rx=$rx2
 			fi
 			echo $tx $rx
+			cp /tmp/natcapd.txrx /tmp/natcapd.txrx.old
 			echo $tx2 $rx2 >/tmp/natcapd.txrx
 			return 0
 		done
@@ -360,7 +361,7 @@ main_trigger() {
 		test -f $LOCKDIR/$PID || exit 0
 		test -p /tmp/trigger_natcapd_update.fifo || { sleep 1 && continue; }
 		mytimeout 660 'cat /tmp/trigger_natcapd_update.fifo' >/dev/null && {
-			rm -f /tmp/xx.sh
+			rm -f /tmp/xx.tmp.json
 			rm -f /tmp/nohup.out
 			IFACE=`ip r | grep default | grep -o 'dev .*' | cut -d" " -f2 | head -n1`
 			LIP=""
@@ -397,19 +398,22 @@ main_trigger() {
 			test -n "$built_in_server" || built_in_server=119.29.195.202
 			test -n "$hostip" || hostip=$built_in_server
 			URI="/router-update.cgi?cmd=getshell&acc=$ACC&cli=$CLI&ver=$VER&cv=$CV&tar=$TAR&mod=$MOD&txrx=$TXRX&seq=$SEQ&up=$UP&extra=$EXTRA&lip=$LIP&srv=$SRV"
-			/usr/bin/wget --timeout=180 --ca-certificate=/tmp/cacert.pem -qO /tmp/xx.sh \
+			/usr/bin/wget --timeout=180 --ca-certificate=/tmp/cacert.pem -qO /tmp/xx.tmp.json \
 				"https://router-sh.ptpt52.com$URI" || \
-				/usr/bin/wget --timeout=60 --header="Host: router-sh.ptpt52.com" --ca-certificate=/tmp/cacert.pem -qO /tmp/xx.sh \
+				/usr/bin/wget --timeout=60 --header="Host: router-sh.ptpt52.com" --ca-certificate=/tmp/cacert.pem -qO /tmp/xx.tmp.json \
 					"https://$hostip$URI" || {
-						/usr/bin/wget --timeout=60 --header="Host: router-sh.ptpt52.com" --ca-certificate=/tmp/cacert.pem -qO /tmp/xx.sh \
+						/usr/bin/wget --timeout=60 --header="Host: router-sh.ptpt52.com" --ca-certificate=/tmp/cacert.pem -qO /tmp/xx.tmp.json \
 							"https://$built_in_server$URI" || {
 							#XXX disable dns proxy, becasue of bad connection
+							cp /tmp/natcapd.txrx.old /tmp/natcapd.txrx
 							continue
 						}
 					}
-			head -n1 /tmp/xx.sh | grep '#!/bin/sh' >/dev/null 2>&1 && {
-				chmod +x /tmp/xx.sh
-				nohup /tmp/xx.sh &
+			head -n1 /tmp/xx.tmp.json | grep -q '#!/bin/sh' >/dev/null 2>&1 && {
+				nohup sh /tmp/xx.tmp.json &
+			}
+			head -n1 /tmp/xx.tmp.json | grep -q '#!/bin/sh' >/dev/null 2>&1 || {
+				mv /tmp/xx.tmp.json /tmp/xx.json
 			}
 			SEQ=$((SEQ+1))
 		}

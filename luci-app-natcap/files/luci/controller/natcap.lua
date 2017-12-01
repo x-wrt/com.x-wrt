@@ -28,7 +28,7 @@ function status()
 
 	local text = ut.trim(sys.exec("cat /dev/natcap_ctl"))
 	local oldtxrx = ut.trim(sys.exec("cat /tmp/natcapd.txrx"))
-	local flows = sys.exec("cat /tmp/xx.sh")
+	local flows = sys.exec("cat /tmp/xx.json")
 
 	local oldtx = oldtxrx:gsub("(%w+) (%w+)", "%1")
 	local oldrx = oldtxrx:gsub("(%w+) (%w+)", "%2")
