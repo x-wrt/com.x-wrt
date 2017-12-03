@@ -31,7 +31,7 @@ make_config()
 		uci delete network.natcapovpn
 		uci set network.natcapovpn=interface
 		uci set network.natcapovpn.proto='none'
-		uci set network.natcapovpn.ifname='natcap'
+		uci set network.natcapovpn.ifname='natcap+'
 		uci set network.natcapovpn.auto='1'
 		uci commit network
 
@@ -65,7 +65,7 @@ make_config()
 		uci set openvpn.natcapovpn=openvpn
 		uci set openvpn.natcapovpn.enabled='1'
 		uci set openvpn.natcapovpn.port='4911'
-		uci set openvpn.natcapovpn.dev='natcap'
+		uci set openvpn.natcapovpn.dev='natcap0'
 		uci set openvpn.natcapovpn.dev_type='tun'
 		uci set openvpn.natcapovpn.ca='/usr/share/natcapd/openvpn/ca.crt'
 		uci set openvpn.natcapovpn.cert='/usr/share/natcapd/openvpn/server.crt'
