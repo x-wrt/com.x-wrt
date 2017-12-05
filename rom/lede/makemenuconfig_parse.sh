@@ -189,6 +189,7 @@ for t in $targets; do
 		TARGET_DEVICE_ramips_mt7621_DEVICE_puppies|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_zbt-we3526|\
 		TARGET_DEVICE_ar71xx_generic_DEVICE_AC9531_010|\
+		TARGET_DEVICE_ar71xx_generic_DEVICE_AC9531_020|\
 		TARGET_DEVICE_ramips_mt7620nand_DEVICE_miwifi-r3|\
 		TARGET_DEVICE_ramips_mt7620_DEVICE_miwifi-r3|\
 		TARGET_DEVICE_ramips_mt7620_DEVICE_zbt-we826-32M|\
@@ -359,6 +360,7 @@ for t in $targets; do
 		TARGET_DEVICE_ramips_mt7621_DEVICE_puppies|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_zbt-we3526|\
 		TARGET_DEVICE_ar71xx_generic_DEVICE_AC9531_010|\
+		TARGET_DEVICE_ar71xx_generic_DEVICE_AC9531_020|\
 		TARGET_DEVICE_ramips_mt7620nand_DEVICE_miwifi-r3|\
 		TARGET_DEVICE_ramips_mt7620_DEVICE_miwifi-r3|\
 		TARGET_DEVICE_ramips_mt7620_DEVICE_zbt-we826-32M|\
