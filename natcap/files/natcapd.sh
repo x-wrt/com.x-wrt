@@ -65,15 +65,58 @@ natcapd_stop()
 	return 0
 }
 
+b64encode() {
+	cat - | base64 | sed -e ':a' -e 'N' -e '$!ba' -e 's/\n/ /g' | sed 's/ //g;s/=/_/g'
+}
+
+txrx_vals_dump() {
+	test -f /tmp/natcapd.txrx || echo "0 0" >/tmp/natcapd.txrx
+	cat /tmp/natcapd.txrx | while read tx1 rx1; do
+		echo `cat $DEV  | grep flow_total_ | cut -d= -f2` | while read tx2 rx2; do
+			tx=$((tx2-tx1))
+			rx=$((rx2-rx1))
+			if test $tx2 -lt $tx1 || test $rx2 -lt $rx1; then
+				tx=$tx2
+				rx=$rx2
+			fi
+			echo $tx $rx
+			return 0
+		done
+	done
+}
+
+ACC=`uci get natcapd.default.account 2>/dev/null`
+CLI=`lua /usr/share/natcapd/board_mac.lua | sed 's/:/-/g' | tr a-z A-Z`
+test -n "$CLI" || CLI=`cat $DEV | grep default_mac_addr | grep -o '[0-9A-F][0-9A-F]:[0-9A-F][0-9A-F]:[0-9A-F][0-9A-F]:[0-9A-F][0-9A-F]:[0-9A-F][0-9A-F]:[0-9A-F][0-9A-F]' | sed 's/:/-/g'`
+test -n "$CLI" || CLI=`sed 's/:/-/g' /sys/class/net/eth0/address | tr a-z A-Z`
+MOD=`cat /etc/board.json | grep model -A2 | grep id\": | sed 's/"/ /g' | awk '{print $3}'`
+
+. /etc/openwrt_release
+TAR=`echo $DISTRIB_TARGET | sed 's/\//-/g'`
+VER=`echo -n "$DISTRIB_ID-$DISTRIB_RELEASE-$DISTRIB_REVISION-$DISTRIB_CODENAME" | b64encode`
+
+natcapd_get_flows()
+{
+	local IDX=$1
+	local TXRX=`txrx_vals_dump| b64encode`
+	URI="/router-update.cgi?cmd=getflows&acc=$ACC&cli=$CLI&idx=$IDX&txrx=$TXRX&mod=$MOD&tar=$TAR"
+	/usr/bin/wget --timeout=180 --ca-certificate=/tmp/cacert.pem -qO- "https://router-sh.ptpt52.com$URI"
+}
+
+[ x$1 = xget_flows0 ] && {
+	natcapd_get_flows 0 || echo "Get data failed!"
+	exit 0
+}
+[ x$1 = xget_flows1 ] && {
+	natcapd_get_flows 1 || echo "Get data failed!"
+	exit 0
+}
+
 [ x$1 = xstop ] && natcapd_stop && exit 0
 
 [ x$1 = xstart ] || {
 	echo "usage: $0 start|stop"
 	exit 0
-}
-
-b64encode() {
-	cat - | base64 | sed -e ':a' -e 'N' -e '$!ba' -e 's/\n/ /g' | sed 's/ //g;s/=/_/g'
 }
 
 add_server () {
@@ -244,14 +287,6 @@ sh /usr/share/natcapd/natcapd.pptpd.sh
 #reload openvpn
 sh /usr/share/natcapd/natcapd.openvpn.sh
 
-ACC=$1
-ACC=`echo -n "$ACC" | b64encode`
-CLI=`lua /usr/share/natcapd/board_mac.lua | sed 's/:/-/g' | tr a-z A-Z`
-test -n "$CLI" || CLI=`cat $DEV | grep default_mac_addr | grep -o '[0-9A-F][0-9A-F]:[0-9A-F][0-9A-F]:[0-9A-F][0-9A-F]:[0-9A-F][0-9A-F]:[0-9A-F][0-9A-F]:[0-9A-F][0-9A-F]' | sed 's/:/-/g'`
-test -n "$CLI" || CLI=`sed 's/:/-/g' /sys/class/net/eth0/address | tr a-z A-Z`
-
-MOD=`cat /etc/board.json | grep model -A2 | grep id\": | sed 's/"/ /g' | awk '{print $3}'`
-
 cd /tmp
 
 _NAME=`basename $0`
@@ -353,9 +388,6 @@ main_trigger() {
 	local SEQ=0
 	local hostip
 	local built_in_server
-	. /etc/openwrt_release
-	TAR=`echo $DISTRIB_TARGET | sed 's/\//-/g'`
-	VER=`echo -n "$DISTRIB_ID-$DISTRIB_RELEASE-$DISTRIB_REVISION-$DISTRIB_CODENAME" | b64encode`
 	cp /usr/share/natcapd/cacert.pem /tmp/cacert.pem
 	while :; do
 		test -f $LOCKDIR/$PID || exit 0

@@ -15,6 +15,8 @@ function index()
 	page.i18n = "natcap"
 	page.dependent = true
 
+	entry({"admin", "services", "natcap", "get_natcap_flows0"}, call("get_natcap_flows0")).leaf = true
+	entry({"admin", "services", "natcap", "get_natcap_flows1"}, call("get_natcap_flows1")).leaf = true
 	entry({"admin", "services", "natcap", "get_openvpn_client"}, call("get_openvpn_client")).leaf = true
 	entry({"admin", "services", "natcap", "status"}, call("status")).leaf = true
 	entry({"admin", "services", "natcap", "change_server"}, call("change_server")).leaf = true
@@ -71,6 +73,40 @@ function change_server()
 
 	http.prepare_content("application/json")
 	http.write_json(data)
+end
+
+function get_natcap_flows0()
+	local js = require "cjson.safe"
+	local sys  = require "luci.sys"
+	local filename = "Data-not-found"
+	local flows = sys.exec("cat /tmp/xx.json")
+	flows = js.decode(flows) or {}
+	if flows.flows and flows.flows[1] and flows.flows[1].from and flows.flows[1].to then
+		filename = string.format("Flows_%s-%s", flows.flows[1].from, flows.flows[1].to)
+	end
+
+	local reader = ltn12_popen("/usr/sbin/natcapd get_flows0")
+
+	luci.http.header('Content-Disposition', 'attachment; filename="' .. filename .. '.csv"')
+	luci.http.prepare_content("text/csv")
+	luci.ltn12.pump.all(reader, luci.http.write)
+end
+
+function get_natcap_flows1()
+	local sys  = require "luci.sys"
+	local js = require "cjson.safe"
+	local filename = "Data-not-found"
+	local flows = sys.exec("cat /tmp/xx.json")
+	flows = js.decode(flows) or {}
+	if flows.flows and flows.flows[2] and flows.flows[2].from and flows.flows[2].to then
+		filename = string.format("Flows_%s-%s", flows.flows[2].from, flows.flows[2].to)
+	end
+
+	local reader = ltn12_popen("/usr/sbin/natcapd get_flows1")
+
+	luci.http.header('Content-Disposition', 'attachment; filename="' .. filename .. '.csv"')
+	luci.http.prepare_content("text/csv")
+	luci.ltn12.pump.all(reader, luci.http.write)
 end
 
 function get_openvpn_client()

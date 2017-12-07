@@ -31,6 +31,9 @@ msgstr "发送"
 msgid "VPN Domain"
 msgstr "VPN动态域名"
 
+msgid "Download details"
+msgstr "下载详细信息"
+
 msgid "Download OpenVPN Client Config"
 msgstr "下载OpenVPN客户端配置"
 
