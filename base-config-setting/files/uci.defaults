@@ -3,7 +3,7 @@ version=`uci get base_config.@status[0].version 2>/dev/null`
 test -n "$version" || version=0
 
 . /etc/openwrt_release
-test -n "${DISTRIB_ID}" || DISTRIB_ID=PTPT52
+test -n "${DISTRIB_ID}" || DISTRIB_ID=NATCAP
 DISTRIB_ID=`echo -n $DISTRIB_ID | tr a-z A-Z`
 
 MACADDR=`cat /sys/class/net/eth0/address | tr a-z A-Z`

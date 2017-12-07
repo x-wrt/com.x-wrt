@@ -22,8 +22,8 @@ find feeds/luci/ -type f | grep -v .git\* | while read file; do
 	sed -i 's/192\.168\.1\./192\.168\.15\./g' "$file" && echo modifying $file
 done
 
-CONFIG_VERSION_DIST="PTPT52"
-CONFIG_VERSION_NICK="fuckgfw"
+CONFIG_VERSION_DIST="NATCAP"
+CONFIG_VERSION_NICK="Beetle"
 CONFIG_VERSION_MANUFACTURER_URL="http://router.ptpt52.com/"
 for i in $IDXS; do
 	[ $i = 1 ] && {
@@ -53,6 +53,6 @@ done
 rm -rf .build_ptpt52
 
 build_in=$(cd feeds/ptpt52/rom/lede/ && cat $CFGS | grep TARGET_DEVICE_.*=y | sed 's/CONFIG_//;s/=y//' | wc -l)
-build_out=$(find bin/targets/ | grep -- '\(-squashfs\|-factory\|-sysupgrade\)' | grep -v factory | grep ptpt52 | grep -v root | grep -v kernel | sort | wc -l)
+build_out=$(find bin/targets/ | grep -- '\(-squashfs\|-factory\|-sysupgrade\)' | grep -v factory | grep natcap | grep -v root | grep -v kernel | sort | wc -l)
 echo in=$build_in out=$build_out
 echo
