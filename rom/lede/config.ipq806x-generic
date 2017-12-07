@@ -424,7 +424,7 @@ CONFIG_TARGET_INIT_SUPPRESS_STDERR=y
 CONFIG_VERSIONOPT=y
 CONFIG_VERSION_DIST="PTPT52"
 CONFIG_VERSION_NICK="fuckgfw"
-CONFIG_VERSION_NUMBER="3.0.0_build201711250411"
+CONFIG_VERSION_NUMBER="3.0.0_build201712080203"
 CONFIG_VERSION_CODE=""
 CONFIG_VERSION_REPO="http://downloads.openwrt.org/snapshots/trunk/%S/packages"
 CONFIG_VERSION_MANUFACTURER="PTPT52"
@@ -4398,6 +4398,8 @@ CONFIG_PACKAGE_luci-i18n-upnp-zh-cn=y
 # CONFIG_PACKAGE_bogofilter is not set
 # CONFIG_PACKAGE_clamsmtp is not set
 # CONFIG_PACKAGE_dovecot is not set
+# CONFIG_PACKAGE_dovecot-pigeonhole is not set
+# CONFIG_PACKAGE_dovecot-utils is not set
 # CONFIG_PACKAGE_emailrelay is not set
 # CONFIG_PACKAGE_fdm is not set
 # CONFIG_PACKAGE_greyfix is not set
@@ -4408,7 +4410,6 @@ CONFIG_PACKAGE_luci-i18n-upnp-zh-cn=y
 # CONFIG_PACKAGE_msmtp-nossl is not set
 # CONFIG_PACKAGE_mutt is not set
 # CONFIG_PACKAGE_nail is not set
-# CONFIG_PACKAGE_pigeonhole is not set
 # CONFIG_PACKAGE_postfix is not set
 
 #
@@ -5050,6 +5051,7 @@ CONFIG_PACKAGE_pptpd=y
 #
 # CONFIG_PACKAGE_fossil is not set
 # CONFIG_PACKAGE_git is not set
+# CONFIG_PACKAGE_git-http is not set
 # CONFIG_PACKAGE_subversion-client is not set
 # CONFIG_PACKAGE_subversion-libs is not set
 # CONFIG_PACKAGE_subversion-server is not set
@@ -5125,6 +5127,7 @@ CONFIG_PACKAGE_uhttpd-mod-ubus=y
 # CONFIG_PACKAGE_kismet-client is not set
 # CONFIG_PACKAGE_kismet-drone is not set
 # CONFIG_PACKAGE_kismet-server is not set
+# CONFIG_PACKAGE_pixiewps is not set
 # CONFIG_PACKAGE_reaver is not set
 # CONFIG_PACKAGE_wavemon is not set
 # CONFIG_PACKAGE_wifischedule is not set
@@ -5176,6 +5179,7 @@ CONFIG_PACKAGE_hostapd-common=y
 # CONFIG_PACKAGE_httping is not set
 # CONFIG_PACKAGE_httping-nossl is not set
 # CONFIG_PACKAGE_https_dns_proxy is not set
+# CONFIG_PACKAGE_i2pd is not set
 # CONFIG_PACKAGE_ibrdtn-tools is not set
 # CONFIG_PACKAGE_ibrdtnd is not set
 # CONFIG_PACKAGE_ifstat is not set
@@ -5924,4 +5928,3 @@ CONFIG_PACKAGE_ubi-utils=y
 # font-utils
 #
 # CONFIG_PACKAGE_fontconfig is not set
-CONFIG_OVERRIDE_PKGS="mc"
