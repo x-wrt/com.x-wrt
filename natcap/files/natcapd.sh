@@ -85,10 +85,30 @@ txrx_vals_dump() {
 	done
 }
 
-ACC=`uci get natcapd.default.account 2>/dev/null`
-CLI=`lua /usr/share/natcapd/board_mac.lua | sed 's/:/-/g' | tr a-z A-Z`
-test -n "$CLI" || CLI=`cat $DEV | grep default_mac_addr | grep -o '[0-9A-F][0-9A-F]:[0-9A-F][0-9A-F]:[0-9A-F][0-9A-F]:[0-9A-F][0-9A-F]:[0-9A-F][0-9A-F]:[0-9A-F][0-9A-F]' | sed 's/:/-/g'`
-test -n "$CLI" || CLI=`sed 's/:/-/g' /sys/class/net/eth0/address | tr a-z A-Z`
+test -c $DEV || exit 1
+
+board_mac_addr=`lua /usr/share/natcapd/board_mac.lua`
+if test -n "$board_mac_addr"; then
+	echo default_mac_addr=$board_mac_addr >$DEV
+fi
+client_mac=$board_mac_addr
+test -n "$client_mac" || client_mac=`cat $DEV | grep default_mac_addr | grep -o "[0-9A-F][0-9A-F]:[0-9A-F][0-9A-F]:[0-9A-F][0-9A-F]:[0-9A-F][0-9A-F]:[0-9A-F][0-9A-F]:[0-9A-F][0-9A-F]"`
+if [ "x$client_mac" = "x00:00:00:00:00:00" ]; then
+	client_mac=`uci get natcapd.default.default_mac_addr 2>/dev/null`
+	test -n "$client_mac" || client_mac=`cat /sys/class/net/eth0/address | tr a-z A-Z`
+	test -n "$client_mac" || client_mac=`cat /sys/class/net/eth1/address | tr a-z A-Z`
+	test -n "$client_mac" || client_mac=`head -c6 /dev/urandom | hexdump -e '/1 "%02X:"' | head -c17`
+	test -n "$client_mac" || client_mac=`head -c6 /dev/random | hexdump -e '/1 "%02X:"' | head -c17`
+	uci set natcapd.default.default_mac_addr="$client_mac"
+	uci commit natcapd
+	echo default_mac_addr=$client_mac >$DEV
+fi
+account="`uci get natcapd.default.account 2>/dev/null`"
+uhash=`echo -n $client_mac$account | cksum | awk '{print $1}'`
+echo u_hash=$uhash >>$DEV
+
+ACC="$account"
+CLI=`echo $client_mac | sed 's/:/-/g' | tr a-z A-Z`
 MOD=`cat /etc/board.json | grep model -A2 | grep id\": | sed 's/"/ /g' | awk '{print $3}'`
 
 . /etc/openwrt_release
@@ -138,17 +158,6 @@ add_knocklist () {
 add_gfwlist_domain () {
 	echo server=/$1/8.8.8.8 >>/tmp/dnsmasq.d/custom-domains.gfwlist.dnsmasq.conf
 	echo ipset=/$1/gfwlist >>/tmp/dnsmasq.d/custom-domains.gfwlist.dnsmasq.conf
-}
-
-test -c $DEV && {
-	board_mac_addr=`lua /usr/share/natcapd/board_mac.lua`
-	test -n "$board_mac_addr" && {
-		echo default_mac_addr=$board_mac_addr >$DEV
-	}
-	account=`uci get natcapd.default.account 2>/dev/null || echo ""`
-	client_mac=`cat $DEV | grep default_mac_addr | grep -o "[0-9A-F][0-9A-F]:[0-9A-F][0-9A-F]:[0-9A-F][0-9A-F]:[0-9A-F][0-9A-F]:[0-9A-F][0-9A-F]:[0-9A-F][0-9A-F]"`
-	uhash=`echo -n $client_mac$account | cksum | awk '{print $1}'`
-	echo u_hash=$uhash >>$DEV
 }
 
 enabled="`uci get natcapd.default.enabled 2>/dev/null`"
