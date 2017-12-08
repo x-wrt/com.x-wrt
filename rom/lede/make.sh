@@ -23,7 +23,7 @@ find feeds/luci/ -type f | grep -v .git\* | while read file; do
 done
 
 CONFIG_VERSION_DIST="NATCAP"
-CONFIG_VERSION_NICK="Beetle"
+CONFIG_VERSION_NICK="Aardvark"
 CONFIG_VERSION_MANUFACTURER_URL="http://router.ptpt52.com/"
 for i in $IDXS; do
 	[ $i = 1 ] && {
