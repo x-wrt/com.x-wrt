@@ -1,3 +1,4 @@
+config.x86_64
 config.ar71xx-nand
 config.ar71xx-nand-nosymbol
 config.ar71xx-generic
