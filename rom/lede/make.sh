@@ -23,12 +23,12 @@ find feeds/luci/ -type f | grep -v .git\* | while read file; do
 done
 
 CONFIG_VERSION_DIST="NATCAP"
-CONFIG_VERSION_NICK="Aardvark"
+CONFIG_VERSION_CODE="Aardvark"
 CONFIG_VERSION_MANUFACTURER_URL="http://router.ptpt52.com/"
 for i in $IDXS; do
 	[ $i = 1 ] && {
 		CONFIG_VERSION_DIST="BICT"
-		CONFIG_VERSION_NICK="router"
+		CONFIG_VERSION_CODE="router"
 		CONFIG_VERSION_MANUFACTURER_URL="http://bict.cn/"
 	}
 
@@ -40,7 +40,7 @@ for i in $IDXS; do
 		cp feeds/ptpt52/rom/lede/$cfg .config
 		sed -i "s/CONFIG_VERSION_NUMBER=\".*\"/CONFIG_VERSION_NUMBER=\"$CONFIG_VERSION_NUMBER\"/" ./.config
 		sed -i "s/CONFIG_VERSION_DIST=\".*\"/CONFIG_VERSION_DIST=\"$CONFIG_VERSION_DIST\"/" ./.config
-		sed -i "s/CONFIG_VERSION_NICK=\".*\"/CONFIG_VERSION_NICK=\"$CONFIG_VERSION_NICK\"/" ./.config
+		sed -i "s/CONFIG_VERSION_CODE=\".*\"/CONFIG_VERSION_CODE=\"$CONFIG_VERSION_CODE\"/" ./.config
 		sed -i "s%CONFIG_VERSION_MANUFACTURER_URL=\".*\"%CONFIG_VERSION_MANUFACTURER_URL=\"$CONFIG_VERSION_MANUFACTURER_URL\"%" ./.config
 		touch ./package/base-files/files/etc/openwrt_release
 		set +x
