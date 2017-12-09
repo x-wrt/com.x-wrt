@@ -12,4 +12,3 @@ config.brcm47xx-mips74k
 config.kirkwood-generic
 config.ipq806x-generic
 config.mvebu-generic
-config.oxnas
