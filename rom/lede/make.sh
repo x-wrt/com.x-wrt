@@ -24,7 +24,7 @@ done
 
 CONFIG_VERSION_DIST="NATCAP"
 CONFIG_VERSION_CODE="Aardvark"
-CONFIG_VERSION_MANUFACTURER_URL="http://router.ptpt52.com/"
+CONFIG_VERSION_MANUFACTURER_URL="https://router-sh.ptpt52.com/"
 for i in $IDXS; do
 	[ $i = 1 ] && {
 		CONFIG_VERSION_DIST="BICT"
