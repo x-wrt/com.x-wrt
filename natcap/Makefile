@@ -81,6 +81,7 @@ endef
 
 define Package/natcapd/install
 	$(INSTALL_DIR) $(1)/etc/init.d
+	$(INSTALL_BIN) ./files/natcapd_boot.init $(1)/etc/init.d/natcapd_boot
 	$(INSTALL_BIN) ./files/natcapd.init $(1)/etc/init.d/natcapd
 	$(INSTALL_DIR) $(1)/etc/config
 	$(INSTALL_DATA) ./files/natcapd.config $(1)/etc/config/natcapd
