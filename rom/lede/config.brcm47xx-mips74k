@@ -74,7 +74,7 @@ CONFIG_TARGET_MULTI_PROFILE=y
 # CONFIG_TARGET_brcm47xx_mips74k_DEVICE_linksys-wrt310n-v2 is not set
 # CONFIG_TARGET_brcm47xx_mips74k_DEVICE_linksys-wrt320n-v1 is not set
 # CONFIG_TARGET_brcm47xx_mips74k_DEVICE_linksys-e900-v1 is not set
-# CONFIG_TARGET_brcm47xx_mips74k_DEVICE_linksys-e1000-v1-v2-v2.1 is not set
+# CONFIG_TARGET_brcm47xx_mips74k_DEVICE_linksys-e1000 is not set
 # CONFIG_TARGET_brcm47xx_mips74k_DEVICE_linksys-e1200-v1 is not set
 # CONFIG_TARGET_brcm47xx_mips74k_DEVICE_linksys-e1200-v2 is not set
 # CONFIG_TARGET_brcm47xx_mips74k_DEVICE_linksys-e1500-v1 is not set
@@ -86,8 +86,8 @@ CONFIG_TARGET_MULTI_PROFILE=y
 # CONFIG_TARGET_brcm47xx_mips74k_DEVICE_linksys-e2500-v3 is not set
 # CONFIG_TARGET_brcm47xx_mips74k_DEVICE_linksys-e3200-v1 is not set
 # CONFIG_TARGET_brcm47xx_mips74k_DEVICE_linksys-e4200-v1 is not set
-# CONFIG_TARGET_brcm47xx_mips74k_DEVICE_netgear-wgr614-v10_north-america is not set
-# CONFIG_TARGET_brcm47xx_mips74k_DEVICE_netgear-wgr614-v10_other-regions is not set
+# CONFIG_TARGET_brcm47xx_mips74k_DEVICE_netgear-wgr614-v10-na is not set
+# CONFIG_TARGET_brcm47xx_mips74k_DEVICE_netgear-wgr614-v10 is not set
 # CONFIG_TARGET_brcm47xx_mips74k_DEVICE_netgear-wn2500rp-v1 is not set
 # CONFIG_TARGET_brcm47xx_mips74k_DEVICE_netgear-wn3000rp is not set
 # CONFIG_TARGET_brcm47xx_mips74k_DEVICE_netgear-wndr3400-v1 is not set
@@ -97,8 +97,8 @@ CONFIG_TARGET_MULTI_PROFILE=y
 # CONFIG_TARGET_brcm47xx_mips74k_DEVICE_netgear-wndr4000 is not set
 # CONFIG_TARGET_brcm47xx_mips74k_DEVICE_netgear-wnr1000-v3 is not set
 # CONFIG_TARGET_brcm47xx_mips74k_DEVICE_netgear-wnr2000v2 is not set
-# CONFIG_TARGET_brcm47xx_mips74k_DEVICE_netgear-wnr3500l-v1-north-america is not set
-# CONFIG_TARGET_brcm47xx_mips74k_DEVICE_netgear-wnr3500l-v1-other-regions is not set
+# CONFIG_TARGET_brcm47xx_mips74k_DEVICE_netgear-wnr3500l-v1-na is not set
+# CONFIG_TARGET_brcm47xx_mips74k_DEVICE_netgear-wnr3500l-v1 is not set
 # CONFIG_TARGET_brcm47xx_mips74k_DEVICE_netgear-wnr3500l-v2 is not set
 # CONFIG_TARGET_brcm47xx_mips74k_DEVICE_netgear-wnr3500-v2 is not set
 # CONFIG_TARGET_brcm47xx_mips74k_DEVICE_standard is not set
@@ -129,7 +129,7 @@ CONFIG_TARGET_DEVICE_PACKAGES_brcm47xx_mips74k_DEVICE_asus-rt-n16="aria2 blockd 
 # CONFIG_TARGET_DEVICE_brcm47xx_mips74k_DEVICE_asus-rt-n66w is not set
 # CONFIG_TARGET_DEVICE_brcm47xx_mips74k_DEVICE_standard-noloader-nodictionarylzma is not set
 # CONFIG_TARGET_DEVICE_brcm47xx_mips74k_DEVICE_standard is not set
-# CONFIG_TARGET_DEVICE_brcm47xx_mips74k_DEVICE_linksys-e1000-v1-v2-v2.1 is not set
+# CONFIG_TARGET_DEVICE_brcm47xx_mips74k_DEVICE_linksys-e1000 is not set
 # CONFIG_TARGET_DEVICE_brcm47xx_mips74k_DEVICE_linksys-e1200-v1 is not set
 # CONFIG_TARGET_DEVICE_brcm47xx_mips74k_DEVICE_linksys-e1200-v2 is not set
 # CONFIG_TARGET_DEVICE_brcm47xx_mips74k_DEVICE_linksys-e1500-v1 is not set
@@ -146,8 +146,8 @@ CONFIG_TARGET_DEVICE_PACKAGES_brcm47xx_mips74k_DEVICE_linksys-e3200-v1="aria2 bl
 # CONFIG_TARGET_DEVICE_brcm47xx_mips74k_DEVICE_linksys-wrt160n-v3 is not set
 # CONFIG_TARGET_DEVICE_brcm47xx_mips74k_DEVICE_linksys-wrt310n-v2 is not set
 # CONFIG_TARGET_DEVICE_brcm47xx_mips74k_DEVICE_linksys-wrt320n-v1 is not set
-# CONFIG_TARGET_DEVICE_brcm47xx_mips74k_DEVICE_netgear-wgr614-v10_north-america is not set
-# CONFIG_TARGET_DEVICE_brcm47xx_mips74k_DEVICE_netgear-wgr614-v10_other-regions is not set
+# CONFIG_TARGET_DEVICE_brcm47xx_mips74k_DEVICE_netgear-wgr614-v10 is not set
+# CONFIG_TARGET_DEVICE_brcm47xx_mips74k_DEVICE_netgear-wgr614-v10-na is not set
 # CONFIG_TARGET_DEVICE_brcm47xx_mips74k_DEVICE_netgear-wn2500rp-v1 is not set
 # CONFIG_TARGET_DEVICE_brcm47xx_mips74k_DEVICE_netgear-wn3000rp is not set
 # CONFIG_TARGET_DEVICE_brcm47xx_mips74k_DEVICE_netgear-wndr3400-v1 is not set
@@ -159,8 +159,8 @@ CONFIG_TARGET_DEVICE_PACKAGES_brcm47xx_mips74k_DEVICE_netgear-wndr3700-v3="block
 # CONFIG_TARGET_DEVICE_brcm47xx_mips74k_DEVICE_netgear-wnr1000-v3 is not set
 # CONFIG_TARGET_DEVICE_brcm47xx_mips74k_DEVICE_netgear-wnr2000v2 is not set
 # CONFIG_TARGET_DEVICE_brcm47xx_mips74k_DEVICE_netgear-wnr3500-v2 is not set
-# CONFIG_TARGET_DEVICE_brcm47xx_mips74k_DEVICE_netgear-wnr3500l-v1-north-america is not set
-# CONFIG_TARGET_DEVICE_brcm47xx_mips74k_DEVICE_netgear-wnr3500l-v1-other-regions is not set
+# CONFIG_TARGET_DEVICE_brcm47xx_mips74k_DEVICE_netgear-wnr3500l-v1-na is not set
+# CONFIG_TARGET_DEVICE_brcm47xx_mips74k_DEVICE_netgear-wnr3500l-v1 is not set
 # CONFIG_TARGET_DEVICE_brcm47xx_mips74k_DEVICE_netgear-wnr3500l-v2 is not set
 CONFIG_HAS_SUBTARGETS=y
 CONFIG_HAS_DEVICES=y
@@ -471,7 +471,7 @@ CONFIG_TARGET_INIT_CMD="/sbin/init"
 CONFIG_TARGET_INIT_SUPPRESS_STDERR=y
 CONFIG_VERSIONOPT=y
 CONFIG_VERSION_DIST="NATCAP"
-CONFIG_VERSION_NUMBER="3.0.0_build201712090841"
+CONFIG_VERSION_NUMBER="3.0.0_build201712120515"
 CONFIG_VERSION_CODE="Beetle"
 CONFIG_VERSION_REPO="http://downloads.openwrt.org/snapshots/trunk/%S/packages"
 CONFIG_VERSION_MANUFACTURER="PTPT52"
@@ -2353,7 +2353,8 @@ CONFIG_BUSYBOX_CONFIG_LOGGER=y
 CONFIG_PACKAGE_dnsmasq=m
 # CONFIG_PACKAGE_dnsmasq-dhcpv6 is not set
 CONFIG_PACKAGE_dnsmasq-full=y
-CONFIG_PACKAGE_dnsmasq_full_dhcpv6=y
+CONFIG_PACKAGE_dnsmasq_full_dhcp=y
+# CONFIG_PACKAGE_dnsmasq_full_dhcpv6 is not set
 CONFIG_PACKAGE_dnsmasq_full_dnssec=y
 # CONFIG_PACKAGE_dnsmasq_full_auth is not set
 CONFIG_PACKAGE_dnsmasq_full_ipset=y
@@ -3379,6 +3380,11 @@ CONFIG_PACKAGE_luasocket=y
 # CONFIG_PACKAGE_python-lib2to3 is not set
 # CONFIG_PACKAGE_python-lib2to3-src is not set
 # CONFIG_PACKAGE_python-light is not set
+
+#
+# Configuration
+#
+# CONFIG_PYTHON_BLUETOOTH_SUPPORT is not set
 # CONFIG_PACKAGE_python-light-src is not set
 # CONFIG_PACKAGE_python-logging is not set
 # CONFIG_PACKAGE_python-logging-src is not set
@@ -3461,6 +3467,11 @@ CONFIG_PACKAGE_luasocket=y
 # CONFIG_PACKAGE_python3-lib2to3 is not set
 # CONFIG_PACKAGE_python3-lib2to3-src is not set
 # CONFIG_PACKAGE_python3-light is not set
+
+#
+# Configuration
+#
+# CONFIG_PYTHON3_BLUETOOTH_SUPPORT is not set
 # CONFIG_PACKAGE_python3-light-src is not set
 # CONFIG_PACKAGE_python3-logging is not set
 # CONFIG_PACKAGE_python3-logging-src is not set
@@ -4691,6 +4702,7 @@ CONFIG_MINIUPNPD_IGDv2=y
 # CONFIG_PACKAGE_bind-rndc is not set
 # CONFIG_PACKAGE_bind-server is not set
 # CONFIG_PACKAGE_bind-tools is not set
+# CONFIG_PACKAGE_danish is not set
 CONFIG_PACKAGE_ddns-scripts=y
 # CONFIG_PACKAGE_ddns-scripts_cloudflare is not set
 # CONFIG_PACKAGE_ddns-scripts_cloudflare.com-v4 is not set
