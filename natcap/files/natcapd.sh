@@ -92,7 +92,14 @@ if test -n "$board_mac_addr"; then
 	echo default_mac_addr=$board_mac_addr >$DEV
 fi
 client_mac=$board_mac_addr
-test -n "$client_mac" || client_mac=`cat $DEV | grep default_mac_addr | grep -o "[0-9A-F][0-9A-F]:[0-9A-F][0-9A-F]:[0-9A-F][0-9A-F]:[0-9A-F][0-9A-F]:[0-9A-F][0-9A-F]:[0-9A-F][0-9A-F]"`
+test -n "$client_mac" || {
+	client_mac=`cat $DEV | grep default_mac_addr | grep -o "[0-9A-F][0-9A-F]:[0-9A-F][0-9A-F]:[0-9A-F][0-9A-F]:[0-9A-F][0-9A-F]:[0-9A-F][0-9A-F]:[0-9A-F][0-9A-F]"`
+	eth_mac=`cat /sys/class/net/eth0/address | tr a-z A-Z`
+	test -n "$eth_mac" && [ "x$client_mac" != "x$eth_mac" ] && {
+		client_mac=$eth_mac
+		echo default_mac_addr=$client_mac >$DEV
+	}
+}
 if [ "x$client_mac" = "x00:00:00:00:00:00" ]; then
 	client_mac=`uci get natcapd.default.default_mac_addr 2>/dev/null`
 	test -n "$client_mac" || client_mac=`cat /sys/class/net/eth0/address | tr a-z A-Z`
