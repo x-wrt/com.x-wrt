@@ -398,7 +398,7 @@ txrx_vals() {
 mqtt_cli() {
 	while :; do
 		test -f $LOCKDIR/$PID || exit 0
-		if which mosquitto_sub >/dev/null 2>&1; then
+		if which mosquitto_sub >/dev/null 2>&1 && test -f /tmp/natcapd.running; then
 			mosquitto_sub -h router-sh.ptpt52.com -t "/gfw/device/$CLI" -u ptpt52 -P 153153 --quiet -k 180 | while read _line; do
 				natcapd_trigger '/tmp/trigger_natcapd_update.fifo'
 			done
