@@ -246,6 +246,9 @@ sed 's,http://downloads.openwrt.org/snapshots/.*/targets/,http://downloads.lede-
 diff -q /tmp/distfeeds.conf /etc/opkg/distfeeds.conf >/dev/null 2>&1 || cp /tmp/distfeeds.conf /etc/opkg/distfeeds.conf
 rm -f /tmp/distfeeds.conf
 
+#replace wget
+test -x /usr/bin/wget && rm -f /bin/wget && ln -s /usr/bin/wget /bin/wget
+
 touch /etc/config/base_config
 uci get base_config.@status[0] >/dev/null 2>&1 || uci add base_config status >/dev/null 2>&1
 uci set base_config.@status[0].version=$version
