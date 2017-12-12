@@ -62,6 +62,9 @@ natcapd_stop()
 		/etc/init.d/dnsmasq restart
 	}
 	rm -f /tmp/natcapd.running
+	mosq_pid=`ps axuww 2>/dev/null | grep "mosquitto_su[b].*router-sh.ptpt52.com" | awk '{print $2}'`
+	test -n "$mosq_pid" || mosq_pid=`ps 2>/dev/null | grep "mosquitto_su[b].*router-sh.ptpt52.com" | awk '{print $1}'`
+	test -n "$mosq_pid" && kill $mosq_pid
 	return 0
 }
 
