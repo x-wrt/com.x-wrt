@@ -11,5 +11,6 @@ boot() {
 		umount /tmp/usb_reset
 		return 0
 	}
+	rm -f /tmp/usb_reset/ptpt52_reset_factory*
 	/usr/sbin/system_reset -h
 }
