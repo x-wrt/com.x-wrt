@@ -8,7 +8,7 @@ boot() {
 	mkdir /tmp/usb_reset || return 0
 	mount $DEV /tmp/usb_reset || return 0
 	test -f /tmp/usb_reset/ptpt52_reset_factory || test -f /tmp/usb_reset/ptpt52_reset_factory.txt || {
-		umount /tmp/usb_reset
+		umount /tmp/usb_reset && rmdir /tmp/usb_reset
 		return 0
 	}
 	rm -f /tmp/usb_reset/ptpt52_reset_factory*
