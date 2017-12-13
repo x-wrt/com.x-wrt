@@ -3,6 +3,9 @@
 test -b /dev/$DEVNAME || exit 0
 
 dev=/dev/$DEVNAME
+test -f /rom/etc/sda3.ready && {
+	echo $dev | grep -q /dev/sda && exit 0
+}
 edev=`mount | grep "$dev " | awk '{print $1}'`
 [ "x$dev" = "x$edev" ] && exit 0
 ddir=/mnt/`basename $dev`
