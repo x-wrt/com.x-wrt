@@ -218,6 +218,24 @@ test $version -lt 6 && {
 	version=6
 }
 
+test $version -lt 7 && {
+	[ "x`uci get samba.@samba[0] 2>/dev/null`" = "xsamba" ] && {
+		uci -q batch <<-EOF >/dev/null
+			add samba sambashare
+			set samba.@sambashare[-1].browseable='yes'
+			set samba.@sambashare[-1].name='aria2'
+			set samba.@sambashare[-1].path='/mnt/sda1/aria2'
+			set samba.@sambashare[-1].users='lede'
+			set samba.@sambashare[-1].read_only='no'
+			set samba.@sambashare[-1].guest_ok='no'
+			set samba.@sambashare[-1].create_mask='0644'
+			set samba.@sambashare[-1].dir_mask='0755'
+			commit samba
+		EOF
+	}
+	version=7
+}
+
 #fixup for openvpn client
 uci delete openvpn_recipes.client_tun.pkcs12 2>/dev/null && uci commit openvpn_recipes
 
