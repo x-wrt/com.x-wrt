@@ -88,7 +88,7 @@ e.datatype = "string"
 e.rmempty  = false
 
 e = u:option(Value, "password", translate("Password"))
-e.datatype = "string"
+e.password = true
 e.rmempty  = false
 
 e = s:taboption("macfilter", ListValue, "macfilter", translate("Mac Address Filter"))
