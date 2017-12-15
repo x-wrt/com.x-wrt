@@ -88,7 +88,7 @@ function get_natcap_flows0()
 	local reader = ltn12_popen("/usr/sbin/natcapd get_flows0")
 
 	luci.http.header('Content-Disposition', 'attachment; filename="' .. filename .. '.csv"')
-	luci.http.prepare_content("text/csv")
+	luci.http.prepare_content("text/csv; charset=UTF-8")
 	luci.ltn12.pump.all(reader, luci.http.write)
 end
 
@@ -105,7 +105,7 @@ function get_natcap_flows1()
 	local reader = ltn12_popen("/usr/sbin/natcapd get_flows1")
 
 	luci.http.header('Content-Disposition', 'attachment; filename="' .. filename .. '.csv"')
-	luci.http.prepare_content("text/csv")
+	luci.http.prepare_content("text/csv; charset=UTF-8")
 	luci.ltn12.pump.all(reader, luci.http.write)
 end
 
