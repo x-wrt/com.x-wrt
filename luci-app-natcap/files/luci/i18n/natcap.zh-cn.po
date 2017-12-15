@@ -52,6 +52,9 @@ msgstr "高级配置"
 msgid "Mac Filter"
 msgstr "Mac过滤"
 
+msgid "IP Filter"
+msgstr "IP过滤"
+
 msgid "Enable Natcap"
 msgstr "启用"
 
@@ -144,3 +147,9 @@ msgstr "黑名单（禁止列表使用Natcap）"
 
 msgid "Mac List"
 msgstr "Mac列表"
+
+msgid "IP Address Filter"
+msgstr "IP地址过滤"
+
+msgid "IP List"
+msgstr "IP列表"

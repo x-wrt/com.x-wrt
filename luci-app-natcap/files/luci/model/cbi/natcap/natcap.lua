@@ -15,6 +15,7 @@ s.anonymous = true
 s:tab("general", translate("General Settings"))
 s:tab("advanced", translate("Advance Settings"))
 s:tab("macfilter", translate("Mac Filter"))
+s:tab("ipfilter", translate("IP Filter"))
 
 e = s:taboption("general", Flag, "enabled", translate("Enable Natcap"))
 e.default = e.disabled
@@ -101,5 +102,16 @@ e.datatype = "macaddr"
 e:depends({macfilter="allow"})
 e:depends({macfilter="deny"})
 nt.mac_hints(function(mac, name) e:value(mac, "%s (%s)" %{ mac, name }) end)
+
+e = s:taboption("ipfilter", ListValue, "ipfilter", translate("IP Address Filter"))
+e:value("", translate("Disabled"))
+e:value("allow", translate("whitelist (Allow to use Natcap)"))
+e:value("deny", translate("blacklist (Forbid to use Natcap)"))
+
+e = s:taboption("ipfilter", DynamicList, "iplist", translate("IP List"))
+e.datatype = "ipaddr"
+e.placeholder = '192.168.1.0/24'
+e:depends({ipfilter="allow"})
+e:depends({ipfilter="deny"})
 
 return m

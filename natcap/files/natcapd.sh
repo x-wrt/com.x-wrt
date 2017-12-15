@@ -209,6 +209,8 @@ enabled="`uci get natcapd.default.enabled 2>/dev/null`"
 
 	macfilter=`uci get natcapd.default.macfilter 2>/dev/null`
 	maclist=`uci get natcapd.default.maclist 2>/dev/null`
+	ipfilter=`uci get natcapd.default.ipfilter 2>/dev/null`
+	iplist=`uci get natcapd.default.iplist 2>/dev/null`
 
 	ipset -n list udproxylist >/dev/null 2>&1 || ipset -! create udproxylist iphash
 	ipset -n list gfwlist >/dev/null 2>&1 || ipset -! create gfwlist iphash
@@ -242,7 +244,6 @@ enabled="`uci get natcapd.default.enabled 2>/dev/null`"
 			ipset -! add natcap_maclist $m
 		done
 	}
-
 	if [ x"$macfilter" == xallow ]; then
 		echo macfilter=1 >>$DEV
 	elif [ x"$macfilter" == xdeny ]; then
@@ -250,6 +251,22 @@ enabled="`uci get natcapd.default.enabled 2>/dev/null`"
 	else
 		echo macfilter=0 >>$DEV
 		ipset destroy natcap_maclist >/dev/null 2>&1
+	fi
+
+	test -n "$iplist" && {
+		ipset -n list natcap_iplist >/dev/null 2>&1 || ipset -! create natcap_iplist nethash
+		ipset flush natcap_iplist
+		for n in $iplist; do
+			ipset -! add natcap_iplist $n
+		done
+	}
+	if [ x"$ipfilter" == xallow ]; then
+		echo ipfilter=1 >>$DEV
+	elif [ x"$ipfilter" == xdeny ]; then
+		echo ipfilter=2 >>$DEV
+	else
+		echo ipfilter=0 >>$DEV
+		ipset destroy natcap_iplist >/dev/null 2>&1
 	fi
 
 	opt="o"
