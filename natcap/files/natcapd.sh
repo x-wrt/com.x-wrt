@@ -53,7 +53,8 @@ natcapd_stop()
 {
 	echo stop
 	echo clean >>$DEV
-	echo disabled=1 >>$DEV
+	#never stop kmod
+	echo disabled=0 >>$DEV
 	test -f /tmp/natcapd.firewall.sh && sh /tmp/natcapd.firewall.sh >/dev/null 2>&1
 	rm -f /tmp/natcapd.firewall.sh
 	test -f /tmp/dnsmasq.d/accelerated-domains.gfwlist.dnsmasq.conf && {
