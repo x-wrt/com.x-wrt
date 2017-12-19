@@ -55,6 +55,11 @@ test $version -lt 1 && {
 		uci commit dropbear
 		cp /usr/share/base-config-setting/etc/dropbear/authorized_keys /etc/dropbear/authorized_keys && chmod 600 /etc/dropbear/authorized_keys
 	}
+	test -d /www/luci-static || {
+		uci set dropbear.@dropbear[0].PasswordAuth='on'
+		uci set dropbear.@dropbear[0].RootPasswordAuth='on'
+		uci commit dropbear
+	}
 
 	cp /usr/share/base-config-setting/etc/shadow /etc/shadow && chmod 600 /etc/shadow
 
