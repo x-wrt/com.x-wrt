@@ -62,8 +62,8 @@ define Package/$(PKG_NAME)/install
 	$(INSTALL_DATA) ./files/adv_luci_disabled $(1)/etc/adv_luci_disabled
 	$(INSTALL_DIR) $(1)/etc/init.d
 	$(INSTALL_BIN) ./files/usb_factory_reset.init $(1)/etc/init.d/usb_factory_reset
-	$(INSTALL_DIR) $(1)/etc/hotplug.d/block
-	$(INSTALL_DATA) ./files/auto_usb_mount.hotplug $(1)/etc/hotplug.d/block/20-auto_usb_mount
+	$(INSTALL_BIN) ./files/auto_usb_mount.init $(1)/etc/init.d/auto_usb_mount
+	$(INSTALL_DATA) ./files/auto_usb_mount.hotplug $(1)/usr/share/base-config-setting/auto_usb_mount.hotplug
 ifeq ($(CONFIG_TARGET_x86_64),y)
 	$(INSTALL_DATA) ./files/fstab.config $(1)/etc/config/fstab
 	$(INSTALL_DIR) $(1)/lib/preinit
