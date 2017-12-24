@@ -200,6 +200,9 @@ test $version -lt 2 && {
 
 test $version -lt 3 && {
 	uci set dhcp.@dnsmasq[0].localservice='0'
+	uci set dhcp.@dnsmasq[0].localise_queries='1'
+	uci set dhcp.@dnsmasq[0].rebind_protection='0'
+	uci set dhcp.@dnsmasq[0].rebind_localhost='1'
 	uci commit dhcp
 	version=3
 }
