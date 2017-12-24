@@ -1,29 +1,18 @@
 #!/bin/sh
 # natcapd integration for firewall3
 
-/etc/init.d/natcapd enabled || exit 0
 enabled="`uci get natcapd.default.enabled 2>/dev/null`"
-[ "x$enabled" = "x1" ] || exit 0
-
-iptables -t nat -C PREROUTING -p udp --dport 53 -j REDIRECT --to-ports 53 2>/dev/null || \
-iptables -t nat -I PREROUTING -p udp --dport 53 -j REDIRECT --to-ports 53
-
-iptables -t nat -C PREROUTING -p tcp --dport 53 -j REDIRECT --to-ports 53 2>/dev/null || \
-iptables -t nat -I PREROUTING -p tcp --dport 53 -j REDIRECT --to-ports 53
+[ "x$enabled" = "x1" ] && /etc/init.d/natcapd enabled && {
+	iptables -t nat -C PREROUTING -p udp --dport 53 -j REDIRECT --to-ports 53 2>/dev/null || \
+	iptables -t nat -I PREROUTING -p udp --dport 53 -j REDIRECT --to-ports 53
+	iptables -t nat -C PREROUTING -p tcp --dport 53 -j REDIRECT --to-ports 53 2>/dev/null || \
+	iptables -t nat -I PREROUTING -p tcp --dport 53 -j REDIRECT --to-ports 53
+}
 
 iptables -C FORWARD -m mark --mark 0x99 -j ACCEPT 2>/dev/null || \
 iptables -I FORWARD -m mark --mark 0x99 -j ACCEPT
 
 iptables -C INPUT -m mark --mark 0x99 -j ACCEPT 2>/dev/null || \
 iptables -I INPUT -m mark --mark 0x99 -j ACCEPT
-
-[ x`uci get natcapd.default.shadowsocks 2>/dev/null` = x1 ] && {
-	local_port=`uci get shadowsocks.@transparent_proxy[0].local_port`
-	test -n "$local_port" && {
-		ipset -n list gfwlist >/dev/null 2>&1 || ipset -! create gfwlist iphash
-		iptables -t nat -C PREROUTING -p tcp -m set --match-set gfwlist dst -j REDIRECT --to-ports $local_port 2>/dev/null || \
-		iptables -t nat -I PREROUTING -p tcp -m set --match-set gfwlist dst -j REDIRECT --to-ports $local_port
-	}
-}
 
 exit 0

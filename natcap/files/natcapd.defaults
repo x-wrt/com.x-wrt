@@ -6,7 +6,7 @@ uci -q batch <<-EOT
 	set firewall.natcapd.type=script
 	set firewall.natcapd.path=/usr/share/natcapd/firewall.include
 	set firewall.natcapd.family=any
-	set firewall.natcapd.reload=0
+	set firewall.natcapd.reload=1
 	commit firewall
 EOT
 
