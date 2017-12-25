@@ -198,7 +198,47 @@ test $version -lt 2 && {
 	version=2
 }
 
+# kB
+memtotal=`grep MemTotal /proc/meminfo | awk '{print $2}'`
+cachesize=2048
+dnsforwardmax=2048
+nf_conntrack_max=16384
+if test $memtotal -ge 1048576; then
+	# >= 1024M
+	cachesize=32768
+	dnsforwardmax=32768
+	nf_conntrack_max=262144
+elif test $memtotal -ge 524288; then
+	# >= 512M
+	cachesize=16384
+	dnsforwardmax=16384
+	nf_conntrack_max=131072
+elif test $memtotal -ge 262144; then
+	# >= 256M
+	cachesize=8192
+	dnsforwardmax=8192
+	nf_conntrack_max=65536
+elif test $memtotal -ge 131072; then
+	# >= 128M
+	cachesize=4096
+	dnsforwardmax=4096
+	nf_conntrack_max=65536
+elif test $memtotal -ge 65536; then
+	# >= 64M
+	cachesize=2048
+	dnsforwardmax=2048
+	nf_conntrack_max=32768
+else
+	# < 64M
+	cachesize=1024
+	dnsforwardmax=1024
+	nf_conntrack_max=16384
+fi
+
 test $version -lt 3 && {
+	uci -q get dhcp.@dnsmasq[0] || uci add dhcp dnsmasq
+	uci set dhcp.@dnsmasq[0].cachesize="$cachesize"
+	uci set dhcp.@dnsmasq[0].dnsforwardmax="$dnsforwardmax"
 	uci set dhcp.@dnsmasq[0].localservice='0'
 	uci set dhcp.@dnsmasq[0].localise_queries='1'
 	uci set dhcp.@dnsmasq[0].rebind_protection='0'
@@ -253,6 +293,7 @@ SYSCTL_LOCAL=/etc/sysctl.d/50-local.conf
 mkdir -p /etc/sysctl.d
 echo -n >$SYSCTL_LOCAL
 
+echo net.nf_conntrack_max=$nf_conntrack_max >>$SYSCTL_LOCAL
 echo net.ipv4.ip_early_demux=0 >>$SYSCTL_LOCAL
 echo net.bridge.bridge-nf-call-iptables=0 >>$SYSCTL_LOCAL
 
