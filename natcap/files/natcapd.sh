@@ -190,6 +190,7 @@ enabled="`uci get natcapd.default.enabled 2>/dev/null`"
 	enable_encryption=`uci get natcapd.default.enable_encryption 2>/dev/null || echo 1`
 	clear_dst_on_reload=`uci get natcapd.default.clear_dst_on_reload 2>/dev/null || echo 0`
 	server_persist_timeout=`uci get natcapd.default.server_persist_timeout 2>/dev/null || echo 30`
+	tx_speed_limit=`uci get natcapd.default.tx_speed_limit 2>/dev/null || echo 0`
 	servers=`uci get natcapd.default.server 2>/dev/null`
 	dns_server=`uci get natcapd.default.dns_server 2>/dev/null`
 	knocklist=`uci get natcapd.default.knocklist 2>/dev/null`
@@ -227,6 +228,7 @@ enabled="`uci get natcapd.default.enabled 2>/dev/null`"
 	echo debug=$debug >>$DEV
 	echo clean >>$DEV
 	echo server_persist_timeout=$server_persist_timeout >>$DEV
+	echo tx_speed_limit=$tx_speed_limit >>$DEV
 	echo encode_mode=$encode_mode >$DEV
 	echo udp_encode_mode=$udp_encode_mode >$DEV
 	echo sproxy=$sproxy >$DEV
