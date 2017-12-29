@@ -8,10 +8,13 @@ targets=$(cd feeds/ptpt52/rom/lede/ && cat $CFGS | grep TARGET_DEVICE_.*=y | sed
 
 echo -n >map.list
 
-echo x86_64_Generic:
-echo "`find bin/targets/ | grep -- -combined | while read line; do basename $line; done`"
-echo
-echo "x86_64_Generic:`find bin/targets/ | grep -- -combined | while read line; do basename $line; done`" >>map.list
+x86bin="`find bin/targets/ | grep -- -combined | while read line; do basename $line; done`"
+test -n "$x86bin" && {
+	echo x86_64_Generic:
+	echo "$x86bin"
+	echo
+	echo "x86_64_Generic:$x86bin" >>map.list
+}
 
 for t in $targets; do
 	tt=`echo $t | sed 's/_DEVICE_/:/g'`
