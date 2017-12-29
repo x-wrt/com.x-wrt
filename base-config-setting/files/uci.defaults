@@ -76,6 +76,15 @@ test $version -lt 1 && {
 			set wireless.radio0.channel='auto'
 		EOT
 
+		#FIXME fixup for mtk
+		test -n "`cat /proc/cpuinfo | grep -i MediaTek`" && {
+			[ "x`uci get wireless.radio0.hwmode`" = "x11a" ] || {
+				chn=`cat /proc/uptime | cut -d. -f1`
+				chn=$((chn%13+1))
+				uci set wireless.radio0.channel=$chn
+			}
+		}
+
 		obj=`uci add wireless wifi-iface`
 		test -n "$obj" && {
 			uci set wireless.$obj.device='radio0'
@@ -96,6 +105,15 @@ test $version -lt 1 && {
 			set wireless.radio1.txpower='20'
 			set wireless.radio1.channel='auto'
 		EOT
+
+		#FIXME fixup for mtk
+		test -n "`cat /proc/cpuinfo | grep -i MediaTek`" && {
+			[ "x`uci get wireless.radio1.hwmode`" = "x11a" ] || {
+				chn=`cat /proc/uptime | cut -d. -f1`
+				chn=$((chn%13+1))
+				uci set wireless.radio1.channel=$chn
+			}
+		}
 
 		obj=`uci add wireless wifi-iface`
 		test -n "$obj" && {
@@ -157,39 +175,6 @@ test $version -lt 1 && {
 	}
 
 	uci commit wireless
-
-
-	MODEL=`cat /etc/board.json | grep model -A2 | grep id\": | sed 's/"/ /g' | awk '{print $3}'`
-	case "$MODEL" in
-		"miwifi-mini")
-			uci -q batch <<-EOT
-				delete system.led_power
-				set system.led_power=led
-				set system.led_power.name='power'
-				set system.led_power.default='1'
-				set system.led_power.sysfs='miwifi-mini:blue:status'
-				set system.led_power.trigger='timer'
-				set system.led_power.delayon='1'
-				set system.led_power.delayoff='1'
-			EOT
-			uci commit system
-		;;
-		"phicomm-k2")
-			uci -q batch <<-EOT
-				delete system.led_power
-				set system.led_power=led
-				set system.led_power.name='power'
-				set system.led_power.default='1'
-				set system.led_power.sysfs='phicomm-k2:blue:status'
-				set system.led_power.trigger='timer'
-				set system.led_power.delayon='1'
-				set system.led_power.delayoff='1'
-			EOT
-			uci commit system
-		;;
-		*)
-		;;
-	esac
 
 	version=1
 }
