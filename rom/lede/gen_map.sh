@@ -7,6 +7,12 @@ bins="`find bin/targets/ | grep -- '\(-squashfs\|-factory\|-sysupgrade\|\.bin\)'
 targets=$(cd feeds/ptpt52/rom/lede/ && cat $CFGS | grep TARGET_DEVICE_.*=y | sed 's/CONFIG_//;s/=y//' | sort)
 
 echo -n >map.list
+
+echo x86_64_Generic:
+echo "`find bin/targets/ | grep -- -combined | while read line; do basename $line; done`"
+echo
+echo "x86_64_Generic:`find bin/targets/ | grep -- -combined | while read line; do basename $line; done`" >>map.list
+
 for t in $targets; do
 	tt=`echo $t | sed 's/_DEVICE_/:/g'`
 	name=`echo $tt | cut -d: -f3`
