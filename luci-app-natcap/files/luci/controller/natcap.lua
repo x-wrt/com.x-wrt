@@ -37,7 +37,7 @@ function status()
 
 	local data = {
 		cur_server = text:gsub(".*current_server=(.-)\n.*", "%1"),
-		uhash = text:gsub(".*default_u_hash=(.-)\n.*", "%1"),
+		uhash = text:gsub(".*u_hash=(.-)\n.*", "%1"),
 		client_mac = text:gsub(".*default_mac_addr=(..):(..):(..):(..):(..):(..)\n.*", "%1%2%3%4%5%6"),
 		total_tx = text:gsub(".*flow_total_tx_bytes=(.-)\n.*", "%1"),
 		total_rx = text:gsub(".*flow_total_rx_bytes=(.-)\n.*", "%1"),
