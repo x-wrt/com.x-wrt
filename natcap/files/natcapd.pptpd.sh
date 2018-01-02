@@ -5,7 +5,7 @@
 		uci delete network.natcapd
 		uci set network.natcapd=interface
 		uci set network.natcapd.proto='none'
-		uci set network.natcapd.ifname='ppp+'
+		uci set network.natcapd.ifname='p2p+'
 		uci set network.natcapd.auto='1'
 		uci commit network
 
