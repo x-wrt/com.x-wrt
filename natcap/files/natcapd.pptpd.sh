@@ -5,7 +5,7 @@
 		uci delete network.natcapd
 		uci set network.natcapd=interface
 		uci set network.natcapd.proto='none'
-		uci set network.natcapd.ifname='p2p+'
+		uci set network.natcapd.ifname='ppp+'
 		uci set network.natcapd.auto='1'
 		uci commit network
 
@@ -14,11 +14,16 @@
 			zone="`uci get firewall.@zone[$index].name 2>/dev/null`"
 			test -n "$zone" || break
 			[ "x$zone" = "xlan" ] && {
-				lans="`uci get firewall.@zone[$index].network`"
-				uci delete firewall.@zone[$index].network
-				for w in natcapd $lans; do
-					uci add_list firewall.@zone[$index].network="$w"
+				obj=`uci add firewall zone`
+				for key in `uci show firewall.@zone[$index] | grep "firewall\..*\." | cut -d\. -f3 | cut -d= -f1`; do
+					uci set firewall.$obj.$key=`uci get firewall.@zone[$index].$key`
 				done
+				lans="`uci get firewall.@zone[$index].network`"
+				uci delete firewall.$obj.network
+				for w in natcapd $lans; do
+					uci add_list firewall.$obj.network="$w"
+				done
+				uci delete firewall.@zone[$index]
 				break
 			}
 			index=$((index+1))
