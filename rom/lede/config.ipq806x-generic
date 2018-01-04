@@ -69,7 +69,7 @@ CONFIG_TARGET_MULTI_PROFILE=y
 # CONFIG_TARGET_ALL_PROFILES is not set
 CONFIG_TARGET_PER_DEVICE_ROOTFS=y
 CONFIG_TARGET_DEVICE_ipq806x_DEVICE_RT-ACRH17=y
-CONFIG_TARGET_DEVICE_PACKAGES_ipq806x_DEVICE_RT-ACRH17="aria2 ath10k-firmware-qca4019 ath10k-firmware-qca9984 blockd block-mount ipq-wifi-rt-ac58u kmod-crypto-crc32c kmod-fs-autofs4 kmod-fs-exfat kmod-fs-ext4 kmod-fs-msdos kmod-fs-vfat kmod-fuse kmod-lib-crc16 kmod-nls-cp437 kmod-usb2 kmod-usb3 kmod-usb-core kmod-usb-dwc3 kmod-usb-dwc3-of-simple kmod-usb-ehci kmod-usb-ledtrig-usbport kmod-usb-ohci kmod-usb-phy-qcom-dwc3 kmod-usb-phy-qcom-ipq4019 kmod-usb-printer kmod-usb-storage kmod-usb-storage-uas libsqlite3 libssh2 libstdcpp libxml2 luci-app-aria2 luci-app-p910nd luci-app-samba luci-i18n-aria2-zh-cn luci-i18n-p910nd-en luci-i18n-p910nd-zh-cn luci-i18n-samba-en luci-i18n-samba-zh-cn ntfs-3g openssl-util p910nd samba36-server webui-aria2"
+CONFIG_TARGET_DEVICE_PACKAGES_ipq806x_DEVICE_RT-ACRH17="aria2 ath10k-firmware-qca4019 ath10k-firmware-qca9984 blockd block-mount ipq-wifi-rt-acrh17 kmod-crypto-crc32c kmod-fs-autofs4 kmod-fs-exfat kmod-fs-ext4 kmod-fs-msdos kmod-fs-vfat kmod-fuse kmod-lib-crc16 kmod-nls-cp437 kmod-usb2 kmod-usb3 kmod-usb-core kmod-usb-dwc3 kmod-usb-dwc3-of-simple kmod-usb-ehci kmod-usb-ledtrig-usbport kmod-usb-ohci kmod-usb-phy-qcom-dwc3 kmod-usb-phy-qcom-ipq4019 kmod-usb-printer kmod-usb-storage kmod-usb-storage-uas libsqlite3 libssh2 libstdcpp libxml2 luci-app-aria2 luci-app-p910nd luci-app-samba luci-i18n-aria2-zh-cn luci-i18n-p910nd-en luci-i18n-p910nd-zh-cn luci-i18n-samba-en luci-i18n-samba-zh-cn ntfs-3g openssl-util p910nd samba36-server webui-aria2"
 # CONFIG_TARGET_DEVICE_ipq806x_DEVICE_FRITZ4040 is not set
 CONFIG_TARGET_DEVICE_ipq806x_DEVICE_EA8500=y
 CONFIG_TARGET_DEVICE_PACKAGES_ipq806x_DEVICE_EA8500="aria2 ath10k-firmware-qca99x0 blockd block-mount kmod-crypto-crc32c kmod-fs-autofs4 kmod-fs-exfat kmod-fs-ext4 kmod-fs-msdos kmod-fs-vfat kmod-fuse kmod-lib-crc16 kmod-nls-cp437 kmod-usb2 kmod-usb3 kmod-usb-core kmod-usb-dwc3 kmod-usb-dwc3-of-simple kmod-usb-ehci kmod-usb-ledtrig-usbport kmod-usb-ohci kmod-usb-phy-qcom-dwc3 kmod-usb-printer kmod-usb-storage kmod-usb-storage-uas libsqlite3 libssh2 libstdcpp libxml2 luci-app-aria2 luci-app-p910nd luci-app-samba luci-i18n-aria2-zh-cn luci-i18n-p910nd-en luci-i18n-p910nd-zh-cn luci-i18n-samba-en luci-i18n-samba-zh-cn ntfs-3g openssl-util p910nd samba36-server webui-aria2"
@@ -113,7 +113,7 @@ CONFIG_DEFAULT_fstools=y
 CONFIG_MODULE_DEFAULT_fstools=y
 CONFIG_DEFAULT_ip6tables=y
 CONFIG_MODULE_DEFAULT_ip6tables=y
-CONFIG_MODULE_DEFAULT_ipq-wifi-rt-ac58u=y
+CONFIG_MODULE_DEFAULT_ipq-wifi-rt-acrh17=y
 CONFIG_DEFAULT_iptables=y
 CONFIG_MODULE_DEFAULT_iptables=y
 CONFIG_DEFAULT_iwinfo=y
@@ -435,7 +435,7 @@ CONFIG_TARGET_INIT_CMD="/sbin/init"
 CONFIG_TARGET_INIT_SUPPRESS_STDERR=y
 CONFIG_VERSIONOPT=y
 CONFIG_VERSION_DIST="NATCAP"
-CONFIG_VERSION_NUMBER="3.0.0_build201801012045"
+CONFIG_VERSION_NUMBER="3.0.0_build201801041706"
 CONFIG_VERSION_CODE="Beetle"
 CONFIG_VERSION_REPO="http://downloads.openwrt.org/snapshots/trunk/%S/packages"
 CONFIG_VERSION_MANUFACTURER="PTPT52"
@@ -966,7 +966,7 @@ CONFIG_BUSYBOX_DEFAULT_FEATURE_DMESG_PRETTY=y
 # CONFIG_BUSYBOX_DEFAULT_FEATURE_GPT_LABEL is not set
 # CONFIG_BUSYBOX_DEFAULT_FEATURE_FDISK_ADVANCED is not set
 # CONFIG_BUSYBOX_DEFAULT_FINDFS is not set
-# CONFIG_BUSYBOX_DEFAULT_FLOCK is not set
+CONFIG_BUSYBOX_DEFAULT_FLOCK=y
 # CONFIG_BUSYBOX_DEFAULT_FDFLUSH is not set
 # CONFIG_BUSYBOX_DEFAULT_FREERAMDISK is not set
 # CONFIG_BUSYBOX_DEFAULT_FSCK_MINIX is not set
@@ -1950,7 +1950,7 @@ CONFIG_BUSYBOX_CONFIG_FEATURE_DMESG_PRETTY=y
 # CONFIG_BUSYBOX_CONFIG_FDFORMAT is not set
 # CONFIG_BUSYBOX_CONFIG_FDISK is not set
 # CONFIG_BUSYBOX_CONFIG_FINDFS is not set
-# CONFIG_BUSYBOX_CONFIG_FLOCK is not set
+CONFIG_BUSYBOX_CONFIG_FLOCK=y
 # CONFIG_BUSYBOX_CONFIG_FDFLUSH is not set
 # CONFIG_BUSYBOX_CONFIG_FREERAMDISK is not set
 # CONFIG_BUSYBOX_CONFIG_FSCK_MINIX is not set
@@ -2459,6 +2459,7 @@ CONFIG_PACKAGE_u-boot-fritz4040=y
 CONFIG_PACKAGE_ipq-wifi-fritz4040=m
 # CONFIG_PACKAGE_ipq-wifi-nbg6617 is not set
 CONFIG_PACKAGE_ipq-wifi-rt-ac58u=m
+CONFIG_PACKAGE_ipq-wifi-rt-acrh17=m
 # CONFIG_PACKAGE_aircard-pcmcia-firmware is not set
 # CONFIG_PACKAGE_ar3k-firmware is not set
 CONFIG_PACKAGE_ath10k-firmware-qca4019=m
@@ -4039,6 +4040,11 @@ CONFIG_PACKAGE_terminfo=y
 # CONFIG_PACKAGE_xmlrpc-c-server is not set
 # CONFIG_PACKAGE_yajl is not set
 CONFIG_PACKAGE_zlib=y
+
+#
+# Configuration
+#
+# CONFIG_ZLIB_OPTIMIZE_SPEED is not set
 
 #
 # LuCI
