@@ -1,14 +1,10 @@
 config.x86_64
 config.ar71xx-nand
-config.ar71xx-nand-nosymbol
 config.ar71xx-generic
 config.ramips-mt7620
 config.ramips-mt7620nand-nosymbol
 config.ramips-mt7621
 config.ramips-mt76x8
-config.bcm53xx-generic
-config.brcm47xx-generic
-config.brcm47xx-mips74k
 config.kirkwood-generic
 config.ipq806x-generic
 config.mvebu-generic

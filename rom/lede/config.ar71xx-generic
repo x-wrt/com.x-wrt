@@ -414,8 +414,7 @@ CONFIG_TARGET_PER_DEVICE_ROOTFS=y
 # CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_PB44 is not set
 # CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_A02RBW300N is not set
 # CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_fritz300e is not set
-CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_F9K1115V2=y
-CONFIG_TARGET_DEVICE_PACKAGES_ar71xx_generic_DEVICE_F9K1115V2="aria2 ath10k-firmware-qca988x blockd block-mount kmod-ath10k kmod-crypto-crc32c kmod-fs-autofs4 kmod-fs-exfat kmod-fs-ext4 kmod-fs-msdos kmod-fs-vfat kmod-fuse kmod-lib-crc16 kmod-nls-cp437 kmod-scsi-core kmod-usb2 kmod-usb3 kmod-usb-core kmod-usb-ehci kmod-usb-ledtrig-usbport kmod-usb-ohci kmod-usb-printer kmod-usb-storage kmod-usb-storage-uas libsqlite3 libssh2 libstdcpp libxml2 luci-app-aria2 luci-app-p910nd luci-app-samba luci-i18n-aria2-zh-cn luci-i18n-p910nd-en luci-i18n-p910nd-zh-cn luci-i18n-samba-en luci-i18n-samba-zh-cn ntfs-3g openssl-util p910nd samba36-server webui-aria2"
+# CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_F9K1115V2 is not set
 # CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_BXU2000N2 is not set
 # CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_bhr-4grv2 is not set
 # CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_WHRG301N is not set
@@ -480,10 +479,8 @@ CONFIG_TARGET_DEVICE_PACKAGES_ar71xx_generic_DEVICE_DGL5500A1="aria2 ath10k-firm
 # CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_FR54RTR is not set
 # CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_minibox-v1 is not set
 # CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_oolite is not set
-CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_gl-inet-6408A-v1=y
-CONFIG_TARGET_DEVICE_PACKAGES_ar71xx_generic_DEVICE_gl-inet-6408A-v1="blockd block-mount kmod-crypto-crc32c kmod-fs-autofs4 kmod-fs-exfat kmod-fs-ext4 kmod-fs-msdos kmod-fs-vfat kmod-fuse kmod-lib-crc16 kmod-nls-cp437 kmod-scsi-core kmod-usb2 kmod-usb-core kmod-usb-ehci kmod-usb-ohci kmod-usb-storage kmod-usb-storage-uas ntfs-3g"
-CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_gl-inet-6416A-v1=y
-CONFIG_TARGET_DEVICE_PACKAGES_ar71xx_generic_DEVICE_gl-inet-6416A-v1="aria2 blockd block-mount kmod-crypto-crc32c kmod-fs-autofs4 kmod-fs-exfat kmod-fs-ext4 kmod-fs-msdos kmod-fs-vfat kmod-fuse kmod-lib-crc16 kmod-nls-cp437 kmod-scsi-core kmod-usb2 kmod-usb-core kmod-usb-ehci kmod-usb-ohci kmod-usb-printer kmod-usb-storage kmod-usb-storage-uas libsqlite3 libssh2 libstdcpp libxml2 luci-app-aria2 luci-app-p910nd luci-app-samba luci-i18n-aria2-zh-cn luci-i18n-p910nd-en luci-i18n-p910nd-zh-cn luci-i18n-samba-en luci-i18n-samba-zh-cn ntfs-3g openssl-util p910nd samba36-server webui-aria2"
+# CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_gl-inet-6408A-v1 is not set
+# CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_gl-inet-6416A-v1 is not set
 # CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_gl-domino is not set
 # CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_gl-ar150 is not set
 # CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_gl-ar300 is not set
@@ -502,8 +499,7 @@ CONFIG_TARGET_DEVICE_PACKAGES_ar71xx_generic_DEVICE_hiwifi-hc6361="aria2 blockd 
 # CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_mr16 is not set
 CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_mc-mac1200r=y
 CONFIG_TARGET_DEVICE_PACKAGES_ar71xx_generic_DEVICE_mc-mac1200r="ath10k-firmware-qca988x kmod-ath10k"
-CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_mw4530r-v1=y
-CONFIG_TARGET_DEVICE_PACKAGES_ar71xx_generic_DEVICE_mw4530r-v1="blockd block-mount kmod-crypto-crc32c kmod-fs-autofs4 kmod-fs-exfat kmod-fs-ext4 kmod-fs-msdos kmod-fs-vfat kmod-fuse kmod-lib-crc16 kmod-nls-cp437 kmod-scsi-core kmod-usb2 kmod-usb-core kmod-usb-ehci kmod-usb-ledtrig-usbport kmod-usb-ohci kmod-usb-storage kmod-usb-storage-uas ntfs-3g"
+# CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_mw4530r-v1 is not set
 # CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_smart-300 is not set
 # CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_WNDAP360 is not set
 CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_wndr3700=y
@@ -629,13 +625,11 @@ CONFIG_TARGET_DEVICE_PACKAGES_ar71xx_generic_DEVICE_archer-c7-v4="ath10k-firmwar
 # CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_tl-wdr3320-v2 is not set
 CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_tl-wdr3500-v1=y
 CONFIG_TARGET_DEVICE_PACKAGES_ar71xx_generic_DEVICE_tl-wdr3500-v1="blockd block-mount kmod-crypto-crc32c kmod-fs-autofs4 kmod-fs-exfat kmod-fs-ext4 kmod-fs-msdos kmod-fs-vfat kmod-fuse kmod-lib-crc16 kmod-nls-cp437 kmod-scsi-core kmod-usb2 kmod-usb-core kmod-usb-ehci kmod-usb-ledtrig-usbport kmod-usb-ohci kmod-usb-storage kmod-usb-storage-uas ntfs-3g"
-CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_tl-wdr3600-v1=y
-CONFIG_TARGET_DEVICE_PACKAGES_ar71xx_generic_DEVICE_tl-wdr3600-v1="blockd block-mount kmod-crypto-crc32c kmod-fs-autofs4 kmod-fs-exfat kmod-fs-ext4 kmod-fs-msdos kmod-fs-vfat kmod-fuse kmod-lib-crc16 kmod-nls-cp437 kmod-scsi-core kmod-usb2 kmod-usb-core kmod-usb-ehci kmod-usb-ledtrig-usbport kmod-usb-ohci kmod-usb-storage kmod-usb-storage-uas ntfs-3g"
+# CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_tl-wdr3600-v1 is not set
 CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_tl-wdr4300-v1=y
 CONFIG_TARGET_DEVICE_PACKAGES_ar71xx_generic_DEVICE_tl-wdr4300-v1="blockd block-mount kmod-crypto-crc32c kmod-fs-autofs4 kmod-fs-exfat kmod-fs-ext4 kmod-fs-msdos kmod-fs-vfat kmod-fuse kmod-lib-crc16 kmod-nls-cp437 kmod-scsi-core kmod-usb2 kmod-usb-core kmod-usb-ehci kmod-usb-ledtrig-usbport kmod-usb-ohci kmod-usb-storage kmod-usb-storage-uas ntfs-3g"
 # CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_tl-wdr4300-v1-il is not set
-CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_tl-wdr4310-v1=y
-CONFIG_TARGET_DEVICE_PACKAGES_ar71xx_generic_DEVICE_tl-wdr4310-v1="blockd block-mount kmod-crypto-crc32c kmod-fs-autofs4 kmod-fs-exfat kmod-fs-ext4 kmod-fs-msdos kmod-fs-vfat kmod-fuse kmod-lib-crc16 kmod-nls-cp437 kmod-scsi-core kmod-usb2 kmod-usb-core kmod-usb-ehci kmod-usb-ledtrig-usbport kmod-usb-ohci kmod-usb-storage kmod-usb-storage-uas ntfs-3g"
+# CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_tl-wdr4310-v1 is not set
 CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_tl-wdr4900-v2=y
 CONFIG_TARGET_DEVICE_PACKAGES_ar71xx_generic_DEVICE_tl-wdr4900-v2="blockd block-mount kmod-crypto-crc32c kmod-fs-autofs4 kmod-fs-exfat kmod-fs-ext4 kmod-fs-msdos kmod-fs-vfat kmod-fuse kmod-lib-crc16 kmod-nls-cp437 kmod-scsi-core kmod-usb2 kmod-usb-core kmod-usb-ehci kmod-usb-ledtrig-usbport kmod-usb-ohci kmod-usb-storage kmod-usb-storage-uas ntfs-3g"
 CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_tl-wdr6500-v2=y
@@ -787,7 +781,6 @@ CONFIG_MODULE_DEFAULT_kmod-usb-ledtrig-usbport=y
 CONFIG_MODULE_DEFAULT_kmod-usb-ohci=y
 CONFIG_MODULE_DEFAULT_kmod-usb-storage=y
 CONFIG_MODULE_DEFAULT_kmod-usb2=y
-CONFIG_MODULE_DEFAULT_kmod-usb3=y
 CONFIG_DEFAULT_libc=y
 CONFIG_MODULE_DEFAULT_libc=y
 CONFIG_DEFAULT_libgcc=y
@@ -1060,7 +1053,7 @@ CONFIG_TARGET_INIT_CMD="/sbin/init"
 CONFIG_TARGET_INIT_SUPPRESS_STDERR=y
 CONFIG_VERSIONOPT=y
 CONFIG_VERSION_DIST="NATCAP"
-CONFIG_VERSION_NUMBER="3.0.0_build201801041706"
+CONFIG_VERSION_NUMBER="3.0.0_build201801041848"
 CONFIG_VERSION_CODE="Beetle"
 CONFIG_VERSION_REPO="http://downloads.openwrt.org/snapshots/trunk/%S/packages"
 CONFIG_VERSION_MANUFACTURER="PTPT52"
