@@ -10,7 +10,7 @@ auto_mount_boot()
 		test $? -eq 0 && break
 		sleep 2
 	done
-	for DEV in /dev/sd*[0-9]*; do
+	for DEV in `ls /dev/sd*[0-9]* 2>/dev/null`; do
 		test -f /rom/etc/sda3.ready && {
 			echo $DEV | grep -q '/dev/sda' && continue
 		}
