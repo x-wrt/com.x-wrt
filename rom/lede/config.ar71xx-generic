@@ -517,8 +517,7 @@ CONFIG_TARGET_DEVICE_PACKAGES_ar71xx_generic_DEVICE_wndr3800ch="aria2 blockd blo
 # CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_WNR2000 is not set
 # CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_WNR2000V3 is not set
 # CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_WNR2000V4 is not set
-CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_WNR2200=y
-CONFIG_TARGET_DEVICE_PACKAGES_ar71xx_generic_DEVICE_WNR2200="blockd block-mount kmod-crypto-crc32c kmod-fs-autofs4 kmod-fs-exfat kmod-fs-ext4 kmod-fs-msdos kmod-fs-vfat kmod-fuse kmod-lib-crc16 kmod-nls-cp437 kmod-scsi-core kmod-usb2 kmod-usb-core kmod-usb-ehci kmod-usb-ledtrig-usbport kmod-usb-ohci kmod-usb-storage kmod-usb-storage-uas ntfs-3g"
+# CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_WNR2200 is not set
 # CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_REALWNR612V2 is not set
 # CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_WPN824N is not set
 # CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_omy-g1 is not set
