@@ -56,7 +56,9 @@ moreapps="libstdcpp \
 		  aria2 \
 		  openssl-util \
 		  samba36-server"
-excludes=""
+excludes="dnsmasq \
+		  odhcpd \
+		  wpad-mini"
 
 get_modules()
 {
@@ -119,11 +121,6 @@ done | sort | uniq)
 echo uniqs=$uniqs
 
 ms="`cat .config | grep =m$ | sed 's/CONFIG_PACKAGE_//;s/=m//g'`"
-ms=$(for i in $ms; do
-	[ xdnsmasq = x$i ] && continue
-	[ xodhcpd = x$i ] && continue
-	echo $i
-done)
 modules=$(for i in $ms; do
 	echo "$uniqs" | grep -q $i$ || echo $i
 done)

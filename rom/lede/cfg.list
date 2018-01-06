@@ -1,4 +1,5 @@
 config.x86_64
+config.ipq806x-generic
 config.ar71xx-nand
 config.ar71xx-generic
 config.ramips-mt7620
@@ -6,5 +7,4 @@ config.ramips-mt7620nand-nosymbol
 config.ramips-mt7621
 config.ramips-mt76x8
 config.kirkwood-generic
-config.ipq806x-generic
 config.mvebu-generic
