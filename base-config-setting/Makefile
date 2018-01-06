@@ -54,7 +54,6 @@ define Package/$(PKG_NAME)/install
 	$(INSTALL_DATA) ./files/base_config.config $(1)/etc/config/base_config
 	$(INSTALL_DIR) $(1)/usr/share/base-config-setting
 	cp -r ./files/etc $(1)/usr/share/base-config-setting/
-	cp -r ./files/lib $(1)/usr/share/base-config-setting/
 	$(INSTALL_DATA) ./files/uci.defaults $(1)/etc/uci-defaults/95-base-config-setting
 	$(INSTALL_DIR) $(1)/usr/sbin
 	$(INSTALL_BIN) ./files/system_reset.sh $(1)/usr/sbin/system_reset

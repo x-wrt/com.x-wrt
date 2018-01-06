@@ -292,8 +292,6 @@ echo net.core.default_qdisc=fq >>$SYSCTL_LOCAL
 echo net.ipv4.tcp_congestion_control=htcp >>$SYSCTL_LOCAL
 echo net.ipv4.tcp_congestion_control=bbr >>$SYSCTL_LOCAL
 
-cp /usr/share/base-config-setting/lib/network/switch.sh /lib/network/switch.sh && chmod 644 /lib/network/switch.sh
-
 #update distfeeds.conf
 cp /etc/opkg/distfeeds.conf /tmp/distfeeds.conf
 sed 's,http://downloads.openwrt.org/snapshots/.*/targets/,http://downloads.lede-project.org/snapshots/targets/,g;s,http://downloads.openwrt.org/snapshots/.*/packages/,http://downloads.lede-project.org/snapshots/packages/,g' -i /tmp/distfeeds.conf
