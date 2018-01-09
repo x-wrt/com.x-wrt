@@ -1,5 +1,8 @@
 #!/bin/sh
 
+WGET=/usr/bin/wget
+test -x $WGET || WGET=/bin/wget
+
 EX_DOMAIN="google.com \
 		   google.com.hk \
 		   google.com.tw \
@@ -18,7 +21,7 @@ EX_DOMAIN="google.com \
 		   fastly.net \
 		   amazonaws.com"
 
-/usr/bin/wget --timeout=60 --no-check-certificate -qO /tmp/gfwlist.$$.txt "https://raw.githubusercontent.com/gfwlist/gfwlist/master/gfwlist.txt?t=`date '+%s'`" && {
+$WGET --timeout=60 --no-check-certificate -qO /tmp/gfwlist.$$.txt "https://raw.githubusercontent.com/gfwlist/gfwlist/master/gfwlist.txt?t=`date '+%s'`" && {
 	for w in `echo $EX_DOMAIN` `cat /tmp/gfwlist.$$.txt | base64 -d | grep -v ^! | grep -v ^@@ | grep -o '[a-zA-Z0-9][-a-zA-Z0-9]*[.][-a-zA-Z0-9.]*[a-zA-Z]$'`; do
 		echo $w
 	done | sort | uniq | while read line; do

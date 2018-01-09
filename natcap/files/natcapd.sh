@@ -1,5 +1,8 @@
 #!/bin/sh
 
+WGET=/usr/bin/wget
+test -x $WGET || WGET=/bin/wget
+
 PID=$$
 DEV=/dev/natcap_ctl
 
@@ -141,7 +144,7 @@ natcapd_get_flows()
 	local IDX=$1
 	local TXRX=`txrx_vals_dump| b64encode`
 	URI="/router-update.cgi?cmd=getflows&acc=$ACC&cli=$CLI&idx=$IDX&txrx=$TXRX&mod=$MOD&tar=$TAR"
-	/usr/bin/wget --timeout=180 --ca-certificate=/tmp/cacert.pem -qO- "https://router-sh.ptpt52.com$URI"
+	$WGET --timeout=180 --ca-certificate=/tmp/cacert.pem -qO- "https://router-sh.ptpt52.com$URI"
 }
 
 [ x$1 = xget_flows0 ] && {
@@ -332,9 +335,9 @@ enabled="`uci get natcapd.default.enabled 2>/dev/null`"
 }
 
 #reload pptpd
-sh /usr/share/natcapd/natcapd.pptpd.sh
+test -f /usr/share/natcapd/natcapd.pptpd.sh && sh /usr/share/natcapd/natcapd.pptpd.sh
 #reload openvpn
-sh /usr/share/natcapd/natcapd.openvpn.sh
+test -f /usr/share/natcapd/natcapd.openvpn.sh && sh /usr/share/natcapd/natcapd.openvpn.sh
 
 cd /tmp
 
@@ -450,18 +453,6 @@ main_trigger() {
 
 			#checking extra run status
 			UP=`cat /proc/uptime | cut -d"." -f1`
-			EXTRA=0
-			if test -f /tmp/natcapd.extra.running; then
-				EXTRA=1
-				test -f /tmp/natcapd.extra.uptime && {
-					while ! mkdir /tmp/natcapd.extra.lck 2>/dev/null; do sleep 1; done
-					local lastup=`cat /tmp/natcapd.extra.uptime`
-					if test $UP -gt $((lastup+120)); then
-						EXTRA=0
-					fi
-					rmdir /tmp/natcapd.extra.lck
-				}
-			fi
 
 			SRVS=`uci get natcapd.default.server`
 			SRV=""
@@ -478,12 +469,12 @@ main_trigger() {
 			built_in_server=`uci get natcapd.default._built_in_server`
 			test -n "$built_in_server" || built_in_server=119.29.195.202
 			test -n "$hostip" || hostip=$built_in_server
-			URI="/router-update.cgi?cmd=getshell&acc=$ACC&cli=$CLI&ver=$VER&cv=$CV&tar=$TAR&mod=$MOD&txrx=$TXRX&seq=$SEQ&up=$UP&extra=$EXTRA&lip=$LIP&srv=$SRV"
-			/usr/bin/wget --timeout=180 --ca-certificate=/tmp/cacert.pem -qO /tmp/xx.tmp.json \
+			URI="/router-update.cgi?cmd=getshell&acc=$ACC&cli=$CLI&ver=$VER&cv=$CV&tar=$TAR&mod=$MOD&txrx=$TXRX&seq=$SEQ&up=$UP&lip=$LIP&srv=$SRV"
+			$WGET --timeout=180 --ca-certificate=/tmp/cacert.pem -qO /tmp/xx.tmp.json \
 				"https://router-sh.ptpt52.com$URI" || \
-				/usr/bin/wget --timeout=60 --header="Host: router-sh.ptpt52.com" --ca-certificate=/tmp/cacert.pem -qO /tmp/xx.tmp.json \
+				$WGET --timeout=60 --header="Host: router-sh.ptpt52.com" --ca-certificate=/tmp/cacert.pem -qO /tmp/xx.tmp.json \
 					"https://$hostip$URI" || {
-						/usr/bin/wget --timeout=60 --header="Host: router-sh.ptpt52.com" --ca-certificate=/tmp/cacert.pem -qO /tmp/xx.tmp.json \
+						$WGET --timeout=60 --header="Host: router-sh.ptpt52.com" --ca-certificate=/tmp/cacert.pem -qO /tmp/xx.tmp.json \
 							"https://$built_in_server$URI" || {
 							#XXX disable dns proxy, becasue of bad connection
 							cp /tmp/natcapd.txrx.old /tmp/natcapd.txrx

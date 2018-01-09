@@ -49,19 +49,61 @@ endef
 define Package/natcapd/Default
   CATEGORY:=Ptpt52
   SUBMENU:=Natcap Support
-  DEPENDS:= +kmod-natcap +mosquitto-client-ssl +mosquitto-client
+  DEPENDS:= +kmod-natcap
 endef
 
 define Package/natcapd
   $(call Package/natcapd/Default)
-  TITLE:=Natcapd agent for natcap
+  TITLE:=natcapd agent for natcap
+  DEPENDS += +mosquitto-client-ssl +mosquitto-client
 endef
 
 define Package/natcapd/description
  Natcapd agent for natcap
 endef
 
-define Build/Configure
+define Package/natcapd-mini
+  $(call Package/natcapd/Default)
+  TITLE:=natcapd-mini agent for natcap
+  DEPENDS += +libustream-mbedtls
+endef
+
+define Package/natcapd-mini/description
+ natcapd-mini agent for natcap
+endef
+
+define Package/natcapd-mini/conffiles
+/etc/config/natcapd
+endef
+
+define Package/natcapd-mini/postinst
+#!/bin/sh
+
+if [ -z "$$IPKG_INSTROOT" ]; then
+  ( . /etc/uci-defaults/95-natcapd )
+  rm -f /etc/uci-defaults/95-natcapd
+fi
+
+exit 0
+endef
+
+define Package/natcapd-mini/install
+	$(INSTALL_DIR) $(1)/etc/init.d
+	$(INSTALL_BIN) ./files/natcapd_boot.init $(1)/etc/init.d/natcapd_boot
+	$(INSTALL_BIN) ./files/natcapd.init $(1)/etc/init.d/natcapd
+	$(INSTALL_DIR) $(1)/etc/config
+	$(INSTALL_DATA) ./files/natcapd.config $(1)/etc/config/natcapd
+	$(INSTALL_DIR) $(1)/usr/share/natcapd
+	$(INSTALL_DATA) ./files/firewall.include $(1)/usr/share/natcapd/firewall.include
+	$(INSTALL_DATA) ./files/accelerated-domains.gfwlist.dnsmasq.conf $(1)/usr/share/natcapd/accelerated-domains.gfwlist.dnsmasq.conf
+	$(INSTALL_DATA) ./files/gfwlist_update.sh $(1)/usr/share/natcapd/gfwlist_update.sh
+	$(INSTALL_DATA) ./files/board_mac.lua $(1)/usr/share/natcapd/board_mac.lua
+	$(INSTALL_DATA) $(PKG_BUILD_DIR)/cniplist.set $(1)/usr/share/natcapd/cniplist.set
+	$(INSTALL_DATA) ./files/cacert.pem $(1)/usr/share/natcapd/cacert.pem
+	$(INSTALL_DIR) $(1)/usr/sbin
+	$(INSTALL_BIN) ./files/natcapd.sh $(1)/usr/sbin/natcapd
+	$(INSTALL_DIR) $(1)/etc/uci-defaults
+	$(INSTALL_DATA) ./files/natcapd.defaults $(1)/etc/uci-defaults/95-natcapd
 endef
 
 define Package/natcapd/conffiles
@@ -80,24 +122,9 @@ exit 0
 endef
 
 define Package/natcapd/install
-	$(INSTALL_DIR) $(1)/etc/init.d
-	$(INSTALL_BIN) ./files/natcapd_boot.init $(1)/etc/init.d/natcapd_boot
-	$(INSTALL_BIN) ./files/natcapd.init $(1)/etc/init.d/natcapd
-	$(INSTALL_DIR) $(1)/etc/config
-	$(INSTALL_DATA) ./files/natcapd.config $(1)/etc/config/natcapd
+	$(Package/natcapd-mini/install)
 	$(INSTALL_DIR) $(1)/usr/share/natcapd
-	$(INSTALL_DATA) ./files/firewall.include $(1)/usr/share/natcapd/firewall.include
-	$(INSTALL_DATA) ./files/accelerated-domains.gfwlist.dnsmasq.conf $(1)/usr/share/natcapd/accelerated-domains.gfwlist.dnsmasq.conf
-	$(INSTALL_DATA) ./files/gfwlist_update.sh $(1)/usr/share/natcapd/gfwlist_update.sh
 	$(INSTALL_DATA) ./files/natcapd.pptpd.sh $(1)/usr/share/natcapd/natcapd.pptpd.sh
-	$(INSTALL_DATA) ./files/board_mac.lua $(1)/usr/share/natcapd/board_mac.lua
-	$(INSTALL_DATA) $(PKG_BUILD_DIR)/cniplist.set $(1)/usr/share/natcapd/cniplist.set
-	$(INSTALL_DATA) ./files/cacert.pem $(1)/usr/share/natcapd/cacert.pem
-	$(INSTALL_DATA) ./files/hosts $(1)/usr/share/natcapd/hosts
-	$(INSTALL_DIR) $(1)/usr/sbin
-	$(INSTALL_BIN) ./files/natcapd.sh $(1)/usr/sbin/natcapd
-	$(INSTALL_DIR) $(1)/etc/uci-defaults
-	$(INSTALL_DATA) ./files/natcapd.defaults $(1)/etc/uci-defaults/95-natcapd
 	$(INSTALL_DATA) ./files/natcapd.openvpn.sh $(1)/usr/share/natcapd/natcapd.openvpn.sh
 	$(INSTALL_DIR) $(1)/usr/share/natcapd/openvpn
 	$(INSTALL_DATA) ./files/openvpn/client.conf $(1)/usr/share/natcapd/openvpn/client.conf
@@ -149,6 +176,7 @@ endif
 endef
 
 $(eval $(call KernelPackage,natcap))
+$(eval $(call BuildPackage,natcapd-mini))
 $(eval $(call BuildPackage,natcapd))
 $(eval $(call BuildPackage,natcapd-client))
 $(eval $(call BuildPackage,natcapd-server))
