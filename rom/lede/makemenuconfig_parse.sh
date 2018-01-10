@@ -203,7 +203,7 @@ for t in $targets; do
 		TARGET_DEVICE_ramips_mt7621_DEVICE_mir3g|\
 		TARGET_DEVICE_ar71xx_generic_DEVICE_tl-wr1043nd-v4|\
 		TARGET_DEVICE_kirkwood_DEVICE_on100|\
-		TARGET_DEVICE_kirkwood_DEVICE_linksys-audi|\
+		TARGET_DEVICE_kirkwood_DEVICE_linksys_audi|\
 		TARGET_DEVICE_ramips_mt76x8_DEVICE_hc5661a|\
 		TARGET_DEVICE_ar71xx_generic_DEVICE_F9K1115V2|\
 		TARGET_DEVICE_ipq806x_DEVICE_AP-DK04.1-C1|\
@@ -225,7 +225,7 @@ for t in $targets; do
 		TARGET_DEVICE_ipq806x_DEVICE_R7500v2|\
 		TARGET_DEVICE_ipq806x_DEVICE_R7500|\
 		TARGET_DEVICE_ipq806x_DEVICE_D7800|\
-		TARGET_DEVICE_kirkwood_DEVICE_linksys-viper|\
+		TARGET_DEVICE_kirkwood_DEVICE_linksys_viper|\
 		TARGET_DEVICE_apm821xx_nand_DEVICE_WNDR4700|\
 		TARGET_DEVICE_ar71xx_generic_DEVICE_hiwifi-hc6361|\
 		TARGET_DEVICE_ar71xx_generic_DEVICE_wndr3700v2|\
@@ -333,7 +333,7 @@ for t in $targets; do
 		TARGET_DEVICE_ipq806x_DEVICE_R7500v2|\
 		TARGET_DEVICE_ipq806x_DEVICE_R7500|\
 		TARGET_DEVICE_ipq806x_DEVICE_D7800|\
-		TARGET_DEVICE_kirkwood_DEVICE_linksys-viper|\
+		TARGET_DEVICE_kirkwood_DEVICE_linksys_viper|\
 		TARGET_DEVICE_apm821xx_nand_DEVICE_WNDR4700|\
 		TARGET_DEVICE_bcm53xx_DEVICE_asus-rt-ac56u|\
 		TARGET_DEVICE_bcm53xx_DEVICE_asus-rt-ac68u|\
@@ -375,7 +375,7 @@ for t in $targets; do
 		TARGET_DEVICE_ar71xx_generic_DEVICE_tl-wr1043nd-v3|\
 		TARGET_DEVICE_ar71xx_generic_DEVICE_tl-wr1043nd-v2|\
 		TARGET_DEVICE_kirkwood_DEVICE_on100|\
-		TARGET_DEVICE_kirkwood_DEVICE_linksys-audi|\
+		TARGET_DEVICE_kirkwood_DEVICE_linksys_audi|\
 		TARGET_DEVICE_ar71xx_generic_DEVICE_archer-c7-v1|\
 		TARGET_DEVICE_ar71xx_generic_DEVICE_archer-c7-v2|\
 		TARGET_DEVICE_ar71xx_generic_DEVICE_tl-wdr7500-v3|\
