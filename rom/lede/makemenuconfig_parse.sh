@@ -263,6 +263,7 @@ for t in $targets; do
 			mods="$mods $moreapps $usbprint"
 		;;
 		#<=8M flash
+		TARGET_DEVICE_ar71xx_generic_DEVICE_tl-wdx6501-v7|\
 		TARGET_DEVICE_ar71xx_generic_DEVICE_tl-wdr6500-v7|\
 		TARGET_DEVICE_ar71xx_generic_DEVICE_archer-c25-v1|\
 		TARGET_DEVICE_ramips_mt76x8_DEVICE_wcr-1166ds|\
@@ -429,6 +430,7 @@ for t in $targets; do
 			mods="$mods $usb2"
 		;;
 		#no usb
+		TARGET_DEVICE_ar71xx_generic_DEVICE_tl-wdx6501-v7|\
 		TARGET_DEVICE_ar71xx_generic_DEVICE_tl-wdr6500-v7|\
 		TARGET_DEVICE_ar71xx_generic_DEVICE_archer-c25-v1|\
 		TARGET_DEVICE_ramips_mt76x8_DEVICE_wcr-1166ds|\
