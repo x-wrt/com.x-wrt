@@ -1,4 +1,40 @@
 #!/bin/sh
+
+wifi_setup_radio()
+{
+	local radio=$1
+	uci get wireless.${radio} >/dev/null 2>&1 && {
+		uci -q batch <<-EOT
+			set wireless.${radio}.disabled='0'
+			set wireless.${radio}.country='CN'
+			set wireless.${radio}.txpower='auto'
+			set wireless.${radio}.channel='auto'
+		EOT
+
+		#FIXME fixup for mtk
+		test -n "`cat /proc/cpuinfo | grep -i MediaTek`" && {
+			[ "x`uci get wireless.${radio}.hwmode`" = "x11a" ] || {
+				chn=`cat /proc/uptime | cut -d. -f1`
+				chn=$((chn%13+1))
+				uci set wireless.${radio}.channel=$chn
+			}
+		}
+
+		obj=`uci add wireless wifi-iface`
+		test -n "$obj" && {
+			uci set wireless.$obj.device="${radio}"
+			uci set wireless.$obj.network='lan'
+			uci set wireless.$obj.mode='ap'
+			uci set wireless.$obj.ssid="${SSID}"
+			uci set wireless.$obj.encryption='psk2'
+			uci set wireless.$obj.wpa_group_rekey='0'
+			uci set wireless.$obj.wpa_pair_rekey='0'
+			uci set wireless.$obj.wpa_master_rekey='0'
+			uci set wireless.$obj.key="${SSID_PASSWD}"
+		}
+	}
+}
+
 version=`uci get base_config.@status[0].version 2>/dev/null`
 test -n "$version" || version=0
 
@@ -23,12 +59,6 @@ test $version -lt 1 && {
 		uci set system.@system[0].ttylogin='1'
 		uci commit system
 	}
-#	uci -q batch <<-EOT
-#		delete network.globals
-#		delete network.lan.ip6assign
-#		delete network.wan6
-#		EOT
-#	uci commit network
 
 	uci set mwan3.wan.enabled='0'
 	uci commit mwan3
@@ -36,16 +66,9 @@ test $version -lt 1 && {
 	uci set dhcp.lan.force='1'
 	uci commit dhcp
 
-#	[ x`uci get firewall.@defaults[0] 2>/dev/null` = xdefault ] && uci set firewall.@defaults[0].disable_ipv6='1'
 	[ x`uci get firewall.@zone[0].name 2>/dev/null` = xlan ] && {
 		[ x`uci get firewall.@zone[0].mtu_fix 2>/dev/null` = x1 ] || uci set firewall.@zone[0].mtu_fix='1'
 	}
-#	[ x`uci get firewall.@zone[1].name 2>/dev/null` = xwan ] && {
-#		uci get firewall.@zone[1].network >/dev/null 2>&1 | grep -q wan6 && {
-#			uci delete firewall.@zone[1].network
-#			uci add_list firewall.@zone[1].network="wan"
-#		}
-#	}
 	uci commit firewall
 
 	[ x`uci get dropbear.@dropbear[0] 2>/dev/null` = xdropbear ] && {
@@ -69,112 +92,9 @@ test $version -lt 1 && {
 	SSID_PASSWD=88888888
 
 	while uci delete wireless.@wifi-iface[0] >/dev/null 2>&1; do :; done
-	uci get wireless.radio0 >/dev/null 2>&1 && {
-		uci -q batch <<-EOT
-			set wireless.radio0.disabled='0'
-			set wireless.radio0.country='CN'
-			set wireless.radio0.txpower='20'
-			set wireless.radio0.channel='auto'
-		EOT
-
-		#FIXME fixup for mtk
-		test -n "`cat /proc/cpuinfo | grep -i MediaTek`" && {
-			[ "x`uci get wireless.radio0.hwmode`" = "x11a" ] || {
-				chn=`cat /proc/uptime | cut -d. -f1`
-				chn=$((chn%13+1))
-				uci set wireless.radio0.channel=$chn
-			}
-		}
-
-		obj=`uci add wireless wifi-iface`
-		test -n "$obj" && {
-			uci set wireless.$obj.device='radio0'
-			uci set wireless.$obj.network='lan'
-			uci set wireless.$obj.mode='ap'
-			uci set wireless.$obj.ssid="${SSID}"
-			uci set wireless.$obj.encryption='psk2'
-			uci set wireless.$obj.wpa_group_rekey='0'
-			uci set wireless.$obj.wpa_pair_rekey='0'
-			uci set wireless.$obj.wpa_master_rekey='0'
-			uci set wireless.$obj.key="${SSID_PASSWD}"
-		}
-	}
-	uci get wireless.radio1 >/dev/null 2>&1 && {
-		uci -q batch <<-EOT
-			set wireless.radio1.disabled='0'
-			set wireless.radio1.country='CN'
-			set wireless.radio1.txpower='20'
-			set wireless.radio1.channel='auto'
-		EOT
-
-		#FIXME fixup for mtk
-		test -n "`cat /proc/cpuinfo | grep -i MediaTek`" && {
-			[ "x`uci get wireless.radio1.hwmode`" = "x11a" ] || {
-				chn=`cat /proc/uptime | cut -d. -f1`
-				chn=$((chn%13+1))
-				uci set wireless.radio1.channel=$chn
-			}
-		}
-
-		obj=`uci add wireless wifi-iface`
-		test -n "$obj" && {
-			uci set wireless.$obj.device='radio1'
-			uci set wireless.$obj.network='lan'
-			uci set wireless.$obj.mode='ap'
-			uci set wireless.$obj.ssid="${SSID}"
-			uci set wireless.$obj.encryption='psk2'
-			uci set wireless.$obj.wpa_group_rekey='0'
-			uci set wireless.$obj.wpa_pair_rekey='0'
-			uci set wireless.$obj.wpa_master_rekey='0'
-			uci set wireless.$obj.key="${SSID_PASSWD}"
-		}
-	}
-
-	uci get wireless.wifi0 >/dev/null 2>&1 && {
-		uci -q batch <<-EOT
-			set wireless.wifi0.disabled='0'
-			set wireless.wifi0.country='CN'
-			set wireless.wifi0.txpower='20'
-			set wireless.wifi0.channel='auto'
-		EOT
-
-		obj=`uci add wireless wifi-iface`
-		test -n "$obj" && {
-			uci set wireless.$obj.device='wifi0'
-			uci set wireless.$obj.disabled='0'
-			uci set wireless.$obj.network='lan'
-			uci set wireless.$obj.mode='ap'
-			uci set wireless.$obj.ssid="${SSID}"
-			uci set wireless.$obj.encryption='psk2'
-			uci set wireless.$obj.wpa_group_rekey='0'
-			uci set wireless.$obj.wpa_pair_rekey='0'
-			uci set wireless.$obj.wpa_master_rekey='0'
-			uci set wireless.$obj.key="${SSID_PASSWD}"
-		}
-	}
-	uci get wireless.wifi1 >/dev/null 2>&1 && {
-		uci -q batch <<-EOT
-			set wireless.wifi1.disabled='0'
-			set wireless.wifi1.country='CN'
-			set wireless.wifi1.txpower='20'
-			set wireless.wifi1.channel='auto'
-		EOT
-
-		obj=`uci add wireless wifi-iface`
-		test -n "$obj" && {
-			uci set wireless.$obj.device='wifi1'
-			uci set wireless.$obj.disabled='0'
-			uci set wireless.$obj.network='lan'
-			uci set wireless.$obj.mode='ap'
-			uci set wireless.$obj.ssid="${SSID}"
-			uci set wireless.$obj.encryption='psk2'
-			uci set wireless.$obj.wpa_group_rekey='0'
-			uci set wireless.$obj.wpa_pair_rekey='0'
-			uci set wireless.$obj.wpa_master_rekey='0'
-			uci set wireless.$obj.key="${SSID_PASSWD}"
-		}
-	}
-
+	for radio in radio0 radio1 radio2 radio3 wifi0 wifi1 wifi2 wifi3; do
+		wifi_setup_radio ${radio}
+	done
 	uci commit wireless
 
 	version=1
@@ -271,7 +191,7 @@ test $version -lt 7 && {
 	version=7
 }
 
-#fixup for openvpn client
+#FIXME fixup for openvpn client
 uci delete openvpn_recipes.client_tun.pkcs12 2>/dev/null && uci commit openvpn_recipes
 
 # sysctl overwrite
@@ -282,10 +202,6 @@ echo -n >$SYSCTL_LOCAL
 echo net.nf_conntrack_max=$nf_conntrack_max >>$SYSCTL_LOCAL
 echo net.ipv4.ip_early_demux=0 >>$SYSCTL_LOCAL
 echo net.bridge.bridge-nf-call-iptables=0 >>$SYSCTL_LOCAL
-
-#echo net.ipv6.conf.all.disable_ipv6=1 >>$SYSCTL_LOCAL
-#echo net.ipv6.conf.default.disable_ipv6=1 >>$SYSCTL_LOCAL
-#echo net.ipv6.conf.lo.disable_ipv6=1 >>$SYSCTL_LOCAL
 
 echo net.core.default_qdisc=fq_codel >>$SYSCTL_LOCAL
 echo net.core.default_qdisc=fq >>$SYSCTL_LOCAL
