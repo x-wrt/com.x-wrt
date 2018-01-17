@@ -175,6 +175,8 @@ test $version -lt 6 && {
 test $version -lt 7 && {
 	[ "x`uci get samba.@samba[0] 2>/dev/null`" = "xsamba" ] && {
 		uci set samba.@samba[0].homes='0'
+		uci set samba.@samba[0].name="${DISTRIB_ID}"
+		uci set samba.@samba[0].description="${DISTRIB_ID}"
 		uci -q batch <<-EOF >/dev/null
 			add samba sambashare
 			set samba.@sambashare[-1].browseable='yes'
