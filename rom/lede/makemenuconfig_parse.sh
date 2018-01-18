@@ -264,6 +264,7 @@ for t in $targets; do
 			mods="$mods $moreapps $usbprint"
 		;;
 		#<=8M flash
+		TARGET_DEVICE_sunxi_cortexa7_DEVICE_sun8i-h3-nanopi-neo|\
 		TARGET_DEVICE_ar71xx_generic_DEVICE_tl-wdx6501-v7|\
 		TARGET_DEVICE_ar71xx_generic_DEVICE_tl-wdr6500-v7|\
 		TARGET_DEVICE_ar71xx_generic_DEVICE_archer-c25-v1|\
@@ -319,6 +320,7 @@ for t in $targets; do
 	#check usb
 	case $t in
 		#with usb3
+		TARGET_DEVICE_sunxi_cortexa7_DEVICE_sun8i-h3-nanopi-neo|\
 		TARGET_DEVICE_ipq806x_DEVICE_asus_rt-acrh17|\
 		TARGET_DEVICE_ipq806x_DEVICE_zyxel_nbg6817|\
 		TARGET_DEVICE_ipq806x_DEVICE_avm_fritzbox-4040|\

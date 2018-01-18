@@ -9,3 +9,4 @@ config.ramips-mt7621
 config.ramips-mt76x8
 config.kirkwood-generic
 config.mvebu-generic
+config.sunxi-cortexa7
