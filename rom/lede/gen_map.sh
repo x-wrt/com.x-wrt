@@ -2,7 +2,7 @@
 
 CFGS=${CFGS-"`cat feeds/ptpt52/rom/lede/cfg.list`"}
 
-bins="`find bin/targets/ | grep -- '\(-squashfs\|-factory\|-sysupgrade\|\.bin\)' | grep natcap | grep -v vmlinux | grep -v '\.dtb$' | while read line; do basename $line; done`"
+bins="`find bin/targets/ | grep -- '\(-ext4-sdcard\|-squashfs\|-factory\|-sysupgrade\|\.bin\)' | grep natcap | grep -v vmlinux | grep -v '\.dtb$' | while read line; do basename $line; done`"
 
 targets=$(cd feeds/ptpt52/rom/lede/ && cat $CFGS | grep TARGET_DEVICE_.*=y | sed 's/CONFIG_//;s/=y//' | sort)
 
@@ -22,11 +22,11 @@ for t in $targets; do
 	echo $tt | cut -d: -f2 | sed 's/_/ /' | while read arch subarch; do
 		test -n "$arch" || continue
 		text=`cat target/linux/$arch/image/*.mk target/linux/$arch/image/Makefile 2>/dev/null | grep "define .*Device\/$name$" -A20 | while read line; do [ "x$line" = "xendef" ] && break; echo $line; done`
-		dis=`echo "$text" | grep "DEVICE_TITLE :=" | head -n1 | sed 's/DEVICE_TITLE :=//'`
+		dis=`echo "$text" | grep "DEVICE_TITLE.*:=" | head -n1 | sed 's/DEVICE_TITLE.*:=//'`
 		test -n "$dis" || {
 			dis=`echo "$text" | grep '$(call Device' | head -n1 | cut -d, -f2 | sed 's/)$//g'`
 		}
-		bin=`echo "$bins" | grep -i "\($name-s\|$name-f\|$name-u\)"`
+		bin=`echo "$bins" | grep -i "\($name-e\|$name-s\|$name-f\|$name-u\)"`
 		test -n "$bin" || {
 			name=`echo $name | tr _ -`
 			bin=`echo "$bins" | grep -i "\($name-s\|$name-f\|$name-u\)"`
