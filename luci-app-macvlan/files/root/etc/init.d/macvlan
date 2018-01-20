@@ -36,6 +36,7 @@ add_macvlan() {
 		iid=`echo $ifname | cut -d"." -f 2`
 		test -n "$ifn" && ifconfig $ifn >/dev/null 2>&1 || return 1
 		ifconfig $ifn up 2>/dev/null
+		vconfig set_name_type DEV_PLUS_VID_NO_PAD
 		vconfig add $ifn $iid 2>/dev/null && echo ip link del $ifname >>$MC
 		mvname="mvlan${macvlan}${ifn}t${iid}"
 	}
