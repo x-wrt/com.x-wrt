@@ -269,6 +269,7 @@ CONFIG_TARGET_MULTI_PROFILE=y
 # CONFIG_TARGET_ar71xx_generic_DEVICE_cpe870 is not set
 # CONFIG_TARGET_ar71xx_generic_DEVICE_sr3200 is not set
 # CONFIG_TARGET_ar71xx_generic_DEVICE_xd3200 is not set
+# CONFIG_TARGET_ar71xx_generic_DEVICE_ZSUNSDREADER is not set
 # CONFIG_TARGET_ar71xx_generic_DEVICE_zbt-we1526 is not set
 # CONFIG_TARGET_ar71xx_generic_DEVICE_ZCN1523H28 is not set
 # CONFIG_TARGET_ar71xx_generic_DEVICE_ZCN1523H516 is not set
@@ -540,6 +541,8 @@ CONFIG_TARGET_DEVICE_PACKAGES_ar71xx_generic_DEVICE_tl-wr1043nd-v4="aria2 blockd
 # CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_zbt-we1526 is not set
 # CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_ZCN1523H28 is not set
 # CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_ZCN1523H516 is not set
+CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_ZSUNSDREADER=y
+CONFIG_TARGET_DEVICE_PACKAGES_ar71xx_generic_DEVICE_ZSUNSDREADER="blockd block-mount kmod-crypto-crc32c kmod-fs-autofs4 kmod-fs-exfat kmod-fs-ext4 kmod-fs-msdos kmod-fs-vfat kmod-fuse kmod-lib-crc16 kmod-nls-cp437 kmod-scsi-core kmod-usb2 kmod-usb-core kmod-usb-ehci kmod-usb-ohci kmod-usb-storage kmod-usb-storage-uas ntfs-3g"
 # CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_NBG6616 is not set
 CONFIG_HAS_SUBTARGETS=y
 CONFIG_HAS_DEVICES=y
