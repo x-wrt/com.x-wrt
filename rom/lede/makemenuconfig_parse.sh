@@ -265,7 +265,6 @@ for t in $targets; do
 			mods="$mods $moreapps $usbprint"
 		;;
 		#<=8M flash
-		TARGET_DEVICE_ar71xx_generic_DEVICE_ZSUNSDREADER|\
 		TARGET_DEVICE_sunxi_cortexa7_DEVICE_sun8i-h3-nanopi-neo|\
 		TARGET_DEVICE_ar71xx_generic_DEVICE_tl-wdx6501-v7|\
 		TARGET_DEVICE_ar71xx_generic_DEVICE_tl-wdr6500-v7|\
@@ -363,7 +362,6 @@ for t in $targets; do
 			mods="$mods $usb2 $usb3"
 		;;
 		#with usb2
-		TARGET_DEVICE_ar71xx_generic_DEVICE_ZSUNSDREADER|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_pbr-m1|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_zbtlink_zbt-we3526|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_d-team_newifi-d2|\

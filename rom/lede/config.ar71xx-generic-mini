@@ -269,7 +269,6 @@ CONFIG_TARGET_MULTI_PROFILE=y
 # CONFIG_TARGET_ar71xx_generic_DEVICE_cpe870 is not set
 # CONFIG_TARGET_ar71xx_generic_DEVICE_sr3200 is not set
 # CONFIG_TARGET_ar71xx_generic_DEVICE_xd3200 is not set
-# CONFIG_TARGET_ar71xx_generic_DEVICE_ZSUNSDREADER is not set
 # CONFIG_TARGET_ar71xx_generic_DEVICE_zbt-we1526 is not set
 # CONFIG_TARGET_ar71xx_generic_DEVICE_ZCN1523H28 is not set
 # CONFIG_TARGET_ar71xx_generic_DEVICE_ZCN1523H516 is not set
@@ -521,7 +520,6 @@ CONFIG_TARGET_DEVICE_PACKAGES_ar71xx_generic_DEVICE_tl-wdx6501-v7="ath10k-firmwa
 # CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_zbt-we1526 is not set
 # CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_ZCN1523H28 is not set
 # CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_ZCN1523H516 is not set
-# CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_ZSUNSDREADER is not set
 # CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_NBG6616 is not set
 CONFIG_HAS_SUBTARGETS=y
 CONFIG_HAS_DEVICES=y
