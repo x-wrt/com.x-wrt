@@ -74,7 +74,8 @@ CONFIG_TARGET_MULTI_PROFILE=y
 # CONFIG_TARGET_ramips_mt76x8_DEVICE_wrtnode2p is not set
 # CONFIG_TARGET_ramips_mt76x8_DEVICE_wrtnode2r is not set
 # CONFIG_TARGET_ramips_mt76x8_DEVICE_wl-wn575a3 is not set
-# CONFIG_TARGET_ramips_mt76x8_DEVICE_widora-neo is not set
+# CONFIG_TARGET_ramips_mt76x8_DEVICE_widora_neo-16m is not set
+# CONFIG_TARGET_ramips_mt76x8_DEVICE_widora_neo-32m is not set
 # CONFIG_TARGET_ramips_mt76x8_DEVICE_miwifi-nano is not set
 # CONFIG_TARGET_ramips_mt76x8_DEVICE_zbt-we1226 is not set
 
@@ -105,7 +106,8 @@ CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt76x8_DEVICE_tl-wr841n-v13=""
 # CONFIG_TARGET_DEVICE_ramips_mt76x8_DEVICE_vocore2 is not set
 # CONFIG_TARGET_DEVICE_ramips_mt76x8_DEVICE_vocore2lite is not set
 # CONFIG_TARGET_DEVICE_ramips_mt76x8_DEVICE_wl-wn575a3 is not set
-# CONFIG_TARGET_DEVICE_ramips_mt76x8_DEVICE_widora-neo is not set
+# CONFIG_TARGET_DEVICE_ramips_mt76x8_DEVICE_widora_neo-16m is not set
+# CONFIG_TARGET_DEVICE_ramips_mt76x8_DEVICE_widora_neo-32m is not set
 # CONFIG_TARGET_DEVICE_ramips_mt76x8_DEVICE_wrtnode2p is not set
 # CONFIG_TARGET_DEVICE_ramips_mt76x8_DEVICE_wrtnode2r is not set
 CONFIG_TARGET_DEVICE_ramips_mt76x8_DEVICE_miwifi-nano=y
@@ -414,7 +416,7 @@ CONFIG_TARGET_INIT_CMD="/sbin/init"
 CONFIG_TARGET_INIT_SUPPRESS_STDERR=y
 CONFIG_VERSIONOPT=y
 CONFIG_VERSION_DIST="NATCAP"
-CONFIG_VERSION_NUMBER="3.0.0_build201801250756"
+CONFIG_VERSION_NUMBER="3.0.0_build201801260553"
 CONFIG_VERSION_CODE="Beetle"
 CONFIG_VERSION_REPO="http://downloads.openwrt.org/snapshots/trunk/%S/packages"
 CONFIG_VERSION_MANUFACTURER="PTPT52"
