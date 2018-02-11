@@ -1,6 +1,7 @@
 config.ar71xx-generic
 config.ar71xx-generic-mini
 config.ar71xx-nand
+config.ar71xx-nand-nosymbol
 config.ipq806x-generic
 config.kirkwood-generic
 config.mvebu-generic
@@ -8,5 +9,5 @@ config.ramips-mt7620
 config.ramips-mt7620nand-nosymbol
 config.ramips-mt7621
 config.ramips-mt76x8
-config.sunxi-cortexa7
 config.x86_64
+config.sunxi-cortexa7
