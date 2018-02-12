@@ -70,6 +70,9 @@ msgstr "请按照格式填写服务器（ip:port）"
 msgid "Domestic and International Diversion"
 msgstr "启用国内国际分流模式"
 
+msgid "Full Cone Nat"
+msgstr "全锥形NAT"
+
 msgid "Generally do not need to be enabled unless used to play games."
 msgstr "一般不需要启用，除非用来打游戏。"
 

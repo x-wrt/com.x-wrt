@@ -33,6 +33,10 @@ e = s:taboption("general", Flag, "cnipwhitelist_mode", translate("Domestic and I
 e.default = e.disabled
 e.rmempty = false
 
+e = s:taboption("general", Flag, "full_cone_nat", translate("Full Cone Nat"), translate("Generally do not need to be enabled unless used to play games."))
+e.default = e.disabled
+e.rmempty = false
+
 e = s:taboption("advanced", Value, "dns_server", translate("DNS Server"), translate("Please fill in the server by format (ip:port)"))
 e.datatype = "ipaddrport(1)"
 e.placeholder = "8.8.8.8:53"

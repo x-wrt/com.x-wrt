@@ -156,6 +156,29 @@ natcapd_get_flows()
 	exit 0
 }
 
+natcap_wan_ip()
+{
+	full_cone_nat="`uci get natcapd.default.full_cone_nat 2>/dev/null || echo 0`"
+	if [ "x$full_cone_nat" = "x0" ]; then
+		ipset destroy natcap_wan_ip >/dev/null 2>&1
+	else
+		ipset create natcap_wan_ip iphash >/dev/null 2>&1
+		ipset flush natcap_wan_ip
+		devs=`ip r | grep default | grep -o "dev ".* | awk '{print $2}'`
+		for dev in $devs; do
+			ips=`ip addr list dev $dev | grep -o inet" ".* | awk '{print $2}' | cut -d/ -f1`
+			for ip in $ips; do
+				ipset add natcap_wan_ip $ip >/dev/null 2>&1
+			done
+		done
+	fi
+}
+
+[ x$1 = xnatcap_wan_ip ] && {
+	natcap_wan_ip
+	exit 0
+}
+
 [ x$1 = xstop ] && natcapd_stop && exit 0
 
 [ x$1 = xstart ] || {
@@ -183,6 +206,8 @@ add_gfwlist_domain () {
 	echo server=/$1/8.8.8.8 >>/tmp/dnsmasq.d/custom-domains.gfwlist.dnsmasq.conf
 	echo ipset=/$1/gfwlist >>/tmp/dnsmasq.d/custom-domains.gfwlist.dnsmasq.conf
 }
+
+natcap_wan_ip
 
 enabled="`uci get natcapd.default.enabled 2>/dev/null`"
 [ "x$enabled" = "x0" ] && natcapd_stop

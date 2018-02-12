@@ -10,7 +10,7 @@ include $(INCLUDE_DIR)/kernel.mk
 
 PKG_NAME:=natcap
 PKG_VERSION:=5.0.1
-PKG_RELEASE:=093c19162fb3067d5f8c55358793a1dedf1fd823
+PKG_RELEASE:=06b64ef02706b4ae391c5e62296561bfd202f898
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION)-$(PKG_RELEASE).tar.xz
 PKG_SOURCE_URL:=https://github.com/ptpt52/natcap.git
@@ -104,6 +104,8 @@ define Package/natcapd-mini/install
 	$(INSTALL_BIN) ./files/natcapd.sh $(1)/usr/sbin/natcapd
 	$(INSTALL_DIR) $(1)/etc/uci-defaults
 	$(INSTALL_DATA) ./files/natcapd.defaults $(1)/etc/uci-defaults/95-natcapd
+	$(INSTALL_DIR) $(1)/etc/hotplug.d/iface
+	$(INSTALL_DATA) ./files/20-cone-nat $(1)/etc/hotplug.d/iface/20-cone-nat
 endef
 
 define Package/natcapd/conffiles
