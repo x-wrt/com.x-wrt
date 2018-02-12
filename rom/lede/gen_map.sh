@@ -4,15 +4,22 @@ CFGS=${CFGS-"`cat feeds/ptpt52/rom/lede/cfg.list`"}
 
 bins="`find bin/targets/ | grep -- '\(-ext4-sdcard\|-squashfs\|-factory\|-sysupgrade\|\.bin\)' | grep natcap | grep -v vmlinux | grep -v '\.dtb$' | while read line; do basename $line; done`"
 
+sha256sums="`find bin/targets/ -type f -name sha256sums`"
+sha256sums=`cat $sha256sums`
+
 targets=$(cd feeds/ptpt52/rom/lede/ && cat $CFGS | grep TARGET_DEVICE_.*=y | sed 's/CONFIG_//;s/=y//' | sort)
 
+echo -n >map.sha256sums
 echo -n >map.list
+
+echo sha256sums: map.sha256sums >>map.list
 
 x86bin="`find bin/targets/ | grep -- -combined | while read line; do basename $line; done`"
 test -n "$x86bin" && {
 	echo x86_64_Generic:
 	echo "$x86bin"
 	echo
+	echo "$sha256sums" | grep "$x86bin" >>map.sha256sums
 	echo "x86_64_Generic:$x86bin" >>map.list
 }
 
@@ -38,7 +45,10 @@ for t in $targets; do
 			}
 		}
 		echo "`echo $dis`:"
-		for i in $bin; do echo $i; done
+		for i in $bin; do
+			echo $i;
+			echo "$sha256sums" | grep "$i" >>map.sha256sums
+		done
 		echo
 		echo "`echo $dis`:"$bin >>map.list
 	done
