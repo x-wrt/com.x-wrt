@@ -61,11 +61,12 @@ CONFIG_TARGET_MULTI_PROFILE=y
 # CONFIG_TARGET_ramips_mt7621_DEVICE_dir-860l-b1 is not set
 # CONFIG_TARGET_ramips_mt7621_DEVICE_firewrt is not set
 # CONFIG_TARGET_ramips_mt7621_DEVICE_gb-pc1 is not set
-# CONFIG_TARGET_ramips_mt7621_DEVICE_gb-pc2 is not set
+# CONFIG_TARGET_ramips_mt7621_DEVICE_gnubee_gb-pc2 is not set
 # CONFIG_TARGET_ramips_mt7621_DEVICE_hc5962 is not set
 # CONFIG_TARGET_ramips_mt7621_DEVICE_re6500 is not set
 # CONFIG_TARGET_ramips_mt7621_DEVICE_witi is not set
 # CONFIG_TARGET_ramips_mt7621_DEVICE_mt7621 is not set
+# CONFIG_TARGET_ramips_mt7621_DEVICE_mediatek_ap-mt7621a-v60 is not set
 # CONFIG_TARGET_ramips_mt7621_DEVICE_rb750gr3 is not set
 # CONFIG_TARGET_ramips_mt7621_DEVICE_wf-2881 is not set
 # CONFIG_TARGET_ramips_mt7621_DEVICE_r6220 is not set
@@ -106,10 +107,11 @@ CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt7621_DEVICE_wsr-1166="aria2 blockd block-
 # CONFIG_TARGET_DEVICE_ramips_mt7621_DEVICE_dir-860l-b1 is not set
 # CONFIG_TARGET_DEVICE_ramips_mt7621_DEVICE_firewrt is not set
 # CONFIG_TARGET_DEVICE_ramips_mt7621_DEVICE_gb-pc1 is not set
-# CONFIG_TARGET_DEVICE_ramips_mt7621_DEVICE_gb-pc2 is not set
+# CONFIG_TARGET_DEVICE_ramips_mt7621_DEVICE_gnubee_gb-pc2 is not set
 CONFIG_TARGET_DEVICE_ramips_mt7621_DEVICE_hc5962=y
 CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt7621_DEVICE_hc5962="aria2 blockd block-mount kmod-cfg80211 kmod-crypto-crc32c kmod-fs-autofs4 kmod-fs-exfat kmod-fs-ext4 kmod-fs-msdos kmod-fs-vfat kmod-fuse kmod-gpio-button-hotplug kmod-leds-gpio kmod-lib-crc16 kmod-mac80211 kmod-mt7603 kmod-mt76-core kmod-mt76x2 kmod-nls-cp437 kmod-scsi-core kmod-usb2 kmod-usb3 kmod-usb-core kmod-usb-ehci kmod-usb-ohci kmod-usb-printer kmod-usb-storage kmod-usb-storage-uas libsqlite3 libssh2 libstdcpp libxml2 luci-app-aria2 luci-app-p910nd luci-app-samba luci-i18n-aria2-zh-cn luci-i18n-p910nd-en luci-i18n-p910nd-zh-cn luci-i18n-samba-en luci-i18n-samba-zh-cn ntfs-3g openssl-util p910nd samba36-server webui-aria2 wireless-regdb"
 # CONFIG_TARGET_DEVICE_ramips_mt7621_DEVICE_re6500 is not set
+# CONFIG_TARGET_DEVICE_ramips_mt7621_DEVICE_mediatek_ap-mt7621a-v60 is not set
 # CONFIG_TARGET_DEVICE_ramips_mt7621_DEVICE_mt7621 is not set
 # CONFIG_TARGET_DEVICE_ramips_mt7621_DEVICE_rb750gr3 is not set
 # CONFIG_TARGET_DEVICE_ramips_mt7621_DEVICE_witi is not set
@@ -348,7 +350,6 @@ CONFIG_KERNEL_IPV6_MROUTE=y
 # CONFIG_KERNEL_JFS_POSIX_ACL is not set
 CONFIG_KERNEL_DEVMEM=y
 # CONFIG_KERNEL_DEVKMEM is not set
-CONFIG_KERNEL_NTRACK_BOOTM_SIZE=0
 
 #
 # Package build options
@@ -466,7 +467,7 @@ CONFIG_TARGET_INIT_CMD="/sbin/init"
 CONFIG_TARGET_INIT_SUPPRESS_STDERR=y
 CONFIG_VERSIONOPT=y
 CONFIG_VERSION_DIST="NATCAP"
-CONFIG_VERSION_NUMBER="3.0.0_build201802150855"
+CONFIG_VERSION_NUMBER="3.0.0_build201802250439"
 CONFIG_VERSION_CODE="Beetle"
 CONFIG_VERSION_REPO="http://downloads.openwrt.org/snapshots/trunk/%S/packages"
 CONFIG_VERSION_MANUFACTURER="PTPT52"
@@ -2938,7 +2939,6 @@ CONFIG_PACKAGE_kmod-macvlan=y
 #
 # Network Support
 #
-# CONFIG_PACKAGE_kmod-appletalk is not set
 # CONFIG_PACKAGE_kmod-atm is not set
 # CONFIG_PACKAGE_kmod-ax25 is not set
 # CONFIG_PACKAGE_kmod-batman-adv is not set
@@ -4119,6 +4119,7 @@ CONFIG_PACKAGE_libxml2=m
 # CONFIG_PACKAGE_nacl is not set
 # CONFIG_PACKAGE_opencv is not set
 # CONFIG_PACKAGE_p11-kit is not set
+# CONFIG_PACKAGE_pixman is not set
 # CONFIG_PACKAGE_poco is not set
 # CONFIG_PACKAGE_protobuf is not set
 # CONFIG_PACKAGE_pthsem is not set
@@ -5846,6 +5847,7 @@ CONFIG_PACKAGE_libjson-script=y
 # CONFIG_PACKAGE_look is not set
 # CONFIG_PACKAGE_losetup is not set
 # CONFIG_PACKAGE_lrzsz is not set
+# CONFIG_PACKAGE_lscpu is not set
 CONFIG_PACKAGE_lsof=y
 # CONFIG_PACKAGE_lxc is not set
 # CONFIG_PACKAGE_lxc-unprivileged is not set
