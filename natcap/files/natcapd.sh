@@ -210,7 +210,17 @@ add_gfwlist_domain () {
 natcap_wan_ip
 
 enabled="`uci get natcapd.default.enabled 2>/dev/null`"
-[ "x$enabled" = "x0" ] && natcapd_stop
+[ "x$enabled" = "x0" ] && {
+	natcapd_stop
+	# reload firewall
+	uci get firewall.natcapd >/dev/null 2>&1 && {
+		uci -q batch <<-EOT
+			delete firewall.natcapd
+			commit firewall
+		EOT
+		/etc/init.d/firewall restart >/dev/null 2>&1 || echo /etc/init.d/firewall restart failed
+	}
+}
 [ "x$enabled" = "x1" ] && test -c $DEV && {
 	echo disabled=0 >>$DEV
 	touch /tmp/natcapd.running
@@ -336,8 +346,8 @@ enabled="`uci get natcapd.default.enabled 2>/dev/null`"
 			set firewall.natcapd.reload=0
 			commit firewall
 		EOT
+		/etc/init.d/firewall restart >/dev/null 2>&1 || echo /etc/init.d/firewall restart failed
 	}
-	/etc/init.d/firewall restart >/dev/null 2>&1 || echo /etc/init.d/firewall restart failed
 	test -x /usr/sbin/mwan3 && /usr/sbin/mwan3 restart >/dev/null 2>&1
 
 	#reload dnsmasq
