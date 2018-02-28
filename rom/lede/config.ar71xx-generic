@@ -3371,6 +3371,7 @@ CONFIG_PACKAGE_kmod-macvlan=y
 # CONFIG_PACKAGE_kmod-dnsresolver is not set
 # CONFIG_PACKAGE_kmod-fast-classifier is not set
 # CONFIG_PACKAGE_kmod-fou is not set
+# CONFIG_PACKAGE_kmod-geneve is not set
 CONFIG_PACKAGE_kmod-gre=y
 CONFIG_PACKAGE_kmod-gre6=y
 CONFIG_PACKAGE_kmod-ip6-tunnel=y
