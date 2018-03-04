@@ -41,15 +41,11 @@ natcapd_trigger()
 
 	if which timeout >/dev/null 2>&1; then
 		opt=`timeout -t1 pwd >/dev/null 2>&1 && echo "-t"`
-		while test -f $LOCKDIR/$PID; do
-			timeout $opt 5 sh -c "echo >$path" 2>/dev/null
-			return 0
-		done
-		return 1
+		timeout $opt 5 sh -c "echo >$path" 2>/dev/null
 	else
 		sh -c "echo >$path"
-		return $?
 	fi
+	return $?
 }
 
 natcapd_stop()
@@ -270,6 +266,7 @@ enabled="`uci get natcapd.default.enabled 2>/dev/null`"
 			rm -f /tmp/dnsmasq.d/accelerated-domains.gfwlist.dnsmasq.conf
 			rm -f /tmp/dnsmasq.d/custom-domains.gfwlist.dnsmasq.conf
 			/etc/init.d/dnsmasq restart
+			rm -f /tmp/natcapd.lck/gfwlist
 		}
 	}
 
@@ -450,12 +447,10 @@ natcapd_first_boot() {
 			sleep 5
 		}
 		test -f /tmp/natcapd.running || break
-		test -f /tmp/natcapd.lck/gfwlist || {
-			test -p /tmp/trigger_gfwlist_update.fifo && natcapd_trigger '/tmp/trigger_gfwlist_update.fifo'
-			sleep 60
-			continue
-		}
-		break
+		[ x`uci get natcapd.default.access_to_cn 2>/dev/null || echo 0` =  x1 ] && break
+		test -f /tmp/natcapd.lck/gfwlist && break
+		test -p /tmp/trigger_gfwlist_update.fifo && natcapd_trigger '/tmp/trigger_gfwlist_update.fifo'
+		sleep 60
 	done
 	rmdir /tmp/natcapd.lck/watcher.lck
 }
