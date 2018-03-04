@@ -60,11 +60,11 @@ natcapd_stop()
 	echo disabled=0 >>$DEV
 	test -f /tmp/natcapd.firewall.sh && sh /tmp/natcapd.firewall.sh >/dev/null 2>&1
 	rm -f /tmp/natcapd.firewall.sh
-	test -f /tmp/dnsmasq.d/accelerated-domains.gfwlist.dnsmasq.conf && {
-		rm -f /tmp/dnsmasq.d/accelerated-domains.gfwlist.dnsmasq.conf
-		rm -f /tmp/dnsmasq.d/custom-domains.gfwlist.dnsmasq.conf
-		/etc/init.d/dnsmasq restart
-	}
+
+	rm -f /tmp/dnsmasq.d/accelerated-domains.gfwlist.dnsmasq.conf
+	rm -f /tmp/dnsmasq.d/custom-domains.gfwlist.dnsmasq.conf
+	/etc/init.d/dnsmasq restart
+
 	rm -f /tmp/natcapd.running
 	mosq_pid=`ps axuww 2>/dev/null | grep "mosquitto_su[b].*router-sh.ptpt52.com" | awk '{print $2}'`
 	test -n "$mosq_pid" || mosq_pid=`ps 2>/dev/null | grep "mosquitto_su[b].*router-sh.ptpt52.com" | awk '{print $1}'`
@@ -238,6 +238,7 @@ enabled="`uci get natcapd.default.enabled 2>/dev/null`"
 	encode_mode=`uci get natcapd.default.encode_mode 2>/dev/null || echo 0`
 	udp_encode_mode=`uci get natcapd.default.udp_encode_mode 2>/dev/null || echo 0`
 	sproxy=`uci get natcapd.default.sproxy 2>/dev/null || echo 0`
+	access_to_cn=`uci get natcapd.default.access_to_cn 2>/dev/null || echo 0`
 	[ x$encode_mode = x0 ] && encode_mode=TCP
 	[ x$encode_mode = x1 ] && encode_mode=UDP
 	[ x$udp_encode_mode = x0 ] && udp_encode_mode=UDP
@@ -252,13 +253,33 @@ enabled="`uci get natcapd.default.enabled 2>/dev/null`"
 	ipfilter=`uci get natcapd.default.ipfilter 2>/dev/null`
 	iplist=`uci get natcapd.default.iplist 2>/dev/null`
 
+	cniplist_set=/usr/share/natcapd/cniplist.set
+	cniplist_ip=114.114.114.114
+	if [ x$access_to_cn = x1 ]; then
+		cnipwhitelist_mode=1
+		cniplist_set=/usr/share/natcapd/C_cniplist.set
+		cniplist_ip=8.8.8.8
+	fi
+	ipset -n list cniplist >/dev/null 2>&1 && {
+		ipset test cniplist $cniplist_ip >/dev/null 2>&1 || {
+			ipset destroy udproxylist >/dev/null 2>&1
+			ipset destroy gfwlist >/dev/null 2>&1
+			ipset destroy knocklist >/dev/null 2>&1
+			ipset destroy bypasslist >/dev/null 2>&1
+			ipset destroy cniplist >/dev/null 2>&1
+			rm -f /tmp/dnsmasq.d/accelerated-domains.gfwlist.dnsmasq.conf
+			rm -f /tmp/dnsmasq.d/custom-domains.gfwlist.dnsmasq.conf
+			/etc/init.d/dnsmasq restart
+		}
+	}
+
 	ipset -n list udproxylist >/dev/null 2>&1 || ipset -! create udproxylist iphash
 	ipset -n list gfwlist >/dev/null 2>&1 || ipset -! create gfwlist iphash
 	ipset -n list knocklist >/dev/null 2>&1 || ipset -! create knocklist iphash
 	ipset -n list bypasslist >/dev/null 2>&1 || ipset -! create bypasslist iphash
 	ipset -n list cniplist >/dev/null 2>&1 || {
 		echo 'create cniplist hash:net family inet hashsize 4096 maxelem 65536' >/tmp/cniplist.set
-		cat /usr/share/natcapd/cniplist.set | sed 's/^/add cniplist /' >>/tmp/cniplist.set
+		cat $cniplist_set | sed 's/^/add cniplist /' >>/tmp/cniplist.set
 		ipset restore -f /tmp/cniplist.set
 		rm -f /tmp/cniplist.set
 	}
@@ -408,6 +429,7 @@ gfwlist_update_main () {
 		test -f $LOCKDIR/$PID || exit 0
 		test -p /tmp/trigger_gfwlist_update.fifo || { sleep 1 && continue; }
 		mytimeout 86340 'cat /tmp/trigger_gfwlist_update.fifo' >/dev/null && {
+			[ x`uci get natcapd.default.access_to_cn 2>/dev/null || echo 0` =  x1 ] && continue
 			test -f /tmp/natcapd.running && sh /usr/share/natcapd/gfwlist_update.sh
 		}
 	done
