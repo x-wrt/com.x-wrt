@@ -357,7 +357,7 @@ CONFIG_TARGET_INIT_CMD="/sbin/init"
 CONFIG_TARGET_INIT_SUPPRESS_STDERR=y
 CONFIG_VERSIONOPT=y
 CONFIG_VERSION_DIST="NATCAP"
-CONFIG_VERSION_NUMBER="3.0.0_build201803030755"
+CONFIG_VERSION_NUMBER="3.0.0_build201803060632"
 CONFIG_VERSION_CODE="Beetle"
 CONFIG_VERSION_REPO="http://downloads.openwrt.org/snapshots/trunk/%S/packages"
 CONFIG_VERSION_MANUFACTURER="PTPT52"
@@ -2921,6 +2921,10 @@ CONFIG_PACKAGE_kmod-mppe=y
 # CONFIG_PACKAGE_kmod-nat46 is not set
 # CONFIG_PACKAGE_kmod-netem is not set
 # CONFIG_PACKAGE_kmod-nlmon is not set
+# CONFIG_PACKAGE_kmod-openvswitch is not set
+# CONFIG_PACKAGE_kmod-openvswitch-geneve is not set
+# CONFIG_PACKAGE_kmod-openvswitch-gre is not set
+# CONFIG_PACKAGE_kmod-openvswitch-vxlan is not set
 # CONFIG_PACKAGE_kmod-pktgen is not set
 # CONFIG_PACKAGE_kmod-ppp-synctty is not set
 # CONFIG_PACKAGE_kmod-pppoa is not set
@@ -4914,6 +4918,27 @@ CONFIG_PACKAGE_ddns-scripts=y
 #
 # Open vSwitch
 #
+# CONFIG_PACKAGE_openvswitch is not set
+# CONFIG_PACKAGE_openvswitch-base is not set
+# CONFIG_PACKAGE_openvswitch-ovn is not set
+# CONFIG_PACKAGE_openvswitch-ovn-base is not set
+# CONFIG_PACKAGE_openvswitch-ovn-controller is not set
+# CONFIG_PACKAGE_openvswitch-ovn-controller-vtep is not set
+# CONFIG_PACKAGE_openvswitch-ovn-detrace is not set
+# CONFIG_PACKAGE_openvswitch-ovn-docker-overlay-driver is not set
+# CONFIG_PACKAGE_openvswitch-ovn-docker-underlay-driver is not set
+# CONFIG_PACKAGE_openvswitch-ovn-nbctl is not set
+# CONFIG_PACKAGE_openvswitch-ovn-sbctl is not set
+# CONFIG_PACKAGE_openvswitch-ovn-trace is not set
+# CONFIG_PACKAGE_openvswitch-ovs-dpctl-top is not set
+# CONFIG_PACKAGE_openvswitch-ovs-l3ping is not set
+# CONFIG_PACKAGE_openvswitch-ovs-parse-backtrace is not set
+# CONFIG_PACKAGE_openvswitch-ovs-pcap is not set
+# CONFIG_PACKAGE_openvswitch-ovs-tcpdump is not set
+# CONFIG_PACKAGE_openvswitch-ovs-tcpundump is not set
+# CONFIG_PACKAGE_openvswitch-ovsdb-client is not set
+# CONFIG_PACKAGE_openvswitch-python is not set
+# CONFIG_PACKAGE_openvswitch-vtep is not set
 
 #
 # Printing
