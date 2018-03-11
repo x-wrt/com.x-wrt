@@ -245,11 +245,11 @@ for t in $targets; do
 		TARGET_DEVICE_bcm53xx_DEVICE_netgear-r7000|\
 		TARGET_DEVICE_bcm53xx_DEVICE_netgear-r7900|\
 		TARGET_DEVICE_bcm53xx_DEVICE_netgear-r8000|\
-		TARGET_DEVICE_mvebu_DEVICE_linksys-wrt1200ac|\
-		TARGET_DEVICE_mvebu_DEVICE_linksys-wrt1900ac|\
-		TARGET_DEVICE_mvebu_DEVICE_linksys-wrt1900acs|\
-		TARGET_DEVICE_mvebu_DEVICE_linksys-wrt1900acv2|\
-		TARGET_DEVICE_mvebu_DEVICE_linksys-wrt3200acm|\
+		TARGET_DEVICE_mvebu_cortexa9_DEVICE_linksys-wrt1200ac|\
+		TARGET_DEVICE_mvebu_cortexa9_DEVICE_linksys-wrt1900ac|\
+		TARGET_DEVICE_mvebu_cortexa9_DEVICE_linksys-wrt1900acs|\
+		TARGET_DEVICE_mvebu_cortexa9_DEVICE_linksys-wrt1900acv2|\
+		TARGET_DEVICE_mvebu_cortexa9_DEVICE_linksys-wrt3200acm|\
 		TARGET_DEVICE_ramips_mt7620_DEVICE_hc5661|\
 		TARGET_DEVICE_ramips_mt7620_DEVICE_hc5761|\
 		TARGET_DEVICE_ramips_mt7620_DEVICE_hc5861|\
@@ -349,11 +349,11 @@ for t in $targets; do
 		TARGET_DEVICE_bcm53xx_DEVICE_netgear-r7000|\
 		TARGET_DEVICE_bcm53xx_DEVICE_netgear-r7900|\
 		TARGET_DEVICE_bcm53xx_DEVICE_netgear-r8000|\
-		TARGET_DEVICE_mvebu_DEVICE_linksys-wrt1200ac|\
-		TARGET_DEVICE_mvebu_DEVICE_linksys-wrt1900ac|\
-		TARGET_DEVICE_mvebu_DEVICE_linksys-wrt1900acs|\
-		TARGET_DEVICE_mvebu_DEVICE_linksys-wrt1900acv2|\
-		TARGET_DEVICE_mvebu_DEVICE_linksys-wrt3200acm|\
+		TARGET_DEVICE_mvebu_cortexa9_DEVICE_linksys-wrt1200ac|\
+		TARGET_DEVICE_mvebu_cortexa9_DEVICE_linksys-wrt1900ac|\
+		TARGET_DEVICE_mvebu_cortexa9_DEVICE_linksys-wrt1900acs|\
+		TARGET_DEVICE_mvebu_cortexa9_DEVICE_linksys-wrt1900acv2|\
+		TARGET_DEVICE_mvebu_cortexa9_DEVICE_linksys-wrt3200acm|\
 		TARGET_DEVICE_ramips_mt7620_DEVICE_y1s|\
 		TARGET_DEVICE_ramips_mt7620_DEVICE_youku-yk1|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_hc5962|\

@@ -4,7 +4,7 @@ config.ar71xx-nand
 config.ar71xx-nand-nosymbol
 config.ipq806x-generic
 config.kirkwood-generic
-config.mvebu-generic
+config.mvebu-cortexa9
 config.ramips-mt7620
 config.ramips-mt7620nand-nosymbol
 config.ramips-mt7621
