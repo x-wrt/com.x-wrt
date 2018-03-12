@@ -12,7 +12,7 @@ for cfg in $CFGS; do
 	sed -i "s/CONFIG_VERSION_NUMBER=\".*\"/CONFIG_VERSION_NUMBER=\"$CONFIG_VERSION_NUMBER\"/" ./.config
 	test -n "$1" || exit 255
 	$* || exit 255
-	sh feeds/ptpt52/rom/lede/makemenuconfig_parse.sh
+	test -n "$1" || sh feeds/ptpt52/rom/lede/makemenuconfig_parse.sh
 	cp .config feeds/ptpt52/rom/lede/$cfg
 	sleep 1
 done
