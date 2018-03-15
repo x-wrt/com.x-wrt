@@ -2,6 +2,7 @@ config.ar71xx-generic
 config.ar71xx-generic-mini
 config.ar71xx-nand
 config.ar71xx-nand-nosymbol
+config.ipq40xx-generic
 config.ipq806x-generic
 config.kirkwood-generic
 config.mvebu-cortexa9

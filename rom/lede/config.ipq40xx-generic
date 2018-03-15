@@ -4,7 +4,7 @@
 #
 CONFIG_MODULES=y
 CONFIG_HAVE_DOT_CONFIG=y
-CONFIG_DEFAULT_TARGET_ipq806x=y
+CONFIG_DEFAULT_TARGET_ipq40xx=y
 # CONFIG_TARGET_sunxi is not set
 # CONFIG_TARGET_apm821xx is not set
 # CONFIG_TARGET_ath25 is not set
@@ -37,8 +37,8 @@ CONFIG_DEFAULT_TARGET_ipq806x=y
 # CONFIG_TARGET_octeontx is not set
 # CONFIG_TARGET_oxnas is not set
 # CONFIG_TARGET_armvirt is not set
-# CONFIG_TARGET_ipq40xx is not set
-CONFIG_TARGET_ipq806x=y
+CONFIG_TARGET_ipq40xx=y
+# CONFIG_TARGET_ipq806x is not set
 # CONFIG_TARGET_au1000 is not set
 # CONFIG_TARGET_arc770 is not set
 # CONFIG_TARGET_archs38 is not set
@@ -48,50 +48,40 @@ CONFIG_TARGET_ipq806x=y
 # CONFIG_TARGET_zynq is not set
 # CONFIG_TARGET_x86 is not set
 CONFIG_TARGET_MULTI_PROFILE=y
-# CONFIG_TARGET_ipq806x_Default is not set
-# CONFIG_TARGET_ipq806x_DEVICE_linksys_ea8500 is not set
-# CONFIG_TARGET_ipq806x_DEVICE_netgear_d7800 is not set
-# CONFIG_TARGET_ipq806x_DEVICE_netgear_r7500 is not set
-# CONFIG_TARGET_ipq806x_DEVICE_netgear_r7500v2 is not set
-# CONFIG_TARGET_ipq806x_DEVICE_netgear_r7800 is not set
-# CONFIG_TARGET_ipq806x_DEVICE_qcom_ipq8064-ap148 is not set
-# CONFIG_TARGET_ipq806x_DEVICE_qcom_ipq8064-ap148-legacy is not set
-# CONFIG_TARGET_ipq806x_DEVICE_qcom_ipq8064-db149 is not set
-# CONFIG_TARGET_ipq806x_DEVICE_tplink_c2600 is not set
-# CONFIG_TARGET_ipq806x_DEVICE_tplink_vr2600v is not set
-# CONFIG_TARGET_ipq806x_DEVICE_zyxel_nbg6817 is not set
+# CONFIG_TARGET_ipq40xx_Default is not set
+# CONFIG_TARGET_ipq40xx_DEVICE_avm_fritzbox-4040 is not set
+# CONFIG_TARGET_ipq40xx_DEVICE_asus_rt-ac58u is not set
+# CONFIG_TARGET_ipq40xx_DEVICE_asus_rt-acrh17 is not set
+# CONFIG_TARGET_ipq40xx_DEVICE_meraki_mr33 is not set
+# CONFIG_TARGET_ipq40xx_DEVICE_glinet_gl-b1300 is not set
+# CONFIG_TARGET_ipq40xx_DEVICE_openmesh_a42 is not set
+# CONFIG_TARGET_ipq40xx_DEVICE_qcom_ap-dk01.1-c1 is not set
+# CONFIG_TARGET_ipq40xx_DEVICE_qcom_ap-dk04.1-c1 is not set
 
 #
 # Target Devices
 #
 # CONFIG_TARGET_ALL_PROFILES is not set
 CONFIG_TARGET_PER_DEVICE_ROOTFS=y
-CONFIG_TARGET_DEVICE_ipq806x_DEVICE_linksys_ea8500=y
-CONFIG_TARGET_DEVICE_PACKAGES_ipq806x_DEVICE_linksys_ea8500="aria2 ath10k-firmware-qca99x0 blockd block-mount kmod-crypto-crc32c kmod-fs-autofs4 kmod-fs-exfat kmod-fs-ext4 kmod-fs-msdos kmod-fs-vfat kmod-fuse kmod-lib-crc16 kmod-nls-cp437 kmod-usb2 kmod-usb3 kmod-usb-core kmod-usb-dwc3 kmod-usb-dwc3-of-simple kmod-usb-ehci kmod-usb-ledtrig-usbport kmod-usb-ohci kmod-usb-phy-qcom-dwc3 kmod-usb-printer kmod-usb-storage kmod-usb-storage-uas libsqlite3 libssh2 libstdcpp libxml2 luci-app-aria2 luci-app-p910nd luci-app-samba luci-i18n-aria2-zh-cn luci-i18n-p910nd-en luci-i18n-p910nd-zh-cn luci-i18n-samba-en luci-i18n-samba-zh-cn ntfs-3g openssl-util p910nd samba36-server webui-aria2"
-CONFIG_TARGET_DEVICE_ipq806x_DEVICE_netgear_d7800=y
-CONFIG_TARGET_DEVICE_PACKAGES_ipq806x_DEVICE_netgear_d7800="aria2 ath10k-firmware-qca99x0 blockd block-mount kmod-crypto-crc32c kmod-fs-autofs4 kmod-fs-exfat kmod-fs-ext4 kmod-fs-msdos kmod-fs-vfat kmod-fuse kmod-lib-crc16 kmod-nls-cp437 kmod-usb2 kmod-usb3 kmod-usb-core kmod-usb-dwc3 kmod-usb-dwc3-of-simple kmod-usb-ehci kmod-usb-ledtrig-usbport kmod-usb-ohci kmod-usb-phy-qcom-dwc3 kmod-usb-printer kmod-usb-storage kmod-usb-storage-uas libsqlite3 libssh2 libstdcpp libxml2 luci-app-aria2 luci-app-p910nd luci-app-samba luci-i18n-aria2-zh-cn luci-i18n-p910nd-en luci-i18n-p910nd-zh-cn luci-i18n-samba-en luci-i18n-samba-zh-cn ntfs-3g openssl-util p910nd samba36-server webui-aria2"
-CONFIG_TARGET_DEVICE_ipq806x_DEVICE_netgear_r7500=y
-CONFIG_TARGET_DEVICE_PACKAGES_ipq806x_DEVICE_netgear_r7500="aria2 ath10k-firmware-qca988x blockd block-mount kmod-crypto-crc32c kmod-fs-autofs4 kmod-fs-exfat kmod-fs-ext4 kmod-fs-msdos kmod-fs-vfat kmod-fuse kmod-lib-crc16 kmod-nls-cp437 kmod-usb2 kmod-usb3 kmod-usb-core kmod-usb-dwc3 kmod-usb-dwc3-of-simple kmod-usb-ehci kmod-usb-ledtrig-usbport kmod-usb-ohci kmod-usb-phy-qcom-dwc3 kmod-usb-printer kmod-usb-storage kmod-usb-storage-uas libsqlite3 libssh2 libstdcpp libxml2 luci-app-aria2 luci-app-p910nd luci-app-samba luci-i18n-aria2-zh-cn luci-i18n-p910nd-en luci-i18n-p910nd-zh-cn luci-i18n-samba-en luci-i18n-samba-zh-cn ntfs-3g openssl-util p910nd samba36-server webui-aria2"
-CONFIG_TARGET_DEVICE_ipq806x_DEVICE_netgear_r7500v2=y
-CONFIG_TARGET_DEVICE_PACKAGES_ipq806x_DEVICE_netgear_r7500v2="aria2 ath10k-firmware-qca988x ath10k-firmware-qca99x0 blockd block-mount kmod-crypto-crc32c kmod-fs-autofs4 kmod-fs-exfat kmod-fs-ext4 kmod-fs-msdos kmod-fs-vfat kmod-fuse kmod-lib-crc16 kmod-nls-cp437 kmod-usb2 kmod-usb3 kmod-usb-core kmod-usb-dwc3 kmod-usb-dwc3-of-simple kmod-usb-ehci kmod-usb-ledtrig-usbport kmod-usb-ohci kmod-usb-phy-qcom-dwc3 kmod-usb-printer kmod-usb-storage kmod-usb-storage-uas libsqlite3 libssh2 libstdcpp libxml2 luci-app-aria2 luci-app-p910nd luci-app-samba luci-i18n-aria2-zh-cn luci-i18n-p910nd-en luci-i18n-p910nd-zh-cn luci-i18n-samba-en luci-i18n-samba-zh-cn ntfs-3g openssl-util p910nd samba36-server webui-aria2"
-CONFIG_TARGET_DEVICE_ipq806x_DEVICE_netgear_r7800=y
-CONFIG_TARGET_DEVICE_PACKAGES_ipq806x_DEVICE_netgear_r7800="aria2 ath10k-firmware-qca9984 blockd block-mount kmod-crypto-crc32c kmod-fs-autofs4 kmod-fs-exfat kmod-fs-ext4 kmod-fs-msdos kmod-fs-vfat kmod-fuse kmod-lib-crc16 kmod-nls-cp437 kmod-usb2 kmod-usb3 kmod-usb-core kmod-usb-dwc3 kmod-usb-dwc3-of-simple kmod-usb-ehci kmod-usb-ledtrig-usbport kmod-usb-ohci kmod-usb-phy-qcom-dwc3 kmod-usb-printer kmod-usb-storage kmod-usb-storage-uas libsqlite3 libssh2 libstdcpp libxml2 luci-app-aria2 luci-app-p910nd luci-app-samba luci-i18n-aria2-zh-cn luci-i18n-p910nd-en luci-i18n-p910nd-zh-cn luci-i18n-samba-en luci-i18n-samba-zh-cn ntfs-3g openssl-util p910nd samba36-server webui-aria2"
-# CONFIG_TARGET_DEVICE_ipq806x_DEVICE_qcom_ipq8064-ap148 is not set
-# CONFIG_TARGET_DEVICE_ipq806x_DEVICE_qcom_ipq8064-ap148-legacy is not set
-# CONFIG_TARGET_DEVICE_ipq806x_DEVICE_qcom_ipq8064-db149 is not set
-# CONFIG_TARGET_DEVICE_ipq806x_DEVICE_tplink_c2600 is not set
-# CONFIG_TARGET_DEVICE_ipq806x_DEVICE_tplink_vr2600v is not set
-# CONFIG_TARGET_DEVICE_ipq806x_DEVICE_zyxel_nbg6817 is not set
+CONFIG_TARGET_DEVICE_ipq40xx_DEVICE_asus_rt-ac58u=y
+CONFIG_TARGET_DEVICE_PACKAGES_ipq40xx_DEVICE_asus_rt-ac58u="aria2 blockd block-mount ipq-wifi-asus_rt-ac58u kmod-crypto-crc32c kmod-fs-autofs4 kmod-fs-exfat kmod-fs-ext4 kmod-fs-msdos kmod-fs-vfat kmod-fuse kmod-lib-crc16 kmod-nls-cp437 kmod-usb2 kmod-usb3 kmod-usb-core kmod-usb-dwc3 kmod-usb-dwc3-of-simple kmod-usb-ehci kmod-usb-ledtrig-usbport kmod-usb-ohci kmod-usb-phy-qcom-dwc3 kmod-usb-printer kmod-usb-storage kmod-usb-storage-uas libsqlite3 libssh2 libstdcpp libxml2 luci-app-aria2 luci-app-p910nd luci-app-samba luci-i18n-aria2-zh-cn luci-i18n-p910nd-en luci-i18n-p910nd-zh-cn luci-i18n-samba-en luci-i18n-samba-zh-cn ntfs-3g openssl-util p910nd samba36-server webui-aria2"
+CONFIG_TARGET_DEVICE_ipq40xx_DEVICE_asus_rt-acrh17=y
+CONFIG_TARGET_DEVICE_PACKAGES_ipq40xx_DEVICE_asus_rt-acrh17="aria2 ath10k-firmware-qca4019 ath10k-firmware-qca9984 blockd block-mount kmod-crypto-crc32c kmod-fs-autofs4 kmod-fs-exfat kmod-fs-ext4 kmod-fs-msdos kmod-fs-vfat kmod-fuse kmod-lib-crc16 kmod-nls-cp437 kmod-usb2 kmod-usb3 kmod-usb-core kmod-usb-dwc3 kmod-usb-dwc3-of-simple kmod-usb-ehci kmod-usb-ohci kmod-usb-phy-qcom-dwc3 kmod-usb-printer kmod-usb-storage kmod-usb-storage-uas libsqlite3 libssh2 libstdcpp libxml2 luci-app-aria2 luci-app-p910nd luci-app-samba luci-i18n-aria2-zh-cn luci-i18n-p910nd-en luci-i18n-p910nd-zh-cn luci-i18n-samba-en luci-i18n-samba-zh-cn ntfs-3g openssl-util p910nd samba36-server webui-aria2"
+# CONFIG_TARGET_DEVICE_ipq40xx_DEVICE_avm_fritzbox-4040 is not set
+# CONFIG_TARGET_DEVICE_ipq40xx_DEVICE_meraki_mr33 is not set
+# CONFIG_TARGET_DEVICE_ipq40xx_DEVICE_glinet_gl-b1300 is not set
+# CONFIG_TARGET_DEVICE_ipq40xx_DEVICE_openmesh_a42 is not set
+# CONFIG_TARGET_DEVICE_ipq40xx_DEVICE_qcom_ap-dk01.1-c1 is not set
+# CONFIG_TARGET_DEVICE_ipq40xx_DEVICE_qcom_ap-dk04.1-c1 is not set
 CONFIG_HAS_DEVICES=y
-CONFIG_TARGET_BOARD="ipq806x"
+CONFIG_TARGET_BOARD="ipq40xx"
 CONFIG_TARGET_SUBTARGET="generic"
-CONFIG_TARGET_ARCH_PACKAGES="arm_cortex-a15_neon-vfpv4"
-CONFIG_DEFAULT_TARGET_OPTIMIZATION="-Os -pipe -mcpu=cortex-a15 -mfpu=neon-vfpv4"
-CONFIG_CPU_TYPE="cortex-a15+neon-vfpv4"
-CONFIG_LINUX_4_9=y
-CONFIG_MODULE_DEFAULT_ath10k-firmware-qca988x=y
+CONFIG_TARGET_ARCH_PACKAGES="arm_cortex-a7_neon-vfpv4"
+CONFIG_DEFAULT_TARGET_OPTIMIZATION="-Os -pipe -mcpu=cortex-a7 -mfpu=neon-vfpv4"
+CONFIG_CPU_TYPE="cortex-a7+neon-vfpv4"
+CONFIG_LINUX_4_14=y
+CONFIG_MODULE_DEFAULT_ath10k-firmware-qca4019=y
 CONFIG_MODULE_DEFAULT_ath10k-firmware-qca9984=y
-CONFIG_MODULE_DEFAULT_ath10k-firmware-qca99x0=y
 CONFIG_DEFAULT_base-files=y
 CONFIG_MODULE_DEFAULT_base-files=y
 CONFIG_DEFAULT_busybox=y
@@ -106,34 +96,22 @@ CONFIG_DEFAULT_fstools=y
 CONFIG_MODULE_DEFAULT_fstools=y
 CONFIG_DEFAULT_ip6tables=y
 CONFIG_MODULE_DEFAULT_ip6tables=y
+CONFIG_MODULE_DEFAULT_ipq-wifi-asus_rt-ac58u=y
 CONFIG_DEFAULT_iptables=y
 CONFIG_MODULE_DEFAULT_iptables=y
 CONFIG_DEFAULT_iwinfo=y
 CONFIG_MODULE_DEFAULT_iwinfo=y
-CONFIG_DEFAULT_kmod-ata-ahci=y
-CONFIG_MODULE_DEFAULT_kmod-ata-ahci=y
-CONFIG_DEFAULT_kmod-ata-ahci-platform=y
-CONFIG_MODULE_DEFAULT_kmod-ata-ahci-platform=y
-CONFIG_DEFAULT_kmod-ata-core=y
-CONFIG_MODULE_DEFAULT_kmod-ata-core=y
 CONFIG_DEFAULT_kmod-ath10k=y
 CONFIG_MODULE_DEFAULT_kmod-ath10k=y
 CONFIG_DEFAULT_kmod-gpio-button-hotplug=y
 CONFIG_MODULE_DEFAULT_kmod-gpio-button-hotplug=y
 CONFIG_DEFAULT_kmod-leds-gpio=y
 CONFIG_MODULE_DEFAULT_kmod-leds-gpio=y
-CONFIG_DEFAULT_kmod-usb-core=y
-CONFIG_MODULE_DEFAULT_kmod-usb-core=y
 CONFIG_DEFAULT_kmod-usb-dwc3-of-simple=y
 CONFIG_MODULE_DEFAULT_kmod-usb-dwc3-of-simple=y
-CONFIG_DEFAULT_kmod-usb-ledtrig-usbport=y
 CONFIG_MODULE_DEFAULT_kmod-usb-ledtrig-usbport=y
-CONFIG_DEFAULT_kmod-usb-ohci=y
-CONFIG_MODULE_DEFAULT_kmod-usb-ohci=y
 CONFIG_DEFAULT_kmod-usb-phy-qcom-dwc3=y
 CONFIG_MODULE_DEFAULT_kmod-usb-phy-qcom-dwc3=y
-CONFIG_DEFAULT_kmod-usb2=y
-CONFIG_MODULE_DEFAULT_kmod-usb2=y
 CONFIG_DEFAULT_kmod-usb3=y
 CONFIG_MODULE_DEFAULT_kmod-usb3=y
 CONFIG_DEFAULT_libc=y
@@ -158,8 +136,6 @@ CONFIG_DEFAULT_ppp-mod-pppoe=y
 CONFIG_MODULE_DEFAULT_ppp-mod-pppoe=y
 CONFIG_DEFAULT_swconfig=y
 CONFIG_MODULE_DEFAULT_swconfig=y
-CONFIG_DEFAULT_uboot-envtools=y
-CONFIG_MODULE_DEFAULT_uboot-envtools=y
 CONFIG_DEFAULT_uci=y
 CONFIG_MODULE_DEFAULT_uci=y
 CONFIG_DEFAULT_uclient-fetch=y
@@ -174,6 +150,7 @@ CONFIG_PCIE_SUPPORT=y
 CONFIG_USB_SUPPORT=y
 CONFIG_RTC_SUPPORT=y
 CONFIG_USES_DEVICETREE=y
+CONFIG_USES_INITRAMFS=y
 CONFIG_USES_SQUASHFS=y
 CONFIG_NAND_SUPPORT=y
 CONFIG_arm=y
@@ -359,7 +336,7 @@ CONFIG_KERNEL_GIT_CLONE_URI=""
 # CONFIG_SRC_TREE_OVERRIDE is not set
 CONFIG_EXTRA_OPTIMIZATION="-fno-caller-saves -fno-plt"
 CONFIG_TARGET_OPTIONS=y
-CONFIG_TARGET_OPTIMIZATION="-Os -pipe -mcpu=cortex-a15 -mfpu=neon-vfpv4"
+CONFIG_TARGET_OPTIMIZATION="-Os -pipe -mcpu=cortex-a7 -mfpu=neon-vfpv4"
 CONFIG_SOFT_FLOAT=y
 # CONFIG_EXTERNAL_TOOLCHAIN is not set
 CONFIG_NEED_TOOLCHAIN=y
@@ -2403,6 +2380,7 @@ CONFIG_PACKAGE_wireless-tools=y
 #
 # Boot Loaders
 #
+CONFIG_PACKAGE_u-boot-fritz4040=y
 
 #
 # Development
@@ -2445,6 +2423,10 @@ CONFIG_PACKAGE_wireless-tools=y
 #
 # ath10k IPQ4019 Boarddata
 #
+CONFIG_PACKAGE_ipq-wifi-asus_rt-ac58u=m
+# CONFIG_PACKAGE_ipq-wifi-avm_fritzbox-4040 is not set
+# CONFIG_PACKAGE_ipq-wifi-glinet_gl-b1300 is not set
+# CONFIG_PACKAGE_ipq-wifi-meraki_mr33 is not set
 # CONFIG_PACKAGE_aircard-pcmcia-firmware is not set
 # CONFIG_PACKAGE_ar3k-firmware is not set
 CONFIG_PACKAGE_ath10k-firmware-qca4019=m
@@ -2562,7 +2544,6 @@ CONFIG_PACKAGE_wireless-regdb=y
 # CONFIG_PACKAGE_kmod-aoe is not set
 CONFIG_PACKAGE_kmod-ata-core=y
 CONFIG_PACKAGE_kmod-ata-ahci=y
-CONFIG_PACKAGE_kmod-ata-ahci-platform=y
 # CONFIG_PACKAGE_kmod-ata-artop is not set
 # CONFIG_PACKAGE_kmod-ata-marvell-sata is not set
 # CONFIG_PACKAGE_kmod-ata-nvidia-sata is not set
@@ -2572,6 +2553,7 @@ CONFIG_PACKAGE_kmod-ata-ahci-platform=y
 # CONFIG_PACKAGE_kmod-ata-sil24 is not set
 # CONFIG_PACKAGE_kmod-ata-via-sata is not set
 # CONFIG_PACKAGE_kmod-block2mtd is not set
+# CONFIG_PACKAGE_kmod-dax is not set
 # CONFIG_PACKAGE_kmod-dm is not set
 # CONFIG_PACKAGE_kmod-loop is not set
 # CONFIG_PACKAGE_kmod-md-mod is not set
@@ -2808,6 +2790,7 @@ CONFIG_PACKAGE_kmod-ipt-nat6=y
 # CONFIG_PACKAGE_kmod-ipt-nathelper-rtsp is not set
 # CONFIG_PACKAGE_kmod-ipt-nflog is not set
 # CONFIG_PACKAGE_kmod-ipt-nfqueue is not set
+# CONFIG_PACKAGE_kmod-ipt-offload is not set
 # CONFIG_PACKAGE_kmod-ipt-psd is not set
 # CONFIG_PACKAGE_kmod-ipt-quota2 is not set
 # CONFIG_PACKAGE_kmod-ipt-raw is not set
@@ -2822,6 +2805,7 @@ CONFIG_PACKAGE_kmod-ipt-nat6=y
 CONFIG_PACKAGE_kmod-nf-conntrack=y
 CONFIG_PACKAGE_kmod-nf-conntrack-netlink=y
 CONFIG_PACKAGE_kmod-nf-conntrack6=y
+# CONFIG_PACKAGE_kmod-nf-flow is not set
 CONFIG_PACKAGE_kmod-nf-ipt=y
 CONFIG_PACKAGE_kmod-nf-ipt6=y
 CONFIG_PACKAGE_kmod-nf-nat=y
@@ -2838,6 +2822,7 @@ CONFIG_PACKAGE_kmod-nfnetlink=y
 # CONFIG_PACKAGE_kmod-nft-core is not set
 # CONFIG_PACKAGE_kmod-nft-nat is not set
 # CONFIG_PACKAGE_kmod-nft-nat6 is not set
+# CONFIG_PACKAGE_kmod-nft-offload is not set
 
 #
 # Network Devices

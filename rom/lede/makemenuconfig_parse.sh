@@ -182,8 +182,8 @@ for t in $targets; do
 	case $t in
 		#>8M flash
 		TARGET_DEVICE_ramips_mt7621_DEVICE_pbr-m1|\
-		TARGET_DEVICE_ipq806x_DEVICE_asus_rt-ac58u|\
-		TARGET_DEVICE_ipq806x_DEVICE_asus_rt-acrh17|\
+		TARGET_DEVICE_ipq40xx_DEVICE_asus_rt-ac58u|\
+		TARGET_DEVICE_ipq40xx_DEVICE_asus_rt-acrh17|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_zbtlink_zbt-we3526|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_d-team_newifi-d2|\
 		TARGET_DEVICE_ramips_mt7620_DEVICE_oy-0001|\
@@ -322,8 +322,8 @@ for t in $targets; do
 	case $t in
 		#with usb3
 		TARGET_DEVICE_sunxi_cortexa7_DEVICE_sun8i-h3-nanopi-neo|\
-		TARGET_DEVICE_ipq806x_DEVICE_asus_rt-ac58u|\
-		TARGET_DEVICE_ipq806x_DEVICE_asus_rt-acrh17|\
+		TARGET_DEVICE_ipq40xx_DEVICE_asus_rt-ac58u|\
+		TARGET_DEVICE_ipq40xx_DEVICE_asus_rt-acrh17|\
 		TARGET_DEVICE_ipq806x_DEVICE_zyxel_nbg6817|\
 		TARGET_DEVICE_ipq806x_DEVICE_avm_fritzbox-4040|\
 		TARGET_DEVICE_bcm53xx_DEVICE_netgear-r6250|\
