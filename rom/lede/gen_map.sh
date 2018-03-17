@@ -16,11 +16,13 @@ echo sha256sums: map.sha256sums >>map.list
 
 x86bin="`find bin/targets/ | grep -- -combined | while read line; do basename $line; done`"
 test -n "$x86bin" && {
-	echo x86_64_Generic:
+	echo x86_64 or x86:
 	echo "$x86bin"
 	echo
-	echo "$sha256sums" | grep "$x86bin" >>map.sha256sums
-	echo "x86_64_Generic:$x86bin" >>map.list
+	for bin in $x86bin; do
+		echo "$sha256sums" | grep "$bin" >>map.sha256sums
+		echo "x86_64 or x86:$bin" >>map.list
+	done
 }
 
 for t in $targets; do
@@ -33,7 +35,7 @@ for t in $targets; do
 		test -n "$dis" || {
 			dis=`echo "$text" | grep '$(call Device' | head -n1 | cut -d, -f2 | sed 's/)$//g'`
 		}
-		bin=`echo "$bins" | grep -i "\($name-e\|$name-s\|$name-f\|$name-u\)"`
+		bin=`echo "$bins" | grep -i "\($name-e\|$name-s\|$name-f\|$name-u\|$name-i\)"`
 		test -n "$bin" || {
 			name=`echo $name | tr _ -`
 			bin=`echo "$bins" | grep -i "\($name-s\|$name-f\|$name-u\)"`
