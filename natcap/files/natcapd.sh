@@ -506,14 +506,7 @@ main_trigger() {
 			#checking extra run status
 			UP=`cat /proc/uptime | cut -d"." -f1`
 
-			SRVS=`uci get natcapd.default.server`
-			SRV=""
-			test -n "$SRVS" && {
-				for w in $SRVS; do
-					SRV=`echo $w | cut -d":" -f1`
-					break
-				done
-			}
+			SRV="`cat /dev/natcap_ctl | grep current_server | grep -o '\([0-9]\{1,3\}\)\.\([0-9]\{1,3\}\)\.\([0-9]\{1,3\}\)\.\([0-9]\{1,3\}\)'`"
 			TXRX=`txrx_vals | b64encode`
 			CV=`uci get natcapd.default.config_version 2>/dev/null`
 			ACC=`uci get natcapd.default.account 2>/dev/null`
