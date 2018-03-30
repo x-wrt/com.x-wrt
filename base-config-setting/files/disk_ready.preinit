@@ -5,6 +5,7 @@
 
 
 do_disk_ready() {
+	which gdisk && which fdisk && which partx && which mkfs.ext4 || return
 	overlay_size=$((1*1024*1024*1024)) #1G
 	disktype="dos"
 	fdisk -l /dev/sda 2>/dev/null | grep -q "type: gpt" && disktype="gpt"
@@ -13,56 +14,109 @@ do_disk_ready() {
 	test ${sector_size} -gt 0 || sector_size=512
 	diskpart=`fdisk -l /dev/sda | grep '^/dev/sda[0-9]' | wc -l`
 
-	[ "$disktype" = "gpt" ] && {
-		#TODO
-		return
-	}
+	if [ "$disktype" = "gpt" ]; then
+		[ "x$diskpart" = "x6" ] || {
+			disksize="`fdisk -l /dev/sda | grep '/dev/sda:' | head -n1 | awk '{print $5}'`"
+			test -n "$disksize" || return
+			# <= 2GiB && return
+			test $disksize -le 2147483648 && return
 
-	# for dos partition type only
-	[ "$disktype" = "dos" ] || return
-	[ "x$diskpart" = "x4" ] || {
-		disksize="`fdisk -l /dev/sda | grep '/dev/sda:' | head -n1 | awk '{print $5}'`"
-		test -n "$disksize" || return
-		# <= 2GiB && return
-		test $disksize -le 2147483648 && return
+			echo -ne 'w\ny\ny\n' | gdisk /dev/sda
+			echo -ne 'd\n6\nw\ny\n' | gdisk /dev/sda
+			echo -ne 'd\n5\nw\ny\n' | gdisk /dev/sda
+			set `fdisk -l /dev/sda 2>/dev/null | grep ^/dev/sda4`
+			sda4_start=$2
+			sda4_end=$3
 
-		echo -ne 'd\n4\nw\n' | fdisk /dev/sda
-		echo -ne 'd\n3\nw\n' | fdisk /dev/sda
-		set `fdisk -l /dev/sda 2>/dev/null | grep ^/dev/sda2`
-		sda2_start=$2
-		sda2_end=$3
+			# overlay partition
+			sda5_start=$((sda4_end+512+1))
+			sda5_end=$((sda5_start+overlay_size/sector_size))
 
-		# overlay partition
-		sda3_start=$((sda2_end+512+1))
-		sda3_end=$((sda3_start+overlay_size/sector_size))
+			# data partition
+			sda6_start=$((sda5_end+512+1))
 
-		# data partition
-		sda4_start=$((sda3_end+512+1))
+			# [_boot_|_rootfs_...1G...][cfg 1G][data...]
+			echo -ne "n\n\n${sda5_start}\n${sda5_end}\n8300\nn\n\n${sda6_start}\n\n8300\nw\ny\n" | gdisk /dev/sda
 
-		# [_boot_|_rootfs_...1G...][cfg 1G][data...]
-		echo -ne "n\np\n\n${sda3_start}\n${sda3_end}\nn\np\n${sda4_start}\n\nw\n" | fdisk /dev/sda
+			partx -a /dev/sda
+			test -b /dev/sda5 -a -b /dev/sda6  || {
+				MAJOR="`ls -l /dev/sda | grep '/dev/sda' | awk '{print $5}' | grep -o '[0-9]*'`"
+				test -n "$MAJOR" && {
+					rm -f /dev/sda5
+					mknod /dev/sda5 b $MAJOR 5
+					rm -f /dev/sda6
+					mknod /dev/sda6 b $MAJOR 6
+				}
+			}
 
-		partx -a /dev/sda
-		test -b /dev/sda3 -a -b /dev/sda4  || {
-			MAJOR="`ls -l /dev/sda2 | grep '/dev/sda2' | awk '{print $5}' | grep -o '[0-9]*'`"
-			test -n "$MAJOR" && {
-				rm -f /dev/sda3
-				mknod /dev/sda3 b $MAJOR 3
-				rm -f /dev/sda4
-				mknod /dev/sda4 b $MAJOR 4
+			# setup for fstab
+			test -b /dev/sda6 && echo erase >/dev/sda6
+			mount -o remount,rw / && {
+				test -b /dev/sda5 && rm -f /etc/sda.ready
+				cp /etc/fstab.config.gpt /etc/config/fstab
+				mount -o remount,ro
 			}
 		}
-		test -b /dev/sda3 && rm -f /etc/sda.ready
-		test -b /dev/sda4 && echo erase >/dev/sda4
-	}
-	test -b /dev/sda3 && {
-		test -f /etc/sda.ready || {
-			echo -ne 'y\n' | mkfs.ext4 /dev/sda3
+		test -b /dev/sda5 && {
+			test -f /etc/sda.ready || {
+				echo -ne 'y\n' | mkfs.ext4 /dev/sda5
+			}
 		}
-	}
-	test -b /dev/sda4 && [ "x`head -c5 /dev/sda4`" = "xerase" ] && {
-		echo -ne 'y\n' | mkfs.ext4 /dev/sda4
-	}
+		test -b /dev/sda6 && [ "x`head -c5 /dev/sda6`" = "xerase" ] && {
+			echo -ne 'y\n' | mkfs.ext4 /dev/sda6
+		}
+	elif [ "$disktype" = "dos" ]; then
+		[ "x$diskpart" = "x4" ] || {
+			disksize="`fdisk -l /dev/sda | grep '/dev/sda:' | head -n1 | awk '{print $5}'`"
+			test -n "$disksize" || return
+			# <= 2GiB && return
+			test $disksize -le 2147483648 && return
+
+			echo -ne 'd\n4\nw\n' | fdisk /dev/sda
+			echo -ne 'd\n3\nw\n' | fdisk /dev/sda
+			set `fdisk -l /dev/sda 2>/dev/null | grep ^/dev/sda2`
+			sda2_start=$2
+			sda2_end=$3
+
+			# overlay partition
+			sda3_start=$((sda2_end+512+1))
+			sda3_end=$((sda3_start+overlay_size/sector_size))
+
+			# data partition
+			sda4_start=$((sda3_end+512+1))
+
+			# [_boot_|_rootfs_...1G...][cfg 1G][data...]
+			echo -ne "n\np\n\n${sda3_start}\n${sda3_end}\nn\np\n${sda4_start}\n\nw\n" | fdisk /dev/sda
+
+			partx -a /dev/sda
+			test -b /dev/sda3 -a -b /dev/sda4  || {
+				MAJOR="`ls -l /dev/sda | grep '/dev/sda' | awk '{print $5}' | grep -o '[0-9]*'`"
+				test -n "$MAJOR" && {
+					rm -f /dev/sda3
+					mknod /dev/sda3 b $MAJOR 3
+					rm -f /dev/sda4
+					mknod /dev/sda4 b $MAJOR 4
+				}
+			}
+
+			# setup for fstab
+			test -b /dev/sda4 && echo erase >/dev/sda4
+			mount -o remount,rw / && {
+				test -b /dev/sda3 && rm -f /etc/sda.ready
+				cp /etc/fstab.config /etc/config/fstab
+				mount -o remount,ro
+			}
+		}
+
+		test -b /dev/sda3 && {
+			test -f /etc/sda.ready || {
+				echo -ne 'y\n' | mkfs.ext4 /dev/sda3
+			}
+		}
+		test -b /dev/sda4 && [ "x`head -c5 /dev/sda4`" = "xerase" ] && {
+			echo -ne 'y\n' | mkfs.ext4 /dev/sda4
+		}
+	fi
 }
 
 boot_hook_add preinit_main do_disk_ready
