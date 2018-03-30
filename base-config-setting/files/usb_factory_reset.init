@@ -4,7 +4,7 @@
 START=11
 
 boot() {
-	local DEV=`test -f /rom/etc/sda3.ready && echo /dev/sdb1 || echo /dev/sda1`
+	local DEV=`test -f /rom/etc/sda.ready && echo /dev/sdb1 || echo /dev/sda1`
 	mkdir /tmp/usb_reset || return 0
 	mount $DEV /tmp/usb_reset || {
 		rmdir /tmp/usb_reset

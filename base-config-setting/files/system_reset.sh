@@ -7,7 +7,7 @@
 
 if test -f /rom/lib/preinit/79_disk_ready; then
 	sleep 1
-	mount -o remount,rw /rom && rm -f /rom/etc/sda3.ready
+	mount -o remount,rw /rom && rm -f /rom/etc/sda.ready
 else
 	sleep 1
 	killall dropbear uhttpd
@@ -22,5 +22,5 @@ fi
 
 exit 0
 
-# 1. to reset config: reset /overlay: remove /rom/etc/sda3.ready and rebboot
+# 1. to reset config: reset /overlay: remove /rom/etc/sda.ready and rebboot
 # 2. to reset /data: echo erase >/dev/sda4 and reboot

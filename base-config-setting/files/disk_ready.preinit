@@ -1,6 +1,7 @@
 #!/bin/sh
 # Copyright (C) 2006 OpenWrt.org
 # Copyright (C) 2010 Vertical Communications
+# Copyright (C) 2017 PTPT52
 
 
 do_disk_ready() {
@@ -51,11 +52,11 @@ do_disk_ready() {
 				mknod /dev/sda4 b $MAJOR 4
 			}
 		}
-		test -b /dev/sda3 && rm -f /etc/sda3.ready
+		test -b /dev/sda3 && rm -f /etc/sda.ready
 		test -b /dev/sda4 && echo erase >/dev/sda4
 	}
 	test -b /dev/sda3 && {
-		test -f /etc/sda3.ready || {
+		test -f /etc/sda.ready || {
 			echo -ne 'y\n' | mkfs.ext4 /dev/sda3
 		}
 	}
