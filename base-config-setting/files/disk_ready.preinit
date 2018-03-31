@@ -50,13 +50,19 @@ do_disk_ready() {
 			}
 
 			# setup for fstab
-			test -b /dev/sda6 && echo erase >/dev/sda6
+			if mount -t ext4 -o ro,noatime /dev/sda6 /mnt; then
+				# /dev/sda6 has valid filesystem, no need to format
+				umount /mnt
+			else
+				test -b /dev/sda6 && echo erase >/dev/sda6
+			fi
 			mount -o remount,rw / && {
 				test -b /dev/sda5 && rm -f /etc/sda.ready
 				cp /etc/fstab.config.gpt /etc/config/fstab
 				mount -o remount,ro
 			}
 		}
+
 		test -b /dev/sda5 && {
 			test -f /etc/sda.ready || {
 				echo -ne 'y\n' | mkfs.ext4 /dev/sda5
@@ -100,7 +106,12 @@ do_disk_ready() {
 			}
 
 			# setup for fstab
-			test -b /dev/sda4 && echo erase >/dev/sda4
+			if mount -t ext4 -o ro,noatime /dev/sda4 /mnt; then
+				# /dev/sda4 has valid filesystem, no need to format
+				umount /mnt
+			else
+				test -b /dev/sda4 && echo erase >/dev/sda4
+			fi
 			mount -o remount,rw / && {
 				test -b /dev/sda3 && rm -f /etc/sda.ready
 				cp /etc/fstab.config /etc/config/fstab
