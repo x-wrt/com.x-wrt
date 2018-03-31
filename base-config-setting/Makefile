@@ -63,6 +63,8 @@ define Package/$(PKG_NAME)/install
 	$(INSTALL_BIN) ./files/usb_factory_reset.init $(1)/etc/init.d/usb_factory_reset
 	$(INSTALL_BIN) ./files/auto_usb_mount.init $(1)/etc/init.d/auto_usb_mount
 	$(INSTALL_DATA) ./files/auto_usb_mount.hotplug $(1)/usr/share/base-config-setting/auto_usb_mount.hotplug
+	$(INSTALL_DIR) $(1)/lib/preinit
+	$(INSTALL_DATA) ./files/mnt_ready.preinit $(1)/lib/preinit/81_mnt_ready
 ifeq ($(CONFIG_TARGET_x86),y)
 	$(INSTALL_DATA) ./files/fstab.config $(1)/etc/fstab.config
 	$(INSTALL_DATA) ./files/fstab.config.gpt $(1)/etc/fstab.config.gpt
