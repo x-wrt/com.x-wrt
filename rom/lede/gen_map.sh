@@ -14,14 +14,30 @@ echo -n >map.list
 
 echo sha256sums: map.sha256sums >>map.list
 
-x86bin="`find bin/targets/ | grep -- -combined | while read line; do basename $line; done`"
+x86bin="`find bin/targets/ | grep -- '\(-combined\|-uefi\)' | while read line; do basename $line; done`"
 test -n "$x86bin" && {
 	echo x86_64 or x86:
 	echo "$x86bin"
 	echo
 	for bin in $x86bin; do
 		echo "$sha256sums" | grep "$bin" >>map.sha256sums
-		echo "x86_64 or x86:$bin" >>map.list
+		case $bin in
+			*x86-64-combined*)
+				echo "x86 64bits (MBR dos):$bin" >>map.list
+			;;
+			*x86-64-uefi*)
+				echo "x86 64bits (UEFI gpt):$bin" >>map.list
+			;;
+			*x86-generic-combined*)
+				echo "x86 generic (MBR dos):$bin" >>map.list
+			;;
+			*x86-generic-uefi*)
+				echo "x86 generic (UEFI gpt):$bin" >>map.list
+			;;
+			*)
+				echo "x86_64 or x86:$bin" >>map.list
+			;;
+		esac
 	done
 }
 
