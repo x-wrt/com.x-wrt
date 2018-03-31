@@ -180,8 +180,8 @@ test $version -lt 7 && {
 		uci -q batch <<-EOF >/dev/null
 			add samba sambashare
 			set samba.@sambashare[-1].browseable='yes'
-			set samba.@sambashare[-1].name='aria2'
-			set samba.@sambashare[-1].path='/mnt/sda1/aria2'
+			set samba.@sambashare[-1].name='ShareDisks'
+			set samba.@sambashare[-1].path='/mnt/'
 			set samba.@sambashare[-1].users='lede'
 			set samba.@sambashare[-1].read_only='no'
 			set samba.@sambashare[-1].guest_ok='no'
