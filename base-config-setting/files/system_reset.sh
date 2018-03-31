@@ -22,5 +22,5 @@ fi
 
 exit 0
 
-# 1. to reset config: reset /overlay: remove /rom/etc/sda.ready and rebboot
-# 2. to reset /data: echo erase >/dev/sda4 and reboot
+# 1. to reset config: reset /overlay: remove /rom/etc/sda.ready and reboot
+# 2. to reset /data: echo erase >/dev/sda4 (it is /dev/sda6 if gpt) and reboot
