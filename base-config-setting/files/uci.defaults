@@ -193,6 +193,14 @@ test $version -lt 7 && {
 	version=7
 }
 
+# disable https by default
+test $version -lt 8 && {
+	uci set uhttpd.main.redirect_https='0'
+	uci delete uhttpd.main.listen_https
+	uci commit uhttpd
+	version=8
+}
+
 #FIXME fixup for openvpn client
 uci delete openvpn_recipes.client_tun.pkcs12 2>/dev/null && uci commit openvpn_recipes
 
