@@ -343,7 +343,8 @@ CONFIG_TARGET_PER_DEVICE_ROOTFS=y
 # CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_PB42 is not set
 # CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_PB44 is not set
 # CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_fritz300e is not set
-# CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_F9K1115V2 is not set
+CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_F9K1115V2=y
+CONFIG_TARGET_DEVICE_PACKAGES_ar71xx_generic_DEVICE_F9K1115V2="aria2 ath10k-firmware-qca988x blockd block-mount kmod-ath10k kmod-crypto-crc32c kmod-fs-autofs4 kmod-fs-exfat kmod-fs-ext4 kmod-fs-msdos kmod-fs-vfat kmod-fuse kmod-lib-crc16 kmod-nls-cp437 kmod-scsi-core kmod-usb2 kmod-usb3 kmod-usb-core kmod-usb-ehci kmod-usb-ledtrig-usbport kmod-usb-ohci kmod-usb-printer kmod-usb-storage kmod-usb-storage-uas libsqlite3 libssh2 libstdcpp libxml2 luci-app-aria2 luci-app-p910nd luci-app-samba luci-i18n-aria2-zh-cn luci-i18n-p910nd-en luci-i18n-p910nd-zh-cn luci-i18n-samba-en luci-i18n-samba-zh-cn ntfs-3g p910nd samba36-server webui-aria2"
 # CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_BXU2000N2 is not set
 # CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_bhr-4grv2 is not set
 # CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_WZR450HP2 is not set
@@ -627,6 +628,7 @@ CONFIG_MODULE_DEFAULT_kmod-usb-ledtrig-usbport=y
 CONFIG_MODULE_DEFAULT_kmod-usb-ohci=y
 CONFIG_MODULE_DEFAULT_kmod-usb-storage=y
 CONFIG_MODULE_DEFAULT_kmod-usb2=y
+CONFIG_MODULE_DEFAULT_kmod-usb3=y
 CONFIG_DEFAULT_libc=y
 CONFIG_MODULE_DEFAULT_libc=y
 CONFIG_DEFAULT_libgcc=y
