@@ -7,7 +7,7 @@ test -n "$CONFIG_VERSION_NUMBER" || CONFIG_VERSION_NUMBER="3.0.0_build`date +%Y%
 find target/linux/ feeds/luci/ feeds/packages/ package/ -name Makefile -exec touch {} \;
 
 for cfg in $CFGS; do
-	echo $cfg
+	echo loading... $cfg
 	cp feeds/ptpt52/rom/lede/$cfg .config
 	sed -i "s/CONFIG_VERSION_NUMBER=\".*\"/CONFIG_VERSION_NUMBER=\"$CONFIG_VERSION_NUMBER\"/" ./.config
 	test -n "$1" || exit 255

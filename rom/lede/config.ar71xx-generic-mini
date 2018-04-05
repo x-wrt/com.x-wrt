@@ -116,6 +116,7 @@ CONFIG_TARGET_MULTI_PROFILE=y
 # CONFIG_TARGET_ar71xx_generic_DEVICE_wpj531 is not set
 # CONFIG_TARGET_ar71xx_generic_DEVICE_wpj558 is not set
 # CONFIG_TARGET_ar71xx_generic_DEVICE_wpj563 is not set
+# CONFIG_TARGET_ar71xx_generic_DEVICE_dap-1330-a1 is not set
 # CONFIG_TARGET_ar71xx_generic_DEVICE_dap-2695-a1 is not set
 # CONFIG_TARGET_ar71xx_generic_DEVICE_DGL5500A1 is not set
 # CONFIG_TARGET_ar71xx_generic_DEVICE_DHP1565A1 is not set
@@ -197,6 +198,12 @@ CONFIG_TARGET_MULTI_PROFILE=y
 # CONFIG_TARGET_ar71xx_generic_DEVICE_AP143_8M is not set
 # CONFIG_TARGET_ar71xx_generic_DEVICE_AP147_010 is not set
 # CONFIG_TARGET_ar71xx_generic_DEVICE_AP152_16M is not set
+# CONFIG_TARGET_ar71xx_generic_DEVICE_e1700ac-v2-16M is not set
+# CONFIG_TARGET_ar71xx_generic_DEVICE_e1700ac-v2-8M is not set
+# CONFIG_TARGET_ar71xx_generic_DEVICE_e600g-v2-16M is not set
+# CONFIG_TARGET_ar71xx_generic_DEVICE_e600g-v2-8M is not set
+# CONFIG_TARGET_ar71xx_generic_DEVICE_e600gac-v2-16M is not set
+# CONFIG_TARGET_ar71xx_generic_DEVICE_e600gac-v2-8M is not set
 # CONFIG_TARGET_ar71xx_generic_DEVICE_ap531b0 is not set
 # CONFIG_TARGET_ar71xx_generic_DEVICE_wam250 is not set
 # CONFIG_TARGET_ar71xx_generic_DEVICE_CAP4200AG is not set
@@ -208,6 +215,7 @@ CONFIG_TARGET_MULTI_PROFILE=y
 # CONFIG_TARGET_ar71xx_generic_DEVICE_archer-c58-v1 is not set
 # CONFIG_TARGET_ar71xx_generic_DEVICE_archer-c59-v1 is not set
 # CONFIG_TARGET_ar71xx_generic_DEVICE_archer-c60-v1 is not set
+# CONFIG_TARGET_ar71xx_generic_DEVICE_archer-c60-v2 is not set
 # CONFIG_TARGET_ar71xx_generic_DEVICE_archer-c7-v1 is not set
 # CONFIG_TARGET_ar71xx_generic_DEVICE_archer-c7-v2 is not set
 # CONFIG_TARGET_ar71xx_generic_DEVICE_archer-c7-v2-il is not set
@@ -271,12 +279,6 @@ CONFIG_TARGET_MULTI_PROFILE=y
 # CONFIG_TARGET_ar71xx_generic_DEVICE_ubnt-unifiac-pro is not set
 # CONFIG_TARGET_ar71xx_generic_DEVICE_ubnt-unifi-outdoor is not set
 # CONFIG_TARGET_ar71xx_generic_DEVICE_ubdev01 is not set
-# CONFIG_TARGET_ar71xx_generic_DEVICE_e1700ac-v2-16M is not set
-# CONFIG_TARGET_ar71xx_generic_DEVICE_e1700ac-v2-8M is not set
-# CONFIG_TARGET_ar71xx_generic_DEVICE_e600g-v2-16M is not set
-# CONFIG_TARGET_ar71xx_generic_DEVICE_e600g-v2-8M is not set
-# CONFIG_TARGET_ar71xx_generic_DEVICE_e600gac-v2-16M is not set
-# CONFIG_TARGET_ar71xx_generic_DEVICE_e600gac-v2-8M is not set
 # CONFIG_TARGET_ar71xx_generic_DEVICE_wrtnode2q is not set
 # CONFIG_TARGET_ar71xx_generic_DEVICE_dr342 is not set
 # CONFIG_TARGET_ar71xx_generic_DEVICE_dr531 is not set
@@ -371,6 +373,7 @@ CONFIG_TARGET_PER_DEVICE_ROOTFS=y
 # CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_wpj531 is not set
 # CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_wpj558 is not set
 # CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_wpj563 is not set
+# CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_dap-1330-a1 is not set
 # CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_dap-2695-a1 is not set
 # CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_DGL5500A1 is not set
 # CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_DHP1565A1 is not set
@@ -460,6 +463,12 @@ CONFIG_TARGET_PER_DEVICE_ROOTFS=y
 # CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_AP143_8M is not set
 # CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_AP147_010 is not set
 # CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_AP152_16M is not set
+# CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_e1700ac-v2-16M is not set
+# CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_e1700ac-v2-8M is not set
+# CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_e600g-v2-16M is not set
+# CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_e600g-v2-8M is not set
+# CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_e600gac-v2-16M is not set
+# CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_e600gac-v2-8M is not set
 # CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_ap531b0 is not set
 # CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_wam250 is not set
 # CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_CAP4200AG is not set
@@ -473,6 +482,7 @@ CONFIG_TARGET_PER_DEVICE_ROOTFS=y
 # CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_archer-c58-v1 is not set
 # CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_archer-c59-v1 is not set
 # CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_archer-c60-v1 is not set
+# CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_archer-c60-v2 is not set
 CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_archer-c7-v1=y
 CONFIG_TARGET_DEVICE_PACKAGES_ar71xx_generic_DEVICE_archer-c7-v1="ath10k-firmware-qca988x blockd block-mount kmod-ath10k kmod-crypto-crc32c kmod-fs-autofs4 kmod-fs-exfat kmod-fs-ext4 kmod-fs-msdos kmod-fs-vfat kmod-fuse kmod-lib-crc16 kmod-nls-cp437 kmod-scsi-core kmod-usb2 kmod-usb-core kmod-usb-ehci kmod-usb-ledtrig-usbport kmod-usb-ohci kmod-usb-storage kmod-usb-storage-uas ntfs-3g"
 CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_archer-c7-v2=y
@@ -546,12 +556,6 @@ CONFIG_TARGET_DEVICE_PACKAGES_ar71xx_generic_DEVICE_tl-wdx6501-v7="ath10k-firmwa
 # CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_mynet-n600 is not set
 # CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_mynet-n750 is not set
 # CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_MYNETREXT is not set
-# CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_e1700ac-v2-16M is not set
-# CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_e1700ac-v2-8M is not set
-# CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_e600g-v2-16M is not set
-# CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_e600g-v2-8M is not set
-# CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_e600gac-v2-16M is not set
-# CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_e600gac-v2-8M is not set
 # CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_wrtnode2q is not set
 # CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_ap90q is not set
 # CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_cpe830 is not set
@@ -875,7 +879,7 @@ CONFIG_TARGET_INIT_CMD="/sbin/init"
 CONFIG_TARGET_INIT_SUPPRESS_STDERR=y
 CONFIG_VERSIONOPT=y
 CONFIG_VERSION_DIST="NATCAP"
-CONFIG_VERSION_NUMBER="3.0.0_build201804052216"
+CONFIG_VERSION_NUMBER="3.0.0_build201804071303"
 CONFIG_VERSION_CODE="Beetle"
 CONFIG_VERSION_REPO="http://downloads.openwrt.org/snapshots/trunk/%S/packages"
 CONFIG_VERSION_MANUFACTURER="PTPT52"

@@ -276,6 +276,7 @@ for t in $targets; do
 		TARGET_DEVICE_ar71xx_generic_DEVICE_tl-wr902ac-v1|\
 		TARGET_DEVICE_ar71xx_generic_DEVICE_archer-c58-v1|\
 		TARGET_DEVICE_ar71xx_generic_DEVICE_archer-c60-v1|\
+		TARGET_DEVICE_ar71xx_generic_DEVICE_archer-c60-v2|\
 		TARGET_DEVICE_ramips_mt7620_DEVICE_zbt-we2026|\
 		TARGET_DEVICE_ramips_mt76x8_DEVICE_tl-wr841n-v13|\
 		TARGET_DEVICE_ramips_mt76x8_DEVICE_tl-wr840n-v4|\
@@ -448,6 +449,7 @@ for t in $targets; do
 		TARGET_DEVICE_ramips_mt7620_DEVICE_whr-1166d|\
 		TARGET_DEVICE_ar71xx_generic_DEVICE_archer-c58-v1|\
 		TARGET_DEVICE_ar71xx_generic_DEVICE_archer-c60-v1|\
+		TARGET_DEVICE_ar71xx_generic_DEVICE_archer-c60-v2|\
 		TARGET_DEVICE_ramips_mt7620_DEVICE_zbt-we2026|\
 		TARGET_DEVICE_ramips_mt76x8_DEVICE_tl-wr841n-v13|\
 		TARGET_DEVICE_ramips_mt76x8_DEVICE_tl-wr840n-v4|\
