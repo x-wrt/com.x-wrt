@@ -54,7 +54,6 @@ moreapps="libstdcpp \
 		  luci-i18n-samba-zh-cn \
 		  webui-aria2 \
 		  aria2 \
-		  openssl-util \
 		  samba36-server"
 excludes="dnsmasq \
 		  odhcpd \
