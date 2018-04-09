@@ -59,7 +59,7 @@ do_disk_ready() {
 			mount -o remount,rw / && {
 				test -b /dev/sda5 && rm -f /etc/sda.ready
 				cp /etc/fstab.config.gpt /etc/config/fstab
-				mount -o remount,ro
+				mount -o remount,ro /
 			}
 		}
 
@@ -115,7 +115,7 @@ do_disk_ready() {
 			mount -o remount,rw / && {
 				test -b /dev/sda3 && rm -f /etc/sda.ready
 				cp /etc/fstab.config /etc/config/fstab
-				mount -o remount,ro
+				mount -o remount,ro /
 			}
 		}
 
