@@ -180,6 +180,7 @@ for t in $targets; do
 	mods="$us"
 	case $t in
 		#>8M flash
+		TARGET_DEVICE_ramips_mt7621_DEVICE_youhua_wr1200js|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_wf-2881|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_dir-860l-b1|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_pbr-m1|\
@@ -367,6 +368,7 @@ for t in $targets; do
 			mods="$mods $usb2 $usb3"
 		;;
 		#with usb2
+		TARGET_DEVICE_ramips_mt7621_DEVICE_youhua_wr1200js|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_pbr-m1|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_zbtlink_zbt-we3526|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_d-team_newifi-d2|\
