@@ -461,7 +461,8 @@ CONFIG_TARGET_DEVICE_PACKAGES_ar71xx_generic_DEVICE_wndr3700="blockd block-mount
 # CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_AC9531_010 is not set
 # CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_AC9531_020 is not set
 # CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_AP143_16M is not set
-# CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_AP143_8M is not set
+CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_AP143_8M=y
+CONFIG_TARGET_DEVICE_PACKAGES_ar71xx_generic_DEVICE_AP143_8M="blockd block-mount kmod-crypto-crc32c kmod-fs-autofs4 kmod-fs-exfat kmod-fs-ext4 kmod-fs-msdos kmod-fs-vfat kmod-fuse kmod-lib-crc16 kmod-nls-cp437 kmod-scsi-core kmod-usb2 kmod-usb-core kmod-usb-ehci kmod-usb-ohci kmod-usb-storage kmod-usb-storage-uas ntfs-3g"
 # CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_AP147_010 is not set
 # CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_AP152_16M is not set
 # CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_e1700ac-v2-16M is not set
@@ -606,6 +607,7 @@ CONFIG_MODULE_DEFAULT_kmod-leds-wndr3700-usb=y
 CONFIG_MODULE_DEFAULT_kmod-usb-core=y
 CONFIG_MODULE_DEFAULT_kmod-usb-ledtrig-usbport=y
 CONFIG_MODULE_DEFAULT_kmod-usb-ohci=y
+CONFIG_MODULE_DEFAULT_kmod-usb-storage=y
 CONFIG_MODULE_DEFAULT_kmod-usb2=y
 CONFIG_DEFAULT_libc=y
 CONFIG_MODULE_DEFAULT_libc=y
