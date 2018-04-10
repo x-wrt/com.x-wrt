@@ -65,9 +65,8 @@ define Package/$(PKG_NAME)/install
 	$(INSTALL_DATA) ./files/auto_usb_mount.hotplug $(1)/usr/share/base-config-setting/auto_usb_mount.hotplug
 	$(INSTALL_DIR) $(1)/lib/preinit
 	$(INSTALL_DATA) ./files/mnt_ready.preinit $(1)/lib/preinit/81_mnt_ready
-ifeq ($(CONFIG_TARGET_x86),y)
+ifeq ($(CONFIG_TARGET_x86)$(CONFIG_TARGET_sunxi),y)
 	$(INSTALL_DATA) ./files/fstab.config $(1)/etc/fstab.config
-	$(INSTALL_DATA) ./files/fstab.config.gpt $(1)/etc/fstab.config.gpt
 	$(INSTALL_DIR) $(1)/lib/preinit
 	$(INSTALL_DATA) ./files/disk_ready.preinit $(1)/lib/preinit/79_disk_ready
 	$(INSTALL_DIR) $(1)/etc/init.d
