@@ -240,6 +240,7 @@ enabled="`uci get natcapd.default.enabled 2>/dev/null`"
 	[ x$udp_encode_mode = x0 ] && udp_encode_mode=UDP
 	[ x$udp_encode_mode = x1 ] && udp_encode_mode=TCP
 
+	encode_http_only=`uci get natcapd.default.encode_http_only 2>/dev/null || echo 0`
 	http_confusion=`uci get natcapd.default.http_confusion 2>/dev/null || echo 0`
 	htp_confusion_host=`uci get natcapd.default.htp_confusion_host 2>/dev/null || echo bing.com`
 	cnipwhitelist_mode=`uci get natcapd.default.cnipwhitelist_mode 2>/dev/null || echo 0`
@@ -292,6 +293,7 @@ enabled="`uci get natcapd.default.enabled 2>/dev/null`"
 
 	[ "x$clear_dst_on_reload" = x1 ] && ipset flush gfwlist
 
+	echo encode_http_only=$encode_http_only >>$DEV
 	echo http_confusion=$http_confusion >>$DEV
 	echo htp_confusion_host=$htp_confusion_host >>$DEV
 	echo cnipwhitelist_mode=$cnipwhitelist_mode >>$DEV
