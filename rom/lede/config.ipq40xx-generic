@@ -49,12 +49,15 @@ CONFIG_TARGET_ipq40xx=y
 # CONFIG_TARGET_x86 is not set
 CONFIG_TARGET_MULTI_PROFILE=y
 # CONFIG_TARGET_ipq40xx_Default is not set
+# CONFIG_TARGET_ipq40xx_DEVICE_8dev_jalapeno is not set
 # CONFIG_TARGET_ipq40xx_DEVICE_avm_fritzbox-4040 is not set
 # CONFIG_TARGET_ipq40xx_DEVICE_asus_rt-ac58u is not set
 # CONFIG_TARGET_ipq40xx_DEVICE_asus_rt-acrh17 is not set
 # CONFIG_TARGET_ipq40xx_DEVICE_meraki_mr33 is not set
 # CONFIG_TARGET_ipq40xx_DEVICE_compex_wpj428 is not set
 # CONFIG_TARGET_ipq40xx_DEVICE_glinet_gl-b1300 is not set
+# CONFIG_TARGET_ipq40xx_DEVICE_netgear_ex6100v2 is not set
+# CONFIG_TARGET_ipq40xx_DEVICE_netgear_ex6150v2 is not set
 # CONFIG_TARGET_ipq40xx_DEVICE_openmesh_a42 is not set
 # CONFIG_TARGET_ipq40xx_DEVICE_qcom_ap-dk01.1-c1 is not set
 # CONFIG_TARGET_ipq40xx_DEVICE_qcom_ap-dk04.1-c1 is not set
@@ -64,14 +67,17 @@ CONFIG_TARGET_MULTI_PROFILE=y
 #
 # CONFIG_TARGET_ALL_PROFILES is not set
 CONFIG_TARGET_PER_DEVICE_ROOTFS=y
+# CONFIG_TARGET_DEVICE_ipq40xx_DEVICE_8dev_jalapeno is not set
 CONFIG_TARGET_DEVICE_ipq40xx_DEVICE_asus_rt-ac58u=y
 CONFIG_TARGET_DEVICE_PACKAGES_ipq40xx_DEVICE_asus_rt-ac58u="aria2 blockd block-mount ipq-wifi-asus_rt-ac58u kmod-crypto-crc32c kmod-fs-autofs4 kmod-fs-exfat kmod-fs-ext4 kmod-fs-msdos kmod-fs-vfat kmod-fuse kmod-lib-crc16 kmod-nls-cp437 kmod-usb2 kmod-usb3 kmod-usb-core kmod-usb-dwc3 kmod-usb-dwc3-of-simple kmod-usb-ehci kmod-usb-ledtrig-usbport kmod-usb-ohci kmod-usb-phy-qcom-dwc3 kmod-usb-printer kmod-usb-storage kmod-usb-storage-uas libsqlite3 libssh2 libstdcpp libxml2 luci-app-aria2 luci-app-p910nd luci-app-samba luci-i18n-aria2-zh-cn luci-i18n-p910nd-en luci-i18n-p910nd-zh-cn luci-i18n-samba-en luci-i18n-samba-zh-cn ntfs-3g p910nd samba36-server webui-aria2"
 CONFIG_TARGET_DEVICE_ipq40xx_DEVICE_asus_rt-acrh17=y
-CONFIG_TARGET_DEVICE_PACKAGES_ipq40xx_DEVICE_asus_rt-acrh17="aria2 ath10k-firmware-qca4019 ath10k-firmware-qca9984 blockd block-mount kmod-crypto-crc32c kmod-fs-autofs4 kmod-fs-exfat kmod-fs-ext4 kmod-fs-msdos kmod-fs-vfat kmod-fuse kmod-lib-crc16 kmod-nls-cp437 kmod-usb2 kmod-usb3 kmod-usb-core kmod-usb-dwc3 kmod-usb-dwc3-of-simple kmod-usb-ehci kmod-usb-ohci kmod-usb-phy-qcom-dwc3 kmod-usb-printer kmod-usb-storage kmod-usb-storage-uas libsqlite3 libssh2 libstdcpp libxml2 luci-app-aria2 luci-app-p910nd luci-app-samba luci-i18n-aria2-zh-cn luci-i18n-p910nd-en luci-i18n-p910nd-zh-cn luci-i18n-samba-en luci-i18n-samba-zh-cn ntfs-3g p910nd samba36-server webui-aria2"
+CONFIG_TARGET_DEVICE_PACKAGES_ipq40xx_DEVICE_asus_rt-acrh17="aria2 ath10k-firmware-qca9984 blockd block-mount kmod-crypto-crc32c kmod-fs-autofs4 kmod-fs-exfat kmod-fs-ext4 kmod-fs-msdos kmod-fs-vfat kmod-fuse kmod-lib-crc16 kmod-nls-cp437 kmod-usb2 kmod-usb3 kmod-usb-core kmod-usb-dwc3 kmod-usb-dwc3-of-simple kmod-usb-ehci kmod-usb-ohci kmod-usb-phy-qcom-dwc3 kmod-usb-printer kmod-usb-storage kmod-usb-storage-uas libsqlite3 libssh2 libstdcpp libxml2 luci-app-aria2 luci-app-p910nd luci-app-samba luci-i18n-aria2-zh-cn luci-i18n-p910nd-en luci-i18n-p910nd-zh-cn luci-i18n-samba-en luci-i18n-samba-zh-cn ntfs-3g p910nd samba36-server webui-aria2"
 # CONFIG_TARGET_DEVICE_ipq40xx_DEVICE_avm_fritzbox-4040 is not set
 # CONFIG_TARGET_DEVICE_ipq40xx_DEVICE_meraki_mr33 is not set
 # CONFIG_TARGET_DEVICE_ipq40xx_DEVICE_compex_wpj428 is not set
 # CONFIG_TARGET_DEVICE_ipq40xx_DEVICE_glinet_gl-b1300 is not set
+# CONFIG_TARGET_DEVICE_ipq40xx_DEVICE_netgear_ex6100v2 is not set
+# CONFIG_TARGET_DEVICE_ipq40xx_DEVICE_netgear_ex6150v2 is not set
 # CONFIG_TARGET_DEVICE_ipq40xx_DEVICE_openmesh_a42 is not set
 # CONFIG_TARGET_DEVICE_ipq40xx_DEVICE_qcom_ap-dk01.1-c1 is not set
 # CONFIG_TARGET_DEVICE_ipq40xx_DEVICE_qcom_ap-dk04.1-c1 is not set
@@ -82,6 +88,7 @@ CONFIG_TARGET_ARCH_PACKAGES="arm_cortex-a7_neon-vfpv4"
 CONFIG_DEFAULT_TARGET_OPTIMIZATION="-Os -pipe -mcpu=cortex-a7 -mfpu=neon-vfpv4"
 CONFIG_CPU_TYPE="cortex-a7+neon-vfpv4"
 CONFIG_LINUX_4_14=y
+CONFIG_DEFAULT_ath10k-firmware-qca4019=y
 CONFIG_MODULE_DEFAULT_ath10k-firmware-qca4019=y
 CONFIG_MODULE_DEFAULT_ath10k-firmware-qca9984=y
 CONFIG_DEFAULT_base-files=y
@@ -407,7 +414,7 @@ CONFIG_TARGET_INIT_CMD="/sbin/init"
 CONFIG_TARGET_INIT_SUPPRESS_STDERR=y
 CONFIG_VERSIONOPT=y
 CONFIG_VERSION_DIST="NATCAP"
-CONFIG_VERSION_NUMBER="3.0.0_build201804071303"
+CONFIG_VERSION_NUMBER="3.0.0_build201804140057"
 CONFIG_VERSION_CODE="Beetle"
 CONFIG_VERSION_REPO="http://downloads.openwrt.org/snapshots/trunk/%S/packages"
 CONFIG_VERSION_MANUFACTURER="PTPT52"
@@ -2433,13 +2440,15 @@ CONFIG_PACKAGE_u-boot-fritz4040=y
 #
 # ath10k IPQ4019 Boarddata
 #
+# CONFIG_PACKAGE_ipq-wifi-8dev_jalapeno is not set
 CONFIG_PACKAGE_ipq-wifi-asus_rt-ac58u=m
 # CONFIG_PACKAGE_ipq-wifi-avm_fritzbox-4040 is not set
 # CONFIG_PACKAGE_ipq-wifi-glinet_gl-b1300 is not set
 # CONFIG_PACKAGE_ipq-wifi-meraki_mr33 is not set
+# CONFIG_PACKAGE_ipq-wifi-netgear_ex61x0v2 is not set
 # CONFIG_PACKAGE_aircard-pcmcia-firmware is not set
 # CONFIG_PACKAGE_ar3k-firmware is not set
-CONFIG_PACKAGE_ath10k-firmware-qca4019=m
+CONFIG_PACKAGE_ath10k-firmware-qca4019=y
 # CONFIG_PACKAGE_ath10k-firmware-qca4019-ct is not set
 # CONFIG_PACKAGE_ath10k-firmware-qca4019-ct-htt is not set
 # CONFIG_PACKAGE_ath10k-firmware-qca6174 is not set
@@ -2763,6 +2772,9 @@ CONFIG_PACKAGE_kmod-nls-utf8=y
 # CONFIG_PACKAGE_kmod-arptables is not set
 CONFIG_PACKAGE_kmod-br-netfilter=y
 # CONFIG_PACKAGE_kmod-ebtables is not set
+# CONFIG_PACKAGE_kmod-ebtables-ipv4 is not set
+# CONFIG_PACKAGE_kmod-ebtables-ipv6 is not set
+# CONFIG_PACKAGE_kmod-ebtables-watchers is not set
 CONFIG_PACKAGE_kmod-ip6tables=y
 CONFIG_PACKAGE_kmod-ip6tables-extra=y
 # CONFIG_PACKAGE_kmod-ipt-account is not set
@@ -2805,6 +2817,7 @@ CONFIG_PACKAGE_kmod-ipt-nat6=y
 # CONFIG_PACKAGE_kmod-ipt-nflog is not set
 # CONFIG_PACKAGE_kmod-ipt-nfqueue is not set
 CONFIG_PACKAGE_kmod-ipt-offload=y
+CONFIG_PACKAGE_kmod-ipt-physdev=y
 # CONFIG_PACKAGE_kmod-ipt-psd is not set
 # CONFIG_PACKAGE_kmod-ipt-quota2 is not set
 # CONFIG_PACKAGE_kmod-ipt-raw is not set
@@ -3837,11 +3850,15 @@ CONFIG_PACKAGE_libblobmsg-json=y
 CONFIG_PACKAGE_libcares=y
 # CONFIG_PACKAGE_libcharset is not set
 # CONFIG_PACKAGE_libcoap is not set
+CONFIG_PACKAGE_libcomerr=m
 # CONFIG_PACKAGE_libconfig is not set
 # CONFIG_PACKAGE_libcurl is not set
 # CONFIG_PACKAGE_libdaemon is not set
 # CONFIG_PACKAGE_libdaq is not set
+# CONFIG_PACKAGE_libdb47 is not set
+# CONFIG_PACKAGE_libdb47xx is not set
 # CONFIG_PACKAGE_libdbi is not set
+# CONFIG_PACKAGE_libdbus is not set
 # CONFIG_PACKAGE_libdevmapper is not set
 # CONFIG_PACKAGE_libdmapsharing is not set
 # CONFIG_PACKAGE_libdnet is not set
@@ -3849,10 +3866,6 @@ CONFIG_PACKAGE_libcares=y
 # CONFIG_PACKAGE_libdrm is not set
 # CONFIG_PACKAGE_libedit is not set
 # CONFIG_PACKAGE_libelf1 is not set
-CONFIG_PACKAGE_libcomerr=m
-# CONFIG_PACKAGE_libdb47 is not set
-# CONFIG_PACKAGE_libdb47xx is not set
-# CONFIG_PACKAGE_libdbus is not set
 # CONFIG_PACKAGE_libecdsautil is not set
 # CONFIG_PACKAGE_libesmtp is not set
 # CONFIG_PACKAGE_libestr is not set
@@ -3905,6 +3918,7 @@ CONFIG_PACKAGE_libgmp=y
 # CONFIG_PACKAGE_libiconv-full is not set
 # CONFIG_PACKAGE_libid3tag is not set
 # CONFIG_PACKAGE_libidn is not set
+# CONFIG_PACKAGE_libidn2 is not set
 # CONFIG_PACKAGE_libiio is not set
 # CONFIG_PACKAGE_libimobiledevice is not set
 # CONFIG_PACKAGE_libinput is not set
@@ -4699,6 +4713,7 @@ CONFIG_PACKAGE_iptables-mod-ipsec=y
 CONFIG_PACKAGE_iptables-mod-nat-extra=y
 # CONFIG_PACKAGE_iptables-mod-nflog is not set
 # CONFIG_PACKAGE_iptables-mod-nfqueue is not set
+CONFIG_PACKAGE_iptables-mod-physdev=y
 # CONFIG_PACKAGE_iptables-mod-psd is not set
 # CONFIG_PACKAGE_iptables-mod-quota2 is not set
 # CONFIG_PACKAGE_iptables-mod-rpfilter is not set
@@ -4770,6 +4785,7 @@ CONFIG_PACKAGE_ddns-scripts=y
 # CONFIG_PACKAGE_drill is not set
 # CONFIG_PACKAGE_hostip is not set
 # CONFIG_PACKAGE_idn is not set
+# CONFIG_PACKAGE_idn2 is not set
 # CONFIG_PACKAGE_inadyn is not set
 # CONFIG_PACKAGE_isc-dhcp-client-ipv4 is not set
 # CONFIG_PACKAGE_isc-dhcp-client-ipv6 is not set
