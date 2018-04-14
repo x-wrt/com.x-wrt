@@ -216,6 +216,7 @@ enabled="`uci get natcapd.default.enabled 2>/dev/null`"
 		EOT
 		/etc/init.d/firewall restart >/dev/null 2>&1 || echo /etc/init.d/firewall restart failed
 	}
+	rm -f /tmp/natcapd_to_cn
 }
 [ "x$enabled" = "x1" ] && test -c $DEV && {
 	echo disabled=0 >>$DEV
