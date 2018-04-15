@@ -266,7 +266,6 @@ enabled="`uci get natcapd.default.enabled 2>/dev/null`"
 			ipset destroy bypasslist >/dev/null 2>&1
 			ipset destroy cniplist >/dev/null 2>&1
 			rm -f /tmp/dnsmasq.d/accelerated-domains.gfwlist.dnsmasq.conf
-			rm -f /tmp/dnsmasq.d/custom-domains.gfwlist.dnsmasq.conf
 			/etc/init.d/dnsmasq restart
 			rm -f /tmp/natcapd.lck/gfwlist
 		}
@@ -338,6 +337,11 @@ enabled="`uci get natcapd.default.enabled 2>/dev/null`"
 		g=`echo $server | sed 's/:/ /' | awk '{print $1}'`
 		add_knocklist $g
 	done
+
+	for server in `cat /tmp/natcapd_extra_servers`; do
+		echo server $server >$DEV
+	done
+
 	for k in $knocklist; do
 		add_knocklist $k
 	done
@@ -429,7 +433,6 @@ gfwlist_update_main () {
 		test -f $LOCKDIR/$PID || exit 0
 		test -p /tmp/trigger_gfwlist_update.fifo || { sleep 1 && continue; }
 		mytimeout 86340 'cat /tmp/trigger_gfwlist_update.fifo' >/dev/null && {
-			[ x`uci get natcapd.default.access_to_cn 2>/dev/null || echo 0` =  x1 ] && continue
 			test -f /tmp/natcapd.running && sh /usr/share/natcapd/gfwlist_update.sh
 		}
 	done
@@ -450,7 +453,6 @@ natcapd_first_boot() {
 			sleep 5
 		}
 		test -f /tmp/natcapd.running || break
-		[ x`uci get natcapd.default.access_to_cn 2>/dev/null || echo 0` =  x1 ] && break
 		test -f /tmp/natcapd.lck/gfwlist && break
 		test -p /tmp/trigger_gfwlist_update.fifo && natcapd_trigger '/tmp/trigger_gfwlist_update.fifo'
 		sleep 60

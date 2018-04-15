@@ -1,5 +1,11 @@
 #!/bin/sh
 
+access_to_cn=`uci get natcapd.default.access_to_cn 2>/dev/null || echo 0`
+[ x$access_to_cn = x1 ] && {
+	touch /tmp/natcapd.lck/gfwlist
+	exit 0
+}
+
 WGET=/usr/bin/wget
 test -x $WGET || WGET=/bin/wget
 
