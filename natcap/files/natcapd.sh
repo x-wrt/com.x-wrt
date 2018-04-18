@@ -57,8 +57,8 @@ natcapd_stop()
 	test -f /tmp/natcapd.firewall.sh && sh /tmp/natcapd.firewall.sh >/dev/null 2>&1
 	rm -f /tmp/natcapd.firewall.sh
 
-	rm -f /tmp/dnsmasq.d/accelerated-domains.gfwlist.dnsmasq.conf
-	rm -f /tmp/dnsmasq.d/custom-domains.gfwlist.dnsmasq.conf
+	rm /tmp/dnsmasq.d/accelerated-domains.gfwlist.dnsmasq.conf 2>/dev/null || \
+	rm /tmp/dnsmasq.d/custom-domains.gfwlist.dnsmasq.conf 2>/dev/null && \
 	/etc/init.d/dnsmasq restart
 
 	rm -f /tmp/natcapd.running
@@ -236,6 +236,7 @@ enabled="`uci get natcapd.default.enabled 2>/dev/null`"
 	udp_encode_mode=`uci get natcapd.default.udp_encode_mode 2>/dev/null || echo 0`
 	sproxy=`uci get natcapd.default.sproxy 2>/dev/null || echo 0`
 	access_to_cn=`uci get natcapd.default.access_to_cn 2>/dev/null || echo 0`
+	full_proxy=`uci get natcapd.default.full_proxy 2>/dev/null || echo 0`
 	[ x$encode_mode = x0 ] && encode_mode=TCP
 	[ x$encode_mode = x1 ] && encode_mode=UDP
 	[ x$udp_encode_mode = x0 ] && udp_encode_mode=UDP
@@ -252,35 +253,29 @@ enabled="`uci get natcapd.default.enabled 2>/dev/null`"
 	iplist=`uci get natcapd.default.iplist 2>/dev/null`
 
 	cniplist_set=/usr/share/natcapd/cniplist.set
-	cniplist_ip=114.114.114.114
 	if [ x$access_to_cn = x1 ]; then
 		cnipwhitelist_mode=1
 		cniplist_set=/usr/share/natcapd/C_cniplist.set
-		cniplist_ip=8.8.8.8
+		rm /tmp/dnsmasq.d/accelerated-domains.gfwlist.dnsmasq.conf 2>/dev/null && \
+		/etc/init.d/dnsmasq restart
+		rm -f /tmp/natcapd.lck/gfwlist
 	fi
-	ipset -n list cniplist >/dev/null 2>&1 && {
-		ipset test cniplist $cniplist_ip >/dev/null 2>&1 || {
-			ipset destroy udproxylist >/dev/null 2>&1
-			ipset destroy gfwlist >/dev/null 2>&1
-			ipset destroy knocklist >/dev/null 2>&1
-			ipset destroy bypasslist >/dev/null 2>&1
-			ipset destroy cniplist >/dev/null 2>&1
-			rm -f /tmp/dnsmasq.d/accelerated-domains.gfwlist.dnsmasq.conf
-			/etc/init.d/dnsmasq restart
-			rm -f /tmp/natcapd.lck/gfwlist
-		}
-	}
+	if [ x$full_proxy = x1 ]; then
+		cnipwhitelist_mode=1
+		cniplist_set=/usr/share/natcapd/local.set
+	fi
 
 	ipset -n list udproxylist >/dev/null 2>&1 || ipset -! create udproxylist iphash
 	ipset -n list gfwlist >/dev/null 2>&1 || ipset -! create gfwlist iphash
 	ipset -n list knocklist >/dev/null 2>&1 || ipset -! create knocklist iphash
 	ipset -n list bypasslist >/dev/null 2>&1 || ipset -! create bypasslist iphash
-	ipset -n list cniplist >/dev/null 2>&1 || {
-		echo 'create cniplist hash:net family inet hashsize 4096 maxelem 65536' >/tmp/cniplist.set
-		cat $cniplist_set | sed 's/^/add cniplist /' >>/tmp/cniplist.set
-		ipset restore -f /tmp/cniplist.set
-		rm -f /tmp/cniplist.set
-	}
+
+	ipset destroy cniplist >/dev/null 2>&1
+	echo 'create cniplist hash:net family inet hashsize 4096 maxelem 65536' >/tmp/cniplist.set
+	(ip route | grep -o '\([0-9]\{1,3\}\)\.\([0-9]\{1,3\}\)\.\([0-9]\{1,3\}\)\.\([0-9]\{1,3\}\)/[0-9]\{1,2\}'; \
+	cat $cniplist_set) | sed 's/^/add cniplist /' >>/tmp/cniplist.set
+	ipset restore -f /tmp/cniplist.set
+	rm -f /tmp/cniplist.set
 
 	echo debug=$debug >>$DEV
 	echo clean >>$DEV
@@ -338,7 +333,7 @@ enabled="`uci get natcapd.default.enabled 2>/dev/null`"
 		add_knocklist $g
 	done
 
-	for server in `cat /tmp/natcapd_extra_servers`; do
+	for server in `cat /tmp/natcapd_extra_servers 2>/dev/null`; do
 		echo server $server >$DEV
 	done
 
