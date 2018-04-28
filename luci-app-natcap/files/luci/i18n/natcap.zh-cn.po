@@ -46,7 +46,7 @@ msgstr "Natcap 避免被审查/过滤/记录（加速访问国际服务）"
 msgid "General Settings"
 msgstr "一般配置"
 
-msgid "Advance Settings"
+msgid "Advanced Settings"
 msgstr "高级配置"
 
 msgid "Mac Filter"
@@ -54,6 +54,9 @@ msgstr "Mac过滤"
 
 msgid "IP Filter"
 msgstr "IP过滤"
+
+msgid "System Settings"
+msgstr "系统配置"
 
 msgid "Enable Natcap"
 msgstr "启用"
@@ -69,6 +72,12 @@ msgstr "请按照格式填写服务器（ip:port）"
 
 msgid "Domestic and International Diversion"
 msgstr "启用国内国际分流模式"
+
+msgid "Full Proxy"
+msgstr "全局完全代理"
+
+msgid "All traffic goes to proxy."
+msgstr "全部流量走代理。"
 
 msgid "Full Cone Nat"
 msgstr "全锥形NAT"
@@ -156,3 +165,9 @@ msgstr "IP地址过滤"
 
 msgid "IP List"
 msgstr "IP列表"
+
+msgid "Access to China from abroad"
+msgstr "从海外访问中国"
+
+msgid "Enable Fast NAT Offload"
+msgstr "启用快速转发加速"

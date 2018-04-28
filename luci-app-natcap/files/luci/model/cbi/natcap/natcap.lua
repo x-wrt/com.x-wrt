@@ -13,9 +13,10 @@ s.addremove = false
 s.anonymous = true
 
 s:tab("general", translate("General Settings"))
-s:tab("advanced", translate("Advance Settings"))
+s:tab("advanced", translate("Advanced Settings"))
 s:tab("macfilter", translate("Mac Filter"))
 s:tab("ipfilter", translate("IP Filter"))
+s:tab("system", translate("System Settings"))
 
 e = s:taboption("general", Flag, "enabled", translate("Enable Natcap"))
 e.default = e.disabled
@@ -30,6 +31,10 @@ e.datatype = "list(ipaddrport(1))"
 e.placeholder = "1.2.3.4:0"
 
 e = s:taboption("general", Flag, "cnipwhitelist_mode", translate("Domestic and International Diversion"), translate("Generally do not need to be enabled unless used to play games."))
+e.default = e.disabled
+e.rmempty = false
+
+e = s:taboption("general", Flag, "full_proxy", translate("Full Proxy"), translate("All traffic goes to proxy."))
 e.default = e.disabled
 e.rmempty = false
 
@@ -117,5 +122,13 @@ e.datatype = "ipaddr"
 e.placeholder = '192.168.1.0/24'
 e:depends({ipfilter="allow"})
 e:depends({ipfilter="deny"})
+
+e = s:taboption("system", Flag, "access_to_cn", translate("Access to China from abroad"))
+e.default = e.disabled
+e.rmempty = false
+
+e = s:taboption("system", Flag, "enable_offload", translate("Enable Fast NAT Offload"))
+e.default = e.disabled
+e.rmempty = false
 
 return m
