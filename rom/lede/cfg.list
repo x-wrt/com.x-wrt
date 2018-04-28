@@ -13,3 +13,4 @@ config.ramips-mt76x8
 config.x86_64
 config.x86_generic
 config.sunxi-cortexa7
+config.bcm53xx-generic
