@@ -6,8 +6,13 @@ iptables -t nat -I PREROUTING -p udp --dport 53 -j REDIRECT --to-ports 53
 iptables -t nat -C PREROUTING -p tcp --dport 53 -j REDIRECT --to-ports 53 2>/dev/null || \
 iptables -t nat -I PREROUTING -p tcp --dport 53 -j REDIRECT --to-ports 53
 
-iptables -C FORWARD -m mark --mark 0x99/0xff -j ACCEPT 2>/dev/null || \
-iptables -I FORWARD -m mark --mark 0x99/0xff -j ACCEPT
+[ x`uci get natcapd.default.enable_offload 2>/dev/null` = x1 ] && {
+	iptables -D FORWARD -m mark ! --mark 0x99/0xff -m conntrack --ctstate RELATED,ESTABLISHED -j FLOWOFFLOAD 2>/dev/null
+	iptables -I FORWARD 1 -m mark ! --mark 0x99/0xff -m conntrack --ctstate RELATED,ESTABLISHED -j FLOWOFFLOAD
+}
+
+iptables -D FORWARD -m mark --mark 0x99/0xff -j ACCEPT 2>/dev/null
+iptables -I FORWARD 1 -m mark --mark 0x99/0xff -j ACCEPT
 
 iptables -C INPUT -m mark --mark 0x99/0xff -j ACCEPT 2>/dev/null || \
 iptables -I INPUT -m mark --mark 0x99/0xff -j ACCEPT
