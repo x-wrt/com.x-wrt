@@ -273,7 +273,7 @@ enabled="`uci get natcapd.default.enabled 2>/dev/null`"
 	ipset destroy cniplist >/dev/null 2>&1
 	echo 'create cniplist hash:net family inet hashsize 4096 maxelem 65536' >/tmp/cniplist.set
 	(ip route | grep -o '\([0-9]\{1,3\}\)\.\([0-9]\{1,3\}\)\.\([0-9]\{1,3\}\)\.\([0-9]\{1,3\}\)/[0-9]\{1,2\}'; \
-	cat $cniplist_set) | sed 's/^/add cniplist /' >>/tmp/cniplist.set
+	cat $cniplist_set) | sort | uniq | sed 's/^/add cniplist /' >>/tmp/cniplist.set
 	ipset restore -f /tmp/cniplist.set
 	rm -f /tmp/cniplist.set
 
