@@ -237,6 +237,7 @@ enabled="`uci get natcapd.default.enabled 2>/dev/null`"
 	sproxy=`uci get natcapd.default.sproxy 2>/dev/null || echo 0`
 	access_to_cn=`uci get natcapd.default.access_to_cn 2>/dev/null || echo 0`
 	full_proxy=`uci get natcapd.default.full_proxy 2>/dev/null || echo 0`
+	enable_offload=`uci get natcapd.default.enable_offload 2>/dev/null || echo 0`
 	[ x$encode_mode = x0 ] && encode_mode=TCP
 	[ x$encode_mode = x1 ] && encode_mode=UDP
 	[ x$udp_encode_mode = x0 ] && udp_encode_mode=UDP
@@ -364,11 +365,18 @@ enabled="`uci get natcapd.default.enabled 2>/dev/null`"
 			set firewall.natcapd.path=/usr/share/natcapd/firewall.include
 			set firewall.natcapd.family=any
 			set firewall.natcapd.reload=0
+			set firewall.natcapd.enable_offload=$enable_offload
 			commit firewall
 		EOT
 		/etc/init.d/firewall restart >/dev/null 2>&1 || echo /etc/init.d/firewall restart failed
 	}
 	test -x /usr/sbin/mwan3 && /usr/sbin/mwan3 restart >/dev/null 2>&1
+
+	[ x`uci set firewall.natcapd.enable_offload 2>/dev/null` = x$enable_offload ] || {
+		uci set set firewall.natcapd.enable_offload=$enable_offload
+		uci commit firewall
+		/etc/init.d/firewall restart >/dev/null 2>&1 || echo /etc/init.d/firewall restart failed
+	}
 
 	#reload dnsmasq
 	if test -p /tmp/trigger_gfwlist_update.fifo; then
