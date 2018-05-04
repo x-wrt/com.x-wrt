@@ -68,7 +68,7 @@ do_disk_ready() {
 				}
 			}
 
-			# setup for fstab
+			# check to format
 			if mount -t ext4 -o ro,noatime ${ROOTPART}6 /mnt; then
 				echo ${ROOTPART}6 has valid filesystem, no need to format
 				umount /mnt
@@ -77,22 +77,30 @@ do_disk_ready() {
 			fi
 			mount -o remount,rw / && {
 				test -b ${ROOTPART}5 && rm -f /etc/sda.ready
-				cp /etc/fstab.config /tmp/fstab.config
-				sed -i "s,/dev/sda3,${ROOTPART}5,;s,/dev/sda4,${ROOTPART}6," /tmp/fstab.config
-				cp /tmp/fstab.config /etc/config/fstab
 				mount -o remount,ro /
 			}
 		}
 
-		test -b ${ROOTPART}5 && {
+		fstab=0
+		if test -b ${ROOTPART}5; then
 			test -f /etc/sda.ready || {
 				echo -ne 'y\n' | mkfs.ext4 ${ROOTPART}5
+				fstab=1
 			}
 			if mount -t ext4 -o ro,noatime ${ROOTPART}5 /mnt; then
 				umount /mnt
 			else
 				echo -ne 'y\n' | mkfs.ext4 ${ROOTPART}5
+				fstab=1
 			fi
+		fi
+		[ "x$fstab" = "x1" ] && {
+			mount -o remount,rw / && {
+				cp /etc/fstab.config /tmp/fstab.config
+				sed -i "s,/dev/sda3,${ROOTPART}5,;s,/dev/sda4,${ROOTPART}6," /tmp/fstab.config
+				cp /tmp/fstab.config /etc/config/fstab
+				mount -o remount,ro /
+			}
 		}
 		test -b ${ROOTPART}6 && [ "x`head -c5 ${ROOTPART}6`" = "xerase" ] && {
 			echo -ne 'y\n' | mkfs.ext4 ${ROOTPART}6
@@ -131,7 +139,7 @@ do_disk_ready() {
 				}
 			}
 
-			# setup for fstab
+			# check to format
 			if mount -t ext4 -o ro,noatime ${ROOTPART}4 /mnt; then
 				echo ${ROOTPART}4 has valid filesystem, no need to format
 				umount /mnt
@@ -140,22 +148,30 @@ do_disk_ready() {
 			fi
 			mount -o remount,rw / && {
 				test -b ${ROOTPART}3 && rm -f /etc/sda.ready
-				cp /etc/fstab.config /tmp/fstab.config
-				sed -i "s,/dev/sda3,${ROOTPART}3,;s,/dev/sda4,${ROOTPART}4," /tmp/fstab.config
-				cp /tmp/fstab.config /etc/config/fstab
 				mount -o remount,ro /
 			}
 		}
 
-		test -b ${ROOTPART}3 && {
+		fstab=0
+		if test -b ${ROOTPART}3; then
 			test -f /etc/sda.ready || {
 				echo -ne 'y\n' | mkfs.ext4 ${ROOTPART}3
+				fstab=1
 			}
 			if mount -t ext4 -o ro,noatime ${ROOTPART}3 /mnt; then
 				umount /mnt
 			else
 				echo -ne 'y\n' | mkfs.ext4 ${ROOTPART}3
+				fstab=1
 			fi
+		fi
+		[ "x$fstab" = "x1" ] && {
+			mount -o remount,rw / && {
+				cp /etc/fstab.config /tmp/fstab.config
+				sed -i "s,/dev/sda3,${ROOTPART}3,;s,/dev/sda4,${ROOTPART}4," /tmp/fstab.config
+				cp /tmp/fstab.config /etc/config/fstab
+				mount -o remount,ro /
+			}
 		}
 		test -b ${ROOTPART}4 && [ "x`head -c5 ${ROOTPART}4`" = "xerase" ] && {
 			echo -ne 'y\n' | mkfs.ext4 ${ROOTPART}4
