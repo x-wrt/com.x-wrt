@@ -180,6 +180,7 @@ for t in $targets; do
 	mods="$us"
 	case $t in
 		#>8M flash
+		TARGET_DEVICE_ramips_mt7620_DEVICE_gl-mt300a|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_youhua_wr1200js|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_wf-2881|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_dir-860l-b1|\
@@ -268,9 +269,9 @@ for t in $targets; do
 			mods="$mods $moreapps $usbprint"
 		;;
 		#<=8M flash
+		TARGET_DEVICE_ramips_mt7620_DEVICE_dir-810l|\
 		TARGET_DEVICE_sunxi_cortexa7_DEVICE_sun8i-h3-nanopi-neo|\
 		TARGET_DEVICE_ar71xx_generic_DEVICE_tl-wdx6501-v7|\
-		TARGET_DEVICE_ar71xx_generic_DEVICE_tl-wdr6500-v7|\
 		TARGET_DEVICE_ar71xx_generic_DEVICE_archer-c25-v1|\
 		TARGET_DEVICE_ramips_mt76x8_DEVICE_wcr-1166ds|\
 		TARGET_DEVICE_ramips_mt7620_DEVICE_whr-1166d|\
@@ -368,6 +369,7 @@ for t in $targets; do
 			mods="$mods $usb2 $usb3"
 		;;
 		#with usb2
+		TARGET_DEVICE_ramips_mt7620_DEVICE_gl-mt300a|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_youhua_wr1200js|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_pbr-m1|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_zbtlink_zbt-we3526|\
@@ -444,8 +446,8 @@ for t in $targets; do
 			mods="$mods $usb2"
 		;;
 		#no usb
+		TARGET_DEVICE_ramips_mt7620_DEVICE_dir-810l|\
 		TARGET_DEVICE_ar71xx_generic_DEVICE_tl-wdx6501-v7|\
-		TARGET_DEVICE_ar71xx_generic_DEVICE_tl-wdr6500-v7|\
 		TARGET_DEVICE_ar71xx_generic_DEVICE_archer-c25-v1|\
 		TARGET_DEVICE_ramips_mt76x8_DEVICE_wcr-1166ds|\
 		TARGET_DEVICE_ramips_mt7620_DEVICE_whr-1166d|\

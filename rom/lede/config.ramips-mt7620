@@ -9,6 +9,7 @@ CONFIG_DEFAULT_TARGET_ramips_mt7620=y
 # CONFIG_TARGET_apm821xx is not set
 # CONFIG_TARGET_ath25 is not set
 # CONFIG_TARGET_ar71xx is not set
+# CONFIG_TARGET_ath79 is not set
 # CONFIG_TARGET_brcm2708 is not set
 # CONFIG_TARGET_bcm53xx is not set
 # CONFIG_TARGET_brcm47xx is not set
@@ -106,6 +107,7 @@ CONFIG_TARGET_MULTI_PROFILE=y
 # CONFIG_TARGET_ramips_mt7620_DEVICE_mzk-750dhp is not set
 # CONFIG_TARGET_ramips_mt7620_DEVICE_mzk-ex300np is not set
 # CONFIG_TARGET_ramips_mt7620_DEVICE_mzk-ex750np is not set
+# CONFIG_TARGET_ramips_mt7620_DEVICE_ravpower_wd03 is not set
 # CONFIG_TARGET_ramips_mt7620_DEVICE_d240 is not set
 # CONFIG_TARGET_ramips_mt7620_DEVICE_na930 is not set
 # CONFIG_TARGET_ramips_mt7620_DEVICE_tplink_c20-v1 is not set
@@ -147,13 +149,15 @@ CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt7620_DEVICE_whr-1166d=""
 # CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_wmr-300 is not set
 # CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_cf-wr800n is not set
 # CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_dch-m225 is not set
-# CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_dir-810l is not set
+CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_dir-810l=y
+CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt7620_DEVICE_dir-810l=""
 # CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_dlink_dwr-116-a1 is not set
 # CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_dlink_dwr-921-c1 is not set
 # CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_dlink_dwr-921-c3 is not set
 # CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_tiny-ac is not set
 # CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_wrh-300cr is not set
-# CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_gl-mt300a is not set
+CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_gl-mt300a=y
+CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt7620_DEVICE_gl-mt300a="aria2 blockd block-mount kmod-crypto-crc32c kmod-fs-autofs4 kmod-fs-exfat kmod-fs-ext4 kmod-fs-msdos kmod-fs-vfat kmod-fuse kmod-lib-crc16 kmod-nls-cp437 kmod-scsi-core kmod-usb2 kmod-usb-core kmod-usb-ehci kmod-usb-ohci kmod-usb-printer kmod-usb-storage kmod-usb-storage-uas libsqlite3 libssh2 libstdcpp libxml2 luci-app-aria2 luci-app-p910nd luci-app-samba luci-i18n-aria2-zh-cn luci-i18n-p910nd-en luci-i18n-p910nd-zh-cn luci-i18n-samba-en luci-i18n-samba-zh-cn ntfs-3g p910nd samba36-server webui-aria2"
 # CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_gl-mt300n is not set
 # CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_gl-mt750 is not set
 CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_hc5661=y
@@ -194,6 +198,7 @@ CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt7620_DEVICE_psg1218b=""
 # CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_mzk-750dhp is not set
 # CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_mzk-ex300np is not set
 # CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_mzk-ex750np is not set
+# CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_ravpower_wd03 is not set
 # CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_d240 is not set
 # CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_na930 is not set
 # CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_tplink_c20-v1 is not set
@@ -536,7 +541,7 @@ CONFIG_TARGET_INIT_CMD="/sbin/init"
 CONFIG_TARGET_INIT_SUPPRESS_STDERR=y
 CONFIG_VERSIONOPT=y
 CONFIG_VERSION_DIST="NATCAP"
-CONFIG_VERSION_NUMBER="3.0.0_build201805030405"
+CONFIG_VERSION_NUMBER="3.0.0_build201805080656"
 CONFIG_VERSION_CODE="Beetle"
 CONFIG_VERSION_REPO="http://downloads.openwrt.org/snapshots/trunk/%S/packages"
 CONFIG_VERSION_MANUFACTURER="PTPT52"
