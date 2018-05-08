@@ -149,8 +149,7 @@ CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt7620_DEVICE_whr-1166d=""
 # CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_wmr-300 is not set
 # CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_cf-wr800n is not set
 # CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_dch-m225 is not set
-CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_dir-810l=y
-CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt7620_DEVICE_dir-810l=""
+# CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_dir-810l is not set
 # CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_dlink_dwr-116-a1 is not set
 # CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_dlink_dwr-921-c1 is not set
 # CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_dlink_dwr-921-c3 is not set
