@@ -180,6 +180,11 @@ for t in $targets; do
 	mods="$us"
 	case $t in
 		#>8M flash
+		TARGET_DEVICE_ar71xx_generic_DEVICE_gl-ar150|\
+		TARGET_DEVICE_ar71xx_generic_DEVICE_gl-ar300|\
+		TARGET_DEVICE_ar71xx_generic_DEVICE_gl-ar300m|\
+		TARGET_DEVICE_ramips_mt76x8_DEVICE_gl-mt300n-v2|\
+		TARGET_DEVICE_ramips_mt7620_DEVICE_gl-mt300n|\
 		TARGET_DEVICE_ramips_mt7620_DEVICE_gl-mt300a|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_youhua_wr1200js|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_wf-2881|\
@@ -369,6 +374,11 @@ for t in $targets; do
 			mods="$mods $usb2 $usb3"
 		;;
 		#with usb2
+		TARGET_DEVICE_ar71xx_generic_DEVICE_gl-ar150|\
+		TARGET_DEVICE_ar71xx_generic_DEVICE_gl-ar300|\
+		TARGET_DEVICE_ar71xx_generic_DEVICE_gl-ar300m|\
+		TARGET_DEVICE_ramips_mt76x8_DEVICE_gl-mt300n-v2|\
+		TARGET_DEVICE_ramips_mt7620_DEVICE_gl-mt300n|\
 		TARGET_DEVICE_ramips_mt7620_DEVICE_gl-mt300a|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_youhua_wr1200js|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_pbr-m1|\
