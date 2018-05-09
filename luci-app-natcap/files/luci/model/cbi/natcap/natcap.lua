@@ -34,10 +34,6 @@ e = s:taboption("general", Flag, "cnipwhitelist_mode", translate("Domestic and I
 e.default = e.disabled
 e.rmempty = false
 
-e = s:taboption("general", Flag, "full_proxy", translate("Full Proxy"), translate("All traffic goes to proxy."))
-e.default = e.disabled
-e.rmempty = false
-
 e = s:taboption("general", Flag, "full_cone_nat", translate("Full Cone Nat"), translate("Generally do not need to be enabled unless used to play games."))
 e.default = e.disabled
 e.rmempty = false
@@ -124,6 +120,10 @@ e:depends({ipfilter="allow"})
 e:depends({ipfilter="deny"})
 
 e = s:taboption("system", Flag, "access_to_cn", translate("Access to China from abroad"))
+e.default = e.disabled
+e.rmempty = false
+
+e = s:taboption("system", Flag, "full_proxy", translate("Full Proxy"), translate("All traffic goes to proxy."))
 e.default = e.disabled
 e.rmempty = false
 
