@@ -38,13 +38,17 @@ e = s:taboption("general", Flag, "full_cone_nat", translate("Full Cone Nat"), tr
 e.default = e.disabled
 e.rmempty = false
 
-e = s:taboption("advanced", Value, "dns_server", translate("DNS Server"), translate("Please fill in the server by format (ip:port)"))
-e.datatype = "ipaddrport(1)"
-e.placeholder = "8.8.8.8:53"
-
 e = s:taboption("advanced", Flag, "enable_encryption", translate("Enable Encryption"))
 e.default = e.enabled
 e.rmempty = false
+
+e = s:taboption("advanced", Flag, "sproxy", translate("TCP Proxy Acceleration"), translate("Recommended to use the server's TCP proxy and Google BBR algorithm to accelerate."))
+e.default = e.disabled
+e.rmempty = false
+
+e = s:taboption("advanced", Value, "dns_server", translate("DNS Server"), translate("Please fill in the server by format (ip:port)"))
+e.datatype = "ipaddrport(1)"
+e.placeholder = "8.8.8.8:53"
 
 e = s:taboption("advanced", Value, "server_persist_timeout", translate("Server Switching Interval (s)"), translate("How long to switch the server."))
 e.default = '60'
@@ -61,10 +65,6 @@ e.default = e.disabled
 e.rmempty = false
 
 e = s:taboption("advanced", Flag, "udp_encode_mode", translate("Force UDP encode as TCP"), translate("Do not normally enable unless the normal mode is not working."))
-e.default = e.disabled
-e.rmempty = false
-
-e = s:taboption("advanced", Flag, "sproxy", translate("TCP Proxy Acceleration"), translate("Recommended to use the server's TCP proxy and Google BBR algorithm to accelerate."))
 e.default = e.disabled
 e.rmempty = false
 
