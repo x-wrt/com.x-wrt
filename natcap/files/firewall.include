@@ -1,13 +1,6 @@
 #!/bin/sh
 # natcapd integration for firewall3
 
-if [ x`uci get natcapd.default.enable_offload 2>/dev/null` = x1 ]; then
-	iptables -D forwarding_rule -m mark ! --mark 0x99/0xff -m conntrack --ctstate RELATED,ESTABLISHED -j FLOWOFFLOAD 2>/dev/null
-	iptables -I forwarding_rule 1 -m mark ! --mark 0x99/0xff -m conntrack --ctstate RELATED,ESTABLISHED -j FLOWOFFLOAD
-else
-	iptables -D forwarding_rule -m mark ! --mark 0x99/0xff -m conntrack --ctstate RELATED,ESTABLISHED -j FLOWOFFLOAD 2>/dev/null
-fi
-
 if [ x`uci get natcapd.default.enabled 2>/dev/null` = x1 ]; then
 	iptables -t nat -C prerouting_lan_rule -p udp --dport 53 -j REDIRECT --to-ports 53 2>/dev/null || \
 	iptables -t nat -I prerouting_lan_rule -p udp --dport 53 -j REDIRECT --to-ports 53

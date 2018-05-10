@@ -222,9 +222,8 @@ uci get firewall.natcapd >/dev/null 2>&1 || {
 	EOT
 	/etc/init.d/firewall reload >/dev/null 2>&1 || echo /etc/init.d/firewall reload failed
 }
-[ x`uci set firewall.natcapd.enable_offload 2>/dev/null` = x$enable_offload ] || {
-	uci set firewall.natcapd.reload=1
-	uci set set firewall.natcapd.enable_offload=$enable_offload
+[ x`uci get firewall.@defaults[0].flow_offloading 2>/dev/null` = x$enable_offload ] || {
+	uci set firewall.@defaults[0].flow_offloading=$enable_offload
 	uci commit firewall
 	/etc/init.d/firewall reload >/dev/null 2>&1 || echo /etc/init.d/firewall reload failed
 }
