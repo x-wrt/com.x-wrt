@@ -197,6 +197,7 @@ for t in $targets; do
 		TARGET_DEVICE_ramips_mt7620_DEVICE_oy-0001|\
 		TARGET_DEVICE_ar71xx_generic_DEVICE_archer-c5-v1|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_puppies|\
+		TARGET_DEVICE_ramips_mt7621_DEVICE_nxc200p|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_zbt-we3526|\
 		TARGET_DEVICE_ar71xx_generic_DEVICE_AC9531_010|\
 		TARGET_DEVICE_ar71xx_generic_DEVICE_AC9531_020|\
@@ -331,6 +332,8 @@ for t in $targets; do
 	#check usb
 	case $t in
 		#with usb3
+		TARGET_DEVICE_ramips_mt7621_DEVICE_puppies|\
+		TARGET_DEVICE_ramips_mt7621_DEVICE_nxc200p|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_wf-2881|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_dir-860l-b1|\
 		TARGET_DEVICE_sunxi_cortexa7_DEVICE_sun8i-h3-nanopi-neo|\
@@ -386,7 +389,6 @@ for t in $targets; do
 		TARGET_DEVICE_ramips_mt7621_DEVICE_d-team_newifi-d2|\
 		TARGET_DEVICE_ramips_mt7620_DEVICE_oy-0001|\
 		TARGET_DEVICE_ar71xx_generic_DEVICE_archer-c5-v1|\
-		TARGET_DEVICE_ramips_mt7621_DEVICE_puppies|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_zbt-we3526|\
 		TARGET_DEVICE_ar71xx_generic_DEVICE_AC9531_010|\
 		TARGET_DEVICE_ar71xx_generic_DEVICE_AC9531_020|\
