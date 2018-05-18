@@ -131,4 +131,8 @@ e = s:taboption("system", Flag, "enable_offload", translate("Enable Fast NAT Off
 e.default = e.disabled
 e.rmempty = false
 
+e = s:taboption("system", Flag, "enable_natflow", translate("Enable Fast Forwarding"))
+e.default = e.disabled
+e.rmempty = false
+
 return m

@@ -170,4 +170,7 @@ msgid "Access to China from abroad"
 msgstr "从海外访问中国"
 
 msgid "Enable Fast NAT Offload"
-msgstr "启用快速转发加速"
+msgstr "启用快速转发(offload)"
+
+msgid "Enable Fast Forwarding"
+msgstr "启用转发加速(natflow)"

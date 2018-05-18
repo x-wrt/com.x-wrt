@@ -228,6 +228,12 @@ uci get firewall.natcapd >/dev/null 2>&1 || {
 	/etc/init.d/firewall reload >/dev/null 2>&1 || echo /etc/init.d/firewall reload failed
 }
 
+test -c /dev/natflow_ctl && {
+	enable_natflow=`uci get natcapd.default.enable_natflow 2>/dev/null || echo 0`
+	echo debug=3 >/dev/natflow_ctl
+	echo disabled=$((!enable_natflow)) >/dev/natflow_ctl
+}
+
 [ "x$enabled" = "x0" ] && {
 	natcapd_stop
 	rm -f /tmp/natcapd_to_cn
