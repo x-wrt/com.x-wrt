@@ -4,5 +4,6 @@
 START=10
 
 boot() {
+	test -f /etc/config/natcap_server.sh && sh /etc/config/natcap_server.sh
 	/usr/sbin/natcapd boot
 }
