@@ -2,13 +2,12 @@
 [ "x$DEVTYPE" = "xpartition" ] || exit 0
 test -b /dev/$DEVNAME || exit 0
 
-local diskdev=sda
-. /lib/upgrade/common.sh
-export_bootdevice && export_partdevice diskdev $((0-BOOTDEV_MINOR))
-diskdev=/dev/$diskdev
-
 dev=/dev/$DEVNAME
 test -f /rom/etc/sda.ready && {
+	diskdev=sda
+	. /lib/upgrade/common.sh
+	export_bootdevice && export_partdevice diskdev $((0-BOOTDEV_MINOR))
+	diskdev=/dev/$diskdev
 	echo $dev | grep -q $diskdev && exit 0
 }
 edev=`mount | grep "$dev " | awk '{print $1}'`
