@@ -2,7 +2,7 @@
 
 CFGS="`cat feeds/ptpt52/rom/lede/cfg.list`"
 
-test -n "$CONFIG_VERSION_NUMBER" || CONFIG_VERSION_NUMBER="3.0.0_build`date +%Y%m%d%H%M`"
+test -n "$CONFIG_VERSION_NUMBER" || CONFIG_VERSION_NUMBER="4.0_b`date +%Y%m%d%H%M`"
 
 find target/linux/ feeds/luci/ feeds/packages/ package/ -name Makefile -exec touch {} \;
 
