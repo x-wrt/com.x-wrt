@@ -2,7 +2,7 @@
 
 CFGS=${CFGS-"`cat feeds/ptpt52/rom/lede/cfg.list`"}
 
-bins="`find bin/targets/ | grep -- '\(-ext4-sdcard\|-squashfs\|-factory\|-sysupgrade\|\.bin\)' | grep natcap | grep -v vmlinux | grep -v '\.dtb$' | while read line; do basename $line; done`"
+bins="`find bin/targets/ | grep -- '\(-ext4-sdcard\|-squashfs\|-factory\|-sysupgrade\)' | grep natcap | grep -v vmlinux | grep -v '\.dtb$' | while read line; do basename $line; done`"
 
 sha256sums="`find bin/targets/ -type f -name sha256sums`"
 sha256sums=`cat $sha256sums`
