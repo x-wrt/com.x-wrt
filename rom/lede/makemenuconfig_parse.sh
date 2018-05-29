@@ -55,6 +55,11 @@ moreapps="libstdcpp \
 		  webui-aria2 \
 		  aria2 \
 		  samba36-server"
+
+cdcmod="kmod-mii \
+		kmod-usb-net \
+		kmod-usb-net-cdc-ether"
+
 excludes="dnsmasq \
 		  odhcpd \
 		  wpad-mini"
@@ -485,6 +490,12 @@ for t in $targets; do
 		*)
 			echo no handle usb $t
 		;;
+	esac
+	#check cdcmod
+	case $t in
+		TARGET_DEVICE_ar71xx_generic_DEVICE_AC9531_010|\
+		TARGET_DEVICE_ar71xx_generic_DEVICE_AC9531_020)
+			mods="$mods $cdcmod"
 	esac
 	tname=`echo $t | sed 's/TARGET_DEVICE_/CONFIG_TARGET_DEVICE_PACKAGES_/'`
 	mods="$mods `get_target_mods $t`"
