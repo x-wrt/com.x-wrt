@@ -58,7 +58,8 @@ moreapps="libstdcpp \
 
 cdcmod="kmod-mii \
 		kmod-usb-net \
-		kmod-usb-net-cdc-ether"
+		kmod-usb-net-cdc-ether \
+		kmod-usb-net-rndis"
 
 excludes="dnsmasq \
 		  odhcpd \
@@ -381,6 +382,7 @@ for t in $targets; do
 		TARGET_DEVICE_ramips_mt7621_DEVICE_wndr3700v5|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_newifi-d1)
 			mods="$mods $usb2 $usb3"
+			mods="$mods $cdcmod"
 		;;
 		#with usb2
 		TARGET_DEVICE_ar71xx_generic_DEVICE_gl-ar150|\
@@ -463,6 +465,7 @@ for t in $targets; do
 		TARGET_DEVICE_ramips_mt7620_DEVICE_miwifi-mini|\
 		TARGET_DEVICE_ramips_mt7620_DEVICE_zbt-wr8305rt)
 			mods="$mods $usb2"
+			mods="$mods $cdcmod"
 		;;
 		#no usb
 		TARGET_DEVICE_ramips_mt7620_DEVICE_dir-810l|\
@@ -490,12 +493,6 @@ for t in $targets; do
 		*)
 			echo no handle usb $t
 		;;
-	esac
-	#check cdcmod
-	case $t in
-		TARGET_DEVICE_ar71xx_generic_DEVICE_AC9531_010|\
-		TARGET_DEVICE_ar71xx_generic_DEVICE_AC9531_020)
-			mods="$mods $cdcmod"
 	esac
 	tname=`echo $t | sed 's/TARGET_DEVICE_/CONFIG_TARGET_DEVICE_PACKAGES_/'`
 	mods="$mods `get_target_mods $t`"
