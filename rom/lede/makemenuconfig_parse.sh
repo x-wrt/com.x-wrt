@@ -61,6 +61,17 @@ cdcmod="kmod-mii \
 		kmod-usb-net-cdc-ether \
 		kmod-usb-net-rndis"
 
+ssmod="libmbedtls \
+	   libsodium \
+	   luci-app-shadowsocks-libev \
+	   shadowsocks-client \
+	   shadowsocks-libev-config \
+	   shadowsocks-libev-ss-local \
+	   shadowsocks-libev-ss-redir \
+	   shadowsocks-libev-ss-rules \
+	   shadowsocks-libev-ss-server \
+	   shadowsocks-libev-ss-tunnel"
+
 excludes="dnsmasq \
 		  odhcpd \
 		  wpad-mini"
@@ -279,6 +290,7 @@ for t in $targets; do
 		TARGET_DEVICE_ramips_mt7621_DEVICE_wndr3700v5|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_newifi-d1)
 			mods="$mods $moreapps $usbprint"
+			mods="$mods $ssmod"
 		;;
 		#<=8M flash
 		TARGET_DEVICE_ramips_mt7620_DEVICE_dir-810l|\
