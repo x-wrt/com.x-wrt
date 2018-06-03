@@ -206,7 +206,6 @@ add_gfwlist_domain () {
 natcap_wan_ip
 
 enabled="`uci get natcapd.default.enabled 2>/dev/null`"
-enable_offload=`uci get natcapd.default.enable_offload 2>/dev/null || echo 0`
 
 # reload firewall
 uci get firewall.natcapd >/dev/null 2>&1 || {
@@ -217,14 +216,8 @@ uci get firewall.natcapd >/dev/null 2>&1 || {
 		set firewall.natcapd.path=/usr/share/natcapd/firewall.include
 		set firewall.natcapd.family=any
 		set firewall.natcapd.reload=1
-		set firewall.natcapd.enable_offload=$enable_offload
 		commit firewall
 	EOT
-	/etc/init.d/firewall reload >/dev/null 2>&1 || echo /etc/init.d/firewall reload failed
-}
-[ x`uci get firewall.@defaults[0].flow_offloading 2>/dev/null` = x$enable_offload ] || {
-	uci set firewall.@defaults[0].flow_offloading=$enable_offload
-	uci commit firewall
 	/etc/init.d/firewall reload >/dev/null 2>&1 || echo /etc/init.d/firewall reload failed
 }
 

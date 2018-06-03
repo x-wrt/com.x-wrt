@@ -127,10 +127,6 @@ e = s:taboption("system", Flag, "full_proxy", translate("Full Proxy"), translate
 e.default = e.disabled
 e.rmempty = false
 
-e = s:taboption("system", Flag, "enable_offload", translate("Enable Fast NAT Offload"))
-e.default = e.disabled
-e.rmempty = false
-
 e = s:taboption("system", Flag, "enable_natflow", translate("Enable Fast Forwarding"))
 e.default = e.disabled
 e.rmempty = false
