@@ -201,6 +201,13 @@ test $version -lt 8 && {
 	version=8
 }
 
+# usb auto mount
+test $version -lt 9 && {
+	uci set fstab.@global[0].anon_mount='1'
+	uci commit fstab
+	version=9
+}
+
 #FIXME fixup for openvpn client
 uci delete openvpn_recipes.client_tun.pkcs12 2>/dev/null && uci commit openvpn_recipes
 

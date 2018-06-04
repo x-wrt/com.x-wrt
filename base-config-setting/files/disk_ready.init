@@ -4,7 +4,6 @@
 START=10
 
 boot() {
-	umount /boot; umount /boot
 	mount | grep overlayfs | grep -q 'workdir=/overlay/work' && {
 		test -f /rom/etc/sda.ready || touch /rom/etc/sda.ready
 		mount -o remount,ro /rom
