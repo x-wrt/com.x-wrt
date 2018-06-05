@@ -197,6 +197,7 @@ for t in $targets; do
 	mods="$us"
 	case $t in
 		#>8M flash
+		TARGET_DEVICE_mvebu_cortexa9_DEVICE_linksys-wrt32x|\
 		TARGET_DEVICE_ar71xx_generic_DEVICE_gl-ar150|\
 		TARGET_DEVICE_ar71xx_generic_DEVICE_gl-ar300|\
 		TARGET_DEVICE_ar71xx_generic_DEVICE_gl-ar300m|\
@@ -351,6 +352,7 @@ for t in $targets; do
 	#check usb
 	case $t in
 		#with usb3
+		TARGET_DEVICE_mvebu_cortexa9_DEVICE_linksys-wrt32x|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_puppies|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_nxc200p|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_wf-2881|\
