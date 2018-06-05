@@ -244,6 +244,7 @@ test -c /dev/natflow_ctl && {
 	dns_server=`uci get natcapd.default.dns_server 2>/dev/null`
 	knocklist=`uci get natcapd.default.knocklist 2>/dev/null`
 	udproxylist=`uci get natcapd.default.udproxylist 2>/dev/null`
+	dnsdroplist=`uci get natcapd.default.dnsdroplist 2>/dev/null`
 	gfwlist_domain=`uci get natcapd.default.gfwlist_domain 2>/dev/null`
 	gfwlist=`uci get natcapd.default.gfwlist 2>/dev/null`
 	encode_mode=`uci get natcapd.default.encode_mode 2>/dev/null || echo 0`
@@ -277,6 +278,14 @@ test -c /dev/natflow_ctl && {
 	if [ x$full_proxy = x1 ]; then
 		cnipwhitelist_mode=1
 		cniplist_set=/usr/share/natcapd/local.set
+	fi
+
+	ipset destroy dnsdroplist >/dev/null 2>&1
+	if test -n "$dnsdroplist"; then
+		ipset -n list dnsdroplist >/dev/null 2>&1 || ipset -! create dnsdroplist iphash
+		for d in $dnsdroplist; do
+			ipset -! add udproxylist $d
+		done
 	fi
 
 	ipset -n list udproxylist >/dev/null 2>&1 || ipset -! create udproxylist iphash
