@@ -445,7 +445,6 @@ for t in $targets; do
 		TARGET_DEVICE_brcm47xx_mips74k_DEVICE_linksys-e3200-v1|\
 		TARGET_DEVICE_brcm47xx_generic_DEVICE_linksys-e3000-v1|\
 		TARGET_DEVICE_ar71xx_generic_DEVICE_AP152_16M|\
-		TARGET_DEVICE_ar71xx_generic_DEVICE_k2t|\
 		TARGET_DEVICE_ar71xx_generic_DEVICE_AP147_010|\
 		TARGET_DEVICE_ar71xx_generic_DEVICE_AP143_8M|\
 		TARGET_DEVICE_ar71xx_generic_DEVICE_AP143_16M|\
@@ -482,6 +481,7 @@ for t in $targets; do
 			mods="$mods $cdcmod"
 		;;
 		#no usb
+		TARGET_DEVICE_ar71xx_generic_DEVICE_k2t|\
 		TARGET_DEVICE_ramips_mt7620_DEVICE_dir-810l|\
 		TARGET_DEVICE_ar71xx_generic_DEVICE_tl-wdx6501-v7|\
 		TARGET_DEVICE_ar71xx_generic_DEVICE_archer-c25-v1|\

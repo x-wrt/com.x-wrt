@@ -415,7 +415,7 @@ CONFIG_TARGET_INIT_CMD="/sbin/init"
 CONFIG_TARGET_INIT_SUPPRESS_STDERR=y
 CONFIG_VERSIONOPT=y
 CONFIG_VERSION_DIST="NATCAP"
-CONFIG_VERSION_NUMBER="4.0_b201806101130"
+CONFIG_VERSION_NUMBER="4.0_b201806131323"
 CONFIG_VERSION_CODE="Beetle"
 CONFIG_VERSION_REPO="http://downloads.openwrt.org/snapshots/trunk/%S/packages"
 CONFIG_VERSION_MANUFACTURER="PTPT52"
@@ -4197,8 +4197,11 @@ CONFIG_PACKAGE_zlib=y
 # 1. Collections
 #
 CONFIG_PACKAGE_luci=y
+# CONFIG_PACKAGE_luci-nginx is not set
 # CONFIG_PACKAGE_luci-ssl is not set
+# CONFIG_PACKAGE_luci-ssl-nginx is not set
 CONFIG_PACKAGE_luci-ssl-openssl=y
+# CONFIG_PACKAGE_luci-ssl-openssl-nginx is not set
 
 #
 # 2. Modules
@@ -4676,6 +4679,7 @@ CONFIG_POSTFIX_SQLITE=y
 # Download Manager
 #
 # CONFIG_PACKAGE_ariang is not set
+# CONFIG_PACKAGE_ariang-nginx is not set
 CONFIG_PACKAGE_webui-aria2=m
 # CONFIG_PACKAGE_yaaw is not set
 
@@ -5822,6 +5826,7 @@ CONFIG_PACKAGE_ntfs-3g=m
 # CONFIG_PACKAGE_rrdtool1 is not set
 # CONFIG_PACKAGE_sqlite3-cli is not set
 # CONFIG_PACKAGE_unixodbc-tools is not set
+# CONFIG_PACKAGE_acpid is not set
 # CONFIG_PACKAGE_adb is not set
 # CONFIG_PACKAGE_ap51-flash is not set
 # CONFIG_PACKAGE_at is not set
