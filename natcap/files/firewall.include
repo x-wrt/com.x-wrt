@@ -1,7 +1,7 @@
 #!/bin/sh
 # natcapd integration for firewall3
 
-if [ x`uci get natcapd.default.enabled 2>/dev/null` = x1 ]; then
+if [ x`uci get natcapd.default.dnsproxy 2>/dev/null` = x1 ]; then
 	iptables -t nat -C prerouting_lan_rule -p udp --dport 53 -j REDIRECT --to-ports 53 2>/dev/null || \
 	iptables -t nat -I prerouting_lan_rule -p udp --dport 53 -j REDIRECT --to-ports 53
 	iptables -t nat -C prerouting_lan_rule -p tcp --dport 53 -j REDIRECT --to-ports 53 2>/dev/null || \
