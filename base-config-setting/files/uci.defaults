@@ -213,6 +213,13 @@ test $version -lt 9 && {
 	version=9
 }
 
+# enable upnpd
+test $version -lt 10 && {
+	uci set upnpd.config.enabled='1'
+	uci commit upnpd
+	version=10
+}
+
 #FIXME fixup for openvpn client
 uci delete openvpn_recipes.client_tun.pkcs12 2>/dev/null && uci commit openvpn_recipes
 
