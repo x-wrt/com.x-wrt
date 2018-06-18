@@ -1,3 +1,4 @@
+config.ath79-generic
 config.ar71xx-generic
 config.ar71xx-generic-mini
 config.ar71xx-nand

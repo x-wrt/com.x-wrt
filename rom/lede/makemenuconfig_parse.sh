@@ -197,6 +197,8 @@ for t in $targets; do
 	mods="$us"
 	case $t in
 		#>8M flash
+		TARGET_DEVICE_ath79_generic_DEVICE_tl-wr1043nd-v4|\
+		TARGET_DEVICE_ath79_generic_DEVICE_netgear_wndr3800|\
 		TARGET_DEVICE_mvebu_cortexa9_DEVICE_linksys-wrt32x|\
 		TARGET_DEVICE_ar71xx_generic_DEVICE_gl-ar150|\
 		TARGET_DEVICE_ar71xx_generic_DEVICE_gl-ar300|\
@@ -294,6 +296,9 @@ for t in $targets; do
 			mods="$mods $ssmod"
 		;;
 		#<=8M flash
+		TARGET_DEVICE_ath79_generic_DEVICE_tl-wdr4300|\
+		TARGET_DEVICE_ath79_generic_DEVICE_tl-wdr3600|\
+		TARGET_DEVICE_ath79_generic_DEVICE_tl-wr1043nd-v1|\
 		TARGET_DEVICE_ramips_mt7620_DEVICE_dir-810l|\
 		TARGET_DEVICE_sunxi_cortexa7_DEVICE_sun8i-h3-nanopi-neo|\
 		TARGET_DEVICE_ar71xx_generic_DEVICE_tl-wdx6501-v7|\
@@ -318,6 +323,7 @@ for t in $targets; do
 		TARGET_DEVICE_ar71xx_generic_DEVICE_archer-c7-v4|\
 		TARGET_DEVICE_ar71xx_generic_DEVICE_AP152_16M|\
 		TARGET_DEVICE_ar71xx_generic_DEVICE_k2t|\
+		TARGET_DEVICE_ath79_generic_DEVICE_phicomm-k2t|\
 		TARGET_DEVICE_ar71xx_generic_DEVICE_AP147_010|\
 		TARGET_DEVICE_ar71xx_generic_DEVICE_AP143_8M|\
 		TARGET_DEVICE_ar71xx_generic_DEVICE_AP143_16M|\
@@ -399,6 +405,10 @@ for t in $targets; do
 			mods="$mods $cdcmod"
 		;;
 		#with usb2
+		TARGET_DEVICE_ath79_generic_DEVICE_tl-wdr4300|\
+		TARGET_DEVICE_ath79_generic_DEVICE_tl-wdr3600|\
+		TARGET_DEVICE_ath79_generic_DEVICE_netgear_wndr3800|\
+		TARGET_DEVICE_ath79_generic_DEVICE_tl-wr1043nd-v4|\
 		TARGET_DEVICE_ar71xx_generic_DEVICE_gl-ar150|\
 		TARGET_DEVICE_ar71xx_generic_DEVICE_gl-ar300|\
 		TARGET_DEVICE_ar71xx_generic_DEVICE_gl-ar300m|\
@@ -482,6 +492,7 @@ for t in $targets; do
 		;;
 		#no usb
 		TARGET_DEVICE_ar71xx_generic_DEVICE_k2t|\
+		TARGET_DEVICE_ath79_generic_DEVICE_phicomm-k2t|\
 		TARGET_DEVICE_ramips_mt7620_DEVICE_dir-810l|\
 		TARGET_DEVICE_ar71xx_generic_DEVICE_tl-wdx6501-v7|\
 		TARGET_DEVICE_ar71xx_generic_DEVICE_archer-c25-v1|\
@@ -494,6 +505,7 @@ for t in $targets; do
 		TARGET_DEVICE_ramips_mt76x8_DEVICE_tl-wr841n-v13|\
 		TARGET_DEVICE_ramips_mt76x8_DEVICE_tl-wr840n-v4|\
 		TARGET_DEVICE_ar71xx_generic_DEVICE_tl-wr1043nd-v1|\
+		TARGET_DEVICE_ath79_generic_DEVICE_tl-wr1043nd-v1|\
 		TARGET_DEVICE_ramips_mt76x8_DEVICE_mac1200r-v2|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_k2p|\
 		TARGET_DEVICE_ramips_mt76x8_DEVICE_miwifi-nano|\
