@@ -284,7 +284,7 @@ test -c /dev/natflow_ctl && {
 	if test -n "$dnsdroplist"; then
 		ipset -n list dnsdroplist >/dev/null 2>&1 || ipset -! create dnsdroplist iphash
 		for d in $dnsdroplist; do
-			ipset -! add udproxylist $d
+			ipset -! add dnsdroplist $d
 		done
 	fi
 
