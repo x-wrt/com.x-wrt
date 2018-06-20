@@ -197,6 +197,7 @@ for t in $targets; do
 	mods="$us"
 	case $t in
 		#>8M flash
+		TARGET_DEVICE_ar71xx_generic_DEVICE_archer-c7-v5|\
 		TARGET_DEVICE_ath79_generic_DEVICE_glinet_ar300m_nor|\
 		TARGET_DEVICE_ath79_generic_DEVICE_tl-wr1043nd-v4|\
 		TARGET_DEVICE_ath79_generic_DEVICE_netgear_wndr3800|\
@@ -297,6 +298,8 @@ for t in $targets; do
 			mods="$mods $ssmod"
 		;;
 		#<=8M flash
+		TARGET_DEVICE_ar71xx_generic_DEVICE_tl-wr2543-v1|\
+		TARGET_DEVICE_ar71xx_generic_DEVICE_tl-wr1043n-v5|\
 		TARGET_DEVICE_ath79_generic_DEVICE_tl-wdr4300|\
 		TARGET_DEVICE_ath79_generic_DEVICE_tl-wdr3600|\
 		TARGET_DEVICE_ath79_generic_DEVICE_tl-wr1043nd-v3|\
@@ -408,6 +411,8 @@ for t in $targets; do
 			mods="$mods $cdcmod"
 		;;
 		#with usb2
+		TARGET_DEVICE_ar71xx_generic_DEVICE_tl-wr2543-v1|\
+		TARGET_DEVICE_ar71xx_generic_DEVICE_archer-c7-v5|\
 		TARGET_DEVICE_ath79_generic_DEVICE_glinet_ar300m_nor|\
 		TARGET_DEVICE_ath79_generic_DEVICE_tl-wdr4300|\
 		TARGET_DEVICE_ath79_generic_DEVICE_tl-wdr3600|\
@@ -497,6 +502,7 @@ for t in $targets; do
 			mods="$mods $cdcmod"
 		;;
 		#no usb
+		TARGET_DEVICE_ar71xx_generic_DEVICE_tl-wr1043n-v5|\
 		TARGET_DEVICE_ar71xx_generic_DEVICE_k2t|\
 		TARGET_DEVICE_ath79_generic_DEVICE_phicomm-k2t|\
 		TARGET_DEVICE_ramips_mt7620_DEVICE_dir-810l|\

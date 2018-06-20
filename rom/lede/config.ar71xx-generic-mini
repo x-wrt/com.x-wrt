@@ -69,6 +69,7 @@ CONFIG_TARGET_MULTI_PROFILE=y
 # CONFIG_TARGET_ar71xx_generic_DEVICE_TUBE2H8M is not set
 # CONFIG_TARGET_ar71xx_generic_DEVICE_fritz4020 is not set
 # CONFIG_TARGET_ar71xx_generic_DEVICE_fritz300e is not set
+# CONFIG_TARGET_ar71xx_generic_DEVICE_fritz450e is not set
 # CONFIG_TARGET_ar71xx_generic_DEVICE_sc1750 is not set
 # CONFIG_TARGET_ar71xx_generic_DEVICE_sc300m is not set
 # CONFIG_TARGET_ar71xx_generic_DEVICE_sc450 is not set
@@ -227,6 +228,7 @@ CONFIG_TARGET_MULTI_PROFILE=y
 # CONFIG_TARGET_ar71xx_generic_DEVICE_archer-c7-v2-il is not set
 # CONFIG_TARGET_ar71xx_generic_DEVICE_tl-wdr7500-v3 is not set
 # CONFIG_TARGET_ar71xx_generic_DEVICE_archer-c7-v4 is not set
+# CONFIG_TARGET_ar71xx_generic_DEVICE_archer-c7-v5 is not set
 # CONFIG_TARGET_ar71xx_generic_DEVICE_cpe210-220-v1 is not set
 # CONFIG_TARGET_ar71xx_generic_DEVICE_cpe510-520-v1 is not set
 # CONFIG_TARGET_ar71xx_generic_DEVICE_eap120-v1 is not set
@@ -354,6 +356,7 @@ CONFIG_TARGET_PER_DEVICE_ROOTFS=y
 # CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_PB44 is not set
 # CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_fritz4020 is not set
 # CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_fritz300e is not set
+# CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_fritz450e is not set
 # CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_F9K1115V2 is not set
 # CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_BXU2000N2 is not set
 # CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_bhr-4grv2 is not set
@@ -508,6 +511,7 @@ CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_tl-wdr7500-v3=y
 CONFIG_TARGET_DEVICE_PACKAGES_ar71xx_generic_DEVICE_tl-wdr7500-v3="ath10k-firmware-qca988x blockd block-mount kmod-ath10k kmod-crypto-crc32c kmod-fs-autofs4 kmod-fs-exfat kmod-fs-ext4 kmod-fs-msdos kmod-fs-vfat kmod-fuse kmod-lib-crc16 kmod-mii kmod-nls-cp437 kmod-scsi-core kmod-usb2 kmod-usb-core kmod-usb-ehci kmod-usb-ledtrig-usbport kmod-usb-net kmod-usb-net-cdc-ether kmod-usb-net-rndis kmod-usb-ohci kmod-usb-storage kmod-usb-storage-uas ntfs-3g"
 CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_archer-c7-v4=y
 CONFIG_TARGET_DEVICE_PACKAGES_ar71xx_generic_DEVICE_archer-c7-v4="ath10k-firmware-qca988x blockd block-mount kmod-ath10k kmod-crypto-crc32c kmod-fs-autofs4 kmod-fs-exfat kmod-fs-ext4 kmod-fs-msdos kmod-fs-vfat kmod-fuse kmod-lib-crc16 kmod-mii kmod-nls-cp437 kmod-scsi-core kmod-usb2 kmod-usb-core kmod-usb-ehci kmod-usb-net kmod-usb-net-cdc-ether kmod-usb-net-rndis kmod-usb-ohci kmod-usb-storage kmod-usb-storage-uas ntfs-3g"
+# CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_archer-c7-v5 is not set
 # CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_cpe210-220-v1 is not set
 # CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_cpe510-520-v1 is not set
 # CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_eap120-v1 is not set
@@ -536,7 +540,8 @@ CONFIG_TARGET_DEVICE_PACKAGES_ar71xx_generic_DEVICE_tl-wr1043nd-v2="blockd block
 CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_tl-wr1043nd-v3=y
 CONFIG_TARGET_DEVICE_PACKAGES_ar71xx_generic_DEVICE_tl-wr1043nd-v3="blockd block-mount kmod-crypto-crc32c kmod-fs-autofs4 kmod-fs-exfat kmod-fs-ext4 kmod-fs-msdos kmod-fs-vfat kmod-fuse kmod-lib-crc16 kmod-mii kmod-nls-cp437 kmod-scsi-core kmod-usb2 kmod-usb-core kmod-usb-ehci kmod-usb-ledtrig-usbport kmod-usb-net kmod-usb-net-cdc-ether kmod-usb-net-rndis kmod-usb-ohci kmod-usb-storage kmod-usb-storage-uas ntfs-3g"
 # CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_tl-wr1043nd-v4 is not set
-# CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_tl-wr2543-v1 is not set
+CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_tl-wr2543-v1=y
+CONFIG_TARGET_DEVICE_PACKAGES_ar71xx_generic_DEVICE_tl-wr2543-v1="blockd block-mount kmod-crypto-crc32c kmod-fs-autofs4 kmod-fs-exfat kmod-fs-ext4 kmod-fs-msdos kmod-fs-vfat kmod-fuse kmod-lib-crc16 kmod-mii kmod-nls-cp437 kmod-scsi-core kmod-usb2 kmod-usb-core kmod-usb-ehci kmod-usb-ledtrig-usbport kmod-usb-net kmod-usb-net-cdc-ether kmod-usb-net-rndis kmod-usb-ohci kmod-usb-storage kmod-usb-storage-uas ntfs-3g"
 # CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_tl-wr710n-v1 is not set
 # CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_tl-wr710n-v2.1 is not set
 # CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_tl-wr810n-v1 is not set
