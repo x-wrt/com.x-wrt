@@ -282,7 +282,7 @@ test -c /dev/natflow_ctl && {
 
 	ipset destroy dnsdroplist >/dev/null 2>&1
 	if test -n "$dnsdroplist"; then
-		ipset -n list dnsdroplist >/dev/null 2>&1 || ipset -! create dnsdroplist iphash
+		ipset -n list dnsdroplist >/dev/null 2>&1 || ipset -! create dnsdroplist nethash
 		for d in $dnsdroplist; do
 			ipset -! add dnsdroplist $d
 		done
