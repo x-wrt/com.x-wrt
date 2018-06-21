@@ -352,6 +352,7 @@ for t in $targets; do
 		TARGET_DEVICE_ar71xx_generic_DEVICE_WNR2200|\
 		TARGET_DEVICE_bcm53xx_DEVICE_tenda-ac9|\
 		TARGET_DEVICE_ramips_mt7620_DEVICE_zbt-wr8305rt|\
+		TARGET_DEVICE_ramips_mt7620_DEVICE_phicomm_k2g|\
 		TARGET_DEVICE_ramips_mt7620_DEVICE_psg1208|\
 		TARGET_DEVICE_ramips_mt7620_DEVICE_psg1218a|\
 		TARGET_DEVICE_ramips_mt7620_DEVICE_psg1218b)
@@ -523,6 +524,7 @@ for t in $targets; do
 		TARGET_DEVICE_ramips_mt76x8_DEVICE_miwifi-nano|\
 		TARGET_DEVICE_ar71xx_generic_DEVICE_mc-mac1200r|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_re6500|\
+		TARGET_DEVICE_ramips_mt7620_DEVICE_phicomm_k2g|\
 		TARGET_DEVICE_ramips_mt7620_DEVICE_psg1208|\
 		TARGET_DEVICE_ramips_mt7620_DEVICE_psg1218a|\
 		TARGET_DEVICE_ramips_mt7620_DEVICE_psg1218b)
