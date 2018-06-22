@@ -240,12 +240,6 @@ echo net.ipv4.fib_multipath_hash_policy=1 >>$SYSCTL_LOCAL
 
 echo net.netfilter.nf_conntrack_helper=1 >>$SYSCTL_LOCAL
 
-#update distfeeds.conf
-cp /etc/opkg/distfeeds.conf /tmp/distfeeds.conf
-sed 's,http://downloads.openwrt.org/snapshots/.*/targets/,http://downloads.lede-project.org/snapshots/targets/,g;s,http://downloads.openwrt.org/snapshots/.*/packages/,http://downloads.lede-project.org/snapshots/packages/,g' -i /tmp/distfeeds.conf
-diff -q /tmp/distfeeds.conf /etc/opkg/distfeeds.conf >/dev/null 2>&1 || cp /tmp/distfeeds.conf /etc/opkg/distfeeds.conf
-rm -f /tmp/distfeeds.conf
-
 #replace wget
 test -x /usr/bin/wget && rm -f /bin/wget && ln -s /usr/bin/wget /bin/wget
 
