@@ -364,7 +364,7 @@ test -c /dev/natflow_ctl && {
 	done
 
 	for server in `cat /tmp/natcapd_extra_servers 2>/dev/null`; do
-		echo server $server >$DEV
+		add_server $server $opt $encode_mode-$udp_encode_mode
 	done
 
 	for k in $knocklist; do
