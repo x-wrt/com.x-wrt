@@ -27,7 +27,7 @@ e.rmempty = true
 e.placeholder = 'account'
 
 e = s:taboption("general", DynamicList, "server", translate("Natcap Servers"), translate("Please fill in the server by format (ip:port)"))
-e.datatype = "list(ipaddrport(1))"
+e.datatype = "list(string)"
 e.placeholder = "1.2.3.4:0"
 
 e = s:taboption("general", Flag, "cnipwhitelist_mode", translate("Domestic and International Diversion"), translate("Generally do not need to be enabled unless used to play games."))
