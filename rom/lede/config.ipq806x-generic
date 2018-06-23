@@ -52,6 +52,7 @@ CONFIG_TARGET_MULTI_PROFILE=y
 # CONFIG_TARGET_ipq806x_Default is not set
 # CONFIG_TARGET_ipq806x_DEVICE_compex_wpq864 is not set
 # CONFIG_TARGET_ipq806x_DEVICE_linksys_ea8500 is not set
+# CONFIG_TARGET_ipq806x_DEVICE_nec_wg2600hp is not set
 # CONFIG_TARGET_ipq806x_DEVICE_netgear_d7800 is not set
 # CONFIG_TARGET_ipq806x_DEVICE_netgear_r7500 is not set
 # CONFIG_TARGET_ipq806x_DEVICE_netgear_r7500v2 is not set
@@ -71,6 +72,7 @@ CONFIG_TARGET_PER_DEVICE_ROOTFS=y
 # CONFIG_TARGET_DEVICE_ipq806x_DEVICE_compex_wpq864 is not set
 CONFIG_TARGET_DEVICE_ipq806x_DEVICE_linksys_ea8500=y
 CONFIG_TARGET_DEVICE_PACKAGES_ipq806x_DEVICE_linksys_ea8500="aria2 ath10k-firmware-qca99x0 blockd block-mount kmod-crypto-crc32c kmod-fs-autofs4 kmod-fs-exfat kmod-fs-ext4 kmod-fs-msdos kmod-fs-vfat kmod-fuse kmod-lib-crc16 kmod-mii kmod-nls-cp437 kmod-usb2 kmod-usb3 kmod-usb-core kmod-usb-dwc3 kmod-usb-dwc3-of-simple kmod-usb-ehci kmod-usb-ledtrig-usbport kmod-usb-net kmod-usb-net-cdc-ether kmod-usb-net-rndis kmod-usb-ohci kmod-usb-phy-qcom-dwc3 kmod-usb-printer kmod-usb-storage kmod-usb-storage-uas libmbedtls libsodium libsqlite3 libssh2 libstdcpp libxml2 luci-app-aria2 luci-app-p910nd luci-app-samba luci-app-shadowsocks-libev luci-i18n-aria2-zh-cn luci-i18n-p910nd-en luci-i18n-p910nd-zh-cn luci-i18n-samba-en luci-i18n-samba-zh-cn ntfs-3g p910nd samba36-server shadowsocks-client shadowsocks-libev-config shadowsocks-libev-ss-local shadowsocks-libev-ss-redir shadowsocks-libev-ss-rules shadowsocks-libev-ss-server shadowsocks-libev-ss-tunnel webui-aria2"
+# CONFIG_TARGET_DEVICE_ipq806x_DEVICE_nec_wg2600hp is not set
 CONFIG_TARGET_DEVICE_ipq806x_DEVICE_netgear_d7800=y
 CONFIG_TARGET_DEVICE_PACKAGES_ipq806x_DEVICE_netgear_d7800="aria2 ath10k-firmware-qca99x0 blockd block-mount kmod-crypto-crc32c kmod-fs-autofs4 kmod-fs-exfat kmod-fs-ext4 kmod-fs-msdos kmod-fs-vfat kmod-fuse kmod-lib-crc16 kmod-mii kmod-nls-cp437 kmod-usb2 kmod-usb3 kmod-usb-core kmod-usb-dwc3 kmod-usb-dwc3-of-simple kmod-usb-ehci kmod-usb-ledtrig-usbport kmod-usb-net kmod-usb-net-cdc-ether kmod-usb-net-rndis kmod-usb-ohci kmod-usb-phy-qcom-dwc3 kmod-usb-printer kmod-usb-storage kmod-usb-storage-uas libmbedtls libsodium libsqlite3 libssh2 libstdcpp libxml2 luci-app-aria2 luci-app-p910nd luci-app-samba luci-app-shadowsocks-libev luci-i18n-aria2-zh-cn luci-i18n-p910nd-en luci-i18n-p910nd-zh-cn luci-i18n-samba-en luci-i18n-samba-zh-cn ntfs-3g p910nd samba36-server shadowsocks-client shadowsocks-libev-config shadowsocks-libev-ss-local shadowsocks-libev-ss-redir shadowsocks-libev-ss-rules shadowsocks-libev-ss-server shadowsocks-libev-ss-tunnel webui-aria2"
 CONFIG_TARGET_DEVICE_ipq806x_DEVICE_netgear_r7500=y
@@ -421,7 +423,7 @@ CONFIG_TARGET_INIT_CMD="/sbin/init"
 CONFIG_TARGET_INIT_SUPPRESS_STDERR=y
 CONFIG_VERSIONOPT=y
 CONFIG_VERSION_DIST="NATCAP"
-CONFIG_VERSION_NUMBER="4.0_b201806190315"
+CONFIG_VERSION_NUMBER="4.0_b201806231155"
 CONFIG_VERSION_CODE="Beaver"
 CONFIG_VERSION_REPO="http://downloads.openwrt.org/snapshots/trunk/%S/packages"
 CONFIG_VERSION_MANUFACTURER="PTPT52"
