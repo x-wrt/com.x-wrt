@@ -183,10 +183,18 @@ natcap_wan_ip()
 }
 
 add_server () {
-	if echo $1 | grep -q ':'; then
-		echo server $1-$2 >>$DEV
-	else
-		echo server $1:0-$2 >>$DEV
+	local server=$1
+	local opt=$2
+	local enc_mode=$3
+
+	if echo $server | grep -q '\([0-9]\{1,3\}\)\.\([0-9]\{1,3\}\)\.\([0-9]\{1,3\}\)\.\([0-9]\{1,3\}\)$'; then
+		echo server $server:0-$opt-$enc_mode >>$DEV
+	elif echo $server | grep -q '\([0-9]\{1,3\}\)\.\([0-9]\{1,3\}\)\.\([0-9]\{1,3\}\)\.\([0-9]\{1,3\}\):[0-9]\{1,5\}$'; then
+		echo server $server-$opt-$enc_mode >$DEV
+	elif echo $server | grep -q '\([0-9]\{1,3\}\)\.\([0-9]\{1,3\}\)\.\([0-9]\{1,3\}\)\.\([0-9]\{1,3\}\):[0-9]\{1,5\}-[eo]$'; then
+		echo server $server-$enc_mode >>$DEV
+	elif echo $server | grep -q '\([0-9]\{1,3\}\)\.\([0-9]\{1,3\}\)\.\([0-9]\{1,3\}\)\.\([0-9]\{1,3\}\):[0-9]\{1,5\}-[eo]-[TU]-[UT]$'; then
+		echo server $server >>$DEV
 	fi
 }
 add_udproxylist () {
@@ -252,10 +260,10 @@ test -c /dev/natflow_ctl && {
 	sproxy=`uci get natcapd.default.sproxy 2>/dev/null || echo 0`
 	access_to_cn=`uci get natcapd.default.access_to_cn 2>/dev/null || echo 0`
 	full_proxy=`uci get natcapd.default.full_proxy 2>/dev/null || echo 0`
-	[ x$encode_mode = x0 ] && encode_mode=TCP
-	[ x$encode_mode = x1 ] && encode_mode=UDP
-	[ x$udp_encode_mode = x0 ] && udp_encode_mode=UDP
-	[ x$udp_encode_mode = x1 ] && udp_encode_mode=TCP
+	[ x$encode_mode = x0 ] && encode_mode=T
+	[ x$encode_mode = x1 ] && encode_mode=U
+	[ x$udp_encode_mode = x0 ] && udp_encode_mode=U
+	[ x$udp_encode_mode = x1 ] && udp_encode_mode=T
 
 	encode_http_only=`uci get natcapd.default.encode_http_only 2>/dev/null || echo 0`
 	http_confusion=`uci get natcapd.default.http_confusion 2>/dev/null || echo 0`
@@ -305,8 +313,6 @@ test -c /dev/natflow_ctl && {
 	echo server_persist_timeout=$server_persist_timeout >>$DEV
 	echo tx_speed_limit=$tx_speed_limit >>$DEV
 	echo natcap_touch_timeout=$touch_timeout >>$DEV
-	echo encode_mode=$encode_mode >$DEV
-	echo udp_encode_mode=$udp_encode_mode >$DEV
 	echo sproxy=$sproxy >$DEV
 	test -n "$dns_server" && echo dns_server=$dns_server >$DEV
 
@@ -352,7 +358,7 @@ test -c /dev/natflow_ctl && {
 	opt="o"
 	[ "x$enable_encryption" = x1 ] && opt='e'
 	for server in $servers; do
-		add_server $server $opt
+		add_server $server $opt $encode_mode-$udp_encode_mode
 		g=`echo $server | sed 's/:/ /' | awk '{print $1}'`
 		add_knocklist $g
 	done
