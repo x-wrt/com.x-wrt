@@ -359,9 +359,10 @@ CONFIG_TARGET_INIT_CMD="/sbin/init"
 CONFIG_TARGET_INIT_SUPPRESS_STDERR=y
 CONFIG_VERSIONOPT=y
 CONFIG_VERSION_DIST="NATCAP"
-CONFIG_VERSION_NUMBER="4.0_b201806231155"
+CONFIG_VERSION_NUMBER="4.0_b201806292104"
 CONFIG_VERSION_CODE="Beetle"
-CONFIG_VERSION_REPO="http://downloads.openwrt.org/snapshots/trunk/%S/packages"
+CONFIG_VERSION_REPO="http://downloads.openwrt.org/snapshots"
+CONFIG_VERSION_HOME_URL="https://router-sh.ptpt52.com/rom/"
 CONFIG_VERSION_MANUFACTURER="PTPT52"
 CONFIG_VERSION_MANUFACTURER_URL="https://router-sh.ptpt52.com/"
 CONFIG_VERSION_BUG_URL="https://router-sh.ptpt52.com/"
@@ -3168,6 +3169,7 @@ CONFIG_ATH_USER_REGD=y
 # CONFIG_PACKAGE_ATH_DEBUG is not set
 CONFIG_PACKAGE_ATH_DFS=y
 CONFIG_PACKAGE_kmod-ath10k=y
+CONFIG_ATH10K_LEDS=y
 CONFIG_ATH10K_THERMAL=y
 # CONFIG_PACKAGE_kmod-ath10k-ct is not set
 # CONFIG_PACKAGE_kmod-ath5k is not set
@@ -5734,17 +5736,20 @@ CONFIG_PACKAGE_natcapd-client=y
 # CONFIG_PACKAGE_blkdiscard is not set
 CONFIG_PACKAGE_blkid=y
 # CONFIG_PACKAGE_cfdisk is not set
+# CONFIG_PACKAGE_cgdisk is not set
 CONFIG_PACKAGE_fdisk=y
 # CONFIG_PACKAGE_findfs is not set
 # CONFIG_PACKAGE_fio is not set
-CONFIG_PACKAGE_gptfdisk=y
+# CONFIG_PACKAGE_fixparts is not set
+CONFIG_PACKAGE_gdisk=y
 # CONFIG_PACKAGE_hd-idle is not set
 # CONFIG_PACKAGE_hdparm is not set
 CONFIG_PACKAGE_lsblk=y
 # CONFIG_PACKAGE_lvm2 is not set
 # CONFIG_PACKAGE_mdadm is not set
 CONFIG_PACKAGE_partx-utils=y
-# CONFIG_PACKAGE_sfdisk is not set
+CONFIG_PACKAGE_sfdisk=y
+CONFIG_PACKAGE_sgdisk=y
 # CONFIG_PACKAGE_wipefs is not set
 
 #

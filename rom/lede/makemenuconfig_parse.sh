@@ -493,12 +493,12 @@ for t in $targets; do
 		TARGET_DEVICE_ramips_mt7620_DEVICE_hc5761|\
 		TARGET_DEVICE_ramips_mt7620_DEVICE_hc5861|\
 		TARGET_DEVICE_ramips_mt7620_DEVICE_y1|\
-		TARGET_DEVICE_ramips_mt7620_DEVICE_miwifi-mini|\
-		TARGET_DEVICE_ramips_mt7620_DEVICE_zbt-wr8305rt)
+		TARGET_DEVICE_ramips_mt7620_DEVICE_miwifi-mini)
 			mods="$mods $usb2"
 			mods="$mods $cdcmod"
 		;;
 		#no usb
+		TARGET_DEVICE_ramips_mt7620_DEVICE_zbt-wr8305rt|\
 		TARGET_DEVICE_ar71xx_generic_DEVICE_tl-wr1043n-v5|\
 		TARGET_DEVICE_ar71xx_generic_DEVICE_k2t|\
 		TARGET_DEVICE_ath79_generic_DEVICE_phicomm-k2t|\
