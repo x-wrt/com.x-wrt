@@ -49,7 +49,6 @@ CONFIG_TARGET_ramips=y
 # CONFIG_TARGET_zynq is not set
 # CONFIG_TARGET_x86 is not set
 # CONFIG_TARGET_ramips_mt7620 is not set
-# CONFIG_TARGET_ramips_mt7620nand is not set
 # CONFIG_TARGET_ramips_mt7621 is not set
 CONFIG_TARGET_ramips_mt76x8=y
 # CONFIG_TARGET_ramips_rt288x is not set

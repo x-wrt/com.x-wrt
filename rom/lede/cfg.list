@@ -9,7 +9,6 @@ config.ipq806x-generic
 config.kirkwood-generic
 config.mvebu-cortexa9
 config.ramips-mt7620
-config.ramips-mt7620nand-nosymbol
 config.ramips-mt7621
 config.ramips-mt76x8
 config.x86_64
