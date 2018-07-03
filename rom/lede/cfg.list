@@ -1,7 +1,7 @@
 config.ath79-generic
-config.ath79-generic-mini
+config.ath79-generic-nosymbol
 config.ar71xx-generic
-config.ar71xx-generic-mini
+config.ar71xx-generic-nosymbol
 config.ar71xx-nand
 config.ar71xx-nand-nosymbol
 config.ipq40xx-generic
