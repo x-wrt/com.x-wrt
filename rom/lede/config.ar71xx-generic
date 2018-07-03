@@ -511,16 +511,13 @@ CONFIG_TARGET_DEVICE_PACKAGES_ar71xx_generic_DEVICE_AP152_16M="ath10k-firmware-q
 # CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_bsb is not set
 # CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_tellstick-znet-lite is not set
 # CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_rut900 is not set
-CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_archer-c25-v1=y
-CONFIG_TARGET_DEVICE_PACKAGES_ar71xx_generic_DEVICE_archer-c25-v1="ath10k-firmware-qca9887 kmod-ath10k"
+# CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_archer-c25-v1 is not set
 CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_archer-c5-v1=y
 CONFIG_TARGET_DEVICE_PACKAGES_ar71xx_generic_DEVICE_archer-c5-v1="aria2 ath10k-firmware-qca988x blockd block-mount kmod-ath10k kmod-crypto-crc32c kmod-fs-autofs4 kmod-fs-exfat kmod-fs-ext4 kmod-fs-msdos kmod-fs-vfat kmod-fuse kmod-lib-crc16 kmod-mii kmod-nls-cp437 kmod-scsi-core kmod-usb2 kmod-usb-core kmod-usb-ehci kmod-usb-ledtrig-usbport kmod-usb-net kmod-usb-net-cdc-ether kmod-usb-net-rndis kmod-usb-ohci kmod-usb-printer kmod-usb-storage kmod-usb-storage-uas libmbedtls libsodium libsqlite3 libssh2 libstdcpp libxml2 luci-app-aria2 luci-app-p910nd luci-app-samba luci-app-shadowsocks-libev luci-i18n-aria2-zh-cn luci-i18n-p910nd-en luci-i18n-p910nd-zh-cn luci-i18n-samba-en luci-i18n-samba-zh-cn ntfs-3g p910nd samba36-server shadowsocks-client shadowsocks-libev-config shadowsocks-libev-ss-local shadowsocks-libev-ss-redir shadowsocks-libev-ss-rules shadowsocks-libev-ss-server shadowsocks-libev-ss-tunnel webui-aria2"
-CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_archer-c58-v1=y
-CONFIG_TARGET_DEVICE_PACKAGES_ar71xx_generic_DEVICE_archer-c58-v1="ath10k-firmware-qca9888 kmod-ath10k"
+# CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_archer-c58-v1 is not set
 CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_archer-c59-v1=y
 CONFIG_TARGET_DEVICE_PACKAGES_ar71xx_generic_DEVICE_archer-c59-v1="aria2 ath10k-firmware-qca9888 blockd block-mount kmod-ath10k kmod-crypto-crc32c kmod-fs-autofs4 kmod-fs-exfat kmod-fs-ext4 kmod-fs-msdos kmod-fs-vfat kmod-fuse kmod-lib-crc16 kmod-mii kmod-nls-cp437 kmod-scsi-core kmod-usb2 kmod-usb-core kmod-usb-ehci kmod-usb-ledtrig-usbport kmod-usb-net kmod-usb-net-cdc-ether kmod-usb-net-rndis kmod-usb-ohci kmod-usb-printer kmod-usb-storage kmod-usb-storage-uas libmbedtls libsodium libsqlite3 libssh2 libstdcpp libxml2 luci-app-aria2 luci-app-p910nd luci-app-samba luci-app-shadowsocks-libev luci-i18n-aria2-zh-cn luci-i18n-p910nd-en luci-i18n-p910nd-zh-cn luci-i18n-samba-en luci-i18n-samba-zh-cn ntfs-3g p910nd samba36-server shadowsocks-client shadowsocks-libev-config shadowsocks-libev-ss-local shadowsocks-libev-ss-redir shadowsocks-libev-ss-rules shadowsocks-libev-ss-server shadowsocks-libev-ss-tunnel webui-aria2"
-CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_archer-c60-v1=y
-CONFIG_TARGET_DEVICE_PACKAGES_ar71xx_generic_DEVICE_archer-c60-v1="ath10k-firmware-qca9888 kmod-ath10k"
+# CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_archer-c60-v1 is not set
 # CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_archer-c60-v2 is not set
 # CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_archer-c7-v1 is not set
 # CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_archer-c7-v2 is not set
@@ -545,10 +542,8 @@ CONFIG_TARGET_DEVICE_PACKAGES_ar71xx_generic_DEVICE_archer-c7-v5="aria2 ath10k-f
 # CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_tl-wdr6500-v2 is not set
 # CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_tl-wdx6501-v7 is not set
 # CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_tl-wpa8630-v1 is not set
-CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_tl-wr1043n-v5=y
-CONFIG_TARGET_DEVICE_PACKAGES_ar71xx_generic_DEVICE_tl-wr1043n-v5=""
-CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_tl-wr1043nd-v1=y
-CONFIG_TARGET_DEVICE_PACKAGES_ar71xx_generic_DEVICE_tl-wr1043nd-v1="kmod-usb2 kmod-usb-core kmod-usb-ehci kmod-usb-ledtrig-usbport"
+# CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_tl-wr1043n-v5 is not set
+# CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_tl-wr1043nd-v1 is not set
 # CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_tl-wr1043nd-v2 is not set
 # CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_tl-wr1043nd-v3 is not set
 CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_tl-wr1043nd-v4=y

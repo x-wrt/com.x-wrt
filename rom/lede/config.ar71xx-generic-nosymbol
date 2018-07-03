@@ -496,11 +496,14 @@ CONFIG_TARGET_DEVICE_PACKAGES_ar71xx_generic_DEVICE_AP143_8M="blockd block-mount
 # CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_bsb is not set
 # CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_tellstick-znet-lite is not set
 # CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_rut900 is not set
-# CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_archer-c25-v1 is not set
+CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_archer-c25-v1=y
+CONFIG_TARGET_DEVICE_PACKAGES_ar71xx_generic_DEVICE_archer-c25-v1="ath10k-firmware-qca9887 kmod-ath10k"
 # CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_archer-c5-v1 is not set
-# CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_archer-c58-v1 is not set
+CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_archer-c58-v1=y
+CONFIG_TARGET_DEVICE_PACKAGES_ar71xx_generic_DEVICE_archer-c58-v1="ath10k-firmware-qca9888 kmod-ath10k"
 # CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_archer-c59-v1 is not set
-# CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_archer-c60-v1 is not set
+CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_archer-c60-v1=y
+CONFIG_TARGET_DEVICE_PACKAGES_ar71xx_generic_DEVICE_archer-c60-v1="ath10k-firmware-qca9888 kmod-ath10k"
 CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_archer-c60-v2=y
 CONFIG_TARGET_DEVICE_PACKAGES_ar71xx_generic_DEVICE_archer-c60-v2="ath10k-firmware-qca9888 kmod-ath10k"
 CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_archer-c7-v1=y
@@ -535,8 +538,10 @@ CONFIG_TARGET_DEVICE_PACKAGES_ar71xx_generic_DEVICE_tl-wdr6500-v2="ath10k-firmwa
 CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_tl-wdx6501-v7=y
 CONFIG_TARGET_DEVICE_PACKAGES_ar71xx_generic_DEVICE_tl-wdx6501-v7="ath10k-firmware-qca9888 kmod-ath10k"
 # CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_tl-wpa8630-v1 is not set
-# CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_tl-wr1043n-v5 is not set
-# CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_tl-wr1043nd-v1 is not set
+CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_tl-wr1043n-v5=y
+CONFIG_TARGET_DEVICE_PACKAGES_ar71xx_generic_DEVICE_tl-wr1043n-v5=""
+CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_tl-wr1043nd-v1=y
+CONFIG_TARGET_DEVICE_PACKAGES_ar71xx_generic_DEVICE_tl-wr1043nd-v1="kmod-usb2 kmod-usb-core kmod-usb-ehci kmod-usb-ledtrig-usbport"
 CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_tl-wr1043nd-v2=y
 CONFIG_TARGET_DEVICE_PACKAGES_ar71xx_generic_DEVICE_tl-wr1043nd-v2="blockd block-mount kmod-crypto-crc32c kmod-fs-autofs4 kmod-fs-exfat kmod-fs-ext4 kmod-fs-msdos kmod-fs-vfat kmod-fuse kmod-lib-crc16 kmod-mii kmod-nls-cp437 kmod-scsi-core kmod-usb2 kmod-usb-core kmod-usb-ehci kmod-usb-ledtrig-usbport kmod-usb-net kmod-usb-net-cdc-ether kmod-usb-net-rndis kmod-usb-ohci kmod-usb-storage kmod-usb-storage-uas ntfs-3g"
 CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_tl-wr1043nd-v3=y
@@ -606,6 +611,7 @@ CONFIG_TARGET_ARCH_PACKAGES="mips_24kc"
 CONFIG_DEFAULT_TARGET_OPTIMIZATION="-Os -pipe -mno-branch-likely -mips32r2 -mtune=24kc"
 CONFIG_CPU_TYPE="24kc"
 CONFIG_LINUX_4_9=y
+CONFIG_MODULE_DEFAULT_ath10k-firmware-qca9887=y
 CONFIG_MODULE_DEFAULT_ath10k-firmware-qca9888=y
 CONFIG_MODULE_DEFAULT_ath10k-firmware-qca988x=y
 CONFIG_DEFAULT_base-files=y
