@@ -6018,7 +6018,7 @@ CONFIG_PACKAGE_lsof=y
 # CONFIG_PACKAGE_mpack is not set
 # CONFIG_PACKAGE_mt-st is not set
 # CONFIG_PACKAGE_namei is not set
-CONFIG_PACKAGE_nand-utils=y
+# CONFIG_PACKAGE_nand-utils is not set
 # CONFIG_PACKAGE_netopeer2-cli is not set
 # CONFIG_PACKAGE_netopeer2-keystored is not set
 # CONFIG_PACKAGE_netopeer2-server is not set
