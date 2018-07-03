@@ -145,7 +145,8 @@ CONFIG_TARGET_PER_DEVICE_ROOTFS=y
 # CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_rt-ac51u is not set
 # CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_rt-n12p is not set
 # CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_rt-n14u is not set
-# CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_whr-1166d is not set
+CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_whr-1166d=y
+CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt7620_DEVICE_whr-1166d=""
 # CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_whr-300hp2 is not set
 # CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_whr-600d is not set
 # CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_wmr-300 is not set
@@ -157,25 +158,18 @@ CONFIG_TARGET_PER_DEVICE_ROOTFS=y
 # CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_dlink_dwr-921-c3 is not set
 # CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_tiny-ac is not set
 # CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_wrh-300cr is not set
-CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_gl-mt300a=y
-CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt7620_DEVICE_gl-mt300a="aria2 blockd block-mount kmod-crypto-crc32c kmod-fs-autofs4 kmod-fs-exfat kmod-fs-ext4 kmod-fs-msdos kmod-fs-vfat kmod-fuse kmod-lib-crc16 kmod-mii kmod-nls-cp437 kmod-scsi-core kmod-usb2 kmod-usb-core kmod-usb-ehci kmod-usb-net kmod-usb-net-cdc-ether kmod-usb-net-rndis kmod-usb-ohci kmod-usb-printer kmod-usb-storage kmod-usb-storage-uas libmbedtls libsodium libsqlite3 libssh2 libstdcpp libxml2 luci-app-aria2 luci-app-p910nd luci-app-samba luci-app-shadowsocks-libev luci-i18n-aria2-zh-cn luci-i18n-p910nd-en luci-i18n-p910nd-zh-cn luci-i18n-samba-en luci-i18n-samba-zh-cn ntfs-3g p910nd samba36-server shadowsocks-client shadowsocks-libev-config shadowsocks-libev-ss-local shadowsocks-libev-ss-redir shadowsocks-libev-ss-rules shadowsocks-libev-ss-server shadowsocks-libev-ss-tunnel webui-aria2"
-CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_gl-mt300n=y
-CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt7620_DEVICE_gl-mt300n="aria2 blockd block-mount kmod-crypto-crc32c kmod-fs-autofs4 kmod-fs-exfat kmod-fs-ext4 kmod-fs-msdos kmod-fs-vfat kmod-fuse kmod-lib-crc16 kmod-mii kmod-nls-cp437 kmod-scsi-core kmod-usb2 kmod-usb-core kmod-usb-ehci kmod-usb-net kmod-usb-net-cdc-ether kmod-usb-net-rndis kmod-usb-ohci kmod-usb-printer kmod-usb-storage kmod-usb-storage-uas libmbedtls libsodium libsqlite3 libssh2 libstdcpp libxml2 luci-app-aria2 luci-app-p910nd luci-app-samba luci-app-shadowsocks-libev luci-i18n-aria2-zh-cn luci-i18n-p910nd-en luci-i18n-p910nd-zh-cn luci-i18n-samba-en luci-i18n-samba-zh-cn ntfs-3g p910nd samba36-server shadowsocks-client shadowsocks-libev-config shadowsocks-libev-ss-local shadowsocks-libev-ss-redir shadowsocks-libev-ss-rules shadowsocks-libev-ss-server shadowsocks-libev-ss-tunnel webui-aria2"
+# CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_gl-mt300a is not set
+# CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_gl-mt300n is not set
 # CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_gl-mt750 is not set
-CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_hc5661=y
-CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt7620_DEVICE_hc5661="aria2 blockd block-mount kmod-crypto-crc32c kmod-fs-autofs4 kmod-fs-exfat kmod-fs-ext4 kmod-fs-msdos kmod-fs-vfat kmod-fuse kmod-lib-crc16 kmod-mii kmod-nls-cp437 kmod-scsi-core kmod-sdhci-mt7620 kmod-usb2 kmod-usb-core kmod-usb-ehci kmod-usb-ledtrig-usbport kmod-usb-net kmod-usb-net-cdc-ether kmod-usb-net-rndis kmod-usb-ohci kmod-usb-printer kmod-usb-storage kmod-usb-storage-uas libmbedtls libsodium libsqlite3 libssh2 libstdcpp libxml2 luci-app-aria2 luci-app-p910nd luci-app-samba luci-app-shadowsocks-libev luci-i18n-aria2-zh-cn luci-i18n-p910nd-en luci-i18n-p910nd-zh-cn luci-i18n-samba-en luci-i18n-samba-zh-cn ntfs-3g p910nd samba36-server shadowsocks-client shadowsocks-libev-config shadowsocks-libev-ss-local shadowsocks-libev-ss-redir shadowsocks-libev-ss-rules shadowsocks-libev-ss-server shadowsocks-libev-ss-tunnel webui-aria2"
-CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_hc5761=y
-CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt7620_DEVICE_hc5761="aria2 blockd block-mount kmod-crypto-crc32c kmod-fs-autofs4 kmod-fs-exfat kmod-fs-ext4 kmod-fs-msdos kmod-fs-vfat kmod-fuse kmod-lib-crc16 kmod-mii kmod-nls-cp437 kmod-scsi-core kmod-sdhci-mt7620 kmod-usb2 kmod-usb-core kmod-usb-ehci kmod-usb-ledtrig-usbport kmod-usb-net kmod-usb-net-cdc-ether kmod-usb-net-rndis kmod-usb-ohci kmod-usb-printer kmod-usb-storage kmod-usb-storage-uas libmbedtls libsodium libsqlite3 libssh2 libstdcpp libxml2 luci-app-aria2 luci-app-p910nd luci-app-samba luci-app-shadowsocks-libev luci-i18n-aria2-zh-cn luci-i18n-p910nd-en luci-i18n-p910nd-zh-cn luci-i18n-samba-en luci-i18n-samba-zh-cn ntfs-3g p910nd samba36-server shadowsocks-client shadowsocks-libev-config shadowsocks-libev-ss-local shadowsocks-libev-ss-redir shadowsocks-libev-ss-rules shadowsocks-libev-ss-server shadowsocks-libev-ss-tunnel webui-aria2"
-CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_hc5861=y
-CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt7620_DEVICE_hc5861="aria2 blockd block-mount kmod-crypto-crc32c kmod-fs-autofs4 kmod-fs-exfat kmod-fs-ext4 kmod-fs-msdos kmod-fs-vfat kmod-fuse kmod-lib-crc16 kmod-mii kmod-nls-cp437 kmod-scsi-core kmod-sdhci-mt7620 kmod-usb2 kmod-usb-core kmod-usb-ehci kmod-usb-ledtrig-usbport kmod-usb-net kmod-usb-net-cdc-ether kmod-usb-net-rndis kmod-usb-ohci kmod-usb-printer kmod-usb-storage kmod-usb-storage-uas libmbedtls libsodium libsqlite3 libssh2 libstdcpp libxml2 luci-app-aria2 luci-app-p910nd luci-app-samba luci-app-shadowsocks-libev luci-i18n-aria2-zh-cn luci-i18n-p910nd-en luci-i18n-p910nd-zh-cn luci-i18n-samba-en luci-i18n-samba-zh-cn ntfs-3g p910nd samba36-server shadowsocks-client shadowsocks-libev-config shadowsocks-libev-ss-local shadowsocks-libev-ss-redir shadowsocks-libev-ss-rules shadowsocks-libev-ss-server shadowsocks-libev-ss-tunnel webui-aria2"
+# CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_hc5661 is not set
+# CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_hc5761 is not set
+# CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_hc5861 is not set
 # CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_c108 is not set
 # CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_u25awf-h1 is not set
 # CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_mlw221 is not set
 # CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_mlwg2 is not set
-CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_y1=y
-CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt7620_DEVICE_y1="aria2 blockd block-mount kmod-crypto-crc32c kmod-fs-autofs4 kmod-fs-exfat kmod-fs-ext4 kmod-fs-msdos kmod-fs-vfat kmod-fuse kmod-lib-crc16 kmod-mii kmod-nls-cp437 kmod-scsi-core kmod-usb2 kmod-usb-core kmod-usb-ehci kmod-usb-net kmod-usb-net-cdc-ether kmod-usb-net-rndis kmod-usb-ohci kmod-usb-printer kmod-usb-storage kmod-usb-storage-uas libmbedtls libsodium libsqlite3 libssh2 libstdcpp libxml2 luci-app-aria2 luci-app-p910nd luci-app-samba luci-app-shadowsocks-libev luci-i18n-aria2-zh-cn luci-i18n-p910nd-en luci-i18n-p910nd-zh-cn luci-i18n-samba-en luci-i18n-samba-zh-cn ntfs-3g p910nd samba36-server shadowsocks-client shadowsocks-libev-config shadowsocks-libev-ss-local shadowsocks-libev-ss-redir shadowsocks-libev-ss-rules shadowsocks-libev-ss-server shadowsocks-libev-ss-tunnel webui-aria2"
-CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_y1s=y
-CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt7620_DEVICE_y1s="aria2 blockd block-mount kmod-crypto-crc32c kmod-fs-autofs4 kmod-fs-exfat kmod-fs-ext4 kmod-fs-msdos kmod-fs-vfat kmod-fuse kmod-lib-crc16 kmod-mii kmod-nls-cp437 kmod-scsi-core kmod-usb2 kmod-usb3 kmod-usb-core kmod-usb-ehci kmod-usb-net kmod-usb-net-cdc-ether kmod-usb-net-rndis kmod-usb-ohci kmod-usb-printer kmod-usb-storage kmod-usb-storage-uas libmbedtls libsodium libsqlite3 libssh2 libstdcpp libxml2 luci-app-aria2 luci-app-p910nd luci-app-samba luci-app-shadowsocks-libev luci-i18n-aria2-zh-cn luci-i18n-p910nd-en luci-i18n-p910nd-zh-cn luci-i18n-samba-en luci-i18n-samba-zh-cn ntfs-3g p910nd samba36-server shadowsocks-client shadowsocks-libev-config shadowsocks-libev-ss-local shadowsocks-libev-ss-redir shadowsocks-libev-ss-rules shadowsocks-libev-ss-server shadowsocks-libev-ss-tunnel webui-aria2"
+# CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_y1 is not set
+# CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_y1s is not set
 # CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_e1700 is not set
 # CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_mt7620a_mt7530 is not set
 # CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_mt7620a_mt7610e is not set
@@ -187,12 +181,15 @@ CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt7620_DEVICE_y1s="aria2 blockd block-mount
 # CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_wn3000rpv3 is not set
 # CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_wt3020-4M is not set
 # CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_wt3020-8M is not set
-CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_oy-0001=y
-CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt7620_DEVICE_oy-0001="aria2 blockd block-mount kmod-crypto-crc32c kmod-fs-autofs4 kmod-fs-exfat kmod-fs-ext4 kmod-fs-msdos kmod-fs-vfat kmod-fuse kmod-lib-crc16 kmod-mii kmod-nls-cp437 kmod-scsi-core kmod-usb2 kmod-usb-core kmod-usb-ehci kmod-usb-net kmod-usb-net-cdc-ether kmod-usb-net-rndis kmod-usb-ohci kmod-usb-printer kmod-usb-storage kmod-usb-storage-uas libmbedtls libsodium libsqlite3 libssh2 libstdcpp libxml2 luci-app-aria2 luci-app-p910nd luci-app-samba luci-app-shadowsocks-libev luci-i18n-aria2-zh-cn luci-i18n-p910nd-en luci-i18n-p910nd-zh-cn luci-i18n-samba-en luci-i18n-samba-zh-cn ntfs-3g p910nd samba36-server shadowsocks-client shadowsocks-libev-config shadowsocks-libev-ss-local shadowsocks-libev-ss-redir shadowsocks-libev-ss-rules shadowsocks-libev-ss-server shadowsocks-libev-ss-tunnel webui-aria2"
-# CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_phicomm_k2g is not set
-# CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_psg1208 is not set
-# CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_psg1218a is not set
-# CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_psg1218b is not set
+# CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_oy-0001 is not set
+CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_phicomm_k2g=y
+CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt7620_DEVICE_phicomm_k2g=""
+CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_psg1208=y
+CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt7620_DEVICE_psg1208=""
+CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_psg1218a=y
+CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt7620_DEVICE_psg1218a=""
+CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_psg1218b=y
+CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt7620_DEVICE_psg1218b=""
 # CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_cs-qr10 is not set
 # CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_db-wrt01 is not set
 # CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_mzk-750dhp is not set
@@ -208,23 +205,20 @@ CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt7620_DEVICE_oy-0001="aria2 blockd block-m
 # CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_ArcherMR200 is not set
 # CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_vonets_var11n-300 is not set
 # CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_wrtnode is not set
-CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_xiaomi_miwifi-r3=y
-CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt7620_DEVICE_xiaomi_miwifi-r3="aria2 blockd block-mount kmod-crypto-crc32c kmod-fs-autofs4 kmod-fs-exfat kmod-fs-ext4 kmod-fs-msdos kmod-fs-vfat kmod-fuse kmod-lib-crc16 kmod-mii kmod-nls-cp437 kmod-scsi-core kmod-usb2 kmod-usb-core kmod-usb-ehci kmod-usb-net kmod-usb-net-cdc-ether kmod-usb-net-rndis kmod-usb-ohci kmod-usb-printer kmod-usb-storage kmod-usb-storage-uas libmbedtls libsodium libsqlite3 libssh2 libstdcpp libxml2 luci-app-aria2 luci-app-p910nd luci-app-samba luci-app-shadowsocks-libev luci-i18n-aria2-zh-cn luci-i18n-p910nd-en luci-i18n-p910nd-zh-cn luci-i18n-samba-en luci-i18n-samba-zh-cn ntfs-3g p910nd samba36-server shadowsocks-client shadowsocks-libev-config shadowsocks-libev-ss-local shadowsocks-libev-ss-redir shadowsocks-libev-ss-rules shadowsocks-libev-ss-server shadowsocks-libev-ss-tunnel uboot-envtools webui-aria2"
-CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_miwifi-mini=y
-CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt7620_DEVICE_miwifi-mini="aria2 blockd block-mount kmod-crypto-crc32c kmod-fs-autofs4 kmod-fs-exfat kmod-fs-ext4 kmod-fs-msdos kmod-fs-vfat kmod-fuse kmod-lib-crc16 kmod-mii kmod-nls-cp437 kmod-scsi-core kmod-usb2 kmod-usb-core kmod-usb-ehci kmod-usb-net kmod-usb-net-cdc-ether kmod-usb-net-rndis kmod-usb-ohci kmod-usb-printer kmod-usb-storage kmod-usb-storage-uas libmbedtls libsodium libsqlite3 libssh2 libstdcpp libxml2 luci-app-aria2 luci-app-p910nd luci-app-samba luci-app-shadowsocks-libev luci-i18n-aria2-zh-cn luci-i18n-p910nd-en luci-i18n-p910nd-zh-cn luci-i18n-samba-en luci-i18n-samba-zh-cn ntfs-3g p910nd samba36-server shadowsocks-client shadowsocks-libev-config shadowsocks-libev-ss-local shadowsocks-libev-ss-redir shadowsocks-libev-ss-rules shadowsocks-libev-ss-server shadowsocks-libev-ss-tunnel webui-aria2"
-CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_youku-yk1=y
-CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt7620_DEVICE_youku-yk1="aria2 blockd block-mount kmod-crypto-crc32c kmod-fs-autofs4 kmod-fs-exfat kmod-fs-ext4 kmod-fs-msdos kmod-fs-vfat kmod-fuse kmod-lib-crc16 kmod-mii kmod-nls-cp437 kmod-scsi-core kmod-sdhci-mt7620 kmod-usb2 kmod-usb3 kmod-usb-core kmod-usb-ehci kmod-usb-ledtrig-usbport kmod-usb-net kmod-usb-net-cdc-ether kmod-usb-net-rndis kmod-usb-ohci kmod-usb-printer kmod-usb-storage kmod-usb-storage-uas libmbedtls libsodium libsqlite3 libssh2 libstdcpp libxml2 luci-app-aria2 luci-app-p910nd luci-app-samba luci-app-shadowsocks-libev luci-i18n-aria2-zh-cn luci-i18n-p910nd-en luci-i18n-p910nd-zh-cn luci-i18n-samba-en luci-i18n-samba-zh-cn ntfs-3g p910nd samba36-server shadowsocks-client shadowsocks-libev-config shadowsocks-libev-ss-local shadowsocks-libev-ss-redir shadowsocks-libev-ss-rules shadowsocks-libev-ss-server shadowsocks-libev-ss-tunnel webui-aria2"
+# CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_xiaomi_miwifi-r3 is not set
+# CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_miwifi-mini is not set
+# CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_youku-yk1 is not set
 # CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_bocco is not set
 # CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_zbt-ape522ii is not set
 # CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_zbt-cpe102 is not set
 # CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_zbt-wa05 is not set
 # CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_we1026-5g-16m is not set
-# CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_zbt-we2026 is not set
-CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_zbt-we826-16M=y
-CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt7620_DEVICE_zbt-we826-16M="aria2 blockd block-mount kmod-crypto-crc32c kmod-fs-autofs4 kmod-fs-exfat kmod-fs-ext4 kmod-fs-msdos kmod-fs-vfat kmod-fuse kmod-lib-crc16 kmod-mii kmod-nls-cp437 kmod-scsi-core kmod-sdhci-mt7620 kmod-usb2 kmod-usb-core kmod-usb-ehci kmod-usb-net kmod-usb-net-cdc-ether kmod-usb-net-rndis kmod-usb-ohci kmod-usb-printer kmod-usb-storage kmod-usb-storage-uas libmbedtls libsodium libsqlite3 libssh2 libstdcpp libxml2 luci-app-aria2 luci-app-p910nd luci-app-samba luci-app-shadowsocks-libev luci-i18n-aria2-zh-cn luci-i18n-p910nd-en luci-i18n-p910nd-zh-cn luci-i18n-samba-en luci-i18n-samba-zh-cn ntfs-3g p910nd samba36-server shadowsocks-client shadowsocks-libev-config shadowsocks-libev-ss-local shadowsocks-libev-ss-redir shadowsocks-libev-ss-rules shadowsocks-libev-ss-server shadowsocks-libev-ss-tunnel webui-aria2"
-CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_zbt-we826-32M=y
-CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt7620_DEVICE_zbt-we826-32M="aria2 blockd block-mount kmod-crypto-crc32c kmod-fs-autofs4 kmod-fs-exfat kmod-fs-ext4 kmod-fs-msdos kmod-fs-vfat kmod-fuse kmod-lib-crc16 kmod-mii kmod-nls-cp437 kmod-scsi-core kmod-sdhci-mt7620 kmod-usb2 kmod-usb-core kmod-usb-ehci kmod-usb-net kmod-usb-net-cdc-ether kmod-usb-net-rndis kmod-usb-ohci kmod-usb-printer kmod-usb-storage kmod-usb-storage-uas libmbedtls libsodium libsqlite3 libssh2 libstdcpp libxml2 luci-app-aria2 luci-app-p910nd luci-app-samba luci-app-shadowsocks-libev luci-i18n-aria2-zh-cn luci-i18n-p910nd-en luci-i18n-p910nd-zh-cn luci-i18n-samba-en luci-i18n-samba-zh-cn ntfs-3g p910nd samba36-server shadowsocks-client shadowsocks-libev-config shadowsocks-libev-ss-local shadowsocks-libev-ss-redir shadowsocks-libev-ss-rules shadowsocks-libev-ss-server shadowsocks-libev-ss-tunnel webui-aria2"
-# CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_zbt-wr8305rt is not set
+CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_zbt-we2026=y
+CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt7620_DEVICE_zbt-we2026=""
+# CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_zbt-we826-16M is not set
+# CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_zbt-we826-32M is not set
+CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_zbt-wr8305rt=y
+CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt7620_DEVICE_zbt-wr8305rt=""
 # CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_zte-q7 is not set
 # CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_kn_rc is not set
 # CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_kn_rf is not set
@@ -268,10 +262,6 @@ CONFIG_DEFAULT_kmod-rt2800-pci=y
 CONFIG_MODULE_DEFAULT_kmod-rt2800-pci=y
 CONFIG_DEFAULT_kmod-rt2800-soc=y
 CONFIG_MODULE_DEFAULT_kmod-rt2800-soc=y
-CONFIG_MODULE_DEFAULT_kmod-sdhci-mt7620=y
-CONFIG_MODULE_DEFAULT_kmod-usb-ledtrig-usbport=y
-CONFIG_MODULE_DEFAULT_kmod-usb-ohci=y
-CONFIG_MODULE_DEFAULT_kmod-usb2=y
 CONFIG_DEFAULT_libc=y
 CONFIG_MODULE_DEFAULT_libc=y
 CONFIG_DEFAULT_libgcc=y
@@ -294,7 +284,6 @@ CONFIG_DEFAULT_ppp-mod-pppoe=y
 CONFIG_MODULE_DEFAULT_ppp-mod-pppoe=y
 CONFIG_DEFAULT_swconfig=y
 CONFIG_MODULE_DEFAULT_swconfig=y
-CONFIG_MODULE_DEFAULT_uboot-envtools=y
 CONFIG_DEFAULT_uci=y
 CONFIG_MODULE_DEFAULT_uci=y
 CONFIG_DEFAULT_uclient-fetch=y
@@ -369,7 +358,7 @@ CONFIG_KERNEL_DEBUG_FS=y
 # CONFIG_KERNEL_MIPS_FPU_EMULATOR is not set
 # CONFIG_KERNEL_PERF_EVENTS is not set
 # CONFIG_KERNEL_PROFILING is not set
-CONFIG_KERNEL_KALLSYMS=y
+# CONFIG_KERNEL_KALLSYMS is not set
 # CONFIG_KERNEL_FTRACE is not set
 CONFIG_KERNEL_DEBUG_KERNEL=y
 CONFIG_KERNEL_DEBUG_INFO=y
