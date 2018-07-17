@@ -238,6 +238,7 @@ for t in $targets; do
 		TARGET_DEVICE_kirkwood_DEVICE_linksys_audi|\
 		TARGET_DEVICE_ramips_mt76x8_DEVICE_hc5661a|\
 		TARGET_DEVICE_ar71xx_generic_DEVICE_F9K1115V2|\
+		TARGET_DEVICE_ar71xx_tiny_DEVICE_F9K1115V2|\
 		TARGET_DEVICE_ipq806x_DEVICE_qcom_ap-dk04.1-c1|\
 		TARGET_DEVICE_ar71xx_generic_DEVICE_DGL5500A1|\
 		TARGET_DEVICE_ar71xx_generic_DEVICE_gl-inet-6416A-v1|\
@@ -376,6 +377,7 @@ for t in $targets; do
 		TARGET_DEVICE_bcm53xx_DEVICE_netgear-r6250|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_mir3g|\
 		TARGET_DEVICE_ar71xx_generic_DEVICE_F9K1115V2|\
+		TARGET_DEVICE_ar71xx_tiny_DEVICE_F9K1115V2|\
 		TARGET_DEVICE_ipq806x_DEVICE_qcom_ap-dk04.1-c1|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_zbt-we1326|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_zbt-wg2626|\
