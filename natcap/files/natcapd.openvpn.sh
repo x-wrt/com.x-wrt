@@ -2,6 +2,8 @@
 
 make_config()
 {
+	PROTO=$1
+	PROTO=${PROTO-tcp}
 	KEY_ID=client
 	KEY_DIR=/usr/share/natcapd/openvpn
 	BASE_CONFIG=/usr/share/natcapd/openvpn/client.conf
@@ -9,7 +11,7 @@ make_config()
 	TA_KEY=${KEY_DIR}/ta.key
 	test -f /etc/openvpn/natcap-ta.key && TA_KEY=/etc/openvpn/natcap-ta.key
 
-	cat ${BASE_CONFIG} | sed "s/^remote .*4911$/remote $hname.dns.ptpt52.com 4911/"
+	cat ${BASE_CONFIG} | sed "s/^remote .*4911$/remote $hname.dns.ptpt52.com 4911/;s/^proto tcp$/proto $PROTO/"
 	echo -e '<ca>'
 	cat ${KEY_DIR}/ca.crt
 	echo -e '</ca>\n<cert>'
@@ -22,12 +24,17 @@ make_config()
 }
 
 [ "x$1" = "xgen_client" ] && {
-	make_config
+	make_config tcp
+	exit 0
+}
+
+[ "x$1" = "xgen_client_udp" ] && {
+	make_config udp
 	exit 0
 }
 
 [ "x`uci get natcapd.default.natcapovpn`" = x1 ] && {
-	! [ "x`uci get openvpn.natcapovpn.enabled`" = x1 ] && {
+	[ "x`uci get openvpn.natcapovpn.enabled`" != x1 ] && {
 		uci delete network.natcapovpn
 		uci set network.natcapovpn=interface
 		uci set network.natcapovpn.proto='none'
@@ -49,49 +56,55 @@ make_config()
 			}
 			index=$((index+1))
 		done
-		uci delete firewall.natcapovpn_tcp
-		uci set firewall.natcapovpn_tcp=rule
-		uci set firewall.natcapovpn_tcp.target='ACCEPT'
-		uci set firewall.natcapovpn_tcp.src='wan'
-		uci set firewall.natcapovpn_tcp.proto='tcp'
-		uci set firewall.natcapovpn_tcp.dest_port='4911'
-		uci set firewall.natcapovpn_tcp.name='natcapovpn'
+		for p in tcp udp; do
+			uci delete firewall.natcapovpn_$p
+			uci set firewall.natcapovpn_$p=rule
+			uci set firewall.natcapovpn_$p.target='ACCEPT'
+			uci set firewall.natcapovpn_$p.src='wan'
+			uci set firewall.natcapovpn_$p.proto="$p"
+			uci set firewall.natcapovpn_$p.dest_port='4911'
+			uci set firewall.natcapovpn_$p.name="natcapovpn_$p"
+		done
 		uci commit firewall
 
 		/etc/init.d/network reload
 		/etc/init.d/firewall reload
 
-		uci delete openvpn.natcapovpn
-		uci set openvpn.natcapovpn=openvpn
-		uci set openvpn.natcapovpn.enabled='1'
-		uci set openvpn.natcapovpn.port='4911'
-		uci set openvpn.natcapovpn.dev='natcap0'
-		uci set openvpn.natcapovpn.dev_type='tun'
-		uci set openvpn.natcapovpn.ca='/usr/share/natcapd/openvpn/ca.crt'
-		uci set openvpn.natcapovpn.cert='/usr/share/natcapd/openvpn/server.crt'
-		uci set openvpn.natcapovpn.key='/usr/share/natcapd/openvpn/server.key'
-		uci set openvpn.natcapovpn.dh='/usr/share/natcapd/openvpn/dh2048.pem'
-		uci set openvpn.natcapovpn.server='10.8.9.0 255.255.255.0'
-		uci set openvpn.natcapovpn.keepalive='10 120'
-		uci set openvpn.natcapovpn.compress='lzo'
-		uci set openvpn.natcapovpn.persist_key='1'
-		uci set openvpn.natcapovpn.persist_tun='1'
-		uci set openvpn.natcapovpn.user='nobody'
-		uci set openvpn.natcapovpn.duplicate_cn='1'
-		uci set openvpn.natcapovpn.status='/tmp/natcapovpn-status.log'
-		uci set openvpn.natcapovpn.mode='server'
-		uci set openvpn.natcapovpn.tls_server='1'
-		uci set openvpn.natcapovpn.tls_auth='/usr/share/natcapd/openvpn/ta.key 0'
-		test -f /etc/openvpn/natcap-ta.key && uci set openvpn.natcapovpn.tls_auth='/etc/openvpn/natcap-ta.key 0'
-		uci set openvpn.natcapovpn.route_gateway='dhcp'
-		uci set openvpn.natcapovpn.client_to_client='1'
-		uci add_list openvpn.natcapovpn.push='persist-key'
-		uci add_list openvpn.natcapovpn.push='persist-tun'
-		uci add_list openvpn.natcapovpn.push='redirect-gateway def1 bypass-dhcp'
-		uci add_list openvpn.natcapovpn.push='dhcp-option DNS 8.8.8.8'
-		uci set openvpn.natcapovpn.proto='tcp4'
-		uci set openvpn.natcapovpn.comp_lzo='yes'
-		uci set openvpn.natcapovpn.verb='3'
+		I=0
+		for p in tcp udp; do
+			uci delete openvpn.natcapovpn_$p
+			uci set openvpn.natcapovpn_$p=openvpn
+			uci set openvpn.natcapovpn_$p.enabled='1'
+			uci set openvpn.natcapovpn_$p.port='4911'
+			uci set openvpn.natcapovpn_$p.dev="natcap$p"
+			uci set openvpn.natcapovpn_$p.dev_type='tun'
+			uci set openvpn.natcapovpn_$p.ca='/usr/share/natcapd/openvpn/ca.crt'
+			uci set openvpn.natcapovpn_$p.cert='/usr/share/natcapd/openvpn/server.crt'
+			uci set openvpn.natcapovpn_$p.key='/usr/share/natcapd/openvpn/server.key'
+			uci set openvpn.natcapovpn_$p.dh='/usr/share/natcapd/openvpn/dh2048.pem'
+			uci set openvpn.natcapovpn_$p.server="10.8.$((9+I)).0 255.255.255.0"
+			uci set openvpn.natcapovpn_$p.keepalive='10 120'
+			uci set openvpn.natcapovpn_$p.compress='lzo'
+			uci set openvpn.natcapovpn_$p.persist_key='1'
+			uci set openvpn.natcapovpn_$p.persist_tun='1'
+			uci set openvpn.natcapovpn_$p.user='nobody'
+			uci set openvpn.natcapovpn_$p.duplicate_cn='1'
+			uci set openvpn.natcapovpn_$p.status='/tmp/natcapovpn-status.log'
+			uci set openvpn.natcapovpn_$p.mode='server'
+			uci set openvpn.natcapovpn_$p.tls_server='1'
+			uci set openvpn.natcapovpn_$p.tls_auth='/usr/share/natcapd/openvpn/ta.key 0'
+			test -f /etc/openvpn/natcap-ta.key && uci set openvpn.natcapovpn_$p.tls_auth='/etc/openvpn/natcap-ta.key 0'
+			uci set openvpn.natcapovpn_$p.route_gateway='dhcp'
+			uci set openvpn.natcapovpn_$p.client_to_client='1'
+			uci add_list openvpn.natcapovpn_$p.push='persist-key'
+			uci add_list openvpn.natcapovpn_$p.push='persist-tun'
+			uci add_list openvpn.natcapovpn_$p.push='redirect-gateway def1 bypass-dhcp'
+			uci add_list openvpn.natcapovpn_$p.push='dhcp-option DNS 8.8.8.8'
+			uci set openvpn.natcapovpn_$p.proto="${p}4"
+			uci set openvpn.natcapovpn_$p.comp_lzo='yes'
+			uci set openvpn.natcapovpn_$p.verb='3'
+			I=$((I+1))
+		done
 		uci commit openvpn
 	}
 
@@ -99,16 +112,20 @@ make_config()
 	exit 0
 }
 
-! [ "x`uci get natcapd.default.natcapovpn`" = x1 ] && [ "x`uci get openvpn.natcapovpn.enabled`" = x1 ] && {
+[ "x`uci get natcapd.default.natcapovpn`" != x1 ] && [ "x`uci get openvpn.natcapovpn_tcp.enabled`" = x1 ] && {
 	/etc/init.d/openvpn stop
-	uci delete openvpn.natcapovpn
+	for p in tcp udp; do
+		uci delete openvpn.natcapovpn_$p
+	done
 	uci commit openvpn
 	/etc/init.d/openvpn start
 
 	uci delete network.natcapovpn
 	uci commit network
 
-	uci delete firewall.natcapovpn_tcp
+	for p in tcp udp; do
+		uci delete firewall.natcapovpn_$p
+	done
 	index=0
 	while :; do
 		zone="`uci get firewall.@zone[$index].name 2>/dev/null`"
