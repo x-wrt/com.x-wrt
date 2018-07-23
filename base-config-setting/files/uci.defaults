@@ -220,6 +220,9 @@ test $version -lt 10 && {
 	version=10
 }
 
+# fix usb auto umount bug
+cp /usr/share/base-config-setting/mount.hotplug /etc/hotplug.d/block/10-mount
+
 #FIXME fixup for openvpn client
 uci delete openvpn_recipes.client_tun.pkcs12 2>/dev/null && uci commit openvpn_recipes
 

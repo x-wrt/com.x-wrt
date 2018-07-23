@@ -1,0 +1,4 @@
+if test -e /etc/hotplug.d/block/20-auto_usb_mount; then
+	[ "x$ACTION" = "xadd" ] && exit 0
+fi
+/sbin/block hotplug
