@@ -41,6 +41,7 @@ CONFIG_TARGET_bcm53xx=y
 # CONFIG_TARGET_ipq40xx is not set
 # CONFIG_TARGET_ipq806x is not set
 # CONFIG_TARGET_au1000 is not set
+# CONFIG_TARGET_samsung is not set
 # CONFIG_TARGET_arc770 is not set
 # CONFIG_TARGET_archs38 is not set
 # CONFIG_TARGET_ar7 is not set
@@ -378,7 +379,8 @@ CONFIG_TOOLCHAINOPTS=y
 # Binary tools
 #
 # CONFIG_BINUTILS_USE_VERSION_2_29_1 is not set
-CONFIG_BINUTILS_USE_VERSION_2_30=y
+# CONFIG_BINUTILS_USE_VERSION_2_30 is not set
+CONFIG_BINUTILS_USE_VERSION_2_31_1=y
 CONFIG_EXTRA_BINUTILS_CONFIG_OPTIONS=""
 
 #
@@ -386,6 +388,7 @@ CONFIG_EXTRA_BINUTILS_CONFIG_OPTIONS=""
 #
 # CONFIG_GCC_USE_VERSION_5 is not set
 CONFIG_GCC_USE_VERSION_7=y
+# CONFIG_GCC_USE_VERSION_8 is not set
 # CONFIG_GCC_USE_GRAPHITE is not set
 CONFIG_EXTRA_GCC_CONFIG_OPTIONS=""
 # CONFIG_GCC_DEFAULT_PIE is not set
@@ -405,8 +408,8 @@ CONFIG_LIBC_USE_MUSL=y
 CONFIG_GDB=y
 CONFIG_USE_MUSL=y
 CONFIG_SSP_SUPPORT=y
-CONFIG_BINUTILS_VERSION_2_30=y
-CONFIG_BINUTILS_VERSION="2.30"
+CONFIG_BINUTILS_VERSION_2_31_1=y
+CONFIG_BINUTILS_VERSION="2.31.1"
 CONFIG_GCC_VERSION="7.3.0"
 CONFIG_LIBC="musl"
 CONFIG_TARGET_SUFFIX="muslgnueabi"
@@ -431,7 +434,7 @@ CONFIG_TARGET_INIT_CMD="/sbin/init"
 CONFIG_TARGET_INIT_SUPPRESS_STDERR=y
 CONFIG_VERSIONOPT=y
 CONFIG_VERSION_DIST="NATCAP"
-CONFIG_VERSION_NUMBER="4.0_b201807210829"
+CONFIG_VERSION_NUMBER="4.0_b201807311207"
 CONFIG_VERSION_CODE="Beetle"
 CONFIG_VERSION_REPO="http://downloads.openwrt.org/snapshots"
 CONFIG_VERSION_HOME_URL="https://router-sh.ptpt52.com/rom/"
@@ -2712,6 +2715,7 @@ CONFIG_PACKAGE_kmod-fuse=m
 # CONFIG_PACKAGE_kmod-iio-bmp280-spi is not set
 # CONFIG_PACKAGE_kmod-iio-core is not set
 # CONFIG_PACKAGE_kmod-iio-dht11 is not set
+# CONFIG_PACKAGE_kmod-iio-htu21 is not set
 
 #
 # Input modules
@@ -2862,6 +2866,7 @@ CONFIG_PACKAGE_kmod-nfnetlink=y
 # CONFIG_PACKAGE_kmod-nft-core is not set
 # CONFIG_PACKAGE_kmod-nft-nat is not set
 # CONFIG_PACKAGE_kmod-nft-nat6 is not set
+# CONFIG_PACKAGE_kmod-nft-netdev is not set
 # CONFIG_PACKAGE_kmod-nft-offload is not set
 
 #
@@ -3652,6 +3657,7 @@ CONFIG_PACKAGE_libip4tc=y
 CONFIG_PACKAGE_libip6tc=y
 # CONFIG_PACKAGE_libiptc is not set
 CONFIG_PACKAGE_libxtables=y
+# CONFIG_PACKAGE_libxtables-compat is not set
 
 #
 # Instant Messaging
@@ -3925,15 +3931,12 @@ CONFIG_PACKAGE_libblobmsg-json=y
 CONFIG_PACKAGE_libcares=y
 # CONFIG_PACKAGE_libcharset is not set
 # CONFIG_PACKAGE_libcoap is not set
-CONFIG_PACKAGE_libcomerr=m
 # CONFIG_PACKAGE_libconfig is not set
 # CONFIG_PACKAGE_libcurl is not set
 # CONFIG_PACKAGE_libdaemon is not set
 # CONFIG_PACKAGE_libdaq is not set
 # CONFIG_PACKAGE_libdb47 is not set
-# CONFIG_PACKAGE_libdb47xx is not set
 # CONFIG_PACKAGE_libdbi is not set
-# CONFIG_PACKAGE_libdbus is not set
 # CONFIG_PACKAGE_libdevmapper is not set
 # CONFIG_PACKAGE_libdmapsharing is not set
 # CONFIG_PACKAGE_libdnet is not set
@@ -3941,6 +3944,9 @@ CONFIG_PACKAGE_libcomerr=m
 # CONFIG_PACKAGE_libdrm is not set
 # CONFIG_PACKAGE_libedit is not set
 # CONFIG_PACKAGE_libelf1 is not set
+CONFIG_PACKAGE_libcomerr=m
+# CONFIG_PACKAGE_libdb47xx is not set
+# CONFIG_PACKAGE_libdbus is not set
 # CONFIG_PACKAGE_libecdsautil is not set
 # CONFIG_PACKAGE_libesmtp is not set
 # CONFIG_PACKAGE_libestr is not set
@@ -3951,7 +3957,6 @@ CONFIG_PACKAGE_libev=y
 # CONFIG_PACKAGE_libevent2-extra is not set
 # CONFIG_PACKAGE_libevent2-openssl is not set
 # CONFIG_PACKAGE_libevent2-pthreads is not set
-# CONFIG_PACKAGE_libeventlog is not set
 # CONFIG_PACKAGE_libevhtp is not set
 # CONFIG_PACKAGE_libexif is not set
 # CONFIG_PACKAGE_libexpat is not set
@@ -4329,6 +4334,7 @@ CONFIG_PACKAGE_luci-app-p910nd=m
 # CONFIG_PACKAGE_luci-app-radicale is not set
 # CONFIG_PACKAGE_luci-app-rp-pppoe-server is not set
 CONFIG_PACKAGE_luci-app-samba=m
+# CONFIG_PACKAGE_luci-app-samba4 is not set
 CONFIG_PACKAGE_luci-app-shadowsocks-libev=m
 # CONFIG_PACKAGE_luci-app-shairplay is not set
 # CONFIG_PACKAGE_luci-app-siitwizard is not set
@@ -4908,6 +4914,7 @@ CONFIG_PACKAGE_ddns-scripts=y
 # CONFIG_PACKAGE_unbound-control is not set
 # CONFIG_PACKAGE_unbound-control-setup is not set
 # CONFIG_PACKAGE_unbound-host is not set
+# CONFIG_PACKAGE_wsdd2 is not set
 # CONFIG_PACKAGE_zonestitcher is not set
 
 #
@@ -5391,6 +5398,7 @@ CONFIG_PACKAGE_6to4=y
 # CONFIG_PACKAGE_etherwake is not set
 # CONFIG_PACKAGE_ethtool is not set
 # CONFIG_PACKAGE_fakeidentd is not set
+# CONFIG_PACKAGE_foolsm is not set
 # CONFIG_PACKAGE_fping is not set
 # CONFIG_PACKAGE_geth is not set
 # CONFIG_PACKAGE_gnunet is not set
@@ -5511,6 +5519,7 @@ CONFIG_PACKAGE_ppp-mod-pptp=y
 # CONFIG_PACKAGE_pppoe-discovery is not set
 # CONFIG_PACKAGE_pppossh is not set
 # CONFIG_PACKAGE_pppstats is not set
+# CONFIG_PACKAGE_proto-bonding is not set
 # CONFIG_PACKAGE_radsecproxy is not set
 # CONFIG_PACKAGE_redsocks is not set
 # CONFIG_PACKAGE_remserial is not set
@@ -5521,6 +5530,11 @@ CONFIG_PACKAGE_ppp-mod-pptp=y
 # CONFIG_PACKAGE_samba36-net is not set
 CONFIG_PACKAGE_samba36-server=m
 CONFIG_PACKAGE_SAMBA_MAX_DEBUG_LEVEL=-1
+# CONFIG_PACKAGE_samba4-admin is not set
+# CONFIG_PACKAGE_samba4-client is not set
+# CONFIG_PACKAGE_samba4-libs is not set
+# CONFIG_PACKAGE_samba4-server is not set
+# CONFIG_PACKAGE_samba4-utils is not set
 # CONFIG_PACKAGE_scapy is not set
 # CONFIG_PACKAGE_sctp is not set
 # CONFIG_PACKAGE_sctp-tools is not set
@@ -5692,6 +5706,7 @@ CONFIG_PACKAGE_uboot-envtools=y
 #
 # CONFIG_PACKAGE_blkdiscard is not set
 # CONFIG_PACKAGE_blkid is not set
+# CONFIG_PACKAGE_blockdev is not set
 # CONFIG_PACKAGE_cfdisk is not set
 # CONFIG_PACKAGE_cgdisk is not set
 # CONFIG_PACKAGE_fdisk is not set
@@ -6028,7 +6043,6 @@ CONFIG_PACKAGE_procps-ng-ps=y
 # CONFIG_PACKAGE_procps-ng-watch is not set
 # CONFIG_PACKAGE_progress is not set
 # CONFIG_PACKAGE_prometheus-node-exporter-lua is not set
-# CONFIG_PACKAGE_prometheus-node-exporter-lua-openwrt is not set
 # CONFIG_PACKAGE_pv is not set
 # CONFIG_PACKAGE_qrencode is not set
 # CONFIG_PACKAGE_relayctl is not set
