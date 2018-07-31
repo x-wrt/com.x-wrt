@@ -228,6 +228,7 @@ for t in $targets; do
 		TARGET_DEVICE_ramips_mt7620_DEVICE_zbt-we826-16M|\
 		TARGET_DEVICE_ramips_mt7620_DEVICE_we1026-5g-16m|\
 		TARGET_DEVICE_ar71xx_generic_DEVICE_archer-c59-v1|\
+		TARGET_DEVICE_ar71xx_generic_DEVICE_archer-c59-v2|\
 		TARGET_DEVICE_ipq806x_DEVICE_zyxel_nbg6817|\
 		TARGET_DEVICE_ipq806x_DEVICE_avm_fritzbox-4040|\
 		TARGET_DEVICE_ramips_mt7620_DEVICE_miwifi-mini|\
@@ -442,6 +443,7 @@ for t in $targets; do
 		TARGET_DEVICE_ramips_mt7620_DEVICE_we1026-5g-16m|\
 		TARGET_DEVICE_ar71xx_generic_DEVICE_tl-wr902ac-v1|\
 		TARGET_DEVICE_ar71xx_generic_DEVICE_archer-c59-v1|\
+		TARGET_DEVICE_ar71xx_generic_DEVICE_archer-c59-v2|\
 		TARGET_DEVICE_ar71xx_generic_DEVICE_tl-wr1043nd-v4|\
 		TARGET_DEVICE_ar71xx_generic_DEVICE_tl-wr1043nd-v3|\
 		TARGET_DEVICE_ar71xx_generic_DEVICE_tl-wr1043nd-v2|\
