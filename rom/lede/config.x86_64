@@ -2803,7 +2803,7 @@ CONFIG_PACKAGE_kmod-ebtables-ipv4=y
 CONFIG_PACKAGE_kmod-ebtables-ipv6=y
 # CONFIG_PACKAGE_kmod-ebtables-watchers is not set
 # CONFIG_PACKAGE_kmod-ip6t-rpfilter is not set
-CONFIG_PACKAGE_kmod-ip6t-tee=y
+# CONFIG_PACKAGE_kmod-ip6t-tee is not set
 CONFIG_PACKAGE_kmod-ip6tables=y
 CONFIG_PACKAGE_kmod-ip6tables-extra=y
 # CONFIG_PACKAGE_kmod-ipt-account is not set
@@ -2854,7 +2854,7 @@ CONFIG_PACKAGE_kmod-ipt-raw6=y
 CONFIG_PACKAGE_kmod-ipt-rpfilter=y
 # CONFIG_PACKAGE_kmod-ipt-sysrq is not set
 # CONFIG_PACKAGE_kmod-ipt-tarpit is not set
-CONFIG_PACKAGE_kmod-ipt-tee=y
+# CONFIG_PACKAGE_kmod-ipt-tee is not set
 CONFIG_PACKAGE_kmod-ipt-tproxy=y
 CONFIG_PACKAGE_kmod-ipt-u32=y
 # CONFIG_PACKAGE_kmod-ipt-ulog is not set
@@ -4902,7 +4902,7 @@ CONFIG_PACKAGE_iptables-mod-physdev=y
 CONFIG_PACKAGE_iptables-mod-rpfilter=y
 # CONFIG_PACKAGE_iptables-mod-sysrq is not set
 # CONFIG_PACKAGE_iptables-mod-tarpit is not set
-CONFIG_PACKAGE_iptables-mod-tee=y
+# CONFIG_PACKAGE_iptables-mod-tee is not set
 CONFIG_PACKAGE_iptables-mod-tproxy=y
 CONFIG_PACKAGE_iptables-mod-trace=y
 # CONFIG_PACKAGE_iptables-mod-u32 is not set
