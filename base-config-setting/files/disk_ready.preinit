@@ -5,7 +5,7 @@
 
 
 do_disk_ready() {
-	which gdisk && which fdisk && which partx && which mkfs.ext4 || return
+	which fdisk && which partx && which mkfs.ext4 || return
 	local partdev
 	local ROOTDEV=/dev/sda
 	local ROOTPART=/dev/sda
@@ -34,6 +34,7 @@ do_disk_ready() {
 	diskpart=`fdisk -l ${ROOTDEV} | grep "^${ROOTPART}[0-9]" | wc -l`
 
 	if [ "$disktype" = "gpt" ]; then
+		which gdisk || return
 		[ "x$diskpart" = "x6" ] || {
 			disksize="`fdisk -l ${ROOTDEV} | grep ${ROOTDEV}: | head -n1 | awk '{print $5}'`"
 			test -n "$disksize" || return
