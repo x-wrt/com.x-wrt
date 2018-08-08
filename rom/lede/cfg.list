@@ -1,10 +1,11 @@
-config.ath79-generic
-config.ath79-generic-nosymbol
 config.ar71xx-generic
 config.ar71xx-generic-nosymbol
-config.ar71xx-tiny
 config.ar71xx-nand
 config.ar71xx-nand-nosymbol
+config.ar71xx-tiny
+config.ath79-generic
+config.ath79-generic-nosymbol
+config.bcm53xx-generic
 config.ipq40xx-generic
 config.ipq806x-generic
 config.kirkwood-generic
@@ -13,7 +14,6 @@ config.ramips-mt7620
 config.ramips-mt7620-nosymbol
 config.ramips-mt7621
 config.ramips-mt76x8
+config.sunxi-cortexa7
 config.x86_64
 config.x86_generic
-config.sunxi-cortexa7
-config.bcm53xx-generic
