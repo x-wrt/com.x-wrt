@@ -516,9 +516,12 @@ main_trigger() {
 		mytimeout 660 'cat /tmp/trigger_natcapd_update.fifo' >/dev/null && {
 			rm -f /tmp/xx.tmp.json
 			rm -f /tmp/nohup.out
-			IFACE=`ip r | grep default | grep -o 'dev .*' | cut -d" " -f2 | head -n1`
+			IFACES=`ip r | grep default | grep -o 'dev .*' | cut -d" " -f2`
 			LIP=""
-			test -n "$IFACE" && LIP="`ifconfig $IFACE | grep 'inet addr:' | sed 's/:/ /' | awk '{print $3}'`"
+			for IFACE in $IFACES; do
+				LIP="$LIP:`ifconfig $IFACE | grep 'inet addr:' | sed 's/:/ /' | awk '{print $3}'`"
+			done
+			LIP=`echo $LIP | sed 's/^://'`
 
 			#checking extra run status
 			UP=`cat /proc/uptime | cut -d"." -f1`
