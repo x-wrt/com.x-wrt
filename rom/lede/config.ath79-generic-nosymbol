@@ -128,14 +128,22 @@ CONFIG_TARGET_DEVICE_PACKAGES_ath79_generic_DEVICE_tplink_tl-wr1043nd-v3="blockd
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_tplink_tl-wr1043nd-v4 is not set
 CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_tplink_tl-wr2543-v1=y
 CONFIG_TARGET_DEVICE_PACKAGES_ath79_generic_DEVICE_tplink_tl-wr2543-v1="blockd block-mount kmod-crypto-crc32c kmod-fs-autofs4 kmod-fs-exfat kmod-fs-ext4 kmod-fs-msdos kmod-fs-vfat kmod-fuse kmod-lib-crc16 kmod-mii kmod-nls-cp437 kmod-phy-ath79-usb kmod-scsi-core kmod-usb2 kmod-usb-core kmod-usb-ehci kmod-usb-ledtrig-usbport kmod-usb-net kmod-usb-net-cdc-ether kmod-usb-net-rndis kmod-usb-ohci kmod-usb-storage kmod-usb-storage-uas ntfs-3g"
-# CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_ubnt_bullet-m is not set
-# CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_ubnt_nano-m is not set
-# CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_ubnt_rocket-m is not set
-# CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_ubnt_unifi is not set
-# CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_ubnt_unifiac-lite is not set
-# CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_ubnt_unifiac-mesh is not set
-# CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_ubnt_unifiac-mesh-pro is not set
-# CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_ubnt_unifiac-pro is not set
+CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_ubnt_bullet-m=y
+CONFIG_TARGET_DEVICE_PACKAGES_ath79_generic_DEVICE_ubnt_bullet-m="kmod-phy-ath79-usb kmod-usb2 kmod-usb-core kmod-usb-ehci kmod-usb-ohci"
+CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_ubnt_nano-m=y
+CONFIG_TARGET_DEVICE_PACKAGES_ath79_generic_DEVICE_ubnt_nano-m="kmod-phy-ath79-usb kmod-usb2 kmod-usb-core kmod-usb-ehci kmod-usb-ohci"
+CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_ubnt_rocket-m=y
+CONFIG_TARGET_DEVICE_PACKAGES_ath79_generic_DEVICE_ubnt_rocket-m="kmod-phy-ath79-usb kmod-usb2 kmod-usb-core kmod-usb-ehci kmod-usb-ohci"
+CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_ubnt_unifi=y
+CONFIG_TARGET_DEVICE_PACKAGES_ath79_generic_DEVICE_ubnt_unifi="kmod-phy-ath79-usb kmod-usb2 kmod-usb-core kmod-usb-ehci"
+CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_ubnt_unifiac-lite=y
+CONFIG_TARGET_DEVICE_PACKAGES_ath79_generic_DEVICE_ubnt_unifiac-lite="ath10k-firmware-qca988x kmod-ath10k"
+CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_ubnt_unifiac-mesh=y
+CONFIG_TARGET_DEVICE_PACKAGES_ath79_generic_DEVICE_ubnt_unifiac-mesh="ath10k-firmware-qca988x kmod-ath10k"
+CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_ubnt_unifiac-mesh-pro=y
+CONFIG_TARGET_DEVICE_PACKAGES_ath79_generic_DEVICE_ubnt_unifiac-mesh-pro="ath10k-firmware-qca988x kmod-ath10k"
+CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_ubnt_unifiac-pro=y
+CONFIG_TARGET_DEVICE_PACKAGES_ath79_generic_DEVICE_ubnt_unifiac-pro="ath10k-firmware-qca988x kmod-ath10k kmod-phy-ath79-usb kmod-usb2 kmod-usb-core kmod-usb-ehci"
 CONFIG_HAS_SUBTARGETS=y
 CONFIG_HAS_DEVICES=y
 CONFIG_TARGET_BOARD="ath79"
@@ -172,6 +180,7 @@ CONFIG_DEFAULT_kmod-ipt-offload=y
 CONFIG_MODULE_DEFAULT_kmod-ipt-offload=y
 CONFIG_MODULE_DEFAULT_kmod-usb-core=y
 CONFIG_MODULE_DEFAULT_kmod-usb-ledtrig-usbport=y
+CONFIG_MODULE_DEFAULT_kmod-usb-ohci=y
 CONFIG_MODULE_DEFAULT_kmod-usb2=y
 CONFIG_DEFAULT_libc=y
 CONFIG_MODULE_DEFAULT_libc=y

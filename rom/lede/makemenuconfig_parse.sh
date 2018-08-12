@@ -299,6 +299,14 @@ for t in $targets; do
 			mods="$mods $ssmod"
 		;;
 		#<=8M flash
+		TARGET_DEVICE_ath79_generic_DEVICE_ubnt_bullet-m|\
+		TARGET_DEVICE_ath79_generic_DEVICE_ubnt_nano-m|\
+		TARGET_DEVICE_ath79_generic_DEVICE_ubnt_rocket-m|\
+		TARGET_DEVICE_ath79_generic_DEVICE_ubnt_unifi|\
+		TARGET_DEVICE_ath79_generic_DEVICE_ubnt_unifiac-lite|\
+		TARGET_DEVICE_ath79_generic_DEVICE_ubnt_unifiac-mesh|\
+		TARGET_DEVICE_ath79_generic_DEVICE_ubnt_unifiac-mesh-pro|\
+		TARGET_DEVICE_ath79_generic_DEVICE_ubnt_unifiac-pro|\
 		TARGET_DEVICE_ath79_generic_DEVICE_tplink_tl-wdr4900-v2|\
 		TARGET_DEVICE_ath79_generic_DEVICE_tplink_tl-wr2543-v1|\
 		TARGET_DEVICE_ath79_generic_DEVICE_tplink_tl-re450-v2|\
@@ -511,6 +519,14 @@ for t in $targets; do
 			mods="$mods $cdcmod"
 		;;
 		#no usb
+		TARGET_DEVICE_ath79_generic_DEVICE_ubnt_bullet-m|\
+		TARGET_DEVICE_ath79_generic_DEVICE_ubnt_nano-m|\
+		TARGET_DEVICE_ath79_generic_DEVICE_ubnt_rocket-m|\
+		TARGET_DEVICE_ath79_generic_DEVICE_ubnt_unifi|\
+		TARGET_DEVICE_ath79_generic_DEVICE_ubnt_unifiac-lite|\
+		TARGET_DEVICE_ath79_generic_DEVICE_ubnt_unifiac-mesh|\
+		TARGET_DEVICE_ath79_generic_DEVICE_ubnt_unifiac-mesh-pro|\
+		TARGET_DEVICE_ath79_generic_DEVICE_ubnt_unifiac-pro|\
 		TARGET_DEVICE_ath79_generic_DEVICE_tplink_tl-re450-v2|\
 		TARGET_DEVICE_ramips_mt7620_DEVICE_zbt-wr8305rt|\
 		TARGET_DEVICE_ar71xx_generic_DEVICE_tl-wr1043n-v5|\
