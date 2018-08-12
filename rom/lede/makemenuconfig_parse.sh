@@ -426,6 +426,11 @@ for t in $targets; do
 			mods="$mods $cdcmod"
 		;;
 		#with usb2
+		TARGET_DEVICE_ath79_generic_DEVICE_ubnt_bullet-m|\
+		TARGET_DEVICE_ath79_generic_DEVICE_ubnt_nano-m|\
+		TARGET_DEVICE_ath79_generic_DEVICE_ubnt_rocket-m|\
+		TARGET_DEVICE_ath79_generic_DEVICE_ubnt_unifi|\
+		TARGET_DEVICE_ath79_generic_DEVICE_ubnt_unifiac-pro|\
 		TARGET_DEVICE_ath79_generic_DEVICE_tplink_tl-wdr4900-v2|\
 		TARGET_DEVICE_ath79_generic_DEVICE_iodata_wn-ac1600dgr2|\
 		TARGET_DEVICE_ath79_generic_DEVICE_tplink_tl-wr2543-v1|\
@@ -439,6 +444,7 @@ for t in $targets; do
 		TARGET_DEVICE_ath79_generic_DEVICE_tplink_tl-wr1043nd-v4|\
 		TARGET_DEVICE_ath79_generic_DEVICE_tplink_tl-wr1043nd-v3|\
 		TARGET_DEVICE_ath79_generic_DEVICE_tplink_tl-wr1043nd-v2|\
+		TARGET_DEVICE_ath79_generic_DEVICE_tplink_tl-wr1043nd-v1|\
 		TARGET_DEVICE_ar71xx_generic_DEVICE_gl-ar150|\
 		TARGET_DEVICE_ar71xx_generic_DEVICE_gl-ar300|\
 		TARGET_DEVICE_ar71xx_generic_DEVICE_gl-ar300m|\
@@ -519,14 +525,9 @@ for t in $targets; do
 			mods="$mods $cdcmod"
 		;;
 		#no usb
-		TARGET_DEVICE_ath79_generic_DEVICE_ubnt_bullet-m|\
-		TARGET_DEVICE_ath79_generic_DEVICE_ubnt_nano-m|\
-		TARGET_DEVICE_ath79_generic_DEVICE_ubnt_rocket-m|\
-		TARGET_DEVICE_ath79_generic_DEVICE_ubnt_unifi|\
 		TARGET_DEVICE_ath79_generic_DEVICE_ubnt_unifiac-lite|\
 		TARGET_DEVICE_ath79_generic_DEVICE_ubnt_unifiac-mesh|\
 		TARGET_DEVICE_ath79_generic_DEVICE_ubnt_unifiac-mesh-pro|\
-		TARGET_DEVICE_ath79_generic_DEVICE_ubnt_unifiac-pro|\
 		TARGET_DEVICE_ath79_generic_DEVICE_tplink_tl-re450-v2|\
 		TARGET_DEVICE_ramips_mt7620_DEVICE_zbt-wr8305rt|\
 		TARGET_DEVICE_ar71xx_generic_DEVICE_tl-wr1043n-v5|\
@@ -544,7 +545,6 @@ for t in $targets; do
 		TARGET_DEVICE_ramips_mt76x8_DEVICE_tl-wr841n-v13|\
 		TARGET_DEVICE_ramips_mt76x8_DEVICE_tl-wr840n-v4|\
 		TARGET_DEVICE_ar71xx_generic_DEVICE_tl-wr1043nd-v1|\
-		TARGET_DEVICE_ath79_generic_DEVICE_tplink_tl-wr1043nd-v1|\
 		TARGET_DEVICE_ramips_mt76x8_DEVICE_mac1200r-v2|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_k2p|\
 		TARGET_DEVICE_ramips_mt76x8_DEVICE_miwifi-nano|\
