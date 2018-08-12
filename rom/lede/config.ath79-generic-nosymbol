@@ -56,10 +56,13 @@ CONFIG_TARGET_MULTI_PROFILE=y
 # CONFIG_TARGET_ath79_generic_Default is not set
 # CONFIG_TARGET_ath79_generic_DEVICE_avm_fritz300e is not set
 # CONFIG_TARGET_ath79_generic_DEVICE_buffalo_wzr-hp-g450h is not set
+# CONFIG_TARGET_ath79_generic_DEVICE_dlink_dir-825-b1 is not set
 # CONFIG_TARGET_ath79_generic_DEVICE_embeddedwireless_dorin is not set
 # CONFIG_TARGET_ath79_generic_DEVICE_glinet_ar150 is not set
 # CONFIG_TARGET_ath79_generic_DEVICE_glinet_ar300m_nor is not set
+# CONFIG_TARGET_ath79_generic_DEVICE_iodata_wn-ac1600dgr2 is not set
 # CONFIG_TARGET_ath79_generic_DEVICE_netgear_wndr3800 is not set
+# CONFIG_TARGET_ath79_generic_DEVICE_ocedo_koala is not set
 # CONFIG_TARGET_ath79_generic_DEVICE_ocedo_raccoon is not set
 # CONFIG_TARGET_ath79_generic_DEVICE_openmesh_om5p-ac-v2 is not set
 # CONFIG_TARGET_ath79_generic_DEVICE_phicomm_k2t is not set
@@ -70,6 +73,7 @@ CONFIG_TARGET_MULTI_PROFILE=y
 # CONFIG_TARGET_ath79_generic_DEVICE_tplink_tl-re450-v2 is not set
 # CONFIG_TARGET_ath79_generic_DEVICE_tplink_tl-wdr3600 is not set
 # CONFIG_TARGET_ath79_generic_DEVICE_tplink_tl-wdr4300 is not set
+# CONFIG_TARGET_ath79_generic_DEVICE_tplink_tl-wdr4900-v2 is not set
 # CONFIG_TARGET_ath79_generic_DEVICE_tplink_tl-wr1043nd-v1 is not set
 # CONFIG_TARGET_ath79_generic_DEVICE_tplink_tl-wr1043nd-v2 is not set
 # CONFIG_TARGET_ath79_generic_DEVICE_tplink_tl-wr1043nd-v3 is not set
@@ -92,11 +96,14 @@ CONFIG_TARGET_MULTI_PROFILE=y
 CONFIG_TARGET_PER_DEVICE_ROOTFS=y
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_avm_fritz300e is not set
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_buffalo_wzr-hp-g450h is not set
+# CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_dlink_dir-825-b1 is not set
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_embeddedwireless_dorin is not set
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_etactica_eg200 is not set
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_glinet_ar150 is not set
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_glinet_ar300m_nor is not set
+# CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_iodata_wn-ac1600dgr2 is not set
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_netgear_wndr3800 is not set
+# CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_ocedo_koala is not set
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_ocedo_raccoon is not set
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_openmesh_om5p-ac-v2 is not set
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_phicomm_k2t is not set
@@ -105,12 +112,13 @@ CONFIG_TARGET_PER_DEVICE_ROOTFS=y
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_pcs_cr5000 is not set
 CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_tplink_archer-c7-v2=y
 CONFIG_TARGET_DEVICE_PACKAGES_ath79_generic_DEVICE_tplink_archer-c7-v2="ath10k-firmware-qca988x blockd block-mount kmod-ath10k kmod-crypto-crc32c kmod-fs-autofs4 kmod-fs-exfat kmod-fs-ext4 kmod-fs-msdos kmod-fs-vfat kmod-fuse kmod-lib-crc16 kmod-mii kmod-nls-cp437 kmod-phy-ath79-usb kmod-scsi-core kmod-usb2 kmod-usb-core kmod-usb-ehci kmod-usb-ledtrig-usbport kmod-usb-net kmod-usb-net-cdc-ether kmod-usb-net-rndis kmod-usb-ohci kmod-usb-storage kmod-usb-storage-uas ntfs-3g"
-CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_tplink_tl-re450-v2=y
-CONFIG_TARGET_DEVICE_PACKAGES_ath79_generic_DEVICE_tplink_tl-re450-v2="ath10k-firmware-qca988x kmod-ath10k"
+# CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_tplink_tl-re450-v2 is not set
 CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_tplink_tl-wdr3600=y
 CONFIG_TARGET_DEVICE_PACKAGES_ath79_generic_DEVICE_tplink_tl-wdr3600="blockd block-mount kmod-crypto-crc32c kmod-fs-autofs4 kmod-fs-exfat kmod-fs-ext4 kmod-fs-msdos kmod-fs-vfat kmod-fuse kmod-lib-crc16 kmod-mii kmod-nls-cp437 kmod-phy-ath79-usb kmod-scsi-core kmod-usb2 kmod-usb-core kmod-usb-ehci kmod-usb-ledtrig-usbport kmod-usb-net kmod-usb-net-cdc-ether kmod-usb-net-rndis kmod-usb-ohci kmod-usb-storage kmod-usb-storage-uas ntfs-3g"
 CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_tplink_tl-wdr4300=y
 CONFIG_TARGET_DEVICE_PACKAGES_ath79_generic_DEVICE_tplink_tl-wdr4300="blockd block-mount kmod-crypto-crc32c kmod-fs-autofs4 kmod-fs-exfat kmod-fs-ext4 kmod-fs-msdos kmod-fs-vfat kmod-fuse kmod-lib-crc16 kmod-mii kmod-nls-cp437 kmod-phy-ath79-usb kmod-scsi-core kmod-usb2 kmod-usb-core kmod-usb-ehci kmod-usb-ledtrig-usbport kmod-usb-net kmod-usb-net-cdc-ether kmod-usb-net-rndis kmod-usb-ohci kmod-usb-storage kmod-usb-storage-uas ntfs-3g"
+CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_tplink_tl-wdr4900-v2=y
+CONFIG_TARGET_DEVICE_PACKAGES_ath79_generic_DEVICE_tplink_tl-wdr4900-v2="blockd block-mount kmod-crypto-crc32c kmod-fs-autofs4 kmod-fs-exfat kmod-fs-ext4 kmod-fs-msdos kmod-fs-vfat kmod-fuse kmod-lib-crc16 kmod-mii kmod-nls-cp437 kmod-phy-ath79-usb kmod-scsi-core kmod-usb2 kmod-usb-core kmod-usb-ehci kmod-usb-ledtrig-usbport kmod-usb-net kmod-usb-net-cdc-ether kmod-usb-net-rndis kmod-usb-ohci kmod-usb-storage kmod-usb-storage-uas ntfs-3g"
 CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_tplink_tl-wr1043nd-v1=y
 CONFIG_TARGET_DEVICE_PACKAGES_ath79_generic_DEVICE_tplink_tl-wr1043nd-v1="kmod-phy-ath79-usb kmod-usb2 kmod-usb-core kmod-usb-ehci kmod-usb-ledtrig-usbport"
 CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_tplink_tl-wr1043nd-v2=y

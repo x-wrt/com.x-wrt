@@ -197,6 +197,7 @@ for t in $targets; do
 	mods="$us"
 	case $t in
 		#>8M flash
+		TARGET_DEVICE_ath79_generic_DEVICE_iodata_wn-ac1600dgr2|\
 		TARGET_DEVICE_ar71xx_generic_DEVICE_archer-c7-v5|\
 		TARGET_DEVICE_ath79_generic_DEVICE_glinet_ar300m_nor|\
 		TARGET_DEVICE_ath79_generic_DEVICE_tplink_tl-wr1043nd-v4|\
@@ -298,6 +299,7 @@ for t in $targets; do
 			mods="$mods $ssmod"
 		;;
 		#<=8M flash
+		TARGET_DEVICE_ath79_generic_DEVICE_tplink_tl-wdr4900-v2|\
 		TARGET_DEVICE_ath79_generic_DEVICE_tplink_tl-wr2543-v1|\
 		TARGET_DEVICE_ath79_generic_DEVICE_tplink_tl-re450-v2|\
 		TARGET_DEVICE_ar71xx_generic_DEVICE_tl-wr2543-v1|\
@@ -416,6 +418,8 @@ for t in $targets; do
 			mods="$mods $cdcmod"
 		;;
 		#with usb2
+		TARGET_DEVICE_ath79_generic_DEVICE_tplink_tl-wdr4900-v2|\
+		TARGET_DEVICE_ath79_generic_DEVICE_iodata_wn-ac1600dgr2|\
 		TARGET_DEVICE_ath79_generic_DEVICE_tplink_tl-wr2543-v1|\
 		TARGET_DEVICE_ar71xx_generic_DEVICE_tl-wr2543-v1|\
 		TARGET_DEVICE_ar71xx_generic_DEVICE_archer-c7-v5|\
