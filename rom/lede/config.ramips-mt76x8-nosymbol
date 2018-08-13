@@ -62,7 +62,6 @@ CONFIG_TARGET_MULTI_PROFILE=y
 # CONFIG_TARGET_ramips_mt76x8_DEVICE_duzun-dm06 is not set
 # CONFIG_TARGET_ramips_mt76x8_DEVICE_gl-mt300n-v2 is not set
 # CONFIG_TARGET_ramips_mt76x8_DEVICE_hc5661a is not set
-# CONFIG_TARGET_ramips_mt76x8_DEVICE_hiwifi_hc5861b is not set
 # CONFIG_TARGET_ramips_mt76x8_DEVICE_LinkIt7688 is not set
 # CONFIG_TARGET_ramips_mt76x8_DEVICE_mt7628 is not set
 # CONFIG_TARGET_ramips_mt76x8_DEVICE_mac1200r-v2 is not set
@@ -98,32 +97,37 @@ CONFIG_TARGET_MULTI_PROFILE=y
 # CONFIG_TARGET_ALL_PROFILES is not set
 CONFIG_TARGET_PER_DEVICE_ROOTFS=y
 # CONFIG_TARGET_DEVICE_ramips_mt76x8_DEVICE_alfa-network_awusfree1 is not set
-# CONFIG_TARGET_DEVICE_ramips_mt76x8_DEVICE_wcr-1166ds is not set
+CONFIG_TARGET_DEVICE_ramips_mt76x8_DEVICE_wcr-1166ds=y
+CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt76x8_DEVICE_wcr-1166ds=""
 # CONFIG_TARGET_DEVICE_ramips_mt76x8_DEVICE_duzun-dm06 is not set
-CONFIG_TARGET_DEVICE_ramips_mt76x8_DEVICE_gl-mt300n-v2=y
-CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt76x8_DEVICE_gl-mt300n-v2="aria2 blockd block-mount kmod-crypto-crc32c kmod-fs-autofs4 kmod-fs-exfat kmod-fs-ext4 kmod-fs-msdos kmod-fs-vfat kmod-fuse kmod-lib-crc16 kmod-mii kmod-nls-cp437 kmod-scsi-core kmod-usb2 kmod-usb-core kmod-usb-ehci kmod-usb-net kmod-usb-net-cdc-ether kmod-usb-net-rndis kmod-usb-ohci kmod-usb-printer kmod-usb-storage kmod-usb-storage-uas libopenssl libsodium libsqlite3 libssh2 libstdcpp libxml2 luci-app-aria2 luci-app-p910nd luci-app-samba luci-app-shadowsocks-libev luci-i18n-aria2-zh-cn luci-i18n-p910nd-en luci-i18n-p910nd-zh-cn luci-i18n-samba-en luci-i18n-samba-zh-cn ntfs-3g p910nd samba36-server shadowsocks-client shadowsocks-libev-config shadowsocks-libev-ss-local shadowsocks-libev-ss-redir shadowsocks-libev-ss-rules shadowsocks-libev-ss-server shadowsocks-libev-ss-tunnel webui-aria2"
-CONFIG_TARGET_DEVICE_ramips_mt76x8_DEVICE_hc5661a=y
-CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt76x8_DEVICE_hc5661a="aria2 blockd block-mount kmod-crypto-crc32c kmod-fs-autofs4 kmod-fs-exfat kmod-fs-ext4 kmod-fs-msdos kmod-fs-vfat kmod-fuse kmod-lib-crc16 kmod-mii kmod-mmc kmod-nls-cp437 kmod-scsi-core kmod-sdhci-mt7620 kmod-usb2 kmod-usb-core kmod-usb-ehci kmod-usb-net kmod-usb-net-cdc-ether kmod-usb-net-rndis kmod-usb-ohci kmod-usb-printer kmod-usb-storage kmod-usb-storage-uas libopenssl libsodium libsqlite3 libssh2 libstdcpp libxml2 luci-app-aria2 luci-app-p910nd luci-app-samba luci-app-shadowsocks-libev luci-i18n-aria2-zh-cn luci-i18n-p910nd-en luci-i18n-p910nd-zh-cn luci-i18n-samba-en luci-i18n-samba-zh-cn ntfs-3g p910nd samba36-server shadowsocks-client shadowsocks-libev-config shadowsocks-libev-ss-local shadowsocks-libev-ss-redir shadowsocks-libev-ss-rules shadowsocks-libev-ss-server shadowsocks-libev-ss-tunnel webui-aria2"
-CONFIG_TARGET_DEVICE_ramips_mt76x8_DEVICE_hiwifi_hc5861b=y
-CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt76x8_DEVICE_hiwifi_hc5861b="aria2 blockd block-mount kmod-crypto-crc32c kmod-fs-autofs4 kmod-fs-exfat kmod-fs-ext4 kmod-fs-msdos kmod-fs-vfat kmod-fuse kmod-lib-crc16 kmod-mii kmod-nls-cp437 kmod-scsi-core kmod-usb2 kmod-usb-core kmod-usb-ehci kmod-usb-net kmod-usb-net-cdc-ether kmod-usb-net-rndis kmod-usb-ohci kmod-usb-printer kmod-usb-storage kmod-usb-storage-uas libopenssl libsodium libsqlite3 libssh2 libstdcpp libxml2 luci-app-aria2 luci-app-p910nd luci-app-samba luci-app-shadowsocks-libev luci-i18n-aria2-zh-cn luci-i18n-p910nd-en luci-i18n-p910nd-zh-cn luci-i18n-samba-en luci-i18n-samba-zh-cn ntfs-3g p910nd samba36-server shadowsocks-client shadowsocks-libev-config shadowsocks-libev-ss-local shadowsocks-libev-ss-redir shadowsocks-libev-ss-rules shadowsocks-libev-ss-server shadowsocks-libev-ss-tunnel webui-aria2"
+# CONFIG_TARGET_DEVICE_ramips_mt76x8_DEVICE_gl-mt300n-v2 is not set
+# CONFIG_TARGET_DEVICE_ramips_mt76x8_DEVICE_hc5661a is not set
 # CONFIG_TARGET_DEVICE_ramips_mt76x8_DEVICE_LinkIt7688 is not set
 # CONFIG_TARGET_DEVICE_ramips_mt76x8_DEVICE_mt7628 is not set
-# CONFIG_TARGET_DEVICE_ramips_mt76x8_DEVICE_mac1200r-v2 is not set
-CONFIG_TARGET_DEVICE_ramips_mt76x8_DEVICE_netgear_r6120=y
-CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt76x8_DEVICE_netgear_r6120="aria2 blockd block-mount kmod-crypto-crc32c kmod-fs-autofs4 kmod-fs-exfat kmod-fs-ext4 kmod-fs-msdos kmod-fs-vfat kmod-fuse kmod-lib-crc16 kmod-mii kmod-nls-cp437 kmod-scsi-core kmod-usb2 kmod-usb-core kmod-usb-ehci kmod-usb-net kmod-usb-net-cdc-ether kmod-usb-net-rndis kmod-usb-ohci kmod-usb-printer kmod-usb-storage kmod-usb-storage-uas libopenssl libsodium libsqlite3 libssh2 libstdcpp libxml2 luci-app-aria2 luci-app-p910nd luci-app-samba luci-app-shadowsocks-libev luci-i18n-aria2-zh-cn luci-i18n-p910nd-en luci-i18n-p910nd-zh-cn luci-i18n-samba-en luci-i18n-samba-zh-cn ntfs-3g p910nd samba36-server shadowsocks-client shadowsocks-libev-config shadowsocks-libev-ss-local shadowsocks-libev-ss-redir shadowsocks-libev-ss-rules shadowsocks-libev-ss-server shadowsocks-libev-ss-tunnel webui-aria2"
+CONFIG_TARGET_DEVICE_ramips_mt76x8_DEVICE_mac1200r-v2=y
+CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt76x8_DEVICE_mac1200r-v2=""
+# CONFIG_TARGET_DEVICE_ramips_mt76x8_DEVICE_netgear_r6120 is not set
 # CONFIG_TARGET_DEVICE_ramips_mt76x8_DEVICE_omega2 is not set
 # CONFIG_TARGET_DEVICE_ramips_mt76x8_DEVICE_omega2p is not set
 # CONFIG_TARGET_DEVICE_ramips_mt76x8_DEVICE_pbr-d1 is not set
 # CONFIG_TARGET_DEVICE_ramips_mt76x8_DEVICE_tama_w06 is not set
-# CONFIG_TARGET_DEVICE_ramips_mt76x8_DEVICE_tplink_c20-v4 is not set
-# CONFIG_TARGET_DEVICE_ramips_mt76x8_DEVICE_tplink_c50-v3 is not set
-# CONFIG_TARGET_DEVICE_ramips_mt76x8_DEVICE_tplink_tl-mr3420-v5 is not set
-# CONFIG_TARGET_DEVICE_ramips_mt76x8_DEVICE_tplink_tl-wa801nd-v5 is not set
-# CONFIG_TARGET_DEVICE_ramips_mt76x8_DEVICE_tl-wr840n-v4 is not set
+CONFIG_TARGET_DEVICE_ramips_mt76x8_DEVICE_tplink_c20-v4=y
+CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt76x8_DEVICE_tplink_c20-v4=""
+CONFIG_TARGET_DEVICE_ramips_mt76x8_DEVICE_tplink_c50-v3=y
+CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt76x8_DEVICE_tplink_c50-v3=""
+CONFIG_TARGET_DEVICE_ramips_mt76x8_DEVICE_tplink_tl-mr3420-v5=y
+CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt76x8_DEVICE_tplink_tl-mr3420-v5="blockd block-mount kmod-crypto-crc32c kmod-fs-autofs4 kmod-fs-exfat kmod-fs-ext4 kmod-fs-msdos kmod-fs-vfat kmod-fuse kmod-lib-crc16 kmod-mii kmod-nls-cp437 kmod-scsi-core kmod-usb2 kmod-usb-core kmod-usb-ehci kmod-usb-ledtrig-usbport kmod-usb-net kmod-usb-net-cdc-ether kmod-usb-net-rndis kmod-usb-ohci kmod-usb-storage kmod-usb-storage-uas ntfs-3g"
+CONFIG_TARGET_DEVICE_ramips_mt76x8_DEVICE_tplink_tl-wa801nd-v5=y
+CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt76x8_DEVICE_tplink_tl-wa801nd-v5=""
+CONFIG_TARGET_DEVICE_ramips_mt76x8_DEVICE_tl-wr840n-v4=y
+CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt76x8_DEVICE_tl-wr840n-v4=""
 # CONFIG_TARGET_DEVICE_ramips_mt76x8_DEVICE_tl-wr840n-v5 is not set
-# CONFIG_TARGET_DEVICE_ramips_mt76x8_DEVICE_tl-wr841n-v13 is not set
-# CONFIG_TARGET_DEVICE_ramips_mt76x8_DEVICE_tplink_tl-wr842n-v5 is not set
-# CONFIG_TARGET_DEVICE_ramips_mt76x8_DEVICE_tplink_tl-wr902ac-v3 is not set
+CONFIG_TARGET_DEVICE_ramips_mt76x8_DEVICE_tl-wr841n-v13=y
+CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt76x8_DEVICE_tl-wr841n-v13=""
+CONFIG_TARGET_DEVICE_ramips_mt76x8_DEVICE_tplink_tl-wr842n-v5=y
+CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt76x8_DEVICE_tplink_tl-wr842n-v5="blockd block-mount kmod-crypto-crc32c kmod-fs-autofs4 kmod-fs-exfat kmod-fs-ext4 kmod-fs-msdos kmod-fs-vfat kmod-fuse kmod-lib-crc16 kmod-mii kmod-nls-cp437 kmod-scsi-core kmod-usb2 kmod-usb-core kmod-usb-ehci kmod-usb-ledtrig-usbport kmod-usb-net kmod-usb-net-cdc-ether kmod-usb-net-rndis kmod-usb-ohci kmod-usb-storage kmod-usb-storage-uas ntfs-3g"
+CONFIG_TARGET_DEVICE_ramips_mt76x8_DEVICE_tplink_tl-wr902ac-v3=y
+CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt76x8_DEVICE_tplink_tl-wr902ac-v3="blockd block-mount kmod-crypto-crc32c kmod-fs-autofs4 kmod-fs-exfat kmod-fs-ext4 kmod-fs-msdos kmod-fs-vfat kmod-fuse kmod-lib-crc16 kmod-mii kmod-nls-cp437 kmod-scsi-core kmod-usb2 kmod-usb-core kmod-usb-ehci kmod-usb-ledtrig-usbport kmod-usb-net kmod-usb-net-cdc-ether kmod-usb-net-rndis kmod-usb-ohci kmod-usb-storage kmod-usb-storage-uas ntfs-3g"
 # CONFIG_TARGET_DEVICE_ramips_mt76x8_DEVICE_u7628-01-128M-16M is not set
 # CONFIG_TARGET_DEVICE_ramips_mt76x8_DEVICE_vocore2 is not set
 # CONFIG_TARGET_DEVICE_ramips_mt76x8_DEVICE_vocore2lite is not set
@@ -132,7 +136,8 @@ CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt76x8_DEVICE_netgear_r6120="aria2 blockd b
 # CONFIG_TARGET_DEVICE_ramips_mt76x8_DEVICE_widora_neo-32m is not set
 # CONFIG_TARGET_DEVICE_ramips_mt76x8_DEVICE_wrtnode2p is not set
 # CONFIG_TARGET_DEVICE_ramips_mt76x8_DEVICE_wrtnode2r is not set
-# CONFIG_TARGET_DEVICE_ramips_mt76x8_DEVICE_miwifi-nano is not set
+CONFIG_TARGET_DEVICE_ramips_mt76x8_DEVICE_miwifi-nano=y
+CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt76x8_DEVICE_miwifi-nano="kmod-usb2 kmod-usb-core kmod-usb-ehci kmod-usb-ledtrig-usbport kmod-usb-ohci"
 # CONFIG_TARGET_DEVICE_ramips_mt76x8_DEVICE_zbtlink_zbt-we1226 is not set
 # CONFIG_TARGET_DEVICE_ramips_mt76x8_DEVICE_zyxel_keenetic-extra-ii is not set
 CONFIG_HAS_SUBTARGETS=y
@@ -169,7 +174,7 @@ CONFIG_DEFAULT_kmod-leds-gpio=y
 CONFIG_MODULE_DEFAULT_kmod-leds-gpio=y
 CONFIG_DEFAULT_kmod-mt76=y
 CONFIG_MODULE_DEFAULT_kmod-mt76=y
-CONFIG_MODULE_DEFAULT_kmod-sdhci-mt7620=y
+CONFIG_MODULE_DEFAULT_kmod-usb-ledtrig-usbport=y
 CONFIG_MODULE_DEFAULT_kmod-usb-ohci=y
 CONFIG_MODULE_DEFAULT_kmod-usb2=y
 CONFIG_DEFAULT_libc=y
@@ -268,7 +273,7 @@ CONFIG_KERNEL_DEBUG_FS=y
 # CONFIG_KERNEL_PERF_EVENTS is not set
 # CONFIG_KERNEL_PROFILING is not set
 # CONFIG_KERNEL_TASKSTATS is not set
-CONFIG_KERNEL_KALLSYMS=y
+# CONFIG_KERNEL_KALLSYMS is not set
 # CONFIG_KERNEL_FTRACE is not set
 CONFIG_KERNEL_DEBUG_KERNEL=y
 CONFIG_KERNEL_DEBUG_INFO=y
@@ -4099,7 +4104,7 @@ CONFIG_PACKAGE_libnl-tiny=y
 # CONFIG_PACKAGE_libp11 is not set
 # CONFIG_PACKAGE_libpagekite is not set
 # CONFIG_PACKAGE_libpam is not set
-CONFIG_PACKAGE_libpcap=y
+CONFIG_PACKAGE_libpcap=m
 
 #
 # Configuration
@@ -5439,7 +5444,7 @@ CONFIG_PACKAGE_hostapd-common=y
 # CONFIG_PACKAGE_ibrdtn-tools is not set
 # CONFIG_PACKAGE_ibrdtnd is not set
 # CONFIG_PACKAGE_ifstat is not set
-CONFIG_PACKAGE_iftop=y
+# CONFIG_PACKAGE_iftop is not set
 # CONFIG_PACKAGE_iiod is not set
 # CONFIG_PACKAGE_iotivity is not set
 # CONFIG_PACKAGE_iotivity-cpp is not set
@@ -5451,7 +5456,7 @@ CONFIG_PACKAGE_iftop=y
 # CONFIG_PACKAGE_iotivity-resource-container-sample is not set
 # CONFIG_PACKAGE_iotivity-resource-directory-lib is not set
 # CONFIG_PACKAGE_iperf is not set
-CONFIG_PACKAGE_iperf3=y
+# CONFIG_PACKAGE_iperf3 is not set
 # CONFIG_PACKAGE_iperf3-ssl is not set
 # CONFIG_PACKAGE_ipip is not set
 CONFIG_PACKAGE_ipset=y
@@ -5572,7 +5577,7 @@ CONFIG_PACKAGE_SAMBA_MAX_DEBUG_LEVEL=-1
 # CONFIG_PACKAGE_soloscli is not set
 # CONFIG_PACKAGE_stunnel is not set
 # CONFIG_PACKAGE_tayga is not set
-CONFIG_PACKAGE_tcpdump=y
+# CONFIG_PACKAGE_tcpdump is not set
 # CONFIG_PACKAGE_tcpdump-mini is not set
 # CONFIG_PACKAGE_tor is not set
 # CONFIG_PACKAGE_tor-gencert is not set

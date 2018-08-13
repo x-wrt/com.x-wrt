@@ -197,6 +197,9 @@ for t in $targets; do
 	mods="$us"
 	case $t in
 		#>8M flash
+		TARGET_DEVICE_ramips_mt76x8_DEVICE_hiwifi_hc5861b|\
+		TARGET_DEVICE_ramips_mt76x8_DEVICE_netgear_r6120|\
+		TARGET_DEVICE_ath79_generic_DEVICE_netgear_wndr3700v2|\
 		TARGET_DEVICE_ath79_generic_DEVICE_iodata_wn-ac1600dgr2|\
 		TARGET_DEVICE_ar71xx_generic_DEVICE_archer-c7-v5|\
 		TARGET_DEVICE_ath79_generic_DEVICE_glinet_ar300m_nor|\
@@ -299,6 +302,14 @@ for t in $targets; do
 			mods="$mods $ssmod"
 		;;
 		#<=8M flash
+		TARGET_DEVICE_ath79_generic_DEVICE_pisen_wmm003n|\
+		TARGET_DEVICE_ramips_mt76x8_DEVICE_tplink_tl-wr902ac-v3|\
+		TARGET_DEVICE_ramips_mt76x8_DEVICE_tplink_tl-wr842n-v5|\
+		TARGET_DEVICE_ramips_mt76x8_DEVICE_tplink_tl-wa801nd-v5|\
+		TARGET_DEVICE_ramips_mt76x8_DEVICE_tplink_tl-mr3420-v5|\
+		TARGET_DEVICE_ramips_mt76x8_DEVICE_tplink_c50-v3|\
+		TARGET_DEVICE_ramips_mt76x8_DEVICE_tplink_c20-v4|\
+		TARGET_DEVICE_ath79_generic_DEVICE_netgear_wndr3700|\
 		TARGET_DEVICE_ath79_generic_DEVICE_ubnt_bullet-m|\
 		TARGET_DEVICE_ath79_generic_DEVICE_ubnt_nano-m|\
 		TARGET_DEVICE_ath79_generic_DEVICE_ubnt_rocket-m|\
@@ -426,6 +437,14 @@ for t in $targets; do
 			mods="$mods $cdcmod"
 		;;
 		#with usb2
+		TARGET_DEVICE_ramips_mt76x8_DEVICE_hiwifi_hc5861b|\
+		TARGET_DEVICE_ath79_generic_DEVICE_pisen_wmm003n|\
+		TARGET_DEVICE_ramips_mt76x8_DEVICE_tplink_tl-wr902ac-v3|\
+		TARGET_DEVICE_ramips_mt76x8_DEVICE_tplink_tl-wr842n-v5|\
+		TARGET_DEVICE_ramips_mt76x8_DEVICE_tplink_tl-mr3420-v5|\
+		TARGET_DEVICE_ramips_mt76x8_DEVICE_netgear_r6120|\
+		TARGET_DEVICE_ath79_generic_DEVICE_netgear_wndr3700v2|\
+		TARGET_DEVICE_ath79_generic_DEVICE_netgear_wndr3700|\
 		TARGET_DEVICE_ath79_generic_DEVICE_ubnt_bullet-m|\
 		TARGET_DEVICE_ath79_generic_DEVICE_ubnt_nano-m|\
 		TARGET_DEVICE_ath79_generic_DEVICE_ubnt_rocket-m|\
@@ -525,6 +544,9 @@ for t in $targets; do
 			mods="$mods $cdcmod"
 		;;
 		#no usb
+		TARGET_DEVICE_ramips_mt76x8_DEVICE_tplink_tl-wa801nd-v5|\
+		TARGET_DEVICE_ramips_mt76x8_DEVICE_tplink_c50-v3|\
+		TARGET_DEVICE_ramips_mt76x8_DEVICE_tplink_c20-v4|\
 		TARGET_DEVICE_ath79_generic_DEVICE_ubnt_unifiac-lite|\
 		TARGET_DEVICE_ath79_generic_DEVICE_ubnt_unifiac-mesh|\
 		TARGET_DEVICE_ath79_generic_DEVICE_ubnt_unifiac-mesh-pro|\

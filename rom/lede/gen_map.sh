@@ -14,7 +14,7 @@ echo -n >map.list
 
 echo sha256sums: map.sha256sums >>map.list
 
-x86bin="`find bin/targets/ | grep -- '\(-combined\|-uefi\)' | while read line; do basename $line; done`"
+x86bin="`find bin/targets/ | grep -- '\(-combined\|-uefi\)' | sort | while read line; do basename $line; done`"
 test -n "$x86bin" && {
 	echo x86_64 or x86:
 	echo "$x86bin"

@@ -14,6 +14,7 @@ config.ramips-mt7620
 config.ramips-mt7620-nosymbol
 config.ramips-mt7621
 config.ramips-mt76x8
+config.ramips-mt76x8-nosymbol
 config.sunxi-cortexa7
 config.x86_64
 config.x86_generic
