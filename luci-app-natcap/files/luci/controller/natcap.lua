@@ -43,8 +43,8 @@ function status()
 		total_tx = text:gsub(".*flow_total_tx_bytes=(.-)\n.*", "%1"),
 		total_rx = text:gsub(".*flow_total_rx_bytes=(.-)\n.*", "%1"),
 	}
-	data.total_tx = tonumber(data.total_tx)
-	data.total_rx = tonumber(data.total_rx)
+	data.total_tx = tonumber(data.total_tx) or 0
+	data.total_rx = tonumber(data.total_rx) or 0
 	data.uid = data.client_mac .. "-" .. data.uhash
 	data.domain = string.lower(data.client_mac) .. ".dns.ptpt52.com"
 	data.client_mac = nil
