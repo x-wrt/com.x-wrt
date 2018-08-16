@@ -197,6 +197,7 @@ for t in $targets; do
 	mods="$us"
 	case $t in
 		#>8M flash
+		TARGET_DEVICE_ath79_generic_DEVICE_iodata_wn-ac1167dgr|\
 		TARGET_DEVICE_ramips_mt76x8_DEVICE_hiwifi_hc5861b|\
 		TARGET_DEVICE_ramips_mt76x8_DEVICE_netgear_r6120|\
 		TARGET_DEVICE_ath79_generic_DEVICE_netgear_wndr3700v2|\
@@ -437,6 +438,7 @@ for t in $targets; do
 			mods="$mods $cdcmod"
 		;;
 		#with usb2
+		TARGET_DEVICE_ath79_generic_DEVICE_iodata_wn-ac1167dgr|\
 		TARGET_DEVICE_ramips_mt76x8_DEVICE_hiwifi_hc5861b|\
 		TARGET_DEVICE_ath79_generic_DEVICE_pisen_wmm003n|\
 		TARGET_DEVICE_ramips_mt76x8_DEVICE_tplink_tl-wr902ac-v3|\
