@@ -10,7 +10,7 @@ include $(INCLUDE_DIR)/kernel.mk
 
 PKG_NAME:=natflow
 PKG_VERSION:=0.0.1
-PKG_RELEASE:=6409a196b9720dd6646e7b576c4af65f6ee875ea
+PKG_RELEASE:=56322d152be71fbca6d281116ef23adc544e9d52
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION)-$(PKG_RELEASE).tar.xz
 PKG_SOURCE_URL:=https://github.com/ptpt52/natflow.git
@@ -29,7 +29,7 @@ define KernelPackage/natflow
   FILES:=$(PKG_BUILD_DIR)/natflow.ko
   KCONFIG:=
   AUTOLOAD:=$(call AutoLoad,96,natflow)
-  DEPENDS:= +kmod-ipt-conntrack +kmod-ipt-nat
+  DEPENDS:= +kmod-ipt-conntrack +kmod-ipt-nat +kmod-ipt-ipset
 endef
 
 define KernelPackage/natflow/description
