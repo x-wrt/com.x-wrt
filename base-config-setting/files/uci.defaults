@@ -20,9 +20,9 @@ wifi_setup_radio()
 			}
 		}
 
-		[ "x`uci get wireless.${radio}.hwmode`" = "x11a" ] || {
-			uci set wireless.${radio}.noscan='1'
-		}
+#		[ "x`uci get wireless.${radio}.hwmode`" = "x11a" ] || {
+#			uci set wireless.${radio}.noscan='1'
+#		}
 
 		obj=`uci add wireless wifi-iface`
 		test -n "$obj" && {
