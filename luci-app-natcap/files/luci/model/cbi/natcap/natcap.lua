@@ -51,9 +51,13 @@ e.datatype = "ipaddrport(1)"
 e.placeholder = "8.8.8.8:53"
 
 e = s:taboption("advanced", Value, "server_persist_timeout", translate("Server Switching Interval (s)"), translate("How long to switch the server."))
-e.default = '60'
+e.default = '30'
 e.rmempty = true
-e.placeholder = '60'
+e.placeholder = '30'
+
+e = s:taboption("advanced", Flag, "server_persist_lock", translate("Lock on server"), translate("do not switch servers by automatic detection"))
+e.default = e.disabled
+e.rmempty = false
 
 e = s:taboption("advanced", Value, "natcap_redirect_port", translate("Local TCP Listening Port"), translate("0 Disabled，Otherwise Enabled"))
 e.datatype = "portrange"

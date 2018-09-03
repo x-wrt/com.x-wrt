@@ -246,6 +246,7 @@ test -c /dev/natflow_ctl && {
 	enable_encryption=`uci get natcapd.default.enable_encryption 2>/dev/null || echo 1`
 	clear_dst_on_reload=`uci get natcapd.default.clear_dst_on_reload 2>/dev/null || echo 0`
 	server_persist_timeout=`uci get natcapd.default.server_persist_timeout 2>/dev/null || echo 30`
+	server_persist_lock=`uci get natcapd.default.server_persist_lock 2>/dev/null || echo 0`
 	tx_speed_limit=`uci get natcapd.default.tx_speed_limit 2>/dev/null || echo 0`
 	touch_timeout=`uci get natcapd.default.touch_timeout 2>/dev/null || echo 32`
 	servers=`uci get natcapd.default.server 2>/dev/null`
@@ -311,6 +312,7 @@ test -c /dev/natflow_ctl && {
 	echo debug=$debug >>$DEV
 	echo clean >>$DEV
 	echo server_persist_timeout=$server_persist_timeout >>$DEV
+	echo server_persist_lock=$server_persist_lock >>$DEV
 	echo tx_speed_limit=$tx_speed_limit >>$DEV
 	echo natcap_touch_timeout=$touch_timeout >>$DEV
 	echo sproxy=$sproxy >$DEV
