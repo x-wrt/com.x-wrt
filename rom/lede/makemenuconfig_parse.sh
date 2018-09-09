@@ -197,6 +197,9 @@ for t in $targets; do
 	mods="$us"
 	case $t in
 		#>8M flash
+		TARGET_DEVICE_ramips_mt7620_DEVICE_rt-n12p|\
+		TARGET_DEVICE_ramips_mt7620_DEVICE_rt-ac51u|\
+		TARGET_DEVICE_ramips_mt7620_DEVICE_rt-n14u|\
 		TARGET_DEVICE_ath79_generic_DEVICE_iodata_wn-ac1167dgr|\
 		TARGET_DEVICE_ramips_mt76x8_DEVICE_hiwifi_hc5861b|\
 		TARGET_DEVICE_ramips_mt76x8_DEVICE_netgear_r6120|\
@@ -303,6 +306,7 @@ for t in $targets; do
 			mods="$mods $ssmod"
 		;;
 		#<=8M flash
+		TARGET_DEVICE_ramips_rt3883_DEVICE_rt-n56u|\
 		TARGET_DEVICE_ath79_generic_DEVICE_pisen_wmm003n|\
 		TARGET_DEVICE_ramips_mt76x8_DEVICE_tplink_tl-wr902ac-v3|\
 		TARGET_DEVICE_ramips_mt76x8_DEVICE_tplink_tl-wr842n-v5|\
@@ -439,6 +443,9 @@ for t in $targets; do
 			mods="$mods $cdcmod"
 		;;
 		#with usb2
+		TARGET_DEVICE_ramips_rt3883_DEVICE_rt-n56u|\
+		TARGET_DEVICE_ramips_mt7620_DEVICE_rt-ac51u|\
+		TARGET_DEVICE_ramips_mt7620_DEVICE_rt-n14u|\
 		TARGET_DEVICE_ath79_generic_DEVICE_iodata_wn-ac1167dgr|\
 		TARGET_DEVICE_ramips_mt76x8_DEVICE_hiwifi_hc5861b|\
 		TARGET_DEVICE_ath79_generic_DEVICE_pisen_wmm003n|\
@@ -548,6 +555,7 @@ for t in $targets; do
 			mods="$mods $cdcmod"
 		;;
 		#no usb
+		TARGET_DEVICE_ramips_mt7620_DEVICE_rt-n12p|\
 		TARGET_DEVICE_ramips_mt76x8_DEVICE_tplink_tl-wa801nd-v5|\
 		TARGET_DEVICE_ramips_mt76x8_DEVICE_tplink_c50-v3|\
 		TARGET_DEVICE_ramips_mt76x8_DEVICE_tplink_c20-v4|\
