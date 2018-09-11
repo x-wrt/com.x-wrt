@@ -393,8 +393,6 @@ test -c /dev/natflow_ctl && {
 		add_gfwlist_domain $d
 	done
 
-	test -x /usr/sbin/mwan3 && /usr/sbin/mwan3 restart >/dev/null 2>&1
-
 	#reload dnsmasq
 	if test -p /tmp/trigger_gfwlist_update.fifo; then
 		natcapd_trigger '/tmp/trigger_gfwlist_update.fifo'

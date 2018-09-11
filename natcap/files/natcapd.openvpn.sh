@@ -34,7 +34,7 @@ make_config()
 }
 
 [ "x`uci get natcapd.default.natcapovpn`" = x1 ] && {
-	[ "x`uci get openvpn.natcapovpn.enabled`" != x1 ] && {
+	[ "x`uci get openvpn.natcapovpn_tcp.enabled`" != x1 ] && {
 		uci delete network.natcapovpn
 		uci set network.natcapovpn=interface
 		uci set network.natcapovpn.proto='none'
