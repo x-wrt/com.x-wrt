@@ -116,12 +116,12 @@ nf_conntrack_max=16384
 if test $memtotal -ge 1048576; then
 	# >= 1024M
 	cachesize=32768
-	dnsforwardmax=32768
+	dnsforwardmax=10000
 	nf_conntrack_max=262144
 elif test $memtotal -ge 524288; then
 	# >= 512M
 	cachesize=16384
-	dnsforwardmax=16384
+	dnsforwardmax=10000
 	nf_conntrack_max=131072
 elif test $memtotal -ge 262144; then
 	# >= 256M
