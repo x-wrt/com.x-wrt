@@ -926,7 +926,7 @@ CONFIG_TARGET_INIT_CMD="/sbin/init"
 CONFIG_TARGET_INIT_SUPPRESS_STDERR=y
 CONFIG_VERSIONOPT=y
 CONFIG_VERSION_DIST="NATCAP"
-CONFIG_VERSION_NUMBER="4.0_b201809151334"
+CONFIG_VERSION_NUMBER="4.0_b201809200957"
 CONFIG_VERSION_CODE="Beetle"
 CONFIG_VERSION_REPO="http://downloads.openwrt.org/snapshots"
 CONFIG_VERSION_HOME_URL="https://router-sh.ptpt52.com/rom/"
@@ -4797,11 +4797,15 @@ CONFIG_PACKAGE_luci-mod-admin-full=y
 # CONFIG_PACKAGE_luci-mod-failsafe is not set
 # CONFIG_PACKAGE_luci-mod-freifunk is not set
 # CONFIG_PACKAGE_luci-mod-freifunk-community is not set
+CONFIG_PACKAGE_luci-mod-network=y
 # CONFIG_PACKAGE_luci-mod-rpc is not set
+CONFIG_PACKAGE_luci-mod-status=y
+CONFIG_PACKAGE_luci-mod-system=y
 
 #
 # 3. Applications
 #
+# CONFIG_PACKAGE_luci-app-acme is not set
 # CONFIG_PACKAGE_luci-app-adblock is not set
 # CONFIG_PACKAGE_luci-app-advanced-reboot is not set
 # CONFIG_PACKAGE_luci-app-ahcp is not set
