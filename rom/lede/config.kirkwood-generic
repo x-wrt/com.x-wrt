@@ -405,7 +405,7 @@ CONFIG_TARGET_INIT_CMD="/sbin/init"
 CONFIG_TARGET_INIT_SUPPRESS_STDERR=y
 CONFIG_VERSIONOPT=y
 CONFIG_VERSION_DIST="NATCAP"
-CONFIG_VERSION_NUMBER="4.0_b201809231606"
+CONFIG_VERSION_NUMBER="4.0_b201810030311"
 CONFIG_VERSION_CODE="Beetle"
 CONFIG_VERSION_REPO="http://downloads.openwrt.org/snapshots"
 CONFIG_VERSION_HOME_URL="https://router-sh.ptpt52.com/rom/"
@@ -3209,7 +3209,9 @@ CONFIG_PACKAGE_MAC80211_MESH=y
 # CONFIG_PACKAGE_kmod-mt76-core is not set
 # CONFIG_PACKAGE_kmod-mt7601u is not set
 # CONFIG_PACKAGE_kmod-mt7603 is not set
+# CONFIG_PACKAGE_kmod-mt76x0u is not set
 # CONFIG_PACKAGE_kmod-mt76x2 is not set
+# CONFIG_PACKAGE_kmod-mt76x2u is not set
 # CONFIG_PACKAGE_kmod-mwifiex-pcie is not set
 # CONFIG_PACKAGE_kmod-mwifiex-sdio is not set
 CONFIG_PACKAGE_kmod-mwl8k=y
@@ -3973,6 +3975,7 @@ CONFIG_PACKAGE_libfdisk=y
 # CONFIG_PACKAGE_libfreetype is not set
 # CONFIG_PACKAGE_libftdi is not set
 # CONFIG_PACKAGE_libftdi1 is not set
+# CONFIG_PACKAGE_libgabe is not set
 # CONFIG_PACKAGE_libgcrypt is not set
 # CONFIG_PACKAGE_libgd is not set
 # CONFIG_PACKAGE_libgdbm is not set
@@ -4077,6 +4080,7 @@ CONFIG_PACKAGE_libnl-tiny=y
 # CONFIG_PACKAGE_libp11 is not set
 # CONFIG_PACKAGE_libpagekite is not set
 # CONFIG_PACKAGE_libpam is not set
+# CONFIG_PACKAGE_libpbc is not set
 CONFIG_PACKAGE_libpcap=y
 
 #
@@ -4373,11 +4377,13 @@ CONFIG_PACKAGE_luci-theme-bootstrap=y
 # 5. Protocols
 #
 # CONFIG_PACKAGE_luci-proto-3g is not set
+# CONFIG_PACKAGE_luci-proto-hnet is not set
 # CONFIG_PACKAGE_luci-proto-ipip is not set
 CONFIG_PACKAGE_luci-proto-ipv6=y
 # CONFIG_PACKAGE_luci-proto-ncm is not set
 # CONFIG_PACKAGE_luci-proto-openconnect is not set
 CONFIG_PACKAGE_luci-proto-ppp=y
+# CONFIG_PACKAGE_luci-proto-pppossh is not set
 # CONFIG_PACKAGE_luci-proto-qmi is not set
 # CONFIG_PACKAGE_luci-proto-relay is not set
 # CONFIG_PACKAGE_luci-proto-vpnc is not set
@@ -4395,6 +4401,10 @@ CONFIG_PACKAGE_luci-lib-ip=y
 CONFIG_PACKAGE_luci-lib-jsonc=y
 # CONFIG_PACKAGE_luci-lib-luaneightbl is not set
 CONFIG_PACKAGE_luci-lib-nixio=y
+CONFIG_PACKAGE_luci-lib-nixio_notls=y
+# CONFIG_PACKAGE_luci-lib-nixio_axtls is not set
+# CONFIG_PACKAGE_luci-lib-nixio_cyassl is not set
+# CONFIG_PACKAGE_luci-lib-nixio_openssl is not set
 # CONFIG_PACKAGE_luci-lib-px5g is not set
 
 #
@@ -4484,6 +4494,7 @@ CONFIG_PACKAGE_luci-i18n-firewall-en=y
 # CONFIG_PACKAGE_luci-i18n-firewall-vi is not set
 CONFIG_PACKAGE_luci-i18n-firewall-zh-cn=y
 # CONFIG_PACKAGE_luci-i18n-firewall-zh-tw is not set
+# CONFIG_PACKAGE_luci-i18n-mwan3-de is not set
 # CONFIG_PACKAGE_luci-i18n-mwan3-ja is not set
 # CONFIG_PACKAGE_luci-i18n-mwan3-ru is not set
 CONFIG_PACKAGE_luci-i18n-mwan3-zh-cn=y
@@ -5713,6 +5724,7 @@ CONFIG_PACKAGE_blkid=y
 # CONFIG_PACKAGE_blockdev is not set
 # CONFIG_PACKAGE_cfdisk is not set
 # CONFIG_PACKAGE_cgdisk is not set
+# CONFIG_PACKAGE_eject is not set
 CONFIG_PACKAGE_fdisk=y
 # CONFIG_PACKAGE_findfs is not set
 # CONFIG_PACKAGE_fio is not set
@@ -5778,6 +5790,7 @@ CONFIG_PACKAGE_e2fsprogs=y
 # CONFIG_PACKAGE_mkhfs is not set
 # CONFIG_PACKAGE_ncdu is not set
 # CONFIG_PACKAGE_nfs-utils is not set
+# CONFIG_PACKAGE_nfs-utils-libs is not set
 CONFIG_PACKAGE_ntfs-3g=m
 # CONFIG_PACKAGE_NTFS-3G_USE_LIBFUSE is not set
 # CONFIG_PACKAGE_ntfs-3g-low is not set
@@ -6075,6 +6088,7 @@ CONFIG_PACKAGE_procps-ng-ps=y
 # CONFIG_PACKAGE_spi-tools is not set
 # CONFIG_PACKAGE_spidev-test is not set
 # CONFIG_PACKAGE_strace is not set
+# CONFIG_PACKAGE_strace_libdw is not set
 # CONFIG_PACKAGE_strace_libunwind is not set
 # CONFIG_PACKAGE_stress is not set
 # CONFIG_PACKAGE_sumo is not set
