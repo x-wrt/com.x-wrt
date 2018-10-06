@@ -511,6 +511,23 @@ mqtt_cli() {
 	done
 }
 
+ping_cli() {
+	while :; do
+		test -f $LOCKDIR/$PID || exit 0
+		PINGH=`uci get natcapd.default.peer_host`
+		test -n "$PINGH" || PINGH=ec2ns.ptpt52.com
+		if [ "$(echo $PINGH | wc -w)" = "1" ]; then
+			ping -t1 -s16 -c16 -q $PINGH
+			sleep 1
+		else
+			for hh in $PINGH; do
+				ping -t1 -s16 -c16 -q "$hh" &
+			done
+			sleep 16
+		fi
+	done
+}
+
 main_trigger() {
 	local SEQ=0
 	local hostip
@@ -579,6 +596,7 @@ if mkdir $LOCKDIR >/dev/null 2>&1; then
 	gfwlist_update_main &
 	main_trigger &
 	natcapd_first_boot &
+	ping_cli &
 
 	mqtt_cli
 else

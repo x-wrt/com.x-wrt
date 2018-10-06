@@ -220,6 +220,13 @@ test $version -lt 10 && {
 	version=10
 }
 
+# enable https by default again
+test $version -lt 11 && {
+	uci set uhttpd.main.listen_https='0.0.0.0:443'
+	uci commit uhttpd
+	version=11
+}
+
 # fix usb auto umount bug
 cp /usr/share/base-config-setting/mount.hotplug /etc/hotplug.d/block/10-mount
 
