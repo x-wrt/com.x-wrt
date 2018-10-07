@@ -2,6 +2,7 @@
 
 WGET=/usr/bin/wget
 test -x $WGET || WGET=/bin/wget
+which timeout >/dev/null 2>&1 && WGET="timeout -t 300 $WGET"
 
 PID=$$
 DEV=/dev/natcap_ctl
