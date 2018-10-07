@@ -512,16 +512,18 @@ mqtt_cli() {
 }
 
 ping_cli() {
+	TOCMD="timeout -t 18"
+	which timeout >/dev/null 2>&1 || TOCMD=
 	while :; do
 		test -f $LOCKDIR/$PID || exit 0
 		PINGH=`uci get natcapd.default.peer_host`
 		test -n "$PINGH" || PINGH=ec2ns.ptpt52.com
 		if [ "$(echo $PINGH | wc -w)" = "1" ]; then
-			ping -t1 -s16 -c16 -q $PINGH
+			$TOCMD ping -t1 -s16 -c16 -q $PINGH
 			sleep 1
 		else
 			for hh in $PINGH; do
-				ping -t1 -s16 -c16 -q "$hh" &
+				$TOCMD ping -t1 -s16 -c16 -q "$hh" &
 			done
 			sleep 16
 		fi
