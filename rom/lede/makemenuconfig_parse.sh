@@ -197,6 +197,10 @@ for t in $targets; do
 	mods="$us"
 	case $t in
 		#>8M flash
+		TARGET_DEVICE_ath79_generic_DEVICE_buffalo_wzr-hp-ag300h|\
+		TARGET_DEVICE_ath79_generic_DEVICE_buffalo_wzr-hp-g302h-a1a0|\
+		TARGET_DEVICE_ath79_generic_DEVICE_buffalo_wzr-hp-g450h|\
+		TARGET_DEVICE_bcm53xx_DEVICE_linksys-ea6500-v2|\
 		TARGET_DEVICE_ramips_mt7620_DEVICE_rt-n12p|\
 		TARGET_DEVICE_ramips_mt7620_DEVICE_rt-ac51u|\
 		TARGET_DEVICE_ramips_mt7620_DEVICE_rt-n14u|\
@@ -306,6 +310,11 @@ for t in $targets; do
 			mods="$mods $ssmod"
 		;;
 		#<=8M flash
+		TARGET_DEVICE_ath79_generic_DEVICE_tplink_tl-wr842n-v2|\
+		TARGET_DEVICE_ath79_generic_DEVICE_ubnt_nanostation-ac|\
+		TARGET_DEVICE_ath79_generic_DEVICE_ubnt_nanostation-ac-loco|\
+		TARGET_DEVICE_ath79_generic_DEVICE_ubnt_routerstation|\
+		TARGET_DEVICE_ath79_generic_DEVICE_ubnt_routerstation-pro|\
 		TARGET_DEVICE_ramips_rt3883_DEVICE_rt-n56u|\
 		TARGET_DEVICE_ath79_generic_DEVICE_pisen_wmm003n|\
 		TARGET_DEVICE_ramips_mt76x8_DEVICE_tplink_tl-wr902ac-v3|\
@@ -395,6 +404,7 @@ for t in $targets; do
 	#check usb
 	case $t in
 		#with usb3
+		TARGET_DEVICE_bcm53xx_DEVICE_linksys-ea6500-v2|\
 		TARGET_DEVICE_mvebu_cortexa9_DEVICE_linksys-wrt32x|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_puppies|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_nxc200p|\
@@ -443,6 +453,14 @@ for t in $targets; do
 			mods="$mods $cdcmod"
 		;;
 		#with usb2
+		TARGET_DEVICE_ath79_generic_DEVICE_tplink_tl-wr842n-v2|\
+		TARGET_DEVICE_ath79_generic_DEVICE_buffalo_wzr-hp-ag300h|\
+		TARGET_DEVICE_ath79_generic_DEVICE_buffalo_wzr-hp-g302h-a1a0|\
+		TARGET_DEVICE_ath79_generic_DEVICE_buffalo_wzr-hp-g450h|\
+		TARGET_DEVICE_ath79_generic_DEVICE_ubnt_nanostation-ac|\
+		TARGET_DEVICE_ath79_generic_DEVICE_ubnt_nanostation-ac-loco|\
+		TARGET_DEVICE_ath79_generic_DEVICE_ubnt_routerstation|\
+		TARGET_DEVICE_ath79_generic_DEVICE_ubnt_routerstation-pro|\
 		TARGET_DEVICE_ramips_rt3883_DEVICE_rt-n56u|\
 		TARGET_DEVICE_ramips_mt7620_DEVICE_rt-ac51u|\
 		TARGET_DEVICE_ramips_mt7620_DEVICE_rt-n14u|\
