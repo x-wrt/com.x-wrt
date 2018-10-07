@@ -1,8 +1,11 @@
 #!/bin/sh
 
+TO="timeout"
+which timeout >/dev/null 2>&1 && timeout -t1 pwd >/dev/null 2>&1 && TO="timeout -t"
+
 WGET=/usr/bin/wget
 test -x $WGET || WGET=/bin/wget
-which timeout >/dev/null 2>&1 && WGET="timeout -t 300 $WGET"
+which timeout >/dev/null 2>&1 && WGET="$TO 300 $WGET"
 
 PID=$$
 DEV=/dev/natcap_ctl
@@ -513,18 +516,18 @@ mqtt_cli() {
 }
 
 ping_cli() {
-	TOCMD="timeout -t 18"
-	which timeout >/dev/null 2>&1 || TOCMD=
+	PING="ping"
+	which timeout >/dev/null 2>&1 && PING="$TO 30 $PING"
 	while :; do
 		test -f $LOCKDIR/$PID || exit 0
 		PINGH=`uci get natcapd.default.peer_host`
 		test -n "$PINGH" || PINGH=ec2ns.ptpt52.com
 		if [ "$(echo $PINGH | wc -w)" = "1" ]; then
-			$TOCMD ping -t1 -s16 -c16 -q $PINGH
+			$PING -t1 -s16 -c16 -q $PINGH
 			sleep 1
 		else
 			for hh in $PINGH; do
-				$TOCMD ping -t1 -s16 -c16 -q "$hh" &
+				$PING -t1 -s16 -c16 -q "$hh" &
 			done
 			sleep 16
 		fi
