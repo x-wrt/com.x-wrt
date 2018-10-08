@@ -197,6 +197,7 @@ for t in $targets; do
 	mods="$us"
 	case $t in
 		#>8M flash
+		TARGET_DEVICE_ar71xx_generic_DEVICE_tl-wr942n-v1|\
 		TARGET_DEVICE_ath79_generic_DEVICE_buffalo_wzr-hp-ag300h|\
 		TARGET_DEVICE_ath79_generic_DEVICE_buffalo_wzr-hp-g302h-a1a0|\
 		TARGET_DEVICE_ath79_generic_DEVICE_buffalo_wzr-hp-g450h|\
@@ -350,6 +351,13 @@ for t in $targets; do
 		TARGET_DEVICE_ar71xx_generic_DEVICE_archer-c25-v1|\
 		TARGET_DEVICE_ramips_mt76x8_DEVICE_wcr-1166ds|\
 		TARGET_DEVICE_ramips_mt7620_DEVICE_whr-1166d|\
+		TARGET_DEVICE_ar71xx_generic_DEVICE_tl-wr710n-v1|\
+		TARGET_DEVICE_ar71xx_generic_DEVICE_tl-wr710n-v2.1|\
+		TARGET_DEVICE_ar71xx_generic_DEVICE_tl-wr810n-v1|\
+		TARGET_DEVICE_ar71xx_generic_DEVICE_tl-wr810n-v2|\
+		TARGET_DEVICE_ar71xx_generic_DEVICE_tl-wr842n-v1|\
+		TARGET_DEVICE_ar71xx_generic_DEVICE_tl-wr842n-v2|\
+		TARGET_DEVICE_ar71xx_generic_DEVICE_tl-wr842n-v3|\
 		TARGET_DEVICE_ar71xx_generic_DEVICE_tl-wr902ac-v1|\
 		TARGET_DEVICE_ar71xx_generic_DEVICE_archer-c58-v1|\
 		TARGET_DEVICE_ar71xx_generic_DEVICE_archer-c60-v1|\
@@ -453,6 +461,7 @@ for t in $targets; do
 			mods="$mods $cdcmod"
 		;;
 		#with usb2
+		TARGET_DEVICE_ar71xx_generic_DEVICE_tl-wr942n-v1|\
 		TARGET_DEVICE_ath79_generic_DEVICE_tplink_tl-wr842n-v2|\
 		TARGET_DEVICE_ath79_generic_DEVICE_buffalo_wzr-hp-ag300h|\
 		TARGET_DEVICE_ath79_generic_DEVICE_buffalo_wzr-hp-g302h-a1a0|\
@@ -512,6 +521,13 @@ for t in $targets; do
 		TARGET_DEVICE_ramips_mt7620_DEVICE_zbt-we826-32M|\
 		TARGET_DEVICE_ramips_mt7620_DEVICE_zbt-we826-16M|\
 		TARGET_DEVICE_ramips_mt7620_DEVICE_we1026-5g-16m|\
+		TARGET_DEVICE_ar71xx_generic_DEVICE_tl-wr710n-v1|\
+		TARGET_DEVICE_ar71xx_generic_DEVICE_tl-wr710n-v2.1|\
+		TARGET_DEVICE_ar71xx_generic_DEVICE_tl-wr810n-v1|\
+		TARGET_DEVICE_ar71xx_generic_DEVICE_tl-wr810n-v2|\
+		TARGET_DEVICE_ar71xx_generic_DEVICE_tl-wr842n-v1|\
+		TARGET_DEVICE_ar71xx_generic_DEVICE_tl-wr842n-v2|\
+		TARGET_DEVICE_ar71xx_generic_DEVICE_tl-wr842n-v3|\
 		TARGET_DEVICE_ar71xx_generic_DEVICE_tl-wr902ac-v1|\
 		TARGET_DEVICE_ar71xx_generic_DEVICE_archer-c59-v1|\
 		TARGET_DEVICE_ar71xx_generic_DEVICE_archer-c59-v2|\
