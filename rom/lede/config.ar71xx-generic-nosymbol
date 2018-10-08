@@ -526,7 +526,8 @@ CONFIG_TARGET_DEVICE_PACKAGES_ar71xx_generic_DEVICE_archer-c7-v4="ath10k-firmwar
 # CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_eap120-v1 is not set
 # CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_re355-v1 is not set
 # CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_re450-v1 is not set
-# CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_tl-mr6400-v1 is not set
+CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_tl-mr6400-v1=y
+CONFIG_TARGET_DEVICE_PACKAGES_ar71xx_generic_DEVICE_tl-mr6400-v1="adb adb-enablemodem kmod-ath9k kmod-ath9k-common kmod-mii kmod-usb2 kmod-usb-core kmod-usb-ehci kmod-usb-net kmod-usb-net-cdc-ether kmod-usb-net-rndis kmod-usb-serial kmod-usb-serial-option kmod-usb-serial-wwan libopenssl"
 CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_tl-wdr3500-v1=y
 CONFIG_TARGET_DEVICE_PACKAGES_ar71xx_generic_DEVICE_tl-wdr3500-v1="blockd block-mount kmod-ath9k kmod-ath9k-common kmod-crypto-crc32c kmod-fs-autofs4 kmod-fs-exfat kmod-fs-ext4 kmod-fs-msdos kmod-fs-vfat kmod-fuse kmod-lib-crc16 kmod-mii kmod-nls-cp437 kmod-scsi-core kmod-usb2 kmod-usb-core kmod-usb-ehci kmod-usb-ledtrig-usbport kmod-usb-net kmod-usb-net-cdc-ether kmod-usb-net-rndis kmod-usb-ohci kmod-usb-storage kmod-usb-storage-uas ntfs-3g"
 # CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_tl-wdr3600-v1 is not set
@@ -541,7 +542,8 @@ CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_tl-wdr6500-v2=y
 CONFIG_TARGET_DEVICE_PACKAGES_ar71xx_generic_DEVICE_tl-wdr6500-v2="ath10k-firmware-qca988x-ct blockd block-mount kmod-ath10k-ct kmod-ath9k kmod-ath9k-common kmod-crypto-crc32c kmod-fs-autofs4 kmod-fs-exfat kmod-fs-ext4 kmod-fs-msdos kmod-fs-vfat kmod-fuse kmod-hwmon-core kmod-lib-crc16 kmod-mii kmod-nls-cp437 kmod-scsi-core kmod-usb2 kmod-usb-core kmod-usb-ehci kmod-usb-ledtrig-usbport kmod-usb-net kmod-usb-net-cdc-ether kmod-usb-net-rndis kmod-usb-ohci kmod-usb-storage kmod-usb-storage-uas ntfs-3g"
 CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_tl-wdx6501-v7=y
 CONFIG_TARGET_DEVICE_PACKAGES_ar71xx_generic_DEVICE_tl-wdx6501-v7="ath10k-firmware-qca9888-ct kmod-ath10k-ct kmod-ath9k kmod-ath9k-common kmod-hwmon-core"
-# CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_tl-wpa8630-v1 is not set
+CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_tl-wpa8630-v1=y
+CONFIG_TARGET_DEVICE_PACKAGES_ar71xx_generic_DEVICE_tl-wpa8630-v1="ath10k-firmware-qca988x-ct kmod-ath10k-ct kmod-ath9k kmod-ath9k-common kmod-hwmon-core"
 CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_tl-wr1043n-v5=y
 CONFIG_TARGET_DEVICE_PACKAGES_ar71xx_generic_DEVICE_tl-wr1043n-v5="kmod-ath9k kmod-ath9k-common"
 CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_tl-wr1043nd-v1=y
@@ -565,8 +567,7 @@ CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_tl-wr842n-v1=y
 CONFIG_TARGET_DEVICE_PACKAGES_ar71xx_generic_DEVICE_tl-wr842n-v1="blockd block-mount kmod-ath9k kmod-ath9k-common kmod-crypto-crc32c kmod-fs-autofs4 kmod-fs-exfat kmod-fs-ext4 kmod-fs-msdos kmod-fs-vfat kmod-fuse kmod-lib-crc16 kmod-mii kmod-nls-cp437 kmod-scsi-core kmod-usb2 kmod-usb-core kmod-usb-ehci kmod-usb-ledtrig-usbport kmod-usb-net kmod-usb-net-cdc-ether kmod-usb-net-rndis kmod-usb-ohci kmod-usb-storage kmod-usb-storage-uas ntfs-3g"
 CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_tl-wr842n-v2=y
 CONFIG_TARGET_DEVICE_PACKAGES_ar71xx_generic_DEVICE_tl-wr842n-v2="blockd block-mount kmod-ath9k kmod-ath9k-common kmod-crypto-crc32c kmod-fs-autofs4 kmod-fs-exfat kmod-fs-ext4 kmod-fs-msdos kmod-fs-vfat kmod-fuse kmod-lib-crc16 kmod-mii kmod-nls-cp437 kmod-scsi-core kmod-usb2 kmod-usb-core kmod-usb-ehci kmod-usb-ledtrig-usbport kmod-usb-net kmod-usb-net-cdc-ether kmod-usb-net-rndis kmod-usb-ohci kmod-usb-storage kmod-usb-storage-uas ntfs-3g"
-CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_tl-wr842n-v3=y
-CONFIG_TARGET_DEVICE_PACKAGES_ar71xx_generic_DEVICE_tl-wr842n-v3="blockd block-mount kmod-ath9k kmod-ath9k-common kmod-crypto-crc32c kmod-fs-autofs4 kmod-fs-exfat kmod-fs-ext4 kmod-fs-msdos kmod-fs-vfat kmod-fuse kmod-lib-crc16 kmod-mii kmod-nls-cp437 kmod-scsi-core kmod-usb2 kmod-usb-core kmod-usb-ehci kmod-usb-ledtrig-usbport kmod-usb-net kmod-usb-net-cdc-ether kmod-usb-net-rndis kmod-usb-ohci kmod-usb-storage kmod-usb-storage-uas ntfs-3g"
+# CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_tl-wr842n-v3 is not set
 CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_tl-wr902ac-v1=y
 CONFIG_TARGET_DEVICE_PACKAGES_ar71xx_generic_DEVICE_tl-wr902ac-v1="ath10k-firmware-qca9887-ct blockd block-mount kmod-ath10k-ct kmod-ath9k kmod-ath9k-common kmod-crypto-crc32c kmod-fs-autofs4 kmod-fs-exfat kmod-fs-ext4 kmod-fs-msdos kmod-fs-vfat kmod-fuse kmod-hwmon-core kmod-lib-crc16 kmod-mii kmod-nls-cp437 kmod-scsi-core kmod-usb2 kmod-usb-core kmod-usb-ehci kmod-usb-ledtrig-usbport kmod-usb-net kmod-usb-net-cdc-ether kmod-usb-net-rndis kmod-usb-ohci kmod-usb-storage kmod-usb-storage-uas ntfs-3g"
 # CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_tl-wr942n-v1 is not set
@@ -622,6 +623,7 @@ CONFIG_TARGET_ARCH_PACKAGES="mips_24kc"
 CONFIG_DEFAULT_TARGET_OPTIMIZATION="-Os -pipe -mno-branch-likely -mips32r2 -mtune=24kc"
 CONFIG_CPU_TYPE="24kc"
 CONFIG_LINUX_4_9=y
+CONFIG_MODULE_DEFAULT_adb-enablemodem=y
 CONFIG_MODULE_DEFAULT_ath10k-firmware-qca9887-ct=y
 CONFIG_MODULE_DEFAULT_ath10k-firmware-qca9888-ct=y
 CONFIG_MODULE_DEFAULT_ath10k-firmware-qca988x-ct=y
@@ -651,7 +653,11 @@ CONFIG_MODULE_DEFAULT_kmod-gpio-button-hotplug=y
 CONFIG_MODULE_DEFAULT_kmod-leds-wndr3700-usb=y
 CONFIG_MODULE_DEFAULT_kmod-usb-core=y
 CONFIG_MODULE_DEFAULT_kmod-usb-ledtrig-usbport=y
+CONFIG_MODULE_DEFAULT_kmod-usb-net=y
+CONFIG_MODULE_DEFAULT_kmod-usb-net-rndis=y
 CONFIG_MODULE_DEFAULT_kmod-usb-ohci=y
+CONFIG_MODULE_DEFAULT_kmod-usb-serial=y
+CONFIG_MODULE_DEFAULT_kmod-usb-serial-option=y
 CONFIG_MODULE_DEFAULT_kmod-usb-storage=y
 CONFIG_MODULE_DEFAULT_kmod-usb2=y
 CONFIG_DEFAULT_libc=y
@@ -3026,7 +3032,7 @@ CONFIG_PACKAGE_ath10k-firmware-qca988x-ct=m
 # CONFIG_PACKAGE_brcmsmac-firmware is not set
 # CONFIG_PACKAGE_carl9170-firmware is not set
 # CONFIG_PACKAGE_e100-firmware is not set
-# CONFIG_PACKAGE_edgeport-firmware is not set
+CONFIG_PACKAGE_edgeport-firmware=m
 # CONFIG_PACKAGE_ibt-firmware is not set
 # CONFIG_PACKAGE_iwl3945-firmware is not set
 # CONFIG_PACKAGE_iwl4965-firmware is not set
@@ -3676,7 +3682,30 @@ CONFIG_PACKAGE_kmod-usb-net-rndis=m
 CONFIG_PACKAGE_kmod-usb-ohci=m
 # CONFIG_PACKAGE_kmod-usb-ohci-pci is not set
 CONFIG_PACKAGE_kmod-usb-printer=m
-# CONFIG_PACKAGE_kmod-usb-serial is not set
+CONFIG_PACKAGE_kmod-usb-serial=m
+# CONFIG_PACKAGE_kmod-usb-serial-ark3116 is not set
+# CONFIG_PACKAGE_kmod-usb-serial-belkin is not set
+# CONFIG_PACKAGE_kmod-usb-serial-ch341 is not set
+# CONFIG_PACKAGE_kmod-usb-serial-cp210x is not set
+# CONFIG_PACKAGE_kmod-usb-serial-cypress-m8 is not set
+# CONFIG_PACKAGE_kmod-usb-serial-dmx_usb_module is not set
+# CONFIG_PACKAGE_kmod-usb-serial-edgeport is not set
+# CONFIG_PACKAGE_kmod-usb-serial-ftdi is not set
+# CONFIG_PACKAGE_kmod-usb-serial-garmin is not set
+# CONFIG_PACKAGE_kmod-usb-serial-ipw is not set
+# CONFIG_PACKAGE_kmod-usb-serial-keyspan is not set
+# CONFIG_PACKAGE_kmod-usb-serial-mct is not set
+# CONFIG_PACKAGE_kmod-usb-serial-mos7720 is not set
+CONFIG_PACKAGE_kmod-usb-serial-option=m
+# CONFIG_PACKAGE_kmod-usb-serial-oti6858 is not set
+# CONFIG_PACKAGE_kmod-usb-serial-pl2303 is not set
+# CONFIG_PACKAGE_kmod-usb-serial-qualcomm is not set
+# CONFIG_PACKAGE_kmod-usb-serial-sierrawireless is not set
+# CONFIG_PACKAGE_kmod-usb-serial-simple is not set
+# CONFIG_PACKAGE_kmod-usb-serial-ti-usb is not set
+# CONFIG_PACKAGE_kmod-usb-serial-visor is not set
+CONFIG_PACKAGE_kmod-usb-serial-wwan=m
+# CONFIG_PACKAGE_kmod-usb-serial-xr_usb_serial_common is not set
 CONFIG_PACKAGE_kmod-usb-storage=m
 CONFIG_PACKAGE_kmod-usb-storage-extras=m
 CONFIG_PACKAGE_kmod-usb-storage-uas=m
@@ -5861,7 +5890,7 @@ CONFIG_PACKAGE_pptpd=y
 #
 # WWAN
 #
-# CONFIG_PACKAGE_adb-enablemodem is not set
+CONFIG_PACKAGE_adb-enablemodem=m
 # CONFIG_PACKAGE_comgt is not set
 # CONFIG_PACKAGE_comgt-directip is not set
 # CONFIG_PACKAGE_comgt-ncm is not set
@@ -6468,7 +6497,7 @@ CONFIG_PACKAGE_ntfs-3g=m
 # CONFIG_PACKAGE_sqlite3-cli is not set
 # CONFIG_PACKAGE_unixodbc-tools is not set
 # CONFIG_PACKAGE_acpid is not set
-# CONFIG_PACKAGE_adb is not set
+CONFIG_PACKAGE_adb=m
 # CONFIG_PACKAGE_ap51-flash is not set
 # CONFIG_PACKAGE_at is not set
 # CONFIG_PACKAGE_bandwidthd is not set

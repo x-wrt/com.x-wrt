@@ -197,6 +197,7 @@ for t in $targets; do
 	mods="$us"
 	case $t in
 		#>8M flash
+		TARGET_DEVICE_ar71xx_generic_DEVICE_tl-wr842n-v3|\
 		TARGET_DEVICE_ar71xx_generic_DEVICE_tl-wr942n-v1|\
 		TARGET_DEVICE_ath79_generic_DEVICE_buffalo_wzr-hp-ag300h|\
 		TARGET_DEVICE_ath79_generic_DEVICE_buffalo_wzr-hp-g302h-a1a0|\
@@ -311,6 +312,10 @@ for t in $targets; do
 			mods="$mods $ssmod"
 		;;
 		#<=8M flash
+		TARGET_DEVICE_ar71xx_generic_DEVICE_re355-v1|\
+		TARGET_DEVICE_ar71xx_generic_DEVICE_re450-v1|\
+		TARGET_DEVICE_ar71xx_generic_DEVICE_tl-mr6400-v1|\
+		TARGET_DEVICE_ar71xx_generic_DEVICE_tl-wpa8630-v1|\
 		TARGET_DEVICE_ath79_generic_DEVICE_tplink_tl-wr842n-v2|\
 		TARGET_DEVICE_ath79_generic_DEVICE_ubnt_nanostation-ac|\
 		TARGET_DEVICE_ath79_generic_DEVICE_ubnt_nanostation-ac-loco|\
@@ -357,7 +362,6 @@ for t in $targets; do
 		TARGET_DEVICE_ar71xx_generic_DEVICE_tl-wr810n-v2|\
 		TARGET_DEVICE_ar71xx_generic_DEVICE_tl-wr842n-v1|\
 		TARGET_DEVICE_ar71xx_generic_DEVICE_tl-wr842n-v2|\
-		TARGET_DEVICE_ar71xx_generic_DEVICE_tl-wr842n-v3|\
 		TARGET_DEVICE_ar71xx_generic_DEVICE_tl-wr902ac-v1|\
 		TARGET_DEVICE_ar71xx_generic_DEVICE_archer-c58-v1|\
 		TARGET_DEVICE_ar71xx_generic_DEVICE_archer-c60-v1|\
@@ -589,6 +593,10 @@ for t in $targets; do
 			mods="$mods $cdcmod"
 		;;
 		#no usb
+		TARGET_DEVICE_ar71xx_generic_DEVICE_re355-v1|\
+		TARGET_DEVICE_ar71xx_generic_DEVICE_re450-v1|\
+		TARGET_DEVICE_ar71xx_generic_DEVICE_tl-mr6400-v1|\
+		TARGET_DEVICE_ar71xx_generic_DEVICE_tl-wpa8630-v1|\
 		TARGET_DEVICE_ramips_mt7620_DEVICE_rt-n12p|\
 		TARGET_DEVICE_ramips_mt76x8_DEVICE_tplink_tl-wa801nd-v5|\
 		TARGET_DEVICE_ramips_mt76x8_DEVICE_tplink_c50-v3|\
