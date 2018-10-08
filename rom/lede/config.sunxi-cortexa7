@@ -71,6 +71,7 @@ CONFIG_TARGET_MULTI_PROFILE=y
 # CONFIG_TARGET_sunxi_cortexa7_DEVICE_sun8i-h3-orangepi-pc is not set
 # CONFIG_TARGET_sunxi_cortexa7_DEVICE_sun8i-h3-orangepi-plus is not set
 # CONFIG_TARGET_sunxi_cortexa7_DEVICE_sun8i-h2-plus-orangepi-r1 is not set
+# CONFIG_TARGET_sunxi_cortexa7_DEVICE_sun8i-h2-plus-orangepi-zero is not set
 
 #
 # Target Devices
@@ -95,6 +96,7 @@ CONFIG_TARGET_DEVICE_PACKAGES_sunxi_cortexa7_DEVICE_sun8i-h3-nanopi-neo="blockd 
 # CONFIG_TARGET_DEVICE_sunxi_cortexa7_DEVICE_sun8i-h3-orangepi-pc is not set
 # CONFIG_TARGET_DEVICE_sunxi_cortexa7_DEVICE_sun8i-h3-orangepi-plus is not set
 # CONFIG_TARGET_DEVICE_sunxi_cortexa7_DEVICE_sun8i-h2-plus-orangepi-r1 is not set
+# CONFIG_TARGET_DEVICE_sunxi_cortexa7_DEVICE_sun8i-h2-plus-orangepi-zero is not set
 CONFIG_HAS_SUBTARGETS=y
 CONFIG_HAS_DEVICES=y
 CONFIG_TARGET_BOARD="sunxi"
