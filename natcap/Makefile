@@ -55,7 +55,7 @@ endef
 define Package/natcapd
   $(call Package/natcapd/Default)
   TITLE:=natcapd agent for natcap
-  DEPENDS += +mosquitto-client-nossl
+  DEPENDS +=
 endef
 
 define Package/natcapd/description

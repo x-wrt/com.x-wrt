@@ -58,17 +58,12 @@ natcapd_stop()
 	echo clean >>$DEV
 	#never stop kmod
 	echo disabled=0 >>$DEV
-	test -f /tmp/natcapd.firewall.sh && sh /tmp/natcapd.firewall.sh >/dev/null 2>&1
-	rm -f /tmp/natcapd.firewall.sh
 
 	rm /tmp/dnsmasq.d/accelerated-domains.gfwlist.dnsmasq.conf 2>/dev/null || \
 	rm /tmp/dnsmasq.d/custom-domains.gfwlist.dnsmasq.conf 2>/dev/null && \
 	/etc/init.d/dnsmasq restart
 
 	rm -f /tmp/natcapd.running
-	mosq_pid=`ps axuww 2>/dev/null | grep "mosquitto_su[b].*router-sh.ptpt52.com" | awk '{print $2}'`
-	test -n "$mosq_pid" || mosq_pid=`ps 2>/dev/null | grep "mosquitto_su[b].*router-sh.ptpt52.com" | awk '{print $1}'`
-	test -n "$mosq_pid" && kill $mosq_pid
 	return 0
 }
 
@@ -432,7 +427,7 @@ cleanup () {
 		echo "Finished"
 	else
 		echo "Failed to remove lock directory '$LOCKDIR'"
-		exit 1
+		return 1
 	fi
 }
 
@@ -452,7 +447,7 @@ nslookup_check () {
 gfwlist_update_main () {
 	test -f /tmp/natcapd.running && sh /usr/share/natcapd/gfwlist_update.sh
 	while :; do
-		test -f $LOCKDIR/$PID || exit 0
+		test -f $LOCKDIR/$PID || return 0
 		test -p /tmp/trigger_gfwlist_update.fifo || { sleep 1 && continue; }
 		mytimeout 86340 'cat /tmp/trigger_gfwlist_update.fifo' >/dev/null && {
 			test -f /tmp/natcapd.running && sh /usr/share/natcapd/gfwlist_update.sh
@@ -461,7 +456,7 @@ gfwlist_update_main () {
 }
 
 natcapd_first_boot() {
-	mkdir /tmp/natcapd.lck/watcher.lck >/dev/null 2>&1 || return
+	mkdir /tmp/natcapd.lck/watcher.lck >/dev/null 2>&1 || return 0
 	local run=0
 	while :; do
 		ping -q -W3 -c1 114.114.114.114 >/dev/null 2>&1 || ping -q -W3 -c1 8.8.8.8 >/dev/null 2>&1 || {
@@ -500,26 +495,11 @@ txrx_vals() {
 	done
 }
 
-mqtt_cli() {
-	while :; do
-		test -f $LOCKDIR/$PID || exit 0
-		if which mosquitto_sub >/dev/null 2>&1 && test -f /tmp/natcapd.running; then
-			mosquitto_sub -h router-sh.ptpt52.com -p 1883 -t "/gfw/device/$CLI" -u ptpt52 -P 153153 --quiet -k 180 | while read _line; do
-				natcapd_trigger '/tmp/trigger_natcapd_update.fifo'
-			done
-			sleep 60
-			natcapd_trigger '/tmp/trigger_natcapd_update.fifo'
-		else
-			sleep 60
-		fi
-	done
-}
-
 ping_cli() {
 	PING="ping"
 	which timeout >/dev/null 2>&1 && PING="$TO 30 $PING"
 	while :; do
-		test -f $LOCKDIR/$PID || exit 0
+		test -f $LOCKDIR/$PID || return 0
 		PINGH=`uci get natcapd.default.peer_host`
 		test -n "$PINGH" || PINGH=ec2ns.ptpt52.com
 		if [ "$(echo $PINGH | wc -w)" = "1" ]; then
@@ -540,7 +520,7 @@ main_trigger() {
 	local built_in_server
 	cp /usr/share/natcapd/cacert.pem /tmp/cacert.pem
 	while :; do
-		test -f $LOCKDIR/$PID || exit 0
+		test -f $LOCKDIR/$PID || return 0
 		test -p /tmp/trigger_natcapd_update.fifo || { sleep 1 && continue; }
 		mytimeout 660 'cat /tmp/trigger_natcapd_update.fifo' >/dev/null && {
 			rm -f /tmp/xx.tmp.json
@@ -602,9 +582,8 @@ if mkdir $LOCKDIR >/dev/null 2>&1; then
 	gfwlist_update_main &
 	main_trigger &
 	natcapd_first_boot &
-	ping_cli &
 
-	mqtt_cli
+	ping_cli
 else
 	natcapd_first_boot &
 	echo "Could not create lock directory '$LOCKDIR'"
