@@ -24,7 +24,7 @@ define Package/luci-app-natcap
 	SUBMENU:=Natcap Support
 	TITLE:=LuCI Support for natcap
 	PKGARCH:=all
-	DEPENDS:=+natcapd
+	DEPENDS:=+natcapd +lua-cjson
 endef
 
 define Package/luci-app-natcap/description
