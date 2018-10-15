@@ -503,11 +503,11 @@ ping_cli() {
 		PINGH=`uci get natcapd.default.peer_host`
 		test -n "$PINGH" || PINGH=ec2ns.ptpt52.com
 		if [ "$(echo $PINGH | wc -w)" = "1" ]; then
-			$PING -t1 -s16 -c16 -q $PINGH
+			$PING -t1 -s16 -c16 -W1 -q $PINGH
 			sleep 1
 		else
 			for hh in $PINGH; do
-				$PING -t1 -s16 -c16 -q "$hh" &
+				$PING -t1 -s16 -c16 -W1 -q "$hh" &
 			done
 			sleep 16
 		fi
