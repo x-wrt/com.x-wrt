@@ -59,11 +59,6 @@ e = s:taboption("advanced", Flag, "server_persist_lock", translate("Lock on serv
 e.default = e.disabled
 e.rmempty = false
 
-e = s:taboption("advanced", Value, "natcap_redirect_port", translate("Local TCP Listening Port"), translate("0 Disabled，Otherwise Enabled"))
-e.datatype = "portrange"
-e.rmempty = true
-e.placeholder = '0'
-
 e = s:taboption("advanced", Flag, "encode_mode", translate("Force TCP encode as UDP"), translate("Do not normally enable unless the normal mode is not working."))
 e.default = e.disabled
 e.rmempty = false
@@ -71,6 +66,16 @@ e.rmempty = false
 e = s:taboption("advanced", Flag, "udp_encode_mode", translate("Force UDP encode as TCP"), translate("Do not normally enable unless the normal mode is not working."))
 e.default = e.disabled
 e.rmempty = false
+
+e = s:taboption("advanced", Value, "natcap_redirect_port", translate("Local Server TCP Listening Port"), translate("0 Disabled，Otherwise Enabled"))
+e.datatype = "portrange"
+e.rmempty = true
+e.placeholder = '0'
+
+e = s:taboption("advanced", Value, "natcap_client_redirect_port", translate("Local Client TCP Listening Port"), translate("0 Disabled，Otherwise Enabled"))
+e.datatype = "portrange"
+e.rmempty = true
+e.placeholder = '0'
 
 e = s:taboption("advanced", Flag, "http_confusion", translate("HTTP Obfuscation"), translate("Disguise the traffic into HTTP."))
 e.default = e.disabled

@@ -398,7 +398,6 @@ test -c /dev/natflow_ctl && {
 	fi
 
 	NATCAPD_BIN=natcapd-server
-
 	if which $NATCAPD_BIN >/dev/null 2>&1; then
 		natcap_redirect_port=`uci get natcapd.default.natcap_redirect_port 2>/dev/null || echo 0`
 		sleep 1 && killall $NATCAPD_BIN >/dev/null 2>&1 && sleep 2
@@ -407,6 +406,19 @@ test -c /dev/natflow_ctl && {
 			(
 			$NATCAPD_BIN -l$natcap_redirect_port -t 900 >/dev/null 2>&1
 			echo natcap_redirect_port=0 >$DEV
+			) &
+		}
+	fi
+
+	NATCAPD_BIN=natcapd-client
+	if which $NATCAPD_BIN >/dev/null 2>&1; then
+		natcap_client_redirect_port=`uci get natcapd.default.natcap_client_redirect_port 2>/dev/null || echo 0`
+		sleep 1 && killall $NATCAPD_BIN >/dev/null 2>&1 && sleep 2
+		test $natcap_client_redirect_port -gt 0 && test $natcap_client_redirect_port -lt 65535 && {
+			echo natcap_client_redirect_port=$natcap_client_redirect_port >$DEV
+			(
+			$NATCAPD_BIN -l$natcap_client_redirect_port -t 900 >/dev/null 2>&1
+			echo natcap_client_redirect_port=0 >$DEV
 			) &
 		}
 	fi

@@ -106,8 +106,11 @@ msgstr "锁定服务器"
 msgid "do not switch servers by automatic detection"
 msgstr "不根据自动线路检测切换服务器"
 
-msgid "Local TCP Listening Port"
-msgstr "本地TCP监听端口"
+msgid "Local Server TCP Listening Port"
+msgstr "本地服务端TCP监听端口"
+
+msgid "Local Client TCP Listening Port"
+msgstr "本地客户端TCP监听端口"
 
 msgid "0 Disabled，Otherwise Enabled"
 msgstr "0 禁用，其它启用"
