@@ -74,6 +74,7 @@ ssmod="libmbedtls \
 
 excludes="dnsmasq \
 		  odhcpd \
+		  wpad-basic \
 		  wpad-mini"
 
 get_modules()
