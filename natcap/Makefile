@@ -55,7 +55,7 @@ endef
 define Package/natcapd
   $(call Package/natcapd/Default)
   TITLE:=natcapd agent for natcap
-  DEPENDS += +libustream-mbedtls
+  DEPENDS += +!PACKAGE_wget:libustream-mbedtls
 endef
 
 define Package/natcapd/description
@@ -65,7 +65,7 @@ endef
 define Package/natcapd-mini
   $(call Package/natcapd/Default)
   TITLE:=natcapd-mini agent for natcap
-  DEPENDS += +libustream-mbedtls
+  DEPENDS += +!PACKAGE_wget:libustream-mbedtls
 endef
 
 define Package/natcapd-mini/description
