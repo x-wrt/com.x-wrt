@@ -55,7 +55,7 @@ endef
 define Package/natcapd
   $(call Package/natcapd/Default)
   TITLE:=natcapd agent for natcap
-  DEPENDS +=
+  DEPENDS += +libustream-mbedtls
 endef
 
 define Package/natcapd/description

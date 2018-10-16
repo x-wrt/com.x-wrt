@@ -397,14 +397,15 @@ test -c /dev/natflow_ctl && {
 		natcapd_trigger '/tmp/trigger_gfwlist_update.fifo'
 	fi
 
-	if which natcapd-client >/dev/null 2>&1; then
-		#reload natcapd-client
+	NATCAPD_BIN=natcapd-server
+
+	if which $NATCAPD_BIN >/dev/null 2>&1; then
 		natcap_redirect_port=`uci get natcapd.default.natcap_redirect_port 2>/dev/null || echo 0`
-		sleep 1 && killall natcapd-client >/dev/null 2>&1 && sleep 2
-		echo natcap_redirect_port=$natcap_redirect_port >$DEV
+		sleep 1 && killall $NATCAPD_BIN >/dev/null 2>&1 && sleep 2
 		test $natcap_redirect_port -gt 0 && test $natcap_redirect_port -lt 65535 && {
+			echo natcap_redirect_port=$natcap_redirect_port >$DEV
 			(
-			/usr/sbin/natcapd-client -l$natcap_redirect_port >/dev/null 2>&1
+			$NATCAPD_BIN -l$natcap_redirect_port -t 900 >/dev/null 2>&1
 			echo natcap_redirect_port=0 >$DEV
 			) &
 		}
