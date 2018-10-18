@@ -5666,6 +5666,7 @@ CONFIG_RPCBIND_LIBWRAP=y
 CONFIG_RPCBIND_WARMSTARTS=y
 # CONFIG_PACKAGE_rssileds is not set
 # CONFIG_PACKAGE_rsyslog is not set
+# CONFIG_PACKAGE_safe-search is not set
 # CONFIG_PACKAGE_samba36-client is not set
 # CONFIG_PACKAGE_samba36-hotplug is not set
 # CONFIG_PACKAGE_samba36-net is not set
