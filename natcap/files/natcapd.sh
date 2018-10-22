@@ -210,9 +210,37 @@ add_gfwlist_domain () {
 	echo ipset=/$1/gfwlist >>/tmp/dnsmasq.d/custom-domains.gfwlist.dnsmasq.conf
 }
 
+_reload_natcapd() {
+	NATCAPD_BIN=natcapd-server
+	if which $NATCAPD_BIN >/dev/null 2>&1; then
+		natcap_redirect_port=`uci get natcapd.default.natcap_redirect_port 2>/dev/null || echo 0`
+		sleep 1 && killall $NATCAPD_BIN >/dev/null 2>&1 && sleep 2
+		test $natcap_redirect_port -gt 0 && test $natcap_redirect_port -lt 65535 && {
+			echo natcap_redirect_port=$natcap_redirect_port >$DEV
+			(
+			$NATCAPD_BIN -l$natcap_redirect_port -t 900 >/dev/null 2>&1
+			echo natcap_redirect_port=0 >$DEV
+			) &
+		}
+	fi
+
+	NATCAPD_BIN=natcapd-client
+	if which $NATCAPD_BIN >/dev/null 2>&1; then
+		natcap_client_redirect_port=`uci get natcapd.default.natcap_client_redirect_port 2>/dev/null || echo 0`
+		sleep 1 && killall $NATCAPD_BIN >/dev/null 2>&1 && sleep 2
+		test $natcap_client_redirect_port -gt 0 && test $natcap_client_redirect_port -lt 65535 && {
+			echo natcap_client_redirect_port=$natcap_client_redirect_port >$DEV
+			(
+			$NATCAPD_BIN -l$natcap_client_redirect_port -t 900 >/dev/null 2>&1
+			echo natcap_client_redirect_port=0 >$DEV
+			) &
+		}
+	fi
+}
+
 natcap_wan_ip
 
-enabled="`uci get natcapd.default.enabled 2>/dev/null`"
+enabled="`uci get natcapd.default.enabled 2>/dev/null || echo 0`"
 
 # reload firewall
 uci get firewall.natcapd >/dev/null 2>&1 || {
@@ -234,17 +262,18 @@ test -c /dev/natflow_ctl && {
 	echo disabled=$((!enable_natflow)) >/dev/natflow_ctl
 }
 
-[ "x$enabled" = "x0" ] && {
+if [ "x$enabled" = "x0" ] && test -c $DEV; then
 	natcapd_stop
 	rm -f /tmp/natcapd_to_cn
-}
-[ "x$enabled" = "x1" ] && test -c $DEV && {
+
+	_reload_natcapd
+elif test -c $DEV; then
 	echo disabled=0 >>$DEV
 	touch /tmp/natcapd.running
-	debug=`uci get natcapd.default.debug 2>/dev/null || echo 0`
+	debug=`uci get natcapd.default.debug 2>/dev/null || echo 3`
 	enable_encryption=`uci get natcapd.default.enable_encryption 2>/dev/null || echo 1`
 	clear_dst_on_reload=`uci get natcapd.default.clear_dst_on_reload 2>/dev/null || echo 0`
-	server_persist_timeout=`uci get natcapd.default.server_persist_timeout 2>/dev/null || echo 30`
+	server_persist_timeout=`uci get natcapd.default.server_persist_timeout 2>/dev/null || echo 300`
 	server_persist_lock=`uci get natcapd.default.server_persist_lock 2>/dev/null || echo 0`
 	tx_speed_limit=`uci get natcapd.default.tx_speed_limit 2>/dev/null || echo 0`
 	rx_speed_limit=`uci get natcapd.default.rx_speed_limit 2>/dev/null || echo 0`
@@ -397,32 +426,8 @@ test -c /dev/natflow_ctl && {
 		natcapd_trigger '/tmp/trigger_gfwlist_update.fifo'
 	fi
 
-	NATCAPD_BIN=natcapd-server
-	if which $NATCAPD_BIN >/dev/null 2>&1; then
-		natcap_redirect_port=`uci get natcapd.default.natcap_redirect_port 2>/dev/null || echo 0`
-		sleep 1 && killall $NATCAPD_BIN >/dev/null 2>&1 && sleep 2
-		test $natcap_redirect_port -gt 0 && test $natcap_redirect_port -lt 65535 && {
-			echo natcap_redirect_port=$natcap_redirect_port >$DEV
-			(
-			$NATCAPD_BIN -l$natcap_redirect_port -t 900 >/dev/null 2>&1
-			echo natcap_redirect_port=0 >$DEV
-			) &
-		}
-	fi
-
-	NATCAPD_BIN=natcapd-client
-	if which $NATCAPD_BIN >/dev/null 2>&1; then
-		natcap_client_redirect_port=`uci get natcapd.default.natcap_client_redirect_port 2>/dev/null || echo 0`
-		sleep 1 && killall $NATCAPD_BIN >/dev/null 2>&1 && sleep 2
-		test $natcap_client_redirect_port -gt 0 && test $natcap_client_redirect_port -lt 65535 && {
-			echo natcap_client_redirect_port=$natcap_client_redirect_port >$DEV
-			(
-			$NATCAPD_BIN -l$natcap_client_redirect_port -t 900 >/dev/null 2>&1
-			echo natcap_client_redirect_port=0 >$DEV
-			) &
-		}
-	fi
-}
+	_reload_natcapd
+fi
 
 #reload pptpd
 test -f /usr/share/natcapd/natcapd.pptpd.sh && sh /usr/share/natcapd/natcapd.pptpd.sh
