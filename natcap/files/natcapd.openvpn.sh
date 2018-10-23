@@ -35,6 +35,7 @@ make_config()
 
 [ "x`uci get natcapd.default.natcapovpn`" = x1 ] && {
 	[ "x`uci get openvpn.natcapovpn_tcp.enabled`" != x1 ] && {
+		/etc/init.d/openvpn stop
 		uci delete network.natcapovpn
 		uci set network.natcapovpn=interface
 		uci set network.natcapovpn.proto='none'
@@ -66,9 +67,6 @@ make_config()
 			uci set firewall.natcapovpn_$p.name="natcapovpn_$p"
 		done
 		uci commit firewall
-
-		/etc/init.d/network reload
-		/etc/init.d/firewall reload
 
 		I=0
 		for p in tcp udp; do
@@ -106,9 +104,11 @@ make_config()
 			I=$((I+1))
 		done
 		uci commit openvpn
-	}
 
-	/etc/init.d/openvpn restart
+		/etc/init.d/openvpn start
+		/etc/init.d/network reload
+		/etc/init.d/firewall reload
+	}
 	exit 0
 }
 
@@ -118,7 +118,6 @@ make_config()
 		uci delete openvpn.natcapovpn_$p
 	done
 	uci commit openvpn
-	/etc/init.d/openvpn start
 
 	uci delete network.natcapovpn
 	uci commit network
@@ -143,6 +142,7 @@ make_config()
 	done
 	uci commit firewall
 
+	/etc/init.d/openvpn start
 	/etc/init.d/network reload
 	/etc/init.d/firewall reload
 	exit 0
