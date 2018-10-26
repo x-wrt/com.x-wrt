@@ -55,7 +55,10 @@ endef
 define Package/natcapd
   $(call Package/natcapd/Default)
   TITLE:=natcapd agent for natcap
-  DEPENDS += +!PACKAGE_wget:libustream-mbedtls +lua-cjson
+  DEPENDS += +!PACKAGE_wget:libustream-mbedtls +!PACKAGE_wget:uclient-fetch \
+			 +lua-cjson \
+			 +dnsmasq-full +@PACKAGE_dnsmasq_full_ipset \
+			 +busybox +@BUSYBOX_CUSTOM +@BUSYBOX_CONFIG_CKSUM +@BUSYBOX_CONFIG_BASE64 +@BUSYBOX_CONFIG_TIMEOUT
 endef
 
 define Package/natcapd/description
