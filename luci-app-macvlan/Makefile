@@ -24,7 +24,7 @@ define Package/luci-app-macvlan
 	SUBMENU:=Macvlan
 	TITLE:=LuCI Support for macvlan
 	PKGARCH:=all
-	DEPENDS:=+kmod-macvlan
+	DEPENDS:=+kmod-macvlan +busybox +@BUSYBOX_CUSTOM +@BUSYBOX_CONFIG_VCONFIG
 endef
 
 define Package/luci-app-macvlan/description

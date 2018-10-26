@@ -57,8 +57,14 @@ define Package/natcapd
   TITLE:=natcapd agent for natcap
   DEPENDS += +!PACKAGE_wget:libustream-mbedtls +!PACKAGE_wget:uclient-fetch \
 			 +lua-cjson \
+			 +ipset \
 			 +dnsmasq-full +@PACKAGE_dnsmasq_full_ipset \
-			 +busybox +@BUSYBOX_CUSTOM +@BUSYBOX_CONFIG_CKSUM +@BUSYBOX_CONFIG_BASE64 +@BUSYBOX_CONFIG_TIMEOUT
+			 +busybox +@BUSYBOX_CUSTOM \
+			 +@BUSYBOX_CONFIG_CKSUM \
+			 +@BUSYBOX_CONFIG_BASE64 \
+			 +@BUSYBOX_CONFIG_TIMEOUT \
+			 +@BUSYBOX_CONFIG_NOHUP \
+			 +@BUSYBOX_CONFIG_DIFF
 endef
 
 define Package/natcapd/description
