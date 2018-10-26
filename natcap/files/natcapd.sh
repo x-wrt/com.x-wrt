@@ -604,6 +604,5 @@ if mkdir $LOCKDIR >/dev/null 2>&1; then
 	ping_cli
 else
 	natcapd_first_boot &
-	echo "Could not create lock directory '$LOCKDIR'"
 	exit 0
 fi

@@ -33,8 +33,8 @@ make_config()
 	exit 0
 }
 
-[ "x`uci get natcapd.default.natcapovpn`" = x1 ] && {
-	[ "x`uci get openvpn.natcapovpn_tcp.enabled`" != x1 ] && {
+[ "x`uci get natcapd.default.natcapovpn 2>/dev/null`" = x1 ] && {
+	[ "x`uci get openvpn.natcapovpn_tcp.enabled 2>/dev/null`" != x1 ] && {
 		/etc/init.d/openvpn stop
 		uci delete network.natcapovpn
 		uci set network.natcapovpn=interface
@@ -112,7 +112,7 @@ make_config()
 	exit 0
 }
 
-[ "x`uci get natcapd.default.natcapovpn`" != x1 ] && [ "x`uci get openvpn.natcapovpn_tcp.enabled`" = x1 ] && {
+[ "x`uci get natcapd.default.natcapovpn 2>/dev/null`" != x1 ] && [ "x`uci get openvpn.natcapovpn_tcp.enabled 2>/dev/null`" = x1 ] && {
 	/etc/init.d/openvpn stop
 	for p in tcp udp; do
 		uci delete openvpn.natcapovpn_$p
