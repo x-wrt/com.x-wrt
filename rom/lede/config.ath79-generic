@@ -5774,7 +5774,6 @@ CONFIG_PACKAGE_kmod-natcap=y
 CONFIG_PACKAGE_luci-app-natcap=y
 CONFIG_PACKAGE_natcapd=y
 CONFIG_PACKAGE_natcapd-client=y
-# CONFIG_PACKAGE_natcapd-mini is not set
 CONFIG_PACKAGE_natcapd-server=y
 # CONFIG_PACKAGE_userauth is not set
 

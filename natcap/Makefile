@@ -71,31 +71,6 @@ define Package/natcapd/description
  Natcapd agent for natcap
 endef
 
-define Package/natcapd-mini
-  $(call Package/natcapd/Default)
-  TITLE:=natcapd-mini agent for natcap
-  DEPENDS += +!PACKAGE_wget:libustream-mbedtls +lua-cjson
-endef
-
-define Package/natcapd-mini/description
- natcapd-mini agent for natcap
-endef
-
-define Package/natcapd-mini/conffiles
-/etc/config/natcapd
-endef
-
-define Package/natcapd-mini/postinst
-#!/bin/sh
-
-if [ -z "$$IPKG_INSTROOT" ]; then
-  ( . /etc/uci-defaults/95-natcapd )
-  rm -f /etc/uci-defaults/95-natcapd
-fi
-
-exit 0
-endef
-
 define Package/natcapd-mini/install
 	$(INSTALL_DIR) $(1)/etc/init.d
 	$(INSTALL_BIN) ./files/natcapd_boot.init $(1)/etc/init.d/natcapd_boot
@@ -189,7 +164,6 @@ endif
 endef
 
 $(eval $(call KernelPackage,natcap))
-$(eval $(call BuildPackage,natcapd-mini))
 $(eval $(call BuildPackage,natcapd))
 $(eval $(call BuildPackage,natcapd-client))
 $(eval $(call BuildPackage,natcapd-server))
