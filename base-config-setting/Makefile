@@ -21,7 +21,7 @@ define Package/$(PKG_NAME)/Default
   SECTION:=Applications
   CATEGORY:=Ptpt52
   SUBMENU:=Base config setting for this board
-  DEPENDS:=+dnsmasq-full +busybox
+  DEPENDS:=+dnsmasq-full +busybox +(@TARGET_x86||TARGET_x86_64||TARGET_sunxi):fdisk +(@EFI_IMAGES):gdisk
 endef
 
 define Package/$(PKG_NAME)
@@ -66,7 +66,7 @@ define Package/$(PKG_NAME)/install
 	$(INSTALL_DATA) ./files/mount.hotplug $(1)/usr/share/base-config-setting/mount.hotplug
 	$(INSTALL_DIR) $(1)/lib/preinit
 	$(INSTALL_DATA) ./files/mnt_ready.preinit $(1)/lib/preinit/81_mnt_ready
-ifeq ($(CONFIG_TARGET_x86)$(CONFIG_TARGET_sunxi),y)
+ifneq ($(CONFIG_TARGET_x86)$(CONFIG_TARGET_x86_64)$(CONFIG_TARGET_sunxi),)
 	$(INSTALL_DATA) ./files/fstab.config $(1)/etc/fstab.config
 	$(INSTALL_DIR) $(1)/lib/preinit
 	$(INSTALL_DATA) ./files/disk_ready.preinit $(1)/lib/preinit/79_disk_ready
