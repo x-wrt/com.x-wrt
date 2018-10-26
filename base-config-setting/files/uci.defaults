@@ -128,8 +128,54 @@ test $version -lt 2 && {
 			set dhcp.lan=dhcp
 			set dhcp.lan.interface='lan'
 			set dhcp.lan.ignore='1'
+			commit dhcp
 		EOT
 	}
+
+	config_line=
+	which fdisk && {
+		local partdev
+		local ROOTDEV=/dev/sda
+		. /lib/upgrade/common.sh
+		if export_bootdevice && export_partdevice partdev $((1-BOOTDEV_MINOR)); then
+			if echo $partdev | grep -q ^sd[a-z]1$; then
+				ROOTDEV=/dev/${partdev%1}
+			elif echo $partdev | grep -q ^mmcblk[0-9]*p1$; then
+				ROOTDEV=/dev/${partdev%p1}
+			elif echo $partdev | grep -q ^.*1$; then
+				ROOTDEV=/dev/${partdev%1}
+			fi
+		fi
+		test -b ${ROOTDEV} && {
+			sector_size=`fdisk -l ${ROOTDEV} | grep "^Sector size" | awk '{print $4}'`
+			sector_size=$((sector_size+0))
+			test ${sector_size} -gt 0 || sector_size=512
+			lastsec=0
+			if fdisk -l ${ROOTDEV} 2>/dev/null | grep -q "type: gpt"; then
+				lastsec=`fdisk -l ${ROOTDEV} | grep ^${ROOTDEV} | head -n4 | tail -n1 | awk '{print $3}'`
+				lastsec=$((lastsec+34))
+			else
+				lastsec=`fdisk -l ${ROOTDEV} | grep ^${ROOTDEV} | head -n2 | tail -n1 | awk '{print $3}'`
+				lastsec=$((lastsec+1))
+			fi
+			config_line=`dd if=${ROOTDEV} bs=${sector_size} skip=${lastsec} count=1 2>/dev/null | head -n1 | grep ^config=`
+		}
+	}
+	echo ${config_line} | sed 's/=/ /;s/,/ /g' | while read _ _ip _mask _gw _dns; do
+		test -n "$_ip" && test -n "$_mask" && test -n "$_gw" && test -n "$_dns" && {
+			uci -q batch <<-EOT
+				set network.wan.proto='static'
+				set network.wan.metric='31'
+				set network.wan.ipaddr="$_ip"
+				set network.wan.netmask="$_mask"
+				set network.wan.gateway="$_gw"
+				set network.wan.dns="$_dns"
+				commit network
+			EOT
+		}
+		break
+	done
+
 	version=2
 }
 
