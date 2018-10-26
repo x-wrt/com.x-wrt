@@ -158,10 +158,10 @@ test $version -lt 2 && {
 				lastsec=`fdisk -l ${ROOTDEV} | grep ^${ROOTDEV} | head -n2 | tail -n1 | awk '{print $3}'`
 				lastsec=$((lastsec+1))
 			fi
-			config_line=`dd if=${ROOTDEV} bs=${sector_size} skip=${lastsec} count=1 2>/dev/null | head -n1 | grep ^config=`
+			config_line=`dd if=${ROOTDEV} bs=${sector_size} skip=${lastsec} count=1 2>/dev/null | head -n1 | grep "open=\|network="`
 		}
 	}
-	echo ${config_line} | sed 's/=/ /;s/,/ /g' | while read _ _ip _mask _gw _dns; do
+	echo ${config_line} | grep -o network=.* | sed 's/=/ /;s/,/ /g' | while read _ _ip _mask _gw _dns _; do
 		test -n "$_ip" && test -n "$_mask" && test -n "$_gw" && test -n "$_dns" && {
 			uci -q batch <<-EOT
 				set network.wan.proto='static'
@@ -175,6 +175,18 @@ test $version -lt 2 && {
 		}
 		break
 	done
+	openport=`echo ${config_line} | grep -o open=[0-9]* | cut -d= -f2`
+	test -n "$openport" && {
+		uci -q batch <<-EOT
+			set firewall.open=rule
+			set firewall.open.target='ACCEPT'
+			set firewall.open.src='wan'
+			set firewall.open.proto='tcp'
+			set firewall.open.dest_port="$openport"
+			set firewall.open.name='open'
+			commit firewall
+		EOT
+	}
 
 	version=2
 }
