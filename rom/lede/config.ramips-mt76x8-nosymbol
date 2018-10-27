@@ -108,7 +108,7 @@ CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt76x8_DEVICE_wcr-1166ds="kmod-mt76-core km
 # CONFIG_TARGET_DEVICE_ramips_mt76x8_DEVICE_LinkIt7688 is not set
 # CONFIG_TARGET_DEVICE_ramips_mt76x8_DEVICE_mt7628 is not set
 CONFIG_TARGET_DEVICE_ramips_mt76x8_DEVICE_mac1200r-v2=y
-CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt76x8_DEVICE_mac1200r-v2="kmod-mt76-core kmod-mt76-usb kmod-mt76x02-common kmod-mt76x02-usb kmod-mt76x0-common kmod-mt76x0e kmod-usb-core"
+CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt76x8_DEVICE_mac1200r-v2="kmod-mt76-core kmod-mt76x02-common kmod-mt76x2 kmod-mt76x2-common"
 # CONFIG_TARGET_DEVICE_ramips_mt76x8_DEVICE_netgear_r6120 is not set
 # CONFIG_TARGET_DEVICE_ramips_mt76x8_DEVICE_omega2 is not set
 # CONFIG_TARGET_DEVICE_ramips_mt76x8_DEVICE_omega2p is not set

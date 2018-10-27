@@ -162,8 +162,10 @@ CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt7620_DEVICE_dir-810l="kmod-mt76-core kmod
 # CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_dlink_dwr-118-a2 is not set
 # CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_dlink_dwr-921-c1 is not set
 # CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_dlink_dwr-921-c3 is not set
-# CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_tiny-ac is not set
-# CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_edimax_br-6478ac-v2 is not set
+CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_tiny-ac=y
+CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt7620_DEVICE_tiny-ac="blockd block-mount kmod-crypto-crc32c kmod-fs-autofs4 kmod-fs-exfat kmod-fs-ext4 kmod-fs-msdos kmod-fs-vfat kmod-fuse kmod-lib-crc16 kmod-mii kmod-mt76-core kmod-mt76-usb kmod-mt76x02-common kmod-mt76x02-usb kmod-mt76x0-common kmod-mt76x0e kmod-nls-cp437 kmod-rt2800-lib kmod-rt2800-mmio kmod-rt2800-pci kmod-rt2800-soc kmod-rt2x00-lib kmod-rt2x00-mmio kmod-rt2x00-pci kmod-scsi-core kmod-usb2 kmod-usb-core kmod-usb-ehci kmod-usb-net kmod-usb-net-cdc-ether kmod-usb-net-rndis kmod-usb-ohci kmod-usb-storage kmod-usb-storage-uas ntfs-3g rt2800-pci-firmware"
+CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_edimax_br-6478ac-v2=y
+CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt7620_DEVICE_edimax_br-6478ac-v2="blockd block-mount kmod-crypto-crc32c kmod-fs-autofs4 kmod-fs-exfat kmod-fs-ext4 kmod-fs-msdos kmod-fs-vfat kmod-fuse kmod-lib-crc16 kmod-mii kmod-mt76-core kmod-mt76x02-common kmod-mt76x2 kmod-mt76x2-common kmod-nls-cp437 kmod-rt2800-lib kmod-rt2800-mmio kmod-rt2800-pci kmod-rt2800-soc kmod-rt2x00-lib kmod-rt2x00-mmio kmod-rt2x00-pci kmod-scsi-core kmod-usb2 kmod-usb-core kmod-usb-ehci kmod-usb-ledtrig-usbport kmod-usb-net kmod-usb-net-cdc-ether kmod-usb-net-rndis kmod-usb-ohci kmod-usb-storage kmod-usb-storage-uas ntfs-3g rt2800-pci-firmware"
 # CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_wrh-300cr is not set
 # CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_gl-mt300a is not set
 # CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_gl-mt300n is not set
@@ -200,16 +202,17 @@ CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_psg1218b=y
 CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt7620_DEVICE_psg1218b="kmod-mt76-core kmod-mt76x02-common kmod-mt76x2 kmod-mt76x2-common kmod-rt2800-lib kmod-rt2800-mmio kmod-rt2800-pci kmod-rt2800-soc kmod-rt2x00-lib kmod-rt2x00-mmio kmod-rt2x00-pci rt2800-pci-firmware"
 # CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_cs-qr10 is not set
 # CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_db-wrt01 is not set
-# CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_mzk-750dhp is not set
+CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_mzk-750dhp=y
+CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt7620_DEVICE_mzk-750dhp="kmod-mt76-core kmod-mt76-usb kmod-mt76x02-common kmod-mt76x02-usb kmod-mt76x0-common kmod-mt76x0e kmod-rt2800-lib kmod-rt2800-mmio kmod-rt2800-pci kmod-rt2800-soc kmod-rt2x00-lib kmod-rt2x00-mmio kmod-rt2x00-pci rt2800-pci-firmware"
 # CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_mzk-ex300np is not set
 # CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_mzk-ex750np is not set
 # CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_ravpower_wd03 is not set
 # CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_d240 is not set
 # CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_na930 is not set
 CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_tplink_c2-v1=y
-CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt7620_DEVICE_tplink_c2-v1="blockd block-mount kmod-crypto-crc32c kmod-fs-autofs4 kmod-fs-exfat kmod-fs-ext4 kmod-fs-msdos kmod-fs-vfat kmod-fuse kmod-lib-crc16 kmod-libphy kmod-mii kmod-nls-cp437 kmod-rt2800-lib kmod-rt2800-mmio kmod-rt2800-pci kmod-rt2800-soc kmod-rt2x00-lib kmod-rt2x00-mmio kmod-rt2x00-pci kmod-scsi-core kmod-swconfig kmod-switch-rtl8366-smi kmod-switch-rtl8367b kmod-usb2 kmod-usb-core kmod-usb-ehci kmod-usb-ledtrig-usbport kmod-usb-net kmod-usb-net-cdc-ether kmod-usb-net-rndis kmod-usb-ohci kmod-usb-storage kmod-usb-storage-uas ntfs-3g rt2800-pci-firmware"
+CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt7620_DEVICE_tplink_c2-v1="blockd block-mount kmod-crypto-crc32c kmod-fs-autofs4 kmod-fs-exfat kmod-fs-ext4 kmod-fs-msdos kmod-fs-vfat kmod-fuse kmod-lib-crc16 kmod-libphy kmod-mii kmod-mt76-core kmod-mt76-usb kmod-mt76x02-common kmod-mt76x02-usb kmod-mt76x0-common kmod-mt76x0e kmod-nls-cp437 kmod-rt2800-lib kmod-rt2800-mmio kmod-rt2800-pci kmod-rt2800-soc kmod-rt2x00-lib kmod-rt2x00-mmio kmod-rt2x00-pci kmod-scsi-core kmod-swconfig kmod-switch-rtl8366-smi kmod-switch-rtl8367b kmod-usb2 kmod-usb-core kmod-usb-ehci kmod-usb-ledtrig-usbport kmod-usb-net kmod-usb-net-cdc-ether kmod-usb-net-rndis kmod-usb-ohci kmod-usb-storage kmod-usb-storage-uas ntfs-3g rt2800-pci-firmware"
 CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_tplink_c20-v1=y
-CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt7620_DEVICE_tplink_c20-v1="blockd block-mount kmod-crypto-crc32c kmod-fs-autofs4 kmod-fs-exfat kmod-fs-ext4 kmod-fs-msdos kmod-fs-vfat kmod-fuse kmod-lib-crc16 kmod-mii kmod-nls-cp437 kmod-rt2800-lib kmod-rt2800-mmio kmod-rt2800-pci kmod-rt2800-soc kmod-rt2x00-lib kmod-rt2x00-mmio kmod-rt2x00-pci kmod-scsi-core kmod-usb2 kmod-usb-core kmod-usb-ehci kmod-usb-ledtrig-usbport kmod-usb-net kmod-usb-net-cdc-ether kmod-usb-net-rndis kmod-usb-ohci kmod-usb-storage kmod-usb-storage-uas ntfs-3g rt2800-pci-firmware"
+CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt7620_DEVICE_tplink_c20-v1="blockd block-mount kmod-crypto-crc32c kmod-fs-autofs4 kmod-fs-exfat kmod-fs-ext4 kmod-fs-msdos kmod-fs-vfat kmod-fuse kmod-lib-crc16 kmod-mii kmod-mt76-core kmod-mt76-usb kmod-mt76x02-common kmod-mt76x02-usb kmod-mt76x0-common kmod-mt76x0e kmod-nls-cp437 kmod-rt2800-lib kmod-rt2800-mmio kmod-rt2800-pci kmod-rt2800-soc kmod-rt2x00-lib kmod-rt2x00-mmio kmod-rt2x00-pci kmod-scsi-core kmod-usb2 kmod-usb-core kmod-usb-ehci kmod-usb-ledtrig-usbport kmod-usb-net kmod-usb-net-cdc-ether kmod-usb-net-rndis kmod-usb-ohci kmod-usb-storage kmod-usb-storage-uas ntfs-3g rt2800-pci-firmware"
 CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_ArcherC20i=y
 CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt7620_DEVICE_ArcherC20i="kmod-mt76-core kmod-mt76-usb kmod-mt76x02-common kmod-mt76x02-usb kmod-mt76x0-common kmod-mt76x0e kmod-rt2800-lib kmod-rt2800-mmio kmod-rt2800-pci kmod-rt2800-soc kmod-rt2x00-lib kmod-rt2x00-mmio kmod-rt2x00-pci rt2800-pci-firmware"
 CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_ArcherC50v1=y

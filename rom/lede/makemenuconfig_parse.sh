@@ -198,6 +198,7 @@ for t in $targets; do
 	mods="$us"
 	case $t in
 		#>8M flash
+		TARGET_DEVICE_ramips_mt7620_DEVICE_gl-mt750|\
 		TARGET_DEVICE_ar71xx_generic_DEVICE_tl-wr842n-v3|\
 		TARGET_DEVICE_ar71xx_generic_DEVICE_tl-wr942n-v1|\
 		TARGET_DEVICE_ath79_generic_DEVICE_buffalo_wzr-hp-ag300h|\
@@ -313,6 +314,9 @@ for t in $targets; do
 			mods="$mods $ssmod"
 		;;
 		#<=8M flash
+		TARGET_DEVICE_ramips_mt7620_DEVICE_mzk-750dhp|\
+		TARGET_DEVICE_ramips_mt7620_DEVICE_tiny-ac|\
+		TARGET_DEVICE_ramips_mt7620_DEVICE_edimax_br-6478ac-v2|\
 		TARGET_DEVICE_ramips_mt7620_DEVICE_ArcherC20i|\
 		TARGET_DEVICE_ramips_mt7620_DEVICE_ArcherC50v1|\
 		TARGET_DEVICE_ramips_mt7620_DEVICE_ArcherMR200|\
@@ -471,6 +475,9 @@ for t in $targets; do
 			mods="$mods $cdcmod"
 		;;
 		#with usb2
+		TARGET_DEVICE_ramips_mt7620_DEVICE_gl-mt750|\
+		TARGET_DEVICE_ramips_mt7620_DEVICE_tiny-ac|\
+		TARGET_DEVICE_ramips_mt7620_DEVICE_edimax_br-6478ac-v2|\
 		TARGET_DEVICE_ramips_mt7620_DEVICE_ArcherMR200|\
 		TARGET_DEVICE_ramips_mt7620_DEVICE_tplink_c20-v1|\
 		TARGET_DEVICE_ramips_mt7620_DEVICE_tplink_c2-v1|\
@@ -602,6 +609,7 @@ for t in $targets; do
 			mods="$mods $cdcmod"
 		;;
 		#no usb
+		TARGET_DEVICE_ramips_mt7620_DEVICE_mzk-750dhp|\
 		TARGET_DEVICE_ramips_mt7620_DEVICE_ArcherC20i|\
 		TARGET_DEVICE_ramips_mt7620_DEVICE_ArcherC50v1|\
 		TARGET_DEVICE_ar71xx_generic_DEVICE_re355-v1|\
