@@ -21,7 +21,9 @@ define Package/$(PKG_NAME)/Default
   SECTION:=Applications
   CATEGORY:=Ptpt52
   SUBMENU:=Base config setting for this board
-  DEPENDS:=+dnsmasq-full +busybox +(@TARGET_x86||TARGET_x86_64||TARGET_sunxi):fdisk +(@EFI_IMAGES):gdisk
+  DEPENDS:=+dnsmasq-full +busybox \
+		   +(@TARGET_x86||TARGET_x86_64||TARGET_sunxi):blockd \
+		   +(@TARGET_x86||TARGET_x86_64||TARGET_sunxi):fdisk +(@EFI_IMAGES):gdisk
 endef
 
 define Package/$(PKG_NAME)
