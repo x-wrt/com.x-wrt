@@ -92,14 +92,11 @@ make_config()
 			uci set openvpn.natcapovpn_$p.tls_server='1'
 			uci set openvpn.natcapovpn_$p.tls_auth='/usr/share/natcapd/openvpn/ta.key 0'
 			test -f /etc/openvpn/natcap-ta.key && uci set openvpn.natcapovpn_$p.tls_auth='/etc/openvpn/natcap-ta.key 0'
-			uci set openvpn.natcapovpn_$p.route_gateway='dhcp'
 			uci set openvpn.natcapovpn_$p.client_to_client='1'
 			uci add_list openvpn.natcapovpn_$p.push='persist-key'
 			uci add_list openvpn.natcapovpn_$p.push='persist-tun'
-			uci add_list openvpn.natcapovpn_$p.push='redirect-gateway def1 bypass-dhcp'
 			uci add_list openvpn.natcapovpn_$p.push='dhcp-option DNS 8.8.8.8'
 			uci set openvpn.natcapovpn_$p.proto="${p}4"
-			uci set openvpn.natcapovpn_$p.comp_lzo='yes'
 			uci set openvpn.natcapovpn_$p.verb='3'
 			I=$((I+1))
 		done
