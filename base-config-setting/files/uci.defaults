@@ -310,6 +310,10 @@ test $version -lt 11 && {
 	version=11
 }
 
+uci set fstab.@global[0].anon_mount_bak="`uci get fstab.@global[0].anon_mount_bak 2>/dev/null || uci get fstab.@global[0].anon_mount 2>/dev/null`"
+uci set fstab.@global[0].anon_mount='0'
+uci commit fstab
+
 # fix usb auto umount bug
 cp /usr/share/base-config-setting/mount.hotplug /etc/hotplug.d/block/10-mount
 

@@ -37,6 +37,11 @@ auto_mount_boot()
 		mkdir -p /etc/hotplug.d/block
 		ln -sf /usr/share/base-config-setting/auto_usb_mount.hotplug /etc/hotplug.d/block/20-auto_usb_mount
 	}
+	uci get fstab.@global[0].anon_mount_bak 2>/dev/null && {
+		uci set fstab.@global[0].anon_mount="`uci get fstab.@global[0].anon_mount_bak`"
+		uci delete fstab.@global[0].anon_mount_bak
+		uci commit fstab
+	}
 }
 
 boot() {
