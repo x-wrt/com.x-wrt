@@ -2,6 +2,8 @@
 [ "x$DEVTYPE" = "xpartition" ] || exit 0
 test -b /dev/$DEVNAME || exit 0
 
+OPTS="-o uid=1000,gid=1000,fmask=0000,dmask=0000,rw"
+
 dev=/dev/$DEVNAME
 test -f /rom/etc/sda.ready && {
 	diskdev=sda
@@ -14,7 +16,7 @@ edev=`mount | grep "$dev " | awk '{print $1}'`
 [ "x$dev" = "x$edev" ] && exit 0
 ddir=/mnt/`basename $dev`
 mkdir -p "$ddir" || exit 0
-if mount "$dev" "$ddir"; then
+if mount $OPTS "$dev" "$ddir" || mount "$dev" "$ddir"; then
 	logger -t "auto_usb_mount" "auto mount $dev to $ddir success!"
 else
 	logger -t "auto_usb_mount" "auto mount $dev to $ddir failed!"

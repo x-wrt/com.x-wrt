@@ -3,6 +3,8 @@
 
 START=96
 
+OPTS="-o uid=1000,gid=1000,fmask=0000,dmask=0000,rw"
+
 auto_mount_boot()
 {
 	while :; do
@@ -25,7 +27,7 @@ auto_mount_boot()
 
 		ddir=/mnt/`basename $DEV`
 		mkdir -p "$ddir" || continue
-		if mount "$DEV" "$ddir"; then
+		if mount $OPTS "$DEV" "$ddir" || mount "$DEV" "$ddir"; then
 			logger -t "auto_usb_mount" "boot auto mount $DEV to $ddir success!"
 		else
 			logger -t "auto_usb_mount" "boot mount $DEV to $ddir failed!"
