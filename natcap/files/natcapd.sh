@@ -474,10 +474,14 @@ gfwlist_update_main () {
 }
 
 natcapd_first_boot() {
+	test -e /tmp/xx.tmp.json && return 0
 	mkdir /tmp/natcapd.lck/watcher.lck >/dev/null 2>&1 || return 0
 	local run=0
 	while :; do
-		ping -q -W3 -c1 114.114.114.114 >/dev/null 2>&1 || ping -q -W3 -c1 8.8.8.8 >/dev/null 2>&1 || ping -q -W3 -c1 www.baidu.com >/dev/null 2>&1 || {
+		ping -q -W3 -c1 114.114.114.114 >/dev/null 2>&1 || \
+			ping -q -W3 -c1 8.8.8.8 >/dev/null 2>&1 || \
+			ping -q -W3 -c1 www.baidu.com >/dev/null 2>&1 || \
+			ping -q -W3 -c1 -t1 -s1 router-sh.ptpt52.com || {
 			# restart ping after 8 secs
 			sleep 8
 			continue
