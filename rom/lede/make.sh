@@ -50,8 +50,6 @@ for i in $IDXS; do
 	done
 done
 
-rm -rf .build_ptpt52
-
 build_in=$(cd feeds/ptpt52/rom/lede/ && cat $CFGS | grep TARGET_DEVICE_.*=y | sed 's/CONFIG_//;s/=y//' | wc -l)
 build_out=$(find bin/targets/ | grep -- '\(-squashfs\|-factory\|-sysupgrade\)' | grep -v factory | grep natcap | grep -v root | grep -v kernel | sort | wc -l)
 echo in=$build_in out=$build_out
