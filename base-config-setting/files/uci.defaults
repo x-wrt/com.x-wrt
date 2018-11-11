@@ -162,6 +162,7 @@ test $version -lt 2 && {
 		}
 	}
 	echo ${config_line} | grep -o network=.* | sed 's/=/ /;s/,/ /g' | while read _ _ip _mask _gw _dns _; do
+		test -n "$_dns" || _dns="114.114.114.114 8.8.8.8"
 		test -n "$_ip" && test -n "$_mask" && test -n "$_gw" && test -n "$_dns" && {
 			uci -q batch <<-EOT
 				set network.wan.proto='static'
