@@ -47,7 +47,7 @@ e.default = e.disabled
 e.rmempty = false
 
 e = s:taboption("advanced", Value, "dns_server", translate("DNS Server"), translate("Please fill in the server by format (ip:port)"))
-e.datatype = "ipaddrport(1)"
+e.datatype = "ip4addrport"
 e.placeholder = "8.8.8.8:53"
 
 e = s:taboption("advanced", Value, "server_persist_timeout", translate("Server Switching Interval (s)"), translate("How long to switch the server."))
