@@ -218,7 +218,7 @@ _reload_natcapd() {
 		test $natcap_redirect_port -gt 0 && test $natcap_redirect_port -lt 65535 && {
 			echo natcap_redirect_port=$natcap_redirect_port >$DEV
 			(
-			$NATCAPD_BIN -l$natcap_redirect_port -t 900 >/dev/null 2>&1
+			$NATCAPD_BIN -I -l$natcap_redirect_port -t 900 >/dev/null 2>&1
 			echo natcap_redirect_port=0 >$DEV
 			) &
 		}
