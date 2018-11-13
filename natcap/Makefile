@@ -46,6 +46,24 @@ define Package/natcapd-server/install
 	$(INSTALL_BIN) $(PKG_BUILD_DIR)/natcapd/natcapd-server $(1)/usr/sbin/natcapd-server
 endef
 
+define Package/natcapd-peer
+  CATEGORY:=Ptpt52
+  SUBMENU:=Natcap Support
+  TITLE:=natcapd peer for natcap
+  DEPENDS:= +kmod-natcap \
+			+lua-cjson \
+			+ipset \
+			+busybox +@BUSYBOX_CUSTOM \
+			+@BUSYBOX_CONFIG_TIMEOUT
+endef
+
+define Package/natcapd-peer/install
+	$(INSTALL_DIR) $(1)/etc/init.d
+	$(INSTALL_BIN) ./files/natcapd-peer.init $(1)/etc/init.d/natcapd-peer
+	$(INSTALL_DIR) $(1)/usr/sbin
+	$(INSTALL_BIN) ./files/natcapd-peer.sh $(1)/usr/sbin/natcapd-peer
+endef
+
 define Package/natcapd/Default
   CATEGORY:=Ptpt52
   SUBMENU:=Natcap Support
@@ -167,3 +185,4 @@ $(eval $(call KernelPackage,natcap))
 $(eval $(call BuildPackage,natcapd))
 $(eval $(call BuildPackage,natcapd-client))
 $(eval $(call BuildPackage,natcapd-server))
+$(eval $(call BuildPackage,natcapd-peer))
