@@ -44,6 +44,7 @@ for i in $IDXS; do
 		sed -i "s%CONFIG_VERSION_MANUFACTURER_URL=\".*\"%CONFIG_VERSION_MANUFACTURER_URL=\"$CONFIG_VERSION_MANUFACTURER_URL\"%" ./.config
 		touch ./package/base-files/files/etc/openwrt_release
 		set +x
+		[ "x$TMPFS" = x1 ] && rm -rf build_dir/target-* build_dir/toolchain-*
 		test -n "$1" || exit 255
 		$* || exit 255
 		touch .build_ptpt52/$cfg
