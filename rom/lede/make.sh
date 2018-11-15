@@ -34,6 +34,7 @@ for i in $IDXS; do
 
 	touch ./package/base-files/Makefile
 
+	last_arch=
 	for cfg in $CFGS; do
 		test -f .build_ptpt52/$cfg && continue
 		set -x
@@ -43,8 +44,13 @@ for i in $IDXS; do
 		sed -i "s/CONFIG_VERSION_CODE=\".*\"/CONFIG_VERSION_CODE=\"$CONFIG_VERSION_CODE\"/" ./.config
 		sed -i "s%CONFIG_VERSION_MANUFACTURER_URL=\".*\"%CONFIG_VERSION_MANUFACTURER_URL=\"$CONFIG_VERSION_MANUFACTURER_URL\"%" ./.config
 		touch ./package/base-files/files/etc/openwrt_release
+		new_arch=$(echo $cfg | tr '.' '-' | cut -d- -f2)
+		test -n "$last_arch" || last_arch=$new_arch
 		set +x
-		[ "x$TMPFS" = x1 ] && rm -rf build_dir/target-* build_dir/toolchain-*
+		[ "x$TMPFS" = x1 ] && [ "$last_arch" != "$new_arch" ] && {
+			rm -rf build_dir/target-* build_dir/toolchain-*
+			last_arch=$new_arch
+		}
 		test -n "$1" || exit 255
 		$* || exit 255
 		touch .build_ptpt52/$cfg
