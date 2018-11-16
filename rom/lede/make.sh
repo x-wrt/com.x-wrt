@@ -46,7 +46,7 @@ for i in $IDXS; do
 		sleep 2
 		touch ./package/base-files/files/etc/openwrt_release
 		touch ./feeds/packages/libs/libgpg-error/Makefile
-		new_arch=$(echo $cfg | tr '.' '-' | cut -d- -f2)
+		new_arch=$(echo $cfg | tr '.' '-' | cut -d- -f2)-$(cat .config | grep CONFIG_TARGET_ARCH_PACKAGES | cut -d\" -f2)
 		test -n "$last_arch" || last_arch=$new_arch
 		set +x
 		[ "x$TMPFS" = x1 ] && [ "$last_arch" != "$new_arch" ] && {
