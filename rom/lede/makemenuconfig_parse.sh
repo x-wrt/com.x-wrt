@@ -361,6 +361,7 @@ for t in $targets; do
 		TARGET_DEVICE_ath79_generic_DEVICE_tplink_tl-wr1043nd-v2|\
 		TARGET_DEVICE_ath79_generic_DEVICE_tplink_tl-wr1043nd-v1|\
 		TARGET_DEVICE_ramips_mt7620_DEVICE_dir-810l|\
+		TARGET_DEVICE_sunxi_cortexa7_DEVICE_sun8i-h2-plus-orangepi-r1|\
 		TARGET_DEVICE_sunxi_cortexa7_DEVICE_sun8i-h3-nanopi-neo|\
 		TARGET_DEVICE_ar71xx_generic_DEVICE_tl-wdx6501-v7|\
 		TARGET_DEVICE_ar71xx_generic_DEVICE_archer-c25-v1|\
@@ -432,6 +433,7 @@ for t in $targets; do
 		TARGET_DEVICE_ramips_mt7621_DEVICE_nxc200p|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_wf-2881|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_dir-860l-b1|\
+		TARGET_DEVICE_sunxi_cortexa7_DEVICE_sun8i-h2-plus-orangepi-r1|\
 		TARGET_DEVICE_sunxi_cortexa7_DEVICE_sun8i-h3-nanopi-neo|\
 		TARGET_DEVICE_ipq40xx_DEVICE_asus_rt-ac58u|\
 		TARGET_DEVICE_ipq40xx_DEVICE_asus_rt-acrh17|\

@@ -82,7 +82,7 @@ CONFIG_TARGET_PER_DEVICE_ROOTFS=y
 # CONFIG_TARGET_DEVICE_sunxi_cortexa7_DEVICE_sun7i-a20-cubietruck is not set
 # CONFIG_TARGET_DEVICE_sunxi_cortexa7_DEVICE_sun8i-h3-nanopi-m1-plus is not set
 CONFIG_TARGET_DEVICE_sunxi_cortexa7_DEVICE_sun8i-h3-nanopi-neo=y
-CONFIG_TARGET_DEVICE_PACKAGES_sunxi_cortexa7_DEVICE_sun8i-h3-nanopi-neo="blockd block-mount kmod-crypto-crc32c kmod-fs-autofs4 kmod-fs-exfat kmod-fs-ext4 kmod-fs-msdos kmod-fs-vfat kmod-fuse kmod-lib-crc16 kmod-mii kmod-nls-cp437 kmod-usb2 kmod-usb3 kmod-usb-ehci kmod-usb-net kmod-usb-net-cdc-ether kmod-usb-net-rndis kmod-usb-ohci kmod-usb-storage kmod-usb-storage-uas ntfs-3g"
+CONFIG_TARGET_DEVICE_PACKAGES_sunxi_cortexa7_DEVICE_sun8i-h3-nanopi-neo="kmod-crypto-crc32c kmod-fs-exfat kmod-fs-ext4 kmod-fs-msdos kmod-fs-vfat kmod-fuse kmod-lib-crc16 kmod-mii kmod-nls-cp437 kmod-usb2 kmod-usb3 kmod-usb-ehci kmod-usb-net kmod-usb-net-cdc-ether kmod-usb-net-rndis kmod-usb-ohci kmod-usb-storage kmod-usb-storage-uas ntfs-3g"
 # CONFIG_TARGET_DEVICE_sunxi_cortexa7_DEVICE_sun7i-a20-lamobo-r1 is not set
 # CONFIG_TARGET_DEVICE_sunxi_cortexa7_DEVICE_sun7i-a20-bananapi is not set
 # CONFIG_TARGET_DEVICE_sunxi_cortexa7_DEVICE_sun7i-a20-bananapro is not set
@@ -95,7 +95,8 @@ CONFIG_TARGET_DEVICE_PACKAGES_sunxi_cortexa7_DEVICE_sun8i-h3-nanopi-neo="blockd 
 # CONFIG_TARGET_DEVICE_sunxi_cortexa7_DEVICE_sun8i-h3-orangepi-2 is not set
 # CONFIG_TARGET_DEVICE_sunxi_cortexa7_DEVICE_sun8i-h3-orangepi-pc is not set
 # CONFIG_TARGET_DEVICE_sunxi_cortexa7_DEVICE_sun8i-h3-orangepi-plus is not set
-# CONFIG_TARGET_DEVICE_sunxi_cortexa7_DEVICE_sun8i-h2-plus-orangepi-r1 is not set
+CONFIG_TARGET_DEVICE_sunxi_cortexa7_DEVICE_sun8i-h2-plus-orangepi-r1=y
+CONFIG_TARGET_DEVICE_PACKAGES_sunxi_cortexa7_DEVICE_sun8i-h2-plus-orangepi-r1="kmod-crypto-crc32c kmod-fs-exfat kmod-fs-ext4 kmod-fs-msdos kmod-fs-vfat kmod-fuse kmod-lib-crc16 kmod-mii kmod-nls-cp437 kmod-rtc-sunxi kmod-usb2 kmod-usb3 kmod-usb-ehci kmod-usb-net kmod-usb-net-cdc-ether kmod-usb-net-rndis kmod-usb-net-rtl8152 kmod-usb-ohci kmod-usb-storage kmod-usb-storage-uas ntfs-3g"
 # CONFIG_TARGET_DEVICE_sunxi_cortexa7_DEVICE_sun8i-h2-plus-orangepi-zero is not set
 CONFIG_HAS_SUBTARGETS=y
 CONFIG_HAS_DEVICES=y
@@ -125,6 +126,9 @@ CONFIG_DEFAULT_iptables=y
 CONFIG_MODULE_DEFAULT_iptables=y
 CONFIG_DEFAULT_kmod-ipt-offload=y
 CONFIG_MODULE_DEFAULT_kmod-ipt-offload=y
+CONFIG_MODULE_DEFAULT_kmod-rtc-sunxi=y
+CONFIG_MODULE_DEFAULT_kmod-usb-net=y
+CONFIG_MODULE_DEFAULT_kmod-usb-net-rtl8152=y
 CONFIG_DEFAULT_libc=y
 CONFIG_MODULE_DEFAULT_libc=y
 CONFIG_DEFAULT_libgcc=y
@@ -2443,6 +2447,7 @@ CONFIG_ZABBIX_POSTGRESQL=y
 # Boot Loaders
 #
 CONFIG_PACKAGE_u-boot-nanopi_neo=y
+CONFIG_PACKAGE_u-boot-orangepi_r1=y
 
 #
 # Development
@@ -3047,7 +3052,7 @@ CONFIG_PACKAGE_kmod-eeprom-93cx6=y
 # CONFIG_PACKAGE_kmod-rtc-pcf8563 is not set
 # CONFIG_PACKAGE_kmod-rtc-pt7c4338 is not set
 # CONFIG_PACKAGE_kmod-rtc-rs5c372a is not set
-# CONFIG_PACKAGE_kmod-rtc-sunxi is not set
+CONFIG_PACKAGE_kmod-rtc-sunxi=m
 # CONFIG_PACKAGE_kmod-sdhci is not set
 # CONFIG_PACKAGE_kmod-serial-8250 is not set
 # CONFIG_PACKAGE_kmod-serial-8250-exar is not set
@@ -3111,7 +3116,7 @@ CONFIG_PACKAGE_kmod-usb-net-cdc-ether=m
 # CONFIG_PACKAGE_kmod-usb-net-qmi-wwan is not set
 CONFIG_PACKAGE_kmod-usb-net-rndis=m
 # CONFIG_PACKAGE_kmod-usb-net-rtl8150 is not set
-# CONFIG_PACKAGE_kmod-usb-net-rtl8152 is not set
+CONFIG_PACKAGE_kmod-usb-net-rtl8152=m
 # CONFIG_PACKAGE_kmod-usb-net-sierrawireless is not set
 # CONFIG_PACKAGE_kmod-usb-net-smsc95xx is not set
 # CONFIG_PACKAGE_kmod-usb-net-sr9700 is not set
