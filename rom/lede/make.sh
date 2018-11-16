@@ -43,6 +43,7 @@ for i in $IDXS; do
 		sed -i "s/CONFIG_VERSION_DIST=\".*\"/CONFIG_VERSION_DIST=\"$CONFIG_VERSION_DIST\"/" ./.config
 		sed -i "s/CONFIG_VERSION_CODE=\".*\"/CONFIG_VERSION_CODE=\"$CONFIG_VERSION_CODE\"/" ./.config
 		sed -i "s%CONFIG_VERSION_MANUFACTURER_URL=\".*\"%CONFIG_VERSION_MANUFACTURER_URL=\"$CONFIG_VERSION_MANUFACTURER_URL\"%" ./.config
+		sleep 2
 		touch ./package/base-files/files/etc/openwrt_release
 		touch ./feeds/packages/libs/libgpg-error/Makefile
 		new_arch=$(echo $cfg | tr '.' '-' | cut -d- -f2)
