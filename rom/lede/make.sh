@@ -54,7 +54,10 @@ for i in $IDXS; do
 			last_arch=$new_arch
 		}
 		test -n "$1" || exit 255
-		$* || exit 255
+		$* || {
+			touch ./feeds/packages/libs/libgpg-error/Makefile
+			$* || exit 255
+		}
 		touch .build_ptpt52/$cfg
 	done
 done
