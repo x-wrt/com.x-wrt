@@ -47,11 +47,19 @@ for i in $IDXS; do
 		touch ./package/base-files/files/etc/openwrt_release
 		touch ./feeds/packages/libs/libgpg-error/Makefile
 		new_arch=$(cat .config | grep CONFIG_TARGET_ARCH_PACKAGES | cut -d\" -f2)
+		new_subarch=$(cat .config | grep -o  "CONFIG_TARGET_[a-z0-9]*_[a-z0-9]*=y" | sed 's/=y//' | cut -d_ -f3,4)
 		test -n "$last_arch" || last_arch=$new_arch
+		test -n "$last_subarch" || last_subarch=$new_subarch
 		set +x
-		[ "x$TMPFS" = x1 ] && [ "$last_arch" != "$new_arch" ] && {
-			rm -rf build_dir/target-* build_dir/toolchain-*
-			last_arch=$new_arch
+		[ "x$TMPFS" = x1 ] && {
+			if [ "$last_arch" != "$new_arch" ]; then
+				rm -rf build_dir/target-* build_dir/toolchain-*
+				last_arch=$new_arch
+				last_subarch=$new_subarch
+			elif [ "$last_subarch" != "$new_subarch" ]; then
+				rm -rf build_dir/target-*/linux-$last_subarch
+				last_subarch=$new_subarch
+			fi
 		}
 		test -n "$1" || exit 255
 		$* || {
