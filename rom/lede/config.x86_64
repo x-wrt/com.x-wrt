@@ -347,7 +347,7 @@ CONFIG_GCC_VERSION="7.3.0"
 CONFIG_LIBC="musl"
 CONFIG_TARGET_SUFFIX="musl"
 # CONFIG_IB is not set
-# CONFIG_SDK is not set
+CONFIG_SDK=y
 # CONFIG_MAKE_TOOLCHAIN is not set
 CONFIG_IMAGEOPT=y
 CONFIG_PREINITOPT=y
@@ -3040,7 +3040,7 @@ CONFIG_PACKAGE_kmod-udptunnel4=y
 CONFIG_PACKAGE_kmod-udptunnel6=y
 # CONFIG_PACKAGE_kmod-veth is not set
 # CONFIG_PACKAGE_kmod-vxlan is not set
-# CONFIG_PACKAGE_kmod-wireguard is not set
+CONFIG_PACKAGE_kmod-wireguard=y
 
 #
 # Other modules
@@ -4500,7 +4500,7 @@ CONFIG_PACKAGE_luci-app-upnp=y
 # CONFIG_PACKAGE_luci-app-vpnbypass is not set
 # CONFIG_PACKAGE_luci-app-watchcat is not set
 # CONFIG_PACKAGE_luci-app-wifischedule is not set
-# CONFIG_PACKAGE_luci-app-wireguard is not set
+CONFIG_PACKAGE_luci-app-wireguard=y
 # CONFIG_PACKAGE_luci-app-wol is not set
 
 #
@@ -4526,7 +4526,7 @@ CONFIG_PACKAGE_luci-proto-ppp=y
 # CONFIG_PACKAGE_luci-proto-qmi is not set
 # CONFIG_PACKAGE_luci-proto-relay is not set
 # CONFIG_PACKAGE_luci-proto-vpnc is not set
-# CONFIG_PACKAGE_luci-proto-wireguard is not set
+CONFIG_PACKAGE_luci-proto-wireguard=y
 
 #
 # 6. Libraries
@@ -4792,6 +4792,13 @@ CONFIG_PACKAGE_luci-i18n-upnp-en=y
 # CONFIG_PACKAGE_luci-i18n-upnp-vi is not set
 CONFIG_PACKAGE_luci-i18n-upnp-zh-cn=y
 # CONFIG_PACKAGE_luci-i18n-upnp-zh-tw is not set
+# CONFIG_PACKAGE_luci-i18n-wireguard-de is not set
+# CONFIG_PACKAGE_luci-i18n-wireguard-ja is not set
+# CONFIG_PACKAGE_luci-i18n-wireguard-pt-br is not set
+# CONFIG_PACKAGE_luci-i18n-wireguard-ru is not set
+# CONFIG_PACKAGE_luci-i18n-wireguard-sv is not set
+CONFIG_PACKAGE_luci-i18n-wireguard-zh-cn=y
+# CONFIG_PACKAGE_luci-i18n-wireguard-zh-tw is not set
 
 #
 # Mail
@@ -5458,8 +5465,8 @@ CONFIG_PACKAGE_pptpd=y
 # CONFIG_PACKAGE_uanytun-sslcrypt is not set
 # CONFIG_PACKAGE_vpnc is not set
 # CONFIG_PACKAGE_vpnc-scripts is not set
-# CONFIG_PACKAGE_wireguard is not set
-# CONFIG_PACKAGE_wireguard-tools is not set
+CONFIG_PACKAGE_wireguard=y
+CONFIG_PACKAGE_wireguard-tools=y
 # CONFIG_PACKAGE_xl2tpd is not set
 # CONFIG_PACKAGE_zerotier is not set
 
