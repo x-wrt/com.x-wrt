@@ -71,3 +71,10 @@ for t in $targets; do
 		echo "`echo $dis`:"$bin >>map.list
 	done
 done | while read line; do echo $line; done
+
+find bin/targets/ | grep -- -sdk- | while read s; do basename $s; done | sort >sdk_map.list
+find bin/targets/ | grep -- -sdk- >sdk_upload.list
+echo -n >sdk_map.sha256sums
+cat sdk_map.list | while read bin; do
+	echo "$sha256sums" | grep "$bin" >>sdk_map.sha256sums
+done
