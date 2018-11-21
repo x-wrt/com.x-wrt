@@ -157,7 +157,7 @@ natcap_wan_ip()
 	if [ "x$full_cone_nat" = "x0" ]; then
 		ipset destroy natcap_wan_ip >/dev/null 2>&1
 	else
-		ipset create natcap_wan_ip iphash >/dev/null 2>&1
+		ipset create natcap_wan_ip iphash hashsize 32 maxelem 256 >/dev/null 2>&1
 		ipset flush natcap_wan_ip
 		devs=`ip r | grep default | grep -o "dev ".* | awk '{print $2}'`
 		for dev in $devs; do
@@ -322,16 +322,16 @@ elif test -c $DEV; then
 
 	ipset destroy dnsdroplist >/dev/null 2>&1
 	if test -n "$dnsdroplist"; then
-		ipset -n list dnsdroplist >/dev/null 2>&1 || ipset -! create dnsdroplist nethash
+		ipset -n list dnsdroplist >/dev/null 2>&1 || ipset -! create dnsdroplist nethash hashsize 64 maxelem 1024
 		for d in $dnsdroplist; do
 			ipset -! add dnsdroplist $d
 		done
 	fi
 
-	ipset -n list udproxylist >/dev/null 2>&1 || ipset -! create udproxylist iphash
-	ipset -n list gfwlist >/dev/null 2>&1 || ipset -! create gfwlist iphash
-	ipset -n list knocklist >/dev/null 2>&1 || ipset -! create knocklist iphash
-	ipset -n list bypasslist >/dev/null 2>&1 || ipset -! create bypasslist iphash
+	ipset -n list udproxylist >/dev/null 2>&1 || ipset -! create udproxylist iphash hashsize 64 maxelem 1024
+	ipset -n list gfwlist >/dev/null 2>&1 || ipset -! create gfwlist iphash hashsize 1024 maxelem 65536
+	ipset -n list knocklist >/dev/null 2>&1 || ipset -! create knocklist iphash hashsize 64 maxelem 1024
+	ipset -n list bypasslist >/dev/null 2>&1 || ipset -! create bypasslist iphash hashsize 1024 maxelem 65536
 
 	ipset destroy cniplist >/dev/null 2>&1
 	echo 'create cniplist hash:net family inet hashsize 4096 maxelem 65536' >/tmp/cniplist.set
@@ -360,7 +360,7 @@ elif test -c $DEV; then
 	echo cnipwhitelist_mode=$cnipwhitelist_mode >>$DEV
 
 	test -n "$maclist" && {
-		ipset -n list natcap_maclist >/dev/null 2>&1 || ipset -! create natcap_maclist machash
+		ipset -n list natcap_maclist >/dev/null 2>&1 || ipset -! create natcap_maclist machash hashsize 64 maxelem 1024
 		ipset flush natcap_maclist
 		for m in $maclist; do
 			ipset -! add natcap_maclist $m
@@ -376,7 +376,7 @@ elif test -c $DEV; then
 	fi
 
 	test -n "$iplist" && {
-		ipset -n list natcap_iplist >/dev/null 2>&1 || ipset -! create natcap_iplist nethash
+		ipset -n list natcap_iplist >/dev/null 2>&1 || ipset -! create natcap_iplist nethash hashsize 64 maxelem 1024
 		ipset flush natcap_iplist
 		for n in $iplist; do
 			ipset -! add natcap_iplist $n
