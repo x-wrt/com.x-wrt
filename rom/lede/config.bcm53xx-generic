@@ -87,7 +87,8 @@ CONFIG_TARGET_DEVICE_PACKAGES_bcm53xx_DEVICE_asus-rt-ac87u="aria2 blockd block-m
 # CONFIG_TARGET_DEVICE_bcm53xx_DEVICE_buffalo-wzr-1750dhp is not set
 # CONFIG_TARGET_DEVICE_bcm53xx_DEVICE_buffalo-wzr-600dhp2 is not set
 # CONFIG_TARGET_DEVICE_bcm53xx_DEVICE_buffalo-wzr-900dhp is not set
-# CONFIG_TARGET_DEVICE_bcm53xx_DEVICE_dlink-dir-885l is not set
+CONFIG_TARGET_DEVICE_bcm53xx_DEVICE_dlink-dir-885l=y
+CONFIG_TARGET_DEVICE_PACKAGES_bcm53xx_DEVICE_dlink-dir-885l="aria2 blockd block-mount brcmfmac-firmware-4366b1-pcie brcmfmac-firmware-usb kmod-brcmfmac kmod-brcmutil kmod-crypto-crc32c kmod-fs-autofs4 kmod-fs-exfat kmod-fs-ext4 kmod-fs-msdos kmod-fs-vfat kmod-fuse kmod-leds-gpio kmod-ledtrig-default-on kmod-ledtrig-timer kmod-lib-crc16 kmod-mii kmod-mmc kmod-nls-cp437 kmod-phy-bcm-ns-usb2 kmod-phy-bcm-ns-usb3 kmod-scsi-core kmod-usb2 kmod-usb3 kmod-usb-bcma kmod-usb-core kmod-usb-ehci kmod-usb-ledtrig-usbport kmod-usb-net kmod-usb-net-cdc-ether kmod-usb-net-rndis kmod-usb-ohci kmod-usb-printer kmod-usb-storage kmod-usb-storage-uas libopenssl libsqlite3 libssh2 libstdcpp libxml2 luci-app-aria2 luci-app-p910nd luci-app-samba luci-i18n-aria2-zh-cn luci-i18n-p910nd-en luci-i18n-p910nd-zh-cn luci-i18n-samba-en luci-i18n-samba-zh-cn ntfs-3g p910nd samba36-server webui-aria2"
 CONFIG_TARGET_DEVICE_bcm53xx_DEVICE_linksys-ea6500-v2=y
 CONFIG_TARGET_DEVICE_PACKAGES_bcm53xx_DEVICE_linksys-ea6500-v2="aria2 blockd block-mount kmod-b43 kmod-crypto-crc32c kmod-fs-autofs4 kmod-fs-exfat kmod-fs-ext4 kmod-fs-msdos kmod-fs-vfat kmod-fuse kmod-leds-gpio kmod-ledtrig-default-on kmod-ledtrig-timer kmod-lib-crc16 kmod-mii kmod-nls-cp437 kmod-phy-bcm-ns-usb2 kmod-phy-bcm-ns-usb3 kmod-scsi-core kmod-usb2 kmod-usb3 kmod-usb-bcma kmod-usb-core kmod-usb-ehci kmod-usb-ledtrig-usbport kmod-usb-net kmod-usb-net-cdc-ether kmod-usb-net-rndis kmod-usb-ohci kmod-usb-printer kmod-usb-storage kmod-usb-storage-uas libopenssl libsqlite3 libssh2 libstdcpp libxml2 luci-app-aria2 luci-app-p910nd luci-app-samba luci-i18n-aria2-zh-cn luci-i18n-p910nd-en luci-i18n-p910nd-zh-cn luci-i18n-samba-en luci-i18n-samba-zh-cn ntfs-3g p910nd samba36-server webui-aria2"
 CONFIG_TARGET_DEVICE_bcm53xx_DEVICE_netgear-r6250=y
@@ -96,14 +97,17 @@ CONFIG_TARGET_DEVICE_bcm53xx_DEVICE_netgear-r6300-v2=y
 CONFIG_TARGET_DEVICE_PACKAGES_bcm53xx_DEVICE_netgear-r6300-v2="aria2 blockd block-mount kmod-b43 kmod-crypto-crc32c kmod-fs-autofs4 kmod-fs-exfat kmod-fs-ext4 kmod-fs-msdos kmod-fs-vfat kmod-fuse kmod-leds-gpio kmod-ledtrig-default-on kmod-ledtrig-timer kmod-lib-crc16 kmod-mii kmod-nls-cp437 kmod-phy-bcm-ns-usb2 kmod-phy-bcm-ns-usb3 kmod-scsi-core kmod-usb2 kmod-usb3 kmod-usb-bcma kmod-usb-core kmod-usb-ehci kmod-usb-ledtrig-usbport kmod-usb-net kmod-usb-net-cdc-ether kmod-usb-net-rndis kmod-usb-ohci kmod-usb-printer kmod-usb-storage kmod-usb-storage-uas libopenssl libsqlite3 libssh2 libstdcpp libxml2 luci-app-aria2 luci-app-p910nd luci-app-samba luci-i18n-aria2-zh-cn luci-i18n-p910nd-en luci-i18n-p910nd-zh-cn luci-i18n-samba-en luci-i18n-samba-zh-cn ntfs-3g p910nd samba36-server webui-aria2"
 CONFIG_TARGET_DEVICE_bcm53xx_DEVICE_netgear-r7000=y
 CONFIG_TARGET_DEVICE_PACKAGES_bcm53xx_DEVICE_netgear-r7000="aria2 blockd block-mount kmod-crypto-crc32c kmod-fs-autofs4 kmod-fs-exfat kmod-fs-ext4 kmod-fs-msdos kmod-fs-vfat kmod-fuse kmod-leds-gpio kmod-ledtrig-default-on kmod-ledtrig-timer kmod-lib-crc16 kmod-mii kmod-nls-cp437 kmod-phy-bcm-ns-usb2 kmod-phy-bcm-ns-usb3 kmod-scsi-core kmod-usb2 kmod-usb3 kmod-usb-bcma kmod-usb-core kmod-usb-ehci kmod-usb-ledtrig-usbport kmod-usb-net kmod-usb-net-cdc-ether kmod-usb-net-rndis kmod-usb-ohci kmod-usb-printer kmod-usb-storage kmod-usb-storage-uas libopenssl libsqlite3 libssh2 libstdcpp libxml2 luci-app-aria2 luci-app-p910nd luci-app-samba luci-i18n-aria2-zh-cn luci-i18n-p910nd-en luci-i18n-p910nd-zh-cn luci-i18n-samba-en luci-i18n-samba-zh-cn ntfs-3g p910nd samba36-server webui-aria2"
-# CONFIG_TARGET_DEVICE_bcm53xx_DEVICE_netgear-r7900 is not set
+CONFIG_TARGET_DEVICE_bcm53xx_DEVICE_netgear-r7900=y
+CONFIG_TARGET_DEVICE_PACKAGES_bcm53xx_DEVICE_netgear-r7900="aria2 blockd block-mount brcmfmac-firmware-43602a1-pcie brcmfmac-firmware-usb kmod-brcmfmac kmod-brcmutil kmod-crypto-crc32c kmod-fs-autofs4 kmod-fs-exfat kmod-fs-ext4 kmod-fs-msdos kmod-fs-vfat kmod-fuse kmod-leds-gpio kmod-ledtrig-default-on kmod-ledtrig-timer kmod-lib-crc16 kmod-mii kmod-mmc kmod-nls-cp437 kmod-phy-bcm-ns-usb2 kmod-phy-bcm-ns-usb3 kmod-scsi-core kmod-usb2 kmod-usb3 kmod-usb-bcma kmod-usb-core kmod-usb-ehci kmod-usb-ledtrig-usbport kmod-usb-net kmod-usb-net-cdc-ether kmod-usb-net-rndis kmod-usb-ohci kmod-usb-printer kmod-usb-storage kmod-usb-storage-uas libopenssl libsqlite3 libssh2 libstdcpp libxml2 luci-app-aria2 luci-app-p910nd luci-app-samba luci-i18n-aria2-zh-cn luci-i18n-p910nd-en luci-i18n-p910nd-zh-cn luci-i18n-samba-en luci-i18n-samba-zh-cn ntfs-3g p910nd samba36-server webui-aria2"
 CONFIG_TARGET_DEVICE_bcm53xx_DEVICE_netgear-r8000=y
 CONFIG_TARGET_DEVICE_PACKAGES_bcm53xx_DEVICE_netgear-r8000="aria2 blockd block-mount brcmfmac-firmware-43602a1-pcie brcmfmac-firmware-usb kmod-brcmfmac kmod-brcmutil kmod-crypto-crc32c kmod-fs-autofs4 kmod-fs-exfat kmod-fs-ext4 kmod-fs-msdos kmod-fs-vfat kmod-fuse kmod-leds-gpio kmod-ledtrig-default-on kmod-ledtrig-timer kmod-lib-crc16 kmod-mii kmod-mmc kmod-nls-cp437 kmod-phy-bcm-ns-usb2 kmod-phy-bcm-ns-usb3 kmod-scsi-core kmod-usb2 kmod-usb3 kmod-usb-bcma kmod-usb-core kmod-usb-ehci kmod-usb-ledtrig-usbport kmod-usb-net kmod-usb-net-cdc-ether kmod-usb-net-rndis kmod-usb-ohci kmod-usb-printer kmod-usb-storage kmod-usb-storage-uas libopenssl libsqlite3 libssh2 libstdcpp libxml2 luci-app-aria2 luci-app-p910nd luci-app-samba luci-i18n-aria2-zh-cn luci-i18n-p910nd-en luci-i18n-p910nd-zh-cn luci-i18n-samba-en luci-i18n-samba-zh-cn ntfs-3g p910nd samba36-server webui-aria2"
 # CONFIG_TARGET_DEVICE_bcm53xx_DEVICE_smartrg-sr400ac is not set
 CONFIG_TARGET_DEVICE_bcm53xx_DEVICE_tenda-ac9=y
 CONFIG_TARGET_DEVICE_PACKAGES_bcm53xx_DEVICE_tenda-ac9="blockd block-mount kmod-b43 kmod-crypto-crc32c kmod-fs-autofs4 kmod-fs-exfat kmod-fs-ext4 kmod-fs-msdos kmod-fs-vfat kmod-fuse kmod-leds-gpio kmod-ledtrig-default-on kmod-ledtrig-timer kmod-lib-crc16 kmod-mii kmod-nls-cp437 kmod-phy-bcm-ns-usb2 kmod-scsi-core kmod-usb2 kmod-usb-bcma kmod-usb-core kmod-usb-ehci kmod-usb-ledtrig-usbport kmod-usb-net kmod-usb-net-cdc-ether kmod-usb-net-rndis kmod-usb-ohci kmod-usb-storage kmod-usb-storage-uas ntfs-3g"
-# CONFIG_TARGET_DEVICE_bcm53xx_DEVICE_tplink-archer-c5-v2 is not set
-# CONFIG_TARGET_DEVICE_bcm53xx_DEVICE_tplink-archer-c9-v1 is not set
+CONFIG_TARGET_DEVICE_bcm53xx_DEVICE_tplink-archer-c5-v2=y
+CONFIG_TARGET_DEVICE_PACKAGES_bcm53xx_DEVICE_tplink-archer-c5-v2="aria2 blockd block-mount kmod-b43 kmod-crypto-crc32c kmod-fs-autofs4 kmod-fs-exfat kmod-fs-ext4 kmod-fs-msdos kmod-fs-vfat kmod-fuse kmod-leds-gpio kmod-ledtrig-default-on kmod-ledtrig-timer kmod-lib-crc16 kmod-mii kmod-nls-cp437 kmod-phy-bcm-ns-usb2 kmod-scsi-core kmod-usb2 kmod-usb-bcma kmod-usb-core kmod-usb-ehci kmod-usb-ledtrig-usbport kmod-usb-net kmod-usb-net-cdc-ether kmod-usb-net-rndis kmod-usb-ohci kmod-usb-printer kmod-usb-storage kmod-usb-storage-uas libopenssl libsqlite3 libssh2 libstdcpp libxml2 luci-app-aria2 luci-app-p910nd luci-app-samba luci-i18n-aria2-zh-cn luci-i18n-p910nd-en luci-i18n-p910nd-zh-cn luci-i18n-samba-en luci-i18n-samba-zh-cn ntfs-3g p910nd samba36-server webui-aria2"
+CONFIG_TARGET_DEVICE_bcm53xx_DEVICE_tplink-archer-c9-v1=y
+CONFIG_TARGET_DEVICE_PACKAGES_bcm53xx_DEVICE_tplink-archer-c9-v1="aria2 blockd block-mount kmod-crypto-crc32c kmod-fs-autofs4 kmod-fs-exfat kmod-fs-ext4 kmod-fs-msdos kmod-fs-vfat kmod-fuse kmod-leds-gpio kmod-ledtrig-default-on kmod-ledtrig-timer kmod-lib-crc16 kmod-mii kmod-nls-cp437 kmod-phy-bcm-ns-usb2 kmod-phy-bcm-ns-usb3 kmod-scsi-core kmod-usb2 kmod-usb3 kmod-usb-bcma kmod-usb-core kmod-usb-ehci kmod-usb-ledtrig-usbport kmod-usb-net kmod-usb-net-cdc-ether kmod-usb-net-rndis kmod-usb-ohci kmod-usb-printer kmod-usb-storage kmod-usb-storage-uas libopenssl libsqlite3 libssh2 libstdcpp libxml2 luci-app-aria2 luci-app-p910nd luci-app-samba luci-i18n-aria2-zh-cn luci-i18n-p910nd-en luci-i18n-p910nd-zh-cn luci-i18n-samba-en luci-i18n-samba-zh-cn ntfs-3g p910nd samba36-server webui-aria2"
 CONFIG_HAS_DEVICES=y
 CONFIG_TARGET_BOARD="bcm53xx"
 CONFIG_TARGET_SUBTARGET="generic"
@@ -114,6 +118,7 @@ CONFIG_LINUX_4_14=y
 CONFIG_DEFAULT_base-files=y
 CONFIG_MODULE_DEFAULT_base-files=y
 CONFIG_MODULE_DEFAULT_brcmfmac-firmware-43602a1-pcie=y
+CONFIG_MODULE_DEFAULT_brcmfmac-firmware-4366b1-pcie=y
 CONFIG_DEFAULT_busybox=y
 CONFIG_MODULE_DEFAULT_busybox=y
 CONFIG_DEFAULT_dnsmasq=y
@@ -2538,7 +2543,7 @@ CONFIG_ZABBIX_POSTGRESQL=y
 # CONFIG_PACKAGE_brcmfmac-firmware-43430-sdio is not set
 # CONFIG_PACKAGE_brcmfmac-firmware-43455-sdio is not set
 CONFIG_PACKAGE_brcmfmac-firmware-43602a1-pcie=m
-# CONFIG_PACKAGE_brcmfmac-firmware-4366b1-pcie is not set
+CONFIG_PACKAGE_brcmfmac-firmware-4366b1-pcie=m
 CONFIG_PACKAGE_brcmfmac-firmware-usb=m
 # CONFIG_PACKAGE_brcmsmac-firmware is not set
 # CONFIG_PACKAGE_carl9170-firmware is not set

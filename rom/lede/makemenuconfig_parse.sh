@@ -198,6 +198,9 @@ for t in $targets; do
 	mods="$us"
 	case $t in
 		#>8M flash
+		TARGET_DEVICE_bcm53xx_DEVICE_tplink-archer-c9-v1|\
+		TARGET_DEVICE_bcm53xx_DEVICE_tplink-archer-c5-v2|\
+		TARGET_DEVICE_bcm53xx_DEVICE_dlink-dir-885l|\
 		TARGET_DEVICE_ramips_mt7620_DEVICE_gl-mt750|\
 		TARGET_DEVICE_ar71xx_generic_DEVICE_tl-wr842n-v3|\
 		TARGET_DEVICE_ar71xx_generic_DEVICE_tl-wr942n-v1|\
@@ -427,6 +430,8 @@ for t in $targets; do
 	#check usb
 	case $t in
 		#with usb3
+		TARGET_DEVICE_bcm53xx_DEVICE_tplink-archer-c9-v1|\
+		TARGET_DEVICE_bcm53xx_DEVICE_dlink-dir-885l|\
 		TARGET_DEVICE_bcm53xx_DEVICE_linksys-ea6500-v2|\
 		TARGET_DEVICE_mvebu_cortexa9_DEVICE_linksys-wrt32x|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_puppies|\
@@ -477,6 +482,7 @@ for t in $targets; do
 			mods="$mods $cdcmod"
 		;;
 		#with usb2
+		TARGET_DEVICE_bcm53xx_DEVICE_tplink-archer-c5-v2|\
 		TARGET_DEVICE_ramips_mt7620_DEVICE_gl-mt750|\
 		TARGET_DEVICE_ramips_mt7620_DEVICE_tiny-ac|\
 		TARGET_DEVICE_ramips_mt7620_DEVICE_edimax_br-6478ac-v2|\
