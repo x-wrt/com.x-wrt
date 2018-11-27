@@ -57,6 +57,7 @@ CONFIG_TARGET_MULTI_PROFILE=y
 # CONFIG_TARGET_ath79_generic_DEVICE_avm_fritz4020 is not set
 # CONFIG_TARGET_ath79_generic_DEVICE_avm_fritz300e is not set
 # CONFIG_TARGET_ath79_generic_DEVICE_buffalo_bhr-4grv is not set
+# CONFIG_TARGET_ath79_generic_DEVICE_buffalo_bhr-4grv2 is not set
 # CONFIG_TARGET_ath79_generic_DEVICE_buffalo_wzr-hp-ag300h is not set
 # CONFIG_TARGET_ath79_generic_DEVICE_buffalo_wzr-hp-g302h-a1a0 is not set
 # CONFIG_TARGET_ath79_generic_DEVICE_buffalo_wzr-hp-g450h is not set
@@ -65,6 +66,7 @@ CONFIG_TARGET_MULTI_PROFILE=y
 # CONFIG_TARGET_ath79_generic_DEVICE_embeddedwireless_dorin is not set
 # CONFIG_TARGET_ath79_generic_DEVICE_glinet_ar150 is not set
 # CONFIG_TARGET_ath79_generic_DEVICE_glinet_ar300m_nor is not set
+# CONFIG_TARGET_ath79_generic_DEVICE_glinet_x750 is not set
 # CONFIG_TARGET_ath79_generic_DEVICE_iodata_etg3-r is not set
 # CONFIG_TARGET_ath79_generic_DEVICE_iodata_wn-ac1167dgr is not set
 # CONFIG_TARGET_ath79_generic_DEVICE_iodata_wn-ac1600dgr2 is not set
@@ -79,6 +81,8 @@ CONFIG_TARGET_MULTI_PROFILE=y
 # CONFIG_TARGET_ath79_generic_DEVICE_pcs_cap324 is not set
 # CONFIG_TARGET_ath79_generic_DEVICE_pcs_cr3000 is not set
 # CONFIG_TARGET_ath79_generic_DEVICE_pcs_cr5000 is not set
+# CONFIG_TARGET_ath79_generic_DEVICE_tplink_archer-c58-v1 is not set
+# CONFIG_TARGET_ath79_generic_DEVICE_tplink_archer-c59-v1 is not set
 # CONFIG_TARGET_ath79_generic_DEVICE_tplink_archer-c7-v1 is not set
 # CONFIG_TARGET_ath79_generic_DEVICE_tplink_archer-c7-v2 is not set
 # CONFIG_TARGET_ath79_generic_DEVICE_tplink_re450-v2 is not set
@@ -92,6 +96,7 @@ CONFIG_TARGET_MULTI_PROFILE=y
 # CONFIG_TARGET_ath79_generic_DEVICE_tplink_tl-wr2543-v1 is not set
 # CONFIG_TARGET_ath79_generic_DEVICE_tplink_tl-wr842n-v2 is not set
 # CONFIG_TARGET_ath79_generic_DEVICE_ubnt_bullet-m is not set
+# CONFIG_TARGET_ath79_generic_DEVICE_ubnt_bullet-m-xw is not set
 # CONFIG_TARGET_ath79_generic_DEVICE_ubnt_lap-120 is not set
 # CONFIG_TARGET_ath79_generic_DEVICE_ubnt_nano-m is not set
 # CONFIG_TARGET_ath79_generic_DEVICE_ubnt_nanostation-ac is not set
@@ -115,6 +120,7 @@ CONFIG_TARGET_PER_DEVICE_ROOTFS=y
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_avm_fritz4020 is not set
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_avm_fritz300e is not set
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_buffalo_bhr-4grv is not set
+# CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_buffalo_bhr-4grv2 is not set
 CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_buffalo_wzr-hp-ag300h=y
 CONFIG_TARGET_DEVICE_PACKAGES_ath79_generic_DEVICE_buffalo_wzr-hp-ag300h="aria2 blockd block-mount kmod-ath9k kmod-ath9k-common kmod-crypto-crc32c kmod-fs-autofs4 kmod-fs-exfat kmod-fs-ext4 kmod-fs-msdos kmod-fs-vfat kmod-fuse kmod-leds-reset kmod-lib-crc16 kmod-mii kmod-nls-cp437 kmod-owl-loader kmod-phy-ath79-usb kmod-scsi-core kmod-usb2 kmod-usb-core kmod-usb-ehci kmod-usb-ledtrig-usbport kmod-usb-net kmod-usb-net-cdc-ether kmod-usb-net-rndis kmod-usb-ohci kmod-usb-printer kmod-usb-storage kmod-usb-storage-uas libopenssl libsqlite3 libssh2 libstdcpp libxml2 luci-app-aria2 luci-app-p910nd luci-app-samba luci-i18n-aria2-zh-cn luci-i18n-p910nd-en luci-i18n-p910nd-zh-cn luci-i18n-samba-en luci-i18n-samba-zh-cn ntfs-3g p910nd samba36-server webui-aria2"
 CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_buffalo_wzr-hp-g302h-a1a0=y
@@ -128,6 +134,7 @@ CONFIG_TARGET_DEVICE_PACKAGES_ath79_generic_DEVICE_buffalo_wzr-hp-g450h="aria2 b
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_glinet_ar150 is not set
 CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_glinet_ar300m_nor=y
 CONFIG_TARGET_DEVICE_PACKAGES_ath79_generic_DEVICE_glinet_ar300m_nor="aria2 blockd block-mount kmod-ath9k kmod-ath9k-common kmod-crypto-crc32c kmod-fs-autofs4 kmod-fs-exfat kmod-fs-ext4 kmod-fs-msdos kmod-fs-vfat kmod-fuse kmod-lib-crc16 kmod-mii kmod-nls-cp437 kmod-phy-ath79-usb kmod-scsi-core kmod-usb2 kmod-usb-core kmod-usb-ehci kmod-usb-net kmod-usb-net-cdc-ether kmod-usb-net-rndis kmod-usb-ohci kmod-usb-printer kmod-usb-storage kmod-usb-storage-uas libopenssl libsqlite3 libssh2 libstdcpp libxml2 luci-app-aria2 luci-app-p910nd luci-app-samba luci-i18n-aria2-zh-cn luci-i18n-p910nd-en luci-i18n-p910nd-zh-cn luci-i18n-samba-en luci-i18n-samba-zh-cn ntfs-3g p910nd samba36-server webui-aria2"
+# CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_glinet_x750 is not set
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_iodata_etg3-r is not set
 CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_iodata_wn-ac1167dgr=y
 CONFIG_TARGET_DEVICE_PACKAGES_ath79_generic_DEVICE_iodata_wn-ac1167dgr="aria2 ath10k-firmware-qca988x blockd block-mount kmod-ath10k kmod-ath9k kmod-ath9k-common kmod-crypto-crc32c kmod-fs-autofs4 kmod-fs-exfat kmod-fs-ext4 kmod-fs-msdos kmod-fs-vfat kmod-fuse kmod-hwmon-core kmod-lib-crc16 kmod-mii kmod-nls-cp437 kmod-phy-ath79-usb kmod-scsi-core kmod-usb2 kmod-usb-core kmod-usb-ehci kmod-usb-net kmod-usb-net-cdc-ether kmod-usb-net-rndis kmod-usb-ohci kmod-usb-printer kmod-usb-storage kmod-usb-storage-uas libopenssl libsqlite3 libssh2 libstdcpp libxml2 luci-app-aria2 luci-app-p910nd luci-app-samba luci-i18n-aria2-zh-cn luci-i18n-p910nd-en luci-i18n-p910nd-zh-cn luci-i18n-samba-en luci-i18n-samba-zh-cn ntfs-3g p910nd samba36-server webui-aria2"
@@ -147,6 +154,8 @@ CONFIG_TARGET_DEVICE_PACKAGES_ath79_generic_DEVICE_phicomm_k2t="ath10k-firmware-
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_pcs_cap324 is not set
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_pcs_cr3000 is not set
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_pcs_cr5000 is not set
+# CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_tplink_archer-c58-v1 is not set
+# CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_tplink_archer-c59-v1 is not set
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_tplink_archer-c7-v1 is not set
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_tplink_archer-c7-v2 is not set
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_tplink_re450-v2 is not set
@@ -161,6 +170,7 @@ CONFIG_TARGET_DEVICE_PACKAGES_ath79_generic_DEVICE_tplink_tl-wr1043nd-v4="aria2 
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_tplink_tl-wr2543-v1 is not set
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_tplink_tl-wr842n-v2 is not set
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_ubnt_bullet-m is not set
+# CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_ubnt_bullet-m-xw is not set
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_ubnt_lap-120 is not set
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_ubnt_nano-m is not set
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_ubnt_nanostation-ac is not set
@@ -496,7 +506,7 @@ CONFIG_TARGET_INIT_CMD="/sbin/init"
 CONFIG_TARGET_INIT_SUPPRESS_STDERR=y
 CONFIG_VERSIONOPT=y
 CONFIG_VERSION_DIST="NATCAP"
-CONFIG_VERSION_NUMBER="4.0_b201811152101"
+CONFIG_VERSION_NUMBER="4.0_b201811270831"
 CONFIG_VERSION_CODE="Beetle"
 CONFIG_VERSION_REPO="http://downloads.openwrt.org/snapshots"
 CONFIG_VERSION_HOME_URL="https://router-sh.ptpt52.com/rom/"
@@ -2800,6 +2810,7 @@ CONFIG_PACKAGE_kmod-fuse=m
 #
 CONFIG_PACKAGE_kmod-hwmon-core=m
 # CONFIG_PACKAGE_kmod-hwmon-adcxx is not set
+# CONFIG_PACKAGE_kmod-hwmon-ads1015 is not set
 # CONFIG_PACKAGE_kmod-hwmon-adt7410 is not set
 # CONFIG_PACKAGE_kmod-hwmon-adt7475 is not set
 # CONFIG_PACKAGE_kmod-hwmon-gpiofan is not set
@@ -2834,11 +2845,12 @@ CONFIG_PACKAGE_kmod-hwmon-core=m
 #
 # CONFIG_PACKAGE_kmod-iio-ad799x is not set
 # CONFIG_PACKAGE_kmod-iio-am2315 is not set
+# CONFIG_PACKAGE_kmod-iio-bh1750 is not set
 # CONFIG_PACKAGE_kmod-iio-bmp280 is not set
 # CONFIG_PACKAGE_kmod-iio-bmp280-i2c is not set
 # CONFIG_PACKAGE_kmod-iio-bmp280-spi is not set
-CONFIG_PACKAGE_kmod-iio-core=m
-CONFIG_PACKAGE_kmod-iio-dht11=m
+# CONFIG_PACKAGE_kmod-iio-core is not set
+# CONFIG_PACKAGE_kmod-iio-dht11 is not set
 # CONFIG_PACKAGE_kmod-iio-htu21 is not set
 # CONFIG_PACKAGE_kmod-iio-si7020 is not set
 # CONFIG_PACKAGE_kmod-iio-tsl4531 is not set
@@ -4065,6 +4077,8 @@ CONFIG_PACKAGE_jansson=y
 # CONFIG_PACKAGE_libavahi-nodbus-support is not set
 # CONFIG_PACKAGE_libavl is not set
 # CONFIG_PACKAGE_libbfd is not set
+CONFIG_PACKAGE_libblkid=m
+CONFIG_PACKAGE_libblobmsg-json=y
 # CONFIG_PACKAGE_libbsd is not set
 # CONFIG_PACKAGE_libcanfestival is not set
 # CONFIG_PACKAGE_libcap is not set
@@ -4081,16 +4095,14 @@ CONFIG_PACKAGE_libcomerr=m
 # CONFIG_PACKAGE_libdb47xx is not set
 # CONFIG_PACKAGE_libdbi is not set
 # CONFIG_PACKAGE_libdbus is not set
+# CONFIG_PACKAGE_libdevmapper is not set
 # CONFIG_PACKAGE_libdmapsharing is not set
 # CONFIG_PACKAGE_libdnet is not set
 # CONFIG_PACKAGE_libdouble-conversion is not set
 # CONFIG_PACKAGE_libdrm is not set
+# CONFIG_PACKAGE_libecdsautil is not set
 # CONFIG_PACKAGE_libedit is not set
 # CONFIG_PACKAGE_libelf1 is not set
-CONFIG_PACKAGE_libblkid=m
-CONFIG_PACKAGE_libblobmsg-json=y
-# CONFIG_PACKAGE_libdevmapper is not set
-# CONFIG_PACKAGE_libecdsautil is not set
 # CONFIG_PACKAGE_libesmtp is not set
 # CONFIG_PACKAGE_libestr is not set
 CONFIG_PACKAGE_libev=y
@@ -4138,6 +4150,7 @@ CONFIG_PACKAGE_libgmp=y
 # CONFIG_PACKAGE_libhiredis is not set
 # CONFIG_PACKAGE_libhttp-parser is not set
 # CONFIG_PACKAGE_libhwloc is not set
+# CONFIG_PACKAGE_libi2c is not set
 # CONFIG_PACKAGE_libical is not set
 # CONFIG_PACKAGE_libiconv is not set
 # CONFIG_PACKAGE_libiconv-full is not set
@@ -4391,6 +4404,7 @@ CONFIG_PACKAGE_luci-ssl=y
 #
 CONFIG_PACKAGE_luci-base=y
 # CONFIG_LUCI_SRCDIET is not set
+CONFIG_LUCI_JSMIN=y
 
 #
 # Translations

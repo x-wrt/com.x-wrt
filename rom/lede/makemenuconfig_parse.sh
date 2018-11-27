@@ -139,8 +139,9 @@ echo uniqs=$uniqs
 
 ms="`cat .config | grep =m$ | sed 's/CONFIG_PACKAGE_//;s/=m//g'`"
 modules=$(for i in $ms; do
-	echo "$uniqs" | grep -q $i$ || echo $i
+	echo $i
 done)
+#echo "$uniqs" | grep -q $i$ || echo $i
 echo modules=$modules
 
 get_target_mods()
@@ -198,6 +199,9 @@ for t in $targets; do
 	mods="$us"
 	case $t in
 		#>8M flash
+		TARGET_DEVICE_ramips_mt76x8_DEVICE_skylab_skw92a|\
+		TARGET_DEVICE_ramips_mt7620_DEVICE_lava_lr-25g001|\
+		TARGET_DEVICE_ramips_mt7620_DEVICE_bdcom_wap2100-sk|\
 		TARGET_DEVICE_bcm53xx_DEVICE_tplink-archer-c9-v1|\
 		TARGET_DEVICE_bcm53xx_DEVICE_tplink-archer-c5-v2|\
 		TARGET_DEVICE_bcm53xx_DEVICE_dlink-dir-885l|\
@@ -482,6 +486,9 @@ for t in $targets; do
 			mods="$mods $cdcmod"
 		;;
 		#with usb2
+		TARGET_DEVICE_ramips_mt76x8_DEVICE_skylab_skw92a|\
+		TARGET_DEVICE_ramips_mt7620_DEVICE_lava_lr-25g001|\
+		TARGET_DEVICE_ramips_mt7620_DEVICE_bdcom_wap2100-sk|\
 		TARGET_DEVICE_bcm53xx_DEVICE_tplink-archer-c5-v2|\
 		TARGET_DEVICE_ramips_mt7620_DEVICE_gl-mt750|\
 		TARGET_DEVICE_ramips_mt7620_DEVICE_tiny-ac|\

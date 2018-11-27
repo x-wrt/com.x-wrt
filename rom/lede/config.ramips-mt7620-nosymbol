@@ -63,6 +63,7 @@ CONFIG_TARGET_MULTI_PROFILE=y
 # CONFIG_TARGET_ramips_mt7620_DEVICE_rt-ac51u is not set
 # CONFIG_TARGET_ramips_mt7620_DEVICE_rt-n12p is not set
 # CONFIG_TARGET_ramips_mt7620_DEVICE_rt-n14u is not set
+# CONFIG_TARGET_ramips_mt7620_DEVICE_bdcom_wap2100-sk is not set
 # CONFIG_TARGET_ramips_mt7620_DEVICE_whr-1166d is not set
 # CONFIG_TARGET_ramips_mt7620_DEVICE_whr-300hp2 is not set
 # CONFIG_TARGET_ramips_mt7620_DEVICE_whr-600d is not set
@@ -88,6 +89,7 @@ CONFIG_TARGET_MULTI_PROFILE=y
 # CONFIG_TARGET_ramips_mt7620_DEVICE_kimax_u35wf is not set
 # CONFIG_TARGET_ramips_mt7620_DEVICE_mlw221 is not set
 # CONFIG_TARGET_ramips_mt7620_DEVICE_mlwg2 is not set
+# CONFIG_TARGET_ramips_mt7620_DEVICE_lava_lr-25g001 is not set
 # CONFIG_TARGET_ramips_mt7620_DEVICE_y1 is not set
 # CONFIG_TARGET_ramips_mt7620_DEVICE_y1s is not set
 # CONFIG_TARGET_ramips_mt7620_DEVICE_e1700 is not set
@@ -149,6 +151,7 @@ CONFIG_TARGET_PER_DEVICE_ROOTFS=y
 # CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_rt-ac51u is not set
 # CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_rt-n12p is not set
 # CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_rt-n14u is not set
+# CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_bdcom_wap2100-sk is not set
 CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_whr-1166d=y
 CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt7620_DEVICE_whr-1166d="kmod-mt76-core kmod-mt76x02-common kmod-mt76x2 kmod-mt76x2-common kmod-rt2800-lib kmod-rt2800-mmio kmod-rt2800-pci kmod-rt2800-soc kmod-rt2x00-lib kmod-rt2x00-mmio kmod-rt2x00-pci rt2800-pci-firmware"
 # CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_whr-300hp2 is not set
@@ -157,7 +160,7 @@ CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt7620_DEVICE_whr-1166d="kmod-mt76-core kmo
 # CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_cf-wr800n is not set
 # CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_dch-m225 is not set
 CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_dir-810l=y
-CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt7620_DEVICE_dir-810l="kmod-mt76-core kmod-mt76-usb kmod-mt76x02-common kmod-mt76x02-usb kmod-mt76x0-common kmod-mt76x0e kmod-rt2800-lib kmod-rt2800-mmio kmod-rt2800-pci kmod-rt2800-soc kmod-rt2x00-lib kmod-rt2x00-mmio kmod-rt2x00-pci rt2800-pci-firmware"
+CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt7620_DEVICE_dir-810l="kmod-mt76-core kmod-mt76-usb kmod-mt76x02-common kmod-mt76x02-usb kmod-mt76x0-common kmod-mt76x0e kmod-rt2800-lib kmod-rt2800-mmio kmod-rt2800-pci kmod-rt2800-soc kmod-rt2x00-lib kmod-rt2x00-mmio kmod-rt2x00-pci kmod-usb-core rt2800-pci-firmware"
 # CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_dlink_dwr-116-a1 is not set
 # CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_dlink_dwr-118-a2 is not set
 # CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_dlink_dwr-921-c1 is not set
@@ -178,6 +181,7 @@ CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt7620_DEVICE_edimax_br-6478ac-v2="blockd b
 # CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_kimax_u35wf is not set
 # CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_mlw221 is not set
 # CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_mlwg2 is not set
+# CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_lava_lr-25g001 is not set
 # CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_y1 is not set
 # CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_y1s is not set
 # CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_e1700 is not set
@@ -203,7 +207,7 @@ CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt7620_DEVICE_psg1218b="kmod-mt76-core kmod
 # CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_cs-qr10 is not set
 # CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_db-wrt01 is not set
 CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_mzk-750dhp=y
-CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt7620_DEVICE_mzk-750dhp="kmod-mt76-core kmod-mt76-usb kmod-mt76x02-common kmod-mt76x02-usb kmod-mt76x0-common kmod-mt76x0e kmod-rt2800-lib kmod-rt2800-mmio kmod-rt2800-pci kmod-rt2800-soc kmod-rt2x00-lib kmod-rt2x00-mmio kmod-rt2x00-pci rt2800-pci-firmware"
+CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt7620_DEVICE_mzk-750dhp="kmod-mt76-core kmod-mt76-usb kmod-mt76x02-common kmod-mt76x02-usb kmod-mt76x0-common kmod-mt76x0e kmod-rt2800-lib kmod-rt2800-mmio kmod-rt2800-pci kmod-rt2800-soc kmod-rt2x00-lib kmod-rt2x00-mmio kmod-rt2x00-pci kmod-usb-core rt2800-pci-firmware"
 # CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_mzk-ex300np is not set
 # CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_mzk-ex750np is not set
 # CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_ravpower_wd03 is not set
@@ -214,7 +218,7 @@ CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt7620_DEVICE_tplink_c2-v1="blockd block-mo
 CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_tplink_c20-v1=y
 CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt7620_DEVICE_tplink_c20-v1="blockd block-mount kmod-crypto-crc32c kmod-fs-autofs4 kmod-fs-exfat kmod-fs-ext4 kmod-fs-msdos kmod-fs-vfat kmod-fuse kmod-lib-crc16 kmod-mii kmod-mt76-core kmod-mt76-usb kmod-mt76x02-common kmod-mt76x02-usb kmod-mt76x0-common kmod-mt76x0e kmod-nls-cp437 kmod-rt2800-lib kmod-rt2800-mmio kmod-rt2800-pci kmod-rt2800-soc kmod-rt2x00-lib kmod-rt2x00-mmio kmod-rt2x00-pci kmod-scsi-core kmod-usb2 kmod-usb-core kmod-usb-ehci kmod-usb-ledtrig-usbport kmod-usb-net kmod-usb-net-cdc-ether kmod-usb-net-rndis kmod-usb-ohci kmod-usb-storage kmod-usb-storage-uas ntfs-3g rt2800-pci-firmware"
 CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_ArcherC20i=y
-CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt7620_DEVICE_ArcherC20i="kmod-mt76-core kmod-mt76-usb kmod-mt76x02-common kmod-mt76x02-usb kmod-mt76x0-common kmod-mt76x0e kmod-rt2800-lib kmod-rt2800-mmio kmod-rt2800-pci kmod-rt2800-soc kmod-rt2x00-lib kmod-rt2x00-mmio kmod-rt2x00-pci rt2800-pci-firmware"
+CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt7620_DEVICE_ArcherC20i="kmod-mt76-core kmod-mt76-usb kmod-mt76x02-common kmod-mt76x02-usb kmod-mt76x0-common kmod-mt76x0e kmod-rt2800-lib kmod-rt2800-mmio kmod-rt2800-pci kmod-rt2800-soc kmod-rt2x00-lib kmod-rt2x00-mmio kmod-rt2x00-pci kmod-usb-core rt2800-pci-firmware"
 CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_ArcherC50v1=y
 CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt7620_DEVICE_ArcherC50v1="kmod-mt76-core kmod-mt76x02-common kmod-mt76x2 kmod-mt76x2-common kmod-rt2800-lib kmod-rt2800-mmio kmod-rt2800-pci kmod-rt2800-soc kmod-rt2x00-lib kmod-rt2x00-mmio kmod-rt2x00-pci rt2800-pci-firmware"
 CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_ArcherMR200=y
@@ -566,7 +570,7 @@ CONFIG_TARGET_INIT_CMD="/sbin/init"
 CONFIG_TARGET_INIT_SUPPRESS_STDERR=y
 CONFIG_VERSIONOPT=y
 CONFIG_VERSION_DIST="NATCAP"
-CONFIG_VERSION_NUMBER="4.0_b201811152101"
+CONFIG_VERSION_NUMBER="4.0_b201811270831"
 CONFIG_VERSION_CODE="Beetle"
 CONFIG_VERSION_REPO="http://downloads.openwrt.org/snapshots"
 CONFIG_VERSION_HOME_URL="https://router-sh.ptpt52.com/rom/"
@@ -2883,6 +2887,7 @@ CONFIG_PACKAGE_kmod-fuse=m
 #
 # CONFIG_PACKAGE_kmod-iio-ad799x is not set
 # CONFIG_PACKAGE_kmod-iio-am2315 is not set
+# CONFIG_PACKAGE_kmod-iio-bh1750 is not set
 # CONFIG_PACKAGE_kmod-iio-bmp280 is not set
 # CONFIG_PACKAGE_kmod-iio-bmp280-i2c is not set
 # CONFIG_PACKAGE_kmod-iio-bmp280-spi is not set
@@ -4142,6 +4147,8 @@ CONFIG_PACKAGE_jansson=y
 # CONFIG_PACKAGE_libavahi-nodbus-support is not set
 # CONFIG_PACKAGE_libavl is not set
 # CONFIG_PACKAGE_libbfd is not set
+# CONFIG_PACKAGE_libblkid is not set
+CONFIG_PACKAGE_libblobmsg-json=y
 # CONFIG_PACKAGE_libbsd is not set
 # CONFIG_PACKAGE_libcanfestival is not set
 # CONFIG_PACKAGE_libcap is not set
@@ -4158,16 +4165,14 @@ CONFIG_PACKAGE_libcares=y
 # CONFIG_PACKAGE_libdb47xx is not set
 # CONFIG_PACKAGE_libdbi is not set
 # CONFIG_PACKAGE_libdbus is not set
+# CONFIG_PACKAGE_libdevmapper is not set
 # CONFIG_PACKAGE_libdmapsharing is not set
 # CONFIG_PACKAGE_libdnet is not set
 # CONFIG_PACKAGE_libdouble-conversion is not set
 # CONFIG_PACKAGE_libdrm is not set
+# CONFIG_PACKAGE_libecdsautil is not set
 # CONFIG_PACKAGE_libedit is not set
 # CONFIG_PACKAGE_libelf1 is not set
-# CONFIG_PACKAGE_libblkid is not set
-CONFIG_PACKAGE_libblobmsg-json=y
-# CONFIG_PACKAGE_libdevmapper is not set
-# CONFIG_PACKAGE_libecdsautil is not set
 # CONFIG_PACKAGE_libesmtp is not set
 # CONFIG_PACKAGE_libestr is not set
 CONFIG_PACKAGE_libev=y
@@ -4215,6 +4220,7 @@ CONFIG_PACKAGE_libgmp=y
 # CONFIG_PACKAGE_libhiredis is not set
 # CONFIG_PACKAGE_libhttp-parser is not set
 # CONFIG_PACKAGE_libhwloc is not set
+# CONFIG_PACKAGE_libi2c is not set
 # CONFIG_PACKAGE_libical is not set
 # CONFIG_PACKAGE_libiconv is not set
 # CONFIG_PACKAGE_libiconv-full is not set
@@ -4468,6 +4474,7 @@ CONFIG_PACKAGE_luci-ssl=y
 #
 CONFIG_PACKAGE_luci-base=y
 # CONFIG_LUCI_SRCDIET is not set
+CONFIG_LUCI_JSMIN=y
 
 #
 # Translations
