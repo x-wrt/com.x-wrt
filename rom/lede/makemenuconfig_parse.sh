@@ -199,6 +199,13 @@ for t in $targets; do
 	mods="$us"
 	case $t in
 		#>8M flash
+		TARGET_DEVICE_ath79_generic_DEVICE_ubnt_routerstation|\
+		TARGET_DEVICE_ath79_generic_DEVICE_ubnt_routerstation-pro|\
+		TARGET_DEVICE_ath79_generic_DEVICE_ubnt_nanostation-ac|\
+		TARGET_DEVICE_ath79_generic_DEVICE_ubnt_nanostation-ac-loco|\
+		TARGET_DEVICE_ath79_generic_DEVICE_ubnt_lap-120|\
+		TARGET_DEVICE_ath79_generic_DEVICE_tplink_archer-c59-v1|\
+		TARGET_DEVICE_ath79_generic_DEVICE_rosinson_wr818|\
 		TARGET_DEVICE_ramips_mt76x8_DEVICE_vocore2lite|\
 		TARGET_DEVICE_ramips_mt76x8_DEVICE_vocore2|\
 		TARGET_DEVICE_ramips_mt76x8_DEVICE_skylab_skw92a|\
@@ -323,6 +330,8 @@ for t in $targets; do
 			mods="$mods $ssmod"
 		;;
 		#<=8M flash
+		TARGET_DEVICE_ath79_generic_DEVICE_ubnt_bullet-m-xw|\
+		TARGET_DEVICE_ath79_generic_DEVICE_tplink_archer-c58-v1|\
 		TARGET_DEVICE_ramips_mt76x8_DEVICE_wavlink_wl-wn570ha1|\
 		TARGET_DEVICE_ramips_mt7620_DEVICE_mzk-750dhp|\
 		TARGET_DEVICE_ramips_mt7620_DEVICE_tiny-ac|\
@@ -337,10 +346,6 @@ for t in $targets; do
 		TARGET_DEVICE_ar71xx_generic_DEVICE_tl-mr6400-v1|\
 		TARGET_DEVICE_ar71xx_generic_DEVICE_tl-wpa8630-v1|\
 		TARGET_DEVICE_ath79_generic_DEVICE_tplink_tl-wr842n-v2|\
-		TARGET_DEVICE_ath79_generic_DEVICE_ubnt_nanostation-ac|\
-		TARGET_DEVICE_ath79_generic_DEVICE_ubnt_nanostation-ac-loco|\
-		TARGET_DEVICE_ath79_generic_DEVICE_ubnt_routerstation|\
-		TARGET_DEVICE_ath79_generic_DEVICE_ubnt_routerstation-pro|\
 		TARGET_DEVICE_ramips_rt3883_DEVICE_rt-n56u|\
 		TARGET_DEVICE_ath79_generic_DEVICE_pisen_wmm003n|\
 		TARGET_DEVICE_ramips_mt76x8_DEVICE_tplink_tl-wr902ac-v3|\
@@ -489,6 +494,8 @@ for t in $targets; do
 			mods="$mods $cdcmod"
 		;;
 		#with usb2
+		TARGET_DEVICE_ath79_generic_DEVICE_tplink_archer-c59-v1|\
+		TARGET_DEVICE_ath79_generic_DEVICE_rosinson_wr818|\
 		TARGET_DEVICE_ramips_mt76x8_DEVICE_vocore2lite|\
 		TARGET_DEVICE_ramips_mt76x8_DEVICE_vocore2|\
 		TARGET_DEVICE_ramips_mt76x8_DEVICE_skylab_skw92a|\
@@ -629,6 +636,9 @@ for t in $targets; do
 			mods="$mods $cdcmod"
 		;;
 		#no usb
+		TARGET_DEVICE_ath79_generic_DEVICE_ubnt_lap-120|\
+		TARGET_DEVICE_ath79_generic_DEVICE_ubnt_bullet-m-xw|\
+		TARGET_DEVICE_ath79_generic_DEVICE_tplink_archer-c58-v1|\
 		TARGET_DEVICE_ramips_mt76x8_DEVICE_wavlink_wl-wn570ha1|\
 		TARGET_DEVICE_ramips_mt7620_DEVICE_mzk-750dhp|\
 		TARGET_DEVICE_ramips_mt7620_DEVICE_ArcherC20i|\
