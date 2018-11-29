@@ -199,6 +199,8 @@ for t in $targets; do
 	mods="$us"
 	case $t in
 		#>8M flash
+		TARGET_DEVICE_ramips_mt76x8_DEVICE_vocore2lite|\
+		TARGET_DEVICE_ramips_mt76x8_DEVICE_vocore2|\
 		TARGET_DEVICE_ramips_mt76x8_DEVICE_skylab_skw92a|\
 		TARGET_DEVICE_ramips_mt7620_DEVICE_lava_lr-25g001|\
 		TARGET_DEVICE_ramips_mt7620_DEVICE_bdcom_wap2100-sk|\
@@ -321,6 +323,7 @@ for t in $targets; do
 			mods="$mods $ssmod"
 		;;
 		#<=8M flash
+		TARGET_DEVICE_ramips_mt76x8_DEVICE_wavlink_wl-wn570ha1|\
 		TARGET_DEVICE_ramips_mt7620_DEVICE_mzk-750dhp|\
 		TARGET_DEVICE_ramips_mt7620_DEVICE_tiny-ac|\
 		TARGET_DEVICE_ramips_mt7620_DEVICE_edimax_br-6478ac-v2|\
@@ -486,6 +489,8 @@ for t in $targets; do
 			mods="$mods $cdcmod"
 		;;
 		#with usb2
+		TARGET_DEVICE_ramips_mt76x8_DEVICE_vocore2lite|\
+		TARGET_DEVICE_ramips_mt76x8_DEVICE_vocore2|\
 		TARGET_DEVICE_ramips_mt76x8_DEVICE_skylab_skw92a|\
 		TARGET_DEVICE_ramips_mt7620_DEVICE_lava_lr-25g001|\
 		TARGET_DEVICE_ramips_mt7620_DEVICE_bdcom_wap2100-sk|\
@@ -624,6 +629,7 @@ for t in $targets; do
 			mods="$mods $cdcmod"
 		;;
 		#no usb
+		TARGET_DEVICE_ramips_mt76x8_DEVICE_wavlink_wl-wn570ha1|\
 		TARGET_DEVICE_ramips_mt7620_DEVICE_mzk-750dhp|\
 		TARGET_DEVICE_ramips_mt7620_DEVICE_ArcherC20i|\
 		TARGET_DEVICE_ramips_mt7620_DEVICE_ArcherC50v1|\
