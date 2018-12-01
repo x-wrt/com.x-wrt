@@ -199,6 +199,7 @@ for t in $targets; do
 	mods="$us"
 	case $t in
 		#>8M flash
+		TARGET_DEVICE_ramips_mt7621_DEVICE_mtc_wr1201|\
 		TARGET_DEVICE_ath79_generic_DEVICE_ubnt_routerstation|\
 		TARGET_DEVICE_ath79_generic_DEVICE_ubnt_routerstation-pro|\
 		TARGET_DEVICE_ath79_generic_DEVICE_ubnt_nanostation-ac|\
@@ -330,6 +331,7 @@ for t in $targets; do
 			mods="$mods $ssmod"
 		;;
 		#<=8M flash
+		TARGET_DEVICE_ramips_mt7621_DEVICE_re350-v1|\
 		TARGET_DEVICE_ath79_generic_DEVICE_ubnt_bullet-m-xw|\
 		TARGET_DEVICE_ath79_generic_DEVICE_tplink_archer-c58-v1|\
 		TARGET_DEVICE_ramips_mt76x8_DEVICE_wavlink_wl-wn570ha1|\
@@ -442,6 +444,7 @@ for t in $targets; do
 	#check usb
 	case $t in
 		#with usb3
+		TARGET_DEVICE_ramips_mt7621_DEVICE_mtc_wr1201|\
 		TARGET_DEVICE_bcm53xx_DEVICE_tplink-archer-c9-v1|\
 		TARGET_DEVICE_bcm53xx_DEVICE_dlink-dir-885l|\
 		TARGET_DEVICE_bcm53xx_DEVICE_linksys-ea6500-v2|\
@@ -636,6 +639,7 @@ for t in $targets; do
 			mods="$mods $cdcmod"
 		;;
 		#no usb
+		TARGET_DEVICE_ramips_mt7621_DEVICE_re350-v1|\
 		TARGET_DEVICE_ath79_generic_DEVICE_ubnt_lap-120|\
 		TARGET_DEVICE_ath79_generic_DEVICE_ubnt_bullet-m-xw|\
 		TARGET_DEVICE_ath79_generic_DEVICE_tplink_archer-c58-v1|\
