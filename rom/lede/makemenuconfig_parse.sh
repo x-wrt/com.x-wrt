@@ -322,9 +322,10 @@ for t in $targets; do
 		TARGET_DEVICE_ramips_mt7620_DEVICE_y1s|\
 		TARGET_DEVICE_ramips_mt7620_DEVICE_youku-yk1|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_hc5962|\
-		TARGET_DEVICE_ramips_mt7621_DEVICE_r6220b|\
-		TARGET_DEVICE_ramips_mt7621_DEVICE_r6220a|\
-		TARGET_DEVICE_ramips_mt7621_DEVICE_r6220|\
+		TARGET_DEVICE_ramips_mt7621_DEVICE_netgear_r6220|\
+		TARGET_DEVICE_ramips_mt7621_DEVICE_netgear_r6220a|\
+		TARGET_DEVICE_ramips_mt7621_DEVICE_netgear_r6220b|\
+		TARGET_DEVICE_ramips_mt7621_DEVICE_netgear_r6220c|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_wndr3700v5|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_newifi-d1)
 			mods="$mods $moreapps $usbprint"
@@ -607,9 +608,10 @@ for t in $targets; do
 		TARGET_DEVICE_ar71xx_generic_DEVICE_AP147_010|\
 		TARGET_DEVICE_ar71xx_generic_DEVICE_AP143_8M|\
 		TARGET_DEVICE_ar71xx_generic_DEVICE_AP143_16M|\
-		TARGET_DEVICE_ramips_mt7621_DEVICE_r6220b|\
-		TARGET_DEVICE_ramips_mt7621_DEVICE_r6220a|\
-		TARGET_DEVICE_ramips_mt7621_DEVICE_r6220|\
+		TARGET_DEVICE_ramips_mt7621_DEVICE_netgear_r6220|\
+		TARGET_DEVICE_ramips_mt7621_DEVICE_netgear_r6220a|\
+		TARGET_DEVICE_ramips_mt7621_DEVICE_netgear_r6220b|\
+		TARGET_DEVICE_ramips_mt7621_DEVICE_netgear_r6220c|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_wsr-1166|\
 		TARGET_DEVICE_ar71xx_nand_DEVICE_domywifi-dw33d|\
 		TARGET_DEVICE_ar71xx_generic_DEVICE_mw4530r-v1|\
