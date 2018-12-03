@@ -102,7 +102,7 @@ CONFIG_TARGET_MULTI_PROFILE=y
 CONFIG_TARGET_PER_DEVICE_ROOTFS=y
 # CONFIG_TARGET_DEVICE_ramips_mt76x8_DEVICE_alfa-network_awusfree1 is not set
 CONFIG_TARGET_DEVICE_ramips_mt76x8_DEVICE_wcr-1166ds=y
-CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt76x8_DEVICE_wcr-1166ds="kmod-mt76-core kmod-mt76x02-common kmod-mt76x2 kmod-mt76x2-common"
+CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt76x8_DEVICE_wcr-1166ds="kmod-mt76x02-common kmod-mt76x2 kmod-mt76x2-common"
 # CONFIG_TARGET_DEVICE_ramips_mt76x8_DEVICE_duzun-dm06 is not set
 # CONFIG_TARGET_DEVICE_ramips_mt76x8_DEVICE_gl-mt300n-v2 is not set
 # CONFIG_TARGET_DEVICE_ramips_mt76x8_DEVICE_hc5661a is not set
@@ -110,7 +110,7 @@ CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt76x8_DEVICE_wcr-1166ds="kmod-mt76-core km
 # CONFIG_TARGET_DEVICE_ramips_mt76x8_DEVICE_LinkIt7688 is not set
 # CONFIG_TARGET_DEVICE_ramips_mt76x8_DEVICE_mt7628 is not set
 CONFIG_TARGET_DEVICE_ramips_mt76x8_DEVICE_mac1200r-v2=y
-CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt76x8_DEVICE_mac1200r-v2="kmod-mt76-core kmod-mt76x02-common kmod-mt76x2 kmod-mt76x2-common"
+CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt76x8_DEVICE_mac1200r-v2="kmod-mt76x02-common kmod-mt76x2 kmod-mt76x2-common"
 # CONFIG_TARGET_DEVICE_ramips_mt76x8_DEVICE_netgear_r6120 is not set
 # CONFIG_TARGET_DEVICE_ramips_mt76x8_DEVICE_omega2 is not set
 # CONFIG_TARGET_DEVICE_ramips_mt76x8_DEVICE_omega2p is not set
@@ -118,9 +118,9 @@ CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt76x8_DEVICE_mac1200r-v2="kmod-mt76-core k
 # CONFIG_TARGET_DEVICE_ramips_mt76x8_DEVICE_skylab_skw92a is not set
 # CONFIG_TARGET_DEVICE_ramips_mt76x8_DEVICE_tama_w06 is not set
 CONFIG_TARGET_DEVICE_ramips_mt76x8_DEVICE_tplink_c20-v4=y
-CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt76x8_DEVICE_tplink_c20-v4="kmod-mt76-core kmod-mt76-usb kmod-mt76x02-common kmod-mt76x02-usb kmod-mt76x0-common kmod-mt76x0e kmod-usb-core"
+CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt76x8_DEVICE_tplink_c20-v4="kmod-mt76-usb kmod-mt76x02-common kmod-mt76x02-usb kmod-mt76x0-common kmod-mt76x0e kmod-usb-core"
 CONFIG_TARGET_DEVICE_ramips_mt76x8_DEVICE_tplink_c50-v3=y
-CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt76x8_DEVICE_tplink_c50-v3="kmod-mt76-core kmod-mt76x02-common kmod-mt76x2 kmod-mt76x2-common"
+CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt76x8_DEVICE_tplink_c50-v3="kmod-mt76x02-common kmod-mt76x2 kmod-mt76x2-common"
 # CONFIG_TARGET_DEVICE_ramips_mt76x8_DEVICE_tplink_tl-mr3020-v3 is not set
 CONFIG_TARGET_DEVICE_ramips_mt76x8_DEVICE_tplink_tl-mr3420-v5=y
 CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt76x8_DEVICE_tplink_tl-mr3420-v5="blockd block-mount kmod-crypto-crc32c kmod-fs-autofs4 kmod-fs-exfat kmod-fs-ext4 kmod-fs-msdos kmod-fs-vfat kmod-fuse kmod-lib-crc16 kmod-mii kmod-nls-cp437 kmod-scsi-core kmod-usb2 kmod-usb-core kmod-usb-ehci kmod-usb-ledtrig-usbport kmod-usb-net kmod-usb-net-cdc-ether kmod-usb-net-rndis kmod-usb-ohci kmod-usb-storage kmod-usb-storage-uas ntfs-3g"
@@ -134,7 +134,7 @@ CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt76x8_DEVICE_tl-wr841n-v13=""
 CONFIG_TARGET_DEVICE_ramips_mt76x8_DEVICE_tplink_tl-wr842n-v5=y
 CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt76x8_DEVICE_tplink_tl-wr842n-v5="blockd block-mount kmod-crypto-crc32c kmod-fs-autofs4 kmod-fs-exfat kmod-fs-ext4 kmod-fs-msdos kmod-fs-vfat kmod-fuse kmod-lib-crc16 kmod-mii kmod-nls-cp437 kmod-scsi-core kmod-usb2 kmod-usb-core kmod-usb-ehci kmod-usb-ledtrig-usbport kmod-usb-net kmod-usb-net-cdc-ether kmod-usb-net-rndis kmod-usb-ohci kmod-usb-storage kmod-usb-storage-uas ntfs-3g"
 CONFIG_TARGET_DEVICE_ramips_mt76x8_DEVICE_tplink_tl-wr902ac-v3=y
-CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt76x8_DEVICE_tplink_tl-wr902ac-v3="blockd block-mount kmod-crypto-crc32c kmod-fs-autofs4 kmod-fs-exfat kmod-fs-ext4 kmod-fs-msdos kmod-fs-vfat kmod-fuse kmod-lib-crc16 kmod-mii kmod-mt76-core kmod-mt76-usb kmod-mt76x02-common kmod-mt76x02-usb kmod-mt76x0-common kmod-mt76x0e kmod-nls-cp437 kmod-scsi-core kmod-usb2 kmod-usb-core kmod-usb-ehci kmod-usb-ledtrig-usbport kmod-usb-net kmod-usb-net-cdc-ether kmod-usb-net-rndis kmod-usb-ohci kmod-usb-storage kmod-usb-storage-uas ntfs-3g"
+CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt76x8_DEVICE_tplink_tl-wr902ac-v3="blockd block-mount kmod-crypto-crc32c kmod-fs-autofs4 kmod-fs-exfat kmod-fs-ext4 kmod-fs-msdos kmod-fs-vfat kmod-fuse kmod-lib-crc16 kmod-mii kmod-mt76-usb kmod-mt76x02-common kmod-mt76x02-usb kmod-mt76x0-common kmod-mt76x0e kmod-nls-cp437 kmod-scsi-core kmod-usb2 kmod-usb-core kmod-usb-ehci kmod-usb-ledtrig-usbport kmod-usb-net kmod-usb-net-cdc-ether kmod-usb-net-rndis kmod-usb-ohci kmod-usb-storage kmod-usb-storage-uas ntfs-3g"
 # CONFIG_TARGET_DEVICE_ramips_mt76x8_DEVICE_u7628-01-128M-16M is not set
 # CONFIG_TARGET_DEVICE_ramips_mt76x8_DEVICE_vocore2 is not set
 # CONFIG_TARGET_DEVICE_ramips_mt76x8_DEVICE_vocore2lite is not set
