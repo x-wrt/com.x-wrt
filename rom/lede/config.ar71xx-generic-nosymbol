@@ -6421,6 +6421,7 @@ CONFIG_PACKAGE_uboot-envtools=y
 # Editors
 #
 # CONFIG_PACKAGE_joe is not set
+# CONFIG_PACKAGE_jupp is not set
 # CONFIG_PACKAGE_nano is not set
 # CONFIG_PACKAGE_vim is not set
 # CONFIG_PACKAGE_vim-full is not set
