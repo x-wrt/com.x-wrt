@@ -199,6 +199,10 @@ for t in $targets; do
 	mods="$us"
 	case $t in
 		#>8M flash
+		TARGET_DEVICE_ath79_generic_DEVICE_tplink_archer-a7-v5|\
+		TARGET_DEVICE_ath79_generic_DEVICE_dlink_dir-825-c1|\
+		TARGET_DEVICE_ath79_generic_DEVICE_dlink_dir-835-a1|\
+		TARGET_DEVICE_ramips_mt7621_DEVICE_netgear_r6350|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_mtc_wr1201|\
 		TARGET_DEVICE_ath79_generic_DEVICE_ubnt_routerstation|\
 		TARGET_DEVICE_ath79_generic_DEVICE_ubnt_routerstation-pro|\
@@ -498,6 +502,10 @@ for t in $targets; do
 			mods="$mods $cdcmod"
 		;;
 		#with usb2
+		TARGET_DEVICE_ath79_generic_DEVICE_tplink_archer-a7-v5|\
+		TARGET_DEVICE_ath79_generic_DEVICE_dlink_dir-825-c1|\
+		TARGET_DEVICE_ath79_generic_DEVICE_dlink_dir-835-a1|\
+		TARGET_DEVICE_ramips_mt7621_DEVICE_netgear_r6350|\
 		TARGET_DEVICE_ath79_generic_DEVICE_tplink_archer-c59-v1|\
 		TARGET_DEVICE_ath79_generic_DEVICE_rosinson_wr818|\
 		TARGET_DEVICE_ramips_mt76x8_DEVICE_vocore2lite|\
