@@ -336,6 +336,7 @@ for t in $targets; do
 			mods="$mods $ssmod"
 		;;
 		#<=8M flash
+		TARGET_DEVICE_ath79_generic_DEVICE_nec_wg800hp|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_re350-v1|\
 		TARGET_DEVICE_ath79_generic_DEVICE_ubnt_bullet-m-xw|\
 		TARGET_DEVICE_ath79_generic_DEVICE_tplink_archer-c58-v1|\
@@ -649,6 +650,7 @@ for t in $targets; do
 			mods="$mods $cdcmod"
 		;;
 		#no usb
+		TARGET_DEVICE_ath79_generic_DEVICE_nec_wg800hp|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_re350-v1|\
 		TARGET_DEVICE_ath79_generic_DEVICE_ubnt_lap-120|\
 		TARGET_DEVICE_ath79_generic_DEVICE_ubnt_bullet-m-xw|\

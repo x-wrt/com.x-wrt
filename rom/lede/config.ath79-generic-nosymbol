@@ -73,6 +73,7 @@ CONFIG_TARGET_MULTI_PROFILE=y
 # CONFIG_TARGET_ath79_generic_DEVICE_iodata_wn-ac1167dgr is not set
 # CONFIG_TARGET_ath79_generic_DEVICE_iodata_wn-ac1600dgr2 is not set
 # CONFIG_TARGET_ath79_generic_DEVICE_iodata_wn-ag300dgr is not set
+# CONFIG_TARGET_ath79_generic_DEVICE_nec_wg800hp is not set
 # CONFIG_TARGET_ath79_generic_DEVICE_netgear_wndr3700 is not set
 # CONFIG_TARGET_ath79_generic_DEVICE_netgear_wndr3700v2 is not set
 # CONFIG_TARGET_ath79_generic_DEVICE_netgear_wndr3800 is not set
@@ -145,6 +146,8 @@ CONFIG_TARGET_PER_DEVICE_ROOTFS=y
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_iodata_wn-ac1167dgr is not set
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_iodata_wn-ac1600dgr2 is not set
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_iodata_wn-ag300dgr is not set
+CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_nec_wg800hp=y
+CONFIG_TARGET_DEVICE_PACKAGES_ath79_generic_DEVICE_nec_wg800hp="ath10k-firmware-qca9887 kmod-ath10k kmod-ath9k kmod-ath9k-common kmod-hwmon-core"
 CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_netgear_wndr3700=y
 CONFIG_TARGET_DEVICE_PACKAGES_ath79_generic_DEVICE_netgear_wndr3700="blockd block-mount kmod-ath9k kmod-ath9k-common kmod-crypto-crc32c kmod-fs-autofs4 kmod-fs-exfat kmod-fs-ext4 kmod-fs-msdos kmod-fs-vfat kmod-fuse kmod-leds-reset kmod-lib-crc16 kmod-mii kmod-nls-cp437 kmod-owl-loader kmod-phy-ath79-usb kmod-scsi-core kmod-usb2 kmod-usb-core kmod-usb-ehci kmod-usb-ledtrig-usbport kmod-usb-net kmod-usb-net-cdc-ether kmod-usb-net-rndis kmod-usb-ohci kmod-usb-storage kmod-usb-storage-uas ntfs-3g"
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_netgear_wndr3700v2 is not set
@@ -225,6 +228,7 @@ CONFIG_TARGET_ARCH_PACKAGES="mips_24kc"
 CONFIG_DEFAULT_TARGET_OPTIMIZATION="-Os -pipe -mno-branch-likely -mips32r2 -mtune=24kc"
 CONFIG_CPU_TYPE="24kc"
 CONFIG_LINUX_4_14=y
+CONFIG_MODULE_DEFAULT_ath10k-firmware-qca9887=y
 CONFIG_MODULE_DEFAULT_ath10k-firmware-qca9888=y
 CONFIG_MODULE_DEFAULT_ath10k-firmware-qca988x=y
 CONFIG_DEFAULT_base-files=y
@@ -2614,7 +2618,7 @@ CONFIG_ZABBIX_POSTGRESQL=y
 # CONFIG_PACKAGE_ath10k-firmware-qca4019-ct is not set
 # CONFIG_PACKAGE_ath10k-firmware-qca4019-ct-htt is not set
 # CONFIG_PACKAGE_ath10k-firmware-qca6174 is not set
-# CONFIG_PACKAGE_ath10k-firmware-qca9887 is not set
+CONFIG_PACKAGE_ath10k-firmware-qca9887=m
 # CONFIG_PACKAGE_ath10k-firmware-qca9887-ct is not set
 # CONFIG_PACKAGE_ath10k-firmware-qca9887-ct-htt is not set
 CONFIG_PACKAGE_ath10k-firmware-qca9888=m
