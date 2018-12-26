@@ -199,6 +199,7 @@ for t in $targets; do
 	mods="$us"
 	case $t in
 		#>8M flash
+		TARGET_DEVICE_ar71xx_generic_DEVICE_WZRHPG300NH2|\
 		TARGET_DEVICE_ath79_generic_DEVICE_tplink_archer-a7-v5|\
 		TARGET_DEVICE_ath79_generic_DEVICE_dlink_dir-825-c1|\
 		TARGET_DEVICE_ath79_generic_DEVICE_dlink_dir-835-a1|\
@@ -503,6 +504,7 @@ for t in $targets; do
 			mods="$mods $cdcmod"
 		;;
 		#with usb2
+		TARGET_DEVICE_ar71xx_generic_DEVICE_WZRHPG300NH2|\
 		TARGET_DEVICE_ath79_generic_DEVICE_tplink_archer-a7-v5|\
 		TARGET_DEVICE_ath79_generic_DEVICE_dlink_dir-825-c1|\
 		TARGET_DEVICE_ath79_generic_DEVICE_dlink_dir-835-a1|\
