@@ -199,6 +199,9 @@ for t in $targets; do
 	mods="$us"
 	case $t in
 		#>8M flash
+		TARGET_DEVICE_ath79_generic_DEVICE_tplink_archer-c7-v5|\
+		TARGET_DEVICE_ath79_generic_DEVICE_devolo_dvl1200e|\
+		TARGET_DEVICE_ath79_generic_DEVICE_devolo_dvl1750c|\
 		TARGET_DEVICE_ar71xx_nand_DEVICE_arris-sbr-ac1750|\
 		TARGET_DEVICE_ar71xx_generic_DEVICE_WZRHPG300NH2|\
 		TARGET_DEVICE_ath79_generic_DEVICE_tplink_archer-a7-v5|\
@@ -505,6 +508,7 @@ for t in $targets; do
 			mods="$mods $cdcmod"
 		;;
 		#with usb2
+		TARGET_DEVICE_ath79_generic_DEVICE_tplink_archer-c7-v5|\
 		TARGET_DEVICE_ar71xx_nand_DEVICE_arris-sbr-ac1750|\
 		TARGET_DEVICE_ar71xx_generic_DEVICE_WZRHPG300NH2|\
 		TARGET_DEVICE_ath79_generic_DEVICE_tplink_archer-a7-v5|\
@@ -654,6 +658,8 @@ for t in $targets; do
 			mods="$mods $cdcmod"
 		;;
 		#no usb
+		TARGET_DEVICE_ath79_generic_DEVICE_devolo_dvl1200e|\
+		TARGET_DEVICE_ath79_generic_DEVICE_devolo_dvl1750c|\
 		TARGET_DEVICE_ath79_generic_DEVICE_nec_wg800hp|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_re350-v1|\
 		TARGET_DEVICE_ath79_generic_DEVICE_ubnt_lap-120|\
