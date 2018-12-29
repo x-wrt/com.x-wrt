@@ -199,6 +199,9 @@ for t in $targets; do
 	mods="$us"
 	case $t in
 		#>8M flash
+		TARGET_DEVICE_ramips_mt7620_DEVICE_dlink_dwr-118-a1|\
+		TARGET_DEVICE_ramips_mt7620_DEVICE_dlink_dwr-118-a2|\
+		TARGET_DEVICE_ramips_mt7621_DEVICE_gehua_ghl-r-001|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_xzwifi_creativebox-v1|\
 		TARGET_DEVICE_ath79_generic_DEVICE_tplink_archer-c7-v5|\
 		TARGET_DEVICE_ath79_generic_DEVICE_devolo_dvl1200e|\
@@ -342,6 +345,9 @@ for t in $targets; do
 			mods="$mods $ssmod"
 		;;
 		#<=8M flash
+		TARGET_DEVICE_ramips_mt7620_DEVICE_dlink_dwr-922-e2|\
+		TARGET_DEVICE_ramips_mt7620_DEVICE_dlink_dwr-921-c1|\
+		TARGET_DEVICE_ramips_mt7620_DEVICE_dlink_dwr-921-c3|\
 		TARGET_DEVICE_ath79_generic_DEVICE_nec_wg800hp|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_re350-v1|\
 		TARGET_DEVICE_ath79_generic_DEVICE_ubnt_bullet-m-xw|\
@@ -456,6 +462,7 @@ for t in $targets; do
 	#check usb
 	case $t in
 		#with usb3
+		TARGET_DEVICE_ramips_mt7621_DEVICE_gehua_ghl-r-001|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_xzwifi_creativebox-v1|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_mtc_wr1201|\
 		TARGET_DEVICE_bcm53xx_DEVICE_tplink-archer-c9-v1|\
@@ -510,6 +517,8 @@ for t in $targets; do
 			mods="$mods $cdcmod"
 		;;
 		#with usb2
+		TARGET_DEVICE_ramips_mt7620_DEVICE_dlink_dwr-118-a1|\
+		TARGET_DEVICE_ramips_mt7620_DEVICE_dlink_dwr-118-a2|\
 		TARGET_DEVICE_ath79_generic_DEVICE_tplink_archer-c7-v5|\
 		TARGET_DEVICE_ar71xx_nand_DEVICE_arris-sbr-ac1750|\
 		TARGET_DEVICE_ar71xx_generic_DEVICE_WZRHPG300NH2|\
@@ -660,6 +669,9 @@ for t in $targets; do
 			mods="$mods $cdcmod"
 		;;
 		#no usb
+		TARGET_DEVICE_ramips_mt7620_DEVICE_dlink_dwr-922-e2|\
+		TARGET_DEVICE_ramips_mt7620_DEVICE_dlink_dwr-921-c1|\
+		TARGET_DEVICE_ramips_mt7620_DEVICE_dlink_dwr-921-c3|\
 		TARGET_DEVICE_ath79_generic_DEVICE_devolo_dvl1200e|\
 		TARGET_DEVICE_ath79_generic_DEVICE_devolo_dvl1750c|\
 		TARGET_DEVICE_ath79_generic_DEVICE_nec_wg800hp|\
