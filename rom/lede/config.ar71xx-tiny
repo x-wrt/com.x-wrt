@@ -593,7 +593,7 @@ CONFIG_TARGET_INIT_CMD="/sbin/init"
 CONFIG_TARGET_INIT_SUPPRESS_STDERR=y
 CONFIG_VERSIONOPT=y
 CONFIG_VERSION_DIST="NATCAP"
-CONFIG_VERSION_NUMBER="4.0_b201812281153"
+CONFIG_VERSION_NUMBER="4.0_b201812292055"
 CONFIG_VERSION_CODE="Beetle"
 CONFIG_VERSION_REPO="http://downloads.openwrt.org/snapshots"
 CONFIG_VERSION_HOME_URL="https://router-sh.ptpt52.com/rom/"
@@ -4749,7 +4749,6 @@ CONFIG_PACKAGE_jansson=y
 # CONFIG_PACKAGE_libavahi-nodbus-support is not set
 # CONFIG_PACKAGE_libavl is not set
 # CONFIG_PACKAGE_libbfd is not set
-CONFIG_PACKAGE_libblkid=m
 CONFIG_PACKAGE_libblobmsg-json=y
 # CONFIG_PACKAGE_libbsd is not set
 # CONFIG_PACKAGE_libcanfestival is not set
@@ -4767,13 +4766,14 @@ CONFIG_PACKAGE_libcomerr=m
 # CONFIG_PACKAGE_libdb47xx is not set
 # CONFIG_PACKAGE_libdbi is not set
 # CONFIG_PACKAGE_libdbus is not set
-# CONFIG_PACKAGE_libdevmapper is not set
 # CONFIG_PACKAGE_libdmapsharing is not set
 # CONFIG_PACKAGE_libdnet is not set
 # CONFIG_PACKAGE_libdouble-conversion is not set
 # CONFIG_PACKAGE_libdrm is not set
 # CONFIG_PACKAGE_libedit is not set
 # CONFIG_PACKAGE_libelf1 is not set
+CONFIG_PACKAGE_libblkid=m
+# CONFIG_PACKAGE_libdevmapper is not set
 # CONFIG_PACKAGE_libecdsautil is not set
 # CONFIG_PACKAGE_libesmtp is not set
 # CONFIG_PACKAGE_libestr is not set
@@ -4898,7 +4898,6 @@ CONFIG_PACKAGE_libnl-tiny=y
 # CONFIG_PACKAGE_liboil is not set
 # CONFIG_PACKAGE_libopcodes is not set
 # CONFIG_PACKAGE_libopendkim is not set
-# CONFIG_PACKAGE_libopenldap is not set
 # CONFIG_PACKAGE_libopenobex is not set
 # CONFIG_PACKAGE_libopensc is not set
 # CONFIG_PACKAGE_libopenzwave is not set
@@ -5870,6 +5869,17 @@ CONFIG_PACKAGE_ddns-scripts=y
 # CONFIG_PACKAGE_openvswitch-python is not set
 
 #
+# OpenLDAP
+#
+# CONFIG_PACKAGE_libopenldap is not set
+CONFIG_OPENLDAP_DEBUG=y
+# CONFIG_OPENLDAP_MONITOR is not set
+# CONFIG_OPENLDAP_DB47 is not set
+# CONFIG_OPENLDAP_ICU is not set
+# CONFIG_PACKAGE_openldap-server is not set
+# CONFIG_PACKAGE_openldap-utils is not set
+
+#
 # Printing
 #
 CONFIG_PACKAGE_p910nd=m
@@ -6377,7 +6387,6 @@ CONFIG_PACKAGE_odhcpd_ipv6only_ext_cer_id=0
 # CONFIG_PACKAGE_ola is not set
 # CONFIG_PACKAGE_omcproxy is not set
 # CONFIG_PACKAGE_oor is not set
-# CONFIG_PACKAGE_openldap-server is not set
 # CONFIG_PACKAGE_oping is not set
 # CONFIG_PACKAGE_pagekitec is not set
 # CONFIG_PACKAGE_pen is not set
@@ -6406,7 +6415,6 @@ CONFIG_PACKAGE_ppp-mod-pptp=y
 # CONFIG_PACKAGE_rsyslog is not set
 # CONFIG_PACKAGE_safe-search is not set
 # CONFIG_PACKAGE_samba36-client is not set
-# CONFIG_PACKAGE_samba36-hotplug is not set
 # CONFIG_PACKAGE_samba36-net is not set
 CONFIG_PACKAGE_samba36-server=m
 CONFIG_PACKAGE_SAMBA_MAX_DEBUG_LEVEL=-1
@@ -6901,7 +6909,6 @@ CONFIG_PACKAGE_lsof=y
 # CONFIG_PACKAGE_oath-toolkit is not set
 # CONFIG_PACKAGE_open-plc-utils is not set
 # CONFIG_PACKAGE_open2300 is not set
-# CONFIG_PACKAGE_openldap-utils is not set
 # CONFIG_PACKAGE_openobex is not set
 # CONFIG_PACKAGE_openobex-apps is not set
 # CONFIG_PACKAGE_openocd is not set
