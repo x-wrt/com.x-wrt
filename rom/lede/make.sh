@@ -22,7 +22,7 @@ find feeds/luci/ -type f | grep -v .git\* | while read file; do
 	sed -i 's/192\.168\.1\./192\.168\.15\./g' "$file" && echo modifying $file
 done
 
-CONFIG_VERSION_DIST="NATCAP"
+CONFIG_VERSION_DIST="X-WRT"
 CONFIG_VERSION_CODE="Disco"
 CONFIG_VERSION_MANUFACTURER_URL="https://router-sh.ptpt52.com/"
 for i in $IDXS; do
@@ -71,6 +71,6 @@ for i in $IDXS; do
 done
 
 build_in=$(cd feeds/ptpt52/rom/lede/ && cat $CFGS | grep TARGET_DEVICE_.*=y | sed 's/CONFIG_//;s/=y//' | wc -l)
-build_out=$(find bin/targets/ | grep -- '\(-squashfs\|-factory\|-sysupgrade\)' | grep -v factory | grep natcap | grep -v root | grep -v kernel | sort | wc -l)
+build_out=$(find bin/targets/ | grep -- '\(-squashfs\|-factory\|-sysupgrade\)' | grep -v factory | grep "natcap\|x-wrt" | grep -v root | grep -v kernel | sort | wc -l)
 echo in=$build_in out=$build_out
 echo
