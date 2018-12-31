@@ -199,6 +199,7 @@ for t in $targets; do
 	mods="$us"
 	case $t in
 		#>8M flash
+		TARGET_DEVICE_ath79_generic_DEVICE_dlink_dir-859-a1|\
 		TARGET_DEVICE_ramips_mt7620_DEVICE_dlink_dwr-118-a1|\
 		TARGET_DEVICE_ramips_mt7620_DEVICE_dlink_dwr-118-a2|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_gehua_ghl-r-001|\
@@ -517,6 +518,7 @@ for t in $targets; do
 			mods="$mods $cdcmod"
 		;;
 		#with usb2
+		TARGET_DEVICE_ath79_generic_DEVICE_dlink_dir-859-a1|\
 		TARGET_DEVICE_ramips_mt7620_DEVICE_dlink_dwr-118-a1|\
 		TARGET_DEVICE_ramips_mt7620_DEVICE_dlink_dwr-118-a2|\
 		TARGET_DEVICE_ath79_generic_DEVICE_tplink_archer-c7-v5|\
