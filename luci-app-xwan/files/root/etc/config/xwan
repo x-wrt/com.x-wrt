@@ -1,0 +1,4 @@
+config xwan
+	option enabled '0'
+	option number '2'
+	option balanced '1'
