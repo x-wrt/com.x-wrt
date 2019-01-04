@@ -141,6 +141,11 @@ add_xwan() {
 		uci commit network
 		uci set mwan3.globals.xwan_md5="${xwan_new}"
 		uci commit mwan3
+		[ "x$XRELOAD" = "x1" ] && {
+			/etc/init.d/network reload
+			/etc/init.d/firewall reload
+			/etc/init.d/mwan3 reload
+		}
 	}
 }
 
@@ -150,8 +155,5 @@ start() {
 }
 
 restart() {
-	start
-	/etc/init.d/network reload
-	/etc/init.d/firewall reload
-	/etc/init.d/mwan3 reload
+	XRELOAD=1 start
 }
