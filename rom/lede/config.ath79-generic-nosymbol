@@ -6526,7 +6526,6 @@ CONFIG_PACKAGE_natcapd-server=y
 # Xwan
 #
 CONFIG_PACKAGE_luci-app-xwan=y
-# CONFIG_PACKAGE_userauth is not set
 
 #
 # Sound
