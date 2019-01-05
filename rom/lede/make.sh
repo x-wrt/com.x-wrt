@@ -24,14 +24,8 @@ done
 
 CONFIG_VERSION_DIST="X-WRT"
 CONFIG_VERSION_CODE="Disco"
-CONFIG_VERSION_MANUFACTURER_URL="https://router-sh.ptpt52.com/"
+CONFIG_VERSION_MANUFACTURER_URL="https://x-wrt.com/rom/"
 for i in $IDXS; do
-	[ $i = 1 ] && {
-		CONFIG_VERSION_DIST="BICT"
-		CONFIG_VERSION_CODE="router"
-		CONFIG_VERSION_MANUFACTURER_URL="http://bict.cn/"
-	}
-
 	touch ./package/base-files/Makefile
 
 	last_arch=

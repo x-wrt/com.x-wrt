@@ -444,13 +444,13 @@ CONFIG_TARGET_INIT_ENV=""
 CONFIG_TARGET_INIT_CMD="/sbin/init"
 CONFIG_TARGET_INIT_SUPPRESS_STDERR=y
 CONFIG_VERSIONOPT=y
-CONFIG_VERSION_DIST="NATCAP"
-CONFIG_VERSION_NUMBER="4.0_b201901031548"
-CONFIG_VERSION_CODE="Beetle"
+CONFIG_VERSION_DIST="X-WRT"
+CONFIG_VERSION_NUMBER="5.0_b201901051123"
+CONFIG_VERSION_CODE="Disco"
 CONFIG_VERSION_REPO="http://downloads.openwrt.org/snapshots"
 CONFIG_VERSION_HOME_URL="https://router-sh.ptpt52.com/rom/"
 CONFIG_VERSION_MANUFACTURER="PTPT52"
-CONFIG_VERSION_MANUFACTURER_URL="https://router-sh.ptpt52.com/"
+CONFIG_VERSION_MANUFACTURER_URL="https://x-wrt.com/rom/"
 CONFIG_VERSION_BUG_URL="https://router-sh.ptpt52.com/"
 CONFIG_VERSION_SUPPORT_URL="https://router-sh.ptpt52.com/"
 CONFIG_VERSION_PRODUCT="NATCAP-Router"
@@ -6201,6 +6201,7 @@ CONFIG_PACKAGE_iw=y
 # CONFIG_PACKAGE_krb5-libs is not set
 # CONFIG_PACKAGE_krb5-server is not set
 CONFIG_PACKAGE_libipset=y
+# CONFIG_PACKAGE_libndp is not set
 # CONFIG_PACKAGE_linknx is not set
 # CONFIG_PACKAGE_mac-telnet-client is not set
 # CONFIG_PACKAGE_mac-telnet-discover is not set
@@ -6223,6 +6224,7 @@ CONFIG_PACKAGE_libipset=y
 # CONFIG_PACKAGE_nbd-server is not set
 # CONFIG_PACKAGE_ncp is not set
 # CONFIG_PACKAGE_ndppd is not set
+# CONFIG_PACKAGE_ndptool is not set
 # CONFIG_PACKAGE_netcat is not set
 # CONFIG_PACKAGE_netdiscover is not set
 # CONFIG_PACKAGE_netperf is not set
@@ -6685,6 +6687,7 @@ CONFIG_PACKAGE_ntfs-3g=m
 # CONFIG_PACKAGE_extract is not set
 # CONFIG_PACKAGE_fdt-utils is not set
 # CONFIG_PACKAGE_file is not set
+# CONFIG_PACKAGE_findutils is not set
 # CONFIG_PACKAGE_findutils-find is not set
 # CONFIG_PACKAGE_findutils-locate is not set
 # CONFIG_PACKAGE_findutils-xargs is not set
