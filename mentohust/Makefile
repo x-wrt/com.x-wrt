@@ -1,5 +1,5 @@
 #
-# Copyright (C) 2014-2015 OpenWrt.org
+# Copyright (C) 2017-2019 Chen Minqiang <ptpt52@gmail.com>
 #
 # This is free software, licensed under the GNU General Public License v2.
 # See /LICENSE for more information.

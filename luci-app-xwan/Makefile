@@ -1,5 +1,5 @@
 #
-# Copyright (C) 2016-2017 Jian Chang <aa65535@live.com>
+# Copyright (C) 2017-2019 Chen Minqiang <ptpt52@gmail.com>
 #
 # This is free software, licensed under the GNU General Public License v3.
 # See /LICENSE for more information.
