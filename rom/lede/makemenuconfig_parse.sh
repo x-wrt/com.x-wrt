@@ -199,6 +199,8 @@ for t in $targets; do
 	mods="$us"
 	case $t in
 		#>8M flash
+		TARGET_DEVICE_ath79_generic_DEVICE_devolo_dvl1200i|\
+		TARGET_DEVICE_ath79_generic_DEVICE_devolo_dvl1750i|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_mikrotik_rb750gr3|\
 		TARGET_DEVICE_ath79_generic_DEVICE_dlink_dir-859-a1|\
 		TARGET_DEVICE_ramips_mt7620_DEVICE_dlink_dwr-118-a1|\
@@ -673,6 +675,8 @@ for t in $targets; do
 			mods="$mods $cdcmod"
 		;;
 		#no usb
+		TARGET_DEVICE_ath79_generic_DEVICE_devolo_dvl1200i|\
+		TARGET_DEVICE_ath79_generic_DEVICE_devolo_dvl1750i|\
 		TARGET_DEVICE_ramips_mt7620_DEVICE_dlink_dwr-922-e2|\
 		TARGET_DEVICE_ramips_mt7620_DEVICE_dlink_dwr-921-c1|\
 		TARGET_DEVICE_ramips_mt7620_DEVICE_dlink_dwr-921-c3|\
