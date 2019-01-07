@@ -115,7 +115,8 @@ e = s:taboption("macfilter", DynamicList, "maclist", translate("Mac List"))
 e.datatype = "macaddr"
 e:depends({macfilter="allow"})
 e:depends({macfilter="deny"})
-nt.mac_hints(function(mac, name) e:value(mac, "%s (%s)" %{ mac, name }) end)
+e.placeholder = '00:11:22:33:44:AA'
+--nt.mac_hints(function(mac, name) e:value(mac, "%s (%s)" %{ mac, name }) end)
 
 e = s:taboption("ipfilter", ListValue, "ipfilter", translate("IP Address Filter"))
 e:value("", translate("Disabled"))
