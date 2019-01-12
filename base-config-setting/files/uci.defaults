@@ -12,13 +12,13 @@ wifi_setup_radio()
 		EOT
 
 		#FIXME fixup for mtk
-		test -n "`cat /proc/cpuinfo | grep -i MediaTek`" && {
-			[ "x`uci get wireless.${radio}.hwmode`" = "x11a" ] || {
-				chn=`cat /proc/uptime | cut -d. -f1`
-				chn=$((chn%13+1))
-				uci set wireless.${radio}.channel=$chn
-			}
-		}
+		#test -n "`cat /proc/cpuinfo | grep -i MediaTek`" && {
+		#	[ "x`uci get wireless.${radio}.hwmode`" = "x11a" ] || {
+		#		chn=`cat /proc/uptime | cut -d. -f1`
+		#		chn=$((chn%13+1))
+		#		uci set wireless.${radio}.channel=$chn
+		#	}
+		#}
 
 #		[ "x`uci get wireless.${radio}.hwmode`" = "x11a" ] || {
 #			uci set wireless.${radio}.noscan='1'
