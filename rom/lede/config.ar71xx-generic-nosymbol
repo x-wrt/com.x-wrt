@@ -300,6 +300,7 @@ CONFIG_TARGET_MULTI_PROFILE=y
 # CONFIG_TARGET_ar71xx_generic_DEVICE_mynet-n600 is not set
 # CONFIG_TARGET_ar71xx_generic_DEVICE_mynet-n750 is not set
 # CONFIG_TARGET_ar71xx_generic_DEVICE_MYNETREXT is not set
+# CONFIG_TARGET_ar71xx_generic_DEVICE_x-ap1200 is not set
 # CONFIG_TARGET_ar71xx_generic_DEVICE_ap90q is not set
 # CONFIG_TARGET_ar71xx_generic_DEVICE_cpe830 is not set
 # CONFIG_TARGET_ar71xx_generic_DEVICE_cpe870 is not set
@@ -615,6 +616,8 @@ CONFIG_TARGET_DEVICE_PACKAGES_ar71xx_generic_DEVICE_tl-wr942n-v1="aria2 blockd b
 # CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_mynet-n750 is not set
 # CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_MYNETREXT is not set
 # CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_wrtnode2q is not set
+CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_x-ap1200=y
+CONFIG_TARGET_DEVICE_PACKAGES_ar71xx_generic_DEVICE_x-ap1200="ath10k-firmware-qca9888 kmod-ath10k kmod-ath9k kmod-ath9k-common kmod-hwmon-core"
 # CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_ap90q is not set
 # CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_cpe830 is not set
 # CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_cpe870 is not set

@@ -349,6 +349,7 @@ for t in $targets; do
 			mods="$mods $ssmod"
 		;;
 		#<=8M flash
+		TARGET_DEVICE_ar71xx_generic_DEVICE_x-ap1200|\
 		TARGET_DEVICE_ramips_mt7620_DEVICE_dlink_dwr-922-e2|\
 		TARGET_DEVICE_ramips_mt7620_DEVICE_dlink_dwr-921-c1|\
 		TARGET_DEVICE_ramips_mt7620_DEVICE_dlink_dwr-921-c3|\
@@ -675,6 +676,7 @@ for t in $targets; do
 			mods="$mods $cdcmod"
 		;;
 		#no usb
+		TARGET_DEVICE_ar71xx_generic_DEVICE_x-ap1200|\
 		TARGET_DEVICE_ath79_generic_DEVICE_devolo_dvl1200i|\
 		TARGET_DEVICE_ath79_generic_DEVICE_devolo_dvl1750i|\
 		TARGET_DEVICE_ramips_mt7620_DEVICE_dlink_dwr-922-e2|\
