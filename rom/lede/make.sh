@@ -24,7 +24,7 @@ done
 
 CONFIG_VERSION_DIST="X-WRT"
 CONFIG_VERSION_CODE="Disco"
-CONFIG_VERSION_MANUFACTURER_URL="https://x-wrt.com/rom/"
+CONFIG_VERSION_MANUFACTURER_URL="https://x-wrt.com/"
 for i in $IDXS; do
 	touch ./package/base-files/Makefile
 
