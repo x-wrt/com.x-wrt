@@ -73,7 +73,7 @@ endef
 define Package/natcapd
   $(call Package/natcapd/Default)
   TITLE:=natcapd agent for natcap
-  DEPENDS += +!PACKAGE_wget:libustream-mbedtls +!PACKAGE_wget:uclient-fetch \
+  DEPENDS += +libustream-mbedtls +uclient-fetch \
 			 +lua-cjson \
 			 +ipset \
 			 +dnsmasq-full +@PACKAGE_dnsmasq_full_ipset \
