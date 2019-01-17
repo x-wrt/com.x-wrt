@@ -23,7 +23,7 @@ PKG_LICENSE:=GPL-2.0
 include $(INCLUDE_DIR)/package.mk
 
 define Package/mentohust-proxy/Default
-  CATEGORY:=Ptpt52
+  CATEGORY:=X
   SUBMENU:=Mentohust
   DEPENDS:= +libpcap
 endef

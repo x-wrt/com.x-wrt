@@ -19,7 +19,7 @@ include $(INCLUDE_DIR)/package.mk
 
 define Package/$(PKG_NAME)/Default
   SECTION:=Applications
-  CATEGORY:=Ptpt52
+  CATEGORY:=X
   SUBMENU:=Base config setting for this board
   DEPENDS:=+dnsmasq-full +busybox base-files \
 		   +(@TARGET_x86||TARGET_x86_64||TARGET_sunxi):ethtool \

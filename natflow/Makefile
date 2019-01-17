@@ -23,7 +23,7 @@ PKG_LICENSE:=GPL-2.0
 include $(INCLUDE_DIR)/package.mk
 
 define KernelPackage/natflow
-  CATEGORY:=Ptpt52
+  CATEGORY:=X
   SUBMENU:=Fast Forward Stacks
   TITLE:=natflow kernel driver
   FILES:=$(PKG_BUILD_DIR)/natflow.ko

@@ -20,7 +20,7 @@ PKG_BUILD_DIR:=$(BUILD_DIR)/$(PKG_NAME)
 include $(INCLUDE_DIR)/package.mk
 
 define Package/luci-app-natcap
-	CATEGORY:=Ptpt52
+	CATEGORY:=X
 	SUBMENU:=Natcap Support
 	TITLE:=LuCI Support for natcap
 	PKGARCH:=all

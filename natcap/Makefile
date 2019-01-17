@@ -23,14 +23,14 @@ PKG_LICENSE:=GPL-2.0
 include $(INCLUDE_DIR)/package.mk
 
 define Package/natcapd-client
-  CATEGORY:=Ptpt52
+  CATEGORY:=X
   SUBMENU:=Natcap Support
   DEPENDS:= +libev +libc
   TITLE:=Natcapd_client agent for natcap
 endef
 
 define Package/natcapd-server
-  CATEGORY:=Ptpt52
+  CATEGORY:=X
   SUBMENU:=Natcap Support
   DEPENDS:= +libev +libc
   TITLE:=Natcapd_server agent for natcap
@@ -47,7 +47,7 @@ define Package/natcapd-server/install
 endef
 
 define Package/natcapd-peer
-  CATEGORY:=Ptpt52
+  CATEGORY:=X
   SUBMENU:=Natcap Support
   TITLE:=natcapd peer for natcap
   DEPENDS:= +kmod-natcap \
@@ -65,7 +65,7 @@ define Package/natcapd-peer/install
 endef
 
 define Package/natcapd/Default
-  CATEGORY:=Ptpt52
+  CATEGORY:=X
   SUBMENU:=Natcap Support
   DEPENDS:= +kmod-natcap
 endef
@@ -144,7 +144,7 @@ define Package/natcapd/install
 endef
 
 define KernelPackage/natcap
-  CATEGORY:=Ptpt52
+  CATEGORY:=X
   SUBMENU:=Natcap Support
   TITLE:=Natcap kernel driver
   FILES:=$(PKG_BUILD_DIR)/natcap.ko

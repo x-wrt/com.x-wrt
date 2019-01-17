@@ -23,7 +23,7 @@ PKG_LICENSE:=GPL-2.0
 include $(INCLUDE_DIR)/package.mk
 
 define KernelPackage/rproxy
-  CATEGORY:=Ptpt52
+  CATEGORY:=X
   SUBMENU:=Mentohust
   TITLE:=rproxy kernel driver
   FILES:=$(PKG_BUILD_DIR)/rproxy.ko

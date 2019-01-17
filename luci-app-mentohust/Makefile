@@ -20,7 +20,7 @@ PKG_BUILD_DIR:=$(BUILD_DIR)/$(PKG_NAME)
 include $(INCLUDE_DIR)/package.mk
 
 define Package/luci-app-mentohust
-	CATEGORY:=Ptpt52
+	CATEGORY:=X
 	SUBMENU:=Mentohust
 	TITLE:=LuCI Support for mentohust
 	PKGARCH:=all
