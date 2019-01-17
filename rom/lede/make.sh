@@ -1,21 +1,21 @@
 #!/bin/bash
 
-test -n "$CFGS" || CFGS="`cat feeds/ptpt52/rom/lede/cfg.list`"
+test -n "$CFGS" || CFGS="`cat feeds/x/rom/lede/cfg.list`"
 
 test -n "$IDXS" || IDXS="0"
 
 test -n "$CONFIG_VERSION_NUMBER" || CONFIG_VERSION_NUMBER="5.0_b`date +%Y%m%d%H%M`"
 
 set -x
-test -f .build_ptpt52/env && source .build_ptpt52/env
+test -f .build_x/env && source .build_x/env
 set +x
 
 echo build starting
 echo "CFGS=[$CFGS]"
 echo "IDXS=[$IDXS]"
 echo "CONFIG_VERSION_NUMBER=$CONFIG_VERSION_NUMBER"
-mkdir -p .build_ptpt52
-echo "CONFIG_VERSION_NUMBER=\"$CONFIG_VERSION_NUMBER\"" >.build_ptpt52/env
+mkdir -p .build_x
+echo "CONFIG_VERSION_NUMBER=\"$CONFIG_VERSION_NUMBER\"" >.build_x/env
 sleep 5
 
 find feeds/luci/ -type f | grep -v .git\* | while read file; do
@@ -30,9 +30,9 @@ for i in $IDXS; do
 
 	last_arch=
 	for cfg in $CFGS; do
-		test -f .build_ptpt52/$cfg && continue
+		test -f .build_x/$cfg && continue
 		set -x
-		cp feeds/ptpt52/rom/lede/$cfg .config
+		cp feeds/x/rom/lede/$cfg .config
 		sed -i "s/CONFIG_VERSION_NUMBER=\".*\"/CONFIG_VERSION_NUMBER=\"$CONFIG_VERSION_NUMBER\"/" ./.config
 		sed -i "s/CONFIG_VERSION_DIST=\".*\"/CONFIG_VERSION_DIST=\"$CONFIG_VERSION_DIST\"/" ./.config
 		sed -i "s/CONFIG_VERSION_CODE=\".*\"/CONFIG_VERSION_CODE=\"$CONFIG_VERSION_CODE\"/" ./.config
@@ -60,11 +60,11 @@ for i in $IDXS; do
 			touch ./feeds/packages/libs/libgpg-error/Makefile
 			$* || exit 255
 		}
-		touch .build_ptpt52/$cfg
+		touch .build_x/$cfg
 	done
 done
 
-build_in=$(cd feeds/ptpt52/rom/lede/ && cat $CFGS | grep TARGET_DEVICE_.*=y | sed 's/CONFIG_//;s/=y//' | wc -l)
+build_in=$(cd feeds/x/rom/lede/ && cat $CFGS | grep TARGET_DEVICE_.*=y | sed 's/CONFIG_//;s/=y//' | wc -l)
 build_out=$(find bin/targets/ | grep -- '\(-squashfs\|-factory\|-sysupgrade\)' | grep -v factory | grep "natcap\|x-wrt" | grep -v root | grep -v kernel | sort | wc -l)
 echo in=$build_in out=$build_out
 echo

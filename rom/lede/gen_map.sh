@@ -1,13 +1,13 @@
 #!/bin/sh
 
-CFGS=${CFGS-"`cat feeds/ptpt52/rom/lede/cfg.list`"}
+CFGS=${CFGS-"`cat feeds/x/rom/lede/cfg.list`"}
 
 bins="`find bin/targets/ | grep -- '\(-ext4-sdcard\|-squashfs\|-factory\|-sysupgrade\)' | grep "natcap\|x-wrt" | grep -v vmlinux | grep -v '\.dtb$' | while read line; do basename $line; done`"
 
 sha256sums="`find bin/targets/ -type f -name sha256sums`"
 sha256sums=`cat $sha256sums`
 
-targets=$(cd feeds/ptpt52/rom/lede/ && cat $CFGS | grep TARGET_DEVICE_.*=y | sed 's/CONFIG_//;s/=y//' | sort)
+targets=$(cd feeds/x/rom/lede/ && cat $CFGS | grep TARGET_DEVICE_.*=y | sed 's/CONFIG_//;s/=y//' | sort)
 
 echo -n >map.sha256sums
 echo -n >map.list
