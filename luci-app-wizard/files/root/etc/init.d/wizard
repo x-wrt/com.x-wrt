@@ -1,0 +1,20 @@
+#!/bin/sh /etc/rc.common
+
+START=19
+
+boot() {
+	:
+}
+
+add_wizard() {
+	:
+}
+
+start() {
+	config_load wizard
+	config_foreach add_wizard wizard
+}
+
+restart() {
+	XRELOAD=1 start
+}
