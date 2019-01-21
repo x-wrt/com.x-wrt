@@ -71,9 +71,6 @@ add_wizard() {
 				uci set network.wan.dns="${wan_dns}"
 			}
 		;;
-		*)
-			return 1
-		;;
 	esac
 
 	config_get lan_ipaddr "$cfg" lan_ipaddr

@@ -6,7 +6,6 @@ IPADDR=$(uci get network.lan.ipaddr 2>/dev/null)
 NETMASK=$(uci get network.lan.netmask 2>/dev/null)
 
 uci set wizard.default=wizard
-uci set wizard.default.wan_proto='dhcp'
 uci set wizard.default.wifi_ssid="$SSID"
 uci set wizard.default.wifi_key="$KEY"
 uci set wizard.default.lan_ipaddr="$IPADDR"
