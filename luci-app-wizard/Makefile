@@ -48,9 +48,15 @@ endef
 
 define Package/luci-app-wizard/postinst
 #!/bin/sh
-if [ -z "$${IPKG_INSTROOT}" ]; then
-	rm -rf /tmp/luci-indexcache /tmp/luci-modulecache
+if [ -z "$$IPKG_INSTROOT" ]; then
+  ( . /etc/uci-defaults/40_luci-app-wizard )
+  rm -f /etc/uci-defaults/40_luci-app-wizard
+  ( . /etc/uci-defaults/96-wizard-defaults )
+  rm -f /etc/uci-defaults/96-wizard-defaults
+
+  rm -rf /tmp/luci-indexcache /tmp/luci-modulecache
 fi
+
 exit 0
 endef
 
@@ -67,6 +73,7 @@ define Package/luci-app-wizard/install
 	$(INSTALL_BIN) ./files/root/etc/init.d/wizard $(1)/etc/init.d/wizard
 	$(INSTALL_DIR) $(1)/etc/uci-defaults
 	$(INSTALL_DATA) ./files/root/etc/uci-defaults/40_luci-app-wizard $(1)/etc/uci-defaults/40_luci-app-wizard
+	$(INSTALL_DATA) ./files/uci.defaults $(1)/etc/uci-defaults/96-wizard-defaults
 endef
 
 $(eval $(call BuildPackage,luci-app-wizard))

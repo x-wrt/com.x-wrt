@@ -44,17 +44,14 @@ e.datatype = "ip4addr"
 e = s:taboption("wansetup", DynamicList, "wan_dns", translate("Use custom DNS servers"))
 e:depends({wan_proto="dhcp"})
 e:depends({wan_proto="static"})
-e:depends({wan_proto="pppoe"})
 e.datatype = "ip4addr"
 e.cast = "string"
 
 e = s:taboption("wifisetup", Value, "wifi_ssid", translate("<abbr title=\"Extended Service Set Identifier\">ESSID</abbr>"))
 e.datatype = "maxlength(32)"
-e.rmempty = true
 
 e = s:taboption("wifisetup", Value, "wifi_key", translate("Key"))
 e.datatype = "wpakey"
-e.rmempty = true
 e.password = true
 
 e = s:taboption("lansetup", Value, "lan_ipaddr", translate("IPv4 address"))
