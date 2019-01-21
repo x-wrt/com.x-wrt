@@ -3,6 +3,14 @@
 -- Licensed to the public under the Apache License 2.0.
 
 local nt = require "luci.sys".net
+local uci = require("luci.model.uci").cursor()
+
+local has_wifi = false
+uci:foreach("wireless", "wifi-device",
+		function(s)
+			has_wifi = true
+			return false
+		end)
 
 local m = Map("wizard", luci.util.pcdata(translate("Inital Router Setup")), translate("If you are using this router for the first time, please configure it here."))
 
@@ -11,10 +19,12 @@ s.addremove = false
 s.anonymous = true
 
 s:tab("wansetup", translate("Wan Settings"), translate("Three different ways to access the Internet, please choose according to your own situation."))
-s:tab("wifisetup", translate("Wireless Settings"), translate("Set the router's wireless name and password. For more advanced settings, please go to the Network-Wireless page."))
+if has_wifi then
+	s:tab("wifisetup", translate("Wireless Settings"), translate("Set the router's wireless name and password. For more advanced settings, please go to the Network-Wireless page."))
+end
 s:tab("lansetup", translate("Lan Settings"))
 
-e = s:taboption("wansetup", ListValue, "wan_proto", translate("Protocol"))
+local e = s:taboption("wansetup", ListValue, "wan_proto", translate("Protocol"))
 e:value("dhcp", translate("DHCP client"))
 e:value("static", translate("Static address"))
 e:value("pppoe", translate("PPPoE"))
@@ -47,12 +57,14 @@ e:depends({wan_proto="static"})
 e.datatype = "ip4addr"
 e.cast = "string"
 
-e = s:taboption("wifisetup", Value, "wifi_ssid", translate("<abbr title=\"Extended Service Set Identifier\">ESSID</abbr>"))
-e.datatype = "maxlength(32)"
+if has_wifi then
+	e = s:taboption("wifisetup", Value, "wifi_ssid", translate("<abbr title=\"Extended Service Set Identifier\">ESSID</abbr>"))
+	e.datatype = "maxlength(32)"
 
-e = s:taboption("wifisetup", Value, "wifi_key", translate("Key"))
-e.datatype = "wpakey"
-e.password = true
+	e = s:taboption("wifisetup", Value, "wifi_key", translate("Key"))
+	e.datatype = "wpakey"
+	e.password = true
+end --has_wifi
 
 e = s:taboption("lansetup", Value, "lan_ipaddr", translate("IPv4 address"))
 e.datatype = "ip4addr"
