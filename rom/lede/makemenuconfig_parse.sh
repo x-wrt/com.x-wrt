@@ -199,6 +199,7 @@ for t in $targets; do
 	mods="$us"
 	case $t in
 		#>8M flash
+		TARGET_DEVICE_bcm53xx_DEVICE_phicomm-k3|\
 		TARGET_DEVICE_ath79_generic_DEVICE_devolo_dvl1200i|\
 		TARGET_DEVICE_ath79_generic_DEVICE_devolo_dvl1750i|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_mikrotik_rb750gr3|\
@@ -467,6 +468,7 @@ for t in $targets; do
 	#check usb
 	case $t in
 		#with usb3
+		TARGET_DEVICE_bcm53xx_DEVICE_phicomm-k3|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_gehua_ghl-r-001|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_xzwifi_creativebox-v1|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_mtc_wr1201|\
