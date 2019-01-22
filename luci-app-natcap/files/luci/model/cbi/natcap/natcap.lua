@@ -113,8 +113,6 @@ e:value("deny", translate("blacklist (Forbid to use Natcap)"))
 
 e = s:taboption("macfilter", DynamicList, "maclist", translate("Mac List"))
 e.datatype = "macaddr"
-e:depends({macfilter="allow"})
-e:depends({macfilter="deny"})
 nt.mac_hints(function(mac, name) e:value(mac, "%s (%s)" %{ mac, name }) end)
 
 e = s:taboption("ipfilter", ListValue, "ipfilter", translate("IP Address Filter"))
@@ -125,8 +123,6 @@ e:value("deny", translate("blacklist (Forbid to use Natcap)"))
 e = s:taboption("ipfilter", DynamicList, "iplist", translate("IP List"))
 e.datatype = "ipaddr"
 e.placeholder = '192.168.1.0/24'
-e:depends({ipfilter="allow"})
-e:depends({ipfilter="deny"})
 
 e = s:taboption("system", Flag, "access_to_cn", translate("Access to China from abroad"))
 e.default = e.disabled
