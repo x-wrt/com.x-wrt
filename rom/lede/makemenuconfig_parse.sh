@@ -199,6 +199,8 @@ for t in $targets; do
 	mods="$us"
 	case $t in
 		#>8M flash
+		TARGET_DEVICE_ramips_rt305x_DEVICE_vocore-16M|\
+		TARGET_DEVICE_ramips_rt305x_DEVICE_hg255d|\
 		TARGET_DEVICE_bcm53xx_DEVICE_phicomm-k3|\
 		TARGET_DEVICE_ath79_generic_DEVICE_devolo_dvl1200i|\
 		TARGET_DEVICE_ath79_generic_DEVICE_devolo_dvl1750i|\
@@ -350,6 +352,7 @@ for t in $targets; do
 			mods="$mods $ssmod"
 		;;
 		#<=8M flash
+		TARGET_DEVICE_ramips_rt305x_DEVICE_vocore-8M|\
 		TARGET_DEVICE_ar71xx_generic_DEVICE_x-ap1200|\
 		TARGET_DEVICE_ramips_mt7620_DEVICE_dlink_dwr-922-e2|\
 		TARGET_DEVICE_ramips_mt7620_DEVICE_dlink_dwr-921-c1|\
@@ -524,6 +527,8 @@ for t in $targets; do
 			mods="$mods $cdcmod"
 		;;
 		#with usb2
+		TARGET_DEVICE_ramips_rt305x_DEVICE_vocore-8M|\
+		TARGET_DEVICE_ramips_rt305x_DEVICE_vocore-16M|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_mikrotik_rb750gr3|\
 		TARGET_DEVICE_ath79_generic_DEVICE_dlink_dir-859-a1|\
 		TARGET_DEVICE_ramips_mt7620_DEVICE_dlink_dwr-118-a1|\
@@ -678,6 +683,7 @@ for t in $targets; do
 			mods="$mods $cdcmod"
 		;;
 		#no usb
+		TARGET_DEVICE_ramips_rt305x_DEVICE_hg255d|\
 		TARGET_DEVICE_ar71xx_generic_DEVICE_x-ap1200|\
 		TARGET_DEVICE_ath79_generic_DEVICE_devolo_dvl1200i|\
 		TARGET_DEVICE_ath79_generic_DEVICE_devolo_dvl1750i|\

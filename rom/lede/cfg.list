@@ -11,6 +11,7 @@ config.ramips-mt7621
 config.ramips-mt76x8
 config.ramips-mt76x8-nosymbol
 config.ramips-rt3883-nosymbol
+config.ramips-rt305x
 config.ipq40xx-generic
 config.sunxi-cortexa7
 config.ipq806x-generic
