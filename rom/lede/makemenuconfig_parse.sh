@@ -199,6 +199,7 @@ for t in $targets; do
 	mods="$us"
 	case $t in
 		#>8M flash
+		TARGET_DEVICE_ipq40xx_DEVICE_linksys_ea6350v3|\
 		TARGET_DEVICE_ramips_rt305x_DEVICE_vocore-16M|\
 		TARGET_DEVICE_ramips_rt305x_DEVICE_hg255d|\
 		TARGET_DEVICE_bcm53xx_DEVICE_phicomm-k3|\
@@ -352,6 +353,8 @@ for t in $targets; do
 			mods="$mods $ssmod"
 		;;
 		#<=8M flash
+		TARGET_DEVICE_ramips_mt76x8_DEVICE_tplink_tl-mr3020-v3|\
+		TARGET_DEVICE_ramips_mt76x8_DEVICE_tplink_c50-v4|\
 		TARGET_DEVICE_ramips_rt305x_DEVICE_vocore-8M|\
 		TARGET_DEVICE_ar71xx_generic_DEVICE_x-ap1200|\
 		TARGET_DEVICE_ramips_mt7620_DEVICE_dlink_dwr-922-e2|\
@@ -471,6 +474,7 @@ for t in $targets; do
 	#check usb
 	case $t in
 		#with usb3
+		TARGET_DEVICE_ipq40xx_DEVICE_linksys_ea6350v3|\
 		TARGET_DEVICE_bcm53xx_DEVICE_phicomm-k3|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_gehua_ghl-r-001|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_xzwifi_creativebox-v1|\
@@ -683,6 +687,8 @@ for t in $targets; do
 			mods="$mods $cdcmod"
 		;;
 		#no usb
+		TARGET_DEVICE_ramips_mt76x8_DEVICE_tplink_tl-mr3020-v3|\
+		TARGET_DEVICE_ramips_mt76x8_DEVICE_tplink_c50-v4|\
 		TARGET_DEVICE_ramips_rt305x_DEVICE_hg255d|\
 		TARGET_DEVICE_ar71xx_generic_DEVICE_x-ap1200|\
 		TARGET_DEVICE_ath79_generic_DEVICE_devolo_dvl1200i|\
