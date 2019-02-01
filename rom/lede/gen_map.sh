@@ -46,7 +46,7 @@ for t in $targets; do
 	name=`echo $tt | cut -d: -f3`
 	echo $tt | cut -d: -f2 | sed 's/_/ /' | while read arch subarch; do
 		test -n "$arch" || continue
-		text=`cat target/linux/$arch/image/*.mk target/linux/$arch/image/Makefile 2>/dev/null | grep "define .*Device\/$name$" -A20 | while read line; do [ "x$line" = "xendef" ] && break; echo $line; done`
+		text=`cat target/linux/$arch/image/*.mk target/linux/$arch/image/Makefile 2>/dev/null | grep "define .*Device\/$name$" -A50 | while read line; do [ "x$line" = "xendef" ] && break; echo $line; done`
 		dis=`echo "$text" | grep "DEVICE_TITLE.*:=" | head -n1 | sed 's/DEVICE_TITLE.*:=//'`
 		test -n "$dis" || {
 			dis=`echo "$text" | grep '$(call Device' | head -n1 | cut -d, -f2 | sed 's/)$//g'`
