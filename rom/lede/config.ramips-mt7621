@@ -184,8 +184,10 @@ CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt7621_DEVICE_puppies="aria2 blockd block-m
 # CONFIG_TARGET_DEVICE_ramips_mt7621_DEVICE_ubnt-erx-sfp is not set
 # CONFIG_TARGET_DEVICE_ramips_mt7621_DEVICE_unielec_u7621-06-256m-16m is not set
 # CONFIG_TARGET_DEVICE_ramips_mt7621_DEVICE_unielec_u7621-06-512m-64m is not set
-# CONFIG_TARGET_DEVICE_ramips_mt7621_DEVICE_11acnas is not set
-# CONFIG_TARGET_DEVICE_ramips_mt7621_DEVICE_w2914nsv2 is not set
+CONFIG_TARGET_DEVICE_ramips_mt7621_DEVICE_11acnas=y
+CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt7621_DEVICE_11acnas="aria2 blockd block-mount kmod-cfg80211 kmod-crypto-crc32c kmod-fs-autofs4 kmod-fs-exfat kmod-fs-ext4 kmod-fs-msdos kmod-fs-vfat kmod-fuse kmod-gpio-button-hotplug kmod-leds-gpio kmod-lib-crc16 kmod-mac80211 kmod-mii kmod-mt7603 kmod-mt76-core kmod-mt76x02-common kmod-mt76x2 kmod-mt76x2-common kmod-nls-cp437 kmod-scsi-core kmod-usb2 kmod-usb3 kmod-usb-core kmod-usb-ehci kmod-usb-ledtrig-usbport kmod-usb-net kmod-usb-net-cdc-ether kmod-usb-net-rndis kmod-usb-ohci kmod-usb-printer kmod-usb-storage kmod-usb-storage-uas libopenssl libsqlite3 libssh2 libstdcpp libxml2 luci-app-aria2 luci-app-p910nd luci-app-samba luci-i18n-aria2-zh-cn luci-i18n-p910nd-en luci-i18n-p910nd-zh-cn luci-i18n-samba-en luci-i18n-samba-zh-cn ntfs-3g p910nd samba36-server webui-aria2 wireless-regdb"
+CONFIG_TARGET_DEVICE_ramips_mt7621_DEVICE_w2914nsv2=y
+CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt7621_DEVICE_w2914nsv2="aria2 blockd block-mount kmod-cfg80211 kmod-crypto-crc32c kmod-fs-autofs4 kmod-fs-exfat kmod-fs-ext4 kmod-fs-msdos kmod-fs-vfat kmod-fuse kmod-gpio-button-hotplug kmod-leds-gpio kmod-lib-crc16 kmod-mac80211 kmod-mii kmod-mt7603 kmod-mt76-core kmod-mt76x02-common kmod-mt76x2 kmod-mt76x2-common kmod-nls-cp437 kmod-scsi-core kmod-usb2 kmod-usb3 kmod-usb-core kmod-usb-ehci kmod-usb-ledtrig-usbport kmod-usb-net kmod-usb-net-cdc-ether kmod-usb-net-rndis kmod-usb-ohci kmod-usb-printer kmod-usb-storage kmod-usb-storage-uas libopenssl libsqlite3 libssh2 libstdcpp libxml2 luci-app-aria2 luci-app-p910nd luci-app-samba luci-i18n-aria2-zh-cn luci-i18n-p910nd-en luci-i18n-p910nd-zh-cn luci-i18n-samba-en luci-i18n-samba-zh-cn ntfs-3g p910nd samba36-server webui-aria2 wireless-regdb"
 CONFIG_TARGET_DEVICE_ramips_mt7621_DEVICE_mir3g=y
 CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt7621_DEVICE_mir3g="aria2 blockd block-mount kmod-cfg80211 kmod-crypto-crc32c kmod-fs-autofs4 kmod-fs-exfat kmod-fs-ext4 kmod-fs-msdos kmod-fs-vfat kmod-fuse kmod-gpio-button-hotplug kmod-leds-gpio kmod-lib-crc16 kmod-mac80211 kmod-mii kmod-mt7603 kmod-mt76-core kmod-mt76x02-common kmod-mt76x2 kmod-mt76x2-common kmod-nls-cp437 kmod-scsi-core kmod-usb2 kmod-usb3 kmod-usb-core kmod-usb-ehci kmod-usb-ledtrig-usbport kmod-usb-net kmod-usb-net-cdc-ether kmod-usb-net-rndis kmod-usb-ohci kmod-usb-printer kmod-usb-storage kmod-usb-storage-uas libopenssl libsqlite3 libssh2 libstdcpp libxml2 luci-app-aria2 luci-app-p910nd luci-app-samba luci-i18n-aria2-zh-cn luci-i18n-p910nd-en luci-i18n-p910nd-zh-cn luci-i18n-samba-en luci-i18n-samba-zh-cn ntfs-3g p910nd samba36-server uboot-envtools webui-aria2 wireless-regdb"
 CONFIG_TARGET_DEVICE_ramips_mt7621_DEVICE_youhua_wr1200js=y
@@ -534,7 +536,7 @@ CONFIG_TARGET_INIT_CMD="/sbin/init"
 CONFIG_TARGET_INIT_SUPPRESS_STDERR=y
 CONFIG_VERSIONOPT=y
 CONFIG_VERSION_DIST="X-WRT"
-CONFIG_VERSION_NUMBER="5.0_b201902050310"
+CONFIG_VERSION_NUMBER="5.0_b201902061534"
 CONFIG_VERSION_CODE="Disco"
 CONFIG_VERSION_REPO="http://downloads.openwrt.org/snapshots"
 CONFIG_VERSION_HOME_URL="https://x-wrt.com/"
