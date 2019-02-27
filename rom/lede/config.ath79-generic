@@ -520,6 +520,7 @@ CONFIG_TOOLCHAINOPTS=y
 #
 # CONFIG_BINUTILS_USE_VERSION_2_29_1 is not set
 CONFIG_BINUTILS_USE_VERSION_2_31_1=y
+# CONFIG_BINUTILS_USE_VERSION_2_32 is not set
 CONFIG_EXTRA_BINUTILS_CONFIG_OPTIONS=""
 
 #
@@ -575,7 +576,7 @@ CONFIG_TARGET_INIT_CMD="/sbin/init"
 CONFIG_TARGET_INIT_SUPPRESS_STDERR=y
 CONFIG_VERSIONOPT=y
 CONFIG_VERSION_DIST="X-WRT"
-CONFIG_VERSION_NUMBER="5.0_b201902222254"
+CONFIG_VERSION_NUMBER="5.0_b201902271823"
 CONFIG_VERSION_CODE="Disco"
 CONFIG_VERSION_REPO="http://downloads.openwrt.org/snapshots"
 CONFIG_VERSION_HOME_URL="https://x-wrt.com/"
@@ -2939,6 +2940,7 @@ CONFIG_PACKAGE_kmod-hwmon-core=m
 # CONFIG_PACKAGE_kmod-iio-bmp280 is not set
 # CONFIG_PACKAGE_kmod-iio-bmp280-i2c is not set
 # CONFIG_PACKAGE_kmod-iio-bmp280-spi is not set
+# CONFIG_PACKAGE_kmod-iio-ccs811 is not set
 # CONFIG_PACKAGE_kmod-iio-core is not set
 # CONFIG_PACKAGE_kmod-iio-dht11 is not set
 # CONFIG_PACKAGE_kmod-iio-hmc5843 is not set
@@ -2959,6 +2961,7 @@ CONFIG_PACKAGE_kmod-hwmon-core=m
 # CONFIG_PACKAGE_kmod-input-joydev is not set
 # CONFIG_PACKAGE_kmod-input-matrixkmap is not set
 # CONFIG_PACKAGE_kmod-input-polldev is not set
+# CONFIG_PACKAGE_kmod-input-touchscreen-ads7846 is not set
 # CONFIG_PACKAGE_kmod-input-uinput is not set
 
 #
@@ -5302,6 +5305,7 @@ CONFIG_PACKAGE_luci-lib-nixio_notls=y
 # CONFIG_PACKAGE_luci-lib-nixio_cyassl is not set
 # CONFIG_PACKAGE_luci-lib-nixio_openssl is not set
 # CONFIG_PACKAGE_luci-lib-px5g is not set
+# CONFIG_PACKAGE_luci-i18n-aria2-es is not set
 # CONFIG_PACKAGE_luci-i18n-aria2-pt-br is not set
 # CONFIG_PACKAGE_luci-i18n-aria2-ru is not set
 # CONFIG_PACKAGE_luci-i18n-aria2-sv is not set
@@ -6512,6 +6516,7 @@ CONFIG_PACKAGE_SAMBA_MAX_DEBUG_LEVEL=-1
 # CONFIG_PACKAGE_socat is not set
 # CONFIG_PACKAGE_softflowd is not set
 # CONFIG_PACKAGE_soloscli is not set
+# CONFIG_PACKAGE_speedtest-netperf is not set
 # CONFIG_PACKAGE_spoofer is not set
 # CONFIG_PACKAGE_stunnel is not set
 # CONFIG_PACKAGE_tayga is not set
