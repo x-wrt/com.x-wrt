@@ -199,6 +199,7 @@ for t in $targets; do
 	mods="$us"
 	case $t in
 		#>8M flash
+		TARGET_DEVICE_ath79_generic_DEVICE_tplink_archer-c5-v1|\
 		TARGET_DEVICE_ath79_generic_DEVICE_xiaomi_mi-router-4q|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_11acnas|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_w2914nsv2|\
@@ -357,6 +358,7 @@ for t in $targets; do
 			mods="$mods $ssmod"
 		;;
 		#<=8M flash
+		TARGET_DEVICE_ramips_mt76x8_DEVICE_tplink_tl-wr802n-v4|\
 		TARGET_DEVICE_ramips_mt76x8_DEVICE_tplink_tl-mr3020-v3|\
 		TARGET_DEVICE_ramips_mt76x8_DEVICE_tplink_c50-v4|\
 		TARGET_DEVICE_ramips_rt305x_DEVICE_vocore-8M|\
@@ -693,6 +695,8 @@ for t in $targets; do
 			mods="$mods $cdcmod"
 		;;
 		#no usb
+		TARGET_DEVICE_ath79_generic_DEVICE_tplink_archer-c5-v1|\
+		TARGET_DEVICE_ramips_mt76x8_DEVICE_tplink_tl-wr802n-v4|\
 		TARGET_DEVICE_ramips_mt7620_DEVICE_ArcherMR200|\
 		TARGET_DEVICE_ath79_generic_DEVICE_xiaomi_mi-router-4q|\
 		TARGET_DEVICE_ramips_mt76x8_DEVICE_tplink_tl-mr3020-v3|\
