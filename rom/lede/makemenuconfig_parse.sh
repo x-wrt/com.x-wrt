@@ -199,6 +199,12 @@ for t in $targets; do
 	mods="$us"
 	case $t in
 		#>8M flash
+		TARGET_DEVICE_ipq40xx_DEVICE_netgear_ex6150v2|\
+		TARGET_DEVICE_ipq40xx_DEVICE_netgear_ex6100v2|\
+		TARGET_DEVICE_ipq40xx_DEVICE_glinet_gl-b1300|\
+		TARGET_DEVICE_ipq40xx_DEVICE_engenius_eap1300|\
+		TARGET_DEVICE_ipq40xx_DEVICE_compex_wpj428|\
+		TARGET_DEVICE_ipq40xx_DEVICE_asus_map-ac2200|\
 		TARGET_DEVICE_ath79_generic_DEVICE_tplink_archer-c5-v1|\
 		TARGET_DEVICE_ath79_generic_DEVICE_xiaomi_mi-router-4q|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_11acnas|\
@@ -480,6 +486,8 @@ for t in $targets; do
 	#check usb
 	case $t in
 		#with usb3
+		TARGET_DEVICE_ipq40xx_DEVICE_glinet_gl-b1300|\
+		TARGET_DEVICE_ipq40xx_DEVICE_compex_wpj428|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_11acnas|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_w2914nsv2|\
 		TARGET_DEVICE_ipq40xx_DEVICE_linksys_ea6350v3|\
@@ -695,6 +703,10 @@ for t in $targets; do
 			mods="$mods $cdcmod"
 		;;
 		#no usb
+		TARGET_DEVICE_ipq40xx_DEVICE_netgear_ex6150v2|\
+		TARGET_DEVICE_ipq40xx_DEVICE_netgear_ex6100v2|\
+		TARGET_DEVICE_ipq40xx_DEVICE_engenius_eap1300|\
+		TARGET_DEVICE_ipq40xx_DEVICE_asus_map-ac2200|\
 		TARGET_DEVICE_ath79_generic_DEVICE_tplink_archer-c5-v1|\
 		TARGET_DEVICE_ramips_mt76x8_DEVICE_tplink_tl-wr802n-v4|\
 		TARGET_DEVICE_ramips_mt7620_DEVICE_ArcherMR200|\
