@@ -123,6 +123,7 @@ CONFIG_TARGET_MULTI_PROFILE=y
 # CONFIG_TARGET_ath79_generic_DEVICE_ubnt_nano-m is not set
 # CONFIG_TARGET_ath79_generic_DEVICE_ubnt_nanostation-ac is not set
 # CONFIG_TARGET_ath79_generic_DEVICE_ubnt_nanostation-ac-loco is not set
+# CONFIG_TARGET_ath79_generic_DEVICE_ubnt_nanostation-m-xw is not set
 # CONFIG_TARGET_ath79_generic_DEVICE_ubnt_rocket-m is not set
 # CONFIG_TARGET_ath79_generic_DEVICE_ubnt_routerstation is not set
 # CONFIG_TARGET_ath79_generic_DEVICE_ubnt_routerstation-pro is not set
@@ -241,6 +242,8 @@ CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_ubnt_nanostation-ac=y
 CONFIG_TARGET_DEVICE_PACKAGES_ath79_generic_DEVICE_ubnt_nanostation-ac="aria2 ath10k-firmware-qca988x-ct blockd block-mount kmod-ath10k-ct kmod-ath9k kmod-ath9k-common kmod-crypto-crc32c kmod-fs-autofs4 kmod-fs-exfat kmod-fs-ext4 kmod-fs-msdos kmod-fs-vfat kmod-fuse kmod-hwmon-core kmod-lib-crc16 kmod-mii kmod-nls-cp437 kmod-phy-ath79-usb kmod-scsi-core kmod-usb2 kmod-usb-core kmod-usb-ehci kmod-usb-net kmod-usb-net-cdc-ether kmod-usb-net-rndis kmod-usb-ohci kmod-usb-printer kmod-usb-storage kmod-usb-storage-uas libopenssl libsqlite3 libssh2 libstdcpp libxml2 luci-app-aria2 luci-app-p910nd luci-app-samba luci-i18n-aria2-zh-cn luci-i18n-p910nd-en luci-i18n-p910nd-zh-cn luci-i18n-samba-en luci-i18n-samba-zh-cn ntfs-3g p910nd samba36-server webui-aria2"
 CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_ubnt_nanostation-ac-loco=y
 CONFIG_TARGET_DEVICE_PACKAGES_ath79_generic_DEVICE_ubnt_nanostation-ac-loco="aria2 ath10k-firmware-qca988x-ct blockd block-mount kmod-ath10k-ct kmod-ath9k kmod-ath9k-common kmod-crypto-crc32c kmod-fs-autofs4 kmod-fs-exfat kmod-fs-ext4 kmod-fs-msdos kmod-fs-vfat kmod-fuse kmod-hwmon-core kmod-lib-crc16 kmod-mii kmod-nls-cp437 kmod-phy-ath79-usb kmod-scsi-core kmod-usb2 kmod-usb-core kmod-usb-ehci kmod-usb-net kmod-usb-net-cdc-ether kmod-usb-net-rndis kmod-usb-ohci kmod-usb-printer kmod-usb-storage kmod-usb-storage-uas libopenssl libsqlite3 libssh2 libstdcpp libxml2 luci-app-aria2 luci-app-p910nd luci-app-samba luci-i18n-aria2-zh-cn luci-i18n-p910nd-en luci-i18n-p910nd-zh-cn luci-i18n-samba-en luci-i18n-samba-zh-cn ntfs-3g p910nd samba36-server webui-aria2"
+CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_ubnt_nanostation-m-xw=y
+CONFIG_TARGET_DEVICE_PACKAGES_ath79_generic_DEVICE_ubnt_nanostation-m-xw="kmod-ath9k kmod-ath9k-common kmod-phy-ath79-usb kmod-usb2 kmod-usb-core kmod-usb-ehci"
 CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_ubnt_rocket-m=y
 CONFIG_TARGET_DEVICE_PACKAGES_ath79_generic_DEVICE_ubnt_rocket-m="blockd block-mount kmod-ath9k kmod-ath9k-common kmod-crypto-crc32c kmod-fs-autofs4 kmod-fs-exfat kmod-fs-ext4 kmod-fs-msdos kmod-fs-vfat kmod-fuse kmod-lib-crc16 kmod-mii kmod-nls-cp437 kmod-phy-ath79-usb kmod-scsi-core kmod-usb2 kmod-usb-core kmod-usb-ehci kmod-usb-net kmod-usb-net-cdc-ether kmod-usb-net-rndis kmod-usb-ohci kmod-usb-storage kmod-usb-storage-uas ntfs-3g rssileds"
 CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_ubnt_routerstation=y
