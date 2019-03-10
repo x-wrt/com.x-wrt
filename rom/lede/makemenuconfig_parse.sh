@@ -199,6 +199,7 @@ for t in $targets; do
 	mods="$us"
 	case $t in
 		#>8M flash
+		TARGET_DEVICE_ath79_generic_DEVICE_yuncore_a770|\
 		TARGET_DEVICE_ipq40xx_DEVICE_netgear_ex6150v2|\
 		TARGET_DEVICE_ipq40xx_DEVICE_netgear_ex6100v2|\
 		TARGET_DEVICE_ipq40xx_DEVICE_glinet_gl-b1300|\
@@ -704,6 +705,7 @@ for t in $targets; do
 			mods="$mods $cdcmod"
 		;;
 		#no usb
+		TARGET_DEVICE_ath79_generic_DEVICE_yuncore_a770|\
 		TARGET_DEVICE_ath79_generic_DEVICE_ubnt_nanostation-m-xw|\
 		TARGET_DEVICE_ipq40xx_DEVICE_netgear_ex6150v2|\
 		TARGET_DEVICE_ipq40xx_DEVICE_netgear_ex6100v2|\
