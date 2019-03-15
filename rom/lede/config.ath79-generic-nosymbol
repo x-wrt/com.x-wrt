@@ -70,9 +70,11 @@ CONFIG_TARGET_MULTI_PROFILE=y
 # CONFIG_TARGET_ath79_generic_DEVICE_elecom_wrc-1750ghbk2-i is not set
 # CONFIG_TARGET_ath79_generic_DEVICE_elecom_wrc-300ghbk2-i is not set
 # CONFIG_TARGET_ath79_generic_DEVICE_embeddedwireless_dorin is not set
+# CONFIG_TARGET_ath79_generic_DEVICE_engenius_epg5000 is not set
 # CONFIG_TARGET_ath79_generic_DEVICE_engenius_ews511ap is not set
 # CONFIG_TARGET_ath79_generic_DEVICE_glinet_gl-ar150 is not set
 # CONFIG_TARGET_ath79_generic_DEVICE_glinet_gl-ar300m-nor is not set
+# CONFIG_TARGET_ath79_generic_DEVICE_glinet_gl-ar300m-lite is not set
 # CONFIG_TARGET_ath79_generic_DEVICE_glinet_gl-ar750s is not set
 # CONFIG_TARGET_ath79_generic_DEVICE_glinet_gl-x750 is not set
 # CONFIG_TARGET_ath79_generic_DEVICE_iodata_etg3-r is not set
@@ -80,6 +82,7 @@ CONFIG_TARGET_MULTI_PROFILE=y
 # CONFIG_TARGET_ath79_generic_DEVICE_iodata_wn-ac1600dgr is not set
 # CONFIG_TARGET_ath79_generic_DEVICE_iodata_wn-ac1600dgr2 is not set
 # CONFIG_TARGET_ath79_generic_DEVICE_iodata_wn-ag300dgr is not set
+# CONFIG_TARGET_ath79_generic_DEVICE_librerouter_librerouter-v1 is not set
 # CONFIG_TARGET_ath79_generic_DEVICE_nec_wg800hp is not set
 # CONFIG_TARGET_ath79_generic_DEVICE_netgear_wndr3700 is not set
 # CONFIG_TARGET_ath79_generic_DEVICE_netgear_wndr3700v2 is not set
@@ -103,6 +106,7 @@ CONFIG_TARGET_MULTI_PROFILE=y
 # CONFIG_TARGET_ath79_generic_DEVICE_tplink_archer-c7-v2 is not set
 # CONFIG_TARGET_ath79_generic_DEVICE_tplink_archer-c7-v4 is not set
 # CONFIG_TARGET_ath79_generic_DEVICE_tplink_archer-c7-v5 is not set
+# CONFIG_TARGET_ath79_generic_DEVICE_tplink_re350k-v1 is not set
 # CONFIG_TARGET_ath79_generic_DEVICE_tplink_re450-v2 is not set
 # CONFIG_TARGET_ath79_generic_DEVICE_tplink_tl-wdr3600 is not set
 # CONFIG_TARGET_ath79_generic_DEVICE_tplink_tl-wdr4300 is not set
@@ -169,10 +173,12 @@ CONFIG_TARGET_PER_DEVICE_ROOTFS=y
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_elecom_wrc-1750ghbk2-i is not set
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_elecom_wrc-300ghbk2-i is not set
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_embeddedwireless_dorin is not set
+# CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_engenius_epg5000 is not set
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_engenius_ews511ap is not set
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_etactica_eg200 is not set
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_glinet_gl-ar150 is not set
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_glinet_gl-ar300m-nor is not set
+# CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_glinet_gl-ar300m-lite is not set
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_glinet_gl-ar750s is not set
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_glinet_gl-x750 is not set
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_iodata_etg3-r is not set
@@ -180,6 +186,7 @@ CONFIG_TARGET_PER_DEVICE_ROOTFS=y
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_iodata_wn-ac1600dgr is not set
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_iodata_wn-ac1600dgr2 is not set
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_iodata_wn-ag300dgr is not set
+# CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_librerouter_librerouter-v1 is not set
 CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_nec_wg800hp=y
 CONFIG_TARGET_DEVICE_PACKAGES_ath79_generic_DEVICE_nec_wg800hp="ath10k-firmware-qca9887-ct-htt kmod-ath10k-ct kmod-ath9k kmod-ath9k-common kmod-hwmon-core"
 CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_netgear_wndr3700=y
@@ -209,6 +216,7 @@ CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_tplink_archer-c7-v2=y
 CONFIG_TARGET_DEVICE_PACKAGES_ath79_generic_DEVICE_tplink_archer-c7-v2="ath10k-firmware-qca988x-ct blockd block-mount kmod-ath10k-ct kmod-ath9k kmod-ath9k-common kmod-crypto-crc32c kmod-fs-autofs4 kmod-fs-exfat kmod-fs-ext4 kmod-fs-msdos kmod-fs-vfat kmod-fuse kmod-hwmon-core kmod-lib-crc16 kmod-mii kmod-nls-cp437 kmod-phy-ath79-usb kmod-scsi-core kmod-usb2 kmod-usb-core kmod-usb-ehci kmod-usb-ledtrig-usbport kmod-usb-net kmod-usb-net-cdc-ether kmod-usb-net-rndis kmod-usb-ohci kmod-usb-storage kmod-usb-storage-uas ntfs-3g"
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_tplink_archer-c7-v4 is not set
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_tplink_archer-c7-v5 is not set
+# CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_tplink_re350k-v1 is not set
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_tplink_re450-v2 is not set
 CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_tplink_tl-wdr3600=y
 CONFIG_TARGET_DEVICE_PACKAGES_ath79_generic_DEVICE_tplink_tl-wdr3600="blockd block-mount kmod-ath9k kmod-ath9k-common kmod-crypto-crc32c kmod-fs-autofs4 kmod-fs-exfat kmod-fs-ext4 kmod-fs-msdos kmod-fs-vfat kmod-fuse kmod-lib-crc16 kmod-mii kmod-nls-cp437 kmod-phy-ath79-usb kmod-scsi-core kmod-usb2 kmod-usb-core kmod-usb-ehci kmod-usb-ledtrig-usbport kmod-usb-net kmod-usb-net-cdc-ether kmod-usb-net-rndis kmod-usb-ohci kmod-usb-storage kmod-usb-storage-uas ntfs-3g"
@@ -596,7 +604,7 @@ CONFIG_TARGET_INIT_CMD="/sbin/init"
 CONFIG_TARGET_INIT_SUPPRESS_STDERR=y
 CONFIG_VERSIONOPT=y
 CONFIG_VERSION_DIST="X-WRT"
-CONFIG_VERSION_NUMBER="5.0_b201903101832"
+CONFIG_VERSION_NUMBER="5.0_b201903160152"
 CONFIG_VERSION_CODE="Disco"
 CONFIG_VERSION_REPO="http://downloads.openwrt.org/snapshots"
 CONFIG_VERSION_HOME_URL="https://x-wrt.com/"
@@ -3568,13 +3576,13 @@ CONFIG_PACKAGE_kmod-owl-loader=m
 # CONFIG_PACKAGE_golang-doc is not set
 # CONFIG_PACKAGE_golang-github-agl-ed25519-dev is not set
 # CONFIG_PACKAGE_golang-github-dchest-siphash-dev is not set
+# CONFIG_PACKAGE_golang-gitlab-yawning-obfs4-dev is not set
 # CONFIG_PACKAGE_golang-golang-x-crypto-dev is not set
 # CONFIG_PACKAGE_golang-golang-x-net-dev is not set
 # CONFIG_PACKAGE_golang-golang-x-sys-dev is not set
 # CONFIG_PACKAGE_golang-golang-x-text-dev is not set
 # CONFIG_PACKAGE_golang-src is not set
 # CONFIG_PACKAGE_golang-torproject-pluggable-transports-goptlib-dev is not set
-# CONFIG_PACKAGE_golang-torproject-pluggable-transports-obfs4-dev is not set
 # CONFIG_PACKAGE_golang-torproject-tor-fw-helper-dev is not set
 
 #
@@ -3650,7 +3658,6 @@ CONFIG_PACKAGE_luasocket=y
 #
 # Python
 #
-# CONFIG_PACKAGE_chardet is not set
 # CONFIG_PACKAGE_django is not set
 # CONFIG_PACKAGE_django-appconf is not set
 # CONFIG_PACKAGE_django-compressor is not set
@@ -3690,6 +3697,8 @@ CONFIG_PACKAGE_luasocket=y
 # CONFIG_PACKAGE_python-certifi-src is not set
 # CONFIG_PACKAGE_python-cffi is not set
 # CONFIG_PACKAGE_python-cffi-src is not set
+# CONFIG_PACKAGE_python-chardet is not set
+# CONFIG_PACKAGE_python-chardet-src is not set
 # CONFIG_PACKAGE_python-codecs is not set
 # CONFIG_PACKAGE_python-codecs-src is not set
 # CONFIG_PACKAGE_python-compiler is not set
@@ -3699,6 +3708,10 @@ CONFIG_PACKAGE_luasocket=y
 # CONFIG_PACKAGE_python-crcmod is not set
 # CONFIG_PACKAGE_python-crypto is not set
 # CONFIG_PACKAGE_python-crypto-src is not set
+# CONFIG_PACKAGE_python-cryptodome is not set
+# CONFIG_PACKAGE_python-cryptodome-src is not set
+# CONFIG_PACKAGE_python-cryptodomex is not set
+# CONFIG_PACKAGE_python-cryptodomex-src is not set
 # CONFIG_PACKAGE_python-cryptography is not set
 # CONFIG_PACKAGE_python-cryptography-src is not set
 # CONFIG_PACKAGE_python-ctypes is not set
@@ -3787,6 +3800,8 @@ CONFIG_PACKAGE_luasocket=y
 # CONFIG_PACKAGE_python-pyptlib-src is not set
 # CONFIG_PACKAGE_python-pyserial is not set
 # CONFIG_PACKAGE_python-pyserial-src is not set
+# CONFIG_PACKAGE_python-pytz is not set
+# CONFIG_PACKAGE_python-pytz-src is not set
 # CONFIG_PACKAGE_python-qrcode is not set
 # CONFIG_PACKAGE_python-requests is not set
 # CONFIG_PACKAGE_python-requests-oauthlib is not set
@@ -3796,6 +3811,8 @@ CONFIG_PACKAGE_luasocket=y
 # CONFIG_PACKAGE_python-service-identity-src is not set
 # CONFIG_PACKAGE_python-setuptools is not set
 # CONFIG_PACKAGE_python-setuptools-src is not set
+# CONFIG_PACKAGE_python-simplejson is not set
+# CONFIG_PACKAGE_python-simplejson-src is not set
 # CONFIG_PACKAGE_python-six is not set
 # CONFIG_PACKAGE_python-six-src is not set
 # CONFIG_PACKAGE_python-smbus is not set
@@ -3817,6 +3834,8 @@ CONFIG_PACKAGE_luasocket=y
 # CONFIG_PACKAGE_python-zope-interface is not set
 # CONFIG_PACKAGE_python-zope-interface-src is not set
 # CONFIG_PACKAGE_python3 is not set
+# CONFIG_PACKAGE_python3-appdirs is not set
+# CONFIG_PACKAGE_python3-appdirs-src is not set
 # CONFIG_PACKAGE_python3-asn1crypto is not set
 # CONFIG_PACKAGE_python3-asyncio is not set
 # CONFIG_PACKAGE_python3-asyncio-src is not set
@@ -3829,6 +3848,7 @@ CONFIG_PACKAGE_luasocket=y
 # CONFIG_PACKAGE_python3-bcrypt is not set
 # CONFIG_PACKAGE_python3-bcrypt-src is not set
 # CONFIG_PACKAGE_python3-bottle is not set
+# CONFIG_PACKAGE_python3-bottle-src is not set
 # CONFIG_PACKAGE_python3-certifi is not set
 # CONFIG_PACKAGE_python3-certifi-src is not set
 # CONFIG_PACKAGE_python3-cffi is not set
@@ -3837,13 +3857,23 @@ CONFIG_PACKAGE_luasocket=y
 # CONFIG_PACKAGE_python3-cgi-src is not set
 # CONFIG_PACKAGE_python3-cgitb is not set
 # CONFIG_PACKAGE_python3-cgitb-src is not set
+# CONFIG_PACKAGE_python3-chardet is not set
+# CONFIG_PACKAGE_python3-chardet-src is not set
 # CONFIG_PACKAGE_python3-click is not set
+# CONFIG_PACKAGE_python3-click-log is not set
+# CONFIG_PACKAGE_python3-click-log-src is not set
 # CONFIG_PACKAGE_python3-codecs is not set
 # CONFIG_PACKAGE_python3-codecs-src is not set
 # CONFIG_PACKAGE_python3-constantly is not set
 # CONFIG_PACKAGE_python3-constantly-src is not set
+# CONFIG_PACKAGE_python3-contextlib2 is not set
+# CONFIG_PACKAGE_python3-contextlib2-src is not set
 # CONFIG_PACKAGE_python3-crypto is not set
 # CONFIG_PACKAGE_python3-crypto-src is not set
+# CONFIG_PACKAGE_python3-cryptodome is not set
+# CONFIG_PACKAGE_python3-cryptodome-src is not set
+# CONFIG_PACKAGE_python3-cryptodomex is not set
+# CONFIG_PACKAGE_python3-cryptodomex-src is not set
 # CONFIG_PACKAGE_python3-cryptography is not set
 # CONFIG_PACKAGE_python3-cryptography-src is not set
 # CONFIG_PACKAGE_python3-ctypes is not set
@@ -3854,6 +3884,8 @@ CONFIG_PACKAGE_luasocket=y
 # CONFIG_PACKAGE_python3-dbm-src is not set
 # CONFIG_PACKAGE_python3-decimal is not set
 # CONFIG_PACKAGE_python3-decimal-src is not set
+# CONFIG_PACKAGE_python3-decorator is not set
+# CONFIG_PACKAGE_python3-decorator-src is not set
 # CONFIG_PACKAGE_python3-dev is not set
 # CONFIG_PACKAGE_python3-dev-src is not set
 # CONFIG_PACKAGE_python3-distutils is not set
@@ -3875,8 +3907,12 @@ CONFIG_PACKAGE_luasocket=y
 # CONFIG_PACKAGE_python3-idna-src is not set
 # CONFIG_PACKAGE_python3-incremental is not set
 # CONFIG_PACKAGE_python3-incremental-src is not set
+# CONFIG_PACKAGE_python3-influxdb is not set
+# CONFIG_PACKAGE_python3-influxdb-src is not set
 # CONFIG_PACKAGE_python3-itsdangerous is not set
 # CONFIG_PACKAGE_python3-jinja2 is not set
+# CONFIG_PACKAGE_python3-jsonpath-ng is not set
+# CONFIG_PACKAGE_python3-jsonpath-ng-src is not set
 # CONFIG_PACKAGE_python3-lib2to3 is not set
 # CONFIG_PACKAGE_python3-lib2to3-src is not set
 # CONFIG_PACKAGE_python3-light is not set
@@ -3901,6 +3937,8 @@ CONFIG_PACKAGE_luasocket=y
 # CONFIG_PACKAGE_python3-oauthlib-src is not set
 # CONFIG_PACKAGE_python3-openssl is not set
 # CONFIG_PACKAGE_python3-openssl-src is not set
+# CONFIG_PACKAGE_python3-paho-mqtt is not set
+# CONFIG_PACKAGE_python3-paho-mqtt-src is not set
 # CONFIG_PACKAGE_python3-parsley is not set
 # CONFIG_PACKAGE_python3-parsley-src is not set
 # CONFIG_PACKAGE_python3-passlib is not set
@@ -3924,10 +3962,18 @@ CONFIG_PACKAGE_luasocket=y
 # CONFIG_PACKAGE_python3-pyopenssl-src is not set
 # CONFIG_PACKAGE_python3-pyserial is not set
 # CONFIG_PACKAGE_python3-pyserial-src is not set
+# CONFIG_PACKAGE_python3-pytz is not set
+# CONFIG_PACKAGE_python3-pytz-src is not set
+# CONFIG_PACKAGE_python3-requests is not set
+# CONFIG_PACKAGE_python3-requests-src is not set
+# CONFIG_PACKAGE_python3-schema is not set
+# CONFIG_PACKAGE_python3-schema-src is not set
 # CONFIG_PACKAGE_python3-service-identity is not set
 # CONFIG_PACKAGE_python3-service-identity-src is not set
 # CONFIG_PACKAGE_python3-setuptools is not set
 # CONFIG_PACKAGE_python3-setuptools-src is not set
+# CONFIG_PACKAGE_python3-simplejson is not set
+# CONFIG_PACKAGE_python3-simplejson-src is not set
 # CONFIG_PACKAGE_python3-six is not set
 # CONFIG_PACKAGE_python3-six-src is not set
 # CONFIG_PACKAGE_python3-smbus is not set
@@ -3949,9 +3995,7 @@ CONFIG_PACKAGE_luasocket=y
 # CONFIG_PACKAGE_python3-yaml is not set
 # CONFIG_PACKAGE_python3-zope-interface is not set
 # CONFIG_PACKAGE_python3-zope-interface-src is not set
-# CONFIG_PACKAGE_pytz is not set
 # CONFIG_PACKAGE_rcssmin is not set
-# CONFIG_PACKAGE_simplejson is not set
 
 #
 # Ruby
@@ -4748,6 +4792,7 @@ CONFIG_OPENSSL_WITH_PSK=y
 # Engine/Hardware Support
 #
 # CONFIG_OPENSSL_ENGINE is not set
+# CONFIG_OPENSSL_ENGINE_CRYPTO is not set
 # CONFIG_PACKAGE_libopenssl-conf is not set
 # CONFIG_PACKAGE_libwolfssl is not set
 
@@ -6670,6 +6715,12 @@ CONFIG_PACKAGE_wpad-basic=m
 #
 
 #
+# BigClown
+#
+# CONFIG_PACKAGE_bigclown-control-tool is not set
+# CONFIG_PACKAGE_bigclown-mqtt2influxdb is not set
+
+#
 # Boot Loaders
 #
 CONFIG_PACKAGE_fconfig=m
@@ -6928,6 +6979,7 @@ CONFIG_PACKAGE_ntfs-3g=m
 # CONFIG_PACKAGE_flock is not set
 # CONFIG_PACKAGE_fritz-caldata is not set
 # CONFIG_PACKAGE_fritz-tffs is not set
+# CONFIG_PACKAGE_fritz-tffs-nand is not set
 # CONFIG_PACKAGE_ftdi_eeprom is not set
 # CONFIG_PACKAGE_gammu is not set
 # CONFIG_PACKAGE_gawk is not set
