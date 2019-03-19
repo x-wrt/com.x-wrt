@@ -403,6 +403,7 @@ for t in $targets; do
 		TARGET_DEVICE_ath79_generic_DEVICE_netgear_wndr3700|\
 		TARGET_DEVICE_ath79_generic_DEVICE_ubnt_bullet-m|\
 		TARGET_DEVICE_ath79_generic_DEVICE_ubnt_nano-m|\
+		TARGET_DEVICE_ath79_generic_DEVICE_ubnt_nanostation-m|\
 		TARGET_DEVICE_ath79_generic_DEVICE_ubnt_rocket-m|\
 		TARGET_DEVICE_ath79_generic_DEVICE_ubnt_unifi|\
 		TARGET_DEVICE_ath79_generic_DEVICE_ubnt_unifiac-lite|\
@@ -599,6 +600,7 @@ for t in $targets; do
 		TARGET_DEVICE_ath79_generic_DEVICE_netgear_wndr3700|\
 		TARGET_DEVICE_ath79_generic_DEVICE_ubnt_bullet-m|\
 		TARGET_DEVICE_ath79_generic_DEVICE_ubnt_nano-m|\
+		TARGET_DEVICE_ath79_generic_DEVICE_ubnt_nanostation-m|\
 		TARGET_DEVICE_ath79_generic_DEVICE_ubnt_rocket-m|\
 		TARGET_DEVICE_ath79_generic_DEVICE_ubnt_unifi|\
 		TARGET_DEVICE_ath79_generic_DEVICE_ubnt_unifiac-pro|\
