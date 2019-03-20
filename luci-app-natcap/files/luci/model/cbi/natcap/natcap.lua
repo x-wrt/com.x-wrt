@@ -34,7 +34,12 @@ e = s:taboption("general", Flag, "cnipwhitelist_mode", translate("Domestic and I
 e.default = e.disabled
 e.rmempty = false
 
-e = s:taboption("general", Flag, "full_cone_nat", translate("Full Cone Nat"), translate("Generally do not need to be enabled unless used to play games."))
+e = s:taboption("general", Value, "server_persist_timeout", translate("Server Switching Interval (s)"), translate("How long to switch the server."))
+e.default = '30'
+e.rmempty = true
+e.placeholder = '30'
+
+e = s:taboption("general", Flag, "server_persist_lock", translate("Lock on server"), translate("do not switch servers by automatic detection"))
 e.default = e.disabled
 e.rmempty = false
 
@@ -49,15 +54,6 @@ e.rmempty = false
 e = s:taboption("advanced", Value, "dns_server", translate("DNS Server"), translate("Please fill in the server by format (ip:port)"))
 e.datatype = "ip4addrport"
 e.placeholder = "8.8.8.8:53"
-
-e = s:taboption("advanced", Value, "server_persist_timeout", translate("Server Switching Interval (s)"), translate("How long to switch the server."))
-e.default = '30'
-e.rmempty = true
-e.placeholder = '30'
-
-e = s:taboption("advanced", Flag, "server_persist_lock", translate("Lock on server"), translate("do not switch servers by automatic detection"))
-e.default = e.disabled
-e.rmempty = false
 
 e = s:taboption("advanced", Flag, "encode_mode", translate("Force TCP encode as UDP"), translate("Do not normally enable unless the normal mode is not working."))
 e.default = e.disabled
@@ -85,27 +81,6 @@ e = s:taboption("advanced", Value, "htp_confusion_host", translate("Obfuscation 
 e.rmempty = true
 e.placeholder = 'bing.com'
 
-e = s:taboption("general", Flag, "natcapovpn", translate("Enable OpenVPN Server"), translate("Allows you to use OpenVPN to connect to router, the router need to have a public IP."))
-e.default = e.disabled
-e.rmempty = false
-
-e = s:taboption("general", Flag, "pptpd", translate("Enable The PPTP Server"), translate("Allows you to use VPN to connect to router, the router need to have a public IP."))
-e.default = e.disabled
-e.rmempty = false
-
-local u = m:section(TypedSection, "pptpuser", "")
-u.addremove = true
-u.anonymous = true
-u.template = "cbi/tblsection"
-
-e = u:option(Value, "username", translate("PPTP Username"))
-e.datatype = "string"
-e.rmempty  = false
-
-e = u:option(Value, "password", translate("Password"))
-e.datatype = "string"
-e.rmempty  = false
-
 e = s:taboption("macfilter", ListValue, "macfilter", translate("Mac Address Filter"))
 e:value("", translate("Disabled"))
 e:value("allow", translate("whitelist (Allow to use Natcap)"))
@@ -129,10 +104,6 @@ e.default = e.disabled
 e.rmempty = false
 
 e = s:taboption("system", Flag, "full_proxy", translate("Full Proxy"), translate("All traffic goes to proxy."))
-e.default = e.disabled
-e.rmempty = false
-
-e = s:taboption("system", Flag, "enable_natflow", translate("Enable Fast Forwarding"))
 e.default = e.disabled
 e.rmempty = false
 

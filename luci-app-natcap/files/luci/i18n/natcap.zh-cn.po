@@ -44,7 +44,7 @@ msgid "Natcap Service"
 msgstr "Natcap 服务"
 
 msgid "Natcap to avoid censorship/filtering/logging"
-msgstr "Natcap 避免被审查/过滤/记录（加速访问国际服务）"
+msgstr "加速访问国际服务"
 
 msgid "General Settings"
 msgstr "一般配置"
@@ -186,3 +186,9 @@ msgstr "启用快速转发(offload)"
 
 msgid "Enable Fast Forwarding"
 msgstr "启用转发加速(natflow)"
+
+msgid "Basic System"
+msgstr "基础系统"
+
+msgid "The basic system settings && services"
+msgstr "基础系统配置和服务"

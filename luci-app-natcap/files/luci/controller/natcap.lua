@@ -21,6 +21,10 @@ function index()
 	entry({"admin", "services", "natcap", "get_openvpn_client_udp"}, call("get_openvpn_client_udp")).leaf = true
 	entry({"admin", "services", "natcap", "status"}, call("status")).leaf = true
 	entry({"admin", "services", "natcap", "change_server"}, call("change_server")).leaf = true
+
+	page = entry({"admin", "services", "natcapd"}, cbi("natcap/natcapd"), _("Basic System"))
+	page.i18n = "natcap"
+	page.dependent = true
 end
 
 function status()
