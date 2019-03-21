@@ -300,6 +300,8 @@ for t in $targets; do
 		TARGET_DEVICE_ramips_mt7620_DEVICE_miwifi-mini|\
 		TARGET_DEVICE_bcm53xx_DEVICE_netgear-r6250|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_mir3g|\
+		TARGET_DEVICE_ramips_mt7621_DEVICE_xiaomi_mir3g|\
+		TARGET_DEVICE_ramips_mt7621_DEVICE_xiaomi_mir3p|\
 		TARGET_DEVICE_ar71xx_generic_DEVICE_tl-wr1043nd-v4|\
 		TARGET_DEVICE_kirkwood_DEVICE_on100|\
 		TARGET_DEVICE_kirkwood_DEVICE_linksys_audi|\
@@ -514,6 +516,8 @@ for t in $targets; do
 		TARGET_DEVICE_ipq806x_DEVICE_avm_fritzbox-4040|\
 		TARGET_DEVICE_bcm53xx_DEVICE_netgear-r6250|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_mir3g|\
+		TARGET_DEVICE_ramips_mt7621_DEVICE_xiaomi_mir3g|\
+		TARGET_DEVICE_ramips_mt7621_DEVICE_xiaomi_mir3p|\
 		TARGET_DEVICE_ar71xx_generic_DEVICE_F9K1115V2|\
 		TARGET_DEVICE_ar71xx_tiny_DEVICE_F9K1115V2|\
 		TARGET_DEVICE_ipq806x_DEVICE_qcom_ap-dk04.1-c1|\
