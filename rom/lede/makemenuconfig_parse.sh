@@ -199,6 +199,11 @@ for t in $targets; do
 	mods="$us"
 	case $t in
 		#>8M flash
+		TARGET_DEVICE_ath79_generic_DEVICE_glinet_gl-x750|\
+		TARGET_DEVICE_ath79_generic_DEVICE_glinet_gl-ar750s|\
+		TARGET_DEVICE_ath79_generic_DEVICE_glinet_gl-ar300m-nor|\
+		TARGET_DEVICE_ath79_generic_DEVICE_glinet_gl-ar300m-lite|\
+		TARGET_DEVICE_ath79_generic_DEVICE_glinet_gl-ar150|\
 		TARGET_DEVICE_ar71xx_generic_DEVICE_gl-usb150|\
 		TARGET_DEVICE_ar71xx_generic_DEVICE_gl-mifi|\
 		TARGET_DEVICE_ath79_generic_DEVICE_yuncore_a770|\
@@ -556,6 +561,11 @@ for t in $targets; do
 			mods="$mods $cdcmod"
 		;;
 		#with usb2
+		TARGET_DEVICE_ath79_generic_DEVICE_glinet_gl-x750|\
+		TARGET_DEVICE_ath79_generic_DEVICE_glinet_gl-ar750s|\
+		TARGET_DEVICE_ath79_generic_DEVICE_glinet_gl-ar300m-nor|\
+		TARGET_DEVICE_ath79_generic_DEVICE_glinet_gl-ar300m-lite|\
+		TARGET_DEVICE_ath79_generic_DEVICE_glinet_gl-ar150|\
 		TARGET_DEVICE_ar71xx_generic_DEVICE_gl-mifi|\
 		TARGET_DEVICE_ramips_rt305x_DEVICE_vocore-8M|\
 		TARGET_DEVICE_ramips_rt305x_DEVICE_vocore-16M|\
