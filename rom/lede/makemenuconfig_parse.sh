@@ -199,6 +199,9 @@ for t in $targets; do
 	mods="$us"
 	case $t in
 		#>8M flash
+		TARGET_DEVICE_ramips_mt7620_DEVICE_dlink_dir-510l|\
+		TARGET_DEVICE_ath79_generic_DEVICE_comfast_cf-e5|\
+		TARGET_DEVICE_ath79_generic_DEVICE_ubnt_nanobeam-ac|\
 		TARGET_DEVICE_ath79_generic_DEVICE_glinet_gl-x750|\
 		TARGET_DEVICE_ath79_generic_DEVICE_glinet_gl-ar750s|\
 		TARGET_DEVICE_ath79_generic_DEVICE_glinet_gl-ar300m-nor|\
@@ -724,6 +727,9 @@ for t in $targets; do
 			mods="$mods $cdcmod"
 		;;
 		#no usb
+		TARGET_DEVICE_ramips_mt7620_DEVICE_dlink_dir-510l|\
+		TARGET_DEVICE_ath79_generic_DEVICE_comfast_cf-e5|\
+		TARGET_DEVICE_ath79_generic_DEVICE_ubnt_nanobeam-ac|\
 		TARGET_DEVICE_ar71xx_generic_DEVICE_gl-usb150|\
 		TARGET_DEVICE_ath79_generic_DEVICE_yuncore_a770|\
 		TARGET_DEVICE_ath79_generic_DEVICE_ubnt_nanostation-m-xw|\

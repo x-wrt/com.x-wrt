@@ -63,6 +63,7 @@ CONFIG_TARGET_MULTI_PROFILE=y
 # CONFIG_TARGET_ath79_generic_DEVICE_buffalo_wzr-hp-g450h is not set
 # CONFIG_TARGET_ath79_generic_DEVICE_comfast_cf-e110n-v2 is not set
 # CONFIG_TARGET_ath79_generic_DEVICE_comfast_cf-e120a-v3 is not set
+# CONFIG_TARGET_ath79_generic_DEVICE_comfast_cf-e5 is not set
 # CONFIG_TARGET_ath79_generic_DEVICE_dlink_dir-825-b1 is not set
 # CONFIG_TARGET_ath79_generic_DEVICE_dlink_dir-825-c1 is not set
 # CONFIG_TARGET_ath79_generic_DEVICE_dlink_dir-835-a1 is not set
@@ -116,6 +117,7 @@ CONFIG_TARGET_MULTI_PROFILE=y
 # CONFIG_TARGET_ath79_generic_DEVICE_tplink_tl-wr1043nd-v3 is not set
 # CONFIG_TARGET_ath79_generic_DEVICE_tplink_tl-wr1043nd-v4 is not set
 # CONFIG_TARGET_ath79_generic_DEVICE_tplink_tl-wr2543-v1 is not set
+# CONFIG_TARGET_ath79_generic_DEVICE_tplink_tl-wr710n-v1 is not set
 # CONFIG_TARGET_ath79_generic_DEVICE_tplink_tl-wr810n-v1 is not set
 # CONFIG_TARGET_ath79_generic_DEVICE_tplink_tl-wr810n-v2 is not set
 # CONFIG_TARGET_ath79_generic_DEVICE_tplink_tl-wr842n-v1 is not set
@@ -166,6 +168,8 @@ CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_buffalo_wzr-hp-g450h=y
 CONFIG_TARGET_DEVICE_PACKAGES_ath79_generic_DEVICE_buffalo_wzr-hp-g450h="aria2 blockd block-mount kmod-ath9k kmod-ath9k-common kmod-crypto-crc32c kmod-fs-autofs4 kmod-fs-exfat kmod-fs-ext4 kmod-fs-msdos kmod-fs-vfat kmod-fuse kmod-lib-crc16 kmod-mii kmod-nls-cp437 kmod-phy-ath79-usb kmod-scsi-core kmod-usb2 kmod-usb-core kmod-usb-ehci kmod-usb-ledtrig-usbport kmod-usb-net kmod-usb-net-cdc-ether kmod-usb-net-rndis kmod-usb-ohci kmod-usb-printer kmod-usb-storage kmod-usb-storage-uas libopenssl libsqlite3 libssh2 libstdcpp libxml2 luci-app-aria2 luci-app-p910nd luci-app-samba luci-i18n-aria2-zh-cn luci-i18n-p910nd-en luci-i18n-p910nd-zh-cn luci-i18n-samba-en luci-i18n-samba-zh-cn ntfs-3g p910nd samba36-server webui-aria2"
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_comfast_cf-e110n-v2 is not set
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_comfast_cf-e120a-v3 is not set
+CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_comfast_cf-e5=y
+CONFIG_TARGET_DEVICE_PACKAGES_ath79_generic_DEVICE_comfast_cf-e5="aria2 kmod-ath9k kmod-ath9k-common kmod-leds-gpio kmod-mii kmod-phy-ath79-usb kmod-usb2 kmod-usb-core kmod-usb-ehci kmod-usb-net kmod-usb-net-qmi-wwan kmod-usb-printer kmod-usb-wdm libopenssl libsqlite3 libssh2 libstdcpp libxml2 luci-app-aria2 luci-app-p910nd luci-app-samba luci-i18n-aria2-zh-cn luci-i18n-p910nd-en luci-i18n-p910nd-zh-cn luci-i18n-samba-en luci-i18n-samba-zh-cn p910nd rssileds samba36-server webui-aria2"
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_dlink_dir-825-b1 is not set
 CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_dlink_dir-825-c1=y
 CONFIG_TARGET_DEVICE_PACKAGES_ath79_generic_DEVICE_dlink_dir-825-c1="aria2 blockd block-mount kmod-ath9k kmod-ath9k-common kmod-crypto-crc32c kmod-fs-autofs4 kmod-fs-exfat kmod-fs-ext4 kmod-fs-msdos kmod-fs-vfat kmod-fuse kmod-leds-reset kmod-lib-crc16 kmod-mii kmod-nls-cp437 kmod-owl-loader kmod-phy-ath79-usb kmod-scsi-core kmod-usb2 kmod-usb-core kmod-usb-ehci kmod-usb-ledtrig-usbport kmod-usb-net kmod-usb-net-cdc-ether kmod-usb-net-rndis kmod-usb-ohci kmod-usb-printer kmod-usb-storage kmod-usb-storage-uas libopenssl libsqlite3 libssh2 libstdcpp libxml2 luci-app-aria2 luci-app-p910nd luci-app-samba luci-i18n-aria2-zh-cn luci-i18n-p910nd-en luci-i18n-p910nd-zh-cn luci-i18n-samba-en luci-i18n-samba-zh-cn ntfs-3g p910nd samba36-server webui-aria2"
@@ -250,6 +254,7 @@ CONFIG_TARGET_DEVICE_PACKAGES_ath79_generic_DEVICE_tplink_archer-c7-v5="aria2 at
 CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_tplink_tl-wr1043nd-v4=y
 CONFIG_TARGET_DEVICE_PACKAGES_ath79_generic_DEVICE_tplink_tl-wr1043nd-v4="aria2 blockd block-mount kmod-ath9k kmod-ath9k-common kmod-crypto-crc32c kmod-fs-autofs4 kmod-fs-exfat kmod-fs-ext4 kmod-fs-msdos kmod-fs-vfat kmod-fuse kmod-lib-crc16 kmod-mii kmod-nls-cp437 kmod-phy-ath79-usb kmod-scsi-core kmod-usb2 kmod-usb-core kmod-usb-ehci kmod-usb-ledtrig-usbport kmod-usb-net kmod-usb-net-cdc-ether kmod-usb-net-rndis kmod-usb-ohci kmod-usb-printer kmod-usb-storage kmod-usb-storage-uas libopenssl libsqlite3 libssh2 libstdcpp libxml2 luci-app-aria2 luci-app-p910nd luci-app-samba luci-i18n-aria2-zh-cn luci-i18n-p910nd-en luci-i18n-p910nd-zh-cn luci-i18n-samba-en luci-i18n-samba-zh-cn ntfs-3g p910nd samba36-server webui-aria2"
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_tplink_tl-wr2543-v1 is not set
+# CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_tplink_tl-wr710n-v1 is not set
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_tplink_tl-wr810n-v1 is not set
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_tplink_tl-wr810n-v2 is not set
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_tplink_tl-wr842n-v1 is not set
@@ -258,7 +263,8 @@ CONFIG_TARGET_DEVICE_PACKAGES_ath79_generic_DEVICE_tplink_tl-wr1043nd-v4="aria2 
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_ubnt_bullet-m is not set
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_ubnt_bullet-m-xw is not set
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_ubnt_lap-120 is not set
-# CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_ubnt_nanobeam-ac is not set
+CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_ubnt_nanobeam-ac=y
+CONFIG_TARGET_DEVICE_PACKAGES_ath79_generic_DEVICE_ubnt_nanobeam-ac="aria2 ath10k-firmware-qca988x-ct kmod-ath10k-ct kmod-ath9k kmod-ath9k-common kmod-hwmon-core kmod-phy-ath79-usb kmod-usb2 kmod-usb-core kmod-usb-ehci kmod-usb-printer libopenssl libsqlite3 libssh2 libstdcpp libxml2 luci-app-aria2 luci-app-p910nd luci-app-samba luci-i18n-aria2-zh-cn luci-i18n-p910nd-en luci-i18n-p910nd-zh-cn luci-i18n-samba-en luci-i18n-samba-zh-cn p910nd samba36-server webui-aria2"
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_ubnt_nanostation-ac is not set
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_ubnt_nanostation-ac-loco is not set
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_ubnt_nanostation-m is not set
@@ -313,11 +319,14 @@ CONFIG_DEFAULT_kmod-gpio-button-hotplug=y
 CONFIG_MODULE_DEFAULT_kmod-gpio-button-hotplug=y
 CONFIG_DEFAULT_kmod-ipt-offload=y
 CONFIG_MODULE_DEFAULT_kmod-ipt-offload=y
+CONFIG_MODULE_DEFAULT_kmod-leds-gpio=y
 CONFIG_MODULE_DEFAULT_kmod-leds-reset=y
 CONFIG_MODULE_DEFAULT_kmod-owl-loader=y
 CONFIG_MODULE_DEFAULT_kmod-usb-chipidea2=y
 CONFIG_MODULE_DEFAULT_kmod-usb-core=y
 CONFIG_MODULE_DEFAULT_kmod-usb-ledtrig-usbport=y
+CONFIG_MODULE_DEFAULT_kmod-usb-net=y
+CONFIG_MODULE_DEFAULT_kmod-usb-net-qmi-wwan=y
 CONFIG_MODULE_DEFAULT_kmod-usb-ohci=y
 CONFIG_MODULE_DEFAULT_kmod-usb2=y
 CONFIG_DEFAULT_libc=y
@@ -340,6 +349,7 @@ CONFIG_DEFAULT_ppp=y
 CONFIG_MODULE_DEFAULT_ppp=y
 CONFIG_DEFAULT_ppp-mod-pppoe=y
 CONFIG_MODULE_DEFAULT_ppp-mod-pppoe=y
+CONFIG_MODULE_DEFAULT_rssileds=y
 CONFIG_DEFAULT_swconfig=y
 CONFIG_MODULE_DEFAULT_swconfig=y
 CONFIG_DEFAULT_uboot-envtools=y
@@ -3022,7 +3032,7 @@ CONFIG_PACKAGE_kmod-hwmon-core=m
 #
 # LED modules
 #
-# CONFIG_PACKAGE_kmod-leds-gpio is not set
+CONFIG_PACKAGE_kmod-leds-gpio=m
 # CONFIG_PACKAGE_kmod-leds-pca963x is not set
 CONFIG_PACKAGE_kmod-leds-reset=m
 # CONFIG_PACKAGE_kmod-ledtrig-default-on is not set
@@ -3403,7 +3413,7 @@ CONFIG_PACKAGE_kmod-usb-net-cdc-ether=m
 # CONFIG_PACKAGE_kmod-usb-net-mcs7830 is not set
 # CONFIG_PACKAGE_kmod-usb-net-pegasus is not set
 # CONFIG_PACKAGE_kmod-usb-net-pl is not set
-# CONFIG_PACKAGE_kmod-usb-net-qmi-wwan is not set
+CONFIG_PACKAGE_kmod-usb-net-qmi-wwan=m
 CONFIG_PACKAGE_kmod-usb-net-rndis=m
 # CONFIG_PACKAGE_kmod-usb-net-rtl8150 is not set
 # CONFIG_PACKAGE_kmod-usb-net-rtl8152 is not set
@@ -3420,7 +3430,7 @@ CONFIG_PACKAGE_kmod-usb-storage-extras=m
 CONFIG_PACKAGE_kmod-usb-storage-uas=m
 # CONFIG_PACKAGE_kmod-usb-test is not set
 # CONFIG_PACKAGE_kmod-usb-uhci is not set
-# CONFIG_PACKAGE_kmod-usb-wdm is not set
+CONFIG_PACKAGE_kmod-usb-wdm=m
 # CONFIG_PACKAGE_kmod-usb-yealink is not set
 CONFIG_PACKAGE_kmod-usb2=m
 # CONFIG_PACKAGE_kmod-usb2-pci is not set
@@ -6592,7 +6602,7 @@ CONFIG_PACKAGE_ppp-mod-pptp=y
 # CONFIG_PACKAGE_redsocks is not set
 # CONFIG_PACKAGE_remserial is not set
 # CONFIG_PACKAGE_rpcbind is not set
-# CONFIG_PACKAGE_rssileds is not set
+CONFIG_PACKAGE_rssileds=m
 # CONFIG_PACKAGE_rsyslog is not set
 # CONFIG_PACKAGE_safe-search is not set
 # CONFIG_PACKAGE_samba36-client is not set

@@ -71,6 +71,7 @@ CONFIG_TARGET_MULTI_PROFILE=y
 # CONFIG_TARGET_ramips_mt7620_DEVICE_wmr-300 is not set
 # CONFIG_TARGET_ramips_mt7620_DEVICE_cf-wr800n is not set
 # CONFIG_TARGET_ramips_mt7620_DEVICE_dch-m225 is not set
+# CONFIG_TARGET_ramips_mt7620_DEVICE_dlink_dir-510l is not set
 # CONFIG_TARGET_ramips_mt7620_DEVICE_dir-810l is not set
 # CONFIG_TARGET_ramips_mt7620_DEVICE_dlink_dwr-116-a1 is not set
 # CONFIG_TARGET_ramips_mt7620_DEVICE_dlink_dwr-118-a1 is not set
@@ -168,6 +169,8 @@ CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt7620_DEVICE_bdcom_wap2100-sk="aria2 block
 # CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_wmr-300 is not set
 # CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_cf-wr800n is not set
 # CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_dch-m225 is not set
+CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_dlink_dir-510l=y
+CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt7620_DEVICE_dlink_dir-510l="aria2 jboot-tools kmod-mt76-core kmod-mt76x02-common kmod-mt76x0-common kmod-mt76x0e kmod-rt2800-lib kmod-rt2800-mmio kmod-rt2800-pci kmod-rt2800-soc kmod-rt2x00-lib kmod-rt2x00-mmio kmod-rt2x00-pci kmod-usb2 kmod-usb-core kmod-usb-ehci kmod-usb-ohci kmod-usb-printer libopenssl libsqlite3 libssh2 libstdcpp libxml2 luci-app-aria2 luci-app-p910nd luci-app-samba luci-i18n-aria2-zh-cn luci-i18n-p910nd-en luci-i18n-p910nd-zh-cn luci-i18n-samba-en luci-i18n-samba-zh-cn p910nd rt2800-pci-firmware samba36-server webui-aria2"
 # CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_dir-810l is not set
 # CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_dlink_dwr-116-a1 is not set
 CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_dlink_dwr-118-a1=y
@@ -175,11 +178,11 @@ CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt7620_DEVICE_dlink_dwr-118-a1="aria2 block
 CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_dlink_dwr-118-a2=y
 CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt7620_DEVICE_dlink_dwr-118-a2="aria2 blockd block-mount jboot-tools kmod-crypto-crc32c kmod-fs-autofs4 kmod-fs-exfat kmod-fs-ext4 kmod-fs-msdos kmod-fs-vfat kmod-fuse kmod-lib-crc16 kmod-mii kmod-mt76-core kmod-mt76x02-common kmod-mt76x2 kmod-mt76x2-common kmod-nls-cp437 kmod-rt2800-lib kmod-rt2800-mmio kmod-rt2800-pci kmod-rt2800-soc kmod-rt2x00-lib kmod-rt2x00-mmio kmod-rt2x00-pci kmod-scsi-core kmod-usb2 kmod-usb-core kmod-usb-ehci kmod-usb-net kmod-usb-net-cdc-ether kmod-usb-net-rndis kmod-usb-ohci kmod-usb-printer kmod-usb-storage kmod-usb-storage-uas libopenssl libsqlite3 libssh2 libstdcpp libxml2 luci-app-aria2 luci-app-p910nd luci-app-samba luci-i18n-aria2-zh-cn luci-i18n-p910nd-en luci-i18n-p910nd-zh-cn luci-i18n-samba-en luci-i18n-samba-zh-cn ntfs-3g p910nd rt2800-pci-firmware samba36-server webui-aria2"
 CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_dlink_dwr-921-c1=y
-CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt7620_DEVICE_dlink_dwr-921-c1="jboot-tools kmod-mii kmod-rt2800-lib kmod-rt2800-mmio kmod-rt2800-pci kmod-rt2800-soc kmod-rt2x00-lib kmod-rt2x00-mmio kmod-rt2x00-pci kmod-usb2 kmod-usb-core kmod-usb-ehci kmod-usb-net kmod-usb-net-qmi-wwan kmod-usb-serial kmod-usb-serial-option kmod-usb-serial-wwan kmod-usb-wdm rt2800-pci-firmware uqmi wwan"
+CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt7620_DEVICE_dlink_dwr-921-c1="jboot-tools kmod-mii kmod-rt2800-lib kmod-rt2800-mmio kmod-rt2800-pci kmod-rt2800-soc kmod-rt2x00-lib kmod-rt2x00-mmio kmod-rt2x00-pci kmod-usb2 kmod-usb-core kmod-usb-ehci kmod-usb-net kmod-usb-net-qmi-wwan kmod-usb-ohci kmod-usb-serial kmod-usb-serial-option kmod-usb-serial-wwan kmod-usb-wdm rt2800-pci-firmware uqmi wwan"
 CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_dlink_dwr-921-c3=y
-CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt7620_DEVICE_dlink_dwr-921-c3="jboot-tools kmod-mii kmod-rt2800-lib kmod-rt2800-mmio kmod-rt2800-pci kmod-rt2800-soc kmod-rt2x00-lib kmod-rt2x00-mmio kmod-rt2x00-pci kmod-usb2 kmod-usb-core kmod-usb-ehci kmod-usb-net kmod-usb-net-qmi-wwan kmod-usb-serial kmod-usb-serial-option kmod-usb-serial-wwan kmod-usb-wdm rt2800-pci-firmware uqmi wwan"
+CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt7620_DEVICE_dlink_dwr-921-c3="jboot-tools kmod-mii kmod-rt2800-lib kmod-rt2800-mmio kmod-rt2800-pci kmod-rt2800-soc kmod-rt2x00-lib kmod-rt2x00-mmio kmod-rt2x00-pci kmod-usb2 kmod-usb-core kmod-usb-ehci kmod-usb-net kmod-usb-net-qmi-wwan kmod-usb-ohci kmod-usb-serial kmod-usb-serial-option kmod-usb-serial-wwan kmod-usb-wdm rt2800-pci-firmware uqmi wwan"
 CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_dlink_dwr-922-e2=y
-CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt7620_DEVICE_dlink_dwr-922-e2="jboot-tools kmod-mii kmod-rt2800-lib kmod-rt2800-mmio kmod-rt2800-pci kmod-rt2800-soc kmod-rt2x00-lib kmod-rt2x00-mmio kmod-rt2x00-pci kmod-usb2 kmod-usb-core kmod-usb-ehci kmod-usb-net kmod-usb-net-qmi-wwan kmod-usb-serial kmod-usb-serial-option kmod-usb-serial-wwan kmod-usb-wdm rt2800-pci-firmware uqmi wwan"
+CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt7620_DEVICE_dlink_dwr-922-e2="jboot-tools kmod-mii kmod-rt2800-lib kmod-rt2800-mmio kmod-rt2800-pci kmod-rt2800-soc kmod-rt2x00-lib kmod-rt2x00-mmio kmod-rt2x00-pci kmod-usb2 kmod-usb-core kmod-usb-ehci kmod-usb-net kmod-usb-net-qmi-wwan kmod-usb-ohci kmod-usb-serial kmod-usb-serial-option kmod-usb-serial-wwan kmod-usb-wdm rt2800-pci-firmware uqmi wwan"
 # CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_tiny-ac is not set
 # CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_edimax_br-6478ac-v2 is not set
 # CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_wrh-300cr is not set
