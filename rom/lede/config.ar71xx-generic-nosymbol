@@ -464,7 +464,8 @@ CONFIG_TARGET_DEVICE_PACKAGES_ar71xx_generic_DEVICE_wndr3700="blockd block-mount
 # CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_cpe505n is not set
 # CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_r602n is not set
 # CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_k2t is not set
-# CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_ts-d084 is not set
+CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_ts-d084=y
+CONFIG_TARGET_DEVICE_PACKAGES_ar71xx_generic_DEVICE_ts-d084="blockd block-mount kmod-ath9k kmod-ath9k-common kmod-crypto-crc32c kmod-fs-autofs4 kmod-fs-exfat kmod-fs-ext4 kmod-fs-msdos kmod-fs-vfat kmod-fuse kmod-lib-crc16 kmod-mii kmod-nls-cp437 kmod-scsi-core kmod-usb2 kmod-usb-core kmod-usb-ehci kmod-usb-net kmod-usb-net-cdc-ether kmod-usb-net-rndis kmod-usb-ohci kmod-usb-storage kmod-usb-storage-uas ntfs-3g"
 # CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_MZKW04NU is not set
 # CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_MZKW300NH is not set
 # CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_cap324 is not set
