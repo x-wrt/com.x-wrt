@@ -124,11 +124,6 @@ test $version -lt 2 && {
 			set network.@device[-1].type='macvlan'
 			set network.@device[-1].ifname="$ifname"
 			commit network
-			delete dhcp.lan
-			set dhcp.lan=dhcp
-			set dhcp.lan.interface='lan'
-			set dhcp.lan.ignore='1'
-			commit dhcp
 		EOT
 	}
 
