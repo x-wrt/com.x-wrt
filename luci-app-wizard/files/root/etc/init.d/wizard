@@ -102,8 +102,9 @@ add_wizard() {
 
 	uci commit network
 	uci commit wireless
-	/etc/init.d/network reload
-	/etc/init.d/dnsmasq reload
+	(sleep 15
+	 /etc/init.d/network reload
+	 /etc/init.d/dnsmasq reload)&
 }
 
 start() {
