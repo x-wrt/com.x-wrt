@@ -377,6 +377,7 @@ for t in $targets; do
 			mods="$mods $ssmod"
 		;;
 		#<=8M flash
+		TARGET_DEVICE_ramips_mt7621_DEVICE_netgear_ex6150|\
 		TARGET_DEVICE_ar71xx_generic_DEVICE_ts-d084|\
 		TARGET_DEVICE_ath79_generic_DEVICE_ubnt_nanostation-m-xw|\
 		TARGET_DEVICE_ramips_mt76x8_DEVICE_tplink_tl-wr802n-v4|\
@@ -729,6 +730,7 @@ for t in $targets; do
 			mods="$mods $cdcmod"
 		;;
 		#no usb
+		TARGET_DEVICE_ramips_mt7621_DEVICE_netgear_ex6150|\
 		TARGET_DEVICE_ramips_mt7620_DEVICE_dlink_dir-510l|\
 		TARGET_DEVICE_ath79_generic_DEVICE_comfast_cf-e5|\
 		TARGET_DEVICE_ath79_generic_DEVICE_ubnt_nanobeam-ac|\
