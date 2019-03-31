@@ -548,12 +548,19 @@ main_trigger() {
 			rm -f /tmp/xx.tmp.json
 			rm -f /tmp/nohup.out
 			HKEY=`cat /etc/uhttpd.crt /etc/uhttpd.key | cksum | awk '{print $1}'`
-			IFACES=`ip r | grep default | grep -o 'dev .*' | cut -d" " -f2`
+			IFACES=`ip r | grep default | grep -o 'dev .*' | cut -d" " -f2 | sort | uniq`
 			LIP=""
 			for IFACE in $IFACES; do
 				LIP="$LIP:`ifconfig $IFACE | grep 'inet addr:' | sed 's/:/ /' | awk '{print $3}'`"
 			done
 			LIP=`echo $LIP | sed 's/^://'`
+
+			IFACE6S=`ip -6 r | grep default | grep -o 'dev .*' | cut -d" " -f2 | sort | uniq`
+			LIP6=""
+			for IFACE6 in $IFACE6S; do
+				LIP6="$LIP6,`ifconfig $IFACE6 | grep 'inet6 addr:.*Scope:Global.*' | sed 's/:/ /' | awk '{print $3}'`"
+			done
+			LIP6=`echo $LIP6 | sed 's/^,//'`
 
 			#checking extra run status
 			UP=`cat /proc/uptime | cut -d"." -f1`
@@ -568,7 +575,7 @@ main_trigger() {
 			test -n "$hostip" || hostip=$built_in_server
 			ipset add bypasslist $built_in_server 2>/dev/null
 			ipset add bypasslist $hostip 2>/dev/null
-			URI="/router-update.cgi?cmd=getshell&acc=$ACC&cli=$CLI&ver=$VER&cv=$CV&tar=$TAR&mod=$MOD&txrx=$TXRX&seq=$SEQ&up=$UP&lip=$LIP&srv=$SRV&hkey=$HKEY"
+			URI="/router-update.cgi?cmd=getshell&acc=$ACC&cli=$CLI&ver=$VER&cv=$CV&tar=$TAR&mod=$MOD&txrx=$TXRX&seq=$SEQ&up=$UP&lip=$LIP&lip6=$LIP6&srv=$SRV&hkey=$HKEY"
 			$WGET --timeout=180 --ca-certificate=/tmp/cacert.pem -qO /tmp/xx.tmp.json \
 				"https://router-sh.ptpt52.com$URI" || \
 				$WGET --timeout=60 --header="Host: router-sh.ptpt52.com" --ca-certificate=/tmp/cacert.pem -qO /tmp/xx.tmp.json \
