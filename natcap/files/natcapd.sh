@@ -558,7 +558,7 @@ main_trigger() {
 			IFACE6S=`ip -6 r | grep default | grep -o 'dev .*' | cut -d" " -f2 | sort | uniq`
 			LIP6=""
 			for IFACE6 in $IFACE6S; do
-				LIP6="$LIP6,`ip -6 addr list dev $IFACE6 | grep 'inet6.*scope.*global.*dynamic' | awk '{print $2}'`"
+				LIP6="$LIP6,`ip -6 addr list dev $IFACE6 | grep '\(inet6.*scope.*global[ ]*$\|inet6.*scope.*global.*dynamic\)' | awk '{print $2}'`"
 			done
 			LIP6=`echo $LIP6 | sed 's/^,//;s/ /,/g'`
 
