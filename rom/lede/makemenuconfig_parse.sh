@@ -199,6 +199,8 @@ for t in $targets; do
 	mods="$us"
 	case $t in
 		#>8M flash
+		TARGET_DEVICE_ramips_mt7621_DEVICE_ubnt-erx|\
+		TARGET_DEVICE_ramips_mt7621_DEVICE_ubnt-erx-sfp|\
 		TARGET_DEVICE_ramips_mt7620_DEVICE_dlink_dir-510l|\
 		TARGET_DEVICE_ath79_generic_DEVICE_comfast_cf-e5|\
 		TARGET_DEVICE_ath79_generic_DEVICE_ubnt_nanobeam-ac|\
@@ -730,6 +732,8 @@ for t in $targets; do
 			mods="$mods $cdcmod"
 		;;
 		#no usb
+		TARGET_DEVICE_ramips_mt7621_DEVICE_ubnt-erx|\
+		TARGET_DEVICE_ramips_mt7621_DEVICE_ubnt-erx-sfp|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_netgear_ex6150|\
 		TARGET_DEVICE_ramips_mt7620_DEVICE_dlink_dir-510l|\
 		TARGET_DEVICE_ath79_generic_DEVICE_comfast_cf-e5|\
