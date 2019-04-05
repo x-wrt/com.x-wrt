@@ -51,10 +51,10 @@ for t in $targets; do
 		test -n "$dis" || {
 			dis=`echo "$text" | grep '$(call Device' | head -n1 | cut -d, -f2 | sed 's/)$//g'`
 		}
-		bin=`echo "$bins" | grep $arch | grep -i "\($name-e\|$name-s\|$name-f\|$name-u\|$name-i\)"`
+		bin=`echo "$bins" | grep $arch | grep -i "\($name-ex\|$name-sq\|$name-fa\|$name-ub\|$name-ue\|$name-in\)"`
 		test -n "$bin" || {
 			name=`echo $name | tr _ -`
-			bin=`echo "$bins" | grep -i "\($name-s\|$name-f\|$name-u\)"`
+			bin=`echo "$bins" | grep -i "\($name-ex\|$name-sq\|$name-fa\|$name-ub\|$name-ue\|$name-in\)"`
 			test -n "$bin" || {
 				bin=$(echo "$bins" | grep -i "`echo $name | head -c5`" | grep $arch)
 				test -n "$bin" || {
