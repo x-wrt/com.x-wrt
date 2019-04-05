@@ -59,10 +59,12 @@ define Package/$(PKG_NAME)/install
 	cp -r ./files/etc $(1)/usr/share/base-config-setting/
 	$(INSTALL_DATA) ./files/uci.defaults $(1)/etc/uci-defaults/95-base-config-setting
 	$(INSTALL_DIR) $(1)/usr/sbin
+	$(INSTALL_BIN) ./files/sta_disable.sh $(1)/usr/sbin/sta_disable
 	$(INSTALL_BIN) ./files/system_reset.sh $(1)/usr/sbin/system_reset
 	$(INSTALL_DIR) $(1)/etc
 	$(INSTALL_DATA) ./files/adv_luci_disabled $(1)/etc/adv_luci_disabled
 	$(INSTALL_DIR) $(1)/etc/init.d
+	$(INSTALL_BIN) ./files/sta_disable.init $(1)/etc/init.d/sta_disable
 	$(INSTALL_BIN) ./files/usb_factory_reset.init $(1)/etc/init.d/usb_factory_reset
 	$(INSTALL_BIN) ./files/auto_usb_mount.init $(1)/etc/init.d/auto_usb_mount
 	$(INSTALL_DATA) ./files/auto_usb_mount.hotplug $(1)/usr/share/base-config-setting/auto_usb_mount.hotplug
