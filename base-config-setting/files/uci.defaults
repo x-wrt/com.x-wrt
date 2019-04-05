@@ -337,6 +337,9 @@ echo net.netfilter.nf_conntrack_helper=1 >>$SYSCTL_LOCAL
 #replace wget
 test -x /usr/bin/wget && rm -f /bin/wget && ln -s /usr/bin/wget /bin/wget
 
+#disable switch_ports_status by default
+/etc/init.d/switch_ports_status disable
+
 touch /etc/config/base_config
 uci get base_config.@status[0] >/dev/null 2>&1 || uci add base_config status >/dev/null 2>&1
 uci set base_config.@status[0].version=$version
