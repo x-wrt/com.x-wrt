@@ -1,5 +1,11 @@
 #!/bin/sh
 
+gfwlist_enable=`uci get natcapd.default.gfwlist_enable 2>/dev/null || echo 0`
+[ x$gfwlist_enable = x1 ] || {
+	touch /tmp/natcapd.lck/gfwlist
+	exit 0
+}
+
 access_to_cn=`uci get natcapd.default.access_to_cn 2>/dev/null || echo 0`
 [ x$access_to_cn = x1 ] && {
 	touch /tmp/natcapd.lck/gfwlist
