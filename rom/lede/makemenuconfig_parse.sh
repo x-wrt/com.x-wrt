@@ -199,6 +199,7 @@ for t in $targets; do
 	mods="$us"
 	case $t in
 		#>8M flash
+		TARGET_DEVICE_ramips_mt7621_DEVICE_youku_yk-l2|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_ubnt-erx|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_ubnt-erx-sfp|\
 		TARGET_DEVICE_ramips_mt7620_DEVICE_dlink_dir-510l|\
@@ -505,6 +506,7 @@ for t in $targets; do
 	#check usb
 	case $t in
 		#with usb3
+		TARGET_DEVICE_ramips_mt7621_DEVICE_youku_yk-l2|\
 		TARGET_DEVICE_ipq40xx_DEVICE_glinet_gl-b1300|\
 		TARGET_DEVICE_ipq40xx_DEVICE_compex_wpj428|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_11acnas|\
