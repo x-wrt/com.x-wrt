@@ -3,18 +3,18 @@
 
 if [ x`uci get natcapd.default.dnsproxy 2>/dev/null` = x1 ]; then
 	iptables -t nat -C prerouting_lan_rule -p udp --dport 53 -j REDIRECT --to-ports 53 2>/dev/null || \
-	iptables -t nat -I prerouting_lan_rule -p udp --dport 53 -j REDIRECT --to-ports 53
+	iptables -t nat -A prerouting_lan_rule -p udp --dport 53 -j REDIRECT --to-ports 53
 	iptables -t nat -C prerouting_lan_rule -p tcp --dport 53 -j REDIRECT --to-ports 53 2>/dev/null || \
-	iptables -t nat -I prerouting_lan_rule -p tcp --dport 53 -j REDIRECT --to-ports 53
+	iptables -t nat -A prerouting_lan_rule -p tcp --dport 53 -j REDIRECT --to-ports 53
 else
 	iptables -t nat -D prerouting_lan_rule -p udp --dport 53 -j REDIRECT --to-ports 53 2>/dev/null
 	iptables -t nat -D prerouting_lan_rule -p tcp --dport 53 -j REDIRECT --to-ports 53 2>/dev/null
 fi
 
 iptables -D forwarding_wan_rule -m mark --mark 0x99/0xff -j ACCEPT 2>/dev/null
-iptables -I forwarding_wan_rule 1 -m mark --mark 0x99/0xff -j ACCEPT
+iptables -A forwarding_wan_rule -m mark --mark 0x99/0xff -j ACCEPT
 
 iptables -C input_wan_rule -m mark --mark 0x99/0xff -j ACCEPT 2>/dev/null || \
-iptables -I input_wan_rule -m mark --mark 0x99/0xff -j ACCEPT
+iptables -A input_wan_rule -m mark --mark 0x99/0xff -j ACCEPT
 
 exit 0
