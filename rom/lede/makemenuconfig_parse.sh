@@ -672,7 +672,6 @@ for t in $targets; do
 		TARGET_DEVICE_ar71xx_generic_DEVICE_tl-wr842n-v1|\
 		TARGET_DEVICE_ar71xx_generic_DEVICE_tl-wr842n-v2|\
 		TARGET_DEVICE_ar71xx_generic_DEVICE_tl-wr842n-v3|\
-		TARGET_DEVICE_ar71xx_generic_DEVICE_tl-wr902ac-v1|\
 		TARGET_DEVICE_ar71xx_generic_DEVICE_archer-c59-v1|\
 		TARGET_DEVICE_ar71xx_generic_DEVICE_archer-c59-v2|\
 		TARGET_DEVICE_ar71xx_generic_DEVICE_tl-wr1043nd-v4|\
@@ -734,6 +733,7 @@ for t in $targets; do
 			mods="$mods $cdcmod"
 		;;
 		#no usb
+		TARGET_DEVICE_ar71xx_generic_DEVICE_tl-wr902ac-v1|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_ubnt-erx|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_ubnt-erx-sfp|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_netgear_ex6150|\
