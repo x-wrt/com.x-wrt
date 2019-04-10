@@ -5,6 +5,7 @@ config.ar71xx-nand-nosymbol
 config.ar71xx-tiny
 config.ath79-generic
 config.ath79-generic-nosymbol
+config.ath79-nand
 config.ramips-mt7620
 config.ramips-mt7620-nosymbol
 config.ramips-mt7621
