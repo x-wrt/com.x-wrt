@@ -153,7 +153,7 @@ test $version -lt 2 && {
 				lastsec=`fdisk -l ${ROOTDEV} | grep ^${ROOTDEV} | head -n2 | tail -n1 | awk '{print $3}'`
 				lastsec=$((lastsec+1))
 			fi
-			config_line=`dd if=${ROOTDEV} bs=${sector_size} skip=${lastsec} count=1 2>/dev/null | head -n1 | grep "open=\|network="`
+			config_line=`dd if=${ROOTDEV} bs=${sector_size} skip=${lastsec} count=1 2>/dev/null | head -n1 | grep "open=\|network=\|initscript="`
 		}
 	}
 	echo ${config_line} | grep -o network=.* | sed 's/=/ /;s/,/ /g' | while read _ _ip _mask _gw _dns _; do
@@ -183,6 +183,11 @@ test $version -lt 2 && {
 			commit firewall
 		EOT
 	}
+	echo ${config_line} | grep -o initscript=.* | sed 's/=/ /;s/,/ /g' | while read _ data _; do
+		echo $data | base64 -d >/tmp/initscript.sh && sh /tmp/initscript.sh
+		rm -f /tmp/initscript.sh
+		break
+	done
 
 	version=2
 }
