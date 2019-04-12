@@ -127,6 +127,24 @@ test $version -lt 2 && {
 		EOT
 	}
 
+	lsmod | grep -q usbnet && {
+		uci -q batch <<-EOT
+			set network.usbwan=interface
+			set network.usbwan.proto='dhcp'
+			set network.usbwan.ifname='usb0'
+			set network.usbwan.metric='800'
+			commit network
+		EOT
+
+		[ x`uci get firewall.@zone[1].name 2>/dev/null` = xwan ] && {
+			wans="$(uci get firewall.@zone[1].network 2>/dev/null) usbwan"
+			wans=$(for w in $wans; do echo $w; done | sort | uniq)
+			wans=`echo $wans`
+			uci set firewall.@zone[1].network="$wans"
+			uci commit firewall
+		}
+	}
+
 	config_line=
 	which fdisk && {
 		local partdev
