@@ -381,6 +381,9 @@ for t in $targets; do
 			mods="$mods $ssmod"
 		;;
 		#<=8M flash
+		TARGET_DEVICE_ath79_generic_DEVICE_netgear_ex6400|\
+		TARGET_DEVICE_ath79_generic_DEVICE_netgear_ex7300|\
+		TARGET_DEVICE_ath79_generic_DEVICE_xwrt_mk-v0201|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_netgear_ex6150|\
 		TARGET_DEVICE_ar71xx_generic_DEVICE_ts-d084|\
 		TARGET_DEVICE_ath79_generic_DEVICE_ubnt_nanostation-m-xw|\
@@ -571,6 +574,7 @@ for t in $targets; do
 			mods="$mods $cdcmod"
 		;;
 		#with usb2
+		TARGET_DEVICE_ath79_generic_DEVICE_xwrt_mk-v0201|\
 		TARGET_DEVICE_ath79_nand_DEVICE_glinet_gl-ar300m-nand|\
 		TARGET_DEVICE_ar71xx_generic_DEVICE_ts-d084|\
 		TARGET_DEVICE_ath79_generic_DEVICE_glinet_gl-x750|\
@@ -735,6 +739,8 @@ for t in $targets; do
 			mods="$mods $cdcmod"
 		;;
 		#no usb
+		TARGET_DEVICE_ath79_generic_DEVICE_netgear_ex6400|\
+		TARGET_DEVICE_ath79_generic_DEVICE_netgear_ex7300|\
 		TARGET_DEVICE_ar71xx_generic_DEVICE_tl-wr902ac-v1|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_ubnt-erx|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_ubnt-erx-sfp|\
