@@ -263,6 +263,7 @@ for t in $targets; do
 		TARGET_DEVICE_bcm53xx_DEVICE_tplink-archer-c5-v2|\
 		TARGET_DEVICE_bcm53xx_DEVICE_dlink-dir-885l|\
 		TARGET_DEVICE_ramips_mt7620_DEVICE_gl-mt750|\
+		TARGET_DEVICE_ath79_generic_DEVICE_tplink_tl-wr842n-v3|\
 		TARGET_DEVICE_ar71xx_generic_DEVICE_tl-wr842n-v3|\
 		TARGET_DEVICE_ar71xx_generic_DEVICE_tl-wr942n-v1|\
 		TARGET_DEVICE_ath79_generic_DEVICE_buffalo_wzr-hp-ag300h|\
@@ -381,6 +382,7 @@ for t in $targets; do
 			mods="$mods $ssmod"
 		;;
 		#<=8M flash
+		TARGET_DEVICE_ramips_mt76x8_DEVICE_glinet_vixmini|\
 		TARGET_DEVICE_ath79_generic_DEVICE_netgear_ex6400|\
 		TARGET_DEVICE_ath79_generic_DEVICE_netgear_ex7300|\
 		TARGET_DEVICE_ath79_generic_DEVICE_xwrt_mk-v0201|\
@@ -678,6 +680,7 @@ for t in $targets; do
 		TARGET_DEVICE_ar71xx_generic_DEVICE_tl-wr842n-v1|\
 		TARGET_DEVICE_ar71xx_generic_DEVICE_tl-wr842n-v2|\
 		TARGET_DEVICE_ar71xx_generic_DEVICE_tl-wr842n-v3|\
+		TARGET_DEVICE_ath79_generic_DEVICE_tplink_tl-wr842n-v3|\
 		TARGET_DEVICE_ar71xx_generic_DEVICE_archer-c59-v1|\
 		TARGET_DEVICE_ar71xx_generic_DEVICE_archer-c59-v2|\
 		TARGET_DEVICE_ar71xx_generic_DEVICE_tl-wr1043nd-v4|\
@@ -739,6 +742,7 @@ for t in $targets; do
 			mods="$mods $cdcmod"
 		;;
 		#no usb
+		TARGET_DEVICE_ramips_mt76x8_DEVICE_glinet_vixmini|\
 		TARGET_DEVICE_ath79_generic_DEVICE_netgear_ex6400|\
 		TARGET_DEVICE_ath79_generic_DEVICE_netgear_ex7300|\
 		TARGET_DEVICE_ar71xx_generic_DEVICE_tl-wr902ac-v1|\
