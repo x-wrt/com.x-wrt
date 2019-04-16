@@ -127,7 +127,7 @@ test $version -lt 2 && {
 		EOT
 	}
 
-	lsmod | grep -q usbnet && {
+	lsmod | grep -q rndis_host && {
 		uci -q batch <<-EOT
 			set network.usbwan=interface
 			set network.usbwan.proto='dhcp'
