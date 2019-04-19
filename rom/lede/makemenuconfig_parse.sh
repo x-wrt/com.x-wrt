@@ -54,7 +54,8 @@ moreapps="libstdcpp \
 		  luci-i18n-samba-zh-cn \
 		  webui-aria2 \
 		  aria2 \
-		  samba36-server"
+		  samba36-server \
+		  wget"
 
 cdcmod="kmod-mii \
 		kmod-usb-net \
