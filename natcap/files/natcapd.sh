@@ -151,6 +151,38 @@ natcapd_get_flows()
 	exit 0
 }
 
+natcap_setup_firewall()
+{
+	block_dns6="`uci get natcapd.default.block_dns6 2>/dev/null || echo 0`"
+	if [ "x$block_dns6" = "x1" ]; then
+		uci get firewall.natcap_dns1 >/dev/null 2>&1 || {
+			uci set firewall.natcap_dns1=rule
+			uci set firewall.natcap_dns1.enabled='1'
+			uci set firewall.natcap_dns1.name='IPV6 DNS OUTPUT'
+			uci set firewall.natcap_dns1.family='ipv6'
+			uci set firewall.natcap_dns1.dest_port='53'
+			uci set firewall.natcap_dns1.target='DROP'
+			uci set firewall.natcap_dns1.dest='wan'
+			uci set firewall.natcap_dns2=rule
+			uci set firewall.natcap_dns2.enabled='1'
+			uci set firewall.natcap_dns2.name='IPV6 DNS FORWARD'
+			uci set firewall.natcap_dns2.family='ipv6'
+			uci set firewall.natcap_dns2.src='lan'
+			uci set firewall.natcap_dns2.dest='wan'
+			uci set firewall.natcap_dns2.dest_port='53'
+			uci set firewall.natcap_dns2.target='DROP'
+			uci commit firewall
+			/etc/init.d/firewall reload
+		}
+	else
+		uci delete firewall.natcap_dns1 >/dev/null 2>&1 && {
+			uci delete firewall.natcap_dns2 >/dev/null 2>&1
+			uci commit firewall
+			/etc/init.d/firewall reload
+		}
+	fi
+}
+
 natcap_wan_ip()
 {
 	full_cone_nat="`uci get natcapd.default.full_cone_nat 2>/dev/null || echo 0`"
@@ -174,6 +206,7 @@ natcap_wan_ip()
 	exit 0
 }
 
+natcap_setup_firewall
 [ x$1 = xstop ] && natcapd_stop && exit 0
 
 [ x$1 = xstart ] || {
