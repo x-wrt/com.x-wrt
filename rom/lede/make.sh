@@ -60,7 +60,7 @@ for i in $IDXS; do
 			touch ./feeds/packages/libs/libgpg-error/Makefile
 			$* || exit 255
 		}
-		touch .build_x/$cfg
+		cp .config .build_x/$cfg
 	done
 done
 
