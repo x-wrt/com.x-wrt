@@ -51,6 +51,10 @@ e = s:taboption("advanced", Flag, "sproxy", translate("TCP Proxy Acceleration"),
 e.default = e.disabled
 e.rmempty = false
 
+e = s:taboption("advanced", Flag, "block_dns6", translate("BLOCK IPv6 DNS"), translate("Block IPv6 DNS to prevent poisoning"))
+e.default = e.enabled
+e.rmempty = false
+
 e = s:taboption("advanced", Value, "dns_server", translate("DNS Server"), translate("Please fill in the server by format (ip:port)"))
 e.datatype = "ip4addrport"
 e.placeholder = "8.8.8.8:53"

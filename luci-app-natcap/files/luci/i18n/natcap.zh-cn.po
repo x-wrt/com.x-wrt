@@ -130,6 +130,12 @@ msgstr "TCP代理加速"
 msgid "Recommended to use the server's TCP proxy and Google BBR algorithm to accelerate."
 msgstr "推荐使用，利用服务器的TCP代理和谷歌BBR算法加速。"
 
+msgid "BLOCK IPv6 DNS"
+msgstr "屏蔽IPv6的DNS"
+
+msgid "Block IPv6 DNS to prevent poisoning"
+msgstr "屏蔽IPv6的DNS，防止DNS污染"
+
 msgid "HTTP Obfuscation"
 msgstr "启用HTTP混淆"
 
