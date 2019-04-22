@@ -8,7 +8,7 @@ dev=/dev/$DEVNAME
 test -f /rom/etc/sda.ready && {
 	diskdev=sda
 	. /lib/upgrade/common.sh
-	export_bootdevice && export_partdevice diskdev $((0-BOOTDEV_MINOR))
+	export_bootdevice && export_partdevice diskdev 0
 	diskdev=/dev/$diskdev
 	echo $dev | grep -q $diskdev && exit 0
 }

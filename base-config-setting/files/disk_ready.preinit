@@ -10,16 +10,16 @@ do_disk_ready() {
 	local ROOTDEV=/dev/sda
 	local ROOTPART=/dev/sda
 	. /lib/upgrade/common.sh
-	if export_bootdevice && export_partdevice partdev $((1-BOOTDEV_MINOR)); then
-		if echo $partdev | grep -q ^sd[a-z]1$; then
-			ROOTDEV=/dev/${partdev%1}
-			ROOTPART=/dev/${partdev%1}
-		elif echo $partdev | grep -q ^mmcblk[0-9]*p1$; then
-			ROOTDEV=/dev/${partdev%p1}
-			ROOTPART=/dev/${partdev%1}
-		elif echo $partdev | grep -q ^.*1$; then
-			ROOTDEV=/dev/${partdev%1}
-			ROOTPART=/dev/${partdev%1}
+	if export_bootdevice && export_partdevice partdev 0; then
+		if echo $partdev | grep -q ^sd[a-z]; then
+			ROOTDEV=/dev/${partdev}
+			ROOTPART=/dev/${partdev}
+		elif echo $partdev | grep -q ^mmcblk[0-9]; then
+			ROOTDEV=/dev/${partdev}
+			ROOTPART=/dev/${partdev}p
+		else
+			ROOTDEV=/dev/${partdev}
+			ROOTPART=/dev/${partdev}
 		fi
 	fi
 

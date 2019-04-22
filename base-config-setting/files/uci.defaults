@@ -150,14 +150,8 @@ test $version -lt 2 && {
 		local partdev
 		local ROOTDEV=/dev/sda
 		. /lib/upgrade/common.sh
-		if export_bootdevice && export_partdevice partdev $((1-BOOTDEV_MINOR)); then
-			if echo $partdev | grep -q ^sd[a-z]1$; then
-				ROOTDEV=/dev/${partdev%1}
-			elif echo $partdev | grep -q ^mmcblk[0-9]*p1$; then
-				ROOTDEV=/dev/${partdev%p1}
-			elif echo $partdev | grep -q ^.*1$; then
-				ROOTDEV=/dev/${partdev%1}
-			fi
+		if export_bootdevice && export_partdevice partdev 0; then
+			ROOTDEV=/dev/${partdev}
 		fi
 		test -b ${ROOTDEV} && {
 			sector_size=`fdisk -l ${ROOTDEV} | grep "^Sector size" | awk '{print $4}'`
