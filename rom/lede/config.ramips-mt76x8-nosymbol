@@ -484,7 +484,7 @@ CONFIG_TARGET_INIT_CMD="/sbin/init"
 CONFIG_TARGET_INIT_SUPPRESS_STDERR=y
 CONFIG_VERSIONOPT=y
 CONFIG_VERSION_DIST="X-WRT"
-CONFIG_VERSION_NUMBER="5.0_b201904191758"
+CONFIG_VERSION_NUMBER="5.0_b201904230740"
 CONFIG_VERSION_CODE="Disco"
 CONFIG_VERSION_REPO="http://downloads.openwrt.org/snapshots"
 CONFIG_VERSION_HOME_URL="https://x-wrt.com/"
@@ -3103,10 +3103,11 @@ CONFIG_PACKAGE_kmod-iptunnel6=y
 CONFIG_PACKAGE_kmod-l2tp=y
 # CONFIG_PACKAGE_kmod-l2tp-eth is not set
 # CONFIG_PACKAGE_kmod-l2tp-ip is not set
-# CONFIG_PACKAGE_kmod-libreswan is not set
 # CONFIG_PACKAGE_kmod-macsec is not set
 # CONFIG_PACKAGE_kmod-misdn is not set
 # CONFIG_PACKAGE_kmod-mpls is not set
+CONFIG_PACKAGE_kmod-ppp=y
+CONFIG_PACKAGE_kmod-mppe=y
 # CONFIG_PACKAGE_kmod-nat46 is not set
 # CONFIG_PACKAGE_kmod-netem is not set
 # CONFIG_PACKAGE_kmod-nlmon is not set
@@ -3122,8 +3123,6 @@ CONFIG_PACKAGE_kmod-l2tp=y
 # CONFIG_PACKAGE_kmod-openvswitch-vxlan-intree is not set
 # CONFIG_PACKAGE_kmod-pf-ring is not set
 # CONFIG_PACKAGE_kmod-pktgen is not set
-CONFIG_PACKAGE_kmod-ppp=y
-CONFIG_PACKAGE_kmod-mppe=y
 # CONFIG_PACKAGE_kmod-ppp-synctty is not set
 # CONFIG_PACKAGE_kmod-pppoa is not set
 CONFIG_PACKAGE_kmod-pppoe=y
@@ -3816,6 +3815,8 @@ CONFIG_PACKAGE_luasocket=y
 # CONFIG_PACKAGE_python3-mysql is not set
 # CONFIG_PACKAGE_python3-ncurses is not set
 # CONFIG_PACKAGE_python3-ncurses-src is not set
+# CONFIG_PACKAGE_python3-netifaces is not set
+# CONFIG_PACKAGE_python3-netifaces-src is not set
 # CONFIG_PACKAGE_python3-oauthlib is not set
 # CONFIG_PACKAGE_python3-oauthlib-src is not set
 # CONFIG_PACKAGE_python3-openssl is not set
@@ -4699,7 +4700,7 @@ CONFIG_OPENSSL_WITH_PSK=y
 # Engine/Hardware Support
 #
 # CONFIG_OPENSSL_ENGINE is not set
-CONFIG_PACKAGE_libopenssl-conf=m
+# CONFIG_PACKAGE_libopenssl-conf is not set
 # CONFIG_PACKAGE_libwolfssl is not set
 
 #
@@ -6884,6 +6885,7 @@ CONFIG_PACKAGE_lsof=y
 # CONFIG_PACKAGE_mbtools is not set
 # CONFIG_PACKAGE_mc is not set
 # CONFIG_PACKAGE_mcookie is not set
+# CONFIG_PACKAGE_micrond is not set
 # CONFIG_PACKAGE_mmc-utils is not set
 # CONFIG_PACKAGE_moreutils is not set
 # CONFIG_PACKAGE_mount-utils is not set
