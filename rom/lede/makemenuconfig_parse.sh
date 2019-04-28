@@ -837,6 +837,14 @@ for t in $targets; do
 			echo no handle usb $t
 		;;
 	esac
+
+	#check 4g manual select
+	case $t in
+		TARGET_DEVICE_ramips_mt76x8_DEVICE_tplink_tl-wr902ac-v3)
+			mods="$mods $usb4g"
+		;;
+	esac
+
 	if [ "x$flash_gt8m" = "x1" ] && [ "x$has_usb" = "x1" ]; then
 		mods="$mods $usb4g"
 	fi
