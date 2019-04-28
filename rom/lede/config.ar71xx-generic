@@ -369,7 +369,7 @@ CONFIG_TARGET_PER_DEVICE_ROOTFS=y
 # CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_WZRHPAG300H is not set
 # CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_WZRHPG300NH is not set
 CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_WZRHPG300NH2=y
-CONFIG_TARGET_DEVICE_PACKAGES_ar71xx_generic_DEVICE_WZRHPG300NH2="aria2 blockd block-mount kmod-ath9k kmod-ath9k-common kmod-crypto-crc32c kmod-fs-autofs4 kmod-fs-exfat kmod-fs-ext4 kmod-fs-msdos kmod-fs-vfat kmod-fuse kmod-lib-crc16 kmod-mii kmod-nls-cp437 kmod-scsi-core kmod-usb2 kmod-usb-core kmod-usb-ehci kmod-usb-ledtrig-usbport kmod-usb-net kmod-usb-net-cdc-ether kmod-usb-net-qmi-wwan kmod-usb-net-rndis kmod-usb-ohci kmod-usb-printer kmod-usb-storage kmod-usb-storage-uas kmod-usb-wdm libopenssl libpcre libsqlite3 libssh2 libstdcpp libxml2 luci-app-aria2 luci-app-p910nd luci-app-samba luci-i18n-aria2-zh-cn luci-i18n-p910nd-en luci-i18n-p910nd-zh-cn luci-i18n-samba-en luci-i18n-samba-zh-cn ntfs-3g p910nd samba36-server uclibcxx uqmi webui-aria2 wget wwan"
+CONFIG_TARGET_DEVICE_PACKAGES_ar71xx_generic_DEVICE_WZRHPG300NH2="aria2 blockd block-mount kmod-ath9k kmod-ath9k-common kmod-crypto-crc32c kmod-fs-autofs4 kmod-fs-exfat kmod-fs-ext4 kmod-fs-msdos kmod-fs-vfat kmod-fuse kmod-lib-crc16 kmod-mii kmod-nls-cp437 kmod-scsi-core kmod-usb2 kmod-usb-core kmod-usb-ehci kmod-usb-ledtrig-usbport kmod-usb-net kmod-usb-net-cdc-ether kmod-usb-net-cdc-mbim kmod-usb-net-cdc-ncm kmod-usb-net-huawei-cdc-ncm kmod-usb-net-ipheth kmod-usb-net-qmi-wwan kmod-usb-net-rndis kmod-usb-net-rtl8152 kmod-usb-net-sierrawireless kmod-usb-ohci kmod-usb-printer kmod-usb-serial kmod-usb-serial-option kmod-usb-serial-qualcomm kmod-usb-serial-sierrawireless kmod-usb-serial-wwan kmod-usb-storage kmod-usb-storage-uas kmod-usb-wdm libopenssl libpcre libsqlite3 libssh2 libstdcpp libusb-1.0 libxml2 luci-app-aria2 luci-app-p910nd luci-app-samba luci-i18n-aria2-zh-cn luci-i18n-p910nd-en luci-i18n-p910nd-zh-cn luci-i18n-samba-en luci-i18n-samba-zh-cn ntfs-3g p910nd samba36-server uclibcxx uqmi usb-modeswitch webui-aria2 wget wwan"
 # CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_WZRHPG450H is not set
 # CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_cf-e316n-v2 is not set
 # CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_cf-e320n-v2 is not set
@@ -393,7 +393,7 @@ CONFIG_TARGET_DEVICE_PACKAGES_ar71xx_generic_DEVICE_WZRHPG300NH2="aria2 blockd b
 # CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_dap-1330-a1 is not set
 # CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_dap-2695-a1 is not set
 CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_DGL5500A1=y
-CONFIG_TARGET_DEVICE_PACKAGES_ar71xx_generic_DEVICE_DGL5500A1="aria2 ath10k-firmware-qca988x-ct blockd block-mount kmod-ath10k-ct kmod-ath9k kmod-ath9k-common kmod-crypto-crc32c kmod-fs-autofs4 kmod-fs-exfat kmod-fs-ext4 kmod-fs-msdos kmod-fs-vfat kmod-fuse kmod-hwmon-core kmod-lib-crc16 kmod-mii kmod-nls-cp437 kmod-scsi-core kmod-usb2 kmod-usb-core kmod-usb-ehci kmod-usb-net kmod-usb-net-cdc-ether kmod-usb-net-qmi-wwan kmod-usb-net-rndis kmod-usb-ohci kmod-usb-printer kmod-usb-storage kmod-usb-storage-uas kmod-usb-wdm libopenssl libpcre libsqlite3 libssh2 libstdcpp libxml2 luci-app-aria2 luci-app-p910nd luci-app-samba luci-i18n-aria2-zh-cn luci-i18n-p910nd-en luci-i18n-p910nd-zh-cn luci-i18n-samba-en luci-i18n-samba-zh-cn ntfs-3g p910nd samba36-server uclibcxx uqmi webui-aria2 wget wwan"
+CONFIG_TARGET_DEVICE_PACKAGES_ar71xx_generic_DEVICE_DGL5500A1="aria2 ath10k-firmware-qca988x-ct blockd block-mount kmod-ath10k-ct kmod-ath9k kmod-ath9k-common kmod-crypto-crc32c kmod-fs-autofs4 kmod-fs-exfat kmod-fs-ext4 kmod-fs-msdos kmod-fs-vfat kmod-fuse kmod-hwmon-core kmod-lib-crc16 kmod-mii kmod-nls-cp437 kmod-scsi-core kmod-usb2 kmod-usb-core kmod-usb-ehci kmod-usb-net kmod-usb-net-cdc-ether kmod-usb-net-cdc-mbim kmod-usb-net-cdc-ncm kmod-usb-net-huawei-cdc-ncm kmod-usb-net-ipheth kmod-usb-net-qmi-wwan kmod-usb-net-rndis kmod-usb-net-rtl8152 kmod-usb-net-sierrawireless kmod-usb-ohci kmod-usb-printer kmod-usb-serial kmod-usb-serial-option kmod-usb-serial-qualcomm kmod-usb-serial-sierrawireless kmod-usb-serial-wwan kmod-usb-storage kmod-usb-storage-uas kmod-usb-wdm libopenssl libpcre libsqlite3 libssh2 libstdcpp libusb-1.0 libxml2 luci-app-aria2 luci-app-p910nd luci-app-samba luci-i18n-aria2-zh-cn luci-i18n-p910nd-en luci-i18n-p910nd-zh-cn luci-i18n-samba-en luci-i18n-samba-zh-cn ntfs-3g p910nd samba36-server uclibcxx uqmi usb-modeswitch webui-aria2 wget wwan"
 # CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_DHP1565A1 is not set
 # CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_DIR505A1 is not set
 # CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_DIR825B1 is not set
@@ -423,22 +423,22 @@ CONFIG_TARGET_DEVICE_PACKAGES_ar71xx_generic_DEVICE_DGL5500A1="aria2 ath10k-firm
 # CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_gl-inet-6416A-v1 is not set
 # CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_gl-domino is not set
 CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_gl-ar150=y
-CONFIG_TARGET_DEVICE_PACKAGES_ar71xx_generic_DEVICE_gl-ar150="aria2 blockd block-mount kmod-ath9k kmod-ath9k-common kmod-crypto-crc32c kmod-fs-autofs4 kmod-fs-exfat kmod-fs-ext4 kmod-fs-msdos kmod-fs-vfat kmod-fuse kmod-lib-crc16 kmod-mii kmod-nls-cp437 kmod-scsi-core kmod-usb2 kmod-usb-core kmod-usb-ehci kmod-usb-net kmod-usb-net-cdc-ether kmod-usb-net-qmi-wwan kmod-usb-net-rndis kmod-usb-ohci kmod-usb-printer kmod-usb-storage kmod-usb-storage-uas kmod-usb-wdm libopenssl libpcre libsqlite3 libssh2 libstdcpp libxml2 luci-app-aria2 luci-app-p910nd luci-app-samba luci-i18n-aria2-zh-cn luci-i18n-p910nd-en luci-i18n-p910nd-zh-cn luci-i18n-samba-en luci-i18n-samba-zh-cn ntfs-3g p910nd samba36-server uclibcxx uqmi webui-aria2 wget wwan"
+CONFIG_TARGET_DEVICE_PACKAGES_ar71xx_generic_DEVICE_gl-ar150="aria2 blockd block-mount kmod-ath9k kmod-ath9k-common kmod-crypto-crc32c kmod-fs-autofs4 kmod-fs-exfat kmod-fs-ext4 kmod-fs-msdos kmod-fs-vfat kmod-fuse kmod-lib-crc16 kmod-mii kmod-nls-cp437 kmod-scsi-core kmod-usb2 kmod-usb-core kmod-usb-ehci kmod-usb-net kmod-usb-net-cdc-ether kmod-usb-net-cdc-mbim kmod-usb-net-cdc-ncm kmod-usb-net-huawei-cdc-ncm kmod-usb-net-ipheth kmod-usb-net-qmi-wwan kmod-usb-net-rndis kmod-usb-net-rtl8152 kmod-usb-net-sierrawireless kmod-usb-ohci kmod-usb-printer kmod-usb-serial kmod-usb-serial-option kmod-usb-serial-qualcomm kmod-usb-serial-sierrawireless kmod-usb-serial-wwan kmod-usb-storage kmod-usb-storage-uas kmod-usb-wdm libopenssl libpcre libsqlite3 libssh2 libstdcpp libusb-1.0 libxml2 luci-app-aria2 luci-app-p910nd luci-app-samba luci-i18n-aria2-zh-cn luci-i18n-p910nd-en luci-i18n-p910nd-zh-cn luci-i18n-samba-en luci-i18n-samba-zh-cn ntfs-3g p910nd samba36-server uclibcxx uqmi usb-modeswitch webui-aria2 wget wwan"
 CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_gl-ar300=y
-CONFIG_TARGET_DEVICE_PACKAGES_ar71xx_generic_DEVICE_gl-ar300="aria2 blockd block-mount kmod-ath9k kmod-ath9k-common kmod-crypto-crc32c kmod-fs-autofs4 kmod-fs-exfat kmod-fs-ext4 kmod-fs-msdos kmod-fs-vfat kmod-fuse kmod-lib-crc16 kmod-mii kmod-nls-cp437 kmod-scsi-core kmod-usb2 kmod-usb-core kmod-usb-ehci kmod-usb-net kmod-usb-net-cdc-ether kmod-usb-net-qmi-wwan kmod-usb-net-rndis kmod-usb-ohci kmod-usb-printer kmod-usb-storage kmod-usb-storage-uas kmod-usb-wdm libopenssl libpcre libsqlite3 libssh2 libstdcpp libxml2 luci-app-aria2 luci-app-p910nd luci-app-samba luci-i18n-aria2-zh-cn luci-i18n-p910nd-en luci-i18n-p910nd-zh-cn luci-i18n-samba-en luci-i18n-samba-zh-cn ntfs-3g p910nd samba36-server uclibcxx uqmi webui-aria2 wget wwan"
+CONFIG_TARGET_DEVICE_PACKAGES_ar71xx_generic_DEVICE_gl-ar300="aria2 blockd block-mount kmod-ath9k kmod-ath9k-common kmod-crypto-crc32c kmod-fs-autofs4 kmod-fs-exfat kmod-fs-ext4 kmod-fs-msdos kmod-fs-vfat kmod-fuse kmod-lib-crc16 kmod-mii kmod-nls-cp437 kmod-scsi-core kmod-usb2 kmod-usb-core kmod-usb-ehci kmod-usb-net kmod-usb-net-cdc-ether kmod-usb-net-cdc-mbim kmod-usb-net-cdc-ncm kmod-usb-net-huawei-cdc-ncm kmod-usb-net-ipheth kmod-usb-net-qmi-wwan kmod-usb-net-rndis kmod-usb-net-rtl8152 kmod-usb-net-sierrawireless kmod-usb-ohci kmod-usb-printer kmod-usb-serial kmod-usb-serial-option kmod-usb-serial-qualcomm kmod-usb-serial-sierrawireless kmod-usb-serial-wwan kmod-usb-storage kmod-usb-storage-uas kmod-usb-wdm libopenssl libpcre libsqlite3 libssh2 libstdcpp libusb-1.0 libxml2 luci-app-aria2 luci-app-p910nd luci-app-samba luci-i18n-aria2-zh-cn luci-i18n-p910nd-en luci-i18n-p910nd-zh-cn luci-i18n-samba-en luci-i18n-samba-zh-cn ntfs-3g p910nd samba36-server uclibcxx uqmi usb-modeswitch webui-aria2 wget wwan"
 CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_gl-ar300m=y
-CONFIG_TARGET_DEVICE_PACKAGES_ar71xx_generic_DEVICE_gl-ar300m="aria2 blockd block-mount kmod-ath9k kmod-ath9k-common kmod-crypto-crc32c kmod-fs-autofs4 kmod-fs-exfat kmod-fs-ext4 kmod-fs-msdos kmod-fs-vfat kmod-fuse kmod-lib-crc16 kmod-mii kmod-nls-cp437 kmod-scsi-core kmod-usb2 kmod-usb-core kmod-usb-ehci kmod-usb-net kmod-usb-net-cdc-ether kmod-usb-net-qmi-wwan kmod-usb-net-rndis kmod-usb-ohci kmod-usb-printer kmod-usb-storage kmod-usb-storage-uas kmod-usb-wdm libopenssl libpcre libsqlite3 libssh2 libstdcpp libxml2 luci-app-aria2 luci-app-p910nd luci-app-samba luci-i18n-aria2-zh-cn luci-i18n-p910nd-en luci-i18n-p910nd-zh-cn luci-i18n-samba-en luci-i18n-samba-zh-cn ntfs-3g p910nd samba36-server uclibcxx uqmi webui-aria2 wget wwan"
+CONFIG_TARGET_DEVICE_PACKAGES_ar71xx_generic_DEVICE_gl-ar300m="aria2 blockd block-mount kmod-ath9k kmod-ath9k-common kmod-crypto-crc32c kmod-fs-autofs4 kmod-fs-exfat kmod-fs-ext4 kmod-fs-msdos kmod-fs-vfat kmod-fuse kmod-lib-crc16 kmod-mii kmod-nls-cp437 kmod-scsi-core kmod-usb2 kmod-usb-core kmod-usb-ehci kmod-usb-net kmod-usb-net-cdc-ether kmod-usb-net-cdc-mbim kmod-usb-net-cdc-ncm kmod-usb-net-huawei-cdc-ncm kmod-usb-net-ipheth kmod-usb-net-qmi-wwan kmod-usb-net-rndis kmod-usb-net-rtl8152 kmod-usb-net-sierrawireless kmod-usb-ohci kmod-usb-printer kmod-usb-serial kmod-usb-serial-option kmod-usb-serial-qualcomm kmod-usb-serial-sierrawireless kmod-usb-serial-wwan kmod-usb-storage kmod-usb-storage-uas kmod-usb-wdm libopenssl libpcre libsqlite3 libssh2 libstdcpp libusb-1.0 libxml2 luci-app-aria2 luci-app-p910nd luci-app-samba luci-i18n-aria2-zh-cn luci-i18n-p910nd-en luci-i18n-p910nd-zh-cn luci-i18n-samba-en luci-i18n-samba-zh-cn ntfs-3g p910nd samba36-server uclibcxx uqmi usb-modeswitch webui-aria2 wget wwan"
 # CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_gl-ar750 is not set
 # CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_gl-ar750s is not set
 CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_gl-mifi=y
-CONFIG_TARGET_DEVICE_PACKAGES_ar71xx_generic_DEVICE_gl-mifi="aria2 blockd block-mount kmod-ath9k kmod-ath9k-common kmod-crypto-crc32c kmod-fs-autofs4 kmod-fs-exfat kmod-fs-ext4 kmod-fs-msdos kmod-fs-vfat kmod-fuse kmod-lib-crc16 kmod-mii kmod-nls-cp437 kmod-scsi-core kmod-usb2 kmod-usb-core kmod-usb-ehci kmod-usb-net kmod-usb-net-cdc-ether kmod-usb-net-qmi-wwan kmod-usb-net-rndis kmod-usb-ohci kmod-usb-printer kmod-usb-storage kmod-usb-storage-uas kmod-usb-wdm libopenssl libpcre libsqlite3 libssh2 libstdcpp libxml2 luci-app-aria2 luci-app-p910nd luci-app-samba luci-i18n-aria2-zh-cn luci-i18n-p910nd-en luci-i18n-p910nd-zh-cn luci-i18n-samba-en luci-i18n-samba-zh-cn ntfs-3g p910nd samba36-server uclibcxx uqmi webui-aria2 wget wwan"
+CONFIG_TARGET_DEVICE_PACKAGES_ar71xx_generic_DEVICE_gl-mifi="aria2 blockd block-mount kmod-ath9k kmod-ath9k-common kmod-crypto-crc32c kmod-fs-autofs4 kmod-fs-exfat kmod-fs-ext4 kmod-fs-msdos kmod-fs-vfat kmod-fuse kmod-lib-crc16 kmod-mii kmod-nls-cp437 kmod-scsi-core kmod-usb2 kmod-usb-core kmod-usb-ehci kmod-usb-net kmod-usb-net-cdc-ether kmod-usb-net-cdc-mbim kmod-usb-net-cdc-ncm kmod-usb-net-huawei-cdc-ncm kmod-usb-net-ipheth kmod-usb-net-qmi-wwan kmod-usb-net-rndis kmod-usb-net-rtl8152 kmod-usb-net-sierrawireless kmod-usb-ohci kmod-usb-printer kmod-usb-serial kmod-usb-serial-option kmod-usb-serial-qualcomm kmod-usb-serial-sierrawireless kmod-usb-serial-wwan kmod-usb-storage kmod-usb-storage-uas kmod-usb-wdm libopenssl libpcre libsqlite3 libssh2 libstdcpp libusb-1.0 libxml2 luci-app-aria2 luci-app-p910nd luci-app-samba luci-i18n-aria2-zh-cn luci-i18n-p910nd-en luci-i18n-p910nd-zh-cn luci-i18n-samba-en luci-i18n-samba-zh-cn ntfs-3g p910nd samba36-server uclibcxx uqmi usb-modeswitch webui-aria2 wget wwan"
 CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_gl-usb150=y
 CONFIG_TARGET_DEVICE_PACKAGES_ar71xx_generic_DEVICE_gl-usb150="aria2 kmod-ath9k kmod-ath9k-common kmod-usb-core kmod-usb-printer libopenssl libpcre libsqlite3 libssh2 libstdcpp libxml2 luci-app-aria2 luci-app-p910nd luci-app-samba luci-i18n-aria2-zh-cn luci-i18n-p910nd-en luci-i18n-p910nd-zh-cn luci-i18n-samba-en luci-i18n-samba-zh-cn p910nd samba36-server uclibcxx webui-aria2 wget"
 # CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_lan-turtle is not set
 # CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_packet-squirrel is not set
 # CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_wifi-pineapple-nano is not set
 CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_hiwifi-hc6361=y
-CONFIG_TARGET_DEVICE_PACKAGES_ar71xx_generic_DEVICE_hiwifi-hc6361="aria2 blockd block-mount e2fsprogs kmod-ath9k kmod-ath9k-common kmod-crypto-crc32c kmod-fs-autofs4 kmod-fs-exfat kmod-fs-ext4 kmod-fs-msdos kmod-fs-vfat kmod-fuse kmod-lib-crc16 kmod-mii kmod-nls-cp437 kmod-scsi-core kmod-usb2 kmod-usb-core kmod-usb-ehci kmod-usb-net kmod-usb-net-cdc-ether kmod-usb-net-qmi-wwan kmod-usb-net-rndis kmod-usb-ohci kmod-usb-printer kmod-usb-storage kmod-usb-storage-uas kmod-usb-wdm libblkid libcomerr libext2fs libopenssl libpcre libsqlite3 libss libssh2 libstdcpp libxml2 luci-app-aria2 luci-app-p910nd luci-app-samba luci-i18n-aria2-zh-cn luci-i18n-p910nd-en luci-i18n-p910nd-zh-cn luci-i18n-samba-en luci-i18n-samba-zh-cn ntfs-3g p910nd samba36-server uclibcxx uqmi webui-aria2 wget wwan"
+CONFIG_TARGET_DEVICE_PACKAGES_ar71xx_generic_DEVICE_hiwifi-hc6361="aria2 blockd block-mount e2fsprogs kmod-ath9k kmod-ath9k-common kmod-crypto-crc32c kmod-fs-autofs4 kmod-fs-exfat kmod-fs-ext4 kmod-fs-msdos kmod-fs-vfat kmod-fuse kmod-lib-crc16 kmod-mii kmod-nls-cp437 kmod-scsi-core kmod-usb2 kmod-usb-core kmod-usb-ehci kmod-usb-net kmod-usb-net-cdc-ether kmod-usb-net-cdc-mbim kmod-usb-net-cdc-ncm kmod-usb-net-huawei-cdc-ncm kmod-usb-net-ipheth kmod-usb-net-qmi-wwan kmod-usb-net-rndis kmod-usb-net-rtl8152 kmod-usb-net-sierrawireless kmod-usb-ohci kmod-usb-printer kmod-usb-serial kmod-usb-serial-option kmod-usb-serial-qualcomm kmod-usb-serial-sierrawireless kmod-usb-serial-wwan kmod-usb-storage kmod-usb-storage-uas kmod-usb-wdm libblkid libcomerr libext2fs libopenssl libpcre libsqlite3 libss libssh2 libstdcpp libusb-1.0 libxml2 luci-app-aria2 luci-app-p910nd luci-app-samba luci-i18n-aria2-zh-cn luci-i18n-p910nd-en luci-i18n-p910nd-zh-cn luci-i18n-samba-en luci-i18n-samba-zh-cn ntfs-3g p910nd samba36-server uclibcxx uqmi usb-modeswitch webui-aria2 wget wwan"
 # CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_JA76PF is not set
 # CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_JA76PF2 is not set
 # CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_JWAP003 is not set
@@ -454,11 +454,11 @@ CONFIG_TARGET_DEVICE_PACKAGES_ar71xx_generic_DEVICE_mc-mac1200r="ath10k-firmware
 # CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_WNDAP360 is not set
 # CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_wndr3700 is not set
 CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_wndr3700v2=y
-CONFIG_TARGET_DEVICE_PACKAGES_ar71xx_generic_DEVICE_wndr3700v2="aria2 blockd block-mount kmod-ath9k kmod-ath9k-common kmod-crypto-crc32c kmod-fs-autofs4 kmod-fs-exfat kmod-fs-ext4 kmod-fs-msdos kmod-fs-vfat kmod-fuse kmod-leds-wndr3700-usb kmod-lib-crc16 kmod-mii kmod-nls-cp437 kmod-scsi-core kmod-usb2 kmod-usb-core kmod-usb-ehci kmod-usb-ledtrig-usbport kmod-usb-net kmod-usb-net-cdc-ether kmod-usb-net-qmi-wwan kmod-usb-net-rndis kmod-usb-ohci kmod-usb-printer kmod-usb-storage kmod-usb-storage-uas kmod-usb-wdm libopenssl libpcre libsqlite3 libssh2 libstdcpp libxml2 luci-app-aria2 luci-app-p910nd luci-app-samba luci-i18n-aria2-zh-cn luci-i18n-p910nd-en luci-i18n-p910nd-zh-cn luci-i18n-samba-en luci-i18n-samba-zh-cn ntfs-3g p910nd samba36-server uclibcxx uqmi webui-aria2 wget wwan"
+CONFIG_TARGET_DEVICE_PACKAGES_ar71xx_generic_DEVICE_wndr3700v2="aria2 blockd block-mount kmod-ath9k kmod-ath9k-common kmod-crypto-crc32c kmod-fs-autofs4 kmod-fs-exfat kmod-fs-ext4 kmod-fs-msdos kmod-fs-vfat kmod-fuse kmod-leds-wndr3700-usb kmod-lib-crc16 kmod-mii kmod-nls-cp437 kmod-scsi-core kmod-usb2 kmod-usb-core kmod-usb-ehci kmod-usb-ledtrig-usbport kmod-usb-net kmod-usb-net-cdc-ether kmod-usb-net-cdc-mbim kmod-usb-net-cdc-ncm kmod-usb-net-huawei-cdc-ncm kmod-usb-net-ipheth kmod-usb-net-qmi-wwan kmod-usb-net-rndis kmod-usb-net-rtl8152 kmod-usb-net-sierrawireless kmod-usb-ohci kmod-usb-printer kmod-usb-serial kmod-usb-serial-option kmod-usb-serial-qualcomm kmod-usb-serial-sierrawireless kmod-usb-serial-wwan kmod-usb-storage kmod-usb-storage-uas kmod-usb-wdm libopenssl libpcre libsqlite3 libssh2 libstdcpp libusb-1.0 libxml2 luci-app-aria2 luci-app-p910nd luci-app-samba luci-i18n-aria2-zh-cn luci-i18n-p910nd-en luci-i18n-p910nd-zh-cn luci-i18n-samba-en luci-i18n-samba-zh-cn ntfs-3g p910nd samba36-server uclibcxx uqmi usb-modeswitch webui-aria2 wget wwan"
 CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_wndr3800=y
-CONFIG_TARGET_DEVICE_PACKAGES_ar71xx_generic_DEVICE_wndr3800="aria2 blockd block-mount kmod-ath9k kmod-ath9k-common kmod-crypto-crc32c kmod-fs-autofs4 kmod-fs-exfat kmod-fs-ext4 kmod-fs-msdos kmod-fs-vfat kmod-fuse kmod-leds-wndr3700-usb kmod-lib-crc16 kmod-mii kmod-nls-cp437 kmod-scsi-core kmod-usb2 kmod-usb-core kmod-usb-ehci kmod-usb-ledtrig-usbport kmod-usb-net kmod-usb-net-cdc-ether kmod-usb-net-qmi-wwan kmod-usb-net-rndis kmod-usb-ohci kmod-usb-printer kmod-usb-storage kmod-usb-storage-uas kmod-usb-wdm libopenssl libpcre libsqlite3 libssh2 libstdcpp libxml2 luci-app-aria2 luci-app-p910nd luci-app-samba luci-i18n-aria2-zh-cn luci-i18n-p910nd-en luci-i18n-p910nd-zh-cn luci-i18n-samba-en luci-i18n-samba-zh-cn ntfs-3g p910nd samba36-server uclibcxx uqmi webui-aria2 wget wwan"
+CONFIG_TARGET_DEVICE_PACKAGES_ar71xx_generic_DEVICE_wndr3800="aria2 blockd block-mount kmod-ath9k kmod-ath9k-common kmod-crypto-crc32c kmod-fs-autofs4 kmod-fs-exfat kmod-fs-ext4 kmod-fs-msdos kmod-fs-vfat kmod-fuse kmod-leds-wndr3700-usb kmod-lib-crc16 kmod-mii kmod-nls-cp437 kmod-scsi-core kmod-usb2 kmod-usb-core kmod-usb-ehci kmod-usb-ledtrig-usbport kmod-usb-net kmod-usb-net-cdc-ether kmod-usb-net-cdc-mbim kmod-usb-net-cdc-ncm kmod-usb-net-huawei-cdc-ncm kmod-usb-net-ipheth kmod-usb-net-qmi-wwan kmod-usb-net-rndis kmod-usb-net-rtl8152 kmod-usb-net-sierrawireless kmod-usb-ohci kmod-usb-printer kmod-usb-serial kmod-usb-serial-option kmod-usb-serial-qualcomm kmod-usb-serial-sierrawireless kmod-usb-serial-wwan kmod-usb-storage kmod-usb-storage-uas kmod-usb-wdm libopenssl libpcre libsqlite3 libssh2 libstdcpp libusb-1.0 libxml2 luci-app-aria2 luci-app-p910nd luci-app-samba luci-i18n-aria2-zh-cn luci-i18n-p910nd-en luci-i18n-p910nd-zh-cn luci-i18n-samba-en luci-i18n-samba-zh-cn ntfs-3g p910nd samba36-server uclibcxx uqmi usb-modeswitch webui-aria2 wget wwan"
 CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_wndr3800ch=y
-CONFIG_TARGET_DEVICE_PACKAGES_ar71xx_generic_DEVICE_wndr3800ch="aria2 blockd block-mount kmod-ath9k kmod-ath9k-common kmod-crypto-crc32c kmod-fs-autofs4 kmod-fs-exfat kmod-fs-ext4 kmod-fs-msdos kmod-fs-vfat kmod-fuse kmod-leds-wndr3700-usb kmod-lib-crc16 kmod-mii kmod-nls-cp437 kmod-scsi-core kmod-usb2 kmod-usb-core kmod-usb-ehci kmod-usb-ledtrig-usbport kmod-usb-net kmod-usb-net-cdc-ether kmod-usb-net-qmi-wwan kmod-usb-net-rndis kmod-usb-ohci kmod-usb-printer kmod-usb-storage kmod-usb-storage-uas kmod-usb-wdm libopenssl libpcre libsqlite3 libssh2 libstdcpp libxml2 luci-app-aria2 luci-app-p910nd luci-app-samba luci-i18n-aria2-zh-cn luci-i18n-p910nd-en luci-i18n-p910nd-zh-cn luci-i18n-samba-en luci-i18n-samba-zh-cn ntfs-3g p910nd samba36-server uclibcxx uqmi webui-aria2 wget wwan"
+CONFIG_TARGET_DEVICE_PACKAGES_ar71xx_generic_DEVICE_wndr3800ch="aria2 blockd block-mount kmod-ath9k kmod-ath9k-common kmod-crypto-crc32c kmod-fs-autofs4 kmod-fs-exfat kmod-fs-ext4 kmod-fs-msdos kmod-fs-vfat kmod-fuse kmod-leds-wndr3700-usb kmod-lib-crc16 kmod-mii kmod-nls-cp437 kmod-scsi-core kmod-usb2 kmod-usb-core kmod-usb-ehci kmod-usb-ledtrig-usbport kmod-usb-net kmod-usb-net-cdc-ether kmod-usb-net-cdc-mbim kmod-usb-net-cdc-ncm kmod-usb-net-huawei-cdc-ncm kmod-usb-net-ipheth kmod-usb-net-qmi-wwan kmod-usb-net-rndis kmod-usb-net-rtl8152 kmod-usb-net-sierrawireless kmod-usb-ohci kmod-usb-printer kmod-usb-serial kmod-usb-serial-option kmod-usb-serial-qualcomm kmod-usb-serial-sierrawireless kmod-usb-serial-wwan kmod-usb-storage kmod-usb-storage-uas kmod-usb-wdm libopenssl libpcre libsqlite3 libssh2 libstdcpp libusb-1.0 libxml2 luci-app-aria2 luci-app-p910nd luci-app-samba luci-i18n-aria2-zh-cn luci-i18n-p910nd-en luci-i18n-p910nd-zh-cn luci-i18n-samba-en luci-i18n-samba-zh-cn ntfs-3g p910nd samba36-server uclibcxx uqmi usb-modeswitch webui-aria2 wget wwan"
 # CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_wndrmac is not set
 # CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_wndrmacv2 is not set
 # CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_WNR2200 is not set
@@ -487,7 +487,7 @@ CONFIG_TARGET_DEVICE_PACKAGES_ar71xx_generic_DEVICE_k2t="ath10k-firmware-qca9888
 # CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_DLRTDEV01 is not set
 # CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_pqi-air-pen is not set
 CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_qihoo-c301=y
-CONFIG_TARGET_DEVICE_PACKAGES_ar71xx_generic_DEVICE_qihoo-c301="aria2 ath10k-firmware-qca988x-ct blockd block-mount kmod-ath10k-ct kmod-ath9k kmod-ath9k-common kmod-crypto-crc32c kmod-fs-autofs4 kmod-fs-exfat kmod-fs-ext4 kmod-fs-msdos kmod-fs-vfat kmod-fuse kmod-hwmon-core kmod-lib-crc16 kmod-mii kmod-nls-cp437 kmod-scsi-core kmod-usb2 kmod-usb-core kmod-usb-ehci kmod-usb-ledtrig-usbport kmod-usb-net kmod-usb-net-cdc-ether kmod-usb-net-qmi-wwan kmod-usb-net-rndis kmod-usb-ohci kmod-usb-printer kmod-usb-storage kmod-usb-storage-uas kmod-usb-wdm libopenssl libpcre libsqlite3 libssh2 libstdcpp libxml2 luci-app-aria2 luci-app-p910nd luci-app-samba luci-i18n-aria2-zh-cn luci-i18n-p910nd-en luci-i18n-p910nd-zh-cn luci-i18n-samba-en luci-i18n-samba-zh-cn ntfs-3g p910nd samba36-server uclibcxx uqmi webui-aria2 wget wwan"
+CONFIG_TARGET_DEVICE_PACKAGES_ar71xx_generic_DEVICE_qihoo-c301="aria2 ath10k-firmware-qca988x-ct blockd block-mount kmod-ath10k-ct kmod-ath9k kmod-ath9k-common kmod-crypto-crc32c kmod-fs-autofs4 kmod-fs-exfat kmod-fs-ext4 kmod-fs-msdos kmod-fs-vfat kmod-fuse kmod-hwmon-core kmod-lib-crc16 kmod-mii kmod-nls-cp437 kmod-scsi-core kmod-usb2 kmod-usb-core kmod-usb-ehci kmod-usb-ledtrig-usbport kmod-usb-net kmod-usb-net-cdc-ether kmod-usb-net-cdc-mbim kmod-usb-net-cdc-ncm kmod-usb-net-huawei-cdc-ncm kmod-usb-net-ipheth kmod-usb-net-qmi-wwan kmod-usb-net-rndis kmod-usb-net-rtl8152 kmod-usb-net-sierrawireless kmod-usb-ohci kmod-usb-printer kmod-usb-serial kmod-usb-serial-option kmod-usb-serial-qualcomm kmod-usb-serial-sierrawireless kmod-usb-serial-wwan kmod-usb-storage kmod-usb-storage-uas kmod-usb-wdm libopenssl libpcre libsqlite3 libssh2 libstdcpp libusb-1.0 libxml2 luci-app-aria2 luci-app-p910nd luci-app-samba luci-i18n-aria2-zh-cn luci-i18n-p910nd-en luci-i18n-p910nd-zh-cn luci-i18n-samba-en luci-i18n-samba-zh-cn ntfs-3g p910nd samba36-server uclibcxx uqmi usb-modeswitch webui-aria2 wget wwan"
 # CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_AC9531_010 is not set
 # CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_AC9531_020 is not set
 # CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_AP143_16M is not set
@@ -518,9 +518,9 @@ CONFIG_TARGET_DEVICE_PACKAGES_ar71xx_generic_DEVICE_qihoo-c301="aria2 ath10k-fir
 # CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_archer-c5-v1 is not set
 # CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_archer-c58-v1 is not set
 CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_archer-c59-v1=y
-CONFIG_TARGET_DEVICE_PACKAGES_ar71xx_generic_DEVICE_archer-c59-v1="aria2 ath10k-firmware-qca9888-ct blockd block-mount kmod-ath10k-ct kmod-ath9k kmod-ath9k-common kmod-crypto-crc32c kmod-fs-autofs4 kmod-fs-exfat kmod-fs-ext4 kmod-fs-msdos kmod-fs-vfat kmod-fuse kmod-hwmon-core kmod-lib-crc16 kmod-mii kmod-nls-cp437 kmod-scsi-core kmod-usb2 kmod-usb-core kmod-usb-ehci kmod-usb-ledtrig-usbport kmod-usb-net kmod-usb-net-cdc-ether kmod-usb-net-qmi-wwan kmod-usb-net-rndis kmod-usb-ohci kmod-usb-printer kmod-usb-storage kmod-usb-storage-uas kmod-usb-wdm libopenssl libpcre libsqlite3 libssh2 libstdcpp libxml2 luci-app-aria2 luci-app-p910nd luci-app-samba luci-i18n-aria2-zh-cn luci-i18n-p910nd-en luci-i18n-p910nd-zh-cn luci-i18n-samba-en luci-i18n-samba-zh-cn ntfs-3g p910nd samba36-server uclibcxx uqmi webui-aria2 wget wwan"
+CONFIG_TARGET_DEVICE_PACKAGES_ar71xx_generic_DEVICE_archer-c59-v1="aria2 ath10k-firmware-qca9888-ct blockd block-mount kmod-ath10k-ct kmod-ath9k kmod-ath9k-common kmod-crypto-crc32c kmod-fs-autofs4 kmod-fs-exfat kmod-fs-ext4 kmod-fs-msdos kmod-fs-vfat kmod-fuse kmod-hwmon-core kmod-lib-crc16 kmod-mii kmod-nls-cp437 kmod-scsi-core kmod-usb2 kmod-usb-core kmod-usb-ehci kmod-usb-ledtrig-usbport kmod-usb-net kmod-usb-net-cdc-ether kmod-usb-net-cdc-mbim kmod-usb-net-cdc-ncm kmod-usb-net-huawei-cdc-ncm kmod-usb-net-ipheth kmod-usb-net-qmi-wwan kmod-usb-net-rndis kmod-usb-net-rtl8152 kmod-usb-net-sierrawireless kmod-usb-ohci kmod-usb-printer kmod-usb-serial kmod-usb-serial-option kmod-usb-serial-qualcomm kmod-usb-serial-sierrawireless kmod-usb-serial-wwan kmod-usb-storage kmod-usb-storage-uas kmod-usb-wdm libopenssl libpcre libsqlite3 libssh2 libstdcpp libusb-1.0 libxml2 luci-app-aria2 luci-app-p910nd luci-app-samba luci-i18n-aria2-zh-cn luci-i18n-p910nd-en luci-i18n-p910nd-zh-cn luci-i18n-samba-en luci-i18n-samba-zh-cn ntfs-3g p910nd samba36-server uclibcxx uqmi usb-modeswitch webui-aria2 wget wwan"
 CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_archer-c59-v2=y
-CONFIG_TARGET_DEVICE_PACKAGES_ar71xx_generic_DEVICE_archer-c59-v2="aria2 ath10k-firmware-qca9888-ct blockd block-mount kmod-ath10k-ct kmod-ath9k kmod-ath9k-common kmod-crypto-crc32c kmod-fs-autofs4 kmod-fs-exfat kmod-fs-ext4 kmod-fs-msdos kmod-fs-vfat kmod-fuse kmod-hwmon-core kmod-lib-crc16 kmod-mii kmod-nls-cp437 kmod-scsi-core kmod-usb2 kmod-usb-core kmod-usb-ehci kmod-usb-ledtrig-usbport kmod-usb-net kmod-usb-net-cdc-ether kmod-usb-net-qmi-wwan kmod-usb-net-rndis kmod-usb-ohci kmod-usb-printer kmod-usb-storage kmod-usb-storage-uas kmod-usb-wdm libopenssl libpcre libsqlite3 libssh2 libstdcpp libxml2 luci-app-aria2 luci-app-p910nd luci-app-samba luci-i18n-aria2-zh-cn luci-i18n-p910nd-en luci-i18n-p910nd-zh-cn luci-i18n-samba-en luci-i18n-samba-zh-cn ntfs-3g p910nd samba36-server uclibcxx uqmi webui-aria2 wget wwan"
+CONFIG_TARGET_DEVICE_PACKAGES_ar71xx_generic_DEVICE_archer-c59-v2="aria2 ath10k-firmware-qca9888-ct blockd block-mount kmod-ath10k-ct kmod-ath9k kmod-ath9k-common kmod-crypto-crc32c kmod-fs-autofs4 kmod-fs-exfat kmod-fs-ext4 kmod-fs-msdos kmod-fs-vfat kmod-fuse kmod-hwmon-core kmod-lib-crc16 kmod-mii kmod-nls-cp437 kmod-scsi-core kmod-usb2 kmod-usb-core kmod-usb-ehci kmod-usb-ledtrig-usbport kmod-usb-net kmod-usb-net-cdc-ether kmod-usb-net-cdc-mbim kmod-usb-net-cdc-ncm kmod-usb-net-huawei-cdc-ncm kmod-usb-net-ipheth kmod-usb-net-qmi-wwan kmod-usb-net-rndis kmod-usb-net-rtl8152 kmod-usb-net-sierrawireless kmod-usb-ohci kmod-usb-printer kmod-usb-serial kmod-usb-serial-option kmod-usb-serial-qualcomm kmod-usb-serial-sierrawireless kmod-usb-serial-wwan kmod-usb-storage kmod-usb-storage-uas kmod-usb-wdm libopenssl libpcre libsqlite3 libssh2 libstdcpp libusb-1.0 libxml2 luci-app-aria2 luci-app-p910nd luci-app-samba luci-i18n-aria2-zh-cn luci-i18n-p910nd-en luci-i18n-p910nd-zh-cn luci-i18n-samba-en luci-i18n-samba-zh-cn ntfs-3g p910nd samba36-server uclibcxx uqmi usb-modeswitch webui-aria2 wget wwan"
 # CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_archer-c60-v1 is not set
 # CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_archer-c60-v2 is not set
 # CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_archer-c7-v1 is not set
@@ -551,7 +551,7 @@ CONFIG_TARGET_DEVICE_PACKAGES_ar71xx_generic_DEVICE_archer-c59-v2="aria2 ath10k-
 # CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_tl-wr1043nd-v2 is not set
 # CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_tl-wr1043nd-v3 is not set
 CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_tl-wr1043nd-v4=y
-CONFIG_TARGET_DEVICE_PACKAGES_ar71xx_generic_DEVICE_tl-wr1043nd-v4="aria2 blockd block-mount kmod-ath9k kmod-ath9k-common kmod-crypto-crc32c kmod-fs-autofs4 kmod-fs-exfat kmod-fs-ext4 kmod-fs-msdos kmod-fs-vfat kmod-fuse kmod-lib-crc16 kmod-mii kmod-nls-cp437 kmod-scsi-core kmod-usb2 kmod-usb-core kmod-usb-ehci kmod-usb-ledtrig-usbport kmod-usb-net kmod-usb-net-cdc-ether kmod-usb-net-qmi-wwan kmod-usb-net-rndis kmod-usb-ohci kmod-usb-printer kmod-usb-storage kmod-usb-storage-uas kmod-usb-wdm libopenssl libpcre libsqlite3 libssh2 libstdcpp libxml2 luci-app-aria2 luci-app-p910nd luci-app-samba luci-i18n-aria2-zh-cn luci-i18n-p910nd-en luci-i18n-p910nd-zh-cn luci-i18n-samba-en luci-i18n-samba-zh-cn ntfs-3g p910nd samba36-server uclibcxx uqmi webui-aria2 wget wwan"
+CONFIG_TARGET_DEVICE_PACKAGES_ar71xx_generic_DEVICE_tl-wr1043nd-v4="aria2 blockd block-mount kmod-ath9k kmod-ath9k-common kmod-crypto-crc32c kmod-fs-autofs4 kmod-fs-exfat kmod-fs-ext4 kmod-fs-msdos kmod-fs-vfat kmod-fuse kmod-lib-crc16 kmod-mii kmod-nls-cp437 kmod-scsi-core kmod-usb2 kmod-usb-core kmod-usb-ehci kmod-usb-ledtrig-usbport kmod-usb-net kmod-usb-net-cdc-ether kmod-usb-net-cdc-mbim kmod-usb-net-cdc-ncm kmod-usb-net-huawei-cdc-ncm kmod-usb-net-ipheth kmod-usb-net-qmi-wwan kmod-usb-net-rndis kmod-usb-net-rtl8152 kmod-usb-net-sierrawireless kmod-usb-ohci kmod-usb-printer kmod-usb-serial kmod-usb-serial-option kmod-usb-serial-qualcomm kmod-usb-serial-sierrawireless kmod-usb-serial-wwan kmod-usb-storage kmod-usb-storage-uas kmod-usb-wdm libopenssl libpcre libsqlite3 libssh2 libstdcpp libusb-1.0 libxml2 luci-app-aria2 luci-app-p910nd luci-app-samba luci-i18n-aria2-zh-cn luci-i18n-p910nd-en luci-i18n-p910nd-zh-cn luci-i18n-samba-en luci-i18n-samba-zh-cn ntfs-3g p910nd samba36-server uclibcxx uqmi usb-modeswitch webui-aria2 wget wwan"
 # CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_tl-wr2543-v1 is not set
 # CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_tl-wr710n-v1 is not set
 # CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_tl-wr710n-v2.1 is not set
@@ -560,7 +560,7 @@ CONFIG_TARGET_DEVICE_PACKAGES_ar71xx_generic_DEVICE_tl-wr1043nd-v4="aria2 blockd
 # CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_tl-wr842n-v1 is not set
 # CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_tl-wr842n-v2 is not set
 CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_tl-wr842n-v3=y
-CONFIG_TARGET_DEVICE_PACKAGES_ar71xx_generic_DEVICE_tl-wr842n-v3="aria2 blockd block-mount kmod-ath9k kmod-ath9k-common kmod-crypto-crc32c kmod-fs-autofs4 kmod-fs-exfat kmod-fs-ext4 kmod-fs-msdos kmod-fs-vfat kmod-fuse kmod-lib-crc16 kmod-mii kmod-nls-cp437 kmod-scsi-core kmod-usb2 kmod-usb-core kmod-usb-ehci kmod-usb-ledtrig-usbport kmod-usb-net kmod-usb-net-cdc-ether kmod-usb-net-qmi-wwan kmod-usb-net-rndis kmod-usb-ohci kmod-usb-printer kmod-usb-storage kmod-usb-storage-uas kmod-usb-wdm libopenssl libpcre libsqlite3 libssh2 libstdcpp libxml2 luci-app-aria2 luci-app-p910nd luci-app-samba luci-i18n-aria2-zh-cn luci-i18n-p910nd-en luci-i18n-p910nd-zh-cn luci-i18n-samba-en luci-i18n-samba-zh-cn ntfs-3g p910nd samba36-server uclibcxx uqmi webui-aria2 wget wwan"
+CONFIG_TARGET_DEVICE_PACKAGES_ar71xx_generic_DEVICE_tl-wr842n-v3="aria2 blockd block-mount kmod-ath9k kmod-ath9k-common kmod-crypto-crc32c kmod-fs-autofs4 kmod-fs-exfat kmod-fs-ext4 kmod-fs-msdos kmod-fs-vfat kmod-fuse kmod-lib-crc16 kmod-mii kmod-nls-cp437 kmod-scsi-core kmod-usb2 kmod-usb-core kmod-usb-ehci kmod-usb-ledtrig-usbport kmod-usb-net kmod-usb-net-cdc-ether kmod-usb-net-cdc-mbim kmod-usb-net-cdc-ncm kmod-usb-net-huawei-cdc-ncm kmod-usb-net-ipheth kmod-usb-net-qmi-wwan kmod-usb-net-rndis kmod-usb-net-rtl8152 kmod-usb-net-sierrawireless kmod-usb-ohci kmod-usb-printer kmod-usb-serial kmod-usb-serial-option kmod-usb-serial-qualcomm kmod-usb-serial-sierrawireless kmod-usb-serial-wwan kmod-usb-storage kmod-usb-storage-uas kmod-usb-wdm libopenssl libpcre libsqlite3 libssh2 libstdcpp libusb-1.0 libxml2 luci-app-aria2 luci-app-p910nd luci-app-samba luci-i18n-aria2-zh-cn luci-i18n-p910nd-en luci-i18n-p910nd-zh-cn luci-i18n-samba-en luci-i18n-samba-zh-cn ntfs-3g p910nd samba36-server uclibcxx uqmi usb-modeswitch webui-aria2 wget wwan"
 # CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_tl-wr902ac-v1 is not set
 # CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_tl-wr942n-v1 is not set
 # CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_wbs210-v1 is not set
@@ -941,7 +941,7 @@ CONFIG_TARGET_INIT_CMD="/sbin/init"
 CONFIG_TARGET_INIT_SUPPRESS_STDERR=y
 CONFIG_VERSIONOPT=y
 CONFIG_VERSION_DIST="X-WRT"
-CONFIG_VERSION_NUMBER="5.0_b201904281208"
+CONFIG_VERSION_NUMBER="5.0_b201904282236"
 CONFIG_VERSION_CODE="Disco"
 CONFIG_VERSION_REPO="http://downloads.openwrt.org/snapshots"
 CONFIG_VERSION_HOME_URL="https://x-wrt.com/"
@@ -3743,13 +3743,13 @@ CONFIG_PACKAGE_kmod-usb-net=m
 # CONFIG_PACKAGE_kmod-usb-net-asix-ax88179 is not set
 # CONFIG_PACKAGE_kmod-usb-net-cdc-eem is not set
 CONFIG_PACKAGE_kmod-usb-net-cdc-ether=m
-# CONFIG_PACKAGE_kmod-usb-net-cdc-mbim is not set
-# CONFIG_PACKAGE_kmod-usb-net-cdc-ncm is not set
+CONFIG_PACKAGE_kmod-usb-net-cdc-mbim=m
+CONFIG_PACKAGE_kmod-usb-net-cdc-ncm=m
 # CONFIG_PACKAGE_kmod-usb-net-cdc-subset is not set
 # CONFIG_PACKAGE_kmod-usb-net-dm9601-ether is not set
 # CONFIG_PACKAGE_kmod-usb-net-hso is not set
-# CONFIG_PACKAGE_kmod-usb-net-huawei-cdc-ncm is not set
-# CONFIG_PACKAGE_kmod-usb-net-ipheth is not set
+CONFIG_PACKAGE_kmod-usb-net-huawei-cdc-ncm=m
+CONFIG_PACKAGE_kmod-usb-net-ipheth=m
 # CONFIG_PACKAGE_kmod-usb-net-kalmia is not set
 # CONFIG_PACKAGE_kmod-usb-net-kaweth is not set
 # CONFIG_PACKAGE_kmod-usb-net-mcs7830 is not set
@@ -3758,15 +3758,39 @@ CONFIG_PACKAGE_kmod-usb-net-cdc-ether=m
 CONFIG_PACKAGE_kmod-usb-net-qmi-wwan=m
 CONFIG_PACKAGE_kmod-usb-net-rndis=m
 # CONFIG_PACKAGE_kmod-usb-net-rtl8150 is not set
-# CONFIG_PACKAGE_kmod-usb-net-rtl8152 is not set
-# CONFIG_PACKAGE_kmod-usb-net-sierrawireless is not set
+CONFIG_PACKAGE_kmod-usb-net-rtl8152=m
+CONFIG_PACKAGE_kmod-usb-net-sierrawireless=m
 # CONFIG_PACKAGE_kmod-usb-net-smsc95xx is not set
 # CONFIG_PACKAGE_kmod-usb-net-sr9700 is not set
 # CONFIG_PACKAGE_kmod-usb-net2280 is not set
 CONFIG_PACKAGE_kmod-usb-ohci=m
 # CONFIG_PACKAGE_kmod-usb-ohci-pci is not set
 CONFIG_PACKAGE_kmod-usb-printer=m
-# CONFIG_PACKAGE_kmod-usb-serial is not set
+CONFIG_PACKAGE_kmod-usb-serial=m
+# CONFIG_PACKAGE_kmod-usb-serial-ark3116 is not set
+# CONFIG_PACKAGE_kmod-usb-serial-belkin is not set
+# CONFIG_PACKAGE_kmod-usb-serial-ch341 is not set
+# CONFIG_PACKAGE_kmod-usb-serial-cp210x is not set
+# CONFIG_PACKAGE_kmod-usb-serial-cypress-m8 is not set
+# CONFIG_PACKAGE_kmod-usb-serial-dmx_usb_module is not set
+# CONFIG_PACKAGE_kmod-usb-serial-edgeport is not set
+# CONFIG_PACKAGE_kmod-usb-serial-ftdi is not set
+# CONFIG_PACKAGE_kmod-usb-serial-garmin is not set
+# CONFIG_PACKAGE_kmod-usb-serial-ipw is not set
+# CONFIG_PACKAGE_kmod-usb-serial-keyspan is not set
+# CONFIG_PACKAGE_kmod-usb-serial-mct is not set
+# CONFIG_PACKAGE_kmod-usb-serial-mos7720 is not set
+# CONFIG_PACKAGE_kmod-usb-serial-mos7840 is not set
+CONFIG_PACKAGE_kmod-usb-serial-option=m
+# CONFIG_PACKAGE_kmod-usb-serial-oti6858 is not set
+# CONFIG_PACKAGE_kmod-usb-serial-pl2303 is not set
+CONFIG_PACKAGE_kmod-usb-serial-qualcomm=m
+CONFIG_PACKAGE_kmod-usb-serial-sierrawireless=m
+# CONFIG_PACKAGE_kmod-usb-serial-simple is not set
+# CONFIG_PACKAGE_kmod-usb-serial-ti-usb is not set
+# CONFIG_PACKAGE_kmod-usb-serial-visor is not set
+CONFIG_PACKAGE_kmod-usb-serial-wwan=m
+# CONFIG_PACKAGE_kmod-usb-serial-xr_usb_serial_common is not set
 CONFIG_PACKAGE_kmod-usb-storage=m
 CONFIG_PACKAGE_kmod-usb-storage-extras=m
 CONFIG_PACKAGE_kmod-usb-storage-uas=m
@@ -5601,7 +5625,7 @@ CONFIG_PACKAGE_libuclient=y
 # CONFIG_PACKAGE_libupnp is not set
 # CONFIG_PACKAGE_libupnpp is not set
 # CONFIG_PACKAGE_liburcu is not set
-# CONFIG_PACKAGE_libusb-1.0 is not set
+CONFIG_PACKAGE_libusb-1.0=m
 # CONFIG_PACKAGE_libusb-compat is not set
 # CONFIG_PACKAGE_libusbmuxd is not set
 CONFIG_PACKAGE_libustream-mbedtls=y
@@ -7093,6 +7117,7 @@ CONFIG_PACKAGE_wwan=m
 # BigClown
 #
 # CONFIG_PACKAGE_bigclown-control-tool is not set
+# CONFIG_PACKAGE_bigclown-gateway is not set
 # CONFIG_PACKAGE_bigclown-mqtt2influxdb is not set
 
 #
@@ -7516,7 +7541,7 @@ CONFIG_STRACE_NONE=y
 # CONFIG_PACKAGE_ugps is not set
 # CONFIG_PACKAGE_uledd is not set
 # CONFIG_PACKAGE_unshare is not set
-# CONFIG_PACKAGE_usb-modeswitch is not set
+CONFIG_PACKAGE_usb-modeswitch=m
 # CONFIG_PACKAGE_usbmuxd is not set
 # CONFIG_PACKAGE_usbreset is not set
 # CONFIG_PACKAGE_usbutils is not set

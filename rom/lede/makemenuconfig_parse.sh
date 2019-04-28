@@ -9,7 +9,20 @@ usbprint="kmod-usb-printer \
 usb4g="wwan \
 	   uqmi \
 	   kmod-usb-wdm \
-	   kmod-usb-net-qmi-wwan"
+	   kmod-usb-net-qmi-wwan \
+	   kmod-usb-net-cdc-mbim \
+	   kmod-usb-net-cdc-ncm \
+	   kmod-usb-net-huawei-cdc-ncm \
+	   kmod-usb-net-ipheth \
+	   kmod-usb-net-rtl8152 \
+	   kmod-usb-net-sierrawireless \
+	   kmod-usb-serial \
+	   kmod-usb-serial-option \
+	   kmod-usb-serial-qualcomm \
+	   kmod-usb-serial-sierrawireless \
+	   kmod-usb-serial-wwan \
+	   libusb-1.0 \
+	   usb-modeswitch"
 
 usb2="kmod-usb2 \
 	  kmod-usb-core \
