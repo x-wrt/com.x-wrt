@@ -157,13 +157,13 @@ CONFIG_TARGET_PER_DEVICE_ROOTFS=y
 # CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_alfa-network_tube-e4g is not set
 # CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_rp-n53 is not set
 CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_rt-ac51u=y
-CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt7620_DEVICE_rt-ac51u="aria2 blockd block-mount kmod-crypto-crc32c kmod-fs-autofs4 kmod-fs-exfat kmod-fs-ext4 kmod-fs-msdos kmod-fs-vfat kmod-fuse kmod-lib-crc16 kmod-mii kmod-mt76-core kmod-mt76x02-common kmod-mt76x0-common kmod-mt76x0e kmod-nls-cp437 kmod-rt2800-lib kmod-rt2800-mmio kmod-rt2800-pci kmod-rt2800-soc kmod-rt2x00-lib kmod-rt2x00-mmio kmod-rt2x00-pci kmod-scsi-core kmod-usb2 kmod-usb-core kmod-usb-ehci kmod-usb-ledtrig-usbport kmod-usb-net kmod-usb-net-cdc-ether kmod-usb-net-rndis kmod-usb-ohci kmod-usb-printer kmod-usb-storage kmod-usb-storage-uas libopenssl libpcre libsqlite3 libssh2 libstdcpp libxml2 luci-app-aria2 luci-app-p910nd luci-app-samba luci-i18n-aria2-zh-cn luci-i18n-p910nd-en luci-i18n-p910nd-zh-cn luci-i18n-samba-en luci-i18n-samba-zh-cn ntfs-3g p910nd rt2800-pci-firmware samba36-server uclibcxx webui-aria2 wget"
+CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt7620_DEVICE_rt-ac51u="aria2 blockd block-mount kmod-crypto-crc32c kmod-fs-autofs4 kmod-fs-exfat kmod-fs-ext4 kmod-fs-msdos kmod-fs-vfat kmod-fuse kmod-lib-crc16 kmod-mii kmod-mt76-core kmod-mt76x02-common kmod-mt76x0-common kmod-mt76x0e kmod-nls-cp437 kmod-rt2800-lib kmod-rt2800-mmio kmod-rt2800-pci kmod-rt2800-soc kmod-rt2x00-lib kmod-rt2x00-mmio kmod-rt2x00-pci kmod-scsi-core kmod-usb2 kmod-usb-core kmod-usb-ehci kmod-usb-ledtrig-usbport kmod-usb-net kmod-usb-net-cdc-ether kmod-usb-net-qmi-wwan kmod-usb-net-rndis kmod-usb-ohci kmod-usb-printer kmod-usb-storage kmod-usb-storage-uas kmod-usb-wdm libopenssl libpcre libsqlite3 libssh2 libstdcpp libxml2 luci-app-aria2 luci-app-p910nd luci-app-samba luci-i18n-aria2-zh-cn luci-i18n-p910nd-en luci-i18n-p910nd-zh-cn luci-i18n-samba-en luci-i18n-samba-zh-cn ntfs-3g p910nd rt2800-pci-firmware samba36-server uclibcxx uqmi webui-aria2 wget wwan"
 CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_rt-n12p=y
 CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt7620_DEVICE_rt-n12p="aria2 kmod-rt2800-lib kmod-rt2800-mmio kmod-rt2800-pci kmod-rt2800-soc kmod-rt2x00-lib kmod-rt2x00-mmio kmod-rt2x00-pci kmod-usb-core kmod-usb-printer libopenssl libpcre libsqlite3 libssh2 libstdcpp libxml2 luci-app-aria2 luci-app-p910nd luci-app-samba luci-i18n-aria2-zh-cn luci-i18n-p910nd-en luci-i18n-p910nd-zh-cn luci-i18n-samba-en luci-i18n-samba-zh-cn p910nd rt2800-pci-firmware samba36-server uclibcxx webui-aria2 wget"
 CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_rt-n14u=y
-CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt7620_DEVICE_rt-n14u="aria2 blockd block-mount kmod-crypto-crc32c kmod-fs-autofs4 kmod-fs-exfat kmod-fs-ext4 kmod-fs-msdos kmod-fs-vfat kmod-fuse kmod-lib-crc16 kmod-mii kmod-nls-cp437 kmod-rt2800-lib kmod-rt2800-mmio kmod-rt2800-pci kmod-rt2800-soc kmod-rt2x00-lib kmod-rt2x00-mmio kmod-rt2x00-pci kmod-scsi-core kmod-usb2 kmod-usb-core kmod-usb-ehci kmod-usb-net kmod-usb-net-cdc-ether kmod-usb-net-rndis kmod-usb-ohci kmod-usb-printer kmod-usb-storage kmod-usb-storage-uas libopenssl libpcre libsqlite3 libssh2 libstdcpp libxml2 luci-app-aria2 luci-app-p910nd luci-app-samba luci-i18n-aria2-zh-cn luci-i18n-p910nd-en luci-i18n-p910nd-zh-cn luci-i18n-samba-en luci-i18n-samba-zh-cn ntfs-3g p910nd rt2800-pci-firmware samba36-server uclibcxx webui-aria2 wget"
+CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt7620_DEVICE_rt-n14u="aria2 blockd block-mount kmod-crypto-crc32c kmod-fs-autofs4 kmod-fs-exfat kmod-fs-ext4 kmod-fs-msdos kmod-fs-vfat kmod-fuse kmod-lib-crc16 kmod-mii kmod-nls-cp437 kmod-rt2800-lib kmod-rt2800-mmio kmod-rt2800-pci kmod-rt2800-soc kmod-rt2x00-lib kmod-rt2x00-mmio kmod-rt2x00-pci kmod-scsi-core kmod-usb2 kmod-usb-core kmod-usb-ehci kmod-usb-net kmod-usb-net-cdc-ether kmod-usb-net-qmi-wwan kmod-usb-net-rndis kmod-usb-ohci kmod-usb-printer kmod-usb-storage kmod-usb-storage-uas kmod-usb-wdm libopenssl libpcre libsqlite3 libssh2 libstdcpp libxml2 luci-app-aria2 luci-app-p910nd luci-app-samba luci-i18n-aria2-zh-cn luci-i18n-p910nd-en luci-i18n-p910nd-zh-cn luci-i18n-samba-en luci-i18n-samba-zh-cn ntfs-3g p910nd rt2800-pci-firmware samba36-server uclibcxx uqmi webui-aria2 wget wwan"
 CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_bdcom_wap2100-sk=y
-CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt7620_DEVICE_bdcom_wap2100-sk="aria2 blockd block-mount kmod-crypto-crc32c kmod-fs-autofs4 kmod-fs-exfat kmod-fs-ext4 kmod-fs-msdos kmod-fs-vfat kmod-fuse kmod-lib-crc16 kmod-mii kmod-mt76-core kmod-mt76x02-common kmod-mt76x0-common kmod-mt76x0e kmod-mt76x2 kmod-mt76x2-common kmod-nls-cp437 kmod-rt2800-lib kmod-rt2800-mmio kmod-rt2800-pci kmod-rt2800-soc kmod-rt2x00-lib kmod-rt2x00-mmio kmod-rt2x00-pci kmod-scsi-core kmod-sdhci-mt7620 kmod-usb2 kmod-usb-core kmod-usb-ehci kmod-usb-ledtrig-usbport kmod-usb-net kmod-usb-net-cdc-ether kmod-usb-net-rndis kmod-usb-ohci kmod-usb-printer kmod-usb-storage kmod-usb-storage-uas libopenssl libpcre libsqlite3 libssh2 libstdcpp libxml2 luci-app-aria2 luci-app-p910nd luci-app-samba luci-i18n-aria2-zh-cn luci-i18n-p910nd-en luci-i18n-p910nd-zh-cn luci-i18n-samba-en luci-i18n-samba-zh-cn ntfs-3g p910nd rt2800-pci-firmware samba36-server uclibcxx webui-aria2 wget"
+CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt7620_DEVICE_bdcom_wap2100-sk="aria2 blockd block-mount kmod-crypto-crc32c kmod-fs-autofs4 kmod-fs-exfat kmod-fs-ext4 kmod-fs-msdos kmod-fs-vfat kmod-fuse kmod-lib-crc16 kmod-mii kmod-mt76-core kmod-mt76x02-common kmod-mt76x0-common kmod-mt76x0e kmod-mt76x2 kmod-mt76x2-common kmod-nls-cp437 kmod-rt2800-lib kmod-rt2800-mmio kmod-rt2800-pci kmod-rt2800-soc kmod-rt2x00-lib kmod-rt2x00-mmio kmod-rt2x00-pci kmod-scsi-core kmod-sdhci-mt7620 kmod-usb2 kmod-usb-core kmod-usb-ehci kmod-usb-ledtrig-usbport kmod-usb-net kmod-usb-net-cdc-ether kmod-usb-net-qmi-wwan kmod-usb-net-rndis kmod-usb-ohci kmod-usb-printer kmod-usb-storage kmod-usb-storage-uas kmod-usb-wdm libopenssl libpcre libsqlite3 libssh2 libstdcpp libxml2 luci-app-aria2 luci-app-p910nd luci-app-samba luci-i18n-aria2-zh-cn luci-i18n-p910nd-en luci-i18n-p910nd-zh-cn luci-i18n-samba-en luci-i18n-samba-zh-cn ntfs-3g p910nd rt2800-pci-firmware samba36-server uclibcxx uqmi webui-aria2 wget wwan"
 # CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_whr-1166d is not set
 # CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_whr-300hp2 is not set
 # CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_whr-600d is not set
@@ -175,9 +175,9 @@ CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt7620_DEVICE_dlink_dir-510l="aria2 jboot-t
 # CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_dir-810l is not set
 # CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_dlink_dwr-116-a1 is not set
 CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_dlink_dwr-118-a1=y
-CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt7620_DEVICE_dlink_dwr-118-a1="aria2 blockd block-mount jboot-tools kmod-crypto-crc32c kmod-fs-autofs4 kmod-fs-exfat kmod-fs-ext4 kmod-fs-msdos kmod-fs-vfat kmod-fuse kmod-lib-crc16 kmod-mii kmod-mt76-core kmod-mt76x02-common kmod-mt76x0-common kmod-mt76x0e kmod-nls-cp437 kmod-rt2800-lib kmod-rt2800-mmio kmod-rt2800-pci kmod-rt2800-soc kmod-rt2x00-lib kmod-rt2x00-mmio kmod-rt2x00-pci kmod-scsi-core kmod-usb2 kmod-usb-core kmod-usb-ehci kmod-usb-net kmod-usb-net-cdc-ether kmod-usb-net-rndis kmod-usb-ohci kmod-usb-printer kmod-usb-storage kmod-usb-storage-uas libopenssl libpcre libsqlite3 libssh2 libstdcpp libxml2 luci-app-aria2 luci-app-p910nd luci-app-samba luci-i18n-aria2-zh-cn luci-i18n-p910nd-en luci-i18n-p910nd-zh-cn luci-i18n-samba-en luci-i18n-samba-zh-cn ntfs-3g p910nd rt2800-pci-firmware samba36-server uclibcxx webui-aria2 wget"
+CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt7620_DEVICE_dlink_dwr-118-a1="aria2 blockd block-mount jboot-tools kmod-crypto-crc32c kmod-fs-autofs4 kmod-fs-exfat kmod-fs-ext4 kmod-fs-msdos kmod-fs-vfat kmod-fuse kmod-lib-crc16 kmod-mii kmod-mt76-core kmod-mt76x02-common kmod-mt76x0-common kmod-mt76x0e kmod-nls-cp437 kmod-rt2800-lib kmod-rt2800-mmio kmod-rt2800-pci kmod-rt2800-soc kmod-rt2x00-lib kmod-rt2x00-mmio kmod-rt2x00-pci kmod-scsi-core kmod-usb2 kmod-usb-core kmod-usb-ehci kmod-usb-net kmod-usb-net-cdc-ether kmod-usb-net-qmi-wwan kmod-usb-net-rndis kmod-usb-ohci kmod-usb-printer kmod-usb-storage kmod-usb-storage-uas kmod-usb-wdm libopenssl libpcre libsqlite3 libssh2 libstdcpp libxml2 luci-app-aria2 luci-app-p910nd luci-app-samba luci-i18n-aria2-zh-cn luci-i18n-p910nd-en luci-i18n-p910nd-zh-cn luci-i18n-samba-en luci-i18n-samba-zh-cn ntfs-3g p910nd rt2800-pci-firmware samba36-server uclibcxx uqmi webui-aria2 wget wwan"
 CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_dlink_dwr-118-a2=y
-CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt7620_DEVICE_dlink_dwr-118-a2="aria2 blockd block-mount jboot-tools kmod-crypto-crc32c kmod-fs-autofs4 kmod-fs-exfat kmod-fs-ext4 kmod-fs-msdos kmod-fs-vfat kmod-fuse kmod-lib-crc16 kmod-mii kmod-mt76-core kmod-mt76x02-common kmod-mt76x2 kmod-mt76x2-common kmod-nls-cp437 kmod-rt2800-lib kmod-rt2800-mmio kmod-rt2800-pci kmod-rt2800-soc kmod-rt2x00-lib kmod-rt2x00-mmio kmod-rt2x00-pci kmod-scsi-core kmod-usb2 kmod-usb-core kmod-usb-ehci kmod-usb-net kmod-usb-net-cdc-ether kmod-usb-net-rndis kmod-usb-ohci kmod-usb-printer kmod-usb-storage kmod-usb-storage-uas libopenssl libpcre libsqlite3 libssh2 libstdcpp libxml2 luci-app-aria2 luci-app-p910nd luci-app-samba luci-i18n-aria2-zh-cn luci-i18n-p910nd-en luci-i18n-p910nd-zh-cn luci-i18n-samba-en luci-i18n-samba-zh-cn ntfs-3g p910nd rt2800-pci-firmware samba36-server uclibcxx webui-aria2 wget"
+CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt7620_DEVICE_dlink_dwr-118-a2="aria2 blockd block-mount jboot-tools kmod-crypto-crc32c kmod-fs-autofs4 kmod-fs-exfat kmod-fs-ext4 kmod-fs-msdos kmod-fs-vfat kmod-fuse kmod-lib-crc16 kmod-mii kmod-mt76-core kmod-mt76x02-common kmod-mt76x2 kmod-mt76x2-common kmod-nls-cp437 kmod-rt2800-lib kmod-rt2800-mmio kmod-rt2800-pci kmod-rt2800-soc kmod-rt2x00-lib kmod-rt2x00-mmio kmod-rt2x00-pci kmod-scsi-core kmod-usb2 kmod-usb-core kmod-usb-ehci kmod-usb-net kmod-usb-net-cdc-ether kmod-usb-net-qmi-wwan kmod-usb-net-rndis kmod-usb-ohci kmod-usb-printer kmod-usb-storage kmod-usb-storage-uas kmod-usb-wdm libopenssl libpcre libsqlite3 libssh2 libstdcpp libxml2 luci-app-aria2 luci-app-p910nd luci-app-samba luci-i18n-aria2-zh-cn luci-i18n-p910nd-en luci-i18n-p910nd-zh-cn luci-i18n-samba-en luci-i18n-samba-zh-cn ntfs-3g p910nd rt2800-pci-firmware samba36-server uclibcxx uqmi webui-aria2 wget wwan"
 CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_dlink_dwr-921-c1=y
 CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt7620_DEVICE_dlink_dwr-921-c1="jboot-tools kmod-mii kmod-rt2800-lib kmod-rt2800-mmio kmod-rt2800-pci kmod-rt2800-soc kmod-rt2x00-lib kmod-rt2x00-mmio kmod-rt2x00-pci kmod-usb2 kmod-usb-core kmod-usb-ehci kmod-usb-net kmod-usb-net-qmi-wwan kmod-usb-ohci kmod-usb-serial kmod-usb-serial-option kmod-usb-serial-wwan kmod-usb-wdm rt2800-pci-firmware uqmi wwan"
 CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_dlink_dwr-921-c3=y
@@ -188,17 +188,17 @@ CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt7620_DEVICE_dlink_dwr-922-e2="jboot-tools
 # CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_edimax_br-6478ac-v2 is not set
 # CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_wrh-300cr is not set
 CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_gl-mt300a=y
-CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt7620_DEVICE_gl-mt300a="aria2 blockd block-mount kmod-crypto-crc32c kmod-fs-autofs4 kmod-fs-exfat kmod-fs-ext4 kmod-fs-msdos kmod-fs-vfat kmod-fuse kmod-lib-crc16 kmod-mii kmod-nls-cp437 kmod-rt2800-lib kmod-rt2800-mmio kmod-rt2800-pci kmod-rt2800-soc kmod-rt2x00-lib kmod-rt2x00-mmio kmod-rt2x00-pci kmod-scsi-core kmod-usb2 kmod-usb-core kmod-usb-ehci kmod-usb-net kmod-usb-net-cdc-ether kmod-usb-net-rndis kmod-usb-ohci kmod-usb-printer kmod-usb-storage kmod-usb-storage-uas libopenssl libpcre libsqlite3 libssh2 libstdcpp libxml2 luci-app-aria2 luci-app-p910nd luci-app-samba luci-i18n-aria2-zh-cn luci-i18n-p910nd-en luci-i18n-p910nd-zh-cn luci-i18n-samba-en luci-i18n-samba-zh-cn ntfs-3g p910nd rt2800-pci-firmware samba36-server uclibcxx webui-aria2 wget"
+CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt7620_DEVICE_gl-mt300a="aria2 blockd block-mount kmod-crypto-crc32c kmod-fs-autofs4 kmod-fs-exfat kmod-fs-ext4 kmod-fs-msdos kmod-fs-vfat kmod-fuse kmod-lib-crc16 kmod-mii kmod-nls-cp437 kmod-rt2800-lib kmod-rt2800-mmio kmod-rt2800-pci kmod-rt2800-soc kmod-rt2x00-lib kmod-rt2x00-mmio kmod-rt2x00-pci kmod-scsi-core kmod-usb2 kmod-usb-core kmod-usb-ehci kmod-usb-net kmod-usb-net-cdc-ether kmod-usb-net-qmi-wwan kmod-usb-net-rndis kmod-usb-ohci kmod-usb-printer kmod-usb-storage kmod-usb-storage-uas kmod-usb-wdm libopenssl libpcre libsqlite3 libssh2 libstdcpp libxml2 luci-app-aria2 luci-app-p910nd luci-app-samba luci-i18n-aria2-zh-cn luci-i18n-p910nd-en luci-i18n-p910nd-zh-cn luci-i18n-samba-en luci-i18n-samba-zh-cn ntfs-3g p910nd rt2800-pci-firmware samba36-server uclibcxx uqmi webui-aria2 wget wwan"
 CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_gl-mt300n=y
-CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt7620_DEVICE_gl-mt300n="aria2 blockd block-mount kmod-crypto-crc32c kmod-fs-autofs4 kmod-fs-exfat kmod-fs-ext4 kmod-fs-msdos kmod-fs-vfat kmod-fuse kmod-lib-crc16 kmod-mii kmod-nls-cp437 kmod-rt2800-lib kmod-rt2800-mmio kmod-rt2800-pci kmod-rt2800-soc kmod-rt2x00-lib kmod-rt2x00-mmio kmod-rt2x00-pci kmod-scsi-core kmod-usb2 kmod-usb-core kmod-usb-ehci kmod-usb-net kmod-usb-net-cdc-ether kmod-usb-net-rndis kmod-usb-ohci kmod-usb-printer kmod-usb-storage kmod-usb-storage-uas libopenssl libpcre libsqlite3 libssh2 libstdcpp libxml2 luci-app-aria2 luci-app-p910nd luci-app-samba luci-i18n-aria2-zh-cn luci-i18n-p910nd-en luci-i18n-p910nd-zh-cn luci-i18n-samba-en luci-i18n-samba-zh-cn ntfs-3g p910nd rt2800-pci-firmware samba36-server uclibcxx webui-aria2 wget"
+CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt7620_DEVICE_gl-mt300n="aria2 blockd block-mount kmod-crypto-crc32c kmod-fs-autofs4 kmod-fs-exfat kmod-fs-ext4 kmod-fs-msdos kmod-fs-vfat kmod-fuse kmod-lib-crc16 kmod-mii kmod-nls-cp437 kmod-rt2800-lib kmod-rt2800-mmio kmod-rt2800-pci kmod-rt2800-soc kmod-rt2x00-lib kmod-rt2x00-mmio kmod-rt2x00-pci kmod-scsi-core kmod-usb2 kmod-usb-core kmod-usb-ehci kmod-usb-net kmod-usb-net-cdc-ether kmod-usb-net-qmi-wwan kmod-usb-net-rndis kmod-usb-ohci kmod-usb-printer kmod-usb-storage kmod-usb-storage-uas kmod-usb-wdm libopenssl libpcre libsqlite3 libssh2 libstdcpp libxml2 luci-app-aria2 luci-app-p910nd luci-app-samba luci-i18n-aria2-zh-cn luci-i18n-p910nd-en luci-i18n-p910nd-zh-cn luci-i18n-samba-en luci-i18n-samba-zh-cn ntfs-3g p910nd rt2800-pci-firmware samba36-server uclibcxx uqmi webui-aria2 wget wwan"
 CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_gl-mt750=y
-CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt7620_DEVICE_gl-mt750="aria2 blockd block-mount kmod-crypto-crc32c kmod-fs-autofs4 kmod-fs-exfat kmod-fs-ext4 kmod-fs-msdos kmod-fs-vfat kmod-fuse kmod-lib-crc16 kmod-mii kmod-mt76-core kmod-mt76x02-common kmod-mt76x0-common kmod-mt76x0e kmod-nls-cp437 kmod-rt2800-lib kmod-rt2800-mmio kmod-rt2800-pci kmod-rt2800-soc kmod-rt2x00-lib kmod-rt2x00-mmio kmod-rt2x00-pci kmod-scsi-core kmod-usb2 kmod-usb-core kmod-usb-ehci kmod-usb-net kmod-usb-net-cdc-ether kmod-usb-net-rndis kmod-usb-ohci kmod-usb-printer kmod-usb-storage kmod-usb-storage-uas libopenssl libpcre libsqlite3 libssh2 libstdcpp libxml2 luci-app-aria2 luci-app-p910nd luci-app-samba luci-i18n-aria2-zh-cn luci-i18n-p910nd-en luci-i18n-p910nd-zh-cn luci-i18n-samba-en luci-i18n-samba-zh-cn ntfs-3g p910nd rt2800-pci-firmware samba36-server uclibcxx webui-aria2 wget"
+CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt7620_DEVICE_gl-mt750="aria2 blockd block-mount kmod-crypto-crc32c kmod-fs-autofs4 kmod-fs-exfat kmod-fs-ext4 kmod-fs-msdos kmod-fs-vfat kmod-fuse kmod-lib-crc16 kmod-mii kmod-mt76-core kmod-mt76x02-common kmod-mt76x0-common kmod-mt76x0e kmod-nls-cp437 kmod-rt2800-lib kmod-rt2800-mmio kmod-rt2800-pci kmod-rt2800-soc kmod-rt2x00-lib kmod-rt2x00-mmio kmod-rt2x00-pci kmod-scsi-core kmod-usb2 kmod-usb-core kmod-usb-ehci kmod-usb-net kmod-usb-net-cdc-ether kmod-usb-net-qmi-wwan kmod-usb-net-rndis kmod-usb-ohci kmod-usb-printer kmod-usb-storage kmod-usb-storage-uas kmod-usb-wdm libopenssl libpcre libsqlite3 libssh2 libstdcpp libxml2 luci-app-aria2 luci-app-p910nd luci-app-samba luci-i18n-aria2-zh-cn luci-i18n-p910nd-en luci-i18n-p910nd-zh-cn luci-i18n-samba-en luci-i18n-samba-zh-cn ntfs-3g p910nd rt2800-pci-firmware samba36-server uclibcxx uqmi webui-aria2 wget wwan"
 CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_hc5661=y
-CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt7620_DEVICE_hc5661="aria2 blockd block-mount kmod-crypto-crc32c kmod-fs-autofs4 kmod-fs-exfat kmod-fs-ext4 kmod-fs-msdos kmod-fs-vfat kmod-fuse kmod-lib-crc16 kmod-mii kmod-nls-cp437 kmod-rt2800-lib kmod-rt2800-mmio kmod-rt2800-pci kmod-rt2800-soc kmod-rt2x00-lib kmod-rt2x00-mmio kmod-rt2x00-pci kmod-scsi-core kmod-sdhci-mt7620 kmod-usb2 kmod-usb-core kmod-usb-ehci kmod-usb-net kmod-usb-net-cdc-ether kmod-usb-net-rndis kmod-usb-ohci kmod-usb-printer kmod-usb-storage kmod-usb-storage-uas libopenssl libpcre libsqlite3 libssh2 libstdcpp libxml2 luci-app-aria2 luci-app-p910nd luci-app-samba luci-i18n-aria2-zh-cn luci-i18n-p910nd-en luci-i18n-p910nd-zh-cn luci-i18n-samba-en luci-i18n-samba-zh-cn ntfs-3g p910nd rt2800-pci-firmware samba36-server uclibcxx webui-aria2 wget"
+CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt7620_DEVICE_hc5661="aria2 blockd block-mount kmod-crypto-crc32c kmod-fs-autofs4 kmod-fs-exfat kmod-fs-ext4 kmod-fs-msdos kmod-fs-vfat kmod-fuse kmod-lib-crc16 kmod-mii kmod-nls-cp437 kmod-rt2800-lib kmod-rt2800-mmio kmod-rt2800-pci kmod-rt2800-soc kmod-rt2x00-lib kmod-rt2x00-mmio kmod-rt2x00-pci kmod-scsi-core kmod-sdhci-mt7620 kmod-usb2 kmod-usb-core kmod-usb-ehci kmod-usb-net kmod-usb-net-cdc-ether kmod-usb-net-qmi-wwan kmod-usb-net-rndis kmod-usb-ohci kmod-usb-printer kmod-usb-storage kmod-usb-storage-uas kmod-usb-wdm libopenssl libpcre libsqlite3 libssh2 libstdcpp libxml2 luci-app-aria2 luci-app-p910nd luci-app-samba luci-i18n-aria2-zh-cn luci-i18n-p910nd-en luci-i18n-p910nd-zh-cn luci-i18n-samba-en luci-i18n-samba-zh-cn ntfs-3g p910nd rt2800-pci-firmware samba36-server uclibcxx uqmi webui-aria2 wget wwan"
 CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_hc5761=y
-CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt7620_DEVICE_hc5761="aria2 blockd block-mount kmod-crypto-crc32c kmod-fs-autofs4 kmod-fs-exfat kmod-fs-ext4 kmod-fs-msdos kmod-fs-vfat kmod-fuse kmod-lib-crc16 kmod-mii kmod-mt76-core kmod-mt76x02-common kmod-mt76x0-common kmod-mt76x0e kmod-nls-cp437 kmod-rt2800-lib kmod-rt2800-mmio kmod-rt2800-pci kmod-rt2800-soc kmod-rt2x00-lib kmod-rt2x00-mmio kmod-rt2x00-pci kmod-scsi-core kmod-sdhci-mt7620 kmod-usb2 kmod-usb-core kmod-usb-ehci kmod-usb-ledtrig-usbport kmod-usb-net kmod-usb-net-cdc-ether kmod-usb-net-rndis kmod-usb-ohci kmod-usb-printer kmod-usb-storage kmod-usb-storage-uas libopenssl libpcre libsqlite3 libssh2 libstdcpp libxml2 luci-app-aria2 luci-app-p910nd luci-app-samba luci-i18n-aria2-zh-cn luci-i18n-p910nd-en luci-i18n-p910nd-zh-cn luci-i18n-samba-en luci-i18n-samba-zh-cn ntfs-3g p910nd rt2800-pci-firmware samba36-server uclibcxx webui-aria2 wget"
+CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt7620_DEVICE_hc5761="aria2 blockd block-mount kmod-crypto-crc32c kmod-fs-autofs4 kmod-fs-exfat kmod-fs-ext4 kmod-fs-msdos kmod-fs-vfat kmod-fuse kmod-lib-crc16 kmod-mii kmod-mt76-core kmod-mt76x02-common kmod-mt76x0-common kmod-mt76x0e kmod-nls-cp437 kmod-rt2800-lib kmod-rt2800-mmio kmod-rt2800-pci kmod-rt2800-soc kmod-rt2x00-lib kmod-rt2x00-mmio kmod-rt2x00-pci kmod-scsi-core kmod-sdhci-mt7620 kmod-usb2 kmod-usb-core kmod-usb-ehci kmod-usb-ledtrig-usbport kmod-usb-net kmod-usb-net-cdc-ether kmod-usb-net-qmi-wwan kmod-usb-net-rndis kmod-usb-ohci kmod-usb-printer kmod-usb-storage kmod-usb-storage-uas kmod-usb-wdm libopenssl libpcre libsqlite3 libssh2 libstdcpp libxml2 luci-app-aria2 luci-app-p910nd luci-app-samba luci-i18n-aria2-zh-cn luci-i18n-p910nd-en luci-i18n-p910nd-zh-cn luci-i18n-samba-en luci-i18n-samba-zh-cn ntfs-3g p910nd rt2800-pci-firmware samba36-server uclibcxx uqmi webui-aria2 wget wwan"
 CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_hc5861=y
-CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt7620_DEVICE_hc5861="aria2 blockd block-mount kmod-crypto-crc32c kmod-fs-autofs4 kmod-fs-exfat kmod-fs-ext4 kmod-fs-msdos kmod-fs-vfat kmod-fuse kmod-lib-crc16 kmod-mii kmod-mt76-core kmod-mt76x02-common kmod-mt76x2 kmod-mt76x2-common kmod-nls-cp437 kmod-rt2800-lib kmod-rt2800-mmio kmod-rt2800-pci kmod-rt2800-soc kmod-rt2x00-lib kmod-rt2x00-mmio kmod-rt2x00-pci kmod-scsi-core kmod-sdhci-mt7620 kmod-usb2 kmod-usb-core kmod-usb-ehci kmod-usb-ledtrig-usbport kmod-usb-net kmod-usb-net-cdc-ether kmod-usb-net-rndis kmod-usb-ohci kmod-usb-printer kmod-usb-storage kmod-usb-storage-uas libopenssl libpcre libsqlite3 libssh2 libstdcpp libxml2 luci-app-aria2 luci-app-p910nd luci-app-samba luci-i18n-aria2-zh-cn luci-i18n-p910nd-en luci-i18n-p910nd-zh-cn luci-i18n-samba-en luci-i18n-samba-zh-cn ntfs-3g p910nd rt2800-pci-firmware samba36-server uclibcxx webui-aria2 wget"
+CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt7620_DEVICE_hc5861="aria2 blockd block-mount kmod-crypto-crc32c kmod-fs-autofs4 kmod-fs-exfat kmod-fs-ext4 kmod-fs-msdos kmod-fs-vfat kmod-fuse kmod-lib-crc16 kmod-mii kmod-mt76-core kmod-mt76x02-common kmod-mt76x2 kmod-mt76x2-common kmod-nls-cp437 kmod-rt2800-lib kmod-rt2800-mmio kmod-rt2800-pci kmod-rt2800-soc kmod-rt2x00-lib kmod-rt2x00-mmio kmod-rt2x00-pci kmod-scsi-core kmod-sdhci-mt7620 kmod-usb2 kmod-usb-core kmod-usb-ehci kmod-usb-ledtrig-usbport kmod-usb-net kmod-usb-net-cdc-ether kmod-usb-net-qmi-wwan kmod-usb-net-rndis kmod-usb-ohci kmod-usb-printer kmod-usb-storage kmod-usb-storage-uas kmod-usb-wdm libopenssl libpcre libsqlite3 libssh2 libstdcpp libxml2 luci-app-aria2 luci-app-p910nd luci-app-samba luci-i18n-aria2-zh-cn luci-i18n-p910nd-en luci-i18n-p910nd-zh-cn luci-i18n-samba-en luci-i18n-samba-zh-cn ntfs-3g p910nd rt2800-pci-firmware samba36-server uclibcxx uqmi webui-aria2 wget wwan"
 # CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_c108 is not set
 # CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_iodata_wn-ac1167gr is not set
 # CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_iodata_wn-ac733gr3 is not set
@@ -207,11 +207,11 @@ CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt7620_DEVICE_hc5861="aria2 blockd block-mo
 # CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_mlw221 is not set
 # CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_mlwg2 is not set
 CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_lava_lr-25g001=y
-CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt7620_DEVICE_lava_lr-25g001="aria2 blockd block-mount jboot-tools kmod-crypto-crc32c kmod-fs-autofs4 kmod-fs-exfat kmod-fs-ext4 kmod-fs-msdos kmod-fs-vfat kmod-fuse kmod-lib-crc16 kmod-mii kmod-mt76-core kmod-mt76x02-common kmod-mt76x0-common kmod-mt76x0e kmod-nls-cp437 kmod-rt2800-lib kmod-rt2800-mmio kmod-rt2800-pci kmod-rt2800-soc kmod-rt2x00-lib kmod-rt2x00-mmio kmod-rt2x00-pci kmod-scsi-core kmod-usb2 kmod-usb-core kmod-usb-ehci kmod-usb-net kmod-usb-net-cdc-ether kmod-usb-net-rndis kmod-usb-ohci kmod-usb-printer kmod-usb-storage kmod-usb-storage-uas libopenssl libpcre libsqlite3 libssh2 libstdcpp libxml2 luci-app-aria2 luci-app-p910nd luci-app-samba luci-i18n-aria2-zh-cn luci-i18n-p910nd-en luci-i18n-p910nd-zh-cn luci-i18n-samba-en luci-i18n-samba-zh-cn ntfs-3g p910nd rt2800-pci-firmware samba36-server uclibcxx webui-aria2 wget"
+CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt7620_DEVICE_lava_lr-25g001="aria2 blockd block-mount jboot-tools kmod-crypto-crc32c kmod-fs-autofs4 kmod-fs-exfat kmod-fs-ext4 kmod-fs-msdos kmod-fs-vfat kmod-fuse kmod-lib-crc16 kmod-mii kmod-mt76-core kmod-mt76x02-common kmod-mt76x0-common kmod-mt76x0e kmod-nls-cp437 kmod-rt2800-lib kmod-rt2800-mmio kmod-rt2800-pci kmod-rt2800-soc kmod-rt2x00-lib kmod-rt2x00-mmio kmod-rt2x00-pci kmod-scsi-core kmod-usb2 kmod-usb-core kmod-usb-ehci kmod-usb-net kmod-usb-net-cdc-ether kmod-usb-net-qmi-wwan kmod-usb-net-rndis kmod-usb-ohci kmod-usb-printer kmod-usb-storage kmod-usb-storage-uas kmod-usb-wdm libopenssl libpcre libsqlite3 libssh2 libstdcpp libxml2 luci-app-aria2 luci-app-p910nd luci-app-samba luci-i18n-aria2-zh-cn luci-i18n-p910nd-en luci-i18n-p910nd-zh-cn luci-i18n-samba-en luci-i18n-samba-zh-cn ntfs-3g p910nd rt2800-pci-firmware samba36-server uclibcxx uqmi webui-aria2 wget wwan"
 CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_y1=y
-CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt7620_DEVICE_y1="aria2 blockd block-mount kmod-crypto-crc32c kmod-fs-autofs4 kmod-fs-exfat kmod-fs-ext4 kmod-fs-msdos kmod-fs-vfat kmod-fuse kmod-lib-crc16 kmod-mii kmod-mt76-core kmod-mt76x02-common kmod-mt76x2 kmod-mt76x2-common kmod-nls-cp437 kmod-rt2800-lib kmod-rt2800-mmio kmod-rt2800-pci kmod-rt2800-soc kmod-rt2x00-lib kmod-rt2x00-mmio kmod-rt2x00-pci kmod-scsi-core kmod-usb2 kmod-usb-core kmod-usb-ehci kmod-usb-net kmod-usb-net-cdc-ether kmod-usb-net-rndis kmod-usb-ohci kmod-usb-printer kmod-usb-storage kmod-usb-storage-uas libopenssl libpcre libsqlite3 libssh2 libstdcpp libxml2 luci-app-aria2 luci-app-p910nd luci-app-samba luci-i18n-aria2-zh-cn luci-i18n-p910nd-en luci-i18n-p910nd-zh-cn luci-i18n-samba-en luci-i18n-samba-zh-cn ntfs-3g p910nd rt2800-pci-firmware samba36-server uclibcxx webui-aria2 wget"
+CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt7620_DEVICE_y1="aria2 blockd block-mount kmod-crypto-crc32c kmod-fs-autofs4 kmod-fs-exfat kmod-fs-ext4 kmod-fs-msdos kmod-fs-vfat kmod-fuse kmod-lib-crc16 kmod-mii kmod-mt76-core kmod-mt76x02-common kmod-mt76x2 kmod-mt76x2-common kmod-nls-cp437 kmod-rt2800-lib kmod-rt2800-mmio kmod-rt2800-pci kmod-rt2800-soc kmod-rt2x00-lib kmod-rt2x00-mmio kmod-rt2x00-pci kmod-scsi-core kmod-usb2 kmod-usb-core kmod-usb-ehci kmod-usb-net kmod-usb-net-cdc-ether kmod-usb-net-qmi-wwan kmod-usb-net-rndis kmod-usb-ohci kmod-usb-printer kmod-usb-storage kmod-usb-storage-uas kmod-usb-wdm libopenssl libpcre libsqlite3 libssh2 libstdcpp libxml2 luci-app-aria2 luci-app-p910nd luci-app-samba luci-i18n-aria2-zh-cn luci-i18n-p910nd-en luci-i18n-p910nd-zh-cn luci-i18n-samba-en luci-i18n-samba-zh-cn ntfs-3g p910nd rt2800-pci-firmware samba36-server uclibcxx uqmi webui-aria2 wget wwan"
 CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_y1s=y
-CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt7620_DEVICE_y1s="aria2 blockd block-mount kmod-crypto-crc32c kmod-fs-autofs4 kmod-fs-exfat kmod-fs-ext4 kmod-fs-msdos kmod-fs-vfat kmod-fuse kmod-lib-crc16 kmod-mii kmod-mt76-core kmod-mt76x02-common kmod-mt76x2 kmod-mt76x2-common kmod-nls-cp437 kmod-rt2800-lib kmod-rt2800-mmio kmod-rt2800-pci kmod-rt2800-soc kmod-rt2x00-lib kmod-rt2x00-mmio kmod-rt2x00-pci kmod-scsi-core kmod-usb2 kmod-usb3 kmod-usb-core kmod-usb-ehci kmod-usb-net kmod-usb-net-cdc-ether kmod-usb-net-rndis kmod-usb-ohci kmod-usb-printer kmod-usb-storage kmod-usb-storage-uas libopenssl libpcre libsqlite3 libssh2 libstdcpp libxml2 luci-app-aria2 luci-app-p910nd luci-app-samba luci-i18n-aria2-zh-cn luci-i18n-p910nd-en luci-i18n-p910nd-zh-cn luci-i18n-samba-en luci-i18n-samba-zh-cn ntfs-3g p910nd rt2800-pci-firmware samba36-server uclibcxx webui-aria2 wget"
+CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt7620_DEVICE_y1s="aria2 blockd block-mount kmod-crypto-crc32c kmod-fs-autofs4 kmod-fs-exfat kmod-fs-ext4 kmod-fs-msdos kmod-fs-vfat kmod-fuse kmod-lib-crc16 kmod-mii kmod-mt76-core kmod-mt76x02-common kmod-mt76x2 kmod-mt76x2-common kmod-nls-cp437 kmod-rt2800-lib kmod-rt2800-mmio kmod-rt2800-pci kmod-rt2800-soc kmod-rt2x00-lib kmod-rt2x00-mmio kmod-rt2x00-pci kmod-scsi-core kmod-usb2 kmod-usb3 kmod-usb-core kmod-usb-ehci kmod-usb-net kmod-usb-net-cdc-ether kmod-usb-net-qmi-wwan kmod-usb-net-rndis kmod-usb-ohci kmod-usb-printer kmod-usb-storage kmod-usb-storage-uas kmod-usb-wdm libopenssl libpcre libsqlite3 libssh2 libstdcpp libxml2 luci-app-aria2 luci-app-p910nd luci-app-samba luci-i18n-aria2-zh-cn luci-i18n-p910nd-en luci-i18n-p910nd-zh-cn luci-i18n-samba-en luci-i18n-samba-zh-cn ntfs-3g p910nd rt2800-pci-firmware samba36-server uclibcxx uqmi webui-aria2 wget wwan"
 # CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_e1700 is not set
 # CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_mt7620a_mt7530 is not set
 # CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_mt7620a_mt7610e is not set
@@ -224,7 +224,7 @@ CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt7620_DEVICE_y1s="aria2 blockd block-mount
 # CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_wt3020-4M is not set
 # CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_wt3020-8M is not set
 CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_oy-0001=y
-CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt7620_DEVICE_oy-0001="aria2 blockd block-mount kmod-crypto-crc32c kmod-fs-autofs4 kmod-fs-exfat kmod-fs-ext4 kmod-fs-msdos kmod-fs-vfat kmod-fuse kmod-lib-crc16 kmod-mii kmod-nls-cp437 kmod-rt2800-lib kmod-rt2800-mmio kmod-rt2800-pci kmod-rt2800-soc kmod-rt2x00-lib kmod-rt2x00-mmio kmod-rt2x00-pci kmod-scsi-core kmod-usb2 kmod-usb-core kmod-usb-ehci kmod-usb-net kmod-usb-net-cdc-ether kmod-usb-net-rndis kmod-usb-ohci kmod-usb-printer kmod-usb-storage kmod-usb-storage-uas libopenssl libpcre libsqlite3 libssh2 libstdcpp libxml2 luci-app-aria2 luci-app-p910nd luci-app-samba luci-i18n-aria2-zh-cn luci-i18n-p910nd-en luci-i18n-p910nd-zh-cn luci-i18n-samba-en luci-i18n-samba-zh-cn ntfs-3g p910nd rt2800-pci-firmware samba36-server uclibcxx webui-aria2 wget"
+CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt7620_DEVICE_oy-0001="aria2 blockd block-mount kmod-crypto-crc32c kmod-fs-autofs4 kmod-fs-exfat kmod-fs-ext4 kmod-fs-msdos kmod-fs-vfat kmod-fuse kmod-lib-crc16 kmod-mii kmod-nls-cp437 kmod-rt2800-lib kmod-rt2800-mmio kmod-rt2800-pci kmod-rt2800-soc kmod-rt2x00-lib kmod-rt2x00-mmio kmod-rt2x00-pci kmod-scsi-core kmod-usb2 kmod-usb-core kmod-usb-ehci kmod-usb-net kmod-usb-net-cdc-ether kmod-usb-net-qmi-wwan kmod-usb-net-rndis kmod-usb-ohci kmod-usb-printer kmod-usb-storage kmod-usb-storage-uas kmod-usb-wdm libopenssl libpcre libsqlite3 libssh2 libstdcpp libxml2 luci-app-aria2 luci-app-p910nd luci-app-samba luci-i18n-aria2-zh-cn luci-i18n-p910nd-en luci-i18n-p910nd-zh-cn luci-i18n-samba-en luci-i18n-samba-zh-cn ntfs-3g p910nd rt2800-pci-firmware samba36-server uclibcxx uqmi webui-aria2 wget wwan"
 # CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_phicomm_k2g is not set
 # CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_psg1208 is not set
 # CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_psg1218a is not set
@@ -245,11 +245,11 @@ CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt7620_DEVICE_oy-0001="aria2 blockd block-m
 # CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_vonets_var11n-300 is not set
 # CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_wrtnode is not set
 CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_xiaomi_miwifi-r3=y
-CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt7620_DEVICE_xiaomi_miwifi-r3="aria2 blockd block-mount kmod-crypto-crc32c kmod-fs-autofs4 kmod-fs-exfat kmod-fs-ext4 kmod-fs-msdos kmod-fs-vfat kmod-fuse kmod-lib-crc16 kmod-mii kmod-mt76-core kmod-mt76x02-common kmod-mt76x2 kmod-mt76x2-common kmod-nls-cp437 kmod-rt2800-lib kmod-rt2800-mmio kmod-rt2800-pci kmod-rt2800-soc kmod-rt2x00-lib kmod-rt2x00-mmio kmod-rt2x00-pci kmod-scsi-core kmod-usb2 kmod-usb-core kmod-usb-ehci kmod-usb-net kmod-usb-net-cdc-ether kmod-usb-net-rndis kmod-usb-ohci kmod-usb-printer kmod-usb-storage kmod-usb-storage-uas libopenssl libpcre libsqlite3 libssh2 libstdcpp libxml2 luci-app-aria2 luci-app-p910nd luci-app-samba luci-i18n-aria2-zh-cn luci-i18n-p910nd-en luci-i18n-p910nd-zh-cn luci-i18n-samba-en luci-i18n-samba-zh-cn ntfs-3g p910nd rt2800-pci-firmware samba36-server uboot-envtools uclibcxx webui-aria2 wget"
+CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt7620_DEVICE_xiaomi_miwifi-r3="aria2 blockd block-mount kmod-crypto-crc32c kmod-fs-autofs4 kmod-fs-exfat kmod-fs-ext4 kmod-fs-msdos kmod-fs-vfat kmod-fuse kmod-lib-crc16 kmod-mii kmod-mt76-core kmod-mt76x02-common kmod-mt76x2 kmod-mt76x2-common kmod-nls-cp437 kmod-rt2800-lib kmod-rt2800-mmio kmod-rt2800-pci kmod-rt2800-soc kmod-rt2x00-lib kmod-rt2x00-mmio kmod-rt2x00-pci kmod-scsi-core kmod-usb2 kmod-usb-core kmod-usb-ehci kmod-usb-net kmod-usb-net-cdc-ether kmod-usb-net-qmi-wwan kmod-usb-net-rndis kmod-usb-ohci kmod-usb-printer kmod-usb-storage kmod-usb-storage-uas kmod-usb-wdm libopenssl libpcre libsqlite3 libssh2 libstdcpp libxml2 luci-app-aria2 luci-app-p910nd luci-app-samba luci-i18n-aria2-zh-cn luci-i18n-p910nd-en luci-i18n-p910nd-zh-cn luci-i18n-samba-en luci-i18n-samba-zh-cn ntfs-3g p910nd rt2800-pci-firmware samba36-server uboot-envtools uclibcxx uqmi webui-aria2 wget wwan"
 CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_miwifi-mini=y
-CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt7620_DEVICE_miwifi-mini="aria2 blockd block-mount kmod-crypto-crc32c kmod-fs-autofs4 kmod-fs-exfat kmod-fs-ext4 kmod-fs-msdos kmod-fs-vfat kmod-fuse kmod-lib-crc16 kmod-mii kmod-mt76-core kmod-mt76x02-common kmod-mt76x2 kmod-mt76x2-common kmod-nls-cp437 kmod-rt2800-lib kmod-rt2800-mmio kmod-rt2800-pci kmod-rt2800-soc kmod-rt2x00-lib kmod-rt2x00-mmio kmod-rt2x00-pci kmod-scsi-core kmod-usb2 kmod-usb-core kmod-usb-ehci kmod-usb-net kmod-usb-net-cdc-ether kmod-usb-net-rndis kmod-usb-ohci kmod-usb-printer kmod-usb-storage kmod-usb-storage-uas libopenssl libpcre libsqlite3 libssh2 libstdcpp libxml2 luci-app-aria2 luci-app-p910nd luci-app-samba luci-i18n-aria2-zh-cn luci-i18n-p910nd-en luci-i18n-p910nd-zh-cn luci-i18n-samba-en luci-i18n-samba-zh-cn ntfs-3g p910nd rt2800-pci-firmware samba36-server uclibcxx webui-aria2 wget"
+CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt7620_DEVICE_miwifi-mini="aria2 blockd block-mount kmod-crypto-crc32c kmod-fs-autofs4 kmod-fs-exfat kmod-fs-ext4 kmod-fs-msdos kmod-fs-vfat kmod-fuse kmod-lib-crc16 kmod-mii kmod-mt76-core kmod-mt76x02-common kmod-mt76x2 kmod-mt76x2-common kmod-nls-cp437 kmod-rt2800-lib kmod-rt2800-mmio kmod-rt2800-pci kmod-rt2800-soc kmod-rt2x00-lib kmod-rt2x00-mmio kmod-rt2x00-pci kmod-scsi-core kmod-usb2 kmod-usb-core kmod-usb-ehci kmod-usb-net kmod-usb-net-cdc-ether kmod-usb-net-qmi-wwan kmod-usb-net-rndis kmod-usb-ohci kmod-usb-printer kmod-usb-storage kmod-usb-storage-uas kmod-usb-wdm libopenssl libpcre libsqlite3 libssh2 libstdcpp libxml2 luci-app-aria2 luci-app-p910nd luci-app-samba luci-i18n-aria2-zh-cn luci-i18n-p910nd-en luci-i18n-p910nd-zh-cn luci-i18n-samba-en luci-i18n-samba-zh-cn ntfs-3g p910nd rt2800-pci-firmware samba36-server uclibcxx uqmi webui-aria2 wget wwan"
 CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_youku-yk1=y
-CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt7620_DEVICE_youku-yk1="aria2 blockd block-mount kmod-crypto-crc32c kmod-fs-autofs4 kmod-fs-exfat kmod-fs-ext4 kmod-fs-msdos kmod-fs-vfat kmod-fuse kmod-lib-crc16 kmod-mii kmod-nls-cp437 kmod-rt2800-lib kmod-rt2800-mmio kmod-rt2800-pci kmod-rt2800-soc kmod-rt2x00-lib kmod-rt2x00-mmio kmod-rt2x00-pci kmod-scsi-core kmod-sdhci-mt7620 kmod-usb2 kmod-usb3 kmod-usb-core kmod-usb-ehci kmod-usb-ledtrig-usbport kmod-usb-net kmod-usb-net-cdc-ether kmod-usb-net-rndis kmod-usb-ohci kmod-usb-printer kmod-usb-storage kmod-usb-storage-uas libopenssl libpcre libsqlite3 libssh2 libstdcpp libxml2 luci-app-aria2 luci-app-p910nd luci-app-samba luci-i18n-aria2-zh-cn luci-i18n-p910nd-en luci-i18n-p910nd-zh-cn luci-i18n-samba-en luci-i18n-samba-zh-cn ntfs-3g p910nd rt2800-pci-firmware samba36-server uclibcxx webui-aria2 wget"
+CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt7620_DEVICE_youku-yk1="aria2 blockd block-mount kmod-crypto-crc32c kmod-fs-autofs4 kmod-fs-exfat kmod-fs-ext4 kmod-fs-msdos kmod-fs-vfat kmod-fuse kmod-lib-crc16 kmod-mii kmod-nls-cp437 kmod-rt2800-lib kmod-rt2800-mmio kmod-rt2800-pci kmod-rt2800-soc kmod-rt2x00-lib kmod-rt2x00-mmio kmod-rt2x00-pci kmod-scsi-core kmod-sdhci-mt7620 kmod-usb2 kmod-usb3 kmod-usb-core kmod-usb-ehci kmod-usb-ledtrig-usbport kmod-usb-net kmod-usb-net-cdc-ether kmod-usb-net-qmi-wwan kmod-usb-net-rndis kmod-usb-ohci kmod-usb-printer kmod-usb-storage kmod-usb-storage-uas kmod-usb-wdm libopenssl libpcre libsqlite3 libssh2 libstdcpp libxml2 luci-app-aria2 luci-app-p910nd luci-app-samba luci-i18n-aria2-zh-cn luci-i18n-p910nd-en luci-i18n-p910nd-zh-cn luci-i18n-samba-en luci-i18n-samba-zh-cn ntfs-3g p910nd rt2800-pci-firmware samba36-server uclibcxx uqmi webui-aria2 wget wwan"
 # CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_bocco is not set
 # CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_zbt-ape522ii is not set
 # CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_zbt-cpe102 is not set
@@ -257,9 +257,9 @@ CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt7620_DEVICE_youku-yk1="aria2 blockd block
 # CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_we1026-5g-16m is not set
 # CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_zbt-we2026 is not set
 CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_zbt-we826-16M=y
-CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt7620_DEVICE_zbt-we826-16M="aria2 blockd block-mount kmod-crypto-crc32c kmod-fs-autofs4 kmod-fs-exfat kmod-fs-ext4 kmod-fs-msdos kmod-fs-vfat kmod-fuse kmod-lib-crc16 kmod-mii kmod-mt76-core kmod-mt76x02-common kmod-mt76x2 kmod-mt76x2-common kmod-nls-cp437 kmod-rt2800-lib kmod-rt2800-mmio kmod-rt2800-pci kmod-rt2800-soc kmod-rt2x00-lib kmod-rt2x00-mmio kmod-rt2x00-pci kmod-scsi-core kmod-sdhci-mt7620 kmod-usb2 kmod-usb-core kmod-usb-ehci kmod-usb-net kmod-usb-net-cdc-ether kmod-usb-net-rndis kmod-usb-ohci kmod-usb-printer kmod-usb-storage kmod-usb-storage-uas libopenssl libpcre libsqlite3 libssh2 libstdcpp libxml2 luci-app-aria2 luci-app-p910nd luci-app-samba luci-i18n-aria2-zh-cn luci-i18n-p910nd-en luci-i18n-p910nd-zh-cn luci-i18n-samba-en luci-i18n-samba-zh-cn ntfs-3g p910nd rt2800-pci-firmware samba36-server uclibcxx webui-aria2 wget"
+CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt7620_DEVICE_zbt-we826-16M="aria2 blockd block-mount kmod-crypto-crc32c kmod-fs-autofs4 kmod-fs-exfat kmod-fs-ext4 kmod-fs-msdos kmod-fs-vfat kmod-fuse kmod-lib-crc16 kmod-mii kmod-mt76-core kmod-mt76x02-common kmod-mt76x2 kmod-mt76x2-common kmod-nls-cp437 kmod-rt2800-lib kmod-rt2800-mmio kmod-rt2800-pci kmod-rt2800-soc kmod-rt2x00-lib kmod-rt2x00-mmio kmod-rt2x00-pci kmod-scsi-core kmod-sdhci-mt7620 kmod-usb2 kmod-usb-core kmod-usb-ehci kmod-usb-net kmod-usb-net-cdc-ether kmod-usb-net-qmi-wwan kmod-usb-net-rndis kmod-usb-ohci kmod-usb-printer kmod-usb-storage kmod-usb-storage-uas kmod-usb-wdm libopenssl libpcre libsqlite3 libssh2 libstdcpp libxml2 luci-app-aria2 luci-app-p910nd luci-app-samba luci-i18n-aria2-zh-cn luci-i18n-p910nd-en luci-i18n-p910nd-zh-cn luci-i18n-samba-en luci-i18n-samba-zh-cn ntfs-3g p910nd rt2800-pci-firmware samba36-server uclibcxx uqmi webui-aria2 wget wwan"
 CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_zbt-we826-32M=y
-CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt7620_DEVICE_zbt-we826-32M="aria2 blockd block-mount kmod-crypto-crc32c kmod-fs-autofs4 kmod-fs-exfat kmod-fs-ext4 kmod-fs-msdos kmod-fs-vfat kmod-fuse kmod-lib-crc16 kmod-mii kmod-mt76-core kmod-mt76x02-common kmod-mt76x2 kmod-mt76x2-common kmod-nls-cp437 kmod-rt2800-lib kmod-rt2800-mmio kmod-rt2800-pci kmod-rt2800-soc kmod-rt2x00-lib kmod-rt2x00-mmio kmod-rt2x00-pci kmod-scsi-core kmod-sdhci-mt7620 kmod-usb2 kmod-usb-core kmod-usb-ehci kmod-usb-net kmod-usb-net-cdc-ether kmod-usb-net-rndis kmod-usb-ohci kmod-usb-printer kmod-usb-storage kmod-usb-storage-uas libopenssl libpcre libsqlite3 libssh2 libstdcpp libxml2 luci-app-aria2 luci-app-p910nd luci-app-samba luci-i18n-aria2-zh-cn luci-i18n-p910nd-en luci-i18n-p910nd-zh-cn luci-i18n-samba-en luci-i18n-samba-zh-cn ntfs-3g p910nd rt2800-pci-firmware samba36-server uclibcxx webui-aria2 wget"
+CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt7620_DEVICE_zbt-we826-32M="aria2 blockd block-mount kmod-crypto-crc32c kmod-fs-autofs4 kmod-fs-exfat kmod-fs-ext4 kmod-fs-msdos kmod-fs-vfat kmod-fuse kmod-lib-crc16 kmod-mii kmod-mt76-core kmod-mt76x02-common kmod-mt76x2 kmod-mt76x2-common kmod-nls-cp437 kmod-rt2800-lib kmod-rt2800-mmio kmod-rt2800-pci kmod-rt2800-soc kmod-rt2x00-lib kmod-rt2x00-mmio kmod-rt2x00-pci kmod-scsi-core kmod-sdhci-mt7620 kmod-usb2 kmod-usb-core kmod-usb-ehci kmod-usb-net kmod-usb-net-cdc-ether kmod-usb-net-qmi-wwan kmod-usb-net-rndis kmod-usb-ohci kmod-usb-printer kmod-usb-storage kmod-usb-storage-uas kmod-usb-wdm libopenssl libpcre libsqlite3 libssh2 libstdcpp libxml2 luci-app-aria2 luci-app-p910nd luci-app-samba luci-i18n-aria2-zh-cn luci-i18n-p910nd-en luci-i18n-p910nd-zh-cn luci-i18n-samba-en luci-i18n-samba-zh-cn ntfs-3g p910nd rt2800-pci-firmware samba36-server uclibcxx uqmi webui-aria2 wget wwan"
 # CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_zbt-wr8305rt is not set
 # CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_zte-q7 is not set
 # CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_kn_rc is not set
@@ -595,7 +595,7 @@ CONFIG_TARGET_INIT_CMD="/sbin/init"
 CONFIG_TARGET_INIT_SUPPRESS_STDERR=y
 CONFIG_VERSIONOPT=y
 CONFIG_VERSION_DIST="X-WRT"
-CONFIG_VERSION_NUMBER="5.0_b201904230740"
+CONFIG_VERSION_NUMBER="5.0_b201904281208"
 CONFIG_VERSION_CODE="Disco"
 CONFIG_VERSION_REPO="http://downloads.openwrt.org/snapshots"
 CONFIG_VERSION_HOME_URL="https://x-wrt.com/"
@@ -3644,11 +3644,6 @@ CONFIG_PACKAGE_luasocket=y
 #
 
 #
-# Module Selection
-#
-# CONFIG_NODEJS_ICU is not set
-
-#
 # PHP
 #
 # CONFIG_PACKAGE_php7 is not set
@@ -3694,10 +3689,14 @@ CONFIG_PACKAGE_luasocket=y
 # CONFIG_PACKAGE_python-attrs-src is not set
 # CONFIG_PACKAGE_python-automat is not set
 # CONFIG_PACKAGE_python-automat-src is not set
+# CONFIG_PACKAGE_python-awscli is not set
+# CONFIG_PACKAGE_python-awscli-src is not set
 # CONFIG_PACKAGE_python-base is not set
 # CONFIG_PACKAGE_python-base-src is not set
 # CONFIG_PACKAGE_python-bcrypt is not set
 # CONFIG_PACKAGE_python-bcrypt-src is not set
+# CONFIG_PACKAGE_python-botocore is not set
+# CONFIG_PACKAGE_python-botocore-src is not set
 # CONFIG_PACKAGE_python-certifi is not set
 # CONFIG_PACKAGE_python-certifi-src is not set
 # CONFIG_PACKAGE_python-cffi is not set
@@ -3706,6 +3705,8 @@ CONFIG_PACKAGE_luasocket=y
 # CONFIG_PACKAGE_python-chardet-src is not set
 # CONFIG_PACKAGE_python-codecs is not set
 # CONFIG_PACKAGE_python-codecs-src is not set
+# CONFIG_PACKAGE_python-colorama is not set
+# CONFIG_PACKAGE_python-colorama-src is not set
 # CONFIG_PACKAGE_python-compiler is not set
 # CONFIG_PACKAGE_python-compiler-src is not set
 # CONFIG_PACKAGE_python-constantly is not set
@@ -3735,6 +3736,8 @@ CONFIG_PACKAGE_luasocket=y
 # CONFIG_PACKAGE_python-distutils-src is not set
 # CONFIG_PACKAGE_python-dns is not set
 # CONFIG_PACKAGE_python-dns-src is not set
+# CONFIG_PACKAGE_python-docutils is not set
+# CONFIG_PACKAGE_python-docutils-src is not set
 # CONFIG_PACKAGE_python-dpkt is not set
 # CONFIG_PACKAGE_python-egenix-mx-base is not set
 # CONFIG_PACKAGE_python-email is not set
@@ -3742,6 +3745,8 @@ CONFIG_PACKAGE_luasocket=y
 # CONFIG_PACKAGE_python-enum34 is not set
 # CONFIG_PACKAGE_python-enum34-src is not set
 # CONFIG_PACKAGE_python-evdev is not set
+# CONFIG_PACKAGE_python-futures is not set
+# CONFIG_PACKAGE_python-futures-src is not set
 # CONFIG_PACKAGE_python-gdbm is not set
 # CONFIG_PACKAGE_python-gdbm-src is not set
 # CONFIG_PACKAGE_python-gmpy2 is not set
@@ -3755,6 +3760,8 @@ CONFIG_PACKAGE_luasocket=y
 # CONFIG_PACKAGE_python-incremental-src is not set
 # CONFIG_PACKAGE_python-ipaddress is not set
 # CONFIG_PACKAGE_python-ipaddress-src is not set
+# CONFIG_PACKAGE_python-jmespath is not set
+# CONFIG_PACKAGE_python-jmespath-src is not set
 # CONFIG_PACKAGE_python-ldap is not set
 # CONFIG_PACKAGE_python-lib2to3 is not set
 # CONFIG_PACKAGE_python-lib2to3-src is not set
@@ -3814,8 +3821,12 @@ CONFIG_PACKAGE_luasocket=y
 # CONFIG_PACKAGE_python-requests-oauthlib is not set
 # CONFIG_PACKAGE_python-requests-oauthlib-src is not set
 # CONFIG_PACKAGE_python-requests-src is not set
+# CONFIG_PACKAGE_python-rsa is not set
+# CONFIG_PACKAGE_python-rsa-src is not set
 # CONFIG_PACKAGE_python-ruamel-yaml is not set
 # CONFIG_PACKAGE_python-ruamel-yaml-src is not set
+# CONFIG_PACKAGE_python-s3transfer is not set
+# CONFIG_PACKAGE_python-s3transfer-src is not set
 # CONFIG_PACKAGE_python-service-identity is not set
 # CONFIG_PACKAGE_python-service-identity-src is not set
 # CONFIG_PACKAGE_python-setuptools is not set
@@ -3863,10 +3874,14 @@ CONFIG_PACKAGE_luasocket=y
 # CONFIG_PACKAGE_python3-attrs-src is not set
 # CONFIG_PACKAGE_python3-automat is not set
 # CONFIG_PACKAGE_python3-automat-src is not set
+# CONFIG_PACKAGE_python3-awscli is not set
+# CONFIG_PACKAGE_python3-awscli-src is not set
 # CONFIG_PACKAGE_python3-base is not set
 # CONFIG_PACKAGE_python3-base-src is not set
 # CONFIG_PACKAGE_python3-bcrypt is not set
 # CONFIG_PACKAGE_python3-bcrypt-src is not set
+# CONFIG_PACKAGE_python3-botocore is not set
+# CONFIG_PACKAGE_python3-botocore-src is not set
 # CONFIG_PACKAGE_python3-bottle is not set
 # CONFIG_PACKAGE_python3-bottle-src is not set
 # CONFIG_PACKAGE_python3-certifi is not set
@@ -3884,6 +3899,8 @@ CONFIG_PACKAGE_luasocket=y
 # CONFIG_PACKAGE_python3-click-log-src is not set
 # CONFIG_PACKAGE_python3-codecs is not set
 # CONFIG_PACKAGE_python3-codecs-src is not set
+# CONFIG_PACKAGE_python3-colorama is not set
+# CONFIG_PACKAGE_python3-colorama-src is not set
 # CONFIG_PACKAGE_python3-constantly is not set
 # CONFIG_PACKAGE_python3-constantly-src is not set
 # CONFIG_PACKAGE_python3-contextlib2 is not set
@@ -3914,6 +3931,8 @@ CONFIG_PACKAGE_luasocket=y
 # CONFIG_PACKAGE_python3-distutils-src is not set
 # CONFIG_PACKAGE_python3-dns is not set
 # CONFIG_PACKAGE_python3-dns-src is not set
+# CONFIG_PACKAGE_python3-docutils is not set
+# CONFIG_PACKAGE_python3-docutils-src is not set
 # CONFIG_PACKAGE_python3-email is not set
 # CONFIG_PACKAGE_python3-email-src is not set
 # CONFIG_PACKAGE_python3-evdev is not set
@@ -3927,12 +3946,17 @@ CONFIG_PACKAGE_luasocket=y
 # CONFIG_PACKAGE_python3-hyperlink-src is not set
 # CONFIG_PACKAGE_python3-idna is not set
 # CONFIG_PACKAGE_python3-idna-src is not set
+# CONFIG_PACKAGE_python3-ifaddr is not set
+# CONFIG_PACKAGE_python3-ifaddr-src is not set
 # CONFIG_PACKAGE_python3-incremental is not set
 # CONFIG_PACKAGE_python3-incremental-src is not set
 # CONFIG_PACKAGE_python3-influxdb is not set
 # CONFIG_PACKAGE_python3-influxdb-src is not set
 # CONFIG_PACKAGE_python3-itsdangerous is not set
 # CONFIG_PACKAGE_python3-jinja2 is not set
+# CONFIG_PACKAGE_python3-jinja2-src is not set
+# CONFIG_PACKAGE_python3-jmespath is not set
+# CONFIG_PACKAGE_python3-jmespath-src is not set
 # CONFIG_PACKAGE_python3-jsonpath-ng is not set
 # CONFIG_PACKAGE_python3-jsonpath-ng-src is not set
 # CONFIG_PACKAGE_python3-lib2to3 is not set
@@ -3957,6 +3981,8 @@ CONFIG_PACKAGE_luasocket=y
 # CONFIG_PACKAGE_python3-mysql is not set
 # CONFIG_PACKAGE_python3-ncurses is not set
 # CONFIG_PACKAGE_python3-ncurses-src is not set
+# CONFIG_PACKAGE_python3-netdisco is not set
+# CONFIG_PACKAGE_python3-netdisco-src is not set
 # CONFIG_PACKAGE_python3-netifaces is not set
 # CONFIG_PACKAGE_python3-netifaces-src is not set
 # CONFIG_PACKAGE_python3-oauthlib is not set
@@ -3996,8 +4022,12 @@ CONFIG_PACKAGE_luasocket=y
 # CONFIG_PACKAGE_python3-pytz-src is not set
 # CONFIG_PACKAGE_python3-requests is not set
 # CONFIG_PACKAGE_python3-requests-src is not set
+# CONFIG_PACKAGE_python3-rsa is not set
+# CONFIG_PACKAGE_python3-rsa-src is not set
 # CONFIG_PACKAGE_python3-ruamel-yaml is not set
 # CONFIG_PACKAGE_python3-ruamel-yaml-src is not set
+# CONFIG_PACKAGE_python3-s3transfer is not set
+# CONFIG_PACKAGE_python3-s3transfer-src is not set
 # CONFIG_PACKAGE_python3-schema is not set
 # CONFIG_PACKAGE_python3-schema-src is not set
 # CONFIG_PACKAGE_python3-service-identity is not set
@@ -4034,10 +4064,14 @@ CONFIG_PACKAGE_luasocket=y
 # CONFIG_PACKAGE_python3-werkzeug is not set
 # CONFIG_PACKAGE_python3-xml is not set
 # CONFIG_PACKAGE_python3-xml-src is not set
+# CONFIG_PACKAGE_python3-xmltodict is not set
+# CONFIG_PACKAGE_python3-xmltodict-src is not set
 # CONFIG_PACKAGE_python3-yaml is not set
 # CONFIG_PACKAGE_python3-yaml-src is not set
 # CONFIG_PACKAGE_python3-yarl is not set
 # CONFIG_PACKAGE_python3-yarl-src is not set
+# CONFIG_PACKAGE_python3-zeroconf is not set
+# CONFIG_PACKAGE_python3-zeroconf-src is not set
 # CONFIG_PACKAGE_python3-zope-interface is not set
 # CONFIG_PACKAGE_python3-zope-interface-src is not set
 # CONFIG_PACKAGE_rcssmin is not set
@@ -6089,6 +6123,7 @@ CONFIG_PACKAGE_ddns-scripts=y
 # CONFIG_PACKAGE_openvswitch-ovn-host is not set
 # CONFIG_PACKAGE_openvswitch-ovn-north is not set
 # CONFIG_PACKAGE_openvswitch-python is not set
+# CONFIG_PACKAGE_openvswitch-python3 is not set
 
 #
 # OpenLDAP
@@ -6803,6 +6838,7 @@ CONFIG_PACKAGE_px5g-mbedtls=y
 # CONFIG_PACKAGE_nfs-utils-libs is not set
 CONFIG_PACKAGE_ntfs-3g=m
 # CONFIG_PACKAGE_NTFS-3G_USE_LIBFUSE is not set
+CONFIG_PACKAGE_NTFS-3G_HAS_PROBE=y
 # CONFIG_PACKAGE_ntfs-3g-low is not set
 # CONFIG_PACKAGE_ntfs-3g-utils is not set
 # CONFIG_PACKAGE_owfs is not set

@@ -6,6 +6,11 @@ usbprint="kmod-usb-printer \
 		  luci-i18n-p910nd-en \
 		  luci-i18n-p910nd-zh-cn"
 
+usb4g="wwan \
+	   uqmi \
+	   kmod-usb-wdm \
+	   kmod-usb-net-qmi-wwan"
+
 usb2="kmod-usb2 \
 	  kmod-usb-core \
 	  kmod-usb-ohci \
@@ -198,6 +203,8 @@ for t in $targets; do
 	done)
 	echo $t=`get_modules $us`
 	mods="$us"
+	flash_gt8m=0
+	has_usb=0
 	case $t in
 		#>8M flash
 		TARGET_DEVICE_ath79_nand_DEVICE_glinet_gl-ar300m-nand|\
@@ -380,7 +387,8 @@ for t in $targets; do
 		TARGET_DEVICE_ramips_mt7621_DEVICE_wndr3700v5|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_newifi-d1)
 			mods="$mods $moreapps $usbprint"
-			mods="$mods $ssmod"
+			mods="$mods"
+			flash_gt8m=1
 		;;
 		#<=8M flash
 		TARGET_DEVICE_ramips_mt76x8_DEVICE_glinet_vixmini|\
@@ -575,6 +583,7 @@ for t in $targets; do
 		TARGET_DEVICE_ramips_mt7621_DEVICE_newifi-d1)
 			mods="$mods $usb2 $usb3"
 			mods="$mods $cdcmod"
+			has_usb=1
 		;;
 		#with usb2
 		TARGET_DEVICE_ath79_generic_DEVICE_xwrt_mk-v0201|\
@@ -741,6 +750,7 @@ for t in $targets; do
 		TARGET_DEVICE_ramips_mt7620_DEVICE_miwifi-mini)
 			mods="$mods $usb2"
 			mods="$mods $cdcmod"
+			has_usb=1
 		;;
 		#no usb
 		TARGET_DEVICE_ramips_mt76x8_DEVICE_glinet_vixmini|\
@@ -827,6 +837,9 @@ for t in $targets; do
 			echo no handle usb $t
 		;;
 	esac
+	if [ "x$flash_gt8m" = "x1" ] && [ "x$has_usb" = "x1" ]; then
+		mods="$mods $usb4g"
+	fi
 	tname=`echo $t | sed 's/TARGET_DEVICE_/CONFIG_TARGET_DEVICE_PACKAGES_/'`
 	mods="$mods `get_target_mods $t`"
 	mods=`get_modules $mods`
