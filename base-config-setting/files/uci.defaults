@@ -110,15 +110,14 @@ test $version -lt 2 && {
 		local ifname=`uci get network.lan.ifname 2>/dev/null || echo eth0`
 		uci -q batch <<-EOT
 			set network.wan=interface
-			set network.wan.ifname="$ifname"
+			set network.wan.ifname="macvlan0"
 			set network.wan.proto='dhcp'
 			set network.wan.metric='31'
 			set network.wan6=interface
 			set network.wan6.proto='dhcpv6'
-			set network.wan6.ifname="$ifname"
+			set network.wan6.ifname="@wan"
 			set network.wan6.reqaddress='try'
 			set network.wan6.reqprefix='auto'
-			set network.lan.ifname='macvlan0'
 			add network device
 			set network.@device[-1].name='macvlan0'
 			set network.@device[-1].type='macvlan'
