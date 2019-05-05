@@ -20,9 +20,6 @@ CONFIG_TARGET_ath79=y
 # CONFIG_TARGET_mpc85xx is not set
 # CONFIG_TARGET_imx6 is not set
 # CONFIG_TARGET_mxs is not set
-# CONFIG_TARGET_adm8668 is not set
-# CONFIG_TARGET_adm5120 is not set
-# CONFIG_TARGET_xburst is not set
 # CONFIG_TARGET_ixp4xx is not set
 # CONFIG_TARGET_lantiq is not set
 # CONFIG_TARGET_malta is not set
@@ -33,7 +30,6 @@ CONFIG_TARGET_ath79=y
 # CONFIG_TARGET_ramips is not set
 # CONFIG_TARGET_at91 is not set
 # CONFIG_TARGET_rb532 is not set
-# CONFIG_TARGET_mcs814x is not set
 # CONFIG_TARGET_tegra is not set
 # CONFIG_TARGET_layerscape is not set
 # CONFIG_TARGET_octeontx is not set
@@ -41,7 +37,6 @@ CONFIG_TARGET_ath79=y
 # CONFIG_TARGET_armvirt is not set
 # CONFIG_TARGET_ipq40xx is not set
 # CONFIG_TARGET_ipq806x is not set
-# CONFIG_TARGET_au1000 is not set
 # CONFIG_TARGET_samsung is not set
 # CONFIG_TARGET_arc770 is not set
 # CONFIG_TARGET_archs38 is not set
@@ -209,7 +204,7 @@ CONFIG_TARGET_DEVICE_PACKAGES_ath79_generic_DEVICE_glinet_gl-ar300m-nor="aria2 b
 CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_glinet_gl-ar300m-lite=y
 CONFIG_TARGET_DEVICE_PACKAGES_ath79_generic_DEVICE_glinet_gl-ar300m-lite="aria2 blockd block-mount kmod-ath9k kmod-ath9k-common kmod-crypto-crc32c kmod-fs-autofs4 kmod-fs-exfat kmod-fs-ext4 kmod-fs-msdos kmod-fs-vfat kmod-fuse kmod-lib-crc16 kmod-mii kmod-nls-cp437 kmod-phy-ath79-usb kmod-scsi-core kmod-usb2 kmod-usb-core kmod-usb-ehci kmod-usb-net kmod-usb-net-cdc-ether kmod-usb-net-cdc-mbim kmod-usb-net-cdc-ncm kmod-usb-net-huawei-cdc-ncm kmod-usb-net-ipheth kmod-usb-net-qmi-wwan kmod-usb-net-rndis kmod-usb-net-rtl8152 kmod-usb-net-sierrawireless kmod-usb-ohci kmod-usb-printer kmod-usb-serial kmod-usb-serial-option kmod-usb-serial-qualcomm kmod-usb-serial-sierrawireless kmod-usb-serial-wwan kmod-usb-storage kmod-usb-storage-uas kmod-usb-wdm libopenssl libpcre libsqlite3 libssh2 libstdcpp libusb-1.0 libxml2 luci-app-aria2 luci-app-p910nd luci-app-samba luci-i18n-aria2-zh-cn luci-i18n-p910nd-en luci-i18n-p910nd-zh-cn luci-i18n-samba-en luci-i18n-samba-zh-cn ntfs-3g p910nd samba36-server uclibcxx uqmi usb-modeswitch webui-aria2 wget wwan"
 CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_glinet_gl-ar750s=y
-CONFIG_TARGET_DEVICE_PACKAGES_ath79_generic_DEVICE_glinet_gl-ar750s="aria2 ath10k-firmware-qca988x-ct blockd block-mount kmod-ath10k-ct kmod-ath9k kmod-ath9k-common kmod-crypto-crc32c kmod-fs-autofs4 kmod-fs-exfat kmod-fs-ext4 kmod-fs-msdos kmod-fs-vfat kmod-fuse kmod-hwmon-core kmod-lib-crc16 kmod-mii kmod-nls-cp437 kmod-phy-ath79-usb kmod-scsi-core kmod-usb2 kmod-usb-core kmod-usb-ehci kmod-usb-net kmod-usb-net-cdc-ether kmod-usb-net-cdc-mbim kmod-usb-net-cdc-ncm kmod-usb-net-huawei-cdc-ncm kmod-usb-net-ipheth kmod-usb-net-qmi-wwan kmod-usb-net-rndis kmod-usb-net-rtl8152 kmod-usb-net-sierrawireless kmod-usb-ohci kmod-usb-printer kmod-usb-serial kmod-usb-serial-option kmod-usb-serial-qualcomm kmod-usb-serial-sierrawireless kmod-usb-serial-wwan kmod-usb-storage kmod-usb-storage-uas kmod-usb-wdm libopenssl libpcre libsqlite3 libssh2 libstdcpp libusb-1.0 libxml2 luci-app-aria2 luci-app-p910nd luci-app-samba luci-i18n-aria2-zh-cn luci-i18n-p910nd-en luci-i18n-p910nd-zh-cn luci-i18n-samba-en luci-i18n-samba-zh-cn ntfs-3g p910nd samba36-server uclibcxx uqmi usb-modeswitch webui-aria2 wget wwan"
+CONFIG_TARGET_DEVICE_PACKAGES_ath79_generic_DEVICE_glinet_gl-ar750s="aria2 ath10k-firmware-qca9887-ct blockd block-mount kmod-ath10k-ct kmod-ath9k kmod-ath9k-common kmod-crypto-crc32c kmod-fs-autofs4 kmod-fs-exfat kmod-fs-ext4 kmod-fs-msdos kmod-fs-vfat kmod-fuse kmod-hwmon-core kmod-lib-crc16 kmod-mii kmod-nls-cp437 kmod-phy-ath79-usb kmod-scsi-core kmod-usb2 kmod-usb-core kmod-usb-ehci kmod-usb-net kmod-usb-net-cdc-ether kmod-usb-net-cdc-mbim kmod-usb-net-cdc-ncm kmod-usb-net-huawei-cdc-ncm kmod-usb-net-ipheth kmod-usb-net-qmi-wwan kmod-usb-net-rndis kmod-usb-net-rtl8152 kmod-usb-net-sierrawireless kmod-usb-ohci kmod-usb-printer kmod-usb-serial kmod-usb-serial-option kmod-usb-serial-qualcomm kmod-usb-serial-sierrawireless kmod-usb-serial-wwan kmod-usb-storage kmod-usb-storage-uas kmod-usb-wdm libopenssl libpcre libsqlite3 libssh2 libstdcpp libusb-1.0 libxml2 luci-app-aria2 luci-app-p910nd luci-app-samba luci-i18n-aria2-zh-cn luci-i18n-p910nd-en luci-i18n-p910nd-zh-cn luci-i18n-samba-en luci-i18n-samba-zh-cn ntfs-3g p910nd samba36-server uclibcxx uqmi usb-modeswitch webui-aria2 wget wwan"
 CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_glinet_gl-x750=y
 CONFIG_TARGET_DEVICE_PACKAGES_ath79_generic_DEVICE_glinet_gl-x750="aria2 ath10k-firmware-qca9887-ct blockd block-mount kmod-ath10k-ct kmod-ath9k kmod-ath9k-common kmod-crypto-crc32c kmod-fs-autofs4 kmod-fs-exfat kmod-fs-ext4 kmod-fs-msdos kmod-fs-vfat kmod-fuse kmod-hwmon-core kmod-lib-crc16 kmod-mii kmod-nls-cp437 kmod-phy-ath79-usb kmod-scsi-core kmod-usb2 kmod-usb-core kmod-usb-ehci kmod-usb-net kmod-usb-net-cdc-ether kmod-usb-net-cdc-mbim kmod-usb-net-cdc-ncm kmod-usb-net-huawei-cdc-ncm kmod-usb-net-ipheth kmod-usb-net-qmi-wwan kmod-usb-net-rndis kmod-usb-net-rtl8152 kmod-usb-net-sierrawireless kmod-usb-ohci kmod-usb-printer kmod-usb-serial kmod-usb-serial-option kmod-usb-serial-qualcomm kmod-usb-serial-sierrawireless kmod-usb-serial-wwan kmod-usb-storage kmod-usb-storage-uas kmod-usb-wdm libopenssl libpcre libsqlite3 libssh2 libstdcpp libusb-1.0 libxml2 luci-app-aria2 luci-app-p910nd luci-app-samba luci-i18n-aria2-zh-cn luci-i18n-p910nd-en luci-i18n-p910nd-zh-cn luci-i18n-samba-en luci-i18n-samba-zh-cn ntfs-3g p910nd samba36-server uclibcxx uqmi usb-modeswitch webui-aria2 wget wwan"
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_iodata_etg3-r is not set
@@ -640,7 +635,7 @@ CONFIG_TARGET_INIT_CMD="/sbin/init"
 CONFIG_TARGET_INIT_SUPPRESS_STDERR=y
 CONFIG_VERSIONOPT=y
 CONFIG_VERSION_DIST="X-WRT"
-CONFIG_VERSION_NUMBER="5.0_b201905021034"
+CONFIG_VERSION_NUMBER="5.0_b201905060705"
 CONFIG_VERSION_CODE="Disco"
 CONFIG_VERSION_REPO="http://downloads.openwrt.org/snapshots"
 CONFIG_VERSION_HOME_URL="https://x-wrt.com/"
@@ -3644,15 +3639,8 @@ CONFIG_PACKAGE_kmod-owl-loader=m
 #
 # CONFIG_PACKAGE_golang is not set
 # CONFIG_PACKAGE_golang-doc is not set
-# CONFIG_PACKAGE_golang-github-agl-ed25519-dev is not set
-# CONFIG_PACKAGE_golang-github-dchest-siphash-dev is not set
 # CONFIG_PACKAGE_golang-gitlab-yawning-obfs4-dev is not set
-# CONFIG_PACKAGE_golang-golang-x-crypto-dev is not set
-# CONFIG_PACKAGE_golang-golang-x-net-dev is not set
-# CONFIG_PACKAGE_golang-golang-x-sys-dev is not set
-# CONFIG_PACKAGE_golang-golang-x-text-dev is not set
 # CONFIG_PACKAGE_golang-src is not set
-# CONFIG_PACKAGE_golang-torproject-pluggable-transports-goptlib-dev is not set
 # CONFIG_PACKAGE_golang-torproject-tor-fw-helper-dev is not set
 
 #
@@ -3741,10 +3729,8 @@ CONFIG_PACKAGE_luasocket=y
 # CONFIG_PACKAGE_django-statici18n is not set
 # CONFIG_PACKAGE_django-webpack-loader is not set
 # CONFIG_PACKAGE_django-webpack-loader-src is not set
-# CONFIG_PACKAGE_et_xmlfile is not set
 # CONFIG_PACKAGE_flup is not set
 # CONFIG_PACKAGE_gunicorn is not set
-# CONFIG_PACKAGE_jdcal is not set
 # CONFIG_PACKAGE_micropython is not set
 # CONFIG_PACKAGE_micropython-lib is not set
 # CONFIG_PACKAGE_openpyxl is not set
@@ -4142,7 +4128,6 @@ CONFIG_PACKAGE_luasocket=y
 # CONFIG_PACKAGE_python3-zeroconf-src is not set
 # CONFIG_PACKAGE_python3-zope-interface is not set
 # CONFIG_PACKAGE_python3-zope-interface-src is not set
-# CONFIG_PACKAGE_rcssmin is not set
 
 #
 # Ruby
@@ -6333,7 +6318,6 @@ CONFIG_PACKAGE_tc=y
 # Telephony
 #
 # CONFIG_PACKAGE_asterisk13 is not set
-# CONFIG_PACKAGE_asterisk15 is not set
 # CONFIG_PACKAGE_asterisk16 is not set
 # CONFIG_PACKAGE_baresip is not set
 # CONFIG_PACKAGE_freeswitch-stable is not set
