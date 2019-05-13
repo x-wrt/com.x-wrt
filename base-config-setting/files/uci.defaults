@@ -119,6 +119,7 @@ test $version -lt 2 && {
 			set network.wan6.reqaddress='try'
 			set network.wan6.reqprefix='auto'
 			set network.lan.ifname='macvlan0'
+			delete network.lan.type
 			add network device
 			set network.@device[-1].name='macvlan0'
 			set network.@device[-1].type='macvlan'
