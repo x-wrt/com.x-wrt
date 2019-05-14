@@ -303,7 +303,7 @@ for t in $targets; do
 		TARGET_DEVICE_ath79_generic_DEVICE_glinet_ar300m_nor|\
 		TARGET_DEVICE_ath79_generic_DEVICE_tplink_tl-wr1043nd-v4|\
 		TARGET_DEVICE_ath79_generic_DEVICE_netgear_wndr3800|\
-		TARGET_DEVICE_mvebu_cortexa9_DEVICE_linksys-wrt32x|\
+		TARGET_DEVICE_mvebu_cortexa9_DEVICE_linksys_wrt32x|\
 		TARGET_DEVICE_ar71xx_generic_DEVICE_gl-ar150|\
 		TARGET_DEVICE_ar71xx_generic_DEVICE_gl-ar300|\
 		TARGET_DEVICE_ar71xx_generic_DEVICE_gl-ar300m|\
@@ -381,11 +381,11 @@ for t in $targets; do
 		TARGET_DEVICE_bcm53xx_DEVICE_netgear-r7000|\
 		TARGET_DEVICE_bcm53xx_DEVICE_netgear-r7900|\
 		TARGET_DEVICE_bcm53xx_DEVICE_netgear-r8000|\
-		TARGET_DEVICE_mvebu_cortexa9_DEVICE_linksys-wrt1200ac|\
-		TARGET_DEVICE_mvebu_cortexa9_DEVICE_linksys-wrt1900ac|\
-		TARGET_DEVICE_mvebu_cortexa9_DEVICE_linksys-wrt1900acs|\
-		TARGET_DEVICE_mvebu_cortexa9_DEVICE_linksys-wrt1900acv2|\
-		TARGET_DEVICE_mvebu_cortexa9_DEVICE_linksys-wrt3200acm|\
+		TARGET_DEVICE_mvebu_cortexa9_DEVICE_linksys_wrt1200ac|\
+		TARGET_DEVICE_mvebu_cortexa9_DEVICE_linksys_wrt1900ac|\
+		TARGET_DEVICE_mvebu_cortexa9_DEVICE_linksys_wrt1900acs|\
+		TARGET_DEVICE_mvebu_cortexa9_DEVICE_linksys_wrt1900acv2|\
+		TARGET_DEVICE_mvebu_cortexa9_DEVICE_linksys_wrt3200acm|\
 		TARGET_DEVICE_ramips_mt7620_DEVICE_hc5661|\
 		TARGET_DEVICE_ramips_mt7620_DEVICE_hc5761|\
 		TARGET_DEVICE_ramips_mt7620_DEVICE_hc5861|\
@@ -547,7 +547,7 @@ for t in $targets; do
 		TARGET_DEVICE_bcm53xx_DEVICE_tplink-archer-c9-v1|\
 		TARGET_DEVICE_bcm53xx_DEVICE_dlink-dir-885l|\
 		TARGET_DEVICE_bcm53xx_DEVICE_linksys-ea6500-v2|\
-		TARGET_DEVICE_mvebu_cortexa9_DEVICE_linksys-wrt32x|\
+		TARGET_DEVICE_mvebu_cortexa9_DEVICE_linksys_wrt32x|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_puppies|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_nxc200p|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_wf-2881|\
@@ -584,11 +584,11 @@ for t in $targets; do
 		TARGET_DEVICE_bcm53xx_DEVICE_netgear-r7000|\
 		TARGET_DEVICE_bcm53xx_DEVICE_netgear-r7900|\
 		TARGET_DEVICE_bcm53xx_DEVICE_netgear-r8000|\
-		TARGET_DEVICE_mvebu_cortexa9_DEVICE_linksys-wrt1200ac|\
-		TARGET_DEVICE_mvebu_cortexa9_DEVICE_linksys-wrt1900ac|\
-		TARGET_DEVICE_mvebu_cortexa9_DEVICE_linksys-wrt1900acs|\
-		TARGET_DEVICE_mvebu_cortexa9_DEVICE_linksys-wrt1900acv2|\
-		TARGET_DEVICE_mvebu_cortexa9_DEVICE_linksys-wrt3200acm|\
+		TARGET_DEVICE_mvebu_cortexa9_DEVICE_linksys_wrt1200ac|\
+		TARGET_DEVICE_mvebu_cortexa9_DEVICE_linksys_wrt1900ac|\
+		TARGET_DEVICE_mvebu_cortexa9_DEVICE_linksys_wrt1900acs|\
+		TARGET_DEVICE_mvebu_cortexa9_DEVICE_linksys_wrt1900acv2|\
+		TARGET_DEVICE_mvebu_cortexa9_DEVICE_linksys_wrt3200acm|\
 		TARGET_DEVICE_ramips_mt7620_DEVICE_y1s|\
 		TARGET_DEVICE_ramips_mt7620_DEVICE_youku-yk1|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_hc5962|\
