@@ -124,7 +124,12 @@ natcapd_boot() {
 client_mac=`cat $DEV | grep default_mac_addr | grep -o "[0-9A-F][0-9A-F]:[0-9A-F][0-9A-F]:[0-9A-F][0-9A-F]:[0-9A-F][0-9A-F]:[0-9A-F][0-9A-F]:[0-9A-F][0-9A-F]"`
 account="`uci get natcapd.default.account 2>/dev/null`"
 uhash=`echo -n $client_mac$account | cksum | awk '{print $1}'`
-echo u_hash=$uhash >>$DEV
+u_hash=`uci get natcapd.default.u_hash 2>/dev/null || echo 0`
+[ "x$u_hash" = "x0" ] && u_hash=$uhash
+echo u_hash=${u_hash} >>$DEV
+
+protocol=`uci get natcapd.default.protocol 2>/dev/null || echo 0`
+echo protocol=$protocol >>$DEV
 
 ACC="$account"
 CLI=`echo $client_mac | sed 's/:/-/g' | tr a-z A-Z`
