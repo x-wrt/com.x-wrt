@@ -128,6 +128,9 @@ u_hash=`uci get natcapd.default.u_hash 2>/dev/null || echo 0`
 [ "x$u_hash" = "x0" ] && u_hash=$uhash
 echo u_hash=${u_hash} >>$DEV
 
+u_mask=`uci get natcapd.default.u_mask 2>/dev/null || echo 0`
+echo u_mask=${u_mask} >>$DEV
+
 protocol=`uci get natcapd.default.protocol 2>/dev/null || echo 0`
 echo protocol=$protocol >>$DEV
 
