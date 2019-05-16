@@ -7,7 +7,7 @@ make_config()
 	KEY_ID=client
 	KEY_DIR=/usr/share/natcapd/openvpn
 	BASE_CONFIG=/usr/share/natcapd/openvpn/client.conf
-	hname=`cat /dev/natcap_ctl  | grep default_mac_addr | grep -o '[0-9A-F][0-9A-F]:[0-9A-F][0-9A-F]:[0-9A-F][0-9A-F]:[0-9A-F][0-9A-F]:[0-9A-F][0-9A-F]:[0-9A-F][0-9A-F]' | sed 's/://g' | tr A-F a-f`
+	hname=`cat /dev/natcap_ctl  | grep default_mac_addr | grep -o '[0-9a-f][0-9a-f]:[0-9a-f][0-9a-f]:[0-9a-f][0-9a-f]:[0-9a-f][0-9a-f]:[0-9a-f][0-9a-f]:[0-9a-f][0-9a-f]' | sed 's/://g'`
 	TA_KEY=${KEY_DIR}/ta.key
 	test -f /etc/openvpn/natcap-ta.key && TA_KEY=/etc/openvpn/natcap-ta.key
 
