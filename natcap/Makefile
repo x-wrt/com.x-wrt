@@ -9,8 +9,8 @@ include $(TOPDIR)/rules.mk
 include $(INCLUDE_DIR)/kernel.mk
 
 PKG_NAME:=natcap
-PKG_VERSION:=6.0.2
-PKG_RELEASE:=b773ac96b431085fa6a00febff251bfdaf8dedc1
+PKG_VERSION:=7.0.0
+PKG_RELEASE:=ec4d88d631fcddc555f369d08034fe4189a3ab9e
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION)-$(PKG_RELEASE).tar.xz
 PKG_SOURCE_URL:=https://github.com/ptpt52/natcap.git
