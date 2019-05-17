@@ -384,7 +384,7 @@ CONFIG_TARGET_INIT_CMD="/sbin/init"
 CONFIG_TARGET_INIT_SUPPRESS_STDERR=y
 CONFIG_VERSIONOPT=y
 CONFIG_VERSION_DIST="X-WRT"
-CONFIG_VERSION_NUMBER="5.0_b201905150007"
+CONFIG_VERSION_NUMBER="5.0_b201905171652"
 CONFIG_VERSION_CODE="Disco"
 CONFIG_VERSION_REPO="http://downloads.openwrt.org/snapshots"
 CONFIG_VERSION_HOME_URL="https://x-wrt.com/"
@@ -3458,6 +3458,8 @@ CONFIG_PACKAGE_luasocket=y
 # CONFIG_PACKAGE_python-db-src is not set
 # CONFIG_PACKAGE_python-decimal is not set
 # CONFIG_PACKAGE_python-decimal-src is not set
+# CONFIG_PACKAGE_python-defusedxml is not set
+# CONFIG_PACKAGE_python-defusedxml-src is not set
 # CONFIG_PACKAGE_python-dev is not set
 # CONFIG_PACKAGE_python-dev-src is not set
 # CONFIG_PACKAGE_python-distutils is not set
@@ -3655,6 +3657,8 @@ CONFIG_PACKAGE_luasocket=y
 # CONFIG_PACKAGE_python3-decimal-src is not set
 # CONFIG_PACKAGE_python3-decorator is not set
 # CONFIG_PACKAGE_python3-decorator-src is not set
+# CONFIG_PACKAGE_python3-defusedxml is not set
+# CONFIG_PACKAGE_python3-defusedxml-src is not set
 # CONFIG_PACKAGE_python3-dev is not set
 # CONFIG_PACKAGE_python3-dev-src is not set
 # CONFIG_PACKAGE_python3-distutils is not set
@@ -4729,6 +4733,7 @@ CONFIG_SQLITE3_THREADSAFE=y
 # CONFIG_PACKAGE_confuse is not set
 # CONFIG_PACKAGE_czmq is not set
 # CONFIG_PACKAGE_dtndht is not set
+# CONFIG_PACKAGE_fbthrift is not set
 # CONFIG_PACKAGE_fcgi is not set
 # CONFIG_PACKAGE_fftw3 is not set
 # CONFIG_PACKAGE_fftw3f is not set
@@ -4823,6 +4828,7 @@ CONFIG_PACKAGE_libext2fs=m
 # CONFIG_PACKAGE_libfmt is not set
 # CONFIG_PACKAGE_libfolly is not set
 # CONFIG_PACKAGE_libfreetype is not set
+# CONFIG_PACKAGE_libfstrm is not set
 # CONFIG_PACKAGE_libftdi is not set
 # CONFIG_PACKAGE_libftdi1 is not set
 # CONFIG_PACKAGE_libgabe is not set
