@@ -220,6 +220,11 @@ for t in $targets; do
 	has_usb=0
 	case $t in
 		#>8M flash
+		TARGET_DEVICE_ath79_generic_DEVICE_engenius_epg5000|\
+		TARGET_DEVICE_ath79_generic_DEVICE_engenius_ecb1750|\
+		TARGET_DEVICE_ath79_generic_DEVICE_engenius_ews511ap|\
+		TARGET_DEVICE_ath79_generic_DEVICE_aruba_ap-105|\
+		TARGET_DEVICE_ath79_generic_DEVICE_tplink_tl-wr1043n-v5|\
 		TARGET_DEVICE_ath79_nand_DEVICE_glinet_gl-ar300m-nand|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_youku_yk-l2|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_ubnt-erx|\
@@ -241,6 +246,7 @@ for t in $targets; do
 		TARGET_DEVICE_ipq40xx_DEVICE_engenius_eap1300|\
 		TARGET_DEVICE_ipq40xx_DEVICE_compex_wpj428|\
 		TARGET_DEVICE_ipq40xx_DEVICE_asus_map-ac2200|\
+		TARGET_DEVICE_ipq40xx_DEVICE_linksys_ea8300|\
 		TARGET_DEVICE_ath79_generic_DEVICE_tplink_archer-c5-v1|\
 		TARGET_DEVICE_ath79_generic_DEVICE_xiaomi_mi-router-4q|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_11acnas|\
@@ -404,6 +410,7 @@ for t in $targets; do
 			flash_gt8m=1
 		;;
 		#<=8M flash
+		TARGET_DEVICE_ath79_generic_DEVICE_tplink_archer-d50-v1|\
 		TARGET_DEVICE_ramips_mt76x8_DEVICE_glinet_vixmini|\
 		TARGET_DEVICE_ath79_generic_DEVICE_netgear_ex6400|\
 		TARGET_DEVICE_ath79_generic_DEVICE_netgear_ex7300|\
@@ -534,6 +541,7 @@ for t in $targets; do
 	#check usb
 	case $t in
 		#with usb3
+		TARGET_DEVICE_ipq40xx_DEVICE_linksys_ea8300|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_youku_yk-l2|\
 		TARGET_DEVICE_ipq40xx_DEVICE_glinet_gl-b1300|\
 		TARGET_DEVICE_ipq40xx_DEVICE_compex_wpj428|\
@@ -599,6 +607,7 @@ for t in $targets; do
 			has_usb=1
 		;;
 		#with usb2
+		TARGET_DEVICE_ath79_generic_DEVICE_engenius_epg5000|\
 		TARGET_DEVICE_ath79_generic_DEVICE_xwrt_mk-v0201|\
 		TARGET_DEVICE_ath79_nand_DEVICE_glinet_gl-ar300m-nand|\
 		TARGET_DEVICE_ar71xx_generic_DEVICE_ts-d084|\
@@ -766,6 +775,11 @@ for t in $targets; do
 			has_usb=1
 		;;
 		#no usb
+		TARGET_DEVICE_ath79_generic_DEVICE_engenius_ecb1750|\
+		TARGET_DEVICE_ath79_generic_DEVICE_engenius_ews511ap|\
+		TARGET_DEVICE_ath79_generic_DEVICE_tplink_archer-d50-v1|\
+		TARGET_DEVICE_ath79_generic_DEVICE_aruba_ap-105|\
+		TARGET_DEVICE_ath79_generic_DEVICE_tplink_tl-wr1043n-v5|\
 		TARGET_DEVICE_ramips_mt76x8_DEVICE_glinet_vixmini|\
 		TARGET_DEVICE_ath79_generic_DEVICE_netgear_ex6400|\
 		TARGET_DEVICE_ath79_generic_DEVICE_netgear_ex7300|\
