@@ -402,7 +402,7 @@ CONFIG_TARGET_INIT_CMD="/sbin/init"
 CONFIG_TARGET_INIT_SUPPRESS_STDERR=y
 CONFIG_VERSIONOPT=y
 CONFIG_VERSION_DIST="X-WRT"
-CONFIG_VERSION_NUMBER="5.0_b201905180934"
+CONFIG_VERSION_NUMBER="5.0_b201905280302"
 CONFIG_VERSION_CODE="Disco"
 CONFIG_VERSION_REPO="http://downloads.openwrt.org/snapshots"
 CONFIG_VERSION_HOME_URL="https://x-wrt.com/"
@@ -2509,7 +2509,7 @@ CONFIG_ZABBIX_POSTGRESQL=y
 #
 
 #
-# ath10k IPQ4019 Boarddata
+# ath10k Board-Specific Overrides
 #
 # CONFIG_PACKAGE_aircard-pcmcia-firmware is not set
 # CONFIG_PACKAGE_amdgpu-firmware is not set
@@ -3454,6 +3454,7 @@ CONFIG_PACKAGE_luasocket=y
 # CONFIG_PACKAGE_django is not set
 # CONFIG_PACKAGE_django-appconf is not set
 # CONFIG_PACKAGE_django-compressor is not set
+# CONFIG_PACKAGE_django-compressor-src is not set
 # CONFIG_PACKAGE_django-constance is not set
 # CONFIG_PACKAGE_django-formtools is not set
 # CONFIG_PACKAGE_django-formtools-src is not set
@@ -3472,7 +3473,6 @@ CONFIG_PACKAGE_luasocket=y
 # CONFIG_PACKAGE_gunicorn is not set
 # CONFIG_PACKAGE_micropython is not set
 # CONFIG_PACKAGE_micropython-lib is not set
-# CONFIG_PACKAGE_openpyxl is not set
 # CONFIG_PACKAGE_pillow is not set
 # CONFIG_PACKAGE_python is not set
 # CONFIG_PACKAGE_python-asn1crypto is not set
@@ -3539,6 +3539,8 @@ CONFIG_PACKAGE_luasocket=y
 # CONFIG_PACKAGE_python-email-src is not set
 # CONFIG_PACKAGE_python-enum34 is not set
 # CONFIG_PACKAGE_python-enum34-src is not set
+# CONFIG_PACKAGE_python-et_xmlfile is not set
+# CONFIG_PACKAGE_python-et_xmlfile-src is not set
 # CONFIG_PACKAGE_python-evdev is not set
 # CONFIG_PACKAGE_python-futures is not set
 # CONFIG_PACKAGE_python-futures-src is not set
@@ -3555,6 +3557,8 @@ CONFIG_PACKAGE_luasocket=y
 # CONFIG_PACKAGE_python-incremental-src is not set
 # CONFIG_PACKAGE_python-ipaddress is not set
 # CONFIG_PACKAGE_python-ipaddress-src is not set
+# CONFIG_PACKAGE_python-jdcal is not set
+# CONFIG_PACKAGE_python-jdcal-src is not set
 # CONFIG_PACKAGE_python-jmespath is not set
 # CONFIG_PACKAGE_python-jmespath-src is not set
 # CONFIG_PACKAGE_python-ldap is not set
@@ -3577,6 +3581,8 @@ CONFIG_PACKAGE_luasocket=y
 # CONFIG_PACKAGE_python-ncurses-src is not set
 # CONFIG_PACKAGE_python-oauthlib is not set
 # CONFIG_PACKAGE_python-oauthlib-src is not set
+# CONFIG_PACKAGE_python-openpyxl is not set
+# CONFIG_PACKAGE_python-openpyxl-src is not set
 # CONFIG_PACKAGE_python-openssl is not set
 # CONFIG_PACKAGE_python-openssl-src is not set
 # CONFIG_PACKAGE_python-packages is not set
@@ -3612,6 +3618,8 @@ CONFIG_PACKAGE_luasocket=y
 # CONFIG_PACKAGE_python-pytz-src is not set
 # CONFIG_PACKAGE_python-qrcode is not set
 # CONFIG_PACKAGE_python-qrcode-src is not set
+# CONFIG_PACKAGE_python-rcssmin is not set
+# CONFIG_PACKAGE_python-rcssmin-src is not set
 # CONFIG_PACKAGE_python-requests is not set
 # CONFIG_PACKAGE_python-requests-oauthlib is not set
 # CONFIG_PACKAGE_python-requests-oauthlib-src is not set
@@ -3734,6 +3742,8 @@ CONFIG_PACKAGE_luasocket=y
 # CONFIG_PACKAGE_python3-docutils-src is not set
 # CONFIG_PACKAGE_python3-email is not set
 # CONFIG_PACKAGE_python3-email-src is not set
+# CONFIG_PACKAGE_python3-et_xmlfile is not set
+# CONFIG_PACKAGE_python3-et_xmlfile-src is not set
 # CONFIG_PACKAGE_python3-evdev is not set
 # CONFIG_PACKAGE_python3-flask is not set
 # CONFIG_PACKAGE_python3-gdbm is not set
@@ -3752,6 +3762,8 @@ CONFIG_PACKAGE_luasocket=y
 # CONFIG_PACKAGE_python3-influxdb is not set
 # CONFIG_PACKAGE_python3-influxdb-src is not set
 # CONFIG_PACKAGE_python3-itsdangerous is not set
+# CONFIG_PACKAGE_python3-jdcal is not set
+# CONFIG_PACKAGE_python3-jdcal-src is not set
 # CONFIG_PACKAGE_python3-jinja2 is not set
 # CONFIG_PACKAGE_python3-jinja2-src is not set
 # CONFIG_PACKAGE_python3-jmespath is not set
@@ -3784,8 +3796,12 @@ CONFIG_PACKAGE_luasocket=y
 # CONFIG_PACKAGE_python3-netdisco-src is not set
 # CONFIG_PACKAGE_python3-netifaces is not set
 # CONFIG_PACKAGE_python3-netifaces-src is not set
+# CONFIG_PACKAGE_python3-newt is not set
+# CONFIG_PACKAGE_python3-newt-src is not set
 # CONFIG_PACKAGE_python3-oauthlib is not set
 # CONFIG_PACKAGE_python3-oauthlib-src is not set
+# CONFIG_PACKAGE_python3-openpyxl is not set
+# CONFIG_PACKAGE_python3-openpyxl-src is not set
 # CONFIG_PACKAGE_python3-openssl is not set
 # CONFIG_PACKAGE_python3-openssl-src is not set
 # CONFIG_PACKAGE_python3-packages is not set
@@ -3820,7 +3836,11 @@ CONFIG_PACKAGE_luasocket=y
 # CONFIG_PACKAGE_python3-pyserial-src is not set
 # CONFIG_PACKAGE_python3-pytz is not set
 # CONFIG_PACKAGE_python3-pytz-src is not set
+# CONFIG_PACKAGE_python3-rcssmin is not set
+# CONFIG_PACKAGE_python3-rcssmin-src is not set
 # CONFIG_PACKAGE_python3-requests is not set
+# CONFIG_PACKAGE_python3-requests-oauthlib is not set
+# CONFIG_PACKAGE_python3-requests-oauthlib-src is not set
 # CONFIG_PACKAGE_python3-requests-src is not set
 # CONFIG_PACKAGE_python3-rsa is not set
 # CONFIG_PACKAGE_python3-rsa-src is not set
@@ -3886,6 +3906,7 @@ CONFIG_PACKAGE_luasocket=y
 #
 # CONFIG_PACKAGE_tcl is not set
 # CONFIG_PACKAGE_chicken-scheme-interpreter is not set
+# CONFIG_PACKAGE_slsh is not set
 # CONFIG_PACKAGE_vala is not set
 
 #
@@ -4724,7 +4745,6 @@ CONFIG_SQLITE3_FTS5=y
 CONFIG_SQLITE3_JSON1=y
 CONFIG_SQLITE3_RTREE=y
 # CONFIG_SQLITE3_SESSION is not set
-CONFIG_SQLITE3_THREADSAFE=y
 # CONFIG_PACKAGE_pgsqlodbc is not set
 # CONFIG_PACKAGE_psqlodbca is not set
 # CONFIG_PACKAGE_psqlodbcw is not set
@@ -4978,6 +4998,7 @@ CONFIG_PACKAGE_libnettle=y
 # Configuration
 #
 # CONFIG_LIBNETTLE_MINI is not set
+# CONFIG_PACKAGE_libnewt is not set
 CONFIG_PACKAGE_libnfnetlink=y
 CONFIG_PACKAGE_libnftnl=y
 # CONFIG_PACKAGE_libnghttp2 is not set
@@ -5013,6 +5034,7 @@ CONFIG_PACKAGE_libpcap=m
 # CONFIG_PCAP_HAS_USB is not set
 # CONFIG_PCAP_HAS_NETFILTER is not set
 # CONFIG_PACKAGE_libpci is not set
+# CONFIG_PACKAGE_libpciaccess is not set
 CONFIG_PACKAGE_libpcre=m
 # CONFIG_PACKAGE_libpcre16 is not set
 # CONFIG_PACKAGE_libpcre2 is not set
@@ -5050,6 +5072,28 @@ CONFIG_PACKAGE_libpcre=m
 # CONFIG_PACKAGE_libsigar is not set
 # CONFIG_PACKAGE_libsigcxx is not set
 # CONFIG_PACKAGE_libsispmctl is not set
+# CONFIG_PACKAGE_libslang2 is not set
+# CONFIG_PACKAGE_libslang2-mod-base64 is not set
+# CONFIG_PACKAGE_libslang2-mod-chksum is not set
+# CONFIG_PACKAGE_libslang2-mod-csv is not set
+# CONFIG_PACKAGE_libslang2-mod-fcntl is not set
+# CONFIG_PACKAGE_libslang2-mod-fork is not set
+# CONFIG_PACKAGE_libslang2-mod-histogram is not set
+# CONFIG_PACKAGE_libslang2-mod-iconv is not set
+# CONFIG_PACKAGE_libslang2-mod-json is not set
+# CONFIG_PACKAGE_libslang2-mod-onig is not set
+# CONFIG_PACKAGE_libslang2-mod-pcre is not set
+# CONFIG_PACKAGE_libslang2-mod-png is not set
+# CONFIG_PACKAGE_libslang2-mod-rand is not set
+# CONFIG_PACKAGE_libslang2-mod-select is not set
+# CONFIG_PACKAGE_libslang2-mod-slsmg is not set
+# CONFIG_PACKAGE_libslang2-mod-socket is not set
+# CONFIG_PACKAGE_libslang2-mod-stats is not set
+# CONFIG_PACKAGE_libslang2-mod-sysconf is not set
+# CONFIG_PACKAGE_libslang2-mod-termios is not set
+# CONFIG_PACKAGE_libslang2-mod-varray is not set
+# CONFIG_PACKAGE_libslang2-mod-zlib is not set
+# CONFIG_PACKAGE_libslang2-modules is not set
 # CONFIG_PACKAGE_libsmartcols is not set
 # CONFIG_PACKAGE_libsndfile is not set
 # CONFIG_PACKAGE_libsoc is not set
@@ -5132,6 +5176,7 @@ CONFIG_PACKAGE_libxml2=m
 # CONFIG_PACKAGE_mxml is not set
 # CONFIG_PACKAGE_nacl is not set
 # CONFIG_PACKAGE_nspr is not set
+# CONFIG_PACKAGE_oniguruma is not set
 # CONFIG_PACKAGE_opencv is not set
 # CONFIG_PACKAGE_p11-kit is not set
 # CONFIG_PACKAGE_pixman is not set
@@ -5844,6 +5889,7 @@ CONFIG_PACKAGE_NFT_WITH_JSON=y
 # CONFIG_PACKAGE_bind-host is not set
 # CONFIG_PACKAGE_bind-rndc is not set
 # CONFIG_PACKAGE_bind-server is not set
+# CONFIG_PACKAGE_bind-server-filter-aaaa is not set
 # CONFIG_PACKAGE_bind-tools is not set
 # CONFIG_PACKAGE_danish is not set
 CONFIG_PACKAGE_ddns-scripts=y
@@ -6313,6 +6359,14 @@ CONFIG_PACKAGE_6to4=y
 # CONFIG_PACKAGE_darkstat is not set
 # CONFIG_PACKAGE_dhcpcd is not set
 # CONFIG_PACKAGE_dmapd is not set
+# CONFIG_PACKAGE_dnsdist is not set
+
+#
+# SSL support
+#
+CONFIG_DNSDIST_OPENSSL=y
+# CONFIG_DNSDIST_GNUTLS is not set
+# CONFIG_DNSDIST_NOSSL is not set
 CONFIG_PACKAGE_ds-lite=y
 # CONFIG_PACKAGE_eapol-test is not set
 # CONFIG_PACKAGE_eapol-test-openssl is not set
@@ -6644,6 +6698,7 @@ CONFIG_PACKAGE_wwan=m
 #
 # CONFIG_PACKAGE_joe is not set
 # CONFIG_PACKAGE_jupp is not set
+# CONFIG_PACKAGE_mg is not set
 # CONFIG_PACKAGE_nano is not set
 # CONFIG_PACKAGE_vim is not set
 # CONFIG_PACKAGE_vim-full is not set
@@ -6820,6 +6875,8 @@ CONFIG_PACKAGE_NTFS-3G_HAS_PROBE=y
 # CONFIG_PACKAGE_bonniexx is not set
 # CONFIG_PACKAGE_bsdiff is not set
 # CONFIG_PACKAGE_bspatch is not set
+# CONFIG_PACKAGE_byobu is not set
+# CONFIG_PACKAGE_byobu-utils is not set
 # CONFIG_PACKAGE_cal is not set
 # CONFIG_PACKAGE_canutils is not set
 # CONFIG_PACKAGE_cgroup-tools is not set
@@ -7029,6 +7086,7 @@ CONFIG_PACKAGE_usb-modeswitch=m
 # CONFIG_PACKAGE_view1090 is not set
 # CONFIG_PACKAGE_watchcat is not set
 # CONFIG_PACKAGE_whereis is not set
+# CONFIG_PACKAGE_whiptail is not set
 # CONFIG_PACKAGE_wifitoggle is not set
 # CONFIG_PACKAGE_xsltproc is not set
 # CONFIG_PACKAGE_xxd is not set
