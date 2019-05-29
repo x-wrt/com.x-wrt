@@ -220,6 +220,9 @@ for t in $targets; do
 	has_usb=0
 	case $t in
 		#>8M flash
+		TARGET_DEVICE_ipq40xx_DEVICE_avm_fritzbox-4040|\
+		TARGET_DEVICE_ipq40xx_DEVICE_avm_fritzbox-7530|\
+		TARGET_DEVICE_ramips_mt7621_DEVICE_tenbay_mac500f|\
 		TARGET_DEVICE_ath79_generic_DEVICE_wd_mynet-n750|\
 		TARGET_DEVICE_ath79_generic_DEVICE_engenius_epg5000|\
 		TARGET_DEVICE_ath79_generic_DEVICE_engenius_ecb1750|\
@@ -542,6 +545,9 @@ for t in $targets; do
 	#check usb
 	case $t in
 		#with usb3
+		TARGET_DEVICE_ipq40xx_DEVICE_avm_fritzbox-4040|\
+		TARGET_DEVICE_ipq40xx_DEVICE_avm_fritzbox-7530|\
+		TARGET_DEVICE_ramips_mt7621_DEVICE_tenbay_mac500f|\
 		TARGET_DEVICE_ipq40xx_DEVICE_linksys_ea8300|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_youku_yk-l2|\
 		TARGET_DEVICE_ipq40xx_DEVICE_glinet_gl-b1300|\
