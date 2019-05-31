@@ -220,6 +220,7 @@ for t in $targets; do
 	has_usb=0
 	case $t in
 		#>8M flash
+		TARGET_DEVICE_ramips_mt76x8_DEVICE_xiaomi_mir4a-100m|\
 		TARGET_DEVICE_ipq40xx_DEVICE_avm_fritzbox-4040|\
 		TARGET_DEVICE_ipq40xx_DEVICE_avm_fritzbox-7530|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_tenbay_mac500f|\
@@ -783,6 +784,7 @@ for t in $targets; do
 			has_usb=1
 		;;
 		#no usb
+		TARGET_DEVICE_ramips_mt76x8_DEVICE_xiaomi_mir4a-100m|\
 		TARGET_DEVICE_ath79_generic_DEVICE_engenius_ecb1750|\
 		TARGET_DEVICE_ath79_generic_DEVICE_engenius_ews511ap|\
 		TARGET_DEVICE_ath79_generic_DEVICE_tplink_archer-d50-v1|\

@@ -80,9 +80,6 @@ CONFIG_TARGET_MULTI_PROFILE=y
 # CONFIG_TARGET_ramips_mt7621_DEVICE_wf-2881 is not set
 # CONFIG_TARGET_ramips_mt7621_DEVICE_netgear_ex6150 is not set
 # CONFIG_TARGET_ramips_mt7621_DEVICE_netgear_r6220 is not set
-# CONFIG_TARGET_ramips_mt7621_DEVICE_netgear_r6220a is not set
-# CONFIG_TARGET_ramips_mt7621_DEVICE_netgear_r6220b is not set
-# CONFIG_TARGET_ramips_mt7621_DEVICE_netgear_r6220c is not set
 # CONFIG_TARGET_ramips_mt7621_DEVICE_netgear_r6350 is not set
 # CONFIG_TARGET_ramips_mt7621_DEVICE_wndr3700v5 is not set
 # CONFIG_TARGET_ramips_mt7621_DEVICE_newifi-d1 is not set
@@ -96,7 +93,6 @@ CONFIG_TARGET_MULTI_PROFILE=y
 # CONFIG_TARGET_ramips_mt7621_DEVICE_sk-wb8 is not set
 # CONFIG_TARGET_ramips_mt7621_DEVICE_re350-v1 is not set
 # CONFIG_TARGET_ramips_mt7621_DEVICE_telco-electronics_x1 is not set
-# CONFIG_TARGET_ramips_mt7621_DEVICE_tenbay_mac500f is not set
 # CONFIG_TARGET_ramips_mt7621_DEVICE_timecloud is not set
 # CONFIG_TARGET_ramips_mt7621_DEVICE_ubnt-erx is not set
 # CONFIG_TARGET_ramips_mt7621_DEVICE_ubnt-erx-sfp is not set
@@ -155,9 +151,6 @@ CONFIG_TARGET_DEVICE_ramips_mt7621_DEVICE_netgear_ex6150=y
 CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt7621_DEVICE_netgear_ex6150="kmod-cfg80211 kmod-gpio-button-hotplug kmod-leds-gpio kmod-mac80211 kmod-mt76-core kmod-mt76x02-common kmod-mt76x2 kmod-mt76x2-common wireless-regdb"
 CONFIG_TARGET_DEVICE_ramips_mt7621_DEVICE_netgear_r6220=y
 CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt7621_DEVICE_netgear_r6220="aria2 blockd block-mount kmod-cfg80211 kmod-crypto-crc32c kmod-fs-autofs4 kmod-fs-exfat kmod-fs-ext4 kmod-fs-msdos kmod-fs-vfat kmod-fuse kmod-gpio-button-hotplug kmod-leds-gpio kmod-lib-crc16 kmod-mac80211 kmod-mii kmod-mt7603 kmod-mt76-core kmod-mt76x02-common kmod-mt76x2 kmod-mt76x2-common kmod-nls-cp437 kmod-scsi-core kmod-usb2 kmod-usb3 kmod-usb-core kmod-usb-ehci kmod-usb-ledtrig-usbport kmod-usb-net kmod-usb-net-cdc-ether kmod-usb-net-cdc-mbim kmod-usb-net-cdc-ncm kmod-usb-net-huawei-cdc-ncm kmod-usb-net-ipheth kmod-usb-net-qmi-wwan kmod-usb-net-rndis kmod-usb-net-rtl8152 kmod-usb-net-sierrawireless kmod-usb-ohci kmod-usb-printer kmod-usb-serial kmod-usb-serial-option kmod-usb-serial-qualcomm kmod-usb-serial-sierrawireless kmod-usb-serial-wwan kmod-usb-storage kmod-usb-storage-uas kmod-usb-wdm libopenssl libpcre libsqlite3 libssh2 libstdcpp libusb-1.0 libxml2 luci-app-aria2 luci-app-p910nd luci-app-samba luci-i18n-aria2-zh-cn luci-i18n-p910nd-en luci-i18n-p910nd-zh-cn luci-i18n-samba-en luci-i18n-samba-zh-cn ntfs-3g p910nd samba36-server uclibcxx uqmi usb-modeswitch webui-aria2 wget wireless-regdb wwan"
-# CONFIG_TARGET_DEVICE_ramips_mt7621_DEVICE_netgear_r6220a is not set
-# CONFIG_TARGET_DEVICE_ramips_mt7621_DEVICE_netgear_r6220b is not set
-# CONFIG_TARGET_DEVICE_ramips_mt7621_DEVICE_netgear_r6220c is not set
 CONFIG_TARGET_DEVICE_ramips_mt7621_DEVICE_netgear_r6350=y
 CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt7621_DEVICE_netgear_r6350="aria2 blockd block-mount kmod-cfg80211 kmod-crypto-crc32c kmod-fs-autofs4 kmod-fs-exfat kmod-fs-ext4 kmod-fs-msdos kmod-fs-vfat kmod-fuse kmod-gpio-button-hotplug kmod-leds-gpio kmod-lib-crc16 kmod-mac80211 kmod-mii kmod-mt7603 kmod-mt76-core kmod-nls-cp437 kmod-scsi-core kmod-usb2 kmod-usb3 kmod-usb-core kmod-usb-ehci kmod-usb-ledtrig-usbport kmod-usb-net kmod-usb-net-cdc-ether kmod-usb-net-cdc-mbim kmod-usb-net-cdc-ncm kmod-usb-net-huawei-cdc-ncm kmod-usb-net-ipheth kmod-usb-net-qmi-wwan kmod-usb-net-rndis kmod-usb-net-rtl8152 kmod-usb-net-sierrawireless kmod-usb-ohci kmod-usb-printer kmod-usb-serial kmod-usb-serial-option kmod-usb-serial-qualcomm kmod-usb-serial-sierrawireless kmod-usb-serial-wwan kmod-usb-storage kmod-usb-storage-uas kmod-usb-wdm libopenssl libpcre libsqlite3 libssh2 libstdcpp libusb-1.0 libxml2 luci-app-aria2 luci-app-p910nd luci-app-samba luci-i18n-aria2-zh-cn luci-i18n-p910nd-en luci-i18n-p910nd-zh-cn luci-i18n-samba-en luci-i18n-samba-zh-cn ntfs-3g p910nd samba36-server uclibcxx uqmi usb-modeswitch webui-aria2 wget wireless-regdb wwan"
 CONFIG_TARGET_DEVICE_ramips_mt7621_DEVICE_wndr3700v5=y
@@ -179,8 +172,6 @@ CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt7621_DEVICE_puppies="aria2 blockd block-m
 # CONFIG_TARGET_DEVICE_ramips_mt7621_DEVICE_sk-wb8 is not set
 # CONFIG_TARGET_DEVICE_ramips_mt7621_DEVICE_sap-g3200u3 is not set
 # CONFIG_TARGET_DEVICE_ramips_mt7621_DEVICE_telco-electronics_x1 is not set
-CONFIG_TARGET_DEVICE_ramips_mt7621_DEVICE_tenbay_mac500f=y
-CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt7621_DEVICE_tenbay_mac500f="aria2 blockd block-mount kmod-crypto-crc32c kmod-fs-autofs4 kmod-fs-exfat kmod-fs-ext4 kmod-fs-msdos kmod-fs-vfat kmod-fuse kmod-gpio-button-hotplug kmod-leds-gpio kmod-lib-crc16 kmod-mii kmod-nls-cp437 kmod-scsi-core kmod-usb2 kmod-usb3 kmod-usb-core kmod-usb-ehci kmod-usb-net kmod-usb-net-cdc-ether kmod-usb-net-cdc-mbim kmod-usb-net-cdc-ncm kmod-usb-net-huawei-cdc-ncm kmod-usb-net-ipheth kmod-usb-net-qmi-wwan kmod-usb-net-rndis kmod-usb-net-rtl8152 kmod-usb-net-sierrawireless kmod-usb-ohci kmod-usb-printer kmod-usb-serial kmod-usb-serial-option kmod-usb-serial-qualcomm kmod-usb-serial-sierrawireless kmod-usb-serial-wwan kmod-usb-storage kmod-usb-storage-uas kmod-usb-wdm libopenssl libpcre libsqlite3 libssh2 libstdcpp libusb-1.0 libxml2 luci-app-aria2 luci-app-p910nd luci-app-samba luci-i18n-aria2-zh-cn luci-i18n-p910nd-en luci-i18n-p910nd-zh-cn luci-i18n-samba-en luci-i18n-samba-zh-cn ntfs-3g p910nd samba36-server uclibcxx uqmi usb-modeswitch webui-aria2 wget wwan"
 # CONFIG_TARGET_DEVICE_ramips_mt7621_DEVICE_timecloud is not set
 # CONFIG_TARGET_DEVICE_ramips_mt7621_DEVICE_re350-v1 is not set
 CONFIG_TARGET_DEVICE_ramips_mt7621_DEVICE_ubnt-erx=y
