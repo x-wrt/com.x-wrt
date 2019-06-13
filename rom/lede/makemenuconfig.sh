@@ -1,6 +1,6 @@
 #!/bin/sh
 
-CFGS="`cat feeds/x/rom/lede/cfg.list`"
+CFGS=${CFGS-"`cat feeds/x/rom/lede/cfg.list`"}
 
 test -n "$CONFIG_VERSION_NUMBER" || CONFIG_VERSION_NUMBER="5.0_b`date +%Y%m%d%H%M`"
 
