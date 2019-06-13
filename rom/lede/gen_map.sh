@@ -72,6 +72,10 @@ for t in $targets; do
 	done
 done | while read line; do echo $line; done
 
+find bin/targets/ | grep -q -- -sdk- || {
+	echo no sdk build.
+	exit 0
+}
 find bin/targets/ | grep -- -sdk- | while read s; do basename $s; done | sort >sdk_map.list
 find bin/targets/ | grep -- -sdk- >sdk_upload.list
 echo -n >sdk_map.sha256sums
