@@ -220,6 +220,7 @@ for t in $targets; do
 	has_usb=0
 	case $t in
 		#>8M flash
+		TARGET_DEVICE_brcm2708_bcm2709_DEVICE_rpi-2|\
 		TARGET_DEVICE_brcm2708_bcm2710_DEVICE_rpi-3|\
 		TARGET_DEVICE_ramips_mt76x8_DEVICE_xiaomi_mir4a-100m|\
 		TARGET_DEVICE_ipq40xx_DEVICE_avm_fritzbox-4040|\
@@ -547,6 +548,7 @@ for t in $targets; do
 	#check usb
 	case $t in
 		#with usb3
+		TARGET_DEVICE_brcm2708_bcm2709_DEVICE_rpi-2|\
 		TARGET_DEVICE_brcm2708_bcm2710_DEVICE_rpi-3|\
 		TARGET_DEVICE_ipq40xx_DEVICE_avm_fritzbox-4040|\
 		TARGET_DEVICE_ipq40xx_DEVICE_avm_fritzbox-7530|\
