@@ -134,6 +134,10 @@ echo u_mask=${u_mask} >>$DEV
 protocol=`uci get natcapd.default.protocol 2>/dev/null || echo 0`
 echo protocol=$protocol >>$DEV
 
+# si_mask default 0xff000000
+si_mask=`uci get natcapd.default.si_mask 2>/dev/null || echo 4278190080`
+echo si_mask=${si_mask} >>$DEV
+
 ACC="$account"
 CLI=`echo $client_mac | sed 's/:/-/g' | tr a-z A-Z`
 MOD=`cat /etc/board.json | grep model -A2 | grep id\": | sed 's/"/ /g' | awk '{print $3}'`
