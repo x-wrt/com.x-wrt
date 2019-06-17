@@ -111,4 +111,24 @@ e = s:taboption("system", Flag, "full_proxy", translate("Full Proxy"), translate
 e.default = e.disabled
 e.rmempty = false
 
+--rules
+local u = m:section(TypedSection, "rule", "")
+u.addremove = true
+u.anonymous = true
+u.template = "cbi/tblsection"
+
+e = u:option(Value, "src", translate("From Client"))
+e.datatype = "string"
+e.rmempty  = false
+e.placeholder = "192.168.1.100 or AA:00:11:23:44:55"
+
+e = u:option(ListValue, "target", translate("Target Server"))
+e:value("", translate("Please select..."))
+local ut = require "luci.util"
+local sys  = require "luci.sys"
+local text = ut.trim(sys.exec("cat /dev/natcap_ctl"))
+for ip in text:gmatch("server ([0-9.]+)[^\n]+") do
+	e:value(ip)
+end
+
 return m
