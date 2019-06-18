@@ -283,6 +283,68 @@ _reload_natcapd() {
 	fi
 }
 
+# maps the 1st parameter so it only uses the bits allowed by the bitmask (2nd parameter)
+# which means spreading the bits of the 1st parameter to only use the bits that are set to 1 in the 2nd parameter
+# 0 0 0 0 0 1 0 1 (0x05) 1st parameter
+# 1 0 1 0 1 0 1 0 (0xAA) 2nd parameter
+#     1   0   1          result
+natcap_id2mask() {
+	local bit_msk bit_val result
+	bit_val=0
+	result=0
+	for bit_msk in $(seq 0 31); do
+		if [ $((($2>>bit_msk)&1)) = "1" ]; then
+			if [ $((($1>>bit_val)&1)) = "1" ]; then
+				result=$((result|(1<<bit_msk)))
+			fi
+			bit_val=$((bit_val+1))
+		fi
+	done
+	printf "0x%x" $result
+}
+
+natcap_target2idx() {
+	local idx=1
+	(cat $DEV | grep "^server " | while read line; do
+		if echo $line | grep -q "server $1:"; then
+			echo $idx
+			return
+		fi
+		idx=$((idx+1))
+	done
+	echo 0) | head -n1
+}
+
+_clean_natcap_rules() {
+	iptables-save | grep "comment natcap-rule" | sed 's/^-A//' | while read line; do
+		iptables -t mangle -D $line
+	done
+}
+
+_setup_natcap_rules() {
+	local si_mask=`uci get natcapd.default.si_mask 2>/dev/null || echo $((0xff000000))`
+	if test $si_mask -eq 0; then
+		return
+	fi
+	idx_mask=`printf "0x%x" $si_mask`
+
+	local id=0
+	while uci get natcapd.@rule[$id].src >/dev/null 2>&1; do
+		local src=`uci get natcapd.@rule[$id].src`
+		local target=`uci get natcapd.@rule[$id].target`
+		local idx=`natcap_target2idx $target`
+		if test $idx -ne 0; then
+			idx=`natcap_id2mask $idx $idx_mask`
+			if echo $src | grep -q '\([0-9]\{1,3\}\)\.\([0-9]\{1,3\}\)\.\([0-9]\{1,3\}\)\.\([0-9]\{1,3\}\)'; then
+				iptables -t mangle -A PREROUTING -s $src -m comment --comment "natcap-rule" -j MARK --set-xmark $idx/$idx_mask
+			else
+				iptables -t mangle -A PREROUTING -m mac --mac-source $src -m comment --comment "natcap-rule" -j MARK --set-xmark $idx/$idx_mask
+			fi
+		fi
+		id=$((id+1))
+	done
+}
+
 natcap_wan_ip
 
 enabled="`uci get natcapd.default.enabled 2>/dev/null || echo 0`"
@@ -474,6 +536,9 @@ elif test -c $DEV; then
 	fi
 
 	_reload_natcapd
+
+	_clean_natcap_rules
+	_setup_natcap_rules
 fi
 
 #reload pptpd
