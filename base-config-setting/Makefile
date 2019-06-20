@@ -22,9 +22,9 @@ define Package/$(PKG_NAME)/Default
   CATEGORY:=X
   SUBMENU:=Base config setting for this board
   DEPENDS:=+dnsmasq-full +busybox base-files \
-		   +(@TARGET_ROOTFS_EXT4FS):ethtool \
-		   +(@TARGET_ROOTFS_EXT4FS):blockd \
-		   +(@TARGET_ROOTFS_EXT4FS):fdisk +(@EFI_IMAGES):gdisk
+		   +(TARGET_ROOTFS_EXT4FS):ethtool \
+		   +(TARGET_ROOTFS_EXT4FS):blockd \
+		   +(TARGET_ROOTFS_EXT4FS):fdisk +(EFI_IMAGES):gdisk
 endef
 
 define Package/$(PKG_NAME)
