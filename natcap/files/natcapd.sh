@@ -336,9 +336,9 @@ _setup_natcap_rules() {
 		if test $idx -ne 0; then
 			idx=`natcap_id2mask $idx $idx_mask`
 			if echo $src | grep -q '\([0-9]\{1,3\}\)\.\([0-9]\{1,3\}\)\.\([0-9]\{1,3\}\)\.\([0-9]\{1,3\}\)'; then
-				iptables -t mangle -A PREROUTING -s $src -m comment --comment "natcap-rule" -j MARK --set-xmark $idx/$idx_mask
+				iptables -t mangle -A PREROUTING -m conntrack --ctstate NEW -s $src -m comment --comment "natcap-rule" -j MARK --set-xmark $idx/$idx_mask
 			else
-				iptables -t mangle -A PREROUTING -m mac --mac-source $src -m comment --comment "natcap-rule" -j MARK --set-xmark $idx/$idx_mask
+				iptables -t mangle -A PREROUTING -m conntrack --ctstate NEW -m mac --mac-source $src -m comment --comment "natcap-rule" -j MARK --set-xmark $idx/$idx_mask
 			fi
 		fi
 		id=$((id+1))
