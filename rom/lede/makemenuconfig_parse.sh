@@ -881,6 +881,13 @@ for t in $targets; do
 
 	#check 4g manual select
 	case $t in
+		TARGET_DEVICE_ar71xx_generic_DEVICE_tl-wdr4900-v2|\
+		TARGET_DEVICE_ar71xx_generic_DEVICE_tl-wdr4310-v1|\
+		TARGET_DEVICE_ar71xx_generic_DEVICE_tl-wdr4300-v1|\
+		TARGET_DEVICE_ar71xx_generic_DEVICE_tl-wdr3600-v1|\
+		TARGET_DEVICE_ar71xx_generic_DEVICE_tl-wdr3500-v1|\
+		TARGET_DEVICE_ath79_generic_DEVICE_tplink_tl-wdr4300|\
+		TARGET_DEVICE_ath79_generic_DEVICE_tplink_tl-wdr3600|\
 		TARGET_DEVICE_ramips_mt76x8_DEVICE_tplink_tl-wr902ac-v3)
 			mods="$mods $usb4g"
 		;;
