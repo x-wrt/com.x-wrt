@@ -22,7 +22,13 @@ usb4g="wwan \
 	   kmod-usb-serial-sierrawireless \
 	   kmod-usb-serial-wwan \
 	   libusb-1.0 \
-	   usb-modeswitch"
+	   usb-modeswitch \
+	   chat \
+	   comgt \
+	   comgt-ncm \
+	   luci-proto-qmi \
+	   luci-proto-ncm \
+	   luci-proto-3g"
 
 usb2="kmod-usb2 \
 	  kmod-usb-core \

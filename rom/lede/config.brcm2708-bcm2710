@@ -57,7 +57,7 @@ CONFIG_TARGET_MULTI_PROFILE=y
 # CONFIG_TARGET_ALL_PROFILES is not set
 CONFIG_TARGET_PER_DEVICE_ROOTFS=y
 CONFIG_TARGET_DEVICE_brcm2708_bcm2710_DEVICE_rpi-3=y
-CONFIG_TARGET_DEVICE_PACKAGES_brcm2708_bcm2710_DEVICE_rpi-3="aria2 brcmfmac-board-rpi2 brcmfmac-board-rpi3 brcmfmac-firmware-43430-sdio brcmfmac-firmware-43455-sdio brcmfmac-firmware-usb kmod-brcmfmac kmod-brcmutil kmod-crypto-crc32c kmod-fs-exfat kmod-fs-ext4 kmod-fs-msdos kmod-fs-vfat kmod-fuse kmod-hid kmod-hid-generic kmod-input-core kmod-input-evdev kmod-lib-crc16 kmod-mii kmod-mmc kmod-nls-cp437 kmod-sound-arm-bcm2835 kmod-sound-core kmod-usb2 kmod-usb3 kmod-usb-ehci kmod-usb-hid kmod-usb-net kmod-usb-net-cdc-ether kmod-usb-net-cdc-mbim kmod-usb-net-cdc-ncm kmod-usb-net-huawei-cdc-ncm kmod-usb-net-ipheth kmod-usb-net-qmi-wwan kmod-usb-net-rndis kmod-usb-net-rtl8152 kmod-usb-net-sierrawireless kmod-usb-ohci kmod-usb-printer kmod-usb-serial kmod-usb-serial-option kmod-usb-serial-qualcomm kmod-usb-serial-sierrawireless kmod-usb-serial-wwan kmod-usb-storage kmod-usb-storage-uas kmod-usb-wdm libopenssl libpcre libsqlite3 libssh2 libusb-1.0 libxml2 luci-app-aria2 luci-app-p910nd luci-app-samba luci-i18n-aria2-zh-cn luci-i18n-p910nd-en luci-i18n-p910nd-zh-cn luci-i18n-samba-en luci-i18n-samba-zh-cn ntfs-3g p910nd samba36-server uclibcxx uqmi usb-modeswitch webui-aria2 wget wwan"
+CONFIG_TARGET_DEVICE_PACKAGES_brcm2708_bcm2710_DEVICE_rpi-3="aria2 brcmfmac-board-rpi2 brcmfmac-board-rpi3 brcmfmac-firmware-43430-sdio brcmfmac-firmware-43455-sdio brcmfmac-firmware-usb chat comgt comgt-ncm kmod-brcmfmac kmod-brcmutil kmod-crypto-crc32c kmod-fs-exfat kmod-fs-ext4 kmod-fs-msdos kmod-fs-vfat kmod-fuse kmod-hid kmod-hid-generic kmod-input-core kmod-input-evdev kmod-lib-crc16 kmod-mii kmod-mmc kmod-nls-cp437 kmod-sound-arm-bcm2835 kmod-sound-core kmod-usb2 kmod-usb3 kmod-usb-ehci kmod-usb-hid kmod-usb-net kmod-usb-net-cdc-ether kmod-usb-net-cdc-mbim kmod-usb-net-cdc-ncm kmod-usb-net-huawei-cdc-ncm kmod-usb-net-ipheth kmod-usb-net-qmi-wwan kmod-usb-net-rndis kmod-usb-net-rtl8152 kmod-usb-net-sierrawireless kmod-usb-ohci kmod-usb-printer kmod-usb-serial kmod-usb-serial-option kmod-usb-serial-qualcomm kmod-usb-serial-sierrawireless kmod-usb-serial-wwan kmod-usb-storage kmod-usb-storage-uas kmod-usb-wdm libopenssl libpcre libsqlite3 libssh2 libusb-1.0 libxml2 luci-app-aria2 luci-app-p910nd luci-app-samba luci-i18n-aria2-zh-cn luci-i18n-p910nd-en luci-i18n-p910nd-zh-cn luci-i18n-samba-en luci-i18n-samba-zh-cn luci-proto-3g luci-proto-ncm luci-proto-qmi ntfs-3g p910nd samba36-server uclibcxx uqmi usb-modeswitch webui-aria2 wget wwan"
 CONFIG_HAS_SUBTARGETS=y
 CONFIG_HAS_DEVICES=y
 CONFIG_TARGET_BOARD="brcm2708"
@@ -403,7 +403,7 @@ CONFIG_TARGET_INIT_CMD="/sbin/init"
 CONFIG_TARGET_INIT_SUPPRESS_STDERR=y
 CONFIG_VERSIONOPT=y
 CONFIG_VERSION_DIST="X-WRT"
-CONFIG_VERSION_NUMBER="5.0_b201906242330"
+CONFIG_VERSION_NUMBER="5.0_b201906251700"
 CONFIG_VERSION_CODE="Disco"
 CONFIG_VERSION_REPO="http://downloads.openwrt.org/snapshots"
 CONFIG_VERSION_HOME_URL="https://x-wrt.com/"
@@ -5470,15 +5470,15 @@ CONFIG_PACKAGE_luci-theme-bootstrap=y
 #
 # 5. Protocols
 #
-# CONFIG_PACKAGE_luci-proto-3g is not set
+CONFIG_PACKAGE_luci-proto-3g=m
 # CONFIG_PACKAGE_luci-proto-hnet is not set
 # CONFIG_PACKAGE_luci-proto-ipip is not set
 CONFIG_PACKAGE_luci-proto-ipv6=y
-# CONFIG_PACKAGE_luci-proto-ncm is not set
+CONFIG_PACKAGE_luci-proto-ncm=m
 # CONFIG_PACKAGE_luci-proto-openconnect is not set
 CONFIG_PACKAGE_luci-proto-ppp=y
 # CONFIG_PACKAGE_luci-proto-pppossh is not set
-# CONFIG_PACKAGE_luci-proto-qmi is not set
+CONFIG_PACKAGE_luci-proto-qmi=m
 # CONFIG_PACKAGE_luci-proto-relay is not set
 # CONFIG_PACKAGE_luci-proto-vpnc is not set
 # CONFIG_PACKAGE_luci-proto-wireguard is not set
@@ -6378,9 +6378,9 @@ CONFIG_PACKAGE_pptpd=y
 # WWAN
 #
 # CONFIG_PACKAGE_adb-enablemodem is not set
-# CONFIG_PACKAGE_comgt is not set
+CONFIG_PACKAGE_comgt=m
 # CONFIG_PACKAGE_comgt-directip is not set
-# CONFIG_PACKAGE_comgt-ncm is not set
+CONFIG_PACKAGE_comgt-ncm=m
 CONFIG_PACKAGE_uqmi=m
 
 #
@@ -6477,7 +6477,7 @@ CONFIG_PACKAGE_6to4=y
 # CONFIG_PACKAGE_beanstalkd is not set
 # CONFIG_PACKAGE_bmon is not set
 # CONFIG_PACKAGE_bwm-ng is not set
-# CONFIG_PACKAGE_chat is not set
+CONFIG_PACKAGE_chat=m
 # CONFIG_PACKAGE_cifsmount is not set
 # CONFIG_PACKAGE_coap-server is not set
 # CONFIG_PACKAGE_conserver is not set
