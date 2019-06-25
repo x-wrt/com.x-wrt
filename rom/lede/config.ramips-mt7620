@@ -3519,7 +3519,7 @@ CONFIG_PACKAGE_kmod-mt76=m
 CONFIG_PACKAGE_kmod-mt76-core=m
 # CONFIG_PACKAGE_kmod-mt7601u is not set
 CONFIG_PACKAGE_kmod-mt7603=m
-# CONFIG_PACKAGE_kmod-mt7615 is not set
+# CONFIG_PACKAGE_kmod-mt7615e is not set
 CONFIG_PACKAGE_kmod-mt76x0-common=m
 CONFIG_PACKAGE_kmod-mt76x02-common=m
 CONFIG_PACKAGE_kmod-mt76x0e=m
