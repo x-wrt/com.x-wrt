@@ -428,7 +428,7 @@ CONFIG_TARGET_DEVICE_PACKAGES_ar71xx_generic_DEVICE_gl-ar300m="aria2 blockd bloc
 CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_gl-mifi=y
 CONFIG_TARGET_DEVICE_PACKAGES_ar71xx_generic_DEVICE_gl-mifi="aria2 blockd block-mount chat comgt comgt-ncm kmod-ath9k kmod-ath9k-common kmod-crypto-crc32c kmod-fs-autofs4 kmod-fs-exfat kmod-fs-ext4 kmod-fs-msdos kmod-fs-vfat kmod-fuse kmod-lib-crc16 kmod-mii kmod-nls-cp437 kmod-scsi-core kmod-usb2 kmod-usb-core kmod-usb-ehci kmod-usb-net kmod-usb-net-cdc-ether kmod-usb-net-cdc-mbim kmod-usb-net-cdc-ncm kmod-usb-net-huawei-cdc-ncm kmod-usb-net-ipheth kmod-usb-net-qmi-wwan kmod-usb-net-rndis kmod-usb-net-rtl8152 kmod-usb-net-sierrawireless kmod-usb-ohci kmod-usb-printer kmod-usb-serial kmod-usb-serial-option kmod-usb-serial-qualcomm kmod-usb-serial-sierrawireless kmod-usb-serial-wwan kmod-usb-storage kmod-usb-storage-uas kmod-usb-wdm libopenssl libpcre libsqlite3 libssh2 libstdcpp libusb-1.0 libxml2 luci-app-aria2 luci-app-p910nd luci-app-samba luci-i18n-aria2-zh-cn luci-i18n-p910nd-en luci-i18n-p910nd-zh-cn luci-i18n-samba-en luci-i18n-samba-zh-cn luci-proto-3g luci-proto-ncm luci-proto-qmi ntfs-3g p910nd samba36-server uclibcxx uqmi usb-modeswitch webui-aria2 wget wwan"
 CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_gl-usb150=y
-CONFIG_TARGET_DEVICE_PACKAGES_ar71xx_generic_DEVICE_gl-usb150="aria2 kmod-ath9k kmod-ath9k-common kmod-usb-core kmod-usb-printer libopenssl libpcre libsqlite3 libssh2 libstdcpp libxml2 luci-app-aria2 luci-app-p910nd luci-app-samba luci-i18n-aria2-zh-cn luci-i18n-p910nd-en luci-i18n-p910nd-zh-cn luci-i18n-samba-en luci-i18n-samba-zh-cn p910nd samba36-server uclibcxx webui-aria2 wget"
+CONFIG_TARGET_DEVICE_PACKAGES_ar71xx_generic_DEVICE_gl-usb150="kmod-ath9k kmod-ath9k-common"
 # CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_lan-turtle is not set
 # CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_packet-squirrel is not set
 # CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_wifi-pineapple-nano is not set
@@ -938,7 +938,7 @@ CONFIG_TARGET_INIT_CMD="/sbin/init"
 CONFIG_TARGET_INIT_SUPPRESS_STDERR=y
 CONFIG_VERSIONOPT=y
 CONFIG_VERSION_DIST="X-WRT"
-CONFIG_VERSION_NUMBER="5.0_b201906251700"
+CONFIG_VERSION_NUMBER="5.0_b201906261506"
 CONFIG_VERSION_CODE="Disco"
 CONFIG_VERSION_REPO="http://downloads.openwrt.org/snapshots"
 CONFIG_VERSION_HOME_URL="https://x-wrt.com/"
@@ -4354,6 +4354,7 @@ CONFIG_PACKAGE_luasocket=y
 # CONFIG_PACKAGE_python3-influxdb is not set
 # CONFIG_PACKAGE_python3-influxdb-src is not set
 # CONFIG_PACKAGE_python3-itsdangerous is not set
+# CONFIG_PACKAGE_python3-itsdangerous-src is not set
 # CONFIG_PACKAGE_python3-jdcal is not set
 # CONFIG_PACKAGE_python3-jdcal-src is not set
 # CONFIG_PACKAGE_python3-jinja2 is not set
@@ -6793,8 +6794,8 @@ CONFIG_PACKAGE_uqmi=m
 # CONFIG_PACKAGE_nginx-ssl is not set
 # CONFIG_PACKAGE_polipo is not set
 # CONFIG_PACKAGE_privoxy is not set
-# CONFIG_PACKAGE_radicale-py2 is not set
-# CONFIG_PACKAGE_radicale-py3 is not set
+# CONFIG_PACKAGE_radicale is not set
+# CONFIG_PACKAGE_radicale-src is not set
 # CONFIG_PACKAGE_radicale2 is not set
 # CONFIG_PACKAGE_radicale2-examples is not set
 # CONFIG_PACKAGE_radicale2-src is not set

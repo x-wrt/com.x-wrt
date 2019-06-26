@@ -226,6 +226,7 @@ for t in $targets; do
 	has_usb=0
 	case $t in
 		#>8M flash
+		TARGET_DEVICE_ramips_mt7621_DEVICE_totolink_a7000r|\
 		TARGET_DEVICE_brcm2708_bcm2709_DEVICE_rpi-2|\
 		TARGET_DEVICE_brcm2708_bcm2710_DEVICE_rpi-3|\
 		TARGET_DEVICE_ramips_mt76x8_DEVICE_xiaomi_mir4a-100m|\
@@ -418,7 +419,6 @@ for t in $targets; do
 		TARGET_DEVICE_ramips_mt7621_DEVICE_netgear_r6220c|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_wndr3700v5|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_newifi-d1)
-			mods="$mods $moreapps $usbprint"
 			mods="$mods"
 			flash_gt8m=1
 		;;
@@ -794,6 +794,7 @@ for t in $targets; do
 			has_usb=1
 		;;
 		#no usb
+		TARGET_DEVICE_ramips_mt7621_DEVICE_totolink_a7000r|\
 		TARGET_DEVICE_ramips_mt76x8_DEVICE_xiaomi_mir4a-100m|\
 		TARGET_DEVICE_ath79_generic_DEVICE_engenius_ecb1750|\
 		TARGET_DEVICE_ath79_generic_DEVICE_engenius_ews511ap|\
@@ -901,6 +902,7 @@ for t in $targets; do
 
 	if [ "x$flash_gt8m" = "x1" ] && [ "x$has_usb" = "x1" ]; then
 		mods="$mods $usb4g"
+		mods="$mods $moreapps $usbprint"
 	fi
 	tname=`echo $t | sed 's/TARGET_DEVICE_/CONFIG_TARGET_DEVICE_PACKAGES_/'`
 	mods="$mods `get_target_mods $t`"
