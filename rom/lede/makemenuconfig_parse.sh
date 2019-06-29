@@ -226,6 +226,7 @@ for t in $targets; do
 	has_usb=0
 	case $t in
 		#>8M flash
+		TARGET_DEVICE_ramips_mt76x8_DEVICE_xwrt_g4303k-v1|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_iodata_wn-ax1167gr|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_totolink_a7000r|\
 		TARGET_DEVICE_brcm2708_bcm2709_DEVICE_rpi-2|\
@@ -631,6 +632,7 @@ for t in $targets; do
 			has_usb=1
 		;;
 		#with usb2
+		TARGET_DEVICE_ramips_mt76x8_DEVICE_xwrt_g4303k-v1|\
 		TARGET_DEVICE_ath79_generic_DEVICE_wd_mynet-n750|\
 		TARGET_DEVICE_ath79_generic_DEVICE_engenius_epg5000|\
 		TARGET_DEVICE_ath79_generic_DEVICE_xwrt_mk-v0201|\
