@@ -226,6 +226,7 @@ for t in $targets; do
 	has_usb=0
 	case $t in
 		#>8M flash
+		TARGET_DEVICE_ramips_mt7621_DEVICE_xwrt_t-cpe1200k-v01|\
 		TARGET_DEVICE_ramips_mt76x8_DEVICE_xwrt_g4303k-v1|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_iodata_wn-ax1167gr|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_totolink_a7000r|\
@@ -487,8 +488,8 @@ for t in $targets; do
 		TARGET_DEVICE_ar71xx_generic_DEVICE_tl-wr1043n-v5|\
 		TARGET_DEVICE_ath79_generic_DEVICE_tplink_archer-c7-v1|\
 		TARGET_DEVICE_ath79_generic_DEVICE_tplink_archer-c7-v2|\
-		TARGET_DEVICE_ath79_generic_DEVICE_tplink_tl-wdr4300|\
-		TARGET_DEVICE_ath79_generic_DEVICE_tplink_tl-wdr3600|\
+		TARGET_DEVICE_ath79_generic_DEVICE_tplink_tl-wdr4300-v1|\
+		TARGET_DEVICE_ath79_generic_DEVICE_tplink_tl-wdr3600-v1|\
 		TARGET_DEVICE_ath79_generic_DEVICE_tplink_tl-wr1043nd-v3|\
 		TARGET_DEVICE_ath79_generic_DEVICE_tplink_tl-wr1043nd-v2|\
 		TARGET_DEVICE_ath79_generic_DEVICE_tplink_tl-wr1043nd-v1|\
@@ -559,6 +560,7 @@ for t in $targets; do
 	#check usb
 	case $t in
 		#with usb3
+		TARGET_DEVICE_ramips_mt7621_DEVICE_xwrt_t-cpe1200k-v01|\
 		TARGET_DEVICE_brcm2708_bcm2709_DEVICE_rpi-2|\
 		TARGET_DEVICE_brcm2708_bcm2710_DEVICE_rpi-3|\
 		TARGET_DEVICE_ipq40xx_DEVICE_avm_fritzbox-4040|\
@@ -706,8 +708,8 @@ for t in $targets; do
 		TARGET_DEVICE_ath79_generic_DEVICE_tplink_archer-c7-v1|\
 		TARGET_DEVICE_ath79_generic_DEVICE_tplink_archer-c7-v2|\
 		TARGET_DEVICE_ath79_generic_DEVICE_glinet_ar300m_nor|\
-		TARGET_DEVICE_ath79_generic_DEVICE_tplink_tl-wdr4300|\
-		TARGET_DEVICE_ath79_generic_DEVICE_tplink_tl-wdr3600|\
+		TARGET_DEVICE_ath79_generic_DEVICE_tplink_tl-wdr4300-v1|\
+		TARGET_DEVICE_ath79_generic_DEVICE_tplink_tl-wdr3600-v1|\
 		TARGET_DEVICE_ath79_generic_DEVICE_netgear_wndr3800|\
 		TARGET_DEVICE_ath79_generic_DEVICE_tplink_tl-wr1043nd-v4|\
 		TARGET_DEVICE_ath79_generic_DEVICE_tplink_tl-wr1043nd-v3|\
@@ -903,8 +905,8 @@ for t in $targets; do
 		TARGET_DEVICE_ar71xx_generic_DEVICE_tl-wdr4300-v1|\
 		TARGET_DEVICE_ar71xx_generic_DEVICE_tl-wdr3600-v1|\
 		TARGET_DEVICE_ar71xx_generic_DEVICE_tl-wdr3500-v1|\
-		TARGET_DEVICE_ath79_generic_DEVICE_tplink_tl-wdr4300|\
-		TARGET_DEVICE_ath79_generic_DEVICE_tplink_tl-wdr3600|\
+		TARGET_DEVICE_ath79_generic_DEVICE_tplink_tl-wdr4300-v1|\
+		TARGET_DEVICE_ath79_generic_DEVICE_tplink_tl-wdr3600-v1|\
 		TARGET_DEVICE_ramips_mt76x8_DEVICE_tplink_tl-wr902ac-v3)
 			mods="$mods $usb4g"
 		;;
