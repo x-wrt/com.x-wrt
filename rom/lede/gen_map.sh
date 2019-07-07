@@ -51,6 +51,35 @@ for t in $targets; do
 		test -n "$dis" || {
 			dis=`echo "$text" | grep '$(call Device' | head -n1 | cut -d, -f2 | sed 's/)$//g'`
 		}
+		test -n "$dis" || {
+			VENDOR=`echo "$text" | grep "DEVICE_VENDOR.*=" | head -n1 | sed 's/DEVICE_VENDOR.*=//'`
+			MODEL=`echo "$text" | grep "DEVICE_MODEL.*=" | head -n1 | sed 's/DEVICE_MODEL.*=//'`
+			VARIANT=`echo "$text" | grep "DEVICE_VARIANT.*=" | head -n1 | sed 's/DEVICE_VARIANT.*=//'`
+			test -n "$MODEL" && dis="$MODEL"
+			test -n "$VARIANT" && dis="$dis $VARIANT"
+			if test -n "$VENDOR"; then
+				dis="$VENDOR $dis"
+			else
+				#get VENDOR
+				while :; do
+				SUBDEF=`echo "$text" | grep '$(Device/' | head -n1 | sed 's,$(Device/,,;s/)$//'`
+				text1=`cat target/linux/$arch/image/*.mk target/linux/$arch/image/Makefile 2>/dev/null | grep "define .*Device\/$SUBDEF$" -A50 | while read line; do [ "x$line" = "xendef" ] && break; echo $line; done`
+				VENDOR=`echo "$text1" | grep "DEVICE_VENDOR.*=" | head -n1 | sed 's/DEVICE_VENDOR.*=//'`
+				if test -n "$VENDOR"; then
+					dis="$VENDOR $dis"
+				else
+					#get VENDOR
+					text="$text1"
+				fi
+				test -n "$VENDOR" && break
+				test -n "$text" || {
+					echo no VENDOR found
+					exit 1
+					break
+				}
+				done
+			fi
+		}
 		bin=`echo "$bins" | grep $arch | grep -i "\($name-ex\|$name-sq\|$name-fa\|$name-ub\|$name-ue\|$name-in\)"`
 		test -n "$bin" || {
 			name=`echo $name | tr _ -`
