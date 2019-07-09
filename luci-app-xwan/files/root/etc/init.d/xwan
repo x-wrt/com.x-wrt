@@ -102,7 +102,7 @@ add_xwan() {
 
 			uci get network.xwan$idx >/dev/null 2>&1 || {
 				uci set network.xwan$idx=interface
-				uci show network.wan | grep "network\.wan\." | tr ".\'" "==" | cut -d= -f3,5 | sed 's/=/ /' | while read _k _v; do
+				uci show network.wan | grep "network\.wan\." | sed "s/^network\.wan\.//g;s/=/ /;s,',,g" | while read _k _v; do
 					uci set network.xwan$idx.$_k="$_v"
 				done
 				uci set network.xwan$idx.ifname="mvlan$idx"
