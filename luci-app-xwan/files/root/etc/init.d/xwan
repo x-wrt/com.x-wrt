@@ -107,6 +107,8 @@ add_xwan() {
 				done
 				uci set network.xwan$idx.ifname="mvlan$idx"
 				uci set network.xwan$idx.metric=$((40 + idx))
+				[ "x`uci get network.wan.proto 2>/dev/null`" = "xstatic" ] && \
+				uci set network.xwan$idx.auto='0'
 				change=1
 			}
 
