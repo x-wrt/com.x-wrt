@@ -23,7 +23,7 @@ add_wizard() {
 			uci set network.wan=interface
 			uci set network.wan.ifname="$ifname"
 			uci set network.wan.proto='dhcp'
-			uci set network.wan.metric='600'
+			uci set network.wan.metric='40'
 
 			config_get wan_dns "$cfg" wan_dns
 			test -n "${wan_dns}" && {
@@ -40,7 +40,7 @@ add_wizard() {
 				uci set network.wan=interface
 				uci set network.wan.proto='static'
 				uci set network.wan.ifname="$ifname"
-				uci set network.wan.metric='600'
+				uci set network.wan.metric='40'
 				uci set network.wan.ipaddr="${wan_ipaddr}"
 				uci set network.wan.netmask="${wan_netmask}"
 				uci set network.wan.gateway="${wan_gateway}"
@@ -59,7 +59,7 @@ add_wizard() {
 			uci set network.wan=interface
 			uci set network.wan.proto='pppoe'
 			uci set network.wan.ifname="$ifname"
-			uci set network.wan.metric='600'
+			uci set network.wan.metric='40'
 			uci set network.wan.username="${wan_pppoe_user}"
 			uci set network.wan.password="${wan_pppoe_pass}"
 			uci set network.wan.keepalive='5 5'
