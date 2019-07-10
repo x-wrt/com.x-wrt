@@ -49,7 +49,13 @@ for t in $targets; do
 		text=`cat target/linux/$arch/image/*.mk target/linux/$arch/image/Makefile 2>/dev/null | grep "define .*Device\/$name$" -A50 | while read line; do [ "x$line" = "xendef" ] && break; echo $line; done`
 		dis=`echo "$text" | grep "DEVICE_TITLE.*:=" | head -n1 | sed 's/DEVICE_TITLE.*:=//'`
 		test -n "$dis" || {
-			dis=`echo "$text" | grep '$(call Device' | head -n1 | cut -d, -f2 | sed 's/)$//g'`
+			MODEL=`echo "$text" | grep -o '$(call Device/.*,.*)$' | head -n1 | cut -d, -f2 | sed 's/)$//g'`
+			test -n "$MODEL" && {
+				SUBDEF=`echo "$text" | grep -o '$(call Device/.*,.*)$' | head -n1 | cut -d, -f1 | sed 's,$(call Device/,,g'`
+				text1=`cat target/linux/$arch/image/*.mk target/linux/$arch/image/Makefile 2>/dev/null | grep "define .*Device\/$SUBDEF$" -A50 | while read line; do [ "x$line" = "xendef" ] && break; echo $line; done`
+				VENDOR=`echo "$text1" | grep -o "DEVICE_TITLE.*:=.*" | head -n1 | sed 's/DEVICE_TITLE.*:=//' | awk '{print $1}'`
+				test -n "$VENDOR" && dis="$VENDOR $MODEL"
+			}
 		}
 		test -n "$dis" || {
 			VENDOR=`echo "$text" | grep "DEVICE_VENDOR.*=" | head -n1 | sed 's/DEVICE_VENDOR.*=//'`
