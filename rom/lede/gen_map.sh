@@ -44,8 +44,13 @@ test -n "$x86bin" && {
 for t in $targets; do
 	tt=`echo $t | sed 's/_DEVICE_/:/g'`
 	name=`echo $tt | cut -d: -f3`
+	echo $name
 	echo $tt | cut -d: -f2 | sed 's/_/ /' | while read arch subarch; do
 		test -n "$arch" || continue
+		dis=`cat tmp/.targetinfo | grep "Target-Profile: DEVICE_$name$" -A1 | grep "Target-Profile-Name: " | sed 's/Target-Profile-Name: //'`
+		#dis=`cat tmp/.config-target.in | grep "^config.*_DEVICE_$name$" -A1 | grep "bool .*" | cut -d\" -f2`
+		test -n "$dis" || {
+##################################
 		text=`cat target/linux/$arch/image/*.mk target/linux/$arch/image/Makefile 2>/dev/null | grep "define .*Device\/$name$" -A50 | while read line; do [ "x$line" = "xendef" ] && break; echo $line; done`
 		dis=`echo "$text" | grep "DEVICE_TITLE.*:=" | head -n1 | sed 's/DEVICE_TITLE.*:=//'`
 		test -n "$dis" || {
@@ -85,6 +90,8 @@ for t in $targets; do
 				}
 				done
 			fi
+		}
+##################################
 		}
 		bin=`echo "$bins" | grep $arch | grep -i "\($name-ex\|$name-sq\|$name-fa\|$name-ub\|$name-ue\|$name-in\)"`
 		test -n "$bin" || {
