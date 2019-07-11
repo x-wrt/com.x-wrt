@@ -44,7 +44,6 @@ test -n "$x86bin" && {
 for t in $targets; do
 	tt=`echo $t | sed 's/_DEVICE_/:/g'`
 	name=`echo $tt | cut -d: -f3`
-	echo $name
 	echo $tt | cut -d: -f2 | sed 's/_/ /' | while read arch subarch; do
 		test -n "$arch" || continue
 		dis=`cat tmp/.targetinfo | grep "Target-Profile: DEVICE_$name$" -A1 | grep "Target-Profile-Name: " | sed 's/Target-Profile-Name: //'`
