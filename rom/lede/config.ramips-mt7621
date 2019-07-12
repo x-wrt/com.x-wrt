@@ -54,6 +54,7 @@ CONFIG_TARGET_ramips_mt7621=y
 CONFIG_TARGET_MULTI_PROFILE=y
 # CONFIG_TARGET_ramips_mt7621_Default is not set
 # CONFIG_TARGET_ramips_mt7621_DEVICE_afoundry_ew1200 is not set
+# CONFIG_TARGET_ramips_mt7621_DEVICE_asus_rt-ac57u is not set
 # CONFIG_TARGET_ramips_mt7621_DEVICE_asiarf_ap7621-001 is not set
 # CONFIG_TARGET_ramips_mt7621_DEVICE_buffalo_wsr-1166dhp is not set
 # CONFIG_TARGET_ramips_mt7621_DEVICE_buffalo_wsr-600dhp is not set
@@ -70,8 +71,7 @@ CONFIG_TARGET_MULTI_PROFILE=y
 # CONFIG_TARGET_ramips_mt7621_DEVICE_iodata_wn-ax1167gr is not set
 # CONFIG_TARGET_ramips_mt7621_DEVICE_iodata_wn-gx300gr is not set
 # CONFIG_TARGET_ramips_mt7621_DEVICE_linksys_re6500 is not set
-# CONFIG_TARGET_ramips_mt7621_DEVICE_mqmaker_witi-256m is not set
-# CONFIG_TARGET_ramips_mt7621_DEVICE_mqmaker_witi-512m is not set
+# CONFIG_TARGET_ramips_mt7621_DEVICE_mqmaker_witi is not set
 # CONFIG_TARGET_ramips_mt7621_DEVICE_mtc_wr1201 is not set
 # CONFIG_TARGET_ramips_mt7621_DEVICE_mediatek_mt7621-eval-board is not set
 # CONFIG_TARGET_ramips_mt7621_DEVICE_mediatek_ap-mt7621a-v60 is not set
@@ -120,6 +120,7 @@ CONFIG_TARGET_MULTI_PROFILE=y
 CONFIG_TARGET_PER_DEVICE_ROOTFS=y
 # CONFIG_TARGET_DEVICE_ramips_mt7621_DEVICE_afoundry_ew1200 is not set
 # CONFIG_TARGET_DEVICE_ramips_mt7621_DEVICE_asiarf_ap7621-001 is not set
+# CONFIG_TARGET_DEVICE_ramips_mt7621_DEVICE_asus_rt-ac57u is not set
 CONFIG_TARGET_DEVICE_ramips_mt7621_DEVICE_buffalo_wsr-1166dhp=y
 CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt7621_DEVICE_buffalo_wsr-1166dhp="aria2 blockd block-mount chat comgt comgt-ncm kmod-cfg80211 kmod-crypto-crc32c kmod-fs-autofs4 kmod-fs-exfat kmod-fs-ext4 kmod-fs-msdos kmod-fs-vfat kmod-fuse kmod-gpio-button-hotplug kmod-leds-gpio kmod-lib-crc16 kmod-mac80211 kmod-mii kmod-mt7603 kmod-mt76-core kmod-mt76x02-common kmod-mt76x2 kmod-mt76x2-common kmod-nls-cp437 kmod-scsi-core kmod-usb2 kmod-usb-core kmod-usb-ehci kmod-usb-net kmod-usb-net-cdc-ether kmod-usb-net-cdc-mbim kmod-usb-net-cdc-ncm kmod-usb-net-huawei-cdc-ncm kmod-usb-net-ipheth kmod-usb-net-qmi-wwan kmod-usb-net-rndis kmod-usb-net-rtl8152 kmod-usb-net-sierrawireless kmod-usb-ohci kmod-usb-printer kmod-usb-serial kmod-usb-serial-option kmod-usb-serial-qualcomm kmod-usb-serial-sierrawireless kmod-usb-serial-wwan kmod-usb-storage kmod-usb-storage-uas kmod-usb-wdm libopenssl libpcre libsqlite3 libssh2 libstdcpp libusb-1.0 libxml2 luci-app-aria2 luci-app-p910nd luci-app-samba luci-i18n-aria2-zh-cn luci-i18n-p910nd-en luci-i18n-p910nd-zh-cn luci-i18n-samba-en luci-i18n-samba-zh-cn luci-proto-3g luci-proto-ncm luci-proto-qmi ntfs-3g p910nd samba36-server uclibcxx uqmi usb-modeswitch webui-aria2 wget wireless-regdb wwan"
 # CONFIG_TARGET_DEVICE_ramips_mt7621_DEVICE_buffalo_wsr-600dhp is not set
@@ -149,8 +150,7 @@ CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt7621_DEVICE_linksys_re6500="kmod-cfg80211
 # CONFIG_TARGET_DEVICE_ramips_mt7621_DEVICE_mikrotik_rbm33g is not set
 CONFIG_TARGET_DEVICE_ramips_mt7621_DEVICE_mikrotik_rb750gr3=y
 CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt7621_DEVICE_mikrotik_rb750gr3="aria2 blockd block-mount chat comgt comgt-ncm kmod-crypto-crc32c kmod-fs-autofs4 kmod-fs-exfat kmod-fs-ext4 kmod-fs-msdos kmod-fs-vfat kmod-fuse kmod-gpio-beeper kmod-gpio-button-hotplug kmod-input-core kmod-leds-gpio kmod-lib-crc16 kmod-mii kmod-nls-cp437 kmod-scsi-core kmod-usb2 kmod-usb3 kmod-usb-core kmod-usb-ehci kmod-usb-net kmod-usb-net-cdc-ether kmod-usb-net-cdc-mbim kmod-usb-net-cdc-ncm kmod-usb-net-huawei-cdc-ncm kmod-usb-net-ipheth kmod-usb-net-qmi-wwan kmod-usb-net-rndis kmod-usb-net-rtl8152 kmod-usb-net-sierrawireless kmod-usb-ohci kmod-usb-printer kmod-usb-serial kmod-usb-serial-option kmod-usb-serial-qualcomm kmod-usb-serial-sierrawireless kmod-usb-serial-wwan kmod-usb-storage kmod-usb-storage-uas kmod-usb-wdm libopenssl libpcre libsqlite3 libssh2 libstdcpp libusb-1.0 libxml2 luci-app-aria2 luci-app-p910nd luci-app-samba luci-i18n-aria2-zh-cn luci-i18n-p910nd-en luci-i18n-p910nd-zh-cn luci-i18n-samba-en luci-i18n-samba-zh-cn luci-proto-3g luci-proto-ncm luci-proto-qmi ntfs-3g p910nd samba36-server uclibcxx uqmi usb-modeswitch webui-aria2 wget wwan"
-# CONFIG_TARGET_DEVICE_ramips_mt7621_DEVICE_mqmaker_witi-256m is not set
-# CONFIG_TARGET_DEVICE_ramips_mt7621_DEVICE_mqmaker_witi-512m is not set
+# CONFIG_TARGET_DEVICE_ramips_mt7621_DEVICE_mqmaker_witi is not set
 CONFIG_TARGET_DEVICE_ramips_mt7621_DEVICE_mtc_wr1201=y
 CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt7621_DEVICE_mtc_wr1201="aria2 blockd block-mount chat comgt comgt-ncm kmod-cfg80211 kmod-crypto-crc32c kmod-fs-autofs4 kmod-fs-exfat kmod-fs-ext4 kmod-fs-msdos kmod-fs-vfat kmod-fuse kmod-gpio-button-hotplug kmod-leds-gpio kmod-lib-crc16 kmod-mac80211 kmod-mii kmod-mmc kmod-mt76-core kmod-mt76x02-common kmod-mt76x2 kmod-mt76x2-common kmod-nls-cp437 kmod-scsi-core kmod-sdhci-mt7620 kmod-usb2 kmod-usb3 kmod-usb-core kmod-usb-ehci kmod-usb-ledtrig-usbport kmod-usb-net kmod-usb-net-cdc-ether kmod-usb-net-cdc-mbim kmod-usb-net-cdc-ncm kmod-usb-net-huawei-cdc-ncm kmod-usb-net-ipheth kmod-usb-net-qmi-wwan kmod-usb-net-rndis kmod-usb-net-rtl8152 kmod-usb-net-sierrawireless kmod-usb-ohci kmod-usb-printer kmod-usb-serial kmod-usb-serial-option kmod-usb-serial-qualcomm kmod-usb-serial-sierrawireless kmod-usb-serial-wwan kmod-usb-storage kmod-usb-storage-uas kmod-usb-wdm libopenssl libpcre libsqlite3 libssh2 libstdcpp libusb-1.0 libxml2 luci-app-aria2 luci-app-p910nd luci-app-samba luci-i18n-aria2-zh-cn luci-i18n-p910nd-en luci-i18n-p910nd-zh-cn luci-i18n-samba-en luci-i18n-samba-zh-cn luci-proto-3g luci-proto-ncm luci-proto-qmi ntfs-3g p910nd samba36-server uclibcxx uqmi usb-modeswitch webui-aria2 wget wireless-regdb wwan"
 CONFIG_TARGET_DEVICE_ramips_mt7621_DEVICE_netgear_ex6150=y
@@ -554,7 +554,7 @@ CONFIG_TARGET_INIT_CMD="/sbin/init"
 CONFIG_TARGET_INIT_SUPPRESS_STDERR=y
 CONFIG_VERSIONOPT=y
 CONFIG_VERSION_DIST="X-WRT"
-CONFIG_VERSION_NUMBER="5.0_b201907110253"
+CONFIG_VERSION_NUMBER="5.0_b201907121119"
 CONFIG_VERSION_CODE="Disco"
 CONFIG_VERSION_REPO="http://downloads.openwrt.org/snapshots"
 CONFIG_VERSION_HOME_URL="https://x-wrt.com/"
@@ -3642,17 +3642,9 @@ CONFIG_PACKAGE_luasocket=y
 #
 # Python
 #
-# CONFIG_PACKAGE_django-ranged-response is not set
-# CONFIG_PACKAGE_django-ranged-response-src is not set
-# CONFIG_PACKAGE_django-simple-captcha is not set
-# CONFIG_PACKAGE_django-simple-captcha-src is not set
-# CONFIG_PACKAGE_django-statici18n is not set
-# CONFIG_PACKAGE_django-webpack-loader is not set
-# CONFIG_PACKAGE_django-webpack-loader-src is not set
 # CONFIG_PACKAGE_gunicorn is not set
 # CONFIG_PACKAGE_micropython is not set
 # CONFIG_PACKAGE_micropython-lib is not set
-# CONFIG_PACKAGE_pillow is not set
 # CONFIG_PACKAGE_python is not set
 # CONFIG_PACKAGE_python-asn1crypto is not set
 # CONFIG_PACKAGE_python-astral is not set
@@ -3722,8 +3714,16 @@ CONFIG_PACKAGE_luasocket=y
 # CONFIG_PACKAGE_python-django-picklefield-src is not set
 # CONFIG_PACKAGE_python-django-postoffice is not set
 # CONFIG_PACKAGE_python-django-postoffice-src is not set
+# CONFIG_PACKAGE_python-django-ranged-response is not set
+# CONFIG_PACKAGE_python-django-ranged-response-src is not set
 # CONFIG_PACKAGE_python-django-restframework is not set
 # CONFIG_PACKAGE_python-django-restframework-src is not set
+# CONFIG_PACKAGE_python-django-simple-captcha is not set
+# CONFIG_PACKAGE_python-django-simple-captcha-src is not set
+# CONFIG_PACKAGE_python-django-statici18n is not set
+# CONFIG_PACKAGE_python-django-statici18n-src is not set
+# CONFIG_PACKAGE_python-django-webpack-loader is not set
+# CONFIG_PACKAGE_python-django-webpack-loader-src is not set
 # CONFIG_PACKAGE_python-dns is not set
 # CONFIG_PACKAGE_python-dns-src is not set
 # CONFIG_PACKAGE_python-docutils is not set
@@ -3787,6 +3787,8 @@ CONFIG_PACKAGE_luasocket=y
 # CONFIG_PACKAGE_python-passlib is not set
 # CONFIG_PACKAGE_python-passlib-src is not set
 # CONFIG_PACKAGE_python-pcapy is not set
+# CONFIG_PACKAGE_python-pillow is not set
+# CONFIG_PACKAGE_python-pillow-src is not set
 # CONFIG_PACKAGE_python-pip is not set
 # CONFIG_PACKAGE_python-pip-conf is not set
 # CONFIG_PACKAGE_python-pip-src is not set
@@ -3949,8 +3951,16 @@ CONFIG_PACKAGE_luasocket=y
 # CONFIG_PACKAGE_python3-django-picklefield-src is not set
 # CONFIG_PACKAGE_python3-django-postoffice is not set
 # CONFIG_PACKAGE_python3-django-postoffice-src is not set
+# CONFIG_PACKAGE_python3-django-ranged-response is not set
+# CONFIG_PACKAGE_python3-django-ranged-response-src is not set
 # CONFIG_PACKAGE_python3-django-restframework is not set
 # CONFIG_PACKAGE_python3-django-restframework-src is not set
+# CONFIG_PACKAGE_python3-django-simple-captcha is not set
+# CONFIG_PACKAGE_python3-django-simple-captcha-src is not set
+# CONFIG_PACKAGE_python3-django-statici18n is not set
+# CONFIG_PACKAGE_python3-django-statici18n-src is not set
+# CONFIG_PACKAGE_python3-django-webpack-loader is not set
+# CONFIG_PACKAGE_python3-django-webpack-loader-src is not set
 # CONFIG_PACKAGE_python3-dns is not set
 # CONFIG_PACKAGE_python3-dns-src is not set
 # CONFIG_PACKAGE_python3-docutils is not set
@@ -4036,6 +4046,8 @@ CONFIG_PACKAGE_luasocket=y
 # CONFIG_PACKAGE_python3-parsley-src is not set
 # CONFIG_PACKAGE_python3-passlib is not set
 # CONFIG_PACKAGE_python3-passlib-src is not set
+# CONFIG_PACKAGE_python3-pillow is not set
+# CONFIG_PACKAGE_python3-pillow-src is not set
 # CONFIG_PACKAGE_python3-pip is not set
 # CONFIG_PACKAGE_python3-pip-src is not set
 # CONFIG_PACKAGE_python3-ply is not set
@@ -4061,6 +4073,8 @@ CONFIG_PACKAGE_luasocket=y
 # CONFIG_PACKAGE_python3-pyserial-src is not set
 # CONFIG_PACKAGE_python3-pytz is not set
 # CONFIG_PACKAGE_python3-pytz-src is not set
+# CONFIG_PACKAGE_python3-qrcode is not set
+# CONFIG_PACKAGE_python3-qrcode-src is not set
 # CONFIG_PACKAGE_python3-rcssmin is not set
 # CONFIG_PACKAGE_python3-rcssmin-src is not set
 # CONFIG_PACKAGE_python3-requests is not set
@@ -5101,6 +5115,7 @@ CONFIG_PACKAGE_libjson-c=y
 # CONFIG_PACKAGE_libloragw is not set
 # CONFIG_PACKAGE_libltdl is not set
 CONFIG_PACKAGE_liblua=y
+# CONFIG_PACKAGE_liblua5.3 is not set
 CONFIG_PACKAGE_liblucihttp=y
 CONFIG_PACKAGE_liblucihttp-lua=y
 CONFIG_PACKAGE_liblzo=y
@@ -5837,6 +5852,7 @@ CONFIG_POSTFIX_PCRE=y
 # CONFIG_PACKAGE_imagemagick is not set
 # CONFIG_PACKAGE_lcdgrilo is not set
 # CONFIG_PACKAGE_minidlna is not set
+# CONFIG_PACKAGE_minisatip is not set
 # CONFIG_PACKAGE_mjpg-streamer is not set
 # CONFIG_PACKAGE_motion is not set
 # CONFIG_PACKAGE_tvheadend is not set

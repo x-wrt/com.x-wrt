@@ -369,7 +369,7 @@ CONFIG_TARGET_INIT_CMD="/sbin/init"
 CONFIG_TARGET_INIT_SUPPRESS_STDERR=y
 CONFIG_VERSIONOPT=y
 CONFIG_VERSION_DIST="X-WRT"
-CONFIG_VERSION_NUMBER="5.0_b201907110253"
+CONFIG_VERSION_NUMBER="5.0_b201907121119"
 CONFIG_VERSION_CODE="Disco"
 CONFIG_VERSION_REPO="http://downloads.openwrt.org/snapshots"
 CONFIG_VERSION_HOME_URL="https://x-wrt.com/"
@@ -3575,17 +3575,9 @@ CONFIG_PACKAGE_luasocket=y
 #
 # Python
 #
-# CONFIG_PACKAGE_django-ranged-response is not set
-# CONFIG_PACKAGE_django-ranged-response-src is not set
-# CONFIG_PACKAGE_django-simple-captcha is not set
-# CONFIG_PACKAGE_django-simple-captcha-src is not set
-# CONFIG_PACKAGE_django-statici18n is not set
-# CONFIG_PACKAGE_django-webpack-loader is not set
-# CONFIG_PACKAGE_django-webpack-loader-src is not set
 # CONFIG_PACKAGE_gunicorn is not set
 # CONFIG_PACKAGE_micropython is not set
 # CONFIG_PACKAGE_micropython-lib is not set
-# CONFIG_PACKAGE_pillow is not set
 # CONFIG_PACKAGE_python is not set
 # CONFIG_PACKAGE_python-asn1crypto is not set
 # CONFIG_PACKAGE_python-astral is not set
@@ -3655,8 +3647,16 @@ CONFIG_PACKAGE_luasocket=y
 # CONFIG_PACKAGE_python-django-picklefield-src is not set
 # CONFIG_PACKAGE_python-django-postoffice is not set
 # CONFIG_PACKAGE_python-django-postoffice-src is not set
+# CONFIG_PACKAGE_python-django-ranged-response is not set
+# CONFIG_PACKAGE_python-django-ranged-response-src is not set
 # CONFIG_PACKAGE_python-django-restframework is not set
 # CONFIG_PACKAGE_python-django-restframework-src is not set
+# CONFIG_PACKAGE_python-django-simple-captcha is not set
+# CONFIG_PACKAGE_python-django-simple-captcha-src is not set
+# CONFIG_PACKAGE_python-django-statici18n is not set
+# CONFIG_PACKAGE_python-django-statici18n-src is not set
+# CONFIG_PACKAGE_python-django-webpack-loader is not set
+# CONFIG_PACKAGE_python-django-webpack-loader-src is not set
 # CONFIG_PACKAGE_python-dns is not set
 # CONFIG_PACKAGE_python-dns-src is not set
 # CONFIG_PACKAGE_python-docutils is not set
@@ -3720,6 +3720,8 @@ CONFIG_PACKAGE_luasocket=y
 # CONFIG_PACKAGE_python-passlib is not set
 # CONFIG_PACKAGE_python-passlib-src is not set
 # CONFIG_PACKAGE_python-pcapy is not set
+# CONFIG_PACKAGE_python-pillow is not set
+# CONFIG_PACKAGE_python-pillow-src is not set
 # CONFIG_PACKAGE_python-pip is not set
 # CONFIG_PACKAGE_python-pip-conf is not set
 # CONFIG_PACKAGE_python-pip-src is not set
@@ -3882,8 +3884,16 @@ CONFIG_PACKAGE_luasocket=y
 # CONFIG_PACKAGE_python3-django-picklefield-src is not set
 # CONFIG_PACKAGE_python3-django-postoffice is not set
 # CONFIG_PACKAGE_python3-django-postoffice-src is not set
+# CONFIG_PACKAGE_python3-django-ranged-response is not set
+# CONFIG_PACKAGE_python3-django-ranged-response-src is not set
 # CONFIG_PACKAGE_python3-django-restframework is not set
 # CONFIG_PACKAGE_python3-django-restframework-src is not set
+# CONFIG_PACKAGE_python3-django-simple-captcha is not set
+# CONFIG_PACKAGE_python3-django-simple-captcha-src is not set
+# CONFIG_PACKAGE_python3-django-statici18n is not set
+# CONFIG_PACKAGE_python3-django-statici18n-src is not set
+# CONFIG_PACKAGE_python3-django-webpack-loader is not set
+# CONFIG_PACKAGE_python3-django-webpack-loader-src is not set
 # CONFIG_PACKAGE_python3-dns is not set
 # CONFIG_PACKAGE_python3-dns-src is not set
 # CONFIG_PACKAGE_python3-docutils is not set
@@ -3969,6 +3979,8 @@ CONFIG_PACKAGE_luasocket=y
 # CONFIG_PACKAGE_python3-parsley-src is not set
 # CONFIG_PACKAGE_python3-passlib is not set
 # CONFIG_PACKAGE_python3-passlib-src is not set
+# CONFIG_PACKAGE_python3-pillow is not set
+# CONFIG_PACKAGE_python3-pillow-src is not set
 # CONFIG_PACKAGE_python3-pip is not set
 # CONFIG_PACKAGE_python3-pip-src is not set
 # CONFIG_PACKAGE_python3-ply is not set
@@ -3994,6 +4006,8 @@ CONFIG_PACKAGE_luasocket=y
 # CONFIG_PACKAGE_python3-pyserial-src is not set
 # CONFIG_PACKAGE_python3-pytz is not set
 # CONFIG_PACKAGE_python3-pytz-src is not set
+# CONFIG_PACKAGE_python3-qrcode is not set
+# CONFIG_PACKAGE_python3-qrcode-src is not set
 # CONFIG_PACKAGE_python3-rcssmin is not set
 # CONFIG_PACKAGE_python3-rcssmin-src is not set
 # CONFIG_PACKAGE_python3-requests is not set
@@ -5284,6 +5298,7 @@ CONFIG_PACKAGE_libkmod=y
 # CONFIG_PACKAGE_libloragw is not set
 # CONFIG_PACKAGE_libltdl is not set
 CONFIG_PACKAGE_liblua=y
+# CONFIG_PACKAGE_liblua5.3 is not set
 CONFIG_PACKAGE_liblucihttp=y
 CONFIG_PACKAGE_liblucihttp-lua=y
 CONFIG_PACKAGE_liblzo=y
@@ -6030,6 +6045,7 @@ CONFIG_POSTFIX_PCRE=y
 # CONFIG_PACKAGE_imagemagick is not set
 # CONFIG_PACKAGE_lcdgrilo is not set
 # CONFIG_PACKAGE_minidlna is not set
+# CONFIG_PACKAGE_minisatip is not set
 # CONFIG_PACKAGE_mjpg-streamer is not set
 # CONFIG_PACKAGE_motion is not set
 # CONFIG_PACKAGE_tvheadend is not set
