@@ -396,6 +396,7 @@ for t in $targets; do
 		TARGET_DEVICE_ar71xx_generic_DEVICE_wndr3700v2|\
 		TARGET_DEVICE_ar71xx_generic_DEVICE_wndr3800|\
 		TARGET_DEVICE_ar71xx_generic_DEVICE_wndr3800ch|\
+		TARGET_DEVICE_ath79_generic_DEVICE_qihoo_c301|\
 		TARGET_DEVICE_ar71xx_generic_DEVICE_qihoo-c301|\
 		TARGET_DEVICE_ar71xx_nand_DEVICE_R6100|\
 		TARGET_DEVICE_ar71xx_nand_DEVICE_WNDR3700V4|\
@@ -798,6 +799,7 @@ for t in $targets; do
 		TARGET_DEVICE_ar71xx_generic_DEVICE_tl-wdr4300-v1|\
 		TARGET_DEVICE_ar71xx_generic_DEVICE_tl-wdr3600-v1|\
 		TARGET_DEVICE_ar71xx_generic_DEVICE_tl-wdr3500-v1|\
+		TARGET_DEVICE_ath79_generic_DEVICE_qihoo_c301|\
 		TARGET_DEVICE_ar71xx_generic_DEVICE_qihoo-c301|\
 		TARGET_DEVICE_ar71xx_generic_DEVICE_hiwifi-hc6361|\
 		TARGET_DEVICE_ramips_mt7620_DEVICE_hiwifi_hc5661|\
