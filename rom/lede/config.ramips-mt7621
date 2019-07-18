@@ -92,6 +92,7 @@ CONFIG_TARGET_MULTI_PROFILE=y
 # CONFIG_TARGET_ramips_mt7621_DEVICE_samknows_whitebox-v8 is not set
 # CONFIG_TARGET_ramips_mt7621_DEVICE_totolink_a7000r is not set
 # CONFIG_TARGET_ramips_mt7621_DEVICE_tplink_re350-v1 is not set
+# CONFIG_TARGET_ramips_mt7621_DEVICE_tplink_re650-v1 is not set
 # CONFIG_TARGET_ramips_mt7621_DEVICE_telco-electronics_x1 is not set
 # CONFIG_TARGET_ramips_mt7621_DEVICE_thunder_timecloud is not set
 # CONFIG_TARGET_ramips_mt7621_DEVICE_ubiquiti_edgerouterx is not set
@@ -179,6 +180,8 @@ CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt7621_DEVICE_phicomm_k2p="kmod-cfg80211 km
 CONFIG_TARGET_DEVICE_ramips_mt7621_DEVICE_totolink_a7000r=y
 CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt7621_DEVICE_totolink_a7000r="kmod-cfg80211 kmod-gpio-button-hotplug kmod-leds-gpio kmod-mac80211 kmod-mt7615e kmod-mt76-core wireless-regdb"
 # CONFIG_TARGET_DEVICE_ramips_mt7621_DEVICE_tplink_re350-v1 is not set
+CONFIG_TARGET_DEVICE_ramips_mt7621_DEVICE_tplink_re650-v1=y
+CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt7621_DEVICE_tplink_re650-v1="kmod-cfg80211 kmod-gpio-button-hotplug kmod-leds-gpio kmod-mac80211 kmod-mt7615e kmod-mt76-core wireless-regdb"
 CONFIG_TARGET_DEVICE_ramips_mt7621_DEVICE_ubiquiti_edgerouterx=y
 CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt7621_DEVICE_ubiquiti_edgerouterx="kmod-gpio-button-hotplug kmod-leds-gpio"
 CONFIG_TARGET_DEVICE_ramips_mt7621_DEVICE_ubiquiti_edgerouterx-sfp=y

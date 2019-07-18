@@ -432,6 +432,7 @@ for t in $targets; do
 			flash_gt8m=1
 		;;
 		#<=8M flash
+		TARGET_DEVICE_ramips_mt7621_DEVICE_tplink_re650-v1|\
 		TARGET_DEVICE_ath79_generic_DEVICE_adtran_bsap1840|\
 		TARGET_DEVICE_ath79_generic_DEVICE_adtran_bsap1800-v2|\
 		TARGET_DEVICE_ath79_generic_DEVICE_xwrt_m-ap300g|\
@@ -820,6 +821,7 @@ for t in $targets; do
 			has_usb=1
 		;;
 		#no usb
+		TARGET_DEVICE_ramips_mt7621_DEVICE_tplink_re650-v1|\
 		TARGET_DEVICE_ath79_generic_DEVICE_adtran_bsap1840|\
 		TARGET_DEVICE_ath79_generic_DEVICE_adtran_bsap1800-v2|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_iodata_wn-gx300gr|\
