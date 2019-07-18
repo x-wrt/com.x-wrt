@@ -218,6 +218,19 @@ natcap_wan_ip()
 	exit 0
 }
 
+natcap_connected()
+{
+	ipset list -n cniplist >/dev/null || return 0
+	for connected_network_v4 in $(ip route | awk '{print $1}' | egrep '[0-9]{1,3}(\.[0-9]{1,3}){3}'); do
+		ipset -! add cniplist $connected_network_v4 >/dev/null 2>&1
+	done
+}
+
+[ x$1 = xnatcap_connected ] && {
+	natcap_connected
+	exit 0
+}
+
 natcap_setup_firewall
 [ x$1 = xstop ] && natcapd_stop && exit 0
 
@@ -451,6 +464,7 @@ elif test -c $DEV; then
 	cat $cniplist_set) | sort | uniq | sed 's/^/add cniplist /' >>/tmp/cniplist.set
 	ipset restore -f /tmp/cniplist.set
 	rm -f /tmp/cniplist.set
+	natcap_connected
 
 	echo debug=$debug >>$DEV
 	echo clean >>$DEV

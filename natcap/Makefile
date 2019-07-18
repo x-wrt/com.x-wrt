@@ -109,7 +109,7 @@ define Package/natcapd-mini/install
 	$(INSTALL_DIR) $(1)/etc/uci-defaults
 	$(INSTALL_DATA) ./files/natcapd.defaults $(1)/etc/uci-defaults/95-natcapd
 	$(INSTALL_DIR) $(1)/etc/hotplug.d/iface
-	$(INSTALL_DATA) ./files/20-cone-nat $(1)/etc/hotplug.d/iface/20-cone-nat
+	$(INSTALL_DATA) ./files/20-natcapd.hotplug $(1)/etc/hotplug.d/iface/20-natcapd
 endef
 
 define Package/natcapd/conffiles
