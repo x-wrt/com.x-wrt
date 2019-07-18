@@ -226,6 +226,7 @@ for t in $targets; do
 	has_usb=0
 	case $t in
 		#>8M flash
+		TARGET_DEVICE_ath79_generic_DEVICE_trendnet_tew-823dru|\
 		TARGET_DEVICE_ath79_generic_DEVICE_xwrt_csac|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_xwrt_t-cpe1200k-v01|\
 		TARGET_DEVICE_ramips_mt76x8_DEVICE_xwrt_g4303k-v1|\
@@ -431,6 +432,8 @@ for t in $targets; do
 			flash_gt8m=1
 		;;
 		#<=8M flash
+		TARGET_DEVICE_ath79_generic_DEVICE_adtran_bsap1840|\
+		TARGET_DEVICE_ath79_generic_DEVICE_adtran_bsap1800-v2|\
 		TARGET_DEVICE_ath79_generic_DEVICE_xwrt_m-ap300g|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_iodata_wn-gx300gr|\
 		TARGET_DEVICE_ath79_generic_DEVICE_tplink_archer-d50-v1|\
@@ -514,6 +517,10 @@ for t in $targets; do
 		TARGET_DEVICE_ar71xx_generic_DEVICE_archer-c58-v1|\
 		TARGET_DEVICE_ar71xx_generic_DEVICE_archer-c60-v1|\
 		TARGET_DEVICE_ar71xx_generic_DEVICE_archer-c60-v2|\
+		TARGET_DEVICE_ath79_generic_DEVICE_tplink_cpe510-v2|\
+		TARGET_DEVICE_ath79_generic_DEVICE_tplink_cpe510-v3|\
+		TARGET_DEVICE_ath79_generic_DEVICE_tplink_archer-c60-v1|\
+		TARGET_DEVICE_ath79_generic_DEVICE_tplink_archer-c60-v2|\
 		TARGET_DEVICE_ramips_mt7620_DEVICE_zbtlink_zbt-we2026|\
 		TARGET_DEVICE_ramips_mt76x8_DEVICE_tplink_tl-wr841n-v13|\
 		TARGET_DEVICE_ramips_mt76x8_DEVICE_tplink_tl-wr840n-v4|\
@@ -639,6 +646,7 @@ for t in $targets; do
 			has_usb=1
 		;;
 		#with usb2
+		TARGET_DEVICE_ath79_generic_DEVICE_trendnet_tew-823dru|\
 		TARGET_DEVICE_ath79_generic_DEVICE_xwrt_m-ap300g|\
 		TARGET_DEVICE_ath79_generic_DEVICE_xwrt_csac|\
 		TARGET_DEVICE_ramips_mt76x8_DEVICE_xwrt_g4303k-v1|\
@@ -812,6 +820,8 @@ for t in $targets; do
 			has_usb=1
 		;;
 		#no usb
+		TARGET_DEVICE_ath79_generic_DEVICE_adtran_bsap1840|\
+		TARGET_DEVICE_ath79_generic_DEVICE_adtran_bsap1800-v2|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_iodata_wn-gx300gr|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_iodata_wn-ax1167gr|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_totolink_a7000r|\
@@ -886,6 +896,10 @@ for t in $targets; do
 		TARGET_DEVICE_ar71xx_generic_DEVICE_archer-c58-v1|\
 		TARGET_DEVICE_ar71xx_generic_DEVICE_archer-c60-v1|\
 		TARGET_DEVICE_ar71xx_generic_DEVICE_archer-c60-v2|\
+		TARGET_DEVICE_ath79_generic_DEVICE_tplink_cpe510-v2|\
+		TARGET_DEVICE_ath79_generic_DEVICE_tplink_cpe510-v3|\
+		TARGET_DEVICE_ath79_generic_DEVICE_tplink_archer-c60-v1|\
+		TARGET_DEVICE_ath79_generic_DEVICE_tplink_archer-c60-v2|\
 		TARGET_DEVICE_ramips_mt7620_DEVICE_zbtlink_zbt-we2026|\
 		TARGET_DEVICE_ramips_mt76x8_DEVICE_tplink_tl-wr841n-v13|\
 		TARGET_DEVICE_ramips_mt76x8_DEVICE_tplink_tl-wr840n-v4|\
