@@ -13,9 +13,15 @@ function index()
 
 	local page
 
+	if ui == "world" or ui == "simple" then
 	page = entry({"admin", "services", "natcap"}, cbi("natcap/natcap"), _("Natcap"))
 	page.i18n = "natcap"
 	page.dependent = true
+	else
+	page = entry({"admin", "services", "natcap"}, cbi("natcap/natcap_simple"), _("Natcap"))
+	page.i18n = "natcap"
+	page.dependent = true
+	end
 
 	entry({"admin", "services", "natcap", "get_natcap_flows0"}, call("get_natcap_flows0")).leaf = true
 	entry({"admin", "services", "natcap", "get_natcap_flows1"}, call("get_natcap_flows1")).leaf = true
