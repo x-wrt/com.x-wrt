@@ -42,6 +42,10 @@ function index()
 	page = entry({"admin", "natcap_route"}, cbi("natcap/natcap_route"), _("Route Setup"))
 	page.i18n = "natcap"
 	page.dependent = true
+	elseif ui == "world" then
+	page = entry({"admin", "services", "natcap_route"}, cbi("natcap/natcap_route"), _("Route Setup"))
+	page.i18n = "natcap"
+	page.dependent = true
 	end
 end
 
