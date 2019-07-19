@@ -193,8 +193,8 @@ msgstr "启用快速转发(offload)"
 msgid "Enable Fast Forwarding"
 msgstr "启用转发加速(natflow)"
 
-msgid "Basic System"
-msgstr "基础系统"
+msgid "One Key VPN"
+msgstr "一键VPN服务"
 
 msgid "The basic system settings && services"
 msgstr "基础系统配置和服务"
@@ -210,3 +210,6 @@ msgstr "内网用户"
 
 msgid "Target Gateway"
 msgstr "出口网关"
+
+msgid "System Optimization"
+msgstr "系统优化"

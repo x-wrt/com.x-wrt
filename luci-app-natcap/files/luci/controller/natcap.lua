@@ -26,7 +26,11 @@ function index()
 	entry({"admin", "services", "natcap", "status"}, call("status")).leaf = true
 	entry({"admin", "services", "natcap", "change_server"}, call("change_server")).leaf = true
 
-	page = entry({"admin", "services", "natcapd"}, cbi("natcap/natcapd"), _("Basic System"))
+	page = entry({"admin", "services", "natcapd_vpn"}, cbi("natcap/natcapd_vpn"), _("One Key VPN"))
+	page.i18n = "natcap"
+	page.dependent = true
+
+	page = entry({"admin", "services", "natcapd_sys"}, cbi("natcap/natcapd_sys"), _("System Optimization"))
 	page.i18n = "natcap"
 	page.dependent = true
 
