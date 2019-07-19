@@ -198,3 +198,15 @@ msgstr "基础系统"
 
 msgid "The basic system settings && services"
 msgstr "基础系统配置和服务"
+
+msgid "Route Setup"
+msgstr "线路设置"
+
+msgid "select route gateway for each lan"
+msgstr "为每一组内网用户分配出口网关"
+
+msgid "From Client(s)"
+msgstr "内网用户"
+
+msgid "Target Gateway"
+msgstr "出口网关"

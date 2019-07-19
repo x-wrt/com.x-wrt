@@ -1,5 +1,4 @@
--- Copyright 2008 Steven Barth <steven@midlink.org>
--- Copyright 2008-2011 Jo-Philipp Wich <jow@openwrt.org>
+-- Copyright 2019 X-WRT <dev@x-wrt.com>
 -- Licensed to the public under the Apache License 2.0.
 
 local nt = require "luci.sys".net
@@ -110,25 +109,5 @@ e.rmempty = false
 e = s:taboption("system", Flag, "full_proxy", translate("Full Proxy"), translate("All traffic goes to proxy."))
 e.default = e.disabled
 e.rmempty = false
-
---rules
-local u = m:section(TypedSection, "rule", "")
-u.addremove = true
-u.anonymous = true
-u.template = "cbi/tblsection"
-
-e = u:option(Value, "src", translate("From Client"))
-e.datatype = "string"
-e.rmempty  = false
-e.placeholder = "192.168.1.100 or AA:00:11:23:44:55"
-
-e = u:option(ListValue, "target", translate("Target Server"))
-e:value("", translate("Please select..."))
-local ut = require "luci.util"
-local sys  = require "luci.sys"
-local text = ut.trim(sys.exec("cat /dev/natcap_ctl"))
-for ip in text:gmatch("server ([0-9.]+)[^\n]+") do
-	e:value(ip)
-end
 
 return m

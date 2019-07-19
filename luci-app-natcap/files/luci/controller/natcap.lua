@@ -9,6 +9,10 @@ function index()
 		return
 	end
 
+	local ut = require "luci.util"
+	local sys  = require "luci.sys"
+	local ui = ut.trim(sys.exec("uci get natcapd.default.ui 2>/dev/null"))
+
 	local page
 
 	page = entry({"admin", "services", "natcap"}, cbi("natcap/natcap"), _("Natcap"))
@@ -25,6 +29,12 @@ function index()
 	page = entry({"admin", "services", "natcapd"}, cbi("natcap/natcapd"), _("Basic System"))
 	page.i18n = "natcap"
 	page.dependent = true
+
+	if ui == "simple" then
+	page = entry({"admin", "natcap_route"}, cbi("natcap/natcap_route"), _("Route Setup"))
+	page.i18n = "natcap"
+	page.dependent = true
+	end
 end
 
 function status()
