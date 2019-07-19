@@ -1,6 +1,4 @@
--- Copyright 2008 Steven Barth <steven@midlink.org>
--- Copyright 2010-2015 Jo-Philipp Wich <jow@openwrt.org>
--- Licensed to the public under the Apache License 2.0.
+-- Copyright (C) 2019 X-WRT <dev@x-wrt.com>
 
 m = Map("macvlan", translate("Macvlan"))
 

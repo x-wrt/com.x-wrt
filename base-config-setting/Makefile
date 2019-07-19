@@ -1,5 +1,6 @@
 #
 # Copyright (C) 2017-2019 Chen Minqiang <ptpt52@gmail.com>
+# Copyright (C) 2019 X-WRT <dev@x-wrt.com>
 #
 # This is free software, licensed under the GNU General Public License v2.
 # See /LICENSE for more information.

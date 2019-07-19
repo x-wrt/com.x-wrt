@@ -1,5 +1,4 @@
 -- Copyright 2019 X-WRT <dev@x-wrt.com>
--- Licensed to the public under the Apache License 2.0.
 
 local nt = require "luci.sys".net
 
