@@ -7,6 +7,6 @@ module("luci.controller.macvlan", package.seeall)
 function index()
 	local page
 
-	page = entry({"admin", "services", "macvlan"}, cbi("macvlan/macvlan"), _("Macvlan"))
+	page = entry({"admin", "network", "macvlan"}, cbi("macvlan/macvlan"), _("Macvlan"))
 	page.leaf = true
 end
