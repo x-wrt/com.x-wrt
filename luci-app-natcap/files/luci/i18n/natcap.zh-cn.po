@@ -216,3 +216,6 @@ msgstr "系统优化"
 
 msgid "Please select..."
 msgstr "请选择……"
+
+msgid "Server List"
+msgstr "服务器列表"

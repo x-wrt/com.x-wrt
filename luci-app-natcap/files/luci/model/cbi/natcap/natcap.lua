@@ -12,6 +12,7 @@ s.anonymous = true
 
 s:tab("general", translate("General Settings"))
 s:tab("advanced", translate("Advanced Settings"))
+s:tab("serverlist", translate("Server List"))
 s:tab("macfilter", translate("Mac Filter"))
 s:tab("ipfilter", translate("IP Filter"))
 s:tab("system", translate("System Settings"))
@@ -24,7 +25,7 @@ e = s:taboption("general", Value, "account", translate("Natcap Account"))
 e.rmempty = true
 e.placeholder = 'account'
 
-e = s:taboption("general", DynamicList, "server", translate("Natcap Servers"), translate("Please fill in the server by format (ip:port)"))
+e = s:taboption("serverlist", DynamicList, "server", translate("Natcap Servers"), translate("Please fill in the server by format (ip:port)"))
 e.datatype = "list(string)"
 e.placeholder = "1.2.3.4:0"
 
