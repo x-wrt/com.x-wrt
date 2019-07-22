@@ -582,11 +582,11 @@ cleanup () {
 nslookup_check () {
 	local domain ipaddr
 	domain=${1-www.baidu.com}
-	ipaddr=`nslookup $domain 2>/dev/null | grep "$domain" -A1 | grep Address | grep -o '\([0-9]\{1,3\}\)\.\([0-9]\{1,3\}\)\.\([0-9]\{1,3\}\)\.\([0-9]\{1,3\}\)' | head -n1`
+	ipaddr=`nslookup $domain 2>/dev/null | grep "$domain" -A5 | grep Address | grep -o '\([0-9]\{1,3\}\)\.\([0-9]\{1,3\}\)\.\([0-9]\{1,3\}\)\.\([0-9]\{1,3\}\)' | head -n1`
 	test -n "$ipaddr" || {
-		ipaddr=`nslookup $domain 114.114.114.114 2>/dev/null | grep "$domain" -A1 | grep Address | grep -o '\([0-9]\{1,3\}\)\.\([0-9]\{1,3\}\)\.\([0-9]\{1,3\}\)\.\([0-9]\{1,3\}\)' | head -n1`
+		ipaddr=`nslookup $domain 114.114.114.114 2>/dev/null | grep "$domain" -A5 | grep Address | grep -o '\([0-9]\{1,3\}\)\.\([0-9]\{1,3\}\)\.\([0-9]\{1,3\}\)\.\([0-9]\{1,3\}\)' | head -n1`
 		test -n "$ipaddr" || {
-			ipaddr=`nslookup $domain 8.8.8.8 2>/dev/null | grep "$domain" -A1 | grep Address | grep -o '\([0-9]\{1,3\}\)\.\([0-9]\{1,3\}\)\.\([0-9]\{1,3\}\)\.\([0-9]\{1,3\}\)' | head -n1`
+			ipaddr=`nslookup $domain 8.8.8.8 2>/dev/null | grep "$domain" -A5 | grep Address | grep -o '\([0-9]\{1,3\}\)\.\([0-9]\{1,3\}\)\.\([0-9]\{1,3\}\)\.\([0-9]\{1,3\}\)' | head -n1`
 		}
 	}
 	echo "$ipaddr"
