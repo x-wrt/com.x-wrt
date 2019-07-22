@@ -226,6 +226,7 @@ for t in $targets; do
 	has_usb=0
 	case $t in
 		#>8M flash
+		TARGET_DEVICE_ramips_mt7621_DEVICE_thunder_timecloud|\
 		TARGET_DEVICE_ath79_generic_DEVICE_trendnet_tew-823dru|\
 		TARGET_DEVICE_ath79_generic_DEVICE_xwrt_csac|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_xwrt_t-cpe1200k-v01|\
@@ -572,6 +573,7 @@ for t in $targets; do
 	#check usb
 	case $t in
 		#with usb3
+		TARGET_DEVICE_ramips_mt7621_DEVICE_thunder_timecloud|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_xwrt_t-cpe1200k-v01|\
 		TARGET_DEVICE_brcm2708_bcm2709_DEVICE_rpi-2|\
 		TARGET_DEVICE_brcm2708_bcm2710_DEVICE_rpi-3|\
