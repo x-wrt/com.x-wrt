@@ -367,6 +367,7 @@ for t in $targets; do
 		TARGET_DEVICE_ramips_mt7621_DEVICE_mir3g|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_xiaomi_mir3g-nor|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_xiaomi_mir3g|\
+		TARGET_DEVICE_ramips_mt7621_DEVICE_xiaomi_mir3p-nor|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_xiaomi_mir3p|\
 		TARGET_DEVICE_ar71xx_generic_DEVICE_tl-wr1043nd-v4|\
 		TARGET_DEVICE_kirkwood_DEVICE_on100|\
@@ -613,6 +614,7 @@ for t in $targets; do
 		TARGET_DEVICE_ramips_mt7621_DEVICE_mir3g|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_xiaomi_mir3g-nor|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_xiaomi_mir3g|\
+		TARGET_DEVICE_ramips_mt7621_DEVICE_xiaomi_mir3p-nor|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_xiaomi_mir3p|\
 		TARGET_DEVICE_ar71xx_generic_DEVICE_F9K1115V2|\
 		TARGET_DEVICE_ar71xx_tiny_DEVICE_F9K1115V2|\
