@@ -67,7 +67,7 @@ endef
 define Package/natcapd/Default
   CATEGORY:=X
   SUBMENU:=Natcap Support
-  DEPENDS:= +kmod-natcap +kmod-natflow
+  DEPENDS:= +kmod-natcap
 endef
 
 define Package/natcapd
