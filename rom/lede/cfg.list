@@ -21,5 +21,6 @@ config.kirkwood-generic
 config.mvebu-cortexa9
 config.bcm53xx-generic
 config.brcm2708-bcm2710
+config.brcm2708-bcm2711
 config.x86_64
 config.x86_generic
