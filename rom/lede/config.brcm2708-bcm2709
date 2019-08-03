@@ -2498,7 +2498,6 @@ CONFIG_ZABBIX_POSTGRESQL=y
 # Boot Loaders
 #
 CONFIG_PACKAGE_brcm2708-gpu-fw=y
-CONFIG_PACKAGE_brcm27xx-armstub=m
 
 #
 # Development
