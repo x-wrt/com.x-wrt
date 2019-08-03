@@ -96,6 +96,7 @@ add_wizard() {
 			[ "$(uci get wireless.@wifi-iface[$idx].mode 2>/dev/null)" = "ap" ] && {
 				uci set wireless.@wifi-iface[$idx].ssid="${wifi_ssid}"
 				uci set wireless.@wifi-iface[$idx].key="${wifi_key}"
+				uci set wireless.@wifi-iface[$idx].encryption='psk2'
 			}
 		done
 	}
