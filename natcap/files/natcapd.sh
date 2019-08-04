@@ -447,10 +447,6 @@ elif test -c $DEV; then
 	if [ x$full_proxy = x1 ]; then
 		cnipwhitelist_mode=1
 		cniplist_set=/usr/share/natcapd/local.set
-	else
-		if [ x$access_to_cn = x1 ]; then
-			dns_proxy_drop=1
-		fi
 	fi
 
 	ipset destroy dnsdroplist >/dev/null 2>&1
