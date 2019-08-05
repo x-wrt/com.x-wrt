@@ -46,4 +46,17 @@ define Build/Compile
 	$(call Build/Compile/natflow)
 endef
 
+define Package/natflow-boot
+  CATEGORY:=X
+  SUBMENU:=Fast Forward Stacks
+  TITLE:=natflow boot init script
+  DEPENDS:= +kmod-natflow
+endef
+
+define Package/natflow-boot/install
+	$(INSTALL_DIR) $(1)/etc/init.d
+	$(INSTALL_BIN) ./files/natflow-boot.init $(1)/etc/init.d/natflow-boot
+endef
+
 $(eval $(call KernelPackage,natflow))
+$(eval $(call BuildPackage,natflow-boot))
