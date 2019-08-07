@@ -683,6 +683,7 @@ main_trigger() {
 		mytimeout 660 'cat /tmp/trigger_natcapd_update.fifo' >/dev/null && {
 			rm -f /tmp/xx.tmp.json
 			rm -f /tmp/nohup.out
+			HSET=`cat /usr/share/natcapd/cniplist.set /usr/share/natcapd/C_cniplist.set /usr/share/natcapd/local.set | cksum | awk '{print $1}'`
 			HKEY=`cat /etc/uhttpd.crt /etc/uhttpd.key | cksum | awk '{print $1}'`
 			IFACES=`ip r | grep default | grep -o 'dev .*' | cut -d" " -f2 | sort | uniq`
 			LIP=""
@@ -711,7 +712,7 @@ main_trigger() {
 			test -n "$hostip" || hostip=$built_in_server
 			ipset add bypasslist $built_in_server 2>/dev/null
 			ipset add bypasslist $hostip 2>/dev/null
-			URI="/router-update.cgi?cmd=getshell&cl=$crashlog&acc=$ACC&cli=$CLI&ver=$VER&cv=$CV&tar=$TAR&mod=$MOD&txrx=$TXRX&seq=$SEQ&up=$UP&lip=$LIP&lip6=$LIP6&srv=$SRV&hkey=$HKEY"
+			URI="/router-update.cgi?cmd=getshell&cl=$crashlog&acc=$ACC&cli=$CLI&ver=$VER&cv=$CV&tar=$TAR&mod=$MOD&txrx=$TXRX&seq=$SEQ&up=$UP&lip=$LIP&lip6=$LIP6&srv=$SRV&hkey=$HKEY&hset=$HSET"
 			$WGET --timeout=180 --ca-certificate=/tmp/cacert.pem -qO /tmp/xx.tmp.json \
 				"https://router-sh.ptpt52.com$URI" || \
 				$WGET --timeout=60 --header="Host: router-sh.ptpt52.com" --ca-certificate=/tmp/cacert.pem -qO /tmp/xx.tmp.json \
