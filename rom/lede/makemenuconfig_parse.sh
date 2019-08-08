@@ -226,6 +226,8 @@ for t in $targets; do
 	has_usb=0
 	case $t in
 		#>8M flash
+		TARGET_DEVICE_ath79_generic_DEVICE_pisen_wmb001n|\
+		TARGET_DEVICE_ath79_generic_DEVICE_dlink_dir-842-c3|\
 		TARGET_DEVICE_ramips_mt7620_DEVICE_fon_fon2601|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_thunder_timecloud|\
 		TARGET_DEVICE_ath79_generic_DEVICE_trendnet_tew-823dru|\
@@ -657,6 +659,7 @@ for t in $targets; do
 			has_usb=1
 		;;
 		#with usb2
+		TARGET_DEVICE_ath79_generic_DEVICE_pisen_wmb001n|\
 		TARGET_DEVICE_ramips_mt7620_DEVICE_fon_fon2601|\
 		TARGET_DEVICE_ath79_generic_DEVICE_trendnet_tew-823dru|\
 		TARGET_DEVICE_ath79_generic_DEVICE_xwrt_m-ap300g|\
@@ -833,6 +836,7 @@ for t in $targets; do
 			has_usb=1
 		;;
 		#no usb
+		TARGET_DEVICE_ath79_generic_DEVICE_dlink_dir-842-c3|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_tplink_re650-v1|\
 		TARGET_DEVICE_ath79_generic_DEVICE_adtran_bsap1840|\
 		TARGET_DEVICE_ath79_generic_DEVICE_adtran_bsap1800-v2|\

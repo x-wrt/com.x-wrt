@@ -70,6 +70,7 @@ CONFIG_TARGET_MULTI_PROFILE=y
 # CONFIG_TARGET_ath79_generic_DEVICE_dlink_dir-835-a1 is not set
 # CONFIG_TARGET_ath79_generic_DEVICE_dlink_dir-842-c1 is not set
 # CONFIG_TARGET_ath79_generic_DEVICE_dlink_dir-842-c2 is not set
+# CONFIG_TARGET_ath79_generic_DEVICE_dlink_dir-842-c3 is not set
 # CONFIG_TARGET_ath79_generic_DEVICE_dlink_dir-859-a1 is not set
 # CONFIG_TARGET_ath79_generic_DEVICE_elecom_wrc-1750ghbk2-i is not set
 # CONFIG_TARGET_ath79_generic_DEVICE_elecom_wrc-300ghbk2-i is not set
@@ -100,6 +101,7 @@ CONFIG_TARGET_MULTI_PROFILE=y
 # CONFIG_TARGET_ath79_generic_DEVICE_ocedo_ursus is not set
 # CONFIG_TARGET_ath79_generic_DEVICE_openmesh_om5p-ac-v2 is not set
 # CONFIG_TARGET_ath79_generic_DEVICE_pisen_wmm003n is not set
+# CONFIG_TARGET_ath79_generic_DEVICE_pisen_wmb001n is not set
 # CONFIG_TARGET_ath79_generic_DEVICE_phicomm_k2t is not set
 # CONFIG_TARGET_ath79_generic_DEVICE_pcs_cap324 is not set
 # CONFIG_TARGET_ath79_generic_DEVICE_pcs_cr3000 is not set
@@ -120,8 +122,11 @@ CONFIG_TARGET_MULTI_PROFILE=y
 # CONFIG_TARGET_ath79_generic_DEVICE_tplink_archer-c7-v4 is not set
 # CONFIG_TARGET_ath79_generic_DEVICE_tplink_archer-c7-v5 is not set
 # CONFIG_TARGET_ath79_generic_DEVICE_tplink_archer-d50-v1 is not set
+# CONFIG_TARGET_ath79_generic_DEVICE_tplink_cpe210-v1 is not set
 # CONFIG_TARGET_ath79_generic_DEVICE_tplink_cpe210-v2 is not set
 # CONFIG_TARGET_ath79_generic_DEVICE_tplink_cpe210-v3 is not set
+# CONFIG_TARGET_ath79_generic_DEVICE_tplink_cpe220-v2 is not set
+# CONFIG_TARGET_ath79_generic_DEVICE_tplink_cpe510-v1 is not set
 # CONFIG_TARGET_ath79_generic_DEVICE_tplink_cpe510-v2 is not set
 # CONFIG_TARGET_ath79_generic_DEVICE_tplink_cpe510-v3 is not set
 # CONFIG_TARGET_ath79_generic_DEVICE_tplink_cpe610-v1 is not set
@@ -206,6 +211,7 @@ CONFIG_TARGET_PER_DEVICE_ROOTFS=y
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_dlink_dir-835-a1 is not set
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_dlink_dir-842-c1 is not set
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_dlink_dir-842-c2 is not set
+# CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_dlink_dir-842-c3 is not set
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_dlink_dir-859-a1 is not set
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_devolo_dvl1200e is not set
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_devolo_dvl1200i is not set
@@ -248,6 +254,7 @@ CONFIG_TARGET_DEVICE_PACKAGES_ath79_generic_DEVICE_netgear_wndr3700="blockd bloc
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_phicomm_k2t is not set
 CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_pisen_wmm003n=y
 CONFIG_TARGET_DEVICE_PACKAGES_ath79_generic_DEVICE_pisen_wmm003n="blockd block-mount kmod-ath9k kmod-ath9k-common kmod-crypto-crc32c kmod-fs-autofs4 kmod-fs-exfat kmod-fs-ext4 kmod-fs-msdos kmod-fs-vfat kmod-fuse kmod-lib-crc16 kmod-mii kmod-nls-cp437 kmod-phy-ath79-usb kmod-scsi-core kmod-usb2 kmod-usb-chipidea kmod-usb-chipidea2 kmod-usb-core kmod-usb-ehci kmod-usb-net kmod-usb-net-cdc-ether kmod-usb-net-rndis kmod-usb-ohci kmod-usb-phy-nop kmod-usb-storage kmod-usb-storage-uas ntfs-3g"
+# CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_pisen_wmb001n is not set
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_pcs_cap324 is not set
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_pcs_cr3000 is not set
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_pcs_cr5000 is not set
@@ -272,8 +279,11 @@ CONFIG_TARGET_DEVICE_PACKAGES_ath79_generic_DEVICE_tplink_archer-c7-v2="ath10k-f
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_tplink_archer-c7-v4 is not set
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_tplink_archer-c7-v5 is not set
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_tplink_archer-d50-v1 is not set
+# CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_tplink_cpe210-v1 is not set
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_tplink_cpe210-v2 is not set
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_tplink_cpe210-v3 is not set
+# CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_tplink_cpe220-v2 is not set
+# CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_tplink_cpe510-v1 is not set
 CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_tplink_cpe510-v2=y
 CONFIG_TARGET_DEVICE_PACKAGES_ath79_generic_DEVICE_tplink_cpe510-v2="kmod-ath9k kmod-ath9k-common rssileds"
 CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_tplink_cpe510-v3=y
