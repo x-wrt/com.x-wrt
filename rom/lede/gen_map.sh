@@ -9,10 +9,10 @@ sha256sums=`cat $sha256sums`
 
 targets=$(cd feeds/x/rom/lede/ && cat $CFGS | grep TARGET_DEVICE_.*=y | sed 's/CONFIG_//;s/=y//' | sort)
 
-echo -n >map.sha256sums
+echo -n >sha256sums.txt
 echo -n >map.list
 
-echo sha256sums: map.sha256sums >>map.list
+echo sha256sums: sha256sums.txt >>map.list
 
 x86bin="`find bin/targets/ | grep -- '\(-combined\|-uefi\)' | sort | while read line; do basename $line; done`"
 test -n "$x86bin" && {
@@ -20,7 +20,7 @@ test -n "$x86bin" && {
 	echo "$x86bin"
 	echo
 	for bin in $x86bin; do
-		echo "$sha256sums" | grep "$bin" >>map.sha256sums
+		echo "$sha256sums" | grep "$bin" >>sha256sums.txt
 		case $bin in
 			*x86-64-combined*)
 				echo "x86 64bits (MBR dos):$bin" >>map.list
@@ -106,7 +106,7 @@ for t in $targets; do
 		echo "`echo $dis`:"
 		for i in $bin; do
 			echo $i;
-			echo "$sha256sums" | grep "$i" >>map.sha256sums
+			echo "$sha256sums" | grep "$i" >>sha256sums.txt
 		done
 		echo
 		echo "`echo $dis`:"$bin >>map.list
@@ -119,7 +119,7 @@ find bin/targets/ | grep -q -- -sdk- || {
 }
 find bin/targets/ | grep -- -sdk- | while read s; do basename $s; done | sort >sdk_map.list
 find bin/targets/ | grep -- -sdk- >sdk_upload.list
-echo -n >sdk_map.sha256sums
+echo -n >sdk_sha256sums.txt
 cat sdk_map.list | while read bin; do
-	echo "$sha256sums" | grep "$bin" >>sdk_map.sha256sums
+	echo "$sha256sums" | grep "$bin" >>sdk_sha256sums.txt
 done
