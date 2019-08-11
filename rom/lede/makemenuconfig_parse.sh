@@ -305,7 +305,6 @@ for t in $targets; do
 		TARGET_DEVICE_ath79_generic_DEVICE_ubnt_lap-120|\
 		TARGET_DEVICE_ath79_generic_DEVICE_tplink_archer-c59-v1|\
 		TARGET_DEVICE_ath79_generic_DEVICE_rosinson_wr818|\
-		TARGET_DEVICE_ramips_mt76x8_DEVICE_vocore_vocore2-lite|\
 		TARGET_DEVICE_ramips_mt76x8_DEVICE_vocore_vocore2|\
 		TARGET_DEVICE_ramips_mt76x8_DEVICE_skylab_skw92a|\
 		TARGET_DEVICE_ramips_mt7620_DEVICE_lava_lr-25g001|\
@@ -440,6 +439,7 @@ for t in $targets; do
 			flash_gt8m=1
 		;;
 		#<=8M flash
+		TARGET_DEVICE_ramips_mt76x8_DEVICE_vocore_vocore2-lite|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_tplink_re650-v1|\
 		TARGET_DEVICE_ath79_generic_DEVICE_adtran_bsap1840|\
 		TARGET_DEVICE_ath79_generic_DEVICE_adtran_bsap1800-v2|\
