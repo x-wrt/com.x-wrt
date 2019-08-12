@@ -111,7 +111,8 @@ CONFIG_TARGET_PER_DEVICE_ROOTFS=y
 # CONFIG_TARGET_DEVICE_ramips_mt76x8_DEVICE_alfa-network_awusfree1 is not set
 CONFIG_TARGET_DEVICE_ramips_mt76x8_DEVICE_buffalo_wcr-1166ds=y
 CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt76x8_DEVICE_buffalo_wcr-1166ds="kmod-mt76x02-common kmod-mt76x2 kmod-mt76x2-common"
-# CONFIG_TARGET_DEVICE_ramips_mt76x8_DEVICE_cudy_wr1000 is not set
+CONFIG_TARGET_DEVICE_ramips_mt76x8_DEVICE_cudy_wr1000=y
+CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt76x8_DEVICE_cudy_wr1000="kmod-mt76x02-common kmod-mt76x2 kmod-mt76x2-common"
 # CONFIG_TARGET_DEVICE_ramips_mt76x8_DEVICE_duzun_dm06 is not set
 # CONFIG_TARGET_DEVICE_ramips_mt76x8_DEVICE_glinet_gl-mt300n-v2 is not set
 CONFIG_TARGET_DEVICE_ramips_mt76x8_DEVICE_glinet_vixmini=y

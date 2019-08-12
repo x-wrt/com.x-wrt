@@ -439,6 +439,7 @@ for t in $targets; do
 			flash_gt8m=1
 		;;
 		#<=8M flash
+		TARGET_DEVICE_ramips_mt76x8_DEVICE_cudy_wr1000|\
 		TARGET_DEVICE_ramips_mt76x8_DEVICE_vocore_vocore2-lite|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_tplink_re650-v1|\
 		TARGET_DEVICE_ath79_generic_DEVICE_adtran_bsap1840|\
@@ -836,6 +837,7 @@ for t in $targets; do
 			has_usb=1
 		;;
 		#no usb
+		TARGET_DEVICE_ramips_mt76x8_DEVICE_cudy_wr1000|\
 		TARGET_DEVICE_ath79_generic_DEVICE_dlink_dir-842-c3|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_tplink_re650-v1|\
 		TARGET_DEVICE_ath79_generic_DEVICE_adtran_bsap1840|\
