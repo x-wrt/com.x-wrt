@@ -12,7 +12,7 @@ s.anonymous = true
 
 s:tab("system", translate("System Settings"))
 
-e = s:taboption("system", Flag, "natcapovpn", translate("Enable OpenVPN Server"), translate("Allows you to use OpenVPN to connect to router, the router need to have a public IP."))
+e = s:taboption("system", Flag, "natcapovpn", translate("Enable OpenVPN Server"), translate("Please enable compress option on OpenVPN client side."))
 e.default = e.disabled
 e.rmempty = false
 

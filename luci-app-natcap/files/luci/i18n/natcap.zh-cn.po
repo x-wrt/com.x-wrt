@@ -151,8 +151,8 @@ msgstr "开启OpenVPN服务"
 msgid "Enable The PPTP Server"
 msgstr "启用PPTP服务器"
 
-msgid "Allows you to use OpenVPN to connect to router, the router need to have a public IP."
-msgstr "允许你用OpenVPN连接自己的路由器，路由器需要有公网IP。"
+msgid "Please enable compress option on OpenVPN client side."
+msgstr "请注意开启客户的压缩(compress)选项，否则连上了网络也不通。"
 
 msgid "Allows you to use VPN to connect to router, the router need to have a public IP."
 msgstr "允许你用VPN连接自己的路由器，路由器需要有公网IP。"
