@@ -104,6 +104,7 @@ CONFIG_TARGET_MULTI_PROFILE=y
 # CONFIG_TARGET_ath79_generic_DEVICE_ocedo_ursus is not set
 # CONFIG_TARGET_ath79_generic_DEVICE_openmesh_om5p-ac-v2 is not set
 # CONFIG_TARGET_ath79_generic_DEVICE_pisen_wmm003n is not set
+# CONFIG_TARGET_ath79_generic_DEVICE_pisen_ts-d084 is not set
 # CONFIG_TARGET_ath79_generic_DEVICE_pisen_wmb001n is not set
 # CONFIG_TARGET_ath79_generic_DEVICE_phicomm_k2t is not set
 # CONFIG_TARGET_ath79_generic_DEVICE_pcs_cap324 is not set
@@ -260,6 +261,8 @@ CONFIG_TARGET_DEVICE_PACKAGES_ath79_generic_DEVICE_netgear_wndr3700="blockd bloc
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_phicomm_k2t is not set
 CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_pisen_wmm003n=y
 CONFIG_TARGET_DEVICE_PACKAGES_ath79_generic_DEVICE_pisen_wmm003n="blockd block-mount kmod-ath9k kmod-ath9k-common kmod-crypto-crc32c kmod-fs-autofs4 kmod-fs-exfat kmod-fs-ext4 kmod-fs-msdos kmod-fs-vfat kmod-fuse kmod-lib-crc16 kmod-mii kmod-nls-cp437 kmod-phy-ath79-usb kmod-scsi-core kmod-usb2 kmod-usb-chipidea kmod-usb-chipidea2 kmod-usb-core kmod-usb-ehci kmod-usb-net kmod-usb-net-cdc-ether kmod-usb-net-rndis kmod-usb-ohci kmod-usb-phy-nop kmod-usb-storage kmod-usb-storage-uas ntfs-3g"
+CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_pisen_ts-d084=y
+CONFIG_TARGET_DEVICE_PACKAGES_ath79_generic_DEVICE_pisen_ts-d084="blockd block-mount kmod-ath9k kmod-ath9k-common kmod-crypto-crc32c kmod-fs-autofs4 kmod-fs-exfat kmod-fs-ext4 kmod-fs-msdos kmod-fs-vfat kmod-fuse kmod-lib-crc16 kmod-mii kmod-nls-cp437 kmod-phy-ath79-usb kmod-scsi-core kmod-usb2 kmod-usb-chipidea kmod-usb-chipidea2 kmod-usb-core kmod-usb-ehci kmod-usb-net kmod-usb-net-cdc-ether kmod-usb-net-rndis kmod-usb-ohci kmod-usb-phy-nop kmod-usb-storage kmod-usb-storage-uas ntfs-3g"
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_pisen_wmb001n is not set
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_pcs_cap324 is not set
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_pcs_cr3000 is not set
@@ -670,7 +673,7 @@ CONFIG_TARGET_INIT_CMD="/sbin/init"
 CONFIG_TARGET_INIT_SUPPRESS_STDERR=y
 CONFIG_VERSIONOPT=y
 CONFIG_VERSION_DIST="X-WRT"
-CONFIG_VERSION_NUMBER="5.0_b201908170237"
+CONFIG_VERSION_NUMBER="5.0_b201908181002"
 CONFIG_VERSION_CODE="Disco"
 CONFIG_VERSION_REPO="http://downloads.openwrt.org/snapshots"
 CONFIG_VERSION_HOME_URL="https://x-wrt.com/"
