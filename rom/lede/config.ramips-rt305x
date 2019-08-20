@@ -216,7 +216,8 @@ CONFIG_TARGET_PER_DEVICE_ROOTFS=y
 # CONFIG_TARGET_DEVICE_ramips_rt305x_DEVICE_hilink_hlk-rm04 is not set
 # CONFIG_TARGET_DEVICE_ramips_rt305x_DEVICE_hootoo_ht-tm02 is not set
 # CONFIG_TARGET_DEVICE_ramips_rt305x_DEVICE_huawei_d105 is not set
-# CONFIG_TARGET_DEVICE_ramips_rt305x_DEVICE_huawei_hg255d is not set
+CONFIG_TARGET_DEVICE_ramips_rt305x_DEVICE_huawei_hg255d=y
+CONFIG_TARGET_DEVICE_PACKAGES_ramips_rt305x_DEVICE_huawei_hg255d=""
 # CONFIG_TARGET_DEVICE_ramips_rt305x_DEVICE_intenso_memory2move is not set
 # CONFIG_TARGET_DEVICE_ramips_rt305x_DEVICE_jcg_jhr-n805r is not set
 # CONFIG_TARGET_DEVICE_ramips_rt305x_DEVICE_jcg_jhr-n825r is not set
