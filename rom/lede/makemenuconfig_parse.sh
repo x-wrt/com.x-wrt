@@ -241,8 +241,8 @@ for t in $targets; do
 		TARGET_DEVICE_brcm2708_bcm2710_DEVICE_rpi-3|\
 		TARGET_DEVICE_brcm2708_bcm2711_DEVICE_rpi-4|\
 		TARGET_DEVICE_ramips_mt76x8_DEVICE_xiaomi_mir4a-100m|\
-		TARGET_DEVICE_ipq40xx_DEVICE_avm_fritzbox-4040|\
-		TARGET_DEVICE_ipq40xx_DEVICE_avm_fritzbox-7530|\
+		TARGET_DEVICE_ipq40xx_generic_DEVICE_avm_fritzbox-4040|\
+		TARGET_DEVICE_ipq40xx_generic_DEVICE_avm_fritzbox-7530|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_tenbay_mac500f|\
 		TARGET_DEVICE_ath79_generic_DEVICE_wd_mynet-n750|\
 		TARGET_DEVICE_ath79_generic_DEVICE_engenius_epg5000|\
@@ -265,18 +265,18 @@ for t in $targets; do
 		TARGET_DEVICE_ar71xx_generic_DEVICE_gl-usb150|\
 		TARGET_DEVICE_ar71xx_generic_DEVICE_gl-mifi|\
 		TARGET_DEVICE_ath79_generic_DEVICE_yuncore_a770|\
-		TARGET_DEVICE_ipq40xx_DEVICE_netgear_ex6150v2|\
-		TARGET_DEVICE_ipq40xx_DEVICE_netgear_ex6100v2|\
-		TARGET_DEVICE_ipq40xx_DEVICE_glinet_gl-b1300|\
-		TARGET_DEVICE_ipq40xx_DEVICE_engenius_eap1300|\
-		TARGET_DEVICE_ipq40xx_DEVICE_compex_wpj428|\
-		TARGET_DEVICE_ipq40xx_DEVICE_asus_map-ac2200|\
-		TARGET_DEVICE_ipq40xx_DEVICE_linksys_ea8300|\
+		TARGET_DEVICE_ipq40xx_generic_DEVICE_netgear_ex6150v2|\
+		TARGET_DEVICE_ipq40xx_generic_DEVICE_netgear_ex6100v2|\
+		TARGET_DEVICE_ipq40xx_generic_DEVICE_glinet_gl-b1300|\
+		TARGET_DEVICE_ipq40xx_generic_DEVICE_engenius_eap1300|\
+		TARGET_DEVICE_ipq40xx_generic_DEVICE_compex_wpj428|\
+		TARGET_DEVICE_ipq40xx_generic_DEVICE_asus_map-ac2200|\
+		TARGET_DEVICE_ipq40xx_generic_DEVICE_linksys_ea8300|\
 		TARGET_DEVICE_ath79_generic_DEVICE_tplink_archer-c5-v1|\
 		TARGET_DEVICE_ath79_generic_DEVICE_xiaomi_mi-router-4q|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_wevo_11acnas|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_wevo_w2914ns-v2|\
-		TARGET_DEVICE_ipq40xx_DEVICE_linksys_ea6350v3|\
+		TARGET_DEVICE_ipq40xx_generic_DEVICE_linksys_ea6350v3|\
 		TARGET_DEVICE_ramips_rt305x_DEVICE_vocore_vocore-16m|\
 		TARGET_DEVICE_ramips_rt305x_DEVICE_hg255d|\
 		TARGET_DEVICE_bcm53xx_DEVICE_phicomm-k3|\
@@ -344,8 +344,8 @@ for t in $targets; do
 		TARGET_DEVICE_ramips_mt7621_DEVICE_wf-2881|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_dlink_dir-860l-b1|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_d-team_pbr-m1|\
-		TARGET_DEVICE_ipq40xx_DEVICE_asus_rt-ac58u|\
-		TARGET_DEVICE_ipq40xx_DEVICE_asus_rt-acrh17|\
+		TARGET_DEVICE_ipq40xx_generic_DEVICE_asus_rt-ac58u|\
+		TARGET_DEVICE_ipq40xx_generic_DEVICE_asus_rt-acrh17|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_zbtlink_zbt-we3526|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_d-team_newifi-d2|\
 		TARGET_DEVICE_ramips_mt7620_DEVICE_ohyeah_oy-0001|\
@@ -364,8 +364,8 @@ for t in $targets; do
 		TARGET_DEVICE_ramips_mt7620_DEVICE_we1026-5g-16m|\
 		TARGET_DEVICE_ar71xx_generic_DEVICE_archer-c59-v1|\
 		TARGET_DEVICE_ar71xx_generic_DEVICE_archer-c59-v2|\
-		TARGET_DEVICE_ipq806x_DEVICE_zyxel_nbg6817|\
-		TARGET_DEVICE_ipq806x_DEVICE_avm_fritzbox-4040|\
+		TARGET_DEVICE_ipq806x_generic_DEVICE_zyxel_nbg6817|\
+		TARGET_DEVICE_ipq806x_generic_DEVICE_avm_fritzbox-4040|\
 		TARGET_DEVICE_ramips_mt7620_DEVICE_xiaomi_miwifi-mini|\
 		TARGET_DEVICE_bcm53xx_DEVICE_netgear-r6250|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_mir3g|\
@@ -380,7 +380,7 @@ for t in $targets; do
 		TARGET_DEVICE_ramips_mt76x8_DEVICE_hiwifi_hc5761a|\
 		TARGET_DEVICE_ar71xx_generic_DEVICE_F9K1115V2|\
 		TARGET_DEVICE_ar71xx_tiny_DEVICE_F9K1115V2|\
-		TARGET_DEVICE_ipq806x_DEVICE_qcom_ap-dk04.1-c1|\
+		TARGET_DEVICE_ipq806x_generic_DEVICE_qcom_ap-dk04.1-c1|\
 		TARGET_DEVICE_ar71xx_generic_DEVICE_DGL5500A1|\
 		TARGET_DEVICE_ar71xx_generic_DEVICE_gl-inet-6416A-v1|\
 		TARGET_DEVICE_brcm47xx_mips74k_DEVICE_asus-rt-n16|\
@@ -392,13 +392,13 @@ for t in $targets; do
 		TARGET_DEVICE_ramips_mt7621_DEVICE_zbtlink_zbt-wg2626|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_zbtlink_zbt-wg3526-16m|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_zbtlink_zbt-wg3526-32m|\
-		TARGET_DEVICE_ipq806x_DEVICE_linksys_ea8500|\
+		TARGET_DEVICE_ipq806x_generic_DEVICE_linksys_ea8500|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_buffalo_wsr-1166dhp|\
 		TARGET_DEVICE_ar71xx_nand_DEVICE_domywifi-dw33d|\
-		TARGET_DEVICE_ipq806x_DEVICE_netgear_r7800|\
-		TARGET_DEVICE_ipq806x_DEVICE_netgear_r7500v2|\
-		TARGET_DEVICE_ipq806x_DEVICE_netgear_r7500|\
-		TARGET_DEVICE_ipq806x_DEVICE_netgear_d7800|\
+		TARGET_DEVICE_ipq806x_generic_DEVICE_netgear_r7800|\
+		TARGET_DEVICE_ipq806x_generic_DEVICE_netgear_r7500v2|\
+		TARGET_DEVICE_ipq806x_generic_DEVICE_netgear_r7500|\
+		TARGET_DEVICE_ipq806x_generic_DEVICE_netgear_d7800|\
 		TARGET_DEVICE_kirkwood_DEVICE_linksys_viper|\
 		TARGET_DEVICE_apm821xx_nand_DEVICE_WNDR4700|\
 		TARGET_DEVICE_ar71xx_generic_DEVICE_hiwifi-hc6361|\
@@ -588,16 +588,16 @@ for t in $targets; do
 		TARGET_DEVICE_brcm2708_bcm2709_DEVICE_rpi-2|\
 		TARGET_DEVICE_brcm2708_bcm2710_DEVICE_rpi-3|\
 		TARGET_DEVICE_brcm2708_bcm2711_DEVICE_rpi-4|\
-		TARGET_DEVICE_ipq40xx_DEVICE_avm_fritzbox-4040|\
-		TARGET_DEVICE_ipq40xx_DEVICE_avm_fritzbox-7530|\
+		TARGET_DEVICE_ipq40xx_generic_DEVICE_avm_fritzbox-4040|\
+		TARGET_DEVICE_ipq40xx_generic_DEVICE_avm_fritzbox-7530|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_tenbay_mac500f|\
-		TARGET_DEVICE_ipq40xx_DEVICE_linksys_ea8300|\
+		TARGET_DEVICE_ipq40xx_generic_DEVICE_linksys_ea8300|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_youku_yk-l2|\
-		TARGET_DEVICE_ipq40xx_DEVICE_glinet_gl-b1300|\
-		TARGET_DEVICE_ipq40xx_DEVICE_compex_wpj428|\
+		TARGET_DEVICE_ipq40xx_generic_DEVICE_glinet_gl-b1300|\
+		TARGET_DEVICE_ipq40xx_generic_DEVICE_compex_wpj428|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_wevo_11acnas|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_wevo_w2914ns-v2|\
-		TARGET_DEVICE_ipq40xx_DEVICE_linksys_ea6350v3|\
+		TARGET_DEVICE_ipq40xx_generic_DEVICE_linksys_ea6350v3|\
 		TARGET_DEVICE_bcm53xx_DEVICE_phicomm-k3|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_gehua_ghl-r-001|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_xzwifi_creativebox-v1|\
@@ -615,10 +615,10 @@ for t in $targets; do
 		TARGET_DEVICE_ramips_mt7621_DEVICE_dlink_dir-860l-b1|\
 		TARGET_DEVICE_sunxi_cortexa7_DEVICE_sun8i-h2-plus-orangepi-r1|\
 		TARGET_DEVICE_sunxi_cortexa7_DEVICE_sun8i-h3-nanopi-neo|\
-		TARGET_DEVICE_ipq40xx_DEVICE_asus_rt-ac58u|\
-		TARGET_DEVICE_ipq40xx_DEVICE_asus_rt-acrh17|\
-		TARGET_DEVICE_ipq806x_DEVICE_zyxel_nbg6817|\
-		TARGET_DEVICE_ipq806x_DEVICE_avm_fritzbox-4040|\
+		TARGET_DEVICE_ipq40xx_generic_DEVICE_asus_rt-ac58u|\
+		TARGET_DEVICE_ipq40xx_generic_DEVICE_asus_rt-acrh17|\
+		TARGET_DEVICE_ipq806x_generic_DEVICE_zyxel_nbg6817|\
+		TARGET_DEVICE_ipq806x_generic_DEVICE_avm_fritzbox-4040|\
 		TARGET_DEVICE_bcm53xx_DEVICE_netgear-r6250|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_mir3g|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_xiaomi_mir3g-nor|\
@@ -627,16 +627,16 @@ for t in $targets; do
 		TARGET_DEVICE_ramips_mt7621_DEVICE_xiaomi_mir3p|\
 		TARGET_DEVICE_ar71xx_generic_DEVICE_F9K1115V2|\
 		TARGET_DEVICE_ar71xx_tiny_DEVICE_F9K1115V2|\
-		TARGET_DEVICE_ipq806x_DEVICE_qcom_ap-dk04.1-c1|\
+		TARGET_DEVICE_ipq806x_generic_DEVICE_qcom_ap-dk04.1-c1|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_zbtlink_zbt-we1326|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_zbtlink_zbt-wg2626|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_zbtlink_zbt-wg3526-16m|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_zbtlink_zbt-wg3526-32m|\
-		TARGET_DEVICE_ipq806x_DEVICE_linksys_ea8500|\
-		TARGET_DEVICE_ipq806x_DEVICE_netgear_r7800|\
-		TARGET_DEVICE_ipq806x_DEVICE_netgear_r7500v2|\
-		TARGET_DEVICE_ipq806x_DEVICE_netgear_r7500|\
-		TARGET_DEVICE_ipq806x_DEVICE_netgear_d7800|\
+		TARGET_DEVICE_ipq806x_generic_DEVICE_linksys_ea8500|\
+		TARGET_DEVICE_ipq806x_generic_DEVICE_netgear_r7800|\
+		TARGET_DEVICE_ipq806x_generic_DEVICE_netgear_r7500v2|\
+		TARGET_DEVICE_ipq806x_generic_DEVICE_netgear_r7500|\
+		TARGET_DEVICE_ipq806x_generic_DEVICE_netgear_d7800|\
 		TARGET_DEVICE_kirkwood_DEVICE_linksys_viper|\
 		TARGET_DEVICE_apm821xx_nand_DEVICE_WNDR4700|\
 		TARGET_DEVICE_bcm53xx_DEVICE_asus-rt-ac56u|\
@@ -868,10 +868,10 @@ for t in $targets; do
 		TARGET_DEVICE_ar71xx_generic_DEVICE_gl-usb150|\
 		TARGET_DEVICE_ath79_generic_DEVICE_yuncore_a770|\
 		TARGET_DEVICE_ath79_generic_DEVICE_ubnt_nanostation-m-xw|\
-		TARGET_DEVICE_ipq40xx_DEVICE_netgear_ex6150v2|\
-		TARGET_DEVICE_ipq40xx_DEVICE_netgear_ex6100v2|\
-		TARGET_DEVICE_ipq40xx_DEVICE_engenius_eap1300|\
-		TARGET_DEVICE_ipq40xx_DEVICE_asus_map-ac2200|\
+		TARGET_DEVICE_ipq40xx_generic_DEVICE_netgear_ex6150v2|\
+		TARGET_DEVICE_ipq40xx_generic_DEVICE_netgear_ex6100v2|\
+		TARGET_DEVICE_ipq40xx_generic_DEVICE_engenius_eap1300|\
+		TARGET_DEVICE_ipq40xx_generic_DEVICE_asus_map-ac2200|\
 		TARGET_DEVICE_ath79_generic_DEVICE_tplink_archer-c5-v1|\
 		TARGET_DEVICE_ramips_mt76x8_DEVICE_tplink_tl-wr802n-v4|\
 		TARGET_DEVICE_ramips_mt7620_DEVICE_tplink_archer-mr200|\
