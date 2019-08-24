@@ -226,6 +226,7 @@ for t in $targets; do
 	has_usb=0
 	case $t in
 		#>8M flash
+		TARGET_DEVICE_ramips_mt7621_DEVICE_adslr_g7|\
 		TARGET_DEVICE_ath79_generic_DEVICE_glinet_gl-ar750|\
 		TARGET_DEVICE_ramips_rt305x_DEVICE_huawei_hg255d|\
 		TARGET_DEVICE_ath79_generic_DEVICE_pisen_wmb001n|\
@@ -842,6 +843,7 @@ for t in $targets; do
 			has_usb=1
 		;;
 		#no usb
+		TARGET_DEVICE_ramips_mt7621_DEVICE_adslr_g7|\
 		TARGET_DEVICE_ramips_rt305x_DEVICE_huawei_hg255d|\
 		TARGET_DEVICE_ramips_mt76x8_DEVICE_cudy_wr1000|\
 		TARGET_DEVICE_ath79_generic_DEVICE_dlink_dir-842-c3|\
