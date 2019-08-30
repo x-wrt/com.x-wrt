@@ -2474,6 +2474,7 @@ CONFIG_ZABBIX_NOSSL=y
 CONFIG_ZABBIX_POSTGRESQL=y
 # CONFIG_PACKAGE_zabbix-server-frontend is not set
 # CONFIG_PACKAGE_atop is not set
+# CONFIG_PACKAGE_backuppc is not set
 # CONFIG_PACKAGE_debootstrap is not set
 # CONFIG_PACKAGE_gkrellmd is not set
 # CONFIG_PACKAGE_htop is not set
