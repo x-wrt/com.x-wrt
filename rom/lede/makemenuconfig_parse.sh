@@ -226,6 +226,8 @@ for t in $targets; do
 	has_usb=0
 	case $t in
 		#>8M flash
+		TARGET_DEVICE_ramips_mt7621_DEVICE_netgear_r6260|\
+		TARGET_DEVICE_ramips_mt7621_DEVICE_netgear_r6850|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_adslr_g7|\
 		TARGET_DEVICE_ath79_generic_DEVICE_glinet_gl-ar750|\
 		TARGET_DEVICE_ramips_rt305x_DEVICE_huawei_hg255d|\
@@ -585,6 +587,8 @@ for t in $targets; do
 	#check usb
 	case $t in
 		#with usb3
+		TARGET_DEVICE_ramips_mt7621_DEVICE_netgear_r6260|\
+		TARGET_DEVICE_ramips_mt7621_DEVICE_netgear_r6850|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_thunder_timecloud|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_xwrt_t-cpe1200k-v01|\
 		TARGET_DEVICE_brcm2708_bcm2709_DEVICE_rpi-2|\
