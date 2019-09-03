@@ -283,7 +283,7 @@ for t in $targets; do
 		TARGET_DEVICE_ipq40xx_generic_DEVICE_linksys_ea6350v3|\
 		TARGET_DEVICE_ramips_rt305x_DEVICE_vocore_vocore-16m|\
 		TARGET_DEVICE_ramips_rt305x_DEVICE_hg255d|\
-		TARGET_DEVICE_bcm53xx_DEVICE_phicomm-k3|\
+		TARGET_DEVICE_bcm53xx_generic_DEVICE_phicomm-k3|\
 		TARGET_DEVICE_ath79_generic_DEVICE_devolo_dvl1200i|\
 		TARGET_DEVICE_ath79_generic_DEVICE_devolo_dvl1750i|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_mikrotik_rb750gr3|\
@@ -314,9 +314,9 @@ for t in $targets; do
 		TARGET_DEVICE_ramips_mt76x8_DEVICE_skylab_skw92a|\
 		TARGET_DEVICE_ramips_mt7620_DEVICE_lava_lr-25g001|\
 		TARGET_DEVICE_ramips_mt7620_DEVICE_bdcom_wap2100-sk|\
-		TARGET_DEVICE_bcm53xx_DEVICE_tplink-archer-c9-v1|\
-		TARGET_DEVICE_bcm53xx_DEVICE_tplink-archer-c5-v2|\
-		TARGET_DEVICE_bcm53xx_DEVICE_dlink-dir-885l|\
+		TARGET_DEVICE_bcm53xx_generic_DEVICE_tplink-archer-c9-v1|\
+		TARGET_DEVICE_bcm53xx_generic_DEVICE_tplink-archer-c5-v2|\
+		TARGET_DEVICE_bcm53xx_generic_DEVICE_dlink-dir-885l|\
 		TARGET_DEVICE_ramips_mt7620_DEVICE_glinet_gl-mt750|\
 		TARGET_DEVICE_ath79_generic_DEVICE_tplink_tl-wr842n-v3|\
 		TARGET_DEVICE_ar71xx_generic_DEVICE_tl-wr842n-v3|\
@@ -324,7 +324,7 @@ for t in $targets; do
 		TARGET_DEVICE_ath79_generic_DEVICE_buffalo_wzr-hp-ag300h|\
 		TARGET_DEVICE_ath79_generic_DEVICE_buffalo_wzr-hp-g302h-a1a0|\
 		TARGET_DEVICE_ath79_generic_DEVICE_buffalo_wzr-hp-g450h|\
-		TARGET_DEVICE_bcm53xx_DEVICE_linksys-ea6500-v2|\
+		TARGET_DEVICE_bcm53xx_generic_DEVICE_linksys-ea6500-v2|\
 		TARGET_DEVICE_ramips_mt7620_DEVICE_asus_rt-n12p|\
 		TARGET_DEVICE_ramips_mt7620_DEVICE_asus_rt-ac51u|\
 		TARGET_DEVICE_ramips_mt7620_DEVICE_asus_rt-n14u|\
@@ -371,7 +371,7 @@ for t in $targets; do
 		TARGET_DEVICE_ipq806x_generic_DEVICE_zyxel_nbg6817|\
 		TARGET_DEVICE_ipq806x_generic_DEVICE_avm_fritzbox-4040|\
 		TARGET_DEVICE_ramips_mt7620_DEVICE_xiaomi_miwifi-mini|\
-		TARGET_DEVICE_bcm53xx_DEVICE_netgear-r6250|\
+		TARGET_DEVICE_bcm53xx_generic_DEVICE_netgear-r6250|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_mir3g|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_xiaomi_mir3g-nor|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_xiaomi_mir3g|\
@@ -414,14 +414,14 @@ for t in $targets; do
 		TARGET_DEVICE_ar71xx_nand_DEVICE_R6100|\
 		TARGET_DEVICE_ar71xx_nand_DEVICE_WNDR3700V4|\
 		TARGET_DEVICE_ar71xx_nand_DEVICE_WNDR4300V1|\
-		TARGET_DEVICE_bcm53xx_DEVICE_asus-rt-ac56u|\
-		TARGET_DEVICE_bcm53xx_DEVICE_asus-rt-ac68u|\
-		TARGET_DEVICE_bcm53xx_DEVICE_asus-rt-ac87u|\
-		TARGET_DEVICE_bcm53xx_DEVICE_asus-rt-n18u|\
-		TARGET_DEVICE_bcm53xx_DEVICE_netgear-r6300-v2|\
-		TARGET_DEVICE_bcm53xx_DEVICE_netgear-r7000|\
-		TARGET_DEVICE_bcm53xx_DEVICE_netgear-r7900|\
-		TARGET_DEVICE_bcm53xx_DEVICE_netgear-r8000|\
+		TARGET_DEVICE_bcm53xx_generic_DEVICE_asus-rt-ac56u|\
+		TARGET_DEVICE_bcm53xx_generic_DEVICE_asus-rt-ac68u|\
+		TARGET_DEVICE_bcm53xx_generic_DEVICE_asus-rt-ac87u|\
+		TARGET_DEVICE_bcm53xx_generic_DEVICE_asus-rt-n18u|\
+		TARGET_DEVICE_bcm53xx_generic_DEVICE_netgear-r6300-v2|\
+		TARGET_DEVICE_bcm53xx_generic_DEVICE_netgear-r7000|\
+		TARGET_DEVICE_bcm53xx_generic_DEVICE_netgear-r7900|\
+		TARGET_DEVICE_bcm53xx_generic_DEVICE_netgear-r8000|\
 		TARGET_DEVICE_mvebu_cortexa9_DEVICE_linksys_wrt1200ac|\
 		TARGET_DEVICE_mvebu_cortexa9_DEVICE_linksys_wrt1900ac|\
 		TARGET_DEVICE_mvebu_cortexa9_DEVICE_linksys_wrt1900acs|\
@@ -572,7 +572,7 @@ for t in $targets; do
 		TARGET_DEVICE_ar71xx_generic_DEVICE_tl-wdr3500-v1|\
 		TARGET_DEVICE_ar71xx_generic_DEVICE_wndr3700|\
 		TARGET_DEVICE_ar71xx_generic_DEVICE_WNR2200|\
-		TARGET_DEVICE_bcm53xx_DEVICE_tenda-ac9|\
+		TARGET_DEVICE_bcm53xx_generic_DEVICE_tenda-ac9|\
 		TARGET_DEVICE_ramips_mt7620_DEVICE_zbtlink_zbt-wr8305rt|\
 		TARGET_DEVICE_ramips_mt7620_DEVICE_phicomm_k2g|\
 		TARGET_DEVICE_ramips_mt7620_DEVICE_phicomm_psg1208|\
@@ -604,13 +604,13 @@ for t in $targets; do
 		TARGET_DEVICE_ramips_mt7621_DEVICE_wevo_11acnas|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_wevo_w2914ns-v2|\
 		TARGET_DEVICE_ipq40xx_generic_DEVICE_linksys_ea6350v3|\
-		TARGET_DEVICE_bcm53xx_DEVICE_phicomm-k3|\
+		TARGET_DEVICE_bcm53xx_generic_DEVICE_phicomm-k3|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_gehua_ghl-r-001|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_xzwifi_creativebox-v1|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_mtc_wr1201|\
-		TARGET_DEVICE_bcm53xx_DEVICE_tplink-archer-c9-v1|\
-		TARGET_DEVICE_bcm53xx_DEVICE_dlink-dir-885l|\
-		TARGET_DEVICE_bcm53xx_DEVICE_linksys-ea6500-v2|\
+		TARGET_DEVICE_bcm53xx_generic_DEVICE_tplink-archer-c9-v1|\
+		TARGET_DEVICE_bcm53xx_generic_DEVICE_dlink-dir-885l|\
+		TARGET_DEVICE_bcm53xx_generic_DEVICE_linksys-ea6500-v2|\
 		TARGET_DEVICE_mvebu_cortexa9_DEVICE_linksys_wrt32x|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_puppies|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_nxc200p|\
@@ -625,7 +625,7 @@ for t in $targets; do
 		TARGET_DEVICE_ipq40xx_generic_DEVICE_asus_rt-acrh17|\
 		TARGET_DEVICE_ipq806x_generic_DEVICE_zyxel_nbg6817|\
 		TARGET_DEVICE_ipq806x_generic_DEVICE_avm_fritzbox-4040|\
-		TARGET_DEVICE_bcm53xx_DEVICE_netgear-r6250|\
+		TARGET_DEVICE_bcm53xx_generic_DEVICE_netgear-r6250|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_mir3g|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_xiaomi_mir3g-nor|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_xiaomi_mir3g|\
@@ -645,14 +645,14 @@ for t in $targets; do
 		TARGET_DEVICE_ipq806x_generic_DEVICE_netgear_d7800|\
 		TARGET_DEVICE_kirkwood_DEVICE_linksys_viper|\
 		TARGET_DEVICE_apm821xx_nand_DEVICE_WNDR4700|\
-		TARGET_DEVICE_bcm53xx_DEVICE_asus-rt-ac56u|\
-		TARGET_DEVICE_bcm53xx_DEVICE_asus-rt-ac68u|\
-		TARGET_DEVICE_bcm53xx_DEVICE_asus-rt-ac87u|\
-		TARGET_DEVICE_bcm53xx_DEVICE_asus-rt-n18u|\
-		TARGET_DEVICE_bcm53xx_DEVICE_netgear-r6300-v2|\
-		TARGET_DEVICE_bcm53xx_DEVICE_netgear-r7000|\
-		TARGET_DEVICE_bcm53xx_DEVICE_netgear-r7900|\
-		TARGET_DEVICE_bcm53xx_DEVICE_netgear-r8000|\
+		TARGET_DEVICE_bcm53xx_generic_DEVICE_asus-rt-ac56u|\
+		TARGET_DEVICE_bcm53xx_generic_DEVICE_asus-rt-ac68u|\
+		TARGET_DEVICE_bcm53xx_generic_DEVICE_asus-rt-ac87u|\
+		TARGET_DEVICE_bcm53xx_generic_DEVICE_asus-rt-n18u|\
+		TARGET_DEVICE_bcm53xx_generic_DEVICE_netgear-r6300-v2|\
+		TARGET_DEVICE_bcm53xx_generic_DEVICE_netgear-r7000|\
+		TARGET_DEVICE_bcm53xx_generic_DEVICE_netgear-r7900|\
+		TARGET_DEVICE_bcm53xx_generic_DEVICE_netgear-r8000|\
 		TARGET_DEVICE_mvebu_cortexa9_DEVICE_linksys_wrt1200ac|\
 		TARGET_DEVICE_mvebu_cortexa9_DEVICE_linksys_wrt1900ac|\
 		TARGET_DEVICE_mvebu_cortexa9_DEVICE_linksys_wrt1900acs|\
@@ -708,7 +708,7 @@ for t in $targets; do
 		TARGET_DEVICE_ramips_mt76x8_DEVICE_skylab_skw92a|\
 		TARGET_DEVICE_ramips_mt7620_DEVICE_lava_lr-25g001|\
 		TARGET_DEVICE_ramips_mt7620_DEVICE_bdcom_wap2100-sk|\
-		TARGET_DEVICE_bcm53xx_DEVICE_tplink-archer-c5-v2|\
+		TARGET_DEVICE_bcm53xx_generic_DEVICE_tplink-archer-c5-v2|\
 		TARGET_DEVICE_ramips_mt7620_DEVICE_glinet_gl-mt750|\
 		TARGET_DEVICE_ramips_mt7620_DEVICE_dovado_tiny-ac|\
 		TARGET_DEVICE_ramips_mt7620_DEVICE_edimax_br-6478ac-v2|\
@@ -822,7 +822,7 @@ for t in $targets; do
 		TARGET_DEVICE_ar71xx_nand_DEVICE_WNDR4300V1|\
 		TARGET_DEVICE_ar71xx_nand_DEVICE_WNDR3700V4|\
 		TARGET_DEVICE_ar71xx_nand_DEVICE_R6100|\
-		TARGET_DEVICE_bcm53xx_DEVICE_tenda-ac9|\
+		TARGET_DEVICE_bcm53xx_generic_DEVICE_tenda-ac9|\
 		TARGET_DEVICE_ar71xx_generic_DEVICE_WNR2200|\
 		TARGET_DEVICE_ar71xx_generic_DEVICE_wndr3800ch|\
 		TARGET_DEVICE_ar71xx_generic_DEVICE_wndr3800|\
