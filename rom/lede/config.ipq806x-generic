@@ -445,7 +445,7 @@ CONFIG_TARGET_INIT_CMD="/sbin/init"
 CONFIG_TARGET_INIT_SUPPRESS_STDERR=y
 CONFIG_VERSIONOPT=y
 CONFIG_VERSION_DIST="X-WRT"
-CONFIG_VERSION_NUMBER="5.0_b201908270837"
+CONFIG_VERSION_NUMBER="5.0_b201909070753"
 CONFIG_VERSION_CODE="Disco"
 CONFIG_VERSION_REPO="http://downloads.openwrt.org/snapshots"
 CONFIG_VERSION_HOME_URL="https://x-wrt.com/"
@@ -5021,7 +5021,6 @@ CONFIG_OPENSSL_WITH_CMS=y
 #
 # Algorithm Selection
 #
-CONFIG_OPENSSL_WITH_EC=y
 # CONFIG_OPENSSL_WITH_EC2M is not set
 CONFIG_OPENSSL_WITH_CHACHA_POLY1305=y
 CONFIG_OPENSSL_PREFER_CHACHA_OVER_GCM=y
@@ -6510,12 +6509,10 @@ CONFIG_PACKAGE_ntpclient=y
 #
 # CONFIG_PACKAGE_chaosvpn is not set
 # CONFIG_PACKAGE_fastd is not set
-# CONFIG_PACKAGE_ipsec-tools is not set
 # CONFIG_PACKAGE_libreswan is not set
 # CONFIG_PACKAGE_ocserv is not set
 # CONFIG_PACKAGE_openconnect is not set
 # CONFIG_PACKAGE_openfortivpn is not set
-# CONFIG_PACKAGE_opennhrp is not set
 # CONFIG_PACKAGE_openvpn-easy-rsa is not set
 CONFIG_PACKAGE_openvpn-mbedtls=y
 CONFIG_OPENVPN_mbedtls_ENABLE_LZO=y
