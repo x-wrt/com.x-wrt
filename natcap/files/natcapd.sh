@@ -397,6 +397,11 @@ test -c /dev/natcap_peer_ctl && {
 	echo peer_max_pmtu=${peer_max_pmtu} >/dev/natcap_peer_ctl
 }
 
+test -c $DEV && {
+	natcap_max_pmtu=`uci get natcapd.default.max_pmtu 2>/dev/null || echo 1440`
+	echo natcap_max_pmtu=${natcap_max_pmtu} >$DEV
+}
+
 if [ "x$enabled" = "x0" ] && test -c $DEV; then
 	natcapd_stop
 	rm -f /tmp/natcapd_to_cn
