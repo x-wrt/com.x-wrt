@@ -658,7 +658,28 @@ txrx_vals() {
 	done
 }
 
+peer_check() {
+	PINGH=`uci get natcapd.default.peer_host`
+	PINGH=`for hh in $PINGH; do echo $hh; done | head -n1`
+	test -n "$PINGH" || PINGH=ec2ns.ptpt52.com
+
+	up1=`ping -W2 -c2 -q www.baidu.com 2>&1 | grep "packets received" | awk '{print $4}'`
+	up1=$((up1+0))
+	if test $up1 -eq 2; then
+		up2=`ping -W2 -c5 -s1 -t1 -q $PINGH 2>&1 | grep "packets received" | awk '{print $4}'`
+		up2=$((up2+0))
+		if test $up2 -lt 3; then
+			# peer offline change mode
+			peer_mode=`cat /dev/natcap_peer_ctl  | grep peer_mode= | cut -d= -f2`
+			test -n "$peer_mode" && {
+				echo peer_mode=$((!peer_mode)) >/dev/natcap_peer_ctl
+			}
+		fi
+	fi
+}
+
 ping_cli() {
+	local idx=0
 	PING="ping"
 	which timeout >/dev/null 2>&1 && PING="$TO 30 $PING"
 	while :; do
@@ -673,6 +694,11 @@ ping_cli() {
 				$PING -t1 -s16 -c16 -W1 -q "$hh" &
 			done
 			sleep 16
+		fi
+		idx=$((idx+1))
+		# about every 160 secs do peer_check
+		if test $((idx%10)) -eq 0; then
+			peer_check
 		fi
 	done
 }
