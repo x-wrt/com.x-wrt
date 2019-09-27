@@ -226,6 +226,9 @@ for t in $targets; do
 	has_usb=0
 	case $t in
 		#>8M flash
+		TARGET_DEVICE_ramips_mt7621_DEVICE_asus_rt-ac85p|\
+		TARGET_DEVICE_ramips_mt7621_DEVICE_asus_rt-ac57u|\
+		TARGET_DEVICE_ramips_mt7621_DEVICE_xiaoyu_xy-c5|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_netgear_r6260|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_netgear_r6850|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_adslr_g7|\
@@ -588,6 +591,8 @@ for t in $targets; do
 	#check usb
 	case $t in
 		#with usb3
+		TARGET_DEVICE_ramips_mt7621_DEVICE_asus_rt-ac85p|\
+		TARGET_DEVICE_ramips_mt7621_DEVICE_xiaoyu_xy-c5|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_netgear_r6260|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_netgear_r6850|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_thunder_timecloud|\
@@ -849,6 +854,7 @@ for t in $targets; do
 			has_usb=1
 		;;
 		#no usb
+		TARGET_DEVICE_ramips_mt7621_DEVICE_asus_rt-ac57u|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_adslr_g7|\
 		TARGET_DEVICE_ramips_rt305x_DEVICE_huawei_hg255d|\
 		TARGET_DEVICE_ramips_mt76x8_DEVICE_cudy_wr1000|\
