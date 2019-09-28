@@ -139,8 +139,8 @@ CONFIG_GRUB_BAUDRATE=115200
 CONFIG_GRUB_BOOTOPTS=""
 CONFIG_GRUB_TIMEOUT="5"
 CONFIG_GRUB_TITLE="X-WRT"
-# CONFIG_VDI_IMAGES is not set
-# CONFIG_VMDK_IMAGES is not set
+CONFIG_VDI_IMAGES=y
+CONFIG_VMDK_IMAGES=y
 CONFIG_TARGET_IMAGES_GZIP=y
 
 #
@@ -2974,6 +2974,7 @@ CONFIG_PACKAGE_kmod-ipt-nathelper-rtsp=y
 # CONFIG_PACKAGE_kmod-ipt-nfqueue is not set
 CONFIG_PACKAGE_kmod-ipt-offload=m
 CONFIG_PACKAGE_kmod-ipt-physdev=y
+# CONFIG_PACKAGE_kmod-ipt-proto is not set
 # CONFIG_PACKAGE_kmod-ipt-psd is not set
 # CONFIG_PACKAGE_kmod-ipt-quota2 is not set
 CONFIG_PACKAGE_kmod-ipt-raw=y
@@ -6210,6 +6211,7 @@ CONFIG_PACKAGE_iptables-mod-nat-extra=y
 # CONFIG_PACKAGE_iptables-mod-nflog is not set
 # CONFIG_PACKAGE_iptables-mod-nfqueue is not set
 CONFIG_PACKAGE_iptables-mod-physdev=y
+# CONFIG_PACKAGE_iptables-mod-proto is not set
 # CONFIG_PACKAGE_iptables-mod-psd is not set
 # CONFIG_PACKAGE_iptables-mod-quota2 is not set
 CONFIG_PACKAGE_iptables-mod-rpfilter=y
@@ -6457,6 +6459,7 @@ CONFIG_PACKAGE_p910nd=y
 # CONFIG_PACKAGE_cjdns is not set
 # CONFIG_PACKAGE_cjdns-tests is not set
 # CONFIG_PACKAGE_devlink is not set
+# CONFIG_PACKAGE_frr is not set
 # CONFIG_PACKAGE_genl is not set
 # CONFIG_PACKAGE_igmpproxy is not set
 # CONFIG_PACKAGE_ip-bridge is not set
