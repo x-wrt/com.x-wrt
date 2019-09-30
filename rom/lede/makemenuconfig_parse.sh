@@ -98,6 +98,8 @@ ssmod="libmbedtls \
 	   shadowsocks-libev-ss-tunnel"
 
 excludes="dnsmasq \
+		  kmod-ipt-offload \
+		  kmod-nf-flow \
 		  odhcpd \
 		  wpad-basic \
 		  wpad-mini"
@@ -226,6 +228,8 @@ for t in $targets; do
 	has_usb=0
 	case $t in
 		#>8M flash
+		TARGET_DEVICE_ipq40xx_generic_DEVICE_alfa-network_ap120c-ac|\
+		TARGET_DEVICE_ipq40xx_generic_DEVICE_netgear_ex6200v2|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_asus_rt-ac85p|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_asus_rt-ac57u|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_xiaoyu_xy-c5|\
@@ -674,6 +678,8 @@ for t in $targets; do
 			has_usb=1
 		;;
 		#with usb2
+		TARGET_DEVICE_ipq40xx_generic_DEVICE_alfa-network_ap120c-ac|\
+		TARGET_DEVICE_ipq40xx_generic_DEVICE_netgear_ex6200v2|\
 		TARGET_DEVICE_ath79_generic_DEVICE_glinet_gl-ar750|\
 		TARGET_DEVICE_ath79_generic_DEVICE_pisen_ts-d084|\
 		TARGET_DEVICE_ath79_generic_DEVICE_pisen_wmb001n|\
