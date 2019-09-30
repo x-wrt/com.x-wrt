@@ -16,6 +16,9 @@ msgstr "切换"
 msgid "User ID"
 msgstr "用户标识"
 
+msgid "Remote Mgr Addr"
+msgstr "远程管理地址"
+
 msgid "This Month"
 msgstr "本月"
 
