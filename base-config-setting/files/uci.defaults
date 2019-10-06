@@ -210,27 +210,27 @@ cachesize=2048
 dnsforwardmax=2048
 nf_conntrack_max=16384
 if test $memtotal -ge 1048576; then
-	# >= 1024M
+	# > 1024M
 	cachesize=10000
 	dnsforwardmax=10000
 	nf_conntrack_max=262144
 elif test $memtotal -ge 524288; then
-	# >= 512M
+	# <= 1024M
 	cachesize=10000
 	dnsforwardmax=10000
 	nf_conntrack_max=131072
 elif test $memtotal -ge 262144; then
-	# >= 256M
+	# <= 512M
 	cachesize=8192
 	dnsforwardmax=8192
 	nf_conntrack_max=65536
 elif test $memtotal -ge 131072; then
-	# >= 128M
+	# <= 256M
 	cachesize=4096
 	dnsforwardmax=4096
 	nf_conntrack_max=65536
 elif test $memtotal -ge 65536; then
-	# >= 64M
+	# <= 128M
 	cachesize=2048
 	dnsforwardmax=2048
 	nf_conntrack_max=32768
