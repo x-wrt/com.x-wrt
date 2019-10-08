@@ -671,9 +671,9 @@ peer_check() {
 	up1=`ping -W2 -c2 -q www.baidu.com 2>&1 | grep "packets received" | awk '{print $4}'`
 	up1=$((up1+0))
 	if test $up1 -eq 2; then
-		up2=`ping -W2 -c5 -s1 -t1 -q $PINGH 2>&1 | grep "packets received" | awk '{print $4}'`
+		up2=`ping -W5 -c5 -s1 -t1 -q $PINGH 2>&1 | grep "packets received" | awk '{print $4}'`
 		up2=$((up2+0))
-		if test $up2 -lt 3; then
+		if test $up2 -lt 2; then
 			# peer offline change mode
 			peer_mode=`cat /dev/natcap_peer_ctl  | grep peer_mode= | cut -d= -f2`
 			test -n "$peer_mode" && {
@@ -703,7 +703,7 @@ ping_cli() {
 		idx=$((idx+1))
 		# about every 160 secs do peer_check
 		if test $((idx%10)) -eq 0; then
-			peer_check
+			peer_check &
 		fi
 	done
 }
