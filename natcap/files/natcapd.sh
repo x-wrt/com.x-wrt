@@ -702,7 +702,8 @@ ping_cli() {
 		fi
 		idx=$((idx+1))
 		# about every 160 secs do peer_check
-		if test $((idx%10)) -eq 0; then
+		PEER_CHECK=`uci get natcapd.default.peer_check || echo 1`
+		if test $((idx%10)) -eq 0 && [ "x$PEER_CHECK" = "x1"]; then
 			peer_check &
 		fi
 	done
