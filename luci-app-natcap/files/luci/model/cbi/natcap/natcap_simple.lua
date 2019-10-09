@@ -12,7 +12,7 @@ s.anonymous = true
 
 s:tab("general", translate("General Settings"))
 
-e = s:taboption("general", Flag, "enabled", translate("Enable Natcap"))
+e = s:taboption("general", Flag, "enabled", translate("Enable Natcap"), translate("You need an authorization code to enable international network acceleration."))
 e.default = e.disabled
 e.rmempty = false
 
