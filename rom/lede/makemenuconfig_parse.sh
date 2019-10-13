@@ -228,6 +228,9 @@ for t in $targets; do
 	has_usb=0
 	case $t in
 		#>8M flash
+		TARGET_DEVICE_ath79_generic_DEVICE_comfast_cf-wr650ac-v1|\
+		TARGET_DEVICE_ath79_generic_DEVICE_comfast_cf-wr650ac-v2|\
+		TARGET_DEVICE_ath79_generic_DEVICE_comfast_cf-e313ac|\
 		TARGET_DEVICE_ipq40xx_generic_DEVICE_alfa-network_ap120c-ac|\
 		TARGET_DEVICE_ipq40xx_generic_DEVICE_netgear_ex6200v2|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_asus_rt-ac85p|\
@@ -860,6 +863,9 @@ for t in $targets; do
 			has_usb=1
 		;;
 		#no usb
+		TARGET_DEVICE_ath79_generic_DEVICE_comfast_cf-wr650ac-v1|\
+		TARGET_DEVICE_ath79_generic_DEVICE_comfast_cf-wr650ac-v2|\
+		TARGET_DEVICE_ath79_generic_DEVICE_comfast_cf-e313ac|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_asus_rt-ac57u|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_adslr_g7|\
 		TARGET_DEVICE_ramips_rt305x_DEVICE_huawei_hg255d|\
