@@ -11,7 +11,7 @@ t = js.decode(t)
 if t.system and t.system.label_macaddr then
 	print(string.upper(t.system.label_macaddr))
 	os.exit(0)
-fi
+end
 
 if t.network and t.network.lan and t.network.lan.macaddr then
 	print(string.upper(t.network.lan.macaddr))
