@@ -72,8 +72,9 @@ moreapps="libstdcpp \
 		  libssh2 \
 		  libxml2 \
 		  luci-app-aria2 \
-		  luci-app-samba \
+		  luci-i18n-aria2-en \
 		  luci-i18n-aria2-zh-cn \
+		  luci-app-samba \
 		  luci-i18n-samba-en \
 		  luci-i18n-samba-zh-cn \
 		  webui-aria2 \
