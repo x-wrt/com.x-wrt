@@ -72,7 +72,7 @@ function status()
 	data.total_tx = tonumber(data.total_tx) or 0
 	data.total_rx = tonumber(data.total_rx) or 0
 	data.uid = data.client_mac .. "-" .. data.uhash
-	data.mgr = "http://" .. string.lower(data.client_mac) .. ".m.x-wrt.dev/"
+	data.mgr = "http://" .. string.lower(data.client_mac) .. ".x-wrt.dev/"
 	data.domain = string.lower(data.client_mac) .. ".dns.ptpt52.com"
 	data.client_mac = nil
 	data.uhash = nill
