@@ -17,9 +17,4 @@ uci -q batch <<-EOF >/dev/null
 	commit ucitrack
 EOF
 
-test -f /etc/openvpn/natcap-ta.key || {
-	mkdir -p /etc/openvpn
-	openvpn --genkey --secret /etc/openvpn/natcap-ta.key
-}
-
 exit 0
