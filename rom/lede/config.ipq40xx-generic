@@ -3227,9 +3227,9 @@ CONFIG_PACKAGE_kmod-wireguard=y
 # Other modules
 #
 # CONFIG_PACKAGE_kmod-6lowpan is not set
-CONFIG_PACKAGE_kmod-ath3k=m
+# CONFIG_PACKAGE_kmod-ath3k is not set
 # CONFIG_PACKAGE_kmod-bcma is not set
-CONFIG_PACKAGE_kmod-bluetooth=m
+# CONFIG_PACKAGE_kmod-bluetooth is not set
 # CONFIG_PACKAGE_kmod-bluetooth_6lowpan is not set
 # CONFIG_PACKAGE_kmod-bmp085 is not set
 # CONFIG_PACKAGE_kmod-bmp085-i2c is not set
@@ -3263,8 +3263,7 @@ CONFIG_PACKAGE_kmod-gpio-button-hotplug=y
 # CONFIG_PACKAGE_kmod-pps-ldisc is not set
 # CONFIG_PACKAGE_kmod-ptp is not set
 CONFIG_PACKAGE_kmod-random-core=m
-CONFIG_PACKAGE_kmod-regmap-core=m
-CONFIG_PACKAGE_kmod-rfkill=m
+# CONFIG_PACKAGE_kmod-rfkill is not set
 # CONFIG_PACKAGE_kmod-rtc-ds1307 is not set
 # CONFIG_PACKAGE_kmod-rtc-ds1374 is not set
 # CONFIG_PACKAGE_kmod-rtc-ds1672 is not set
@@ -3275,6 +3274,7 @@ CONFIG_PACKAGE_kmod-rfkill=m
 # CONFIG_PACKAGE_kmod-rtc-pcf8563 is not set
 # CONFIG_PACKAGE_kmod-rtc-pt7c4338 is not set
 # CONFIG_PACKAGE_kmod-rtc-rs5c372a is not set
+# CONFIG_PACKAGE_kmod-rtc-rx8025 is not set
 # CONFIG_PACKAGE_kmod-sdhci is not set
 # CONFIG_PACKAGE_kmod-serial-8250 is not set
 # CONFIG_PACKAGE_kmod-serial-8250-exar is not set
