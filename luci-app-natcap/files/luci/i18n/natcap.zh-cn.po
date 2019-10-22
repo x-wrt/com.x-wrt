@@ -68,7 +68,7 @@ msgid "Enable Natcap"
 msgstr "启用"
 
 msgid "You need an authorization code to enable international network acceleration."
-msgstr "你需要授权码来开启国际网络加速。"
+msgstr "你需要授权码来开启国际网络加速，没有授权请不要开启，否则无法访问国外网站。"
 
 msgid "Natcap Account"
 msgstr "帐号"
