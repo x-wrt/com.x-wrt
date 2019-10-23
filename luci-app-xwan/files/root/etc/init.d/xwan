@@ -8,7 +8,7 @@ mwan3_add_one() {
 	uci set mwan3.${intf}.enabled='1'
 	uci set mwan3.${intf}.initial_state='online'
 	uci set mwan3.${intf}.family='ipv4'
-	uci delete mwan3.${intf}.track_ip
+	uci delete mwan3.${intf}.track_ip 2>/dev/null
 	uci add_list mwan3.${intf}.track_ip='1.1.1.1'
 	uci add_list mwan3.${intf}.track_ip='114.114.114.114'
 	uci add_list mwan3.${intf}.track_ip='119.29.29.29'
@@ -57,7 +57,7 @@ add_to_zone_wan() {
 add_xwan() {
 	local cfg="$1"
 	local enabled number balanced
-	local ifname idx
+	local ifname id idx
 	local change=0
 
 	config_get enabled "$cfg" enabled
@@ -67,16 +67,14 @@ add_xwan() {
 	xwan_new=$(uci show xwan | md5sum | head -c32)
 	xwan_old=$(uci get mwan3.globals.xwan_md5)
 
-	[ "x$enabled" = "x1" ] && {
-		[ "x${xwan_new}" = "x${xwan_old}" ] || {
-			while uci delete mwan3.@interface[0] >/dev/null 2>&1; do :; done
-			while uci delete mwan3.@member[0] >/dev/null 2>&1; do :; done
-			while uci delete mwan3.@policy[0] >/dev/null 2>&1; do :; done
-			change=1
-		}
+	[ "x${xwan_new}" = "x${xwan_old}" ] || {
+		while uci delete mwan3.@interface[0] >/dev/null 2>&1; do :; done
+		while uci delete mwan3.@member[0] >/dev/null 2>&1; do :; done
+		while uci delete mwan3.@policy[0] >/dev/null 2>&1; do :; done
+		change=1
 	}
 
-	idx=0
+	id=0
 	ifname=`uci get network.wan.ifname`
 
 	if [ "x$enabled" = "x1" ] && test $number -ge 2 && test -n "$ifname"; then
@@ -91,7 +89,8 @@ add_xwan() {
 			}
 		}
 		while :; do
-			idx=$((idx + 1))
+			id=$((id + 1))
+			idx=$(printf %02u $id)
 			uci get network.device$idx >/dev/null 2>&1 || {
 				uci set network.device$idx=device
 				uci set network.device$idx.ifname="$ifname"
@@ -106,7 +105,7 @@ add_xwan() {
 					uci set network.xwan$idx.$_k="$_v"
 				done
 				uci set network.xwan$idx.ifname="mvlan$idx"
-				uci set network.xwan$idx.metric=$((40 + idx))
+				uci set network.xwan$idx.metric=$((40 + id))
 				[ "x`uci get network.wan.proto 2>/dev/null`" = "xstatic" ] && \
 				uci set network.xwan$idx.auto='0'
 				change=1
@@ -120,12 +119,13 @@ add_xwan() {
 					change=1
 				}
 			}
-			test $idx -ge $((number - 1)) && break
+			test $id -ge $((number - 1)) && break
 		done
 	fi
 	
 	#clean up
-	idx=$((idx + 1))
+	id=$((id + 1))
+	idx=$(printf %02u $id)
 	while :; do
 		uci get network.device$idx >/dev/null 2>&1 && {
 			uci delete network.device$idx
@@ -135,7 +135,8 @@ add_xwan() {
 			uci delete network.xwan$idx
 			change=1
 		}
-		idx=$((idx + 1))
+		id=$((id + 1))
+		idx=$(printf %02u $id)
 		uci get network.device$idx >/dev/null 2>&1 || uci get network.xwan$idx >/dev/null 2>&1 || break
 	done
 

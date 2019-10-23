@@ -11,7 +11,7 @@ e.default = e.disabled
 e.rmempty = false
 
 e = s:option(Value, "number", translate("Number of xwan"))
-e.datatype = "and(uinteger,min(1),max(32))"
+e.datatype = "and(uinteger,min(1),max(60))"
 e.rmempty  = false
 
 e = s:option(Flag, "balanced", translate("Auto balanced setup"))
