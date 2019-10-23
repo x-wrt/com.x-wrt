@@ -759,6 +759,8 @@ main_trigger() {
 						$WGET --timeout=60 --header="Host: router-sh.ptpt52.com" --ca-certificate=/tmp/cacert.pem -qO /tmp/xx.tmp.json \
 							"https://$built_in_server$URI" || {
 							#XXX disable dns proxy, becasue of bad connection
+							ipset -n list knocklist >/dev/null 2>&1 || ipset -! create knocklist iphash hashsize 64 maxelem 1024
+							ipset add knocklist $hostip 2>/dev/null
 							cp /tmp/natcapd.txrx.old /tmp/natcapd.txrx
 							continue
 						}
