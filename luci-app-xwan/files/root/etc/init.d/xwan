@@ -2,6 +2,10 @@
 
 START=19
 
+boot() {
+	XBOOT=1 #do nothing
+}
+
 mwan3_add_one() {
 	local intf=$1
 	uci set mwan3.${intf}=interface
