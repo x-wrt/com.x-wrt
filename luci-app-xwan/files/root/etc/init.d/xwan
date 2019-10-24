@@ -24,7 +24,7 @@ mwan3_add_one() {
 	uci set mwan3.${intf}.max_ttl='60'
 	uci set mwan3.${intf}.check_quality='0'
 	uci set mwan3.${intf}.timeout='2'
-	uci set mwan3.${intf}.interval='5'
+	uci set mwan3.${intf}.interval='15'
 	uci set mwan3.${intf}.failure_interval='5'
 	uci set mwan3.${intf}.recovery_interval='5'
 	uci set mwan3.${intf}.down='3'
