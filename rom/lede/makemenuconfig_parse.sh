@@ -267,6 +267,7 @@ for t in $targets; do
 		TARGET_DEVICE_ath79_generic_DEVICE_aruba_ap-105|\
 		TARGET_DEVICE_ath79_generic_DEVICE_tplink_tl-wr1043n-v5|\
 		TARGET_DEVICE_ath79_nand_DEVICE_glinet_gl-ar300m-nand|\
+		TARGET_DEVICE_ath79_nand_DEVICE_glinet_gl-ar300m-nor|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_youku_yk-l2|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_ubiquiti_edgerouterx|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_ubiquiti_edgerouterx-sfp|\
@@ -698,6 +699,7 @@ for t in $targets; do
 		TARGET_DEVICE_ath79_generic_DEVICE_engenius_epg5000|\
 		TARGET_DEVICE_ath79_generic_DEVICE_xwrt_mk-v0201|\
 		TARGET_DEVICE_ath79_nand_DEVICE_glinet_gl-ar300m-nand|\
+		TARGET_DEVICE_ath79_nand_DEVICE_glinet_gl-ar300m-nor|\
 		TARGET_DEVICE_ar71xx_generic_DEVICE_ts-d084|\
 		TARGET_DEVICE_ath79_generic_DEVICE_glinet_gl-x750|\
 		TARGET_DEVICE_ath79_generic_DEVICE_glinet_gl-ar750s|\
