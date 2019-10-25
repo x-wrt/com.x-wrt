@@ -4,7 +4,7 @@ test -n "$CFGS" || CFGS="`cat feeds/x/rom/lede/cfg.list`"
 
 test -n "$IDXS" || IDXS="0"
 
-test -n "$CONFIG_VERSION_NUMBER" || CONFIG_VERSION_NUMBER="5.0_b`date +%Y%m%d%H%M`"
+test -n "$CONFIG_VERSION_NUMBER" || CONFIG_VERSION_NUMBER="6.0_b`date +%Y%m%d%H%M`"
 
 set -x
 test -f .build_x/env && source .build_x/env
