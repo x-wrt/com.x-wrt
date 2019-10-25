@@ -276,7 +276,9 @@ for t in $targets; do
 		TARGET_DEVICE_ath79_generic_DEVICE_ubnt_nanobeam-ac|\
 		TARGET_DEVICE_ath79_generic_DEVICE_glinet_gl-x750|\
 		TARGET_DEVICE_ath79_generic_DEVICE_glinet_gl-ar750s|\
-		TARGET_DEVICE_ath79_generic_DEVICE_glinet_gl-ar300m-nor|\
+		TARGET_DEVICE_ath79_nand_DEVICE_glinet_gl-ar750s-nor|\
+		TARGET_DEVICE_ath79_nand_DEVICE_glinet_gl-ar750s-nor-nand|\
+		TARGET_DEVICE_ath79_generic_DEVICE_glinet_gl-ar300m16|\
 		TARGET_DEVICE_ath79_generic_DEVICE_glinet_gl-ar300m-lite|\
 		TARGET_DEVICE_ath79_generic_DEVICE_glinet_gl-ar150|\
 		TARGET_DEVICE_ar71xx_generic_DEVICE_gl-usb150|\
@@ -703,7 +705,9 @@ for t in $targets; do
 		TARGET_DEVICE_ar71xx_generic_DEVICE_ts-d084|\
 		TARGET_DEVICE_ath79_generic_DEVICE_glinet_gl-x750|\
 		TARGET_DEVICE_ath79_generic_DEVICE_glinet_gl-ar750s|\
-		TARGET_DEVICE_ath79_generic_DEVICE_glinet_gl-ar300m-nor|\
+		TARGET_DEVICE_ath79_nand_DEVICE_glinet_gl-ar750s-nor|\
+		TARGET_DEVICE_ath79_nand_DEVICE_glinet_gl-ar750s-nor-nand|\
+		TARGET_DEVICE_ath79_generic_DEVICE_glinet_gl-ar300m16|\
 		TARGET_DEVICE_ath79_generic_DEVICE_glinet_gl-ar300m-lite|\
 		TARGET_DEVICE_ath79_generic_DEVICE_glinet_gl-ar150|\
 		TARGET_DEVICE_ar71xx_generic_DEVICE_gl-mifi|\
