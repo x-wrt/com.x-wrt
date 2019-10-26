@@ -1,10 +1,11 @@
 #!/bin/bash
 
-test -n "$CFGS" || CFGS="`cat feeds/x/rom/lede/cfg.list`"
+CONFDIR=`dirname $0`
+test -n "$CFGS" || CFGS="`cat $CONFDIR/cfg.list`"
+. $CONFDIR/buildinfo.conf
+test -n "$CONFIG_VERSION_NUMBER" || CONFIG_VERSION_NUMBER="${CONFIG_VERSION_VER}_b`date +%Y%m%d%H%M`"
 
 test -n "$IDXS" || IDXS="0"
-
-test -n "$CONFIG_VERSION_NUMBER" || CONFIG_VERSION_NUMBER="6.0_b`date +%Y%m%d%H%M`"
 
 set -x
 test -f .build_x/env && source .build_x/env
@@ -22,9 +23,6 @@ find feeds/luci/ -type f | grep -v .git\* | while read file; do
 	sed -i 's/192\.168\.1\./192\.168\.15\./g' "$file" && echo modifying $file
 done
 
-CONFIG_VERSION_DIST="X-WRT"
-CONFIG_VERSION_CODE="Disco"
-CONFIG_VERSION_MANUFACTURER_URL="https://x-wrt.com/"
 for i in $IDXS; do
 	touch ./package/base-files/Makefile
 

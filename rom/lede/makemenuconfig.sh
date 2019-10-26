@@ -1,12 +1,9 @@
 #!/bin/sh
 
-CFGS=${CFGS-"`cat feeds/x/rom/lede/cfg.list`"}
-
-test -n "$CONFIG_VERSION_NUMBER" || CONFIG_VERSION_NUMBER="6.0_b`date +%Y%m%d%H%M`"
-
-CONFIG_VERSION_DIST="X-WRT"
-CONFIG_VERSION_CODE="Eoan"
-CONFIG_VERSION_MANUFACTURER_URL="https://x-wrt.com/"
+CONFDIR=`dirname $0`
+test -n "$CFGS" || CFGS="`cat $CONFDIR/cfg.list`"
+. $CONFDIR/buildinfo.conf
+test -n "$CONFIG_VERSION_NUMBER" || CONFIG_VERSION_NUMBER="${CONFIG_VERSION_VER}_b`date +%Y%m%d%H%M`"
 
 find target/linux/ feeds/luci/ feeds/packages/ package/ -name Makefile -exec touch {} \;
 
