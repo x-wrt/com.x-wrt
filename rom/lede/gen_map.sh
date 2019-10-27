@@ -19,26 +19,34 @@ test -n "$x86bin" && {
 	echo x86_64 or x86:
 	echo "$x86bin"
 	echo
+	x86_64_combined=
+	x86_64_uefi=
+	x86_generic_combined=
+	x86_generic_uefi=
 	for bin in $x86bin; do
 		echo "$sha256sums" | grep "$bin" >>sha256sums.txt
 		case $bin in
 			*x86-64-combined*)
-				echo "x86 64bits (MBR dos):$bin" >>map.list
+				x86_64_combined="${x86_64_combined} $bin"
 			;;
 			*x86-64-uefi*)
-				echo "x86 64bits (UEFI gpt):$bin" >>map.list
+				x86_64_uefi="${x86_64_uefi} $bin"
 			;;
 			*x86-generic-combined*)
-				echo "x86 generic (MBR dos):$bin" >>map.list
+				x86_generic_combined="${x86_generic_combined} $bin"
 			;;
 			*x86-generic-uefi*)
-				echo "x86 generic (UEFI gpt):$bin" >>map.list
+				x86_generic_uefi="${x86_generic_uefi} $bin"
 			;;
 			*)
 				echo "x86_64 or x86:$bin" >>map.list
 			;;
 		esac
 	done
+	echo "x86 64bits (MBR dos):`echo -n ${x86_64_combined}`" >>map.list
+	echo "x86 64bits (UEFI gpt):`echo -n ${x86_64_uefi}`" >>map.list
+	echo "x86 generic (MBR dos):`echo -n ${x86_generic_combined}`" >>map.list
+	echo "x86 generic (UEFI gpt):`echo -n ${x86_generic_uefi}`" >>map.list
 }
 
 for t in $targets; do
