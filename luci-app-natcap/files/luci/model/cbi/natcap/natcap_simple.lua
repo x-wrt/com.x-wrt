@@ -16,4 +16,8 @@ e = s:taboption("general", Flag, "enabled", translate("Enable Natcap"), translat
 e.default = e.disabled
 e.rmempty = false
 
+e = s:taboption("general", Value, "ui", translate("UI"))
+e.rmempty = true
+e.placeholder = 'none'
+
 return m

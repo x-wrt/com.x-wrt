@@ -110,4 +110,8 @@ e = s:taboption("system", Flag, "full_proxy", translate("Full Proxy"), translate
 e.default = e.disabled
 e.rmempty = false
 
+e = s:taboption("system", Value, "ui", translate("UI"))
+e.rmempty = true
+e.placeholder = 'none'
+
 return m
