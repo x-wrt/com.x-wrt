@@ -387,9 +387,9 @@ for t in $targets; do
 		TARGET_DEVICE_ipq806x_generic_DEVICE_avm_fritzbox-4040|\
 		TARGET_DEVICE_ramips_mt7620_DEVICE_xiaomi_miwifi-mini|\
 		TARGET_DEVICE_bcm53xx_generic_DEVICE_netgear-r6250|\
-		TARGET_DEVICE_ramips_mt7621_DEVICE_mir3g|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_xiaomi_mir3g-nor|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_xiaomi_mir3g|\
+		TARGET_DEVICE_ramips_mt7621_DEVICE_xiaomi_mir3g-v2|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_xiaomi_mir3p-nor|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_xiaomi_mir3p|\
 		TARGET_DEVICE_ar71xx_generic_DEVICE_tl-wr1043nd-v4|\
@@ -644,7 +644,6 @@ for t in $targets; do
 		TARGET_DEVICE_ipq806x_generic_DEVICE_zyxel_nbg6817|\
 		TARGET_DEVICE_ipq806x_generic_DEVICE_avm_fritzbox-4040|\
 		TARGET_DEVICE_bcm53xx_generic_DEVICE_netgear-r6250|\
-		TARGET_DEVICE_ramips_mt7621_DEVICE_mir3g|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_xiaomi_mir3g-nor|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_xiaomi_mir3g|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_xiaomi_mir3p-nor|\
@@ -872,6 +871,7 @@ for t in $targets; do
 			has_usb=1
 		;;
 		#no usb
+		TARGET_DEVICE_ramips_mt7621_DEVICE_xiaomi_mir3g-v2|\
 		TARGET_DEVICE_ath79_generic_DEVICE_comfast_cf-wr650ac-v1|\
 		TARGET_DEVICE_ath79_generic_DEVICE_comfast_cf-wr650ac-v2|\
 		TARGET_DEVICE_ath79_generic_DEVICE_comfast_cf-e313ac|\
