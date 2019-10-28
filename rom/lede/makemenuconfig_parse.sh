@@ -231,6 +231,7 @@ for t in $targets; do
 		#>8M flash
 		TARGET_DEVICE_ath79_nand_DEVICE_xwrt_gw521-nand|\
 		TARGET_DEVICE_ath79_nand_DEVICE_xwrt_gw521-nor|\
+		TARGET_DEVICE_ath79_generic_DEVICE_xwrt_gw521-16m|\
 		TARGET_DEVICE_ath79_generic_DEVICE_comfast_cf-wr650ac-v1|\
 		TARGET_DEVICE_ath79_generic_DEVICE_comfast_cf-wr650ac-v2|\
 		TARGET_DEVICE_ath79_generic_DEVICE_comfast_cf-e313ac|\
@@ -688,6 +689,7 @@ for t in $targets; do
 		#with usb2
 		TARGET_DEVICE_ath79_nand_DEVICE_xwrt_gw521-nand|\
 		TARGET_DEVICE_ath79_nand_DEVICE_xwrt_gw521-nor|\
+		TARGET_DEVICE_ath79_generic_DEVICE_xwrt_gw521-16m|\
 		TARGET_DEVICE_ipq40xx_generic_DEVICE_alfa-network_ap120c-ac|\
 		TARGET_DEVICE_ipq40xx_generic_DEVICE_netgear_ex6200v2|\
 		TARGET_DEVICE_ath79_generic_DEVICE_glinet_gl-ar750|\
