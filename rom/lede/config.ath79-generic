@@ -5493,6 +5493,7 @@ CONFIG_PACKAGE_libpcre=m
 # CONFIG_PACKAGE_libsoxr is not set
 # CONFIG_PACKAGE_libspeex is not set
 # CONFIG_PACKAGE_libspeexdsp is not set
+# CONFIG_PACKAGE_libspice-server is not set
 CONFIG_PACKAGE_libss=m
 # CONFIG_PACKAGE_libssh is not set
 CONFIG_PACKAGE_libssh2=m
@@ -5585,6 +5586,7 @@ CONFIG_PACKAGE_rpcd-mod-rrdns=y
 # CONFIG_PACKAGE_rxtx is not set
 # CONFIG_PACKAGE_sbc is not set
 # CONFIG_PACKAGE_serdisplib is not set
+# CONFIG_PACKAGE_spice-protocol is not set
 CONFIG_PACKAGE_terminfo=y
 # CONFIG_PACKAGE_tinycdb is not set
 CONFIG_PACKAGE_uclibcxx=m
