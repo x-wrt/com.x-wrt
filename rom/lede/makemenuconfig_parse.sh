@@ -229,6 +229,7 @@ for t in $targets; do
 	has_usb=0
 	case $t in
 		#>8M flash
+		TARGET_DEVICE_ath79_generic_DEVICE_netgear_wnr2200-16m|\
 		TARGET_DEVICE_ath79_nand_DEVICE_xwrt_gw521-nand|\
 		TARGET_DEVICE_ath79_nand_DEVICE_xwrt_gw521-nor|\
 		TARGET_DEVICE_ath79_generic_DEVICE_xwrt_gw521-16m|\
@@ -461,6 +462,7 @@ for t in $targets; do
 			flash_gt8m=1
 		;;
 		#<=8M flash
+		TARGET_DEVICE_ath79_generic_DEVICE_netgear_wnr2200-8m|\
 		TARGET_DEVICE_ath79_generic_DEVICE_pisen_ts-d084|\
 		TARGET_DEVICE_ramips_mt76x8_DEVICE_cudy_wr1000|\
 		TARGET_DEVICE_ramips_mt76x8_DEVICE_vocore_vocore2-lite|\
@@ -687,6 +689,8 @@ for t in $targets; do
 			has_usb=1
 		;;
 		#with usb2
+		TARGET_DEVICE_ath79_generic_DEVICE_netgear_wnr2200-16m|\
+		TARGET_DEVICE_ath79_generic_DEVICE_netgear_wnr2200-8m|\
 		TARGET_DEVICE_ath79_nand_DEVICE_xwrt_gw521-nand|\
 		TARGET_DEVICE_ath79_nand_DEVICE_xwrt_gw521-nor|\
 		TARGET_DEVICE_ath79_generic_DEVICE_xwrt_gw521-16m|\
@@ -987,6 +991,7 @@ for t in $targets; do
 
 	#check 4g manual select
 	case $t in
+		TARGET_DEVICE_ath79_generic_DEVICE_netgear_wnr2200-8m|\
 		TARGET_DEVICE_ar71xx_generic_DEVICE_tl-wdr4900-v2|\
 		TARGET_DEVICE_ar71xx_generic_DEVICE_tl-wdr4310-v1|\
 		TARGET_DEVICE_ar71xx_generic_DEVICE_tl-wdr4300-v1|\
