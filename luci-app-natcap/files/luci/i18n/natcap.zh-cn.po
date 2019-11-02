@@ -19,6 +19,9 @@ msgstr "用户标识"
 msgid "Remote Mgr Addr"
 msgstr "远程管理地址"
 
+msgid "Disable Remote Mgr"
+msgstr "禁用远程管理"
+
 msgid "This Month"
 msgstr "本月"
 
@@ -65,7 +68,7 @@ msgid "System Settings"
 msgstr "系统配置"
 
 msgid "Enable Natcap"
-msgstr "启用"
+msgstr "启用Natcap"
 
 msgid "You need an authorization code to enable international network acceleration."
 msgstr "你需要授权码来开启国际网络加速，没有授权请不要开启，否则无法访问国外网站。"

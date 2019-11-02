@@ -393,8 +393,10 @@ test -c /dev/natflow_ctl && {
 test -c /dev/natcap_peer_ctl && {
 	peer_mode=`uci get natcapd.default.peer_mode 2>/dev/null || echo 0`
 	peer_max_pmtu=`uci get natcapd.default.peer_max_pmtu 2>/dev/null || echo 1440`
+	peer_sni_ban=`uci get natcapd.default.peer_sni_ban 2>/dev/null || echo 0`
 	echo peer_mode=${peer_mode} >/dev/natcap_peer_ctl
 	echo peer_max_pmtu=${peer_max_pmtu} >/dev/natcap_peer_ctl
+	echo peer_sni_ban=${peer_sni_ban} >/dev/natcap_peer_ctl
 }
 
 test -c $DEV && {
