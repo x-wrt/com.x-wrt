@@ -68,7 +68,7 @@ msgid "System Settings"
 msgstr "系统配置"
 
 msgid "Enable Natcap"
-msgstr "启用Natcap"
+msgstr "开启Natcap"
 
 msgid "You need an authorization code to enable international network acceleration."
 msgstr "你需要授权码来开启国际网络加速，没有授权请不要开启，否则无法访问国外网站。"
