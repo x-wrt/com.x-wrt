@@ -17,7 +17,7 @@ make_config()
 	TA_KEY=${KEY_DIR}/ta.key
 	test -f /etc/openvpn/natcap-ta.key && TA_KEY=/etc/openvpn/natcap-ta.key
 
-	cat ${BASE_CONFIG} | sed "s/^remote .*4911$/remote $hname.dns.ptpt52.com 4911/;s/^proto tcp$/proto $PROTO/"
+	cat ${BASE_CONFIG} | sed "s/^remote .*4911$/remote $hname.dns.x-wrt.com 4911/;s/^proto tcp$/proto $PROTO/"
 	echo -e '<ca>'
 	cat ${KEY_DIR}/ca.crt
 	echo -e '</ca>\n<cert>'
