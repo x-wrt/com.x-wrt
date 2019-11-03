@@ -433,6 +433,7 @@ for t in $targets; do
 		TARGET_DEVICE_ar71xx_nand_DEVICE_R6100|\
 		TARGET_DEVICE_ar71xx_nand_DEVICE_WNDR3700V4|\
 		TARGET_DEVICE_ar71xx_nand_DEVICE_WNDR4300V1|\
+		TARGET_DEVICE_ath79_nand_DEVICE_netgear_wndr4300|\
 		TARGET_DEVICE_bcm53xx_generic_DEVICE_asus-rt-ac56u|\
 		TARGET_DEVICE_bcm53xx_generic_DEVICE_asus-rt-ac68u|\
 		TARGET_DEVICE_bcm53xx_generic_DEVICE_asus-rt-ac87u|\
@@ -852,6 +853,7 @@ for t in $targets; do
 		TARGET_DEVICE_ramips_mt7621_DEVICE_buffalo_wsr-1166dhp|\
 		TARGET_DEVICE_ar71xx_nand_DEVICE_domywifi-dw33d|\
 		TARGET_DEVICE_ar71xx_generic_DEVICE_mw4530r-v1|\
+		TARGET_DEVICE_ath79_nand_DEVICE_netgear_wndr4300|\
 		TARGET_DEVICE_ar71xx_nand_DEVICE_WNDR4300V1|\
 		TARGET_DEVICE_ar71xx_nand_DEVICE_WNDR3700V4|\
 		TARGET_DEVICE_ar71xx_nand_DEVICE_R6100|\
