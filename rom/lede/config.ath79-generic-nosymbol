@@ -153,6 +153,7 @@ CONFIG_TARGET_MULTI_PROFILE=y
 # CONFIG_TARGET_ath79_generic_DEVICE_tplink_tl-wr1043nd-v2 is not set
 # CONFIG_TARGET_ath79_generic_DEVICE_tplink_tl-wr1043nd-v3 is not set
 # CONFIG_TARGET_ath79_generic_DEVICE_tplink_tl-wr1043nd-v4 is not set
+# CONFIG_TARGET_ath79_generic_DEVICE_tplink_tl-wr1045nd-v2 is not set
 # CONFIG_TARGET_ath79_generic_DEVICE_tplink_tl-wr2543-v1 is not set
 # CONFIG_TARGET_ath79_generic_DEVICE_tplink_tl-wr710n-v1 is not set
 # CONFIG_TARGET_ath79_generic_DEVICE_tplink_tl-wr810n-v1 is not set
@@ -160,6 +161,7 @@ CONFIG_TARGET_MULTI_PROFILE=y
 # CONFIG_TARGET_ath79_generic_DEVICE_tplink_tl-wr842n-v3 is not set
 # CONFIG_TARGET_ath79_generic_DEVICE_tplink_tl-wr842n-v1 is not set
 # CONFIG_TARGET_ath79_generic_DEVICE_tplink_tl-wr842n-v2 is not set
+# CONFIG_TARGET_ath79_generic_DEVICE_tplink_wbs210-v2 is not set
 # CONFIG_TARGET_ath79_generic_DEVICE_trendnet_tew-823dru is not set
 # CONFIG_TARGET_ath79_generic_DEVICE_ubnt_airrouter is not set
 # CONFIG_TARGET_ath79_generic_DEVICE_ubnt_bullet-m is not set
@@ -334,6 +336,7 @@ CONFIG_TARGET_DEVICE_PACKAGES_ath79_generic_DEVICE_tplink_tl-wr1043nd-v2="blockd
 CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_tplink_tl-wr1043nd-v3=y
 CONFIG_TARGET_DEVICE_PACKAGES_ath79_generic_DEVICE_tplink_tl-wr1043nd-v3="blockd block-mount kmod-ath9k kmod-ath9k-common kmod-crypto-crc32c kmod-fs-autofs4 kmod-fs-exfat kmod-fs-ext4 kmod-fs-msdos kmod-fs-vfat kmod-fuse kmod-lib-crc16 kmod-mii kmod-nls-cp437 kmod-phy-ath79-usb kmod-scsi-core kmod-usb2 kmod-usb-core kmod-usb-ehci kmod-usb-ledtrig-usbport kmod-usb-net kmod-usb-net-cdc-ether kmod-usb-net-rndis kmod-usb-ohci kmod-usb-storage kmod-usb-storage-uas ntfs-3g"
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_tplink_tl-wr1043nd-v4 is not set
+# CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_tplink_tl-wr1045nd-v2 is not set
 CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_tplink_tl-wr2543-v1=y
 CONFIG_TARGET_DEVICE_PACKAGES_ath79_generic_DEVICE_tplink_tl-wr2543-v1="blockd block-mount kmod-ath9k kmod-ath9k-common kmod-crypto-crc32c kmod-fs-autofs4 kmod-fs-exfat kmod-fs-ext4 kmod-fs-msdos kmod-fs-vfat kmod-fuse kmod-lib-crc16 kmod-mii kmod-nls-cp437 kmod-phy-ath79-usb kmod-scsi-core kmod-usb2 kmod-usb-core kmod-usb-ehci kmod-usb-ledtrig-usbport kmod-usb-net kmod-usb-net-cdc-ether kmod-usb-net-rndis kmod-usb-ohci kmod-usb-storage kmod-usb-storage-uas ntfs-3g"
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_tplink_tl-wr710n-v1 is not set
@@ -343,6 +346,7 @@ CONFIG_TARGET_DEVICE_PACKAGES_ath79_generic_DEVICE_tplink_tl-wr2543-v1="blockd b
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_tplink_tl-wr842n-v1 is not set
 CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_tplink_tl-wr842n-v2=y
 CONFIG_TARGET_DEVICE_PACKAGES_ath79_generic_DEVICE_tplink_tl-wr842n-v2="blockd block-mount kmod-ath9k kmod-ath9k-common kmod-crypto-crc32c kmod-fs-autofs4 kmod-fs-exfat kmod-fs-ext4 kmod-fs-msdos kmod-fs-vfat kmod-fuse kmod-lib-crc16 kmod-mii kmod-nls-cp437 kmod-phy-ath79-usb kmod-scsi-core kmod-usb2 kmod-usb-core kmod-usb-ehci kmod-usb-ledtrig-usbport kmod-usb-net kmod-usb-net-cdc-ether kmod-usb-net-rndis kmod-usb-ohci kmod-usb-storage kmod-usb-storage-uas ntfs-3g"
+# CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_tplink_wbs210-v2 is not set
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_trendnet_tew-823dru is not set
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_ubnt_acb-isp is not set
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_ubnt_airrouter is not set
@@ -696,7 +700,7 @@ CONFIG_TARGET_INIT_CMD="/sbin/init"
 CONFIG_TARGET_INIT_SUPPRESS_STDERR=y
 CONFIG_VERSIONOPT=y
 CONFIG_VERSION_DIST="X-WRT"
-CONFIG_VERSION_NUMBER="6.0_b201911012336"
+CONFIG_VERSION_NUMBER="6.0_b201911040730"
 CONFIG_VERSION_CODE="Eoan"
 CONFIG_VERSION_REPO="http://downloads.openwrt.org/snapshots"
 CONFIG_VERSION_HOME_URL="https://x-wrt.com/"
@@ -5613,6 +5617,7 @@ CONFIG_LUCI_LANG_en=y
 # CONFIG_LUCI_LANG_vi is not set
 CONFIG_LUCI_LANG_zh-cn=y
 # CONFIG_LUCI_LANG_zh-tw is not set
+CONFIG_PACKAGE_luci-compat=y
 CONFIG_PACKAGE_luci-mod-admin-full=y
 # CONFIG_PACKAGE_luci-mod-failsafe is not set
 CONFIG_PACKAGE_luci-mod-network=y
