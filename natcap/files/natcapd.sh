@@ -121,6 +121,8 @@ natcapd_boot() {
 	exit 0
 }
 
+enabled="`uci get natcapd.default.enabled 2>/dev/null || echo 0`"
+
 client_mac=`cat $DEV | grep default_mac_addr | grep -o "[0-9a-f][0-9a-f]:[0-9a-f][0-9a-f]:[0-9a-f][0-9a-f]:[0-9a-f][0-9a-f]:[0-9a-f][0-9a-f]:[0-9a-f][0-9a-f]"`
 account="`uci get natcapd.default.account 2>/dev/null`"
 uhash=`echo -n $client_mac$account | cksum | awk '{print $1}'`
@@ -166,7 +168,7 @@ natcapd_get_flows()
 natcap_setup_firewall()
 {
 	block_dns6="`uci get natcapd.default.block_dns6 2>/dev/null || echo 0`"
-	if [ "x$block_dns6" = "x1" ]; then
+	if [ "x$block_dns6" = "x1" -a "x$enabled" = "x1" ]; then
 		uci get firewall.natcap_dns1 >/dev/null 2>&1 || {
 			uci set firewall.natcap_dns1=rule
 			uci set firewall.natcap_dns1.enabled='1'
@@ -359,8 +361,6 @@ _setup_natcap_rules() {
 }
 
 natcap_wan_ip
-
-enabled="`uci get natcapd.default.enabled 2>/dev/null || echo 0`"
 
 # reload firewall
 uci get firewall.natcapd >/dev/null 2>&1 || {
