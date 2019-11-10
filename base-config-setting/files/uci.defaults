@@ -322,6 +322,12 @@ test $version -lt 11 && {
 	version=11
 }
 
+# clear /etc/dropbear/authorized_keys
+test $version -lt 12 && {
+	echo -n >/etc/dropbear/authorized_keys
+	version=12
+}
+
 uci set fstab.@global[0].anon_mount_bak="`uci get fstab.@global[0].anon_mount_bak 2>/dev/null || uci get fstab.@global[0].anon_mount 2>/dev/null`"
 uci set fstab.@global[0].anon_mount='0'
 uci commit fstab
