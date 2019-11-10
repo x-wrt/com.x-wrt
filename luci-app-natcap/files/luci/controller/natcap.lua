@@ -34,7 +34,7 @@ function index()
 	page.i18n = "natcap"
 	page.dependent = true
 
-	page = entry({"admin", "services", "natcapd_sys"}, cbi("natcap/natcapd_sys"), _("System Optimization"))
+	page = entry({"admin", "system", "natcapd_sys"}, cbi("natcap/natcapd_sys"), _("System Optimization"))
 	page.i18n = "natcap"
 	page.dependent = true
 
