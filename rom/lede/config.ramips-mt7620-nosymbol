@@ -108,6 +108,7 @@ CONFIG_TARGET_MULTI_PROFILE=y
 # CONFIG_TARGET_ramips_mt7620_DEVICE_microduino_microwrt is not set
 # CONFIG_TARGET_ramips_mt7620_DEVICE_netgear_ex2700 is not set
 # CONFIG_TARGET_ramips_mt7620_DEVICE_netgear_ex3700 is not set
+# CONFIG_TARGET_ramips_mt7620_DEVICE_netgear_ex6130 is not set
 # CONFIG_TARGET_ramips_mt7620_DEVICE_netgear_wn3000rp-v3 is not set
 # CONFIG_TARGET_ramips_mt7620_DEVICE_nexx_wt3020-4m is not set
 # CONFIG_TARGET_ramips_mt7620_DEVICE_nexx_wt3020-8m is not set
@@ -214,6 +215,7 @@ CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt7620_DEVICE_edimax_br-6478ac-v2="blockd b
 # CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_microduino_microwrt is not set
 # CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_netgear_ex2700 is not set
 # CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_netgear_ex3700 is not set
+# CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_netgear_ex6130 is not set
 # CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_netgear_wn3000rp-v3 is not set
 # CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_nexx_wt3020-4m is not set
 # CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_nexx_wt3020-8m is not set
