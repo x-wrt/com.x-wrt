@@ -16,7 +16,8 @@ int main(int argc, const char **argv)
 	unsigned char buf[BLOCK_SIZE];
 
 	if (argc != 2) {
-		fprintf(stderr, "%s <key>", argv[0]);
+		fprintf(stderr, "Usage:\n");
+		fprintf(stderr, "    %s <key>\n", argv[0]);
 		return 1;
 	}
 

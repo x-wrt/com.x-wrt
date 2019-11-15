@@ -1,6 +1,6 @@
 CC = gcc
-CFLAGS = -Wall -fPIC
-LDFLAGS = -lmbedcrypto -shared
+CFLAGS = -Wall -Werror
+LDFLAGS = -lmbedcrypto
 
 BINS = mbed-hmac-sha1
 
