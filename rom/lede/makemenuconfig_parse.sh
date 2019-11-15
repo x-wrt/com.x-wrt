@@ -229,6 +229,7 @@ for t in $targets; do
 	has_usb=0
 	case $t in
 		#>8M flash
+		TARGET_DEVICE_ath79_nand_DEVICE_netgear_wndr3700-v4|\
 		TARGET_DEVICE_ath79_generic_DEVICE_netgear_wnr2200-16m|\
 		TARGET_DEVICE_ath79_nand_DEVICE_xwrt_gw521-nand|\
 		TARGET_DEVICE_ath79_nand_DEVICE_xwrt_gw521-nor|\
@@ -693,6 +694,7 @@ for t in $targets; do
 			has_usb=1
 		;;
 		#with usb2
+		TARGET_DEVICE_ath79_nand_DEVICE_netgear_wndr3700-v4|\
 		TARGET_DEVICE_ath79_generic_DEVICE_netgear_wnr2200-16m|\
 		TARGET_DEVICE_ath79_generic_DEVICE_netgear_wnr2200-8m|\
 		TARGET_DEVICE_ath79_nand_DEVICE_xwrt_gw521-nand|\
