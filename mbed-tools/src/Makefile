@@ -10,7 +10,7 @@ all: $(BINS)
 	$(CC) $(CFLAGS) -c -o $@ $<
 
 mbed-hmac-sha1: mbed_hmac_sha1.o
-	$(CC) $(LDFLAGS) -o $@ $<
+	$(CC) -o $@ $< $(LDFLAGS)
 
 clean:
 	rm -f *.o $(BINS)
