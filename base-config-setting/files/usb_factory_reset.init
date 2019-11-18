@@ -17,5 +17,5 @@ boot() {
 		return 0
 	}
 	rm -f /tmp/usb_reset/x_reset_factory*
-	/usr/sbin/system_reset -h
+	/usr/sbin/system_reset -y -r
 }
