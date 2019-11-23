@@ -360,6 +360,33 @@ _setup_natcap_rules() {
 	done
 }
 
+get_rate_data()
+{
+	local cnt num unit
+	echo -n $1 | grep -qi "bps$" || {
+		num=$1
+		echo -n $((num))
+		return
+	}
+	cnt=`echo -n $1 | wc -c || echo 0`
+	test $cnt -le 4 && echo -n 0 && return
+
+	num=`echo -n $1 | cut -c0-$((cnt-4))`
+	unit=`echo -n $1 | cut -c$((cnt-3))-$cnt | tr A-Z a-z`
+	case $unit in
+		"kbps")
+			num=$((num*1024))
+		;;
+		"mbps")
+			num=$((num*1024*1024))
+		;;
+		"gbps")
+			num=$((num*1024*1024*1024))
+		;;
+	esac
+	echo -n $num
+}
+
 natcap_wan_ip
 
 # reload firewall
@@ -439,6 +466,9 @@ elif test -c $DEV; then
 	[ x$encode_mode = x1 ] && encode_mode=U
 	[ x$udp_encode_mode = x0 ] && udp_encode_mode=U
 	[ x$udp_encode_mode = x1 ] && udp_encode_mode=T
+
+	tx_speed_limit=`get_rate_data "$tx_speed_limit"`
+	rx_speed_limit=`get_rate_data "$rx_speed_limit"`
 
 	encode_http_only=`uci get natcapd.default.encode_http_only 2>/dev/null || echo 0`
 	http_confusion=`uci get natcapd.default.http_confusion 2>/dev/null || echo 0`
