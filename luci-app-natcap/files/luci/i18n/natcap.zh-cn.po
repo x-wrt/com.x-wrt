@@ -235,8 +235,5 @@ msgstr "下行速度限制"
 msgid "Upload rate limit"
 msgstr "上行速度限制"
 
-msgid "Unit: <code>Bytes/s</code> 0=no limit."
-msgstr "单位: <code>Bytes/s</code> 0=无限制."
-
-msgid "Example: <code>10 Mbps = 10*1024*1024/8 Bytes/s = 1310720</code>"
-msgstr "例如: <code>10 Mbps = 10*1024*1024/8 Bytes/s = 1310720</code>"
+msgid "Unit: <code>Kbps</code> <code>Mbps</code> <code>Gbps</code> Example: 10Mbps or 0 = no limit"
+msgstr "单位: <code>Kbps</code> <code>Mbps</code> <code>Gbps</code> 例如: 10Mbps 或者 0 = 无限制"
