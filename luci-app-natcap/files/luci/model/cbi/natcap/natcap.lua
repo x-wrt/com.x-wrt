@@ -152,12 +152,12 @@ local speed_validate = function(self, value)
 end
 
 e = s:taboption("system", Value, "rx_speed_limit", translate("Download rate limit"), translate("Unit: <code>Kbps</code> <code>Mbps</code> <code>Gbps</code> Example: 10Mbps or 0 = no limit"))
-e.placeholder = '0'
+e.placeholder = '0Mbps'
 e.rmempty = true
 e.validate = speed_validate
 
 e = s:taboption("system", Value, "tx_speed_limit", translate("Upload rate limit"), translate("Unit: <code>Kbps</code> <code>Mbps</code> <code>Gbps</code> Example: 10Mbps or 0 = no limit"))
-e.placeholder = '0'
+e.placeholder = '0Mbps'
 e.rmempty = true
 e.validate = speed_validate
 
