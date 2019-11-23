@@ -237,3 +237,6 @@ msgstr "上行速度限制"
 
 msgid "Unit: <code>Kbps</code> <code>Mbps</code> <code>Gbps</code> Example: 10Mbps or 0 = no limit"
 msgstr "单位: <code>Kbps</code> <code>Mbps</code> <code>Gbps</code> 例如: 10Mbps 或者 0 = 无限制"
+
+msgid "Invalid rate limit"
+msgstr "速度限制错误"

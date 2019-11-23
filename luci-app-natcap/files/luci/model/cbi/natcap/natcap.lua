@@ -148,7 +148,7 @@ local speed_validate = function(self, value)
 		return value
 	end
 
-	return nil, "Not valid"
+	return nil, translate("Invalid rate limit")
 end
 
 e = s:taboption("system", Value, "rx_speed_limit", translate("Download rate limit"), translate("Unit: <code>Kbps</code> <code>Mbps</code> <code>Gbps</code> Example: 10Mbps or 0 = no limit"))
