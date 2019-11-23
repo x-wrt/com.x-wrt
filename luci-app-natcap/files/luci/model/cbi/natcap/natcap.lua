@@ -115,7 +115,7 @@ e.datatype = "and(uinteger,min(0))"
 e.placeholder = '0'
 e.rmempty = true
 
-e = s:taboption("system", Value, "tx_speed_limit", translate("Upload rate limit"), translate("Unit: <code>Bytes/s</code> 0=no limit."))
+e = s:taboption("system", Value, "tx_speed_limit", translate("Upload rate limit"), translate("Example: <code>10 Mbps = 10*1024*1024/8 Bytes/s = 1310720</code>"))
 e.datatype = "and(uinteger,min(0))"
 e.placeholder = '0'
 e.rmempty = true
