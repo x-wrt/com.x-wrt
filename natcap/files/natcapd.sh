@@ -365,11 +365,11 @@ get_rate_data()
 	local cnt num unit
 	echo -n $1 | grep -qi "bps$" || {
 		num=$1
-		echo -n $((num))
+		echo -n $((num)) # assume num B/s
 		return
 	}
 	cnt=`echo -n $1 | wc -c || echo 0`
-	test $cnt -le 4 && echo -n 0 && return
+	test $cnt -le 4 && echo -n 0 && return # assume 0 B/s
 
 	num=`echo -n $1 | cut -c0-$((cnt-4))`
 	unit=`echo -n $1 | cut -c$((cnt-3))-$cnt | tr A-Z a-z`
@@ -384,7 +384,7 @@ get_rate_data()
 			num=$((num*1024*1024*1024))
 		;;
 	esac
-	echo -n $num
+	echo -n $((num/8)) # assume num bps
 }
 
 natcap_wan_ip
