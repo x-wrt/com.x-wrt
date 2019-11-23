@@ -375,16 +375,19 @@ get_rate_data()
 	unit=`echo -n $1 | cut -c$((cnt-3))-$cnt | tr A-Z a-z`
 	case $unit in
 		"kbps")
-			num=$((num*1024))
+			num=$((num*128))
 		;;
 		"mbps")
-			num=$((num*1024*1024))
+			num=$((num*128*1024))
 		;;
 		"gbps")
-			num=$((num*1024*1024*1024))
+			num=$((num*128*1024*1024))
+		;;
+		*)
+			num=$((num/8))
 		;;
 	esac
-	echo -n $((num/8)) # assume num bps
+	echo -n $num # assume num bps
 }
 
 natcap_wan_ip

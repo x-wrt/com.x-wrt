@@ -111,7 +111,7 @@ e.default = e.disabled
 e.rmempty = false
 
 local speed_validate = function(self, value)
-	if not value then
+	if not value or value == 0 or value == "0" then
 		return value
 	end
 
