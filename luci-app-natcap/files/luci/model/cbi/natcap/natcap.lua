@@ -110,6 +110,16 @@ e = s:taboption("system", Flag, "full_proxy", translate("Full Proxy"), translate
 e.default = e.disabled
 e.rmempty = false
 
+e = s:taboption("system", Value, "rx_speed_limit", translate("Download rate limit"), translate("Unit: <code>Bytes/s</code> 0=no limit."))
+e.datatype = "and(uinteger,min(0))"
+e.placeholder = '0'
+e.rmempty = true
+
+e = s:taboption("system", Value, "tx_speed_limit", translate("Upload rate limit"), translate("Unit: <code>Bytes/s</code> 0=no limit."))
+e.datatype = "and(uinteger,min(0))"
+e.placeholder = '0'
+e.rmempty = true
+
 e = s:taboption("system", Flag, "peer_sni_ban", translate("Disable Remote Mgr"))
 e.default = e.disabled
 e.rmempty = false
