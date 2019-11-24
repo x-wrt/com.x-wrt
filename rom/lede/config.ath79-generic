@@ -57,6 +57,7 @@ CONFIG_TARGET_MULTI_PROFILE=y
 # CONFIG_TARGET_ath79_generic_DEVICE_adtran_bsap1800-v2 is not set
 # CONFIG_TARGET_ath79_generic_DEVICE_adtran_bsap1840 is not set
 # CONFIG_TARGET_ath79_generic_DEVICE_aruba_ap-105 is not set
+# CONFIG_TARGET_ath79_generic_DEVICE_bm100_hq55 is not set
 # CONFIG_TARGET_ath79_generic_DEVICE_buffalo_bhr-4grv is not set
 # CONFIG_TARGET_ath79_generic_DEVICE_buffalo_bhr-4grv2 is not set
 # CONFIG_TARGET_ath79_generic_DEVICE_buffalo_wzr-hp-ag300h is not set
@@ -219,6 +220,8 @@ CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_aruba_ap-105=y
 CONFIG_TARGET_DEVICE_PACKAGES_ath79_generic_DEVICE_aruba_ap-105="kmod-ath9k kmod-ath9k-common kmod-i2c-algo-bit kmod-i2c-core kmod-i2c-gpio kmod-random-core kmod-tpm kmod-tpm-i2c-atmel"
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_avm_fritz4020 is not set
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_avm_fritz300e is not set
+CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_bm100_hq55=y
+CONFIG_TARGET_DEVICE_PACKAGES_ath79_generic_DEVICE_bm100_hq55="aria2 blockd block-mount chat comgt comgt-ncm kmod-ath9k kmod-ath9k-common kmod-crypto-crc32c kmod-fs-autofs4 kmod-fs-exfat kmod-fs-ext4 kmod-fs-msdos kmod-fs-vfat kmod-fuse kmod-leds-gpio kmod-lib-crc16 kmod-mii kmod-nls-cp437 kmod-phy-ath79-usb kmod-scsi-core kmod-usb2 kmod-usb-core kmod-usb-ehci kmod-usb-ledtrig-usbport kmod-usb-net kmod-usb-net-cdc-ether kmod-usb-net-cdc-mbim kmod-usb-net-cdc-ncm kmod-usb-net-huawei-cdc-ncm kmod-usb-net-ipheth kmod-usb-net-qmi-wwan kmod-usb-net-rndis kmod-usb-net-rtl8152 kmod-usb-net-sierrawireless kmod-usb-ohci kmod-usb-printer kmod-usb-serial kmod-usb-serial-option kmod-usb-serial-qualcomm kmod-usb-serial-sierrawireless kmod-usb-serial-wwan kmod-usb-storage kmod-usb-storage-uas kmod-usb-wdm libopenssl libpcre libsqlite3 libssh2 libstdcpp libusb-1.0 libxml2 luci-app-aria2 luci-app-p910nd luci-app-samba luci-i18n-aria2-en luci-i18n-aria2-zh-cn luci-i18n-p910nd-en luci-i18n-p910nd-zh-cn luci-i18n-samba-en luci-i18n-samba-zh-cn luci-proto-3g luci-proto-ncm luci-proto-qmi ntfs-3g p910nd samba36-server uqmi usb-modeswitch webui-aria2 wget wwan"
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_buffalo_bhr-4grv is not set
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_buffalo_bhr-4grv2 is not set
 CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_buffalo_wzr-hp-ag300h=y
