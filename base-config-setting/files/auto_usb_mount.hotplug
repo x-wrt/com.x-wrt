@@ -2,7 +2,22 @@
 [ "x$DEVTYPE" = "xpartition" ] || exit 0
 test -b /dev/$DEVNAME || exit 0
 
-OPTS="-o uid=1000,gid=1000,fmask=0000,dmask=0000,rw"
+MOUNT_NTFS="mount.ntfs-3g -o noatime,async,uid=1000,gid=1000,fmask=0000,dmask=0000,rw,big_writes"
+MOUNT_CMD1="mount -o noatime,async,uid=1000,gid=1000,fmask=0000,dmask=0000,rw"
+MOUNT_CMD2="mount -o noatime,async,rw"
+MOUNT_CMD3="mount -o rw"
+MOUNT_CMD4="mount"
+
+#try_mount "$1" "$2"
+try_mount()
+{
+	$MOUNT_NTFS "$1" "$2" && return 0
+	$MOUNT_CMD1 "$1" "$2" && return 0
+	$MOUNT_CMD2 "$1" "$2" && return 0
+	$MOUNT_CMD3 "$1" "$2" && return 0
+	$MOUNT_CMD4 "$1" "$2" && return 0
+	return 1
+}
 
 dev=/dev/$DEVNAME
 test -f /rom/etc/sda.ready && {
@@ -16,7 +31,7 @@ edev=`mount | grep "$dev " | awk '{print $1}'`
 [ "x$dev" = "x$edev" ] && exit 0
 ddir=/mnt/`basename $dev`
 mkdir -p "$ddir" || exit 0
-if mount $OPTS "$dev" "$ddir" || mount "$dev" "$ddir"; then
+if try_mount "$dev" "$ddir"; then
 	logger -t "auto_usb_mount" "auto mount $dev to $ddir success!"
 else
 	logger -t "auto_usb_mount" "auto mount $dev to $ddir failed!"
