@@ -14,6 +14,6 @@ boot() {
 	lspci | grep -qE 'VMware Virtual Machine|VirtualBox' && return 0
 	ls /dev/input | grep -q mouse && {
 		echo mouse detected, do foctory reset and halt
-		/usr/sbin/system_reset -h
+		/usr/sbin/system_reset -y -r
 	}
 }
