@@ -38,6 +38,7 @@ for i in $IDXS; do
 		sleep 2
 		touch ./package/base-files/files/etc/openwrt_release
 		touch ./feeds/packages/libs/libgpg-error/Makefile
+		find package -type f -name Makefile -exec touch {} \;
 		new_arch=$(cat .config | grep CONFIG_TARGET_ARCH_PACKAGES | cut -d\" -f2)
 		new_subarch=$(cat .config | grep -o  "CONFIG_TARGET_[a-z0-9]*_[a-z0-9]*=y" | sed 's/=y//' | cut -d_ -f3,4)
 		test -n "$last_arch" || last_arch=$new_arch
