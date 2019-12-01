@@ -36,9 +36,12 @@ for i in $IDXS; do
 		sed -i "s/CONFIG_VERSION_CODE=\".*\"/CONFIG_VERSION_CODE=\"$CONFIG_VERSION_CODE\"/" ./.config
 		sed -i "s%CONFIG_VERSION_MANUFACTURER_URL=\".*\"%CONFIG_VERSION_MANUFACTURER_URL=\"$CONFIG_VERSION_MANUFACTURER_URL\"%" ./.config
 		sleep 2
-		touch ./package/base-files/files/etc/openwrt_release
-		touch ./feeds/packages/libs/libgpg-error/Makefile
-		find package -type f -name Makefile -exec touch {} \;
+		[ "x$WORKFLOW" = x1 ] || {
+			# skip touch if WORKFLOW == 1
+			touch ./package/base-files/files/etc/openwrt_release
+			touch ./feeds/packages/libs/libgpg-error/Makefile
+			find package -type f -name Makefile -exec touch {} \;
+		}
 		new_arch=$(cat .config | grep CONFIG_TARGET_ARCH_PACKAGES | cut -d\" -f2)
 		new_subarch=$(cat .config | grep -o  "CONFIG_TARGET_[a-z0-9]*_[a-z0-9]*=y" | sed 's/=y//' | cut -d_ -f3,4)
 		test -n "$last_arch" || last_arch=$new_arch
