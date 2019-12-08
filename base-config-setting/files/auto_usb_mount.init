@@ -4,7 +4,22 @@
 
 START=96
 
-OPTS="-o uid=1000,gid=1000,fmask=0000,dmask=0000,rw"
+MOUNT_NTFS="mount.ntfs-3g -o noatime,async,iocharset=utf8,uid=1000,gid=1000,fmask=0000,dmask=0000,rw,big_writes"
+MOUNT_CMD1="mount -o noatime,async,iocharset=utf8,uid=1000,gid=1000,fmask=0000,dmask=0000,rw"
+MOUNT_CMD2="mount -o noatime,async,rw"
+MOUNT_CMD3="mount -o rw"
+MOUNT_CMD4="mount"
+
+#try_mount "$1" "$2"
+try_mount()
+{
+	$MOUNT_NTFS "$1" "$2" && return 0
+	$MOUNT_CMD1 "$1" "$2" && return 0
+	$MOUNT_CMD2 "$1" "$2" && return 0
+	$MOUNT_CMD3 "$1" "$2" && return 0
+	$MOUNT_CMD4 "$1" "$2" && return 0
+	return 1
+}
 
 auto_mount_boot()
 {
@@ -28,7 +43,7 @@ auto_mount_boot()
 
 		ddir=/mnt/`basename $DEV`
 		mkdir -p "$ddir" || continue
-		if mount $OPTS "$DEV" "$ddir" || mount "$DEV" "$ddir"; then
+		if try_mount "$DEV" "$ddir"; then
 			logger -t "auto_usb_mount" "boot auto mount $DEV to $ddir success!"
 		else
 			logger -t "auto_usb_mount" "boot mount $DEV to $ddir failed!"
