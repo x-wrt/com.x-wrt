@@ -57,6 +57,7 @@ CONFIG_TARGET_MULTI_PROFILE=y
 # CONFIG_TARGET_ipq40xx_generic_DEVICE_avm_fritzbox-7530 is not set
 # CONFIG_TARGET_ipq40xx_generic_DEVICE_avm_fritzrepeater-1200 is not set
 # CONFIG_TARGET_ipq40xx_generic_DEVICE_avm_fritzrepeater-3000 is not set
+# CONFIG_TARGET_ipq40xx_generic_DEVICE_aruba_ap-303 is not set
 # CONFIG_TARGET_ipq40xx_generic_DEVICE_meraki_mr33 is not set
 # CONFIG_TARGET_ipq40xx_generic_DEVICE_compex_wpj419 is not set
 # CONFIG_TARGET_ipq40xx_generic_DEVICE_compex_wpj428 is not set
@@ -89,6 +90,7 @@ CONFIG_TARGET_PER_DEVICE_ROOTFS=y
 # CONFIG_TARGET_DEVICE_ipq40xx_generic_DEVICE_8dev_jalapeno is not set
 CONFIG_TARGET_DEVICE_ipq40xx_generic_DEVICE_alfa-network_ap120c-ac=y
 CONFIG_TARGET_DEVICE_PACKAGES_ipq40xx_generic_DEVICE_alfa-network_ap120c-ac="aria2 ath10k-firmware-qca4019-ct blockd block-mount chat comgt comgt-ncm kmod-ath10k-ct kmod-crypto-crc32c kmod-fs-autofs4 kmod-fs-exfat kmod-fs-ext4 kmod-fs-msdos kmod-fs-vfat kmod-fuse kmod-i2c-core kmod-lib-crc16 kmod-mii kmod-nls-cp437 kmod-random-core kmod-tpm kmod-tpm-i2c-atmel kmod-usb2 kmod-usb3 kmod-usb-acm kmod-usb-ehci kmod-usb-net kmod-usb-net-cdc-ether kmod-usb-net-cdc-mbim kmod-usb-net-cdc-ncm kmod-usb-net-huawei-cdc-ncm kmod-usb-net-ipheth kmod-usb-net-qmi-wwan kmod-usb-net-rndis kmod-usb-net-rtl8152 kmod-usb-net-sierrawireless kmod-usb-ohci kmod-usb-printer kmod-usb-serial kmod-usb-serial-option kmod-usb-serial-qualcomm kmod-usb-serial-sierrawireless kmod-usb-serial-wwan kmod-usb-storage kmod-usb-storage-uas kmod-usb-wdm libopenssl libpcre libsqlite3 libssh2 libstdcpp libusb-1.0 libxml2 luci-app-aria2 luci-app-p910nd luci-app-samba luci-i18n-aria2-en luci-i18n-aria2-zh-cn luci-i18n-p910nd-en luci-i18n-p910nd-zh-cn luci-i18n-samba-en luci-i18n-samba-zh-cn luci-proto-3g luci-proto-ncm luci-proto-qmi ntfs-3g p910nd samba36-server uqmi usb-modeswitch webui-aria2 wget wwan"
+# CONFIG_TARGET_DEVICE_ipq40xx_generic_DEVICE_aruba_ap-303 is not set
 # CONFIG_TARGET_DEVICE_ipq40xx_generic_DEVICE_asus_map-ac2200 is not set
 CONFIG_TARGET_DEVICE_ipq40xx_generic_DEVICE_asus_rt-ac58u=y
 CONFIG_TARGET_DEVICE_PACKAGES_ipq40xx_generic_DEVICE_asus_rt-ac58u="aria2 ath10k-firmware-qca4019-ct blockd block-mount chat comgt comgt-ncm kmod-ath10k-ct kmod-crypto-crc32c kmod-fs-autofs4 kmod-fs-exfat kmod-fs-ext4 kmod-fs-msdos kmod-fs-vfat kmod-fuse kmod-lib-crc16 kmod-mii kmod-nls-cp437 kmod-usb2 kmod-usb3 kmod-usb-ehci kmod-usb-ledtrig-usbport kmod-usb-net kmod-usb-net-cdc-ether kmod-usb-net-cdc-mbim kmod-usb-net-cdc-ncm kmod-usb-net-huawei-cdc-ncm kmod-usb-net-ipheth kmod-usb-net-qmi-wwan kmod-usb-net-rndis kmod-usb-net-rtl8152 kmod-usb-net-sierrawireless kmod-usb-ohci kmod-usb-printer kmod-usb-serial kmod-usb-serial-option kmod-usb-serial-qualcomm kmod-usb-serial-sierrawireless kmod-usb-serial-wwan kmod-usb-storage kmod-usb-storage-uas kmod-usb-wdm libopenssl libpcre libsqlite3 libssh2 libstdcpp libusb-1.0 libxml2 luci-app-aria2 luci-app-p910nd luci-app-samba luci-i18n-aria2-en luci-i18n-aria2-zh-cn luci-i18n-p910nd-en luci-i18n-p910nd-zh-cn luci-i18n-samba-en luci-i18n-samba-zh-cn luci-proto-3g luci-proto-ncm luci-proto-qmi ntfs-3g p910nd samba36-server uqmi usb-modeswitch webui-aria2 wget wwan"
@@ -495,7 +497,7 @@ CONFIG_TARGET_INIT_CMD="/sbin/init"
 CONFIG_TARGET_INIT_SUPPRESS_STDERR=y
 CONFIG_VERSIONOPT=y
 CONFIG_VERSION_DIST="X-WRT"
-CONFIG_VERSION_NUMBER="6.0_b201912140820"
+CONFIG_VERSION_NUMBER="6.0_b201912211732"
 CONFIG_VERSION_CODE="Eoan"
 CONFIG_VERSION_REPO="http://downloads.openwrt.org/snapshots"
 CONFIG_VERSION_HOME_URL="https://x-wrt.com/"
@@ -2632,6 +2634,7 @@ CONFIG_PACKAGE_u-boot-fritz4040=y
 #
 # ath10k Board-Specific Overrides
 #
+CONFIG_PACKAGE_ipq-wifi-aruba_ap-303=m
 CONFIG_PACKAGE_ipq-wifi-asus_rt-acrh17=m
 # CONFIG_PACKAGE_ipq-wifi-avm_fritzrepeater-1200 is not set
 CONFIG_PACKAGE_ipq-wifi-linksys_ea8300=m
@@ -2679,6 +2682,18 @@ CONFIG_PACKAGE_ath10k-firmware-qca9984-ct=m
 # CONFIG_PACKAGE_brcmfmac-firmware-usb is not set
 # CONFIG_PACKAGE_brcmsmac-firmware is not set
 # CONFIG_PACKAGE_carl9170-firmware is not set
+# CONFIG_PACKAGE_cypress-firmware-43340-sdio is not set
+# CONFIG_PACKAGE_cypress-firmware-43362-sdio is not set
+# CONFIG_PACKAGE_cypress-firmware-4339-sdio is not set
+# CONFIG_PACKAGE_cypress-firmware-43430-sdio is not set
+# CONFIG_PACKAGE_cypress-firmware-43455-sdio is not set
+# CONFIG_PACKAGE_cypress-firmware-4354-sdio is not set
+# CONFIG_PACKAGE_cypress-firmware-4356-pcie is not set
+# CONFIG_PACKAGE_cypress-firmware-4356-sdio is not set
+# CONFIG_PACKAGE_cypress-firmware-4359-pcie is not set
+# CONFIG_PACKAGE_cypress-firmware-4359-sdio is not set
+# CONFIG_PACKAGE_cypress-firmware-4373-sdio is not set
+# CONFIG_PACKAGE_cypress-firmware-4373-usb is not set
 # CONFIG_PACKAGE_e100-firmware is not set
 # CONFIG_PACKAGE_edgeport-firmware is not set
 # CONFIG_PACKAGE_ibt-firmware is not set
@@ -3370,6 +3385,7 @@ CONFIG_PACKAGE_kmod-usb-net-sierrawireless=m
 # CONFIG_PACKAGE_kmod-usb-net-sr9700 is not set
 CONFIG_PACKAGE_kmod-usb-ohci=m
 # CONFIG_PACKAGE_kmod-usb-ohci-pci is not set
+CONFIG_PACKAGE_kmod-usb-phy-qcom-dwc3=m
 CONFIG_PACKAGE_kmod-usb-printer=m
 CONFIG_PACKAGE_kmod-usb-serial=m
 # CONFIG_PACKAGE_kmod-usb-serial-ark3116 is not set
@@ -4172,6 +4188,10 @@ CONFIG_PACKAGE_luasocket=y
 # CONFIG_PACKAGE_liblz4 is not set
 # CONFIG_PACKAGE_liblzma is not set
 # CONFIG_PACKAGE_libunrar is not set
+# CONFIG_PACKAGE_libzip-gnutls is not set
+# CONFIG_PACKAGE_libzip-mbedtls is not set
+# CONFIG_PACKAGE_libzip-nossl is not set
+# CONFIG_PACKAGE_libzip-openssl is not set
 # CONFIG_PACKAGE_libzstd is not set
 
 #
@@ -5168,6 +5188,7 @@ CONFIG_OPENSSL_WITH_PSK=y
 # CONFIG_PACKAGE_libctb is not set
 # CONFIG_PACKAGE_libfreetdm-stable is not set
 # CONFIG_PACKAGE_libiksemel is not set
+# CONFIG_PACKAGE_libks is not set
 # CONFIG_PACKAGE_libosip2 is not set
 # CONFIG_PACKAGE_libpj is not set
 # CONFIG_PACKAGE_libpjlib-util is not set
@@ -5183,6 +5204,16 @@ CONFIG_OPENSSL_WITH_PSK=y
 # CONFIG_PACKAGE_libspandsp is not set
 # CONFIG_PACKAGE_libsrtp is not set
 # CONFIG_PACKAGE_libsrtp2 is not set
+# CONFIG_PACKAGE_signalwire-client-c is not set
+
+#
+# libimobiledevice
+#
+# CONFIG_PACKAGE_libimobiledevice is not set
+# CONFIG_PACKAGE_libirecovery is not set
+# CONFIG_PACKAGE_libplist is not set
+# CONFIG_PACKAGE_libplistcxx is not set
+# CONFIG_PACKAGE_libusbmuxd is not set
 # CONFIG_PACKAGE_alsa-lib is not set
 # CONFIG_PACKAGE_argp-standalone is not set
 # CONFIG_PACKAGE_avro-c is not set
@@ -5325,7 +5356,6 @@ CONFIG_PACKAGE_libgmp=y
 # CONFIG_PACKAGE_libidn is not set
 # CONFIG_PACKAGE_libidn2 is not set
 # CONFIG_PACKAGE_libiio is not set
-# CONFIG_PACKAGE_libimobiledevice is not set
 # CONFIG_PACKAGE_libinotifytools is not set
 # CONFIG_PACKAGE_libinput is not set
 # CONFIG_PACKAGE_libintl is not set
@@ -5431,8 +5461,6 @@ CONFIG_PCRE_JIT_ENABLED=y
 # CONFIG_PACKAGE_libpfring is not set
 # CONFIG_PACKAGE_libpkcs11-spy is not set
 # CONFIG_PACKAGE_libpkgconf is not set
-# CONFIG_PACKAGE_libplist is not set
-# CONFIG_PACKAGE_libplistcxx is not set
 # CONFIG_PACKAGE_libpng is not set
 # CONFIG_PACKAGE_libpopt is not set
 # CONFIG_PACKAGE_libpri is not set
@@ -5527,7 +5555,6 @@ CONFIG_PACKAGE_libuclient=y
 # CONFIG_PACKAGE_liburcu is not set
 CONFIG_PACKAGE_libusb-1.0=m
 # CONFIG_PACKAGE_libusb-compat is not set
-# CONFIG_PACKAGE_libusbmuxd is not set
 CONFIG_PACKAGE_libustream-mbedtls=y
 # CONFIG_PACKAGE_libustream-openssl is not set
 # CONFIG_PACKAGE_libustream-wolfssl is not set
@@ -5585,6 +5612,7 @@ CONFIG_RE2_SHARED=y
 CONFIG_PACKAGE_rpcd-mod-luci=y
 # CONFIG_PACKAGE_rpcd-mod-rad2-enc is not set
 CONFIG_PACKAGE_rpcd-mod-rrdns=y
+# CONFIG_PACKAGE_rpcsvc-proto is not set
 # CONFIG_PACKAGE_rxtx is not set
 # CONFIG_PACKAGE_sbc is not set
 # CONFIG_PACKAGE_serdisplib is not set
@@ -5697,7 +5725,7 @@ CONFIG_PACKAGE_luci-app-firewall=y
 # CONFIG_PACKAGE_luci-app-fwknopd is not set
 # CONFIG_PACKAGE_luci-app-hd-idle is not set
 # CONFIG_PACKAGE_luci-app-hnet is not set
-# CONFIG_PACKAGE_luci-app-https_dns_proxy is not set
+# CONFIG_PACKAGE_luci-app-https-dns-proxy is not set
 # CONFIG_PACKAGE_luci-app-lxc is not set
 # CONFIG_PACKAGE_luci-app-minidlna is not set
 # CONFIG_PACKAGE_luci-app-mjpg-streamer is not set
@@ -6134,9 +6162,6 @@ CONFIG_PACKAGE_luci-i18n-upnp-zh-cn=y
 # CONFIG_PACKAGE_msmtp-mta is not set
 # CONFIG_PACKAGE_msmtp-nossl is not set
 # CONFIG_PACKAGE_msmtp-queue is not set
-# CONFIG_PACKAGE_msmtpq-ng is not set
-# CONFIG_PACKAGE_msmtpq-ng-mta is not set
-# CONFIG_PACKAGE_msmtpq-ng-mta-smtpd is not set
 # CONFIG_PACKAGE_mutt is not set
 # CONFIG_PACKAGE_nail is not set
 # CONFIG_PACKAGE_opendkim is not set
@@ -6912,7 +6937,7 @@ CONFIG_PACKAGE_hostapd-common=y
 # CONFIG_PACKAGE_hostapd-wolfssl is not set
 # CONFIG_PACKAGE_httping is not set
 # CONFIG_PACKAGE_httping-nossl is not set
-# CONFIG_PACKAGE_https_dns_proxy is not set
+# CONFIG_PACKAGE_https-dns-proxy is not set
 # CONFIG_PACKAGE_i2pd is not set
 # CONFIG_PACKAGE_ibrdtn-tools is not set
 # CONFIG_PACKAGE_ibrdtnd is not set
@@ -6938,11 +6963,8 @@ CONFIG_PACKAGE_ipset=y
 # CONFIG_PACKAGE_iputils-arping is not set
 # CONFIG_PACKAGE_iputils-clockdiff is not set
 # CONFIG_PACKAGE_iputils-ping is not set
-# CONFIG_PACKAGE_iputils-ping6 is not set
 # CONFIG_PACKAGE_iputils-tftpd is not set
 # CONFIG_PACKAGE_iputils-tracepath is not set
-# CONFIG_PACKAGE_iputils-tracepath6 is not set
-# CONFIG_PACKAGE_iputils-traceroute6 is not set
 # CONFIG_PACKAGE_ipvsadm is not set
 CONFIG_PACKAGE_iw=y
 # CONFIG_PACKAGE_iw-full is not set
@@ -7034,6 +7056,7 @@ CONFIG_PACKAGE_ppp-mod-pptp=y
 # CONFIG_PACKAGE_ratechecker is not set
 # CONFIG_PACKAGE_redsocks is not set
 # CONFIG_PACKAGE_remserial is not set
+# CONFIG_PACKAGE_restic-rest-server is not set
 # CONFIG_PACKAGE_rpcbind is not set
 # CONFIG_PACKAGE_rssileds is not set
 # CONFIG_PACKAGE_rsyslog is not set
@@ -7197,6 +7220,9 @@ CONFIG_PACKAGE_uboot-envtools=y
 # CONFIG_PACKAGE_unzip is not set
 # CONFIG_PACKAGE_xz-utils is not set
 # CONFIG_PACKAGE_zip is not set
+# CONFIG_PACKAGE_zipcmp is not set
+# CONFIG_PACKAGE_zipmerge is not set
+# CONFIG_PACKAGE_ziptool is not set
 # CONFIG_PACKAGE_zstd is not set
 
 #
@@ -7388,6 +7414,16 @@ CONFIG_PACKAGE_NTFS-3G_HAS_PROBE=y
 # CONFIG_PACKAGE_zoneinfo-poles is not set
 # CONFIG_PACKAGE_zoneinfo-simple is not set
 # CONFIG_PACKAGE_zoneinfo-southamerica is not set
+
+#
+# libimobiledevice
+#
+# CONFIG_PACKAGE_idevicerestore is not set
+# CONFIG_PACKAGE_irecovery is not set
+# CONFIG_PACKAGE_libimobiledevice-utils is not set
+# CONFIG_PACKAGE_libusbmuxd-utils is not set
+# CONFIG_PACKAGE_plistutil is not set
+# CONFIG_PACKAGE_usbmuxd is not set
 # CONFIG_PACKAGE_acpid is not set
 # CONFIG_PACKAGE_adb is not set
 # CONFIG_PACKAGE_ap51-flash is not set
@@ -7515,11 +7551,8 @@ CONFIG_PACKAGE_jshn=y
 # CONFIG_PACKAGE_lcdproc-server is not set
 # CONFIG_PACKAGE_less is not set
 # CONFIG_PACKAGE_less-wide is not set
-# CONFIG_PACKAGE_libimobiledevice-utils is not set
 CONFIG_PACKAGE_libjson-script=y
 # CONFIG_PACKAGE_libnetwork is not set
-# CONFIG_PACKAGE_libplist-utils is not set
-# CONFIG_PACKAGE_libusbmuxd-utils is not set
 # CONFIG_PACKAGE_libxml2-utils is not set
 # CONFIG_PACKAGE_lm-sensors is not set
 # CONFIG_PACKAGE_lm-sensors-detect is not set
@@ -7601,6 +7634,7 @@ CONFIG_PACKAGE_procps-ng-ps=y
 # CONFIG_PACKAGE_qrencode is not set
 # CONFIG_PACKAGE_relayctl is not set
 # CONFIG_PACKAGE_rename is not set
+# CONFIG_PACKAGE_restic is not set
 # CONFIG_PACKAGE_rng-tools is not set
 # CONFIG_PACKAGE_rtl-ais is not set
 # CONFIG_PACKAGE_rtl-sdr is not set
@@ -7651,7 +7685,6 @@ CONFIG_PACKAGE_ubi-utils=y
 # CONFIG_PACKAGE_uledd is not set
 # CONFIG_PACKAGE_unshare is not set
 CONFIG_PACKAGE_usb-modeswitch=m
-# CONFIG_PACKAGE_usbmuxd is not set
 # CONFIG_PACKAGE_usbreset is not set
 # CONFIG_PACKAGE_usbutils is not set
 # CONFIG_PACKAGE_uuidd is not set
