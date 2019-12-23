@@ -40,7 +40,7 @@ usb2="kmod-usb2 \
 	  kmod-nls-cp437 \
 	  kmod-lib-crc16 \
 	  kmod-fs-autofs4 \
-	  kmod-fs-exfat \
+	  kmod-exfat-linux \
 	  kmod-fs-ext4 \
 	  kmod-fs-msdos \
 	  kmod-fuse \
@@ -59,7 +59,7 @@ usb3="kmod-usb3 \
 	  kmod-nls-cp437 \
 	  kmod-lib-crc16 \
 	  kmod-fs-autofs4 \
-	  kmod-fs-exfat \
+	  kmod-exfat-linux \
 	  kmod-fs-ext4 \
 	  kmod-fs-msdos \
 	  kmod-fuse \
