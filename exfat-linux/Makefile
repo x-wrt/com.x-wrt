@@ -12,10 +12,10 @@ include $(INCLUDE_DIR)/kernel.mk
 PKG_NAME:=exfat-linux
 PKG_RELEASE:=1
 
-PKG_SOURCE_URL:=https://github.com/arter97/exfat-linux.git
+PKG_SOURCE_URL:=https://github.com/ptpt52/exfat-linux.git
 PKG_SOURCE_PROTO:=git
-PKG_SOURCE_DATE:=2019-11-28
-PKG_SOURCE_VERSION:=29fdcd25f82439e49d03ed2d5c7d0fd0906f3cb8
+PKG_SOURCE_DATE:=2019-12-23
+PKG_SOURCE_VERSION:=449b8f9f7d4ca86d94468099943c2a7ff21efad0
 
 PKG_MAINTAINER:=Chen Minqiang <ptpt52@gmail.com>
 PKG_LICENSE:=GPL-2.0
