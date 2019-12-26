@@ -555,6 +555,7 @@ for t in $targets; do
 		TARGET_DEVICE_ar71xx_generic_DEVICE_tl-wr842n-v1|\
 		TARGET_DEVICE_ar71xx_generic_DEVICE_tl-wr842n-v2|\
 		TARGET_DEVICE_ar71xx_generic_DEVICE_tl-wr902ac-v1|\
+		TARGET_DEVICE_ath79_generic_DEVICE_tplink_tl-wr902ac-v1|\
 		TARGET_DEVICE_ar71xx_generic_DEVICE_archer-c58-v1|\
 		TARGET_DEVICE_ar71xx_generic_DEVICE_archer-c60-v1|\
 		TARGET_DEVICE_ar71xx_generic_DEVICE_archer-c60-v2|\
@@ -916,6 +917,7 @@ for t in $targets; do
 		TARGET_DEVICE_ath79_generic_DEVICE_netgear_ex6400|\
 		TARGET_DEVICE_ath79_generic_DEVICE_netgear_ex7300|\
 		TARGET_DEVICE_ar71xx_generic_DEVICE_tl-wr902ac-v1|\
+		TARGET_DEVICE_ath79_generic_DEVICE_tplink_tl-wr902ac-v1|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_ubiquiti_edgerouterx|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_ubiquiti_edgerouterx-sfp|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_netgear_ex6150|\
