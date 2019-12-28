@@ -125,6 +125,10 @@ exclude_modules()
 {
 	local m
 	m=`for i in $@ $excludes $excludes; do echo $i; done | sort | uniq -c | grep ' 1' | awk '{print $2}' | sort`
+
+	# filter_conflict()
+	m=`echo "$m" | grep -q "^kmod-ath10k-ct-smallbuffers$" && echo "$m" | grep -q "^kmod-ath10k-ct$" && echo "$m" | grep -v "^kmod-ath10k-ct$" || echo "$m"`
+
 	m=`echo $m`
 	echo $m
 }
