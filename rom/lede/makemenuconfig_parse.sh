@@ -385,6 +385,7 @@ for t in $targets; do
 		TARGET_DEVICE_ar71xx_generic_DEVICE_AC9531_010|\
 		TARGET_DEVICE_ar71xx_generic_DEVICE_AC9531_020|\
 		TARGET_DEVICE_ramips_mt7620_DEVICE_xiaomi_miwifi-r3 |\
+		TARGET_DEVICE_ramips_mt7620_DEVICE_modou_m101c|\
 		TARGET_DEVICE_ramips_mt7620_DEVICE_zbtlink_zbt-we826-32m|\
 		TARGET_DEVICE_ramips_mt7620_DEVICE_zbtlink_zbt-we826-16m|\
 		TARGET_DEVICE_ramips_mt7620_DEVICE_we1026-5g-16m|\
@@ -814,6 +815,7 @@ for t in $targets; do
 		TARGET_DEVICE_ar71xx_generic_DEVICE_AC9531_010|\
 		TARGET_DEVICE_ar71xx_generic_DEVICE_AC9531_020|\
 		TARGET_DEVICE_ramips_mt7620_DEVICE_xiaomi_miwifi-r3 |\
+		TARGET_DEVICE_ramips_mt7620_DEVICE_modou_m101c|\
 		TARGET_DEVICE_ramips_mt7620_DEVICE_zbtlink_zbt-we826-32m|\
 		TARGET_DEVICE_ramips_mt7620_DEVICE_zbtlink_zbt-we826-16m|\
 		TARGET_DEVICE_ramips_mt7620_DEVICE_we1026-5g-16m|\
