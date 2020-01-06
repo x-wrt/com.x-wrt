@@ -448,6 +448,7 @@ elif test -c $DEV; then
 	server_persist_timeout=`uci get natcapd.default.server_persist_timeout 2>/dev/null || echo 300`
 	server_persist_lock=`uci get natcapd.default.server_persist_lock 2>/dev/null || echo 0`
 	dns_proxy_drop=`uci get natcapd.default.dns_proxy_drop 2>/dev/null || echo 0`
+	peer_multipath=`uci get natcapd.default.peer_multipath 2>/dev/null || echo 0`
 	tx_speed_limit=`uci get natcapd.default.tx_speed_limit 2>/dev/null || echo 0`
 	rx_speed_limit=`uci get natcapd.default.rx_speed_limit 2>/dev/null || echo 0`
 	tx_pkts_threshold=`uci get natcapd.default.tx_pkts_threshold 2>/dev/null || echo 128`
@@ -522,6 +523,7 @@ elif test -c $DEV; then
 	echo server_persist_timeout=$server_persist_timeout >>$DEV
 	echo server_persist_lock=$server_persist_lock >>$DEV
 	echo dns_proxy_drop=$dns_proxy_drop >>$DEV
+	echo peer_multipath=$peer_multipath >>$DEV
 	echo tx_speed_limit=$tx_speed_limit >>$DEV
 	echo rx_speed_limit=$rx_speed_limit >>$DEV
 	echo tx_pkts_threshold=$tx_pkts_threshold >>$DEV
