@@ -140,6 +140,10 @@ echo protocol=$protocol >>$DEV
 si_mask=`uci get natcapd.default.si_mask 2>/dev/null || echo 4278190080`
 echo si_mask=${si_mask} >>$DEV
 
+# ni_mask default 0x00800000
+ni_mask=`uci get natcapd.default.ni_mask 2>/dev/null || echo 8388608`
+echo ni_mask=${ni_mask} >>$DEV
+
 ACC="$account"
 CLI=`echo $client_mac | sed 's/:/-/g' | tr a-z A-Z`
 MOD=`cat /etc/board.json | grep model -A2 | grep id\": | sed 's/"/ /g' | awk '{print $3}'`
