@@ -321,7 +321,7 @@ natcap_id2mask() {
 natcap_target2idx() {
 	local idx=1
 	(cat $DEV | grep "^server " | while read line; do
-		if echo $line | grep -q "server $1:"; then
+		if echo $line | grep -q "server $1$"; then
 			echo $idx
 			return
 		fi
@@ -345,9 +345,11 @@ _setup_natcap_rules() {
 
 	local id=0
 	while uci get natcapd.@rule[$id].src >/dev/null 2>&1; do
-		local src=`uci get natcapd.@rule[$id].src`
-		local target=`uci get natcapd.@rule[$id].target`
-		local idx=`natcap_target2idx $target`
+		local src target idx
+		src=`uci get natcapd.@rule[$id].src`
+		target=`uci get natcapd.@rule[$id].target`
+		echo "$target" | grep -q : || target="$target:65535-e-T-U"
+		idx=`natcap_target2idx $target`
 		if test $idx -ne 0; then
 			idx=`natcap_id2mask $idx $idx_mask`
 			if echo $src | grep -q '\([0-9]\{1,3\}\)\.\([0-9]\{1,3\}\)\.\([0-9]\{1,3\}\)\.\([0-9]\{1,3\}\)'; then

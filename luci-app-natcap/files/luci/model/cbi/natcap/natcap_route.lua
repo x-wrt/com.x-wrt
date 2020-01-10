@@ -26,7 +26,7 @@ e:value("", translate("Please select..."))
 local ut = require "luci.util"
 local sys  = require "luci.sys"
 local text = ut.trim(sys.exec("cat /dev/natcap_ctl"))
-for ip in text:gmatch("server ([0-9.]+)[^\n]+") do
+for ip in text:gmatch("server ([0-9.]+[^\n]+)\n") do
 	e:value(ip)
 end
 
