@@ -20,7 +20,6 @@ CONFIG_TARGET_ar71xx=y
 # CONFIG_TARGET_mpc85xx is not set
 # CONFIG_TARGET_imx6 is not set
 # CONFIG_TARGET_mxs is not set
-# CONFIG_TARGET_ixp4xx is not set
 # CONFIG_TARGET_lantiq is not set
 # CONFIG_TARGET_malta is not set
 # CONFIG_TARGET_pistachio is not set
@@ -40,7 +39,6 @@ CONFIG_TARGET_ar71xx=y
 # CONFIG_TARGET_samsung is not set
 # CONFIG_TARGET_arc770 is not set
 # CONFIG_TARGET_archs38 is not set
-# CONFIG_TARGET_ar7 is not set
 # CONFIG_TARGET_omap is not set
 # CONFIG_TARGET_uml is not set
 # CONFIG_TARGET_zynq is not set
@@ -470,7 +468,7 @@ CONFIG_TARGET_DEVICE_PACKAGES_ar71xx_generic_DEVICE_wndr3800ch="aria2 blockd blo
 # CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_cpe505n is not set
 # CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_r602n is not set
 CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_k2t=y
-CONFIG_TARGET_DEVICE_PACKAGES_ar71xx_generic_DEVICE_k2t="ath10k-firmware-qca9888 kmod-ath10k kmod-ath9k kmod-ath9k-common kmod-hwmon-core"
+CONFIG_TARGET_DEVICE_PACKAGES_ar71xx_generic_DEVICE_k2t="ath10k-firmware-qca9888-ct kmod-ath10k-ct-smallbuffers kmod-ath9k kmod-ath9k-common kmod-hwmon-core"
 # CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_ts-d084 is not set
 # CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_MZKW04NU is not set
 # CONFIG_TARGET_DEVICE_ar71xx_generic_DEVICE_MZKW300NH is not set
@@ -611,7 +609,7 @@ CONFIG_TARGET_ARCH_PACKAGES="mips_24kc"
 CONFIG_DEFAULT_TARGET_OPTIMIZATION="-Os -pipe -mno-branch-likely -mips32r2 -mtune=24kc"
 CONFIG_CPU_TYPE="24kc"
 CONFIG_LINUX_4_14=y
-CONFIG_MODULE_DEFAULT_ath10k-firmware-qca9888=y
+CONFIG_MODULE_DEFAULT_ath10k-firmware-qca9888-ct=y
 CONFIG_MODULE_DEFAULT_ath10k-firmware-qca988x-ct=y
 CONFIG_DEFAULT_base-files=y
 CONFIG_MODULE_DEFAULT_base-files=y
@@ -632,8 +630,8 @@ CONFIG_DEFAULT_iptables=y
 CONFIG_MODULE_DEFAULT_iptables=y
 CONFIG_DEFAULT_iwinfo=y
 CONFIG_MODULE_DEFAULT_iwinfo=y
-CONFIG_MODULE_DEFAULT_kmod-ath10k=y
 CONFIG_MODULE_DEFAULT_kmod-ath10k-ct=y
+CONFIG_MODULE_DEFAULT_kmod-ath10k-ct-smallbuffers=y
 CONFIG_DEFAULT_kmod-ath9k=y
 CONFIG_MODULE_DEFAULT_kmod-ath9k=y
 CONFIG_MODULE_DEFAULT_kmod-fs-ext4=y
@@ -937,7 +935,7 @@ CONFIG_TARGET_INIT_CMD="/sbin/init"
 CONFIG_TARGET_INIT_SUPPRESS_STDERR=y
 CONFIG_VERSIONOPT=y
 CONFIG_VERSION_DIST="X-WRT"
-CONFIG_VERSION_NUMBER="6.0_b202001092108"
+CONFIG_VERSION_NUMBER="7.0_b202001111439"
 CONFIG_VERSION_CODE="Eoan"
 CONFIG_VERSION_REPO="http://downloads.openwrt.org/snapshots"
 CONFIG_VERSION_HOME_URL="https://x-wrt.com/"
@@ -3899,7 +3897,7 @@ CONFIG_ATH10K_LEDS=y
 # CONFIG_ATH10K_THERMAL is not set
 CONFIG_PACKAGE_kmod-ath10k-ct=m
 CONFIG_ATH10K-CT_LEDS=y
-# CONFIG_PACKAGE_kmod-ath10k-ct-smallbuffers is not set
+CONFIG_PACKAGE_kmod-ath10k-ct-smallbuffers=m
 # CONFIG_PACKAGE_kmod-ath5k is not set
 # CONFIG_PACKAGE_kmod-ath6kl-sdio is not set
 # CONFIG_PACKAGE_kmod-ath6kl-usb is not set
@@ -4091,8 +4089,6 @@ CONFIG_PACKAGE_luasocket=y
 # CONFIG_PACKAGE_micropython is not set
 # CONFIG_PACKAGE_micropython-lib is not set
 # CONFIG_PACKAGE_python is not set
-# CONFIG_PACKAGE_python-asn1crypto is not set
-# CONFIG_PACKAGE_python-asn1crypto-src is not set
 # CONFIG_PACKAGE_python-astral is not set
 # CONFIG_PACKAGE_python-astral-src is not set
 # CONFIG_PACKAGE_python-attrs is not set
@@ -7214,6 +7210,7 @@ CONFIG_PACKAGE_libipset=y
 # CONFIG_PACKAGE_ncp is not set
 # CONFIG_PACKAGE_ndppd is not set
 # CONFIG_PACKAGE_ndptool is not set
+# CONFIG_PACKAGE_net-tools-route is not set
 # CONFIG_PACKAGE_netcat is not set
 # CONFIG_PACKAGE_netdiscover is not set
 # CONFIG_PACKAGE_netifyd is not set

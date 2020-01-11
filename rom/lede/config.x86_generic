@@ -19,7 +19,6 @@ CONFIG_HAVE_DOT_CONFIG=y
 # CONFIG_TARGET_mpc85xx is not set
 # CONFIG_TARGET_imx6 is not set
 # CONFIG_TARGET_mxs is not set
-# CONFIG_TARGET_ixp4xx is not set
 # CONFIG_TARGET_lantiq is not set
 # CONFIG_TARGET_malta is not set
 # CONFIG_TARGET_pistachio is not set
@@ -39,7 +38,6 @@ CONFIG_HAVE_DOT_CONFIG=y
 # CONFIG_TARGET_samsung is not set
 # CONFIG_TARGET_arc770 is not set
 # CONFIG_TARGET_archs38 is not set
-# CONFIG_TARGET_ar7 is not set
 # CONFIG_TARGET_omap is not set
 # CONFIG_TARGET_uml is not set
 # CONFIG_TARGET_zynq is not set
@@ -382,7 +380,7 @@ CONFIG_TARGET_INIT_CMD="/sbin/init"
 CONFIG_TARGET_INIT_SUPPRESS_STDERR=y
 CONFIG_VERSIONOPT=y
 CONFIG_VERSION_DIST="X-WRT"
-CONFIG_VERSION_NUMBER="6.0_b202001092108"
+CONFIG_VERSION_NUMBER="7.0_b202001111439"
 CONFIG_VERSION_CODE="Eoan"
 CONFIG_VERSION_REPO="http://downloads.openwrt.org/snapshots"
 CONFIG_VERSION_HOME_URL="https://x-wrt.com/"
@@ -3614,8 +3612,6 @@ CONFIG_PACKAGE_luasocket=y
 # CONFIG_PACKAGE_micropython is not set
 # CONFIG_PACKAGE_micropython-lib is not set
 # CONFIG_PACKAGE_python is not set
-# CONFIG_PACKAGE_python-asn1crypto is not set
-# CONFIG_PACKAGE_python-asn1crypto-src is not set
 # CONFIG_PACKAGE_python-astral is not set
 # CONFIG_PACKAGE_python-astral-src is not set
 # CONFIG_PACKAGE_python-attrs is not set
@@ -6296,7 +6292,6 @@ CONFIG_PACKAGE_nfs-kernel-server=y
 #
 # Select nfs-kernel-server configuration options
 #
-CONFIG_NFS_KERNEL_SERVER_V4=y
 CONFIG_PACKAGE_nfs-kernel-server-utils=y
 # CONFIG_PACKAGE_owftpd is not set
 # CONFIG_PACKAGE_owhttpd is not set
@@ -6997,6 +6992,7 @@ CONFIG_PACKAGE_libipset=y
 # CONFIG_PACKAGE_ncp is not set
 # CONFIG_PACKAGE_ndppd is not set
 # CONFIG_PACKAGE_ndptool is not set
+# CONFIG_PACKAGE_net-tools-route is not set
 CONFIG_PACKAGE_netcat=y
 # CONFIG_PACKAGE_netdiscover is not set
 # CONFIG_PACKAGE_netifyd is not set
