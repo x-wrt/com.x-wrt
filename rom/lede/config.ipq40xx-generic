@@ -61,8 +61,10 @@ CONFIG_TARGET_MULTI_PROFILE=y
 # CONFIG_TARGET_ipq40xx_generic_DEVICE_compex_wpj419 is not set
 # CONFIG_TARGET_ipq40xx_generic_DEVICE_compex_wpj428 is not set
 # CONFIG_TARGET_ipq40xx_generic_DEVICE_cilab_meshpoint-one is not set
+# CONFIG_TARGET_ipq40xx_generic_DEVICE_dlink_dap-2610 is not set
 # CONFIG_TARGET_ipq40xx_generic_DEVICE_ezviz_cs-w3-wd1200g-eup is not set
 # CONFIG_TARGET_ipq40xx_generic_DEVICE_engenius_eap1300 is not set
+# CONFIG_TARGET_ipq40xx_generic_DEVICE_engenius_emd1 is not set
 # CONFIG_TARGET_ipq40xx_generic_DEVICE_engenius_ens620ext is not set
 # CONFIG_TARGET_ipq40xx_generic_DEVICE_glinet_gl-b1300 is not set
 # CONFIG_TARGET_ipq40xx_generic_DEVICE_linksys_ea6350v3 is not set
@@ -108,8 +110,10 @@ CONFIG_TARGET_DEVICE_PACKAGES_ipq40xx_generic_DEVICE_avm_fritzbox-7530="aria2 at
 CONFIG_TARGET_DEVICE_ipq40xx_generic_DEVICE_compex_wpj428=y
 CONFIG_TARGET_DEVICE_PACKAGES_ipq40xx_generic_DEVICE_compex_wpj428="aria2 ath10k-firmware-qca4019-ct blockd block-mount chat comgt comgt-ncm kmod-ath10k-ct kmod-crypto-crc32c kmod-exfat-linux kmod-fs-autofs4 kmod-fs-ext4 kmod-fs-msdos kmod-fs-vfat kmod-fuse kmod-gpio-beeper kmod-input-core kmod-lib-crc16 kmod-mii kmod-nls-cp437 kmod-usb2 kmod-usb3 kmod-usb-ehci kmod-usb-net kmod-usb-net-cdc-ether kmod-usb-net-cdc-mbim kmod-usb-net-cdc-ncm kmod-usb-net-huawei-cdc-ncm kmod-usb-net-ipheth kmod-usb-net-qmi-wwan kmod-usb-net-rndis kmod-usb-net-rtl8152 kmod-usb-net-sierrawireless kmod-usb-ohci kmod-usb-printer kmod-usb-serial kmod-usb-serial-option kmod-usb-serial-qualcomm kmod-usb-serial-sierrawireless kmod-usb-serial-wwan kmod-usb-storage kmod-usb-storage-uas kmod-usb-wdm libopenssl libpcre libsqlite3 libssh2 libstdcpp libusb-1.0 libxml2 luci-app-aria2 luci-app-p910nd luci-app-samba luci-i18n-aria2-en luci-i18n-aria2-zh-cn luci-i18n-p910nd-en luci-i18n-p910nd-zh-cn luci-i18n-samba-en luci-i18n-samba-zh-cn luci-proto-3g luci-proto-ncm luci-proto-qmi ntfs-3g p910nd samba36-server uqmi usb-modeswitch webui-aria2 wget wwan"
 # CONFIG_TARGET_DEVICE_ipq40xx_generic_DEVICE_cilab_meshpoint-one is not set
+# CONFIG_TARGET_DEVICE_ipq40xx_generic_DEVICE_dlink_dap-2610 is not set
 CONFIG_TARGET_DEVICE_ipq40xx_generic_DEVICE_engenius_eap1300=y
 CONFIG_TARGET_DEVICE_PACKAGES_ipq40xx_generic_DEVICE_engenius_eap1300="ath10k-firmware-qca4019-ct kmod-ath10k-ct kmod-usb3"
+# CONFIG_TARGET_DEVICE_ipq40xx_generic_DEVICE_engenius_emd1 is not set
 # CONFIG_TARGET_DEVICE_ipq40xx_generic_DEVICE_engenius_ens620ext is not set
 # CONFIG_TARGET_DEVICE_ipq40xx_generic_DEVICE_ezviz_cs-w3-wd1200g-eup is not set
 CONFIG_TARGET_DEVICE_ipq40xx_generic_DEVICE_glinet_gl-b1300=y
@@ -503,7 +507,7 @@ CONFIG_TARGET_INIT_CMD="/sbin/init"
 CONFIG_TARGET_INIT_SUPPRESS_STDERR=y
 CONFIG_VERSIONOPT=y
 CONFIG_VERSION_DIST="X-WRT"
-CONFIG_VERSION_NUMBER="7.0_b202001230851"
+CONFIG_VERSION_NUMBER="7.0_b202001291320"
 CONFIG_VERSION_CODE="Eoan"
 CONFIG_VERSION_REPO="http://downloads.openwrt.org/snapshots"
 CONFIG_VERSION_HOME_URL="https://x-wrt.com/"
@@ -2644,6 +2648,8 @@ CONFIG_PACKAGE_u-boot-fritz4040=y
 # CONFIG_PACKAGE_ipq-wifi-aruba_ap-303 is not set
 CONFIG_PACKAGE_ipq-wifi-asus_rt-acrh17=m
 # CONFIG_PACKAGE_ipq-wifi-avm_fritzrepeater-1200 is not set
+# CONFIG_PACKAGE_ipq-wifi-dlink_dap2610 is not set
+# CONFIG_PACKAGE_ipq-wifi-engenius_emd1 is not set
 # CONFIG_PACKAGE_ipq-wifi-ezviz_cs-w3-wd1200g-eup is not set
 CONFIG_PACKAGE_ipq-wifi-linksys_ea8300=m
 CONFIG_PACKAGE_ipq-wifi-p2w_r619ac=m
@@ -2893,6 +2899,7 @@ CONFIG_PACKAGE_kmod-fs-ext4=m
 # CONFIG_PACKAGE_kmod-fs-hfsplus is not set
 # CONFIG_PACKAGE_kmod-fs-isofs is not set
 # CONFIG_PACKAGE_kmod-fs-jfs is not set
+# CONFIG_PACKAGE_kmod-fs-ksmbd is not set
 # CONFIG_PACKAGE_kmod-fs-minix is not set
 CONFIG_PACKAGE_kmod-fs-msdos=m
 # CONFIG_PACKAGE_kmod-fs-nfs is not set
@@ -2903,7 +2910,6 @@ CONFIG_PACKAGE_kmod-fs-msdos=m
 # CONFIG_PACKAGE_kmod-fs-nfsd is not set
 # CONFIG_PACKAGE_kmod-fs-ntfs is not set
 # CONFIG_PACKAGE_kmod-fs-reiserfs is not set
-# CONFIG_PACKAGE_kmod-fs-smbd is not set
 # CONFIG_PACKAGE_kmod-fs-squashfs is not set
 # CONFIG_PACKAGE_kmod-fs-udf is not set
 CONFIG_PACKAGE_kmod-fs-vfat=m
@@ -3660,6 +3666,7 @@ CONFIG_PACKAGE_luasocket=y
 # CONFIG_PACKAGE_node-cylon-i2c is not set
 # CONFIG_PACKAGE_node-hid is not set
 # CONFIG_PACKAGE_node-homebridge is not set
+# CONFIG_PACKAGE_node-javascript-obfuscator is not set
 # CONFIG_PACKAGE_node-npm is not set
 # CONFIG_PACKAGE_node-serialport is not set
 # CONFIG_PACKAGE_node-serialport-bindings is not set
@@ -3989,6 +3996,7 @@ CONFIG_PACKAGE_luasocket=y
 # CONFIG_PACKAGE_python3-gmpy2 is not set
 # CONFIG_PACKAGE_python3-gmpy2-src is not set
 # CONFIG_PACKAGE_python3-gnupg is not set
+# CONFIG_PACKAGE_python3-gpiod is not set
 # CONFIG_PACKAGE_python3-gunicorn is not set
 # CONFIG_PACKAGE_python3-gunicorn-src is not set
 # CONFIG_PACKAGE_python3-hyperlink is not set
@@ -4130,6 +4138,8 @@ CONFIG_PACKAGE_luasocket=y
 # CONFIG_PACKAGE_python3-slugify is not set
 # CONFIG_PACKAGE_python3-slugify-src is not set
 # CONFIG_PACKAGE_python3-smbus is not set
+# CONFIG_PACKAGE_python3-speedtest-cli is not set
+# CONFIG_PACKAGE_python3-speedtest-cli-src is not set
 # CONFIG_PACKAGE_python3-sqlalchemy is not set
 # CONFIG_PACKAGE_python3-sqlalchemy-src is not set
 # CONFIG_PACKAGE_python3-sqlite3 is not set
@@ -5131,7 +5141,6 @@ CONFIG_PACKAGE_libxtables=y
 #
 # SSL
 #
-# CONFIG_PACKAGE_libbotan is not set
 # CONFIG_PACKAGE_libgnutls is not set
 CONFIG_PACKAGE_libmbedtls=y
 # CONFIG_LIBMBEDTLS_DEBUG_C is not set
@@ -5373,6 +5382,7 @@ CONFIG_PACKAGE_libgmp=y
 # CONFIG_PACKAGE_libinput is not set
 # CONFIG_PACKAGE_libintl is not set
 # CONFIG_PACKAGE_libintl-full is not set
+# CONFIG_PACKAGE_libipfs-http-client is not set
 # CONFIG_PACKAGE_libiw is not set
 CONFIG_PACKAGE_libiwinfo=y
 # CONFIG_PACKAGE_libjpeg is not set
@@ -5608,6 +5618,7 @@ CONFIG_PACKAGE_libxml2=m
 # CONFIG_PACKAGE_musl-fts is not set
 # CONFIG_PACKAGE_mxml is not set
 # CONFIG_PACKAGE_nacl is not set
+# CONFIG_PACKAGE_nlohmannjson is not set
 # CONFIG_PACKAGE_nspr is not set
 # CONFIG_PACKAGE_oniguruma is not set
 # CONFIG_PACKAGE_opencv is not set
@@ -5736,6 +5747,7 @@ CONFIG_PACKAGE_luci-app-firewall=y
 # CONFIG_PACKAGE_luci-app-hd-idle is not set
 # CONFIG_PACKAGE_luci-app-hnet is not set
 # CONFIG_PACKAGE_luci-app-https-dns-proxy is not set
+# CONFIG_PACKAGE_luci-app-ksmbd is not set
 # CONFIG_PACKAGE_luci-app-lxc is not set
 # CONFIG_PACKAGE_luci-app-minidlna is not set
 # CONFIG_PACKAGE_luci-app-mjpg-streamer is not set
@@ -5764,11 +5776,11 @@ CONFIG_PACKAGE_luci-app-p910nd=m
 # CONFIG_PACKAGE_luci-app-rp-pppoe-server is not set
 CONFIG_PACKAGE_luci-app-samba=m
 # CONFIG_PACKAGE_luci-app-samba4 is not set
+# CONFIG_PACKAGE_luci-app-ser2net is not set
 # CONFIG_PACKAGE_luci-app-shadowsocks-libev is not set
 # CONFIG_PACKAGE_luci-app-shairplay is not set
 # CONFIG_PACKAGE_luci-app-siitwizard is not set
 # CONFIG_PACKAGE_luci-app-simple-adblock is not set
-# CONFIG_PACKAGE_luci-app-smbd is not set
 # CONFIG_PACKAGE_luci-app-snmpd is not set
 # CONFIG_PACKAGE_luci-app-splash is not set
 CONFIG_PACKAGE_luci-app-sqm=y
@@ -5783,6 +5795,7 @@ CONFIG_PACKAGE_luci-app-sqm=y
 # CONFIG_PACKAGE_luci-app-unbound is not set
 CONFIG_PACKAGE_luci-app-upnp=y
 # CONFIG_PACKAGE_luci-app-vnstat is not set
+# CONFIG_PACKAGE_luci-app-vnstat2 is not set
 # CONFIG_PACKAGE_luci-app-vpn-policy-routing is not set
 # CONFIG_PACKAGE_luci-app-vpnbypass is not set
 # CONFIG_PACKAGE_luci-app-watchcat is not set
@@ -6315,13 +6328,13 @@ CONFIG_PACKAGE_wget=m
 # Filesystem
 #
 # CONFIG_PACKAGE_davfs2 is not set
+# CONFIG_PACKAGE_ksmbd-server is not set
+# CONFIG_PACKAGE_ksmbd-utils is not set
 # CONFIG_PACKAGE_netatalk is not set
 # CONFIG_PACKAGE_nfs-kernel-server is not set
 # CONFIG_PACKAGE_owftpd is not set
 # CONFIG_PACKAGE_owhttpd is not set
 # CONFIG_PACKAGE_owserver is not set
-# CONFIG_PACKAGE_smbd-server is not set
-# CONFIG_PACKAGE_smbd-utils is not set
 # CONFIG_PACKAGE_sshfs is not set
 
 #
@@ -7094,6 +7107,7 @@ CONFIG_PACKAGE_SAMBA_MAX_DEBUG_LEVEL=-1
 # CONFIG_PACKAGE_seafile-server is not set
 # CONFIG_PACKAGE_ser2net is not set
 # CONFIG_PACKAGE_simple-adblock is not set
+# CONFIG_PACKAGE_smartdns is not set
 # CONFIG_PACKAGE_smartsnmpd is not set
 # CONFIG_PACKAGE_smbinfo is not set
 # CONFIG_PACKAGE_snmp-mibs is not set
@@ -7581,6 +7595,7 @@ CONFIG_PACKAGE_fritz-tffs-nand=m
 # CONFIG_PACKAGE_inotifywait is not set
 # CONFIG_PACKAGE_inotifywatch is not set
 # CONFIG_PACKAGE_io is not set
+# CONFIG_PACKAGE_ipfs-http-client-tests is not set
 # CONFIG_PACKAGE_irqbalance is not set
 # CONFIG_PACKAGE_iwcap is not set
 CONFIG_PACKAGE_iwinfo=y
