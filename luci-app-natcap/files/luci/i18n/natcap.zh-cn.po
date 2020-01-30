@@ -217,6 +217,9 @@ msgstr "为每一组内网用户分配出口网关"
 msgid "From Client(s)"
 msgstr "内网用户"
 
+msgid "To Destination"
+msgstr "访问的目标"
+
 msgid "Target Gateway"
 msgstr "出口网关"
 
