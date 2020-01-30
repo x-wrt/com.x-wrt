@@ -356,8 +356,10 @@ _setup_natcap_rules() {
 		echo "$target" | grep -q : || target="$target:65535-e-T-U"
 		idx=`natcap_target2idx $target`
 		if test $idx -ne 0; then
-			ipset destroy $dst >/dev/null 2>&1
-			ipset create $dst hash:net family inet hashsize 1024 maxelem 16384
+			ipset -n list $dst >/dev/null 2>&1 || {
+				ipset destroy $dst >/dev/null 2>&1
+				ipset create $dst hash:net family inet hashsize 1024 maxelem 16384
+			}
 			idx=`natcap_id2mask $idx $idx_mask`
 			if echo $src | grep -q '\([0-9]\{1,3\}\)\.\([0-9]\{1,3\}\)\.\([0-9]\{1,3\}\)\.\([0-9]\{1,3\}\)'; then
 				iptables -t mangle -A PREROUTING -m mark --mark 0x0/$idx_mask -m conntrack --ctstate NEW -s $src --match set --match-set $dst dst -m comment --comment "natcap-rule" -j MARK --set-xmark $idx/$idx_mask
