@@ -348,6 +348,27 @@ _setup_natcap_rules() {
 	idx_mask=`printf "0x%x" $si_mask`
 
 	local id=0
+	while uci get natcapd.@ruleset[$id].dst >/dev/null 2>&1; do
+		local src target idx
+		dst=`uci get natcapd.@ruleset[$id].dst`
+		src=`uci get natcapd.@ruleset[$id].src`
+		target=`uci get natcapd.@ruleset[$id].target`
+		echo "$target" | grep -q : || target="$target:65535-e-T-U"
+		idx=`natcap_target2idx $target`
+		if test $idx -ne 0; then
+			ipset destroy $dst >/dev/null 2>&1
+			ipset create $dst hash:net family inet hashsize 1024 maxelem 16384
+			idx=`natcap_id2mask $idx $idx_mask`
+			if echo $src | grep -q '\([0-9]\{1,3\}\)\.\([0-9]\{1,3\}\)\.\([0-9]\{1,3\}\)\.\([0-9]\{1,3\}\)'; then
+				iptables -t mangle -A PREROUTING -m mark --mark 0x0/$idx_mask -m conntrack --ctstate NEW -s $src --match set --match-set $dst dst -m comment --comment "natcap-rule" -j MARK --set-xmark $idx/$idx_mask
+			else
+				iptables -t mangle -A PREROUTING -m mark --mark 0x0/$idx_mask -m conntrack --ctstate NEW -m mac --mac-source $src --match set --match-set $dst dst -m comment --comment "natcap-rule" -j MARK --set-xmark $idx/$idx_mask
+			fi
+		fi
+		id=$((id+1))
+	done
+
+	local id=0
 	while uci get natcapd.@rule[$id].src >/dev/null 2>&1; do
 		local src target idx
 		src=`uci get natcapd.@rule[$id].src`
@@ -357,9 +378,9 @@ _setup_natcap_rules() {
 		if test $idx -ne 0; then
 			idx=`natcap_id2mask $idx $idx_mask`
 			if echo $src | grep -q '\([0-9]\{1,3\}\)\.\([0-9]\{1,3\}\)\.\([0-9]\{1,3\}\)\.\([0-9]\{1,3\}\)'; then
-				iptables -t mangle -A PREROUTING -m conntrack --ctstate NEW -s $src -m comment --comment "natcap-rule" -j MARK --set-xmark $idx/$idx_mask
+				iptables -t mangle -A PREROUTING -m mark --mark 0x0/$idx_mask -m conntrack --ctstate NEW -s $src -m comment --comment "natcap-rule" -j MARK --set-xmark $idx/$idx_mask
 			else
-				iptables -t mangle -A PREROUTING -m conntrack --ctstate NEW -m mac --mac-source $src -m comment --comment "natcap-rule" -j MARK --set-xmark $idx/$idx_mask
+				iptables -t mangle -A PREROUTING -m mark --mark 0x0/$idx_mask -m conntrack --ctstate NEW -m mac --mac-source $src -m comment --comment "natcap-rule" -j MARK --set-xmark $idx/$idx_mask
 			fi
 		fi
 		id=$((id+1))
