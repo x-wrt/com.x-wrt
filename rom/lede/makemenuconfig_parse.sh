@@ -355,7 +355,7 @@ for t in $targets; do
 		TARGET_DEVICE_ath79_generic_DEVICE_iodata_wn-ac1167dgr|\
 		TARGET_DEVICE_ramips_mt76x8_DEVICE_hiwifi_hc5861b|\
 		TARGET_DEVICE_ramips_mt76x8_DEVICE_netgear_r6120|\
-		TARGET_DEVICE_ath79_generic_DEVICE_netgear_wndr3700v2|\
+		TARGET_DEVICE_ath79_generic_DEVICE_netgear_wndr3700-v2|\
 		TARGET_DEVICE_ath79_generic_DEVICE_iodata_wn-ac1600dgr2|\
 		TARGET_DEVICE_ar71xx_generic_DEVICE_archer-c7-v5|\
 		TARGET_DEVICE_ath79_generic_DEVICE_glinet_ar300m_nor|\
@@ -780,7 +780,7 @@ for t in $targets; do
 		TARGET_DEVICE_ramips_mt76x8_DEVICE_tplink_tl-wr842n-v5|\
 		TARGET_DEVICE_ramips_mt76x8_DEVICE_tplink_tl-mr3420-v5|\
 		TARGET_DEVICE_ramips_mt76x8_DEVICE_netgear_r6120|\
-		TARGET_DEVICE_ath79_generic_DEVICE_netgear_wndr3700v2|\
+		TARGET_DEVICE_ath79_generic_DEVICE_netgear_wndr3700-v2|\
 		TARGET_DEVICE_ath79_generic_DEVICE_netgear_wndr3700|\
 		TARGET_DEVICE_ath79_generic_DEVICE_ubnt_bullet-m|\
 		TARGET_DEVICE_ath79_generic_DEVICE_ubnt_nano-m|\
