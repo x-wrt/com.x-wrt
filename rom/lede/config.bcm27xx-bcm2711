@@ -4,16 +4,16 @@
 #
 CONFIG_MODULES=y
 CONFIG_HAVE_DOT_CONFIG=y
-CONFIG_DEFAULT_TARGET_brcm2708_bcm2710=y
+CONFIG_DEFAULT_TARGET_bcm27xx_bcm2711=y
 # CONFIG_TARGET_sunxi is not set
 # CONFIG_TARGET_apm821xx is not set
 # CONFIG_TARGET_ath25 is not set
 # CONFIG_TARGET_ar71xx is not set
 # CONFIG_TARGET_ath79 is not set
-CONFIG_TARGET_brcm2708=y
+CONFIG_TARGET_bcm27xx=y
 # CONFIG_TARGET_bcm53xx is not set
-# CONFIG_TARGET_brcm47xx is not set
-# CONFIG_TARGET_brcm63xx is not set
+# CONFIG_TARGET_bcm47xx is not set
+# CONFIG_TARGET_bcm63xx is not set
 # CONFIG_TARGET_cns3xxx is not set
 # CONFIG_TARGET_octeon is not set
 # CONFIG_TARGET_gemini is not set
@@ -43,38 +43,36 @@ CONFIG_TARGET_brcm2708=y
 # CONFIG_TARGET_uml is not set
 # CONFIG_TARGET_zynq is not set
 # CONFIG_TARGET_x86 is not set
-# CONFIG_TARGET_brcm2708_bcm2708 is not set
-# CONFIG_TARGET_brcm2708_bcm2709 is not set
-CONFIG_TARGET_brcm2708_bcm2710=y
-# CONFIG_TARGET_brcm2708_bcm2711 is not set
+# CONFIG_TARGET_bcm27xx_bcm2708 is not set
+# CONFIG_TARGET_bcm27xx_bcm2709 is not set
+# CONFIG_TARGET_bcm27xx_bcm2710 is not set
+CONFIG_TARGET_bcm27xx_bcm2711=y
 CONFIG_TARGET_MULTI_PROFILE=y
-# CONFIG_TARGET_brcm2708_bcm2710_DEVICE_rpi-3 is not set
+# CONFIG_TARGET_bcm27xx_bcm2711_DEVICE_rpi-4 is not set
 
 #
 # Target Devices
 #
 # CONFIG_TARGET_ALL_PROFILES is not set
 CONFIG_TARGET_PER_DEVICE_ROOTFS=y
-CONFIG_TARGET_DEVICE_brcm2708_bcm2710_DEVICE_rpi-3=y
-CONFIG_TARGET_DEVICE_PACKAGES_brcm2708_bcm2710_DEVICE_rpi-3="aria2 brcmfmac-firmware-usb chat comgt comgt-ncm cypress-firmware-43430-sdio cypress-firmware-43455-sdio cypress-nvram-43430-sdio-rpi-3b cypress-nvram-43455-sdio-rpi-3b-plus kmod-brcmfmac kmod-brcmutil kmod-crypto-crc32c kmod-exfat-linux kmod-fs-ext4 kmod-fs-msdos kmod-fs-vfat kmod-fuse kmod-hid kmod-hid-generic kmod-input-core kmod-input-evdev kmod-lib-crc16 kmod-mii kmod-mmc kmod-nls-cp437 kmod-sound-arm-bcm2835 kmod-sound-core kmod-usb2 kmod-usb3 kmod-usb-ehci kmod-usb-hid kmod-usb-net kmod-usb-net-cdc-ether kmod-usb-net-cdc-mbim kmod-usb-net-cdc-ncm kmod-usb-net-huawei-cdc-ncm kmod-usb-net-ipheth kmod-usb-net-qmi-wwan kmod-usb-net-rndis kmod-usb-net-rtl8152 kmod-usb-net-sierrawireless kmod-usb-ohci kmod-usb-printer kmod-usb-serial kmod-usb-serial-option kmod-usb-serial-qualcomm kmod-usb-serial-sierrawireless kmod-usb-serial-wwan kmod-usb-storage kmod-usb-storage-uas kmod-usb-wdm libopenssl libpcre libsqlite3 libssh2 libusb-1.0 libxml2 luci-app-aria2 luci-app-p910nd luci-app-samba luci-i18n-aria2-en luci-i18n-aria2-zh-cn luci-i18n-p910nd-en luci-i18n-p910nd-zh-cn luci-i18n-samba-en luci-i18n-samba-zh-cn luci-proto-3g luci-proto-ncm luci-proto-qmi ntfs-3g p910nd samba36-server uqmi usb-modeswitch webui-aria2 wget wwan"
+CONFIG_TARGET_DEVICE_bcm27xx_bcm2711_DEVICE_rpi-4=y
+CONFIG_TARGET_DEVICE_PACKAGES_bcm27xx_bcm2711_DEVICE_rpi-4="aria2 brcmfmac-firmware-usb chat comgt comgt-ncm cypress-firmware-43455-sdio cypress-nvram-43455-sdio-rpi-4b kmod-brcmfmac kmod-brcmutil kmod-crypto-crc32c kmod-exfat-linux kmod-fs-ext4 kmod-fs-msdos kmod-fs-vfat kmod-fuse kmod-hid kmod-hid-generic kmod-input-core kmod-input-evdev kmod-lib-crc16 kmod-mii kmod-mmc kmod-nls-cp437 kmod-sound-arm-bcm2835 kmod-sound-core kmod-usb2 kmod-usb3 kmod-usb-ehci kmod-usb-hid kmod-usb-net kmod-usb-net-cdc-ether kmod-usb-net-cdc-mbim kmod-usb-net-cdc-ncm kmod-usb-net-huawei-cdc-ncm kmod-usb-net-ipheth kmod-usb-net-qmi-wwan kmod-usb-net-rndis kmod-usb-net-rtl8152 kmod-usb-net-sierrawireless kmod-usb-ohci kmod-usb-printer kmod-usb-serial kmod-usb-serial-option kmod-usb-serial-qualcomm kmod-usb-serial-sierrawireless kmod-usb-serial-wwan kmod-usb-storage kmod-usb-storage-uas kmod-usb-wdm libopenssl libpcre libsqlite3 libssh2 libusb-1.0 libxml2 luci-app-aria2 luci-app-p910nd luci-app-samba luci-i18n-aria2-en luci-i18n-aria2-zh-cn luci-i18n-p910nd-en luci-i18n-p910nd-zh-cn luci-i18n-samba-en luci-i18n-samba-zh-cn luci-proto-3g luci-proto-ncm luci-proto-qmi ntfs-3g p910nd samba36-server uqmi usb-modeswitch webui-aria2 wget wwan"
 CONFIG_HAS_SUBTARGETS=y
 CONFIG_HAS_DEVICES=y
-CONFIG_TARGET_BOARD="brcm2708"
-CONFIG_TARGET_SUBTARGET="bcm2710"
-CONFIG_TARGET_ARCH_PACKAGES="aarch64_cortex-a53"
-CONFIG_DEFAULT_TARGET_OPTIMIZATION="-Os -pipe -mcpu=cortex-a53"
-CONFIG_CPU_TYPE="cortex-a53"
+CONFIG_TARGET_BOARD="bcm27xx"
+CONFIG_TARGET_SUBTARGET="bcm2711"
+CONFIG_TARGET_ARCH_PACKAGES="aarch64_cortex-a72"
+CONFIG_DEFAULT_TARGET_OPTIMIZATION="-Os -pipe"
+CONFIG_CPU_TYPE="cortex-a72"
 CONFIG_LINUX_4_19=y
 CONFIG_DEFAULT_base-files=y
 CONFIG_MODULE_DEFAULT_base-files=y
-CONFIG_DEFAULT_brcm2708-gpu-fw=y
-CONFIG_MODULE_DEFAULT_brcm2708-gpu-fw=y
+CONFIG_DEFAULT_bcm27xx-gpu-fw=y
+CONFIG_MODULE_DEFAULT_bcm27xx-gpu-fw=y
 CONFIG_DEFAULT_busybox=y
 CONFIG_MODULE_DEFAULT_busybox=y
-CONFIG_MODULE_DEFAULT_cypress-firmware-43430-sdio=y
 CONFIG_MODULE_DEFAULT_cypress-firmware-43455-sdio=y
-CONFIG_MODULE_DEFAULT_cypress-nvram-43430-sdio-rpi-3b=y
-CONFIG_MODULE_DEFAULT_cypress-nvram-43455-sdio-rpi-3b-plus=y
+CONFIG_MODULE_DEFAULT_cypress-nvram-43455-sdio-rpi-4b=y
 CONFIG_DEFAULT_dnsmasq=y
 CONFIG_MODULE_DEFAULT_dnsmasq=y
 CONFIG_DEFAULT_dropbear=y
@@ -144,6 +142,7 @@ CONFIG_HAS_FPU=y
 CONFIG_AUDIO_SUPPORT=y
 CONFIG_GPIO_SUPPORT=y
 CONFIG_PCI_SUPPORT=y
+CONFIG_PCIE_SUPPORT=y
 CONFIG_USB_SUPPORT=y
 CONFIG_USB_GADGET_SUPPORT=y
 CONFIG_USES_DEVICETREE=y
@@ -370,7 +369,7 @@ CONFIG_EXTERNAL_KERNEL_TREE=""
 CONFIG_KERNEL_GIT_CLONE_URI=""
 CONFIG_BUILD_LOG_DIR=""
 CONFIG_EXTRA_OPTIMIZATION="-fno-caller-saves -fno-plt"
-CONFIG_TARGET_OPTIMIZATION="-Os -pipe -mcpu=cortex-a53"
+CONFIG_TARGET_OPTIMIZATION="-Os -pipe"
 # CONFIG_EXTRA_TARGET_ARCH is not set
 CONFIG_EXTRA_BINUTILS_CONFIG_OPTIONS=""
 CONFIG_EXTRA_GCC_CONFIG_OPTIONS=""
@@ -408,7 +407,7 @@ CONFIG_TARGET_INIT_CMD="/sbin/init"
 CONFIG_TARGET_INIT_SUPPRESS_STDERR=y
 CONFIG_VERSIONOPT=y
 CONFIG_VERSION_DIST="X-WRT"
-CONFIG_VERSION_NUMBER="7.0_b202002111934"
+CONFIG_VERSION_NUMBER="7.0_b202002142333"
 CONFIG_VERSION_CODE="Eoan"
 CONFIG_VERSION_REPO="http://downloads.openwrt.org/snapshots"
 CONFIG_VERSION_HOME_URL="https://x-wrt.com/"
@@ -2490,7 +2489,7 @@ CONFIG_ZABBIX_POSTGRESQL=y
 #
 # Boot Loaders
 #
-CONFIG_PACKAGE_brcm2708-gpu-fw=y
+CONFIG_PACKAGE_bcm27xx-gpu-fw=y
 
 #
 # Development
@@ -2587,7 +2586,7 @@ CONFIG_PACKAGE_brcmfmac-firmware-usb=m
 # CONFIG_PACKAGE_cypress-firmware-43340-sdio is not set
 # CONFIG_PACKAGE_cypress-firmware-43362-sdio is not set
 # CONFIG_PACKAGE_cypress-firmware-4339-sdio is not set
-CONFIG_PACKAGE_cypress-firmware-43430-sdio=m
+# CONFIG_PACKAGE_cypress-firmware-43430-sdio is not set
 CONFIG_PACKAGE_cypress-firmware-43455-sdio=m
 # CONFIG_PACKAGE_cypress-firmware-4354-sdio is not set
 # CONFIG_PACKAGE_cypress-firmware-4356-pcie is not set
@@ -2598,10 +2597,10 @@ CONFIG_PACKAGE_cypress-firmware-43455-sdio=m
 # CONFIG_PACKAGE_cypress-firmware-4373-sdio is not set
 # CONFIG_PACKAGE_cypress-firmware-4373-usb is not set
 # CONFIG_PACKAGE_cypress-firmware-89459-pcie is not set
-CONFIG_PACKAGE_cypress-nvram-43430-sdio-rpi-3b=m
+# CONFIG_PACKAGE_cypress-nvram-43430-sdio-rpi-3b is not set
 # CONFIG_PACKAGE_cypress-nvram-43430-sdio-rpi-zero-w is not set
-CONFIG_PACKAGE_cypress-nvram-43455-sdio-rpi-3b-plus=m
-# CONFIG_PACKAGE_cypress-nvram-43455-sdio-rpi-4b is not set
+# CONFIG_PACKAGE_cypress-nvram-43455-sdio-rpi-3b-plus is not set
+CONFIG_PACKAGE_cypress-nvram-43455-sdio-rpi-4b=m
 # CONFIG_PACKAGE_e100-firmware is not set
 # CONFIG_PACKAGE_edgeport-firmware is not set
 # CONFIG_PACKAGE_ibt-firmware is not set
@@ -3030,6 +3029,7 @@ CONFIG_PACKAGE_kmod-nft-netdev=y
 # CONFIG_PACKAGE_kmod-dummy is not set
 # CONFIG_PACKAGE_kmod-e100 is not set
 # CONFIG_PACKAGE_kmod-e1000 is not set
+# CONFIG_PACKAGE_kmod-e1000e is not set
 # CONFIG_PACKAGE_kmod-et131x is not set
 # CONFIG_PACKAGE_kmod-ethoc is not set
 # CONFIG_PACKAGE_kmod-forcedeth is not set
@@ -3153,7 +3153,7 @@ CONFIG_PACKAGE_kmod-wireguard=y
 #
 # CONFIG_PACKAGE_kmod-6lowpan is not set
 # CONFIG_PACKAGE_kmod-ath3k is not set
-CONFIG_PACKAGE_kmod-bcma=m
+# CONFIG_PACKAGE_kmod-bcma is not set
 # CONFIG_PACKAGE_kmod-bluetooth is not set
 # CONFIG_PACKAGE_kmod-bluetooth_6lowpan is not set
 # CONFIG_PACKAGE_kmod-bmp085 is not set
@@ -3208,7 +3208,7 @@ CONFIG_PACKAGE_kmod-mmc=m
 # CONFIG_PACKAGE_kmod-smi-bcm2835 is not set
 # CONFIG_PACKAGE_kmod-smi-bcm2835-dev is not set
 # CONFIG_PACKAGE_kmod-softdog is not set
-CONFIG_PACKAGE_kmod-ssb=m
+# CONFIG_PACKAGE_kmod-ssb is not set
 # CONFIG_PACKAGE_kmod-tpm is not set
 # CONFIG_PACKAGE_kmod-tpm-i2c-atmel is not set
 # CONFIG_PACKAGE_kmod-tpm-i2c-infineon is not set
@@ -6951,6 +6951,7 @@ CONFIG_PACKAGE_libipset=y
 # CONFIG_PACKAGE_netifyd is not set
 # CONFIG_PACKAGE_netperf is not set
 # CONFIG_PACKAGE_nextdns is not set
+# CONFIG_PACKAGE_nfdump is not set
 # CONFIG_PACKAGE_nlbwmon is not set
 # CONFIG_PACKAGE_noddos is not set
 # CONFIG_PACKAGE_noping is not set
@@ -7380,12 +7381,12 @@ CONFIG_PACKAGE_NTFS-3G_HAS_PROBE=y
 # CONFIG_PACKAGE_bandwidthd-sqlite is not set
 # CONFIG_PACKAGE_banhostlist is not set
 # CONFIG_PACKAGE_bc is not set
+CONFIG_PACKAGE_bcm27xx-userland=y
 # CONFIG_PACKAGE_bluelog is not set
 # CONFIG_PACKAGE_bluez-daemon is not set
 # CONFIG_PACKAGE_bluez-utils is not set
 # CONFIG_PACKAGE_bluez-utils-extra is not set
 # CONFIG_PACKAGE_bonniexx is not set
-CONFIG_PACKAGE_brcm2708-userland=y
 # CONFIG_PACKAGE_bsdiff is not set
 # CONFIG_PACKAGE_bspatch is not set
 # CONFIG_PACKAGE_byobu is not set

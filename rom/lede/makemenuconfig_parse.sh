@@ -262,9 +262,9 @@ for t in $targets; do
 		TARGET_DEVICE_ramips_mt76x8_DEVICE_xwrt_g4303k-v1|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_iodata_wn-ax1167gr|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_totolink_a7000r|\
-		TARGET_DEVICE_brcm2708_bcm2709_DEVICE_rpi-2|\
-		TARGET_DEVICE_brcm2708_bcm2710_DEVICE_rpi-3|\
-		TARGET_DEVICE_brcm2708_bcm2711_DEVICE_rpi-4|\
+		TARGET_DEVICE_bcm27xx_bcm2709_DEVICE_rpi-2|\
+		TARGET_DEVICE_bcm27xx_bcm2710_DEVICE_rpi-3|\
+		TARGET_DEVICE_bcm27xx_bcm2711_DEVICE_rpi-4|\
 		TARGET_DEVICE_ramips_mt76x8_DEVICE_xiaomi_mir4a-100m|\
 		TARGET_DEVICE_ipq40xx_generic_DEVICE_avm_fritzbox-4040|\
 		TARGET_DEVICE_ipq40xx_generic_DEVICE_avm_fritzbox-7530|\
@@ -625,9 +625,9 @@ for t in $targets; do
 		TARGET_DEVICE_ramips_mt7621_DEVICE_netgear_r6850|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_thunder_timecloud|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_xwrt_t-cpe1200k-v01|\
-		TARGET_DEVICE_brcm2708_bcm2709_DEVICE_rpi-2|\
-		TARGET_DEVICE_brcm2708_bcm2710_DEVICE_rpi-3|\
-		TARGET_DEVICE_brcm2708_bcm2711_DEVICE_rpi-4|\
+		TARGET_DEVICE_bcm27xx_bcm2709_DEVICE_rpi-2|\
+		TARGET_DEVICE_bcm27xx_bcm2710_DEVICE_rpi-3|\
+		TARGET_DEVICE_bcm27xx_bcm2711_DEVICE_rpi-4|\
 		TARGET_DEVICE_ipq40xx_generic_DEVICE_avm_fritzbox-4040|\
 		TARGET_DEVICE_ipq40xx_generic_DEVICE_avm_fritzbox-7530|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_tenbay_mac500f|\
