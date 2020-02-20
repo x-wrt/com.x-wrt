@@ -462,7 +462,7 @@ CONFIG_TARGET_INIT_CMD="/sbin/init"
 CONFIG_TARGET_INIT_SUPPRESS_STDERR=y
 CONFIG_VERSIONOPT=y
 CONFIG_VERSION_DIST="X-WRT"
-CONFIG_VERSION_NUMBER="7.0_b202002191931"
+CONFIG_VERSION_NUMBER="7.0_b202002201333"
 CONFIG_VERSION_CODE="Eoan"
 CONFIG_VERSION_REPO="http://downloads.openwrt.org/snapshots"
 CONFIG_VERSION_HOME_URL="https://x-wrt.com/"
@@ -3199,7 +3199,7 @@ CONFIG_PACKAGE_kmod-wireguard=y
 # CONFIG_PACKAGE_kmod-6lowpan is not set
 # CONFIG_PACKAGE_kmod-ath3k is not set
 # CONFIG_PACKAGE_kmod-bluetooth is not set
-# CONFIG_PACKAGE_kmod-bluetooth_6lowpan is not set
+# CONFIG_PACKAGE_kmod-bluetooth-6lowpan is not set
 # CONFIG_PACKAGE_kmod-bmp085 is not set
 # CONFIG_PACKAGE_kmod-bmp085-i2c is not set
 # CONFIG_PACKAGE_kmod-bmp085-spi is not set
@@ -3383,7 +3383,7 @@ CONFIG_PACKAGE_kmod-usb3=m
 # CONFIG_PACKAGE_kmod-cc2520 is not set
 # CONFIG_PACKAGE_kmod-fakelb is not set
 # CONFIG_PACKAGE_kmod-ieee802154 is not set
-# CONFIG_PACKAGE_kmod-ieee802154_6lowpan is not set
+# CONFIG_PACKAGE_kmod-ieee802154-6lowpan is not set
 # CONFIG_PACKAGE_kmod-mac802154 is not set
 # CONFIG_PACKAGE_kmod-mrf24j40 is not set
 

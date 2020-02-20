@@ -185,9 +185,11 @@ CONFIG_TARGET_MULTI_PROFILE=y
 # CONFIG_TARGET_ath79_generic_DEVICE_ubnt_nanobeam-ac is not set
 # CONFIG_TARGET_ath79_generic_DEVICE_ubnt_nanostation-ac is not set
 # CONFIG_TARGET_ath79_generic_DEVICE_ubnt_nanostation-ac-loco is not set
+# CONFIG_TARGET_ath79_generic_DEVICE_ubnt_nanostation-loco-m is not set
 # CONFIG_TARGET_ath79_generic_DEVICE_ubnt_nanostation-loco-m-xw is not set
 # CONFIG_TARGET_ath79_generic_DEVICE_ubnt_nanostation-m is not set
 # CONFIG_TARGET_ath79_generic_DEVICE_ubnt_nanostation-m-xw is not set
+# CONFIG_TARGET_ath79_generic_DEVICE_ubnt_picostation-m is not set
 # CONFIG_TARGET_ath79_generic_DEVICE_ubnt_rocket-m is not set
 # CONFIG_TARGET_ath79_generic_DEVICE_ubnt_routerstation is not set
 # CONFIG_TARGET_ath79_generic_DEVICE_ubnt_routerstation-pro is not set
@@ -398,11 +400,13 @@ CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_ubnt_nanostation-ac=y
 CONFIG_TARGET_DEVICE_PACKAGES_ath79_generic_DEVICE_ubnt_nanostation-ac="aria2 ath10k-firmware-qca988x-ct blockd block-mount chat comgt comgt-ncm kmod-ath10k-ct-smallbuffers kmod-ath9k kmod-ath9k-common kmod-crypto-crc32c kmod-exfat-linux kmod-fs-autofs4 kmod-fs-ext4 kmod-fs-msdos kmod-fs-vfat kmod-fuse kmod-hwmon-core kmod-lib-crc16 kmod-mii kmod-nls-cp437 kmod-phy-ath79-usb kmod-scsi-core kmod-usb2 kmod-usb-core kmod-usb-ehci kmod-usb-net kmod-usb-net-cdc-ether kmod-usb-net-cdc-mbim kmod-usb-net-cdc-ncm kmod-usb-net-huawei-cdc-ncm kmod-usb-net-ipheth kmod-usb-net-qmi-wwan kmod-usb-net-rndis kmod-usb-net-rtl8152 kmod-usb-net-sierrawireless kmod-usb-ohci kmod-usb-printer kmod-usb-serial kmod-usb-serial-option kmod-usb-serial-qualcomm kmod-usb-serial-sierrawireless kmod-usb-serial-wwan kmod-usb-storage kmod-usb-storage-uas kmod-usb-wdm libopenssl libpcre libsqlite3 libssh2 libstdcpp libusb-1.0 libxml2 luci-app-aria2 luci-app-p910nd luci-app-samba luci-i18n-aria2-en luci-i18n-aria2-zh-cn luci-i18n-p910nd-en luci-i18n-p910nd-zh-cn luci-i18n-samba-en luci-i18n-samba-zh-cn luci-proto-3g luci-proto-ncm luci-proto-qmi ntfs-3g p910nd rssileds samba36-server uqmi usb-modeswitch webui-aria2 wget wwan"
 CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_ubnt_nanostation-ac-loco=y
 CONFIG_TARGET_DEVICE_PACKAGES_ath79_generic_DEVICE_ubnt_nanostation-ac-loco="aria2 ath10k-firmware-qca988x-ct blockd block-mount chat comgt comgt-ncm kmod-ath10k-ct-smallbuffers kmod-ath9k kmod-ath9k-common kmod-crypto-crc32c kmod-exfat-linux kmod-fs-autofs4 kmod-fs-ext4 kmod-fs-msdos kmod-fs-vfat kmod-fuse kmod-hwmon-core kmod-lib-crc16 kmod-mii kmod-nls-cp437 kmod-phy-ath79-usb kmod-scsi-core kmod-usb2 kmod-usb-core kmod-usb-ehci kmod-usb-net kmod-usb-net-cdc-ether kmod-usb-net-cdc-mbim kmod-usb-net-cdc-ncm kmod-usb-net-huawei-cdc-ncm kmod-usb-net-ipheth kmod-usb-net-qmi-wwan kmod-usb-net-rndis kmod-usb-net-rtl8152 kmod-usb-net-sierrawireless kmod-usb-ohci kmod-usb-printer kmod-usb-serial kmod-usb-serial-option kmod-usb-serial-qualcomm kmod-usb-serial-sierrawireless kmod-usb-serial-wwan kmod-usb-storage kmod-usb-storage-uas kmod-usb-wdm libopenssl libpcre libsqlite3 libssh2 libstdcpp libusb-1.0 libxml2 luci-app-aria2 luci-app-p910nd luci-app-samba luci-i18n-aria2-en luci-i18n-aria2-zh-cn luci-i18n-p910nd-en luci-i18n-p910nd-zh-cn luci-i18n-samba-en luci-i18n-samba-zh-cn luci-proto-3g luci-proto-ncm luci-proto-qmi ntfs-3g p910nd samba36-server uqmi usb-modeswitch webui-aria2 wget wwan"
+# CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_ubnt_nanostation-loco-m is not set
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_ubnt_nanostation-loco-m-xw is not set
 CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_ubnt_nanostation-m=y
 CONFIG_TARGET_DEVICE_PACKAGES_ath79_generic_DEVICE_ubnt_nanostation-m="blockd block-mount kmod-ath9k kmod-ath9k-common kmod-crypto-crc32c kmod-exfat-linux kmod-fs-autofs4 kmod-fs-ext4 kmod-fs-msdos kmod-fs-vfat kmod-fuse kmod-lib-crc16 kmod-mii kmod-nls-cp437 kmod-phy-ath79-usb kmod-scsi-core kmod-usb2 kmod-usb-core kmod-usb-ehci kmod-usb-net kmod-usb-net-cdc-ether kmod-usb-net-rndis kmod-usb-ohci kmod-usb-storage kmod-usb-storage-uas ntfs-3g rssileds"
 CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_ubnt_nanostation-m-xw=y
 CONFIG_TARGET_DEVICE_PACKAGES_ath79_generic_DEVICE_ubnt_nanostation-m-xw="kmod-ath9k kmod-ath9k-common kmod-phy-ath79-usb kmod-usb2 kmod-usb-core kmod-usb-ehci rssileds"
+# CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_ubnt_picostation-m is not set
 CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_ubnt_rocket-m=y
 CONFIG_TARGET_DEVICE_PACKAGES_ath79_generic_DEVICE_ubnt_rocket-m="blockd block-mount kmod-ath9k kmod-ath9k-common kmod-crypto-crc32c kmod-exfat-linux kmod-fs-autofs4 kmod-fs-ext4 kmod-fs-msdos kmod-fs-vfat kmod-fuse kmod-lib-crc16 kmod-mii kmod-nls-cp437 kmod-phy-ath79-usb kmod-scsi-core kmod-usb2 kmod-usb-core kmod-usb-ehci kmod-usb-net kmod-usb-net-cdc-ether kmod-usb-net-rndis kmod-usb-ohci kmod-usb-storage kmod-usb-storage-uas ntfs-3g rssileds"
 CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_ubnt_routerstation=y
@@ -746,7 +750,7 @@ CONFIG_TARGET_INIT_CMD="/sbin/init"
 CONFIG_TARGET_INIT_SUPPRESS_STDERR=y
 CONFIG_VERSIONOPT=y
 CONFIG_VERSION_DIST="X-WRT"
-CONFIG_VERSION_NUMBER="7.0_b202002191931"
+CONFIG_VERSION_NUMBER="7.0_b202002201333"
 CONFIG_VERSION_CODE="Eoan"
 CONFIG_VERSION_REPO="http://downloads.openwrt.org/snapshots"
 CONFIG_VERSION_HOME_URL="https://x-wrt.com/"
@@ -3509,7 +3513,7 @@ CONFIG_PACKAGE_kmod-wireguard=y
 # CONFIG_PACKAGE_kmod-ath3k is not set
 # CONFIG_PACKAGE_kmod-bcma is not set
 # CONFIG_PACKAGE_kmod-bluetooth is not set
-# CONFIG_PACKAGE_kmod-bluetooth_6lowpan is not set
+# CONFIG_PACKAGE_kmod-bluetooth-6lowpan is not set
 # CONFIG_PACKAGE_kmod-bmp085 is not set
 # CONFIG_PACKAGE_kmod-bmp085-i2c is not set
 # CONFIG_PACKAGE_kmod-bmp085-spi is not set
@@ -3693,7 +3697,7 @@ CONFIG_PACKAGE_kmod-usb3=m
 # CONFIG_PACKAGE_kmod-cc2520 is not set
 # CONFIG_PACKAGE_kmod-fakelb is not set
 # CONFIG_PACKAGE_kmod-ieee802154 is not set
-# CONFIG_PACKAGE_kmod-ieee802154_6lowpan is not set
+# CONFIG_PACKAGE_kmod-ieee802154-6lowpan is not set
 # CONFIG_PACKAGE_kmod-mac802154 is not set
 # CONFIG_PACKAGE_kmod-mrf24j40 is not set
 
