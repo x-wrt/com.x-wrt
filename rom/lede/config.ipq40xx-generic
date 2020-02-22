@@ -131,9 +131,9 @@ CONFIG_TARGET_DEVICE_PACKAGES_ipq40xx_generic_DEVICE_netgear_ex6200v2="aria2 ath
 # CONFIG_TARGET_DEVICE_ipq40xx_generic_DEVICE_openmesh_a42 is not set
 # CONFIG_TARGET_DEVICE_ipq40xx_generic_DEVICE_openmesh_a62 is not set
 CONFIG_TARGET_DEVICE_ipq40xx_generic_DEVICE_p2w_r619ac=y
-CONFIG_TARGET_DEVICE_PACKAGES_ipq40xx_generic_DEVICE_p2w_r619ac="aria2 ath10k-firmware-qca4019 blockd block-mount chat comgt comgt-ncm ipq-wifi-p2w_r619ac kmod-ath10k kmod-crypto-crc32c kmod-exfat-linux kmod-fs-autofs4 kmod-fs-ext4 kmod-fs-msdos kmod-fs-vfat kmod-fuse kmod-lib-crc16 kmod-mii kmod-nls-cp437 kmod-usb2 kmod-usb3 kmod-usb-ehci kmod-usb-net kmod-usb-net-cdc-ether kmod-usb-net-cdc-mbim kmod-usb-net-cdc-ncm kmod-usb-net-huawei-cdc-ncm kmod-usb-net-ipheth kmod-usb-net-qmi-wwan kmod-usb-net-rndis kmod-usb-net-rtl8152 kmod-usb-net-sierrawireless kmod-usb-ohci kmod-usb-printer kmod-usb-serial kmod-usb-serial-option kmod-usb-serial-qualcomm kmod-usb-serial-sierrawireless kmod-usb-serial-wwan kmod-usb-storage kmod-usb-storage-uas kmod-usb-wdm libopenssl libpcre libsqlite3 libssh2 libstdcpp libusb-1.0 libxml2 luci-app-aria2 luci-app-p910nd luci-app-samba luci-i18n-aria2-en luci-i18n-aria2-zh-cn luci-i18n-p910nd-en luci-i18n-p910nd-zh-cn luci-i18n-samba-en luci-i18n-samba-zh-cn luci-proto-3g luci-proto-ncm luci-proto-qmi ntfs-3g p910nd samba36-server uqmi usb-modeswitch webui-aria2 wget wwan"
+CONFIG_TARGET_DEVICE_PACKAGES_ipq40xx_generic_DEVICE_p2w_r619ac="aria2 ath10k-firmware-qca4019 blockd block-mount chat comgt comgt-ncm ipq-wifi-p2w_r619ac kmod-ath10k kmod-crypto-crc32c kmod-exfat-linux kmod-fs-autofs4 kmod-fs-ext4 kmod-fs-msdos kmod-fs-vfat kmod-fuse kmod-lib-crc16 kmod-mii kmod-nls-cp437 kmod-usb2 kmod-usb3 kmod-usb-ehci kmod-usb-net kmod-usb-net-cdc-ether kmod-usb-net-cdc-mbim kmod-usb-net-cdc-ncm kmod-usb-net-huawei-cdc-ncm kmod-usb-net-ipheth kmod-usb-net-qmi-wwan kmod-usb-net-rndis kmod-usb-net-rtl8152 kmod-usb-net-sierrawireless kmod-usb-ohci kmod-usb-printer kmod-usb-serial kmod-usb-serial-option kmod-usb-serial-qualcomm kmod-usb-serial-sierrawireless kmod-usb-serial-wwan kmod-usb-storage kmod-usb-storage-uas kmod-usb-wdm libopenssl libpcre libsqlite3 libssh2 libstdcpp libusb-1.0 libxml2 lte-modem-p2w-r619ac luci-app-aria2 luci-app-p910nd luci-app-samba luci-i18n-aria2-en luci-i18n-aria2-zh-cn luci-i18n-p910nd-en luci-i18n-p910nd-zh-cn luci-i18n-samba-en luci-i18n-samba-zh-cn luci-proto-3g luci-proto-ncm luci-proto-qmi ntfs-3g p910nd samba36-server uqmi usb-modeswitch webui-aria2 wget wwan"
 CONFIG_TARGET_DEVICE_ipq40xx_generic_DEVICE_p2w_r619ac-128m=y
-CONFIG_TARGET_DEVICE_PACKAGES_ipq40xx_generic_DEVICE_p2w_r619ac-128m="aria2 ath10k-firmware-qca4019 blockd block-mount chat comgt comgt-ncm ipq-wifi-p2w_r619ac kmod-ath10k kmod-crypto-crc32c kmod-exfat-linux kmod-fs-autofs4 kmod-fs-ext4 kmod-fs-msdos kmod-fs-vfat kmod-fuse kmod-lib-crc16 kmod-mii kmod-nls-cp437 kmod-usb2 kmod-usb3 kmod-usb-ehci kmod-usb-net kmod-usb-net-cdc-ether kmod-usb-net-cdc-mbim kmod-usb-net-cdc-ncm kmod-usb-net-huawei-cdc-ncm kmod-usb-net-ipheth kmod-usb-net-qmi-wwan kmod-usb-net-rndis kmod-usb-net-rtl8152 kmod-usb-net-sierrawireless kmod-usb-ohci kmod-usb-printer kmod-usb-serial kmod-usb-serial-option kmod-usb-serial-qualcomm kmod-usb-serial-sierrawireless kmod-usb-serial-wwan kmod-usb-storage kmod-usb-storage-uas kmod-usb-wdm libopenssl libpcre libsqlite3 libssh2 libstdcpp libusb-1.0 libxml2 luci-app-aria2 luci-app-p910nd luci-app-samba luci-i18n-aria2-en luci-i18n-aria2-zh-cn luci-i18n-p910nd-en luci-i18n-p910nd-zh-cn luci-i18n-samba-en luci-i18n-samba-zh-cn luci-proto-3g luci-proto-ncm luci-proto-qmi ntfs-3g p910nd samba36-server uqmi usb-modeswitch webui-aria2 wget wwan"
+CONFIG_TARGET_DEVICE_PACKAGES_ipq40xx_generic_DEVICE_p2w_r619ac-128m="aria2 ath10k-firmware-qca4019 blockd block-mount chat comgt comgt-ncm ipq-wifi-p2w_r619ac kmod-ath10k kmod-crypto-crc32c kmod-exfat-linux kmod-fs-autofs4 kmod-fs-ext4 kmod-fs-msdos kmod-fs-vfat kmod-fuse kmod-lib-crc16 kmod-mii kmod-nls-cp437 kmod-usb2 kmod-usb3 kmod-usb-ehci kmod-usb-net kmod-usb-net-cdc-ether kmod-usb-net-cdc-mbim kmod-usb-net-cdc-ncm kmod-usb-net-huawei-cdc-ncm kmod-usb-net-ipheth kmod-usb-net-qmi-wwan kmod-usb-net-rndis kmod-usb-net-rtl8152 kmod-usb-net-sierrawireless kmod-usb-ohci kmod-usb-printer kmod-usb-serial kmod-usb-serial-option kmod-usb-serial-qualcomm kmod-usb-serial-sierrawireless kmod-usb-serial-wwan kmod-usb-storage kmod-usb-storage-uas kmod-usb-wdm libopenssl libpcre libsqlite3 libssh2 libstdcpp libusb-1.0 libxml2 lte-modem-p2w-r619ac luci-app-aria2 luci-app-p910nd luci-app-samba luci-i18n-aria2-en luci-i18n-aria2-zh-cn luci-i18n-p910nd-en luci-i18n-p910nd-zh-cn luci-i18n-samba-en luci-i18n-samba-zh-cn luci-proto-3g luci-proto-ncm luci-proto-qmi ntfs-3g p910nd samba36-server uqmi usb-modeswitch webui-aria2 wget wwan"
 # CONFIG_TARGET_DEVICE_ipq40xx_generic_DEVICE_qcom_ap-dk01.1-c1 is not set
 # CONFIG_TARGET_DEVICE_ipq40xx_generic_DEVICE_qcom_ap-dk04.1-c1 is not set
 # CONFIG_TARGET_DEVICE_ipq40xx_generic_DEVICE_qxwlan_e2600ac-c1 is not set
@@ -207,6 +207,7 @@ CONFIG_DEFAULT_libgcc=y
 CONFIG_MODULE_DEFAULT_libgcc=y
 CONFIG_DEFAULT_logd=y
 CONFIG_MODULE_DEFAULT_logd=y
+CONFIG_MODULE_DEFAULT_lte-modem-p2w-r619ac=y
 CONFIG_DEFAULT_mtd=y
 CONFIG_MODULE_DEFAULT_mtd=y
 CONFIG_DEFAULT_netifd=y
@@ -2809,6 +2810,7 @@ CONFIG_PACKAGE_wireless-regdb=y
 #
 # Independent
 #
+CONFIG_PACKAGE_lte-modem-p2w-r619ac=m
 
 #
 # Kernel modules
