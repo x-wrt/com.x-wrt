@@ -20,6 +20,14 @@ e = s:taboption("general", Flag, "enabled", translate("Enable Natcap"), translat
 e.default = e.disabled
 e.rmempty = false
 
+e = s:taboption("general", Flag, "encode_mode", translate("Force TCP encode as UDP"), translate("Do not normally enable unless the normal mode is not working."))
+e.default = e.disabled
+e.rmempty = false
+
+e = s:taboption("general", Flag, "peer_mode", translate("Peer Mode"), translate("Do not normally enable unless the normal mode is not working."))
+e.default = e.disabled
+e.rmempty = false
+
 e = s:taboption("general", Value, "ui", translate("UI"))
 e.rmempty = true
 e.placeholder = 'none'
