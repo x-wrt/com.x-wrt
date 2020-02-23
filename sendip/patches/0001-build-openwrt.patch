@@ -1,0 +1,2182 @@
+From 761e730c0fc792730fb520304a08db8bf9e4fa1c Mon Sep 17 00:00:00 2001
+From: Chen Minqiang <ptpt52@gmail.com>
+Date: Sun, 23 Feb 2020 22:35:29 +0800
+Subject: [PATCH] build openwrt
+
+---
+ CHANGES         |   5 -
+ Makefile        |  72 ++-----
+ VERSION         |   2 +-
+ bgp.c           |  11 +-
+ compact.c       |  65 ------
+ csum.c          |  25 +--
+ dummy.c         |   9 +-
+ gnugetopt.c     |   1 +
+ help2man        | 532 ------------------------------------------------
+ icmp.c          |  30 +--
+ ipv4.c          |  20 +-
+ ipv4.h          |   6 +-
+ ipv6.c          |  22 +-
+ ipv6.h          |  22 +-
+ ntp.c           |   6 +-
+ rip.c           |  18 +-
+ rip.h           |   2 +-
+ ripng.c         |  14 +-
+ sendip.1        | 312 ++++------------------------
+ sendip.c        | 123 +++--------
+ sendip_module.h |  22 +-
+ tcp.c           |  26 ++-
+ types.h         |   2 +-
+ udp.c           |  22 +-
+ udp.h           |   2 +-
+ 25 files changed, 186 insertions(+), 1185 deletions(-)
+ delete mode 100755 help2man
+
+diff --git a/CHANGES b/CHANGES
+index 67aec7e..a6fa7f1 100644
+--- a/CHANGES
++++ b/CHANGES
+@@ -130,8 +130,3 @@ Changes between sendip-2.4 and sendip-2.5
+ * Fix compile bug on Solaris (found by Dave Gibelli <dgibelli@tiscali.co.uk>)
+ * tcp.so
+ - Fix -tonum bug found by Yaniv Kaul <ykaul@checkpoint.com>
+-
+-Changes between sendip-2.5 and sendip-2.5-mec
+-* Several new headers, especially for IPv6
+-* Some interface and miscellaneous changes to support the above
+-- For details, see the README.mec file
+diff --git a/Makefile b/Makefile
+index f7954ba..ac2051f 100644
+--- a/Makefile
++++ b/Makefile
+@@ -1,5 +1,5 @@
+ #configureable stuff
+-PREFIX ?= /usr/local
++PREFIX ?= /usr
+ BINDIR ?= $(PREFIX)/bin
+ MANDIR ?= $(PREFIX)/share/man/man1
+ LIBDIR ?= $(PREFIX)/lib/sendip
+@@ -8,15 +8,18 @@ INSTALL ?= install
+ #For Solaris, you may need
+ #INSTALL=/usr/ucb/install
+ 
+-CFLAGS=	-fPIC -fsigned-char -pipe -Wall -Wpointer-arith -Wwrite-strings \
+-			-Wstrict-prototypes -Wnested-externs -Winline -Werror -g -Wcast-align \
+-			-DSENDIP_LIBS=\"$(LIBDIR)\"
++include /usr/share/dpkg/buildflags.mk
++
++CFLAGS += -fPIC -fsigned-char -pipe -Wall -Wpointer-arith -Wwrite-strings \
++	-Wstrict-prototypes -Wnested-externs -Winline -Werror -g -Wcast-align \
++	-DSENDIP_LIBS=\"$(LIBDIR)\"
+ #-Wcast-align causes problems on solaris, but not serious ones
+-LDFLAGS=	-g -rdynamic -lm
++#LDFLAGS=	-g -rdynamic -lm
+ #LDFLAGS_SOLARIS= -g -lsocket -lnsl -lm
+-LDFLAGS_SOLARIS= -g -lsocket -lnsl -lm -ldl
+-LDFLAGS_LINUX= -g  -rdynamic -ldl -lm
+-LIBCFLAGS= -shared
++LDFLAGS_SOLARIS= -g
++LIBS_SOLARIS= -lsocket -lnsl -lm -ldl
++LIBS_LINUX= -ldl
++LIBCFLAGS= -shared $(LDFLAGS)
+ CC=	gcc
+ 
+ PROGS= sendip
+@@ -25,75 +28,40 @@ IPPROTOS= icmp.so tcp.so udp.so
+ UDPPROTOS= rip.so ripng.so ntp.so
+ TCPPROTOS= bgp.so
+ PROTOS= $(BASEPROTOS) $(IPPROTOS) $(UDPPROTOS) $(TCPPROTOS)
+-LIBS= libsendipaux.a
+-LIBOBJS= csum.o compact.o protoname.o headers.o parseargs.o
+-SUBDIRS= mec
++GLOBALOBJS= csum.o compact.o
+ 
+-all:	$(LIBS) subdirs sendip $(PROTOS) sendip.1 sendip.spec
++all:	$(GLOBALOBJS) sendip $(PROTOS) sendip.spec
+ 
+ #there has to be a nice way to do this
+ sendip:	sendip.o	gnugetopt.o gnugetopt1.o compact.o
+-	sh -c "if [ `uname` = Linux ] ; then \
+-$(CC) -o $@ $(LDFLAGS_LINUX) $(CFLAGS) $+ ; \
++	sh -c "if [ `uname` = Linux -o `uname` = GNU/kFreeBSD -o `uname` = GNU ] ; then \
++$(CC) -o $@ $(LDFLAGS) $(CFLAGS) $+ $(LIBS_LINUX) ; \
+ elif [ `uname` = SunOS ] ; then \
+-$(CC) -o $@ $(LDFLAGS_SOLARIS) $(CFLAGS) $+ ;\
++$(CC) -o $@ $(LDFLAGS_SOLARIS) $(CFLAGS) $+ $(LIBS_SOLARIS) ;\
+ else \
+ $(CC) -o $@ $(LDFLAGS) $(CFLAGS) $+ ; \
+ fi"
+ 
+-libsendipaux.a: $(LIBOBJS)
+-	ar vr $@ $?
+-
+-subdirs:
+-	for subdir in $(SUBDIRS) ; do \
+-		cd $$subdir ;\
+-		make  ;\
+-		cd ..  ;\
+-		done
+-
+-protoname.o:	mec/protoname.c
+-	$(CC) -o $@ -c -I. $(CFLAGS) $+
+-
+-headers.o:	mec/headers.c
+-	$(CC) -o $@ -c -I. $(CFLAGS) $+
+-
+-parseargs.o:	mec/parseargs.c
+-	$(CC) -o $@ -c -I. $(CFLAGS) $+
+-
+-sendip.1:	./help2man $(PROGS) $(PROTOS) subdirs VERSION
+-			./help2man -n "Send arbitrary IP packets" -N >sendip.1
+-
+ sendip.spec:	sendip.spec.in VERSION
+ 			echo -n '%define ver ' >sendip.spec
+ 			cat VERSION >>sendip.spec
+ 			cat sendip.spec.in >>sendip.spec
+ 
+-%.so: %.c $(LIBS)
+-			$(CC) -o $@ $(CFLAGS) $(LIBCFLAGS) $+ $(LIBS)
++%.so: %.c $(GLOBALOBJS)
++			$(CC) -o $@ $(CFLAGS) $(LIBCFLAGS) $+
+ 
+ .PHONY:	clean install
+ 
+ clean:
+-			rm -f *.o *~ *.so $(PROTOS) $(PROGS) $(LIBS) core gmon.out
+-			for subdir in $(SUBDIRS) ; do \
+-				cd $$subdir ;\
+-				make clean ;\
+-				cd ..  ;\
+-				done
++			rm -f *.o *~ *.so $(PROTOS) $(PROGS) core gmon.out
+ 
+ veryclean:
+ 			make clean
+-			rm -f sendip.spec sendip.1
++			rm -f sendip.spec
+ 
+ install:		all
+ 			[ -d $(LIBDIR) ] || mkdir -p $(LIBDIR)
+ 			[ -d $(BINDIR) ] || mkdir -p $(BINDIR)
+ 			[ -d $(MANDIR) ] || mkdir -p $(MANDIR)
+ 			$(INSTALL) -m 755 $(PROGS) $(BINDIR)
+-			$(INSTALL) -m 644 sendip.1 $(MANDIR)
+ 			$(INSTALL) -m 755 $(PROTOS) $(LIBDIR)
+-			for subdir in $(SUBDIRS) ; do \
+-				cd $$subdir ;\
+-				make install ;\
+-				cd ..  ;\
+-				done
+diff --git a/VERSION b/VERSION
+index cbce3a3..95e3ba8 100644
+--- a/VERSION
++++ b/VERSION
+@@ -1 +1 @@
+-2.5-mec-0
++2.5
+diff --git a/bgp.c b/bgp.c
+index 20bf99c..27afbcf 100644
+--- a/bgp.c
++++ b/bgp.c
+@@ -76,15 +76,15 @@ sendip_option bgp_opts[] = {
+ 	  "FF:FF:FF:FF:FF:FF:FF:FF:FF:FF:FF:FF:FF:FF:FF:FF" },
+ 	{ "l", TRUE, "Packet length", "Correct" },
+ 	{ "t", TRUE, "Message Type (1 OPEN, 2 UPDATE, 3 NOTIFICATION, 4 "
+-	  "KEEPALIVE)",
++	  "KEEPALIVE",
+ 	  "4 (KEEPALIVE)" },
+ 	{ "o", TRUE, "Open message.  Format is <version>:<AS number>:"
+ 	  "<Hold time>:<BGP Identifier>:<Options length>", 
+-	  "4:1:90:127.0.0.1:Correct (Any parameter can be omitted to get "
++	  "4:1:90:127.0.0.1:Correct  (Any parameter can be omitted to get "
+ 	  "the default)" },
+ 	{ "oo", TRUE, "Optional OPEN parameter.  Format is <Type>:<Length>:"
+-	  "<Value> - value is in hex bytes separated by :s", 
+-	  "None, though length may be omitted to get correct value" },
++	  "<Value>   - value is in hex bytes separated by :s", 
++	  "Length may be omitted to get correct value" },
+ 	{ "ul", TRUE, "Withdrawn routes length", "Correct" },
+ 	{ "uw", TRUE, "Withdrawn route.  Format is x.x.x.x/n:<bytes "
+ 	  "for prefix>", 
+@@ -566,11 +566,10 @@ bool do_opt (char        *optstring,
+ 
+ bool finalize (char        *hdrs,
+                sendip_data *headers[],
+-	       int index,
+                sendip_data *data,
+                sendip_data *pack)
+ {
+-	if (hdrs[index - 1] != 't') {
++	if (hdrs[strlen(hdrs) - 1] != 't') {
+ 		usage_error("WARNING: BGP should be carried over TCP\n");
+ 	}
+ 	return TRUE;
+diff --git a/compact.c b/compact.c
+index f833e91..cded9fa 100644
+--- a/compact.c
++++ b/compact.c
+@@ -3,9 +3,6 @@
+  */
+ #include <stdio.h>
+ #include <string.h>
+-#include <stdlib.h>
+-#include <sys/types.h>
+-#include "sendip_module.h"
+ 
+ int compact_string(char *data_out) {
+ 	char *data_in = data_out;
+@@ -67,65 +64,3 @@ int compact_string(char *data_out) {
+ 		return strlen(data_in);
+ 	}
+ }
+-
+-/* @@ Since I'm using the "string and/or rand" business for filling
+- * out several header data areas, I decided to extract all of this
+- * into routines here.
+- *
+- * Note the handling of space is slightly screwy - compact_string
+- * above overwrites its argument in place, since it knows that
+- * no matter what, the string it produces can be no longer than
+- * its argument. randombytes, however, uses a static area, since
+- * the calling argument there (something like r32) will generally
+- * be much shorter than the string produced.
+- *
+- * In practice, in both cases the string returned will be immediately
+- * copied into an allocated area, so the differences in string handling
+- * don't matter. But this should be kept in mind if these routines
+- * are used elsewhere.
+- */
+-/* @@ Return a pointer to a string of random bytes. Note this is a
+- * static area which is overwritten at each call.
+- */
+-u_int8_t *
+-randombytes(int length)
+-{
+-	static u_int8_t answer[MAXRAND];
+-	int i;
+-
+-	/* Sanity check */
+-	if (length > MAXRAND) {
+-		usage_error("Random data too long to be sane\n");
+-		return NULL;
+-	}
+-	for (i=0; i < length; ++i)
+-		answer[i] = (u_int8_t)random();
+-	/* Zero-pad out to 64-bit boundary */
+-	for (; i&07; ++i)
+-		answer[i] = 0;
+-	return answer;
+-}
+-
+-/* @@ Yes, well, not the world's most brilliant name, but this
+- * does the standard string argument handling. The output
+- * may either be the transformed input or a static area.
+- * The return value is the length of the output.
+- */
+-int
+-compact_or_rand(char *input, char **output)
+-{
+-	int length=0;
+-
+-	if (!input || !output) return 0;
+-	switch (*input) {
+-	case 'r':
+-		length = atoi(input+1);
+-		*output = (char *)randombytes(length);
+-		if (!*output) return 0;
+-		return length;
+-	default:
+-		length = compact_string(input);
+-		*output = input;
+-		return length;
+-	}
+-}
+diff --git a/csum.c b/csum.c
+index e831d82..28edd45 100644
+--- a/csum.c
++++ b/csum.c
+@@ -6,7 +6,7 @@
+  */
+ 
+ #define __USE_BSD    /* GLIBC */
+-#define _BSD_SOURCE  /* LIBC5 */
++#define _DEFAULT_SOURCE  /* LIBC5 */
+ #include <sys/types.h>
+ #include <netinet/in_systm.h>
+ #include <netinet/in.h>
+@@ -35,26 +35,3 @@ u_int16_t csum (u_int16_t *packet, int packlen) {
+ 
+ 	return (u_int16_t) ~sum;
+ }
+-
+-/* Checksum a vector of blocks of data */
+-u_int16_t csumv (u_int16_t *packet[], int packlen[]) {
+-	register unsigned long sum = 0;
+-	int i;
+-
+-	for (i=0; packlen[i]; ++i) {
+-		while (packlen[i] > 1) {
+-			sum+= *(packet[i]++);
+-			packlen[i]-=2;
+-		}
+-
+-		if (packlen[i] > 0)
+-			sum += *(unsigned char *)packet[i];
+-	}
+-
+-	/* TODO: this depends on byte order */
+-
+-	while (sum >> 16)
+-		sum = (sum & 0xffff) + (sum >> 16);
+-
+-	return (u_int16_t) ~sum;
+-}
+diff --git a/dummy.c b/dummy.c
+index ff2e971..c12440f 100644
+--- a/dummy.c
++++ b/dummy.c
+@@ -3,8 +3,6 @@
+  * ChangeLog since 2.0 release:
+  * 02/12/2001: added num_opts, get_opts and get_optchar functions
+  * 02/12/2001: added more helpful comments
+- * By Mark Carson
+- * 03/25/2009: changed finalize to give better access to other headers
+  */
+ 
+ /* To write a new sendip module:
+@@ -58,15 +56,14 @@
+  *      -arg contains any argument given
+  *      -pack contains our headers
+  *    - in the finalize function, fill in anything that needs to be computed
+- *      after all the options are processed.  This function MUST NOT change
++ *      after all the optoins are processed.  This function MUST NOT change
+  *      the length or location of the headers in memory, else bad things will
+  *      happen.  Typical things that go in here are filling in the length
+  *      field of the header if it hasn't been overriden, computing checksums,
+  *      etc.  You may also which to check that your packet is enclosed in a
+  *      sensible carrier.  tcp.c does all of the things.
+  *      -hdrs is build by taking the opt_char for each packet in turn from the
+- *      outside in, up to but not including this packet - @@ changed to all
+- *      including this packet @@
++ *      outside in, up to but not including this packet
+  *      -headers is an array of all the enclosing headers in the same order
+  *      -data contains the data inside this set of headers.  This may include
+  *       headers of underlying protocols, that will already have been
+@@ -119,7 +116,7 @@ bool do_opt(char *opt, char *arg, sendip_data *pack) {
+ 
+ }
+ 
+-bool finalize(char *hdrs, sendip_data *headers[], int index, sendip_data *data,
++bool finalize(char *hdrs, sendip_data *headers[], sendip_data *data,
+ 				  sendip_data *pack) {
+ 	//...
+ 	return TRUE;
+diff --git a/gnugetopt.c b/gnugetopt.c
+index bc4f102..71d1075 100644
+--- a/gnugetopt.c
++++ b/gnugetopt.c
+@@ -45,6 +45,7 @@
+ #endif
+ 
+ #include <stdio.h>
++#include <string.h>
+ 
+ /* Comment out all this code if we are using the GNU C Library, and are not
+    actually compiling the library itself.  This code is part of the GNU C
+diff --git a/help2man b/help2man
+deleted file mode 100755
+index 70f4225..0000000
+--- a/help2man
++++ /dev/null
+@@ -1,532 +0,0 @@
+-#!/usr/bin/perl -w
+-
+-
+-# MODIFICATION OF GNU's help2man
+-# CHANGES:
+-#    executeable hardcoded to be ./sendip with lots of options...
+-#    uses -h instead of --help
+-#    version hardcoded rather than --version
+-#    puts options in OPTIONS rather than in DESCRIPTION
+-my $version=`cat VERSION`;
+-chop $version;
+-
+-# Generate a short man page from --help and --version output.
+-# Copyright © 1997, 1998, 1999, 2000 Free Software Foundation, Inc.
+-
+-# This program is free software; you can redistribute it and/or modify
+-# it under the terms of the GNU General Public License as published by
+-# the Free Software Foundation; either version 2, or (at your option)
+-# any later version.
+-
+-# This program is distributed in the hope that it will be useful,
+-# but WITHOUT ANY WARRANTY; without even the implied warranty of
+-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+-# GNU General Public License for more details.
+-
+-# You should have received a copy of the GNU General Public License
+-# along with this program; if not, write to the Free Software Foundation,
+-# Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
+-
+-# Written by Brendan O'Dea <bod@compusol.com.au>
+-# Available from ftp://ftp.gnu.org/gnu/help2man/
+-
+-use 5.004;
+-use strict;
+-use Getopt::Long;
+-use Text::Tabs qw(expand);
+-use POSIX qw(strftime setlocale LC_TIME);
+-
+-my $this_program = 'help2man';
+-my $this_version = '1.23-sendip';
+-my $version_info = <<EOT;
+-GNU $this_program $this_version
+-
+-Copyright (C) 1997, 1998, 1999, 2000 Free Software Foundation, Inc.
+-This is free software; see the source for copying conditions.  There is NO
+-warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+-
+-Written by Brendan O'Dea <bod\@compusol.com.au>
+-EOT
+-
+-my $help_info = <<EOT;
+-`$this_program' generates a man page out of `--help' and `--version' output.
+-
+-Usage: $this_program [OPTION]... EXECUTABLE
+-
+- -n, --name=STRING       use `STRING' as the description for the NAME paragraph
+- -s, --section=SECTION   use `SECTION' as the section for the man page
+- -i, --include=FILE      include material from `FILE'
+- -I, --opt-include=FILE  include material from `FILE' if it exists
+- -o, --output=FILE       send output to `FILE'
+- -N, --no-info           suppress pointer to Texinfo manual
+-     --help              print this help, then exit
+-     --version           print version number, then exit
+-
+-EXECUTABLE should accept `--help' and `--version' options.
+-
+-Report bugs to <bug-help2man\@gnu.org>.
+-EOT
+-
+-my $section = 1;
+-my ($opt_name, @opt_include, $opt_output, $opt_no_info);
+-
+-# Parse options.
+-Getopt::Long::config('bundling');
+-GetOptions (
+-    'n|name=s'		=> \$opt_name,
+-    's|section=s'	=> \$section,
+-    'i|include=s'	=> sub { push @opt_include, [ pop, 1 ] },
+-    'I|opt-include=s'	=> sub { push @opt_include, [ pop, 0 ] },
+-    'o|output=s'	=> \$opt_output,
+-    'N|no-info'		=> \$opt_no_info,
+-    help		=> sub { print $help_info; exit },
+-    version		=> sub { print $version_info; exit },
+-) or die $help_info;
+-
+-die $help_info unless @ARGV == 0;
+-
+-my %include = ();
+-my %append = ();
+-my @include = (); # retain order given in include file
+-
+-# Provide replacement `quote-regex' operator for pre-5.005.
+-BEGIN { eval q(sub qr { '' =~ $_[0]; $_[0] }) if $] < 5.005 }
+-
+-# Process include file (if given).  Format is:
+-#
+-#   [section name]
+-#   verbatim text
+-#
+-# or
+-#
+-#   /pattern/
+-#   verbatim text
+-#
+-
+-for (@opt_include)
+-{
+-    my ($inc, $required) = @$_;
+-
+-    next unless -f $inc or $required;
+-    die "$this_program: can't open `$inc' ($!)\n"
+-	unless open INC, $inc;
+-
+-    my $key;
+-    my $hash = \%include;
+-
+-    while (<INC>)
+-    {
+-	# [section]
+-	if (/^\[([^]]+)\]/)
+-	{
+-	    $key = uc $1;
+-	    $key =~ s/^\s+//;
+-	    $key =~ s/\s+$//;
+-	    $hash = \%include;
+-	    push @include, $key unless $include{$key};
+-	    next;
+-	}
+-
+-	# /pattern/
+-	if (m!^/(.*)/([ims]*)!)
+-	{
+-	    my $pat = $2 ? "(?$2)$1" : $1;
+-
+-	    # Check pattern.
+-	    eval { $key = qr($pat) };
+-	    if ($@)
+-	    {
+-		$@ =~ s/ at .*? line \d.*//;
+-		die "$inc:$.:$@";
+-	    }
+-
+-	    $hash = \%append;
+-	    next;
+-	}
+-
+-	# Silently ignore anything before the first
+-	# section--allows for comments and revision info.
+-	next unless $key;
+-
+-	$hash->{$key} ||= '';
+-	$hash->{$key} .= $_;
+-    }
+-
+-    close INC;
+-
+-    die "$this_program: no valid information found in `$inc'\n"
+-	unless $key;
+-}
+-
+-# Compress trailing blank lines.
+-for my $hash (\(%include, %append))
+-{
+-    for (keys %$hash) { $hash->{$_} =~ s/\n+$/\n/ }
+-}
+-
+-# Turn off localisation of executable's ouput.
+-@ENV{qw(LANGUAGE LANG LC_ALL)} = ('C') x 3;
+-
+-# Turn off localisation of date (for strftime).
+-setlocale LC_TIME, 'C';
+-
+-# Grab help and version info from executable.
+-#MAR - DON'T GRAB VERSION, hardcode ./sendip -p * -h
+-
+-my $mods = `echo ./*.so ./*/*.so`;
+-$mods =~ s/\.\//-p \.\//g;
+-my $command = "./sendip 2>/dev/null -h $mods";
+-
+-my $help_text = join '', map { s/ +$//; expand $_ } `$command`
+-	 or die "$this_program: can't get `-$_' info from ./sendip\n";
+-
+-
+-my $date = strftime "%B %Y", localtime;
+-(my $program = "./sendip") =~ s!.*/!!;
+-my $package = $program;
+-
+-if ($opt_output)
+-{
+-    unlink $opt_output
+-	or die "$this_program: can't unlink $opt_output ($!)\n"
+-	if -e $opt_output;
+-
+-    open STDOUT, ">$opt_output"
+-	or die "$this_program: can't create $opt_output ($!)\n";
+-}
+-
+-#MAR DON'T PROCESS VERSION
+-# The first line of the --version information is assumed to
+-# of the following formats:
+-#
+-#   <version>
+-#   <program> <version>
+-#   {GNU,Free} <program> <version>
+-#   <program> ({GNU,Free} <package>) <version>
+-#   <program> - {GNU,Free} <package> <version>
+-#
+-# and seperated from any copyright/author details by a blank line.
+-
+-#($_, $version_text) = split /\n+/, $version_text, 2;
+-
+-#if (/^(\S+) +\(((?:GNU|Free) +[^)]+)\) +(.*)/ or
+-#    /^(\S+) +- *((?:GNU|Free) +\S+) +(.*)/)
+-#{
+-#    $program = $1;
+-#    $package = $2;
+-#    $version = $3;
+-#}
+-#elsif (/^((?:GNU|Free) +)?(\S+) +(.*)/)
+-#{
+-#    $program = $2;
+-#    $package = $1 ? "$1$2" : $2;
+-#    $version = $3;
+-#}
+-#else
+-#{
+-#    $version = $_;
+-#}
+-#
+-#$program =~ s!.*/!!;
+-
+-# No info for `info' itself.
+-$opt_no_info = 1 if $program eq 'info';
+-
+-# --name overrides --include contents.
+-$include{NAME} = "$program \\- $opt_name\n" if $opt_name;
+-
+-# Default (useless) NAME paragraph.
+-$include{NAME} ||= "$program \\- manual page for $program $version\n";
+-
+-# Man pages traditionally have the page title in caps.
+-my $PROGRAM = uc $program;
+-
+-# Extract usage clause(s) [if any] for SYNOPSIS.
+-if ($help_text =~ s/^Usage:( +(\S+))(.*)((?:\n(?: {6}\1| *or: +\S).*)*)//m)
+-{
+-    my @syn = $2 . $3;
+-
+-    if ($_ = $4)
+-    {
+-	s/^\n//;
+-	for (split /\n/) { s/^ *(or: +)?//; push @syn, $_ }
+-    }
+-
+-    my $synopsis = '';
+-    for (@syn)
+-    {
+-	$synopsis .= ".br\n" if $synopsis;
+-	s!^\S*/!!;
+-	s/^(\S+) *//;
+-	$synopsis .= ".B $1\n";
+-	s/\s+$//;
+-	s/(([][]|\.\.+)+)/\\fR$1\\fI/g;
+-	s/^/\\fI/ unless s/^\\fR//;
+-	$_ .= '\fR';
+-	s/(\\fI)( *)/$2$1/g;
+-	s/\\fI\\fR//g;
+-	s/^\\fR//;
+-	s/\\fI$//;
+-	s/^\./\\&./;
+-
+-	$synopsis .= "$_\n";
+-    }
+-
+-    $include{SYNOPSIS} ||= $synopsis;
+-}
+-
+-# Process text, initial section is OPTIONS.
+-my $sect = 'OPTIONS';
+-$_ = "$help_text";
+-
+-# Normalise paragraph breaks.
+-s/^\n+//;
+-s/\n*$/\n/;
+-s/\n\n+/\n\n/g;
+-
+-# Temporarily exchange leading dots, apostrophes and backslashes for
+-# tokens.
+-s/^\./\x80/mg;
+-s/^'/\x81/mg;
+-s/\\/\x82/g;
+-
+-# Start a new paragraph (if required) for these.
+-s/([^\n])\n(Report +bugs|Email +bug +reports +to|Written +by)/$1\n\n$2/g;
+-
+-sub convert_option;
+-
+-while (length)
+-{
+-    # Convert some standard paragraph names.
+-    if (s/^(Options|Examples): *\n//)
+-    {
+-	$sect = uc $1;
+-	next;
+-    }
+-
+-    # Copyright section
+-    if (/^Copyright +[(\xa9]/)
+-    {
+-	$sect = 'COPYRIGHT';
+-	$include{$sect} ||= '';
+-	$include{$sect} .= ".PP\n" if $include{$sect};
+-
+-	my $copy;
+-	($copy, $_) = split /\n\n/, $_, 2;
+-
+-	for ($copy)
+-	{
+-	    # Add back newline
+-	    s/\n*$/\n/;
+-
+-	    # Convert iso9959-1 copyright symbol or (c) to nroff
+-	    # character.
+-	    s/^Copyright +(?:\xa9|\([Cc]\))/Copyright \\(co/mg;
+-
+-	    # Insert line breaks before additional copyright messages
+-	    # and the disclaimer.
+-	    s/(.)\n(Copyright |This +is +free +software)/$1\n.br\n$2/g;
+-
+-	    # Join hyphenated lines.
+-	    s/([A-Za-z])-\n */$1/g;
+-	}
+-
+-	$include{$sect} .= $copy;
+-	$_ ||= '';
+-	next;
+-    }
+-
+-    # Catch bug report text.
+-    if (/^(Report +bugs|Email +bug +reports +to) /)
+-    {
+-	$sect = 'REPORTING BUGS';
+-    }
+-
+-    # Author section.
+-    elsif (/^Written +by/)
+-    {
+-	$sect = 'AUTHOR';
+-    }
+-
+-    # Examples, indicated by an indented leading $, % or > are
+-    # rendered in a constant width font.
+-    if (/^( +)([\$\%>] )\S/)
+-    {
+-	my $indent = $1;
+-	my $prefix = $2;
+-	my $break = '.IP';
+-	$include{$sect} ||= '';
+-	while (s/^$indent\Q$prefix\E(\S.*)\n*//)
+-	{
+-	    $include{$sect} .= "$break\n\\f(CW$prefix$1\\fR\n";
+-	    $break = '.br';
+-	}
+-
+-	next;
+-    }
+-
+-    my $matched = '';
+-    $include{$sect} ||= '';
+-
+-    # Sub-sections have a trailing colon and the second line indented.
+-    if (s/^(\S.*:) *\n / /)
+-    {
+-	$matched .= $& if %append;
+-	$include{$sect} .= qq(.SS "$1"\n);
+-    }
+-
+-    my $indent = 0;
+-    my $content = '';
+-
+-    # Option with description.
+-    if (s/^( {1,10}([+-]\S.*?))(?:(  +)|\n( {20,}))(\S.*)\n//)
+-    {
+-	$matched .= $& if %append;
+-	$indent = length ($4 || "$1$3");
+-	$content = ".TP\n\x83$2\n\x83$5\n";
+-	unless ($4)
+-	{
+-	    # Indent may be different on second line.
+-	    $indent = length $& if /^ {20,}/;
+-	}
+-    }
+-
+-    # Option without description.
+-    elsif (s/^ {1,10}([+-]\S.*)\n//)
+-    {
+-	$matched .= $& if %append;
+-	$content = ".HP\n\x83$1\n";
+-	$indent = 80; # not continued
+-    }
+-
+-    # Indented paragraph with tag.
+-    elsif (s/^( +(\S.*?)  +)(\S.*)\n//)
+-    {
+-	$matched .= $& if %append;
+-	$indent = length $1;
+-	$content = ".TP\n\x83$2\n\x83$3\n";
+-    }
+-
+-    # Indented paragraph.
+-    elsif (s/^( +)(\S.*)\n//)
+-    {
+-	$matched .= $& if %append;
+-	$indent = length $1;
+-	$content = ".IP\n\x83$2\n";
+-    }
+-
+-    # Left justified paragraph.
+-    else
+-    {
+-	s/(.*)\n//;
+-	$matched .= $& if %append;
+-	$content = ".PP\n" if $include{$sect};
+-	$content .= "$1\n";
+-    }
+-
+-    # Append continuations.
+-    while (s/^ {$indent}(\S.*)\n//)
+-    {
+-	$matched .= $& if %append;
+-	$content .= "\x83$1\n"
+-    }
+-
+-    # Move to next paragraph.
+-    s/^\n+//;
+-
+-    for ($content)
+-    {
+-	# Leading dot and apostrophe protection.
+-	s/\x83\./\x80/g;
+-	s/\x83'/\x81/g;
+-	s/\x83//g;
+-
+-	# Convert options.
+-	s/(^| )(-[][\w=-]+)/$1 . convert_option $2/mge;
+-    }
+-
+-    # Check if matched paragraph contains /pat/.
+-    if (%append)
+-    {
+-	for my $pat (keys %append)
+-	{
+-	    if ($matched =~ $pat)
+-	    {
+-		$content .= ".PP\n" unless $append{$pat} =~ /^\./;
+-		$content .= $append{$pat};
+-	    }
+-	}
+-    }
+-
+-    $include{$sect} .= $content;
+-}
+-
+-# Refer to the real documentation.
+-unless ($opt_no_info)
+-{
+-    $sect = 'SEE ALSO';
+-    $include{$sect} ||= '';
+-    $include{$sect} .= ".PP\n" if $include{$sect};
+-    $include{$sect} .= <<EOT;
+-The full documentation for
+-.B $program
+-is maintained as a Texinfo manual.  If the
+-.B info
+-and
+-.B $program
+-programs are properly installed at your site, the command
+-.IP
+-.B info $program
+-.PP
+-should give you access to the complete manual.
+-EOT
+-}
+-
+-# Output header.
+-print <<EOT;
+-.\\" DO NOT MODIFY THIS FILE!  It was generated by $this_program $this_version.
+-.TH $PROGRAM "$section" "$date" "$package $version" FSF
+-EOT
+-
+-# Section ordering.
+-my @pre = qw(NAME SYNOPSIS DESCRIPTION OPTIONS EXAMPLES);
+-my @post = ('AUTHOR', 'REPORTING BUGS', 'COPYRIGHT', 'SEE ALSO');
+-my $filter = join '|', @pre, @post;
+-
+-# Output content.
+-for (@pre, (grep ! /^($filter)$/o, @include), @post)
+-{
+-    if ($include{$_})
+-    {
+-	my $quote = /\W/ ? '"' : '';
+-	print ".SH $quote$_$quote\n";
+-	
+-	for ($include{$_})
+-	{
+-	    # Replace leading dot, apostrophe and backslash tokens.
+-	    s/\x80/\\&./g;
+-	    s/\x81/\\&'/g;
+-	    s/\x82/\\e/g;
+-	    print;
+-	}
+-    }
+-}
+-
+-exit;
+-
+-# Convert option dashes to \- to stop nroff from hyphenating 'em, and
+-# embolden.  Option arguments get italicised.
+-sub convert_option
+-{
+-    local $_ = '\fB' . shift;
+-
+-    s/-/\\-/g;
+-    unless (s/\[=(.*)\]$/\\fR[=\\fI$1\\fR]/)
+-    {
+-	s/=(.)/\\fR=\\fI$1/;
+-	s/ (.)/ \\fI$1/;
+-	$_ .= '\fR';
+-    }
+-
+-    $_;
+-}
+diff --git a/icmp.c b/icmp.c
+index 9d75eda..0445e1a 100644
+--- a/icmp.c
++++ b/icmp.c
+@@ -62,7 +62,7 @@ static void icmp6csum(struct in6_addr *src, struct in6_addr *dst,
+ 	memcpy(&phdr.destination, dst, sizeof(struct in6_addr));
+ 	phdr.ulp_length = htonl(hdr->alloc_len+data->alloc_len);
+ 	phdr.nexthdr = IPPROTO_ICMPV6;
+-
++	
+ 	memcpy(tempbuf, &phdr, sizeof(phdr));
+ 	
+ 	icp->check = csum(buf,sizeof(phdr)+hdr->alloc_len+data->alloc_len);
+@@ -99,22 +99,10 @@ bool do_opt(char *opt, char *arg, sendip_data *pack) {
+ 
+ }
+ 
+-bool finalize(char *hdrs, sendip_data *headers[], int index,
+-			sendip_data *data, sendip_data *pack) {
++bool finalize(char *hdrs, sendip_data *headers[], sendip_data *data,
++				  sendip_data *pack) {
+ 	icmp_header *icp = (icmp_header *)pack->data;
+-	int i;
+-
+-	/*@@
+-	 * This code was incorrectly assuming the previous header
+-	 * had to be the ip/ipv6 header. I'm changing it to search
+-	 * backward for the first v4 or v6 header and use that.
+-	 */
+-	i = outer_header(hdrs, index, "i6");
+-	if (i < 0) {
+-		usage_error("Can't find ip header\n");
+-		return FALSE;
+-	}
+-	/*@@ end of addition */
++	int i=strlen(hdrs)-1;
+ 
+ 	/* Find enclosing IP header and do the checksum */
+ 	if(hdrs[i]=='i') {
+@@ -125,12 +113,10 @@ bool finalize(char *hdrs, sendip_data *headers[], int index,
+ 		}
+ 	} else if(hdrs[i]=='6') {
+ 	   // ipv6
+-	   // @@ This is subsumed by my new code which determines the
+-	   // next header type in the ipv6 module.
+-		//if(!(headers[i]->modified&IPV6_MOD_NXT)) {
+-		//	((ipv6_header *)(headers[i]->data))->ip6_nxt=IPPROTO_ICMPV6;
+-		//	headers[i]->modified |= IPV6_MOD_NXT;
+-		//}
++		if(!(headers[i]->modified&IPV6_MOD_NXT)) {
++			((ipv6_header *)(headers[i]->data))->ip6_nxt=IPPROTO_ICMPV6;
++			headers[i]->modified |= IPV6_MOD_NXT;
++		}
+ 	}
+ 		
+ 	if(!(pack->modified&ICMP_MOD_TYPE)) {
+diff --git a/ipv4.c b/ipv4.c
+index dc0df6a..ca77a5e 100644
+--- a/ipv4.c
++++ b/ipv4.c
+@@ -209,8 +209,8 @@ bool do_opt(char *opt, char *arg, sendip_data *pack) {
+ 				fprintf(stderr,"Out of memory!\n");
+ 				return FALSE;
+ 			}
+-			sprintf((char *)data,"0x%s",arg);
+-			len = compact_string((char *)data);
++			sprintf((char*)data,"0x%s",arg);
++			len = compact_string((char*)data);
+ 			cp=(*data&0x80)>>7;
+ 			cls=(*data&0x60)>>5;
+ 			num=(*data&0x1F);
+@@ -237,7 +237,7 @@ bool do_opt(char *opt, char *arg, sendip_data *pack) {
+ 				free(data);
+ 				return FALSE;
+ 			} else {
+-				addoption(0,0,7,len+2,(u_int8_t *)data,pack);
++				addoption(0,0,7,len+2,(unsigned char*)data,pack);
+ 				free(data);
+ 			}
+ 		} else if(!strcmp(opt+2, "ts")) {
+@@ -352,7 +352,7 @@ bool do_opt(char *opt, char *arg, sendip_data *pack) {
+ 				data_in = next;
+ 			}
+ 
+-			addoption(0,2,4,data_out-data+2,(u_int8_t *)data,pack);
++			addoption(0,2,4,data_out-data+2,(unsigned char*)data,pack);
+ 			free(data);
+ 			/* End of timestamp parsing */
+ 
+@@ -377,7 +377,7 @@ bool do_opt(char *opt, char *arg, sendip_data *pack) {
+ 				free(data);
+ 				return FALSE;
+ 			} else {
+-				addoption(1,0,3,len+2,(u_int8_t *)data,pack);
++				addoption(1,0,3,len+2,(unsigned char*)data,pack);
+ 				free(data);
+ 			}
+ 		} else if(!strcmp(opt+2, "sid")) {
+@@ -399,7 +399,7 @@ bool do_opt(char *opt, char *arg, sendip_data *pack) {
+ 				free(data);
+ 				return FALSE;
+ 			} else {
+-				addoption(1,0,9,len+2,(u_int8_t *)data,pack);
++				addoption(1,0,9,len+2,(unsigned char*)data,pack);
+ 				free(data);
+ 			}
+ 		} else {
+@@ -417,8 +417,8 @@ bool do_opt(char *opt, char *arg, sendip_data *pack) {
+ 
+ }
+ 
+-bool finalize(char *hdrs, sendip_data *headers[], int index,
+-		sendip_data *data, sendip_data *pack) {
++bool finalize(char *hdrs, sendip_data *headers[], sendip_data *data,
++				  sendip_data *pack) {
+ 	ip_header *iph = (ip_header *)pack->data;
+ 
+ 	if(!(pack->modified & IP_MOD_VERSION)) {
+@@ -444,10 +444,6 @@ bool finalize(char *hdrs, sendip_data *headers[], int index,
+ 	if(!(pack->modified & IP_MOD_CHECK)) {
+ 		ipcsum(pack);
+ 	}
+-	if(!(pack->modified&IP_MOD_PROTOCOL)) {
+-		/* New default: actual type of following header */
+-	   	iph->protocol = header_type(hdrs[index+1]);
+-	}
+ 	return TRUE;
+ }
+ 
+diff --git a/ipv4.h b/ipv4.h
+index e99064b..60d533c 100644
+--- a/ipv4.h
++++ b/ipv4.h
+@@ -65,16 +65,16 @@ sendip_option ip_opts[] = {
+ 	{"s",1,"Source IP address (see README)","127.0.0.1"},
+ 	{"d",1,"Destination IP address","Correct"},
+ 	{"h",1,"IP header length (see README)","Correct"},
+-	{"v",1,"IP version (you almost definitely don't want to change this)","4"},
++	{"v",1,"IP version (you almost definately don't want to change this)","4"},
+ 	{"y",1,"IP type of service","0"},
+ 	{"l",1,"Total IP packet length (see README)","Correct"},
+ 	{"i",1,"IP packet ID (see README)","Random"},
+-	{"fr",1,"IP reserved flag (see README)","0 (options are 0,1,r)"},
++	{"fr",1,"IP reservced flag (see README)","0 (options are 0,1,r)"},
+ 	{"fd",1,"IP don't fragment flag (see README)","0 (options are 0,1,r)"},
+ 	{"fm",1,"IP more fragments flag (see README)","0 (options are 0,1,r)"},
+ 	{"f",1,"IP fragment offset","0"},
+ 	{"t",1,"IP time to live","255"},
+-	{"p",1,"IP protocol","Correct, or set by underlying protocol"},
++	{"p",1,"IP protcol","0, or set by underlying protocol"},
+ 	{"c",1,"IP checksum (see README)","Correct"},
+ 
+ 	{"onum",1,"IP option as string of hex bytes (length is always correct)","(no options)"},
+diff --git a/ipv6.c b/ipv6.c
+index b560348..c04f62e 100644
+--- a/ipv6.c
++++ b/ipv6.c
+@@ -55,11 +55,6 @@ bool do_opt(char *opt, char *arg, sendip_data *pack) {
+ 		hdr->ip6_flow |= htonl((u_int32_t)strtoul(arg, (char **)NULL, 0) & 0xFFF00000);
+ 		pack->modified |= IPV6_MOD_FLOW;
+ 		break;
+-	case 't':
+-		/* TODO : This looks byte-order dependant */
+-		hdr->ip6_flow |= htonl(((u_int32_t)strtoul(arg, (char **)NULL, 0) << 20) & 0x0F000000);
+-		pack->modified |= IPV6_MOD_FLOW;
+-		break;
+ 	case 'v':
+ 		hdr->ip6_vfc &= 0x0F;
+ 		hdr->ip6_vfc |= (u_int8_t)(strtoul(arg, (char **)NULL, 0) &0x0F) << 4;
+@@ -70,6 +65,11 @@ bool do_opt(char *opt, char *arg, sendip_data *pack) {
+ 		hdr->ip6_vfc |= (u_int8_t)strtoul(arg, (char **)NULL, 0) & 0x0F;
+ 		pack->modified |= IPV6_MOD_PRIORITY;
+ 		break;
++	case 't':
++		/* TODO : This looks byte-order dependant */
++		hdr->ip6_flow |= htonl(((u_int32_t)strtoul(arg, (char **)NULL, 0) << 20) & 0x0F000000);
++		pack->modified |= IPV6_MOD_FLOW;
++		break;
+ 	case 'l':
+ 		hdr->ip6_plen = htons((u_int16_t)strtoul(arg, (char **)NULL, 0));
+ 		pack->modified |= IPV6_MOD_PLEN;
+@@ -79,9 +79,7 @@ bool do_opt(char *opt, char *arg, sendip_data *pack) {
+ 		pack->modified |= IPV6_MOD_HLIM;
+ 		break;
+ 	case 'n':
+-		/*@@ allow use of protocol names */
+-		hdr->ip6_nxt = name_to_proto(arg);
+-		/*@@hdr->ip6_nxt = (u_int8_t)strtoul(arg, (char **)NULL, 0);*/
++		hdr->ip6_nxt = (u_int8_t)strtoul(arg, (char **)NULL, 0);
+ 		pack->modified |= IPV6_MOD_NXT;
+ 		break;
+ 	case 's':
+@@ -101,8 +99,8 @@ bool do_opt(char *opt, char *arg, sendip_data *pack) {
+ 
+ }
+ 
+-bool finalize(char *hdrs, sendip_data *headers[], int index,
+-		sendip_data *data, sendip_data *pack) {
++bool finalize(char *hdrs, sendip_data *headers[], sendip_data *data,
++				  sendip_data *pack) {
+ 	ipv6_header *ipv6 = (ipv6_header *)pack->data;
+ 
+ 	if(!(pack->modified&IPV6_MOD_VERSION)) {
+@@ -113,9 +111,7 @@ bool finalize(char *hdrs, sendip_data *headers[], int index,
+ 		ipv6->ip6_plen = htons(data->alloc_len);
+ 	}
+ 	if(!(pack->modified&IPV6_MOD_NXT)) {
+-		/*@@ipv6->ip6_nxt = (u_int8_t)IPPROTO_NONE;*/
+-		/* New default: actual type of following header */
+-		ipv6->ip6_nxt = header_type(hdrs[index+1]);
++		ipv6->ip6_nxt = (u_int8_t)IPPROTO_NONE;
+ 	}
+ 	if(!(pack->modified&IPV6_MOD_HLIM)) {
+ 		ipv6->ip6_hlim = 32;
+diff --git a/ipv6.h b/ipv6.h
+index 22136e9..ae9c3f8 100644
+--- a/ipv6.h
++++ b/ipv6.h
+@@ -39,24 +39,24 @@ typedef struct {
+ /* Defines for which parts have been modified
+  */
+ #define IPV6_MOD_FLOW     1
+-#define IPV6_MOD_VERSION  (1<<1)
+-#define IPV6_MOD_PRIORITY (1<<2)
+-#define IPV6_MOD_PLEN     (1<<3)
+-#define IPV6_MOD_HLIM     (1<<4)
+-#define IPV6_MOD_NXT      (1<<5)
+-#define IPV6_MOD_SRC      (1<<6)
+-#define IPV6_MOD_DST      (1<<7)
++#define IPV6_MOD_VERSION  1<<1
++#define IPV6_MOD_PRIORITY 1<<2
++#define IPV6_MOD_PLEN     1<<3
++#define IPV6_MOD_HLIM     1<<4
++#define IPV6_MOD_NXT      1<<5
++#define IPV6_MOD_SRC      1<<6
++#define IPV6_MOD_DST      1<<7
+ 
+ /* Options
+  */
+ sendip_option ipv6_opts[] = {
+ 	{"f",1,"IPv6 flow ID","32"},
+-	{"t",1,"IPv6 traffic class","0"},	/* also in flow label*/
+-	{"v",1,"IP version (you probably don't want to change this)"},
+-	{"p",1,"IPv6 priority","0"},
++	{"t",1,"IPv6 traffic class","0"},
+ 	{"l",1,"IPv6 payload length","Correct"},
++	{"n",1,"IPv6 next header","IPPROTO_NONE"},
+ 	{"h",1,"IPv6 hop limit","32"},
+-	{"n",1,"IPv6 next header","Correct"},
++	{"v",1,"IP version (you probably don't want to change this"},
++	{"p",1,"IPv6 priority","0"},
+ 	{"s",1,"IPv6 source address","::1"},
+ 	{"d",1,"IPv6 destination address","Correct"}
+ };
+diff --git a/ntp.c b/ntp.c
+index e922a50..039d44a 100644
+--- a/ntp.c
++++ b/ntp.c
+@@ -185,9 +185,9 @@ bool do_opt(char *opt, char *arg, sendip_data *pack) {
+ 
+ }
+ 
+-bool finalize(char *hdrs, sendip_data *headers[], int index,
+-			sendip_data *data, sendip_data *pack) {
+-	if(hdrs[index-1] != 'u') {
++bool finalize(char *hdrs, sendip_data *headers[], sendip_data *data,
++				  sendip_data *pack) {
++	if(hdrs[strlen(hdrs)-1] != 'u') {
+ 		usage_error("Warning: NTP should be contained in a UDP packet\n");
+ 	}
+ 	return TRUE;
+diff --git a/rip.c b/rip.c
+index 6923f8f..b989cc6 100644
+--- a/rip.c
++++ b/rip.c
+@@ -61,19 +61,19 @@ bool do_opt(char *opt, char *arg, sendip_data *pack) {
+ 		ripopt = RIP_OPTION(pack);
+ 		p=q=arg;
+ 		/* TODO: if arg is malformed, this could segfault */
+-		while(*(q++)!=':') /* do nothing */; *(--q)='\0';
++		while(*(q++)!=':') {} /* do nothing */; *(--q)='\0';
+ 		rippack->addressFamily= htons((p==q)?2:(u_int16_t)strtoul(p, (char **)0, 0));
+ 		pack->modified |= RIP_MOD_ADDRFAM;
+-		p=++q; while(*(q++)!=':') /* do nothing */; *(--q)='\0';
++		p=++q; while(*(q++)!=':') {} /* do nothing */; *(--q)='\0';
+ 		rippack->routeTagOrAuthenticationType=htons((p==q)?0:(u_int16_t)strtoul(p, (char **)0,0));
+ 		pack->modified |= RIP_MOD_ROUTETAG;
+-		p=++q; while(*(q++)!=':') /* do nothing */; *(--q)='\0';
++		p=++q; while(*(q++)!=':') {} /* do nothing */; *(--q)='\0';
+ 		ripopt->address=(p==q)?inet_addr("0.0.0.0"):inet_addr(p);
+-		p=++q; while(*(q++)!=':') /* do nothing */; *(--q)='\0';
++		p=++q; while(*(q++)!=':') {} /* do nothing */; *(--q)='\0';
+ 		ripopt->subnetMask=(p==q)?inet_addr("255.255.255.0"):inet_addr(p);
+-		p=++q; while(*(q++)!=':') /* do nothing */; *(--q)='\0';
++		p=++q; while(*(q++)!=':') {} /* do nothing */; *(--q)='\0';
+ 		ripopt->nextHop=(p==q)?inet_addr("0.0.0.0"):inet_addr(p);
+-		p=++q; while(*(q++)!='\0') /* do nothing */; *(--q)='\0';
++		p=++q; while(*(q++)!='\0') {} /* do nothing */; *(--q)='\0';
+ 		ripopt->metric=htonl((p==q)?16:(u_int32_t)strtoul(p,(char **)0, 0));
+ 		break;
+ 	case 'd': /* default request */
+@@ -95,9 +95,9 @@ bool do_opt(char *opt, char *arg, sendip_data *pack) {
+ 
+ }
+ 
+-bool finalize(char *hdrs, sendip_data *headers[], int index,
+-			sendip_data *data, sendip_data *pack) {
+-	if(hdrs[index-1] != 'u') {
++bool finalize(char *hdrs, sendip_data *headers[], sendip_data *data,
++				  sendip_data *pack) {
++	if(hdrs[strlen(hdrs)-1] != 'u') {
+ 		usage_error("Warning: RIP should be contained in a UDP packet\n");
+ 	}
+ 
+diff --git a/rip.h b/rip.h
+index 2ab7ef8..814eebc 100644
+--- a/rip.h
++++ b/rip.h
+@@ -35,7 +35,7 @@ sendip_option rip_opts[] = {
+ 	{"c",1,
+ 	 "RIP command (1=request, 2=response, 3=traceon (obsolete), 4=traceoff (obsolete), 5=poll (undocumented), 6=poll entry (undocumented)","1"},
+ 	{"e",1,"Add a RIP entry.  Format is: Address family:route tag:address:subnet mask:next hop:metric","2:0:0.0.0.0:255.255.255.0:0.0.0.0:16, any option my be left out to use the default"},
+-	{"a",1,"RIP authenticate packet, argument is the password; do not use any other RIP options on this RIP header",NULL},
++	{"a",1,"RIP authenticat packet, argument is the password; do not use any other RIP options on this RIP header",NULL},
+ 	{"d",0,"RIP default request - get router's entire routing table; do not use any other RIP options on this RIP header",NULL}
+ };
+ 
+diff --git a/ripng.c b/ripng.c
+index 1dab2a1..bf6398f 100644
+--- a/ripng.c
++++ b/ripng.c
+@@ -77,16 +77,16 @@ bool do_opt(char *opt, char *arg, sendip_data *pack) {
+ 		ripopt = RIPNG_ENTRY(pack);
+ 		p=q=arg;
+ 		/* TODO: if arg is malformed, this could segfault */
+-		while(*(q++)!='/') /* do nothing */; *(--q)='\0';
++		while(*(q++)!='/') {} /* do nothing */; *(--q)='\0';
+ 		ripopt->prefix = (p==q)?in6addr_any:inet6_addr(p);
+ 
+-		p=++q; while(*(q++)!='/') /* do nothing */; *(--q)='\0';
++		p=++q; while(*(q++)!='/') {} /* do nothing */; *(--q)='\0';
+ 		ripopt->tag=htons( (p==q)?0:(u_int16_t)strtoul(p, (char **)0,0));
+ 
+-		p=++q; while(*(q++)!='/') /* do nothing */; *(--q)='\0';
++		p=++q; while(*(q++)!='/') {} /* do nothing */; *(--q)='\0';
+ 		ripopt->len=(p==q)?(u_int8_t)128:(u_int8_t)strtoul(p, (char **)0,0);
+ 
+-		p=++q; while(*(q++)!='\0') /* do nothing */; *(--q)='\0';
++		p=++q; while(*(q++)!='\0') {} /* do nothing */; *(--q)='\0';
+ 		ripopt->metric=(p==q)?(u_int8_t)16:(u_int8_t)strtoul(p,(char **)0, 0);
+ 		break;
+ 	case 'd': /* default request */
+@@ -109,9 +109,9 @@ bool do_opt(char *opt, char *arg, sendip_data *pack) {
+ 
+ }
+ 
+-bool finalize(char *hdrs, sendip_data *headers[], int index,
+-			sendip_data *data, sendip_data *pack) {
+-	if(hdrs[index-1] != 'u') {
++bool finalize(char *hdrs, sendip_data *headers[], sendip_data *data,
++				  sendip_data *pack) {
++	if(hdrs[strlen(hdrs)-1] != 'u') {
+ 		usage_error("Warning: RIPng should be contained in a UDP packet\n");
+ 	}
+ 
+diff --git a/sendip.1 b/sendip.1
+index 7f53d4c..7ce2a2d 100644
+--- a/sendip.1
++++ b/sendip.1
+@@ -1,5 +1,5 @@
+ .\" DO NOT MODIFY THIS FILE!  It was generated by help2man 1.23-sendip.
+-.TH SENDIP "1" "June 2009" "sendip 2.5-mec-0" FSF
++.TH SENDIP "1" "February 2020" "sendip 2.5" FSF
+ .SH NAME
+ sendip \- Send arbitrary IP packets
+ .SH SYNOPSIS
+@@ -9,6 +9,11 @@ sendip \- Send arbitrary IP packets
+ .TP
+ \fB\-d\fR data
+ add this data as a string to the end of the packet
++Data can be:
++rN to generate N random(ish) data bytes;
++0x or 0X followed by hex digits;
++0 followed by octal digits;
++any other stream of bytes
+ .TP
+ \fB\-f\fR datafile
+ read packet data from file
+@@ -22,28 +27,14 @@ load the specified module (see below)
+ \fB\-v\fR
+ be verbose
+ .PP
+-Packet data, and argument values for many header fields, may
+-specified as
+-rN to generate N random(ish) data bytes;
+-0x or 0X followed by hex digits;
+-0 followed by octal digits;
+-decimal number for decimal digits;
+-any other stream of bytes, taken literally.
+-.PP
+ Modules are loaded in the order the \fB\-p\fR option appears.  The headers from
+-each module are put immediately inside the headers from the previous module in
++each module are put immediately inside the headers from the previos model in
+ the final packet.  For example, to embed bgp inside tcp inside ipv4, do
+ sendip \fB\-p\fR ipv4 \fB\-p\fR tcp \fB\-p\fR bgp ....
+-.PP
+-Modules may be repeated to create multiple instances of a given header
+-type. For example, to create an ipip tunneled packet (ipv4 inside ipv4), do
+-sendip \fB\-p\fR ipv4 <outer header arguments> \fB\-p\fR ipv4 <inner header arguments> ....
+-In the case of repeated modules, arguments are applied to the closest matching
+-module in the command line.
+ .SS "Modules available at compile time:"
+ .IP
+-ipv4 ipv6 icmp tcp udp bgp rip ripng ntp ah dest esp frag gre hop route.
+-.SS "Arguments for module bgp.so:"
++ipv4 ipv6 icmp tcp udp bgp rip ntp
++.SS "Arguments for module ./bgp.so:"
+ .TP
+ \fB\-bm\fR x
+ BGP Marker field (format is <hex byte>:<hex byte>:...)
+@@ -56,19 +47,20 @@ Packet length
+ Default: Correct
+ .TP
+ \fB\-bt\fR x
+-Message Type (1 OPEN, 2 UPDATE, 3 NOTIFICATION, 4 KEEPALIVE)
++Message Type (1 OPEN, 2 UPDATE, 3 NOTIFICATION, 4 KEEPALIVE
+ .IP
+ Default: 4 (KEEPALIVE)
+ .TP
+ \fB\-bo\fR x
+ Open message.  Format is <version>:<AS number>:<Hold time>:<BGP Identifier>:<Options length>
+-.IP
+-Default: 4:1:90:127.0.0.1:Correct (Any parameter can be omitted to get the default)
++.TP
++Default: 4:1:90:127.0.0.1:Correct
++(Any parameter can be omitted to get the default)
+ .TP
+ \fB\-boo\fR x
+-Optional OPEN parameter.  Format is <Type>:<Length>:<Value> - value is in hex bytes separated by :s
++Optional OPEN parameter.  Format is <Type>:<Length>:<Value>   - value is in hex bytes separated by :s
+ .IP
+-Default: None, though length may be omitted to get correct value
++Default: Length may be omitted to get correct value
+ .TP
+ \fB\-bul\fR x
+ Withdrawn routes length
+@@ -99,7 +91,7 @@ Default: As for \fB\-buw\fR
+ Notification.  Format is <code>:<subcode>:<data>
+ .IP
+ Default: Data may be omitted for no data
+-.SS "Arguments for module icmp.so:"
++.SS "Arguments for module ./icmp.so:"
+ .TP
+ \fB\-ct\fR x
+ ICMP message type
+@@ -115,7 +107,7 @@ Default: 0
+ ICMP checksum
+ .IP
+ Default: Correct
+-.SS "Arguments for module ipv4.so:"
++.SS "Arguments for module ./ipv4.so:"
+ .TP
+ \fB\-is\fR x
+ Source IP address (see README)
+@@ -133,7 +125,7 @@ IP header length (see README)
+ Default: Correct
+ .TP
+ \fB\-iv\fR x
+-IP version (you almost definitely don't want to change this)
++IP version (you almost definately don't want to change this)
+ .IP
+ Default: 4
+ .TP
+@@ -153,7 +145,7 @@ IP packet ID (see README)
+ Default: Random
+ .TP
+ \fB\-ifr\fR x
+-IP reserved flag (see README)
++IP reservced flag (see README)
+ .IP
+ Default: 0 (options are 0,1,r)
+ .TP
+@@ -178,9 +170,9 @@ IP time to live
+ Default: 255
+ .TP
+ \fB\-ip\fR x
+-IP protocol
++IP protcol
+ .IP
+-Default: Correct, or set by underlying protocol
++Default: 0, or set by underlying protocol
+ .TP
+ \fB\-ic\fR x
+ IP checksum (see README)
+@@ -212,7 +204,7 @@ IP option: stream identifier
+ .TP
+ \fB\-iossr\fR x
+ IP option: strict source route. Format: pointer:addr1:addr2:...
+-.SS "Arguments for module ipv6.so:"
++.SS "Arguments for module ./ipv6.so:"
+ .TP
+ \fB\-6f\fR x
+ IPv6 flow ID
+@@ -224,28 +216,28 @@ IPv6 traffic class
+ .IP
+ Default: 0
+ .TP
+-\fB\-6v\fR x
+-IP version (you probably don't want to change this)
+-.TP
+-\fB\-6p\fR x
+-IPv6 priority
+-.IP
+-Default: 0
+-.TP
+ \fB\-6l\fR x
+ IPv6 payload length
+ .IP
+ Default: Correct
+ .TP
++\fB\-6n\fR x
++IPv6 next header
++.IP
++Default: IPPROTO_NONE
++.TP
+ \fB\-6h\fR x
+ IPv6 hop limit
+ .IP
+ Default: 32
+ .TP
+-\fB\-6n\fR x
+-IPv6 next header
++\fB\-6v\fR x
++IP version (you probably don't want to change this
++.TP
++\fB\-6p\fR x
++IPv6 priority
+ .IP
+-Default: Correct
++Default: 0
+ .TP
+ \fB\-6s\fR x
+ IPv6 source address
+@@ -256,7 +248,7 @@ Default: ::1
+ IPv6 destination address
+ .IP
+ Default: Correct
+-.SS "Arguments for module ntp.so:"
++.SS "Arguments for module ./ntp.so:"
+ .TP
+ \fB\-nl\fR x
+ NTP Leap Indicator
+@@ -312,7 +304,7 @@ Default: 0.0
+ NTP xmit (transmit) timestamp
+ .IP
+ Default: 0.0
+-.SS "Arguments for module rip.so:"
++.SS "Arguments for module ./rip.so:"
+ .TP
+ \fB\-rv\fR x
+ RIP version
+@@ -330,11 +322,11 @@ Add a RIP entry.  Format is: Address family:route tag:address:subnet mask:next h
+ Default: 2:0:0.0.0.0:255.255.255.0:0.0.0.0:16, any option my be left out to use the default
+ .TP
+ \fB\-ra\fR x
+-RIP authenticate packet, argument is the password; do not use any other RIP options on this RIP header
++RIP authenticat packet, argument is the password; do not use any other RIP options on this RIP header
+ .TP
+ \fB\-rd\fR
+ RIP default request - get router's entire routing table; do not use any other RIP options on this RIP header
+-.SS "Arguments for module ripng.so:"
++.SS "Arguments for module ./ripng.so:"
+ .TP
+ \fB\-Rv\fR x
+ RIPng version
+@@ -358,7 +350,7 @@ Default: ::/0/128/1, any option my be left out to use the default
+ .TP
+ \fB\-Rd\fR
+ RIPng default request - get router's entire routing table; do not use any other RIPng options on this RIPng header
+-.SS "Arguments for module tcp.so:"
++.SS "Arguments for module ./tcp.so:"
+ .TP
+ \fB\-ts\fR x
+ TCP source port
+@@ -470,7 +462,7 @@ TCP option: selective ack (rfc2018), format is l_edge1:r_edge1,l_edge2:r_edge2..
+ .TP
+ \fB\-tots\fR x
+ TCP option: timestamp (rfc1323), format is tsval:tsecr
+-.SS "Arguments for module udp.so:"
++.SS "Arguments for module ./udp.so:"
+ .TP
+ \fB\-us\fR x
+ UDP source port
+@@ -483,7 +475,7 @@ UDP destination port
+ Default: 0
+ .TP
+ \fB\-ul\fR x
+-UDP packet length
++UDP packet legnth
+ .IP
+ Default: Correct
+ .TP
+@@ -491,227 +483,3 @@ Default: Correct
+ UDP checksum
+ .IP
+ Default: Correct
+-.SS "Arguments for module ah.so:"
+-.TP
+-\fB\-as\fR x
+-AH Security Parameters Index
+-.IP
+-Default: 1
+-.TP
+-\fB\-aq\fR x
+-AH Sequence Number
+-.IP
+-Default: 1
+-.TP
+-\fB\-ad\fR x
+-AH Authentication Data  Variable length authentication data, can be either a user-provided string (in hex, octal, decimal, or raw), or rN for N random bytes.
+-.IP
+-Default: 0
+-.TP
+-\fB\-an\fR x
+-AH Next Header
+-.IP
+-Default: Correct
+-.SS "Arguments for module dest.so:"
+-.TP
+-\fB\-dn\fR x
+-Option next header
+-.IP
+-Default: Correct
+-.TP
+-\fB\-d0\fR
+-Option pad 0 (1 byte padding)
+-.TP
+-\fB\-dp\fR x
+-Option pad N bytes
+-.IP
+-Default: 2
+-.TP
+-\fB\-dr\fR x
+-Option router alert
+-.IP
+-Default: 0
+-.TP
+-\fB\-dj\fR x
+-Option jumbo frame length Note: actual production of jumbo frames requires interface support.
+-.IP
+-Default: 0
+-.TP
+-\fB\-dh\fR x
+-(Destination) option home address
+-.IP
+-Default: ::1
+-.TP
+-\fB\-dt\fR x
+-Option arbitrary t.l.v option The fields are type.length.value. Each field can be specified in the usual way as hex, octal, decimal, literal, or rN for N random bytes.
+-.IP
+-Default: 0.0.0
+-.SS "Arguments for module esp.so:"
+-.TP
+-\fB\-es\fR x
+-ESP Security Parameters Index
+-.IP
+-Default: 0
+-.TP
+-\fB\-eq\fR x
+-ESP Sequence Number
+-.IP
+-Default: 0
+-.TP
+-\fB\-ep\fR x
+-ESP Padding Length
+-.IP
+-Default: Minimum needed for alignment
+-.TP
+-\fB\-en\fR x
+-ESP Next Header
+-.IP
+-Default: Correct
+-.TP
+-\fB\-ei\fR x
+-ESP IV (string or rN for N random bytes)
+-.IP
+-Default: None
+-.TP
+-\fB\-eI\fR x
+-ESP ICV (string or rN for N random bytes)
+-.IP
+-Default: None
+-.TP
+-\fB\-ek\fR x
+-ESP Key (not transmitted string)
+-.IP
+-Default: None
+-.SS "Arguments for module frag.so:"
+-.TP
+-\fB\-Fn\fR x
+-Fragment next header
+-.IP
+-Default: Correct
+-.TP
+-\fB\-Fr\fR x
+-Fragment reserved (1 byte)
+-.IP
+-Default: 0
+-.TP
+-\fB\-Fo\fR x
+-Fragment offset
+-.IP
+-Default: 0
+-.TP
+-\fB\-Ff\fR x
+-Fragment flags (3 bits, lsb=more fragments)
+-.IP
+-Default: 0
+-.TP
+-\fB\-Fi\fR x
+-Fragment identification
+-.IP
+-Default: 0
+-.SS "Arguments for module gre.so:"
+-.TP
+-\fB\-gc\fR x
+-GRE supplied checksum
+-.IP
+-Default: none
+-.TP
+-\fB\-gC\fR
+-GRE add actual checksum
+-.TP
+-\fB\-gr\fR x
+-GRE routing field
+-.IP
+-Default: none
+-.TP
+-\fB\-gk\fR x
+-GRE key field
+-.IP
+-Default: none
+-.TP
+-\fB\-gs\fR x
+-GRE sequence number
+-.IP
+-Default: none
+-.TP
+-\fB\-gS\fR
+-GRE strict source routing flag on
+-.TP
+-\fB\-ge\fR x
+-GRE recursion encapsulation limit
+-.IP
+-Default: 0
+-.TP
+-\fB\-gv\fR x
+-GRE version number
+-.IP
+-Default: 0
+-.TP
+-\fB\-gp\fR x
+-GRE encapsulated protocol
+-.IP
+-Default: Correct (if known, IPv4 and IPv6 only)
+-.TP
+-\fB\-go\fR x
+-GRE offset
+-.IP
+-Default: none
+-.SS "Arguments for module hop.so:"
+-.TP
+-\fB\-Hn\fR x
+-Option next header
+-.IP
+-Default: Correct
+-.TP
+-\fB\-H0\fR
+-Option pad 0 (1 byte padding)
+-.TP
+-\fB\-Hp\fR x
+-Option pad N bytes
+-.IP
+-Default: 2
+-.TP
+-\fB\-Hr\fR x
+-Option router alert
+-.IP
+-Default: 0
+-.TP
+-\fB\-Hj\fR x
+-Option jumbo frame length Note: actual production of jumbo frames requires interface support.
+-.IP
+-Default: 0
+-.TP
+-\fB\-Hh\fR x
+-(Destination) option home address
+-.IP
+-Default: ::1
+-.TP
+-\fB\-Ht\fR x
+-Option arbitrary t.l.v option The fields are type.length.value. Each field can be specified in the usual way as hex, octal, decimal, literal, or rN for N random bytes.
+-.IP
+-Default: 0.0.0
+-.SS "Arguments for module route.so:"
+-.TP
+-\fB\-sn\fR x
+-Routing next header
+-.IP
+-Default: Correct
+-.TP
+-\fB\-st\fR x
+-Routing header type
+-.IP
+-Default: 0
+-.TP
+-\fB\-ss\fR x
+-Routing segments left
+-.IP
+-Default: 0
+-.TP
+-\fB\-sr\fR x
+-Routing reserved field
+-.IP
+-Default: 0
+-.TP
+-\fB\-sa\fR x
+-Routing list of addresses (comma separated)
+-.IP
+-Default: none
+diff --git a/sendip.c b/sendip.c
+index aa105fe..ea14396 100644
+--- a/sendip.c
++++ b/sendip.c
+@@ -24,7 +24,6 @@
+ #include <netinet/in.h>
+ #include <netdb.h>
+ 
+-
+ /* everything else */
+ #include <unistd.h>
+ #include <stdlib.h>
+@@ -41,7 +40,7 @@
+ #include "ipv4.h"
+ #endif /* __sun__ */
+ 
+-/* Use our own getopt to ensure consistent behaviour on all platforms */
++/* Use our own getopt to ensure consistant behaviour on all platforms */
+ #include "gnugetopt.h"
+ 
+ typedef struct _s_m {
+@@ -53,8 +52,8 @@ typedef struct _s_m {
+ 	bool (*do_opt)(const char *optstring, const char *optarg, 
+ 						sendip_data *pack);
+ 	bool (*set_addr)(char *hostname, sendip_data *pack);
+-	bool (*finalize)(char *hdrs, sendip_data *headers[], int index,
+-				sendip_data *data, sendip_data *pack);
++	bool (*finalize)(char *hdrs, sendip_data *headers[], sendip_data *data, 
++						  sendip_data *pack);
+ 	sendip_data *pack;
+ 	void *handle;
+ 	sendip_option *opts;
+@@ -216,17 +215,11 @@ static void unload_modules(bool freeit, int verbosity) {
+ 
+ static bool load_module(char *modname) {
+ 	sendip_module *newmod = malloc(sizeof(sendip_module));
+-/*@@
+ 	sendip_module *cur;
+-@@*/
+ 	int (*n_opts)(void);
+ 	sendip_option * (*get_opts)(void);
+ 	char (*get_optchar)(void);
+ 
+-/*@@
+- * 	We allow multiple loads for the same module in case they
+- * 	use static storage for stuff. Is this really necessary?
+- *
+ 	for(cur=first;cur!=NULL;cur=cur->next) {
+ 		if(!strcmp(modname,cur->name)) {
+ 			memcpy(newmod,cur,sizeof(sendip_module));
+@@ -234,7 +227,6 @@ static bool load_module(char *modname) {
+ 			goto out;
+ 		}
+ 	}
+-@@*/
+ 	newmod->name=malloc(strlen(modname)+strlen(SENDIP_LIBS)+strlen(".so")+2);
+ 	strcpy(newmod->name,modname);
+ 	if(NULL==(newmod->handle=dlopen(newmod->name,RTLD_NOW))) {
+@@ -308,9 +300,7 @@ static bool load_module(char *modname) {
+ 
+ 	num_opts+=newmod->num_opts;
+ 
+-/*@@
+ out:
+-@@*/
+ 	newmod->pack=NULL;
+ 	newmod->prev=last;
+ 	newmod->next=NULL;
+@@ -326,39 +316,25 @@ static void print_usage(void) {
+ 	int i;
+ 	printf("Usage: %s [-v] [-d data] [-h] [-f datafile] [-p module] [module options] hostname\n",progname);
+ 	printf(" -d data\tadd this data as a string to the end of the packet\n");
++	printf("\t\tData can be:\n");
++	printf("\t\trN to generate N random(ish) data bytes;\n");
++	printf("\t\t0x or 0X followed by hex digits;\n");
++	printf("\t\t0 followed by octal digits;\n");
++	printf("\t\tany other stream of bytes\n");
+ 	printf(" -f datafile\tread packet data from file\n");
+ 	printf(" -h\t\tprint this message\n");
+ 	printf(" -p module\tload the specified module (see below)\n");
+ 	printf(" -v\t\tbe verbose\n");
+ 
+-	printf("\n\nPacket data, and argument values for many header fields, may\n");
+-	printf("specified as\n");
+-	printf("rN to generate N random(ish) data bytes;\n");
+-	printf("0x or 0X followed by hex digits;\n");
+-	printf("0 followed by octal digits;\n");
+-	printf("decimal number for decimal digits;\n");
+-	printf("any other stream of bytes, taken literally.\n");
+-
+ 	printf("\n\nModules are loaded in the order the -p option appears.  The headers from\n");
+-	printf("each module are put immediately inside the headers from the previous module in\n");
++	printf("each module are put immediately inside the headers from the previos model in\n");
+ 	printf("the final packet.  For example, to embed bgp inside tcp inside ipv4, do\n");
+ 	printf("sendip -p ipv4 -p tcp -p bgp ....\n");
+ 
+-	printf("\n\nModules may be repeated to create multiple instances of a given header\n");
+-	printf("type. For example, to create an ipip tunneled packet (ipv4 inside ipv4), do\n");
+-	printf("sendip -p ipv4 <outer header arguments> -p ipv4 <inner header arguments> ....\n");
+-	printf("In the case of repeated modules, arguments are applied to the closest matching\n");
+-	printf("module in the command line.\n");
+-
+-
+ 	printf("\n\nModules available at compile time:\n");
+-	printf("\tipv4 ipv6 icmp tcp udp bgp rip ripng ntp ah dest esp frag gre hop route.\n\n");
++	printf("\tipv4 ipv6 icmp tcp udp bgp rip ntp\n\n");
+ 	for(mod=first;mod!=NULL;mod=mod->next) {
+-		char *shortname = strrchr(mod->name, '/');
+-
+-		if (!shortname) shortname = mod->name;
+-		else ++shortname;
+-		printf("\n\nArguments for module %s:\n",shortname);
++		printf("\n\nArguments for module %s:\n",mod->name);
+ 		for(i=0;i<mod->num_opts;i++) {
+ 			printf("   -%c%s %c\t%s\n",mod->optchar,
+ 					  mod->opts[i].optname,mod->opts[i].arg?'x':' ',
+@@ -384,7 +360,7 @@ int main(int argc, char *const argv[]) {
+ 	int datalen=0;
+ 	bool randomflag=FALSE;
+ 
+-	sendip_module *mod, *currentmod;
++	sendip_module *mod;
+ 	int optc;
+ 
+ 	int num_modules=0;
+@@ -508,22 +484,10 @@ int main(int argc, char *const argv[]) {
+ 	/* Do the get opt */
+ 	gnuopterr=1;
+ 	gnuoptind=0;
+-	/* @@ Change so that options apply first to the most recently
+-	 * invoked module. This is to allow separate arguments for
+-	 * multiply-invoked modules, e.g. for creating ipip tunneled
+-	 * packets.
+-	 */
+-	currentmod = NULL;
+ 	while(EOF != (optc=getopt_long_only(argc,argv,"p:vd:hf:",opts,&longindex))) {
+ 		
+ 		switch(optc) {
+ 		case 'p':
+-			/* @@ should double-check match */
+-			if (!currentmod)
+-				currentmod = first;
+-			else
+-				currentmod = currentmod->next;
+-			break;
+ 		case 'v':
+ 		case 'd':
+ 		case 'f':
+@@ -540,31 +504,24 @@ int main(int argc, char *const argv[]) {
+ 			fprintf(stderr,"Option starting %c not recognized\n",gnuoptopt);
+ 			break;
+ 		default:
+-			/*@@ check current mod first */
+-			if (currentmod->optchar == optc)
+-				mod = currentmod;
+-			else {
+-				for(mod=first;mod!=NULL;mod=mod->next) {
+-					if(mod->optchar==optc)
+-						break;
+-				}
+-			}
+-			if (mod) {
+-				/* Random option arguments */
+-				if(gnuoptarg != NULL && !strcmp(gnuoptarg,"r")) {
+-					/* need a 32 bit number, but random() is signed and
+-						nonnegative so only 31bits - we simply repeat one */
+-					unsigned long r = (unsigned long)random()<<1;
+-					r+=(r&0x00000040)>>6;
+-					sprintf(rbuff,"%lu",r);
+-					gnuoptarg = rbuff;
+-				}
++			for(mod=first;mod!=NULL;mod=mod->next) {
++				if(mod->optchar==optc) {
++					
++					/* Random option arguments */
++					if(gnuoptarg != NULL && !strcmp(gnuoptarg,"r")) {
++						/* need a 32 bit number, but random() is signed and
++							nonnegative so only 31bits - we simply repeat one */
++						unsigned long r = (unsigned long)random()<<1;
++						r+=(r&0x00000040)>>6;
++						sprintf(rbuff,"%lu",r);
++						gnuoptarg = rbuff;
++					}
+ 
+-				if(!mod->do_opt(opts[longindex].name,gnuoptarg,mod->pack)) {
+-					usage=TRUE;
++					if(!mod->do_opt(opts[longindex].name,gnuoptarg,mod->pack)) {
++						usage=TRUE;
++					}
+ 				}
+ 			}
+-			break;
+ 		}
+ 	}
+ 
+@@ -603,18 +560,6 @@ int main(int argc, char *const argv[]) {
+ 	/* EVIL EVIL EVIL! */
+ 	/* Stick all the bits together.  This means that finalize better not
+ 		change the size or location of any packet's data... */
+-	/* @@ New addition - we allow finalize to shrink, but not expand,
+-	 * the packet size. Of course, any finalize which does so is
+-	 * responsible for pulling back all the later packet data into
+-	 * the area that will be sent.
+-	 *
+-	 * All of this is to accommodate esp, which needs to put its
+-	 * trailer after the packet data, with some padding for alignment.
+-	 * Since esp can't know how much padding will be needed until
+-	 * the rest of the packet is filled out, it preallocates an
+-	 * excess of padding first, and then trims in finalize to the
+-	 * amount actually needed.
+-	 */
+ 	packet.data = NULL;
+ 	packet.alloc_len = 0;
+ 	packet.modified = 0;
+@@ -656,25 +601,17 @@ int main(int argc, char *const argv[]) {
+ 		for(i=num_modules-1,mod=last;mod!=NULL;mod=mod->prev,i--) {
+ 
+ 			if(verbosity) printf("Finalizing module %s\n",mod->name);
++
+ 			/* Remove this header from enclosing list */
+-			/* @@ Don't erase the header type, so that
+-			 * it's available to upper-level headers where
+-			 * needed. Instead, we tell the upper-level
+-			 * headers where they are in the list.
+-			 */
+-			/*@@hdrs[i]='\0';@@*/
++			hdrs[i]='\0';
+ 			headers[i] = NULL;
+ 
+-			/* @@ */
+-			mod->finalize(hdrs, headers, i, &d, mod->pack);
++			mod->finalize(hdrs, headers, &d, mod->pack);
+ 
+ 			/* Get everything ready for the next call */
+ 			d.data=(char *)d.data-mod->pack->alloc_len;
+ 			d.alloc_len+=mod->pack->alloc_len;
+ 		}
+-		/* @@ Trim back the packet length if need be */
+-		if (d.alloc_len < packet.alloc_len)
+-			packet.alloc_len = d.alloc_len;
+ 	}
+ 
+ 	/* And send the packet */
+diff --git a/sendip_module.h b/sendip_module.h
+index fb1f1bc..419e9d9 100644
+--- a/sendip_module.h
++++ b/sendip_module.h
+@@ -1,10 +1,6 @@
+ #ifndef _SENDIP_MODULE_H
+ #define _SENDIP_MODULE_H
+ 
+-#ifdef HAVE_CONFIG_H
+-#include <config.h>
+-#endif
+-
+ #include <stdio.h>   // for fprintf
+ 
+ #include "types.h"
+@@ -24,7 +20,6 @@ typedef struct {
+ 	void *data;
+ 	int alloc_len;
+ 	unsigned int modified;
+-	void *private;		/* @@ Untouched by sendip main */
+ } sendip_data;
+ 
+ /* Prototypes */
+@@ -32,8 +27,8 @@ typedef struct {
+ sendip_data *initialize(void);
+ bool do_opt(char *optstring, char *optarg, sendip_data *pack);
+ bool set_addr(char *hostname, sendip_data *pack);
+-bool finalize(char *hdrs, sendip_data *headers[], int index,
+-	sendip_data *data, sendip_data *pack);
++bool finalize(char *hdrs, sendip_data *headers[], sendip_data *data,
++				  sendip_data *pack);
+ int num_opts(void);
+ sendip_option *get_opts(void);
+ char get_optchar(void);
+@@ -44,18 +39,5 @@ char get_optchar(void);
+ 
+ extern u_int16_t csum(u_int16_t *packet, int packlen);
+ extern int compact_string(char *data_out);
+-/*@@ added */
+-#define MAXRAND	8192	/* maximum length of random data */
+-u_int8_t * randombytes(int length);
+-int compact_or_rand(char *input, char **output);
+-
+-const char * proto_to_name(u_int8_t proto, int nolookup);
+-u_int8_t name_to_proto(char *s);
+-u_int8_t header_type(const char hdr_char);
+-int outer_header(const char *hdrs, int index, const char *choices);
+-int inner_header(const char *hdrs, int index, const char *choices);
+-
+-extern u_int16_t csumv(u_int16_t *packet[], int packlen[]);
+-/*@@ end added */
+ 
+ #endif  /* _SENDIP_MODULE_H */
+diff --git a/tcp.c b/tcp.c
+index b80db33..def5399 100644
+--- a/tcp.c
++++ b/tcp.c
+@@ -204,8 +204,8 @@ bool do_opt(char *opt, char *arg, sendip_data *pack) {
+ 				fprintf(stderr,"Out of memory!\n");
+ 				return FALSE;
+ 			}
+-			sprintf((char *)data,"0x%s",arg);
+-			len = compact_string((char *)data);
++			sprintf((char*)data,"0x%s",arg);
++			len = compact_string((char*)data);
+ 			if(len==1)
+ 				addoption(*data,1,NULL,pack);
+ 			else
+@@ -312,10 +312,9 @@ bool do_opt(char *opt, char *arg, sendip_data *pack) {
+ 
+ }
+ 
+-bool finalize(char *hdrs, sendip_data *headers[], int index,
+-			sendip_data *data, sendip_data *pack) {
++bool finalize(char *hdrs, sendip_data *headers[], sendip_data *data,
++				  sendip_data *pack) {
+ 	tcp_header *tcp = (tcp_header *)pack->data;
+-	int i;
+ 	
+ 	/* Set relevant fields */
+ 	if(!(pack->modified&TCP_MOD_SEQ)) {
+@@ -332,8 +331,8 @@ bool finalize(char *hdrs, sendip_data *headers[], int index,
+ 	}
+ 
+ 	/* Find enclosing IP header and do the checksum */
+-	i = outer_header(hdrs, index, "i6");/*@@*/
+-	if(hdrs[i]=='i') {
++	if(hdrs[strlen(hdrs)-1]=='i') {
++		int i = strlen(hdrs)-1;
+ 		if(!(headers[i]->modified&IP_MOD_PROTOCOL)) {
+ 			((ip_header *)(headers[i]->data))->protocol=IPPROTO_TCP;
+ 			headers[i]->modified |= IP_MOD_PROTOCOL;
+@@ -341,13 +340,12 @@ bool finalize(char *hdrs, sendip_data *headers[], int index,
+ 		if(!(pack->modified&TCP_MOD_CHECK)) {
+ 			tcpcsum(headers[i],pack,data);
+ 		}
+-	} else if(hdrs[i]=='6') {
+-	   // @@ This is subsumed by my new code which determines the
+-	   // next header type in the ipv6 module.
+-		//if(!(headers[i]->modified&IPV6_MOD_NXT)) {
+-		//	((ipv6_header *)(headers[i]->data))->ip6_nxt=IPPROTO_TCP;
+-		//	headers[i]->modified |= IPV6_MOD_NXT;
+-		//}
++	} else if(hdrs[strlen(hdrs)-1]=='6') {
++		int i = strlen(hdrs)-1;
++		if(!(headers[i]->modified&IPV6_MOD_NXT)) {
++			((ipv6_header *)(headers[i]->data))->ip6_nxt=IPPROTO_TCP;
++			headers[i]->modified |= IPV6_MOD_NXT;
++		}
+ 		if(!(pack->modified&TCP_MOD_CHECK)) {
+ 			tcp6csum(headers[i],pack,data);
+ 		}
+diff --git a/types.h b/types.h
+index b7c2750..75e198d 100644
+--- a/types.h
++++ b/types.h
+@@ -1,4 +1,4 @@
+-/* types.h - types needed in sendip and not defined everywhere
++/* types.h - tpyes needed in sendip and not defined everywhere
+  * Author: Mike Ricketts <mike@earth.li>
+  * ChangeLog since 2.1 release:
+  * 03/02/2002 Added more defines/protos for non-IPv6 systems.
+diff --git a/udp.c b/udp.c
+index d8fa327..cd44538 100644
+--- a/udp.c
++++ b/udp.c
+@@ -112,10 +112,9 @@ bool do_opt(char *opt, char *arg, sendip_data *pack) {
+ 
+ }
+ 
+-bool finalize(char *hdrs, sendip_data *headers[], int index,
+-			sendip_data *data, sendip_data *pack) {
++bool finalize(char *hdrs, sendip_data *headers[], sendip_data *data,
++				  sendip_data *pack) {
+ 	udp_header *udp = (udp_header *)pack->data;
+-	int i;
+ 	
+ 	/* Set relevant fields */
+ 	if(!(pack->modified&UDP_MOD_LEN)) {
+@@ -123,8 +122,8 @@ bool finalize(char *hdrs, sendip_data *headers[], int index,
+ 	}
+ 
+ 	/* Find enclosing IP header and do the checksum */
+-	i = outer_header(hdrs, index, "i6");/*@@*/
+-	if(hdrs[i]=='i') {
++	if(hdrs[strlen(hdrs)-1]=='i') {
++		int i = strlen(hdrs)-1;
+ 		if(!(headers[i]->modified&IP_MOD_PROTOCOL)) {
+ 			((ip_header *)(headers[i]->data))->protocol=IPPROTO_UDP;
+ 			headers[i]->modified |= IP_MOD_PROTOCOL;
+@@ -132,13 +131,12 @@ bool finalize(char *hdrs, sendip_data *headers[], int index,
+ 		if(!(pack->modified&UDP_MOD_CHECK)) {
+ 			udpcsum(headers[i],pack,data);
+ 		}
+-	} else if(hdrs[i]=='6') {
+-	   // @@ This is subsumed by my new code which determines the
+-	   // next header type in the ipv6 module.
+-		//if(!(headers[i]->modified&IPV6_MOD_NXT)) {
+-		//	((ipv6_header *)(headers[i]->data))->ip6_nxt=IPPROTO_UDP;
+-		//	headers[i]->modified |= IPV6_MOD_NXT;
+-		//}
++	} else if(hdrs[strlen(hdrs)-1]=='6') {
++		int i = strlen(hdrs)-1;
++		if(!(headers[i]->modified&IPV6_MOD_NXT)) {
++			((ipv6_header *)(headers[i]->data))->ip6_nxt=IPPROTO_UDP;
++			headers[i]->modified |= IPV6_MOD_NXT;
++		}
+ 		if(!(pack->modified&UDP_MOD_CHECK)) {
+ 			udp6csum(headers[i],pack,data);
+ 		}
+diff --git a/udp.h b/udp.h
+index 27e252b..67627aa 100644
+--- a/udp.h
++++ b/udp.h
+@@ -24,7 +24,7 @@ typedef struct {
+ sendip_option udp_opts[] = {
+ 	{"s",1,"UDP source port","0"},
+ 	{"d",1,"UDP destination port","0"},
+-	{"l",1,"UDP packet length","Correct"},
++	{"l",1,"UDP packet legnth","Correct"},
+ 	{"c",1,"UDP checksum","Correct"}
+ };
+ 
+-- 
+2.17.1
+
