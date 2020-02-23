@@ -7874,6 +7874,7 @@ CONFIG_PACKAGE_luci-app-xwan=y
 # mbed tools
 #
 CONFIG_PACKAGE_mbed-hmac-sha1=y
+CONFIG_PACKAGE_sendip=m
 
 #
 # Xorg
