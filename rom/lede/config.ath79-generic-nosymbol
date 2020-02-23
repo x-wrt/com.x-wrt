@@ -174,6 +174,7 @@ CONFIG_TARGET_MULTI_PROFILE=y
 # CONFIG_TARGET_ath79_generic_DEVICE_tplink_wbs210-v2 is not set
 # CONFIG_TARGET_ath79_generic_DEVICE_tplink_wbs510-v1 is not set
 # CONFIG_TARGET_ath79_generic_DEVICE_tplink_wbs510-v2 is not set
+# CONFIG_TARGET_ath79_generic_DEVICE_teltonika_rut955 is not set
 # CONFIG_TARGET_ath79_generic_DEVICE_trendnet_tew-823dru is not set
 # CONFIG_TARGET_ath79_generic_DEVICE_ubnt_airrouter is not set
 # CONFIG_TARGET_ath79_generic_DEVICE_ubnt_bullet-m is not set
@@ -204,6 +205,7 @@ CONFIG_TARGET_MULTI_PROFILE=y
 # CONFIG_TARGET_ath79_generic_DEVICE_wd_mynet-wifi-rangeextender is not set
 # CONFIG_TARGET_ath79_generic_DEVICE_winchannel_wb2000 is not set
 # CONFIG_TARGET_ath79_generic_DEVICE_xwrt_csac is not set
+# CONFIG_TARGET_ath79_generic_DEVICE_xwrt_csac2 is not set
 # CONFIG_TARGET_ath79_generic_DEVICE_xwrt_gw521-16m is not set
 # CONFIG_TARGET_ath79_generic_DEVICE_xwrt_m-ap300g is not set
 # CONFIG_TARGET_ath79_generic_DEVICE_xwrt_mk-v0201 is not set
@@ -313,6 +315,7 @@ CONFIG_TARGET_DEVICE_PACKAGES_ath79_generic_DEVICE_pisen_ts-d084="blockd block-m
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_rosinson_wr818 is not set
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_siemens_ws-ap3610 is not set
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_sitecom_wlr-7100 is not set
+# CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_teltonika_rut955 is not set
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_tplink_archer-c6-v2-us is not set
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_tplink_archer-a7-v5 is not set
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_tplink_archer-c2-v3 is not set
@@ -430,6 +433,7 @@ CONFIG_TARGET_DEVICE_PACKAGES_ath79_generic_DEVICE_ubnt_unifiac-pro="ath10k-firm
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_xiaomi_mi-router-4q is not set
 CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_xwrt_csac=y
 CONFIG_TARGET_DEVICE_PACKAGES_ath79_generic_DEVICE_xwrt_csac="aria2 ath10k-firmware-qca9888-ct blockd block-mount chat comgt comgt-ncm kmod-ath10k-ct kmod-ath9k kmod-ath9k-common kmod-crypto-crc32c kmod-exfat-linux kmod-fs-autofs4 kmod-fs-ext4 kmod-fs-msdos kmod-fs-vfat kmod-fuse kmod-hwmon-core kmod-leds-reset kmod-lib-crc16 kmod-mii kmod-nls-cp437 kmod-phy-ath79-usb kmod-scsi-core kmod-usb2 kmod-usb-core kmod-usb-ehci kmod-usb-net kmod-usb-net-cdc-ether kmod-usb-net-cdc-mbim kmod-usb-net-cdc-ncm kmod-usb-net-huawei-cdc-ncm kmod-usb-net-ipheth kmod-usb-net-qmi-wwan kmod-usb-net-rndis kmod-usb-net-rtl8152 kmod-usb-net-sierrawireless kmod-usb-ohci kmod-usb-printer kmod-usb-serial kmod-usb-serial-option kmod-usb-serial-qualcomm kmod-usb-serial-sierrawireless kmod-usb-serial-wwan kmod-usb-storage kmod-usb-storage-uas kmod-usb-wdm libopenssl libpcre libsqlite3 libssh2 libstdcpp libusb-1.0 libxml2 lte-modem-xwrt-csac luci-app-aria2 luci-app-p910nd luci-app-samba luci-i18n-aria2-en luci-i18n-aria2-zh-cn luci-i18n-p910nd-en luci-i18n-p910nd-zh-cn luci-i18n-samba-en luci-i18n-samba-zh-cn luci-proto-3g luci-proto-ncm luci-proto-qmi ntfs-3g p910nd samba36-server uqmi usb-modeswitch webui-aria2 wget wwan"
+# CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_xwrt_csac2 is not set
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_xwrt_gw521-16m is not set
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_xwrt_m-ap300g is not set
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_xwrt_mk-v0201 is not set
@@ -592,6 +596,8 @@ CONFIG_KERNEL_DEBUG_FS=y
 # CONFIG_KERNEL_MIPS_FPU_EMULATOR is not set
 # CONFIG_KERNEL_PERF_EVENTS is not set
 # CONFIG_KERNEL_PROFILING is not set
+# CONFIG_KERNEL_UBSAN is not set
+# CONFIG_KERNEL_KCOV is not set
 # CONFIG_KERNEL_TASKSTATS is not set
 # CONFIG_KERNEL_KALLSYMS is not set
 # CONFIG_KERNEL_FTRACE is not set
@@ -750,7 +756,7 @@ CONFIG_TARGET_INIT_CMD="/sbin/init"
 CONFIG_TARGET_INIT_SUPPRESS_STDERR=y
 CONFIG_VERSIONOPT=y
 CONFIG_VERSION_DIST="X-WRT"
-CONFIG_VERSION_NUMBER="7.0_b202002210751"
+CONFIG_VERSION_NUMBER="7.0_b202002230844"
 CONFIG_VERSION_CODE="Eoan"
 CONFIG_VERSION_REPO="http://downloads.openwrt.org/snapshots"
 CONFIG_VERSION_HOME_URL="https://x-wrt.com/"
