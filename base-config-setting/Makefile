@@ -18,7 +18,7 @@ PKG_LICENSE:=GPL-2.0
 
 include $(INCLUDE_DIR)/package.mk
 
-define Package/$(PKG_NAME)/Default
+define Package/base-config-setting/Default
   SECTION:=Applications
   CATEGORY:=X
   SUBMENU:=Base config setting for this board
@@ -28,20 +28,20 @@ define Package/$(PKG_NAME)/Default
 		   +(TARGET_ROOTFS_EXT4FS):fdisk +(EFI_IMAGES):gdisk
 endef
 
-define Package/$(PKG_NAME)
-  $(call Package/$(PKG_NAME)/Default)
-  TITLE:=$(PKG_NAME)
+define Package/base-config-setting
+  $(call Package/base-config-setting/Default)
+  TITLE:=base-config-setting
 endef
 
-define Package/$(PKG_NAME)/description
+define Package/base-config-setting/description
   Base config setting for this board
 endef
 
-define Package/$(PKG_NAME)/conffiles
+define Package/base-config-setting/conffiles
 /etc/config/base_config
 endef
 
-define Package/$(PKG_NAME)/postinst
+define Package/base-config-setting/postinst
 #!/bin/sh
 
 if [ -z "$$IPKG_INSTROOT" ]; then
@@ -52,7 +52,7 @@ fi
 exit 0
 endef
 
-define Package/$(PKG_NAME)/install
+define Package/base-config-setting/install
 	$(INSTALL_DIR) $(1)/etc/uci-defaults
 	$(INSTALL_DIR) $(1)/etc/config
 	$(INSTALL_DATA) ./files/base_config.config $(1)/etc/config/base_config
@@ -94,4 +94,4 @@ define Build/Compile
   true
 endef
 
-$(eval $(call BuildPackage,$(PKG_NAME)))
+$(eval $(call BuildPackage,base-config-setting))
