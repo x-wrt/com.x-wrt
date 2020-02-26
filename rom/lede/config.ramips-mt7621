@@ -4308,7 +4308,6 @@ CONFIG_PACKAGE_luasocket=y
 # CONFIG_PACKAGE_tcl is not set
 # CONFIG_PACKAGE_chicken-scheme-interpreter is not set
 # CONFIG_PACKAGE_slsh is not set
-# CONFIG_PACKAGE_vala is not set
 
 #
 # Libraries
@@ -6741,6 +6740,7 @@ CONFIG_PACKAGE_pptpd=y
 CONFIG_PACKAGE_comgt=m
 # CONFIG_PACKAGE_comgt-directip is not set
 CONFIG_PACKAGE_comgt-ncm=m
+# CONFIG_PACKAGE_umbim is not set
 CONFIG_PACKAGE_uqmi=m
 
 #
@@ -7049,7 +7049,6 @@ CONFIG_PACKAGE_uclient-fetch=y
 # CONFIG_PACKAGE_udptunnel is not set
 # CONFIG_PACKAGE_udpxy is not set
 # CONFIG_PACKAGE_ulogd is not set
-# CONFIG_PACKAGE_umbim is not set
 # CONFIG_PACKAGE_umdns is not set
 # CONFIG_PACKAGE_usbip is not set
 # CONFIG_PACKAGE_vallumd is not set
@@ -7153,7 +7152,6 @@ CONFIG_PACKAGE_uboot-envtools=m
 # CONFIG_PACKAGE_bsdtar-noopenssl is not set
 # CONFIG_PACKAGE_bzip2 is not set
 # CONFIG_PACKAGE_gzip is not set
-# CONFIG_PACKAGE_infozip is not set
 # CONFIG_PACKAGE_lz4 is not set
 # CONFIG_PACKAGE_pigz is not set
 # CONFIG_PACKAGE_unrar is not set
