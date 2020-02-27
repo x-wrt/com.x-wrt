@@ -233,6 +233,9 @@ for t in $targets; do
 	has_usb=0
 	case $t in
 		#>8M flash
+		TARGET_DEVICE_ar71xx_generic_DEVICE_AP143_16M|\
+		TARGET_DEVICE_ar71xx_generic_DEVICE_AP147_010|\
+		TARGET_DEVICE_ar71xx_generic_DEVICE_AP152_16M|\
 		TARGET_DEVICE_ath79_generic_DEVICE_bm100_hq55|\
 		TARGET_DEVICE_ath79_nand_DEVICE_netgear_wndr3700-v4|\
 		TARGET_DEVICE_ath79_generic_DEVICE_netgear_wnr2200-16m|\
@@ -581,12 +584,9 @@ for t in $targets; do
 		TARGET_DEVICE_ar71xx_generic_DEVICE_archer-c7-v2|\
 		TARGET_DEVICE_ar71xx_generic_DEVICE_tl-wdr7500-v3|\
 		TARGET_DEVICE_ar71xx_generic_DEVICE_archer-c7-v4|\
-		TARGET_DEVICE_ar71xx_generic_DEVICE_AP152_16M|\
 		TARGET_DEVICE_ar71xx_generic_DEVICE_k2t|\
 		TARGET_DEVICE_ath79_generic_DEVICE_phicomm_k2t|\
-		TARGET_DEVICE_ar71xx_generic_DEVICE_AP147_010|\
 		TARGET_DEVICE_ar71xx_generic_DEVICE_AP143_8M|\
-		TARGET_DEVICE_ar71xx_generic_DEVICE_AP143_16M|\
 		TARGET_DEVICE_ramips_mt76x8_DEVICE_xiaomi_miwifi-nano|\
 		TARGET_DEVICE_brcm47xx_generic_DEVICE_linksys-wrt610n-v2|\
 		TARGET_DEVICE_brcm47xx_generic_DEVICE_linksys-wrt610n-v1|\
