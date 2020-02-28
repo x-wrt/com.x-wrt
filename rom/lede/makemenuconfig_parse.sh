@@ -108,7 +108,11 @@ excludes="dnsmasq \
 get_modules()
 {
 	local m
-	m=`for i in $@; do echo $i; done | sort | uniq`
+	m=`for i in $@; do
+		echo $i
+		[ "$i" = "rssileds" ] && echo luci-app-ledtrig-rssi
+		[ "$i" = "kmod-usb-ledtrig-usbport" ] && echo luci-app-ledtrig-usbport
+	done | sort | uniq`
 	m=`echo $m`
 	echo $m
 }
