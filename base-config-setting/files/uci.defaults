@@ -11,19 +11,6 @@ wifi_setup_radio()
 			set wireless.${radio}.channel='auto'
 		EOT
 
-		#FIXME fixup for mtk
-		#test -n "`cat /proc/cpuinfo | grep -i MediaTek`" && {
-		#	[ "x`uci get wireless.${radio}.hwmode`" = "x11a" ] || {
-		#		chn=`cat /proc/uptime | cut -d. -f1`
-		#		chn=$((chn%13+1))
-		#		uci set wireless.${radio}.channel=$chn
-		#	}
-		#}
-
-#		[ "x`uci get wireless.${radio}.hwmode`" = "x11a" ] || {
-#			uci set wireless.${radio}.noscan='1'
-#		}
-
 		obj=`uci add wireless wifi-iface`
 		test -n "$obj" && {
 			uci set wireless.$obj.device="${radio}"
@@ -294,10 +281,9 @@ test $version -lt 7 && {
 	version=7
 }
 
-# disable https by default
+# no redirect https by default
 test $version -lt 8 && {
 	uci set uhttpd.main.redirect_https='0'
-	uci delete uhttpd.main.listen_https
 	uci commit uhttpd
 	version=8
 }
@@ -314,13 +300,6 @@ test $version -lt 10 && {
 	uci set upnpd.config.enabled='1'
 	uci commit upnpd
 	version=10
-}
-
-# enable https by default again
-test $version -lt 11 && {
-	uci set uhttpd.main.listen_https='0.0.0.0:443'
-	uci commit uhttpd
-	version=11
 }
 
 # clear /etc/dropbear/authorized_keys
