@@ -2878,9 +2878,15 @@ CONFIG_PACKAGE_kmod-hwmon-core=m
 # CONFIG_PACKAGE_kmod-iio-bmp280-spi is not set
 # CONFIG_PACKAGE_kmod-iio-ccs811 is not set
 # CONFIG_PACKAGE_kmod-iio-core is not set
+# CONFIG_PACKAGE_kmod-iio-fxos8700 is not set
+# CONFIG_PACKAGE_kmod-iio-fxos8700-i2c is not set
+# CONFIG_PACKAGE_kmod-iio-fxos8700-spi is not set
 # CONFIG_PACKAGE_kmod-iio-hmc5843 is not set
 # CONFIG_PACKAGE_kmod-iio-htu21 is not set
 # CONFIG_PACKAGE_kmod-iio-si7020 is not set
+# CONFIG_PACKAGE_kmod-iio-st_accel is not set
+# CONFIG_PACKAGE_kmod-iio-st_sensors-i2c is not set
+# CONFIG_PACKAGE_kmod-iio-st_sensors-spi is not set
 # CONFIG_PACKAGE_kmod-iio-tsl4531 is not set
 
 #
