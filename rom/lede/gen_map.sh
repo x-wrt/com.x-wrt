@@ -43,10 +43,11 @@ test -n "$x86bin" && {
 			;;
 		esac
 	done
-	echo "x86 64bits (MBR dos):`echo -n ${x86_64_combined}`" >>map.list
-	echo "x86 64bits (UEFI gpt):`echo -n ${x86_64_uefi}`" >>map.list
-	echo "x86 generic (MBR dos):`echo -n ${x86_generic_combined}`" >>map.list
-	echo "x86 generic (UEFI gpt):`echo -n ${x86_generic_uefi}`" >>map.list
+
+	test -n "${x86_64_combined}" && echo "x86 64bits (MBR dos):`echo -n ${x86_64_combined}`" >>map.list
+	test -n "${x86_64_uefi}" && echo "x86 64bits (UEFI gpt):`echo -n ${x86_64_uefi}`" >>map.list
+	test -n "${x86_generic_combined}" && echo "x86 generic (MBR dos):`echo -n ${x86_generic_combined}`" >>map.list
+	test -n "${x86_generic_uefi}" && echo "x86 generic (UEFI gpt):`echo -n ${x86_generic_uefi}`" >>map.list
 }
 
 for t in $targets; do
