@@ -237,6 +237,8 @@ for t in $targets; do
 	has_usb=0
 	case $t in
 		#>8M flash
+		TARGET_DEVICE_ramips_mt7621_DEVICE_netgear_r6800|\
+		TARGET_DEVICE_ramips_mt7621_DEVICE_netgear_r6700-v2|\
 		TARGET_DEVICE_ar71xx_generic_DEVICE_AP143_16M|\
 		TARGET_DEVICE_ar71xx_generic_DEVICE_AP147_010|\
 		TARGET_DEVICE_ar71xx_generic_DEVICE_AP152_16M|\
@@ -624,6 +626,8 @@ for t in $targets; do
 	#check usb
 	case $t in
 		#with usb3
+		TARGET_DEVICE_ramips_mt7621_DEVICE_netgear_r6800|\
+		TARGET_DEVICE_ramips_mt7621_DEVICE_netgear_r6700-v2|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_asus_rt-ac85p|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_xiaoyu_xy-c5|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_netgear_r6260|\
