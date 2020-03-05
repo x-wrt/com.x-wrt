@@ -37,14 +37,10 @@ define KernelPackage/exfat-linux/description
 	Kernel module for ExFAT Filesytems
 endef
 
-MAKE_OPTS:= \
-	ARCH="$(LINUX_KARCH)" \
-	CROSS_COMPILE="$(TARGET_CROSS)" \
-	M="$(PKG_BUILD_DIR)"
-
 define Build/Compile
-	$(MAKE) -C "$(LINUX_DIR)" \
-		$(MAKE_OPTS) \
+	+$(MAKE) $(PKG_JOBS) -C "$(LINUX_DIR)" \
+		$(KERNEL_MAKE_FLAGS) \
+		M="$(PKG_BUILD_DIR)" \
 		CONFIG_EXFAT_FS=m \
 		modules
 endef
