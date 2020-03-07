@@ -237,6 +237,9 @@ for t in $targets; do
 	has_usb=0
 	case $t in
 		#>8M flash
+		TARGET_DEVICE_ath79_nand_DEVICE_domywifi_dw33d|\
+		TARGET_DEVICE_ath79_generic_DEVICE_devolo_magic-2-wifi|\
+		TARGET_DEVICE_ath79_generic_DEVICE_sitecom_wlr-8100|\
 		TARGET_DEVICE_ipq806x_generic_DEVICE_tplink_c2600|\
 		TARGET_DEVICE_ipq806x_generic_DEVICE_tplink_vr2600v|\
 		TARGET_DEVICE_ipq806x_generic_DEVICE_buffalo_wxr-2533dhp|\
@@ -456,6 +459,8 @@ for t in $targets; do
 		TARGET_DEVICE_ar71xx_nand_DEVICE_WNDR3700V4|\
 		TARGET_DEVICE_ar71xx_nand_DEVICE_WNDR4300V1|\
 		TARGET_DEVICE_ath79_nand_DEVICE_netgear_wndr4300|\
+		TARGET_DEVICE_ath79_nand_DEVICE_netgear_wndr4300-v2|\
+		TARGET_DEVICE_ath79_nand_DEVICE_netgear_wndr4500-v3|\
 		TARGET_DEVICE_bcm53xx_generic_DEVICE_asus-rt-ac56u|\
 		TARGET_DEVICE_bcm53xx_generic_DEVICE_asus-rt-ac68u|\
 		TARGET_DEVICE_bcm53xx_generic_DEVICE_asus-rt-ac87u|\
@@ -629,6 +634,7 @@ for t in $targets; do
 	#check usb
 	case $t in
 		#with usb3
+		TARGET_DEVICE_ath79_generic_DEVICE_sitecom_wlr-8100|\
 		TARGET_DEVICE_ipq806x_generic_DEVICE_tplink_c2600|\
 		TARGET_DEVICE_ipq806x_generic_DEVICE_tplink_vr2600v|\
 		TARGET_DEVICE_ipq806x_generic_DEVICE_buffalo_wxr-2533dhp|\
@@ -718,6 +724,7 @@ for t in $targets; do
 			has_usb=1
 		;;
 		#with usb2
+		TARGET_DEVICE_ath79_nand_DEVICE_domywifi_dw33d|\
 		TARGET_DEVICE_ath79_generic_DEVICE_bm100_hq55|\
 		TARGET_DEVICE_ath79_nand_DEVICE_netgear_wndr3700-v4|\
 		TARGET_DEVICE_ath79_generic_DEVICE_netgear_wnr2200-16m|\
@@ -885,6 +892,8 @@ for t in $targets; do
 		TARGET_DEVICE_ar71xx_nand_DEVICE_domywifi-dw33d|\
 		TARGET_DEVICE_ar71xx_generic_DEVICE_mw4530r-v1|\
 		TARGET_DEVICE_ath79_nand_DEVICE_netgear_wndr4300|\
+		TARGET_DEVICE_ath79_nand_DEVICE_netgear_wndr4300-v2|\
+		TARGET_DEVICE_ath79_nand_DEVICE_netgear_wndr4500-v3|\
 		TARGET_DEVICE_ar71xx_nand_DEVICE_WNDR4300V1|\
 		TARGET_DEVICE_ar71xx_nand_DEVICE_WNDR3700V4|\
 		TARGET_DEVICE_ar71xx_nand_DEVICE_R6100|\
@@ -914,6 +923,7 @@ for t in $targets; do
 			has_usb=1
 		;;
 		#no usb
+		TARGET_DEVICE_ath79_generic_DEVICE_devolo_magic-2-wifi|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_xiaomi_mir3g-v2|\
 		TARGET_DEVICE_ath79_generic_DEVICE_comfast_cf-wr650ac-v1|\
 		TARGET_DEVICE_ath79_generic_DEVICE_comfast_cf-wr650ac-v2|\
