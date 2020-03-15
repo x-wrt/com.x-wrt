@@ -785,6 +785,7 @@ main_trigger() {
 	while :; do
 		test -f $LOCKDIR/$PID || return 0
 		test -p /tmp/trigger_natcapd_update.fifo || { sleep 1 && continue; }
+		ping -q -W3 -c1 8.8.8.8 || ping -q -W3 -c1 114.114.114.114 || { sleep 11 && continue; }
 		mytimeout 660 'cat /tmp/trigger_natcapd_update.fifo' >/dev/null && {
 			rm -f /tmp/xx.tmp.json
 			rm -f /tmp/nohup.out
