@@ -237,6 +237,8 @@ for t in $targets; do
 	has_usb=0
 	case $t in
 		#>8M flash
+		TARGET_DEVICE_ath79_generic_DEVICE_tplink_archer-d7-v1|\
+		TARGET_DEVICE_ath79_generic_DEVICE_tplink_archer-d7b-v1|\
 		TARGET_DEVICE_ath79_nand_DEVICE_domywifi_dw33d|\
 		TARGET_DEVICE_ath79_generic_DEVICE_devolo_magic-2-wifi|\
 		TARGET_DEVICE_ath79_generic_DEVICE_sitecom_wlr-8100|\
@@ -491,6 +493,7 @@ for t in $targets; do
 			flash_gt8m=1
 		;;
 		#<=8M flash
+		TARGET_DEVICE_ath79_generic_DEVICE_tplink_archer-c60-v3|\
 		TARGET_DEVICE_ath79_generic_DEVICE_netgear_wnr2200-8m|\
 		TARGET_DEVICE_ath79_generic_DEVICE_pisen_ts-d084|\
 		TARGET_DEVICE_ramips_mt76x8_DEVICE_cudy_wr1000|\
@@ -724,6 +727,8 @@ for t in $targets; do
 			has_usb=1
 		;;
 		#with usb2
+		TARGET_DEVICE_ath79_generic_DEVICE_tplink_archer-d7-v1|\
+		TARGET_DEVICE_ath79_generic_DEVICE_tplink_archer-d7b-v1|\
 		TARGET_DEVICE_ath79_nand_DEVICE_domywifi_dw33d|\
 		TARGET_DEVICE_ath79_generic_DEVICE_bm100_hq55|\
 		TARGET_DEVICE_ath79_nand_DEVICE_netgear_wndr3700-v4|\
@@ -923,6 +928,7 @@ for t in $targets; do
 			has_usb=1
 		;;
 		#no usb
+		TARGET_DEVICE_ath79_generic_DEVICE_tplink_archer-c60-v3|\
 		TARGET_DEVICE_ath79_generic_DEVICE_devolo_magic-2-wifi|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_xiaomi_mir3g-v2|\
 		TARGET_DEVICE_ath79_generic_DEVICE_comfast_cf-wr650ac-v1|\
