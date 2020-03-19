@@ -308,6 +308,12 @@ test $version -lt 12 && {
 	version=12
 }
 
+test $version -lt 13 && {
+	uci set network.globals.packet_steering=1
+	uci commit network
+	version=13
+}
+
 uci set fstab.@global[0].anon_mount_bak="`uci get fstab.@global[0].anon_mount_bak 2>/dev/null || uci get fstab.@global[0].anon_mount 2>/dev/null`"
 uci set fstab.@global[0].anon_mount='0'
 uci commit fstab
