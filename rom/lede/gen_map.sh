@@ -26,13 +26,13 @@ test -n "$x86bin" && {
 	for bin in $x86bin; do
 		echo "$sha256sums" | grep "$bin" >>sha256sums.txt
 		case $bin in
-			*x86-64-combined*)
+			*x86-64-combined*|*x86-64-generic-ext4-combined*)
 				x86_64_combined="${x86_64_combined} $bin"
 			;;
 			*x86-64-uefi*)
 				x86_64_uefi="${x86_64_uefi} $bin"
 			;;
-			*x86-generic-combined*)
+			*x86-generic-combined*|*x86-generic-generic-ext4-combined*)
 				x86_generic_combined="${x86_generic_combined} $bin"
 			;;
 			*x86-generic-uefi*)
