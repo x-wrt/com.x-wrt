@@ -112,6 +112,12 @@ for t in $targets; do
 				}
 			}
 		}
+
+		test -n "$bin" || {
+			echo no image found for "$dis"
+			exit 255
+		}
+
 		echo "`echo $dis`:"
 		for i in $bin; do
 			echo $i;
