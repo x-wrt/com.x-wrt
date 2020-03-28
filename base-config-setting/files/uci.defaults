@@ -314,6 +314,12 @@ test $version -lt 13 && {
 	version=13
 }
 
+test $version -lt 14 && {
+	uci set luci.main.mediaurlbase='/luci-static/bootstrap'
+	uci commit luci
+	version=14
+}
+
 uci set fstab.@global[0].anon_mount_bak="`uci get fstab.@global[0].anon_mount_bak 2>/dev/null || uci get fstab.@global[0].anon_mount 2>/dev/null`"
 uci set fstab.@global[0].anon_mount='0'
 uci commit fstab
