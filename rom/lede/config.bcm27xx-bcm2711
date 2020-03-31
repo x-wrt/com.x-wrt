@@ -416,7 +416,7 @@ CONFIG_TARGET_INIT_CMD="/sbin/init"
 CONFIG_TARGET_INIT_SUPPRESS_STDERR=y
 CONFIG_VERSIONOPT=y
 CONFIG_VERSION_DIST="X-WRT"
-CONFIG_VERSION_NUMBER="7.0_b202003281044"
+CONFIG_VERSION_NUMBER="7.0_b202003311439"
 CONFIG_VERSION_CODE="Eoan"
 CONFIG_VERSION_REPO="http://downloads.openwrt.org/snapshots"
 CONFIG_VERSION_HOME_URL="https://x-wrt.com/"
@@ -2674,6 +2674,7 @@ CONFIG_PACKAGE_rt73-usb-firmware=y
 # CONFIG_PACKAGE_rtl8192se-firmware is not set
 # CONFIG_PACKAGE_rtl8192su-firmware is not set
 # CONFIG_PACKAGE_rtl8723au-firmware is not set
+# CONFIG_PACKAGE_rtl8723bs-firmware is not set
 # CONFIG_PACKAGE_rtl8723bu-firmware is not set
 # CONFIG_PACKAGE_rtl8821ae-firmware is not set
 # CONFIG_PACKAGE_rtl8822be-firmware is not set
@@ -3528,6 +3529,7 @@ CONFIG_PACKAGE_kmod-rtl8187=y
 # CONFIG_PACKAGE_kmod-rtl8192cu is not set
 # CONFIG_PACKAGE_kmod-rtl8192de is not set
 # CONFIG_PACKAGE_kmod-rtl8192se is not set
+# CONFIG_PACKAGE_kmod-rtl8723bs is not set
 # CONFIG_PACKAGE_kmod-rtl8812au-ct is not set
 # CONFIG_PACKAGE_kmod-rtl8821ae is not set
 # CONFIG_PACKAGE_kmod-rtl8xxxu is not set
@@ -6417,8 +6419,8 @@ CONFIG_PACKAGE_iptables-mod-tproxy=y
 # CONFIG_PACKAGE_miniupnpc is not set
 CONFIG_PACKAGE_miniupnpd=y
 # CONFIG_PACKAGE_natpmpc is not set
-CONFIG_PACKAGE_nftables=y
-CONFIG_PACKAGE_NFT_WITH_JSON=y
+# CONFIG_PACKAGE_nftables-json is not set
+CONFIG_PACKAGE_nftables-nojson=y
 # CONFIG_PACKAGE_shorewall is not set
 # CONFIG_PACKAGE_shorewall-core is not set
 # CONFIG_PACKAGE_shorewall-lite is not set
@@ -6582,11 +6584,15 @@ CONFIG_PACKAGE_ddns-scripts_aliyun=y
 # NMAP Suite
 #
 # CONFIG_PACKAGE_ncat is not set
+# CONFIG_PACKAGE_ncat-full is not set
 # CONFIG_PACKAGE_ncat-ssl is not set
 # CONFIG_PACKAGE_ndiff is not set
+# CONFIG_PACKAGE_ndiff-src is not set
 # CONFIG_PACKAGE_nmap is not set
+# CONFIG_PACKAGE_nmap-full is not set
 # CONFIG_PACKAGE_nmap-ssl is not set
 # CONFIG_PACKAGE_nping is not set
+# CONFIG_PACKAGE_nping-ssl is not set
 
 #
 # NTRIP
@@ -6952,6 +6958,7 @@ CONFIG_PACKAGE_chat=m
 # CONFIG_PACKAGE_cshark is not set
 # CONFIG_PACKAGE_daemonlogger is not set
 # CONFIG_PACKAGE_darkstat is not set
+# CONFIG_PACKAGE_dawn is not set
 # CONFIG_PACKAGE_dhcpcd is not set
 # CONFIG_PACKAGE_dmapd is not set
 # CONFIG_PACKAGE_dnscrypt-proxy2 is not set
@@ -7847,3 +7854,4 @@ CONFIG_PACKAGE_sendip=m
 # Font-Utils
 #
 # CONFIG_PACKAGE_fontconfig is not set
+CONFIG_OVERRIDE_PKGS="jansson"
