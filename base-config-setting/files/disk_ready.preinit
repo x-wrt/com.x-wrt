@@ -2,7 +2,7 @@
 # Copyright (C) 2006 OpenWrt.org
 # Copyright (C) 2010 Vertical Communications
 # Copyright (C) 2017 PTPT52
-# Copyright (C) 2019 X-WRT <dev@x-wrt.com>
+# Copyright (C) 2020 X-WRT <dev@x-wrt.com>
 
 do_disk_ready() {
 	which fdisk && which partx && which mkfs.ext4 || return
@@ -32,6 +32,14 @@ do_disk_ready() {
 	sector_size=$((sector_size+0))
 	test ${sector_size} -gt 0 || sector_size=512
 	diskpart=`fdisk -l ${ROOTDEV} | grep "^${ROOTPART}[0-9]" | wc -l`
+	O=0
+	LASTDEV=`fdisk -l ${ROOTDEV} | grep "^${ROOTPART}[0-9]" | while read D _ E _; do
+		if test $E -gt $O; then
+			echo $D
+			O=$E
+		fi
+	done | tail -n1`
+	LASTNR=`echo $LASTDEV | grep -o "[0-9]*" | tail -n1`
 
 	if [ "$disktype" = "gpt" ]; then
 		which gdisk || return
@@ -41,10 +49,10 @@ do_disk_ready() {
 			# <= 2GiB && return
 			test $disksize -le 2147483648 && return
 
+			#clean
 			echo -ne "w\ny\ny\n" | gdisk ${ROOTDEV}
-			echo -ne "d\n$((diskpart+2))\nw\ny\n" | gdisk ${ROOTDEV}
-			echo -ne "d\n$((diskpart+1))\nw\ny\n" | gdisk ${ROOTDEV}
-			set `fdisk -l ${ROOTDEV} 2>/dev/null | grep ^${ROOTPART}$((diskpart))`
+			echo -ne "d\n$((LASTNR+2))\nd\n$((LASTNR+1))\nw\ny\n" | gdisk ${ROOTDEV}
+			set `fdisk -l ${ROOTDEV} 2>/dev/null | grep ^${ROOTPART}$((LASTNR))`
 			sda4_start=$2
 			sda4_end=$3
 
@@ -59,64 +67,65 @@ do_disk_ready() {
 			echo -ne "n\n\n${sda5_start}\n${sda5_end}\n8300\nn\n\n${sda6_start}\n\n8300\nw\ny\n" | gdisk ${ROOTDEV}
 
 			partx -a ${ROOTDEV}
-			test -b ${ROOTPART}$((diskpart+1)) -a -b ${ROOTPART}$((diskpart+2))  || {
+			test -b ${ROOTPART}$((LASTNR+1)) -a -b ${ROOTPART}$((LASTNR+2))  || {
 				MAJOR="`ls -l ${ROOTDEV} | grep ${ROOTDEV} | awk '{print $5}' | grep -o '[0-9]*'`"
 				test -n "$MAJOR" && {
-					rm -f ${ROOTPART}$((diskpart+1))
-					mknod ${ROOTPART}$((diskpart+1)) b $MAJOR $((diskpart+1))
-					rm -f ${ROOTPART}$((diskpart+2))
-					mknod ${ROOTPART}$((diskpart+2)) b $MAJOR $((diskpart+2))
+					rm -f ${ROOTPART}$((LASTNR+1))
+					mknod ${ROOTPART}$((LASTNR+1)) b $MAJOR $((LASTNR+1))
+					rm -f ${ROOTPART}$((LASTNR+2))
+					mknod ${ROOTPART}$((LASTNR+2)) b $MAJOR $((LASTNR+2))
 				}
 			}
 
 			# check to format
-			if mount -t ext4 -o ro,noatime ${ROOTPART}$((diskpart+2)) /mnt; then
-				echo ${ROOTPART}$((diskpart+2)) has valid filesystem, no need to format
+			if mount -t ext4 -o ro,noatime ${ROOTPART}$((LASTNR+2)) /mnt; then
+				echo ${ROOTPART}$((LASTNR+2)) has valid filesystem, no need to format
 				umount /mnt
 			else
-				test -b ${ROOTPART}$((diskpart+2)) && echo erase >${ROOTPART}$((diskpart+2))
+				test -b ${ROOTPART}$((LASTNR+2)) && echo erase >${ROOTPART}$((LASTNR+2))
 			fi
 			mount -o remount,rw / && {
-				test -b ${ROOTPART}$((diskpart+1)) && rm -f /etc/sda.ready
+				test -b ${ROOTPART}$((LASTNR+1)) && rm -f /etc/sda.ready
 				mount -o remount,ro /
 			}
-			diskpart=$((diskpart+2))
+			LASTNR=$((LASTNR+2))
 		fi
 
 		fstab=0
-		if test -b ${ROOTPART}$((diskpart-1)); then
+		if test -b ${ROOTPART}$((LASTNR-1)); then
 			test -f /etc/sda.ready || {
-				echo -ne 'y\n' | mkfs.ext4 ${ROOTPART}$((diskpart-1))
+				echo -ne 'y\n' | mkfs.ext4 ${ROOTPART}$((LASTNR-1))
 				fstab=1
 			}
-			if mount -t ext4 -o ro,noatime ${ROOTPART}$((diskpart-1)) /mnt; then
+			if mount -t ext4 -o ro,noatime ${ROOTPART}$((LASTNR-1)) /mnt; then
 				umount /mnt
 			else
-				echo -ne 'y\n' | mkfs.ext4 ${ROOTPART}$((diskpart-1))
+				echo -ne 'y\n' | mkfs.ext4 ${ROOTPART}$((LASTNR-1))
 				fstab=1
 			fi
 		fi
 		[ "x$fstab" = "x1" ] && {
 			mount -o remount,rw / && {
 				cp /etc/fstab.config /tmp/fstab.config
-				sed -i "s,/dev/sda3,${ROOTPART}$((diskpart-1)),;s,/dev/sda4,${ROOTPART}$((diskpart))," /tmp/fstab.config
+				sed -i "s,/dev/sda3,${ROOTPART}$((LASTNR-1)),;s,/dev/sda4,${ROOTPART}$((LASTNR))," /tmp/fstab.config
 				cp /tmp/fstab.config /etc/config/fstab
 				mount -o remount,ro /
 			}
 		}
-		test -b ${ROOTPART}$((diskpart)) && [ "x`head -c5 ${ROOTPART}$((diskpart))`" = "xerase" ] && {
-			echo -ne 'y\n' | mkfs.ext4 ${ROOTPART}$((diskpart))
+		test -b ${ROOTPART}$((LASTNR)) && [ "x`head -c5 ${ROOTPART}$((LASTNR))`" = "xerase" ] && {
+			echo -ne 'y\n' | mkfs.ext4 ${ROOTPART}$((LASTNR))
 		}
 	elif [ "$disktype" = "dos" ]; then
-		[ "x$diskpart" = "x4" ] || {
+		if [ "x$diskpart" = "x2" ]; then
 			disksize="`fdisk -l ${ROOTDEV} | grep ${ROOTDEV}: | head -n1 | awk '{print $5}'`"
 			test -n "$disksize" || return
 			# <= 2GiB && return
 			test $disksize -le 2147483648 && return
 
-			echo -ne 'd\n4\nw\n' | fdisk ${ROOTDEV}
-			echo -ne 'd\n3\nw\n' | fdisk ${ROOTDEV}
-			set `fdisk -l ${ROOTDEV} 2>/dev/null | grep ^${ROOTPART}2`
+			#clean
+			echo -ne "w\ny\ny\n" | fdisk ${ROOTDEV}
+			echo -ne "d\n$((LASTNR+2))\nd\n$((LASTNR+1))\nw\ny\n" | fdisk ${ROOTDEV}
+			set `fdisk -l ${ROOTDEV} 2>/dev/null | grep ^${ROOTPART}$((LASTNR))`
 			sda2_start=$2
 			sda2_end=$3
 
@@ -131,52 +140,53 @@ do_disk_ready() {
 			echo -ne "n\np\n\n${sda3_start}\n${sda3_end}\nn\np\n${sda4_start}\n\nw\n" | fdisk ${ROOTDEV}
 
 			partx -a ${ROOTDEV}
-			test -b ${ROOTPART}3 -a -b ${ROOTPART}4  || {
+			test -b ${ROOTPART}$((LASTNR+1)) -a -b ${ROOTPART}$((LASTNR+2))  || {
 				MAJOR="`ls -l ${ROOTDEV} | grep ${ROOTDEV} | awk '{print $5}' | grep -o '[0-9]*'`"
 				test -n "$MAJOR" && {
-					rm -f ${ROOTPART}3
-					mknod ${ROOTPART}3 b $MAJOR 3
-					rm -f ${ROOTPART}4
-					mknod ${ROOTPART}4 b $MAJOR 4
+					rm -f ${ROOTPART}$((LASTNR+1))
+					mknod ${ROOTPART}$((LASTNR+1)) b $MAJOR $((LASTNR+1))
+					rm -f ${ROOTPART}$((LASTNR+2))
+					mknod ${ROOTPART}$((LASTNR+2)) b $MAJOR $((LASTNR+2))
 				}
 			}
 
 			# check to format
-			if mount -t ext4 -o ro,noatime ${ROOTPART}4 /mnt; then
-				echo ${ROOTPART}4 has valid filesystem, no need to format
+			if mount -t ext4 -o ro,noatime ${ROOTPART}$((LASTNR+2)) /mnt; then
+				echo ${ROOTPART}$((LASTNR+2)) has valid filesystem, no need to format
 				umount /mnt
 			else
-				test -b ${ROOTPART}4 && echo erase >${ROOTPART}4
+				test -b ${ROOTPART}$((LASTNR+2)) && echo erase >${ROOTPART}$((LASTNR+2))
 			fi
 			mount -o remount,rw / && {
-				test -b ${ROOTPART}3 && rm -f /etc/sda.ready
+				test -b ${ROOTPART}$((LASTNR+1)) && rm -f /etc/sda.ready
 				mount -o remount,ro /
 			}
-		}
+			LASTNR=$((LASTNR+2))
+		fi
 
 		fstab=0
-		if test -b ${ROOTPART}3; then
+		if test -b ${ROOTPART}$((LASTNR-1)); then
 			test -f /etc/sda.ready || {
-				echo -ne 'y\n' | mkfs.ext4 ${ROOTPART}3
+				echo -ne 'y\n' | mkfs.ext4 ${ROOTPART}$((LASTNR-1))
 				fstab=1
 			}
-			if mount -t ext4 -o ro,noatime ${ROOTPART}3 /mnt; then
+			if mount -t ext4 -o ro,noatime ${ROOTPART}$((LASTNR-1)) /mnt; then
 				umount /mnt
 			else
-				echo -ne 'y\n' | mkfs.ext4 ${ROOTPART}3
+				echo -ne 'y\n' | mkfs.ext4 ${ROOTPART}$((LASTNR-1))
 				fstab=1
 			fi
 		fi
 		[ "x$fstab" = "x1" ] && {
 			mount -o remount,rw / && {
 				cp /etc/fstab.config /tmp/fstab.config
-				sed -i "s,/dev/sda3,${ROOTPART}3,;s,/dev/sda4,${ROOTPART}4," /tmp/fstab.config
+				sed -i "s,/dev/sda3,${ROOTPART}$((LASTNR-1)),;s,/dev/sda4,${ROOTPART}$((LASTNR))," /tmp/fstab.config
 				cp /tmp/fstab.config /etc/config/fstab
 				mount -o remount,ro /
 			}
 		}
-		test -b ${ROOTPART}4 && [ "x`head -c5 ${ROOTPART}4`" = "xerase" ] && {
-			echo -ne 'y\n' | mkfs.ext4 ${ROOTPART}4
+		test -b ${ROOTPART}$((LASTNR)) && [ "x`head -c5 ${ROOTPART}$((LASTNR))`" = "xerase" ] && {
+			echo -ne 'y\n' | mkfs.ext4 ${ROOTPART}$((LASTNR))
 		}
 	fi
 }
