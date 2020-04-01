@@ -14,7 +14,7 @@ echo -n >map.list
 
 echo sha256sums: sha256sums.txt >>map.list
 
-x86bin="`find bin/targets/ | grep -- '\(-combined\|-uefi\)' | sort | while read line; do basename $line; done`"
+x86bin="`find bin/targets/ | grep -- '\(-combined\|-uefi\|combined-efi\)' | sort | while read line; do basename $line; done`"
 test -n "$x86bin" && {
 	echo x86_64 or x86:
 	echo "$x86bin"
@@ -26,16 +26,16 @@ test -n "$x86bin" && {
 	for bin in $x86bin; do
 		echo "$sha256sums" | grep "$bin" >>sha256sums.txt
 		case $bin in
-			*x86-64-combined*|*x86-64-generic-ext4-combined*)
+			*x86-64-combined*|*x86-64-generic-ext4-combined\.*)
 				x86_64_combined="${x86_64_combined} $bin"
 			;;
-			*x86-64-uefi*)
+			*x86-64-uefi*|*x86-64-generic-ext4-combined-efi\.*)
 				x86_64_uefi="${x86_64_uefi} $bin"
 			;;
-			*x86-generic-combined*|*x86-generic-generic-ext4-combined*)
+			*x86-generic-combined*|*x86-generic-generic-ext4-combined\.*)
 				x86_generic_combined="${x86_generic_combined} $bin"
 			;;
-			*x86-generic-uefi*)
+			*x86-generic-uefi*|*x86-generic-ext4-combined-efi\.*)
 				x86_generic_uefi="${x86_generic_uefi} $bin"
 			;;
 			*)
