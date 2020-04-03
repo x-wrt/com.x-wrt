@@ -522,7 +522,7 @@ CONFIG_TARGET_INIT_CMD="/sbin/init"
 CONFIG_TARGET_INIT_SUPPRESS_STDERR=y
 CONFIG_VERSIONOPT=y
 CONFIG_VERSION_DIST="X-WRT"
-CONFIG_VERSION_NUMBER="7.0_b202004021057"
+CONFIG_VERSION_NUMBER="7.0_b202004031953"
 CONFIG_VERSION_CODE="Eoan"
 CONFIG_VERSION_REPO="http://downloads.openwrt.org/snapshots"
 CONFIG_VERSION_HOME_URL="https://x-wrt.com/"
@@ -3158,7 +3158,7 @@ CONFIG_PACKAGE_kmod-ipt-nat6=y
 CONFIG_PACKAGE_kmod-ipt-nathelper-rtsp=y
 # CONFIG_PACKAGE_kmod-ipt-nflog is not set
 # CONFIG_PACKAGE_kmod-ipt-nfqueue is not set
-CONFIG_PACKAGE_kmod-ipt-offload=y
+CONFIG_PACKAGE_kmod-ipt-offload=m
 CONFIG_PACKAGE_kmod-ipt-physdev=y
 # CONFIG_PACKAGE_kmod-ipt-proto is not set
 # CONFIG_PACKAGE_kmod-ipt-psd is not set
@@ -3176,7 +3176,7 @@ CONFIG_PACKAGE_kmod-ipt-tproxy=y
 CONFIG_PACKAGE_kmod-nf-conntrack=y
 CONFIG_PACKAGE_kmod-nf-conntrack-netlink=y
 CONFIG_PACKAGE_kmod-nf-conntrack6=y
-CONFIG_PACKAGE_kmod-nf-flow=y
+CONFIG_PACKAGE_kmod-nf-flow=m
 CONFIG_PACKAGE_kmod-nf-ipt=y
 CONFIG_PACKAGE_kmod-nf-ipt6=y
 # CONFIG_PACKAGE_kmod-nf-ipvs is not set
@@ -3740,109 +3740,33 @@ CONFIG_PACKAGE_luasocket=y
 #
 # Python
 #
-# CONFIG_PACKAGE_gunicorn is not set
 # CONFIG_PACKAGE_gunicorn3 is not set
 # CONFIG_PACKAGE_micropython is not set
 # CONFIG_PACKAGE_micropython-lib is not set
 # CONFIG_PACKAGE_python is not set
-# CONFIG_PACKAGE_python-astral is not set
-# CONFIG_PACKAGE_python-astral-src is not set
-# CONFIG_PACKAGE_python-attrs is not set
-# CONFIG_PACKAGE_python-attrs-src is not set
-# CONFIG_PACKAGE_python-automat is not set
-# CONFIG_PACKAGE_python-automat-src is not set
-# CONFIG_PACKAGE_python-awscli is not set
-# CONFIG_PACKAGE_python-awscli-src is not set
 # CONFIG_PACKAGE_python-base is not set
 # CONFIG_PACKAGE_python-base-src is not set
-# CONFIG_PACKAGE_python-bcrypt is not set
-# CONFIG_PACKAGE_python-bcrypt-src is not set
-# CONFIG_PACKAGE_python-botocore is not set
-# CONFIG_PACKAGE_python-botocore-src is not set
-# CONFIG_PACKAGE_python-certifi is not set
-# CONFIG_PACKAGE_python-certifi-src is not set
-# CONFIG_PACKAGE_python-cffi is not set
-# CONFIG_PACKAGE_python-cffi-src is not set
-# CONFIG_PACKAGE_python-chardet is not set
-# CONFIG_PACKAGE_python-chardet-src is not set
 # CONFIG_PACKAGE_python-codecs is not set
 # CONFIG_PACKAGE_python-codecs-src is not set
-# CONFIG_PACKAGE_python-colorama is not set
-# CONFIG_PACKAGE_python-colorama-src is not set
 # CONFIG_PACKAGE_python-compiler is not set
 # CONFIG_PACKAGE_python-compiler-src is not set
-# CONFIG_PACKAGE_python-constantly is not set
-# CONFIG_PACKAGE_python-constantly-src is not set
-# CONFIG_PACKAGE_python-crcmod is not set
-# CONFIG_PACKAGE_python-crypto is not set
-# CONFIG_PACKAGE_python-crypto-src is not set
-# CONFIG_PACKAGE_python-cryptodome is not set
-# CONFIG_PACKAGE_python-cryptodome-src is not set
-# CONFIG_PACKAGE_python-cryptodomex is not set
-# CONFIG_PACKAGE_python-cryptodomex-src is not set
-# CONFIG_PACKAGE_python-cryptography is not set
-# CONFIG_PACKAGE_python-cryptography-src is not set
 # CONFIG_PACKAGE_python-ctypes is not set
 # CONFIG_PACKAGE_python-ctypes-src is not set
-# CONFIG_PACKAGE_python-curl is not set
-# CONFIG_PACKAGE_python-curl-src is not set
-# CONFIG_PACKAGE_python-dateutil is not set
-# CONFIG_PACKAGE_python-dateutil-src is not set
 # CONFIG_PACKAGE_python-db is not set
 # CONFIG_PACKAGE_python-db-src is not set
 # CONFIG_PACKAGE_python-decimal is not set
 # CONFIG_PACKAGE_python-decimal-src is not set
-# CONFIG_PACKAGE_python-defusedxml is not set
-# CONFIG_PACKAGE_python-defusedxml-src is not set
 # CONFIG_PACKAGE_python-dev is not set
 # CONFIG_PACKAGE_python-dev-src is not set
 # CONFIG_PACKAGE_python-distutils is not set
 # CONFIG_PACKAGE_python-distutils-src is not set
-# CONFIG_PACKAGE_python-django1 is not set
 # CONFIG_PACKAGE_python-django1-common is not set
-# CONFIG_PACKAGE_python-django1-src is not set
-# CONFIG_PACKAGE_python-dns is not set
-# CONFIG_PACKAGE_python-dns-src is not set
-# CONFIG_PACKAGE_python-docutils is not set
-# CONFIG_PACKAGE_python-docutils-src is not set
-# CONFIG_PACKAGE_python-dpkt is not set
-# CONFIG_PACKAGE_python-egenix-mx-base is not set
-# CONFIG_PACKAGE_python-egenix-mx-base-src is not set
 # CONFIG_PACKAGE_python-email is not set
 # CONFIG_PACKAGE_python-email-src is not set
-# CONFIG_PACKAGE_python-enum34 is not set
-# CONFIG_PACKAGE_python-enum34-src is not set
-# CONFIG_PACKAGE_python-et_xmlfile is not set
-# CONFIG_PACKAGE_python-et_xmlfile-src is not set
-# CONFIG_PACKAGE_python-evdev is not set
-# CONFIG_PACKAGE_python-evdev-src is not set
-# CONFIG_PACKAGE_python-flup is not set
-# CONFIG_PACKAGE_python-flup-src is not set
-# CONFIG_PACKAGE_python-futures is not set
-# CONFIG_PACKAGE_python-futures-src is not set
 # CONFIG_PACKAGE_python-gdbm is not set
 # CONFIG_PACKAGE_python-gdbm-src is not set
-# CONFIG_PACKAGE_python-gmpy2 is not set
-# CONFIG_PACKAGE_python-gmpy2-src is not set
-# CONFIG_PACKAGE_python-gnupg is not set
-# CONFIG_PACKAGE_python-gunicorn is not set
-# CONFIG_PACKAGE_python-gunicorn-src is not set
-# CONFIG_PACKAGE_python-hyperlink is not set
-# CONFIG_PACKAGE_python-hyperlink-src is not set
-# CONFIG_PACKAGE_python-idna is not set
-# CONFIG_PACKAGE_python-idna-src is not set
-# CONFIG_PACKAGE_python-incremental is not set
-# CONFIG_PACKAGE_python-incremental-src is not set
-# CONFIG_PACKAGE_python-ipaddress is not set
-# CONFIG_PACKAGE_python-ipaddress-src is not set
-# CONFIG_PACKAGE_python-jdcal is not set
-# CONFIG_PACKAGE_python-jdcal-src is not set
-# CONFIG_PACKAGE_python-jmespath is not set
-# CONFIG_PACKAGE_python-jmespath-src is not set
-# CONFIG_PACKAGE_python-ldap is not set
 # CONFIG_PACKAGE_python-lib2to3 is not set
 # CONFIG_PACKAGE_python-lib2to3-src is not set
-# CONFIG_PACKAGE_python-libmodbus is not set
 # CONFIG_PACKAGE_python-light is not set
 
 #
@@ -3852,98 +3776,27 @@ CONFIG_PACKAGE_luasocket=y
 # CONFIG_PACKAGE_python-light-src is not set
 # CONFIG_PACKAGE_python-logging is not set
 # CONFIG_PACKAGE_python-logging-src is not set
-# CONFIG_PACKAGE_python-lxml is not set
-# CONFIG_PACKAGE_python-lxml-src is not set
 # CONFIG_PACKAGE_python-multiprocessing is not set
 # CONFIG_PACKAGE_python-multiprocessing-src is not set
-# CONFIG_PACKAGE_python-mysqlclient is not set
-# CONFIG_PACKAGE_python-mysqlclient-src is not set
 # CONFIG_PACKAGE_python-ncurses is not set
 # CONFIG_PACKAGE_python-ncurses-src is not set
-# CONFIG_PACKAGE_python-oauthlib is not set
-# CONFIG_PACKAGE_python-oauthlib-src is not set
-# CONFIG_PACKAGE_python-openpyxl is not set
-# CONFIG_PACKAGE_python-openpyxl-src is not set
 # CONFIG_PACKAGE_python-openssl is not set
 # CONFIG_PACKAGE_python-openssl-src is not set
-# CONFIG_PACKAGE_python-parsley is not set
-# CONFIG_PACKAGE_python-parsley-src is not set
-# CONFIG_PACKAGE_python-passlib is not set
-# CONFIG_PACKAGE_python-passlib-src is not set
-# CONFIG_PACKAGE_python-pcapy is not set
-# CONFIG_PACKAGE_python-pillow is not set
-# CONFIG_PACKAGE_python-pillow-src is not set
 # CONFIG_PACKAGE_python-pip is not set
 # CONFIG_PACKAGE_python-pip-conf is not set
 # CONFIG_PACKAGE_python-pip-src is not set
 # CONFIG_PACKAGE_python-pkg-resources is not set
 # CONFIG_PACKAGE_python-pkg-resources-src is not set
-# CONFIG_PACKAGE_python-ply is not set
-# CONFIG_PACKAGE_python-ply-src is not set
-# CONFIG_PACKAGE_python-psycopg2 is not set
-# CONFIG_PACKAGE_python-pyasn1 is not set
-# CONFIG_PACKAGE_python-pyasn1-modules is not set
-# CONFIG_PACKAGE_python-pyasn1-modules-src is not set
-# CONFIG_PACKAGE_python-pyasn1-src is not set
-# CONFIG_PACKAGE_python-pycparser is not set
-# CONFIG_PACKAGE_python-pycparser-src is not set
 # CONFIG_PACKAGE_python-pydoc is not set
 # CONFIG_PACKAGE_python-pydoc-src is not set
-# CONFIG_PACKAGE_python-pyjwt is not set
-# CONFIG_PACKAGE_python-pyjwt-src is not set
-# CONFIG_PACKAGE_python-pyodbc is not set
-# CONFIG_PACKAGE_python-pyopenssl is not set
-# CONFIG_PACKAGE_python-pyopenssl-src is not set
-# CONFIG_PACKAGE_python-pyptlib is not set
-# CONFIG_PACKAGE_python-pyptlib-src is not set
-# CONFIG_PACKAGE_python-pyserial is not set
-# CONFIG_PACKAGE_python-pyserial-src is not set
-# CONFIG_PACKAGE_python-pytz is not set
-# CONFIG_PACKAGE_python-pytz-src is not set
-# CONFIG_PACKAGE_python-qrcode is not set
-# CONFIG_PACKAGE_python-qrcode-src is not set
-# CONFIG_PACKAGE_python-rcssmin is not set
-# CONFIG_PACKAGE_python-rcssmin-src is not set
-# CONFIG_PACKAGE_python-requests is not set
-# CONFIG_PACKAGE_python-requests-oauthlib is not set
-# CONFIG_PACKAGE_python-requests-oauthlib-src is not set
-# CONFIG_PACKAGE_python-requests-src is not set
-# CONFIG_PACKAGE_python-rsa is not set
-# CONFIG_PACKAGE_python-rsa-src is not set
-# CONFIG_PACKAGE_python-ruamel-yaml is not set
-# CONFIG_PACKAGE_python-ruamel-yaml-src is not set
-# CONFIG_PACKAGE_python-s3transfer is not set
-# CONFIG_PACKAGE_python-s3transfer-src is not set
-# CONFIG_PACKAGE_python-service-identity is not set
-# CONFIG_PACKAGE_python-service-identity-src is not set
 # CONFIG_PACKAGE_python-setuptools is not set
 # CONFIG_PACKAGE_python-setuptools-src is not set
-# CONFIG_PACKAGE_python-simplejson is not set
-# CONFIG_PACKAGE_python-simplejson-src is not set
-# CONFIG_PACKAGE_python-six is not set
-# CONFIG_PACKAGE_python-six-src is not set
 # CONFIG_PACKAGE_python-sqlite3 is not set
 # CONFIG_PACKAGE_python-sqlite3-src is not set
-# CONFIG_PACKAGE_python-text-unidecode is not set
-# CONFIG_PACKAGE_python-text-unidecode-src is not set
-# CONFIG_PACKAGE_python-twisted is not set
-# CONFIG_PACKAGE_python-twisted-src is not set
-# CONFIG_PACKAGE_python-txsocksx is not set
-# CONFIG_PACKAGE_python-txsocksx-src is not set
 # CONFIG_PACKAGE_python-unittest is not set
 # CONFIG_PACKAGE_python-unittest-src is not set
-# CONFIG_PACKAGE_python-urllib3 is not set
-# CONFIG_PACKAGE_python-urllib3-src is not set
-# CONFIG_PACKAGE_python-vobject is not set
-# CONFIG_PACKAGE_python-vobject-src is not set
-# CONFIG_PACKAGE_python-voluptuous is not set
-# CONFIG_PACKAGE_python-voluptuous-src is not set
 # CONFIG_PACKAGE_python-xml is not set
 # CONFIG_PACKAGE_python-xml-src is not set
-# CONFIG_PACKAGE_python-yaml is not set
-# CONFIG_PACKAGE_python-yaml-src is not set
-# CONFIG_PACKAGE_python-zope-interface is not set
-# CONFIG_PACKAGE_python-zope-interface-src is not set
 # CONFIG_PACKAGE_python3 is not set
 # CONFIG_PACKAGE_python3-aiohttp is not set
 # CONFIG_PACKAGE_python3-aiohttp-cors is not set
@@ -4157,6 +4010,8 @@ CONFIG_PACKAGE_luasocket=y
 # CONFIG_PACKAGE_python3-openpyxl-src is not set
 # CONFIG_PACKAGE_python3-openssl is not set
 # CONFIG_PACKAGE_python3-openssl-src is not set
+# CONFIG_PACKAGE_python3-packaging is not set
+# CONFIG_PACKAGE_python3-packaging-src is not set
 # CONFIG_PACKAGE_python3-paho-mqtt is not set
 # CONFIG_PACKAGE_python3-paho-mqtt-src is not set
 # CONFIG_PACKAGE_python3-parsley is not set
@@ -5621,6 +5476,7 @@ CONFIG_PACKAGE_luci-app-aria2=m
 # CONFIG_PACKAGE_luci-app-clamav is not set
 # CONFIG_PACKAGE_luci-app-commands is not set
 # CONFIG_PACKAGE_luci-app-cshark is not set
+# CONFIG_PACKAGE_luci-app-dawn is not set
 # CONFIG_PACKAGE_luci-app-dcwapd is not set
 CONFIG_PACKAGE_luci-app-ddns=y
 # CONFIG_PACKAGE_luci-app-diag-core is not set
