@@ -98,6 +98,12 @@ ssmod="libmbedtls \
 	   shadowsocks-libev-ss-server \
 	   shadowsocks-libev-ss-tunnel"
 
+wgmod="wireguard-tools \
+	   luci-app-wireguard \
+	   luci-proto-wireguard \
+	   luci-i18n-wireguard-en \
+	   luci-i18n-wireguard-zh-cn"
+
 excludes="dnsmasq \
 		  kmod-ipt-offload \
 		  kmod-nf-flow \
@@ -490,6 +496,7 @@ for t in $targets; do
 		TARGET_DEVICE_ramips_mt7621_DEVICE_netgear_wndr3700-v5|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_lenovo_newifi-d1)
 			mods="$mods"
+			mods="$mods $wgmod"
 			flash_gt8m=1
 		;;
 		#<=8M flash
