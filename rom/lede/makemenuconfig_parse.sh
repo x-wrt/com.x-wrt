@@ -644,6 +644,7 @@ for t in $targets; do
 	#check usb
 	case $t in
 		#with usb3
+		TARGET_DEVICE_ramips_mt7621_DEVICE_adslr_g7|\
 		TARGET_DEVICE_ath79_generic_DEVICE_sitecom_wlr-8100|\
 		TARGET_DEVICE_ipq806x_generic_DEVICE_tplink_c2600|\
 		TARGET_DEVICE_ipq806x_generic_DEVICE_tplink_vr2600v|\
@@ -942,7 +943,6 @@ for t in $targets; do
 		TARGET_DEVICE_ath79_generic_DEVICE_comfast_cf-wr650ac-v2|\
 		TARGET_DEVICE_ath79_generic_DEVICE_comfast_cf-e313ac|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_asus_rt-ac57u|\
-		TARGET_DEVICE_ramips_mt7621_DEVICE_adslr_g7|\
 		TARGET_DEVICE_ramips_rt305x_DEVICE_huawei_hg255d|\
 		TARGET_DEVICE_ramips_mt76x8_DEVICE_cudy_wr1000|\
 		TARGET_DEVICE_ath79_generic_DEVICE_dlink_dir-842-c3|\
