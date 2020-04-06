@@ -93,7 +93,7 @@ test $version -lt 1 && {
 }
 
 test $version -lt 2 && {
-	uci get network.wan >/dev/null 2>&1 || {
+	if ! uci get network.wan >/dev/null 2>&1 && [ x`uci get network.lan.ifname | wc -w` = x1 ]; then
 		local ifname=`uci get network.lan.ifname 2>/dev/null || echo eth0`
 		uci -q batch <<-EOT
 			set network.wan=interface
@@ -112,7 +112,7 @@ test $version -lt 2 && {
 			set network.@device[-1].ifname="$ifname"
 			commit network
 		EOT
-	}
+	fi
 
 	lsmod | grep -q rndis_host && {
 		uci -q batch <<-EOT
