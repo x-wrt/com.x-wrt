@@ -35,7 +35,7 @@ test -n "$x86bin" && {
 			*x86-generic-combined*|*x86-generic-generic-ext4-combined\.*)
 				x86_generic_combined="${x86_generic_combined} $bin"
 			;;
-			*x86-generic-uefi*|*x86-generic-ext4-combined-efi\.*)
+			*x86-generic-uefi*|*x86-generic-generic-ext4-combined-efi\.*)
 				x86_generic_uefi="${x86_generic_uefi} $bin"
 			;;
 			*)
