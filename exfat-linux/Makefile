@@ -30,7 +30,7 @@ define KernelPackage/exfat-linux
 	TITLE:=ExFAT Kernel driver
 	FILES:=$(PKG_BUILD_DIR)/exfat.ko
 	AUTOLOAD:=$(call AutoLoad,30,exfat,1)
-	DEPENDS:=+kmod-nls-base
+	DEPENDS:=+kmod-nls-base @!LINUX_5_4
 endef
 
 define KernelPackage/exfat-linux/description
