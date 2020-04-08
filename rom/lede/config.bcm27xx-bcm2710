@@ -57,7 +57,7 @@ CONFIG_TARGET_MULTI_PROFILE=y
 # CONFIG_TARGET_ALL_PROFILES is not set
 CONFIG_TARGET_PER_DEVICE_ROOTFS=y
 CONFIG_TARGET_DEVICE_bcm27xx_bcm2710_DEVICE_rpi-3=y
-CONFIG_TARGET_DEVICE_PACKAGES_bcm27xx_bcm2710_DEVICE_rpi-3="aria2 brcmfmac-firmware-usb chat comgt comgt-ncm cypress-firmware-43430-sdio cypress-firmware-43455-sdio cypress-nvram-43430-sdio-rpi-3b cypress-nvram-43455-sdio-rpi-3b-plus kmod-brcmfmac kmod-brcmutil kmod-crypto-crc32c kmod-exfat-linux kmod-fs-ext4 kmod-fs-msdos kmod-fs-vfat kmod-fuse kmod-hid kmod-hid-generic kmod-input-core kmod-input-evdev kmod-lib-crc16 kmod-mii kmod-mmc kmod-nls-cp437 kmod-sound-arm-bcm2835 kmod-sound-core kmod-usb2 kmod-usb3 kmod-usb-ehci kmod-usb-hid kmod-usb-net kmod-usb-net-cdc-ether kmod-usb-net-cdc-mbim kmod-usb-net-cdc-ncm kmod-usb-net-huawei-cdc-ncm kmod-usb-net-ipheth kmod-usb-net-qmi-wwan kmod-usb-net-rndis kmod-usb-net-rtl8152 kmod-usb-net-sierrawireless kmod-usb-ohci kmod-usb-printer kmod-usb-serial kmod-usb-serial-option kmod-usb-serial-qualcomm kmod-usb-serial-sierrawireless kmod-usb-serial-wwan kmod-usb-storage kmod-usb-storage-uas kmod-usb-wdm libcares libopenssl libpcre libsqlite3 libssh2 libusb-1.0 libxml2 luci-app-aria2 luci-app-p910nd luci-app-samba luci-app-wireguard luci-i18n-aria2-en luci-i18n-aria2-zh-cn luci-i18n-p910nd-en luci-i18n-p910nd-zh-cn luci-i18n-samba-en luci-i18n-samba-zh-cn luci-i18n-wireguard-en luci-i18n-wireguard-zh-cn luci-proto-3g luci-proto-ncm luci-proto-qmi luci-proto-wireguard ntfs-3g p910nd samba36-server uqmi usb-modeswitch webui-aria2 wget wireguard-tools wwan"
+CONFIG_TARGET_DEVICE_PACKAGES_bcm27xx_bcm2710_DEVICE_rpi-3="aria2 brcmfmac-firmware-usb chat comgt comgt-ncm cypress-firmware-43430-sdio cypress-firmware-43455-sdio cypress-nvram-43430-sdio-rpi-3b cypress-nvram-43455-sdio-rpi-3b-plus kmod-brcmfmac kmod-brcmutil kmod-crypto-crc32c kmod-fs-exfat kmod-fs-ext4 kmod-fs-msdos kmod-fs-vfat kmod-fuse kmod-hid kmod-hid-generic kmod-input-core kmod-input-evdev kmod-lib-crc16 kmod-mii kmod-mmc kmod-nls-cp437 kmod-sound-arm-bcm2835 kmod-sound-core kmod-usb2 kmod-usb3 kmod-usb-ehci kmod-usb-hid kmod-usb-net kmod-usb-net-cdc-ether kmod-usb-net-cdc-mbim kmod-usb-net-cdc-ncm kmod-usb-net-huawei-cdc-ncm kmod-usb-net-ipheth kmod-usb-net-qmi-wwan kmod-usb-net-rndis kmod-usb-net-rtl8152 kmod-usb-net-sierrawireless kmod-usb-ohci kmod-usb-printer kmod-usb-serial kmod-usb-serial-option kmod-usb-serial-qualcomm kmod-usb-serial-sierrawireless kmod-usb-serial-wwan kmod-usb-storage kmod-usb-storage-uas kmod-usb-wdm libcares libopenssl libpcre libsqlite3 libssh2 libusb-1.0 libxml2 luci-app-aria2 luci-app-p910nd luci-app-samba luci-app-wireguard luci-i18n-aria2-en luci-i18n-aria2-zh-cn luci-i18n-p910nd-en luci-i18n-p910nd-zh-cn luci-i18n-samba-en luci-i18n-samba-zh-cn luci-i18n-wireguard-en luci-i18n-wireguard-zh-cn luci-proto-3g luci-proto-ncm luci-proto-qmi luci-proto-wireguard ntfs-3g p910nd samba36-server uqmi usb-modeswitch webui-aria2 wget wireguard-tools wwan"
 CONFIG_HAS_SUBTARGETS=y
 CONFIG_HAS_DEVICES=y
 CONFIG_TARGET_BOARD="bcm27xx"
@@ -417,7 +417,7 @@ CONFIG_TARGET_INIT_CMD="/sbin/init"
 CONFIG_TARGET_INIT_SUPPRESS_STDERR=y
 CONFIG_VERSIONOPT=y
 CONFIG_VERSION_DIST="X-WRT"
-CONFIG_VERSION_NUMBER="7.0_b202004080243"
+CONFIG_VERSION_NUMBER="7.0_b202004081145"
 CONFIG_VERSION_CODE="Eoan"
 CONFIG_VERSION_REPO="http://downloads.openwrt.org/snapshots"
 CONFIG_VERSION_HOME_URL="https://x-wrt.com/"
@@ -2814,7 +2814,7 @@ CONFIG_PACKAGE_kmod-fs-autofs4=y
 # CONFIG_PACKAGE_kmod-fs-cifs is not set
 # CONFIG_PACKAGE_kmod-fs-configfs is not set
 # CONFIG_PACKAGE_kmod-fs-cramfs is not set
-# CONFIG_PACKAGE_kmod-fs-exfat is not set
+CONFIG_PACKAGE_kmod-fs-exfat=m
 # CONFIG_PACKAGE_kmod-fs-exportfs is not set
 CONFIG_PACKAGE_kmod-fs-ext4=m
 # CONFIG_PACKAGE_kmod-fs-f2fs is not set
@@ -3180,7 +3180,6 @@ CONFIG_PACKAGE_kmod-l2tp=y
 # CONFIG_PACKAGE_kmod-macsec is not set
 # CONFIG_PACKAGE_kmod-misdn is not set
 # CONFIG_PACKAGE_kmod-mpls is not set
-CONFIG_PACKAGE_kmod-mppe=y
 # CONFIG_PACKAGE_kmod-nat46 is not set
 # CONFIG_PACKAGE_kmod-netem is not set
 # CONFIG_PACKAGE_kmod-netlink-diag is not set
@@ -3193,6 +3192,7 @@ CONFIG_PACKAGE_kmod-mppe=y
 # CONFIG_PACKAGE_kmod-pf-ring is not set
 # CONFIG_PACKAGE_kmod-pktgen is not set
 CONFIG_PACKAGE_kmod-ppp=y
+CONFIG_PACKAGE_kmod-mppe=y
 # CONFIG_PACKAGE_kmod-ppp-synctty is not set
 # CONFIG_PACKAGE_kmod-pppoa is not set
 CONFIG_PACKAGE_kmod-pppoe=y
@@ -7470,7 +7470,6 @@ CONFIG_PACKAGE_kmod-natflow=y
 #
 # Filesystems
 #
-CONFIG_PACKAGE_kmod-exfat-linux=m
 
 #
 # Macvlan
