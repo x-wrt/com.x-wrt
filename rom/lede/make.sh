@@ -39,6 +39,11 @@ for i in $IDXS; do
 		sed -i "s%CONFIG_VERSION_SUPPORT_URL=\".*\"%CONFIG_VERSION_SUPPORT_URL=\"$CONFIG_VERSION_SUPPORT_URL\"%" ./.config
 		sed -i "s%CONFIG_VERSION_MANUFACTURER_URL=\".*\"%CONFIG_VERSION_MANUFACTURER_URL=\"$CONFIG_VERSION_MANUFACTURER_URL\"%" ./.config
 		sleep 2
+		new_arch=$(cat .config | grep CONFIG_TARGET_ARCH_PACKAGES | cut -d\" -f2)
+		new_subarch=$(cat .config | grep -o  "CONFIG_TARGET_[a-z0-9]*_[a-z0-9]*=y" | sed 's/=y//' | cut -d_ -f3,4)
+		test -n "$last_arch" || last_arch=$new_arch
+		test -n "$last_subarch" || last_subarch=$new_subarch
+		set +x
 		[ "x$WORKFLOW" = x1 ] || {
 			# skip touch if WORKFLOW == 1
 			touch ./package/base-files/files/etc/openwrt_release
@@ -46,14 +51,9 @@ for i in $IDXS; do
 			find package -type f -name Makefile -exec touch {} \;
 			#touch Makefile contains LINUX_[0-9].*
 			find feeds/packages/ package/ feeds/luci/ feeds/routing/ feeds/telephony/ feeds/x/ -type f -name Makefile | while read f; do
-				grep -q 'LINUX_[0-9].*' $f && echo $f;
+				grep -q 'LINUX_[0-9].*' $f && touch $f;
 			done
 		}
-		new_arch=$(cat .config | grep CONFIG_TARGET_ARCH_PACKAGES | cut -d\" -f2)
-		new_subarch=$(cat .config | grep -o  "CONFIG_TARGET_[a-z0-9]*_[a-z0-9]*=y" | sed 's/=y//' | cut -d_ -f3,4)
-		test -n "$last_arch" || last_arch=$new_arch
-		test -n "$last_subarch" || last_subarch=$new_subarch
-		set +x
 		[ "x$TMPFS" = x1 ] && {
 			if [ "$last_arch" != "$new_arch" ]; then
 				rm -rf build_dir/target-* build_dir/toolchain-*
