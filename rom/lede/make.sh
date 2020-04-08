@@ -53,6 +53,10 @@ for i in $IDXS; do
 			find feeds/packages/ package/ feeds/luci/ feeds/routing/ feeds/telephony/ feeds/x/ -type f -name Makefile | while read f; do
 				grep -q 'LINUX_[0-9].*' $f && touch $f;
 			done
+			#
+			find feeds/packages/ package/ feeds/luci/ feeds/routing/ feeds/telephony/ feeds/x/ -type f -name '*.mk' -name Makefile -o -name "*.mk" | while read f; do
+				grep -q '@lt\|@le\|@gt\|@ge' $f && touch $f
+			done
 		}
 		[ "x$TMPFS" = x1 ] && {
 			if [ "$last_arch" != "$new_arch" ]; then
