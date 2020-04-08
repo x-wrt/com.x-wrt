@@ -19,8 +19,9 @@ mkdir -p .build_x
 echo "CONFIG_VERSION_NUMBER=\"$CONFIG_VERSION_NUMBER\"" >.build_x/env
 sleep 5
 
+echo modifying luci Makefile
 find feeds/luci/ -type f | grep -v .git\* | while read file; do
-	sed -i 's/192\.168\.1\./192\.168\.15\./g' "$file" && echo modifying $file
+	sed -i 's/192\.168\.1\./192\.168\.15\./g' "$file"
 done
 
 for i in $IDXS; do
