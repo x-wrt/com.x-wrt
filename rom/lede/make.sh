@@ -44,6 +44,10 @@ for i in $IDXS; do
 			touch ./package/base-files/files/etc/openwrt_release
 			touch ./feeds/packages/libs/libgpg-error/Makefile
 			find package -type f -name Makefile -exec touch {} \;
+			#touch Makefile contains LINUX_[0-9].*
+			find feeds/packages/ package/ feeds/luci/ feeds/routing/ feeds/telephony/ feeds/x/ -type f -name Makefile | while read f; do
+				grep -q 'LINUX_[0-9].*' $f && echo $f;
+			done
 		}
 		new_arch=$(cat .config | grep CONFIG_TARGET_ARCH_PACKAGES | cut -d\" -f2)
 		new_subarch=$(cat .config | grep -o  "CONFIG_TARGET_[a-z0-9]*_[a-z0-9]*=y" | sed 's/=y//' | cut -d_ -f3,4)
