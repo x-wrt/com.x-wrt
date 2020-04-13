@@ -59,6 +59,8 @@ define Package/luci-app-mentohust/install
 	$(INSTALL_DATA) ./files/luci/model/cbi/mentohust/*.lua $(1)/usr/lib/lua/luci/model/cbi/mentohust/
 	$(INSTALL_DIR) $(1)/usr/lib/lua/luci/view/mentohust
 	$(INSTALL_DATA) ./files/luci/view/mentohust/*.htm $(1)/usr/lib/lua/luci/view/mentohust/
+	$(INSTALL_DIR) $(1)/usr/share/rpcd/acl.d
+	$(INSTALL_DATA) ./root/usr/share/rpcd/acl.d/*.json $(1)/usr/share/rpcd/acl.d/
 endef
 
 $(eval $(call BuildPackage,luci-app-mentohust))

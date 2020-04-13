@@ -73,6 +73,8 @@ define Package/luci-app-macvlan/install
 	$(INSTALL_BIN) ./files/root/etc/init.d/macvlan $(1)/etc/init.d/macvlan
 	$(INSTALL_DIR) $(1)/etc/uci-defaults
 	$(INSTALL_DATA) ./files/root/etc/uci-defaults/40_luci-app-macvlan $(1)/etc/uci-defaults/40_luci-app-macvlan
+	$(INSTALL_DIR) $(1)/usr/share/rpcd/acl.d
+	$(INSTALL_DATA) ./root/usr/share/rpcd/acl.d/*.json $(1)/usr/share/rpcd/acl.d/
 endef
 
 $(eval $(call BuildPackage,luci-app-macvlan))
