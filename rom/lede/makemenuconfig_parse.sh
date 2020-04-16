@@ -307,6 +307,8 @@ for t in $targets; do
 		TARGET_DEVICE_ramips_mt7621_DEVICE_youku_yk-l2|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_ubiquiti_edgerouterx|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_ubiquiti_edgerouterx-sfp|\
+		TARGET_DEVICE_ramips_mt7621_DEVICE_ubnt_edgerouter-x|\
+		TARGET_DEVICE_ramips_mt7621_DEVICE_ubnt_edgerouter-x-sfp|\
 		TARGET_DEVICE_ramips_mt7620_DEVICE_dlink_dir-510l|\
 		TARGET_DEVICE_ath79_generic_DEVICE_comfast_cf-e5|\
 		TARGET_DEVICE_ath79_generic_DEVICE_ubnt_nanobeam-ac|\
@@ -969,6 +971,8 @@ for t in $targets; do
 		TARGET_DEVICE_ath79_generic_DEVICE_tplink_tl-wr902ac-v1|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_ubiquiti_edgerouterx|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_ubiquiti_edgerouterx-sfp|\
+		TARGET_DEVICE_ramips_mt7621_DEVICE_ubnt_edgerouter-x|\
+		TARGET_DEVICE_ramips_mt7621_DEVICE_ubnt_edgerouter-x-sfp|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_netgear_ex6150|\
 		TARGET_DEVICE_ramips_mt7620_DEVICE_dlink_dir-510l|\
 		TARGET_DEVICE_ath79_generic_DEVICE_comfast_cf-e5|\

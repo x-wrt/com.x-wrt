@@ -491,7 +491,7 @@ CONFIG_TARGET_INIT_CMD="/sbin/init"
 CONFIG_TARGET_INIT_SUPPRESS_STDERR=y
 CONFIG_VERSIONOPT=y
 CONFIG_VERSION_DIST="X-WRT"
-CONFIG_VERSION_NUMBER="7.0_b202004100938"
+CONFIG_VERSION_NUMBER="7.0_b202004161201"
 CONFIG_VERSION_CODE="Eoan"
 CONFIG_VERSION_REPO="http://downloads.openwrt.org/snapshots"
 CONFIG_VERSION_HOME_URL="https://x-wrt.com/"
@@ -2687,6 +2687,7 @@ CONFIG_PACKAGE_wireguard-tools=m
 # CONFIG_PACKAGE_cypress-firmware-4359-sdio is not set
 # CONFIG_PACKAGE_cypress-firmware-4373-sdio is not set
 # CONFIG_PACKAGE_cypress-firmware-4373-usb is not set
+# CONFIG_PACKAGE_cypress-firmware-54591-pcie is not set
 # CONFIG_PACKAGE_cypress-firmware-89459-pcie is not set
 # CONFIG_PACKAGE_e100-firmware is not set
 # CONFIG_PACKAGE_edgeport-firmware is not set
@@ -2921,6 +2922,7 @@ CONFIG_PACKAGE_kmod-fuse=m
 # CONFIG_PACKAGE_kmod-hwmon-adt7410 is not set
 # CONFIG_PACKAGE_kmod-hwmon-adt7475 is not set
 CONFIG_PACKAGE_kmod-hwmon-core=m
+# CONFIG_PACKAGE_kmod-hwmon-dme1737 is not set
 # CONFIG_PACKAGE_kmod-hwmon-drivetemp is not set
 # CONFIG_PACKAGE_kmod-hwmon-gpiofan is not set
 # CONFIG_PACKAGE_kmod-hwmon-ina209 is not set
@@ -3275,7 +3277,6 @@ CONFIG_PACKAGE_kmod-sched-core=y
 # CONFIG_PACKAGE_kmod-sched-flower is not set
 # CONFIG_PACKAGE_kmod-sched-ipset is not set
 # CONFIG_PACKAGE_kmod-sched-mqprio is not set
-# CONFIG_PACKAGE_kmod-sched-police is not set
 # CONFIG_PACKAGE_kmod-sctp is not set
 CONFIG_PACKAGE_kmod-sit=y
 CONFIG_PACKAGE_kmod-slhc=y
@@ -3869,7 +3870,6 @@ CONFIG_PACKAGE_luasocket=y
 # Ruby
 #
 # CONFIG_PACKAGE_ruby is not set
-# CONFIG_PACKAGE_ruby-dev is not set
 
 #
 # Tcl
@@ -4889,8 +4889,6 @@ CONFIG_PACKAGE_libxml2=m
 # CONFIG_PACKAGE_protobuf-lite is not set
 # CONFIG_PACKAGE_pthsem is not set
 # CONFIG_PACKAGE_re2 is not set
-CONFIG_RE2_SHARED=y
-# CONFIG_RE2_STATIC is not set
 CONFIG_PACKAGE_rpcd-mod-luci=y
 # CONFIG_PACKAGE_rpcd-mod-rad2-enc is not set
 CONFIG_PACKAGE_rpcd-mod-rrdns=y
@@ -5591,6 +5589,7 @@ CONFIG_POSTFIX_PCRE=y
 # CONFIG_PACKAGE_apfree-wifidog is not set
 # CONFIG_PACKAGE_coova-chilli is not set
 # CONFIG_PACKAGE_nodogsplash is not set
+# CONFIG_PACKAGE_opennds is not set
 # CONFIG_PACKAGE_wifidog is not set
 # CONFIG_PACKAGE_wifidog-ng-mbedtls is not set
 # CONFIG_PACKAGE_wifidog-ng-nossl is not set
@@ -6305,6 +6304,7 @@ CONFIG_PACKAGE_ds-lite=y
 # CONFIG_PACKAGE_etherwake-nfqueue is not set
 # CONFIG_PACKAGE_ethtool is not set
 # CONFIG_PACKAGE_fakeidentd is not set
+# CONFIG_PACKAGE_family-dns is not set
 # CONFIG_PACKAGE_foolsm is not set
 # CONFIG_PACKAGE_fping is not set
 # CONFIG_PACKAGE_geth is not set
