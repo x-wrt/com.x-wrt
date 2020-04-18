@@ -154,6 +154,7 @@ CONFIG_TARGET_MULTI_PROFILE=y
 # CONFIG_TARGET_ramips_mt7620_DEVICE_zyxel_keenetic-omni is not set
 # CONFIG_TARGET_ramips_mt7620_DEVICE_zyxel_keenetic-omni-ii is not set
 # CONFIG_TARGET_ramips_mt7620_DEVICE_zyxel_keenetic-viva is not set
+# CONFIG_TARGET_ramips_mt7620_DEVICE_iptime_a1004ns is not set
 # CONFIG_TARGET_ramips_mt7620_DEVICE_iptime_a104ns is not set
 
 #
@@ -207,6 +208,7 @@ CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt7620_DEVICE_edimax_br-6478ac-v2="blockd b
 # CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_hnet_c108 is not set
 # CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_iodata_wn-ac1167gr is not set
 # CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_iodata_wn-ac733gr3 is not set
+# CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_iptime_a1004ns is not set
 # CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_iptime_a104ns is not set
 # CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_kimax_u25awf-h1 is not set
 # CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_kimax_u35wf is not set
