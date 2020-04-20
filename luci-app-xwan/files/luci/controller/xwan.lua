@@ -7,4 +7,5 @@ function index()
 
 	page = entry({"admin", "network", "xwan"}, cbi("xwan/xwan"), _("Xwan"))
 	page.leaf = true
+	page.acl_depends = { "luci-app-xwan" }
 end

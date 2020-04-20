@@ -22,6 +22,7 @@ function index()
 	page.i18n = "natcap"
 	page.dependent = true
 	end
+	page.acl_depends = { "luci-app-natcap" }
 
 	entry({"admin", "services", "natcap", "get_natcap_flows0"}, call("get_natcap_flows0")).leaf = true
 	entry({"admin", "services", "natcap", "get_natcap_flows1"}, call("get_natcap_flows1")).leaf = true
@@ -33,10 +34,12 @@ function index()
 	page = entry({"admin", "vpn", "natcapd_vpn"}, cbi("natcap/natcapd_vpn"), _("One Key VPN"))
 	page.i18n = "natcap"
 	page.dependent = true
+	page.acl_depends = { "luci-app-natcap" }
 
 	page = entry({"admin", "system", "natcapd_sys"}, cbi("natcap/natcapd_sys"), _("System Optimization"))
 	page.i18n = "natcap"
 	page.dependent = true
+	page.acl_depends = { "luci-app-natcap" }
 
 	if ui == "simple" then
 	page = entry({"admin", "natcap_route"}, cbi("natcap/natcap_route"), _("Route Setup"))
@@ -47,6 +50,7 @@ function index()
 	page.i18n = "natcap"
 	page.dependent = true
 	end
+	page.acl_depends = { "luci-app-natcap" }
 end
 
 function status()

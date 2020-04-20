@@ -17,6 +17,7 @@ function index()
 	page = entry({"admin", "services", "mentohust"}, cbi("mentohust/mentohust"), _("MentoHUST"), 10)
 	page.i18n = "mentohust"
 	page.dependent = true
+	page.acl_depends = { "luci-app-mentohust" }
 
 	entry({"admin", "services", "mentohust", "status"}, call("status")).leaf = true
 end

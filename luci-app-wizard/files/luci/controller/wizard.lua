@@ -12,4 +12,5 @@ function index()
 	page = entry({"admin", "initsetup"}, cbi("wizard/wizard"), _("Inital Setup"))
 	page.i18n = "wizard"
 	page.dependent = true
+	page.acl_depends = { "luci-app-wizard" }
 end
