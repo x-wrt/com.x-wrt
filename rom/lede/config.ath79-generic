@@ -37,6 +37,7 @@ CONFIG_TARGET_ath79=y
 # CONFIG_TARGET_ipq40xx is not set
 # CONFIG_TARGET_ipq806x is not set
 # CONFIG_TARGET_ipq807x is not set
+# CONFIG_TARGET_rockchip is not set
 # CONFIG_TARGET_samsung is not set
 # CONFIG_TARGET_arc770 is not set
 # CONFIG_TARGET_archs38 is not set
@@ -55,6 +56,7 @@ CONFIG_TARGET_MULTI_PROFILE=y
 # CONFIG_TARGET_ath79_generic_DEVICE_avm_fritz4020 is not set
 # CONFIG_TARGET_ath79_generic_DEVICE_avm_fritz1750e is not set
 # CONFIG_TARGET_ath79_generic_DEVICE_avm_fritz300e is not set
+# CONFIG_TARGET_ath79_generic_DEVICE_avm_fritz450e is not set
 # CONFIG_TARGET_ath79_generic_DEVICE_adtran_bsap1800-v2 is not set
 # CONFIG_TARGET_ath79_generic_DEVICE_adtran_bsap1840 is not set
 # CONFIG_TARGET_ath79_generic_DEVICE_aruba_ap-105 is not set
@@ -251,6 +253,7 @@ CONFIG_TARGET_DEVICE_PACKAGES_ath79_generic_DEVICE_aruba_ap-105="kmod-ath9k kmod
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_avm_fritz4020 is not set
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_avm_fritz1750e is not set
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_avm_fritz300e is not set
+# CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_avm_fritz450e is not set
 CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_bm100_hq55=y
 CONFIG_TARGET_DEVICE_PACKAGES_ath79_generic_DEVICE_bm100_hq55="aria2 blockd block-mount chat comgt comgt-ncm kmod-ath9k kmod-ath9k-common kmod-crypto-crc32c kmod-exfat-linux kmod-fs-autofs4 kmod-fs-ext4 kmod-fs-msdos kmod-fs-vfat kmod-fuse kmod-gpio-button-hotplug kmod-leds-gpio kmod-lib-crc16 kmod-mii kmod-nls-cp437 kmod-phy-ath79-usb kmod-scsi-core kmod-usb2 kmod-usb-core kmod-usb-ehci kmod-usb-ledtrig-usbport kmod-usb-net kmod-usb-net-cdc-ether kmod-usb-net-cdc-mbim kmod-usb-net-cdc-ncm kmod-usb-net-huawei-cdc-ncm kmod-usb-net-ipheth kmod-usb-net-qmi-wwan kmod-usb-net-rndis kmod-usb-net-rtl8152 kmod-usb-net-sierrawireless kmod-usb-ohci kmod-usb-printer kmod-usb-serial kmod-usb-serial-option kmod-usb-serial-qualcomm kmod-usb-serial-sierrawireless kmod-usb-serial-wwan kmod-usb-storage kmod-usb-storage-uas kmod-usb-wdm libcares libopenssl libpcre libsqlite3 libssh2 libstdcpp libusb-1.0 libxml2 luci-app-aria2 luci-app-ledtrig-usbport luci-app-p910nd luci-app-samba luci-app-wireguard luci-i18n-aria2-en luci-i18n-aria2-zh-cn luci-i18n-p910nd-en luci-i18n-p910nd-zh-cn luci-i18n-samba-en luci-i18n-samba-zh-cn luci-i18n-wireguard-en luci-i18n-wireguard-zh-cn luci-proto-3g luci-proto-ncm luci-proto-qmi luci-proto-wireguard ntfs-3g p910nd samba36-server uqmi usb-modeswitch webui-aria2 wget wireguard-tools wwan"
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_buffalo_bhr-4grv is not set
@@ -810,7 +813,7 @@ CONFIG_TARGET_INIT_CMD="/sbin/init"
 CONFIG_TARGET_INIT_SUPPRESS_STDERR=y
 CONFIG_VERSIONOPT=y
 CONFIG_VERSION_DIST="X-WRT"
-CONFIG_VERSION_NUMBER="8.0_b202004180815"
+CONFIG_VERSION_NUMBER="8.0_b202004211043"
 CONFIG_VERSION_CODE="Focal"
 CONFIG_VERSION_REPO="http://downloads.openwrt.org/snapshots"
 CONFIG_VERSION_HOME_URL="https://x-wrt.com/"
@@ -5299,6 +5302,7 @@ CONFIG_PACKAGE_luci-mod-system=y
 #
 # 3. Applications
 #
+# CONFIG_PACKAGE_luci-app-acl is not set
 # CONFIG_PACKAGE_luci-app-acme is not set
 # CONFIG_PACKAGE_luci-app-adblock is not set
 # CONFIG_PACKAGE_luci-app-advanced-reboot is not set
@@ -6137,6 +6141,7 @@ CONFIG_PACKAGE_ddns-scripts_aliyun=y
 # CONFIG_PACKAGE_nsd-control-setup is not set
 # CONFIG_PACKAGE_nsd-nossl is not set
 # CONFIG_PACKAGE_ohybridproxy is not set
+# CONFIG_PACKAGE_overture is not set
 # CONFIG_PACKAGE_pdns is not set
 # CONFIG_PACKAGE_pdns-ixfrdist is not set
 # CONFIG_PACKAGE_pdns-recursor is not set
@@ -6830,6 +6835,7 @@ CONFIG_PACKAGE_wwan=m
 # CONFIG_PACKAGE_alsa-utils is not set
 # CONFIG_PACKAGE_alsa-utils-seq is not set
 # CONFIG_PACKAGE_alsa-utils-tests is not set
+# CONFIG_PACKAGE_aserver is not set
 # CONFIG_PACKAGE_espeak is not set
 # CONFIG_PACKAGE_faad2 is not set
 # CONFIG_PACKAGE_fdk-aac is not set
