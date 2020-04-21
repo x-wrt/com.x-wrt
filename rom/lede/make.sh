@@ -55,8 +55,8 @@ for i in $IDXS; do
 				grep -q 'LINUX_[0-9].*' $f && touch $f && echo touch $f
 			done
 			#touch contains '@lt\|@le\|@gt\|@ge'
-			find feeds/packages/ package/ feeds/luci/ feeds/routing/ feeds/telephony/ feeds/x/ -type f -name '*.mk' -name Makefile -o -name "*.mk" | while read f; do
-				grep -q '@lt\|@le\|@gt\|@ge' $f && touch $f && echo touch $f
+			find feeds/packages/ package/ feeds/luci/ feeds/routing/ feeds/telephony/ feeds/x/ -type f -name '*.mk' -o -name Makefile | while read f; do
+				grep -q '@lt\|@le\|@gt\|@ge\|+.*:' $f && touch $f && echo touch $f
 			done
 		}
 		[ "x$TMPFS" = x1 ] && {
