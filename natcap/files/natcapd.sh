@@ -419,8 +419,6 @@ get_rate_data()
 	echo -n $num # assume num bps
 }
 
-natcap_wan_ip
-
 # reload firewall
 uci get firewall.natcapd >/dev/null 2>&1 || {
 	uci -q batch <<-EOT
@@ -645,6 +643,9 @@ fi
 test -f /usr/share/natcapd/natcapd.pptpd.sh && sh /usr/share/natcapd/natcapd.pptpd.sh
 #reload openvpn
 test -f /usr/share/natcapd/natcapd.openvpn.sh && sh /usr/share/natcapd/natcapd.openvpn.sh
+#reload cone_nat_unused_port
+test -f /usr/share/natcapd/natcapd.cone_nat_unused_port_update.sh && sh /usr/share/natcapd/natcapd.cone_nat_unused_port_update.sh init
+natcap_wan_ip
 
 cd /tmp
 
