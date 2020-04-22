@@ -39,7 +39,7 @@ $WGET --timeout=60 --no-check-certificate -qO /tmp/gfwlist.$$.txt "https://raw.g
 	done | sort | uniq | while read line; do
 		echo $line | grep -q github.com && continue
 		echo server=/$line/8.8.8.8 >>/tmp/accelerated-domains.gfwlist.dnsmasq.$$.conf
-		echo ipset=/$line/gfwlist >>/tmp/accelerated-domains.gfwlist.dnsmasq.$$.conf
+		echo ipset=/$line/gfwlist0 >>/tmp/accelerated-domains.gfwlist.dnsmasq.$$.conf
 	done
 	rm -f /tmp/gfwlist.$$.txt
 	mkdir -p /tmp/dnsmasq.d && mv /tmp/accelerated-domains.gfwlist.dnsmasq.$$.conf /tmp/dnsmasq.d/accelerated-domains.gfwlist.dnsmasq.conf

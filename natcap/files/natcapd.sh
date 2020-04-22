@@ -251,27 +251,27 @@ add_server () {
 	local enc_mode=$3
 
 	if echo $server | grep -q '\([0-9]\{1,3\}\)\.\([0-9]\{1,3\}\)\.\([0-9]\{1,3\}\)\.\([0-9]\{1,3\}\)$'; then
-		echo server $server:0-$opt-$enc_mode >>$DEV
+		echo server 0 $server:0-$opt-$enc_mode >>$DEV
 	elif echo $server | grep -q '\([0-9]\{1,3\}\)\.\([0-9]\{1,3\}\)\.\([0-9]\{1,3\}\)\.\([0-9]\{1,3\}\):[0-9]\{1,5\}$'; then
-		echo server $server-$opt-$enc_mode >$DEV
+		echo server 0 $server-$opt-$enc_mode >$DEV
 	elif echo $server | grep -q '\([0-9]\{1,3\}\)\.\([0-9]\{1,3\}\)\.\([0-9]\{1,3\}\)\.\([0-9]\{1,3\}\):[0-9]\{1,5\}-[eo]$'; then
-		echo server $server-$enc_mode >>$DEV
+		echo server 0 $server-$enc_mode >>$DEV
 	elif echo $server | grep -q '\([0-9]\{1,3\}\)\.\([0-9]\{1,3\}\)\.\([0-9]\{1,3\}\)\.\([0-9]\{1,3\}\):[0-9]\{1,5\}-[eo]-[TU]-[UT]$'; then
-		echo server $server >>$DEV
+		echo server 0 $server >>$DEV
 	fi
 }
-add_udproxylist () {
-	ipset -! add udproxylist $1
-}
 add_gfwlist () {
-	ipset -! add gfwlist $1
+	ipset -! add gfwlist0 $1
+}
+add_gfw_udp_port_list () {
+	ipset -! add gfw_udp_port_list0 $1
 }
 add_knocklist () {
 	ipset -! add knocklist $1
 }
 add_gfwlist_domain () {
 	echo server=/$1/8.8.8.8 >>/tmp/dnsmasq.d/custom-domains.gfwlist.dnsmasq.conf
-	echo ipset=/$1/gfwlist >>/tmp/dnsmasq.d/custom-domains.gfwlist.dnsmasq.conf
+	echo ipset=/$1/gfwlist0 >>/tmp/dnsmasq.d/custom-domains.gfwlist.dnsmasq.conf
 }
 
 _reload_natcapd() {
@@ -324,8 +324,8 @@ natcap_id2mask() {
 
 natcap_target2idx() {
 	local idx=1
-	(cat $DEV | grep "^server " | while read line; do
-		if echo $line | grep -q "server $1$"; then
+	(cat $DEV | grep "^server 0 " | while read line; do
+		if echo $line | grep -q "server 0 $1$"; then
 			echo $idx
 			return
 		fi
@@ -484,10 +484,10 @@ elif test -c $DEV; then
 	servers=`uci get natcapd.default.server 2>/dev/null`
 	dns_server=`uci get natcapd.default.dns_server 2>/dev/null`
 	knocklist=`uci get natcapd.default.knocklist 2>/dev/null`
-	udproxylist=`uci get natcapd.default.udproxylist 2>/dev/null`
 	dnsdroplist=`uci get natcapd.default.dnsdroplist 2>/dev/null`
 	gfwlist_domain=`uci get natcapd.default.gfwlist_domain 2>/dev/null`
 	gfwlist=`uci get natcapd.default.gfwlist 2>/dev/null`
+	gfw_udp_port_list=`uci get natcapd.default.gfw_udp_port_list 2>/dev/null`
 	encode_mode=`uci get natcapd.default.encode_mode 2>/dev/null || echo 0`
 	udp_encode_mode=`uci get natcapd.default.udp_encode_mode 2>/dev/null || echo 0`
 	sproxy=`uci get natcapd.default.sproxy 2>/dev/null || echo 0`
@@ -532,10 +532,10 @@ elif test -c $DEV; then
 		done
 	fi
 
-	ipset -n list udproxylist >/dev/null 2>&1 || ipset -! create udproxylist iphash hashsize 64 maxelem 1024
-	ipset -n list gfwlist >/dev/null 2>&1 || ipset -! create gfwlist iphash hashsize 1024 maxelem 65536
+	ipset -n list gfwlist0 >/dev/null 2>&1 || ipset -! create gfwlist0 nethash hashsize 1024 maxelem 65536
+	ipset -n list gfw_udp_port_list0 >/dev/null 2>&1 || ipset -! create gfw_udp_port_list0 bitmap:port range 0-65535
 	ipset -n list knocklist >/dev/null 2>&1 || ipset -! create knocklist iphash hashsize 64 maxelem 1024
-	ipset -n list bypasslist >/dev/null 2>&1 || ipset -! create bypasslist iphash hashsize 1024 maxelem 65536
+	ipset -n list bypasslist >/dev/null 2>&1 || ipset -! create bypasslist nethash hashsize 1024 maxelem 65536
 
 	ipset destroy cniplist >/dev/null 2>&1
 	echo 'create cniplist hash:net family inet hashsize 4096 maxelem 65536' >/tmp/cniplist.set
@@ -558,8 +558,6 @@ elif test -c $DEV; then
 	echo natcap_touch_timeout=$touch_timeout >>$DEV
 	echo sproxy=$sproxy >$DEV
 	test -n "$dns_server" && echo dns_server=$dns_server >$DEV
-
-	[ "x$clear_dst_on_reload" = x1 ] && ipset flush gfwlist
 
 	echo encode_http_only=$encode_http_only >>$DEV
 	echo http_confusion=$http_confusion >>$DEV
@@ -614,11 +612,11 @@ elif test -c $DEV; then
 		add_knocklist $k
 	done
 
-	for u in $udproxylist; do
-		add_udproxylist $u
-	done
 	for g in $gfwlist; do
 		add_gfwlist $g
+	done
+	for g in $gfw_udp_port_list; do
+		add_gfw_udp_port_list $g
 	done
 
 	rm -f /tmp/dnsmasq.d/custom-domains.gfwlist.dnsmasq.conf

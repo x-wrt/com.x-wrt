@@ -67,7 +67,7 @@ function status()
 	local oldrx = oldtxrx:gsub("(%w+) (%w+)", "%2")
 
 	local data = {
-		cur_server = text:gsub(".*current_server=(.-)\n.*", "%1"),
+		cur_server = text:gsub(".*current_server0=(.-)\n.*", "%1"),
 		uhash = text:gsub(".*u_hash=(.-)\n.*", "%1"),
 		client_mac = text:gsub(".*default_mac_addr=(..):(..):(..):(..):(..):(..)\n.*", "%1%2%3%4%5%6"),
 		total_tx = text:gsub(".*flow_total_tx_bytes=(.-)\n.*", "%1"),
@@ -100,7 +100,7 @@ function change_server()
 
 	local text = ut.trim(sys.exec("cat /dev/natcap_ctl"))
 	local data = {
-		cur_server = text:gsub(".*current_server=(.-)\n.*", "%1"),
+		cur_server = text:gsub(".*current_server0=(.-)\n.*", "%1"),
 	}
 
 	http.prepare_content("application/json")
