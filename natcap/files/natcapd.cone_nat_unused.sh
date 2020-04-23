@@ -34,8 +34,17 @@ case $cmd in
 	chain=$2
 	index=$3
 	port=`iptables -t nat -L $chain $index | grep -o "udp dpt:[0-9]*" | cut -d: -f2 | head -n1`
-	test -n "$port" && \
-	ipset del cone_nat_unused_port $port >/dev/null 2>&1
+	#udp dpt 12345 to 192.168.16.218 12345
+	iptables -t nat -L $chain $index | grep -o "udp dpt:[0-9].*to:.*" | sed 's/:/ /g' | while read _ _ eport _ iaddr iport; do
+		test -n "$eport" && \
+		ipset del cone_nat_unused_port $eport >/dev/null 2>&1
+		RULE_CNT=`iptables -t nat -L MINIUPNPD  | grep "^DNAT.*to:$iaddr:$iport$" | wc -l`
+		RULE_CNT=$((RULE_CNT+0))
+		if test $RULE_CNT -le 1; then
+			test -n "$iaddr" && test -n "$iport" && \
+			ipset del cone_nat_unused_dst $iaddr,udp:$iport >/dev/null 2>&1
+		fi
+	done
 	;;
 
 	addrule)
