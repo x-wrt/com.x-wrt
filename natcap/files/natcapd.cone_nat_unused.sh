@@ -7,7 +7,7 @@
 
 cmd=$1
 
-init_cone_nat_unused_port()
+init_cone_nat_unused()
 {
 	ipset destroy cone_nat_unused_dst >/dev/null 2>&1
 	ipset create cone_nat_unused_dst hash:ip,port hashsize 64 maxelem 65536 >/dev/null 2>&1
@@ -72,6 +72,6 @@ case $cmd in
 	;;
 
 	init)
-	init_cone_nat_unused_port
+	init_cone_nat_unused
 	;;
 esac
