@@ -266,6 +266,9 @@ add_gfwlist () {
 add_gfw_udp_port_list () {
 	ipset -! add gfw_udp_port_list0 $1
 }
+add_app_list () {
+	ipset -! add app_list0 $1
+}
 add_knocklist () {
 	ipset -! add knocklist $1
 }
@@ -488,6 +491,7 @@ elif test -c $DEV; then
 	gfwlist_domain=`uci get natcapd.default.gfwlist_domain 2>/dev/null`
 	gfwlist=`uci get natcapd.default.gfwlist 2>/dev/null`
 	gfw_udp_port_list=`uci get natcapd.default.gfw_udp_port_list 2>/dev/null`
+	app_list=`uci get natcapd.default.app_list 2>/dev/null`
 	encode_mode=`uci get natcapd.default.encode_mode 2>/dev/null || echo 0`
 	udp_encode_mode=`uci get natcapd.default.udp_encode_mode 2>/dev/null || echo 0`
 	sproxy=`uci get natcapd.default.sproxy 2>/dev/null || echo 0`
@@ -534,6 +538,7 @@ elif test -c $DEV; then
 
 	ipset -n list gfwlist0 >/dev/null 2>&1 || ipset -! create gfwlist0 nethash hashsize 1024 maxelem 65536
 	ipset -n list gfw_udp_port_list0 >/dev/null 2>&1 || ipset -! create gfw_udp_port_list0 bitmap:port range 0-65535
+	ipset -n list app_list0 >/dev/null 2>&1 || ipset -! create app_list0 hash:net,port hashsize 1024 maxelem 65536
 	ipset -n list knocklist >/dev/null 2>&1 || ipset -! create knocklist iphash hashsize 64 maxelem 1024
 	ipset -n list bypasslist >/dev/null 2>&1 || ipset -! create bypasslist nethash hashsize 1024 maxelem 65536
 
@@ -617,6 +622,9 @@ elif test -c $DEV; then
 	done
 	for g in $gfw_udp_port_list; do
 		add_gfw_udp_port_list $g
+	done
+	for a in $app_list; do
+		add_app_list $a
 	done
 
 	rm -f /tmp/dnsmasq.d/custom-domains.gfwlist.dnsmasq.conf
