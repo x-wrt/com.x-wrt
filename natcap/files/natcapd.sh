@@ -201,26 +201,26 @@ natcap_setup_firewall()
 	fi
 }
 
-natcap_wan_ip()
+cone_wan_ip()
 {
 	full_cone_nat="`uci get natcapd.default.full_cone_nat 2>/dev/null || echo 0`"
 	if [ "x$full_cone_nat" = "x0" ]; then
-		ipset destroy natcap_wan_ip >/dev/null 2>&1
+		ipset destroy cone_wan_ip >/dev/null 2>&1
 	else
-		ipset create natcap_wan_ip iphash hashsize 32 maxelem 256 >/dev/null 2>&1
-		ipset flush natcap_wan_ip
+		ipset create cone_wan_ip iphash hashsize 32 maxelem 256 >/dev/null 2>&1
+		ipset flush cone_wan_ip
 		devs=`ip r | grep default | grep -o "dev ".* | awk '{print $2}'`
 		for dev in $devs; do
 			ips=`ip addr list dev $dev | grep -o inet" ".* | awk '{print $2}' | cut -d/ -f1`
 			for ip in $ips; do
-				ipset add natcap_wan_ip $ip >/dev/null 2>&1
+				ipset add cone_wan_ip $ip >/dev/null 2>&1
 			done
 		done
 	fi
 }
 
-[ x$1 = xnatcap_wan_ip ] && {
-	natcap_wan_ip
+[ x$1 = xcone_wan_ip ] && {
+	cone_wan_ip
 	exit 0
 }
 
@@ -643,7 +643,7 @@ test -f /usr/share/natcapd/natcapd.pptpd.sh && sh /usr/share/natcapd/natcapd.ppt
 test -f /usr/share/natcapd/natcapd.openvpn.sh && sh /usr/share/natcapd/natcapd.openvpn.sh
 #reload cone_nat_unused
 test -f /usr/share/natcapd/natcapd.cone_nat_unused.sh && sh /usr/share/natcapd/natcapd.cone_nat_unused.sh init
-natcap_wan_ip
+cone_wan_ip
 
 cd /tmp
 
