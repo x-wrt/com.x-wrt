@@ -537,8 +537,17 @@ elif test -c $DEV; then
 	fi
 
 	ipset -n list gfwlist0 >/dev/null 2>&1 || ipset -! create gfwlist0 nethash hashsize 1024 maxelem 65536
-	ipset -n list gfw_udp_port_list0 >/dev/null 2>&1 || ipset -! create gfw_udp_port_list0 bitmap:port range 0-65535
-	ipset -n list app_list0 >/dev/null 2>&1 || ipset -! create app_list0 hash:net,port hashsize 1024 maxelem 65536
+
+	ipset destroy gfw_udp_port_list0 >/dev/null 2>&1
+	if test -n "$gfw_udp_port_list"; then
+		ipset -n list gfw_udp_port_list0 >/dev/null 2>&1 || ipset -! create gfw_udp_port_list0 bitmap:port range 0-65535
+	fi
+
+	ipset destroy app_list0 >/dev/null 2>&1
+	if test -n "$app_list"; then
+		ipset -n list app_list0 >/dev/null 2>&1 || ipset -! create app_list0 hash:net,port hashsize 1024 maxelem 65536
+	fi
+
 	ipset -n list knocklist >/dev/null 2>&1 || ipset -! create knocklist iphash hashsize 64 maxelem 1024
 	ipset -n list bypasslist >/dev/null 2>&1 || ipset -! create bypasslist nethash hashsize 1024 maxelem 65536
 
