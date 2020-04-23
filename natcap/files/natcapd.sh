@@ -641,8 +641,8 @@ fi
 test -f /usr/share/natcapd/natcapd.pptpd.sh && sh /usr/share/natcapd/natcapd.pptpd.sh
 #reload openvpn
 test -f /usr/share/natcapd/natcapd.openvpn.sh && sh /usr/share/natcapd/natcapd.openvpn.sh
-#reload cone_nat_unused_port
-test -f /usr/share/natcapd/natcapd.cone_nat_unused_port_update.sh && sh /usr/share/natcapd/natcapd.cone_nat_unused_port_update.sh init
+#reload cone_nat_unused
+test -f /usr/share/natcapd/natcapd.cone_nat_unused.sh && sh /usr/share/natcapd/natcapd.cone_nat_unused.sh init
 natcap_wan_ip
 
 cd /tmp

@@ -10,7 +10,7 @@ include $(INCLUDE_DIR)/kernel.mk
 
 PKG_NAME:=natcap
 PKG_VERSION:=8.0.0
-PKG_RELEASE:=d580f94d60028d96e6e8aadeff87aead8de69c00
+PKG_RELEASE:=7dc3b6c5aa9b4707a1e967cca6bedc9281156888
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION)-$(PKG_RELEASE).tar.xz
 PKG_SOURCE_URL:=https://github.com/ptpt52/natcap.git
@@ -132,7 +132,7 @@ define Package/natcapd/install
 	$(INSTALL_DIR) $(1)/usr/share/natcapd
 	$(INSTALL_DATA) ./files/natcapd.pptpd.sh $(1)/usr/share/natcapd/natcapd.pptpd.sh
 	$(INSTALL_DATA) ./files/natcapd.openvpn.sh $(1)/usr/share/natcapd/natcapd.openvpn.sh
-	$(INSTALL_DATA) ./files/natcapd.cone_nat_unused_port_update.sh $(1)/usr/share/natcapd/natcapd.cone_nat_unused_port_update.sh
+	$(INSTALL_DATA) ./files/natcapd.cone_nat_unused.sh $(1)/usr/share/natcapd/natcapd.cone_nat_unused.sh
 	$(INSTALL_DIR) $(1)/usr/share/natcapd/openvpn
 	$(INSTALL_DATA) ./files/openvpn/client.conf $(1)/usr/share/natcapd/openvpn/client.conf
 	$(INSTALL_DATA) ./files/openvpn/client.key $(1)/usr/share/natcapd/openvpn/client.key
