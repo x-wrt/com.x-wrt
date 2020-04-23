@@ -929,7 +929,7 @@ CONFIG_TARGET_INIT_CMD="/sbin/init"
 CONFIG_TARGET_INIT_SUPPRESS_STDERR=y
 CONFIG_VERSIONOPT=y
 CONFIG_VERSION_DIST="X-WRT"
-CONFIG_VERSION_NUMBER="8.0_b202004211043"
+CONFIG_VERSION_NUMBER="8.0_b202004231935"
 CONFIG_VERSION_CODE="Focal"
 CONFIG_VERSION_REPO="http://downloads.openwrt.org/snapshots"
 CONFIG_VERSION_HOME_URL="https://x-wrt.com/"
@@ -4132,7 +4132,6 @@ CONFIG_PACKAGE_luasocket=y
 # CONFIG_PACKAGE_gunicorn3 is not set
 # CONFIG_PACKAGE_micropython is not set
 # CONFIG_PACKAGE_micropython-lib is not set
-# CONFIG_PACKAGE_python-django1-common is not set
 # CONFIG_PACKAGE_python-pip-conf is not set
 # CONFIG_PACKAGE_python3 is not set
 # CONFIG_PACKAGE_python3-aiohttp is not set
@@ -4947,7 +4946,6 @@ CONFIG_OPENSSL_WITH_PSK=y
 # CONFIG_PACKAGE_libusbmuxd is not set
 # CONFIG_PACKAGE_alsa-lib is not set
 # CONFIG_PACKAGE_argp-standalone is not set
-# CONFIG_PACKAGE_avro-c is not set
 # CONFIG_PACKAGE_bind-libs is not set
 # CONFIG_PACKAGE_bluez-libs is not set
 # CONFIG_PACKAGE_boost is not set
@@ -4956,22 +4954,12 @@ CONFIG_OPENSSL_WITH_PSK=y
 # CONFIG_boost-fiber-exclude is not set
 # CONFIG_PACKAGE_ccid is not set
 # CONFIG_PACKAGE_check is not set
-# CONFIG_PACKAGE_classpath is not set
-# CONFIG_PACKAGE_classpath-tools is not set
 # CONFIG_PACKAGE_confuse is not set
 # CONFIG_PACKAGE_czmq is not set
 # CONFIG_PACKAGE_dtndht is not set
-# CONFIG_PACKAGE_fbthrift is not set
-# CONFIG_PACKAGE_fbzmq is not set
-# CONFIG_PACKAGE_fcgi is not set
-# CONFIG_PACKAGE_fftw3 is not set
-# CONFIG_PACKAGE_fftw3f is not set
-# CONFIG_PACKAGE_fftw3l is not set
 # CONFIG_PACKAGE_getdns is not set
-# CONFIG_PACKAGE_gflags is not set
 # CONFIG_PACKAGE_giflib is not set
 # CONFIG_PACKAGE_glib2 is not set
-# CONFIG_PACKAGE_glog is not set
 # CONFIG_PACKAGE_google-authenticator-libpam is not set
 # CONFIG_PACKAGE_hidapi is not set
 # CONFIG_PACKAGE_ibrcommon is not set
@@ -4995,12 +4983,10 @@ CONFIG_PACKAGE_jansson=y
 # CONFIG_PACKAGE_libavahi-compat-libdnssd is not set
 # CONFIG_PACKAGE_libavahi-dbus-support is not set
 # CONFIG_PACKAGE_libavahi-nodbus-support is not set
-# CONFIG_PACKAGE_libavl is not set
 # CONFIG_PACKAGE_libbfd is not set
 CONFIG_PACKAGE_libblkid=m
 CONFIG_PACKAGE_libblobmsg-json=y
 # CONFIG_PACKAGE_libbsd is not set
-# CONFIG_PACKAGE_libcanfestival is not set
 # CONFIG_PACKAGE_libcap is not set
 CONFIG_PACKAGE_libcares=m
 # CONFIG_PACKAGE_libcgroup is not set
@@ -5052,10 +5038,8 @@ CONFIG_PACKAGE_libext2fs=m
 # CONFIG_PACKAGE_libffmpeg-custom is not set
 # CONFIG_PACKAGE_libffmpeg-full is not set
 # CONFIG_PACKAGE_libffmpeg-mini is not set
-# CONFIG_PACKAGE_libfizz is not set
 # CONFIG_PACKAGE_libflac is not set
 # CONFIG_PACKAGE_libfmt is not set
-# CONFIG_PACKAGE_libfolly is not set
 # CONFIG_PACKAGE_libfreetype is not set
 # CONFIG_PACKAGE_libfstrm is not set
 # CONFIG_PACKAGE_libftdi is not set
@@ -5066,7 +5050,6 @@ CONFIG_PACKAGE_libext2fs=m
 # CONFIG_PACKAGE_libgd-full is not set
 # CONFIG_PACKAGE_libgdbm is not set
 # CONFIG_PACKAGE_libgee is not set
-# CONFIG_PACKAGE_libglpk is not set
 # CONFIG_PACKAGE_libgmp is not set
 # CONFIG_PACKAGE_libgnurl is not set
 # CONFIG_PACKAGE_libgpg-error is not set
@@ -5201,7 +5184,6 @@ CONFIG_PCRE_JIT_ENABLED=y
 # CONFIG_PACKAGE_librouteros is not set
 # CONFIG_PACKAGE_libroxml is not set
 # CONFIG_PACKAGE_librrd1 is not set
-# CONFIG_PACKAGE_librsocket-cpp is not set
 # CONFIG_PACKAGE_librtlsdr is not set
 # CONFIG_PACKAGE_libruby is not set
 # CONFIG_PACKAGE_libsamplerate is not set
@@ -5213,7 +5195,6 @@ CONFIG_PCRE_JIT_ENABLED=y
 # CONFIG_PACKAGE_libshout is not set
 # CONFIG_PACKAGE_libshout-full is not set
 # CONFIG_PACKAGE_libshout-nossl is not set
-# CONFIG_PACKAGE_libsigar is not set
 # CONFIG_PACKAGE_libsispmctl is not set
 # CONFIG_PACKAGE_libslang2 is not set
 # CONFIG_PACKAGE_libslang2-mod-base64 is not set
@@ -5286,13 +5267,11 @@ CONFIG_PACKAGE_libustream-mbedtls=y
 # CONFIG_PACKAGE_libustream-wolfssl is not set
 CONFIG_PACKAGE_libuuid=y
 # CONFIG_PACKAGE_libuv is not set
-# CONFIG_PACKAGE_libuvc is not set
 # CONFIG_PACKAGE_libuwifi is not set
 # CONFIG_PACKAGE_libv4l is not set
 # CONFIG_PACKAGE_libvorbis is not set
 # CONFIG_PACKAGE_libvorbisidec is not set
 # CONFIG_PACKAGE_libvpx is not set
-# CONFIG_PACKAGE_libwangle is not set
 # CONFIG_PACKAGE_libwebcam is not set
 # CONFIG_PACKAGE_libwebp is not set
 # CONFIG_PACKAGE_libwebsockets-full is not set
@@ -5307,9 +5286,7 @@ CONFIG_PACKAGE_libxml2=m
 # CONFIG_PACKAGE_libxslt is not set
 # CONFIG_PACKAGE_libyaml-cpp is not set
 # CONFIG_PACKAGE_libyang is not set
-# CONFIG_PACKAGE_libyarpl is not set
 # CONFIG_PACKAGE_libyubikey is not set
-# CONFIG_PACKAGE_libzdb is not set
 # CONFIG_PACKAGE_libzmq-curve is not set
 # CONFIG_PACKAGE_libzmq-nc is not set
 # CONFIG_PACKAGE_linux-atm is not set
@@ -5336,7 +5313,6 @@ CONFIG_PACKAGE_libxml2=m
 CONFIG_PACKAGE_rpcd-mod-luci=y
 # CONFIG_PACKAGE_rpcd-mod-rad2-enc is not set
 CONFIG_PACKAGE_rpcd-mod-rrdns=y
-# CONFIG_PACKAGE_rxtx is not set
 # CONFIG_PACKAGE_sbc is not set
 # CONFIG_PACKAGE_serdisplib is not set
 # CONFIG_PACKAGE_spice-protocol is not set
@@ -5955,6 +5931,7 @@ CONFIG_POSTFIX_PCRE=y
 # CONFIG_PACKAGE_ffprobe is not set
 # CONFIG_PACKAGE_ffserver is not set
 # CONFIG_PACKAGE_fswebcam is not set
+# CONFIG_PACKAGE_gerbera is not set
 # CONFIG_PACKAGE_gphoto2 is not set
 # CONFIG_PACKAGE_graphicsmagick is not set
 # CONFIG_PACKAGE_grilo is not set
@@ -7199,7 +7176,6 @@ CONFIG_PACKAGE_NTFS-3G_HAS_PROBE=y
 CONFIG_PACKAGE_adb=m
 # CONFIG_PACKAGE_ap51-flash is not set
 # CONFIG_PACKAGE_at is not set
-# CONFIG_PACKAGE_avro-c-utils is not set
 # CONFIG_PACKAGE_bandwidthd is not set
 # CONFIG_PACKAGE_bandwidthd-pgsql is not set
 # CONFIG_PACKAGE_bandwidthd-php is not set
