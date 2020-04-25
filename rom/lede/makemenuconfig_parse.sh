@@ -286,6 +286,7 @@ for t in $targets; do
 		TARGET_DEVICE_ath79_generic_DEVICE_xwrt_csac2|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_xwrt_t-cpe1200k-v01|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_xwrt_t-cpe1201k-v01|\
+		TARGET_DEVICE_ramips_mt7621_DEVICE_xwrt_x-sdwan-1200|\
 		TARGET_DEVICE_ramips_mt76x8_DEVICE_xwrt_g4303k-v1|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_iodata_wn-ax1167gr|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_totolink_a7000r|\
@@ -942,6 +943,7 @@ for t in $targets; do
 			has_usb=1
 		;;
 		#no usb
+		TARGET_DEVICE_ramips_mt7621_DEVICE_xwrt_x-sdwan-1200|\
 		TARGET_DEVICE_ath79_generic_DEVICE_tplink_archer-c60-v3|\
 		TARGET_DEVICE_ath79_generic_DEVICE_devolo_magic-2-wifi|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_xiaomi_mir3g-v2|\
