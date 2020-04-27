@@ -24,6 +24,8 @@ find feeds/luci/ -type f | grep -v .git\* | while read file; do
 	sed -i 's/192\.168\.1\./192\.168\.15\./g' "$file"
 done
 
+touchlist="feeds/luci/applications/luci-app-sqm/Makefile"
+
 for i in $IDXS; do
 	touch ./package/base-files/Makefile
 
@@ -57,6 +59,9 @@ for i in $IDXS; do
 			#touch contains '@lt\|@le\|@gt\|@ge'
 			find feeds/packages/ package/ feeds/luci/ feeds/routing/ feeds/telephony/ feeds/x/ -type f -name '*.mk' -o -name Makefile | while read f; do
 				grep -q '@lt\|@le\|@gt\|@ge\|+.*:' $f && touch $f && echo touch $f
+			done
+			for f in touchlist; do
+				touch $f && echo touch $f
 			done
 		}
 		[ "x$TMPFS" = x1 ] && {
