@@ -245,6 +245,7 @@ for t in $targets; do
 	has_usb=0
 	case $t in
 		#>8M flash
+		TARGET_DEVICE_mvebu_cortexa53_DEVICE_glinet_gl-mv1000|\
 		TARGET_DEVICE_ath79_generic_DEVICE_tplink_archer-d7-v1|\
 		TARGET_DEVICE_ath79_generic_DEVICE_tplink_archer-d7b-v1|\
 		TARGET_DEVICE_ath79_nand_DEVICE_domywifi_dw33d|\
@@ -650,6 +651,7 @@ for t in $targets; do
 	#check usb
 	case $t in
 		#with usb3
+		TARGET_DEVICE_mvebu_cortexa53_DEVICE_glinet_gl-mv1000|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_adslr_g7|\
 		TARGET_DEVICE_ath79_generic_DEVICE_sitecom_wlr-8100|\
 		TARGET_DEVICE_ipq806x_generic_DEVICE_tplink_c2600|\
