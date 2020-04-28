@@ -528,6 +528,10 @@ elif test -c $DEV; then
 		cniplist_set=/usr/share/natcapd/local.set
 	fi
 
+	if [ x$cnipwhitelist_mode = x2 ]; then
+		cniplist_set=/usr/share/natcapd/local.set
+	fi
+
 	ipset destroy dnsdroplist >/dev/null 2>&1
 	if test -n "$dnsdroplist"; then
 		ipset -n list dnsdroplist >/dev/null 2>&1 || ipset -! create dnsdroplist nethash hashsize 64 maxelem 1024
