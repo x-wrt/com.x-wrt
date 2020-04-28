@@ -464,6 +464,8 @@ test -c $DEV && {
 	echo natcap_max_pmtu=${natcap_max_pmtu} >$DEV
 }
 
+ipset -n list wechat_iplist >/dev/null 2>&1 || ipset -! create wechat_iplist iphash hashsize 1024 maxelem 65536
+
 if [ "x$enabled" = "x0" ] && test -c $DEV; then
 	natcapd_stop
 	rm -f /tmp/natcapd_to_cn
