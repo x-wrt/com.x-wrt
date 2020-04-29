@@ -14,10 +14,11 @@ access_to_cn=`uci get natcapd.default.access_to_cn 2>/dev/null || echo 0`
 
 cnipwhitelist_mode=`uci get natcapd.default.cnipwhitelist_mode 2>/dev/null || echo 0`
 exclude_domains=
-[ x$cnipwhitelist_mode = x2 ] && exclude_domains="google \
-						 blogspot gvt amazon \
-						 facebook fbcdn twitter \
-						 twimg netflix nflx"
+[ x$cnipwhitelist_mode = x2 ] && \
+exclude_domains="google appspot \
+	blogspot gvt amazon \
+	facebook fbcdn twitter \
+	twimg netflix nflx"
 
 exclude_out()
 {
