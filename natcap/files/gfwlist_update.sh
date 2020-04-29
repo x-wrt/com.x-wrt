@@ -12,6 +12,24 @@ access_to_cn=`uci get natcapd.default.access_to_cn 2>/dev/null || echo 0`
 	exit 0
 }
 
+cnipwhitelist_mode=`uci get natcapd.default.cnipwhitelist_mode 2>/dev/null || echo 0`
+exclude_domains=
+[ x$cnipwhitelist_mode = x2 ] && exclude_domains="google \
+						 blogspot gvt amazon \
+						 facebook fbcdn twitter \
+						 twimg netflix nflx"
+
+exclude_out()
+{
+	cat "$1" >/tmp/gfwlist.$$.exclude_out.1
+	for d in $exclude_domains; do
+		cat /tmp/gfwlist.$$.exclude_out.1 | grep -v "$d" >/tmp/gfwlist.$$.exclude_out.2
+		mv /tmp/gfwlist.$$.exclude_out.2 /tmp/gfwlist.$$.exclude_out.1
+	done
+	cat /tmp/gfwlist.$$.exclude_out.1 >"$1"
+	rm -f /tmp/gfwlist.$$.exclude_out.1
+}
+
 WGET=/usr/bin/wget
 test -x $WGET || WGET=/bin/wget
 
@@ -42,7 +60,9 @@ $WGET --timeout=60 --no-check-certificate -qO /tmp/gfwlist.$$.txt "https://raw.g
 		echo ipset=/$line/gfwlist0 >>/tmp/accelerated-domains.gfwlist.dnsmasq.$$.conf
 	done
 	rm -f /tmp/gfwlist.$$.txt
-	mkdir -p /tmp/dnsmasq.d && mv /tmp/accelerated-domains.gfwlist.dnsmasq.$$.conf /tmp/dnsmasq.d/accelerated-domains.gfwlist.dnsmasq.conf
+	mkdir -p /tmp/dnsmasq.d && \
+	mv /tmp/accelerated-domains.gfwlist.dnsmasq.$$.conf /tmp/dnsmasq.d/accelerated-domains.gfwlist.dnsmasq.conf && \
+	exclude_out /tmp/dnsmasq.d/accelerated-domains.gfwlist.dnsmasq.conf
 
 	touch /tmp/natcapd.lck/gfwlist
 	/etc/init.d/dnsmasq restart
@@ -52,6 +72,10 @@ rm -f /tmp/gfwlist.$$.txt
 
 test -f /tmp/dnsmasq.d/accelerated-domains.gfwlist.dnsmasq.conf && exit 0
 
-mkdir -p /tmp/dnsmasq.d && cp /usr/share/natcapd/accelerated-domains.gfwlist.dnsmasq.conf /tmp/dnsmasq.d/accelerated-domains.gfwlist.dnsmasq.conf && /etc/init.d/dnsmasq restart
+mkdir -p /tmp/dnsmasq.d && \
+cp /usr/share/natcapd/accelerated-domains.gfwlist.dnsmasq.conf /tmp/dnsmasq.d/accelerated-domains.gfwlist.dnsmasq.conf
+exclude_out /tmp/dnsmasq.d/accelerated-domains.gfwlist.dnsmasq.conf
+
+/etc/init.d/dnsmasq restart
 
 exit 0
