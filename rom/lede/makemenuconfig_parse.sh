@@ -82,6 +82,7 @@ moreapps="libstdcpp \
 		  webui-aria2 \
 		  aria2 \
 		  samba36-server \
+		  sendip \
 		  wget"
 
 cdcmod="kmod-mii \
