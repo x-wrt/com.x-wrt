@@ -122,6 +122,7 @@ natcapd_boot() {
 }
 
 enabled="`uci get natcapd.default.enabled 2>/dev/null || echo 0`"
+led="`uci get natcapd.default.led 2>/dev/null`"
 
 client_mac=`cat $DEV | grep default_mac_addr | grep -o "[0-9a-f][0-9a-f]:[0-9a-f][0-9a-f]:[0-9a-f][0-9a-f]:[0-9a-f][0-9a-f]:[0-9a-f][0-9a-f]:[0-9a-f][0-9a-f]"`
 account="`uci get natcapd.default.account 2>/dev/null`"
@@ -465,6 +466,8 @@ test -c $DEV && {
 }
 
 ipset -n list wechat_iplist >/dev/null 2>&1 || ipset -! create wechat_iplist iphash hashsize 1024 maxelem 65536
+
+test -n "$led" && echo "$enabled" >>"$led"
 
 if [ "x$enabled" = "x0" ] && test -c $DEV; then
 	natcapd_stop
