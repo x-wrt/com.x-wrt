@@ -76,12 +76,14 @@ moreapps="libstdcpp \
 		  luci-app-aria2 \
 		  luci-i18n-aria2-en \
 		  luci-i18n-aria2-zh-cn \
-		  luci-app-samba \
-		  luci-i18n-samba-en \
-		  luci-i18n-samba-zh-cn \
+		  luci-app-ksmbd \
+		  luci-i18n-ksmbd-en \
+		  luci-i18n-ksmbd-zh-cn \
+		  ksmbd-server \
+		  wsdd2 \
+		  kmod-fs-ksmbd \
 		  webui-aria2 \
 		  aria2 \
-		  samba36-server \
 		  sendip \
 		  wget"
 
