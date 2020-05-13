@@ -184,8 +184,7 @@ CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt7621_DEVICE_iodata_wn-ax1167gr="kmod-cfg8
 # CONFIG_TARGET_DEVICE_ramips_mt7621_DEVICE_iodata_wn-ax1167gr2 is not set
 # CONFIG_TARGET_DEVICE_ramips_mt7621_DEVICE_iodata_wn-ax2033gr is not set
 # CONFIG_TARGET_DEVICE_ramips_mt7621_DEVICE_iodata_wn-dx1167r is not set
-CONFIG_TARGET_DEVICE_ramips_mt7621_DEVICE_iodata_wn-gx300gr=y
-CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt7621_DEVICE_iodata_wn-gx300gr="kmod-cfg80211 kmod-gpio-button-hotplug kmod-leds-gpio kmod-mac80211 kmod-mt7603 kmod-mt76-core wireless-regdb"
+# CONFIG_TARGET_DEVICE_ramips_mt7621_DEVICE_iodata_wn-gx300gr is not set
 # CONFIG_TARGET_DEVICE_ramips_mt7621_DEVICE_iodata_wnpr2600g is not set
 # CONFIG_TARGET_DEVICE_ramips_mt7621_DEVICE_iptime_a6ns-m is not set
 # CONFIG_TARGET_DEVICE_ramips_mt7621_DEVICE_iptime_a8004t is not set
@@ -4921,8 +4920,8 @@ CONFIG_PCRE_JIT_ENABLED=y
 # CONFIG_PACKAGE_libss is not set
 # CONFIG_PACKAGE_libssh is not set
 CONFIG_PACKAGE_libssh2=m
-# CONFIG_LIBSSH2_MBEDTLS is not set
 CONFIG_LIBSSH2_OPENSSL=y
+# CONFIG_LIBSSH2_MBEDTLS is not set
 # CONFIG_PACKAGE_libstoken is not set
 # CONFIG_PACKAGE_libstrophe is not set
 # CONFIG_PACKAGE_libsysrepo is not set
