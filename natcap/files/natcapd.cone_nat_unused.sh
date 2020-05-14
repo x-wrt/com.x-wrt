@@ -12,14 +12,14 @@ init_cone_nat_unused()
 	ipset destroy cone_nat_unused_dst >/dev/null 2>&1
 	ipset create cone_nat_unused_dst hash:ip,port hashsize 64 maxelem 65536 >/dev/null 2>&1
 	# load dst from uci natcapd.default.cone_nat_unused_dst: ex 1.2.3.4,udp:1234
-	for dst in `uci get natcapd.default.cone_nat_unused_dst 2>/null`; do
+	for dst in `uci get natcapd.default.cone_nat_unused_dst 2>/dev/null`; do
 		ipset add cone_nat_unused_dst $dst >/dev/null 2>&1
 	done
 
 	ipset destroy cone_nat_unused_port >/dev/null 2>&1
 	ipset create cone_nat_unused_port bitmap:port range 0-65535 >/dev/null 2>&1
 	# load port from uci natcapd.default.cone_nat_unused_port
-	for port in `uci get natcapd.default.cone_nat_unused_port 2>/null`; do
+	for port in `uci get natcapd.default.cone_nat_unused_port 2>/dev/null`; do
 		ipset add cone_nat_unused_port $port >/dev/null 2>&1
 	done
 	# load ports from /tmp/run/miniupnpd.leases
