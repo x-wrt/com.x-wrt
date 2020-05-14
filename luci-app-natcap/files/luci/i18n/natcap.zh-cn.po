@@ -243,3 +243,12 @@ msgstr "单位: <code>Kbps</code> <code>Mbps</code> <code>Gbps</code> 例如: 10
 
 msgid "Invalid rate limit"
 msgstr "速度限制错误"
+
+msgid "SD-WAN Service"
+msgstr "SD-WAN 服务"
+
+msgid "Activation"
+msgstr "激活"
+
+msgid "Enter your activation code"
+msgstr "输入你的激活码"
