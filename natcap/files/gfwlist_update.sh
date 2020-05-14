@@ -18,7 +18,8 @@ exclude_domains=
 exclude_domains="google appspot \
 	blogspot gvt amazon \
 	facebook fbcdn twitter \
-	twimg netflix nflx"
+	twimg netflix nflx \
+	whatsapp"
 
 exclude_out()
 {
