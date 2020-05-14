@@ -130,7 +130,7 @@ msgstr "强制TCP编码成UDP"
 msgid "Force UDP encode as TCP"
 msgstr "强制UDP编码成TCP"
 
-msgid "Do not normally enable unless the normal mode is not working."
+msgid "Do not enable unless the normal mode is not working."
 msgstr "一般不要启用，除非正常模式不通。"
 
 msgid "TCP Proxy Acceleration"

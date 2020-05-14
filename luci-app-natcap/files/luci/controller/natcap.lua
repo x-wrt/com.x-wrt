@@ -17,12 +17,27 @@ function index()
 	page = entry({"admin", "services", "natcap"}, cbi("natcap/natcap"), _("Natcap"))
 	page.i18n = "natcap"
 	page.dependent = true
+	page.acl_depends = { "luci-app-natcap" }
+	elseif ui == "sdwan" then
+	page = entry({"admin", "natcap_sdwan"}, firstchild(), _("SD-WAN"), 60)
+	page.dependent = false
+	page.acl_depends = { "luci-app-natcap" }
+	page = entry({"admin", "natcap_sdwan", "basic"}, cbi("natcap/natcap_sdwan"), _("Basic"))
+	page.i18n = "natcap"
+	page.dependent = true
+	page.acl_depends = { "luci-app-natcap" }
+	page = node("admin", "natcap_sdwan", "activation")
+	page.target = template("natcap/natcap_sdwan")
+	page.title  = _("Activation")
+	page = entry({"admin", "natcap_sdwan", "activation_sn"}, post("activation_sn"), nil)
+	page.leaf = true
+	page.acl_depends = { "luci-app-natcap" }
 	else
 	page = entry({"admin", "services", "natcap"}, cbi("natcap/natcap_simple"), _("Natcap"))
 	page.i18n = "natcap"
 	page.dependent = true
-	end
 	page.acl_depends = { "luci-app-natcap" }
+	end
 
 	entry({"admin", "services", "natcap", "get_natcap_flows0"}, call("get_natcap_flows0")).leaf = true
 	entry({"admin", "services", "natcap", "get_natcap_flows1"}, call("get_natcap_flows1")).leaf = true
@@ -51,6 +66,13 @@ function index()
 	page.dependent = true
 	end
 	page.acl_depends = { "luci-app-natcap" }
+end
+
+function activation_sn(sn)
+	luci.http.prepare_content("text/plain")
+	luci.http.write("SN=%s\n" % luci.util.shellquote(sn))
+	luci.http.write("You successfully activated SD-WAN and obtained a one-year term!")
+	return
 end
 
 function status()

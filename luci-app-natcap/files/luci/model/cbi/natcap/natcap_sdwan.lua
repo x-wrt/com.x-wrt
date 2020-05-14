@@ -2,7 +2,7 @@
 
 local nt = require "luci.sys".net
 
-local m = Map("natcapd", luci.util.pcdata(translate("Natcap Service")))
+local m = Map("natcapd", luci.util.pcdata(translate("SD-WAN Service")))
 
 m:section(SimpleSection).template  = "natcap/natcap"
 
@@ -12,11 +12,7 @@ s.anonymous = true
 
 s:tab("general", translate("General Settings"))
 
-e = s:taboption("general", Flag, "peer_sni_ban", translate("Disable Remote Mgr"))
-e.default = e.disabled
-e.rmempty = false
-
-e = s:taboption("general", Flag, "enabled", translate("Enable Natcap"), translate("You need an authorization code to enable international network acceleration."))
+e = s:taboption("general", Flag, "enabled", translate("Enable"), translate("You need an authorization code to enable international network acceleration."))
 e.default = e.disabled
 e.rmempty = false
 
@@ -27,9 +23,5 @@ e.rmempty = false
 e = s:taboption("general", Flag, "peer_mode", translate("Peer Mode"), translate("Do not enable unless the normal mode is not working."))
 e.default = e.disabled
 e.rmempty = false
-
-e = s:taboption("general", Value, "ui", translate("UI"))
-e.rmempty = true
-e.placeholder = 'none'
 
 return m

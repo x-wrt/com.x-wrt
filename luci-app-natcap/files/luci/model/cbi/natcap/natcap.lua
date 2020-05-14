@@ -58,11 +58,11 @@ e = s:taboption("advanced", Value, "dns_server", translate("DNS Server"), transl
 e.datatype = "ip4addrport"
 e.placeholder = "8.8.8.8:53"
 
-e = s:taboption("advanced", Flag, "encode_mode", translate("Force TCP encode as UDP"), translate("Do not normally enable unless the normal mode is not working."))
+e = s:taboption("advanced", Flag, "encode_mode", translate("Force TCP encode as UDP"), translate("Do not enable unless the normal mode is not working."))
 e.default = e.disabled
 e.rmempty = false
 
-e = s:taboption("advanced", Flag, "udp_encode_mode", translate("Force UDP encode as TCP"), translate("Do not normally enable unless the normal mode is not working."))
+e = s:taboption("advanced", Flag, "udp_encode_mode", translate("Force UDP encode as TCP"), translate("Do not enable unless the normal mode is not working."))
 e.default = e.disabled
 e.rmempty = false
 
