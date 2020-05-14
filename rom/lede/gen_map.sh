@@ -2,9 +2,12 @@
 
 CFGS=${CFGS-"`cat feeds/x/rom/lede/cfg.list`"}
 
+echo get bins
 bins="`find bin/targets/ | grep -- '\(-ext4-sdcard\|-squashfs\|-factory\|-sysupgrade\)' | grep "natcap\|x-wrt" | grep -v vmlinux | grep -v '\.dtb$' | while read line; do basename $line; done`"
 
+echo get sha256sums
 sha256sums="`find bin/targets/ -type f -name sha256sums`"
+test -n "$sha256sums" && \
 sha256sums=`cat $sha256sums`
 
 targets=$(cd feeds/x/rom/lede/ && cat $CFGS | grep TARGET_DEVICE_.*=y | sed 's/CONFIG_//;s/=y//' | sort)
@@ -14,6 +17,7 @@ echo -n >map.list
 
 echo sha256sums: sha256sums.txt >>map.list
 
+echo get x86bin
 x86bin="`find bin/targets/ | grep -- '\(-combined\|-uefi\|combined-efi\)' | sort | while read line; do basename $line; done`"
 test -n "$x86bin" && {
 	echo x86_64 or x86:
@@ -114,7 +118,7 @@ for t in $targets; do
 		}
 
 		test -n "$bin" || {
-			echo no image found for "$dis"
+			echo no image found for "[`echo $dis`]"
 			exit 255
 		}
 
@@ -128,11 +132,16 @@ for t in $targets; do
 	done
 done | while read line; do echo $line; done
 
+echo check sdk build
 find bin/targets/ | grep -q -- -sdk- || {
 	echo no sdk build.
 	exit 0
 }
+
+echo gen sdk_map.list
 find bin/targets/ | grep -- -sdk- | while read s; do basename $s; done | sort >sdk_map.list
+
+echo gen sdk_upload.list
 find bin/targets/ | grep -- -sdk- >sdk_upload.list
 echo -n >sdk_sha256sums.txt
 cat sdk_map.list | while read bin; do
