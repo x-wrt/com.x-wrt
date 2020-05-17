@@ -278,6 +278,12 @@ add_gfwlist_domain () {
 	echo ipset=/$1/gfwlist0 >>/tmp/dnsmasq.d/custom-domains.gfwlist.dnsmasq.conf
 }
 
+add_gfwlist_file () {
+	for ip in `cat $1`; do
+		ipset -! add gfwlist0 $ip
+	done
+}
+
 _reload_natcapd() {
 	NATCAPD_BIN=natcapd-server
 	if which $NATCAPD_BIN >/dev/null 2>&1; then
@@ -494,6 +500,7 @@ elif test -c $DEV; then
 	knocklist=`uci get natcapd.default.knocklist 2>/dev/null`
 	dnsdroplist=`uci get natcapd.default.dnsdroplist 2>/dev/null`
 	gfwlist_domain=`uci get natcapd.default.gfwlist_domain 2>/dev/null`
+	gfwlist_file=`uci get natcapd.default.gfwlist_file 2>/dev/null`
 	gfwlist=`uci get natcapd.default.gfwlist 2>/dev/null`
 	gfw_udp_port_list=`uci get natcapd.default.gfw_udp_port_list 2>/dev/null`
 	app_list=`uci get natcapd.default.app_list 2>/dev/null`
@@ -637,6 +644,9 @@ elif test -c $DEV; then
 
 	for g in $gfwlist; do
 		add_gfwlist $g
+	done
+	for g in $gfwlist_file; do
+		add_gfwlist_file $g
 	done
 	for g in $gfw_udp_port_list; do
 		add_gfw_udp_port_list $g
