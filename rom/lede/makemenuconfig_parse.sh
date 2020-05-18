@@ -248,6 +248,7 @@ for t in $targets; do
 	has_usb=0
 	case $t in
 		#>8M flash
+		TARGET_DEVICE_ramips_mt7620_DEVICE_asus_rt-ac54u|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_linksys_ea7500-v2|\
 		TARGET_DEVICE_mvebu_cortexa53_DEVICE_glinet_gl-mv1000|\
 		TARGET_DEVICE_ath79_generic_DEVICE_tplink_archer-d7-v1|\
@@ -750,6 +751,7 @@ for t in $targets; do
 			has_usb=1
 		;;
 		#with usb2
+		TARGET_DEVICE_ramips_mt7620_DEVICE_asus_rt-ac54u|\
 		TARGET_DEVICE_ath79_generic_DEVICE_tplink_archer-d7-v1|\
 		TARGET_DEVICE_ath79_generic_DEVICE_tplink_archer-d7b-v1|\
 		TARGET_DEVICE_ath79_nand_DEVICE_domywifi_dw33d|\
