@@ -20,7 +20,8 @@ exclude_domains="google appspot \
 	facebook fbcdn twitter \
 	twimg netflix nflx \
 	whatsapp youtube ytimg \
-	gstatic ggpht"
+	gstatic ggpht \
+	pscp"
 
 exclude_out()
 {
