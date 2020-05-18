@@ -19,7 +19,8 @@ exclude_domains="google appspot \
 	blogspot gvt amazon \
 	facebook fbcdn twitter \
 	twimg netflix nflx \
-	whatsapp"
+	whatsapp youtube ytimg \
+	gstatic ggpht"
 
 exclude_out()
 {
