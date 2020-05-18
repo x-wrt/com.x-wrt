@@ -261,9 +261,28 @@ add_server () {
 		echo server 0 $server >>$DEV
 	fi
 }
-add_gfwlist () {
-	ipset -! add gfwlist0 $1
+
+add_gfwlist_begin () {
+	ipset -n list gfwlist0 >/dev/null 2>&1 || ipset -! create gfwlist0 nethash hashsize 1024 maxelem 65536
+	ipset save gfwlist0 | grep "^add " >/tmp/add_gfwlist.${PID}.set
 }
+
+add_gfwlist () {
+	echo add gfwlist0 $1 >>/tmp/add_gfwlist.${PID}.set
+}
+
+add_gfwlist_file () {
+	for ip in `cat $1`; do
+		echo add gfwlist0 $ip >>/tmp/add_gfwlist.${PID}.set
+	done
+}
+
+add_gfwlist_commit () {
+	cat /tmp/add_gfwlist.${PID}.set | sort | uniq >/tmp/add_gfwlist.${PID}.set.tmp
+	ipset restore -f /tmp/add_gfwlist.${PID}.set.tmp
+	rm -f /tmp/add_gfwlist.${PID}.set /tmp/add_gfwlist.${PID}.set.tmp
+}
+
 add_gfw_udp_port_list () {
 	ipset -! add gfw_udp_port_list0 $1
 }
@@ -276,12 +295,6 @@ add_knocklist () {
 add_gfwlist_domain () {
 	echo server=/$1/8.8.8.8 >>/tmp/dnsmasq.d/custom-domains.gfwlist.dnsmasq.conf
 	echo ipset=/$1/gfwlist0 >>/tmp/dnsmasq.d/custom-domains.gfwlist.dnsmasq.conf
-}
-
-add_gfwlist_file () {
-	for ip in `cat $1`; do
-		ipset -! add gfwlist0 $ip
-	done
 }
 
 _reload_natcapd() {
@@ -552,8 +565,6 @@ elif test -c $DEV; then
 		done
 	fi
 
-	ipset -n list gfwlist0 >/dev/null 2>&1 || ipset -! create gfwlist0 nethash hashsize 1024 maxelem 65536
-
 	ipset destroy gfw_udp_port_list0 >/dev/null 2>&1
 	if test -n "$gfw_udp_port_list"; then
 		ipset -n list gfw_udp_port_list0 >/dev/null 2>&1 || ipset -! create gfw_udp_port_list0 bitmap:port range 0-65535
@@ -642,12 +653,15 @@ elif test -c $DEV; then
 		add_knocklist $k
 	done
 
+	add_gfwlist_begin
 	for g in $gfwlist; do
 		add_gfwlist $g
 	done
 	for g in $gfwlist_file; do
 		add_gfwlist_file $g
 	done
+	add_gfwlist_commit
+
 	for g in $gfw_udp_port_list; do
 		add_gfw_udp_port_list $g
 	done
