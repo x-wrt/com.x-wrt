@@ -21,7 +21,7 @@ exclude_domains="google appspot \
 	twimg netflix nflx \
 	whatsapp youtube ytimg \
 	gstatic ggpht \
-	pscp"
+	pscp apple"
 
 exclude_out()
 {
