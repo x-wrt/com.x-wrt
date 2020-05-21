@@ -6684,6 +6684,7 @@ CONFIG_WPA_MSG_MIN_PRIORITY=3
 CONFIG_DRIVER_11N_SUPPORT=y
 CONFIG_DRIVER_11AC_SUPPORT=y
 CONFIG_DRIVER_11W_SUPPORT=y
+# CONFIG_WPA_ENABLE_WEP is not set
 # CONFIG_PACKAGE_wpa-supplicant-basic is not set
 # CONFIG_PACKAGE_wpa-supplicant-mesh-openssl is not set
 # CONFIG_PACKAGE_wpa-supplicant-mesh-wolfssl is not set
