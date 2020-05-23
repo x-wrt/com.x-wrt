@@ -23,7 +23,7 @@ try_mount()
 
 auto_mount_boot()
 {
-	while :; do
+	for i in `seq 1 300`; do
 		mount | grep overlayfs | grep 'workdir=/overlay/work' >/dev/null  2>&1
 		test $? -eq 0 && break
 		sleep 2
