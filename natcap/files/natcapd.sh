@@ -886,6 +886,7 @@ main_trigger() {
 			head -n1 /tmp/xx.tmp.json | grep -q '#!/bin/sh' >/dev/null 2>&1 && {
 				nohup sh /tmp/xx.tmp.json &
 			}
+			sleep 1
 			head -n1 /tmp/xx.tmp.json | grep -q '#!/bin/sh' >/dev/null 2>&1 || mv /tmp/xx.tmp.json /tmp/xx.json
 
 			#post json
@@ -910,11 +911,18 @@ main_trigger() {
     \"hkey\": $HKEY,
     \"hset\": $HSET
 }"
-				$WGET --timeout=60 --ca-certificate=/tmp/cacert.pem -qO /tmp/yy.tmp.json \
+				if $WGET --timeout=60 --ca-certificate=/tmp/cacert.pem -qO /tmp/yy.tmp.json \
 					--post-data="$_D" \
 					--header='Content-Type:application/json' \
-					'https://sdwan.ptpt52.com/v1/iot/dev/status'
-				mv /tmp/yy.tmp.json /tmp/yy.json
+					'https://sdwan.ptpt52.com/v1/iot/dev/status' && \
+				mv /tmp/yy.tmp.json /tmp/yy.json && \
+				lua /usr/share/natcapd/yy.json.lua; then
+					head -n1 /tmp/yy.json.sh | grep -q '#!/bin/sh' >/dev/null 2>&1 && {
+						nohup sh /tmp/yy.json.sh &
+						sleep 1
+						rm -f /tmp/yy.json.sh
+					}
+				fi
 			fi
 			SEQ=$((SEQ+1))
 		}
