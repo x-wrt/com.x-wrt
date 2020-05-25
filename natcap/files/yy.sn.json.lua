@@ -10,8 +10,8 @@ t = js.decode(t)
 
 if t.code == 0 then
 	print("Success!");
-	if t.exp then
-		print("Expire Date: %s" % os.date('%Y-%m-%d %H:%M:%S', t.exp))
+	if t.data and t.data.exp then
+		print("Expire Date: %s" % os.date('%Y-%m-%d %H:%M:%S', t.data.exp))
 	end
 else
 	print("Fail!");
