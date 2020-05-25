@@ -252,3 +252,6 @@ msgstr "激活"
 
 msgid "Enter your activation code"
 msgstr "输入你的激活码"
+
+msgid "Expire Date"
+msgstr "过期时间"

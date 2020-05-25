@@ -109,6 +109,10 @@ function status()
 		data.flows[1].rx = tonumber(data.flows[1].rx) + data.total_rx - tonumber(oldrx)
 	end
 
+	local yy = sys.exec("cat /tmp/yy.json")
+	yy = js.decode(yy) or {}
+	data.exp = os.date('%Y-%m-%d %H:%M:%S', yy.data and yy.data.exp or 0)
+
 	http.prepare_content("application/json")
 	http.write_json(data)
 end

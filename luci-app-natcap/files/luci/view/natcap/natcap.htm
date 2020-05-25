@@ -62,6 +62,8 @@ XHR.poll(7, '<%=luci.dispatcher.build_url("admin/services/natcap/status")%>', nu
 					obj.title = data.flows[1].tx + " B"
 				}
 			}
+			if (obj = document.getElementById('natcap_exp'))
+				obj.innerHTML = data.exp;
 		}
 	}
 );
@@ -80,5 +82,6 @@ XHR.poll(7, '<%=luci.dispatcher.build_url("admin/services/natcap/status")%>', nu
 		<tr><td width="33%"><strong><%:Last Month%></strong>&nbsp;(<span id="natcap_month1">-</span>)</td><td><%:Recv%>:&nbsp;<span id="natcap_recv1">-</span>&nbsp;&nbsp;<%:Send%>:&nbsp;<span id="natcap_send1">-</span>
 		&nbsp;&nbsp;|&nbsp;&nbsp;<a href="<%=luci.dispatcher.build_url("admin/services/natcap/get_natcap_flows1")%>"><%:Download details%></a>
 		</td></tr>
+		<tr><td width="33%"><strong><%:Expire Date%></strong></td><td id="natcap_exp">-</td></tr>
 	</table>
 </fieldset>
