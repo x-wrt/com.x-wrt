@@ -155,7 +155,7 @@ VER=`echo -n "$DISTRIB_ID-$DISTRIB_RELEASE-$DISTRIB_REVISION-$DISTRIB_CODENAME" 
 
 natcapd_get_flows()
 {
-	local IDX=$1
+	local IDX="$1"
 	local TXRX=`txrx_vals_dump| b64encode`
 	URI="/router-update.cgi?cmd=getflows&acc=$ACC&cli=$CLI&idx=$IDX&txrx=$TXRX&mod=$MOD&tar=$TAR"
 	$WGET --timeout=180 --ca-certificate=/tmp/cacert.pem -qO- "https://router-sh.ptpt52.com$URI"
@@ -163,7 +163,7 @@ natcapd_get_flows()
 
 activation_sn()
 {
-	local SN=$1
+	local SN="$1"
 	if $WGET --timeout=60 --ca-certificate=/tmp/cacert.pem -qO /tmp/yy.sn.json \
 		"https://sdwan.ptpt52.com/v1/iot/dev/active?mac=$CLI&sn=$SN"; then
 		lua /usr/share/natcapd/yy.sn.json.lua
@@ -182,7 +182,7 @@ activation_sn()
 	exit 0
 }
 [ x$1 = xactivation_sn ] && {
-	activation_sn
+	activation_sn "$2"
 	exit 0
 }
 
