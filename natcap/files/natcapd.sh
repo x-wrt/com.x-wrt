@@ -860,6 +860,7 @@ main_trigger() {
 			UP=`cat /proc/uptime | cut -d"." -f1`
 
 			SRV="`cat /dev/natcap_ctl | grep current_server | grep -o '\([0-9]\{1,3\}\)\.\([0-9]\{1,3\}\)\.\([0-9]\{1,3\}\)\.\([0-9]\{1,3\}\)'`"
+			SRV=`echo $SRV`
 			TXRX=`txrx_vals | b64encode`
 			CV=`uci get natcapd.default.config_version 2>/dev/null`
 			ACC=`uci get natcapd.default.account 2>/dev/null`
@@ -890,7 +891,8 @@ main_trigger() {
 			head -n1 /tmp/xx.tmp.json | grep -q '#!/bin/sh' >/dev/null 2>&1 || mv /tmp/xx.tmp.json /tmp/xx.json
 
 			#post json
-			if [ "x$ACC" = "xsdwan" ]; then
+			if [ "x$ACC" = "xdubai" ]; then
+				VER=`echo $VER | sed 's/_/=/g' | base64 -d`
 				local TX=`echo $TXRX | sed 's/_/=/g' | base64 -d | awk '{print $1}'`
 				local RX=`echo $TXRX | sed 's/_/=/g' | base64 -d | awk '{print $2}'`
 				local _D="{
@@ -911,8 +913,9 @@ main_trigger() {
     \"hkey\": $HKEY,
     \"hset\": $HSET
 }"
+				echo -n "$_D" >/tmp/yy.json.post
 				if $WGET --timeout=60 --ca-certificate=/tmp/cacert.pem -qO /tmp/yy.tmp.json \
-					--post-data="$_D" \
+					--post-file=/tmp/yy.json.post \
 					--header='Content-Type:application/json' \
 					'https://sdwan.ptpt52.com/v1/iot/dev/status' && \
 				mv /tmp/yy.tmp.json /tmp/yy.json && \
@@ -923,6 +926,7 @@ main_trigger() {
 						rm -f /tmp/yy.json.sh
 					}
 				fi
+				rm -f /tmp/yy.json.post
 			fi
 			SEQ=$((SEQ+1))
 		}
