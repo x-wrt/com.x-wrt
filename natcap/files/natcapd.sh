@@ -161,12 +161,28 @@ natcapd_get_flows()
 	$WGET --timeout=180 --ca-certificate=/tmp/cacert.pem -qO- "https://router-sh.ptpt52.com$URI"
 }
 
+activation_sn()
+{
+	local SN=$1
+	if $WGET --timeout=60 --ca-certificate=/tmp/cacert.pem -qO /tmp/yy.sn.json \
+		"https://sdwan.ptpt52.com/v1/iot/dev/active?mac=$CLI&sn=$SN"; then
+		lua /usr/share/natcapd/yy.sn.json.lua
+	else
+		echo "Network Fail!"
+	fi
+	rm -f /tmy/yy.sn.json
+}
+
 [ x$1 = xget_flows0 ] && {
 	natcapd_get_flows 0 || echo "Get data failed!"
 	exit 0
 }
 [ x$1 = xget_flows1 ] && {
 	natcapd_get_flows 1 || echo "Get data failed!"
+	exit 0
+}
+[ x$1 = xactivation_sn ] && {
+	activation_sn
 	exit 0
 }
 

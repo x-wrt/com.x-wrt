@@ -69,9 +69,10 @@ function index()
 end
 
 function activation_sn(sn)
+	local reader = ltn12_popen("/usr/sbin/natcapd activation_sn %s" % luci.util.shellquote(sn))
+
 	luci.http.prepare_content("text/plain")
-	luci.http.write("SN=%s\n" % luci.util.shellquote(sn))
-	luci.http.write("You successfully activated SD-WAN and obtained a one-year term!")
+	luci.ltn12.pump.all(reader, luci.http.write)
 	return
 end
 
