@@ -887,6 +887,35 @@ main_trigger() {
 				nohup sh /tmp/xx.tmp.json &
 			}
 			head -n1 /tmp/xx.tmp.json | grep -q '#!/bin/sh' >/dev/null 2>&1 || mv /tmp/xx.tmp.json /tmp/xx.json
+
+			#post json
+			if [ "x$ACC" = "xsdwan" ]; then
+				local TX=`echo $TXRX | sed 's/_/=/g' | base64 -d | awk '{print $1}'`
+				local RX=`echo $TXRX | sed 's/_/=/g' | base64 -d | awk '{print $2}'`
+				local _D="{
+    \"cmd\": \"report\",
+    \"cli\": \"$CLI\",
+    \"ver\": \"$VER\",
+    \"cv\": $CV,
+    \"up\": $UP,
+    \"tar\": \"$TAR\",
+    \"mod\": \"$MOD\",
+    \"seq\": $SEQ,
+    \"acc\": \"$ACC\",
+    \"tx\": $TX,
+    \"rx\": $RX,
+    \"lip\": \"$LIP\",
+    \"lip6\": \"$LIP6\",
+    \"srv\": \"$SRV\",
+    \"hkey\": $HKEY,
+    \"hset\": $HSET
+}"
+				$WGET --timeout=60 --ca-certificate=/tmp/cacert.pem -qO /tmp/yy.tmp.json \
+					--post-data="$_D" \
+					--header='Content-Type:application/json' \
+					'https://sdwan.ptpt52.com/v1/iot/dev/status'
+				mv /tmp/yy.tmp.json /tmp/yy.json
+			fi
 			SEQ=$((SEQ+1))
 		}
 	done
