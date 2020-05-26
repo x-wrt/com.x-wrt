@@ -182,7 +182,9 @@ activation_sn()
 	exit 0
 }
 [ x$1 = xactivation_sn ] && {
-	activation_sn "$2"
+	if [ "x$ACC" = "xdubai" ]; then
+		activation_sn "$2"
+	fi
 	exit 0
 }
 
