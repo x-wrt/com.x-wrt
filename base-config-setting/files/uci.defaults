@@ -316,6 +316,14 @@ test $version -lt 13 && {
 	version=13
 }
 
+test $version -lt 14 && {
+	if test -x /etc/init.d/nginx && ! test -e /etc/nginx/conf.d/dev.x-wrt.com.conf; then
+		rm -f /etc/uhttpd.crt /etc/uhttpd.key
+	fi
+	version=14
+}
+
+
 #default theme use bootstrap
 uci set luci.main.mediaurlbase='/luci-static/bootstrap'
 uci commit luci
