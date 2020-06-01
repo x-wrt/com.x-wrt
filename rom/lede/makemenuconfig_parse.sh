@@ -1,5 +1,10 @@
 #!/bin/sh
 
+lucistd="luci \
+		 luci-ssl \
+		 uhttpd \
+		 uhttpd-mod-ubus"
+
 usbprint="kmod-usb-printer \
 		  p910nd \
 		  luci-app-p910nd \
@@ -1087,7 +1092,9 @@ for t in $targets; do
 
 	if [ "x$flash_gt8m" = "x1" ] && [ "x$has_usb" = "x1" ]; then
 		mods="$mods $usb4g"
-		mods="$mods $moreapps $usbprint"
+		mods="$mods $moreapps $usbprint luci-ssl-nginx"
+	else
+		mods="$mods $lucistd"
 	fi
 	tname=`echo $t | sed 's/TARGET_DEVICE_/CONFIG_TARGET_DEVICE_PACKAGES_/'`
 	mods="$mods `get_target_mods $t`"
