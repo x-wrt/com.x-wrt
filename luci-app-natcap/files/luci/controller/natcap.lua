@@ -82,9 +82,9 @@ function status()
 	local http = require "luci.http"
 	local js = require "cjson.safe"
 
-	local text = ut.trim(sys.exec("cat /dev/natcap_ctl"))
-	local oldtxrx = ut.trim(sys.exec("cat /tmp/natcapd.txrx"))
-	local flows = sys.exec("cat /tmp/xx.json")
+	local text = ut.trim(sys.exec("cat /dev/natcap_ctl 2>/dev/null"))
+	local oldtxrx = ut.trim(sys.exec("cat /tmp/natcapd.txrx 2>/dev/null"))
+	local flows = sys.exec("cat /tmp/xx.json 2>/dev/null")
 
 	local oldtx = oldtxrx:gsub("(%w+) (%w+)", "%1")
 	local oldrx = oldtxrx:gsub("(%w+) (%w+)", "%2")
@@ -110,7 +110,7 @@ function status()
 		data.flows[1].rx = tonumber(data.flows[1].rx) + data.total_rx - tonumber(oldrx)
 	end
 
-	local yy = sys.exec("cat /tmp/yy.json")
+	local yy = sys.exec("cat /tmp/yy.json 2>/dev/null")
 	yy = js.decode(yy) or {}
 	data.exp = os.date('%Y-%m-%d %H:%M:%S', yy.data and yy.data.exp or 0)
 
@@ -125,7 +125,7 @@ function change_server()
 
 	sys.call("echo change_server >/dev/natcap_ctl")
 
-	local text = ut.trim(sys.exec("cat /dev/natcap_ctl"))
+	local text = ut.trim(sys.exec("cat /dev/natcap_ctl 2>/dev/null"))
 	local data = {
 		cur_server = text:gsub(".*current_server0=(.-)\n.*", "%1"),
 	}
@@ -138,7 +138,7 @@ function get_natcap_flows0()
 	local js = require "cjson.safe"
 	local sys  = require "luci.sys"
 	local filename = "Data-not-found"
-	local flows = sys.exec("cat /tmp/xx.json")
+	local flows = sys.exec("cat /tmp/xx.json 2>/dev/null")
 	flows = js.decode(flows) or {}
 	if flows.flows and flows.flows[1] and flows.flows[1].from and flows.flows[1].to then
 		filename = string.format("Flows_%s-%s", flows.flows[1].from, flows.flows[1].to)
@@ -155,7 +155,7 @@ function get_natcap_flows1()
 	local sys  = require "luci.sys"
 	local js = require "cjson.safe"
 	local filename = "Data-not-found"
-	local flows = sys.exec("cat /tmp/xx.json")
+	local flows = sys.exec("cat /tmp/xx.json 2>/dev/null")
 	flows = js.decode(flows) or {}
 	if flows.flows and flows.flows[2] and flows.flows[2].from and flows.flows[2].to then
 		filename = string.format("Flows_%s-%s", flows.flows[2].from, flows.flows[2].to)
