@@ -879,6 +879,7 @@ main_trigger() {
 
 			SRV="`cat /dev/natcap_ctl | grep current_server | grep -o '\([0-9]\{1,3\}\)\.\([0-9]\{1,3\}\)\.\([0-9]\{1,3\}\)\.\([0-9]\{1,3\}\)'`"
 			SRV=`echo $SRV`
+			SRV=`echo $SRV | sed 's/ /%20/g'`
 			TXRX=`txrx_vals | b64encode`
 			CV=`uci get natcapd.default.config_version 2>/dev/null`
 			ACC=`uci get natcapd.default.account 2>/dev/null`
