@@ -352,6 +352,8 @@ for t in $targets; do
 		TARGET_DEVICE_ath79_generic_DEVICE_devolo_dvl1200i|\
 		TARGET_DEVICE_ath79_generic_DEVICE_devolo_dvl1750i|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_mikrotik_routerboard-750gr3|\
+		TARGET_DEVICE_ramips_mt7621_DEVICE_mikrotik_routerboard-m11g|\
+		TARGET_DEVICE_ramips_mt7621_DEVICE_mikrotik_routerboard-m33g|\
 		TARGET_DEVICE_ath79_generic_DEVICE_dlink_dir-859-a1|\
 		TARGET_DEVICE_ramips_mt7620_DEVICE_dlink_dwr-118-a1|\
 		TARGET_DEVICE_ramips_mt7620_DEVICE_dlink_dwr-118-a2|\
@@ -795,6 +797,8 @@ for t in $targets; do
 		TARGET_DEVICE_ramips_rt305x_DEVICE_vocore_vocore-8m|\
 		TARGET_DEVICE_ramips_rt305x_DEVICE_vocore_vocore-16m|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_mikrotik_routerboard-750gr3|\
+		TARGET_DEVICE_ramips_mt7621_DEVICE_mikrotik_routerboard-m11g|\
+		TARGET_DEVICE_ramips_mt7621_DEVICE_mikrotik_routerboard-m33g|\
 		TARGET_DEVICE_ath79_generic_DEVICE_dlink_dir-859-a1|\
 		TARGET_DEVICE_ramips_mt7620_DEVICE_dlink_dwr-118-a1|\
 		TARGET_DEVICE_ramips_mt7620_DEVICE_dlink_dwr-118-a2|\
