@@ -132,6 +132,11 @@ for t in $targets; do
 	done
 done | while read line; do echo $line; done
 
+echo gen upload.list
+for i in `cat map.list | cut -d: -f2`; do
+	find bin/targets -type f -name $i
+done | tee upload.list
+
 echo check sdk build
 find bin/targets/ | grep -q -- -sdk- || {
 	echo no sdk build.
