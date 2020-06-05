@@ -139,11 +139,16 @@ find bin/targets/ | grep -q -- -sdk- || {
 }
 
 echo gen sdk_map.list
-find bin/targets/ | grep -- -sdk- | while read s; do basename $s; done | sort >sdk_map.list
+find bin/targets/ | grep -- -sdk- | while read s; do basename $s; done | sort >sdk_map.list.tmp
+for cfg in $CFGS; do
+cat sdk_map.list.tmp | grep ${cfg##config.}
+done | sort | uniq >sdk_map.list
+rm -rf sdk_map.list.tmp
 
 echo gen sdk_upload.list
-find bin/targets/ | grep -- -sdk- >sdk_upload.list
+echo -n >sdk_upload.list
 echo -n >sdk_sha256sums.txt
 cat sdk_map.list | while read bin; do
 	echo "$sha256sums" | grep "$bin" >>sdk_sha256sums.txt
+	find bin/targets/ -name $bin >>sdk_upload.list
 done
