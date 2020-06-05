@@ -19,6 +19,14 @@ echo sha256sums: sha256sums.txt >>map.list
 
 echo get x86bin
 x86bin="`find bin/targets/ | grep -- '\(-combined\|-uefi\|combined-efi\)' | sort | while read line; do basename $line; done`"
+x86bin=`for cfg in $CFGS; do
+	cat feeds/x/rom/lede/$cfg | grep CONFIG_VERSION_DIST | sed 's/"//g' | cut -d= -f2 | tr A-Z a-z | while read dist; do
+		for bin in $x86bin; do
+			echo $bin | grep "$dist-"
+		done
+	done
+done`
+
 test -n "$x86bin" && {
 	echo x86_64 or x86:
 	echo "$x86bin"
