@@ -35,6 +35,7 @@ for i in $IDXS; do
 		set -x
 		cp feeds/x/rom/lede/$cfg .config
 		sed -i "s/CONFIG_VERSION_NUMBER=\".*\"/CONFIG_VERSION_NUMBER=\"$CONFIG_VERSION_NUMBER\"/" ./.config
+		[ "x$i" != "x0" ] && \
 		sed -i "s/CONFIG_VERSION_DIST=\".*\"/CONFIG_VERSION_DIST=\"$CONFIG_VERSION_DIST\"/" ./.config
 		sed -i "s/CONFIG_VERSION_CODE=\".*\"/CONFIG_VERSION_CODE=\"$CONFIG_VERSION_CODE\"/" ./.config
 		sed -i "s%CONFIG_VERSION_HOME_URL=\".*\"%CONFIG_VERSION_HOME_URL=\"$CONFIG_VERSION_HOME_URL\"%" ./.config
