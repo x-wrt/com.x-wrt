@@ -498,9 +498,9 @@ for t in $targets; do
 		TARGET_DEVICE_bcm53xx_generic_DEVICE_netgear-r7900|\
 		TARGET_DEVICE_bcm53xx_generic_DEVICE_netgear-r8000|\
 		TARGET_DEVICE_mvebu_cortexa9_DEVICE_linksys_wrt1200ac|\
-		TARGET_DEVICE_mvebu_cortexa9_DEVICE_linksys_wrt1900ac|\
+		TARGET_DEVICE_mvebu_cortexa9_DEVICE_linksys_wrt1900ac-v1|\
 		TARGET_DEVICE_mvebu_cortexa9_DEVICE_linksys_wrt1900acs|\
-		TARGET_DEVICE_mvebu_cortexa9_DEVICE_linksys_wrt1900acv2|\
+		TARGET_DEVICE_mvebu_cortexa9_DEVICE_linksys_wrt1900ac-v2|\
 		TARGET_DEVICE_mvebu_cortexa9_DEVICE_linksys_wrt3200acm|\
 		TARGET_DEVICE_ramips_mt7620_DEVICE_hiwifi_hc5661|\
 		TARGET_DEVICE_ramips_mt7620_DEVICE_hiwifi_hc5761|\
@@ -744,9 +744,9 @@ for t in $targets; do
 		TARGET_DEVICE_bcm53xx_generic_DEVICE_netgear-r7900|\
 		TARGET_DEVICE_bcm53xx_generic_DEVICE_netgear-r8000|\
 		TARGET_DEVICE_mvebu_cortexa9_DEVICE_linksys_wrt1200ac|\
-		TARGET_DEVICE_mvebu_cortexa9_DEVICE_linksys_wrt1900ac|\
+		TARGET_DEVICE_mvebu_cortexa9_DEVICE_linksys_wrt1900ac-v1|\
 		TARGET_DEVICE_mvebu_cortexa9_DEVICE_linksys_wrt1900acs|\
-		TARGET_DEVICE_mvebu_cortexa9_DEVICE_linksys_wrt1900acv2|\
+		TARGET_DEVICE_mvebu_cortexa9_DEVICE_linksys_wrt1900ac-v2|\
 		TARGET_DEVICE_mvebu_cortexa9_DEVICE_linksys_wrt3200acm|\
 		TARGET_DEVICE_ramips_mt7620_DEVICE_lenovo_newifi-y1s|\
 		TARGET_DEVICE_ramips_mt7620_DEVICE_youku_yk1|\
