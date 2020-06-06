@@ -14,6 +14,10 @@ targets=$(cd feeds/x/rom/lede/ && cat $CFGS | grep TARGET_DEVICE_.*=y | sed 's/C
 
 echo -n >sha256sums.txt
 echo -n >map.list
+echo -n >upload.list
+echo -n >sdk_map.list
+echo -n >sdk_upload.list
+echo -n >sdk_sha256sums.txt
 
 echo sha256sums: sha256sums.txt >>map.list
 
@@ -77,7 +81,6 @@ test -n "$x86bin" && {
 }
 
 echo gen map.list
-echo -n >map.list
 for t in $targets; do
 	tt=`echo $t | sed 's/_DEVICE_/:/g'`
 	name=`echo $tt | cut -d: -f3`
@@ -157,7 +160,6 @@ for t in $targets; do
 done | while read line; do echo $line; done
 
 echo gen upload.list
-echo -n >upload.list
 for i in `cat map.list | cut -d: -f2`; do
 	find bin/targets -type f -name $i
 done | tee upload.list
@@ -169,7 +171,6 @@ find bin/targets/ | grep -q -- -sdk- || {
 }
 
 echo gen sdk_map.list
-echo -n >sdk_map.list
 find bin/targets/ | grep -- -sdk- | while read s; do basename $s; done | sort >sdk_map.list.tmp
 for cfg in $CFGS; do
 cat sdk_map.list.tmp | grep ${cfg##config.}
@@ -177,8 +178,6 @@ done | sort | uniq >sdk_map.list
 rm -rf sdk_map.list.tmp
 
 echo gen sdk_upload.list
-echo -n >sdk_upload.list
-echo -n >sdk_sha256sums.txt
 cat sdk_map.list | while read bin; do
 	echo "$sha256sums" | grep "$bin" >>sdk_sha256sums.txt
 	find bin/targets/ -name $bin >>sdk_upload.list
