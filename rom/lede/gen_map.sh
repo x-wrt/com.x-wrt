@@ -26,6 +26,18 @@ x86bin=`for cfg in $CFGS; do
 		done
 	done
 done`
+x86bin=`for cfg in $CFGS; do
+	if cat .build_x/$cfg | grep -q CONFIG_TARGET_x86_generic=y; then
+		for bin in $x86bin; do
+			echo $bin | grep "x86-generic"
+		done
+	fi
+	if cat .build_x/$cfg | grep -q CONFIG_TARGET_x86_64=y; then
+		for bin in $x86bin; do
+			echo $bin | grep "x86-64"
+		done
+	fi
+done`
 
 test -n "$x86bin" && {
 	echo x86_64 or x86:
