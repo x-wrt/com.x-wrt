@@ -20,10 +20,12 @@ echo sha256sums: sha256sums.txt >>map.list
 echo get x86bin
 x86bin="`find bin/targets/ | grep -- '\(-combined\|-uefi\|combined-efi\)' | sort | while read line; do basename $line; done`"
 x86bin=`for cfg in $CFGS; do
+	cat .build_x/$cfg | grep CONFIG_VERSION_NUMBER | sed 's/"//g' | cut -d= -f2 | tr _ - | while read ver; do
 	cat .build_x/$cfg | grep CONFIG_VERSION_DIST | sed 's/"//g' | cut -d= -f2 | tr A-Z a-z | while read dist; do
 		for bin in $x86bin; do
-			echo $bin | grep "$dist-"
+			echo $bin | grep "$dist-$ver"
 		done
+	done
 	done
 done`
 x86bin=`for cfg in $CFGS; do
@@ -74,6 +76,8 @@ test -n "$x86bin" && {
 	test -n "${x86_generic_uefi}" && echo "x86 generic (UEFI gpt):`echo -n ${x86_generic_uefi}`" >>map.list
 }
 
+echo gen map.list
+echo -n >map.list
 for t in $targets; do
 	tt=`echo $t | sed 's/_DEVICE_/:/g'`
 	name=`echo $tt | cut -d: -f3`
@@ -153,6 +157,7 @@ for t in $targets; do
 done | while read line; do echo $line; done
 
 echo gen upload.list
+echo -n >upload.list
 for i in `cat map.list | cut -d: -f2`; do
 	find bin/targets -type f -name $i
 done | tee upload.list
@@ -164,6 +169,7 @@ find bin/targets/ | grep -q -- -sdk- || {
 }
 
 echo gen sdk_map.list
+echo -n >sdk_map.list
 find bin/targets/ | grep -- -sdk- | while read s; do basename $s; done | sort >sdk_map.list.tmp
 for cfg in $CFGS; do
 cat sdk_map.list.tmp | grep ${cfg##config.}
