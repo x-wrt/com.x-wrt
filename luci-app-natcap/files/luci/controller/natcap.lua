@@ -51,7 +51,7 @@ function index()
 	page.dependent = true
 	page.acl_depends = { "luci-app-natcap" }
 
-	page = entry({"admin", "system", "natcapd_sys"}, cbi("natcap/natcapd_sys"), _("System Optimization"))
+	page = entry({"admin", "system", "natcapd_sys"}, cbi("natcap/natcapd_sys"), _("Advanced Options"))
 	page.i18n = "natcap"
 	page.dependent = true
 	page.acl_depends = { "luci-app-natcap" }

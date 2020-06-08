@@ -2,7 +2,7 @@
 
 local nt = require "luci.sys".net
 
-local m = Map("natcapd", luci.util.pcdata(translate("System Optimization")))
+local m = Map("natcapd", luci.util.pcdata(translate("Advanced Options")))
 
 local s = m:section(TypedSection, "natcapd", "")
 s.addremove = false

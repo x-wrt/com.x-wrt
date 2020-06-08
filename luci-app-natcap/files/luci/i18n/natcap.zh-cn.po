@@ -223,8 +223,8 @@ msgstr "访问的目标"
 msgid "Target Gateway"
 msgstr "出口网关"
 
-msgid "System Optimization"
-msgstr "系统优化"
+msgid "Advanced Options"
+msgstr "高级选项"
 
 msgid "Please select..."
 msgstr "请选择……"
