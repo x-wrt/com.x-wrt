@@ -9,7 +9,7 @@ function index()
 
 	local page
 
-	page = entry({"admin", "initsetup"}, cbi("wizard/wizard"), _("Inital Setup"))
+	page = entry({"admin", "initsetup"}, cbi("wizard/wizard"), _("Wizard"))
 	page.i18n = "wizard"
 	page.dependent = true
 	page.acl_depends = { "luci-app-wizard" }
