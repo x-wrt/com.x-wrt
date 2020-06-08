@@ -247,14 +247,11 @@ msgstr "速度限制错误"
 msgid "SD-WAN Service"
 msgstr "SD-WAN 服务"
 
-msgid "Activation"
-msgstr "激活"
-
 msgid "TOP UP"
 msgstr "充值"
 
-msgid "Enter your activation code"
-msgstr "输入你的激活码"
+msgid "Enter top up code"
+msgstr "输入充值码"
 
 msgid "Expire Date"
 msgstr "过期时间"
