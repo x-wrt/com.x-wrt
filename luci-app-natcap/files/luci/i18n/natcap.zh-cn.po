@@ -250,7 +250,7 @@ msgstr "SD-WAN 服务"
 msgid "TOP UP"
 msgstr "充值"
 
-msgid "Enter top up code"
+msgid "Enter top-up code"
 msgstr "输入充值码"
 
 msgid "Expire Date"
