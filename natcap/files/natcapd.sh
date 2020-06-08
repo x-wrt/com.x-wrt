@@ -911,14 +911,14 @@ main_trigger() {
 
 			#post json
 			if [ "x$ACC" = "xdubai" ]; then
-				VER=`echo $VER | sed 's/_/=/g' | base64 -d`
-				SRV=`echo $SRV | sed 's/%20/ /g'`
+				JVER=`echo $VER | sed 's/_/=/g' | base64 -d`
+				JSRV=`echo $SRV | sed 's/%20/ /g'`
 				local TX=`echo $TXRX | sed 's/_/=/g' | base64 -d | awk '{print $1}'`
 				local RX=`echo $TXRX | sed 's/_/=/g' | base64 -d | awk '{print $2}'`
 				local _D="{
     \"cmd\": \"report\",
     \"cli\": \"$CLI\",
-    \"ver\": \"$VER\",
+    \"ver\": \"$JVER\",
     \"cv\": $CV,
     \"up\": $UP,
     \"tar\": \"$TAR\",
@@ -929,7 +929,7 @@ main_trigger() {
     \"rx\": $RX,
     \"lip\": \"$LIP\",
     \"lip6\": \"$LIP6\",
-    \"srv\": \"$SRV\",
+    \"srv\": \"$JSRV\",
     \"hkey\": $HKEY,
     \"hset\": $HSET
 }"
