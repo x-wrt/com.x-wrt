@@ -28,7 +28,7 @@ function index()
 	page.acl_depends = { "luci-app-natcap" }
 	page = node("admin", "natcap_sdwan", "activation")
 	page.target = template("natcap/natcap_sdwan")
-	page.title  = _("Activation")
+	page.title  = _("TOP UP")
 	page = entry({"admin", "natcap_sdwan", "activation_sn"}, post("activation_sn"), nil)
 	page.leaf = true
 	page.acl_depends = { "luci-app-natcap" }
