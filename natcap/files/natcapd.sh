@@ -943,10 +943,10 @@ main_trigger() {
 					head -n1 /tmp/yy.json.sh | grep -q '#!/bin/sh' >/dev/null 2>&1 && {
 						nohup sh /tmp/yy.json.sh &
 						sleep 1
-						rm -f /tmp/yy.json.sh
+						test -e /tmp/natcapd.lck/debug || rm -f /tmp/yy.json.sh
 					}
 				fi
-				rm -f /tmp/yy.json.post
+				test -e /tmp/natcapd.lck/debug || rm -f /tmp/yy.json.post
 			fi
 			SEQ=$((SEQ+1))
 		}
