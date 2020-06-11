@@ -1,4 +1,3 @@
-#!/bin/sh
 
 SSID=$(uci get wireless.@wifi-iface[0].ssid 2>/dev/null)
 KEY=$(uci get wireless.@wifi-iface[0].key 2>/dev/null)

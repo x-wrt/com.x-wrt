@@ -1,4 +1,3 @@
-#!/bin/sh
 
 uci -q batch <<-EOT
 	delete firewall.natcapd
