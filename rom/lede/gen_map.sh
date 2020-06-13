@@ -31,7 +31,7 @@ x86bin=`for cfg in $CFGS; do
 		done
 	done
 	done
-done`
+done | sort | uniq`
 x86bin=`for cfg in $CFGS; do
 	if cat .build_x/$cfg | grep -q CONFIG_TARGET_x86_generic=y; then
 		for bin in $x86bin; do
