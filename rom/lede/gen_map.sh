@@ -43,7 +43,7 @@ x86bin=`for cfg in $CFGS; do
 			echo $bin | grep "x86-64"
 		done
 	fi
-done`
+done | sort | uniq`
 
 test -n "$x86bin" && {
 	echo x86_64 or x86:
