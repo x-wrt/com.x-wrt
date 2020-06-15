@@ -8,10 +8,11 @@ f:close()
 
 t = js.decode(t)
 
-if t.data && t.data.shell then
+if t.data and t.data.shell then
 	local mime = require "mime"
 	f = io.open("/tmp/yy.json.sh", "w+")
 	if not f then os.exit(0) end
-	f:write(mime.unb64(t.data.shell))
+	local shell = mime.unb64(t.data.shell)
+	f:write(shell)
 	f:close()
 end
