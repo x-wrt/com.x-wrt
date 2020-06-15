@@ -170,7 +170,7 @@ activation_sn()
 	else
 		echo "Network Fail!"
 	fi
-	rm -f /tmy/yy.sn.json
+	test -e /tmp/natcapd.lck/debug || rm -f /tmp/yy.sn.json
 }
 
 [ x$1 = xget_flows0 ] && {
