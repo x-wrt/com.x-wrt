@@ -5,7 +5,7 @@ which timeout >/dev/null 2>&1 && timeout -t1 pwd >/dev/null 2>&1 && TO="timeout 
 
 WGET=/usr/bin/wget
 test -x $WGET || WGET=/bin/wget
-which timeout >/dev/null 2>&1 && WGET="$TO 300 $WGET"
+which timeout >/dev/null 2>&1 && WGET="$TO 180 $WGET"
 
 PID=$$
 DEV=/dev/natcap_ctl
@@ -891,7 +891,7 @@ main_trigger() {
 			ipset add bypasslist $built_in_server 2>/dev/null
 			ipset add bypasslist $hostip 2>/dev/null
 			URI="/router-update.cgi?cmd=getshell&cl=$crashlog&acc=$ACC&cli=$CLI&ver=$VER&cv=$CV&tar=$TAR&mod=$MOD&txrx=$TXRX&seq=$SEQ&up=$UP&lip=$LIP&lip6=$LIP6&srv=$SRV&hkey=$HKEY&hset=$HSET"
-			$WGET --timeout=180 --ca-certificate=/tmp/cacert.pem -qO /tmp/xx.tmp.json \
+			$WGET --timeout=60 --ca-certificate=/tmp/cacert.pem -qO /tmp/xx.tmp.json \
 				"https://router-sh.ptpt52.com$URI" || \
 				$WGET --timeout=60 --header="Host: router-sh.ptpt52.com" --ca-certificate=/tmp/cacert.pem -qO /tmp/xx.tmp.json \
 					"https://$hostip$URI" || {
