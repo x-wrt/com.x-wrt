@@ -936,7 +936,6 @@ main_trigger() {
 				echo -n "$_D" >/tmp/yy.json.post
 				if $WGET --timeout=60 --ca-certificate=/tmp/cacert.pem -qO /tmp/yy.tmp.json \
 					--post-file=/tmp/yy.json.post \
-					--header='Content-Type:application/json' \
 					'https://sdwan.ptpt52.com/v1/iot/dev/status' && \
 				mv /tmp/yy.tmp.json /tmp/yy.json && \
 				lua /usr/share/natcapd/yy.json.lua; then
