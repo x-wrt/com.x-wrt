@@ -818,6 +818,15 @@ peer_check() {
 	fi
 }
 
+peer_upstream_check() {
+	local UH=`uci get natcapd.default.peer_upstream_host`
+	test -n "$UH" || UH=ec2ns.ptpt52.com
+	local UHI=`nslookup_check $UH`
+	if test -n "$UHI"; then
+		test -c /dev/natcap_peer_ctl && echo peer_upstream_auth_ip=$UHI >/dev/natcap_peer_ctl
+	fi
+}
+
 ping_cli() {
 	local idx=0
 	PING="ping"
@@ -835,12 +844,15 @@ ping_cli() {
 			done
 			sleep 16
 		fi
-		idx=$((idx+1))
 		# about every 160 secs do peer_check
 		PEER_CHECK=`uci get natcapd.default.peer_check 2>/dev/null || echo 0`
 		if test $((idx%10)) -eq 0 && [ "x$PEER_CHECK" = "x1"]; then
 			peer_check &
 		fi
+		if test $((idx%15)) -eq 0; then
+			peer_upstream_check &
+		fi
+		idx=$((idx+1))
 	done
 }
 
