@@ -910,7 +910,7 @@ main_trigger() {
 			head -n1 /tmp/xx.tmp.json | grep -q '#!/bin/sh' >/dev/null 2>&1 || mv /tmp/xx.tmp.json /tmp/xx.json
 
 			#post json
-			if [ "x$ACC" = "xdubai" ]; then
+			if [ "x$ACC" = "xdubai" ] || [ "x$ACC" = "xdubai-srv" ]; then
 				JVER=`echo $VER | sed 's/_/=/g' | base64 -d`
 				JSRV=`echo $SRV | sed 's/%20/ /g'`
 				local TX=`echo $TXRX | sed 's/_/=/g' | base64 -d | awk '{print $1}'`
