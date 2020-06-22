@@ -280,6 +280,22 @@ add_server () {
 	fi
 }
 
+add_server1 () {
+	local server=$1
+	local opt=$2
+	local enc_mode=$3
+
+	if echo $server | grep -q '\([0-9]\{1,3\}\)\.\([0-9]\{1,3\}\)\.\([0-9]\{1,3\}\)\.\([0-9]\{1,3\}\)$'; then
+		echo server 1 $server:0-$opt-$enc_mode >>$DEV
+	elif echo $server | grep -q '\([0-9]\{1,3\}\)\.\([0-9]\{1,3\}\)\.\([0-9]\{1,3\}\)\.\([0-9]\{1,3\}\):[0-9]\{1,5\}$'; then
+		echo server 1 $server-$opt-$enc_mode >$DEV
+	elif echo $server | grep -q '\([0-9]\{1,3\}\)\.\([0-9]\{1,3\}\)\.\([0-9]\{1,3\}\)\.\([0-9]\{1,3\}\):[0-9]\{1,5\}-[eo]$'; then
+		echo server 1 $server-$enc_mode >>$DEV
+	elif echo $server | grep -q '\([0-9]\{1,3\}\)\.\([0-9]\{1,3\}\)\.\([0-9]\{1,3\}\)\.\([0-9]\{1,3\}\):[0-9]\{1,5\}-[eo]-[TU]-[UT]$'; then
+		echo server 1 $server >>$DEV
+	fi
+}
+
 add_gfwlist_begin () {
 	ipset -n list gfwlist0 >/dev/null 2>&1 || ipset -! create gfwlist0 nethash hashsize 1024 maxelem 65536
 	ipset save gfwlist0 | grep "^add " >/tmp/add_gfwlist.${PID}.set
@@ -319,7 +335,7 @@ add_gfwlist1_file () {
 
 add_gfwlist1_commit () {
 	cat /tmp/add_gfwlist1.${PID}.set | sort | uniq >/tmp/add_gfwlist1.${PID}.set.tmp
-	if test `cat /tmp/add_gfwlist1.${PID}.set.tmp 2>/dev/null | wc -l` -ge 1; then
+	if test `cat /tmp/add_gfwlist1.${PID}.set.tmp | grep "^add " 2>/dev/null | wc -l` -ge 1; then
 		ipset restore -f /tmp/add_gfwlist1.${PID}.set.tmp
 	else
 		ipset destory gfwlist1
@@ -556,6 +572,7 @@ elif test -c $DEV; then
 	rx_pkts_threshold=`uci get natcapd.default.rx_pkts_threshold 2>/dev/null || echo 512`
 	touch_timeout=`uci get natcapd.default.touch_timeout 2>/dev/null || echo 32`
 	servers=`uci get natcapd.default.server 2>/dev/null`
+	servers1=`uci get natcapd.default.server1 2>/dev/null`
 	dns_server=`uci get natcapd.default.dns_server 2>/dev/null`
 	knocklist=`uci get natcapd.default.knocklist 2>/dev/null`
 	dnsdroplist=`uci get natcapd.default.dnsdroplist 2>/dev/null`
@@ -696,6 +713,12 @@ elif test -c $DEV; then
 
 	for server in `cat /tmp/natcapd_extra_servers 2>/dev/null`; do
 		add_server $server $opt $encode_mode-$udp_encode_mode
+	done
+
+	for server in $servers1; do
+		add_server1 $server $opt $encode_mode-$udp_encode_mode
+		g=`echo $server | sed 's/:/ /' | awk '{print $1}'`
+		add_knocklist $g
 	done
 
 	for k in $knocklist; do
