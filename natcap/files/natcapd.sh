@@ -320,7 +320,7 @@ add_list_file () {
 }
 # add_list_commit <0|1> <listname>
 add_list_commit () {
-	cat /tmp/add_${2}.${PID}.set | sort | uniq >/tmp/add_{2}.${PID}.set.tmp
+	cat /tmp/add_${2}.${PID}.set | sort | uniq >/tmp/add_${2}.${PID}.set.tmp
 	if [ "$1" == "0" ]; then
 		ipset restore -f /tmp/add_${2}.${PID}.set.tmp
 	else
