@@ -59,8 +59,8 @@ config natcapd 'default'
 	option u_hash '0'
 	option u_mask '0'
 	option protocol '1'
-	option si_mask '4278190080' #0xff000000
-	option ni_mask '8388608' #0x00800000
+	option si_mask '0xff000000' #0xff000000
+	option ni_mask '0x00800000' #0x00800000
 	option peer_check '1'
 	option peer_mode '0'
 	option peer_max_pmtu '1420'

@@ -138,11 +138,13 @@ protocol=`uci get natcapd.default.protocol 2>/dev/null || echo 0`
 echo protocol=$protocol >>$DEV
 
 # si_mask default 0xff000000
-si_mask=`uci get natcapd.default.si_mask 2>/dev/null || echo 4278190080`
+si_mask=`uci get natcapd.default.si_mask 2>/dev/null || echo 0xff000000`
+si_mask=$((si_mask))
 echo si_mask=${si_mask} >>$DEV
 
 # ni_mask default 0x00800000
-ni_mask=`uci get natcapd.default.ni_mask 2>/dev/null || echo 8388608`
+ni_mask=`uci get natcapd.default.ni_mask 2>/dev/null || echo 0x00800000`
+ni_mask=$((ni_mask))
 echo ni_mask=${ni_mask} >>$DEV
 
 ACC="$account"
