@@ -547,6 +547,10 @@ test -c $DEV && {
 		add_list_file ignorelist $g
 	done
 	add_list_commit 1 ignorelist
+
+	ni_forward=`uci get natcapd.default.ni_forward 2>/dev/null || echo 0`
+	ni_forward=$((ni_forward))
+	echo ni_forward=${ni_forward} >>$DEV
 }
 
 ipset -n list wechat_iplist >/dev/null 2>&1 || ipset -! create wechat_iplist iphash hashsize 1024 maxelem 65536
