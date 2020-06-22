@@ -318,7 +318,7 @@ add_gfwlist_commit () {
 }
 
 add_gfwlist1_begin () {
-	ipset destory gfwlist1 2>/dev/null
+	ipset destroy gfwlist1 2>/dev/null
 	ipset -! create gfwlist1 nethash hashsize 1024 maxelem 65536
 	ipset save gfwlist1 | grep "^add " >/tmp/add_gfwlist1.${PID}.set
 }
@@ -338,7 +338,7 @@ add_gfwlist1_commit () {
 	if test `cat /tmp/add_gfwlist1.${PID}.set.tmp | grep "^add " 2>/dev/null | wc -l` -ge 1; then
 		ipset restore -f /tmp/add_gfwlist1.${PID}.set.tmp
 	else
-		ipset destory gfwlist1
+		ipset destroy gfwlist1
 	fi
 	rm -f /tmp/add_gfwlist1.${PID}.set /tmp/add_gfwlist1.${PID}.set.tmp
 }
