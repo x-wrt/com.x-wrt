@@ -298,51 +298,39 @@ add_server1 () {
 	fi
 }
 
-add_gfwlist_begin () {
-	ipset -n list gfwlist0 >/dev/null 2>&1 || ipset -! create gfwlist0 nethash hashsize 1024 maxelem 65536
-	ipset save gfwlist0 | grep "^add " >/tmp/add_gfwlist.${PID}.set
-}
-
-add_gfwlist () {
-	echo add gfwlist0 $1 >>/tmp/add_gfwlist.${PID}.set
-}
-
-add_gfwlist_file () {
-	for ip in `cat $1`; do
-		echo add gfwlist0 $ip >>/tmp/add_gfwlist.${PID}.set
-	done
-}
-
-add_gfwlist_commit () {
-	cat /tmp/add_gfwlist.${PID}.set | sort | uniq >/tmp/add_gfwlist.${PID}.set.tmp
-	ipset restore -f /tmp/add_gfwlist.${PID}.set.tmp
-	rm -f /tmp/add_gfwlist.${PID}.set /tmp/add_gfwlist.${PID}.set.tmp
-}
-
-add_gfwlist1_begin () {
-	ipset destroy gfwlist1 2>/dev/null
-	ipset -! create gfwlist1 nethash hashsize 1024 maxelem 65536
-	ipset save gfwlist1 | grep "^add " >/tmp/add_gfwlist1.${PID}.set
-}
-
-add_gfwlist1 () {
-	echo add gfwlist1 $1 >>/tmp/add_gfwlist1.${PID}.set
-}
-
-add_gfwlist1_file () {
-	for ip in `cat $1`; do
-		echo add gfwlist1 $ip >>/tmp/add_gfwlist1.${PID}.set
-	done
-}
-
-add_gfwlist1_commit () {
-	cat /tmp/add_gfwlist1.${PID}.set | sort | uniq >/tmp/add_gfwlist1.${PID}.set.tmp
-	if test `cat /tmp/add_gfwlist1.${PID}.set.tmp | grep "^add " 2>/dev/null | wc -l` -ge 1; then
-		ipset restore -f /tmp/add_gfwlist1.${PID}.set.tmp
+# add_list_begin <0|1> <listname>
+add_list_begin () {
+	if [ "$1" == "0" ]; then
+		ipset -n list $2 >/dev/null 2>&1 || ipset -! create $2 nethash hashsize 1024 maxelem 65536
 	else
-		ipset destroy gfwlist1
+		ipset destroy $2 2>/dev/null
+		ipset -! create $2 nethash hashsize 1024 maxelem 65536
 	fi
-	rm -f /tmp/add_gfwlist1.${PID}.set /tmp/add_gfwlist1.${PID}.set.tmp
+	ipset save $2 | grep "^add " >/tmp/add_${2}.${PID}.set
+}
+# add_list <listname> <item>
+add_list () {
+	echo add $1 $2 >>/tmp/add_${1}.${PID}.set
+}
+# add_list_file <listname> <file>
+add_list_file () {
+	for ip in `cat $2`; do
+		echo add $1 $ip >>/tmp/add_${1}.${PID}.set
+	done
+}
+# add_list_commit <0|1> <listname>
+add_list_commit () {
+	cat /tmp/add_${2}.${PID}.set | sort | uniq >/tmp/add_{2}.${PID}.set.tmp
+	if [ "$1" == "0" ]; then
+		ipset restore -f /tmp/add_${2}.${PID}.set.tmp
+	else
+		if test `cat /tmp/add_${2}.${PID}.set.tmp | grep "^add " 2>/dev/null | wc -l` -ge 1; then
+			ipset restore -f /tmp/add_${2}.${PID}.set.tmp
+		else
+			ipset destroy ${2}
+		fi
+	fi
+	rm -f /tmp/add_${2}.${PID}.set /tmp/add_${2}.${PID}.set.tmp
 }
 
 add_gfw_udp_port_list () {
@@ -548,6 +536,17 @@ test -c $DEV && {
 	echo natcap_max_pmtu=${natcap_max_pmtu} >$DEV
 	dns_proxy_server=`uci get natcapd.default.dns_proxy_server 2>/dev/null || echo 0.0.0.0:0-o-T-T`
 	echo dns_proxy_server=$dns_proxy_server >>$DEV
+
+	ignorelist_file=`uci get natcapd.default.ignorelist_file 2>/dev/null`
+	ignorelist=`uci get natcapd.default.ignorelist 2>/dev/null`
+	add_list_begin 1 ignorelist
+	for g in $ignorelist; do
+		add_list ignorelist $g
+	done
+	for g in $ignorelist_file; do
+		add_list_file ignorelist $g
+	done
+	add_list_commit 1 ignorelist
 }
 
 ipset -n list wechat_iplist >/dev/null 2>&1 || ipset -! create wechat_iplist iphash hashsize 1024 maxelem 65536
@@ -727,23 +726,23 @@ elif test -c $DEV; then
 		add_knocklist $k
 	done
 
-	add_gfwlist_begin
+	add_list_begin 0 gfwlist0
 	for g in $gfwlist; do
-		add_gfwlist $g
+		add_list gfwlist0 $g
 	done
 	for g in $gfwlist_file; do
-		add_gfwlist_file $g
+		add_list_file gfwlist0 $g
 	done
-	add_gfwlist_commit
+	add_list_commit 0 gfwlist0
 
-	add_gfwlist1_begin
+	add_list_begin 1 gfwlist1
 	for g in $gfwlist1; do
-		add_gfwlist1 $g
+		add_list gfwlist1 $g
 	done
 	for g in $gfwlist1_file; do
-		add_gfwlist1_file $g
+		add_list_file gfwlist1 $g
 	done
-	add_gfwlist1_commit
+	add_list_commit 1 gfwlist1
 
 	for g in $gfw_udp_port_list; do
 		add_gfw_udp_port_list $g
