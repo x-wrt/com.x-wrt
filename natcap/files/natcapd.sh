@@ -502,6 +502,8 @@ test -c /dev/natcap_peer_ctl && {
 test -c $DEV && {
 	natcap_max_pmtu=`uci get natcapd.default.max_pmtu 2>/dev/null || echo 1440`
 	echo natcap_max_pmtu=${natcap_max_pmtu} >$DEV
+	dns_proxy_server=`uci get natcapd.default.dns_proxy_server 2>/dev/null || echo 0.0.0.0:0-o-T-T`
+	echo dns_proxy_server=$dns_proxy_server >>$DEV
 }
 
 ipset -n list wechat_iplist >/dev/null 2>&1 || ipset -! create wechat_iplist iphash hashsize 1024 maxelem 65536
@@ -518,11 +520,9 @@ elif test -c $DEV; then
 	touch /tmp/natcapd.running
 	debug=`uci get natcapd.default.debug 2>/dev/null || echo 3`
 	enable_encryption=`uci get natcapd.default.enable_encryption 2>/dev/null || echo 1`
-	clear_dst_on_reload=`uci get natcapd.default.clear_dst_on_reload 2>/dev/null || echo 0`
 	server_persist_timeout=`uci get natcapd.default.server_persist_timeout 2>/dev/null || echo 300`
 	server_persist_lock=`uci get natcapd.default.server_persist_lock 2>/dev/null || echo 0`
 	dns_proxy_drop=`uci get natcapd.default.dns_proxy_drop 2>/dev/null || echo 0`
-	dns_proxy_server=`uci get natcapd.default.dns_proxy_server 2>/dev/null || echo 0.0.0.0:0-o-T-T`
 	peer_multipath=`uci get natcapd.default.peer_multipath 2>/dev/null || echo 0`
 	tx_speed_limit=`uci get natcapd.default.tx_speed_limit 2>/dev/null || echo 0`
 	rx_speed_limit=`uci get natcapd.default.rx_speed_limit 2>/dev/null || echo 0`
@@ -612,7 +612,6 @@ elif test -c $DEV; then
 	echo server_persist_timeout=$server_persist_timeout >>$DEV
 	echo server_persist_lock=$server_persist_lock >>$DEV
 	echo dns_proxy_drop=$dns_proxy_drop >>$DEV
-	echo dns_proxy_server=$dns_proxy_server >>$DEV
 	echo peer_multipath=$peer_multipath >>$DEV
 	echo tx_speed_limit=$tx_speed_limit >>$DEV
 	echo rx_speed_limit=$rx_speed_limit >>$DEV
