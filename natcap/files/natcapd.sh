@@ -281,8 +281,7 @@ add_server () {
 }
 
 add_gfwlist_begin () {
-	ipset destory gfwlist0 2>/dev/null
-	ipset -! create gfwlist0 nethash hashsize 1024 maxelem 65536
+	ipset -n list gfwlist0 >/dev/null 2>&1 || ipset -! create gfwlist0 nethash hashsize 1024 maxelem 65536
 	ipset save gfwlist0 | grep "^add " >/tmp/add_gfwlist.${PID}.set
 }
 
@@ -298,11 +297,7 @@ add_gfwlist_file () {
 
 add_gfwlist_commit () {
 	cat /tmp/add_gfwlist.${PID}.set | sort | uniq >/tmp/add_gfwlist.${PID}.set.tmp
-	if test `cat /tmp/add_gfwlist.${PID}.set.tmp 2>/dev/null | wc -l` -ge 1; then
-		ipset restore -f /tmp/add_gfwlist.${PID}.set.tmp
-	else
-		ipset destory gfwlist0
-	fi
+	ipset restore -f /tmp/add_gfwlist.${PID}.set.tmp
 	rm -f /tmp/add_gfwlist.${PID}.set /tmp/add_gfwlist.${PID}.set.tmp
 }
 
