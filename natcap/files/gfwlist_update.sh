@@ -55,7 +55,7 @@ EX_DOMAIN="google.com \
 		   fastly.net \
 		   amazonaws.com"
 
-$WGET --timeout=60 --no-check-certificate -qO /tmp/gfwlist.$$.txt "https://raw.githubusercontent.com/gfwlist/gfwlist/master/gfwlist.txt?t=`date '+%s'`" && {
+$WGET --timeout=60 --no-check-certificate -qO /tmp/gfwlist.$$.txt "http://downloads.x-wrt.com/gfwlist.txt?t=`date '+%s'`" && {
 	for w in `echo $EX_DOMAIN` `cat /tmp/gfwlist.$$.txt | base64 -d | grep -v ^! | grep -v ^@@ | grep -o '[a-zA-Z0-9][-a-zA-Z0-9]*[.][-a-zA-Z0-9.]*[a-zA-Z]$'`; do
 		echo $w
 	done | sort | uniq | while read line; do
