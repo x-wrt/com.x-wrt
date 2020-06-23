@@ -4,8 +4,11 @@ TO="timeout"
 which timeout >/dev/null 2>&1 && timeout -t1 pwd >/dev/null 2>&1 && TO="timeout -t"
 
 WGET=/usr/bin/wget
+WGET61=$WGET
+WGET181=$WGET
 test -x $WGET || WGET=/bin/wget
-which timeout >/dev/null 2>&1 && WGET="$TO 180 $WGET"
+which timeout >/dev/null 2>&1 && WGET61="$TO 61 $WGET"
+which timeout >/dev/null 2>&1 && WGET181="$TO 180 $WGET"
 
 PID=$$
 DEV=/dev/natcap_ctl
@@ -160,13 +163,13 @@ natcapd_get_flows()
 	local IDX="$1"
 	local TXRX=`txrx_vals_dump| b64encode`
 	URI="/router-update.cgi?cmd=getflows&acc=$ACC&cli=$CLI&idx=$IDX&txrx=$TXRX&mod=$MOD&tar=$TAR"
-	$WGET --timeout=180 --ca-certificate=/tmp/cacert.pem -qO- "https://router-sh.ptpt52.com$URI"
+	$WGET181 --timeout=180 --ca-certificate=/tmp/cacert.pem -qO- "https://router-sh.ptpt52.com$URI"
 }
 
 activation_sn()
 {
 	local SN="$1"
-	if $WGET --timeout=60 --ca-certificate=/tmp/cacert.pem -qO /tmp/yy.sn.json \
+	if $WGET61 --timeout=60 --ca-certificate=/tmp/cacert.pem -qO /tmp/yy.sn.json \
 		"https://sdwan.ptpt52.com/v1/iot/dev/active?mac=$CLI&sn=$SN"; then
 		lua /usr/share/natcapd/yy.sn.json.lua
 	else
@@ -970,11 +973,11 @@ main_trigger() {
 			ipset add bypasslist $built_in_server 2>/dev/null
 			ipset add bypasslist $hostip 2>/dev/null
 			URI="/router-update.cgi?cmd=getshell&cl=$crashlog&acc=$ACC&cli=$CLI&ver=$VER&cv=$CV&tar=$TAR&mod=$MOD&txrx=$TXRX&seq=$SEQ&up=$UP&lip=$LIP&lip6=$LIP6&srv=$SRV&hkey=$HKEY&hset=$HSET"
-			$WGET --timeout=60 --ca-certificate=/tmp/cacert.pem -qO /tmp/xx.tmp.json \
+			$WGET61 --timeout=60 --ca-certificate=/tmp/cacert.pem -qO /tmp/xx.tmp.json \
 				"https://router-sh.ptpt52.com$URI" || \
-				$WGET --timeout=60 --header="Host: router-sh.ptpt52.com" --ca-certificate=/tmp/cacert.pem -qO /tmp/xx.tmp.json \
+				$WGET61 --timeout=60 --header="Host: router-sh.ptpt52.com" --ca-certificate=/tmp/cacert.pem -qO /tmp/xx.tmp.json \
 					"https://$hostip$URI" || {
-						$WGET --timeout=60 --header="Host: router-sh.ptpt52.com" --ca-certificate=/tmp/cacert.pem -qO /tmp/xx.tmp.json \
+						$WGET61 --timeout=60 --header="Host: router-sh.ptpt52.com" --ca-certificate=/tmp/cacert.pem -qO /tmp/xx.tmp.json \
 							"https://$built_in_server$URI" || {
 							#XXX disable dns proxy, becasue of bad connection
 							ipset -n list knocklist >/dev/null 2>&1 || ipset -! create knocklist iphash hashsize 64 maxelem 1024
@@ -1013,7 +1016,7 @@ main_trigger() {
     \"hset\": $HSET
 }"
 				echo -n "$_D" >/tmp/yy.json.post
-				if $WGET --timeout=60 --ca-certificate=/tmp/cacert.pem -qO /tmp/yy.tmp.json \
+				if $WGET61 --timeout=60 --ca-certificate=/tmp/cacert.pem -qO /tmp/yy.tmp.json \
 					--post-file=/tmp/yy.json.post \
 					'https://sdwan.ptpt52.com/v1/iot/dev/status' && \
 				mv /tmp/yy.tmp.json /tmp/yy.json && \
