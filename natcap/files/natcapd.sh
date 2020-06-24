@@ -842,7 +842,7 @@ dns_proxy_check () {
 	$TO 5 nslookup `date +%s`.dev.x-wrt.com | grep ".dev.x-wrt.com" -A5 | grep Address || {
 		logger -t "natcapd" "dns_proxy_server failed to lookup for x.dev.x-wrt.com"
 		test -c $DEV && echo dns_proxy_server=0.0.0.0:0-e-T-T >$DEV
-		sleep 30
+		sleep 60
 		logger -t "natcapd" "restart dns_proxy_server"
 		dns_proxy_server_reload
 	}
