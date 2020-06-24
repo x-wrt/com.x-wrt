@@ -54,11 +54,11 @@ for i in $IDXS; do
 			touch ./feeds/packages/libs/libgpg-error/Makefile
 			find package -type f -name Makefile -exec touch {} \;
 			#touch Makefile contains LINUX_[0-9].*
-			find feeds/packages/ package/ feeds/luci/ feeds/routing/ feeds/telephony/ feeds/x/ -type f -name Makefile | while read f; do
+			find feeds/packages/ package/ feeds/luci/ feeds/routing/ feeds/telephony/ feeds/freifunk/ feeds/x/ -type f -name Makefile | while read f; do
 				grep -q 'LINUX_[0-9].*' $f && touch $f && echo touch $f
 			done
 			#touch contains '@lt\|@le\|@gt\|@ge'
-			find feeds/packages/ package/ feeds/luci/ feeds/routing/ feeds/telephony/ feeds/x/ -type f -name '*.mk' -o -name Makefile | while read f; do
+			find feeds/packages/ package/ feeds/luci/ feeds/routing/ feeds/telephony/ feeds/freifunk/ feeds/x/ -type f -name '*.mk' -o -name Makefile | while read f; do
 				grep -q '@lt\|@le\|@gt\|@ge\|+.*:' $f && touch $f && echo touch $f
 			done
 			for f in touchlist; do

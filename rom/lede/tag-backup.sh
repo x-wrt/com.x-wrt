@@ -38,7 +38,7 @@ else
 	cd -
 fi
 
-for d in feeds/packages feeds/luci feeds/routing feeds/telephony; do
+for d in feeds/packages feeds/luci feeds/routing feeds/telephony feeds/freifunk; do
 	cd "$d" && {
 		echo
 		pwd
