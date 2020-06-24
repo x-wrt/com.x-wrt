@@ -107,6 +107,8 @@ define Package/natcapd-mini/install
 	$(INSTALL_DATA) $(PKG_BUILD_DIR)/cniplist.orig.set $(1)/usr/share/natcapd/cniplist.orig.set
 	$(INSTALL_DATA) $(PKG_BUILD_DIR)/local.set $(1)/usr/share/natcapd/local.set
 	$(INSTALL_DATA) $(PKG_BUILD_DIR)/getflix.set $(1)/usr/share/natcapd/getflix.set
+	$(INSTALL_DATA) $(PKG_BUILD_DIR)/gfwlist1.tocn.ip.txt $(1)/usr/share/natcapd/gfwlist1.tocn.ip.txt
+	$(INSTALL_DATA) $(PKG_BUILD_DIR)/gfwlist1.tocn.host.txt $(1)/usr/share/natcapd/gfwlist1.tocn.host.txt
 	$(INSTALL_DATA) ./files/natcapd.config.dubai $(1)/usr/share/natcapd/natcapd.config.dubai
 	$(INSTALL_DATA) ./files/cacert.pem $(1)/usr/share/natcapd/cacert.pem
 	$(INSTALL_DIR) $(1)/usr/sbin
