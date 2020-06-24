@@ -539,11 +539,16 @@ test -c /dev/natcap_peer_ctl && {
 	echo peer_subtype=${peer_subtype} >/dev/natcap_peer_ctl
 }
 
+dns_proxy_server_reload () {
+	dns_proxy_server=`uci get natcapd.default.dns_proxy_server 2>/dev/null || echo 0.0.0.0:0-o-T-T`
+	echo dns_proxy_server=$dns_proxy_server >>$DEV
+}
+
 test -c $DEV && {
 	natcap_max_pmtu=`uci get natcapd.default.max_pmtu 2>/dev/null || echo 1440`
 	echo natcap_max_pmtu=${natcap_max_pmtu} >$DEV
-	dns_proxy_server=`uci get natcapd.default.dns_proxy_server 2>/dev/null || echo 0.0.0.0:0-o-T-T`
-	echo dns_proxy_server=$dns_proxy_server >>$DEV
+
+	dns_proxy_server_reload
 
 	ignorelist_file=`uci get natcapd.default.ignorelist_file 2>/dev/null`
 	ignorelist=`uci get natcapd.default.ignorelist 2>/dev/null`
@@ -828,6 +833,29 @@ nslookup_check () {
 	echo "$ipaddr"
 }
 
+dns_proxy_check () {
+	test -c $DEV || return
+	cat $DEV | grep -q "dns_proxy_server=[1-9]" || return
+	#check dns
+	$TO 10 nslookup `date +%s`.dev.x-wrt.com | grep ".dev.x-wrt.com" -A5 | grep Address || \
+	$TO 8 nslookup `date +%s`.dev.x-wrt.com | grep ".dev.x-wrt.com" -A5 | grep Address || \
+	$TO 5 nslookup `date +%s`.dev.x-wrt.com | grep ".dev.x-wrt.com" -A5 | grep Address || {
+		logger -t "natcapd" "dns_proxy_server failed to lookup for x.dev.x-wrt.com"
+		test -c $DEV && echo dns_proxy_server=0.0.0.0:0-e-T-T >$DEV
+		sleep 30
+		logger -t "natcapd" "restart dns_proxy_server"
+		dns_proxy_server_reload
+	}
+}
+
+dns_proxy_check_loop () {
+	while :; do
+		test -f $LOCKDIR/$PID || return 0
+		sleep 16
+		dns_proxy_check
+	done
+}
+
 gfwlist_update_main () {
 	test -f /tmp/natcapd.running && sh /usr/share/natcapd/gfwlist_update.sh
 	while :; do
@@ -1063,6 +1091,8 @@ if mkdir $LOCKDIR >/dev/null 2>&1; then
 	gfwlist_update_main &
 	main_trigger &
 	natcapd_first_boot &
+
+	dns_proxy_check_loop &
 
 	ping_cli
 else
