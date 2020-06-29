@@ -72,6 +72,11 @@ test $version -lt 1 && {
 		uci commit dropbear
 		touch /etc/dropbear/authorized_keys && chmod 600 /etc/dropbear/authorized_keys
 	}
+	test -f /etc/config/uhttpd || test -d /etc/nginx/conf.d || {
+		uci set dropbear.@dropbear[0].PasswordAuth='on'
+		uci set dropbear.@dropbear[0].RootPasswordAuth='on'
+		uci commit dropbear
+	}
 	test -d /www/luci-static || {
 		uci set dropbear.@dropbear[0].PasswordAuth='on'
 		uci set dropbear.@dropbear[0].RootPasswordAuth='on'
