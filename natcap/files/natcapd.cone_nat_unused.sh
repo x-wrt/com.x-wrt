@@ -7,6 +7,19 @@
 
 cmd=$1
 
+get_fw_cone_unused_ports() {
+	local idx=0
+	while uci get firewall.@rule[$idx] >>/dev/null 2>&1; do
+	        dp=$(uci get firewall.@rule[$idx].dest_port 2>/dev/null)
+		    fm=$(uci get firewall.@rule[$idx].family 2>/dev/null)
+	        po=$(uci get firewall.@rule[$idx].proto 2>/dev/null)
+	        [ "x$po" = "xudp" -o "x$po" = "x" ] && [ "x$fm" = "xipv4" -o "x$fm" = "x" ] && {
+	                echo $dp
+	        }
+	        idx=$((idx+1))
+	done
+}
+
 init_cone_nat_unused()
 {
 	ipset destroy cone_nat_unused_dst >/dev/null 2>&1
@@ -26,6 +39,10 @@ init_cone_nat_unused()
 	cat /tmp/run/miniupnpd.leases | grep ^UDP | cat /tmp/run/miniupnpd.leases | cut -d: -f2,3,4 | sed 's/:/ /g' | while read eport iaddr iport; do
 		ipset add cone_nat_unused_port $eport >/dev/null 2>&1
 		ipset add cone_nat_unused_dst $iaddr,udp:$iport >/dev/null 2>&1
+	done
+
+	get_fw_cone_unused_ports | while read eport; do
+		ipset add cone_nat_unused_port $eport >/dev/null 2>&1
 	done
 }
 

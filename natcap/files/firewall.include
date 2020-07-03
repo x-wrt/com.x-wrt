@@ -20,4 +20,6 @@ iptables -A forwarding_wan_rule -m mark --mark 0x99/0xff -j ACCEPT
 iptables -C input_wan_rule -m mark --mark 0x99/0xff -j ACCEPT 2>/dev/null || \
 iptables -A input_wan_rule -m mark --mark 0x99/0xff -j ACCEPT
 
+test -f /usr/share/natcapd/natcapd.cone_nat_unused.sh && sh /usr/share/natcapd/natcapd.cone_nat_unused.sh init
+
 exit 0
