@@ -4716,8 +4716,13 @@ CONFIG_OPENSSL_WITH_PSK=y
 #
 # Engine/Hardware Support
 #
-# CONFIG_OPENSSL_ENGINE is not set
+CONFIG_OPENSSL_ENGINE=y
+# CONFIG_OPENSSL_ENGINE_BUILTIN is not set
+# CONFIG_OPENSSL_WITH_GOST is not set
+# CONFIG_PACKAGE_libopenssl-afalg is not set
+# CONFIG_PACKAGE_libopenssl-afalg_sync is not set
 CONFIG_PACKAGE_libopenssl-conf=m
+# CONFIG_PACKAGE_libopenssl-devcrypto is not set
 # CONFIG_PACKAGE_libwolfssl is not set
 # end of SSL
 
