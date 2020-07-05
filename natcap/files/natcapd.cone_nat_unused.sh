@@ -50,7 +50,6 @@ case $cmd in
 	delfwindex)
 	chain=$2
 	index=$3
-	port=`iptables -t nat -L $chain $index | grep -o "udp dpt:[0-9]*" | cut -d: -f2 | head -n1`
 	#udp dpt 12345 to 192.168.16.218 12345
 	iptables -t nat -L $chain $index | grep -o "udp dpt:[0-9].*to:.*" | sed 's/:/ /g' | while read _ _ eport _ iaddr iport; do
 		test -n "$eport" && \
@@ -78,8 +77,8 @@ case $cmd in
 	iaddr=$2
 	iport=$3
 	eport=$4
-	test -n "$port" && \
-	ipset del cone_nat_unused_port $port >/dev/null 2>&1
+	test -n "$eport" && \
+	ipset del cone_nat_unused_port $eport >/dev/null 2>&1
 	if iptables -t nat -L MINIUPNPD  | grep -q "^DNAT.*udp dpt:.*to:$iaddr:$iport$"; then
 		:
 	else
