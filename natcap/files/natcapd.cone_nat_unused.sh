@@ -10,13 +10,13 @@ cmd=$1
 get_fw_cone_unused_ports() {
 	local idx=0
 	while uci get firewall.@rule[$idx] >>/dev/null 2>&1; do
-	        dp=$(uci get firewall.@rule[$idx].dest_port 2>/dev/null)
-		    fm=$(uci get firewall.@rule[$idx].family 2>/dev/null)
-	        po=$(uci get firewall.@rule[$idx].proto 2>/dev/null)
-	        [ "x$po" = "xudp" -o "x$po" = "x" ] && [ "x$fm" = "xipv4" -o "x$fm" = "x" ] && {
-	                echo $dp
-	        }
-	        idx=$((idx+1))
+		dp=$(uci get firewall.@rule[$idx].dest_port 2>/dev/null)
+		fm=$(uci get firewall.@rule[$idx].family 2>/dev/null)
+		po=$(uci get firewall.@rule[$idx].proto 2>/dev/null)
+		if ( [ "x$po" = "x" ] || echo $po | grep -q udp ) && ( [ "x$fm" = "x" ] || echo $fm | grep -q ipv4 ); then
+			echo $dp
+		fi
+		idx=$((idx+1))
 	done
 }
 
@@ -54,7 +54,7 @@ case $cmd in
 	iptables -t nat -L $chain $index | grep -o "udp dpt:[0-9].*to:.*" | sed 's/:/ /g' | while read _ _ eport _ iaddr iport; do
 		test -n "$eport" && \
 		ipset del cone_nat_unused_port $eport >/dev/null 2>&1
-		RULE_CNT=`iptables -t nat -L MINIUPNPD  | grep "^DNAT.*udp dpt:.*to:$iaddr:$iport$" | wc -l`
+		RULE_CNT=`iptables -t nat -L MINIUPNPD | grep "^DNAT.*udp dpt:.*to:$iaddr:$iport$" | wc -l`
 		RULE_CNT=$((RULE_CNT+0))
 		if test $RULE_CNT -le 1; then
 			test -n "$iaddr" && test -n "$iport" && \
@@ -79,7 +79,7 @@ case $cmd in
 	eport=$4
 	test -n "$eport" && \
 	ipset del cone_nat_unused_port $eport >/dev/null 2>&1
-	if iptables -t nat -L MINIUPNPD  | grep -q "^DNAT.*udp dpt:.*to:$iaddr:$iport$"; then
+	if iptables -t nat -L MINIUPNPD | grep -q "^DNAT.*udp dpt:.*to:$iaddr:$iport$"; then
 		:
 	else
 		test -n "$iaddr" && test -n "$iport" && \
