@@ -62,8 +62,8 @@ natcapd_stop()
 	#never stop kmod
 	echo disabled=0 >>$DEV
 
-	rm /tmp/dnsmasq.d/accelerated-domains.gfwlist.dnsmasq.conf 2>/dev/null || \
-	rm /tmp/dnsmasq.d/custom-domains.gfwlist.dnsmasq.conf 2>/dev/null && \
+	rm -f /tmp/dnsmasq.d/accelerated-domains.gfwlist.dnsmasq.conf 2>/dev/null
+	rm -f /tmp/dnsmasq.d/custom-domains.gfwlist.dnsmasq.conf 2>/dev/null
 	/etc/init.d/dnsmasq restart
 
 	rm -f /tmp/natcapd.running
