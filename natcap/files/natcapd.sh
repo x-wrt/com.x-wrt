@@ -269,6 +269,9 @@ natcap_setup_firewall
 	exit 0
 }
 
+gfw0_dns_magic_server=`uci get natcapd.default.gfw0_dns_magic_server 2>/dev/null || echo 8.8.8.8`
+gfw1_dns_magic_server=`uci get natcapd.default.gfw1_dns_magic_server 2>/dev/null || echo 8.8.8.8`
+
 add_server () {
 	local server=$1
 	local opt=$2
@@ -346,12 +349,12 @@ add_knocklist () {
 	ipset -! add knocklist $1
 }
 add_gfwlist_domain () {
-	echo server=/$1/8.8.8.8 >>/tmp/dnsmasq.d/custom-domains.gfwlist.dnsmasq.conf
+	echo server=/$1/$gfw0_dns_magic_server >>/tmp/dnsmasq.d/custom-domains.gfwlist.dnsmasq.conf
 	echo ipset=/$1/gfwlist0 >>/tmp/dnsmasq.d/custom-domains.gfwlist.dnsmasq.conf
 }
 
 add_gfwlist1_domain () {
-	echo server=/$1/8.8.8.8 >>/tmp/dnsmasq.d/custom-domains.gfwlist.dnsmasq.conf
+	echo server=/$1/$gfw1_dns_magic_server >>/tmp/dnsmasq.d/custom-domains.gfwlist.dnsmasq.conf
 	echo ipset=/$1/gfwlist1 >>/tmp/dnsmasq.d/custom-domains.gfwlist.dnsmasq.conf
 }
 

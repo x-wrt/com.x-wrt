@@ -34,6 +34,8 @@ exclude_out()
 	rm -f /tmp/gfwlist.$$.exclude_out.1
 }
 
+gfw0_dns_magic_server=`uci get natcapd.default.gfw0_dns_magic_server 2>/dev/null || echo 8.8.8.8`
+
 WGET=/usr/bin/wget
 test -x $WGET || WGET=/bin/wget
 
@@ -60,7 +62,7 @@ $WGET --timeout=60 --no-check-certificate -qO /tmp/gfwlist.$$.txt "http://downlo
 		echo $w
 	done | sort | uniq | while read line; do
 		echo $line | grep -q github.com && continue
-		echo server=/$line/8.8.8.8 >>/tmp/accelerated-domains.gfwlist.dnsmasq.$$.conf
+		echo server=/$line/$gfw0_dns_magic_server >>/tmp/accelerated-domains.gfwlist.dnsmasq.$$.conf
 		echo ipset=/$line/gfwlist0 >>/tmp/accelerated-domains.gfwlist.dnsmasq.$$.conf
 	done
 	rm -f /tmp/gfwlist.$$.txt
