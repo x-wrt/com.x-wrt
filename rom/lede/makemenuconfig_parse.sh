@@ -450,6 +450,7 @@ for t in $targets; do
 		TARGET_DEVICE_ramips_mt7621_DEVICE_xiaomi_mir3p-nor|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_xiaomi_mir3p|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_xiaomi_redmi-router-ac2100|\
+		TARGET_DEVICE_ramips_mt7621_DEVICE_xiaomi_mi-router-ac2100|\
 		TARGET_DEVICE_ar71xx_generic_DEVICE_tl-wr1043nd-v4|\
 		TARGET_DEVICE_kirkwood_DEVICE_on100|\
 		TARGET_DEVICE_kirkwood_DEVICE_linksys_audi|\
@@ -966,6 +967,7 @@ for t in $targets; do
 		;;
 		#no usb
 		TARGET_DEVICE_ramips_mt7621_DEVICE_xiaomi_redmi-router-ac2100|\
+		TARGET_DEVICE_ramips_mt7621_DEVICE_xiaomi_mi-router-ac2100|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_xwrt_x-sdwan-1200|\
 		TARGET_DEVICE_ath79_generic_DEVICE_tplink_archer-c60-v3|\
 		TARGET_DEVICE_ath79_generic_DEVICE_devolo_magic-2-wifi|\
