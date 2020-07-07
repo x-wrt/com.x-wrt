@@ -527,6 +527,7 @@ for t in $targets; do
 		TARGET_DEVICE_ramips_mt76x8_DEVICE_cudy_wr1000|\
 		TARGET_DEVICE_ramips_mt76x8_DEVICE_vocore_vocore2-lite|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_tplink_re650-v1|\
+		TARGET_DEVICE_ramips_mt7621_DEVICE_tplink_re500-v1|\
 		TARGET_DEVICE_ath79_generic_DEVICE_adtran_bsap1840|\
 		TARGET_DEVICE_ath79_generic_DEVICE_adtran_bsap1800-v2|\
 		TARGET_DEVICE_ath79_generic_DEVICE_xwrt_m-ap300g|\
@@ -977,6 +978,7 @@ for t in $targets; do
 		TARGET_DEVICE_ramips_mt76x8_DEVICE_cudy_wr1000|\
 		TARGET_DEVICE_ath79_generic_DEVICE_dlink_dir-842-c3|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_tplink_re650-v1|\
+		TARGET_DEVICE_ramips_mt7621_DEVICE_tplink_re500-v1|\
 		TARGET_DEVICE_ath79_generic_DEVICE_adtran_bsap1840|\
 		TARGET_DEVICE_ath79_generic_DEVICE_adtran_bsap1800-v2|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_iodata_wn-gx300gr|\
