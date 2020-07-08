@@ -253,6 +253,8 @@ for t in $targets; do
 	has_usb=0
 	case $t in
 		#>8M flash
+		TARGET_DEVICE_ipq806x_generic_DEVICE_linksys_ea7500-v1|\
+		TARGET_DEVICE_ipq40xx_generic_DEVICE_glinet_gl-s1300|\
 		TARGET_DEVICE_ramips_mt7620_DEVICE_asus_rt-ac54u|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_linksys_ea7500-v2|\
 		TARGET_DEVICE_mvebu_cortexa53_DEVICE_glinet_gl-mv1000|\
@@ -667,6 +669,7 @@ for t in $targets; do
 	#check usb
 	case $t in
 		#with usb3
+		TARGET_DEVICE_ipq806x_generic_DEVICE_linksys_ea7500-v1|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_linksys_ea7500-v2|\
 		TARGET_DEVICE_mvebu_cortexa53_DEVICE_glinet_gl-mv1000|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_adslr_g7|\
@@ -966,6 +969,7 @@ for t in $targets; do
 			has_usb=1
 		;;
 		#no usb
+		TARGET_DEVICE_ipq40xx_generic_DEVICE_glinet_gl-s1300|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_xiaomi_redmi-router-ac2100|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_xiaomi_mi-router-ac2100|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_xwrt_x-sdwan-1200|\
