@@ -155,6 +155,7 @@ CONFIG_TARGET_MULTI_PROFILE=y
 # CONFIG_TARGET_ramips_rt305x_DEVICE_unbranded_xdx-rn502j is not set
 # CONFIG_TARGET_ramips_rt305x_DEVICE_zorlik_zl5900v2 is not set
 # CONFIG_TARGET_ramips_rt305x_DEVICE_zyxel_keenetic is not set
+# CONFIG_TARGET_ramips_rt305x_DEVICE_zyxel_keenetic-lite-b is not set
 # CONFIG_TARGET_ramips_rt305x_DEVICE_zyxel_keenetic-start is not set
 # CONFIG_TARGET_ramips_rt305x_DEVICE_zyxel_nbg-419n is not set
 # CONFIG_TARGET_ramips_rt305x_DEVICE_zyxel_nbg-419n-v2 is not set
@@ -269,6 +270,7 @@ CONFIG_TARGET_DEVICE_PACKAGES_ramips_rt305x_DEVICE_vocore_vocore-8m="blockd bloc
 # CONFIG_TARGET_DEVICE_ramips_rt305x_DEVICE_unbranded_xdx-rn502j is not set
 # CONFIG_TARGET_DEVICE_ramips_rt305x_DEVICE_zorlik_zl5900v2 is not set
 # CONFIG_TARGET_DEVICE_ramips_rt305x_DEVICE_zyxel_keenetic is not set
+# CONFIG_TARGET_DEVICE_ramips_rt305x_DEVICE_zyxel_keenetic-lite-b is not set
 # CONFIG_TARGET_DEVICE_ramips_rt305x_DEVICE_zyxel_keenetic-start is not set
 # CONFIG_TARGET_DEVICE_ramips_rt305x_DEVICE_zyxel_nbg-419n is not set
 # CONFIG_TARGET_DEVICE_ramips_rt305x_DEVICE_zyxel_nbg-419n-v2 is not set
@@ -582,7 +584,7 @@ CONFIG_TARGET_INIT_CMD="/sbin/init"
 CONFIG_TARGET_INIT_SUPPRESS_STDERR=y
 CONFIG_VERSIONOPT=y
 CONFIG_VERSION_DIST="X-WRT"
-CONFIG_VERSION_NUMBER="8.0_b202007090055"
+CONFIG_VERSION_NUMBER="8.0_b202007101505"
 CONFIG_VERSION_CODE="Focal"
 CONFIG_VERSION_REPO="http://downloads.openwrt.org/snapshots"
 CONFIG_VERSION_HOME_URL="https://x-wrt.com/"
@@ -5504,8 +5506,6 @@ CONFIG_POSTFIX_SQLITE=y
 CONFIG_POSTFIX_PCRE=y
 # CONFIG_POSTFIX_EAI is not set
 # end of Select postfix build options
-
-# CONFIG_PACKAGE_ssmtp is not set
 # end of Mail
 
 #
