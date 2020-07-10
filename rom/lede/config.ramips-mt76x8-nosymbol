@@ -71,6 +71,7 @@ CONFIG_TARGET_MULTI_PROFILE=y
 # CONFIG_TARGET_ramips_mt76x8_DEVICE_mediatek_linkit-smart-7688 is not set
 # CONFIG_TARGET_ramips_mt76x8_DEVICE_mediatek_mt7628an-eval-board is not set
 # CONFIG_TARGET_ramips_mt76x8_DEVICE_mercury_mac1200r-v2 is not set
+# CONFIG_TARGET_ramips_mt76x8_DEVICE_netgear_r6020 is not set
 # CONFIG_TARGET_ramips_mt76x8_DEVICE_netgear_r6080 is not set
 # CONFIG_TARGET_ramips_mt76x8_DEVICE_netgear_r6120 is not set
 # CONFIG_TARGET_ramips_mt76x8_DEVICE_onion_omega2 is not set
@@ -146,6 +147,7 @@ CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt76x8_DEVICE_glinet_vixmini="kmod-gpio-but
 # CONFIG_TARGET_DEVICE_ramips_mt76x8_DEVICE_mediatek_mt7628an-eval-board is not set
 CONFIG_TARGET_DEVICE_ramips_mt76x8_DEVICE_mercury_mac1200r-v2=y
 CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt76x8_DEVICE_mercury_mac1200r-v2="kmod-gpio-button-hotplug kmod-mt76x02-common kmod-mt76x2 kmod-mt76x2-common luci luci-ssl uhttpd uhttpd-mod-ubus"
+# CONFIG_TARGET_DEVICE_ramips_mt76x8_DEVICE_netgear_r6020 is not set
 # CONFIG_TARGET_DEVICE_ramips_mt76x8_DEVICE_netgear_r6080 is not set
 # CONFIG_TARGET_DEVICE_ramips_mt76x8_DEVICE_netgear_r6120 is not set
 # CONFIG_TARGET_DEVICE_ramips_mt76x8_DEVICE_onion_omega2 is not set
