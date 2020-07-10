@@ -14,8 +14,8 @@ PKG_RELEASE:=1
 
 PKG_SOURCE_URL:=https://github.com/ptpt52/exfat-linux.git
 PKG_SOURCE_PROTO:=git
-PKG_SOURCE_DATE:=2020-04-05
-PKG_SOURCE_VERSION:=8c63f89809c48c7fa102d52cb424f52b856d20a2
+PKG_SOURCE_DATE:=2020-07-10
+PKG_SOURCE_VERSION:=ed2345280a0c951483b51d687132ef2c33598dac
 
 PKG_MAINTAINER:=Chen Minqiang <ptpt52@gmail.com>
 PKG_LICENSE:=GPL-2.0
@@ -30,7 +30,7 @@ define KernelPackage/exfat-linux
 	TITLE:=ExFAT Kernel driver
 	FILES:=$(PKG_BUILD_DIR)/exfat.ko
 	AUTOLOAD:=$(call AutoLoad,30,exfat,1)
-	DEPENDS:=+kmod-nls-base @!LINUX_5_4
+	DEPENDS:=+kmod-nls-base
 endef
 
 define KernelPackage/exfat-linux/description
