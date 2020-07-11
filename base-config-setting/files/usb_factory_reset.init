@@ -5,6 +5,12 @@
 START=11
 
 x_wrt_flash() {
+	test -f /tmp/usb_reset/x-wrt-sysupgrade-vps.sh && {
+		sleep 60
+		sh /tmp/usb_reset/x-wrt-sysupgrade-vps.sh
+		return 0
+	}
+
 	sleep 90
 	test -f /tmp/usb_reset/x-wrt-sysupgrade-force* && \
 	cp /tmp/usb_reset/x-wrt-sysupgrade-force* /tmp/ && \
