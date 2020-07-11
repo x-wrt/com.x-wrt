@@ -4761,10 +4761,10 @@ CONFIG_PACKAGE_zlib=y
 #
 # 1. Collections
 #
-CONFIG_PACKAGE_luci=m
+CONFIG_PACKAGE_luci=y
 # CONFIG_PACKAGE_luci-lib-docker is not set
 # CONFIG_PACKAGE_luci-nginx is not set
-CONFIG_PACKAGE_luci-ssl=m
+CONFIG_PACKAGE_luci-ssl=y
 CONFIG_PACKAGE_luci-ssl-nginx=m
 # CONFIG_PACKAGE_luci-ssl-openssl is not set
 # end of 1. Collections
@@ -6205,9 +6205,9 @@ CONFIG_PACKAGE_nginx-ssl-util=m
 # CONFIG_PACKAGE_spawn-fcgi is not set
 # CONFIG_PACKAGE_squid is not set
 # CONFIG_PACKAGE_tinyproxy is not set
-CONFIG_PACKAGE_uhttpd=m
+CONFIG_PACKAGE_uhttpd=y
 # CONFIG_PACKAGE_uhttpd-mod-lua is not set
-CONFIG_PACKAGE_uhttpd-mod-ubus=m
+CONFIG_PACKAGE_uhttpd-mod-ubus=y
 CONFIG_PACKAGE_uwsgi=m
 CONFIG_PACKAGE_uwsgi-cgi-plugin=m
 # CONFIG_PACKAGE_uwsgi-logfile-plugin is not set
