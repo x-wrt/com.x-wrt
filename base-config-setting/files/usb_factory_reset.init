@@ -48,7 +48,6 @@ boot() {
 		uci commit dropbear
 
 		x_wrt_install_vps &
-		return 0
 	fi
 
 	local DEV=`test -f /rom/etc/sda.ready && echo /dev/sdb1 || echo /dev/sda1`
