@@ -42,13 +42,9 @@ x_wrt_flash() {
 }
 
 boot() {
-	if [ "$INITRAMFS" = "1" ]; then
-		uci set dropbear.@dropbear[0].PasswordAuth='on'
-		uci set dropbear.@dropbear[0].RootPasswordAuth='on'
-		uci commit dropbear
-
+	mount | grep -q "^/dev" || {
 		x_wrt_install_vps &
-	fi
+	}
 
 	local DEV=`test -f /rom/etc/sda.ready && echo /dev/sdb1 || echo /dev/sda1`
 	mkdir /tmp/usb_reset || return 0
