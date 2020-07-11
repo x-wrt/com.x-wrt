@@ -14,9 +14,10 @@ x_wrt_install_vps() {
 			mount $dev /tmp/block && {
 				test -e /tmp/block/x-wrt-install-vps.sh && {
 					sleep 60
-					sh /tmp/block/x-wrt-install-vps.sh
+					cp /tmp/block/x-wrt-install-vps.sh /tmp/
 					umount /tmp/block
 					rmdir /tmp/block
+					sh /tmp/x-wrt-install-vps.sh
 					return 0
 				}
 				umount /tmp/block
