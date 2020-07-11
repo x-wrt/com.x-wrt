@@ -4,13 +4,29 @@
 
 START=11
 
-x_wrt_flash() {
-	test -f /tmp/usb_reset/x-wrt-sysupgrade-vps.sh && {
-		sleep 60
-		sh /tmp/usb_reset/x-wrt-sysupgrade-vps.sh
-		return 0
-	}
+x_wrt_install_vps() {
+	local DEVS=$(fdisk -l | grep -o "^/dev.*" | head -n1 | awk '{print $1}')
+	DEVS="$DEVS /dev/sda1 /dev/vda1 /dev/xvda1"
+	DEVS=$(for dev in $DEVS; do echo $dev; done | sort | uniq)
+	for dev in $DEVS; do
+		test -b $dev && {
+			mkdir -p /tmp/block
+			mount $dev /tmp/block && {
+				test -e /tmp/block/x-wrt-install-vps.sh && {
+					sleep 60
+					sh /tmp/block/x-wrt-install-vps.sh
+					umount /tmp/block
+					rmdir /tmp/block
+					return 0
+				}
+				umount /tmp/block
+			}
+			rmdir /tmp/block
+		}
+	done
+}
 
+x_wrt_flash() {
 	sleep 90
 	test -f /tmp/usb_reset/x-wrt-sysupgrade-force* && \
 	cp /tmp/usb_reset/x-wrt-sysupgrade-force* /tmp/ && \
@@ -26,6 +42,15 @@ x_wrt_flash() {
 }
 
 boot() {
+	if [ "$INITRAMFS" = "1" ]; then
+		uci set dropbear.@dropbear[0].PasswordAuth='on'
+		uci set dropbear.@dropbear[0].RootPasswordAuth='on'
+		uci commit dropbear
+
+		x_wrt_install_vps &
+		return 0
+	fi
+
 	local DEV=`test -f /rom/etc/sda.ready && echo /dev/sdb1 || echo /dev/sda1`
 	mkdir /tmp/usb_reset || return 0
 	mount $DEV /tmp/usb_reset || {
