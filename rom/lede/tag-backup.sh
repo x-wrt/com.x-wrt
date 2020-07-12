@@ -16,6 +16,9 @@ test -n "$TAG" && release=0
 TAG=${TAG-$CONFIG_VERSION_NUMBER} &&
 test -n "$TAG" || fail no TAG
 
+if git tag | grep "^$TAG$"; then
+	:
+else
 if [ "x$release" = "x1" ]; then
 	sed -i "s/\(^src-git.*\.git$\)/\1;$TAG/" feeds.conf.default && \
 	git commit --signoff -am "release: $TAG" && \
@@ -37,13 +40,16 @@ else
 	git push origin $TAG || exit 1
 	cd -
 fi
+fi
 
 for d in feeds/packages feeds/luci feeds/routing feeds/telephony feeds/freifunk; do
 	cd "$d" && {
 		echo
 		pwd
-		git tag $TAG && \
-		git push origin $TAG || exit 1
+		git tag | grep "^$TAG$" || {
+			git tag $TAG && \
+			git push origin $TAG || exit 1
+		}
 		cd -
 	} || exit 1
 done
