@@ -22,7 +22,7 @@ echo -n >sdk_sha256sums.txt
 echo sha256sums: sha256sums.txt >>map.list
 
 echo get x86bin
-x86bin="`find bin/targets/ | grep -- '\(-combined\|-uefi\|combined-efi\)' | sort | while read line; do basename $line; done`"
+x86bin="`find bin/targets/ | grep -- '\(-combined\|-uefi\|combined-efi\|x86-64-generic-initramfs-kernel\)' | sort | while read line; do basename $line; done`"
 x86bin=`for cfg in $CFGS; do
 	cat .build_x/$cfg | grep CONFIG_VERSION_NUMBER | sed 's/"//g' | cut -d= -f2 | tr _ - | while read ver; do
 	cat .build_x/$cfg | grep CONFIG_VERSION_DIST | sed 's/"//g' | cut -d= -f2 | tr A-Z a-z | while read dist; do
