@@ -27,6 +27,23 @@ x_wrt_install_vps() {
 	done
 }
 
+x_wrt_base_setup() {
+	uname -m | grep -q x86 || return 0
+
+	#allow all input
+	local idx=0
+	while uci get firewall.@zone[$idx] >/dev/null 2>&1; do
+		uci set firewall.@zone[$idx].input='ACCEPT'
+		idx=$((idx+1))
+	done
+	uci commit firewall
+
+	#enable dropbear ssh
+	uci set dropbear.@dropbear[0].PasswordAuth='on'
+	uci set dropbear.@dropbear[0].RootPasswordAuth='on'
+	uci commit dropbear
+}
+
 x_wrt_flash() {
 	sleep 90
 	test -f /tmp/usb_reset/x-wrt-sysupgrade-force* && \
@@ -44,6 +61,7 @@ x_wrt_flash() {
 
 boot() {
 	mount | grep -q "^/dev" || {
+		x_wrt_base_setup
 		x_wrt_install_vps &
 	}
 
