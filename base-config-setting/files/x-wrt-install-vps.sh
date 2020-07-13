@@ -2,6 +2,7 @@
 
 BDEV=sda
 #network=172.21.170.245,255.255.240.0,172.21.175.253,8.8.8.8
+#network="117.18.13.159,255.255.255.0,117.18.13.1,8.8.8.8,initscript=dWNpIHNldCBuZXR3b3JrLmxhbi5pZm5hbWU9ZXRoMQp1Y2kgc2V0IG5ldHdvcmsud2FuLmlmbmFtZT1ldGgwCnVjaSBjb21taXQgbmV0d29yawo="
 network=dhcp
 
 vmroot=/tmp/block
