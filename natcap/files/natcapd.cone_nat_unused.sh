@@ -44,6 +44,8 @@ init_cone_nat_unused()
 	get_fw_cone_unused_ports | while read eport; do
 		ipset add cone_nat_unused_port $eport >/dev/null 2>&1
 	done
+
+	echo cone_nat_clean >/dev/natcap_ctl
 }
 
 case $cmd in
