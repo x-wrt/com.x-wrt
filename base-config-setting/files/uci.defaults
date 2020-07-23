@@ -308,6 +308,15 @@ test $version -lt 10 && {
 	version=10
 }
 
+# set dockerd.globals if exist
+test $version -lt 11 && {
+	uci get dockerd.globals 2>/dev/null && {
+		uci set dockerd.globals.data_root='/data/docker/'
+		uci commit dockerd
+	}
+	version=11
+}
+
 # clear /etc/dropbear/authorized_keys
 test $version -lt 12 && {
 	echo -n >/etc/dropbear/authorized_keys
