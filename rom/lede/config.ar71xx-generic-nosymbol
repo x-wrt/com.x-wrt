@@ -870,6 +870,7 @@ CONFIG_PKG_ASLR_PIE_REGULAR=y
 # CONFIG_PKG_ASLR_PIE_ALL is not set
 CONFIG_PKG_CC_STACKPROTECTOR_NONE=y
 # CONFIG_PKG_CC_STACKPROTECTOR_REGULAR is not set
+# CONFIG_PKG_CC_STACKPROTECTOR_STRONG is not set
 # CONFIG_KERNEL_CC_STACKPROTECTOR_NONE is not set
 CONFIG_KERNEL_CC_STACKPROTECTOR_REGULAR=y
 # CONFIG_KERNEL_CC_STACKPROTECTOR_STRONG is not set
@@ -910,8 +911,8 @@ CONFIG_EXTRA_GCC_CONFIG_OPTIONS=""
 # CONFIG_INSTALL_GFORTRAN is not set
 CONFIG_GDB=y
 CONFIG_USE_MUSL=y
-CONFIG_BINUTILS_VERSION_2_31_1=y
-CONFIG_BINUTILS_VERSION="2.31.1"
+CONFIG_BINUTILS_VERSION_2_34=y
+CONFIG_BINUTILS_VERSION="2.34"
 CONFIG_GCC_VERSION="8.4.0"
 # CONFIG_GCC_USE_IREMAP is not set
 CONFIG_LIBC="musl"
@@ -937,7 +938,7 @@ CONFIG_TARGET_INIT_CMD="/sbin/init"
 CONFIG_TARGET_INIT_SUPPRESS_STDERR=y
 CONFIG_VERSIONOPT=y
 CONFIG_VERSION_DIST="X-WRT"
-CONFIG_VERSION_NUMBER="8.0_b202007181807"
+CONFIG_VERSION_NUMBER="8.0_b202007250512"
 CONFIG_VERSION_CODE="Focal"
 CONFIG_VERSION_REPO="http://downloads.openwrt.org/snapshots"
 CONFIG_VERSION_HOME_URL="https://x-wrt.com/"
@@ -3421,6 +3422,7 @@ CONFIG_PACKAGE_kmod-fuse=m
 #
 # Hardware Monitoring Support
 #
+# CONFIG_PACKAGE_kmod-gl-mifi-mcu is not set
 # CONFIG_PACKAGE_kmod-hwmon-ad7418 is not set
 # CONFIG_PACKAGE_kmod-hwmon-adcxx is not set
 # CONFIG_PACKAGE_kmod-hwmon-ads1015 is not set
@@ -5259,7 +5261,6 @@ CONFIG_PACKAGE_libxml2=m
 # CONFIG_PACKAGE_musl-fts is not set
 # CONFIG_PACKAGE_mxml is not set
 # CONFIG_PACKAGE_nacl is not set
-# CONFIG_PACKAGE_nlohmannjson is not set
 # CONFIG_PACKAGE_nspr is not set
 # CONFIG_PACKAGE_oniguruma is not set
 # CONFIG_PACKAGE_open-isns is not set
@@ -5356,6 +5357,7 @@ CONFIG_LUCI_LANG_zh_Hans=y
 
 CONFIG_PACKAGE_luci-compat=y
 CONFIG_PACKAGE_luci-mod-admin-full=y
+# CONFIG_PACKAGE_luci-mod-battstatus is not set
 # CONFIG_PACKAGE_luci-mod-failsafe is not set
 # CONFIG_PACKAGE_luci-mod-freifunk is not set
 # CONFIG_PACKAGE_luci-mod-freifunk-community is not set
@@ -5460,6 +5462,7 @@ CONFIG_PACKAGE_luci-app-upnp=y
 # CONFIG_PACKAGE_luci-app-wifischedule is not set
 CONFIG_PACKAGE_luci-app-wireguard=m
 # CONFIG_PACKAGE_luci-app-wol is not set
+# CONFIG_PACKAGE_luci-app-xinetd is not set
 # CONFIG_PACKAGE_luci-app-yggdrasil is not set
 # end of 3. Applications
 
@@ -5498,6 +5501,7 @@ CONFIG_PACKAGE_luci-proto-wireguard=m
 #
 # 6. Libraries
 #
+CONFIG_PACKAGE_luci-lib-base=y
 # CONFIG_PACKAGE_luci-lib-dracula is not set
 # CONFIG_PACKAGE_luci-lib-httpclient is not set
 # CONFIG_PACKAGE_luci-lib-httpprotoutils is not set
