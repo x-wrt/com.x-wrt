@@ -21,6 +21,7 @@ wifi_setup_radio()
 			uci set wireless.$obj.wpa_group_rekey='0'
 			uci set wireless.$obj.wpa_pair_rekey='0'
 			uci set wireless.$obj.wpa_master_rekey='0'
+			uci set wireless.$obj.disassoc_low_ack='0'
 			uci set wireless.$obj.key="${SSID_PASSWD}"
 		}
 	}
