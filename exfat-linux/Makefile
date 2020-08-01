@@ -12,16 +12,19 @@ include $(INCLUDE_DIR)/kernel.mk
 PKG_NAME:=exfat-linux
 PKG_RELEASE:=1
 
-PKG_SOURCE_URL:=https://github.com/ptpt52/exfat-linux.git
+PKG_SOURCE_URL:=https://github.com/ptpt52/linux-exfat-oot.git
 PKG_SOURCE_PROTO:=git
-PKG_SOURCE_DATE:=2020-07-11
-PKG_SOURCE_VERSION:=5c4c05c0fd49e3731e6b02c56ac07746fd574684
+PKG_SOURCE_DATE:=2020-08-01
+PKG_SOURCE_VERSION:=20200801
 
 PKG_MAINTAINER:=Chen Minqiang <ptpt52@gmail.com>
 PKG_LICENSE:=GPL-2.0
 PKG_LICENSE_FILES:=LICENSE
 
 include $(INCLUDE_DIR)/package.mk
+
+TAR_OPTIONS+= --strip-components 1
+TAR_CMD=$(HOST_TAR) -C $(1) $(TAR_OPTIONS)
 
 define KernelPackage/exfat-linux
 	SECTION:=Applications
