@@ -23,6 +23,7 @@ config.mvebu-cortexa53
 config.bcm53xx-generic
 config.bcm27xx-bcm2710
 config.bcm27xx-bcm2711
+config.rockchip-armv8
 config.x86_64
 config.x86_64-docker
 config.x86_generic

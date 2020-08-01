@@ -253,6 +253,7 @@ for t in $targets; do
 	has_usb=0
 	case $t in
 		#>8M flash
+		TARGET_DEVICE_rockchip_armv8_DEVICE_friendlyarm_nanopi-r2s|\
 		TARGET_DEVICE_ipq806x_generic_DEVICE_linksys_ea7500-v1|\
 		TARGET_DEVICE_ipq40xx_generic_DEVICE_glinet_gl-s1300|\
 		TARGET_DEVICE_ramips_mt7620_DEVICE_asus_rt-ac54u|\
@@ -456,6 +457,9 @@ for t in $targets; do
 		TARGET_DEVICE_ar71xx_generic_DEVICE_tl-wr1043nd-v4|\
 		TARGET_DEVICE_kirkwood_DEVICE_on100|\
 		TARGET_DEVICE_kirkwood_DEVICE_linksys_audi|\
+		TARGET_DEVICE_kirkwood_DEVICE_linksys_ea4500|\
+		TARGET_DEVICE_kirkwood_DEVICE_linksys_ea3500|\
+		TARGET_DEVICE_kirkwood_DEVICE_linksys_e4200-v2|\
 		TARGET_DEVICE_ramips_mt76x8_DEVICE_hiwifi_hc5661a|\
 		TARGET_DEVICE_ramips_mt76x8_DEVICE_hiwifi_hc5761a|\
 		TARGET_DEVICE_ar71xx_generic_DEVICE_F9K1115V2|\
@@ -764,6 +768,7 @@ for t in $targets; do
 			has_usb=1
 		;;
 		#with usb2
+		TARGET_DEVICE_rockchip_armv8_DEVICE_friendlyarm_nanopi-r2s|\
 		TARGET_DEVICE_ramips_mt7620_DEVICE_asus_rt-ac54u|\
 		TARGET_DEVICE_ath79_generic_DEVICE_tplink_archer-d7-v1|\
 		TARGET_DEVICE_ath79_generic_DEVICE_tplink_archer-d7b-v1|\
@@ -908,6 +913,9 @@ for t in $targets; do
 		TARGET_DEVICE_ar71xx_generic_DEVICE_tl-wr1043nd-v2|\
 		TARGET_DEVICE_kirkwood_DEVICE_on100|\
 		TARGET_DEVICE_kirkwood_DEVICE_linksys_audi|\
+		TARGET_DEVICE_kirkwood_DEVICE_linksys_ea4500|\
+		TARGET_DEVICE_kirkwood_DEVICE_linksys_ea3500|\
+		TARGET_DEVICE_kirkwood_DEVICE_linksys_e4200-v2|\
 		TARGET_DEVICE_ar71xx_generic_DEVICE_archer-c7-v1|\
 		TARGET_DEVICE_ar71xx_generic_DEVICE_archer-c7-v2|\
 		TARGET_DEVICE_ar71xx_generic_DEVICE_tl-wdr7500-v3|\
