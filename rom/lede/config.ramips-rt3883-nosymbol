@@ -70,7 +70,7 @@ CONFIG_TARGET_MULTI_PROFILE=y
 # CONFIG_TARGET_ALL_PROFILES is not set
 CONFIG_TARGET_PER_DEVICE_ROOTFS=y
 CONFIG_TARGET_DEVICE_ramips_rt3883_DEVICE_asus_rt-n56u=y
-CONFIG_TARGET_DEVICE_PACKAGES_ramips_rt3883_DEVICE_asus_rt-n56u="blockd block-mount kmod-crypto-crc32c kmod-eeprom-93cx6 kmod-exfat-linux kmod-fs-autofs4 kmod-fs-ext4 kmod-fs-msdos kmod-fs-vfat kmod-fuse kmod-gpio-button-hotplug kmod-lib-crc16 kmod-mii kmod-nls-cp437 kmod-rt2800-lib kmod-rt2800-mmio kmod-rt2800-pci kmod-rt2800-soc kmod-rt2x00-lib kmod-rt2x00-mmio kmod-rt2x00-pci kmod-scsi-core kmod-usb2 kmod-usb-core kmod-usb-ehci kmod-usb-net kmod-usb-net-cdc-ether kmod-usb-net-rndis kmod-usb-ohci kmod-usb-storage kmod-usb-storage-uas luci luci-ssl ntfs-3g uhttpd uhttpd-mod-ubus"
+CONFIG_TARGET_DEVICE_PACKAGES_ramips_rt3883_DEVICE_asus_rt-n56u="blockd block-mount kmod-crypto-crc32c kmod-eeprom-93cx6 kmod-exfat-linux kmod-fs-autofs4 kmod-fs-ext4 kmod-fs-msdos kmod-fs-vfat kmod-fuse kmod-gpio-button-hotplug kmod-lib-crc16 kmod-mii kmod-nls-cp437 kmod-rt2800-lib kmod-rt2800-mmio kmod-rt2800-pci kmod-rt2800-soc kmod-rt2x00-lib kmod-rt2x00-mmio kmod-rt2x00-pci kmod-scsi-core kmod-usb2 kmod-usb-core kmod-usb-ehci kmod-usb-net kmod-usb-net-cdc-ether kmod-usb-net-rndis kmod-usb-ohci kmod-usb-storage kmod-usb-storage-uas ntfs-3g"
 # CONFIG_TARGET_DEVICE_ramips_rt3883_DEVICE_belkin_f9k1109v1 is not set
 # CONFIG_TARGET_DEVICE_ramips_rt3883_DEVICE_dlink_dir-645 is not set
 # CONFIG_TARGET_DEVICE_ramips_rt3883_DEVICE_edimax_br-6475nd is not set
@@ -393,7 +393,7 @@ CONFIG_TARGET_INIT_CMD="/sbin/init"
 CONFIG_TARGET_INIT_SUPPRESS_STDERR=y
 CONFIG_VERSIONOPT=y
 CONFIG_VERSION_DIST="X-WRT"
-CONFIG_VERSION_NUMBER="8.0_b202008021358"
+CONFIG_VERSION_NUMBER="8.0_b202008021411"
 CONFIG_VERSION_CODE="Focal"
 CONFIG_VERSION_REPO="http://downloads.openwrt.org/snapshots"
 CONFIG_VERSION_HOME_URL="https://x-wrt.com/"
@@ -4749,9 +4749,9 @@ CONFIG_PACKAGE_zlib=y
 #
 # 1. Collections
 #
-CONFIG_PACKAGE_luci=m
+CONFIG_PACKAGE_luci=y
 # CONFIG_PACKAGE_luci-nginx is not set
-CONFIG_PACKAGE_luci-ssl=m
+CONFIG_PACKAGE_luci-ssl=y
 CONFIG_PACKAGE_luci-ssl-nginx=m
 # CONFIG_PACKAGE_luci-ssl-openssl is not set
 # end of 1. Collections
@@ -6161,7 +6161,7 @@ CONFIG_PACKAGE_nginx-ssl-util=m
 # CONFIG_PACKAGE_tinyproxy is not set
 CONFIG_PACKAGE_uhttpd=y
 # CONFIG_PACKAGE_uhttpd-mod-lua is not set
-CONFIG_PACKAGE_uhttpd-mod-ubus=m
+CONFIG_PACKAGE_uhttpd-mod-ubus=y
 CONFIG_PACKAGE_uwsgi=m
 CONFIG_PACKAGE_uwsgi-cgi-plugin=m
 # CONFIG_PACKAGE_uwsgi-logfile-plugin is not set
