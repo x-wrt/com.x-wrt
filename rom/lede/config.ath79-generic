@@ -245,6 +245,7 @@ CONFIG_TARGET_MULTI_PROFILE=y
 # CONFIG_TARGET_ath79_generic_DEVICE_xwrt_gw521-16m is not set
 # CONFIG_TARGET_ath79_generic_DEVICE_xwrt_m-ap300g is not set
 # CONFIG_TARGET_ath79_generic_DEVICE_xwrt_mk-v0201 is not set
+# CONFIG_TARGET_ath79_generic_DEVICE_xwrt_xd1202g is not set
 # CONFIG_TARGET_ath79_generic_DEVICE_xiaomi_mi-router-4q is not set
 # CONFIG_TARGET_ath79_generic_DEVICE_yuncore_a770 is not set
 # CONFIG_TARGET_ath79_generic_DEVICE_yuncore_a782 is not set
@@ -525,6 +526,8 @@ CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_xwrt_m-ap300g=y
 CONFIG_TARGET_DEVICE_PACKAGES_ath79_generic_DEVICE_xwrt_m-ap300g="base-settings-xwrt-m-ap300g blockd block-mount kmod-ath9k kmod-ath9k-common kmod-crypto-crc32c kmod-exfat-linux kmod-fs-autofs4 kmod-fs-ext4 kmod-fs-msdos kmod-fs-vfat kmod-fuse kmod-gpio-button-hotplug kmod-leds-gpio kmod-lib-crc16 kmod-mii kmod-nls-cp437 kmod-phy-ath79-usb kmod-scsi-core kmod-usb2 kmod-usb-core kmod-usb-ehci kmod-usb-ledtrig-usbport kmod-usb-net kmod-usb-net-cdc-ether kmod-usb-net-rndis kmod-usb-ohci kmod-usb-serial kmod-usb-serial-pl2303 kmod-usb-storage kmod-usb-storage-uas luci-app-ledtrig-usbport ntfs-3g"
 CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_xwrt_mk-v0201=y
 CONFIG_TARGET_DEVICE_PACKAGES_ath79_generic_DEVICE_xwrt_mk-v0201="blockd block-mount kmod-ath9k kmod-ath9k-common kmod-crypto-crc32c kmod-exfat-linux kmod-fs-autofs4 kmod-fs-ext4 kmod-fs-msdos kmod-fs-vfat kmod-fuse kmod-gpio-button-hotplug kmod-leds-gpio kmod-lib-crc16 kmod-mii kmod-nls-cp437 kmod-phy-ath79-usb kmod-scsi-core kmod-usb2 kmod-usb-core kmod-usb-ehci kmod-usb-ledtrig-usbport kmod-usb-net kmod-usb-net-cdc-ether kmod-usb-net-rndis kmod-usb-ohci kmod-usb-storage kmod-usb-storage-uas luci-app-ledtrig-rssi luci-app-ledtrig-usbport ntfs-3g rssileds"
+CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_xwrt_xd1202g=y
+CONFIG_TARGET_DEVICE_PACKAGES_ath79_generic_DEVICE_xwrt_xd1202g="ath10k-firmware-qca9888-ct kmod-ath10k-ct kmod-ath9k kmod-ath9k-common kmod-gpio-button-hotplug kmod-hwmon-core kmod-leds-reset luci-app-wireguard luci-i18n-wireguard-en luci-i18n-wireguard-zh-cn luci-proto-wireguard wireguard-tools"
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_yuncore_a770 is not set
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_yuncore_a782 is not set
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_yuncore_xd4200 is not set
