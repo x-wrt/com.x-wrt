@@ -220,6 +220,7 @@ CONFIG_SHADOW_PASSWORDS=y
 # CONFIG_CLEAN_IPKG is not set
 # CONFIG_IPK_FILES_CHECKSUMS is not set
 # CONFIG_INCLUDE_CONFIG is not set
+# CONFIG_REPRODUCIBLE_DEBUG_INFO is not set
 # CONFIG_COLLECT_KERNEL_DEBUG is not set
 
 #
@@ -410,7 +411,7 @@ CONFIG_TARGET_INIT_CMD="/sbin/init"
 CONFIG_TARGET_INIT_SUPPRESS_STDERR=y
 CONFIG_VERSIONOPT=y
 CONFIG_VERSION_DIST="X-WRT"
-CONFIG_VERSION_NUMBER="8.0_b202008060748"
+CONFIG_VERSION_NUMBER="8.0_b202008071706"
 CONFIG_VERSION_CODE="Focal"
 CONFIG_VERSION_REPO="http://downloads.openwrt.org/snapshots"
 CONFIG_VERSION_HOME_URL="https://x-wrt.com/"
@@ -3525,6 +3526,7 @@ CONFIG_PACKAGE_kmod-usb3=m
 # CONFIG_PACKAGE_kmod-brcmutil is not set
 # CONFIG_PACKAGE_kmod-carl9170 is not set
 CONFIG_PACKAGE_kmod-cfg80211=y
+# CONFIG_PACKAGE_CFG80211_TESTMODE is not set
 # CONFIG_PACKAGE_kmod-hermes is not set
 # CONFIG_PACKAGE_kmod-hermes-pci is not set
 # CONFIG_PACKAGE_kmod-hermes-plx is not set
@@ -3551,6 +3553,7 @@ CONFIG_PACKAGE_MAC80211_MESH=y
 # CONFIG_PACKAGE_kmod-mt7615e is not set
 # CONFIG_PACKAGE_kmod-mt7663-firmware-ap is not set
 # CONFIG_PACKAGE_kmod-mt7663-firmware-sta is not set
+# CONFIG_PACKAGE_kmod-mt7663s is not set
 # CONFIG_PACKAGE_kmod-mt7663u is not set
 # CONFIG_PACKAGE_kmod-mt76x0e is not set
 # CONFIG_PACKAGE_kmod-mt76x0u is not set
@@ -4421,6 +4424,7 @@ CONFIG_PACKAGE_libcares=m
 # CONFIG_PACKAGE_libcoap is not set
 CONFIG_PACKAGE_libcomerr=y
 # CONFIG_PACKAGE_libconfig is not set
+# CONFIG_PACKAGE_libctf is not set
 # CONFIG_PACKAGE_libcups is not set
 # CONFIG_PACKAGE_libcurl is not set
 # CONFIG_PACKAGE_libcxx is not set
@@ -6434,6 +6438,7 @@ CONFIG_PACKAGE_odhcpd_ipv6only_ext_cer_id=0
 
 # CONFIG_PACKAGE_ola is not set
 # CONFIG_PACKAGE_omcproxy is not set
+# CONFIG_PACKAGE_ooniprobe is not set
 # CONFIG_PACKAGE_oor is not set
 # CONFIG_PACKAGE_open-iscsi is not set
 # CONFIG_PACKAGE_oping is not set
