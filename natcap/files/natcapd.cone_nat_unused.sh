@@ -18,6 +18,15 @@ get_fw_cone_unused_ports() {
 		fi
 		idx=$((idx+1))
 	done
+	idx=0
+	while uci get firewall.@redirect[$idx].src_dport >>/dev/null 2>&1; do
+		dp=$(uci get firewall.@redirect[$idx].src_dport 2>/dev/null)
+		po=$(uci get firewall.@redirect[$idx].proto 2>/dev/null)
+		if ( [ "x$po" = "x" ] || echo $po | grep -q udp ); then
+			echo $dp
+		fi
+		idx=$((idx+1))
+	done
 }
 
 init_cone_nat_unused()
