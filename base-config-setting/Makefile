@@ -79,6 +79,7 @@ ifneq ($(CONFIG_TARGET_ROOTFS_EXT4FS),)
 	$(INSTALL_DIR) $(1)/etc/init.d
 	$(INSTALL_BIN) ./files/disk_ready.init $(1)/etc/init.d/disk_ready
 	$(INSTALL_BIN) ./files/ethtool.init $(1)/etc/init.d/ethtool
+	$(INSTALL_BIN) ./files/diskv.sh $(1)/usr/sbin/diskv
 endif
 endef
 
