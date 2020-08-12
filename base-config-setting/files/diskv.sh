@@ -67,6 +67,7 @@ case "$cmd" in
 	;;
 	show)
 		cat /tmp/pd.img | grep "="
+	;;
 	*)
 		echo "usage:"
 		echo "    diskv show"
