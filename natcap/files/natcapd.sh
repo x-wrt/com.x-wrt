@@ -250,7 +250,7 @@ cone_wan_ip()
 
 natcap_connected()
 {
-	ipset list -n cniplist >/dev/null || return 0
+	ipset list -n cniplist >/dev/null 2>&1 || return 0
 	for connected_network_v4 in $(ip route | awk '{print $1}' | egrep '[0-9]{1,3}(\.[0-9]{1,3}){3}'); do
 		ipset -! add cniplist $connected_network_v4 >/dev/null 2>&1
 	done
