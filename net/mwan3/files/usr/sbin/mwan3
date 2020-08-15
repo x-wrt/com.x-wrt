@@ -251,6 +251,8 @@ stop()
 	fi
 	rm -rf $MWAN3_STATUS_DIR $MWAN3TRACK_STATUS_DIR
 
+	mwan3_ipv6_masq_cleanup
+
 	mwan3_unlock "command" "mwan3"
 
 }

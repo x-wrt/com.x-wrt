@@ -26,6 +26,18 @@ mwan3_rtmon_route_handle()
 		action="del"
 	fi
 
+	[ "$route_family" = "ipv6" ] &&
+	if [ -z "${route_line##default from*}" ] || [ -z "${route_line##::/0 from*}" ]; then
+		echo $route_line | sed 's/.* from \([^ ]*\) .*dev \([^ ]*\) .*/\1 \2/' | while read from dev; do
+			interface=$(ip6tables -t nat -S POSTROUTING | grep masq-help-.*-dev | grep "o $dev " | sed 's/.* mwan3_\([^ ]*\)_ipv6_src_from.*/\1/')
+			[ -n "$interface" ] && {
+				INTERFACE=$interface DEVICE=$dev ACTION=ifup mwan3_ipv6_masq_help
+				LOG debug "call INTERFACE=$interface DEVICE=$dev ACTION=ifup mwan3_ipv6_masq_help by($action $route_line)"
+			}
+		done
+		return
+	fi
+
 	# never add default route lines, since this is handled elsewhere
 	[ -z "${route_line##default*}" ] && return
 	[ -z "${route_line##::/0*}" ] && return

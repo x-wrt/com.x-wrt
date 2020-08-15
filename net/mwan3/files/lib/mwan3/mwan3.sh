@@ -62,6 +62,72 @@ mwan3_check_family_needs()
 	[ $NO_IPV6 -ne 0 ] && NEED_IPV6=0
 }
 
+# help ipv6 masq when network interface ifup/ifdown
+mwan3_ipv6_masq_help()
+{
+	local family enabled
+
+	config_get enabled "$INTERFACE" enabled 0
+	config_get family "$INTERFACE" family "any"
+	[ "$enabled" = "1" ] || return
+	[ "$family" = "ipv6" ] || [ "$family" = "any" ] || return
+
+	ip6tables -t nat -S POSTROUTING | grep "masq-help-${INTERFACE}-dev" | sed 's/^-A //' | while read line; do
+		`echo ip6tables -t nat -D $line | sed 's/"//g'`
+		$IPS destroy mwan3_${INTERFACE}_ipv6_src_from &>/dev/null
+	done
+
+	LOG debug "mwan3_ipv6_masq_help stage1 on INTERFACE=$INTERFACE DEVICE=$DEVICE ACTION=$ACTION"
+
+	[ "$ACTION" = "ifup" ] || return
+
+	$IPS destroy mwan3_${INTERFACE}_ipv6_src_from &>/dev/null
+	$IP6 route list table main | grep "\(^default\|^::/0\) from.*dev ${DEVICE} " | sed 's/.* from \([^ ]*\) .*dev \([^ ]*\) .*/\1 \2/' | while read from dev; do
+		$IPS list -n mwan3_${INTERFACE}_ipv6_src_from &>/dev/null || $IPS create mwan3_${INTERFACE}_ipv6_src_from hash:net hashsize 128 family inet6
+		$IPS add mwan3_${INTERFACE}_ipv6_src_from $from
+	done
+
+	if $IPS list -n mwan3_${INTERFACE}_ipv6_src_from &>/dev/null; then
+		ip6tables -t nat -A POSTROUTING -m set ! --match-set mwan3_${INTERFACE}_ipv6_src_from src -o ${DEVICE} -m comment --comment "masq-help-${INTERFACE}-dev" -j MASQUERADE
+	else
+		LOG notice "mwan3_ipv6_masq_help stage2 on INTERFACE=$INTERFACE DEVICE=$DEVICE ACTION=$ACTION no masq set"
+	fi
+
+	LOG debug "mwan3_ipv6_masq_help stage2 on INTERFACE=$INTERFACE DEVICE=$DEVICE ACTION=$ACTION"
+}
+
+mwan3_ipv6_masq_cleanup()
+{
+	ip6tables -t nat -S POSTROUTING | grep masq-help-.*-dev | sed 's/^-A //' | while read line; do
+		`echo ip6tables -t nat -D $line | sed 's/"//g'`
+	done
+	$IPS list -n | grep "mwan3_.*_ipv6_src_from" | while read line; do
+		$IPS destroy $line &>/dev/null
+	done
+}
+
+mwan3_ipv6_masq_restart()
+{
+	mwan3_ipv6_masq_cleanup
+
+	masq_help()
+	{
+		local INTERFACE=$1
+		local DEVICE=$(ubus call network.interface dump | jsonfilter -e "@.interface[@.interface=\"${INTERFACE}\"]['l3_device']")
+		config_get enabled "$INTERFACE" enabled 0
+		config_get family "$INTERFACE" family "any"
+		[ "$enabled" = "1" ] || return
+		[ "$family" = "ipv6" ] || [ "$family" = "any" ] || return
+		[ -n "$DEVICE" ] || {
+			LOG notice "masq_help called on $INTERFACE with no device set"
+			return
+		}
+		INTERFACE=$INTERFACE DEVICE=$DEVICE ACTION=ifup mwan3_ipv6_masq_help
+	}
+
+	config_foreach masq_help interface
+}
+
 mwan3_push_update()
 {
 	# helper function to build an update string to pass on to
