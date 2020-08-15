@@ -37,6 +37,30 @@ MM_UNREACHABLE=""
 
 command -v ip6tables > /dev/null
 NO_IPV6=$?
+NEED_IPV4=0
+NEED_IPV6=0
+
+mwan3_check_family_needs()
+{
+	local enabled family
+	check_family()
+	{
+		config_get enabled "$1" enabled 0
+		config_get family "$1" family "any"
+
+		[ "$enabled" = "0" ] && return
+		if [ "$family" = "any" ]; then
+			NEED_IPV4=1
+			NEED_IPV6=1
+		elif [ "$family" = "ipv4" ]; then
+			NEED_IPV4=1
+		elif [ "$family" = "ipv6" ]; then
+			NEED_IPV6=1
+		fi
+	}
+	config_foreach check_family interface
+	[ $NO_IPV6 -ne 0 ] && NEED_IPV6=0
+}
 
 mwan3_push_update()
 {
@@ -322,9 +346,20 @@ mwan3_set_connected_iptables()
 {
 	local connected_network_v6 source_network_v6 error
 	local update=""
-	mwan3_set_connected_ipv4
 
-	[ $NO_IPV6 -eq 0 ] && {
+	if [ $NEED_IPV6 -ne 0 ] || [ $NEED_IPV4 -ne 0 ]; then
+		mwan3_push_update -! create mwan3_connected list:set
+		mwan3_push_update flush mwan3_connected
+	fi
+
+	[ $NEED_IPV4 -ne 0 ] && {
+		mwan3_set_connected_ipv4
+		mwan3_push_update -! add mwan3_connected mwan3_connected_v4
+		mwan3_push_update -! create mwan3_dynamic_v4 hash:net
+		mwan3_push_update -! add mwan3_connected mwan3_dynamic_v4
+	}
+
+	[ $NEED_IPV6 -ne 0 ] && {
 		mwan3_push_update -! create mwan3_connected_v6 hash:net family inet6
 		mwan3_push_update flush mwan3_connected_v6
 
@@ -336,18 +371,12 @@ mwan3_set_connected_iptables()
 		for source_network_v6 in $($IP6 addr ls | sed -ne 's/ *inet6 \([^ \/]*\).* scope global.*/\1/p'); do
 			mwan3_push_update -! add mwan3_source_v6 "$source_network_v6"
 		done
+
+		mwan3_push_update -! add mwan3_connected mwan3_connected_v6
+		mwan3_push_update -! create mwan3_dynamic_v6 hash:net family inet6
+		mwan3_push_update -! add mwan3_connected mwan3_dynamic_v6
 	}
 
-	mwan3_push_update -! create mwan3_connected list:set
-	mwan3_push_update flush mwan3_connected
-	mwan3_push_update -! add mwan3_connected mwan3_connected_v4
-	[ $NO_IPV6 -eq 0 ] && mwan3_push_update -! add mwan3_connected mwan3_connected_v6
-
-	mwan3_push_update -! create mwan3_dynamic_v4 hash:net
-	mwan3_push_update -! add mwan3_connected mwan3_dynamic_v4
-
-	[ $NO_IPV6 -eq 0 ] && mwan3_push_update -! create mwan3_dynamic_v6 hash:net family inet6
-	[ $NO_IPV6 -eq 0 ] && mwan3_push_update -! add mwan3_connected mwan3_dynamic_v6
 	error=$(echo "$update" | $IPS restore 2>&1) || LOG error "set_connected_iptables: $error"
 }
 
@@ -356,7 +385,8 @@ mwan3_set_general_rules()
 	local IP
 
 	for IP in "$IP4" "$IP6"; do
-		[ "$IP" = "$IP6" ] && [ $NO_IPV6 -ne 0 ] && continue
+		[ "$IP" = "$IP4" ] && [ $NEED_IPV4 -eq 0 ] && continue
+		[ "$IP" = "$IP6" ] && [ $NEED_IPV6 -eq 0 ] && continue
 		RULE_NO=$((MM_BLACKHOLE+2000))
 		if [ -z "$($IP rule list | awk -v var="$RULE_NO:" '$1 == var')" ]; then
 			$IP rule add pref $RULE_NO fwmark $MMX_BLACKHOLE/$MMX_MASK blackhole
@@ -373,7 +403,8 @@ mwan3_set_general_iptables()
 {
 	local IPT current update error
 	for IPT in "$IPT4" "$IPT6"; do
-		[ "$IPT" = "$IPT6" ] && [ $NO_IPV6 -ne 0 ] && continue
+		[ "$IPT" = "$IPT4" ] && [ $NEED_IPV4 -eq 0 ] && continue
+		[ "$IPT" = "$IPT6" ] && [ $NEED_IPV6 -eq 0 ] && continue
 		current="$($IPT -S)"
 		update="*mangle"
 		if [ -n "${current##*-N mwan3_ifaces_in*}" ]; then
@@ -469,13 +500,12 @@ mwan3_create_iface_iptables()
 	[ "$family" = "any" ] && family="$3"
 	[ "$family" = "$3" ] || return 0
 
-	if [ "$family" = "ipv4" ]; then
+	if [ "$family" = "ipv4" ] && [ "$NEED_IPV4" -ne 0 ]; then
 		connected_name=mwan3_connected
 		IPT="$IPT4"
 		IPTR="$IPT4R"
 		$IPS -! create $connected_name list:set
-
-	elif [ "$family" = "ipv6" ] && [ $NO_IPV6 -eq 0 ]; then
+	elif [ "$family" = "ipv6" ] && [ $NEED_IPV6 -ne 0 ]; then
 		connected_name=mwan3_connected_v6
 		IPT="$IPT6"
 		IPTR="$IPT6R"
@@ -528,10 +558,9 @@ mwan3_delete_iface_iptables()
 	[ "$family" = "any" ] && family="$2"
 	[ "$family" = "$2" ] || return
 
-	if [ "$family" = "ipv4" ]; then
+	if [ "$family" = "ipv4" ] && [ $NEED_IPV4 -ne 0 ]; then
 		IPT="$IPT4"
-	elif [ "$family" = "ipv6" ]; then
-		[ $NO_IPV6 -ne 0 ] && return
+	elif [ "$family" = "ipv6" ] && [ $NEED_IPV6 -ne 0 ]; then
 		IPT="$IPT6"
 	else
 		return
@@ -636,11 +665,12 @@ mwan3_add_all_nondefault_routes()
 
 	mwan3_update_dev_to_table
 	for ipv in ipv4 ipv6; do
-		[ "$ipv" = "ipv6" ] && [ $NO_IPV6 -ne 0 ] && continue
-		if [ "$ipv" = "ipv4" ]; then
+		if [ "$ipv" = "ipv4" ] && [ $NEED_IPV4 -ne 0 ]; then
 			IP="$IP4"
-		elif [ "$ipv" = "ipv6" ]; then
+		elif [ "$ipv" = "ipv6" ] && [ $NEED_IPV6 -ne 0 ]; then
 			IP="$IP6"
+		else
+			continue
 		fi
 		tid=0
 		active_tbls=" "
@@ -666,12 +696,12 @@ mwan3_delete_iface_route()
 	[ "$family" = "any" ] && family="$2"
 	[ "$family" = "$2" ] || return
 
-	if [ "$family" = "ipv4" ]; then
+	if [ "$family" = "ipv4" ] && [ $NEED_IPV4 -ne 0 ]; then
 		$IP4 route flush table "$id"
-	fi
-
-	if [ "$family" = "ipv6" ] && [ $NO_IPV6 -eq 0 ]; then
+	elif [ "$family" = "ipv6" ] && [ $NEED_IPV6 -ne 0 ]; then
 		$IP6 route flush table "$id"
+	else
+		return
 	fi
 }
 
@@ -686,9 +716,9 @@ mwan3_create_iface_rules()
 	[ "$family" = "any" ] && family="$3"
 	[ "$family" = "$3" ] || return 0
 
-	if [ "$family" = "ipv4" ]; then
+	if [ "$family" = "ipv4" ] && [ $NEED_IPV4 -ne 0 ]; then
 		IP="$IP4"
-	elif [ "$family" = "ipv6" ] && [ $NO_IPV6 -eq 0 ]; then
+	elif [ "$family" = "ipv6" ] && [ $NEED_IPV6 -ne 0 ]; then
 		IP="$IP6"
 	else
 		return 0
@@ -717,9 +747,9 @@ mwan3_delete_iface_rules()
 	[ "$family" = "any" ] && family="$2"
 	[ "$family" = "$2" ] || return 0
 
-	if [ "$family" = "ipv4" ]; then
+	if [ "$family" = "ipv4" ] && [ $NEED_IPV4 -ne 0 ]; then
 		IP="$IP4"
-	elif [ "$family" = "ipv6" ] && [ $NO_IPV6 -eq 0 ]; then
+	elif [ "$family" = "ipv6" ] && [ $NEED_IPV6 -ne 0 ]; then
 		IP="$IP6"
 	else
 		return 0
@@ -756,7 +786,8 @@ mwan3_rtmon()
 	local protocol
 	for protocol in "ipv4" "ipv6"; do
 		pid="$(pgrep -f "mwan3rtmon $protocol")"
-		[ "$protocol" = "ipv6" ] && [ $NO_IPV6 -ne 0 ] && continue
+		[ "$protocol" = "ipv4" ] && [ $NEED_IPV4 -eq 0 ] && continue
+		[ "$protocol" = "ipv6" ] && [ $NEED_IPV6 -eq 0 ] && continue
 		if [ "${pid}" = "" ]; then
 			[ -x /usr/sbin/mwan3rtmon ] && /usr/sbin/mwan3rtmon $protocol &
 		fi
@@ -831,7 +862,7 @@ mwan3_set_policy()
 	current="$($IPT -S)"
 	update="*mangle"
 
-	if [ "$family" = "ipv4" ] && [ $is_offline -eq 0 ]; then
+	if [ "$family" = "ipv4" ] && [ $NEED_IPV4 -ne 0 ] && [ $is_offline -eq 0 ]; then
 		if [ "$metric" -lt "$lowest_metric_v4" ]; then
 			is_lowest=1
 			total_weight_v4=$weight
@@ -842,7 +873,7 @@ mwan3_set_policy()
 		else
 			continue
 		fi
-	elif [ "$family" = "ipv6" ] && [ $NO_IPV6 -eq 0 ] && [ $is_offline -eq 0 ]; then
+	elif [ "$family" = "ipv6" ] && [ $NEED_IPV6 -ne 0 ] && [ $is_offline -eq 0 ]; then
 		if [ "$metric" -lt "$lowest_metric_v6" ]; then
 			is_lowest=1
 			total_weight_v6=$weight
@@ -853,6 +884,8 @@ mwan3_set_policy()
 		else
 			continue
 		fi
+	else
+		continue
 	fi
 	if [ $is_lowest -eq 1 ]; then
 		mwan3_push_update -F "mwan3_policy_$policy"
@@ -907,7 +940,8 @@ mwan3_create_policies_iptables()
 	fi
 
 	for IPT in "$IPT4" "$IPT6"; do
-		[ "$IPT" = "$IPT6" ] && [ $NO_IPV6 -ne 0 ] && continue
+		[ "$IPT" = "$IPT4" ] && [ $NEED_IPV4 -eq 0 ] && continue
+		[ "$IPT" = "$IPT6" ] && [ $NEED_IPV6 -eq 0 ] && continue
 		current="$($IPT -S)"
 		update="*mangle"
 		if [ -n "${current##*-N mwan3_policy_$1*}" ]; then
@@ -1054,21 +1088,26 @@ mwan3_set_user_iptables_rule()
 		rule_policy=1
 		policy="mwan3_policy_$use_policy"
 		if [ "$sticky" -eq 1 ]; then
-			$IPS -! create "mwan3_sticky_v4_$rule" \
-			     hash:ip,mark markmask "$MMX_MASK" \
-			     timeout "$timeout"
-			[ $NO_IPV6 -eq 0 ] &&
-				$IPS -! create "mwan3_sticky_v6_$rule" \
-				     hash:ip,mark markmask "$MMX_MASK" \
-				     timeout "$timeout" family inet6
-			$IPS -! create "mwan3_sticky_$rule" list:set
-			$IPS -! add "mwan3_sticky_$rule" "mwan3_sticky_v4_$rule"
-			[ $NO_IPV6 -eq 0 ] &&
-				$IPS -! add "mwan3_sticky_$rule" "mwan3_sticky_v6_$rule"
+			if [ $NEED_IPV4 -ne 0 ] || [ $NEED_IPV6 -ne 0 ]; then
+				$IPS -! create "mwan3_sticky_$rule" list:set
+				[ $NEED_IPV4 -ne 0 ] && {
+					$IPS -! create "mwan3_sticky_v4_$rule" \
+					     hash:ip,mark markmask "$MMX_MASK" \
+					     timeout "$timeout"
+					$IPS -! add "mwan3_sticky_$rule" "mwan3_sticky_v4_$rule"
+				}
+				[ $NEED_IPV6 -ne 0 ] && {
+					$IPS -! create "mwan3_sticky_v6_$rule" \
+					     hash:ip,mark markmask "$MMX_MASK" \
+					     timeout "$timeout" family inet6
+					$IPS -! add "mwan3_sticky_$rule" "mwan3_sticky_v6_$rule"
+				}
+			fi
 		fi
 	fi
 
-	[ "$ipv" = "ipv6" ] && [ $NO_IPV6 -ne 0 ] && return
+	[ "$ipv" = "ipv4" ] && [ $NEED_IPV4 -eq 0 ] && return
+	[ "$ipv" = "ipv6" ] && [ $NEED_IPV6 -eq 0 ] && return
 	[ "$family" = "ipv4" ] && [ "$ipv" = "ipv6" ] && return
 	[ "$family" = "ipv6" ] && [ "$ipv" = "ipv4" ] && return
 
@@ -1169,14 +1208,15 @@ mwan3_set_user_rules()
 	local current update error
 
 	for ipv in ipv4 ipv6; do
-		if [ "$ipv" = "ipv4" ]; then
+		if [ "$ipv" = "ipv4" ] && [ $NEED_IPV4 -ne 0 ]; then
 			IPT="$IPT4"
 			IPTR="$IPT4R"
-		elif [ "$ipv" = "ipv6" ]; then
+		elif [ "$ipv" = "ipv6" ] && [ $NEED_IPV6 -ne 0 ]; then
 			IPT="$IPT6"
 			IPTR="$IPT6R"
+		else
+			continue
 		fi
-		[ "$ipv" = "ipv6" ] && [ $NO_IPV6 -ne 0 ] && continue
 		update="*mangle"
 		current="$($IPT -S)"
 
@@ -1193,8 +1233,6 @@ mwan3_set_user_rules()
 		mwan3_push_update ""
 		error=$(echo "$update" | $IPTR 2>&1) || LOG error "set_user_rules: $error"
 	done
-
-
 }
 
 mwan3_set_iface_hotplug_state() {
