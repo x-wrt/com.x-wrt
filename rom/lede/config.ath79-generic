@@ -300,17 +300,13 @@ CONFIG_TARGET_DEVICE_PACKAGES_ath79_generic_DEVICE_buffalo_wzr-hp-g450h="aria2 b
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_comfast_cf-e110n-v2 is not set
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_comfast_cf-e120a-v3 is not set
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_comfast_cf-e130n-v2 is not set
-CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_comfast_cf-e313ac=y
-CONFIG_TARGET_DEVICE_PACKAGES_ath79_generic_DEVICE_comfast_cf-e313ac="ath10k-firmware-qca9888-ct kmod-ath10k-ct-smallbuffers kmod-ath9k kmod-ath9k-common kmod-gpio-button-hotplug kmod-hwmon-core kmod-leds-gpio luci-app-ledtrig-rssi luci-app-wireguard luci-i18n-wireguard-en luci-i18n-wireguard-zh-cn luci-proto-wireguard rssileds wireguard-tools"
+# CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_comfast_cf-e313ac is not set
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_comfast_cf-e314n-v2 is not set
-CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_comfast_cf-e5=y
-CONFIG_TARGET_DEVICE_PACKAGES_ath79_generic_DEVICE_comfast_cf-e5="kmod-ath9k kmod-ath9k-common kmod-gpio-button-hotplug kmod-leds-gpio kmod-mii kmod-phy-ath79-usb kmod-usb2 kmod-usb-core kmod-usb-ehci kmod-usb-net kmod-usb-net-qmi-wwan kmod-usb-wdm luci-app-ledtrig-rssi luci-app-wireguard luci-i18n-wireguard-en luci-i18n-wireguard-zh-cn luci-proto-wireguard rssileds wireguard-tools"
+# CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_comfast_cf-e5 is not set
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_comfast_cf-e560ac is not set
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_comfast_cf-ew72 is not set
-CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_comfast_cf-wr650ac-v1=y
-CONFIG_TARGET_DEVICE_PACKAGES_ath79_generic_DEVICE_comfast_cf-wr650ac-v1="ath10k-firmware-qca988x-ct kmod-ath10k-ct kmod-ath9k kmod-ath9k-common kmod-gpio-button-hotplug kmod-hwmon-core luci-app-wireguard luci-i18n-wireguard-en luci-i18n-wireguard-zh-cn luci-proto-wireguard wireguard-tools"
-CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_comfast_cf-wr650ac-v2=y
-CONFIG_TARGET_DEVICE_PACKAGES_ath79_generic_DEVICE_comfast_cf-wr650ac-v2="ath10k-firmware-qca988x-ct kmod-ath10k-ct kmod-ath9k kmod-ath9k-common kmod-gpio-button-hotplug kmod-hwmon-core luci-app-wireguard luci-i18n-wireguard-en luci-i18n-wireguard-zh-cn luci-proto-wireguard wireguard-tools"
+# CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_comfast_cf-wr650ac-v1 is not set
+# CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_comfast_cf-wr650ac-v2 is not set
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_comfast_cf-wr752ac-v1 is not set
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_compex_wpj344-16m is not set
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_compex_wpj531-16m is not set
@@ -594,7 +590,6 @@ CONFIG_MODULE_DEFAULT_kmod-tpm-i2c-atmel=y
 CONFIG_MODULE_DEFAULT_kmod-usb-chipidea2=y
 CONFIG_MODULE_DEFAULT_kmod-usb-core=y
 CONFIG_MODULE_DEFAULT_kmod-usb-ledtrig-usbport=y
-CONFIG_MODULE_DEFAULT_kmod-usb-net-qmi-wwan=y
 CONFIG_MODULE_DEFAULT_kmod-usb-ohci=y
 CONFIG_MODULE_DEFAULT_kmod-usb-serial-pl2303=y
 CONFIG_MODULE_DEFAULT_kmod-usb2=y
