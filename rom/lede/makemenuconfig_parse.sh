@@ -114,12 +114,14 @@ wgmod="wireguard-tools \
 	   luci-i18n-wireguard-en \
 	   luci-i18n-wireguard-zh-cn"
 
-excludes="dnsmasq \
+excludes_basic="dnsmasq \
 		  kmod-ipt-offload \
 		  kmod-nf-flow \
 		  odhcpd \
 		  wpad-basic \
 		  wpad-mini"
+
+excludes=""
 
 get_modules()
 {
@@ -251,6 +253,7 @@ for t in $targets; do
 	mods="$us"
 	flash_gt8m=0
 	has_usb=0
+	excludes="$excludes_basic"
 	case $t in
 		#>8M flash
 		TARGET_DEVICE_ath79_generic_DEVICE_xwrt_xd1202g|\
@@ -526,7 +529,8 @@ for t in $targets; do
 		TARGET_DEVICE_ramips_mt7621_DEVICE_netgear_wndr3700-v5|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_lenovo_newifi-d1)
 			mods="$mods"
-			mods="$mods $wgmod"
+			mods="$mods $wgmod wpad-openssl"
+			excludes="$excludes wpad-basic-wolfssl"
 			flash_gt8m=1
 		;;
 		#<=8M flash
@@ -666,7 +670,8 @@ for t in $targets; do
 		TARGET_DEVICE_ramips_mt7620_DEVICE_phicomm_psg1208|\
 		TARGET_DEVICE_ramips_mt7620_DEVICE_phicomm_psg1218a|\
 		TARGET_DEVICE_ramips_mt7620_DEVICE_phicomm_psg1218b)
-			mods="$mods"
+			mods="$mods wpad-basic-wolfssl"
+			excludes="$excludes wpad-openssl"
 		;;
 		*)
 			echo not handle moreapps $t
@@ -1125,12 +1130,13 @@ for t in $targets; do
 	tname=`echo $t | sed 's/TARGET_DEVICE_/CONFIG_TARGET_DEVICE_PACKAGES_/'`
 	mods="$mods `get_target_mods $t`"
 	mods=`get_modules $mods`
+	mods=`get_modules_only $mods`
+	mods=`exclude_modules $mods`
 	dep_mods=$(for x in $mods; do
 			get_deps $x
 			done)
 	dep_mods=`get_modules $dep_mods`
 	mods=`get_modules $mods $dep_mods`
-	mods=`exclude_modules $mods`
 	mods=`get_modules_only $mods`
 	#echo $tname=$mods
 	sed -i "s/$tname=\".*\"/$tname=\"$mods\"/" ./.config
