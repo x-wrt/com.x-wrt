@@ -29,7 +29,7 @@ define Package/cups
 $(call Package/cups/Default)
   SECTION:=net
   CATEGORY:=Network
-  DEPENDS:=+libcups +libusb-1.0 +libstdcpp
+  DEPENDS:=+libcups-2.3 +libusb-1.0 +libstdcpp
   TITLE:=Common UNIX Printing System (daemon)
 endef
 
@@ -47,7 +47,7 @@ define Package/cups-bsd
 $(call Package/cups/Default)
   SECTION:=net
   CATEGORY:=Network
-  DEPENDS:=+libcups
+  DEPENDS:=+libcups-2.3
   TITLE:=Common UNIX Printing System - BSD commands (old)
 endef
 
@@ -59,7 +59,7 @@ define Package/cups-client
 $(call Package/cups/Default)
   SECTION:=net
   CATEGORY:=Network
-  DEPENDS:=+libcups +libcupsimage
+  DEPENDS:=+libcups-2.3 +libcupsimage
   TITLE:=Common UNIX Printing System - Client commands
 endef
 
@@ -87,7 +87,7 @@ define Package/cups-ppdc
 $(call Package/cups/Default)
   SECTION:=net
   CATEGORY:=Network
-  DEPENDS:=+libcups +zlib +libpthread +libpng +libjpeg +libstdcpp
+  DEPENDS:=+libcups-2.3 +zlib +libpthread +libpng +libjpeg +libstdcpp
   TITLE:=Common UNIX Printing System - PPDC utils
 endef
 
@@ -95,7 +95,7 @@ define Package/cups-ppdc/description
 	Common UNIX Printing System - PPDC utils
 endef
 
-define Package/libcups
+define Package/libcups-2.3
 $(call Package/cups/Default)
   SECTION:=libs
   CATEGORY:=Libraries
@@ -103,7 +103,7 @@ $(call Package/cups/Default)
   TITLE:=Common UNIX Printing System - Core library
 endef
 
-define Package/libcups/description
+define Package/libcups-2.3/description
 	Common UNIX Printing System - Core library
 endef
 
@@ -111,7 +111,7 @@ define Package/libcupsimage
 $(call Package/cups/Default)
   SECTION:=libs
   CATEGORY:=Libraries
-  DEPENDS:=+libcups
+  DEPENDS:=+libcups-2.3
   TITLE:=Common UNIX Printing System - Image library
 endef
 
@@ -238,7 +238,7 @@ define Package/cups-ppdc/install
 		$(1)/usr/bin/
 endef
 
-define Package/libcups/install
+define Package/libcups-2.3/install
 	$(INSTALL_DIR) $(1)/usr/lib
 	$(CP) $(PKG_INSTALL_DIR)/usr/lib/libcups.so* $(1)/usr/lib/
 endef
@@ -258,7 +258,7 @@ define Build/InstallDev
 endef
 
 $(eval $(call BuildPackage,cups))
-$(eval $(call BuildPackage,libcups))
+$(eval $(call BuildPackage,libcups-2.3))
 $(eval $(call BuildPackage,libcupsimage))
 $(eval $(call BuildPackage,cups-bsd))
 $(eval $(call BuildPackage,cups-client))
