@@ -3471,6 +3471,7 @@ CONFIG_PACKAGE_kmod-usb3=m
 #
 # CONFIG_PACKAGE_kmod-at86rf230 is not set
 # CONFIG_PACKAGE_kmod-atusb is not set
+# CONFIG_PACKAGE_kmod-ca8210 is not set
 # CONFIG_PACKAGE_kmod-cc2520 is not set
 # CONFIG_PACKAGE_kmod-fakelb is not set
 # CONFIG_PACKAGE_kmod-ieee802154 is not set
