@@ -1138,6 +1138,7 @@ for t in $targets; do
 	dep_mods=`get_modules $dep_mods`
 	mods=`get_modules $mods $dep_mods`
 	mods=`get_modules_only $mods`
+	mods=`exclude_modules $mods`
 	#echo $tname=$mods
 	sed -i "s/$tname=\".*\"/$tname=\"$mods\"/" ./.config
 done
