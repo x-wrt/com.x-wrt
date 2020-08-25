@@ -328,9 +328,11 @@ add_list_file () {
 add_list_commit () {
 	cat /tmp/add_${2}.${PID}.set | sort | uniq >/tmp/add_${2}.${PID}.set.tmp
 	if [ "$1" == "0" ]; then
+		ipset flush ${2} &>/dev/null
 		ipset restore -f /tmp/add_${2}.${PID}.set.tmp
 	else
 		if test `cat /tmp/add_${2}.${PID}.set.tmp | grep "^add " 2>/dev/null | wc -l` -ge 1; then
+			ipset flush ${2} &>/dev/null
 			ipset restore -f /tmp/add_${2}.${PID}.set.tmp
 		else
 			ipset destroy ${2}
