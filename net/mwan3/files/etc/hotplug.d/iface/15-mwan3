@@ -7,6 +7,11 @@
 . /lib/mwan3/common.sh
 
 SCRIPTNAME="mwan3-hotplug"
+
+# 'ifupdate' treat as 'ifup'
+[ "$ACTION" = ifupdate -a -z "$IFUPDATE_ADDRESSES" -a -z "$IFUPDATE_DATA" ] && exit 0
+[ "$ACTION" = ifupdate ] && ACTION="ifup"
+
 [ "$ACTION" = "ifup" ] || [ "$ACTION" = "ifdown" ] || [ "$ACTION" = "connected" ] || [ "$ACTION" = "disconnected" ] || exit 1
 [ -n "$INTERFACE" ] || exit 2
 if { [ "$ACTION" = "ifup" ] || [ "$ACTION" = "connected" ] ; } && [ -z "$DEVICE" ]; then
@@ -54,6 +59,19 @@ fi
 
 config_get initial_state $INTERFACE initial_state "online"
 config_get_bool enabled $INTERFACE 'enabled' '0'
+FAMILY=$FAMILY
+# XXX: ifup event on wan_6 but we use wan as interface
+if [ "${enabled}" -ne 1 ] && [ "${INTERFACE}" != "${INTERFACE%_6}" ]; then
+	INTERFACE=${INTERFACE%_6}
+	config_get_bool enabled $INTERFACE 'enabled' '0'
+	FAMILY="ipv6"
+fi
+# XXX: ifup event on wan_4 but we use wan as interface
+if [ "${enabled}" -ne 1 ] && [ "${INTERFACE}" != "${INTERFACE%_4}" ]; then
+	INTERFACE=${INTERFACE%_4}
+	config_get_bool enabled $INTERFACE 'enabled' '0'
+	FAMILY="ipv4"
+fi
 [ "${enabled}" -eq 1 ] || {
 	[ "$MWAN3_STARTUP" = 1 ] || mwan3_unlock "$ACTION" "$INTERFACE"
 	LOG notice "mwan3 hotplug on $INTERFACE not called because interface disabled"
