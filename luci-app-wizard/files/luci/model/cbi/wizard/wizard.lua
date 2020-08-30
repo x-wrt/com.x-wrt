@@ -10,7 +10,7 @@ uci:foreach("wireless", "wifi-device",
 			return false
 		end)
 
-local m = Map("wizard", luci.util.pcdata(translate("Inital Router Setup")), translate("If you are using this router for the first time, please configure it here."))
+local m = Map("wizard", luci.xml.pcdata(translate("Inital Router Setup")), translate("If you are using this router for the first time, please configure it here."))
 
 local s = m:section(TypedSection, "wizard", "")
 s.addremove = false

@@ -2,7 +2,7 @@
 
 local nt = require "luci.sys".net
 
-local m = Map("natcapd", luci.util.pcdata(translate("Route Setup")), translate("select route gateway for each lan"))
+local m = Map("natcapd", luci.xml.pcdata(translate("Route Setup")), translate("select route gateway for each lan"))
 
 m:section(SimpleSection).template  = "natcap/natcap"
 
