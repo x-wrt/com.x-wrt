@@ -32,6 +32,7 @@ int main(int argc, const char **argv)
 	}
 
 	mbedtls_md_hmac_finish(&ctx, buf);
+	mbedtls_md_free(&ctx);
 
 	fwrite(buf, 1, 20, stdout);
 	return 0;
