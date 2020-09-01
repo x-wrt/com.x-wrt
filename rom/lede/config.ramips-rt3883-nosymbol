@@ -69,7 +69,7 @@ CONFIG_TARGET_MULTI_PROFILE=y
 # CONFIG_TARGET_ALL_PROFILES is not set
 CONFIG_TARGET_PER_DEVICE_ROOTFS=y
 CONFIG_TARGET_DEVICE_ramips_rt3883_DEVICE_asus_rt-n56u=y
-CONFIG_TARGET_DEVICE_PACKAGES_ramips_rt3883_DEVICE_asus_rt-n56u="blockd block-mount kmod-crypto-crc32c kmod-eeprom-93cx6 kmod-exfat-linux kmod-fs-autofs4 kmod-fs-ext4 kmod-fs-msdos kmod-fs-vfat kmod-fuse kmod-gpio-button-hotplug kmod-lib-crc16 kmod-mii kmod-nls-cp437 kmod-rt2800-lib kmod-rt2800-mmio kmod-rt2800-pci kmod-rt2800-soc kmod-rt2x00-lib kmod-rt2x00-mmio kmod-rt2x00-pci kmod-scsi-core kmod-usb2 kmod-usb-core kmod-usb-ehci kmod-usb-net kmod-usb-net-cdc-ether kmod-usb-net-rndis kmod-usb-ohci kmod-usb-storage kmod-usb-storage-uas libwolfssl ntfs-3g wpad-basic-wolfssl"
+CONFIG_TARGET_DEVICE_PACKAGES_ramips_rt3883_DEVICE_asus_rt-n56u="blockd block-mount kmod-crypto-crc32c kmod-eeprom-93cx6 kmod-exfat-linux kmod-fs-autofs4 kmod-fs-ext4 kmod-fs-msdos kmod-fs-vfat kmod-fuse kmod-gpio-button-hotplug kmod-lib-crc16 kmod-mii kmod-nls-cp437 kmod-rt2800-lib kmod-rt2800-mmio kmod-rt2800-pci kmod-rt2800-soc kmod-rt2x00-lib kmod-rt2x00-mmio kmod-rt2x00-pci kmod-scsi-core kmod-usb2 kmod-usb-core kmod-usb-ehci kmod-usb-net kmod-usb-net-cdc-ether kmod-usb-net-rndis kmod-usb-ohci kmod-usb-storage kmod-usb-storage-uas ntfs-3g wpad-basic-wolfssl"
 # CONFIG_TARGET_DEVICE_ramips_rt3883_DEVICE_belkin_f9k1109v1 is not set
 # CONFIG_TARGET_DEVICE_ramips_rt3883_DEVICE_dlink_dir-645 is not set
 # CONFIG_TARGET_DEVICE_ramips_rt3883_DEVICE_edimax_br-6475nd is not set
@@ -93,6 +93,8 @@ CONFIG_DEFAULT_base-files=y
 CONFIG_MODULE_DEFAULT_base-files=y
 CONFIG_DEFAULT_busybox=y
 CONFIG_MODULE_DEFAULT_busybox=y
+CONFIG_DEFAULT_ca-bundle=y
+CONFIG_MODULE_DEFAULT_ca-bundle=y
 CONFIG_DEFAULT_dnsmasq=y
 CONFIG_MODULE_DEFAULT_dnsmasq=y
 CONFIG_DEFAULT_dropbear=y
@@ -123,6 +125,8 @@ CONFIG_DEFAULT_libc=y
 CONFIG_MODULE_DEFAULT_libc=y
 CONFIG_DEFAULT_libgcc=y
 CONFIG_MODULE_DEFAULT_libgcc=y
+CONFIG_DEFAULT_libustream-wolfssl=y
+CONFIG_MODULE_DEFAULT_libustream-wolfssl=y
 CONFIG_DEFAULT_logd=y
 CONFIG_MODULE_DEFAULT_logd=y
 CONFIG_DEFAULT_mtd=y
@@ -291,8 +295,17 @@ CONFIG_KERNEL_IPV6_MROUTE=y
 CONFIG_KERNEL_DEVMEM=y
 # CONFIG_KERNEL_DEVKMEM is not set
 CONFIG_KERNEL_SQUASHFS_FRAGMENT_CACHE_SIZE=3
+# CONFIG_KERNEL_SQUASHFS_XATTR is not set
 # CONFIG_KERNEL_CC_OPTIMIZE_FOR_PERFORMANCE is not set
 CONFIG_KERNEL_CC_OPTIMIZE_FOR_SIZE=y
+# CONFIG_KERNEL_AUDIT is not set
+# CONFIG_KERNEL_SECURITY is not set
+# CONFIG_KERNEL_SECURITY_NETWORK is not set
+# CONFIG_KERNEL_SECURITY_SELINUX is not set
+# CONFIG_KERNEL_EXT4_FS_SECURITY is not set
+# CONFIG_KERNEL_F2FS_FS_SECURITY is not set
+# CONFIG_KERNEL_UBIFS_FS_SECURITY is not set
+# CONFIG_KERNEL_JFFS2_FS_SECURITY is not set
 # end of Kernel build options
 
 #
@@ -334,6 +347,7 @@ CONFIG_PKG_FORTIFY_SOURCE_1=y
 # CONFIG_PKG_RELRO_NONE is not set
 # CONFIG_PKG_RELRO_PARTIAL is not set
 CONFIG_PKG_RELRO_FULL=y
+# CONFIG_TARGET_ROOTFS_SECURITY_LABELS is not set
 # end of Global build settings
 
 # CONFIG_DEVEL is not set
@@ -391,7 +405,7 @@ CONFIG_TARGET_INIT_CMD="/sbin/init"
 CONFIG_TARGET_INIT_SUPPRESS_STDERR=y
 CONFIG_VERSIONOPT=y
 CONFIG_VERSION_DIST="X-WRT"
-CONFIG_VERSION_NUMBER="8.0_b202008301032"
+CONFIG_VERSION_NUMBER="8.0_b202009020113"
 CONFIG_VERSION_CODE="Focal"
 CONFIG_VERSION_REPO="http://downloads.openwrt.org/snapshots"
 CONFIG_VERSION_HOME_URL="https://x-wrt.com/"
@@ -2368,7 +2382,7 @@ CONFIG_BUSYBOX_CONFIG_LOGGER=y
 # end of System Logging Utilities
 
 # CONFIG_PACKAGE_busybox-selinux is not set
-# CONFIG_PACKAGE_ca-bundle is not set
+CONFIG_PACKAGE_ca-bundle=y
 # CONFIG_PACKAGE_ca-certificates is not set
 CONFIG_PACKAGE_dnsmasq=m
 # CONFIG_PACKAGE_dnsmasq-dhcpv6 is not set
@@ -2429,6 +2443,7 @@ CONFIG_PACKAGE_procd=y
 
 # CONFIG_PACKAGE_procd-selinux is not set
 # CONFIG_PACKAGE_qos-scripts is not set
+# CONFIG_PACKAGE_refpolicy is not set
 CONFIG_PACKAGE_resolveip=y
 CONFIG_PACKAGE_rpcd=y
 CONFIG_PACKAGE_rpcd-mod-file=y
@@ -3226,7 +3241,7 @@ CONFIG_PACKAGE_kmod-iptunnel4=y
 CONFIG_PACKAGE_kmod-iptunnel6=y
 # CONFIG_PACKAGE_kmod-isdn4linux is not set
 # CONFIG_PACKAGE_kmod-jool is not set
-CONFIG_PACKAGE_kmod-l2tp=y
+# CONFIG_PACKAGE_kmod-l2tp is not set
 # CONFIG_PACKAGE_kmod-l2tp-eth is not set
 # CONFIG_PACKAGE_kmod-l2tp-ip is not set
 # CONFIG_PACKAGE_kmod-macremapper is not set
@@ -3249,7 +3264,7 @@ CONFIG_PACKAGE_kmod-mppe=y
 # CONFIG_PACKAGE_kmod-ppp-synctty is not set
 # CONFIG_PACKAGE_kmod-pppoa is not set
 CONFIG_PACKAGE_kmod-pppoe=y
-CONFIG_PACKAGE_kmod-pppol2tp=y
+# CONFIG_PACKAGE_kmod-pppol2tp is not set
 CONFIG_PACKAGE_kmod-pppox=y
 CONFIG_PACKAGE_kmod-pptp=y
 # CONFIG_PACKAGE_kmod-sched is not set
@@ -4471,8 +4486,7 @@ CONFIG_PACKAGE_libxtables=y
 # SSL
 #
 # CONFIG_PACKAGE_libgnutls is not set
-CONFIG_PACKAGE_libmbedtls=y
-# CONFIG_LIBMBEDTLS_DEBUG_C is not set
+# CONFIG_PACKAGE_libmbedtls is not set
 # CONFIG_PACKAGE_libnss is not set
 CONFIG_PACKAGE_libopenssl=m
 
@@ -4525,11 +4539,12 @@ CONFIG_OPENSSL_ENGINE=y
 # CONFIG_PACKAGE_libopenssl-afalg_sync is not set
 CONFIG_PACKAGE_libopenssl-conf=m
 # CONFIG_PACKAGE_libopenssl-devcrypto is not set
-CONFIG_PACKAGE_libwolfssl=m
+CONFIG_PACKAGE_libwolfssl=y
 CONFIG_WOLFSSL_HAS_AES_CCM=y
 CONFIG_WOLFSSL_HAS_CHACHA_POLY=y
 CONFIG_WOLFSSL_HAS_DH=y
 CONFIG_WOLFSSL_HAS_ARC4=y
+CONFIG_WOLFSSL_HAS_CERTGEN=y
 CONFIG_WOLFSSL_HAS_TLSV10=y
 CONFIG_WOLFSSL_HAS_TLSV13=y
 CONFIG_WOLFSSL_HAS_SESSION_TICKET=y
@@ -4612,7 +4627,7 @@ CONFIG_WOLFSSL_HAS_NO_HW=y
 # CONFIG_PACKAGE_icu is not set
 # CONFIG_PACKAGE_icu-data-tools is not set
 # CONFIG_PACKAGE_icu-full-data is not set
-CONFIG_PACKAGE_jansson=y
+# CONFIG_PACKAGE_jansson is not set
 # CONFIG_PACKAGE_json-glib is not set
 # CONFIG_PACKAGE_jsoncpp is not set
 # CONFIG_PACKAGE_knot-libs is not set
@@ -4625,6 +4640,7 @@ CONFIG_PACKAGE_jansson=y
 # CONFIG_PACKAGE_libarchive is not set
 # CONFIG_PACKAGE_libarchive-noopenssl is not set
 # CONFIG_PACKAGE_libasm is not set
+# CONFIG_PACKAGE_libaudit is not set
 # CONFIG_PACKAGE_libavahi-client is not set
 # CONFIG_PACKAGE_libavahi-compat-libdnssd is not set
 # CONFIG_PACKAGE_libavahi-dbus-support is not set
@@ -4632,6 +4648,7 @@ CONFIG_PACKAGE_jansson=y
 # CONFIG_PACKAGE_libbfd is not set
 # CONFIG_PACKAGE_libblkid is not set
 CONFIG_PACKAGE_libblobmsg-json=y
+# CONFIG_PACKAGE_libbpf is not set
 # CONFIG_PACKAGE_libbsd is not set
 CONFIG_PACKAGE_libcap=y
 # CONFIG_PACKAGE_libcap-bin is not set
@@ -4773,7 +4790,7 @@ CONFIG_PACKAGE_libncurses=y
 # CONFIG_PACKAGE_libnetsnmp is not set
 # CONFIG_PACKAGE_libnettle is not set
 # CONFIG_PACKAGE_libnewt is not set
-CONFIG_PACKAGE_libnfnetlink=y
+# CONFIG_PACKAGE_libnfnetlink is not set
 CONFIG_PACKAGE_libnftnl=y
 # CONFIG_PACKAGE_libnghttp2 is not set
 # CONFIG_PACKAGE_libnl is not set
@@ -4847,6 +4864,7 @@ CONFIG_PCRE_JIT_ENABLED=y
 # CONFIG_PACKAGE_libsearpc is not set
 # CONFIG_PACKAGE_libseccomp is not set
 # CONFIG_PACKAGE_libselinux is not set
+# CONFIG_PACKAGE_libsemanage is not set
 # CONFIG_PACKAGE_libsensors is not set
 # CONFIG_PACKAGE_libsepol is not set
 # CONFIG_PACKAGE_libshout is not set
@@ -4921,9 +4939,9 @@ CONFIG_PACKAGE_libuclient=y
 # CONFIG_PACKAGE_liburing is not set
 CONFIG_PACKAGE_libusb-1.0=m
 # CONFIG_PACKAGE_libusb-compat is not set
-CONFIG_PACKAGE_libustream-mbedtls=y
+# CONFIG_PACKAGE_libustream-mbedtls is not set
 # CONFIG_PACKAGE_libustream-openssl is not set
-# CONFIG_PACKAGE_libustream-wolfssl is not set
+CONFIG_PACKAGE_libustream-wolfssl=y
 CONFIG_PACKAGE_libuuid=y
 # CONFIG_PACKAGE_libuv is not set
 # CONFIG_PACKAGE_libuwifi is not set
@@ -5122,7 +5140,7 @@ CONFIG_PACKAGE_luci-app-nft-qos=y
 # CONFIG_PACKAGE_luci-app-olsr-services is not set
 # CONFIG_PACKAGE_luci-app-olsr-viz is not set
 # CONFIG_PACKAGE_luci-app-omcproxy is not set
-CONFIG_PACKAGE_luci-app-openvpn=y
+CONFIG_PACKAGE_luci-app-openvpn=m
 CONFIG_PACKAGE_luci-app-opkg=y
 CONFIG_PACKAGE_luci-app-p910nd=m
 # CONFIG_PACKAGE_luci-app-pagekitec is not set
@@ -5187,6 +5205,7 @@ CONFIG_PACKAGE_luci-proto-ipv6=y
 # CONFIG_PACKAGE_luci-proto-modemmanager is not set
 CONFIG_PACKAGE_luci-proto-ncm=m
 # CONFIG_PACKAGE_luci-proto-openconnect is not set
+# CONFIG_PACKAGE_luci-proto-openfortivpn is not set
 CONFIG_PACKAGE_luci-proto-ppp=y
 # CONFIG_PACKAGE_luci-proto-pppossh is not set
 CONFIG_PACKAGE_luci-proto-qmi=m
@@ -5459,7 +5478,7 @@ CONFIG_PACKAGE_luci-i18n-nft-qos-zh-cn=y
 # CONFIG_PACKAGE_luci-i18n-openvpn-cs is not set
 # CONFIG_PACKAGE_luci-i18n-openvpn-de is not set
 # CONFIG_PACKAGE_luci-i18n-openvpn-el is not set
-CONFIG_PACKAGE_luci-i18n-openvpn-en=y
+CONFIG_PACKAGE_luci-i18n-openvpn-en=m
 # CONFIG_PACKAGE_luci-i18n-openvpn-es is not set
 # CONFIG_PACKAGE_luci-i18n-openvpn-fi is not set
 # CONFIG_PACKAGE_luci-i18n-openvpn-fr is not set
@@ -5482,7 +5501,7 @@ CONFIG_PACKAGE_luci-i18n-openvpn-en=y
 # CONFIG_PACKAGE_luci-i18n-openvpn-tr is not set
 # CONFIG_PACKAGE_luci-i18n-openvpn-uk is not set
 # CONFIG_PACKAGE_luci-i18n-openvpn-vi is not set
-CONFIG_PACKAGE_luci-i18n-openvpn-zh-cn=y
+CONFIG_PACKAGE_luci-i18n-openvpn-zh-cn=m
 # CONFIG_PACKAGE_luci-i18n-openvpn-zh-tw is not set
 # CONFIG_PACKAGE_luci-i18n-opkg-ar is not set
 # CONFIG_PACKAGE_luci-i18n-opkg-bg is not set
@@ -6272,20 +6291,21 @@ CONFIG_PACKAGE_mwan3=y
 # CONFIG_PACKAGE_openconnect is not set
 # CONFIG_PACKAGE_openfortivpn is not set
 # CONFIG_PACKAGE_openvpn-easy-rsa is not set
-CONFIG_PACKAGE_openvpn-mbedtls=y
-CONFIG_OPENVPN_mbedtls_ENABLE_LZO=y
-CONFIG_OPENVPN_mbedtls_ENABLE_LZ4=y
-CONFIG_OPENVPN_mbedtls_ENABLE_SERVER=y
-CONFIG_OPENVPN_mbedtls_ENABLE_MANAGEMENT=y
-CONFIG_OPENVPN_mbedtls_ENABLE_FRAGMENT=y
-CONFIG_OPENVPN_mbedtls_ENABLE_MULTIHOME=y
-CONFIG_OPENVPN_mbedtls_ENABLE_PORT_SHARE=y
-CONFIG_OPENVPN_mbedtls_ENABLE_DEF_AUTH=y
-CONFIG_OPENVPN_mbedtls_ENABLE_PF=y
-CONFIG_OPENVPN_mbedtls_ENABLE_IPROUTE2=y
-CONFIG_OPENVPN_mbedtls_ENABLE_SMALL=y
+# CONFIG_PACKAGE_openvpn-mbedtls is not set
 # CONFIG_PACKAGE_openvpn-nossl is not set
-# CONFIG_PACKAGE_openvpn-openssl is not set
+CONFIG_PACKAGE_openvpn-openssl=m
+CONFIG_OPENVPN_openssl_ENABLE_LZO=y
+CONFIG_OPENVPN_openssl_ENABLE_LZ4=y
+CONFIG_OPENVPN_openssl_ENABLE_X509_ALT_USERNAME=y
+CONFIG_OPENVPN_openssl_ENABLE_SERVER=y
+CONFIG_OPENVPN_openssl_ENABLE_MANAGEMENT=y
+CONFIG_OPENVPN_openssl_ENABLE_FRAGMENT=y
+CONFIG_OPENVPN_openssl_ENABLE_MULTIHOME=y
+CONFIG_OPENVPN_openssl_ENABLE_PORT_SHARE=y
+CONFIG_OPENVPN_openssl_ENABLE_DEF_AUTH=y
+CONFIG_OPENVPN_openssl_ENABLE_PF=y
+CONFIG_OPENVPN_openssl_ENABLE_IPROUTE2=y
+CONFIG_OPENVPN_openssl_ENABLE_SMALL=y
 CONFIG_PACKAGE_pptpd=y
 # CONFIG_PACKAGE_softethervpn-base is not set
 # CONFIG_PACKAGE_softethervpn-bridge is not set
@@ -6516,6 +6536,8 @@ CONFIG_PACKAGE_6to4=y
 # CONFIG_PACKAGE_beanstalkd is not set
 # CONFIG_PACKAGE_bmon is not set
 # CONFIG_PACKAGE_boinc is not set
+# CONFIG_PACKAGE_bpftool-full is not set
+# CONFIG_PACKAGE_bpftool-minimal is not set
 # CONFIG_PACKAGE_bwm-ng is not set
 # CONFIG_PACKAGE_bwping is not set
 CONFIG_PACKAGE_chat=m
@@ -6652,7 +6674,7 @@ CONFIG_PACKAGE_ppp=y
 # CONFIG_PACKAGE_ppp-mod-passwordfd is not set
 # CONFIG_PACKAGE_ppp-mod-pppoa is not set
 CONFIG_PACKAGE_ppp-mod-pppoe=y
-CONFIG_PACKAGE_ppp-mod-pppol2tp=y
+# CONFIG_PACKAGE_ppp-mod-pppol2tp is not set
 CONFIG_PACKAGE_ppp-mod-pptp=y
 # CONFIG_PACKAGE_ppp-mod-radius is not set
 # CONFIG_PACKAGE_ppp-multilink is not set
@@ -6831,7 +6853,6 @@ CONFIG_PACKAGE_wwan=m
 #
 # Disc
 #
-# CONFIG_PACKAGE_blkdiscard is not set
 # CONFIG_PACKAGE_blkid is not set
 # CONFIG_PACKAGE_blockdev is not set
 # CONFIG_PACKAGE_cfdisk is not set
@@ -6878,8 +6899,9 @@ CONFIG_PACKAGE_wwan=m
 # CONFIG_PACKAGE_gnutls-utils is not set
 # CONFIG_PACKAGE_gpgv is not set
 # CONFIG_PACKAGE_keyctl is not set
-CONFIG_PACKAGE_px5g-mbedtls=y
+# CONFIG_PACKAGE_px5g-mbedtls is not set
 # CONFIG_PACKAGE_px5g-standalone is not set
+CONFIG_PACKAGE_px5g-wolfssl=y
 # CONFIG_PACKAGE_stoken is not set
 # end of Encryption
 
@@ -7062,6 +7084,9 @@ CONFIG_PACKAGE_NTFS-3G_HAS_PROBE=y
 # CONFIG_PACKAGE_canutils is not set
 # CONFIG_PACKAGE_cgroup-tools is not set
 # CONFIG_PACKAGE_cgroupfs-mount is not set
+# CONFIG_PACKAGE_checkpolicy is not set
+# CONFIG_PACKAGE_checksec is not set
+# CONFIG_PACKAGE_checksec_automator is not set
 # CONFIG_PACKAGE_cmdpad is not set
 # CONFIG_PACKAGE_coap-client is not set
 # CONFIG_PACKAGE_collectd is not set
@@ -7191,6 +7216,7 @@ CONFIG_PACKAGE_openssl-util=m
 # CONFIG_PACKAGE_pciutils is not set
 # CONFIG_PACKAGE_pcsc-tools is not set
 # CONFIG_PACKAGE_pcscd is not set
+# CONFIG_PACKAGE_policycoreutils is not set
 # CONFIG_PACKAGE_powertop is not set
 # CONFIG_PACKAGE_pps-tools is not set
 # CONFIG_PACKAGE_prlimit is not set
@@ -7254,6 +7280,7 @@ CONFIG_STRACE_NONE=y
 # CONFIG_STRACE_LIBDW is not set
 # CONFIG_STRACE_LIBUNWIND is not set
 # CONFIG_PACKAGE_stress is not set
+# CONFIG_PACKAGE_stress-ng is not set
 # CONFIG_PACKAGE_sumo is not set
 # CONFIG_PACKAGE_syncthing is not set
 # CONFIG_PACKAGE_sysrepo is not set
@@ -7360,9 +7387,15 @@ CONFIG_PACKAGE_luci-app-xwan=y
 # end of Xwan
 
 #
+# hmac-sha1-util tools
+#
+CONFIG_PACKAGE_hmac-sha1-util=y
+# end of hmac-sha1-util tools
+
+#
 # mbed tools
 #
-CONFIG_PACKAGE_mbed-hmac-sha1=y
+# CONFIG_PACKAGE_mbed-hmac-sha1 is not set
 # end of mbed tools
 
 CONFIG_PACKAGE_sendip=m
