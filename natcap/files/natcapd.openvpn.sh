@@ -1,5 +1,7 @@
 #!/bin/sh
 
+test -x /etc/init.d/openvpn || exit 0
+
 # gen natcap-ta.key if not exist.
 test -f /etc/openvpn/natcap-ta.key || {
 	mkdir -p /etc/openvpn
