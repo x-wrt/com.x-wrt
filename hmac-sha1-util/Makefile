@@ -7,7 +7,7 @@
 
 include $(TOPDIR)/rules.mk
 
-PKG_NAME:=wolf-tools
+PKG_NAME:=hmac-sha1-util
 PKG_VERSION:=0.0.1
 PKG_RELEASE:=1
 
@@ -17,16 +17,15 @@ PKG_LICENSE:=GPL-2.0
 
 include $(INCLUDE_DIR)/package.mk
 
-define Package/wolf-hmac-sha1
+define Package/hmac-sha1-util
   CATEGORY:=X
-  SUBMENU:=wolf tools
-  DEPENDS:= +libwolfssl
-  TITLE:=wolf-hmac-sha1 util support
+  SUBMENU:=hmac-sha1-util tools
+  TITLE:=hmac-sha1-util util support
 endef
 
-define Package/wolf-hmac-sha1/install
+define Package/hmac-sha1-util/install
 	$(INSTALL_DIR) $(1)/usr/bin
-	$(INSTALL_BIN) $(PKG_BUILD_DIR)/wolf-hmac-sha1 $(1)/usr/bin/wolf-hmac-sha1
+	$(INSTALL_BIN) $(PKG_BUILD_DIR)/hmac-sha1-util $(1)/usr/bin/hmac-sha1-util
 endef
 
 define Build/Prepare
@@ -34,4 +33,4 @@ define Build/Prepare
 	$(CP) ./src/* $(PKG_BUILD_DIR)/
 endef
 
-$(eval $(call BuildPackage,wolf-hmac-sha1))
+$(eval $(call BuildPackage,hmac-sha1-util))

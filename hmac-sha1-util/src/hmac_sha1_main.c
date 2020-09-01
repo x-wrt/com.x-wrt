@@ -4,13 +4,13 @@
  */
 #include <stdio.h>
 #include <string.h>
-#include <cyassl/ctaocrypt/hmac.h>
+#include "hmac_sha1.h"
 
 //xwrt_hmac_sha1 <key>
 int main(int argc, const char **argv)
 {
 	const unsigned char *key = (const unsigned char *)"";
-	Hmac sha1;
+	HMAC_SHA1_CTX sha1;
 #define BLOCK_SIZE 2048
 	unsigned char buf[BLOCK_SIZE];
 
@@ -22,12 +22,17 @@ int main(int argc, const char **argv)
 
 	key = (const unsigned char *)argv[1];
 
-	HmacSetKey(&sha1, SHA, key, strlen((const char *)key));
+	HMAC_SHA1_Init(&sha1);
+	HMAC_SHA1_UpdateKey(&sha1, key, strlen((const char *)key));
+	HMAC_SHA1_EndKey(&sha1);
+
+	HMAC_SHA1_StartMessage(&sha1);
 	while(!feof(stdin)) {
 		size_t bytes = fread(buf, 1, BLOCK_SIZE, stdin);
-		HmacUpdate(&sha1, buf, bytes);
+		HMAC_SHA1_UpdateMessage(&sha1, buf, bytes);
 	}
-	HmacFinal(&sha1, buf);
+	HMAC_SHA1_EndMessage(buf, &sha1);
+	HMAC_SHA1_Done(&sha1);
 
 	fwrite(buf, 1, 20, stdout);
 	return 0;
