@@ -4,9 +4,7 @@ local nt = require "luci.sys".net
 
 local m = Map("natcapd", luci.xml.pcdata(translate("One Key VPN")))
 
-if nixio.fs.access("/etc/init.d/openvpn") then
-	m:section(SimpleSection).template  = "natcap/natcapd"
-end
+m:section(SimpleSection).template  = "natcap/natcapd"
 
 local s = m:section(TypedSection, "natcapd", "")
 s.addremove = false
