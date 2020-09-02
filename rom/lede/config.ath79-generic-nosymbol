@@ -422,10 +422,8 @@ CONFIG_TARGET_DEVICE_PACKAGES_ath79_generic_DEVICE_tplink_archer-d7b-v1="aria2 a
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_tplink_cpe220-v2 is not set
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_tplink_cpe220-v3 is not set
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_tplink_cpe510-v1 is not set
-CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_tplink_cpe510-v2=y
-CONFIG_TARGET_DEVICE_PACKAGES_ath79_generic_DEVICE_tplink_cpe510-v2="kmod-ath9k kmod-ath9k-common kmod-gpio-button-hotplug luci-app-ledtrig-rssi rssileds wpad-basic-wolfssl"
-CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_tplink_cpe510-v3=y
-CONFIG_TARGET_DEVICE_PACKAGES_ath79_generic_DEVICE_tplink_cpe510-v3="kmod-ath9k kmod-ath9k-common kmod-gpio-button-hotplug luci-app-ledtrig-rssi rssileds wpad-basic-wolfssl"
+# CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_tplink_cpe510-v2 is not set
+# CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_tplink_cpe510-v3 is not set
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_tplink_cpe610-v1 is not set
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_tplink_cpe610-v2 is not set
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_tplink_re350k-v1 is not set
