@@ -604,7 +604,9 @@ elif test -c $DEV; then
 	gfwlist_domain=`uci get natcapd.default.gfwlist_domain 2>/dev/null`
 	gfwlist1_domain=`uci get natcapd.default.gfwlist1_domain 2>/dev/null`
 	gfwlist1_host=`uci get natcapd.default.gfwlist1_host 2>/dev/null`
+	gfwlist_host=`uci get natcapd.default.gfwlist_host 2>/dev/null`
 	gfwlist_file=`uci get natcapd.default.gfwlist_file 2>/dev/null`
+	gfwlist=`uci get natcapd.default.gfwlist 2>/dev/null`
 	gfwlist=`uci get natcapd.default.gfwlist 2>/dev/null`
 	gfwlist1_file=`uci get natcapd.default.gfwlist1_file 2>/dev/null`
 	gfwlist1=`uci get natcapd.default.gfwlist1 2>/dev/null`
@@ -785,6 +787,12 @@ elif test -c $DEV; then
 	for d in $gfwlist_domain; do
 		add_gfwlist_domain $d
 	done
+	for h in $gfwlist_host; do
+		cat $h | while read d; do
+			add_gfwlist_domain $d
+		done
+	done
+
 	for d in $gfwlist1_domain; do
 		add_gfwlist1_domain $d
 	done

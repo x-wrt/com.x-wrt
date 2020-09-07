@@ -10,7 +10,7 @@ include $(INCLUDE_DIR)/kernel.mk
 
 PKG_NAME:=natcap
 PKG_VERSION:=8.0.1
-PKG_RELEASE:=20200807
+PKG_RELEASE:=20200908
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION)-$(PKG_RELEASE).tar.xz
 PKG_SOURCE_URL:=https://github.com/ptpt52/natcap.git
@@ -105,6 +105,7 @@ define Package/natcapd-mini/install
 	$(INSTALL_DATA) $(PKG_BUILD_DIR)/cniplist.set $(1)/usr/share/natcapd/cniplist.set
 	$(INSTALL_DATA) $(PKG_BUILD_DIR)/C_cniplist.set $(1)/usr/share/natcapd/C_cniplist.set
 	$(INSTALL_DATA) $(PKG_BUILD_DIR)/cniplist.orig.set $(1)/usr/share/natcapd/cniplist.orig.set
+	$(INSTALL_DATA) $(PKG_BUILD_DIR)/hkiplist.orig.set $(1)/usr/share/natcapd/hkiplist.orig.set
 	$(INSTALL_DATA) $(PKG_BUILD_DIR)/local.set $(1)/usr/share/natcapd/local.set
 	$(INSTALL_DATA) $(PKG_BUILD_DIR)/getflix.set $(1)/usr/share/natcapd/getflix.set
 	$(INSTALL_DATA) $(PKG_BUILD_DIR)/gfwlist1.tocn.ip.txt $(1)/usr/share/natcapd/gfwlist1.tocn.ip.txt
