@@ -534,7 +534,7 @@ for t in $targets; do
 		TARGET_DEVICE_ramips_mt7621_DEVICE_netgear_wndr3700-v5|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_lenovo_newifi-d1)
 			mods="$mods"
-			mods="$mods $wgmod $openvpnmod wpad-openssl"
+			mods="$mods $wgmod $openvpnmod wpad-openssl luci-ssl-nginx"
 			excludes="$excludes wpad-basic-wolfssl"
 			flash_gt8m=1
 		;;
@@ -1128,7 +1128,7 @@ for t in $targets; do
 
 	if [ "x$flash_gt8m" = "x1" ] && [ "x$has_usb" = "x1" ]; then
 		mods="$mods $usb4g"
-		mods="$mods $moreapps $usbprint luci-ssl-nginx"
+		mods="$mods $moreapps $usbprint"
 	else
 		mods="$mods $lucistd"
 	fi
