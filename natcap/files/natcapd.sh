@@ -615,6 +615,7 @@ elif test -c $DEV; then
 	sproxy=`uci get natcapd.default.sproxy 2>/dev/null || echo 0`
 	access_to_cn=`uci get natcapd.default.access_to_cn 2>/dev/null || echo 0`
 	full_proxy=`uci get natcapd.default.full_proxy 2>/dev/null || echo 0`
+	server1_use_peer=`uci get natcapd.default.server1_use_peer 2>/dev/null || echo 0` #use 11
 	[ x$encode_mode = x0 ] && encode_mode=T
 	[ x$encode_mode = x1 ] && encode_mode=U
 	[ x$udp_encode_mode = x0 ] && udp_encode_mode=U
@@ -691,6 +692,7 @@ elif test -c $DEV; then
 	echo rx_pkts_threshold=$rx_pkts_threshold >>$DEV
 	echo natcap_touch_timeout=$touch_timeout >>$DEV
 	echo sproxy=$sproxy >$DEV
+	echo server1_use_peer=$server1_use_peer >$DEV
 	test -n "$dns_server" && echo dns_server=$dns_server >$DEV
 
 	echo encode_http_only=$encode_http_only >>$DEV
