@@ -394,6 +394,9 @@ test -x /usr/bin/wget && rm -f /bin/wget && ln -s /usr/bin/wget /bin/wget
 #disable switch_ports_status by default
 /etc/init.d/switch_ports_status disable
 
+#make sure nginx work with remote-mgr
+test -x /etc/init.d/nginx && test -e /etc/nginx/conf.d/dev.x-wrt.com.conf || rm -f /etc/uhttpd.key /etc/uhttpd.crt 
+
 touch /etc/config/base_config
 uci get base_config.@status[0] >/dev/null 2>&1 || uci add base_config status >/dev/null 2>&1
 uci set base_config.@status[0].version=$version
