@@ -18,4 +18,9 @@ e = s:taboption("system", Flag, "enable_natflow", translate("Enable Fast Forward
 e.default = e.disabled
 e.rmempty = false
 
+e = s:taboption("system", Flag, "enable_natflow_hw", translate("Enable Fast Forwarding Hardware Offload"))
+e.default = e.disabled
+e.rmempty = false
+e:depends("enable_natflow","1")
+
 return m

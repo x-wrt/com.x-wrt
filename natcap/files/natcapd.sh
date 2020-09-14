@@ -521,6 +521,7 @@ uci get firewall.natcapd >/dev/null 2>&1 || {
 
 test -c /dev/natflow_ctl && {
 	enable_natflow=`uci get natcapd.default.enable_natflow 2>/dev/null || echo 0`
+	enable_natflow_hw=`uci get natcapd.default.enable_natflow_hw 2>/dev/null || echo 0`
 	if [ "x${enable_natflow}" = "x1" ]; then
 		if [ "x`uci get firewall.@defaults[0].flow_offloading 2>/dev/null`" = "x1" ]; then
 			uci set firewall.@defaults[0].flow_offloading=0
@@ -531,6 +532,7 @@ test -c /dev/natflow_ctl && {
 	fi
 	echo debug=3 >/dev/natflow_ctl
 	echo disabled=$((!enable_natflow)) >/dev/natflow_ctl
+	echo hwnat=$((enable_natflow_hw)) >/dev/natflow_ctl
 }
 
 test -c /dev/natcap_peer_ctl && {
