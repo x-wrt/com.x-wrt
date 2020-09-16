@@ -261,6 +261,7 @@ for t in $targets; do
 	excludes="$excludes_basic"
 	case $t in
 		#>8M flash
+		TARGET_DEVICE_ath79_generic_DEVICE_tplink_tl-wdr4900-v2-16m|\
 		TARGET_DEVICE_ath79_generic_DEVICE_xwrt_xd1202g|\
 		TARGET_DEVICE_rockchip_armv8_DEVICE_friendlyarm_nanopi-r2s|\
 		TARGET_DEVICE_ipq806x_generic_DEVICE_linksys_ea7500-v1|\
@@ -875,6 +876,7 @@ for t in $targets; do
 		TARGET_DEVICE_ath79_generic_DEVICE_ubnt_rocket-m|\
 		TARGET_DEVICE_ath79_generic_DEVICE_ubnt_unifi|\
 		TARGET_DEVICE_ath79_generic_DEVICE_ubnt_unifiac-pro|\
+		TARGET_DEVICE_ath79_generic_DEVICE_tplink_tl-wdr4900-v2-16m|\
 		TARGET_DEVICE_ath79_generic_DEVICE_tplink_tl-wdr4900-v2|\
 		TARGET_DEVICE_ath79_generic_DEVICE_iodata_wn-ac1600dgr2|\
 		TARGET_DEVICE_ath79_generic_DEVICE_tplink_tl-wr2543-v1|\
