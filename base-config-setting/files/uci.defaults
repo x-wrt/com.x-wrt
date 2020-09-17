@@ -48,7 +48,7 @@ test -n "$MACADDR" || MACADDR=`head -c6 /dev/urandom | hexdump -e '/1 "%02X:"' |
 test -n "$MACADDR" || MACADDR=`head -c6 /dev/random | hexdump -e '/1 "%02X:"' | head -c17`
 
 test $version -lt 1 && {
-	uci set luci.main.lang='zh_cn'
+	uci set luci.main.lang='auto'
 	uci commit luci
 
 	uci get system.@system[0] >/dev/null 2>&1 && {
