@@ -28,6 +28,14 @@ e = s:taboption("general", Flag, "peer_mode", translate("Peer Mode"), translate(
 e.default = e.disabled
 e.rmempty = false
 
+e = s:taboption("general", Flag, "cnipwhitelist_mode", translate("Domestic and International Diversion"), translate("Generally do not need to be enabled unless used to play games."))
+e.default = e.disabled
+e.rmempty = false
+
+e = s:taboption("general", Flag, "full_proxy", translate("Full Proxy"), translate("All traffic goes to proxy."))
+e.default = e.disabled
+e.rmempty = false
+
 e = s:taboption("general", Value, "ui", translate("UI"))
 e.rmempty = true
 e.placeholder = 'none'
