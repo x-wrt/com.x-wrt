@@ -581,7 +581,7 @@ cn_domain_setup() {
 	lock /var/run/natcapd.cn_domain.lock
 	while :; do
 	ping -q -W3 -c1 8.8.8.8 || ping -q -W3 -c1 114.114.114.114 || { sleep 11 && continue; }
-	$WGET181 --timeout=180 --ca-certificate=/tmp/cacert.pem -qO /tmp/cn_domain.raw.build.gz \
+	$WGET181 --timeout=180 --no-check-certificate -qO /tmp/cn_domain.raw.build.gz \
 		"https://downloads.x-wrt.com/rom/cn_domain/v1/accelerated-domains.china.raw.build.gz" && {
 			gzip -d /tmp/cn_domain.raw.build.gz
 			echo cn_domain_raw=/tmp/cn_domain.raw.build >>$DEV
