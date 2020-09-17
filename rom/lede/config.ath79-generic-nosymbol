@@ -64,6 +64,7 @@ CONFIG_TARGET_MULTI_PROFILE=y
 # CONFIG_TARGET_ath79_generic_DEVICE_bm100_hq55 is not set
 # CONFIG_TARGET_ath79_generic_DEVICE_buffalo_bhr-4grv is not set
 # CONFIG_TARGET_ath79_generic_DEVICE_buffalo_bhr-4grv2 is not set
+# CONFIG_TARGET_ath79_generic_DEVICE_buffalo_wzr-600dhp is not set
 # CONFIG_TARGET_ath79_generic_DEVICE_buffalo_wzr-hp-ag300h is not set
 # CONFIG_TARGET_ath79_generic_DEVICE_buffalo_wzr-hp-g302h-a1a0 is not set
 # CONFIG_TARGET_ath79_generic_DEVICE_buffalo_wzr-hp-g450h is not set
@@ -246,6 +247,7 @@ CONFIG_TARGET_MULTI_PROFILE=y
 # CONFIG_TARGET_ath79_generic_DEVICE_ubnt_unifiac-mesh is not set
 # CONFIG_TARGET_ath79_generic_DEVICE_ubnt_unifiac-mesh-pro is not set
 # CONFIG_TARGET_ath79_generic_DEVICE_ubnt_unifiac-pro is not set
+# CONFIG_TARGET_ath79_generic_DEVICE_ubnt_unifi-ap-pro is not set
 # CONFIG_TARGET_ath79_generic_DEVICE_ubnt_acb-isp is not set
 # CONFIG_TARGET_ath79_generic_DEVICE_wd_mynet-n750 is not set
 # CONFIG_TARGET_ath79_generic_DEVICE_wd_mynet-wifi-rangeextender is not set
@@ -292,6 +294,7 @@ CONFIG_TARGET_PER_DEVICE_ROOTFS=y
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_bm100_hq55 is not set
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_buffalo_bhr-4grv is not set
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_buffalo_bhr-4grv2 is not set
+# CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_buffalo_wzr-600dhp is not set
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_buffalo_wzr-hp-ag300h is not set
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_buffalo_wzr-hp-g302h-a1a0 is not set
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_buffalo_wzr-hp-g450h is not set
@@ -522,6 +525,7 @@ CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_ubnt_unifiac-mesh-pro=y
 CONFIG_TARGET_DEVICE_PACKAGES_ath79_generic_DEVICE_ubnt_unifiac-mesh-pro="ath10k-firmware-qca988x-ct kmod-ath10k-ct kmod-ath9k kmod-ath9k-common kmod-gpio-button-hotplug kmod-hwmon-core wpad-basic-wolfssl"
 CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_ubnt_unifiac-pro=y
 CONFIG_TARGET_DEVICE_PACKAGES_ath79_generic_DEVICE_ubnt_unifiac-pro="ath10k-firmware-qca988x-ct blockd block-mount kmod-ath10k-ct kmod-ath9k kmod-ath9k-common kmod-crypto-crc32c kmod-exfat-linux kmod-fs-autofs4 kmod-fs-ext4 kmod-fs-msdos kmod-fs-vfat kmod-fuse kmod-gpio-button-hotplug kmod-hwmon-core kmod-lib-crc16 kmod-mii kmod-nls-cp437 kmod-phy-ath79-usb kmod-scsi-core kmod-usb2 kmod-usb-core kmod-usb-ehci kmod-usb-net kmod-usb-net-cdc-ether kmod-usb-net-rndis kmod-usb-ohci kmod-usb-storage kmod-usb-storage-uas ntfs-3g wpad-basic-wolfssl"
+# CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_ubnt_unifi-ap-pro is not set
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_wd_mynet-n750 is not set
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_wd_mynet-wifi-rangeextender is not set
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_winchannel_wb2000 is not set
@@ -874,7 +878,7 @@ CONFIG_TARGET_INIT_CMD="/sbin/init"
 CONFIG_TARGET_INIT_SUPPRESS_STDERR=y
 CONFIG_VERSIONOPT=y
 CONFIG_VERSION_DIST="X-WRT"
-CONFIG_VERSION_NUMBER="8.0_b202009132240"
+CONFIG_VERSION_NUMBER="8.0_b202009180131"
 CONFIG_VERSION_CODE="Focal"
 CONFIG_VERSION_REPO="http://downloads.openwrt.org/snapshots"
 CONFIG_VERSION_HOME_URL="https://x-wrt.com/"
@@ -6841,6 +6845,7 @@ CONFIG_PACKAGE_cgi-io=y
 # CONFIG_PACKAGE_freshclam is not set
 # CONFIG_PACKAGE_frpc is not set
 # CONFIG_PACKAGE_frps is not set
+# CONFIG_PACKAGE_gateway-go is not set
 # CONFIG_PACKAGE_haproxy is not set
 # CONFIG_PACKAGE_haproxy-nossl is not set
 # CONFIG_PACKAGE_kcptun-client is not set
