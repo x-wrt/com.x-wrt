@@ -8,7 +8,7 @@ WGET61=$WGET
 WGET181=$WGET
 test -x $WGET || WGET=/bin/wget
 which timeout >/dev/null 2>&1 && WGET61="$TO 61 $WGET"
-which timeout >/dev/null 2>&1 && WGET181="$TO 180 $WGET"
+which timeout >/dev/null 2>&1 && WGET181="$TO 181 $WGET"
 
 PID=$$
 DEV=/dev/natcap_ctl
@@ -61,6 +61,7 @@ natcapd_stop()
 	echo clean >>$DEV
 	#never stop kmod
 	echo disabled=0 >>$DEV
+	echo cn_domain_clean >>$DEV
 
 	rm -f /tmp/dnsmasq.d/accelerated-domains.gfwlist.dnsmasq.conf 2>/dev/null
 	rm -f /tmp/dnsmasq.d/custom-domains.gfwlist.dnsmasq.conf 2>/dev/null
@@ -575,6 +576,28 @@ test -c $DEV && {
 	echo ni_forward=${ni_forward} >>$DEV
 }
 
+cn_domain_setup() {
+	local retry=3
+	lock /var/run/natcapd.cn_domain.lock
+	while :; do
+	ping -q -W3 -c1 8.8.8.8 || ping -q -W3 -c1 114.114.114.114 || { sleep 11 && continue; }
+	$WGET181 --timeout=180 --ca-certificate=/tmp/cacert.pem -qO /tmp/cn_domain.raw.build \
+		"https://downloads.x-wrt.com/rom/cn_domain/v1/accelerated-domains.china.raw.build" && {
+			echo cn_domain_raw=/tmp/cn_domain.raw.build >>$DEV
+			sleep 1
+			rm -f /tmp/cn_domain.raw.build
+			logger -t "natcapd" "cn_domain_raw reload success"
+			break
+		}
+	retry=$((retry-1))
+	test $retry -eq 0 && {
+		logger -t "natcapd" "cn_domain_raw reload failed"
+		break
+	}
+	done
+	lock -u /var/run/natcapd.cn_domain.lock
+}
+
 ipset -n list wechat_iplist >/dev/null 2>&1 || ipset -! create wechat_iplist iphash hashsize 1024 maxelem 65536
 
 test -n "$led" && echo "$enabled" >>"$led"
@@ -813,6 +836,9 @@ elif test -c $DEV; then
 
 	_clean_natcap_rules
 	_setup_natcap_rules
+
+	[ x$access_to_cn != x1 -a x$full_proxy != x1 -a x$cnipwhitelist_mode != x2 ] && \
+	cn_domain_setup &
 fi
 
 #reload pptpd
