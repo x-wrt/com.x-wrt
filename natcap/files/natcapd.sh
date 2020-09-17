@@ -577,7 +577,14 @@ test -c $DEV && {
 }
 
 cn_domain_setup() {
+	local memtotal=`grep MemTotal /proc/meminfo | awk '{print $2}'`
 	local retry=3
+
+	#mem less than 64M
+	if test $memtotal -le 65536; then
+		return
+	fi
+
 	lock /var/run/natcapd.cn_domain.lock
 	while :; do
 	ping -q -W3 -c1 8.8.8.8 || ping -q -W3 -c1 114.114.114.114 || { sleep 11 && continue; }
