@@ -5,7 +5,7 @@
 
 
 do_mmt_ready() {
-	mount -t tmpfs tmpfs /mnt
+	mount -o size=1M -t tmpfs tmpfs /mnt
 }
 
 boot_hook_add preinit_main do_mmt_ready
