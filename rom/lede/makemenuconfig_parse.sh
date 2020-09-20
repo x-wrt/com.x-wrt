@@ -379,6 +379,7 @@ for t in $targets; do
 		TARGET_DEVICE_ath79_generic_DEVICE_devolo_dvl1200e|\
 		TARGET_DEVICE_ath79_generic_DEVICE_devolo_dvl1750c|\
 		TARGET_DEVICE_ar71xx_nand_DEVICE_arris-sbr-ac1750|\
+		TARGET_DEVICE_ath79_nand_DEVICE_arris_sbr-ac1750|\
 		TARGET_DEVICE_ar71xx_generic_DEVICE_WZRHPG300NH2|\
 		TARGET_DEVICE_ath79_generic_DEVICE_tplink_archer-a7-v5|\
 		TARGET_DEVICE_ath79_generic_DEVICE_dlink_dir-825-c1|\
@@ -831,6 +832,7 @@ for t in $targets; do
 		TARGET_DEVICE_ath79_generic_DEVICE_tplink_archer-c7-v4|\
 		TARGET_DEVICE_ath79_generic_DEVICE_tplink_archer-c7-v5|\
 		TARGET_DEVICE_ar71xx_nand_DEVICE_arris-sbr-ac1750|\
+		TARGET_DEVICE_ath79_nand_DEVICE_arris_sbr-ac1750|\
 		TARGET_DEVICE_ar71xx_generic_DEVICE_WZRHPG300NH2|\
 		TARGET_DEVICE_ath79_generic_DEVICE_tplink_archer-a7-v5|\
 		TARGET_DEVICE_ath79_generic_DEVICE_dlink_dir-825-c1|\
