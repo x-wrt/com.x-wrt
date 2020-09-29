@@ -411,7 +411,7 @@ CONFIG_TARGET_INIT_CMD="/sbin/init"
 CONFIG_TARGET_INIT_SUPPRESS_STDERR=y
 CONFIG_VERSIONOPT=y
 CONFIG_VERSION_DIST="X-WRT"
-CONFIG_VERSION_NUMBER="8.0_b202009190231"
+CONFIG_VERSION_NUMBER="8.0_b202009292218"
 CONFIG_VERSION_CODE="Focal"
 CONFIG_VERSION_REPO="http://downloads.openwrt.org/snapshots"
 CONFIG_VERSION_HOME_URL="https://x-wrt.com/"
@@ -2775,6 +2775,11 @@ CONFIG_PACKAGE_wireless-regdb=y
 #
 
 #
+# (I2C_MENU)
+#
+# end of (I2C_MENU)
+
+#
 # Block Devices
 #
 # CONFIG_PACKAGE_kmod-aoe is not set
@@ -3186,6 +3191,7 @@ CONFIG_PACKAGE_kmod-nft-netdev=y
 # CONFIG_PACKAGE_kmod-iavf is not set
 CONFIG_PACKAGE_kmod-ifb=y
 # CONFIG_PACKAGE_kmod-igb is not set
+# CONFIG_PACKAGE_kmod-igc is not set
 # CONFIG_PACKAGE_kmod-ixgbe is not set
 # CONFIG_PACKAGE_kmod-ixgbevf is not set
 CONFIG_PACKAGE_kmod-libphy=y
@@ -3311,9 +3317,6 @@ CONFIG_PACKAGE_kmod-wireguard=y
 # CONFIG_PACKAGE_kmod-bcma is not set
 # CONFIG_PACKAGE_kmod-bluetooth is not set
 # CONFIG_PACKAGE_kmod-bluetooth-6lowpan is not set
-# CONFIG_PACKAGE_kmod-bmp085 is not set
-# CONFIG_PACKAGE_kmod-bmp085-i2c is not set
-# CONFIG_PACKAGE_kmod-bmp085-spi is not set
 # CONFIG_PACKAGE_kmod-btmrvl is not set
 # CONFIG_PACKAGE_kmod-button-hotplug is not set
 # CONFIG_PACKAGE_kmod-echo is not set
@@ -4839,6 +4842,7 @@ CONFIG_WOLFSSL_HAS_NO_HW=y
 #
 # Sound
 #
+# CONFIG_PACKAGE_alsa-ucm-conf is not set
 # CONFIG_PACKAGE_liblo is not set
 # end of Sound
 
@@ -5337,6 +5341,7 @@ CONFIG_LUCI_LANG_en=y
 # CONFIG_LUCI_LANG_mr is not set
 # CONFIG_LUCI_LANG_ms is not set
 # CONFIG_LUCI_LANG_nb_NO is not set
+# CONFIG_LUCI_LANG_nl is not set
 # CONFIG_LUCI_LANG_pl is not set
 # CONFIG_LUCI_LANG_pt is not set
 # CONFIG_LUCI_LANG_pt_BR is not set
@@ -5579,6 +5584,7 @@ CONFIG_PACKAGE_luci-i18n-base-en=y
 # CONFIG_PACKAGE_luci-i18n-base-ko is not set
 # CONFIG_PACKAGE_luci-i18n-base-mr is not set
 # CONFIG_PACKAGE_luci-i18n-base-ms is not set
+# CONFIG_PACKAGE_luci-i18n-base-nl is not set
 # CONFIG_PACKAGE_luci-i18n-base-no is not set
 # CONFIG_PACKAGE_luci-i18n-base-pl is not set
 # CONFIG_PACKAGE_luci-i18n-base-pt is not set
@@ -6245,6 +6251,7 @@ CONFIG_PACKAGE_ddns-scripts_aliyun=y
 # CONFIG_PACKAGE_ddns-scripts_no-ip_com is not set
 # CONFIG_PACKAGE_ddns-scripts_nsupdate is not set
 # CONFIG_PACKAGE_ddns-scripts_route53-v1 is not set
+# CONFIG_PACKAGE_ddns-scripts_service is not set
 # CONFIG_PACKAGE_dhcp-forwarder is not set
 # CONFIG_PACKAGE_dnscrypt-proxy is not set
 # CONFIG_PACKAGE_dnscrypt-proxy-resolvers is not set
@@ -6271,6 +6278,7 @@ CONFIG_PACKAGE_ddns-scripts_aliyun=y
 # CONFIG_PACKAGE_kea-lfc is not set
 # CONFIG_PACKAGE_kea-libs is not set
 # CONFIG_PACKAGE_kea-perfdhcp is not set
+# CONFIG_PACKAGE_kea-shell is not set
 # CONFIG_PACKAGE_knot is not set
 # CONFIG_PACKAGE_knot-dig is not set
 # CONFIG_PACKAGE_knot-host is not set
@@ -7005,6 +7013,7 @@ CONFIG_PACKAGE_ppp-mod-pptp=y
 # CONFIG_PACKAGE_proxychains-ng is not set
 # CONFIG_PACKAGE_ptunnel-ng is not set
 # CONFIG_PACKAGE_radsecproxy is not set
+# CONFIG_PACKAGE_ratched is not set
 # CONFIG_PACKAGE_ratechecker is not set
 # CONFIG_PACKAGE_redsocks is not set
 # CONFIG_PACKAGE_remserial is not set
@@ -7378,6 +7387,39 @@ CONFIG_PACKAGE_NTFS-3G_HAS_PROBE=y
 # CONFIG_PACKAGE_usbmuxd is not set
 # end of libimobiledevice
 
+#
+# libselinux tools
+#
+# CONFIG_PACKAGE_libselinux-avcstat is not set
+# CONFIG_PACKAGE_libselinux-compute_av is not set
+# CONFIG_PACKAGE_libselinux-compute_create is not set
+# CONFIG_PACKAGE_libselinux-compute_member is not set
+# CONFIG_PACKAGE_libselinux-compute_relabel is not set
+# CONFIG_PACKAGE_libselinux-getconlist is not set
+# CONFIG_PACKAGE_libselinux-getdefaultcon is not set
+# CONFIG_PACKAGE_libselinux-getenforce is not set
+# CONFIG_PACKAGE_libselinux-getfilecon is not set
+# CONFIG_PACKAGE_libselinux-getpidcon is not set
+# CONFIG_PACKAGE_libselinux-getsebool is not set
+# CONFIG_PACKAGE_libselinux-getseuser is not set
+# CONFIG_PACKAGE_libselinux-matchpathcon is not set
+# CONFIG_PACKAGE_libselinux-policyvers is not set
+# CONFIG_PACKAGE_libselinux-sefcontext_compile is not set
+# CONFIG_PACKAGE_libselinux-selabel_digest is not set
+# CONFIG_PACKAGE_libselinux-selabel_get_digests_all_partial_matches is not set
+# CONFIG_PACKAGE_libselinux-selabel_lookup is not set
+# CONFIG_PACKAGE_libselinux-selabel_lookup_best_match is not set
+# CONFIG_PACKAGE_libselinux-selabel_partial_match is not set
+# CONFIG_PACKAGE_libselinux-selinux_check_access is not set
+# CONFIG_PACKAGE_libselinux-selinux_check_securetty_context is not set
+# CONFIG_PACKAGE_libselinux-selinuxenabled is not set
+# CONFIG_PACKAGE_libselinux-selinuxexeccon is not set
+# CONFIG_PACKAGE_libselinux-setenforce is not set
+# CONFIG_PACKAGE_libselinux-setfilecon is not set
+# CONFIG_PACKAGE_libselinux-togglesebool is not set
+# CONFIG_PACKAGE_libselinux-validatetrans is not set
+# end of libselinux tools
+
 # CONFIG_PACKAGE_acpid is not set
 # CONFIG_PACKAGE_adb is not set
 # CONFIG_PACKAGE_ap51-flash is not set
@@ -7412,6 +7454,7 @@ CONFIG_PACKAGE_bcm27xx-userland=y
 # CONFIG_PACKAGE_checkpolicy is not set
 # CONFIG_PACKAGE_checksec is not set
 # CONFIG_PACKAGE_checksec_automator is not set
+# CONFIG_PACKAGE_chkcon is not set
 # CONFIG_PACKAGE_cmdpad is not set
 # CONFIG_PACKAGE_coap-client is not set
 # CONFIG_PACKAGE_collectd is not set
@@ -7498,7 +7541,6 @@ CONFIG_PACKAGE_jshn=y
 # CONFIG_PACKAGE_less-wide is not set
 CONFIG_PACKAGE_libjson-script=y
 # CONFIG_PACKAGE_libnetwork is not set
-# CONFIG_PACKAGE_libselinux-utils is not set
 # CONFIG_PACKAGE_libxml2-utils is not set
 # CONFIG_PACKAGE_lm-sensors is not set
 # CONFIG_PACKAGE_lm-sensors-detect is not set

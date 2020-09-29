@@ -51,6 +51,10 @@ CONFIG_TARGET_MULTI_PROFILE=y
 # CONFIG_TARGET_ath79_generic_DEVICE_8dev_carambola2 is not set
 # CONFIG_TARGET_ath79_generic_DEVICE_8dev_lima is not set
 # CONFIG_TARGET_ath79_generic_DEVICE_alfa-network_ap121f is not set
+# CONFIG_TARGET_ath79_generic_DEVICE_alfa-network_ap121fe is not set
+# CONFIG_TARGET_ath79_generic_DEVICE_alfa-network_n2q is not set
+# CONFIG_TARGET_ath79_generic_DEVICE_alfa-network_n5q is not set
+# CONFIG_TARGET_ath79_generic_DEVICE_alfa-network_r36a is not set
 # CONFIG_TARGET_ath79_generic_DEVICE_allnet_all-wap02860ac is not set
 # CONFIG_TARGET_ath79_generic_DEVICE_avm_fritz4020 is not set
 # CONFIG_TARGET_ath79_generic_DEVICE_avm_fritz1750e is not set
@@ -112,6 +116,9 @@ CONFIG_TARGET_MULTI_PROFILE=y
 # CONFIG_TARGET_ath79_generic_DEVICE_glinet_gl-ar300m16 is not set
 # CONFIG_TARGET_ath79_generic_DEVICE_glinet_gl-ar750 is not set
 # CONFIG_TARGET_ath79_generic_DEVICE_glinet_gl-x750 is not set
+# CONFIG_TARGET_ath79_generic_DEVICE_hak5_lan-turtle is not set
+# CONFIG_TARGET_ath79_generic_DEVICE_hak5_packet-squirrel is not set
+# CONFIG_TARGET_ath79_generic_DEVICE_hak5_wifi-pineapple-nano is not set
 # CONFIG_TARGET_ath79_generic_DEVICE_iodata_etg3-r is not set
 # CONFIG_TARGET_ath79_generic_DEVICE_iodata_wn-ac1167dgr is not set
 # CONFIG_TARGET_ath79_generic_DEVICE_iodata_wn-ac1600dgr is not set
@@ -145,6 +152,7 @@ CONFIG_TARGET_MULTI_PROFILE=y
 # CONFIG_TARGET_ath79_generic_DEVICE_pcs_cr5000 is not set
 # CONFIG_TARGET_ath79_generic_DEVICE_qihoo_c301 is not set
 # CONFIG_TARGET_ath79_generic_DEVICE_rosinson_wr818 is not set
+# CONFIG_TARGET_ath79_generic_DEVICE_samsung_wam250 is not set
 # CONFIG_TARGET_ath79_generic_DEVICE_siemens_ws-ap3610 is not set
 # CONFIG_TARGET_ath79_generic_DEVICE_sitecom_wlr-7100 is not set
 # CONFIG_TARGET_ath79_generic_DEVICE_sitecom_wlr-8100 is not set
@@ -249,6 +257,7 @@ CONFIG_TARGET_MULTI_PROFILE=y
 # CONFIG_TARGET_ath79_generic_DEVICE_ubnt_unifiac-pro is not set
 # CONFIG_TARGET_ath79_generic_DEVICE_ubnt_unifi-ap-pro is not set
 # CONFIG_TARGET_ath79_generic_DEVICE_ubnt_acb-isp is not set
+# CONFIG_TARGET_ath79_generic_DEVICE_wallys_dr531 is not set
 # CONFIG_TARGET_ath79_generic_DEVICE_wd_mynet-n750 is not set
 # CONFIG_TARGET_ath79_generic_DEVICE_wd_mynet-wifi-rangeextender is not set
 # CONFIG_TARGET_ath79_generic_DEVICE_winchannel_wb2000 is not set
@@ -283,6 +292,10 @@ CONFIG_TARGET_PER_DEVICE_ROOTFS=y
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_adtran_bsap1800-v2 is not set
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_adtran_bsap1840 is not set
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_alfa-network_ap121f is not set
+# CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_alfa-network_ap121fe is not set
+# CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_alfa-network_n2q is not set
+# CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_alfa-network_n5q is not set
+# CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_alfa-network_r36a is not set
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_allnet_all-wap02860ac is not set
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_arduino_yun is not set
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_aruba_ap-105 is not set
@@ -349,6 +362,9 @@ CONFIG_TARGET_PER_DEVICE_ROOTFS=y
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_glinet_gl-ar750 is not set
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_glinet_gl-mifi is not set
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_glinet_gl-x750 is not set
+# CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_hak5_lan-turtle is not set
+# CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_hak5_packet-squirrel is not set
+# CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_hak5_wifi-pineapple-nano is not set
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_iodata_etg3-r is not set
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_iodata_wn-ac1167dgr is not set
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_iodata_wn-ac1600dgr is not set
@@ -388,6 +404,7 @@ CONFIG_TARGET_DEVICE_PACKAGES_ath79_generic_DEVICE_pisen_ts-d084="blockd block-m
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_pcs_cr5000 is not set
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_qihoo_c301 is not set
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_rosinson_wr818 is not set
+# CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_samsung_wam250 is not set
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_siemens_ws-ap3610 is not set
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_sitecom_wlr-7100 is not set
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_sitecom_wlr-8100 is not set
@@ -526,6 +543,7 @@ CONFIG_TARGET_DEVICE_PACKAGES_ath79_generic_DEVICE_ubnt_unifiac-mesh-pro="ath10k
 CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_ubnt_unifiac-pro=y
 CONFIG_TARGET_DEVICE_PACKAGES_ath79_generic_DEVICE_ubnt_unifiac-pro="ath10k-firmware-qca988x-ct blockd block-mount kmod-ath10k-ct kmod-ath9k kmod-ath9k-common kmod-crypto-crc32c kmod-exfat-linux kmod-fs-autofs4 kmod-fs-ext4 kmod-fs-msdos kmod-fs-vfat kmod-fuse kmod-gpio-button-hotplug kmod-hwmon-core kmod-lib-crc16 kmod-mii kmod-nls-cp437 kmod-phy-ath79-usb kmod-scsi-core kmod-usb2 kmod-usb-core kmod-usb-ehci kmod-usb-net kmod-usb-net-cdc-ether kmod-usb-net-rndis kmod-usb-ohci kmod-usb-storage kmod-usb-storage-uas ntfs-3g wpad-basic-wolfssl"
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_ubnt_unifi-ap-pro is not set
+# CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_wallys_dr531 is not set
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_wd_mynet-n750 is not set
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_wd_mynet-wifi-rangeextender is not set
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_winchannel_wb2000 is not set
@@ -631,6 +649,7 @@ CONFIG_AUDIO_SUPPORT=y
 CONFIG_GPIO_SUPPORT=y
 CONFIG_PCI_SUPPORT=y
 CONFIG_USB_SUPPORT=y
+CONFIG_USB_GADGET_SUPPORT=y
 CONFIG_BIG_ENDIAN=y
 CONFIG_USES_DEVICETREE=y
 CONFIG_USES_INITRAMFS=y
@@ -878,7 +897,7 @@ CONFIG_TARGET_INIT_CMD="/sbin/init"
 CONFIG_TARGET_INIT_SUPPRESS_STDERR=y
 CONFIG_VERSIONOPT=y
 CONFIG_VERSION_DIST="X-WRT"
-CONFIG_VERSION_NUMBER="8.0_b202009190231"
+CONFIG_VERSION_NUMBER="8.0_b202009292218"
 CONFIG_VERSION_CODE="Focal"
 CONFIG_VERSION_REPO="http://downloads.openwrt.org/snapshots"
 CONFIG_VERSION_HOME_URL="https://x-wrt.com/"
@@ -3238,6 +3257,11 @@ CONFIG_PACKAGE_wireless-regdb=y
 #
 
 #
+# (I2C_MENU)
+#
+# end of (I2C_MENU)
+
+#
 # Block Devices
 #
 # CONFIG_PACKAGE_kmod-aoe is not set
@@ -3647,6 +3671,7 @@ CONFIG_PACKAGE_kmod-nft-netdev=y
 # CONFIG_PACKAGE_kmod-iavf is not set
 # CONFIG_PACKAGE_kmod-ifb is not set
 # CONFIG_PACKAGE_kmod-igb is not set
+# CONFIG_PACKAGE_kmod-igc is not set
 # CONFIG_PACKAGE_kmod-ixgbe is not set
 # CONFIG_PACKAGE_kmod-ixgbevf is not set
 # CONFIG_PACKAGE_kmod-libphy is not set
@@ -3772,9 +3797,6 @@ CONFIG_PACKAGE_kmod-wireguard=y
 # CONFIG_PACKAGE_kmod-bcma is not set
 # CONFIG_PACKAGE_kmod-bluetooth is not set
 # CONFIG_PACKAGE_kmod-bluetooth-6lowpan is not set
-# CONFIG_PACKAGE_kmod-bmp085 is not set
-# CONFIG_PACKAGE_kmod-bmp085-i2c is not set
-# CONFIG_PACKAGE_kmod-bmp085-spi is not set
 # CONFIG_PACKAGE_kmod-btmrvl is not set
 # CONFIG_PACKAGE_kmod-button-hotplug is not set
 # CONFIG_PACKAGE_kmod-echo is not set
@@ -3863,6 +3885,13 @@ CONFIG_PACKAGE_kmod-usb-core=m
 # CONFIG_PACKAGE_kmod-usb-dwc2 is not set
 # CONFIG_PACKAGE_kmod-usb-dwc3 is not set
 CONFIG_PACKAGE_kmod-usb-ehci=m
+CONFIG_PACKAGE_kmod-usb-gadget=m
+# CONFIG_PACKAGE_kmod-usb-gadget-cdc-composite is not set
+# CONFIG_PACKAGE_kmod-usb-gadget-ehci-debug is not set
+# CONFIG_PACKAGE_kmod-usb-gadget-eth is not set
+# CONFIG_PACKAGE_kmod-usb-gadget-hid is not set
+# CONFIG_PACKAGE_kmod-usb-gadget-mass-storage is not set
+# CONFIG_PACKAGE_kmod-usb-gadget-serial is not set
 # CONFIG_PACKAGE_kmod-usb-hid is not set
 CONFIG_PACKAGE_kmod-usb-ledtrig-usbport=m
 CONFIG_PACKAGE_kmod-usb-net=m
@@ -3889,6 +3918,7 @@ CONFIG_PACKAGE_kmod-usb-net-rtl8152=m
 CONFIG_PACKAGE_kmod-usb-net-sierrawireless=m
 # CONFIG_PACKAGE_kmod-usb-net-smsc95xx is not set
 # CONFIG_PACKAGE_kmod-usb-net-sr9700 is not set
+# CONFIG_PACKAGE_kmod-usb-net2280 is not set
 CONFIG_PACKAGE_kmod-usb-ohci=m
 # CONFIG_PACKAGE_kmod-usb-ohci-pci is not set
 CONFIG_PACKAGE_kmod-usb-phy-nop=m
@@ -5044,6 +5074,7 @@ CONFIG_WOLFSSL_HAS_NO_HW=y
 #
 # Sound
 #
+# CONFIG_PACKAGE_alsa-ucm-conf is not set
 # CONFIG_PACKAGE_liblo is not set
 # end of Sound
 
@@ -5542,6 +5573,7 @@ CONFIG_LUCI_LANG_en=y
 # CONFIG_LUCI_LANG_mr is not set
 # CONFIG_LUCI_LANG_ms is not set
 # CONFIG_LUCI_LANG_nb_NO is not set
+# CONFIG_LUCI_LANG_nl is not set
 # CONFIG_LUCI_LANG_pl is not set
 # CONFIG_LUCI_LANG_pt is not set
 # CONFIG_LUCI_LANG_pt_BR is not set
@@ -5783,6 +5815,7 @@ CONFIG_PACKAGE_luci-i18n-base-en=y
 # CONFIG_PACKAGE_luci-i18n-base-ko is not set
 # CONFIG_PACKAGE_luci-i18n-base-mr is not set
 # CONFIG_PACKAGE_luci-i18n-base-ms is not set
+# CONFIG_PACKAGE_luci-i18n-base-nl is not set
 # CONFIG_PACKAGE_luci-i18n-base-no is not set
 # CONFIG_PACKAGE_luci-i18n-base-pl is not set
 # CONFIG_PACKAGE_luci-i18n-base-pt is not set
@@ -6417,6 +6450,7 @@ CONFIG_PACKAGE_ddns-scripts_aliyun=y
 # CONFIG_PACKAGE_ddns-scripts_no-ip_com is not set
 # CONFIG_PACKAGE_ddns-scripts_nsupdate is not set
 # CONFIG_PACKAGE_ddns-scripts_route53-v1 is not set
+# CONFIG_PACKAGE_ddns-scripts_service is not set
 # CONFIG_PACKAGE_dhcp-forwarder is not set
 # CONFIG_PACKAGE_dnscrypt-proxy is not set
 # CONFIG_PACKAGE_dnscrypt-proxy-resolvers is not set
@@ -6443,6 +6477,7 @@ CONFIG_PACKAGE_ddns-scripts_aliyun=y
 # CONFIG_PACKAGE_kea-lfc is not set
 # CONFIG_PACKAGE_kea-libs is not set
 # CONFIG_PACKAGE_kea-perfdhcp is not set
+# CONFIG_PACKAGE_kea-shell is not set
 # CONFIG_PACKAGE_knot is not set
 # CONFIG_PACKAGE_knot-dig is not set
 # CONFIG_PACKAGE_knot-host is not set
@@ -7175,6 +7210,7 @@ CONFIG_PACKAGE_ppp-mod-pptp=y
 # CONFIG_PACKAGE_proxychains-ng is not set
 # CONFIG_PACKAGE_ptunnel-ng is not set
 # CONFIG_PACKAGE_radsecproxy is not set
+# CONFIG_PACKAGE_ratched is not set
 # CONFIG_PACKAGE_ratechecker is not set
 # CONFIG_PACKAGE_redsocks is not set
 # CONFIG_PACKAGE_remserial is not set
@@ -7548,6 +7584,39 @@ CONFIG_PACKAGE_NTFS-3G_HAS_PROBE=y
 # CONFIG_PACKAGE_usbmuxd is not set
 # end of libimobiledevice
 
+#
+# libselinux tools
+#
+# CONFIG_PACKAGE_libselinux-avcstat is not set
+# CONFIG_PACKAGE_libselinux-compute_av is not set
+# CONFIG_PACKAGE_libselinux-compute_create is not set
+# CONFIG_PACKAGE_libselinux-compute_member is not set
+# CONFIG_PACKAGE_libselinux-compute_relabel is not set
+# CONFIG_PACKAGE_libselinux-getconlist is not set
+# CONFIG_PACKAGE_libselinux-getdefaultcon is not set
+# CONFIG_PACKAGE_libselinux-getenforce is not set
+# CONFIG_PACKAGE_libselinux-getfilecon is not set
+# CONFIG_PACKAGE_libselinux-getpidcon is not set
+# CONFIG_PACKAGE_libselinux-getsebool is not set
+# CONFIG_PACKAGE_libselinux-getseuser is not set
+# CONFIG_PACKAGE_libselinux-matchpathcon is not set
+# CONFIG_PACKAGE_libselinux-policyvers is not set
+# CONFIG_PACKAGE_libselinux-sefcontext_compile is not set
+# CONFIG_PACKAGE_libselinux-selabel_digest is not set
+# CONFIG_PACKAGE_libselinux-selabel_get_digests_all_partial_matches is not set
+# CONFIG_PACKAGE_libselinux-selabel_lookup is not set
+# CONFIG_PACKAGE_libselinux-selabel_lookup_best_match is not set
+# CONFIG_PACKAGE_libselinux-selabel_partial_match is not set
+# CONFIG_PACKAGE_libselinux-selinux_check_access is not set
+# CONFIG_PACKAGE_libselinux-selinux_check_securetty_context is not set
+# CONFIG_PACKAGE_libselinux-selinuxenabled is not set
+# CONFIG_PACKAGE_libselinux-selinuxexeccon is not set
+# CONFIG_PACKAGE_libselinux-setenforce is not set
+# CONFIG_PACKAGE_libselinux-setfilecon is not set
+# CONFIG_PACKAGE_libselinux-togglesebool is not set
+# CONFIG_PACKAGE_libselinux-validatetrans is not set
+# end of libselinux tools
+
 # CONFIG_PACKAGE_acpid is not set
 # CONFIG_PACKAGE_adb is not set
 # CONFIG_PACKAGE_ap51-flash is not set
@@ -7580,6 +7649,7 @@ CONFIG_PACKAGE_NTFS-3G_HAS_PROBE=y
 # CONFIG_PACKAGE_checkpolicy is not set
 # CONFIG_PACKAGE_checksec is not set
 # CONFIG_PACKAGE_checksec_automator is not set
+# CONFIG_PACKAGE_chkcon is not set
 # CONFIG_PACKAGE_cmdpad is not set
 # CONFIG_PACKAGE_coap-client is not set
 # CONFIG_PACKAGE_collectd is not set
@@ -7661,7 +7731,6 @@ CONFIG_PACKAGE_jshn=y
 # CONFIG_PACKAGE_less is not set
 # CONFIG_PACKAGE_less-wide is not set
 CONFIG_PACKAGE_libjson-script=y
-# CONFIG_PACKAGE_libselinux-utils is not set
 # CONFIG_PACKAGE_libxml2-utils is not set
 # CONFIG_PACKAGE_lm-sensors is not set
 # CONFIG_PACKAGE_lm-sensors-detect is not set
