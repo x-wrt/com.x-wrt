@@ -274,6 +274,7 @@ for t in $targets; do
 		TARGET_DEVICE_ath79_generic_DEVICE_tplink_archer-d7-v1|\
 		TARGET_DEVICE_ath79_generic_DEVICE_tplink_archer-d7b-v1|\
 		TARGET_DEVICE_ath79_nand_DEVICE_domywifi_dw33d|\
+		TARGET_DEVICE_ath79_nand_DEVICE_domywifi_dw33d-nor|\
 		TARGET_DEVICE_ath79_generic_DEVICE_devolo_magic-2-wifi|\
 		TARGET_DEVICE_ath79_generic_DEVICE_sitecom_wlr-8100|\
 		TARGET_DEVICE_ipq806x_generic_DEVICE_tplink_c2600|\
@@ -790,6 +791,7 @@ for t in $targets; do
 		TARGET_DEVICE_ath79_generic_DEVICE_tplink_archer-d7-v1|\
 		TARGET_DEVICE_ath79_generic_DEVICE_tplink_archer-d7b-v1|\
 		TARGET_DEVICE_ath79_nand_DEVICE_domywifi_dw33d|\
+		TARGET_DEVICE_ath79_nand_DEVICE_domywifi_dw33d-nor|\
 		TARGET_DEVICE_ath79_generic_DEVICE_bm100_hq55|\
 		TARGET_DEVICE_ath79_nand_DEVICE_netgear_wndr3700-v4|\
 		TARGET_DEVICE_ath79_generic_DEVICE_netgear_wnr2200-16m|\
