@@ -62,8 +62,6 @@ return view.extend({
 		o.datatype = 'ip4addr';
 
 		o = s.taboption('wansetup', form.DynamicList, 'wan_dns', _('Use custom DNS servers'));
-		o.depends('wan_proto', 'dhcp');
-		o.depends('wan_proto', 'static');
 		o.datatype = 'ip4addr';
 		o.cast = 'string';
 
