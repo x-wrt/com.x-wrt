@@ -34,7 +34,7 @@ return view.extend({
 		s.tab('lansetup', _('Lan Settings'));
 
 		o = s.taboption('wansetup', form.ListValue, 'wan_proto', _('Protocol'));
-		o.rmempty  = false;
+		o.rmempty = false;
 		o.value('dhcp', _('DHCP client'));
 		o.value('static', _('Static address'));
 		o.value('pppoe', _('PPPoE'));
@@ -83,8 +83,6 @@ return view.extend({
 		o.value('255.255.0.0');
 		o.value('255.0.0.0');
 
-		return m.render().then(L.bind(function(m, nodes) {
-			return nodes;
-		}, this, m));
+		return m.render();
 	}
 });
