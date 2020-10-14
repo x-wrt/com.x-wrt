@@ -1,0 +1,13 @@
+{
+	"admin/initsetup": {
+		"title": "Wizard",
+		"action": {
+			"type": "view",
+			"path": "wizard/wizard"
+		},
+		"depends": {
+			"acl": [ "luci-app-wizard" ],
+			"uci": { "wizard": true }
+		}
+	}
+}

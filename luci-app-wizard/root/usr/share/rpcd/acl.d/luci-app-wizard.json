@@ -2,7 +2,7 @@
 	"luci-app-wizard": {
 		"description": "Grant UCI access for luci-app-wizard",
 		"read": {
-			"uci": [ "wizard" ]
+			"uci": [ "wizard", "wireless" ]
 		},
 		"write": {
 			"uci": [ "wizard" ]
