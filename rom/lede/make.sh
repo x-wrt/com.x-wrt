@@ -59,7 +59,7 @@ for i in $IDXS; do
 			done
 			#touch contains '@lt\|@le\|@gt\|@ge'
 			find feeds/packages/ package/ feeds/luci/ feeds/routing/ feeds/telephony/ feeds/freifunk/ feeds/x/ -type f -name '*.mk' -o -name Makefile | while read f; do
-				grep -q '@lt\|@le\|@gt\|@ge\|+.*:' $f && touch $f && echo touch $f
+				grep -q 'autoreconf\|@lt\|@le\|@gt\|@ge\|+.*:' $f && touch $f && echo touch $f
 			done
 			for f in touchlist; do
 				touch $f && echo touch $f
