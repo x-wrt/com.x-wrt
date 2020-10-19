@@ -1,0 +1,18 @@
+#!/bin/sh
+
+[ "$ACTION" == "add" ] || exit 0
+[ -n "$INTERFACE" ] || exit 0
+
+case "$ACTION" in
+	add)
+		case "$INTERFACE" in
+			br-lanap|br-lanrelay|br-lan)
+				ifconfig $INTERFACE:1 169.254.254.254 netmask 255.255.0.0
+			;;
+			*)
+			;;
+		esac
+	;;
+esac
+
+exit 0
