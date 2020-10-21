@@ -1,0 +1,10 @@
+
+uci -q batch <<-EOF >/dev/null
+	delete ucitrack.@simplenetwork[-1]
+	add ucitrack simplenetwork
+	set ucitrack.@simplenetwork[-1].init=simplenetwork
+	commit ucitrack
+EOF
+
+rm -f /tmp/luci-indexcache
+exit 0
