@@ -1,3 +1,8 @@
+touch /etc/config/simplenetwork
+touch /etc/config/network
+touch /etc/config/wireless
+touch /etc/config/firewall
+touch /etc/config/dhcp
 
 uci -q batch <<-EOF >/dev/null
 	delete ucitrack.@simplenetwork[-1]
