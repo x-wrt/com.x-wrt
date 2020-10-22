@@ -544,6 +544,11 @@ for t in $targets; do
 			flash_gt8m=1
 		;;
 		#<=8M flash
+		TARGET_DEVICE_ath79_generic_DEVICE_tplink_tl-wr710n-v1|\
+		TARGET_DEVICE_ath79_generic_DEVICE_tplink_tl-wr710n-v2.1|\
+		TARGET_DEVICE_ath79_generic_DEVICE_tplink_tl-wr810n-v1|\
+		TARGET_DEVICE_ath79_generic_DEVICE_tplink_tl-wr810n-v2|\
+		TARGET_DEVICE_ath79_generic_DEVICE_tplink_tl-wr842n-v1|\
 		TARGET_DEVICE_ramips_mt7620_DEVICE_nexx_wt3020-8m|\
 		TARGET_DEVICE_ath79_generic_DEVICE_tplink_archer-c60-v3|\
 		TARGET_DEVICE_ath79_generic_DEVICE_netgear_wnr2200-8m|\
@@ -787,6 +792,10 @@ for t in $targets; do
 			has_usb=1
 		;;
 		#with usb2
+		TARGET_DEVICE_ath79_generic_DEVICE_tplink_tl-wr710n-v1|\
+		TARGET_DEVICE_ath79_generic_DEVICE_tplink_tl-wr710n-v2.1|\
+		TARGET_DEVICE_ath79_generic_DEVICE_tplink_tl-wr810n-v1|\
+		TARGET_DEVICE_ath79_generic_DEVICE_tplink_tl-wr842n-v1|\
 		TARGET_DEVICE_ramips_mt7620_DEVICE_nexx_wt3020-8m|\
 		TARGET_DEVICE_rockchip_armv8_DEVICE_friendlyarm_nanopi-r2s|\
 		TARGET_DEVICE_ramips_mt7620_DEVICE_asus_rt-ac54u|\
@@ -1000,6 +1009,7 @@ for t in $targets; do
 			has_usb=1
 		;;
 		#no usb
+		TARGET_DEVICE_ath79_generic_DEVICE_tplink_tl-wr810n-v2|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_xwrt_wr1800k-ax-nand|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_xwrt_tcb1800k-ax-nor|\
 		TARGET_DEVICE_ath79_generic_DEVICE_xwrt_xd1202g|\
