@@ -58,6 +58,13 @@ fi
 exit 0
 endef
 
+define Package/luci-app-simplenetwork/install-overlay
+	$(INSTALL_DIR) $(1)/usr/share/luci/menu.d
+	$(INSTALL_DATA) ./root/usr/share/luci/menu.d/luci-app-p910nd.json $(1)/usr/share/luci/menu.d/
+	$(INSTALL_DATA) ./root/usr/share/luci/menu.d/luci-base.json $(1)/usr/share/luci/menu.d/
+endef
+
+
 define Package/luci-app-simplenetwork/install
 	$(INSTALL_DIR) $(1)/usr/lib/lua/luci/i18n
 	$(INSTALL_DATA) $(PKG_BUILD_DIR)/simplenetwork.*.lmo $(1)/usr/lib/lua/luci/i18n/
@@ -70,11 +77,13 @@ define Package/luci-app-simplenetwork/install
 	$(INSTALL_DIR) $(1)/usr/share/rpcd/acl.d
 	$(INSTALL_DATA) ./root/usr/share/rpcd/acl.d/*.json $(1)/usr/share/rpcd/acl.d/
 	$(INSTALL_DIR) $(1)/usr/share/luci/menu.d
-	$(INSTALL_DATA) ./root/usr/share/luci/menu.d/*.json $(1)/usr/share/luci/menu.d/
+	$(INSTALL_DATA) ./root/usr/share/luci/menu.d/luci-app-simplenetwork.json $(1)/usr/share/luci/menu.d/
 	$(INSTALL_DIR) $(1)/www/luci-static/resources/view/simplenetwork
 	$(INSTALL_DATA) ./htdocs/luci-static/resources/view/simplenetwork/*.js $(1)/www/luci-static/resources/view/simplenetwork/
 	$(INSTALL_DIR) $(1)/www/luci-static/resources/view/system
 	$(INSTALL_DATA) ./htdocs/luci-static/resources/view/system/*.js $(1)/www/luci-static/resources/view/system/
+	$(INSTALL_DIR) $(1)/www/luci-static/resources/view/p910nd
+	$(INSTALL_DATA) ./htdocs/luci-static/resources/view/p910nd/*.js $(1)/www/luci-static/resources/view/p910nd/
 endef
 
 $(eval $(call BuildPackage,luci-app-simplenetwork))

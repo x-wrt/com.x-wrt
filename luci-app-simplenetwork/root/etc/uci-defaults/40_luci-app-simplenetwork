@@ -25,4 +25,7 @@ sed -i 's,"luci-mod-system-init","luci-mod-system-init-hidden",' /usr/share/luci
 sed -i 's,"luci-mod-system-cron","luci-mod-system-cron-hidden",' /usr/share/luci/menu.d/luci-mod-system.json
 sed -i 's,"luci-mod-system-mounts","luci-mod-system-mounts-hidden",' /usr/share/luci/menu.d/luci-mod-system.json
 
+# hide network
+sed -i 's,"admin/network","admin/network-hidden",' /usr/share/luci/menu.d/luci-base.json
+
 exit 0
