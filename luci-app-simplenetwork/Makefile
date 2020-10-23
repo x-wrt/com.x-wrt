@@ -73,6 +73,8 @@ define Package/luci-app-simplenetwork/install
 	$(INSTALL_DATA) ./root/usr/share/luci/menu.d/*.json $(1)/usr/share/luci/menu.d/
 	$(INSTALL_DIR) $(1)/www/luci-static/resources/view/simplenetwork
 	$(INSTALL_DATA) ./htdocs/luci-static/resources/view/simplenetwork/*.js $(1)/www/luci-static/resources/view/simplenetwork/
+	$(INSTALL_DIR) $(1)/www/luci-static/resources/view/system
+	$(INSTALL_DATA) ./htdocs/luci-static/resources/view/system/*.js $(1)/www/luci-static/resources/view/system/
 endef
 
 $(eval $(call BuildPackage,luci-app-simplenetwork))

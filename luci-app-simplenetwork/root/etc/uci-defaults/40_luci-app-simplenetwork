@@ -12,4 +12,17 @@ uci -q batch <<-EOF >/dev/null
 EOF
 
 rm -f /tmp/luci-indexcache
+
+# system/system
+sed -i 's,"path": "system/system","path": "system/system-simple",' /usr/share/luci/menu.d/luci-mod-system.json
+
+# system/flash
+sed -i 's,"path": "system/flash","path": "system/flash-simple",' /usr/share/luci/menu.d/luci-mod-system.json
+
+# hide ssh
+sed -i 's,"luci-mod-system-ssh","luci-mod-system-ssh-hidden",' /usr/share/luci/menu.d/luci-mod-system.json
+sed -i 's,"luci-mod-system-init","luci-mod-system-init-hidden",' /usr/share/luci/menu.d/luci-mod-system.json
+sed -i 's,"luci-mod-system-cron","luci-mod-system-cron-hidden",' /usr/share/luci/menu.d/luci-mod-system.json
+sed -i 's,"luci-mod-system-mounts","luci-mod-system-mounts-hidden",' /usr/share/luci/menu.d/luci-mod-system.json
+
 exit 0
