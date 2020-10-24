@@ -8,7 +8,7 @@
 mwan3_rtmon_route_handle()
 {
 	config_load mwan3
-	local section action route_line family tbl device metric tos dst line tid
+	local section action route_line family tbl device metric tos dst line tid id
 	route_line=${1##"Deleted "}
 	route_family=$2
 
@@ -46,7 +46,7 @@ mwan3_rtmon_route_handle()
 	mwan3_update_dev_to_table
 	mwan3_route_line_dev "tid" "$route_line" "$route_family"
 	handle_route() {
-		tbl=$($IP route list table $tid)
+		tbl=$($IP route list table $id)
 		if [ $action = "add" ]; then
 			echo "$tbl" | grep -q "^default\|^::/0" || return
 		else
@@ -59,41 +59,54 @@ mwan3_rtmon_route_handle()
 		[ $action = "add" ] && [ -z "${tbl##*$route_line*}" ] && return
 		[ $action = "del" ] && [ -n "${tbl##*$route_line*}" ] && return
 		network_get_device device "$section"
-		LOG debug "adjusting route $device: $IP route \"$action\" table $tid $route_line"
-		$IP route "$action" table $tid $route_line ||
-			LOG warn "failed: $IP route $action table $tid $route_line"
+
+		[ "$tid" != "$id" ] && [ -z "${route_line##* scope link*}" ] && \
+		[ -n "${route_line##* metric *}" ] && \
+		$IP route "$action" table $id $route_line metric ${tid:-256} && {
+			LOG debug "adjusting route $device: $IP route "$action" table $id $route_line metric ${tid:-256}"
+			return
+		}
+		[ "$tid" == "$id" ] && [ -z "${route_line##* scope link*}" ] && \
+		[ -z "${route_line##* metric *}" ] && \
+		$IP route "$action" table $id ${route_line%% metric *} && {
+			LOG debug "adjusting route $device: $IP route "$action" table $id ${route_line%% metric *}"
+			return
+		}
+
+		LOG debug "adjusting route $device: $IP route "$action" table $id $route_line"
+		$IP route "$action" table $id $route_line || {
+			#add fail? check change/replace
+			if [ $action = "add" ]; then
+				## handle old routes from 'change' or 'replace'
+				metric=${route_line##*metric }
+				[ "$metric" = "$route_line" ] && unset metric || metric=${metric%% *}
+
+				tos=${route_line##*tos }
+				[ "$tos" = "$route_line" ] && unset tos || tos=${tos%% *}
+
+				dst=${route_line%% *}
+				grep_line="^$dst ${tos:+tos $tos}.*table [0-9].*${metric:+metric $metric}"
+				$IP route list table all | grep "$grep_line" | while read line; do
+					tbl=${line##*table }
+					tbl=${tbl%% *}
+					[ $tbl -gt $MWAN3_INTERFACE_MAX ] && continue
+					LOG debug "removing route on ip route change/replace: $line"
+					$IP route del $line
+				done
+			fi
+			# just retry add
+			$IP route "$action" table $id $route_line ||
+				LOG warn "failed2: $IP route $action table $id $route_line"
+		}
 	}
 	handle_route_cb(){
-		let tid++
+		let id++
 		config_get family "$section" family "any"
 		[ "$family" != "$route_family" ] && [ "$family" != "any" ] && return
 		handle_route
 	}
 
-	if [ $action = "add" ]; then
-		## handle old routes from 'change' or 'replace'
-		metric=${route_line##*metric }
-		[ "$metric" = "$route_line" ] && unset metric || metric=${metric%% *}
-
-		tos=${route_line##*tos }
-		[ "$tos" = "$route_line" ] && unset tos || tos=${tos%% *}
-
-		dst=${route_line%% *}
-		grep_line="$dst ${tos:+tos $tos}.*table [0-9].*${metric:+metric $metric}"
-		$IP route list table all | grep "$grep_line" | while read -r line; do
-			tbl=${line##*table }
-			tbl=${tbl%% *}
-			[ $tbl -gt $MWAN3_INTERFACE_MAX ] && continue
-			LOG debug "removing route on ip route change/replace: $line"
-			$IP route del $line
-		done
-	fi
-
-	if [ -n "$tid" ]; then
-		handle_route
-	else
-		config_foreach handle_route_cb interface
-	fi
+	id=0 config_foreach handle_route_cb interface
 }
 
 main()

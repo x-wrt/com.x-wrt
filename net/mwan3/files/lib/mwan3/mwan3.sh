@@ -699,17 +699,27 @@ mwan3_add_non_default_iface_route()
 	mwan3_update_dev_to_table
 	$IP route list table main | grep -v "^default\|linkdown\|^::/0\|^fe80::/64\|^unreachable" | while read -r route_line; do
 		mwan3_route_line_dev "tid" "$route_line" "$family"
-		if [ -z "$tid" ] || [ "$tid" = "$id" ]; then
-			$IP route add table $id $route_line ||
-				LOG warn "failed to add $route_line to table $id"
-		fi
+		[ "$tid" != "$id" ] && [ -z "${route_line##* scope link*}" ] && \
+		[ -n "${route_line##* metric *}" ] && \
+		$IP route add table $id $route_line metric ${tid:-256} && {
+			LOG debug "adjusting route $device: $IP route add table $id $route_line metric ${tid:-256}"
+			continue
+		}
+		[ "$tid" == "$id" ] && [ -z "${route_line##* scope link*}" ] && \
+		[ -z "${route_line##* metric *}" ] && \
+		$IP route add table $id ${route_line%% metric *} && {
+			LOG debug "adjusting route $device: $IP route add table $id ${route_line%% metric *}"
+			continue
+		}
+		$IP route add table $id $route_line ||
+			LOG warn "failed to add $route_line to table $id"
 
 	done
 }
 
 mwan3_add_all_nondefault_routes()
 {
-	local tid IP route_line ipv family active_tbls tid
+	local tid IP route_line ipv family active_tbls tid id
 
 	add_active_tbls()
 	{
@@ -723,10 +733,22 @@ mwan3_add_all_nondefault_routes()
 
 	add_route()
 	{
-		let tid++
-		[ -n "${active_tbls##* $tid *}" ] && return
-		$IP route add table $tid $route_line ||
-			LOG warn "failed to add $route_line to table $tid"
+		let id++
+		[ -n "${active_tbls##* $id *}" ] && return
+		[ "$tid" != "$id" ] && [ -z "${route_line##* scope link*}" ] && \
+		[ -n "${route_line##* metric *}" ] && \
+		$IP route add table $id $route_line metric ${tid:-256} && {
+			LOG debug "adjusting route $device: $IP route add table $id $route_line metric ${tid:-256}"
+			return
+		}
+		[ "$tid" == "$id" ] && [ -z "${route_line##* scope link*}" ] && \
+		[ -z "${route_line##* metric *}" ] && \
+		$IP route add table $id ${route_line%% metric *} && {
+			LOG debug "adjusting route $device: $IP route add table $id ${route_line%% metric *}"
+			return
+		}
+		$IP route add table $id $route_line ||
+			LOG warn "failed to add $route_line to table $id"
 	}
 
 	mwan3_update_dev_to_table
@@ -738,16 +760,11 @@ mwan3_add_all_nondefault_routes()
 		else
 			continue
 		fi
-		tid=0
 		active_tbls=" "
-		config_foreach add_active_tbls interface
+		tid=0 config_foreach add_active_tbls interface
 		$IP route list table main | grep -v "^default\|linkdown\|^::/0\|^fe80::/64\|^unreachable" | while read -r route_line; do
 			mwan3_route_line_dev "tid" "$route_line" "$ipv"
-			if [ -n "$tid" ]; then
-				$IP route add table $tid $route_line
-			else
-				config_foreach add_route interface
-			fi
+			id=0 config_foreach add_route interface
 		done
 	done
 }
