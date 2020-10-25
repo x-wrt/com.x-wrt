@@ -593,12 +593,6 @@ mwan3_create_iface_iptables()
 
 	mwan3_push_update -A "mwan3_iface_in_$1" \
 			  -i "$2" \
-			  -m set --match-set $connected_name src \
-			  -m mark --mark "0x0/$MMX_MASK" \
-			  -m comment --comment "default" \
-			  -j MARK --set-xmark "$MMX_DEFAULT/$MMX_MASK"
-	mwan3_push_update -A "mwan3_iface_in_$1" \
-			  -i "$2" \
 			  -m mark --mark "0x0/$MMX_MASK" \
 			  -m comment --comment "$1" \
 			  -j MARK --set-xmark "$(mwan3_id2mask id MMX_MASK)/$MMX_MASK"
