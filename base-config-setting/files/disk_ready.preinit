@@ -58,7 +58,7 @@ do_disk_ready() {
 
 			# overlay partition
 			sda5_start=$((sda4_end+512+1))
-			sda5_end=$((sda5_start+overlay_size/sector_size))
+			sda5_end=$((sda5_start+overlay_size/sector_size - 1))
 
 			# data partition
 			sda6_start=$((sda5_end+512+1))
@@ -131,7 +131,7 @@ do_disk_ready() {
 
 			# overlay partition
 			sda3_start=$((sda2_end+512+1))
-			sda3_end=$((sda3_start+overlay_size/sector_size))
+			sda3_end=$((sda3_start+overlay_size/sector_size - 1))
 
 			# data partition
 			sda4_start=$((sda3_end+512+1))
