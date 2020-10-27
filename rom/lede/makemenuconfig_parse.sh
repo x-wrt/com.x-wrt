@@ -261,6 +261,7 @@ for t in $targets; do
 	excludes="$excludes_basic"
 	case $t in
 		#>8M flash
+		TARGET_DEVICE_ramips_mt7621_DEVICE_totolink_x5000r|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_xwrt_wr1800k-ax-nand|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_xwrt_tcb1800k-ax-nor|\
 		TARGET_DEVICE_ath79_generic_DEVICE_tplink_tl-wdr4900-v2-16m|\
@@ -1009,6 +1010,7 @@ for t in $targets; do
 			has_usb=1
 		;;
 		#no usb
+		TARGET_DEVICE_ramips_mt7621_DEVICE_totolink_x5000r|\
 		TARGET_DEVICE_ath79_generic_DEVICE_tplink_tl-wr810n-v2|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_xwrt_wr1800k-ax-nand|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_xwrt_tcb1800k-ax-nor|\
