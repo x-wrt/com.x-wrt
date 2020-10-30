@@ -10,7 +10,6 @@ DEVICE=""
 PING="/bin/ping"
 
 IFDOWN_EVENT=0
-IFUP_EVENT=0
 
 clean_up() {
 	LOG notice "Stopping mwan3track for interface \"${INTERFACE}\""
@@ -20,11 +19,6 @@ clean_up() {
 if_down() {
 	LOG info "Detect ifdown event on interface ${INTERFACE} (${DEVICE})"
 	IFDOWN_EVENT=1
-}
-
-if_up() {
-	LOG info "Detect ifup event on interface ${INTERFACE} (${DEVICE})"
-	IFUP_EVENT=1
 }
 
 validate_track_method() {
@@ -120,7 +114,6 @@ main() {
 	mkdir -p $MWAN3TRACK_STATUS_DIR/$INTERFACE.$family
 	trap clean_up TERM
 	trap if_down USR1
-	trap if_up USR2
 
 	config_load mwan3
 	mwan3_check_family_needs
@@ -320,11 +313,6 @@ main() {
 			LOG debug "Register ifdown event on interface ${INTERFACE}($family) (${DEVICE})"
 			FAMILY=$family disconnected 1
 			IFDOWN_EVENT=0
-		fi
-		if [ "${IFUP_EVENT}" -eq 1 ]; then
-			LOG debug "Register ifup event on interface ${INTERFACE}($family) (${DEVICE})"
-			FAMILY=$family firstconnect
-			IFUP_EVENT=0
 		fi
 	done
 }
