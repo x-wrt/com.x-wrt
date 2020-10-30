@@ -522,6 +522,7 @@ mwan3_set_general_iptables()
 
 			fi
 			mwan3_push_update -A mwan3_hook \
+					  -m mark --mark 0x0/$MMX_MASK \
 					  -j CONNMARK --restore-mark --nfmask "$MMX_MASK" --ctmask "$MMX_MASK"
 			mwan3_push_update -A mwan3_hook \
 					  -m mark --mark 0x0/$MMX_MASK \

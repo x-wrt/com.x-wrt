@@ -124,6 +124,7 @@ main() {
 
 	config_load mwan3
 	mwan3_check_family_needs
+	mwan3_init
 	config_get track_method $INTERFACE track_method ping
 	config_get_bool httping_ssl $INTERFACE httping_ssl 0
 	config_get reliability $INTERFACE reliability 1
@@ -188,10 +189,10 @@ main() {
 							unset SRC_IP
 						fi
 						if [ $check_quality -eq 0 ]; then
-							$PING -$ping_protocol -I $DEVICE -c $count -W $timeout -s $size -t $max_ttl -q $track_ip &> /dev/null
+							$PING -$ping_protocol -m $((MMX_MASK)) -I $DEVICE -c $count -W $timeout -s $size -t $max_ttl -q $track_ip &> /dev/null
 							result=$?
 						else
-							ping_result_raw="$($PING -$ping_protocol -I $DEVICE -c $count -W $timeout -s $size -t $max_ttl -q $track_ip 2>/dev/null)"
+							ping_result_raw="$($PING -$ping_protocol -m $((MMX_MASK)) -I $DEVICE -c $count -W $timeout -s $size -t $max_ttl -q $track_ip 2>/dev/null)"
 							ping_status=$?
 							ping_result=$(echo "$ping_result_raw" | tail -n2)
 							loss="$(echo "$ping_result" | grep "packet loss" | cut -d "," -f3 | awk '{print $1}' | sed -e 's/%//')"
