@@ -39,6 +39,7 @@ add_wizard() {
 				uci delete network.wan
 				uci set network.wan=interface
 				uci set network.wan.proto='static'
+				uci set network.wan.force_link='0'
 				uci set network.wan.ifname="$ifname"
 				uci set network.wan.metric='40'
 				uci set network.wan.ipaddr="${wan_ipaddr}"

@@ -62,6 +62,8 @@ define Package/luci-app-simplenetwork/install-overlay
 	$(INSTALL_DIR) $(1)/usr/share/luci/menu.d
 	$(INSTALL_DATA) ./root/usr/share/luci/menu.d/luci-app-p910nd.json $(1)/usr/share/luci/menu.d/
 	$(INSTALL_DATA) ./root/usr/share/luci/menu.d/luci-base.json $(1)/usr/share/luci/menu.d/
+	$(INSTALL_DATA) ./root/usr/share/luci/menu.d/luci-mod-status.json $(1)/usr/share/luci/menu.d/
+	$(INSTALL_DATA) ./root/usr/share/luci/menu.d/luci-mod-system.json $(1)/usr/share/luci/menu.d/
 endef
 
 
