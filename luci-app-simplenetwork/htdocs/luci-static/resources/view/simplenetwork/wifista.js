@@ -2,9 +2,11 @@
 'require view';
 'require dom';
 'require poll';
+'require ui';
 'require uci';
 'require rpc';
 'require form';
+'require network';
 
 return view.extend({
 	load: function() {
@@ -31,6 +33,41 @@ return view.extend({
 
 		o = s.option(form.Value, 'ssid', _('<abbr title="Extended Service Set Identifier">ESSID</abbr>'));
 		o.datatype = 'maxlength(32)';
+
+		o.render = function(option_index, section_id, in_table) {
+			var current_ssid = uci.get('wireless', 'wifinet1', 'ssid');
+			if (current_ssid != undefined) {
+				this.value(current_ssid);
+			}
+			return network.getWifiDevice("radio0").then(L.bind(function(radioDev) {
+				return radioDev.getScanList().then(L.bind(function(results) {
+					results.sort(function(a, b) {
+						var diff = (b.quality - a.quality) || (a.channel - b.channel);
+						if (diff)
+							return diff;
+						if (a.ssid < b.ssid)
+							return -1;
+						else if (a.ssid > b.ssid)
+							return 1;
+						if (a.bssid < b.bssid)
+							return -1;
+						else if (a.bssid > b.bssid)
+							return 1;
+					});
+
+					for (var i = 0; i < results.length; i++) {
+						this.value(results[i].ssid, results[i].ssid + " (" + _('Channel') + " " + results[i].channel + " " + network.formatWifiEncryption(results[i].encryption) + ")");
+						if (current_ssid == results[i].ssid, results[i].ssid) {
+							current_ssid = undefined;
+						}
+					}
+					if (current_ssid != undefined) {
+						this.value(current_ssid);
+					}
+					return form.Value.prototype.render.apply(this, [ option_index, section_id, in_table ]);
+				}, this));
+			}, this));
+		}
 
 		o = s.option(form.ListValue, 'encryption', _('Encryption'));
 		o.value('none', _('No Encryption'));
