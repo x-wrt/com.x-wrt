@@ -134,6 +134,20 @@ return view.extend({
 		o.value('psk2', _('WPA2-PSK'));
 		o.value('psk-mixed', _('WPA-PSK/WPA2-PSK Mixed Mode'));
 
+		o.validate = function(section, value) {
+			var ssid = uci.get('wireless', section, 'ssid');
+			for (var i = 0; i < scanRes.length; i++) {
+				if (scanRes[i].ssid == ssid) {
+					if (value == ssidValid(network.formatWifiEncryption(scanRes[i].encryption))) {
+						return true;
+					}
+					return _('Encryption') + ": " + network.formatWifiEncryption(scanRes[i].encryption);
+				}
+			}
+			return true;
+			//return _('Invalid') + ' ' + _('Encryption');
+		}
+
 		o = s.option(form.Value, 'key', _('Key'));
 		o.depends('encryption', 'psk');
 		o.depends('encryption', 'psk2');
