@@ -8,6 +8,22 @@
 'require form';
 'require network';
 
+var ssidValid;
+
+ssidValid = function(ssid) {
+	if (ssid.startsWith('None')) {
+		return 'none';
+	} else if (ssid.startsWith('WPA2 PSK')) {
+		return 'psk2';
+	} else if (ssid.startsWith('WPA PSK')) {
+		return 'psk';
+	} else if (ssid.startsWith('mixed WPA/WPA2 PSK')) {
+		return 'psk-mixed';
+	}
+
+	return null;
+}
+
 return view.extend({
 	load: function() {
 		return Promise.all([
@@ -16,9 +32,22 @@ return view.extend({
 		]);
 	},
 
-	render: function(data) {
+	_this: this,
 
+	startScan: false,
+	ssidOpt: null,
+
+	handleScan: function(m, ev) {
+		this.startScan = true;
+		this.ssidOpt.keylist = [];
+		this.ssidOpt.vallist = [];
+		return m.render();
+	},
+
+	render: function(data) {
 		var m, s, ss, o;
+		var _this = this;
+		var scanCache = {};
 
 		m = new form.Map('wireless', [_('Wireless STA')],
 			_('Configure the WiFi STA'));
@@ -33,14 +62,21 @@ return view.extend({
 
 		o = s.option(form.Value, 'ssid', _('<abbr title="Extended Service Set Identifier">ESSID</abbr>'));
 		o.datatype = 'maxlength(32)';
+		_this.ssidOpt = o;
 
 		o.render = function(option_index, section_id, in_table) {
 			var current_ssid = uci.get('wireless', 'wifinet1', 'ssid');
-			if (current_ssid != undefined) {
-				this.value(current_ssid);
+			if (_this.startScan == false) {
+				if (current_ssid != undefined) {
+					this.value(current_ssid);
+				}
+				return form.Value.prototype.render.apply(this, [ option_index, section_id, in_table ]);
 			}
 			return network.getWifiDevice("radio0").then(L.bind(function(radioDev) {
 				return radioDev.getScanList().then(L.bind(function(results) {
+					for (var i = 0; i < results.length; i++)
+						scanCache[results[i].bssid] = results[i];
+
 					results.sort(function(a, b) {
 						var diff = (b.quality - a.quality) || (a.channel - b.channel);
 						if (diff)
@@ -56,8 +92,15 @@ return view.extend({
 					});
 
 					for (var i = 0; i < results.length; i++) {
+						if (results[i].ssid == undefined) {
+							//alert(results[i].ssid);
+							continue;
+						}
+						if (ssidValid(network.formatWifiEncryption(results[i].encryption)) == null) {
+							continue;
+						}
 						this.value(results[i].ssid, results[i].ssid + " (" + _('Channel') + " " + results[i].channel + " " + network.formatWifiEncryption(results[i].encryption) + ")");
-						if (current_ssid == results[i].ssid, results[i].ssid) {
+						if (current_ssid == results[i].ssid) {
 							current_ssid = undefined;
 						}
 					}
@@ -68,6 +111,12 @@ return view.extend({
 				}, this));
 			}, this));
 		}
+
+		o = s.option(form.Button, '_scan');
+		o.title = '&#160;';
+		o.inputtitle = _('SCAN WiFi');
+		o.inputstyle = 'apply';
+		o.onclick = L.bind(this.handleScan, this, m);
 
 		o = s.option(form.ListValue, 'encryption', _('Encryption'));
 		o.value('none', _('No Encryption'));
