@@ -47,7 +47,7 @@ return view.extend({
 	render: function(data) {
 		var m, s, ss, o;
 		var _this = this;
-		var scanCache = {};
+		var scanRes = {};
 
 		m = new form.Map('wireless', [_('Wireless STA')],
 			_('Configure the WiFi STA'));
@@ -74,8 +74,6 @@ return view.extend({
 			}
 			return network.getWifiDevice("radio0").then(L.bind(function(radioDev) {
 				return radioDev.getScanList().then(L.bind(function(results) {
-					for (var i = 0; i < results.length; i++)
-						scanCache[results[i].bssid] = results[i];
 
 					results.sort(function(a, b) {
 						var diff = (b.quality - a.quality) || (a.channel - b.channel);
@@ -90,6 +88,8 @@ return view.extend({
 						else if (a.bssid > b.bssid)
 							return 1;
 					});
+
+					scanRes = results;
 
 					for (var i = 0; i < results.length; i++) {
 						if (results[i].ssid == undefined) {
@@ -110,6 +110,16 @@ return view.extend({
 					return form.Value.prototype.render.apply(this, [ option_index, section_id, in_table ]);
 				}, this));
 			}, this));
+		}
+
+		o.write = function(section_id, formvalue) {
+			uci.set('wireless', section_id, 'ssid', formvalue);
+			for (var i = 0; i < scanRes.length; i++) {
+				if (scanRes[i].ssid == formvalue) {
+					uci.set('wireless', section_id, 'encryption', ssidValid(network.formatWifiEncryption(scanRes[i].encryption)));
+					break;
+				}
+			}
 		}
 
 		o = s.option(form.Button, '_scan');
