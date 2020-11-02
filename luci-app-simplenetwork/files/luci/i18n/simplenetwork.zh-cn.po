@@ -24,3 +24,27 @@ msgstr "设置路由器的无线名字和密码，更多高级设置请进入 �
 
 msgid "Lan Settings"
 msgstr "内网设置"
+
+msgid "Ugreen Network@2020-2026 All rights reserved"
+msgstr "绿联网络@2020-2026版权所有"
+
+msgid "Network Settings"
+msgstr "网络设置"
+
+msgid "RAW Printer server"
+msgstr "RAW 打印服务"
+
+msgid "LAN Port"
+msgstr "LAN网口"
+
+msgid "WiFi AP"
+msgstr "无线AP"
+
+msgid "WiFi STA"
+msgstr "无线STA"
+
+msgid "AP Network"
+msgstr "AP网络参数"
+
+msgid "STA Network"
+msgstr "STA网络参数"

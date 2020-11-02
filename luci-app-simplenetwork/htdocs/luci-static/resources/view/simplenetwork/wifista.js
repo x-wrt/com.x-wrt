@@ -135,7 +135,8 @@ return view.extend({
 		o.value('psk-mixed', _('WPA-PSK/WPA2-PSK Mixed Mode'));
 
 		o.validate = function(section, value) {
-			var ssid = uci.get('wireless', section, 'ssid');
+			var _ssid = this.map.lookupOption('ssid', section),
+				ssid = _ssid ? _ssid[0].formvalue(section) : null;
 			for (var i = 0; i < scanRes.length; i++) {
 				if (scanRes[i].ssid == ssid) {
 					if (value == ssidValid(network.formatWifiEncryption(scanRes[i].encryption))) {
