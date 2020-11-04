@@ -1306,7 +1306,12 @@ mwan3_set_user_rules()
 
 		mwan3_push_update COMMIT
 		mwan3_push_update ""
-		error=$(echo "$update" | $IPTR 2>&1) || LOG error "set_user_rules: $error"
+		error=$(echo "$update" | $IPTR 2>&1) || {
+			echo "$update" | while read line; do
+				$IPT $line >>/dev/null 2>&1 || LOG error "set_user_rules: fail/skip: $IPT $line"
+			done
+			LOG error "set_user_rules: $error"
+		}
 	done
 }
 
