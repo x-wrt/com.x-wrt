@@ -535,9 +535,6 @@ mwan3_set_general_iptables()
 					  -j mwan3_rules
 			mwan3_push_update -A mwan3_hook \
 					  -j CONNMARK --save-mark --nfmask "$MMX_MASK" --ctmask "$MMX_MASK"
-			mwan3_push_update -A mwan3_hook \
-					  -m mark ! --mark $MMX_DEFAULT/$MMX_MASK \
-					  -j mwan3_connected
 		fi
 
 		if [ -n "${current##*-A PREROUTING -j mwan3_hook*}" ]; then
