@@ -32,7 +32,7 @@ msgid "Network Settings"
 msgstr "网络设置"
 
 msgid "RAW Printer server"
-msgstr "RAW 打印服务"
+msgstr "RAW打印服务"
 
 msgid "LAN Port"
 msgstr "LAN网口"
@@ -72,3 +72,6 @@ msgstr "系统设置"
 
 msgid "Device Status"
 msgstr "设备状态"
+
+msgid "Enable DHCP for this AP."
+msgstr "为AP开启DHCP服务"
