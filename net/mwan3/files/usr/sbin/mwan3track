@@ -8,6 +8,7 @@
 INTERFACE=""
 DEVICE=""
 PING="/bin/ping"
+test -x /usr/bin/ping && PING="/usr/bin/ping"
 
 IFDOWN_EVENT=0
 
