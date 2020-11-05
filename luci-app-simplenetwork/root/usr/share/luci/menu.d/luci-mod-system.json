@@ -11,7 +11,7 @@
 		}
 	},
 
-	"admin/system/admin": {
+	"admin/system/admin-hidden": {
 		"title": "Administration",
 		"order": 2,
 		"action": {
@@ -30,7 +30,7 @@
 			"path": "system/password"
 		},
 		"depends": {
-			"acl": [ "luci-mod-system-config" ]
+			"acl": [ "luci-mod-system" ]
 		}
 	},
 
