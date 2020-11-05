@@ -1,0 +1,14 @@
+{
+	"admin/autoreboot": {
+		"title": "Scheduled Reboot",
+		"order": 89,
+		"action": {
+			"type": "view",
+			"path": "system/autoreboot"
+		},
+		"depends": {
+			"acl": [ "luci-app-autoreboot" ],
+			"uci": { "autoreboot": true }
+		}
+	}
+}
