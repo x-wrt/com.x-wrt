@@ -4818,6 +4818,7 @@ CONFIG_PACKAGE_libunbound=y
 CONFIG_PACKAGE_libunbound_ipset=y
 CONFIG_PACKAGE_libunbound_libevent=y
 CONFIG_PACKAGE_libunbound_libpthread=y
+# CONFIG_PACKAGE_libunbound_nghttp2 is not set
 # CONFIG_PACKAGE_libunbound_pythonmodule is not set
 # CONFIG_PACKAGE_libunbound_subnet is not set
 # CONFIG_PACKAGE_libunbound_dnstap is not set

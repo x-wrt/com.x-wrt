@@ -5129,7 +5129,7 @@ CONFIG_PCRE_JIT_ENABLED=y
 # CONFIG_PACKAGE_libprotobuf-c is not set
 # CONFIG_PACKAGE_libpsl is not set
 # CONFIG_PACKAGE_libqmi is not set
-# CONFIG_PACKAGE_libqrencode is not set
+CONFIG_PACKAGE_libqrencode=m
 # CONFIG_PACKAGE_libradcli is not set
 # CONFIG_PACKAGE_libradiotap is not set
 # CONFIG_PACKAGE_libreadline is not set
@@ -7611,7 +7611,7 @@ CONFIG_PACKAGE_procps-ng-ps=y
 # CONFIG_PACKAGE_psmisc is not set
 # CONFIG_PACKAGE_pv is not set
 # CONFIG_PACKAGE_qmi-utils is not set
-# CONFIG_PACKAGE_qrencode is not set
+CONFIG_PACKAGE_qrencode=m
 # CONFIG_PACKAGE_quota is not set
 # CONFIG_PACKAGE_ravpower-mcu is not set
 # CONFIG_PACKAGE_readsb is not set
