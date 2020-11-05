@@ -44,7 +44,7 @@ return view.extend({
 		o.rmempty = false;
 
 		o = s.option(form.Value, "minute", _("Minute"));
-		o.datatype = "range(0,23)";
+		o.datatype = "range(0,59)";
 		o.rmempty = false;
 
 		return m.render();
