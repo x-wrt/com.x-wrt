@@ -13,7 +13,7 @@
 	},
 
 	"admin/status": {
-		"title": "Status",
+		"title": "Device Status",
 		"order": 10,
 		"action": {
 			"type": "firstchild",
@@ -23,7 +23,7 @@
 	},
 
 	"admin/system": {
-		"title": "System",
+		"title": "System Settings",
 		"order": 200,
 		"action": {
 			"type": "firstchild",

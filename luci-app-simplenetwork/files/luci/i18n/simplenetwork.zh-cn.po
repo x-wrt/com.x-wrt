@@ -66,3 +66,9 @@ msgstr "STA网络参数"
 
 msgid "SCAN WiFi"
 msgstr "扫描无线"
+
+msgid "System Settings"
+msgstr "系统设置"
+
+msgid "Device Status"
+msgstr "设备状态"

@@ -35,15 +35,15 @@
 		}
 	},
 
-	"admin/status/syslog": {
+	"admin/syslog": {
 		"title": "System Log",
-		"order": 4,
+		"order": 201,
 		"action": {
 			"type": "view",
 			"path": "status/syslog"
 		},
 		"depends": {
-			"acl": [ "luci-mod-status-logs-hidden" ]
+			"acl": [ "luci-mod-status-logs" ]
 		}
 	},
 
