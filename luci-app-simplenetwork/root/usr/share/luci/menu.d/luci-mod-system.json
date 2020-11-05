@@ -22,7 +22,7 @@
 		}
 	},
 
-	"admin/system/admin/password": {
+	"admin/system/password": {
 		"title": "Router Password",
 		"order": 1,
 		"action": {
@@ -30,7 +30,7 @@
 			"path": "system/password"
 		},
 		"depends": {
-			"acl": [ "luci-mod-system" ]
+			"acl": [ "luci-mod-system-config" ]
 		}
 	},
 
