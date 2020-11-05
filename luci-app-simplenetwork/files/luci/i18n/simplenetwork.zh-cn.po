@@ -37,11 +37,26 @@ msgstr "RAW 打印服务"
 msgid "LAN Port"
 msgstr "LAN网口"
 
+msgid "Configure the lan port network"
+msgstr "这里设置LAN口的网络参数"
+
 msgid "WiFi AP"
 msgstr "无线AP"
 
+msgid "Wireless AP"
+msgstr "无线AP模式"
+
+msgid "Configure the WiFi AP"
+msgstr "这里设置无线AP的参数"
+
 msgid "WiFi STA"
-msgstr "无线STA"
+msgstr "无线客户端"
+
+msgid "Wireless STA"
+msgstr "无线客户端模式"
+
+msgid "Configure the WiFi STA"
+msgstr "这里设置无线客户端的参数"
 
 msgid "AP Network"
 msgstr "AP网络参数"
