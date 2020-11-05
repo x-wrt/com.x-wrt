@@ -1,5 +1,5 @@
 {
-	"admin/autoreboot": {
+	"admin/system/autoreboot": {
 		"title": "Scheduled Reboot",
 		"order": 89,
 		"action": {
