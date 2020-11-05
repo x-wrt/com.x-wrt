@@ -63,3 +63,6 @@ msgstr "AP网络参数"
 
 msgid "STA Network"
 msgstr "STA网络参数"
+
+msgid "SCAN WiFi"
+msgstr "扫描无线"
