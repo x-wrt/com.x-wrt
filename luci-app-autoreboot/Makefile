@@ -24,7 +24,7 @@ define Package/luci-app-autoreboot
 	SUBMENU:=Auto reboot bot app.
 	TITLE:=LuCI Support for autoreboot
 	PKGARCH:=all
-	DEPENDS:=+busybox +@CONFIG_BUSYBOX_CONFIG_CROND
+	DEPENDS:=+busybox +@BUSYBOX_CONFIG_CROND
 endef
 
 define Package/luci-app-autoreboot/description
