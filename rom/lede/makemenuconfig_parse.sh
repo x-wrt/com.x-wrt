@@ -112,7 +112,10 @@ wgmod="wireguard-tools \
 	   luci-app-wireguard \
 	   luci-proto-wireguard \
 	   luci-i18n-wireguard-en \
-	   luci-i18n-wireguard-zh-cn"
+	   luci-i18n-wireguard-zh-cn \
+	   qrencode \
+	   libqrencode"
+
 
 openvpnmod="luci-app-openvpn \
 			luci-i18n-openvpn-en \
