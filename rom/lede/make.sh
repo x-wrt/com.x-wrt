@@ -78,6 +78,7 @@ for i in $IDXS; do
 		test -n "$1" || exit 255
 		$* || {
 			make package/utils/util-linux/clean
+			make package/libs/wolfssl/clean
 			touch ./feeds/packages/libs/libgpg-error/Makefile
 			$* || exit 255
 		}
