@@ -22,6 +22,7 @@ Available commands:
 	connected       Show directly connected networks
 	rules           Show active rules
 	status          Show all status
+	use <iface> <family> <cmd>   Run a command bound to <iface> and avoid mwan3 rules
 
 EOF
 }
@@ -261,8 +262,34 @@ restart() {
 	start
 }
 
+use() {
+	local interface device src_ip family ipv
+	config_load mwan3
+
+	[ -z "$*" ] && echo "no interface specified for mwan3 use" && return
+	interface=$1; shift
+	[ -z "$*" ] && echo "no family specified for mwan3 use" && return
+	ipv=$1; shift
+	[ -z "$*" ] && echo "no command specified for mwan3 use" && return
+	network_get_device device $interface
+	[ -z "$device" ] && echo "could not find device for $interface" && return
+
+	config_get family "$interface" family "any"
+	[ "$family" = "any" ] && family=$ipv
+	[ "$family" != "$ipv" ] && echo "family specified no equal to interface family" && return
+
+	if [ "$family" = "ipv6" ]; then
+		mwan3_get_src_ip6 src_ip $interface
+	else
+		mwan3_get_src_ip src_ip $interface
+	fi
+
+	echo FAMILY=$family DEVICE=$device SRCIP=$src_ip FWMARK=$MMX_MASK LD_PRELOAD=/lib/mwan3/libwrap_mwan3_sockopt.so.1.0 $*
+	FAMILY=$family DEVICE=$device SRCIP=$src_ip FWMARK=$MMX_MASK LD_PRELOAD=/lib/mwan3/libwrap_mwan3_sockopt.so.1.0 $*
+}
+
 case "$1" in
-	ifup|ifdown|interfaces|policies|connected|rules|status|start|stop|restart)
+	ifup|ifdown|interfaces|policies|connected|rules|status|start|stop|restart|use)
 		mwan3_init
 		# shellcheck disable=SC2048
 		$*

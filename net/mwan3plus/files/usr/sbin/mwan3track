@@ -159,6 +159,11 @@ main() {
 		exit 1
 	}
 
+	WRAP() {
+		# shellcheck disable=SC2048
+		FAMILY=$family DEVICE=$DEVICE SRCIP=$SRC_IP FWMARK=$MMX_MASK LD_PRELOAD=/lib/mwan3/libwrap_mwan3_sockopt.so.1.0 $*
+	}
+
 	FAMILY=$family firstconnect
 	while true; do
 
@@ -176,17 +181,11 @@ main() {
 			if [ $host_up_count -lt $reliability ]; then
 				case "$track_method" in
 					ping)
-						# pinging IPv6 hosts with an interface is troublesome
-						# https://bugs.openwrt.org/index.php?do=details&task_id=2897
-						# so get the IP address of the interface and use that instead
-						if [ $ping_protocol -eq 4 ]; then
-							unset SRC_IP
-						fi
 						if [ $check_quality -eq 0 ]; then
-							$PING -$ping_protocol -m $((MMX_MASK)) -I $DEVICE -c $count -W $timeout -s $size -t $max_ttl -q $track_ip &> /dev/null
+							WRAP $PING -$ping_protocol -c $count -W $timeout -s $size -t $max_ttl -q $track_ip &> /dev/null
 							result=$?
 						else
-							ping_result_raw="$($PING -$ping_protocol -m $((MMX_MASK)) -I $DEVICE -c $count -W $timeout -s $size -t $max_ttl -q $track_ip 2>/dev/null)"
+							ping_result_raw="$(WRAP $PING -$ping_protocol -c $count -W $timeout -s $size -t $max_ttl -q $track_ip 2>/dev/null)"
 							ping_status=$?
 							ping_result=$(echo "$ping_result_raw" | tail -n2)
 							loss="$(echo "$ping_result" | grep "packet loss" | cut -d "," -f3 | awk '{print $1}' | sed -e 's/%//')"
@@ -199,28 +198,28 @@ main() {
 						fi
 					;;
 					arping)
-						arping -I $DEVICE -c $count -w $timeout -q $track_ip &> /dev/null
+						WRAP arping -I $DEVICE -c $count -w $timeout -q $track_ip &> /dev/null
 						result=$?
 					;;
 					httping)
 						if [ "$httping_ssl" -eq 1 ]; then
-							httping -y $SRC_IP -c $count -t $timeout -q "https://$track_ip" &> /dev/null
+							WRAP httping -c $count -t $timeout -q "https://$track_ip" &> /dev/null
 						else
-							httping -y $SRC_IP -c $count -t $timeout -q "http://$track_ip" &> /dev/null
+							WRAP httping -c $count -t $timeout -q "http://$track_ip" &> /dev/null
 						fi
 						result=$?
 					;;
 					nping-tcp)
-						result=$(nping -e $DEVICE -c $count $track_ip --tcp | grep Lost | awk '{print $12}')
+						result=$(WRAP nping -c $count $track_ip --tcp | grep Lost | awk '{print $12}')
 					;;
 					nping-udp)
-						result=$(nping -e $DEVICE -c $count $track_ip --udp | grep Lost | awk '{print $12}')
+						result=$(WRAP nping -c $count $track_ip --udp | grep Lost | awk '{print $12}')
 					;;
 					nping-icmp)
-						result=$(nping -e $DEVICE -c $count $track_ip --icmp | grep Lost | awk '{print $12}')
+						result=$(WRAP nping -c $count $track_ip --icmp | grep Lost | awk '{print $12}')
 					;;
 					nping-arp)
-						result=$(nping -e $DEVICE -c $count $track_ip --arp | grep Lost | awk '{print $12}')
+						result=$(WRAP nping -c $count $track_ip --arp | grep Lost | awk '{print $12}')
 					;;
 				esac
 				if [ $check_quality -eq 0 ]; then
