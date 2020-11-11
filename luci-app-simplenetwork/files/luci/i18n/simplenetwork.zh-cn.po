@@ -78,3 +78,6 @@ msgstr "为AP开启DHCP服务"
 
 msgid "Backup / Upgrade"
 msgstr "备份/升级"
+
+msgid "USB Device Share"
+msgstr "USB设备共享器"
