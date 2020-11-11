@@ -75,3 +75,6 @@ msgstr "设备状态"
 
 msgid "Enable DHCP for this AP."
 msgstr "为AP开启DHCP服务"
+
+msgid "Backup / Upgrade"
+msgstr "备份/升级"

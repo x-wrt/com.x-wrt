@@ -111,7 +111,7 @@
 	},
 
 	"admin/system/flash": {
-		"title": "Backup / Flash Firmware",
+		"title": "Backup / Upgrade",
 		"order": 70,
 		"action": {
 			"type": "view",
