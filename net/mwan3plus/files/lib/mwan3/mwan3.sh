@@ -410,7 +410,7 @@ mwan3_set_connected_ipv4()
 
 mwan3_set_connected_iptables()
 {
-	local connected_network_v6 source_network_v6 error
+	local connected_network_v6 erroar
 	local update=""
 
 	if [ $NEED_IPV6 -ne 0 ] || [ $NEED_IPV4 -ne 0 ]; then
@@ -431,11 +431,6 @@ mwan3_set_connected_iptables()
 
 		for connected_network_v6 in $($IP6 route | awk '{print $1}' | grep -E "$IPv6_REGEX"); do
 			mwan3_push_update -! add mwan3_connected_v6 "$connected_network_v6"
-		done
-
-		mwan3_push_update -! create mwan3_source_v6 hash:net family inet6
-		for source_network_v6 in $($IP6 addr ls | sed -ne 's/ *inet6 \([^ \/]*\).* scope global.*/\1/p'); do
-			mwan3_push_update -! add mwan3_source_v6 "$source_network_v6"
 		done
 
 		mwan3_push_update -! add mwan3_connected mwan3_connected_v6
@@ -513,13 +508,6 @@ mwan3_set_general_iptables()
 						  -p ipv6-icmp \
 						  -m icmp6 --icmpv6-type 137 \
 						  -j RETURN
-				# do not mangle outgoing echo request
-				mwan3_push_update -A mwan3_hook \
-						  -m set --match-set mwan3_source_v6 src \
-						  -p ipv6-icmp \
-						  -m icmp6 --icmpv6-type 128 \
-						  -j RETURN
-
 			fi
 			mwan3_push_update -A mwan3_hook \
 					  -m mark --mark 0x0/$MMX_MASK \
