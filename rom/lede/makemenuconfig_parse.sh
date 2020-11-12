@@ -469,6 +469,7 @@ for t in $targets; do
 		TARGET_DEVICE_ramips_mt7621_DEVICE_xiaomi_mir3g-nor|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_xiaomi_mir3g|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_xiaomi_mir3g-v2|\
+		TARGET_DEVICE_ramips_mt7621_DEVICE_xiaomi_mi-router-4a-gigabit|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_xiaomi_mir3p-nor|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_xiaomi_mir3p|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_xiaomi_redmi-router-ac2100|\
@@ -1025,6 +1026,7 @@ for t in $targets; do
 		TARGET_DEVICE_ath79_generic_DEVICE_tplink_archer-c60-v3|\
 		TARGET_DEVICE_ath79_generic_DEVICE_devolo_magic-2-wifi|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_xiaomi_mir3g-v2|\
+		TARGET_DEVICE_ramips_mt7621_DEVICE_xiaomi_mi-router-4a-gigabit|\
 		TARGET_DEVICE_ath79_generic_DEVICE_comfast_cf-wr650ac-v1|\
 		TARGET_DEVICE_ath79_generic_DEVICE_comfast_cf-wr650ac-v2|\
 		TARGET_DEVICE_ath79_generic_DEVICE_comfast_cf-e313ac|\
