@@ -72,6 +72,10 @@ get_mwan3_status() {
 	local iface="${1}"
 	local iface_select="${2}"
 
+	if [ "${iface}" != "${iface_select}" ] && [ "${iface_select}" != "" ]; then
+		return
+	fi
+
 	config_get ipv "$iface" family "any"
 
 	json_add_object "${iface}"
