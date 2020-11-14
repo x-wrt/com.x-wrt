@@ -1,9 +1,9 @@
 #!/bin/sh
 
 . /lib/functions.sh
-. /lib/mwan3/mwan3.sh
 . /lib/functions/network.sh
 . /lib/mwan3/common.sh
+. /lib/mwan3/mwan3.sh
 
 INTERFACE=""
 DEVICE=""

@@ -2,9 +2,8 @@
 
 . /lib/functions.sh
 . /lib/functions/network.sh
-. /lib/mwan3/mwan3.sh
-. /usr/share/libubox/jshn.sh
 . /lib/mwan3/common.sh
+. /lib/mwan3/mwan3.sh
 
 SCRIPTNAME="mwan3-hotplug"
 
