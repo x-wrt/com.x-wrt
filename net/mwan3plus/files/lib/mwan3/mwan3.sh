@@ -1,6 +1,8 @@
 #!/bin/sh
 
+. /lib/functions/network.sh
 . /usr/share/libubox/jshn.sh
+. /lib/mwan3/common.sh
 
 IP4="ip -4"
 IP6="ip -6"
@@ -1322,6 +1324,7 @@ mwan3_report_iface_status()
 {
 	local device result track_ips tracking IP IPT family family_list
 	local track_ips_v4 track_ips_v6
+	local error
 
 	mwan3_get_iface_id id "$1"
 	network_get_device device "$1"
@@ -1356,30 +1359,24 @@ mwan3_report_iface_status()
 
 	if [ -z "$id" ] || [ -z "$device" ]; then
 		result="offline"
-	elif [ -n "$($IP rule | awk '$1 == "'$((id+1000)):'"')" ] && \
-		     [ -n "$($IP rule | awk '$1 == "'$((id+2000)):'"')" ] && \
-		     [ -n "$($IPT -S mwan3_iface_in_$1 2> /dev/null)" ] && \
-		     [ -n "$($IP route list table $id default dev $device 2> /dev/null)" ]; then
-		json_init
-		json_add_string section interfaces
-		json_add_string interface "$1"
-		json_load "$(ubus call mwan3 status "$(json_dump)")"
-		json_select "interfaces"
-		json_select "$1"
-		json_select "$family"
-		json_get_vars online uptime
-		json_select ..
-		json_select ..
-		json_select ..
+	else
+		error=0
+		[ -n "$($IP rule | awk '$1 == "'$((id+1000)):'"')" ] || error=$((error+1))
+		[ -n "$($IP rule | awk '$1 == "'$((id+2000)):'"')" ] || error=$((error+2))
+		[ -n "$($IPT -S mwan3_iface_in_$1 2> /dev/null)" ] || error=$((error+4))
+		[ -n "$($IP route list table $id default dev $device 2> /dev/null)" ] || error=$((error+8))
+	fi
+
+	if [ "$result" = "offline" ]; then
+		:
+	elif [ $error -eq 0 ]; then
+		online=$(get_online_time "$1" "$family")
+		network_get_uptime uptime "$1"
 		online="$(printf '%02dh:%02dm:%02ds\n' $((online/3600)) $((online%3600/60)) $((online%60)))"
 		uptime="$(printf '%02dh:%02dm:%02ds\n' $((uptime/3600)) $((uptime%3600/60)) $((uptime%60)))"
 		result="$(mwan3_get_iface_hotplug_state $1 $family) $online, uptime $uptime"
-	elif [ -n "$($IP rule | awk '$1 == "'$((id+1000)):'"')" ] || \
-		     [ -n "$($IP rule | awk '$1 == "'$((id+2000)):'"')" ] || \
-		     [ -n "$($IP rule | awk '$1 == "'$((id+3000)):'"')" ] || \
-		     [ -n "$($IPT -S mwan3_iface_in_$1 2> /dev/null)" ] || \
-		     [ -n "$($IP route list table $id default dev $device 2> /dev/null)" ]; then
-		result="error"
+	elif [ $error -gt 0 ] && [ $error -ne 15 ]; then
+		result="error (${error})"
 	elif [ "$enabled" = "1" ]; then
 		result="offline"
 	else

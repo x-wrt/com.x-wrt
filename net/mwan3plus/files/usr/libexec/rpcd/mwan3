@@ -88,6 +88,7 @@ get_mwan3_status() {
 	local online=0
 	local offline=0
 	local up="0"
+	local uptime="0"
 	local enabled pid device time_p time_n time_u time_d status
 
 	network_get_device device $1
@@ -98,25 +99,9 @@ get_mwan3_status() {
 			running="1"
 		fi
 
-		time_p="$(cat "$MWAN3TRACK_STATUS_DIR/${iface}.$family/TIME")"
-		[ -z "${time_p}" ] || {
-			time_n="$(get_uptime)"
-			let age=time_n-time_p
-		}
-
-		time_u="$(cat "$MWAN3TRACK_STATUS_DIR/${iface}.$family/ONLINE")"
-		[ -z "${time_u}" ] || [ "${time_u}" = "0" ] || {
-			time_n="$(get_uptime)"
-			let online=time_n-time_u
-		}
-
-		time_d="$(cat "$MWAN3TRACK_STATUS_DIR/${iface}.$family/OFFLINE")"
-		[ -z "${time_d}" ] || [ "${time_d}" = "0" ] || {
-			time_n="$(get_uptime)"
-			let offline=time_n-time_d
-		}
-
-		local uptime="0"
+		age=$(get_age "$iface" "$family")
+		online=$(get_online_time "$iface" "$family")
+		offline=$(get_offline_time "$iface" "$family")
 
 		config_get enabled "$iface" enabled 0
 		network_get_uptime uptime "$iface"
@@ -140,16 +125,14 @@ get_mwan3_status() {
 		json_add_boolean "running" "${running}"
 		json_add_boolean "up" "${up}"
 		json_add_array "track_ip"
-		for file in $MWAN3TRACK_STATUS_DIR/${iface}.$family/*; do
+		for file in $(ls $MWAN3TRACK_STATUS_DIR/${iface}.$family/TRACK_*); do
 			track="${file#*/TRACK_}"
-			if [ "${track}" != "${file}" ]; then
-				json_add_object
-				json_add_string ip "${track}"
-				json_add_string status "$(cat "${file}")"
-				json_add_int latency "$(cat "$MWAN3TRACK_STATUS_DIR/${iface}.$family/LATENCY_${track}" 2>/dev/null)"
-				json_add_int packetloss "$(cat "$MWAN3TRACK_STATUS_DIR/${iface}.$family/LOSS_${track}" 2>/dev/null)"
-				json_close_object
-			fi
+			json_add_object
+			json_add_string ip "${track}"
+			json_add_string status "$(cat "${file}")"
+			json_add_int latency "$(cat "$MWAN3TRACK_STATUS_DIR/${iface}.$family/LATENCY_${track}" 2>/dev/null)"
+			json_add_int packetloss "$(cat "$MWAN3TRACK_STATUS_DIR/${iface}.$family/LOSS_${track}" 2>/dev/null)"
+			json_close_object
 		done
 		json_close_array
 	fi
