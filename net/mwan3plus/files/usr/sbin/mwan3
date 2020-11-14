@@ -163,7 +163,7 @@ start()
 	mwan3_lock "command" "mwan3"
 	uci_toggle_state mwan3 globals enabled "1"
 	config_load mwan3
-	mwan3_check_family_needs
+	mwan3_config_family_parse
 
 	mwan3_set_connected_iptables
 	mwan3_set_custom_ipset

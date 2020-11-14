@@ -40,7 +40,7 @@ NO_IPV6=$?
 NEED_IPV4=0
 NEED_IPV6=0
 
-mwan3_check_family_needs()
+mwan3_config_family_parse()
 {
 	local enabled family
 	check_family()

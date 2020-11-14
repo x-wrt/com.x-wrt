@@ -8,7 +8,7 @@ config_get_bool enabled globals 'enabled' 0
 
 . /lib/mwan3/mwan3.sh
 
-mwan3_check_family_needs
+mwan3_config_family_parse
 [ $NEED_IPV6 -ne 0 ] || exit 0
 
 mwan3_lock "command" "mwan3_ipv6_masq"

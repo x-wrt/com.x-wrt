@@ -21,7 +21,7 @@ fi
 [ "$MWAN3_STARTUP" = 1 ] || mwan3_lock "$ACTION" "$INTERFACE"
 
 config_load mwan3
-mwan3_check_family_needs
+mwan3_config_family_parse
 config_get_bool enabled globals 'enabled' '0'
 [ "${enabled}" -gt 0 ] || {
 	[ "$MWAN3_STARTUP" = 1 ] || mwan3_unlock "$ACTION" "$INTERFACE"
