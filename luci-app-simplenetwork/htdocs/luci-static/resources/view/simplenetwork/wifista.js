@@ -93,7 +93,7 @@ return view.extend({
 			status_gateway.innerHTML = '-';
 			status_dns.innerHTML = '-';
 
-			wwan_status.innerHTML = '<p style="color:red;"><b>' + _('Not Connected') + '</b></p>';
+			wwan_status.innerHTML = '<p style="color:red;"><b>' + _('Not connected') + '</b></p>';
 		}
 	},
 
