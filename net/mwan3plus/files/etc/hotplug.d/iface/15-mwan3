@@ -47,10 +47,6 @@ config_get_bool enabled globals 'enabled' '0'
 }
 
 mwan3_init
-[ "$MWAN3_STARTUP" = 1 ] || {
-	mwan3_set_connected_iptables
-	mwan3_set_custom_ipset
-}
 
 if [ "$MWAN3_STARTUP" != 1 ]; then
 	mwan3_set_user_iface_rules $INTERFACE $DEVICE

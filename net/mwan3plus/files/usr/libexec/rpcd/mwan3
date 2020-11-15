@@ -9,26 +9,6 @@ IPS="ipset"
 IPT4="iptables -t mangle -w"
 IPT6="ip6tables -t mangle -w"
 
-report_connected_v4() {
-	local address
-
-	if [ -n "$($IPT4 -S mwan3_connected 2> /dev/null)" ]; then
-		for address in $($IPS -o save list mwan3_connected_v4 | grep add | cut -d " " -f 3); do
-			json_add_string "" "${address}"
-		done
-	fi
-}
-
-report_connected_v6() {
-	local address
-
-	if [ -n "$($IPT6 -S mwan3_connected 2> /dev/null)" ]; then
-		for address in $($IPS -o save list mwan3_connected_v6 | grep add | cut -d " " -f 3); do
-			json_add_string "" "${address}"
-		done
-	fi
-}
-
 report_policies() {
 	local ipt="$1"
 	local policy="$2"
@@ -171,16 +151,6 @@ main () {
 						config_foreach get_mwan3_status interface "${iface}"
 						json_close_object
 						;;
-					connected)
-						json_add_object connected
-						json_add_array ipv4
-						report_connected_v4
-						json_close_array
-						json_add_array ipv6
-						report_connected_v6
-						json_close_array
-						json_close_object
-						;;
 					policies)
 						json_add_object policies
 						json_add_object ipv4
@@ -195,15 +165,6 @@ main () {
 						# interfaces
 						json_add_object interfaces
 						config_foreach get_mwan3_status interface
-						json_close_object
-						# connected
-						json_add_object connected
-						json_add_array ipv4
-						report_connected_v4
-						json_close_array
-						json_add_array ipv6
-						report_connected_v6
-						json_close_array
 						json_close_object
 						# policies
 						json_add_object policies

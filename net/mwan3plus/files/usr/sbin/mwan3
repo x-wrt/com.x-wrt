@@ -19,7 +19,6 @@ Available commands:
 	ifdown <iface>  Unload rules and routes for specific interface
 	interfaces      Show interfaces status
 	policies        Show currently active policy
-	connected       Show directly connected networks
 	rules           Show active rules
 	status          Show all status
 	use <iface> <family> <cmd>   Run a command bound to <iface> and avoid mwan3 rules
@@ -126,17 +125,6 @@ policies()
 	echo
 }
 
-connected()
-{
-	echo "Directly connected ipv4 networks:"
-	mwan3_report_connected_v4
-	echo
-	[ $NO_IPV6 -ne 0 ] && return
-	echo "Directly connected ipv6 networks:"
-	mwan3_report_connected_v6
-	echo
-}
-
 rules()
 {
 	echo "Active ipv4 user rules:"
@@ -152,7 +140,6 @@ status()
 {
 	interfaces
 	policies
-	connected
 	rules
 }
 
@@ -165,8 +152,6 @@ start()
 	config_load mwan3
 	mwan3_config_family_parse
 
-	mwan3_set_connected_iptables
-	mwan3_set_custom_ipset
 	mwan3_set_general_rules
 	mwan3_set_general_iptables
 	config_foreach ifup interface
@@ -289,7 +274,7 @@ use() {
 }
 
 case "$1" in
-	ifup|ifdown|interfaces|policies|connected|rules|status|start|stop|restart|use)
+	ifup|ifdown|interfaces|policies|rules|status|start|stop|restart|use)
 		mwan3_init
 		# shellcheck disable=SC2048
 		$*
