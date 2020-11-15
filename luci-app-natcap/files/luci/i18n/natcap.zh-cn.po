@@ -82,8 +82,17 @@ msgstr "服务器列表"
 msgid "Please fill in the server by format (ip:port)"
 msgstr "请按照格式填写服务器（ip:port）"
 
-msgid "Domestic and International Diversion"
-msgstr "启用国内国际分流模式"
+msgid "Network traffic strategy"
+msgstr "网络流量策略"
+
+msgid "Smart auto proxy"
+msgstr "智能自动代理"
+
+msgid "All International traffic proxy"
+msgstr "全部国际流量走代理"
+
+msgid "Customization proxy"
+msgstr "后台自定义(不要选)"
 
 msgid "Full Proxy"
 msgstr "全局完全代理"

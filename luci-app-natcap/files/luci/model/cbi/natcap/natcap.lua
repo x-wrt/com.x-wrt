@@ -29,8 +29,11 @@ e = s:taboption("serverlist", DynamicList, "server", translate("Natcap Servers")
 e.datatype = "list(string)"
 e.placeholder = "1.2.3.4:0"
 
-e = s:taboption("general", Flag, "cnipwhitelist_mode", translate("Domestic and International Diversion"), translate("Generally do not need to be enabled unless used to play games."))
-e.default = e.disabled
+e = s:taboption("general", ListValue, "cnipwhitelist_mode", translate("Network traffic strategy"))
+e.default = "0"
+e:value("0", translate("Smart auto proxy"))
+e:value("1", translate("All International traffic proxy"))
+e:value("2", translate("Customization proxy"))
 e.rmempty = false
 
 e = s:taboption("general", Value, "server_persist_timeout", translate("Server Switching Interval (s)"), translate("How long to switch the server."))

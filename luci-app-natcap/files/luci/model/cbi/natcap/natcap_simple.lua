@@ -28,8 +28,11 @@ e = s:taboption("general", Flag, "peer_mode", translate("Peer Mode"), translate(
 e.default = e.disabled
 e.rmempty = false
 
-e = s:taboption("general", Flag, "cnipwhitelist_mode", translate("Domestic and International Diversion"), translate("Generally do not need to be enabled unless used to play games."))
-e.default = e.disabled
+e = s:taboption("general", ListValue, "cnipwhitelist_mode", translate("Network traffic strategy"))
+e.default = "0"
+e:value("0", translate("Smart auto proxy"))
+e:value("1", translate("All International traffic proxy"))
+e:value("2", translate("Customization proxy"))
 e.rmempty = false
 
 e = s:taboption("general", Flag, "full_proxy", translate("Full Proxy"), translate("All traffic goes to proxy."))
