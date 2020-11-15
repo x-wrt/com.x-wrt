@@ -2,8 +2,8 @@
 
 memtotal=`grep MemTotal /proc/meminfo | awk '{print $2}'`
 
-#mem less than 64M
-if test $memtotal -le 65536; then
+#mem less than 128M
+if test $memtotal -le 131072; then
 	touch /tmp/natcapd.lck/cnlist
 	exit 0
 fi
@@ -20,14 +20,13 @@ WGET=/usr/bin/wget
 test -x $WGET || WGET=/bin/wget
 
 $WGET --timeout=60 --no-check-certificate -qO /tmp/cnlist.$$.txt "https://downloads.x-wrt.com/cnlist.txt?t=`date '+%s'`" && {
-	cat /tmp/cnlist.$$.txt | cut -d/ -f2 | while read line; done
+	cat /tmp/cnlist.$$.txt | cut -d/ -f2 | while read line; do
 		echo server=/$line/$gfw1_dns_magic_server >>/tmp/accelerated-domains.cnlist.dnsmasq.$$.conf
 		echo ipset=/$line/gfwlist1 >>/tmp/accelerated-domains.cnlist.dnsmasq.$$.conf
 	done
 	rm -f /tmp/cnlist.$$.txt
 	mkdir -p /tmp/dnsmasq.d && \
-	mv /tmp/accelerated-domains.cnlist.dnsmasq.$$.conf /tmp/dnsmasq.d/accelerated-domains.cnlist.dnsmasq.conf && \
-	exclude_out /tmp/dnsmasq.d/accelerated-domains.cnlist.dnsmasq.conf
+	mv /tmp/accelerated-domains.cnlist.dnsmasq.$$.conf /tmp/dnsmasq.d/accelerated-domains.cnlist.dnsmasq.conf
 
 	touch /tmp/natcapd.lck/cnlist
 	/etc/init.d/dnsmasq restart
