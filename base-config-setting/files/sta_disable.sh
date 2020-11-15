@@ -27,6 +27,11 @@ for sta in $(ls /var/run/wpa_supplicant-*.conf); do
 	fi
 done
 
+var_revert_cmds=""
+push_revert_cmds() {
+	var_revert_cmds="$var_revert_cmds
+$*"
+}
 wl_need_commit=0
 if [ $sta_need_disable -eq 1 ]; then
 	for sta in $(ls /var/run/wpa_supplicant-*.conf); do
@@ -39,6 +44,7 @@ if [ $sta_need_disable -eq 1 ]; then
 			radio=`uci get wireless.@wifi-iface[$((idx-1))].device`
 			has_ap_on $radio && [ "x$(uci get wireless.@wifi-iface[$((idx-1))].disabled 2>/dev/null)" != "x1" ] && {
 				uci set wireless.@wifi-iface[$((idx-1))].disabled=1
+				push_revert_cmds "uci delete wireless.@wifi-iface[$((idx-1))].disabled"
 				wl_need_commit=1
 			}
 		done
@@ -47,5 +53,10 @@ if [ $sta_need_disable -eq 1 ]; then
 	[ "x$wl_need_commit" = "x1" ] && {
 		uci commit wireless
 		/etc/init.d/network reload
+		sleep 5
+		echo "$var_revert_cmds" | while read line; do
+			$line
+		done
+		uci commit wireless
 	}
 fi
