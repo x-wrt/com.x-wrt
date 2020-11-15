@@ -62,6 +62,7 @@ natcapd_stop()
 	#never stop kmod
 	echo disabled=0 >>$DEV
 	echo cn_domain_clean >>$DEV
+	echo server1_use_peer=0 >$DEV
 
 	rm -f /tmp/dnsmasq.d/accelerated-domains.gfwlist.dnsmasq.conf 2>/dev/null
 	rm -f /tmp/dnsmasq.d/custom-domains.gfwlist.dnsmasq.conf 2>/dev/null
