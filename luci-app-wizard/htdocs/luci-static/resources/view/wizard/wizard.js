@@ -9,6 +9,7 @@
 return view.extend({
 	load: function() {
 		return Promise.all([
+			uci.changes(),
 			uci.load('wireless'),
 			uci.load('wizard')
 		]);
