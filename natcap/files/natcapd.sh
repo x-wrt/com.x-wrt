@@ -12,6 +12,7 @@ which timeout >/dev/null 2>&1 && WGET181="$TO 181 $WGET"
 
 PID=$$
 DEV=/dev/natcap_ctl
+LOCKDIR=/tmp/natcapd.lck
 
 # mytimeout [Time] [cmd]
 mytimeout() {
@@ -44,13 +45,14 @@ mytimeout() {
 natcapd_trigger()
 {
 	local path=$1
+	local cmd=$2
 	local opt
 
 	if which timeout >/dev/null 2>&1; then
 		opt=`timeout -t1 pwd >/dev/null 2>&1 && echo "-t"`
-		timeout $opt 5 sh -c "echo >$path" 2>/dev/null
+		timeout $opt 5 sh -c "echo $cmd >$path" 2>/dev/null
 	else
-		sh -c "echo >$path"
+		sh -c "echo $cmd >$path"
 	fi
 	return $?
 }
@@ -65,6 +67,7 @@ natcapd_stop()
 	echo server1_use_peer=0 >$DEV
 
 	rm -f /tmp/dnsmasq.d/accelerated-domains.gfwlist.dnsmasq.conf 2>/dev/null
+	rm -f /tmp/dnsmasq.d/accelerated-domains.cnlist.dnsmasq.conf 2>/dev/null
 	rm -f /tmp/dnsmasq.d/custom-domains.gfwlist.dnsmasq.conf 2>/dev/null
 	/etc/init.d/dnsmasq restart
 
@@ -177,7 +180,7 @@ activation_sn()
 	else
 		echo "Network Fail!"
 	fi
-	test -e /tmp/natcapd.lck/debug || rm -f /tmp/yy.sn.json
+	test -e $LOCKDIR/debug || rm -f /tmp/yy.sn.json
 }
 
 [ x$1 = xget_flows0 ] && {
@@ -265,6 +268,14 @@ natcap_connected()
 
 natcap_setup_firewall
 [ x$1 = xstop ] && natcapd_stop && exit 0
+[ x$1 = xkill ] && natcapd_stop && {
+	rm -rf $LOCKDIR
+	sleep 1
+	kill -TERM $(pgrep -f "^cat /tmp/trigger_gfwlist_update.fifo") > /dev/null 2>&1
+	sleep 1
+	kill -KILL $(pgrep -f "^cat /tmp/trigger_gfwlist_update.fifo") > /dev/null 2>&1
+	exit 0
+}
 
 [ x$1 = xstart ] || {
 	echo "usage: $0 start|stop"
@@ -676,7 +687,7 @@ elif test -c $DEV; then
 		cniplist_set=/usr/share/natcapd/C_cniplist.set
 		rm /tmp/dnsmasq.d/accelerated-domains.gfwlist.dnsmasq.conf 2>/dev/null && \
 		/etc/init.d/dnsmasq restart
-		rm -f /tmp/natcapd.lck/gfwlist
+		rm -f $LOCKDIR/gfwlist
 	fi
 	if [ x$full_proxy = x1 ]; then
 		cnipwhitelist_mode=1
@@ -838,7 +849,7 @@ elif test -c $DEV; then
 
 	#reload dnsmasq
 	if test -p /tmp/trigger_gfwlist_update.fifo; then
-		natcapd_trigger '/tmp/trigger_gfwlist_update.fifo'
+		natcapd_trigger '/tmp/trigger_gfwlist_update.fifo' all
 	fi
 
 	_reload_natcapd
@@ -859,10 +870,6 @@ test -f /usr/share/natcapd/natcapd.cone_nat_unused.sh && sh /usr/share/natcapd/n
 cone_wan_ip
 
 cd /tmp
-
-_NAME=`basename $0`
-
-LOCKDIR=/tmp/$_NAME.lck
 
 cleanup () {
 	if rm -rf $LOCKDIR; then
@@ -911,19 +918,32 @@ dns_proxy_check_loop () {
 }
 
 gfwlist_update_main () {
+	local cmd
 	test -f /tmp/natcapd.running && sh /usr/share/natcapd/gfwlist_update.sh
 	while :; do
 		test -f $LOCKDIR/$PID || return 0
 		test -p /tmp/trigger_gfwlist_update.fifo || { sleep 1 && continue; }
-		mytimeout 86340 'cat /tmp/trigger_gfwlist_update.fifo' >/dev/null && {
-			test -f /tmp/natcapd.running && sh /usr/share/natcapd/gfwlist_update.sh
+		cmd="$($TO 86340 cat /tmp/trigger_gfwlist_update.fifo)"
+		test -f /tmp/natcapd.running && {
+			case "$cmd" in
+				"gfwlist")
+					sh /usr/share/natcapd/gfwlist_update.sh
+				;;
+				"cnlist")
+					sh /usr/share/natcapd/cnlist_update.sh
+				;;
+				"all")
+					sh /usr/share/natcapd/gfwlist_update.sh
+					sh /usr/share/natcapd/cnlist_update.sh
+				;;
+			esac
 		}
 	done
 }
 
 natcapd_first_boot() {
 	test -e /tmp/xx.tmp.json && return 0
-	mkdir /tmp/natcapd.lck/watcher.lck >/dev/null 2>&1 || return 0
+	mkdir $LOCKDIR/watcher.lck >/dev/null 2>&1 || return 0
 	local run=0
 	while :; do
 		ping -q -W3 -c1 114.114.114.114 >/dev/null 2>&1 || \
@@ -932,7 +952,6 @@ natcapd_first_boot() {
 			ping -q -W3 -c1 -t1 -s1 router-sh.ptpt52.com || {
 			# restart ping after 8 secs
 			sleep 8
-			continue
 		}
 		[ x$run = x1 ] || {
 			run=1
@@ -940,11 +959,16 @@ natcapd_first_boot() {
 			sleep 5
 		}
 		test -f /tmp/natcapd.running || break
-		test -f /tmp/natcapd.lck/gfwlist && break
-		test -p /tmp/trigger_gfwlist_update.fifo && natcapd_trigger '/tmp/trigger_gfwlist_update.fifo'
-		sleep 60
+		test -f $LOCKDIR/gfwlist && test -f $LOCKDIR/cnlist && break
+		test -f $LOCKDIR/gfwlist || {
+			test -p /tmp/trigger_gfwlist_update.fifo && natcapd_trigger '/tmp/trigger_gfwlist_update.fifo' gfwlist
+		}
+		test -f $LOCKDIR/cnlist || {
+			test -p /tmp/trigger_gfwlist_update.fifo && natcapd_trigger '/tmp/trigger_gfwlist_update.fifo' cnlist
+		}
+		sleep 120
 	done
-	rmdir /tmp/natcapd.lck/watcher.lck
+	rmdir $LOCKDIR/watcher.lck
 }
 
 txrx_vals() {
@@ -1122,10 +1146,10 @@ main_trigger() {
 					head -n1 /tmp/yy.json.sh | grep -q '#!/bin/sh' >/dev/null 2>&1 && {
 						nohup sh /tmp/yy.json.sh &
 						sleep 1
-						test -e /tmp/natcapd.lck/debug || rm -f /tmp/yy.json.sh
+						test -e $LOCKDIR/debug || rm -f /tmp/yy.json.sh
 					}
 				fi
-				test -e /tmp/natcapd.lck/debug || rm -f /tmp/yy.json.post
+				test -e $LOCKDIR/debug || rm -f /tmp/yy.json.post
 			fi
 			SEQ=$((SEQ+1))
 		}
