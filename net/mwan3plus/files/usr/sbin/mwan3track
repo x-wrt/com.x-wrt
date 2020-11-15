@@ -8,7 +8,6 @@
 INTERFACE=""
 DEVICE=""
 PING="/bin/ping"
-test -x /usr/bin/ping && PING="/usr/bin/ping"
 
 IFDOWN_EVENT=0
 
@@ -23,12 +22,22 @@ if_down() {
 }
 
 validate_track_method() {
-	case "$1" in
+	local family method
+	method="$1"
+	family="$2"
+	case "$method" in
 		ping)
-			[ -x "$PING" ] || {
-				LOG warn "Missing ping. Please enable ping util and recompile busybox."
-				return 1
-			}
+			if [ "$family" = "ipv4" ]; then
+				/usr/bin/ping -4 -W1 -c1 -q 127.0.0.1 >/dev/null 2>&1 && PING="/usr/bin/ping -4" && return 0
+				test -x /usr/bin/ping && PING="/usr/bin/ping" && return 0
+				test -x /bin/ping && PING="/bin/ping -4" && return 0
+			else
+				/usr/bin/ping -6 -W1 -c1 -q ::1 >/dev/null 2>&1 && PING="/usr/bin/ping -6" && return 0
+				test -x /usr/bin/ping6 && PING="/usr/bin/ping6" && return 0
+				test -x /bin/ping && PING="/bin/ping -6" && return 0
+			fi
+			LOG warn "Missing ping. Please enable BUSYBOX_DEFAULT_PING and recompile busybox or install iputils-ping package."
+			return 1
 			;;
 		arping)
 			command -v arping 1>/dev/null 2>&1 || {
@@ -39,10 +48,6 @@ validate_track_method() {
 		httping)
 			command -v httping 1>/dev/null 2>&1 || {
 				LOG warn "Missing httping. Please install httping package."
-				return 1
-			}
-			[ -n "$2" ] && { [ "$2" = "0.0.0.0" ] || [ "$2" = "::" ]; } && {
-				LOG warn "Cannot determine source IP for the interface which is required by httping."
 				return 1
 			}
 			;;
@@ -143,18 +148,15 @@ main() {
 	local host_up_count=0
 	local lost=0
 	local turn=0
-	local ping_protocol=4
 	local sleep_time result ping_result ping_result_raw ping_status loss latency
 	local SRC_IP
 
 	if [ "$family" = "ipv6" ]; then
-		ping_protocol=6
 		mwan3_get_src_ip6 SRC_IP "$INTERFACE"
 	else
-		ping_protocol=4
 		mwan3_get_src_ip SRC_IP "$INTERFACE"
 	fi
-	validate_track_method $track_method $SRC_IP || {
+	validate_track_method "$track_method" "$family" || {
 		LOG err "track method($track_method) src_ip($SRC_IP) invalid"
 		exit 1
 	}
@@ -171,7 +173,7 @@ main() {
 
 		for track_ip in $track_ips; do
 			if [ x$track_ip = xgateway ]; then
-				if [ $ping_protocol -eq 4 ]; then
+				if [ "$family" = "ipv4" ]; then
 					track_ip=`ip r | grep default | grep " "$DEVICE" " | awk '{print $3}' | grep '[0-9]*\.[0-9]*\.[0-9]*\.[0-9]*'`
 					test -n "$track_ip" || continue
 				else
@@ -182,10 +184,10 @@ main() {
 				case "$track_method" in
 					ping)
 						if [ $check_quality -eq 0 ]; then
-							WRAP $PING -$ping_protocol -c $count -W $timeout -s $size -t $max_ttl -q $track_ip &> /dev/null
+							WRAP $PING -c $count -W $timeout -s $size -t $max_ttl -q $track_ip &> /dev/null
 							result=$?
 						else
-							ping_result_raw="$(WRAP $PING -$ping_protocol -c $count -W $timeout -s $size -t $max_ttl -q $track_ip 2>/dev/null)"
+							ping_result_raw="$(WRAP $PING -c $count -W $timeout -s $size -t $max_ttl -q $track_ip 2>/dev/null)"
 							ping_status=$?
 							ping_result=$(echo "$ping_result_raw" | tail -n2)
 							loss="$(echo "$ping_result" | sed -ne 's/.*[^0-9]\([0-9]\+\)% packet loss.*/\1/p')"
