@@ -1,39 +1,8 @@
 
-wifi_setup_radio()
-{
-	local radio=$1
-	uci get wireless.${radio} >/dev/null 2>&1 && {
-		uci -q batch <<-EOT
-			set wireless.${radio}.disabled='0'
-			set wireless.${radio}.country='CN'
-			set wireless.${radio}.channel='auto'
-		EOT
-
-		if [ x`uci get wireless.${radio}.hwmode 2>/dev/null` = "x11a" ]; then
-			uci set wireless.${radio}.txpower='23'
-		else
-			uci set wireless.${radio}.txpower='20'
-		fi
-
-		obj=`uci add wireless wifi-iface`
-		test -n "$obj" && {
-			uci set wireless.$obj.device="${radio}"
-			uci set wireless.$obj.network='lan'
-			uci set wireless.$obj.mode='ap'
-			uci set wireless.$obj.ssid="${SSID}"
-			uci set wireless.$obj.encryption='psk2'
-			uci set wireless.$obj.skip_inactivity_poll='1'
-			uci set wireless.$obj.wpa_group_rekey='0'
-			uci set wireless.$obj.wpa_pair_rekey='0'
-			uci set wireless.$obj.wpa_master_rekey='0'
-			uci set wireless.$obj.disassoc_low_ack='0'
-			uci set wireless.$obj.key="${SSID_PASSWD}"
-		}
-	}
-}
-
+touch /etc/config/base_config
+uci get base_config.@status[0] >/dev/null 2>&1 || uci add base_config status >/dev/null 2>&1
 version=`uci get base_config.@status[0].version 2>/dev/null`
-test -n "$version" || version=0
+version=$((version+0))
 
 . /etc/openwrt_release
 test -n "${DISTRIB_ID}" || DISTRIB_ID=X-WRT
@@ -95,11 +64,8 @@ test $version -lt 1 && {
 	SSID=${DISTRIB_ID}_${SUBFIX}
 	SSID_PASSWD=88888888
 
-	while uci delete wireless.@wifi-iface[0] >/dev/null 2>&1; do :; done
-	for radio in radio0 radio1 radio2 radio3 wifi0 wifi1 wifi2 wifi3; do
-		wifi_setup_radio ${radio}
-	done
-	uci commit wireless
+	uci set base_config.@status[0].SSID=${SSID}
+	uci set base_config.@status[0].SSID_PASSWD=${SSID_PASSWD}
 
 	version=1
 }
@@ -351,19 +317,6 @@ uci set fstab.@global[0].anon_mount_bak="`uci get fstab.@global[0].anon_mount_ba
 uci set fstab.@global[0].anon_mount='0'
 uci commit fstab
 
-# wireless migration
-widx=0
-change=0
-while uci rename wireless.@wifi-iface[$widx]=wifinet$widx >/dev/null 2>&1; do widx=$((widx+1)); done
-uci changes wireless | tr ".='" "   " | while read _ a b; do
-	if [ "x$a" != "x$b" ]; then
-		uci commit wireless
-		change=1
-		break
-	fi
-done
-[ "x$change" = "x0" ] && uci revert wireless
-
 # fix usb auto umount bug
 cp /usr/share/base-config-setting/mount.hotplug /etc/hotplug.d/block/10-mount
 
@@ -397,8 +350,7 @@ test -x /usr/bin/wget && rm -f /bin/wget && ln -s /usr/bin/wget /bin/wget
 #make sure nginx work with remote-mgr
 test -x /etc/init.d/nginx && test -e /etc/nginx/conf.d/dev.x-wrt.com.conf || rm -f /etc/uhttpd.key /etc/uhttpd.crt 
 
-touch /etc/config/base_config
-uci get base_config.@status[0] >/dev/null 2>&1 || uci add base_config status >/dev/null 2>&1
 uci set base_config.@status[0].version=$version
 uci commit base_config
+
 exit 0

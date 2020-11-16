@@ -65,6 +65,7 @@ define Package/base-config-setting/install
 	$(INSTALL_DIR) $(1)/etc
 	$(INSTALL_DATA) ./files/adv_luci_disabled $(1)/etc/adv_luci_disabled
 	$(INSTALL_DIR) $(1)/etc/init.d
+	$(INSTALL_BIN) ./files/wifi-init.init $(1)/etc/init.d/wifi-init
 	$(INSTALL_BIN) ./files/sta_disable.init $(1)/etc/init.d/sta_disable
 	$(INSTALL_BIN) ./files/usb_factory_reset.init $(1)/etc/init.d/usb_factory_reset
 	$(INSTALL_BIN) ./files/auto_usb_mount.init $(1)/etc/init.d/auto_usb_mount
