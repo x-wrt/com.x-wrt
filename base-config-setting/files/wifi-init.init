@@ -88,5 +88,8 @@ boot() {
 	uci set base_config.@status[0].wifi_init=$wifi_init
 	uci commit base_config
 
+	#XXX
+	test -f /rom/etc/uci-defaults/96-wizard-defaults && sh /rom/etc/uci-defaults/96-wizard-defaults
+
 	/etc/init.d/wifi-init disable
 }
