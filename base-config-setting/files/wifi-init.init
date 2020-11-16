@@ -19,10 +19,7 @@ boot() {
 	}
 
 	test $wifi_init -lt 1 && {
-		SSID="$(uci get base_config.@status[0].SSID)"
-		SSID_PASSWD="$(uci get base_config.@status[0].SSID_PASSWD)"
-
-		SSID="${SSID}" SSID_PASSWD="${SSID_PASSWD}" wifi_first_init
+		wifi_first_init
 
 		wifi_init=1
 	}

@@ -3,8 +3,6 @@
 wifi_setup_radio()
 {
 	local radio=$1
-	SSID="${SSID-X-WRT}"
-	SSID_PASSWD="${SSID_PASSWD-88888888}"
 
 	uci get wireless.${radio} >/dev/null 2>&1 && {
 		#FIXME hack
@@ -52,6 +50,9 @@ wifi_setup_radio()
 
 wifi_first_init()
 {
+	SSID="${SSID-$(uci get base_config.@status[0].SSID 2>/dev/null || echo X-WRT)}"
+	SSID_PASSWD="${SSID_PASSWD-$(uci get base_config.@status[0].SSID_PASSWD 2>/dev/null || echo 88888888)}"
+
 	while uci delete wireless.@wifi-iface[0] >/dev/null 2>&1; do :; done
 	for radio in radio0 radio1 radio2 radio3 wifi0 wifi1 wifi2 wifi3; do
 		wifi_setup_radio ${radio}
