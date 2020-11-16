@@ -64,6 +64,8 @@ define Package/base-config-setting/install
 	$(INSTALL_BIN) ./files/system_reset.sh $(1)/usr/sbin/system_reset
 	$(INSTALL_DIR) $(1)/etc
 	$(INSTALL_DATA) ./files/adv_luci_disabled $(1)/etc/adv_luci_disabled
+	$(INSTALL_DIR) $(1)/lib/wifi/
+	$(INSTALL_DATA) ./files/wifi-init.sh $(1)/lib/wifi/wifi-init.sh
 	$(INSTALL_DIR) $(1)/etc/init.d
 	$(INSTALL_BIN) ./files/wifi-init.init $(1)/etc/init.d/wifi-init
 	$(INSTALL_BIN) ./files/sta_disable.init $(1)/etc/init.d/sta_disable
