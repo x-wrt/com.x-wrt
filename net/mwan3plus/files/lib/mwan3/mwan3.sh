@@ -40,7 +40,7 @@ NO_IPV6=$?
 NEED_IPV4=0
 NEED_IPV6=0
 
-mwan3_config_family_parse()
+mwan3_init_post()
 {
 	local enabled family
 	check_family()
@@ -283,6 +283,8 @@ mwan3_init()
 	MMX_DEFAULT=$(mwan3_id2mask mmdefault MMX_MASK)
 	MMX_BLACKHOLE=$(mwan3_id2mask MM_BLACKHOLE MMX_MASK)
 	MMX_UNREACHABLE=$(mwan3_id2mask MM_UNREACHABLE MMX_MASK)
+
+	mwan3_init_post
 }
 
 mwan3_lock() {

@@ -60,7 +60,6 @@ ifup()
 	if [ "${MWAN3_STARTUP}" != 1 ]; then
 		# It is not necessary to obtain a lock here, because it is obtained in the hotplug
 		# script, but we still want to do the check to print a useful error message
-		config_load mwan3
 		config_get_bool enabled globals 'enabled' 0
 
 		[ ${enabled} -gt 0 ] || {
@@ -108,8 +107,6 @@ ifup()
 
 interfaces()
 {
-	config_load mwan3
-
 	echo "Interface status:"
 	config_foreach mwan3_report_iface_status interface
 	echo
@@ -151,8 +148,6 @@ start()
 	mwan3_lock "command" "mwan3"
 
 	uci_toggle_state mwan3 globals enabled "1"
-	config_load mwan3
-	mwan3_config_family_parse
 
 	mwan3_set_general_rules
 	mwan3_set_general_iptables
@@ -184,7 +179,6 @@ stop()
 		kill -KILL $(pgrep -f "mwan3track") > /dev/null 2>&1
 	} &
 	kill_pid=$!
-	config_load mwan3
 	config_foreach mwan3_track_clean interface
 
 	for family in ipv4 ipv6; do
@@ -250,7 +244,6 @@ restart() {
 
 use() {
 	local interface device src_ip family ipv
-	config_load mwan3
 
 	[ -z "$*" ] && echo "no interface specified for mwan3 use" && return
 	interface=$1; shift
@@ -276,6 +269,7 @@ use() {
 
 case "$1" in
 	ifup|ifdown|interfaces|policies|rules|status|start|stop|restart|use)
+		config_load mwan3
 		mwan3_init
 		# shellcheck disable=SC2048
 		$*

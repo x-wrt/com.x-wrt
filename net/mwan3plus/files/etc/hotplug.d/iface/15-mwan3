@@ -31,7 +31,8 @@ config_get_bool enabled globals 'enabled' '0'
 	exit 0
 }
 
-mwan3_config_family_parse
+mwan3_init
+
 [ $NEED_IPV4 -ne 0 ] && {
 	$IPT4 -S mwan3_hook &>/dev/null || {
 		mwan3_unlock "$ACTION" "$INTERFACE"
@@ -46,8 +47,6 @@ mwan3_config_family_parse
 		exit 0
 	}
 }
-
-mwan3_init
 
 config_get initial_state $INTERFACE initial_state "online"
 config_get_bool enabled $INTERFACE 'enabled' '0'
