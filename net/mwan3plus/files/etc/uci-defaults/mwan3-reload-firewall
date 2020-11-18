@@ -1,0 +1,13 @@
+#!/bin/sh
+
+uci -q batch <<-EOT
+	delete firewall.mwan3_ipv6_masq
+	delete firewall.mwan3
+	set firewall.mwan3=include
+	set firewall.mwan3.type=script
+	set firewall.mwan3.path=/usr/share/mwan3/mwan3-reload.sh
+	set firewall.mwan3.reload=0
+	commit firewall
+EOT
+
+exit 0

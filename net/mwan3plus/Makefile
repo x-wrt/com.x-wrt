@@ -94,12 +94,14 @@ define Package/mwan3plus/install
 		$(1)/lib/mwan3/
 	$(INSTALL_DATA) ./files/lib/mwan3/mwan3.sh \
 		$(1)/lib/mwan3/
-	$(INSTALL_DATA) ./files/lib/mwan3/mwan3_ipv6_masq.sh \
-		$(1)/lib/mwan3/
 
 	$(INSTALL_DIR) $(1)/usr/libexec/rpcd
 	$(INSTALL_BIN) ./files/usr/libexec/rpcd/mwan3 \
 		$(1)/usr/libexec/rpcd/
+
+	$(INSTALL_DIR) $(1)/usr/share/mwan3
+	$(INSTALL_DATA) ./files/usr/share/mwan3/mwan3-reload.sh \
+		$(1)/usr/share/mwan3/
 
 	$(INSTALL_DIR) $(1)/usr/sbin
 	$(INSTALL_BIN) ./files/usr/sbin/mwan3 \
@@ -114,7 +116,7 @@ define Package/mwan3plus/install
 	$(INSTALL_DIR) $(1)/etc/uci-defaults
 	$(INSTALL_DATA) ./files/etc/uci-defaults/mwan3-migrate-flush_conntrack \
 		$(1)/etc/uci-defaults/
-	$(INSTALL_DATA) ./files/etc/uci-defaults/mwan3-ipv6-masq-help \
+	$(INSTALL_DATA) ./files/etc/uci-defaults/mwan3-reload-firewall \
 		$(1)/etc/uci-defaults/
 endef
 

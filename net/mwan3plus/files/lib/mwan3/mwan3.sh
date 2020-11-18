@@ -106,28 +106,6 @@ mwan3_ipv6_masq_cleanup()
 	done
 }
 
-mwan3_ipv6_masq_restart()
-{
-	mwan3_ipv6_masq_cleanup
-
-	masq_help()
-	{
-		local INTERFACE=$1
-		local DEVICE=$(ubus call network.interface dump | jsonfilter -e "@.interface[@.interface=\"${INTERFACE}\"]['l3_device']")
-		config_get enabled "$INTERFACE" enabled 0
-		config_get family "$INTERFACE" family "any"
-		[ "$enabled" = "1" ] || return
-		[ "$family" = "ipv6" ] || [ "$family" = "any" ] || return
-		[ -n "$DEVICE" ] || {
-			LOG notice "masq_help called on $INTERFACE with no device set"
-			return
-		}
-		INTERFACE=$INTERFACE DEVICE=$DEVICE ACTION=ifup mwan3_ipv6_masq_help
-	}
-
-	config_foreach masq_help interface
-}
-
 mwan3_push_update()
 {
 	# helper function to build an update string to pass on to
