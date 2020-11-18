@@ -48,15 +48,10 @@ ifdown()
 
 ifup()
 {
-	local enabled up l3_device status interface true_iface
+	local enabled up l3_device status interface true_iface family family_list
 
 	if [ -z "$1" ]; then
 		echo "Expecting interface. Usage: mwan3 ifup <interface>"
-		exit 0
-	fi
-
-	if [ -n "$2" ]; then
-		echo "Too many arguments. Usage: mwan3 ifup <interface>"
 		exit 0
 	fi
 
@@ -76,7 +71,12 @@ ifup()
 	else
 		enabled=1
 	fi
-	for family in "ipv4" "ipv6"; do
+
+	[ "$enabled" != "1" ] && return
+
+	config_get family_list "$1" family "any"
+	[ "$family_list" = "any" ] && family_list="ipv4 ipv6"
+	for family in $family_list; do
 
 	mwan3_get_true_iface true_iface $interface $family
 	status=$(ubus -S call network.interface.$true_iface status)
@@ -85,15 +85,16 @@ ifup()
 		json_load "$status"
 		json_get_vars up l3_device
 	}
+
+	if [ "$up" != "1" ] || [ -z "$l3_device" ]; then
+		continue
+	fi
+
 	hotplug_startup()
 	{
 		MWAN3_STARTUP=$MWAN3_STARTUP ACTION=ifup INTERFACE=$interface DEVICE=$l3_device FAMILY=$family sh /etc/hotplug.d/iface/15-mwan3
 		MWAN3_STARTUP=$MWAN3_STARTUP ACTION=ifup INTERFACE=$interface DEVICE=$l3_device FAMILY=$family sh /etc/hotplug.d/iface/16-mwan3-user
 	}
-
-	if [ "$up" != "1" ] || [ -z "$l3_device" ] || [ "$enabled" != "1" ]; then
-		return
-	fi
 
 	if [ "${MWAN3_STARTUP}" = 1 ]; then
 		hotplug_startup &
@@ -148,6 +149,7 @@ start()
 	local enabled hotplug_pids MWAN3_STARTUP
 	MWAN3_STARTUP=1
 	mwan3_lock "command" "mwan3"
+
 	uci_toggle_state mwan3 globals enabled "1"
 	config_load mwan3
 	mwan3_config_family_parse
@@ -159,7 +161,6 @@ start()
 	mwan3_add_all_nondefault_routes
 	mwan3_set_policies_iptables
 	mwan3_set_user_rules
-
 
 	mwan3_unlock "command" "mwan3"
 	mwan3_rtmon
