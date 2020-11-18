@@ -724,13 +724,13 @@ mwan3_delete_iface_ipset_entries()
 
 mwan3_rtmon()
 {
-	local protocol
-	for protocol in "ipv4" "ipv6"; do
-		pid="$(pgrep -f "mwan3rtmon $protocol")"
-		[ "$protocol" = "ipv4" ] && [ $NEED_IPV4 -eq 0 ] && continue
-		[ "$protocol" = "ipv6" ] && [ $NEED_IPV6 -eq 0 ] && continue
+	local family
+	for family in "ipv4" "ipv6"; do
+		pid="$(pgrep -f "mwan3rtmon $family")"
+		[ "$family" = "ipv4" ] && [ $NEED_IPV4 -eq 0 ] && continue
+		[ "$family" = "ipv6" ] && [ $NEED_IPV6 -eq 0 ] && continue
 		if [ "${pid}" = "" ]; then
-			[ -x /usr/sbin/mwan3rtmon ] && /usr/sbin/mwan3rtmon $protocol &
+			/usr/sbin/mwan3rtmon $family &
 		fi
 	done
 }
