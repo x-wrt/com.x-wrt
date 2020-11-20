@@ -72,7 +72,7 @@ fi
 	exit 0
 }
 
-[ "$MWAN3_STARTUP" != 1 ] && {
+[ "$MWAN3_STARTUP" != 1 ] && [ "$ACTION" = "ifup" ] && {
 	mwan3_set_user_iface_rules $INTERFACE $DEVICE
 }
 
@@ -106,6 +106,9 @@ case "$ACTION" in
 		mwan3_create_iface_route $INTERFACE $DEVICE $family
 		[ "$MWAN3_STARTUP" != 1 ] && mwan3_add_non_default_iface_route $INTERFACE $DEVICE $family
 		mwan3_set_iface_hotplug_state $INTERFACE "$binary_status" $family
+		[ "$MWAN3_STARTUP" != 1 ] && [ "$binary_status" == "online" ] && mwan3_set_policies_iptables
+
+		[ "$family" = "ipv6" ] && INTERFACE=$INTERFACE DEVICE=$DEVICE ACTION=ifup mwan3_ipv6_masq_help
 
 		[ "$ACTION" = "ifup" ] && {
 			if [ -n "${trackpid}" ]; then
@@ -116,11 +119,6 @@ case "$ACTION" in
 				LOG notice "Started tracker [$!] on interface $INTERFACE($family) (${DEVICE})"
 			fi
 		}
-
-		[ "$MWAN3_STARTUP" != 1 ] && [ "$binary_status" == "online" ] && mwan3_set_policies_iptables
-		[ "$MWAN3_STARTUP" != 1 ] && mwan3_set_user_rules
-
-		[ "$family" = "ipv6" ] && INTERFACE=$INTERFACE DEVICE=$DEVICE ACTION=ifup mwan3_ipv6_masq_help
 	;;
 	ifdown|disconnected)
 		[ "$family" = "ipv6" ] && INTERFACE=$INTERFACE DEVICE=$DEVICE ACTION=ifdown mwan3_ipv6_masq_help
@@ -134,7 +132,6 @@ case "$ACTION" in
 			[ -n "$trackpid" ] && kill -USR1 "$trackpid"
 		fi
 		mwan3_set_policies_iptables
-		mwan3_set_user_rules
 	;;
 esac
 
