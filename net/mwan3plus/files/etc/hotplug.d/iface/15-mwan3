@@ -99,7 +99,6 @@ LOG notice "Execute $ACTION event on interface $INTERFACE($family) (${DEVICE:-un
 
 case "$ACTION" in
 	ifup|connected)
-		[ "$MWAN3_STARTUP" != 1 ] && [ "$ACTION" = "ifup" ] && mwan3_set_local_ipset
 		[ "$MWAN3_STARTUP" != 1 ] && mwan3_set_general_rules
 		[ "$MWAN3_STARTUP" != 1 ] && mwan3_set_general_iptables
 		mwan3_create_iface_iptables $INTERFACE $DEVICE $family
@@ -127,8 +126,6 @@ case "$ACTION" in
 		[ "$family" = "ipv6" ] && INTERFACE=$INTERFACE DEVICE=$DEVICE ACTION=ifdown mwan3_ipv6_masq_help
 
 		mwan3_set_iface_hotplug_state $INTERFACE "offline" $family
-
-		[ "$ACTION" = "ifdown" ] && mwan3_set_local_ipset
 
 		mwan3_delete_iface_ipset_entries $INTERFACE $family
 		mwan3_delete_iface_rules $INTERFACE $family
