@@ -99,13 +99,16 @@ LOG notice "Execute $ACTION event on interface $INTERFACE($family) (${DEVICE:-un
 
 case "$ACTION" in
 	ifup|connected)
+		[ "$MWAN3_STARTUP" != 1 ] && [ "$ACTION" = "ifup" ] && mwan3_set_local_ipset
 		[ "$MWAN3_STARTUP" != 1 ] && mwan3_set_general_rules
 		[ "$MWAN3_STARTUP" != 1 ] && mwan3_set_general_iptables
 		mwan3_create_iface_iptables $INTERFACE $DEVICE $family
 		mwan3_create_iface_rules $INTERFACE $DEVICE $family
 		mwan3_create_iface_route $INTERFACE $DEVICE $family
 		[ "$MWAN3_STARTUP" != 1 ] && mwan3_add_non_default_iface_route $INTERFACE $DEVICE $family
+
 		mwan3_set_iface_hotplug_state $INTERFACE "$binary_status" $family
+
 		[ "$MWAN3_STARTUP" != 1 ] && [ "$binary_status" == "online" ] && mwan3_set_policies_iptables
 
 		[ "$family" = "ipv6" ] && INTERFACE=$INTERFACE DEVICE=$DEVICE ACTION=ifup mwan3_ipv6_masq_help
@@ -124,6 +127,9 @@ case "$ACTION" in
 		[ "$family" = "ipv6" ] && INTERFACE=$INTERFACE DEVICE=$DEVICE ACTION=ifdown mwan3_ipv6_masq_help
 
 		mwan3_set_iface_hotplug_state $INTERFACE "offline" $family
+
+		[ "$ACTION" = "ifdown" ] && mwan3_set_local_ipset
+
 		mwan3_delete_iface_ipset_entries $INTERFACE $family
 		mwan3_delete_iface_rules $INTERFACE $family
 		mwan3_delete_iface_route $INTERFACE $family

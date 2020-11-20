@@ -314,6 +314,54 @@ mwan3_get_iface_id()
 	export "$1=$_tmp"
 }
 
+mwan3_set_local_ipv4()
+{
+	local error local_network_v4
+	$IPS -! create mwan3_local_v4 hash:net
+	$IPS create mwan3_local_v4_temp hash:net ||
+		LOG notice "failed to create ipset mwan3_local_v4_temp"
+
+	$IP4 route list table local | awk '{print $2}' | while read local_network_v4; do
+		$IPS -! add mwan3_local_v4_temp $local_network_v4
+	done
+
+	$IPS swap mwan3_local_v4_temp mwan3_local_v4 ||
+		LOG notice "failed to swap mwan3_local_v4_temp and mwan3_local_v4"
+	$IPS destroy mwan3_local_v4_temp 2>/dev/null
+	$IPS -! add mwan3_local mwan3_local_v4
+}
+
+mwan3_set_local_ipv6()
+{
+	local error local_network_v6
+	$IPS -! create mwan3_local_v6 hash:net
+	$IPS create mwan3_local_v6_temp hash:net ||
+		LOG notice "failed to create ipset mwan3_local_v6_temp"
+
+	$IP6 route list table local | awk '{print $2}' | while read local_network_v6; do
+		$IPS -! add mwan3_local_v6_temp $local_network_v6
+	done
+
+	$IPS swap mwan3_local_v6_temp mwan3_local_v6 ||
+		LOG notice "failed to swap mwan3_local_v4_temp and mwan3_local_v4"
+	$IPS destroy mwan3_local_v6_temp 2>/dev/null
+	$IPS -! add mwan3_local mwan3_local_v6
+}
+
+mwan3_set_local_ipset()
+{
+	local error
+	local update=""
+
+	mwan3_push_update -! create mwan3_local list:set
+	mwan3_push_update flush mwan3_local
+
+	error=$(echo "$update" | $IPS restore 2>&1) || LOG error "set_local_ipset: $error"
+
+	[ $NEED_IPV4 -ne 0 ] && mwan3_set_local_ipv4
+	[ $NEED_IPV6 -ne 0 ] && mwan3_set_local_ipv6
+}
+
 mwan3_set_general_rules()
 {
 	local IP
@@ -343,6 +391,14 @@ mwan3_set_general_iptables()
 		update="*mangle"
 		if [ -n "${current##*-N mwan3_ifaces_in*}" ]; then
 			mwan3_push_update -N mwan3_ifaces_in
+		fi
+
+		if [ -n "${current##*-N mwan3_local*}" ]; then
+			mwan3_push_update -N mwan3_local
+			$IPS -! create mwan3_local list:set
+			mwan3_push_update -A mwan3_local \
+				-m set --match-set mwan3_local dst \
+				-j MARK --set-xmark $MMX_DEFAULT/$MMX_MASK
 		fi
 
 		if [ -n "${current##*-N mwan3_rules*}" ]; then
@@ -380,6 +436,9 @@ mwan3_set_general_iptables()
 			mwan3_push_update -A mwan3_hook \
 					  -m mark --mark 0x0/$MMX_MASK \
 					  -j mwan3_ifaces_in
+			mwan3_push_update -A mwan3_hook \
+					  -m mark --mark 0x0/$MMX_MASK \
+					  -j mwan3_local
 			mwan3_push_update -A mwan3_hook \
 					  -m mark --mark 0x0/$MMX_MASK \
 					  -j mwan3_rules
