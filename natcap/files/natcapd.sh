@@ -198,6 +198,10 @@ activation_sn()
 	natcapd_get_flows 1 || echo "Get data failed!"
 	exit 0
 }
+[ x$1 = xget_flows_last_30 ] && {
+	natcapd_get_flows_last_30 || echo "Get data failed!"
+	exit 0
+}
 [ x$1 = xactivation_sn ] && {
 	if [ "x$ACC" = "xdubai" ]; then
 		activation_sn "$2"
