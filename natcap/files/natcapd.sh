@@ -178,6 +178,14 @@ natcapd_get_flows_last_30()
 	$WGET181 --timeout=180 --ca-certificate=/tmp/cacert.pem -qO- "https://router-sh.ptpt52.com$URI"
 }
 
+natcapd_get_flows_last_bill()
+{
+	local IDX="$1"
+	local TXRX=`txrx_vals_dump| b64encode`
+	URI="/router-update.cgi?cmd=getflows_last_bill&acc=$ACC&cli=$CLI&idx=$IDX&txrx=$TXRX&mod=$MOD&tar=$TAR"
+	$WGET181 --timeout=180 --ca-certificate=/tmp/cacert.pem -qO- "https://router-sh.ptpt52.com$URI"
+}
+
 activation_sn()
 {
 	local SN="$1"
@@ -202,6 +210,11 @@ activation_sn()
 	natcapd_get_flows_last_30 || echo "Get data failed!"
 	exit 0
 }
+[ x$1 = xget_flows_last_bill ] && {
+	natcapd_get_flows_last_bill $2 || echo "Get data failed!"
+	exit 0
+}
+
 [ x$1 = xactivation_sn ] && {
 	if [ "x$ACC" = "xdubai" ]; then
 		activation_sn "$2"
@@ -952,8 +965,9 @@ gfwlist_update_main () {
 
 		#check and limit
 		FL=$(uci get natcapd.default.server_flow_limit 2>/dev/null || echo 0)
+		FB=$(uci get natcapd.default.server_flow_bill 2>/dev/null || echo 1)
 		test $FL -gt 0 && {
-			natcapd_get_flows_last_30 | tail -n1 | while read line; do
+			natcapd_get_flows_last_bill $FB | tail -n1 | while read line; do
 				# 2020-11-22 23:11:05,217729,721049,193223582003
 				logger -t "natcapd" "FLOWS: $line"
 				flows=$(echo "$line" | cut -d, -f4)
