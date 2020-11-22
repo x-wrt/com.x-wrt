@@ -137,12 +137,10 @@ end
 function get_natcap_flows0()
 	local js = require "cjson.safe"
 	local sys  = require "luci.sys"
-	local filename = "Data-not-found"
-	local flows = sys.exec("cat /tmp/xx.json 2>/dev/null")
-	flows = js.decode(flows) or {}
-	if flows.flows and flows.flows[1] and flows.flows[1].from and flows.flows[1].to then
-		filename = string.format("Flows_%s-%s", flows.flows[1].from, flows.flows[1].to)
-	end
+	local now = os.date("*t")
+	local from = os.date("%Y%m%d", os.time({year=now.year, month=now.month, day=1}))
+	local to = os.date("%Y%m%d")
+	local filename = string.format("Flows_%s-%s", from, to)
 
 	local reader = ltn12_popen("/usr/sbin/natcapd get_flows0")
 
@@ -154,12 +152,10 @@ end
 function get_natcap_flows1()
 	local sys  = require "luci.sys"
 	local js = require "cjson.safe"
-	local filename = "Data-not-found"
-	local flows = sys.exec("cat /tmp/xx.json 2>/dev/null")
-	flows = js.decode(flows) or {}
-	if flows.flows and flows.flows[2] and flows.flows[2].from and flows.flows[2].to then
-		filename = string.format("Flows_%s-%s", flows.flows[2].from, flows.flows[2].to)
-	end
+	local now = os.date("*t")
+	local from = os.date("%Y%m%d", os.time({year=now.year, month=now.month-1, day=1}))
+	local to = os.date("%Y%m%d", os.time({year=now.year, month=now.month, day=0}))
+	local filename = string.format("Flows_%s-%s", from, to)
 
 	local reader = ltn12_popen("/usr/sbin/natcapd get_flows1")
 
