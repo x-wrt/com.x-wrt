@@ -938,6 +938,24 @@ gfwlist_update_main () {
 				;;
 			esac
 		}
+
+		#check and limit
+		FL=$(uci get natcapd.default.server_flow_limit 2>/dev/null || echo 0)
+		test $FL -gt 0 && {
+			natcapd_get_flows 0 | tail -n1 | while read line; do
+				# 2020-11-22 23:11:05,217729,721049,193223582003
+				logger -t "natcapd" "FLOWS: $line"
+				flows=$(echo "$line" | cut -d, -f4)
+				flows=$((flows+0))
+				if test $flows -ge $FL; then
+					logger -t "natcapd" "FLOWS: server_flow_stop=1"
+					echo server_flow_stop=1  >$DEV
+				else
+					echo server_flow_stop=0  >$DEV
+					logger -t "natcapd" "FLOWS: server_flow_stop=0"
+				fi
+			done
+		}
 	done
 }
 
