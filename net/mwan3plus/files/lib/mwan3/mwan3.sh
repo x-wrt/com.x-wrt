@@ -322,7 +322,7 @@ mwan3_set_local_ipv4()
 		LOG notice "failed to create ipset mwan3_local_v4_temp"
 
 	$IP4 route list table local | awk '{print $2}' | while read local_network_v4; do
-		$IPS -! add mwan3_local_v4_temp $local_network_v4
+		$IPS -! add mwan3_local_v4_temp $local_network_v4 2>/dev/null
 	done
 
 	$IPS swap mwan3_local_v4_temp mwan3_local_v4 ||
@@ -334,12 +334,15 @@ mwan3_set_local_ipv4()
 mwan3_set_local_ipv6()
 {
 	local error local_network_v6
-	$IPS -! create mwan3_local_v6 hash:net
-	$IPS create mwan3_local_v6_temp hash:net ||
+	$IPS -! create mwan3_local_v6 hash:net family inet6
+	$IPS create mwan3_local_v6_temp hash:net family inet6 ||
 		LOG notice "failed to create ipset mwan3_local_v6_temp"
 
-	$IP6 route list table local | awk '{print $2}' | while read local_network_v6; do
-		$IPS -! add mwan3_local_v6_temp $local_network_v6
+	$IP6 route list table local | awk '{print $2}' | grep : | while read local_network_v6; do
+		$IPS -! add mwan3_local_v6_temp $local_network_v6 2>/dev/null
+	done
+	$IP6 route list table local | awk '{print $1}' | grep : | while read local_network_v6; do
+		$IPS -! add mwan3_local_v6_temp $local_network_v6 2>/dev/null
 	done
 
 	$IPS swap mwan3_local_v6_temp mwan3_local_v6 ||
