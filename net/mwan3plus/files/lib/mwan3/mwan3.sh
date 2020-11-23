@@ -10,7 +10,7 @@ IPT6="ip6tables -t mangle -w"
 IPT4R="iptables-restore -T mangle -w -n"
 IPT6R="ip6tables-restore -T mangle -w -n"
 CONNTRACK_FILE="/proc/net/nf_conntrack"
-IPv4_REGEX='\([0-9]\{1,3\}\)\.\([0-9]\{1,3\}\)\.\([0-9]\{1,3\}\)\.\([0-9]\{1,3\}\)'
+IPv4_REGEX="((25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)"
 IPv6_REGEX="([0-9a-fA-F]{1,4}:){7,7}[0-9a-fA-F]{1,4}|"
 IPv6_REGEX="${IPv6_REGEX}([0-9a-fA-F]{1,4}:){1,7}:|"
 IPv6_REGEX="${IPv6_REGEX}([0-9a-fA-F]{1,4}:){1,6}:[0-9a-fA-F]{1,4}|"
@@ -786,7 +786,7 @@ mwan3_track()
 	{
 		if echo $1 | grep -q ":"; then
 			track_ips_v6="$track_ips_v6 $1"
-		elif echo $1 | grep -q "$IPv4_REGEX"; then
+		elif echo $1 | grep -qE "$IPv4_REGEX"; then
 			track_ips_v4="$track_ips_v4 $1"
 		else
 			track_ips_v6="$track_ips_v6 $1"
@@ -1253,7 +1253,7 @@ mwan3_report_iface_status()
 	{
 		if echo $1 | grep -q ":"; then
 			track_ips_v6="$track_ips_v6 $1"
-		elif echo $1 | grep -q "$IPv4_REGEX"; then
+		elif echo $1 | grep -qE "$IPv4_REGEX"; then
 			track_ips_v4="$track_ips_v4 $1"
 		else
 			track_ips_v6="$track_ips_v6 $1"
