@@ -687,6 +687,7 @@ elif test -c $DEV; then
 	access_to_cn=`uci get natcapd.default.access_to_cn 2>/dev/null || echo 0`
 	full_proxy=`uci get natcapd.default.full_proxy 2>/dev/null || echo 0`
 	server1_use_peer=`uci get natcapd.default.server1_use_peer 2>/dev/null || echo 0` #use 11
+	cn_domain_enabled=`uci get natcapd.default.cn_domain_enabled 2>/dev/null || echo 1`
 	[ x$encode_mode = x0 ] && encode_mode=T
 	[ x$encode_mode = x1 ] && encode_mode=U
 	[ x$udp_encode_mode = x0 ] && udp_encode_mode=U
@@ -881,8 +882,10 @@ elif test -c $DEV; then
 	_clean_natcap_rules
 	_setup_natcap_rules
 
-	[ x$access_to_cn != x1 -a x$full_proxy != x1 -a x$cnipwhitelist_mode != x2 ] && \
-	cn_domain_setup &
+	if [ $cn_domain_enabled = 1 ]; then
+		[ x$access_to_cn != x1 -a x$full_proxy != x1 -a x$cnipwhitelist_mode != x2 ] && \
+		cn_domain_setup &
+	fi
 fi
 
 #reload pptpd
