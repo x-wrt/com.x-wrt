@@ -107,6 +107,8 @@ mwan3_rtmon_route_handle()
 	}
 
 	id=0 config_foreach handle_route_cb interface
+
+	mwan3_set_connected_${route_family}
 }
 
 main()
@@ -125,6 +127,7 @@ main()
 
 	mwan3_lock "service" "mwan3rtmon"
 	mwan3_set_local_${family}
+	mwan3_set_connected_${family}
 	mwan3_unlock "service" "mwan3rtmon"
 
 	$IP monitor route | while read -r line; do

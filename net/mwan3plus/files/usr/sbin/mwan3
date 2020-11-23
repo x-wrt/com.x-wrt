@@ -150,6 +150,7 @@ start()
 	uci_toggle_state mwan3 globals enabled "1"
 
 	mwan3_set_local_ipset
+	mwan3_set_connected_ipset
 	mwan3_set_general_rules
 	mwan3_set_general_iptables
 	config_foreach ifup interface

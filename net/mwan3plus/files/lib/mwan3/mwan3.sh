@@ -346,7 +346,7 @@ mwan3_set_local_ipv6()
 	done
 
 	$IPS swap mwan3_local_v6_temp mwan3_local_v6 ||
-		LOG notice "failed to swap mwan3_local_v4_temp and mwan3_local_v4"
+		LOG notice "failed to swap mwan3_local_v6_temp and mwan3_local_v6"
 	$IPS destroy mwan3_local_v6_temp 2>/dev/null
 	$IPS -! add mwan3_local mwan3_local_v6
 }
@@ -363,6 +363,54 @@ mwan3_set_local_ipset()
 
 	[ $NEED_IPV4 -ne 0 ] && mwan3_set_local_ipv4
 	[ $NEED_IPV6 -ne 0 ] && mwan3_set_local_ipv6
+}
+
+mwan3_set_connected_ipv4()
+{
+	local error connected_network_v4
+	$IPS -! create mwan3_connected_v4 hash:net
+	$IPS create mwan3_connected_v4_temp hash:net ||
+		LOG notice "failed to create ipset mwan3_connected_v4_temp"
+
+	$IP4 route list table main | awk '{print $1}' | grep -E "$IPv4_REGEX" | while read connected_network_v4; do
+		$IPS -! add mwan3_connected_v4_temp $connected_network_v4 2>/dev/null
+	done
+
+	$IPS swap mwan3_connected_v4_temp mwan3_connected_v4 ||
+		LOG notice "failed to swap mwan3_connected_v4_temp and mwan3_connected_v4"
+	$IPS destroy mwan3_connected_v4_temp 2>/dev/null
+	$IPS -! add mwan3_connected mwan3_connected_v4
+}
+
+mwan3_set_connected_ipv6()
+{
+	local error connected_network_v6
+	$IPS -! create mwan3_connected_v6 hash:net family inet6
+	$IPS create mwan3_connected_v6_temp hash:net family inet6 ||
+		LOG notice "failed to create ipset mwan3_connected_v6_temp"
+
+	$IP6 route list table main | awk '{print $1}' | grep -E "$IPv6_REGEX" | while read connected_network_v6; do
+		$IPS -! add mwan3_connected_v6_temp $connected_network_v6 2>/dev/null
+	done
+
+	$IPS swap mwan3_connected_v6_temp mwan3_connected_v6 ||
+		LOG notice "failed to swap mwan3_connected_v6_temp and mwan3_connected_v6"
+	$IPS destroy mwan3_connected_v6_temp 2>/dev/null
+	$IPS -! add mwan3_connected mwan3_connected_v6
+}
+
+mwan3_set_connected_ipset()
+{
+	local error
+	local update=""
+
+	mwan3_push_update -! create mwan3_connected list:set
+	mwan3_push_update flush mwan3_connected
+
+	error=$(echo "$update" | $IPS restore 2>&1) || LOG error "set_connected_ipset: $error"
+
+	[ $NEED_IPV4 -ne 0 ] && mwan3_set_connected_ipv4
+	[ $NEED_IPV6 -ne 0 ] && mwan3_set_connected_ipv6
 }
 
 mwan3_set_general_rules()
@@ -401,6 +449,23 @@ mwan3_set_general_iptables()
 			$IPS -! create mwan3_local list:set
 			mwan3_push_update -A mwan3_local \
 				-m set --match-set mwan3_local dst \
+				-j MARK --set-xmark $MMX_DEFAULT/$MMX_MASK
+		fi
+
+		if [ -n "${current##*-N mwan3_connected*}" ]; then
+			mwan3_push_update -N mwan3_connected
+			$IPS -! create mwan3_connected list:set
+			mwan3_push_update -A mwan3_connected \
+				-m mark --mark $MMX_BLACKHOLE/$MMX_MASK \
+				-m set --match-set mwan3_connected dst \
+				-j MARK --set-xmark $MMX_DEFAULT/$MMX_MASK
+			mwan3_push_update -A mwan3_connected \
+				-m mark --mark $MMX_UNREACHABLE/$MMX_MASK \
+				-m set --match-set mwan3_connected dst \
+				-j MARK --set-xmark $MMX_DEFAULT/$MMX_MASK
+			mwan3_push_update -A mwan3_connected \
+				-m mark --mark 0x0/$MMX_MASK \
+				-m set --match-set mwan3_connected dst \
 				-j MARK --set-xmark $MMX_DEFAULT/$MMX_MASK
 		fi
 
@@ -445,6 +510,8 @@ mwan3_set_general_iptables()
 			mwan3_push_update -A mwan3_hook \
 					  -m mark --mark 0x0/$MMX_MASK \
 					  -j mwan3_rules
+			mwan3_push_update -A mwan3_hook \
+					  -j mwan3_connected
 			mwan3_push_update -A mwan3_hook \
 					  -j CONNMARK --save-mark --nfmask "$MMX_MASK" --ctmask "$MMX_MASK"
 		fi
