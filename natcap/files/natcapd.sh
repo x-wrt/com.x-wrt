@@ -956,7 +956,7 @@ gfwlist_update_main () {
 				"cnlist")
 					sh /usr/share/natcapd/cnlist_update.sh
 				;;
-				"all")
+				*)
 					sh /usr/share/natcapd/gfwlist_update.sh
 					sh /usr/share/natcapd/cnlist_update.sh
 				;;
