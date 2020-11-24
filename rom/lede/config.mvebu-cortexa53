@@ -49,6 +49,7 @@ CONFIG_TARGET_MULTI_PROFILE=y
 # CONFIG_TARGET_mvebu_cortexa53_DEVICE_glinet_gl-mv1000 is not set
 # CONFIG_TARGET_mvebu_cortexa53_DEVICE_globalscale_espressobin is not set
 # CONFIG_TARGET_mvebu_cortexa53_DEVICE_globalscale_espressobin-emmc is not set
+# CONFIG_TARGET_mvebu_cortexa53_DEVICE_globalscale_espressobin-ultra is not set
 # CONFIG_TARGET_mvebu_cortexa53_DEVICE_globalscale_espressobin-v7 is not set
 # CONFIG_TARGET_mvebu_cortexa53_DEVICE_globalscale_espressobin-v7-emmc is not set
 # CONFIG_TARGET_mvebu_cortexa53_DEVICE_marvell_armada-3720-db is not set
@@ -66,6 +67,7 @@ CONFIG_TARGET_DEVICE_PACKAGES_mvebu_cortexa53_DEVICE_glinet_gl-mv1000="aria2 cha
 # CONFIG_TARGET_DEVICE_mvebu_cortexa53_DEVICE_globalscale_espressobin-v7-emmc is not set
 # CONFIG_TARGET_DEVICE_mvebu_cortexa53_DEVICE_globalscale_espressobin-v7 is not set
 # CONFIG_TARGET_DEVICE_mvebu_cortexa53_DEVICE_marvell_armada-3720-db is not set
+# CONFIG_TARGET_DEVICE_mvebu_cortexa53_DEVICE_globalscale_espressobin-ultra is not set
 # CONFIG_TARGET_DEVICE_mvebu_cortexa53_DEVICE_methode_udpu is not set
 # end of Target Devices
 
@@ -420,7 +422,7 @@ CONFIG_TARGET_INIT_CMD="/sbin/init"
 CONFIG_TARGET_INIT_SUPPRESS_STDERR=y
 CONFIG_VERSIONOPT=y
 CONFIG_VERSION_DIST="X-WRT"
-CONFIG_VERSION_NUMBER="8.0_b202011210550"
+CONFIG_VERSION_NUMBER="8.0_b202011241903"
 CONFIG_VERSION_CODE="Focal"
 CONFIG_VERSION_REPO="http://downloads.openwrt.org/snapshots"
 CONFIG_VERSION_HOME_URL="https://x-wrt.com/"

@@ -94,6 +94,7 @@ CONFIG_TARGET_MULTI_PROFILE=y
 # CONFIG_TARGET_ramips_mt76x8_DEVICE_tplink_re305-v1 is not set
 # CONFIG_TARGET_ramips_mt76x8_DEVICE_tplink_tl-mr3020-v3 is not set
 # CONFIG_TARGET_ramips_mt76x8_DEVICE_tplink_tl-mr3420-v5 is not set
+# CONFIG_TARGET_ramips_mt76x8_DEVICE_tplink_tl-mr6400-v4 is not set
 # CONFIG_TARGET_ramips_mt76x8_DEVICE_tplink_tl-wa801nd-v5 is not set
 # CONFIG_TARGET_ramips_mt76x8_DEVICE_tplink_tl-wr802n-v4 is not set
 # CONFIG_TARGET_ramips_mt76x8_DEVICE_tplink_tl-wr840n-v4 is not set
@@ -181,6 +182,7 @@ CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt76x8_DEVICE_skylab_skw92a="aria2 blockd b
 # CONFIG_TARGET_DEVICE_ramips_mt76x8_DEVICE_tplink_re305-v1 is not set
 # CONFIG_TARGET_DEVICE_ramips_mt76x8_DEVICE_tplink_tl-mr3020-v3 is not set
 # CONFIG_TARGET_DEVICE_ramips_mt76x8_DEVICE_tplink_tl-mr3420-v5 is not set
+# CONFIG_TARGET_DEVICE_ramips_mt76x8_DEVICE_tplink_tl-mr6400-v4 is not set
 # CONFIG_TARGET_DEVICE_ramips_mt76x8_DEVICE_tplink_tl-wa801nd-v5 is not set
 # CONFIG_TARGET_DEVICE_ramips_mt76x8_DEVICE_tplink_tl-wr802n-v4 is not set
 # CONFIG_TARGET_DEVICE_ramips_mt76x8_DEVICE_tplink_tl-wr840n-v4 is not set
@@ -551,7 +553,7 @@ CONFIG_TARGET_INIT_CMD="/sbin/init"
 CONFIG_TARGET_INIT_SUPPRESS_STDERR=y
 CONFIG_VERSIONOPT=y
 CONFIG_VERSION_DIST="X-WRT"
-CONFIG_VERSION_NUMBER="8.0_b202011210550"
+CONFIG_VERSION_NUMBER="8.0_b202011241903"
 CONFIG_VERSION_CODE="Focal"
 CONFIG_VERSION_REPO="http://downloads.openwrt.org/snapshots"
 CONFIG_VERSION_HOME_URL="https://x-wrt.com/"
