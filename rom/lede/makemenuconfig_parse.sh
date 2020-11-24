@@ -355,6 +355,7 @@ for t in $targets; do
 		TARGET_DEVICE_ath79_generic_DEVICE_glinet_gl-ar150|\
 		TARGET_DEVICE_ar71xx_generic_DEVICE_gl-usb150|\
 		TARGET_DEVICE_ar71xx_generic_DEVICE_gl-mifi|\
+		TARGET_DEVICE_ath79_generic_DEVICE_glinet_gl-usb150|\
 		TARGET_DEVICE_ath79_generic_DEVICE_glinet_gl-mifi|\
 		TARGET_DEVICE_ath79_generic_DEVICE_yuncore_a770|\
 		TARGET_DEVICE_ipq40xx_generic_DEVICE_netgear_ex6150v2|\
@@ -1063,6 +1064,7 @@ for t in $targets; do
 		TARGET_DEVICE_ath79_generic_DEVICE_comfast_cf-e5|\
 		TARGET_DEVICE_ath79_generic_DEVICE_ubnt_nanobeam-ac|\
 		TARGET_DEVICE_ar71xx_generic_DEVICE_gl-usb150|\
+		TARGET_DEVICE_ath79_generic_DEVICE_glinet_gl-usb150|\
 		TARGET_DEVICE_ath79_generic_DEVICE_yuncore_a770|\
 		TARGET_DEVICE_ath79_generic_DEVICE_ubnt_nanostation-m-xw|\
 		TARGET_DEVICE_ipq40xx_generic_DEVICE_netgear_ex6150v2|\
