@@ -355,7 +355,6 @@ for t in $targets; do
 		TARGET_DEVICE_ath79_generic_DEVICE_glinet_gl-ar150|\
 		TARGET_DEVICE_ar71xx_generic_DEVICE_gl-usb150|\
 		TARGET_DEVICE_ar71xx_generic_DEVICE_gl-mifi|\
-		TARGET_DEVICE_ath79_generic_DEVICE_glinet_gl-usb150|\
 		TARGET_DEVICE_ath79_generic_DEVICE_glinet_gl-mifi|\
 		TARGET_DEVICE_ath79_generic_DEVICE_yuncore_a770|\
 		TARGET_DEVICE_ipq40xx_generic_DEVICE_netgear_ex6150v2|\
@@ -551,6 +550,7 @@ for t in $targets; do
 			flash_gt8m=1
 		;;
 		#<=8M flash
+		TARGET_DEVICE_ath79_generic_DEVICE_glinet_gl-usb150|\
 		TARGET_DEVICE_ath79_generic_DEVICE_tplink_tl-wr710n-v1|\
 		TARGET_DEVICE_ath79_generic_DEVICE_tplink_tl-wr710n-v2.1|\
 		TARGET_DEVICE_ath79_generic_DEVICE_tplink_tl-wr810n-v1|\
