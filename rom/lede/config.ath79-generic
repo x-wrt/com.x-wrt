@@ -103,6 +103,7 @@ CONFIG_TARGET_MULTI_PROFILE=y
 # CONFIG_TARGET_ath79_generic_DEVICE_elecom_wrc-1750ghbk2-i is not set
 # CONFIG_TARGET_ath79_generic_DEVICE_elecom_wrc-300ghbk2-i is not set
 # CONFIG_TARGET_ath79_generic_DEVICE_embeddedwireless_dorin is not set
+# CONFIG_TARGET_ath79_generic_DEVICE_engenius_eap300-v2 is not set
 # CONFIG_TARGET_ath79_generic_DEVICE_engenius_ecb1750 is not set
 # CONFIG_TARGET_ath79_generic_DEVICE_engenius_enh202-v1 is not set
 # CONFIG_TARGET_ath79_generic_DEVICE_engenius_ens202ext-v1 is not set
@@ -383,6 +384,7 @@ CONFIG_TARGET_DEVICE_PACKAGES_ath79_generic_DEVICE_devolo_dvl1750i="ath10k-firmw
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_elecom_wrc-1750ghbk2-i is not set
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_elecom_wrc-300ghbk2-i is not set
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_embeddedwireless_dorin is not set
+# CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_engenius_eap300-v2 is not set
 CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_engenius_ecb1750=y
 CONFIG_TARGET_DEVICE_PACKAGES_ath79_generic_DEVICE_engenius_ecb1750="ath10k-firmware-qca988x-ct kmod-ath10k-ct kmod-ath9k kmod-ath9k-common kmod-gpio-button-hotplug kmod-hwmon-core libopenssl libopenssl-conf libpcre libqrencode libstdcpp libxml2 luci-app-openvpn luci-app-wireguard luci-i18n-openvpn-en luci-i18n-openvpn-zh-cn luci-i18n-wireguard-en luci-i18n-wireguard-zh-cn luci-proto-wireguard luci-ssl-nginx nginx-mod-luci nginx-mod-luci-ssl nginx-ssl nginx-ssl-util nginx-util openssl-util openvpn-openssl qrencode uwsgi uwsgi-cgi-plugin uwsgi-luci-support uwsgi-syslog-plugin wireguard-tools wpad-openssl"
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_engenius_enh202-v1 is not set
@@ -971,7 +973,7 @@ CONFIG_TARGET_INIT_CMD="/sbin/init"
 CONFIG_TARGET_INIT_SUPPRESS_STDERR=y
 CONFIG_VERSIONOPT=y
 CONFIG_VERSION_DIST="X-WRT"
-CONFIG_VERSION_NUMBER="8.0_b202011241911"
+CONFIG_VERSION_NUMBER="8.0_b202011260558"
 CONFIG_VERSION_CODE="Focal"
 CONFIG_VERSION_REPO="http://downloads.openwrt.org/snapshots"
 CONFIG_VERSION_HOME_URL="https://x-wrt.com/"
@@ -1370,7 +1372,7 @@ CONFIG_BUSYBOX_DEFAULT_FEATURE_ALLOW_EXEC=y
 CONFIG_BUSYBOX_DEFAULT_FIND=y
 CONFIG_BUSYBOX_DEFAULT_FEATURE_FIND_PRINT0=y
 CONFIG_BUSYBOX_DEFAULT_FEATURE_FIND_MTIME=y
-# CONFIG_BUSYBOX_DEFAULT_FEATURE_FIND_MMIN is not set
+CONFIG_BUSYBOX_DEFAULT_FEATURE_FIND_MMIN=y
 CONFIG_BUSYBOX_DEFAULT_FEATURE_FIND_PERM=y
 CONFIG_BUSYBOX_DEFAULT_FEATURE_FIND_TYPE=y
 # CONFIG_BUSYBOX_DEFAULT_FEATURE_FIND_EXECUTABLE is not set
@@ -2435,7 +2437,7 @@ CONFIG_BUSYBOX_CONFIG_FEATURE_ALLOW_EXEC=y
 CONFIG_BUSYBOX_CONFIG_FIND=y
 CONFIG_BUSYBOX_CONFIG_FEATURE_FIND_PRINT0=y
 CONFIG_BUSYBOX_CONFIG_FEATURE_FIND_MTIME=y
-# CONFIG_BUSYBOX_CONFIG_FEATURE_FIND_MMIN is not set
+CONFIG_BUSYBOX_CONFIG_FEATURE_FIND_MMIN=y
 CONFIG_BUSYBOX_CONFIG_FEATURE_FIND_PERM=y
 CONFIG_BUSYBOX_CONFIG_FEATURE_FIND_TYPE=y
 # CONFIG_BUSYBOX_CONFIG_FEATURE_FIND_EXECUTABLE is not set

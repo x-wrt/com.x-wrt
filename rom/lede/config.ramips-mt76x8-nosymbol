@@ -95,6 +95,7 @@ CONFIG_TARGET_MULTI_PROFILE=y
 # CONFIG_TARGET_ramips_mt76x8_DEVICE_tplink_tl-mr3020-v3 is not set
 # CONFIG_TARGET_ramips_mt76x8_DEVICE_tplink_tl-mr3420-v5 is not set
 # CONFIG_TARGET_ramips_mt76x8_DEVICE_tplink_tl-mr6400-v4 is not set
+# CONFIG_TARGET_ramips_mt76x8_DEVICE_tplink_tl-mr6400-v5 is not set
 # CONFIG_TARGET_ramips_mt76x8_DEVICE_tplink_tl-wa801nd-v5 is not set
 # CONFIG_TARGET_ramips_mt76x8_DEVICE_tplink_tl-wr802n-v4 is not set
 # CONFIG_TARGET_ramips_mt76x8_DEVICE_tplink_tl-wr840n-v4 is not set
@@ -118,6 +119,7 @@ CONFIG_TARGET_MULTI_PROFILE=y
 # CONFIG_TARGET_ramips_mt76x8_DEVICE_xwrt_g4303k-v1 is not set
 # CONFIG_TARGET_ramips_mt76x8_DEVICE_xwrt_xf-949 is not set
 # CONFIG_TARGET_ramips_mt76x8_DEVICE_xiaomi_mir4a-100m is not set
+# CONFIG_TARGET_ramips_mt76x8_DEVICE_xiaomi_mi-router-4c is not set
 # CONFIG_TARGET_ramips_mt76x8_DEVICE_xiaomi_miwifi-nano is not set
 # CONFIG_TARGET_ramips_mt76x8_DEVICE_zbtlink_zbt-we1226 is not set
 # CONFIG_TARGET_ramips_mt76x8_DEVICE_zyxel_keenetic-extra-ii is not set
@@ -186,6 +188,7 @@ CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt76x8_DEVICE_tplink_tl-mr3020-v3="kmod-gpi
 CONFIG_TARGET_DEVICE_ramips_mt76x8_DEVICE_tplink_tl-mr3420-v5=y
 CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt76x8_DEVICE_tplink_tl-mr3420-v5="blockd block-mount kmod-crypto-crc32c kmod-exfat-linux kmod-fs-autofs4 kmod-fs-ext4 kmod-fs-msdos kmod-fs-vfat kmod-fuse kmod-gpio-button-hotplug kmod-lib-crc16 kmod-mii kmod-nls-cp437 kmod-scsi-core kmod-usb2 kmod-usb-core kmod-usb-ehci kmod-usb-ledtrig-usbport kmod-usb-net kmod-usb-net-cdc-ether kmod-usb-net-rndis kmod-usb-ohci kmod-usb-storage kmod-usb-storage-uas luci-app-ledtrig-usbport ntfs-3g wpad-basic-wolfssl"
 # CONFIG_TARGET_DEVICE_ramips_mt76x8_DEVICE_tplink_tl-mr6400-v4 is not set
+# CONFIG_TARGET_DEVICE_ramips_mt76x8_DEVICE_tplink_tl-mr6400-v5 is not set
 CONFIG_TARGET_DEVICE_ramips_mt76x8_DEVICE_tplink_tl-wa801nd-v5=y
 CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt76x8_DEVICE_tplink_tl-wa801nd-v5="kmod-gpio-button-hotplug wpad-basic-wolfssl"
 CONFIG_TARGET_DEVICE_ramips_mt76x8_DEVICE_tplink_tl-wr802n-v4=y
@@ -213,6 +216,7 @@ CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt76x8_DEVICE_vocore_vocore2-lite="blockd b
 # CONFIG_TARGET_DEVICE_ramips_mt76x8_DEVICE_wrtnode_wrtnode2p is not set
 # CONFIG_TARGET_DEVICE_ramips_mt76x8_DEVICE_wrtnode_wrtnode2r is not set
 # CONFIG_TARGET_DEVICE_ramips_mt76x8_DEVICE_xiaomi_mir4a-100m is not set
+# CONFIG_TARGET_DEVICE_ramips_mt76x8_DEVICE_xiaomi_mi-router-4c is not set
 CONFIG_TARGET_DEVICE_ramips_mt76x8_DEVICE_xiaomi_miwifi-nano=y
 CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt76x8_DEVICE_xiaomi_miwifi-nano="kmod-gpio-button-hotplug uboot-envtools wpad-basic-wolfssl"
 # CONFIG_TARGET_DEVICE_ramips_mt76x8_DEVICE_xwrt_g4303k-v1 is not set
@@ -550,7 +554,7 @@ CONFIG_TARGET_INIT_CMD="/sbin/init"
 CONFIG_TARGET_INIT_SUPPRESS_STDERR=y
 CONFIG_VERSIONOPT=y
 CONFIG_VERSION_DIST="X-WRT"
-CONFIG_VERSION_NUMBER="8.0_b202011241911"
+CONFIG_VERSION_NUMBER="8.0_b202011260558"
 CONFIG_VERSION_CODE="Focal"
 CONFIG_VERSION_REPO="http://downloads.openwrt.org/snapshots"
 CONFIG_VERSION_HOME_URL="https://x-wrt.com/"
@@ -949,7 +953,7 @@ CONFIG_BUSYBOX_DEFAULT_FEATURE_ALLOW_EXEC=y
 CONFIG_BUSYBOX_DEFAULT_FIND=y
 CONFIG_BUSYBOX_DEFAULT_FEATURE_FIND_PRINT0=y
 CONFIG_BUSYBOX_DEFAULT_FEATURE_FIND_MTIME=y
-# CONFIG_BUSYBOX_DEFAULT_FEATURE_FIND_MMIN is not set
+CONFIG_BUSYBOX_DEFAULT_FEATURE_FIND_MMIN=y
 CONFIG_BUSYBOX_DEFAULT_FEATURE_FIND_PERM=y
 CONFIG_BUSYBOX_DEFAULT_FEATURE_FIND_TYPE=y
 # CONFIG_BUSYBOX_DEFAULT_FEATURE_FIND_EXECUTABLE is not set
@@ -2014,7 +2018,7 @@ CONFIG_BUSYBOX_CONFIG_FEATURE_ALLOW_EXEC=y
 CONFIG_BUSYBOX_CONFIG_FIND=y
 CONFIG_BUSYBOX_CONFIG_FEATURE_FIND_PRINT0=y
 CONFIG_BUSYBOX_CONFIG_FEATURE_FIND_MTIME=y
-# CONFIG_BUSYBOX_CONFIG_FEATURE_FIND_MMIN is not set
+CONFIG_BUSYBOX_CONFIG_FEATURE_FIND_MMIN=y
 CONFIG_BUSYBOX_CONFIG_FEATURE_FIND_PERM=y
 CONFIG_BUSYBOX_CONFIG_FEATURE_FIND_TYPE=y
 # CONFIG_BUSYBOX_CONFIG_FEATURE_FIND_EXECUTABLE is not set
