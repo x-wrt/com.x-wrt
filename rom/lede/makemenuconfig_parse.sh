@@ -550,6 +550,9 @@ for t in $targets; do
 			flash_gt8m=1
 		;;
 		#<=8M flash
+		TARGET_DEVICE_ramips_mt76x8_DEVICE_xiaomi_mi-router-4c|\
+		TARGET_DEVICE_ramips_mt76x8_DEVICE_tplink_tl-mr6400-v4|\
+		TARGET_DEVICE_ramips_mt76x8_DEVICE_tplink_tl-mr6400-v5|\
 		TARGET_DEVICE_ath79_generic_DEVICE_glinet_gl-usb150|\
 		TARGET_DEVICE_ath79_generic_DEVICE_tplink_tl-wr710n-v1|\
 		TARGET_DEVICE_ath79_generic_DEVICE_tplink_tl-wr710n-v2.1|\
@@ -1017,6 +1020,9 @@ for t in $targets; do
 			has_usb=1
 		;;
 		#no usb
+		TARGET_DEVICE_ramips_mt76x8_DEVICE_xiaomi_mi-router-4c|\
+		TARGET_DEVICE_ramips_mt76x8_DEVICE_tplink_tl-mr6400-v4|\
+		TARGET_DEVICE_ramips_mt76x8_DEVICE_tplink_tl-mr6400-v5|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_totolink_x5000r|\
 		TARGET_DEVICE_ath79_generic_DEVICE_tplink_tl-wr810n-v2|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_xwrt_wr1800k-ax-nand|\

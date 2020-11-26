@@ -187,8 +187,10 @@ CONFIG_TARGET_DEVICE_ramips_mt76x8_DEVICE_tplink_tl-mr3020-v3=y
 CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt76x8_DEVICE_tplink_tl-mr3020-v3="kmod-gpio-button-hotplug kmod-usb2 kmod-usb-core kmod-usb-ehci kmod-usb-ledtrig-usbport kmod-usb-ohci luci-app-ledtrig-usbport wpad-basic-wolfssl"
 CONFIG_TARGET_DEVICE_ramips_mt76x8_DEVICE_tplink_tl-mr3420-v5=y
 CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt76x8_DEVICE_tplink_tl-mr3420-v5="blockd block-mount kmod-crypto-crc32c kmod-exfat-linux kmod-fs-autofs4 kmod-fs-ext4 kmod-fs-msdos kmod-fs-vfat kmod-fuse kmod-gpio-button-hotplug kmod-lib-crc16 kmod-mii kmod-nls-cp437 kmod-scsi-core kmod-usb2 kmod-usb-core kmod-usb-ehci kmod-usb-ledtrig-usbport kmod-usb-net kmod-usb-net-cdc-ether kmod-usb-net-rndis kmod-usb-ohci kmod-usb-storage kmod-usb-storage-uas luci-app-ledtrig-usbport ntfs-3g wpad-basic-wolfssl"
-# CONFIG_TARGET_DEVICE_ramips_mt76x8_DEVICE_tplink_tl-mr6400-v4 is not set
-# CONFIG_TARGET_DEVICE_ramips_mt76x8_DEVICE_tplink_tl-mr6400-v5 is not set
+CONFIG_TARGET_DEVICE_ramips_mt76x8_DEVICE_tplink_tl-mr6400-v4=y
+CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt76x8_DEVICE_tplink_tl-mr6400-v4="kmod-gpio-button-hotplug kmod-mii kmod-usb2 kmod-usb-core kmod-usb-ehci kmod-usb-ledtrig-usbport kmod-usb-net kmod-usb-net-qmi-wwan kmod-usb-ohci kmod-usb-serial kmod-usb-serial-option kmod-usb-serial-wwan kmod-usb-wdm luci-app-ledtrig-usbport uqmi wpad-basic-wolfssl wwan"
+CONFIG_TARGET_DEVICE_ramips_mt76x8_DEVICE_tplink_tl-mr6400-v5=y
+CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt76x8_DEVICE_tplink_tl-mr6400-v5="kmod-gpio-button-hotplug kmod-mii kmod-usb2 kmod-usb-core kmod-usb-ehci kmod-usb-ledtrig-usbport kmod-usb-net kmod-usb-net-qmi-wwan kmod-usb-ohci kmod-usb-serial kmod-usb-serial-option kmod-usb-serial-wwan kmod-usb-wdm luci-app-ledtrig-usbport uqmi wpad-basic-wolfssl wwan"
 CONFIG_TARGET_DEVICE_ramips_mt76x8_DEVICE_tplink_tl-wa801nd-v5=y
 CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt76x8_DEVICE_tplink_tl-wa801nd-v5="kmod-gpio-button-hotplug wpad-basic-wolfssl"
 CONFIG_TARGET_DEVICE_ramips_mt76x8_DEVICE_tplink_tl-wr802n-v4=y
@@ -216,7 +218,8 @@ CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt76x8_DEVICE_vocore_vocore2-lite="blockd b
 # CONFIG_TARGET_DEVICE_ramips_mt76x8_DEVICE_wrtnode_wrtnode2p is not set
 # CONFIG_TARGET_DEVICE_ramips_mt76x8_DEVICE_wrtnode_wrtnode2r is not set
 # CONFIG_TARGET_DEVICE_ramips_mt76x8_DEVICE_xiaomi_mir4a-100m is not set
-# CONFIG_TARGET_DEVICE_ramips_mt76x8_DEVICE_xiaomi_mi-router-4c is not set
+CONFIG_TARGET_DEVICE_ramips_mt76x8_DEVICE_xiaomi_mi-router-4c=y
+CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt76x8_DEVICE_xiaomi_mi-router-4c="kmod-gpio-button-hotplug uboot-envtools wpad-basic-wolfssl"
 CONFIG_TARGET_DEVICE_ramips_mt76x8_DEVICE_xiaomi_miwifi-nano=y
 CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt76x8_DEVICE_xiaomi_miwifi-nano="kmod-gpio-button-hotplug uboot-envtools wpad-basic-wolfssl"
 # CONFIG_TARGET_DEVICE_ramips_mt76x8_DEVICE_xwrt_g4303k-v1 is not set
@@ -265,7 +268,10 @@ CONFIG_MODULE_DEFAULT_kmod-mt76x0e=y
 CONFIG_MODULE_DEFAULT_kmod-mt76x2=y
 CONFIG_MODULE_DEFAULT_kmod-sdhci-mt7620=y
 CONFIG_MODULE_DEFAULT_kmod-usb-ledtrig-usbport=y
+CONFIG_MODULE_DEFAULT_kmod-usb-net-qmi-wwan=y
 CONFIG_MODULE_DEFAULT_kmod-usb-ohci=y
+CONFIG_MODULE_DEFAULT_kmod-usb-serial=y
+CONFIG_MODULE_DEFAULT_kmod-usb-serial-option=y
 CONFIG_MODULE_DEFAULT_kmod-usb2=y
 CONFIG_DEFAULT_libc=y
 CONFIG_MODULE_DEFAULT_libc=y
@@ -298,6 +304,7 @@ CONFIG_DEFAULT_uci=y
 CONFIG_MODULE_DEFAULT_uci=y
 CONFIG_DEFAULT_uclient-fetch=y
 CONFIG_MODULE_DEFAULT_uclient-fetch=y
+CONFIG_MODULE_DEFAULT_uqmi=y
 CONFIG_DEFAULT_urandom-seed=y
 CONFIG_MODULE_DEFAULT_urandom-seed=y
 CONFIG_DEFAULT_urngd=y
