@@ -238,24 +238,7 @@ test $version -lt 6 && {
 }
 
 test $version -lt 7 && {
-	[ "x`uci get samba.@samba[0] 2>/dev/null`" = "xsamba" ] && {
-		local name=`uci get system.@system[0].hostname 2>/dev/null || echo ${DISTRIB_ID}`
-		uci set samba.@samba[0].homes='0'
-		uci set samba.@samba[0].name="${name}"
-		uci set samba.@samba[0].description="${name}"
-		uci -q batch <<-EOF >/dev/null
-			add samba sambashare
-			set samba.@sambashare[-1].browseable='yes'
-			set samba.@sambashare[-1].name='ShareDisks'
-			set samba.@sambashare[-1].path='/mnt/'
-			set samba.@sambashare[-1].users='lede'
-			set samba.@sambashare[-1].read_only='no'
-			set samba.@sambashare[-1].guest_ok='no'
-			set samba.@sambashare[-1].create_mask='0644'
-			set samba.@sambashare[-1].dir_mask='0755'
-			commit samba
-		EOF
-	}
+	#drop samba config
 	version=7
 }
 
