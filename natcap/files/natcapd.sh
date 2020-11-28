@@ -66,6 +66,9 @@ natcapd_stop()
 	echo cn_domain_clean >>$DEV
 	echo server1_use_peer=0 >$DEV
 
+	debug=`uci get natcapd.default.debug 2>/dev/null || echo 3`
+	echo debug=$debug >>$DEV
+
 	rm -f /tmp/dnsmasq.d/accelerated-domains.gfwlist.dnsmasq.conf 2>/dev/null
 	rm -f /tmp/dnsmasq.d/accelerated-domains.cnlist.dnsmasq.conf 2>/dev/null
 	rm -f /tmp/dnsmasq.d/custom-domains.gfwlist.dnsmasq.conf 2>/dev/null
