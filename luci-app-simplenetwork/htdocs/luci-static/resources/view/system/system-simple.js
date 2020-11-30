@@ -182,7 +182,6 @@ return view.extend({
 			o = s.option(form.DynamicList, 'server', _('NTP server candidates'));
 			o.datatype = 'host(0)';
 			o.ucisection = 'ntp';
-			o.depends('enabled', '1');
 			o.load = function(section_id) {
 				return uci.get('system', 'ntp', 'server');
 			};
