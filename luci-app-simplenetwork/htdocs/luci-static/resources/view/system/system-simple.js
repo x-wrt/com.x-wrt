@@ -122,6 +122,7 @@ return view.extend({
 
 		o = s.option(form.Value, 'hostname', _('Hostname'));
 		o.datatype = 'hostname';
+		o.rmempty = false;
 
 		/*
 		 * System Properties
