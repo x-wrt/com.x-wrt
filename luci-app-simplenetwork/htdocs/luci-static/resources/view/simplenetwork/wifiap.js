@@ -84,6 +84,7 @@ return view.extend({
 		o = ss.option(form.Value, 'ipaddr', _('IPv4 address'));
 		o.depends('proto', 'static');
 		o.datatype = 'ip4addr';
+		o.rmempty = false;
 
 		o = ss.option(form.Value, 'netmask', _('IPv4 netmask'));
 		o.depends('proto', 'static');
@@ -91,6 +92,7 @@ return view.extend({
 		o.value('255.255.255.0');
 		o.value('255.255.0.0');
 		o.value('255.0.0.0');
+		o.rmempty = false;
 
 		m.chain('dhcp');
 		o = s.option(form.SectionValue, '_dhcp', form.TypedSection, 'dhcp', _('AP DHCP Server'));
