@@ -1,6 +1,10 @@
 #!/bin/sh
 
+mkdir /tmp/sta_disable.lck 2>/dev/null || exit 0
 sleep 60
+rm -rf /tmp/sta_disable.lck
+
+lock /tmp/sta_disable.lock
 
 has_ap_on()
 {
@@ -60,3 +64,7 @@ if [ $sta_need_disable -eq 1 ]; then
 		uci commit wireless
 	}
 fi
+
+sleep 10
+
+lock -u /tmp/sta_disable.lock
