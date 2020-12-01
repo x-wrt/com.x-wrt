@@ -31,6 +31,7 @@ return view.extend({
 		o = s.option(form.Value, 'ipaddr', _('IPv4 address'));
 		o.depends('proto', 'static');
 		o.datatype = 'ip4addr';
+		o.rmempty = false;
 
 		o = s.option(form.Value, 'netmask', _('IPv4 netmask'));
 		o.depends('proto', 'static');
@@ -38,6 +39,7 @@ return view.extend({
 		o.value('255.255.255.0');
 		o.value('255.255.0.0');
 		o.value('255.0.0.0');
+		o.rmempty = false;
 
 		o = s.option(form.Value, 'gateway', _('IPv4 gateway'));
 		o.depends('proto', 'static');
