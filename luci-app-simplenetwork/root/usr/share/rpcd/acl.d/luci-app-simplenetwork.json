@@ -4,7 +4,7 @@
 		"read": {
 			"uci": [ "simplenetwork", "wireless", "network", "dhcp" ],
 			"ubus": {
-				"network.interface.wwan": [ "status" ]
+				"network.interface.*": [ "status" ]
 			}
 		},
 		"write": {
