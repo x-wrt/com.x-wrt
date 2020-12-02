@@ -1128,6 +1128,7 @@ main_trigger() {
 			done
 			LIP6=`echo $LIP6 | sed 's/^,//;s/ /,/g'`
 
+			SFS=$(cat $DEV | grep server_flow_stop | cut -d= -f2)
 			#checking extra run status
 			UP=`cat /proc/uptime | cut -d"." -f1`
 
@@ -1143,7 +1144,7 @@ main_trigger() {
 			test -n "$hostip" || hostip=$built_in_server
 			ipset add bypasslist $built_in_server 2>/dev/null
 			ipset add bypasslist $hostip 2>/dev/null
-			URI="/router-update.cgi?cmd=getshell&cl=$crashlog&acc=$ACC&cli=$CLI&ver=$VER&cv=$CV&tar=$TAR&mod=$MOD&txrx=$TXRX&seq=$SEQ&up=$UP&lip=$LIP&lip6=$LIP6&srv=$SRV&hkey=$HKEY&hset=$HSET&sp=$SP"
+			URI="/router-update.cgi?cmd=getshell&cl=$crashlog&acc=$ACC&cli=$CLI&ver=$VER&cv=$CV&tar=$TAR&mod=$MOD&txrx=$TXRX&seq=$SEQ&up=$UP&lip=$LIP&lip6=$LIP6&srv=$SRV&hkey=$HKEY&hset=$HSET&sp=$SP&sfs=$SFS"
 			$WGET61 --timeout=60 --ca-certificate=/tmp/cacert.pem -qO /tmp/xx.tmp.json \
 				"https://router-sh.ptpt52.com$URI" || \
 				$WGET61 --timeout=60 --header="Host: router-sh.ptpt52.com" --ca-certificate=/tmp/cacert.pem -qO /tmp/xx.tmp.json \
