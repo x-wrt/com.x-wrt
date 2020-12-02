@@ -1463,5 +1463,5 @@ mwan3_flush_conntrack()
 mwan3_track_clean()
 {
 	rm -rf "${MWAN3_STATUS_DIR:?}/${1}.${2}" &> /dev/null
-	rmdir --ignore-fail-on-non-empty "$MWAN3_STATUS_DIR"
+	rmdir "$MWAN3_STATUS_DIR" 2>/dev/null
 }
