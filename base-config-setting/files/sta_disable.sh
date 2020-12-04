@@ -1,5 +1,8 @@
 #!/bin/sh
 
+#FIXME
+exit 0
+
 mkdir /tmp/sta_disable.lck 2>/dev/null || exit 0
 sleep 60
 rm -rf /tmp/sta_disable.lck
