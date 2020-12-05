@@ -166,16 +166,6 @@ return view.extend({
 			}, this));
 		}
 
-		o.write = function(section_id, formvalue) {
-			uci.set('wireless', section_id, 'ssid', formvalue);
-			for (var i = 0; i < scanRes.length; i++) {
-				if (scanRes[i].ssid == formvalue) {
-					uci.set('wireless', section_id, 'encryption', ssidValid(network.formatWifiEncryption(scanRes[i].encryption)));
-					break;
-				}
-			}
-		}
-
 		o = s.option(form.Button, '_scan');
 		o.title = '&#160;';
 		o.inputtitle = _('SCAN WiFi');
@@ -191,6 +181,7 @@ return view.extend({
 		o.validate = function(section, value) {
 			var _ssid = this.map.lookupOption('ssid', section),
 				ssid = _ssid ? _ssid[0].formvalue(section) : null;
+			if (!ssid) return true;
 			for (var i = 0; i < scanRes.length; i++) {
 				if (scanRes[i].ssid == ssid) {
 					if (value == ssidValid(network.formatWifiEncryption(scanRes[i].encryption))) {

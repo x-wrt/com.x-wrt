@@ -206,6 +206,7 @@ return view.extend({
 		o.validate = function(section, value) {
 			var _ssid = this.map.lookupOption('wifinet1_ssid', section),
 				ssid = _ssid ? _ssid[0].formvalue(section) : null;
+			if (!ssid) return true;
 			for (var i = 0; i < scanRes.length; i++) {
 				if (scanRes[i].ssid == ssid) {
 					if (value == ssidValid(network.formatWifiEncryption(scanRes[i].encryption))) {
