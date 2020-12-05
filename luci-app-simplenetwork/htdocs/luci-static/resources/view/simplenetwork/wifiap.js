@@ -47,6 +47,7 @@ return view.extend({
 		o.depends('encryption', 'psk-mixed');
 		o.rmempty = true;
 		o.password = true;
+		o.datatype = 'wpakey';
 
 		s = m.section(form.NamedSection, 'radio0', 'wifi-device');
 		s.addremove = false;

@@ -200,6 +200,7 @@ return view.extend({
 		o.depends('encryption', 'psk-mixed');
 		o.rmempty = true;
 		o.password = true;
+		o.datatype = 'wpakey';
 
 		o = s.option(form.DummyValue, '_wwan_status', _('Status'));
 		o.modalonly = false;

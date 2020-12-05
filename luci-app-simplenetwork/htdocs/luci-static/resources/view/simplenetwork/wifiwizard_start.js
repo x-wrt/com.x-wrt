@@ -101,6 +101,7 @@ return view.extend({
 		o.depends('encryption', 'psk-mixed');
 		o.rmempty = true;
 		o.password = true;
+		o.datatype = 'wpakey';
 
 		o = s.taboption('wifiap', form.ListValue, 'radio0_channel', _('Channel'));
 		o.ucisection = 'radio0';
@@ -227,6 +228,7 @@ return view.extend({
 		o.password = true;
 		o.ucisection = 'wifinet1';
 		o.ucioption = 'key';
+		o.datatype = 'wpakey';
 
 		o = s.taboption('wifista', form.DummyValue, '_wwan_status', _('Status'));
 		o.modalonly = false;
