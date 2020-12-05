@@ -87,3 +87,9 @@ msgstr "打印机信息"
 
 msgid "USB Info"
 msgstr "USB信息"
+
+msgid "Configure the WiFi AP and STA"
+msgstr "设置无线的AP和客户端参数"
+
+msgid "WiFi Wizard"
+msgstr "无线设置向导"

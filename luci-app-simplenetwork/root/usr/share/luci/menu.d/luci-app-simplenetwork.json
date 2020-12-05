@@ -45,5 +45,18 @@
 			"acl": [ "luci-app-simplenetwork" ],
 			"uci": { "network": true, "wireless": true, "dhcp": true }
 		}
+	},
+
+	"admin/wifiwizard": {
+		"title": "WiFi Wizard",
+		"order": 990,
+		"action": {
+			"type": "view",
+			"path": "simplenetwork/wifiwizard_start"
+		},
+		"depends": {
+			"acl": [ "luci-app-simplenetwork" ],
+			"uci": { "network": true, "wireless": true, "dhcp": true }
+		}
 	}
 }
