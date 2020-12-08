@@ -326,7 +326,7 @@ for t in $targets; do
 		TARGET_DEVICE_bcm27xx_bcm2709_DEVICE_rpi-2|\
 		TARGET_DEVICE_bcm27xx_bcm2710_DEVICE_rpi-3|\
 		TARGET_DEVICE_bcm27xx_bcm2711_DEVICE_rpi-4|\
-		TARGET_DEVICE_ramips_mt76x8_DEVICE_xiaomi_mir4a-100m|\
+		TARGET_DEVICE_ramips_mt76x8_DEVICE_xiaomi_mi-router-4a-100m|\
 		TARGET_DEVICE_ipq40xx_generic_DEVICE_avm_fritzbox-4040|\
 		TARGET_DEVICE_ipq40xx_generic_DEVICE_avm_fritzbox-7530|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_tenbay_mac500f|\
@@ -467,12 +467,12 @@ for t in $targets; do
 		TARGET_DEVICE_ipq806x_generic_DEVICE_avm_fritzbox-4040|\
 		TARGET_DEVICE_ramips_mt7620_DEVICE_xiaomi_miwifi-mini|\
 		TARGET_DEVICE_bcm53xx_generic_DEVICE_netgear_r6250|\
-		TARGET_DEVICE_ramips_mt7621_DEVICE_xiaomi_mir3g-nor|\
-		TARGET_DEVICE_ramips_mt7621_DEVICE_xiaomi_mir3g|\
-		TARGET_DEVICE_ramips_mt7621_DEVICE_xiaomi_mir3g-v2|\
+		TARGET_DEVICE_ramips_mt7621_DEVICE_xiaomi_mi-router-3g-nor|\
+		TARGET_DEVICE_ramips_mt7621_DEVICE_xiaomi_mi-router-3g|\
+		TARGET_DEVICE_ramips_mt7621_DEVICE_xiaomi_mi-router-3g-v2|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_xiaomi_mi-router-4a-gigabit|\
-		TARGET_DEVICE_ramips_mt7621_DEVICE_xiaomi_mir3p-nor|\
-		TARGET_DEVICE_ramips_mt7621_DEVICE_xiaomi_mir3p|\
+		TARGET_DEVICE_ramips_mt7621_DEVICE_xiaomi_mi-router-3-pro-nor|\
+		TARGET_DEVICE_ramips_mt7621_DEVICE_xiaomi_mi-router-3-pro|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_xiaomi_redmi-router-ac2100|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_xiaomi_mi-router-ac2100|\
 		TARGET_DEVICE_ar71xx_generic_DEVICE_tl-wr1043nd-v4|\
@@ -762,10 +762,10 @@ for t in $targets; do
 		TARGET_DEVICE_ipq806x_generic_DEVICE_zyxel_nbg6817|\
 		TARGET_DEVICE_ipq806x_generic_DEVICE_avm_fritzbox-4040|\
 		TARGET_DEVICE_bcm53xx_generic_DEVICE_netgear_r6250|\
-		TARGET_DEVICE_ramips_mt7621_DEVICE_xiaomi_mir3g-nor|\
-		TARGET_DEVICE_ramips_mt7621_DEVICE_xiaomi_mir3g|\
-		TARGET_DEVICE_ramips_mt7621_DEVICE_xiaomi_mir3p-nor|\
-		TARGET_DEVICE_ramips_mt7621_DEVICE_xiaomi_mir3p|\
+		TARGET_DEVICE_ramips_mt7621_DEVICE_xiaomi_mi-router-3g-nor|\
+		TARGET_DEVICE_ramips_mt7621_DEVICE_xiaomi_mi-router-3g|\
+		TARGET_DEVICE_ramips_mt7621_DEVICE_xiaomi_mi-router-3-pro-nor|\
+		TARGET_DEVICE_ramips_mt7621_DEVICE_xiaomi_mi-router-3-pro|\
 		TARGET_DEVICE_ar71xx_generic_DEVICE_F9K1115V2|\
 		TARGET_DEVICE_ar71xx_tiny_DEVICE_F9K1115V2|\
 		TARGET_DEVICE_ipq806x_generic_DEVICE_qcom_ap-dk04.1-c1|\
@@ -1034,7 +1034,7 @@ for t in $targets; do
 		TARGET_DEVICE_ramips_mt7621_DEVICE_xwrt_x-sdwan-1200|\
 		TARGET_DEVICE_ath79_generic_DEVICE_tplink_archer-c60-v3|\
 		TARGET_DEVICE_ath79_generic_DEVICE_devolo_magic-2-wifi|\
-		TARGET_DEVICE_ramips_mt7621_DEVICE_xiaomi_mir3g-v2|\
+		TARGET_DEVICE_ramips_mt7621_DEVICE_xiaomi_mi-router-3g-v2|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_xiaomi_mi-router-4a-gigabit|\
 		TARGET_DEVICE_ath79_generic_DEVICE_comfast_cf-wr650ac-v1|\
 		TARGET_DEVICE_ath79_generic_DEVICE_comfast_cf-wr650ac-v2|\
@@ -1050,7 +1050,7 @@ for t in $targets; do
 		TARGET_DEVICE_ramips_mt7621_DEVICE_iodata_wn-gx300gr|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_iodata_wn-ax1167gr|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_totolink_a7000r|\
-		TARGET_DEVICE_ramips_mt76x8_DEVICE_xiaomi_mir4a-100m|\
+		TARGET_DEVICE_ramips_mt76x8_DEVICE_xiaomi_mi-router-4a-100m|\
 		TARGET_DEVICE_ath79_generic_DEVICE_engenius_ecb1750|\
 		TARGET_DEVICE_ath79_generic_DEVICE_engenius_ews511ap|\
 		TARGET_DEVICE_ath79_generic_DEVICE_tplink_archer-d50-v1|\

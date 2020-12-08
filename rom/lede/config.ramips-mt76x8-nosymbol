@@ -118,7 +118,7 @@ CONFIG_TARGET_MULTI_PROFILE=y
 # CONFIG_TARGET_ramips_mt76x8_DEVICE_widora_neo-32m is not set
 # CONFIG_TARGET_ramips_mt76x8_DEVICE_xwrt_g4303k-v1 is not set
 # CONFIG_TARGET_ramips_mt76x8_DEVICE_xwrt_xf-949 is not set
-# CONFIG_TARGET_ramips_mt76x8_DEVICE_xiaomi_mir4a-100m is not set
+# CONFIG_TARGET_ramips_mt76x8_DEVICE_xiaomi_mi-router-4a-100m is not set
 # CONFIG_TARGET_ramips_mt76x8_DEVICE_xiaomi_mi-router-4c is not set
 # CONFIG_TARGET_ramips_mt76x8_DEVICE_xiaomi_miwifi-nano is not set
 # CONFIG_TARGET_ramips_mt76x8_DEVICE_zbtlink_zbt-we1226 is not set
@@ -217,7 +217,7 @@ CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt76x8_DEVICE_vocore_vocore2-lite="blockd b
 # CONFIG_TARGET_DEVICE_ramips_mt76x8_DEVICE_wiznet_wizfi630s is not set
 # CONFIG_TARGET_DEVICE_ramips_mt76x8_DEVICE_wrtnode_wrtnode2p is not set
 # CONFIG_TARGET_DEVICE_ramips_mt76x8_DEVICE_wrtnode_wrtnode2r is not set
-# CONFIG_TARGET_DEVICE_ramips_mt76x8_DEVICE_xiaomi_mir4a-100m is not set
+# CONFIG_TARGET_DEVICE_ramips_mt76x8_DEVICE_xiaomi_mi-router-4a-100m is not set
 CONFIG_TARGET_DEVICE_ramips_mt76x8_DEVICE_xiaomi_mi-router-4c=y
 CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt76x8_DEVICE_xiaomi_mi-router-4c="kmod-gpio-button-hotplug uboot-envtools wpad-basic-wolfssl"
 CONFIG_TARGET_DEVICE_ramips_mt76x8_DEVICE_xiaomi_miwifi-nano=y
