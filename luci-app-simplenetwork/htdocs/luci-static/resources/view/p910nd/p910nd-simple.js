@@ -27,16 +27,16 @@ return view.extend({
 
 		o = s.option(form.ListValue, 'port', _('Port'));
 		o.rmempty = true;
-		o.value('9100');
-		o.value('9101');
-		o.value('9102');
-		o.value('9103');
-		o.value('9104');
-		o.value('9105');
-		o.value('9106');
-		o.value('9107');
-		o.value('9108');
-		o.value('9109');
+		o.value('0', '9100');
+		o.value('1', '9101');
+		o.value('2', '9102');
+		o.value('3', '9103');
+		o.value('4', '9104');
+		o.value('5', '9105');
+		o.value('6', '9106');
+		o.value('7', '9107');
+		o.value('8', '9108');
+		o.value('9', '9109');
 
 		o = s.option(form.Flag, 'bidirectional', _('Bidirectional mode'));
 
