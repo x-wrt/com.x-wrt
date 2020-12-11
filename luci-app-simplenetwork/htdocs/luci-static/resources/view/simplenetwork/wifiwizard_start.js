@@ -81,7 +81,7 @@ return view.extend({
 		s.tab('wifiap', _('Wireless AP'));
 		s.tab('wifista', _('Wireless STA'));
 
-		o = s.taboption('wifiap', form.Flag, 'disabled', _('Enabled'));
+		o = s.taboption('wifiap', form.Flag, 'disabled', _('Enable'));
 		o.enabled = '0';
 		o.disabled = '1';
 		o.default = o.enabled;
@@ -129,7 +129,7 @@ return view.extend({
 		o.rmempty = false;
 
 
-		o = s.taboption('wifista', form.Flag, 'wifinet1_disabled', _('Enabled'));
+		o = s.taboption('wifista', form.Flag, 'wifinet1_disabled', _('Enable'));
 		o.ucisection = 'wifinet1';
 		o.ucioption = 'disabled';
 		o.enabled = '0';

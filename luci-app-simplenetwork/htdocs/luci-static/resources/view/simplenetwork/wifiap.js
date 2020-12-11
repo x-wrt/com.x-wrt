@@ -27,7 +27,7 @@ return view.extend({
 		s = m.section(form.NamedSection, 'wifinet0', 'wifi-iface');
 		s.addremove = false;
 
-		o = s.option(form.Flag, 'disabled', _('Enabled'));
+		o = s.option(form.Flag, 'disabled', _('Enable'));
 		o.enabled = '0';
 		o.disabled = '1';
 		o.default = o.enabled;
