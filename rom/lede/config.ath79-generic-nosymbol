@@ -68,6 +68,7 @@ CONFIG_TARGET_MULTI_PROFILE=y
 # CONFIG_TARGET_ath79_generic_DEVICE_aruba_ap-105 is not set
 # CONFIG_TARGET_ath79_generic_DEVICE_bm100_hq55 is not set
 # CONFIG_TARGET_ath79_generic_DEVICE_belkin_f9j1108-v2 is not set
+# CONFIG_TARGET_ath79_generic_DEVICE_belkin_f9k1115-v2 is not set
 # CONFIG_TARGET_ath79_generic_DEVICE_buffalo_bhr-4grv is not set
 # CONFIG_TARGET_ath79_generic_DEVICE_buffalo_bhr-4grv2 is not set
 # CONFIG_TARGET_ath79_generic_DEVICE_buffalo_wzr-600dhp is not set
@@ -328,6 +329,7 @@ CONFIG_TARGET_PER_DEVICE_ROOTFS=y
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_avm_fritz450e is not set
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_avm_fritzdvbc is not set
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_belkin_f9j1108-v2 is not set
+# CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_belkin_f9k1115-v2 is not set
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_bm100_hq55 is not set
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_buffalo_bhr-4grv is not set
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_buffalo_bhr-4grv2 is not set
@@ -735,6 +737,8 @@ CONFIG_TARGET_UBIFS_JOURNAL_SIZE=""
 #
 # end of Target Images
 
+# CONFIG_EXPERIMENTAL is not set
+
 #
 # Global build settings
 #
@@ -947,7 +951,7 @@ CONFIG_TARGET_INIT_CMD="/sbin/init"
 CONFIG_TARGET_INIT_SUPPRESS_STDERR=y
 CONFIG_VERSIONOPT=y
 CONFIG_VERSION_DIST="X-WRT"
-CONFIG_VERSION_NUMBER="8.0_b202012082340"
+CONFIG_VERSION_NUMBER="8.0_b202012161504"
 CONFIG_VERSION_CODE="Focal"
 CONFIG_VERSION_REPO="http://downloads.openwrt.org/snapshots"
 CONFIG_VERSION_HOME_URL="https://x-wrt.com/"
@@ -2950,6 +2954,7 @@ CONFIG_DROPBEAR_CHACHA20POLY1305=y
 # CONFIG_DROPBEAR_ZLIB is not set
 CONFIG_DROPBEAR_DBCLIENT=y
 CONFIG_DROPBEAR_SCP=y
+# CONFIG_DROPBEAR_ASKPASS is not set
 # end of Configuration
 
 # CONFIG_PACKAGE_ead is not set
@@ -3953,6 +3958,7 @@ CONFIG_PACKAGE_kmod-usb-gadget=m
 # CONFIG_PACKAGE_kmod-usb-hid is not set
 CONFIG_PACKAGE_kmod-usb-ledtrig-usbport=m
 CONFIG_PACKAGE_kmod-usb-net=m
+# CONFIG_PACKAGE_kmod-usb-net-aqc111 is not set
 # CONFIG_PACKAGE_kmod-usb-net-asix is not set
 # CONFIG_PACKAGE_kmod-usb-net-asix-ax88179 is not set
 # CONFIG_PACKAGE_kmod-usb-net-cdc-eem is not set
@@ -5506,6 +5512,7 @@ CONFIG_PACKAGE_libubus=y
 CONFIG_PACKAGE_libubus-lua=y
 CONFIG_PACKAGE_libuci=y
 CONFIG_PACKAGE_libuci-lua=y
+# CONFIG_PACKAGE_libuci2 is not set
 CONFIG_PACKAGE_libuclient=y
 # CONFIG_PACKAGE_libudev-zero is not set
 # CONFIG_PACKAGE_libudns is not set
@@ -6216,7 +6223,6 @@ CONFIG_PACKAGE_luci-i18n-wireguard-zh-cn=m
 # Mail
 #
 # CONFIG_PACKAGE_alpine is not set
-# CONFIG_PACKAGE_alpine-nossl is not set
 # CONFIG_PACKAGE_bogofilter is not set
 # CONFIG_PACKAGE_dovecot is not set
 # CONFIG_PACKAGE_dovecot-pigeonhole is not set
@@ -7500,6 +7506,7 @@ CONFIG_PACKAGE_uboot-envtools=y
 # CONFIG_PACKAGE_gpgv is not set
 # CONFIG_PACKAGE_gpgv2 is not set
 # CONFIG_PACKAGE_keyctl is not set
+# CONFIG_PACKAGE_keyutils is not set
 # CONFIG_PACKAGE_px5g-mbedtls is not set
 # CONFIG_PACKAGE_px5g-standalone is not set
 CONFIG_PACKAGE_px5g-wolfssl=y
