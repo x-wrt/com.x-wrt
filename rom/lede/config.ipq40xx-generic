@@ -548,7 +548,7 @@ CONFIG_TARGET_INIT_CMD="/sbin/init"
 CONFIG_TARGET_INIT_SUPPRESS_STDERR=y
 CONFIG_VERSIONOPT=y
 CONFIG_VERSION_DIST="X-WRT"
-CONFIG_VERSION_NUMBER="8.0_b202012170013"
+CONFIG_VERSION_NUMBER="8.0_b202012200620"
 CONFIG_VERSION_CODE="Focal"
 CONFIG_VERSION_REPO="http://downloads.openwrt.org/snapshots"
 CONFIG_VERSION_HOME_URL="https://x-wrt.com/"
@@ -4816,6 +4816,7 @@ CONFIG_WOLFSSL_HAS_NO_HW=y
 # CONFIG_PACKAGE_libusbmuxd is not set
 # end of libimobiledevice
 
+# CONFIG_PACKAGE_acsccid is not set
 # CONFIG_PACKAGE_alsa-lib is not set
 # CONFIG_PACKAGE_argp-standalone is not set
 # CONFIG_PACKAGE_bind-libs is not set
