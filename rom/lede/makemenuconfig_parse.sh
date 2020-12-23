@@ -90,7 +90,7 @@ moreapps="libstdcpp \
 		  webui-aria2 \
 		  aria2 \
 		  sendip \
-		  wget"
+		  wget-ssl"
 
 cdcmod="kmod-mii \
 		kmod-usb-net \
