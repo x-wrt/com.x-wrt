@@ -17,6 +17,8 @@ fi
 iptables -C forwarding_wan_rule -m mark --mark 0x99/0xff -j ACCEPT 2>/dev/null || \
 iptables -A forwarding_wan_rule -m mark --mark 0x99/0xff -j ACCEPT
 
+iptables -C input_wan_rule -m mark --mark 0x00800000/0x00800000 -j RETURN 2>/dev/null || \
+iptables -A input_wan_rule -m mark --mark 0x00800000/0x00800000 -j RETURN
 iptables -C input_wan_rule -m mark --mark 0x99/0xff -j ACCEPT 2>/dev/null || \
 iptables -A input_wan_rule -m mark --mark 0x99/0xff -j ACCEPT
 
