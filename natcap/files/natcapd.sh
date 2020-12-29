@@ -67,7 +67,9 @@ natcapd_stop()
 	echo server1_use_peer=0 >$DEV
 
 	debug=`uci get natcapd.default.debug 2>/dev/null || echo 3`
+	udp_seq_lock=`uci get natcapd.default.udp_seq_lock 2>/dev/null || echo 0`
 	echo debug=$debug >>$DEV
+	echo udp_seq_lock=$udp_seq_lock >>$DEV
 
 	rm -f /tmp/dnsmasq.d/accelerated-domains.gfwlist.dnsmasq.conf 2>/dev/null
 	rm -f /tmp/dnsmasq.d/accelerated-domains.cnlist.dnsmasq.conf 2>/dev/null
