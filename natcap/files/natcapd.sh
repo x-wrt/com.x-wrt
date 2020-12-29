@@ -657,6 +657,7 @@ if [ "x$enabled" = "x0" ] && test -c $DEV; then
 elif test -c $DEV; then
 	echo disabled=0 >>$DEV
 	touch /tmp/natcapd.running
+	udp_seq_lock=`uci get natcapd.default.udp_seq_lock 2>/dev/null || echo 0`
 	debug=`uci get natcapd.default.debug 2>/dev/null || echo 3`
 	enable_encryption=`uci get natcapd.default.enable_encryption 2>/dev/null || echo 1`
 	server_persist_timeout=`uci get natcapd.default.server_persist_timeout 2>/dev/null || echo 300`
@@ -757,6 +758,7 @@ elif test -c $DEV; then
 
 	echo debug=$debug >>$DEV
 	echo clean >>$DEV
+	echo udp_seq_lock=$udp_seq_lock >>$DEV
 	echo server_persist_timeout=$server_persist_timeout >>$DEV
 	echo server_persist_lock=$server_persist_lock >>$DEV
 	echo dns_proxy_drop=$dns_proxy_drop >>$DEV
