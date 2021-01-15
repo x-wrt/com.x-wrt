@@ -60,6 +60,7 @@ x_wrt_flash() {
 }
 
 boot() {
+	test -f /etc/hotplug.d/usbmisc/50-usb-info && return 0
 	mount | grep -q "^/dev" || {
 		x_wrt_base_setup
 		x_wrt_install_vps &
