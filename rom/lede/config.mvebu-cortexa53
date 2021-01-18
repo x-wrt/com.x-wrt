@@ -3061,7 +3061,7 @@ CONFIG_PACKAGE_kmod-input-evdev=m
 #
 # CONFIG_PACKAGE_kmod-leds-gpio is not set
 # CONFIG_PACKAGE_kmod-leds-pca963x is not set
-CONFIG_PACKAGE_kmod-ledtrig-activity=m
+# CONFIG_PACKAGE_kmod-ledtrig-activity is not set
 # CONFIG_PACKAGE_kmod-ledtrig-gpio is not set
 # CONFIG_PACKAGE_kmod-ledtrig-oneshot is not set
 # CONFIG_PACKAGE_kmod-ledtrig-transient is not set

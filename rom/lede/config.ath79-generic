@@ -3644,7 +3644,7 @@ CONFIG_PACKAGE_kmod-i2c-gpio=m
 CONFIG_PACKAGE_kmod-leds-gpio=m
 # CONFIG_PACKAGE_kmod-leds-pca963x is not set
 CONFIG_PACKAGE_kmod-leds-reset=m
-CONFIG_PACKAGE_kmod-ledtrig-activity=m
+# CONFIG_PACKAGE_kmod-ledtrig-activity is not set
 # CONFIG_PACKAGE_kmod-ledtrig-gpio is not set
 # CONFIG_PACKAGE_kmod-ledtrig-oneshot is not set
 # CONFIG_PACKAGE_kmod-ledtrig-transient is not set
