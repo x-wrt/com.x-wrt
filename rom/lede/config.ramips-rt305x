@@ -12,6 +12,7 @@ CONFIG_DEFAULT_TARGET_ramips_rt305x=y
 # CONFIG_TARGET_bcm27xx is not set
 # CONFIG_TARGET_bcm53xx is not set
 # CONFIG_TARGET_bcm47xx is not set
+# CONFIG_TARGET_bcm4908 is not set
 # CONFIG_TARGET_bcm63xx is not set
 # CONFIG_TARGET_octeon is not set
 # CONFIG_TARGET_gemini is not set
@@ -464,6 +465,7 @@ CONFIG_KERNEL_IPV6_MULTIPLE_TABLES=y
 CONFIG_KERNEL_IPV6_SUBTREES=y
 CONFIG_KERNEL_IPV6_MROUTE=y
 # CONFIG_KERNEL_IPV6_PIMSM_V2 is not set
+# CONFIG_KERNEL_IPV6_SEG6_LWTUNNEL is not set
 # CONFIG_KERNEL_LWTUNNEL_BPF is not set
 # CONFIG_KERNEL_IP_PNP is not set
 
@@ -602,7 +604,7 @@ CONFIG_TARGET_INIT_CMD="/sbin/init"
 CONFIG_TARGET_INIT_SUPPRESS_STDERR=y
 CONFIG_VERSIONOPT=y
 CONFIG_VERSION_DIST="X-WRT"
-CONFIG_VERSION_NUMBER="9.0_b202101121505"
+CONFIG_VERSION_NUMBER="9.0_b202101181618"
 CONFIG_VERSION_CODE="Hirsute"
 CONFIG_VERSION_REPO="http://downloads.openwrt.org/snapshots"
 CONFIG_VERSION_HOME_URL="https://x-wrt.com/"
@@ -2670,15 +2672,6 @@ CONFIG_PACKAGE_wireless-tools=y
 #
 
 #
-# OpenWISP
-#
-# CONFIG_PACKAGE_openwisp-config-cyassl is not set
-# CONFIG_PACKAGE_openwisp-config-mbedtls is not set
-# CONFIG_PACKAGE_openwisp-config-nossl is not set
-# CONFIG_PACKAGE_openwisp-config-openssl is not set
-# end of OpenWISP
-
-#
 # Zabbix
 #
 # CONFIG_PACKAGE_zabbix-agentd is not set
@@ -2704,6 +2697,15 @@ CONFIG_ZABBIX_NOSSL=y
 CONFIG_ZABBIX_POSTGRESQL=y
 # CONFIG_PACKAGE_zabbix-server-frontend is not set
 # end of Zabbix
+
+#
+# openwisp
+#
+# CONFIG_PACKAGE_openwisp-config-mbedtls is not set
+# CONFIG_PACKAGE_openwisp-config-nossl is not set
+# CONFIG_PACKAGE_openwisp-config-openssl is not set
+# CONFIG_PACKAGE_openwisp-config-wolfssl is not set
+# end of openwisp
 
 # CONFIG_PACKAGE_atop is not set
 # CONFIG_PACKAGE_backuppc is not set
@@ -3193,12 +3195,8 @@ CONFIG_PACKAGE_kmod-i2c-ralink=m
 CONFIG_PACKAGE_kmod-leds-gpio=y
 # CONFIG_PACKAGE_kmod-leds-pca963x is not set
 CONFIG_PACKAGE_kmod-ledtrig-activity=m
-CONFIG_PACKAGE_kmod-ledtrig-default-on=y
 # CONFIG_PACKAGE_kmod-ledtrig-gpio is not set
-CONFIG_PACKAGE_kmod-ledtrig-heartbeat=y
-CONFIG_PACKAGE_kmod-ledtrig-netdev=y
 # CONFIG_PACKAGE_kmod-ledtrig-oneshot is not set
-CONFIG_PACKAGE_kmod-ledtrig-timer=y
 # CONFIG_PACKAGE_kmod-ledtrig-transient is not set
 # end of LED modules
 
@@ -3796,6 +3794,7 @@ CONFIG_PACKAGE_luasocket=y
 # CONFIG_PACKAGE_luasql-sqlite3 is not set
 # CONFIG_PACKAGE_luasrcdiet is not set
 # CONFIG_PACKAGE_luv is not set
+# CONFIG_PACKAGE_lyaml is not set
 # CONFIG_PACKAGE_lzmq is not set
 # CONFIG_PACKAGE_uuid is not set
 # end of Lua
@@ -5283,6 +5282,7 @@ CONFIG_PACKAGE_luci-app-p910nd=m
 # CONFIG_PACKAGE_luci-app-simple-adblock is not set
 # CONFIG_PACKAGE_luci-app-smartdns is not set
 # CONFIG_PACKAGE_luci-app-snmpd is not set
+# CONFIG_PACKAGE_luci-app-softether is not set
 # CONFIG_PACKAGE_luci-app-splash is not set
 CONFIG_PACKAGE_luci-app-sqm=y
 # CONFIG_PACKAGE_luci-app-squid is not set
@@ -6115,12 +6115,8 @@ CONFIG_PACKAGE_ddns-scripts_aliyun=y
 # CONFIG_PACKAGE_inadyn is not set
 # CONFIG_PACKAGE_isc-dhcp-client-ipv4 is not set
 # CONFIG_PACKAGE_isc-dhcp-client-ipv6 is not set
-# CONFIG_PACKAGE_isc-dhcp-omshell-ipv4 is not set
-# CONFIG_PACKAGE_isc-dhcp-omshell-ipv6 is not set
 # CONFIG_PACKAGE_isc-dhcp-relay-ipv4 is not set
 # CONFIG_PACKAGE_isc-dhcp-relay-ipv6 is not set
-# CONFIG_PACKAGE_isc-dhcp-server-ipv4 is not set
-# CONFIG_PACKAGE_isc-dhcp-server-ipv6 is not set
 # CONFIG_PACKAGE_kadnode is not set
 # CONFIG_PACKAGE_kea-admin is not set
 # CONFIG_PACKAGE_kea-ctrl is not set
@@ -6891,7 +6887,6 @@ CONFIG_PACKAGE_rssileds=m
 # CONFIG_PACKAGE_ser2net is not set
 # CONFIG_PACKAGE_simple-adblock is not set
 # CONFIG_PACKAGE_smartdns is not set
-# CONFIG_PACKAGE_smartsnmpd is not set
 # CONFIG_PACKAGE_smbinfo is not set
 # CONFIG_PACKAGE_snmp-mibs is not set
 # CONFIG_PACKAGE_snmp-utils is not set
@@ -7494,6 +7489,7 @@ CONFIG_PACKAGE_qrencode=m
 # CONFIG_PACKAGE_rtl-sdr is not set
 # CONFIG_PACKAGE_rtl_433 is not set
 # CONFIG_PACKAGE_runc is not set
+# CONFIG_PACKAGE_sane-backends is not set
 # CONFIG_PACKAGE_sane-daemon is not set
 # CONFIG_PACKAGE_sane-frontends is not set
 # CONFIG_PACKAGE_secilc is not set
