@@ -619,7 +619,9 @@ test -c $DEV && {
 
 cn_domain_setup() {
 	local memtotal=`grep MemTotal /proc/meminfo | awk '{print $2}'`
-	local retry=3
+	local retry=2
+	#local URL=https://github.com/ptpt52/natcap/raw/master/accelerated-domains.china.raw.build.gz
+	local URL=https://downloads.x-wrt.com/rom/cn_domain/v1/accelerated-domains.china.raw.build.gz
 
 	#mem less than 64M
 	if test $memtotal -le 65536; then
@@ -630,7 +632,7 @@ cn_domain_setup() {
 	while :; do
 	ping -q -W3 -c1 8.8.8.8 || ping -q -W3 -c1 114.114.114.114 || { sleep 11 && continue; }
 	$WGET181 --timeout=180 --no-check-certificate -qO /tmp/cn_domain.raw.build.gz \
-		"https://downloads.x-wrt.com/rom/cn_domain/v1/accelerated-domains.china.raw.build.gz" && {
+		"$URL" && {
 			gzip -d /tmp/cn_domain.raw.build.gz
 			echo cn_domain_raw=/tmp/cn_domain.raw.build >>$DEV
 			sleep 1
@@ -639,6 +641,7 @@ cn_domain_setup() {
 			break
 		}
 	retry=$((retry-1))
+	URL=https://github.com/ptpt52/natcap/raw/master/accelerated-domains.china.raw.build.gz
 	test $retry -eq 0 && {
 		logger -t "natcapd" "cn_domain_raw reload failed"
 		break
