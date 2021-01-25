@@ -111,6 +111,7 @@ CONFIG_TARGET_MULTI_PROFILE=y
 # CONFIG_TARGET_ath79_generic_DEVICE_elecom_wrc-1750ghbk2-i is not set
 # CONFIG_TARGET_ath79_generic_DEVICE_elecom_wrc-300ghbk2-i is not set
 # CONFIG_TARGET_ath79_generic_DEVICE_embeddedwireless_dorin is not set
+# CONFIG_TARGET_ath79_generic_DEVICE_engenius_eap1200h is not set
 # CONFIG_TARGET_ath79_generic_DEVICE_engenius_eap300-v2 is not set
 # CONFIG_TARGET_ath79_generic_DEVICE_engenius_eap600 is not set
 # CONFIG_TARGET_ath79_generic_DEVICE_engenius_ecb1200 is not set
@@ -156,6 +157,12 @@ CONFIG_TARGET_MULTI_PROFILE=y
 # CONFIG_TARGET_ath79_generic_DEVICE_ocedo_koala is not set
 # CONFIG_TARGET_ath79_generic_DEVICE_ocedo_raccoon is not set
 # CONFIG_TARGET_ath79_generic_DEVICE_ocedo_ursus is not set
+# CONFIG_TARGET_ath79_generic_DEVICE_openmesh_mr1750-v1 is not set
+# CONFIG_TARGET_ath79_generic_DEVICE_openmesh_mr1750-v2 is not set
+# CONFIG_TARGET_ath79_generic_DEVICE_openmesh_mr600-v1 is not set
+# CONFIG_TARGET_ath79_generic_DEVICE_openmesh_mr600-v2 is not set
+# CONFIG_TARGET_ath79_generic_DEVICE_openmesh_mr900-v1 is not set
+# CONFIG_TARGET_ath79_generic_DEVICE_openmesh_mr900-v2 is not set
 # CONFIG_TARGET_ath79_generic_DEVICE_openmesh_om2p-v2 is not set
 # CONFIG_TARGET_ath79_generic_DEVICE_openmesh_om2p-v4 is not set
 # CONFIG_TARGET_ath79_generic_DEVICE_openmesh_om2p-hs-v1 is not set
@@ -399,6 +406,7 @@ CONFIG_TARGET_PER_DEVICE_ROOTFS=y
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_elecom_wrc-1750ghbk2-i is not set
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_elecom_wrc-300ghbk2-i is not set
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_embeddedwireless_dorin is not set
+# CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_engenius_eap1200h is not set
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_engenius_eap300-v2 is not set
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_engenius_eap600 is not set
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_engenius_ecb1200 is not set
@@ -449,6 +457,12 @@ CONFIG_TARGET_DEVICE_PACKAGES_ath79_generic_DEVICE_netgear_wnr2200-8m="blockd bl
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_ocedo_koala is not set
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_ocedo_raccoon is not set
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_ocedo_ursus is not set
+# CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_openmesh_mr1750-v1 is not set
+# CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_openmesh_mr1750-v2 is not set
+# CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_openmesh_mr600-v1 is not set
+# CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_openmesh_mr600-v2 is not set
+# CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_openmesh_mr900-v1 is not set
+# CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_openmesh_mr900-v2 is not set
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_openmesh_om2p-v2 is not set
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_openmesh_om2p-v4 is not set
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_openmesh_om2p-hs-v1 is not set
@@ -996,7 +1010,7 @@ CONFIG_TARGET_INIT_CMD="/sbin/init"
 CONFIG_TARGET_INIT_SUPPRESS_STDERR=y
 CONFIG_VERSIONOPT=y
 CONFIG_VERSION_DIST="X-WRT"
-CONFIG_VERSION_NUMBER="9.0_b202101181851"
+CONFIG_VERSION_NUMBER="9.0_b202101251151"
 CONFIG_VERSION_CODE="Hirsute"
 CONFIG_VERSION_REPO="http://downloads.openwrt.org/snapshots"
 CONFIG_VERSION_HOME_URL="https://x-wrt.com/"
@@ -6316,7 +6330,6 @@ CONFIG_POSTFIX_PCRE=y
 # CONFIG_POSTFIX_EAI is not set
 # end of Select postfix build options
 
-# CONFIG_PACKAGE_spamassassin is not set
 # CONFIG_PACKAGE_spamc is not set
 # CONFIG_PACKAGE_spamc-ssl is not set
 # end of Mail
@@ -6940,6 +6953,7 @@ CONFIG_PACKAGE_mwan3plus=y
 # VPN
 #
 # CONFIG_PACKAGE_chaosvpn is not set
+# CONFIG_PACKAGE_eoip is not set
 # CONFIG_PACKAGE_fastd is not set
 # CONFIG_PACKAGE_libreswan is not set
 # CONFIG_PACKAGE_ocserv is not set
