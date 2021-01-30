@@ -1,5 +1,5 @@
 
-[ "$ACTION" = "add" ] || exit 0
+[ "$ACTION" = "add" -o "$ACTION" = "bind" ] || exit 0
 [ "$DEVTYPE" = "usb_interface" ] || exit 0
 
 FIRMWARE=
