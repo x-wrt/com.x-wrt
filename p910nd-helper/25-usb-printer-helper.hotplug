@@ -3,7 +3,7 @@
 [ "$DEVTYPE" = "usb_interface" ] || exit 0
 
 FIRMWARE=
-DEVICE=/dev/$DEVNAME
+DEVICE=/dev/usb/lp0
 
 case "$PRODUCT" in
 	#HP LaserJet 1000
