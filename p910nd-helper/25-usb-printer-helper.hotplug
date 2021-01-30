@@ -3,7 +3,7 @@
 [ "$DEVTYPE" = "usb_interface" ] || exit 0
 
 FIRMWARE=
-DEVICE=/dev/usb/lp0
+DEVICE=/dev/$DEVNAME
 
 case "$PRODUCT" in
 	#HP LaserJet 1000
@@ -46,13 +46,13 @@ test -e "$FIRMWARE" || exit 0
 
 for i in $(seq 30); do
 	if [ -c $DEVICE ]; then
-		if [ -z "`usb_printerid $DEVICE | grep FWVER`" ]; then
+		if usb_printerid $DEVICE | grep -q FWVER; then
+			logger -t p910nd "Firmware already there on $DEVICE"
+		else
 			logger -t p910nd "No firmware found on $DEVICE"
 			logger -t p910nd "Sending firmware to printer…"
 			cat $FIRMWARE > $DEVICE
 			logger -t p910nd "Done"
-		else
-			logger -t p910nd "Firmware already there on $DEVICE"
 		fi
 		logger -t p910nd "EXITING"
 		exit 0
