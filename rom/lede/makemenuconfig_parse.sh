@@ -85,6 +85,7 @@ moreapps="libstdcpp \
 		  luci-i18n-ksmbd-en \
 		  luci-i18n-ksmbd-zh-cn \
 		  ksmbd-server \
+		  ksmbd-utils \
 		  wsdd2 \
 		  kmod-fs-ksmbd \
 		  webui-aria2 \

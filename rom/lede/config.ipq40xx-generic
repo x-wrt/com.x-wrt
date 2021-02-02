@@ -6093,7 +6093,8 @@ CONFIG_PACKAGE_wget-ssl=m
 # CONFIG_PACKAGE_davfs2 is not set
 # CONFIG_PACKAGE_ksmbd-avahi-service is not set
 CONFIG_PACKAGE_ksmbd-server=m
-# CONFIG_PACKAGE_ksmbd-utils is not set
+CONFIG_PACKAGE_ksmbd-utils=m
+CONFIG_KSMBD_UTILS_SHAREADD=y
 # CONFIG_PACKAGE_netatalk is not set
 # CONFIG_PACKAGE_nfs-kernel-server is not set
 # CONFIG_PACKAGE_owftpd is not set
