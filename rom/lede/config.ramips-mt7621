@@ -134,6 +134,7 @@ CONFIG_TARGET_MULTI_PROFILE=y
 # CONFIG_TARGET_ramips_mt7621_DEVICE_thunder_timecloud is not set
 # CONFIG_TARGET_ramips_mt7621_DEVICE_totolink_a7000r is not set
 # CONFIG_TARGET_ramips_mt7621_DEVICE_totolink_x5000r is not set
+# CONFIG_TARGET_ramips_mt7621_DEVICE_tplink_eap235-wall-v1 is not set
 # CONFIG_TARGET_ramips_mt7621_DEVICE_tplink_re350-v1 is not set
 # CONFIG_TARGET_ramips_mt7621_DEVICE_tplink_re500-v1 is not set
 # CONFIG_TARGET_ramips_mt7621_DEVICE_tplink_re650-v1 is not set
@@ -301,6 +302,7 @@ CONFIG_TARGET_DEVICE_ramips_mt7621_DEVICE_totolink_a7000r=y
 CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt7621_DEVICE_totolink_a7000r="kmod-cfg80211 kmod-gpio-button-hotplug kmod-leds-gpio kmod-mac80211 kmod-mt7615-common kmod-mt7615e kmod-mt7615-firmware kmod-mt76-connac kmod-mt76-core liblzo libopenssl libopenssl-conf libpcre libqrencode libstdcpp libxml2 luci-app-openvpn luci-app-wireguard luci-i18n-openvpn-en luci-i18n-openvpn-zh-cn luci-i18n-wireguard-en luci-i18n-wireguard-zh-cn luci-proto-wireguard luci-ssl-nginx nginx nginx-mod-luci nginx-mod-luci-ssl nginx-ssl nginx-ssl-util nginx-util openssl-util openvpn-openssl qrencode uwsgi uwsgi-cgi-plugin uwsgi-luci-support uwsgi-syslog-plugin wireguard-tools wireless-regdb wpad-openssl"
 CONFIG_TARGET_DEVICE_ramips_mt7621_DEVICE_totolink_x5000r=y
 CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt7621_DEVICE_totolink_x5000r="kmod-cfg80211 kmod-gpio-button-hotplug kmod-leds-gpio kmod-mac80211 kmod-mt7615-common kmod-mt76-connac kmod-mt76-core kmod-mt7915e liblzo libopenssl libopenssl-conf libpcre libqrencode libstdcpp libxml2 luci-app-openvpn luci-app-wireguard luci-i18n-openvpn-en luci-i18n-openvpn-zh-cn luci-i18n-wireguard-en luci-i18n-wireguard-zh-cn luci-proto-wireguard luci-ssl-nginx nginx nginx-mod-luci nginx-mod-luci-ssl nginx-ssl nginx-ssl-util nginx-util openssl-util openvpn-openssl qrencode uwsgi uwsgi-cgi-plugin uwsgi-luci-support uwsgi-syslog-plugin wireguard-tools wireless-regdb wpad-openssl"
+# CONFIG_TARGET_DEVICE_ramips_mt7621_DEVICE_tplink_eap235-wall-v1 is not set
 # CONFIG_TARGET_DEVICE_ramips_mt7621_DEVICE_tplink_re350-v1 is not set
 CONFIG_TARGET_DEVICE_ramips_mt7621_DEVICE_tplink_re500-v1=y
 CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt7621_DEVICE_tplink_re500-v1="kmod-cfg80211 kmod-gpio-button-hotplug kmod-leds-gpio kmod-mac80211 kmod-mt7615-common kmod-mt7615e kmod-mt7615-firmware kmod-mt76-connac kmod-mt76-core wireless-regdb wpad-basic-wolfssl"
@@ -739,7 +741,7 @@ CONFIG_TARGET_INIT_CMD="/sbin/init"
 CONFIG_TARGET_INIT_SUPPRESS_STDERR=y
 CONFIG_VERSIONOPT=y
 CONFIG_VERSION_DIST="X-WRT"
-CONFIG_VERSION_NUMBER="9.0_b202102151633"
+CONFIG_VERSION_NUMBER="9.0_b202102230038"
 CONFIG_VERSION_CODE="Hirsute"
 CONFIG_VERSION_REPO="http://downloads.openwrt.org/snapshots"
 CONFIG_VERSION_HOME_URL="https://x-wrt.com/"
@@ -5385,6 +5387,7 @@ CONFIG_PACKAGE_libxml2=m
 # CONFIG_PACKAGE_nspr is not set
 # CONFIG_PACKAGE_oniguruma is not set
 # CONFIG_PACKAGE_open-isns is not set
+# CONFIG_PACKAGE_openpgm is not set
 # CONFIG_PACKAGE_p11-kit is not set
 # CONFIG_PACKAGE_pixman is not set
 # CONFIG_PACKAGE_poco is not set
@@ -5766,6 +5769,7 @@ CONFIG_PACKAGE_luci-i18n-firewall-en=y
 # CONFIG_PACKAGE_luci-i18n-firewall-he is not set
 # CONFIG_PACKAGE_luci-i18n-firewall-hi is not set
 # CONFIG_PACKAGE_luci-i18n-firewall-hu is not set
+# CONFIG_PACKAGE_luci-i18n-firewall-id is not set
 # CONFIG_PACKAGE_luci-i18n-firewall-it is not set
 # CONFIG_PACKAGE_luci-i18n-firewall-ja is not set
 # CONFIG_PACKAGE_luci-i18n-firewall-ko is not set
@@ -6055,6 +6059,7 @@ CONFIG_PACKAGE_luci-i18n-wireguard-en=m
 # CONFIG_PACKAGE_luci-i18n-wireguard-he is not set
 # CONFIG_PACKAGE_luci-i18n-wireguard-hi is not set
 # CONFIG_PACKAGE_luci-i18n-wireguard-hu is not set
+# CONFIG_PACKAGE_luci-i18n-wireguard-id is not set
 # CONFIG_PACKAGE_luci-i18n-wireguard-it is not set
 # CONFIG_PACKAGE_luci-i18n-wireguard-ja is not set
 # CONFIG_PACKAGE_luci-i18n-wireguard-ko is not set
@@ -7027,6 +7032,7 @@ CONFIG_PACKAGE_ds-lite=y
 # CONFIG_PACKAGE_fping is not set
 # CONFIG_PACKAGE_generate-ipv6-address is not set
 # CONFIG_PACKAGE_geth is not set
+# CONFIG_PACKAGE_git-lfs is not set
 # CONFIG_PACKAGE_gnunet is not set
 # CONFIG_PACKAGE_gre is not set
 # CONFIG_PACKAGE_hnet-full is not set
@@ -7778,7 +7784,6 @@ CONFIG_PACKAGE_qrencode=m
 # CONFIG_PACKAGE_readsb is not set
 # CONFIG_PACKAGE_relayctl is not set
 # CONFIG_PACKAGE_rename is not set
-# CONFIG_PACKAGE_reptyr is not set
 # CONFIG_PACKAGE_restic is not set
 # CONFIG_PACKAGE_rng-tools is not set
 # CONFIG_PACKAGE_rtl-ais is not set
