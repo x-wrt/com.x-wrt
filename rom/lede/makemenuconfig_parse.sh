@@ -91,7 +91,9 @@ moreapps="libstdcpp \
 		  webui-aria2 \
 		  aria2 \
 		  sendip \
-		  wget-ssl"
+		  wget-ssl \
+		  minicom \
+		  kmod-usb-serial-pl2303"
 
 cdcmod="kmod-mii \
 		kmod-usb-net \
