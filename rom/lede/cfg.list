@@ -15,6 +15,7 @@ config.ipq806x-generic
 config.kirkwood-generic
 config.mvebu-cortexa9
 config.mvebu-cortexa53
+config.mediatek-mt7622
 config.bcm53xx-generic
 config.bcm27xx-bcm2710
 config.bcm27xx-bcm2711
