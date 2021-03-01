@@ -48,9 +48,10 @@ CONFIG_TARGET_mediatek_mt7622=y
 # CONFIG_TARGET_mediatek_mt7623 is not set
 # CONFIG_TARGET_mediatek_mt7629 is not set
 CONFIG_TARGET_MULTI_PROFILE=y
-# CONFIG_TARGET_mediatek_mt7622_DEVICE_bpi_bananapi-r64 is not set
-# CONFIG_TARGET_mediatek_mt7622_DEVICE_bpi_bananapi-r64-rootdisk is not set
+# CONFIG_TARGET_mediatek_mt7622_DEVICE_bananapi_bpi-r64 is not set
 # CONFIG_TARGET_mediatek_mt7622_DEVICE_elecom_wrc-2533gent is not set
+# CONFIG_TARGET_mediatek_mt7622_DEVICE_linksys_e8450 is not set
+# CONFIG_TARGET_mediatek_mt7622_DEVICE_linksys_e8450-ubi is not set
 # CONFIG_TARGET_mediatek_mt7622_DEVICE_mediatek_mt7622-rfb1 is not set
 # CONFIG_TARGET_mediatek_mt7622_DEVICE_mediatek_mt7622-ubi is not set
 # CONFIG_TARGET_mediatek_mt7622_DEVICE_ubnt_unifi-6-lr is not set
@@ -61,18 +62,20 @@ CONFIG_TARGET_MULTI_PROFILE=y
 #
 # CONFIG_TARGET_ALL_PROFILES is not set
 CONFIG_TARGET_PER_DEVICE_ROOTFS=y
-CONFIG_TARGET_DEVICE_mediatek_mt7622_DEVICE_bpi_bananapi-r64=y
-CONFIG_TARGET_DEVICE_PACKAGES_mediatek_mt7622_DEVICE_bpi_bananapi-r64="aria2 chat comgt comgt-ncm kmod-ata-ahci-mtk kmod-ata-core kmod-crypto-ccm kmod-crypto-cmac kmod-crypto-ctr kmod-crypto-des kmod-crypto-gcm kmod-crypto-gf128 kmod-crypto-ghash kmod-crypto-hmac kmod-crypto-md4 kmod-crypto-md5 kmod-crypto-rng kmod-crypto-seqiv kmod-crypto-sha256 kmod-crypto-sha512 kmod-exfat-linux kmod-fs-ext4 kmod-fs-ksmbd kmod-fs-msdos kmod-fs-vfat kmod-fuse kmod-gpio-button-hotplug kmod-leds-gpio kmod-lib-crc16 kmod-mii kmod-mt7615-common kmod-mt7615e kmod-mt7615-firmware kmod-mt76-connac kmod-mt76-core kmod-nls-cp437 kmod-usb2 kmod-usb3 kmod-usb-ehci kmod-usb-net kmod-usb-net-cdc-ether kmod-usb-net-cdc-mbim kmod-usb-net-cdc-ncm kmod-usb-net-huawei-cdc-ncm kmod-usb-net-ipheth kmod-usb-net-qmi-wwan kmod-usb-net-rndis kmod-usb-net-rtl8152 kmod-usb-net-sierrawireless kmod-usb-ohci kmod-usb-printer kmod-usb-serial kmod-usb-serial-option kmod-usb-serial-pl2303 kmod-usb-serial-qualcomm kmod-usb-serial-sierrawireless kmod-usb-serial-wwan kmod-usb-storage kmod-usb-storage-uas kmod-usb-wdm ksmbd-server ksmbd-utils libcares liblzo libnl-core libnl-genl libopenssl libopenssl-conf libpcre libqrencode libsqlite3 libssh2 libusb-1.0 libxml2 luci-app-aria2 luci-app-ksmbd luci-app-openvpn luci-app-p910nd luci-app-wireguard luci-i18n-aria2-en luci-i18n-aria2-zh-cn luci-i18n-ksmbd-en luci-i18n-ksmbd-zh-cn luci-i18n-openvpn-en luci-i18n-openvpn-zh-cn luci-i18n-p910nd-en luci-i18n-p910nd-zh-cn luci-i18n-wireguard-en luci-i18n-wireguard-zh-cn luci-proto-3g luci-proto-ncm luci-proto-qmi luci-proto-wireguard luci-ssl-nginx minicom nginx nginx-mod-luci nginx-mod-luci-ssl nginx-ssl nginx-ssl-util nginx-util ntfs-3g openssl-util openvpn-openssl p910nd qrencode sendip uqmi usb-modeswitch uwsgi uwsgi-cgi-plugin uwsgi-luci-support uwsgi-syslog-plugin webui-aria2 wget-ssl wireguard-tools wpad-openssl wsdd2 wwan"
-CONFIG_TARGET_DEVICE_mediatek_mt7622_DEVICE_bpi_bananapi-r64-rootdisk=y
-CONFIG_TARGET_DEVICE_PACKAGES_mediatek_mt7622_DEVICE_bpi_bananapi-r64-rootdisk="aria2 chat comgt comgt-ncm kmod-ata-ahci-mtk kmod-ata-core kmod-crypto-ccm kmod-crypto-cmac kmod-crypto-ctr kmod-crypto-des kmod-crypto-gcm kmod-crypto-gf128 kmod-crypto-ghash kmod-crypto-hmac kmod-crypto-md4 kmod-crypto-md5 kmod-crypto-rng kmod-crypto-seqiv kmod-crypto-sha256 kmod-crypto-sha512 kmod-exfat-linux kmod-fs-ext4 kmod-fs-ksmbd kmod-fs-msdos kmod-fs-vfat kmod-fuse kmod-gpio-button-hotplug kmod-leds-gpio kmod-lib-crc16 kmod-mii kmod-mt7615-common kmod-mt7615e kmod-mt7615-firmware kmod-mt76-connac kmod-mt76-core kmod-nls-cp437 kmod-usb2 kmod-usb3 kmod-usb-ehci kmod-usb-net kmod-usb-net-cdc-ether kmod-usb-net-cdc-mbim kmod-usb-net-cdc-ncm kmod-usb-net-huawei-cdc-ncm kmod-usb-net-ipheth kmod-usb-net-qmi-wwan kmod-usb-net-rndis kmod-usb-net-rtl8152 kmod-usb-net-sierrawireless kmod-usb-ohci kmod-usb-printer kmod-usb-serial kmod-usb-serial-option kmod-usb-serial-pl2303 kmod-usb-serial-qualcomm kmod-usb-serial-sierrawireless kmod-usb-serial-wwan kmod-usb-storage kmod-usb-storage-uas kmod-usb-wdm ksmbd-server ksmbd-utils libcares liblzo libnl-core libnl-genl libopenssl libopenssl-conf libpcre libqrencode libsqlite3 libssh2 libusb-1.0 libxml2 luci-app-aria2 luci-app-ksmbd luci-app-openvpn luci-app-p910nd luci-app-wireguard luci-i18n-aria2-en luci-i18n-aria2-zh-cn luci-i18n-ksmbd-en luci-i18n-ksmbd-zh-cn luci-i18n-openvpn-en luci-i18n-openvpn-zh-cn luci-i18n-p910nd-en luci-i18n-p910nd-zh-cn luci-i18n-wireguard-en luci-i18n-wireguard-zh-cn luci-proto-3g luci-proto-ncm luci-proto-qmi luci-proto-wireguard luci-ssl-nginx minicom nginx nginx-mod-luci nginx-mod-luci-ssl nginx-ssl nginx-ssl-util nginx-util ntfs-3g openssl-util openvpn-openssl p910nd qrencode sendip uqmi usb-modeswitch uwsgi uwsgi-cgi-plugin uwsgi-luci-support uwsgi-syslog-plugin webui-aria2 wget-ssl wireguard-tools wpad-openssl wsdd2 wwan"
+CONFIG_TARGET_DEVICE_mediatek_mt7622_DEVICE_bananapi_bpi-r64=y
+CONFIG_TARGET_DEVICE_PACKAGES_mediatek_mt7622_DEVICE_bananapi_bpi-r64="aria2 blockdev chat comgt comgt-ncm f2fsck kmod-ata-ahci-mtk kmod-ata-core kmod-crypto-ccm kmod-crypto-cmac kmod-crypto-ctr kmod-crypto-des kmod-crypto-gcm kmod-crypto-gf128 kmod-crypto-ghash kmod-crypto-hmac kmod-crypto-md4 kmod-crypto-md5 kmod-crypto-rng kmod-crypto-seqiv kmod-crypto-sha256 kmod-crypto-sha512 kmod-exfat-linux kmod-fs-ext4 kmod-fs-ksmbd kmod-fs-msdos kmod-fs-vfat kmod-fuse kmod-gpio-button-hotplug kmod-leds-gpio kmod-lib-crc16 kmod-mii kmod-mt7615-common kmod-mt7615e kmod-mt7615-firmware kmod-mt76-connac kmod-mt76-core kmod-nls-cp437 kmod-usb2 kmod-usb3 kmod-usb-ehci kmod-usb-net kmod-usb-net-cdc-ether kmod-usb-net-cdc-mbim kmod-usb-net-cdc-ncm kmod-usb-net-huawei-cdc-ncm kmod-usb-net-ipheth kmod-usb-net-qmi-wwan kmod-usb-net-rndis kmod-usb-net-rtl8152 kmod-usb-net-sierrawireless kmod-usb-ohci kmod-usb-printer kmod-usb-serial kmod-usb-serial-option kmod-usb-serial-pl2303 kmod-usb-serial-qualcomm kmod-usb-serial-sierrawireless kmod-usb-serial-wwan kmod-usb-storage kmod-usb-storage-uas kmod-usb-wdm ksmbd-server ksmbd-utils libcares liblzo libnl-core libnl-genl libopenssl libopenssl-conf libpcre libqrencode libsqlite3 libssh2 libusb-1.0 libxml2 luci-app-aria2 luci-app-ksmbd luci-app-openvpn luci-app-p910nd luci-app-wireguard luci-i18n-aria2-en luci-i18n-aria2-zh-cn luci-i18n-ksmbd-en luci-i18n-ksmbd-zh-cn luci-i18n-openvpn-en luci-i18n-openvpn-zh-cn luci-i18n-p910nd-en luci-i18n-p910nd-zh-cn luci-i18n-wireguard-en luci-i18n-wireguard-zh-cn luci-proto-3g luci-proto-ncm luci-proto-qmi luci-proto-wireguard luci-ssl-nginx minicom nginx nginx-mod-luci nginx-mod-luci-ssl nginx-ssl nginx-ssl-util nginx-util ntfs-3g openssl-util openvpn-openssl p910nd qrencode sendip uqmi usb-modeswitch uwsgi uwsgi-cgi-plugin uwsgi-luci-support uwsgi-syslog-plugin webui-aria2 wget-ssl wireguard-tools wpad-openssl wsdd2 wwan"
+CONFIG_TARGET_DEVICE_mediatek_mt7622_DEVICE_linksys_e8450=y
+CONFIG_TARGET_DEVICE_PACKAGES_mediatek_mt7622_DEVICE_linksys_e8450="aria2 blockdev chat comgt comgt-ncm kmod-ata-ahci-mtk kmod-ata-core kmod-crypto-ccm kmod-crypto-cmac kmod-crypto-ctr kmod-crypto-des kmod-crypto-gcm kmod-crypto-gf128 kmod-crypto-ghash kmod-crypto-hmac kmod-crypto-md4 kmod-crypto-md5 kmod-crypto-rng kmod-crypto-seqiv kmod-crypto-sha256 kmod-crypto-sha512 kmod-exfat-linux kmod-fs-ext4 kmod-fs-ksmbd kmod-fs-msdos kmod-fs-vfat kmod-fuse kmod-gpio-button-hotplug kmod-leds-gpio kmod-lib-crc16 kmod-mii kmod-mt7615-common kmod-mt7615e kmod-mt7615-firmware kmod-mt76-connac kmod-mt76-core kmod-mt7915e kmod-nls-cp437 kmod-usb2 kmod-usb3 kmod-usb-ehci kmod-usb-net kmod-usb-net-cdc-ether kmod-usb-net-cdc-mbim kmod-usb-net-cdc-ncm kmod-usb-net-huawei-cdc-ncm kmod-usb-net-ipheth kmod-usb-net-qmi-wwan kmod-usb-net-rndis kmod-usb-net-rtl8152 kmod-usb-net-sierrawireless kmod-usb-ohci kmod-usb-printer kmod-usb-serial kmod-usb-serial-option kmod-usb-serial-pl2303 kmod-usb-serial-qualcomm kmod-usb-serial-sierrawireless kmod-usb-serial-wwan kmod-usb-storage kmod-usb-storage-uas kmod-usb-wdm ksmbd-server ksmbd-utils libcares liblzo libnl-core libnl-genl libopenssl libopenssl-conf libpcre libqrencode libsqlite3 libssh2 libusb-1.0 libxml2 luci-app-aria2 luci-app-ksmbd luci-app-openvpn luci-app-p910nd luci-app-wireguard luci-i18n-aria2-en luci-i18n-aria2-zh-cn luci-i18n-ksmbd-en luci-i18n-ksmbd-zh-cn luci-i18n-openvpn-en luci-i18n-openvpn-zh-cn luci-i18n-p910nd-en luci-i18n-p910nd-zh-cn luci-i18n-wireguard-en luci-i18n-wireguard-zh-cn luci-proto-3g luci-proto-ncm luci-proto-qmi luci-proto-wireguard luci-ssl-nginx minicom nginx nginx-mod-luci nginx-mod-luci-ssl nginx-ssl nginx-ssl-util nginx-util ntfs-3g openssl-util openvpn-openssl p910nd qrencode sendip uqmi usb-modeswitch uwsgi uwsgi-cgi-plugin uwsgi-luci-support uwsgi-syslog-plugin webui-aria2 wget-ssl wireguard-tools wpad-openssl wsdd2 wwan"
+CONFIG_TARGET_DEVICE_mediatek_mt7622_DEVICE_linksys_e8450-ubi=y
+CONFIG_TARGET_DEVICE_PACKAGES_mediatek_mt7622_DEVICE_linksys_e8450-ubi="aria2 blockdev chat comgt comgt-ncm kmod-ata-ahci-mtk kmod-ata-core kmod-crypto-ccm kmod-crypto-cmac kmod-crypto-ctr kmod-crypto-des kmod-crypto-gcm kmod-crypto-gf128 kmod-crypto-ghash kmod-crypto-hmac kmod-crypto-md4 kmod-crypto-md5 kmod-crypto-rng kmod-crypto-seqiv kmod-crypto-sha256 kmod-crypto-sha512 kmod-exfat-linux kmod-fs-ext4 kmod-fs-ksmbd kmod-fs-msdos kmod-fs-vfat kmod-fuse kmod-gpio-button-hotplug kmod-leds-gpio kmod-lib-crc16 kmod-mii kmod-mt7615-common kmod-mt7615e kmod-mt7615-firmware kmod-mt76-connac kmod-mt76-core kmod-mt7915e kmod-nls-cp437 kmod-usb2 kmod-usb3 kmod-usb-ehci kmod-usb-net kmod-usb-net-cdc-ether kmod-usb-net-cdc-mbim kmod-usb-net-cdc-ncm kmod-usb-net-huawei-cdc-ncm kmod-usb-net-ipheth kmod-usb-net-qmi-wwan kmod-usb-net-rndis kmod-usb-net-rtl8152 kmod-usb-net-sierrawireless kmod-usb-ohci kmod-usb-printer kmod-usb-serial kmod-usb-serial-option kmod-usb-serial-pl2303 kmod-usb-serial-qualcomm kmod-usb-serial-sierrawireless kmod-usb-serial-wwan kmod-usb-storage kmod-usb-storage-uas kmod-usb-wdm ksmbd-server ksmbd-utils libcares liblzo libnl-core libnl-genl libopenssl libopenssl-conf libpcre libqrencode libsqlite3 libssh2 libusb-1.0 libxml2 luci-app-aria2 luci-app-ksmbd luci-app-openvpn luci-app-p910nd luci-app-wireguard luci-i18n-aria2-en luci-i18n-aria2-zh-cn luci-i18n-ksmbd-en luci-i18n-ksmbd-zh-cn luci-i18n-openvpn-en luci-i18n-openvpn-zh-cn luci-i18n-p910nd-en luci-i18n-p910nd-zh-cn luci-i18n-wireguard-en luci-i18n-wireguard-zh-cn luci-proto-3g luci-proto-ncm luci-proto-qmi luci-proto-wireguard luci-ssl-nginx minicom nginx nginx-mod-luci nginx-mod-luci-ssl nginx-ssl nginx-ssl-util nginx-util ntfs-3g openssl-util openvpn-openssl p910nd qrencode sendip uqmi usb-modeswitch uwsgi uwsgi-cgi-plugin uwsgi-luci-support uwsgi-syslog-plugin webui-aria2 wget-ssl wireguard-tools wpad-openssl wsdd2 wwan"
 # CONFIG_TARGET_DEVICE_mediatek_mt7622_DEVICE_elecom_wrc-2533gent is not set
 CONFIG_TARGET_DEVICE_mediatek_mt7622_DEVICE_mediatek_mt7622-ubi=y
-CONFIG_TARGET_DEVICE_PACKAGES_mediatek_mt7622_DEVICE_mediatek_mt7622-ubi="aria2 chat comgt comgt-ncm kmod-ata-ahci-mtk kmod-ata-core kmod-crypto-ccm kmod-crypto-cmac kmod-crypto-ctr kmod-crypto-des kmod-crypto-gcm kmod-crypto-gf128 kmod-crypto-ghash kmod-crypto-hmac kmod-crypto-md4 kmod-crypto-md5 kmod-crypto-rng kmod-crypto-seqiv kmod-crypto-sha256 kmod-crypto-sha512 kmod-exfat-linux kmod-fs-ext4 kmod-fs-ksmbd kmod-fs-msdos kmod-fs-vfat kmod-fuse kmod-gpio-button-hotplug kmod-leds-gpio kmod-lib-crc16 kmod-mii kmod-mt7615-common kmod-mt7615e kmod-mt7615-firmware kmod-mt76-connac kmod-mt76-core kmod-nls-cp437 kmod-usb2 kmod-usb3 kmod-usb-ehci kmod-usb-net kmod-usb-net-cdc-ether kmod-usb-net-cdc-mbim kmod-usb-net-cdc-ncm kmod-usb-net-huawei-cdc-ncm kmod-usb-net-ipheth kmod-usb-net-qmi-wwan kmod-usb-net-rndis kmod-usb-net-rtl8152 kmod-usb-net-sierrawireless kmod-usb-ohci kmod-usb-printer kmod-usb-serial kmod-usb-serial-option kmod-usb-serial-pl2303 kmod-usb-serial-qualcomm kmod-usb-serial-sierrawireless kmod-usb-serial-wwan kmod-usb-storage kmod-usb-storage-uas kmod-usb-wdm ksmbd-server ksmbd-utils libcares liblzo libnl-core libnl-genl libopenssl libopenssl-conf libpcre libqrencode libsqlite3 libssh2 libusb-1.0 libxml2 luci-app-aria2 luci-app-ksmbd luci-app-openvpn luci-app-p910nd luci-app-wireguard luci-i18n-aria2-en luci-i18n-aria2-zh-cn luci-i18n-ksmbd-en luci-i18n-ksmbd-zh-cn luci-i18n-openvpn-en luci-i18n-openvpn-zh-cn luci-i18n-p910nd-en luci-i18n-p910nd-zh-cn luci-i18n-wireguard-en luci-i18n-wireguard-zh-cn luci-proto-3g luci-proto-ncm luci-proto-qmi luci-proto-wireguard luci-ssl-nginx minicom nginx nginx-mod-luci nginx-mod-luci-ssl nginx-ssl nginx-ssl-util nginx-util ntfs-3g openssl-util openvpn-openssl p910nd qrencode sendip uqmi usb-modeswitch uwsgi uwsgi-cgi-plugin uwsgi-luci-support uwsgi-syslog-plugin webui-aria2 wget-ssl wireguard-tools wpad-openssl wsdd2 wwan"
+CONFIG_TARGET_DEVICE_PACKAGES_mediatek_mt7622_DEVICE_mediatek_mt7622-ubi="aria2 blockdev chat comgt comgt-ncm kmod-ata-ahci-mtk kmod-ata-core kmod-crypto-ccm kmod-crypto-cmac kmod-crypto-ctr kmod-crypto-des kmod-crypto-gcm kmod-crypto-gf128 kmod-crypto-ghash kmod-crypto-hmac kmod-crypto-md4 kmod-crypto-md5 kmod-crypto-rng kmod-crypto-seqiv kmod-crypto-sha256 kmod-crypto-sha512 kmod-exfat-linux kmod-fs-ext4 kmod-fs-ksmbd kmod-fs-msdos kmod-fs-vfat kmod-fuse kmod-gpio-button-hotplug kmod-leds-gpio kmod-lib-crc16 kmod-mii kmod-mt7615-common kmod-mt7615e kmod-mt7615-firmware kmod-mt76-connac kmod-mt76-core kmod-nls-cp437 kmod-usb2 kmod-usb3 kmod-usb-ehci kmod-usb-net kmod-usb-net-cdc-ether kmod-usb-net-cdc-mbim kmod-usb-net-cdc-ncm kmod-usb-net-huawei-cdc-ncm kmod-usb-net-ipheth kmod-usb-net-qmi-wwan kmod-usb-net-rndis kmod-usb-net-rtl8152 kmod-usb-net-sierrawireless kmod-usb-ohci kmod-usb-printer kmod-usb-serial kmod-usb-serial-option kmod-usb-serial-pl2303 kmod-usb-serial-qualcomm kmod-usb-serial-sierrawireless kmod-usb-serial-wwan kmod-usb-storage kmod-usb-storage-uas kmod-usb-wdm ksmbd-server ksmbd-utils libcares liblzo libnl-core libnl-genl libopenssl libopenssl-conf libpcre libqrencode libsqlite3 libssh2 libusb-1.0 libxml2 luci-app-aria2 luci-app-ksmbd luci-app-openvpn luci-app-p910nd luci-app-wireguard luci-i18n-aria2-en luci-i18n-aria2-zh-cn luci-i18n-ksmbd-en luci-i18n-ksmbd-zh-cn luci-i18n-openvpn-en luci-i18n-openvpn-zh-cn luci-i18n-p910nd-en luci-i18n-p910nd-zh-cn luci-i18n-wireguard-en luci-i18n-wireguard-zh-cn luci-proto-3g luci-proto-ncm luci-proto-qmi luci-proto-wireguard luci-ssl-nginx minicom nginx nginx-mod-luci nginx-mod-luci-ssl nginx-ssl nginx-ssl-util nginx-util ntfs-3g openssl-util openvpn-openssl p910nd qrencode sendip uqmi usb-modeswitch uwsgi uwsgi-cgi-plugin uwsgi-luci-support uwsgi-syslog-plugin webui-aria2 wget-ssl wireguard-tools wpad-openssl wsdd2 wwan"
 CONFIG_TARGET_DEVICE_mediatek_mt7622_DEVICE_mediatek_mt7622-rfb1=y
-CONFIG_TARGET_DEVICE_PACKAGES_mediatek_mt7622_DEVICE_mediatek_mt7622-rfb1="aria2 chat comgt comgt-ncm kmod-ata-ahci-mtk kmod-ata-core kmod-crypto-ccm kmod-crypto-cmac kmod-crypto-ctr kmod-crypto-des kmod-crypto-gcm kmod-crypto-gf128 kmod-crypto-ghash kmod-crypto-hmac kmod-crypto-md4 kmod-crypto-md5 kmod-crypto-rng kmod-crypto-seqiv kmod-crypto-sha256 kmod-crypto-sha512 kmod-exfat-linux kmod-fs-ext4 kmod-fs-ksmbd kmod-fs-msdos kmod-fs-vfat kmod-fuse kmod-gpio-button-hotplug kmod-leds-gpio kmod-lib-crc16 kmod-mii kmod-mt7615-common kmod-mt7615e kmod-mt7615-firmware kmod-mt76-connac kmod-mt76-core kmod-nls-cp437 kmod-usb2 kmod-usb3 kmod-usb-ehci kmod-usb-net kmod-usb-net-cdc-ether kmod-usb-net-cdc-mbim kmod-usb-net-cdc-ncm kmod-usb-net-huawei-cdc-ncm kmod-usb-net-ipheth kmod-usb-net-qmi-wwan kmod-usb-net-rndis kmod-usb-net-rtl8152 kmod-usb-net-sierrawireless kmod-usb-ohci kmod-usb-printer kmod-usb-serial kmod-usb-serial-option kmod-usb-serial-pl2303 kmod-usb-serial-qualcomm kmod-usb-serial-sierrawireless kmod-usb-serial-wwan kmod-usb-storage kmod-usb-storage-uas kmod-usb-wdm ksmbd-server ksmbd-utils libcares liblzo libnl-core libnl-genl libopenssl libopenssl-conf libpcre libqrencode libsqlite3 libssh2 libusb-1.0 libxml2 luci-app-aria2 luci-app-ksmbd luci-app-openvpn luci-app-p910nd luci-app-wireguard luci-i18n-aria2-en luci-i18n-aria2-zh-cn luci-i18n-ksmbd-en luci-i18n-ksmbd-zh-cn luci-i18n-openvpn-en luci-i18n-openvpn-zh-cn luci-i18n-p910nd-en luci-i18n-p910nd-zh-cn luci-i18n-wireguard-en luci-i18n-wireguard-zh-cn luci-proto-3g luci-proto-ncm luci-proto-qmi luci-proto-wireguard luci-ssl-nginx minicom nginx nginx-mod-luci nginx-mod-luci-ssl nginx-ssl nginx-ssl-util nginx-util ntfs-3g openssl-util openvpn-openssl p910nd qrencode sendip uqmi usb-modeswitch uwsgi uwsgi-cgi-plugin uwsgi-luci-support uwsgi-syslog-plugin webui-aria2 wget-ssl wireguard-tools wpad-openssl wsdd2 wwan"
+CONFIG_TARGET_DEVICE_PACKAGES_mediatek_mt7622_DEVICE_mediatek_mt7622-rfb1="aria2 blockdev chat comgt comgt-ncm kmod-ata-ahci-mtk kmod-ata-core kmod-crypto-ccm kmod-crypto-cmac kmod-crypto-ctr kmod-crypto-des kmod-crypto-gcm kmod-crypto-gf128 kmod-crypto-ghash kmod-crypto-hmac kmod-crypto-md4 kmod-crypto-md5 kmod-crypto-rng kmod-crypto-seqiv kmod-crypto-sha256 kmod-crypto-sha512 kmod-exfat-linux kmod-fs-ext4 kmod-fs-ksmbd kmod-fs-msdos kmod-fs-vfat kmod-fuse kmod-gpio-button-hotplug kmod-leds-gpio kmod-lib-crc16 kmod-mii kmod-mt7615-common kmod-mt7615e kmod-mt7615-firmware kmod-mt76-connac kmod-mt76-core kmod-nls-cp437 kmod-usb2 kmod-usb3 kmod-usb-ehci kmod-usb-net kmod-usb-net-cdc-ether kmod-usb-net-cdc-mbim kmod-usb-net-cdc-ncm kmod-usb-net-huawei-cdc-ncm kmod-usb-net-ipheth kmod-usb-net-qmi-wwan kmod-usb-net-rndis kmod-usb-net-rtl8152 kmod-usb-net-sierrawireless kmod-usb-ohci kmod-usb-printer kmod-usb-serial kmod-usb-serial-option kmod-usb-serial-pl2303 kmod-usb-serial-qualcomm kmod-usb-serial-sierrawireless kmod-usb-serial-wwan kmod-usb-storage kmod-usb-storage-uas kmod-usb-wdm ksmbd-server ksmbd-utils libcares liblzo libnl-core libnl-genl libopenssl libopenssl-conf libpcre libqrencode libsqlite3 libssh2 libusb-1.0 libxml2 luci-app-aria2 luci-app-ksmbd luci-app-openvpn luci-app-p910nd luci-app-wireguard luci-i18n-aria2-en luci-i18n-aria2-zh-cn luci-i18n-ksmbd-en luci-i18n-ksmbd-zh-cn luci-i18n-openvpn-en luci-i18n-openvpn-zh-cn luci-i18n-p910nd-en luci-i18n-p910nd-zh-cn luci-i18n-wireguard-en luci-i18n-wireguard-zh-cn luci-proto-3g luci-proto-ncm luci-proto-qmi luci-proto-wireguard luci-ssl-nginx minicom nginx nginx-mod-luci nginx-mod-luci-ssl nginx-ssl nginx-ssl-util nginx-util ntfs-3g openssl-util openvpn-openssl p910nd qrencode sendip uqmi usb-modeswitch uwsgi uwsgi-cgi-plugin uwsgi-luci-support uwsgi-syslog-plugin webui-aria2 wget-ssl wireguard-tools wpad-openssl wsdd2 wwan"
 # CONFIG_TARGET_DEVICE_mediatek_mt7622_DEVICE_ubnt_unifi-6-lr is not set
 CONFIG_TARGET_DEVICE_mediatek_mt7622_DEVICE_xwrt_ax3600-v1=y
-CONFIG_TARGET_DEVICE_PACKAGES_mediatek_mt7622_DEVICE_xwrt_ax3600-v1="aria2 chat comgt comgt-ncm kmod-crypto-ccm kmod-crypto-cmac kmod-crypto-ctr kmod-crypto-des kmod-crypto-gcm kmod-crypto-gf128 kmod-crypto-ghash kmod-crypto-hmac kmod-crypto-md4 kmod-crypto-md5 kmod-crypto-rng kmod-crypto-seqiv kmod-crypto-sha256 kmod-crypto-sha512 kmod-exfat-linux kmod-fs-ext4 kmod-fs-ksmbd kmod-fs-msdos kmod-fs-vfat kmod-fuse kmod-gpio-button-hotplug kmod-leds-gpio kmod-lib-crc16 kmod-mii kmod-mt7615-common kmod-mt7615e kmod-mt7615-firmware kmod-mt76-connac kmod-mt76-core kmod-mt7915e kmod-nls-cp437 kmod-usb2 kmod-usb3 kmod-usb-ehci kmod-usb-net kmod-usb-net-cdc-ether kmod-usb-net-cdc-mbim kmod-usb-net-cdc-ncm kmod-usb-net-huawei-cdc-ncm kmod-usb-net-ipheth kmod-usb-net-qmi-wwan kmod-usb-net-rndis kmod-usb-net-rtl8152 kmod-usb-net-sierrawireless kmod-usb-ohci kmod-usb-printer kmod-usb-serial kmod-usb-serial-option kmod-usb-serial-pl2303 kmod-usb-serial-qualcomm kmod-usb-serial-sierrawireless kmod-usb-serial-wwan kmod-usb-storage kmod-usb-storage-uas kmod-usb-wdm ksmbd-server ksmbd-utils libcares liblzo libnl-core libnl-genl libopenssl libopenssl-conf libpcre libqrencode libsqlite3 libssh2 libusb-1.0 libxml2 luci-app-aria2 luci-app-ksmbd luci-app-openvpn luci-app-p910nd luci-app-wireguard luci-i18n-aria2-en luci-i18n-aria2-zh-cn luci-i18n-ksmbd-en luci-i18n-ksmbd-zh-cn luci-i18n-openvpn-en luci-i18n-openvpn-zh-cn luci-i18n-p910nd-en luci-i18n-p910nd-zh-cn luci-i18n-wireguard-en luci-i18n-wireguard-zh-cn luci-proto-3g luci-proto-ncm luci-proto-qmi luci-proto-wireguard luci-ssl-nginx minicom nginx nginx-mod-luci nginx-mod-luci-ssl nginx-ssl nginx-ssl-util nginx-util ntfs-3g openssl-util openvpn-openssl p910nd qrencode sendip uqmi usb-modeswitch uwsgi uwsgi-cgi-plugin uwsgi-luci-support uwsgi-syslog-plugin webui-aria2 wget-ssl wireguard-tools wpad-openssl wsdd2 wwan"
+CONFIG_TARGET_DEVICE_PACKAGES_mediatek_mt7622_DEVICE_xwrt_ax3600-v1="aria2 blockdev chat comgt comgt-ncm kmod-crypto-ccm kmod-crypto-cmac kmod-crypto-ctr kmod-crypto-des kmod-crypto-gcm kmod-crypto-gf128 kmod-crypto-ghash kmod-crypto-hmac kmod-crypto-md4 kmod-crypto-md5 kmod-crypto-rng kmod-crypto-seqiv kmod-crypto-sha256 kmod-crypto-sha512 kmod-exfat-linux kmod-fs-ext4 kmod-fs-ksmbd kmod-fs-msdos kmod-fs-vfat kmod-fuse kmod-gpio-button-hotplug kmod-leds-gpio kmod-lib-crc16 kmod-mii kmod-mt7615-common kmod-mt7615e kmod-mt7615-firmware kmod-mt76-connac kmod-mt76-core kmod-mt7915e kmod-nls-cp437 kmod-usb2 kmod-usb3 kmod-usb-ehci kmod-usb-net kmod-usb-net-cdc-ether kmod-usb-net-cdc-mbim kmod-usb-net-cdc-ncm kmod-usb-net-huawei-cdc-ncm kmod-usb-net-ipheth kmod-usb-net-qmi-wwan kmod-usb-net-rndis kmod-usb-net-rtl8152 kmod-usb-net-sierrawireless kmod-usb-ohci kmod-usb-printer kmod-usb-serial kmod-usb-serial-option kmod-usb-serial-pl2303 kmod-usb-serial-qualcomm kmod-usb-serial-sierrawireless kmod-usb-serial-wwan kmod-usb-storage kmod-usb-storage-uas kmod-usb-wdm ksmbd-server ksmbd-utils libcares liblzo libnl-core libnl-genl libopenssl libopenssl-conf libpcre libqrencode libsqlite3 libssh2 libusb-1.0 libxml2 luci-app-aria2 luci-app-ksmbd luci-app-openvpn luci-app-p910nd luci-app-wireguard luci-i18n-aria2-en luci-i18n-aria2-zh-cn luci-i18n-ksmbd-en luci-i18n-ksmbd-zh-cn luci-i18n-openvpn-en luci-i18n-openvpn-zh-cn luci-i18n-p910nd-en luci-i18n-p910nd-zh-cn luci-i18n-wireguard-en luci-i18n-wireguard-zh-cn luci-proto-3g luci-proto-ncm luci-proto-qmi luci-proto-wireguard luci-ssl-nginx minicom nginx nginx-mod-luci nginx-mod-luci-ssl nginx-ssl nginx-ssl-util nginx-util ntfs-3g openssl-util openvpn-openssl p910nd qrencode sendip uqmi usb-modeswitch uwsgi uwsgi-cgi-plugin uwsgi-luci-support uwsgi-syslog-plugin webui-aria2 wget-ssl wireguard-tools wpad-openssl wsdd2 wwan"
 # end of Target Devices
 
 CONFIG_HAS_SUBTARGETS=y
@@ -82,9 +85,12 @@ CONFIG_TARGET_SUBTARGET="mt7622"
 CONFIG_TARGET_ARCH_PACKAGES="aarch64_cortex-a53"
 CONFIG_DEFAULT_TARGET_OPTIMIZATION="-Os -pipe -mcpu=cortex-a53"
 CONFIG_CPU_TYPE="cortex-a53"
-CONFIG_LINUX_5_4=y
+CONFIG_LINUX_5_10=y
 CONFIG_DEFAULT_base-files=y
 CONFIG_MODULE_DEFAULT_base-files=y
+CONFIG_MODULE_DEFAULT_blockd=y
+CONFIG_DEFAULT_blockdev=y
+CONFIG_MODULE_DEFAULT_blockdev=y
 CONFIG_DEFAULT_busybox=y
 CONFIG_MODULE_DEFAULT_busybox=y
 CONFIG_DEFAULT_ca-bundle=y
@@ -94,6 +100,7 @@ CONFIG_MODULE_DEFAULT_dnsmasq=y
 CONFIG_DEFAULT_dropbear=y
 CONFIG_MODULE_DEFAULT_dropbear=y
 CONFIG_MODULE_DEFAULT_e2fsprogs=y
+CONFIG_MODULE_DEFAULT_f2fsck=y
 CONFIG_DEFAULT_firewall=y
 CONFIG_MODULE_DEFAULT_firewall=y
 CONFIG_DEFAULT_fstools=y
@@ -105,7 +112,6 @@ CONFIG_MODULE_DEFAULT_iptables=y
 CONFIG_DEFAULT_iwinfo=y
 CONFIG_MODULE_DEFAULT_iwinfo=y
 CONFIG_MODULE_DEFAULT_kmod-ata-ahci-mtk=y
-CONFIG_MODULE_DEFAULT_kmod-fs-vfat=y
 CONFIG_DEFAULT_kmod-gpio-button-hotplug=y
 CONFIG_MODULE_DEFAULT_kmod-gpio-button-hotplug=y
 CONFIG_DEFAULT_kmod-ipt-offload=y
@@ -122,6 +128,7 @@ CONFIG_MODULE_DEFAULT_kmod-nls-iso8859-1=y
 CONFIG_MODULE_DEFAULT_kmod-usb-ohci=y
 CONFIG_MODULE_DEFAULT_kmod-usb2=y
 CONFIG_MODULE_DEFAULT_kmod-usb3=y
+CONFIG_MODULE_DEFAULT_kmod-vfat=y
 CONFIG_DEFAULT_libc=y
 CONFIG_MODULE_DEFAULT_libc=y
 CONFIG_DEFAULT_libgcc=y
@@ -148,6 +155,11 @@ CONFIG_MODULE_DEFAULT_ppp-mod-pppoe=y
 CONFIG_DEFAULT_procd=y
 CONFIG_MODULE_DEFAULT_procd=y
 CONFIG_MODULE_DEFAULT_swconfig=y
+CONFIG_MODULE_DEFAULT_u-boot-mt7622_linksys_e8450=y
+CONFIG_DEFAULT_uboot-envtools=y
+CONFIG_MODULE_DEFAULT_uboot-envtools=y
+CONFIG_MODULE_DEFAULT_uboot-mt7622_bananapi_bpi-r64-emmc=y
+CONFIG_MODULE_DEFAULT_uboot-mt7622_bananapi_bpi-r64-sdmmc=y
 CONFIG_DEFAULT_uci=y
 CONFIG_MODULE_DEFAULT_uci=y
 CONFIG_DEFAULT_uclient-fetch=y
@@ -167,7 +179,7 @@ CONFIG_USB_SUPPORT=y
 CONFIG_RTC_SUPPORT=y
 CONFIG_USES_DEVICETREE=y
 CONFIG_USES_INITRAMFS=y
-CONFIG_USES_SEPERATE_INITRAMFS=y
+CONFIG_USES_SEPARATE_INITRAMFS=y
 CONFIG_USES_SQUASHFS=y
 CONFIG_NAND_SUPPORT=y
 CONFIG_ARCH_64BIT=y
@@ -183,9 +195,10 @@ CONFIG_TARGET_INITRAMFS_COMPRESSION_NONE=y
 # CONFIG_TARGET_INITRAMFS_COMPRESSION_BZIP2 is not set
 # CONFIG_TARGET_INITRAMFS_COMPRESSION_LZMA is not set
 # CONFIG_TARGET_INITRAMFS_COMPRESSION_XZ is not set
+# CONFIG_TARGET_INITRAMFS_COMPRESSION_ZSTD is not set
 CONFIG_EXTERNAL_CPIO=""
 # CONFIG_TARGET_INITRAMFS_FORCE is not set
-CONFIG_TARGET_ROOTFS_INITRAMFS_SEPERATE=y
+CONFIG_TARGET_ROOTFS_INITRAMFS_SEPARATE=y
 
 #
 # Root filesystem archives
@@ -435,7 +448,7 @@ CONFIG_TARGET_INIT_CMD="/sbin/init"
 CONFIG_TARGET_INIT_SUPPRESS_STDERR=y
 CONFIG_VERSIONOPT=y
 CONFIG_VERSION_DIST="X-WRT"
-CONFIG_VERSION_NUMBER="9.0_b202102270628"
+CONFIG_VERSION_NUMBER="9.0_b202103010841"
 CONFIG_VERSION_CODE="Hirsute"
 CONFIG_VERSION_REPO="http://downloads.openwrt.org/snapshots"
 CONFIG_VERSION_HOME_URL="https://x-wrt.com/"
@@ -2589,7 +2602,6 @@ CONFIG_ZABBIX_POSTGRESQL=y
 #
 # Boot Loaders
 #
-CONFIG_PACKAGE_mt7622-preloader=y
 CONFIG_PACKAGE_trusted-firmware-a-mt7622-emmc-1ddr=y
 CONFIG_PACKAGE_trusted-firmware-a-mt7622-emmc-2ddr=y
 CONFIG_PACKAGE_trusted-firmware-a-mt7622-nor-1ddr=y
@@ -2598,7 +2610,10 @@ CONFIG_PACKAGE_trusted-firmware-a-mt7622-sdmmc-1ddr=y
 CONFIG_PACKAGE_trusted-firmware-a-mt7622-sdmmc-2ddr=y
 CONFIG_PACKAGE_trusted-firmware-a-mt7622-snand-1ddr=y
 CONFIG_PACKAGE_trusted-firmware-a-mt7622-snand-2ddr=y
-CONFIG_PACKAGE_u-boot-mt7622=y
+CONFIG_PACKAGE_u-boot-mt7622_bananapi_bpi-r64-emmc=y
+CONFIG_PACKAGE_u-boot-mt7622_bananapi_bpi-r64-sdmmc=y
+CONFIG_PACKAGE_u-boot-mt7622_linksys_e8450=y
+CONFIG_PACKAGE_u-boot-mt7622_rfb1=y
 # end of Boot Loaders
 
 #
@@ -4097,6 +4112,7 @@ CONFIG_PACKAGE_libsqlite3=m
 #
 # Configuration
 #
+# CONFIG_SQLITE3_BATCH_ATOMIC_WRITE is not set
 CONFIG_SQLITE3_DYNAMIC_EXTENSIONS=y
 CONFIG_SQLITE3_FTS3=y
 CONFIG_SQLITE3_FTS4=y
@@ -4787,7 +4803,7 @@ CONFIG_WOLFSSL_HAS_NO_HW=y
 # CONFIG_PACKAGE_libbfd is not set
 CONFIG_PACKAGE_libblkid=y
 CONFIG_PACKAGE_libblobmsg-json=y
-# CONFIG_PACKAGE_libbpf is not set
+CONFIG_PACKAGE_libbpf=y
 # CONFIG_PACKAGE_libbsd is not set
 CONFIG_PACKAGE_libcap=y
 # CONFIG_PACKAGE_libcap-bin is not set
@@ -7070,7 +7086,7 @@ CONFIG_PACKAGE_uboot-envtools=y
 #
 # CONFIG_PACKAGE_blkdiscard is not set
 # CONFIG_PACKAGE_blkid is not set
-# CONFIG_PACKAGE_blockdev is not set
+CONFIG_PACKAGE_blockdev=m
 # CONFIG_PACKAGE_cfdisk is not set
 # CONFIG_PACKAGE_cgdisk is not set
 # CONFIG_PACKAGE_eject is not set
@@ -7145,7 +7161,7 @@ CONFIG_PACKAGE_e2fsprogs=y
 # CONFIG_PACKAGE_exfat-mkfs is not set
 # CONFIG_PACKAGE_f2fs-tools is not set
 # CONFIG_PACKAGE_f2fs-tools-selinux is not set
-# CONFIG_PACKAGE_f2fsck is not set
+CONFIG_PACKAGE_f2fsck=m
 # CONFIG_PACKAGE_f2fsck-selinux is not set
 # CONFIG_PACKAGE_filefrag is not set
 # CONFIG_PACKAGE_fstrim is not set
