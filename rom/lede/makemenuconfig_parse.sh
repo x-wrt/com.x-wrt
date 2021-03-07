@@ -267,6 +267,10 @@ for t in $targets; do
 	excludes="$excludes_basic"
 	case $t in
 		#>8M flash
+		TARGET_DEVICE_ipq806x_generic_DEVICE_ruijie_rg-mtfi-m520|\
+		TARGET_DEVICE_ipq806x_generic_DEVICE_tplink_ad7200|\
+		TARGET_DEVICE_ipq40xx_generic_DEVICE_mobipromo_cm520-79f|\
+		TARGET_DEVICE_ipq40xx_generic_DEVICE_linksys_mr8300|\
 		TARGET_DEVICE_mediatek_mt7622_DEVICE*|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_xiaomi_mi-router-4|\
 		TARGET_DEVICE_ipq40xx_generic_DEVICE_glinet_gl-ap1300|\
@@ -713,6 +717,10 @@ for t in $targets; do
 	#check usb
 	case $t in
 		#with usb3
+		TARGET_DEVICE_ipq806x_generic_DEVICE_ruijie_rg-mtfi-m520|\
+		TARGET_DEVICE_ipq806x_generic_DEVICE_tplink_ad7200|\
+		TARGET_DEVICE_ipq40xx_generic_DEVICE_mobipromo_cm520-79f|\
+		TARGET_DEVICE_ipq40xx_generic_DEVICE_linksys_mr8300|\
 		TARGET_DEVICE_mediatek_mt7622_DEVICE*|\
 		TARGET_DEVICE_ipq40xx_generic_DEVICE_glinet_gl-ap1300|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_glinet_gl-mt1300|\
