@@ -183,10 +183,10 @@ main() {
 				case "$track_method" in
 					ping)
 						if [ $check_quality -eq 0 ]; then
-							WRAP $PING -c $count -W $timeout -s $size -t $max_ttl -q $track_ip &> /dev/null
+							WRAP $PING -n -c $count -W $timeout -s $size -t $max_ttl -q $track_ip &> /dev/null
 							result=$?
 						else
-							ping_result_raw="$(WRAP $PING -c $count -W $timeout -s $size -t $max_ttl -q $track_ip 2>/dev/null)"
+							ping_result_raw="$(WRAP $PING -n -c $count -W $timeout -s $size -t $max_ttl -q $track_ip 2>/dev/null)"
 							ping_status=$?
 							ping_result=$(echo "$ping_result_raw" | tail -n2)
 							loss="$(echo "$ping_result" | sed -ne 's/.*[^0-9]\([0-9]\+\)% packet loss.*/\1/p')"
