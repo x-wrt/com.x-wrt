@@ -71,7 +71,7 @@ test $version -lt 1 && {
 }
 
 test $version -lt 2 && {
-	if ! uci get network.wan >/dev/null 2>&1 && [ x`uci get network.lan.ifname | wc -w` = x1 ]; then
+	if ! uci get network.wan >/dev/null 2>&1 && [ x`uci get network.lan.ifname | wc -w` = x1 ] && modinfo macvlan >/dev/null 2>&1; then
 		local ifname=`uci get network.lan.ifname 2>/dev/null || echo eth0`
 		uci -q batch <<-EOT
 			set network.wan=interface
