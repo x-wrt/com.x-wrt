@@ -35,6 +35,7 @@ define KernelPackage/exfat-linux
 	FILES:=$(PKG_BUILD_DIR)/exfat.ko
 	AUTOLOAD:=$(call AutoLoad,30,exfat,1)
 	DEPENDS:=+kmod-nls-base
+	PROVIDES:=kmod-fs-exfat
 endef
 
 define KernelPackage/exfat-linux/description
