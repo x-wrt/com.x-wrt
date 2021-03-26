@@ -31,7 +31,9 @@ usb4g="wwan \
 	   chat \
 	   comgt \
 	   comgt-ncm \
+	   umbim \
 	   luci-proto-qmi \
+	   luci-proto-mbim \
 	   luci-proto-ncm \
 	   luci-proto-3g"
 
