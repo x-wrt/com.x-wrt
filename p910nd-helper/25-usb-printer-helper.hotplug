@@ -26,12 +26,14 @@ case "$PRODUCT" in
 	FIRMWARE=/usr/share/p910nd/firmware/sihp1020.dl
 	;;
 
-	#HP LaserJet P1005
+	#HP LaserJet P1005/P1007
+	"3f0/4817/100"|
 	"3f0/3d17/100")
 	FIRMWARE=/usr/share/p910nd/firmware/sihpP1005.dl
 	;;
 
-	#HP LaserJet P1006
+	#HP LaserJet P1006/P1008
+	"3f0/4917/100"|
 	"3f0/3e17/100")
 	FIRMWARE=/usr/share/p910nd/firmware/sihpP1006.dl
 	;;
