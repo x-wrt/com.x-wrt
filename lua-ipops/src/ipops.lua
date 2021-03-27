@@ -118,10 +118,10 @@ local function get_ipstr_and_maskstr(ipaddr)
 	return int2ipstr(ip), int2ipstr(mask)
 end
 
--- netstr: ipaddr, a.b.c.d-e.f.g.h, a.b.c.d/m1.m2.m3.m4
+-- netString: ipaddr, a.b.c.d-e.f.g.h, a.b.c.d/m1.m2.m3.m4
 -- return: range: [n1, n2] where n1 <= n2
-local function netstr2range(netstr)
-	ip = get_parts_as_number(netstr)
+local function netString2range(netString)
+	ip = get_parts_as_number(netString)
 	if #ip == 4 then
 		local i = (((ip[1] * 256 + ip[2]) * 256 + ip[3]) * 256 + ip[4])
 		return {i, i}
@@ -138,9 +138,9 @@ local function netstr2range(netstr)
 	if #ip == 8 then
 		local i = (((ip[1] * 256 + ip[2]) * 256 + ip[3]) * 256 + ip[4])
 		local m = (((ip[5] * 256 + ip[6]) * 256 + ip[7]) * 256 + ip[8])
-		if netstr:match('/') then
+		if netString:match('/') then
 			local s = _band(i, m)
-			local e = _bor(i, _bnot(m))
+			local e = _bor(s, _bnot(m))
 			if s <= e then
 				return {s, e}
 			end
@@ -154,91 +154,142 @@ local function netstr2range(netstr)
 	return nil
 end
 
-local function range2netstr(range)
+local function range2netString(range)
 	if range[1] <= range[2] then
 		return int2ipstr(range[1]) .. "-" .. int2ipstr(range[2])
 	end
 	return nil
 end
 
--- ipgroup: [range, ...]
-local function ipgroup_add_netstr(ipgroup, netstr)
-	local range = netstr2range(netstr)
+-- rangeSet: [range, ...]
+local function rangeSet_add_range(rangeSet, range)
+	rangeSet = rangeSet or {}
 	if not range then
-		return ipgroup
+		return rangeSet
+	end
+	if #rangeSet == 0 then
+		table.insert(rangeSet, range)
+		return rangeSet
 	end
 
-	ipgroup = ipgroup or {}
-	if #ipgroup == 0 then
-		table.insert(ipgroup, range)
-		return ipgroup
-	end
-
-	local ipgroup_new = {}
-	for _, r in ipairs(ipgroup) do
+	local rangeSet_new = {}
+	for _, r in ipairs(rangeSet) do
 		if range[1] < r[1] then
 			if range[2] < r[1] then
-				table.insert(ipgroup_new, range)
-				range = r
-			elseif range[2] >= r[1] and range[2] <= r[2] then
+				if range[2] + 1 < r[1] then
+					table.insert(rangeSet_new, range)
+					range = r
+				else -- range[2] == r[1]
+					range = {range[1], r[2]}
+				end
+			elseif range[2] <= r[2] then
 				range = {range[1], r[2]}
 			end
-		elseif range[1] >= r[1] and range[1] <= r[2] then
+		elseif range[1] <= r[2] then
 			if range[2] <= r[2] then
 				range = {r[1], r[2]}
 			elseif range[2] > r[2] then
 				range = {r[1], range[2]}
 			end
-		else
-			table.insert(ipgroup_new, r)
+		elseif range[1] == r[2] + 1 then
+			range = {r[1], range[2]}
+		else -- range[1] > r[2] + 1
+			table.insert(rangeSet_new, r)
 		end
 	end
-	table.insert(ipgroup_new, range)
+	table.insert(rangeSet_new, range)
 
-	return ipgroup_new
+	return rangeSet_new
 end
 
--- ipranges: [netstr, ...]
-local function ipranges2ipgroup(ipranges)
-	local ipgroup = {}
-	for _, netstr in ipairs(ipranges) do
-		ipgroup = ipgroup_add_netstr(ipgroup, netstr)
+-- netStringSet: [netString, ...]
+local function netStringSet2rangeSet(netStringSet)
+	local rangeSet = {}
+	for _, netString in ipairs(netStringSet) do
+		rangeSet = rangeSet_add_range(rangeSet, netString2range(netString))
 	end
-	return ipgroup
+	return rangeSet
 end
 
-local function ipgroup2ipranges(ipgroup)
-	local ipranges = {}
-	for _, range in ipairs(ipgroup) do
-		table.insert(ipranges, string.format("%s-%s", int2ipstr(range[1]), int2ipstr(range[2])))
+local function rangeSet2netStringSet(rangeSet)
+	local netStringSet = {}
+	for _, range in ipairs(rangeSet) do
+		table.insert(netStringSet, string.format("%s-%s", int2ipstr(range[1]), int2ipstr(range[2])))
 	end
-	return ipranges
+	return netStringSet
 end
 
+--ipcidr: a.b.c.d/cidr
+--ipcidrSet: [ipcidr, ...], yes it is a netStringSet
+local function rangeSet2ipcidrSet(rangeSet)
+	local ipcidrSet = {}
+	for _, range in ipairs(rangeSet) do
+		while range[1] <= range[2] do
+			for cidr = 1, 32 do
+				local m = cidr2int(cidr)
+				local s = _band(range[1], m)
+				local e = _bor(s, _bnot(m))
+				if s == range[1] and e <= range[2] then
+					table.insert(ipcidrSet, int2ipstr(s) .. '/' .. cidr)
+					range[1] = e + 1
+					break
+				end
+			end
+		end
+	end
+	return ipcidrSet
+end
+
+--[[DEBUG]]
 --[[
-local ipranges = {
+local netStringSet = {
 	"1.1.1.1-2.2.2.2",
 	"192.168.0.0/16",
 	"192.168.0.1-192.168.0.2",
 	"192.168.255.254-192.169.0.100",
 	"172.16.0.1-172.16.0.100",
 	"172.168.0.0/255.255.0.0",
+	"192.168.11.6/24",
+	"192.168.0.1-192.168.0.22",
+	"192.168.0.33-192.168.0.52",
 }
 
-for _, netstr in ipairs(ipranges) do
-	print(netstr, range2netstr(netstr2range(netstr)))
+print("dump netStringSet")
+for _, netString in ipairs(netStringSet) do
+	print(netString, range2netString(netString2range(netString)))
 end
 
-local ipgroup = ipranges2ipgroup(ipranges)
-for _, r in ipairs(ipgroup) do
+print("netStringSet to rangeSet")
+local rangeSet = netStringSet2rangeSet(netStringSet)
+for _, r in ipairs(rangeSet) do
 	print(r[1], r[2])
 end
 
-ipranges = ipgroup2ipranges(ipgroup)
-for _, ipstr in ipairs(ipranges) do
-	print(ipstr)
+print("rangeSet to netStringSet")
+netStringSet = rangeSet2netStringSet(rangeSet)
+for _, netString in ipairs(netStringSet) do
+	print(netString)
 end
 
+print("rangeSet to ipcidrSet")
+local ipcidrSet = rangeSet2ipcidrSet(rangeSet)
+for _, ipcidr in ipairs(ipcidrSet) do
+	print(ipcidr)
+end
+
+print("ipcidrSet to rangeSet")
+rangeSet = netStringSet2rangeSet(ipcidrSet)
+for _, r in ipairs(rangeSet) do
+	print(r[1], r[2])
+end
+
+print("rangeSet to netStringSet")
+netStringSet = rangeSet2netStringSet(rangeSet)
+for _, netString in ipairs(netStringSet) do
+	print(netString)
+end
+
+print("get_ipstr_and_maskstr")
 local ip, mask = get_ipstr_and_maskstr("1.2.3.4/32")
 print(ip, mask)
 ]]
@@ -261,9 +312,10 @@ return {
 	b32xor 					= _bxor,
 	b32not 					= _bnot,
 
-	ipranges2ipgroup			= ipranges2ipgroup,
-	ipgroup2ipranges			= ipgroup2ipranges,
-	ipgroup_add_netstr			= ipgroup_add_netstr,
-	netstr2range				= netstr2range,
-	range2netstr				= range2netstr,
+	netString2range				= netString2range,
+	netStringSet2rangeSet			= netStringSet2rangeSet,
+	range2netString				= range2netString,
+	rangeSet2netStringSet			= rangeSet2netStringSet,
+	rangeSet2ipcidrSet			= rangeSet2ipcidrSet,
+	rangeSet_add_range			= rangeSet_add_range,
 }
