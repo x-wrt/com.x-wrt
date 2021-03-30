@@ -294,7 +294,7 @@ local ip, mask = get_ipstr_and_maskstr("1.2.3.4/32")
 print(ip, mask)
 ]]
 
-return {
+local __func__ =  {
 	ipstr2int				= ipstr2int,
 	int2ipstr 				= int2ipstr,
 	cidr2int 				= cidr2int,
@@ -319,3 +319,46 @@ return {
 	rangeSet2ipcidrSet			= rangeSet2ipcidrSet,
 	rangeSet_add_range			= rangeSet_add_range,
 }
+
+-- for test_func
+-- argv = [ "netString,netString" ]
+local function netStrings2ipcidrStrings(argv)
+	local rangeSet = {}
+	local netString
+	local netStrings = argv[1]
+	for netString in netStrings:gmatch("[^,]+") do
+		rangeSet = rangeSet_add_range(rangeSet, netString2range(netString))
+	end
+
+	local ipcidrSet = rangeSet2ipcidrSet(rangeSet)
+	print(table.concat(ipcidrSet, ','))
+end
+
+local test_func = {
+	netStrings2ipcidrStrings = {
+		argc = 1,
+		func = netStrings2ipcidrStrings
+	}
+}
+
+function test_main(...)
+	if arg[1] and test_func[arg[1]] and test_func[arg[1]].func then
+		local argc = test_func[arg[1]].argc or 0
+		local func = test_func[arg[1]].func
+		local argv = {}
+		if argc > 0 then
+			for i = 1, argc do
+				table.insert(argv, arg[1 + i])
+			end
+		end
+		return true, func(argv)
+	end
+	return false
+end
+
+local test, ret = test_main(...)
+if test then
+	return ret
+end
+
+return __func__
