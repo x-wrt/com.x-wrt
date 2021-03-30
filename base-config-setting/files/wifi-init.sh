@@ -11,12 +11,15 @@ wifi_setup_radio()
 		   [ "$(readlink /sys/class/ieee80211/phy0/device)" = "$(readlink /sys/class/ieee80211/phy1/device)" ]; then
 			path="$(uci get wireless.${radio}.path)"
 			if test -z "${path#*+1}"; then
+				uci set wireless.${radio}.phy='phy1'
 				uci set wireless.${radio}.htmode='VHT80'
 				uci set wireless.${radio}.hwmode='11a'
 			else
+				uci set wireless.${radio}.phy='phy0'
 				uci set wireless.${radio}.htmode='HT20'
 				uci set wireless.${radio}.hwmode='11g'
 			fi
+			uci delete wireless.${radio}.path
 		fi
 
 		uci -q batch <<-EOT
