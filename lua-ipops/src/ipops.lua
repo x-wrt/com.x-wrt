@@ -320,18 +320,26 @@ local __func__ =  {
 	rangeSet_add_range			= rangeSet_add_range,
 }
 
--- for test_func
+-- api for test_func
 -- argv = [ "netString,netString" ]
+-- return: exit code
+-- eg: lua ipops.lua netStrings2ipcidrStrings "1.2.3.4,192.168.1.0/24,192.168.100.100-192.168.200.222"
 local function netStrings2ipcidrStrings(argv)
 	local rangeSet = {}
 	local netString
 	local netStrings = argv[1]
+	if not netStrings then
+		return -1
+	end
 	for netString in netStrings:gmatch("[^,]+") do
 		rangeSet = rangeSet_add_range(rangeSet, netString2range(netString))
 	end
 
 	local ipcidrSet = rangeSet2ipcidrSet(rangeSet)
+
 	print(table.concat(ipcidrSet, ','))
+
+	return 0
 end
 
 local test_func = {
@@ -358,7 +366,7 @@ end
 
 local test, ret = test_main(...)
 if test then
-	return ret
+	os.exit(ret)
 end
 
 return __func__
