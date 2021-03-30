@@ -1,0 +1,2 @@
+config globals 'pptp'
+	option mppe '0'

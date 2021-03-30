@@ -2,8 +2,26 @@
 
 START=19
 
+global_setup() {
+	local mppe=$(uci get pptpxwan.pptp.mppe 2>/dev/null || echo 0)
+	if [ "x$mppe" = "x0" ]; then
+		grep -q ^mppe /etc/ppp/options.pptp && {
+			sed -i 's/\(^mppe.*\)/#\1/' /etc/ppp/options.pptp
+		}
+	else
+		grep -q ^mppe /etc/ppp/options.pptp || {
+			if grep -q "^#mppe" /etc/ppp/options.pptp; then
+				sed -i 's/^#\(mppe.*\)/\1/' /etc/ppp/options.pptp
+			else
+				echo "mppe required,no40,no56,stateless" >>/etc/ppp/options.pptp
+			fi
+		}
+	fi
+}
+
 boot() {
 	XBOOT=1 #do nothing
+	global_setup
 }
 
 cache_mwan3_add_one() {
@@ -102,6 +120,8 @@ cache_add_pptpxwan_line() {
 
 start() {
 	local line_idx=0
+
+	global_setup
 
 	while uci delete mwan3.@interface[0] >/dev/null 2>&1; do :; done
 	while uci delete mwan3.@member[0] >/dev/null 2>&1; do :; done

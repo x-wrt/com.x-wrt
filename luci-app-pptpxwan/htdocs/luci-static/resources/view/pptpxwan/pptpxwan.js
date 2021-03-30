@@ -41,7 +41,13 @@ return view.extend({
 
 		m = new form.Map('pptpxwan', [_('PPTP XWAN Setup')]);
 
-		s = m.section(form.GridSection, 'line', '');
+		s = m.section(form.NamedSection, 'pptp', 'globals', _('PPTP OPTIONS'));
+		s.addremove = false;
+
+		o = s.option(form.Flag, 'mppe', _("MPPE enabled"));
+		o.default = o.disabled;
+
+		s = m.section(form.GridSection, 'line', 'PPTP XWAN LINE');
 		s.addremove = true;
 		s.anonymous = true;
 		s.nodescriptions = true;
