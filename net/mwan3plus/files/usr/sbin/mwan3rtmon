@@ -46,7 +46,7 @@ mwan3_rtmon_route_handle()
 	mwan3_update_dev_to_table
 	mwan3_route_line_dev "tid" "$route_line" "$route_family"
 	handle_route() {
-		tbl=$($IP route list table $id)
+		tbl=$($IP route list table $id 2>/dev/null)
 		if [ $action = "add" ]; then
 			echo "$tbl" | grep -q "^default\|^::/0" || return
 		else
