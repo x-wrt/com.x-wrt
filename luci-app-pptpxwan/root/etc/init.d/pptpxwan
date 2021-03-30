@@ -6,16 +6,14 @@ boot() {
 	XBOOT=1 #do nothing
 }
 
-mwan3_add_one() {
+cache_mwan3_add_one() {
 	local intf=$1
+	local src_net="$2"
+	local dst_net="$3"
 	uci set mwan3.${intf}=interface
 	uci set mwan3.${intf}.enabled='1'
 	uci set mwan3.${intf}.initial_state='online'
 	uci set mwan3.${intf}.family='ipv4'
-	uci delete mwan3.${intf}.track_ip 2>/dev/null
-	uci add_list mwan3.${intf}.track_ip='114.114.114.114'
-	uci add_list mwan3.${intf}.track_ip='119.29.29.29'
-	uci add_list mwan3.${intf}.track_ip='8.8.8.8'
 	uci set mwan3.${intf}.track_method='ping'
 	uci set mwan3.${intf}.reliability='1'
 	uci set mwan3.${intf}.count='1'
@@ -35,12 +33,22 @@ mwan3_add_one() {
 	uci set mwan3.${intf}_m100_w100.metric='100'
 	uci set mwan3.${intf}_m100_w100.weight='100'
 
-	uci set mwan3.balanced=policy
-	uci set mwan3.balanced.last_resort='unreachable'
-	uci add_list mwan3.balanced.use_member="${intf}_m100_w100"
+	uci set mwan3.${intf}_only=policy
+	uci set mwan3.${intf}_only.last_resort='unreachable'
+	uci delete mwan3.${intf}_only.use_member 2>/dev/null
+	uci add_list mwan3.${intf}_only.use_member="${intf}_m100_w100"
+
+	uci set mwan3.line_${intf}=rule
+	uci set mwan3.line_${intf}.family='ipv4'
+	uci set mwan3.line_${intf}.src_ip="${src_net}"
+	test -n "${dst_net}" && \
+	uci set mwan3.line_${intf}.dest_ip="${dst_net}"
+	uci set mwan3.line_${intf}.proto='all'
+	uci set mwan3.line_${intf}.sticky='0'
+	uci set mwan3.line_${intf}.use_policy="${intf}_only"
 }
 
-add_to_zone_wan() {
+cache_add_to_zone_wan() {
 	local idx=0
 
 	while uci get firewall.@zone[$idx] >/dev/null 2>&1; do
@@ -50,89 +58,62 @@ add_to_zone_wan() {
 				[ "$nw" = "$1" ] && return
 			done
 			uci set firewall.@zone[$idx].network="`echo $networks $1`"
-			uci commit firewall
 			return
 		fi
 		idx=$((idx + 1))
 	done
 }
 
-add_pptpxwan_line() {
-	uptime >>/tmp/1-do-nothing.log
-	return 0
+cache_add_pptpxwan_line() {
 	local cfg="$1"
-	local enabled number balanced
-	local ifname id idx
+	local src_net dst_net pptp_user pptp_pass pptp_server
 	local change=0
 
-	config_get enabled "$cfg" enabled
-	config_get number "$cfg" number
-	config_get balanced "$cfg" balanced
+	config_get src_net "$cfg" src_net
+	config_get dst_net "$cfg" dst_net
+	config_get pptp_user "$cfg" username
+	config_get pptp_pass "$cfg" password
+	config_get pptp_server "$cfg" pptp_server
 
-	xwan_new=$(uci show xwan | md5sum | head -c32)
-	xwan_old=$(uci get mwan3.globals.xwan_md5)
+	echo $src_net
+	echo $src_net
+	echo $pptp_user
+	echo $pptp_pass
+	echo $pptp_server
 
-	[ "x$enabled" = "x1" ] || return 0
+	src_net=$(lua /usr/lib/lua/ipops.lua netStrings2ipcidrStrings "$src_net")
+	dst_net=$(lua /usr/lib/lua/ipops.lua netStrings2ipcidrStrings "$dst_net")
 
-	[ "x${xwan_new}" = "x${xwan_old}" ] || {
-		while uci delete mwan3.@interface[0] >/dev/null 2>&1; do :; done
-		while uci delete mwan3.@member[0] >/dev/null 2>&1; do :; done
-		while uci delete mwan3.@policy[0] >/dev/null 2>&1; do :; done
-		change=1
-	}
+	local idx=$(printf %03u $line_idx)
+	#add network
+	uci set network.xwan$idx=interface
+	uci set network.xwan$idx.proto='pptp'
+	uci set network.xwan$idx.server="$pptp_server"
+	uci set network.xwan$idx.username="$pptp_user"
+	uci set network.xwan$idx.password="$pptp_pass"
+	uci set network.xwan$idx.metric="$((900+line_idx))"
+	uci set network.xwan$idx.auto='1'
 
-	id=0
-	ifname=`uci get network.wan.ifname`
+	cache_add_to_zone_wan xwan$idx
+	cache_mwan3_add_one xwan$idx "$src_net" "$dst_net"
 
-	if [ "x$enabled" = "x1" ] && test $number -ge 2 && test -n "$ifname"; then
-		uci get network.wan.metric >/dev/null 2>&1 || {
-			uci set network.wan.metric=40
-			change=1
-		}
-		[ "x$balanced" = "x1" ] && {
-			uci get mwan3.wan >/dev/null 2>&1 || {
-				mwan3_add_one wan
-				change=1
-			}
-		}
-		while :; do
-			id=$((id + 1))
-			idx=$(printf %02u $id)
-			uci get network.device$idx >/dev/null 2>&1 || {
-				uci set network.device$idx=device
-				uci set network.device$idx.ifname="$ifname"
-				uci set network.device$idx.type="macvlan"
-				uci set network.device$idx.name="mvlan$idx"
-				change=1
-			}
+	line_idx=$((line_idx+1))
+}
 
-			uci get network.xwan$idx >/dev/null 2>&1 || {
-				uci set network.xwan$idx=interface
-				uci show network.wan | grep "network\.wan\." | sed "s/^network\.wan\.//g;s/=/ /;s,',,g" | while read _k _v; do
-					uci set network.xwan$idx.$_k="$_v"
-				done
-				uci set network.xwan$idx.ifname="mvlan$idx"
-				uci set network.xwan$idx.metric=$((40 + id))
-				[ "x`uci get network.wan.proto 2>/dev/null`" = "xstatic" ] && \
-				uci set network.xwan$idx.auto='0'
-				change=1
-			}
+start() {
+	local line_idx=0
 
-			add_to_zone_wan xwan$idx
+	while uci delete mwan3.@interface[0] >/dev/null 2>&1; do :; done
+	while uci delete mwan3.@member[0] >/dev/null 2>&1; do :; done
+	while uci delete mwan3.@policy[0] >/dev/null 2>&1; do :; done
+	while uci delete mwan3.@rule[0] >/dev/null 2>&1; do :; done
 
-			[ "x$balanced" = "x1" ] && {
-				uci get mwan3.xwan$idx >/dev/null 2>&1 || {
-					mwan3_add_one xwan$idx
-					change=1
-				}
-			}
-			test $id -ge $((number - 1)) && break
-		done
-	fi
-	
-	#clean up
-	id=$((id + 1))
-	idx=$(printf %02u $id)
+	config_load pptpxwan
+	config_foreach cache_add_pptpxwan_line line
+
+	#clean up network
+	local id=$line_idx
+	local idx=$(printf %03u $id)
 	while :; do
 		uci get network.device$idx >/dev/null 2>&1 && {
 			uci delete network.device$idx
@@ -143,25 +124,20 @@ add_pptpxwan_line() {
 			change=1
 		}
 		id=$((id + 1))
-		idx=$(printf %02u $id)
+		idx=$(printf %03u $id)
 		uci get network.device$idx >/dev/null 2>&1 || uci get network.xwan$idx >/dev/null 2>&1 || break
 	done
+	#clean up firewall
 
-	[ "x$change" = "x1" ] && {
-		uci commit network
-		uci set mwan3.globals.xwan_md5="${xwan_new}"
-		uci commit mwan3
-		[ "x$XRELOAD" = "x1" ] && {
-			/etc/init.d/network reload
-			/etc/init.d/firewall reload
-			/etc/init.d/mwan3 reload
-		}
+	uci commit firewall
+	uci commit mwan3
+	uci commit network
+
+	[ "x$XRELOAD" = "x1" ] && {
+		/etc/init.d/network reload
+		/etc/init.d/firewall reload
+		/etc/init.d/mwan3 reload
 	}
-}
-
-start() {
-	config_load pptpxwan
-	config_foreach add_pptpxwan_line line
 }
 
 restart() {
