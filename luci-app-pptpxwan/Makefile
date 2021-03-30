@@ -24,7 +24,7 @@ define Package/luci-app-pptpxwan
 	SUBMENU:=PPTP XWAN Support
 	TITLE:=LuCI Support for pptpxwan
 	PKGARCH:=all
-	DEPENDS:=
+	DEPENDS:=+lua-ipops
 endef
 
 define Package/luci-app-pptpxwan/description
