@@ -81,6 +81,7 @@ end
 
 -- cidr: n
 local function cidr2int(cidr)
+	if cidr == 0 then return 0 end
 	local x = 0
 	for i = 0, cidr - 1 do
 		x = x + _lshift(1, 31 - i)
@@ -109,7 +110,7 @@ end
 -- return ip_int, mask_int
 local function get_ip_and_mask(ipaddr)
 	local n = get_parts_as_number(ipaddr)
-	return (((n[1] * 256 + n[2]) * 256 + n[3]) * 256 + n[4]), cidr2int(n[5] or 0)
+	return (((n[1] * 256 + n[2]) * 256 + n[3]) * 256 + n[4]), cidr2int(n[5] or 32)
 end
 
 -- return ip_str, mask_str
@@ -225,7 +226,7 @@ local function rangeSet2ipcidrSet(rangeSet)
 	local ipcidrSet = {}
 	for _, range in ipairs(rangeSet) do
 		while range[1] <= range[2] do
-			for cidr = 1, 32 do
+			for cidr = 0, 32 do
 				local m = cidr2int(cidr)
 				local s = _band(range[1], m)
 				local e = _bor(s, _bnot(m))
@@ -290,7 +291,7 @@ for _, netString in ipairs(netStringSet) do
 end
 
 print("get_ipstr_and_maskstr")
-local ip, mask = get_ipstr_and_maskstr("1.2.3.4/32")
+local ip, mask = get_ipstr_and_maskstr("1.2.3.4")
 print(ip, mask)
 ]]
 
