@@ -149,6 +149,14 @@ start() {
 	done
 	#clean up firewall
 
+	uci delete firewall.pptpxwan_gre >/dev/null 2>&1
+	uci set firewall.pptpxwan_gre=rule
+	uci set firewall.pptpxwan_gre.enabled='1'
+	uci set firewall.pptpxwan_gre.target='ACCEPT'
+	uci set firewall.pptpxwan_gre.src='wan'
+	uci set firewall.pptpxwan_gre.name='gre'
+	uci set firewall.pptpxwan_gre.proto='gre'
+
 	uci commit firewall
 	uci commit mwan3
 	uci commit network
