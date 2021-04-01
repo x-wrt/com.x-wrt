@@ -127,9 +127,27 @@ add_xwan() {
 			test $id -ge $((number - 1)) && break
 		done
 	fi
+
+	#clean up firewall
+	id=$((number))
+	idx=0
+	while uci get firewall.@zone[$idx] >/dev/null 2>&1; do
+		if [ "$(uci get firewall.@zone[$idx].name)" = "wan" ]; then
+			networks=`uci get firewall.@zone[$idx].network`;
+			uci delete firewall.@zone[$idx].network >/dev/null 2>&1
+			for nw in $networks; do
+				num=${nw:4}
+				[ "${nw:0:4}" = "xwan" ] && [ ${#num} = 2 ] && [ $num -ge $id ] && continue
+				uci add_list firewall.@zone[$idx].network="$nw"
+			done
+			uci commit firewall
+			break
+		fi
+		idx=$((idx + 1))
+	done
 	
 	#clean up
-	id=$((id + 1))
+	id=$((number))
 	idx=$(printf %02u $id)
 	while :; do
 		uci get network.device$idx >/dev/null 2>&1 && {
