@@ -4,6 +4,9 @@
 	. /lib/functions.sh
 	. /lib/mwan3/mwan3.sh
 
+	#skip hotplug.d action if not total init start
+	[ "$MWAN3_STARTUP" != 1 ] && test -e /var/run/mwan3.init && exit 0
+
 	[ "$MWAN3_STARTUP" != 1 ] && mwan3_lock "$ACTION" "$INTERFACE-user"
 
 	config_load mwan3
