@@ -125,23 +125,17 @@ main()
 	fi
 	mwan3_init
 
-	mwan3_lock "service" "mwan3rtmon"
 	mwan3_set_local_${family}
 	mwan3_set_connected_${family}
-	mwan3_unlock "service" "mwan3rtmon"
 
 	$IP monitor route | while read -r line; do
 		[ -z "${line##*local*table local*}" ] && {
-			mwan3_lock "service" "mwan3rtmon"
 			mwan3_set_local_${family}
-			mwan3_unlock "service" "mwan3rtmon"
 			continue
 		}
 		[ -z "${line##*table*}" ] && continue
 		LOG debug "handling route update $family $line"
-		mwan3_lock "service" "mwan3rtmon"
 		mwan3_rtmon_route_handle "$line" "$family"
-		mwan3_unlock "service" "mwan3rtmon"
 	done
 }
 main "$@"
