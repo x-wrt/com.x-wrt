@@ -105,6 +105,7 @@ cache_add_pptpxwan_line() {
 	uci set network.xwan$idx.password="$pptp_pass"
 	uci set network.xwan$idx.metric="$((900+line_idx))"
 	uci set network.xwan$idx.auto='1'
+	uci set network.xwan$idx.ipv6='0'
 
 	cache_add_to_zone_wan xwan$idx
 	cache_mwan3_add_one xwan$idx "$src_net" "$dst_net"
