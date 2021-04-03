@@ -174,7 +174,7 @@ main() {
 			if [ x$track_ip = xgateway ]; then
 				if [ "$family" = "ipv4" ]; then
 					track_ip=`ip r | grep default | grep " "$DEVICE" " | awk '{print $3}' | grep '[0-9]*\.[0-9]*\.[0-9]*\.[0-9]*'`
-					test -n "$track_ip" || continue
+					test -n "$track_ip" || track_ip=255.255.255.255
 				else
 					continue
 				fi
