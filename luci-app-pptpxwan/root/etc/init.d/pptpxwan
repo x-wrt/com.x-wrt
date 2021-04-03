@@ -44,7 +44,9 @@ cache_mwan3_add_one() {
 	uci set mwan3.${intf}.recovery_interval='5'
 	uci set mwan3.${intf}.down='3'
 	uci set mwan3.${intf}.up='3'
-	uci set mwan3.${intf}.flush_conntrack='never'
+	uci delete mwan3.${intf}.track_ip 2>/dev/null
+	uci add_list mwan3.${intf}.track_ip='114.114.114.114'
+	uci add_list mwan3.${intf}.track_ip='119.29.29.29'
 
 	uci set mwan3.${intf}_m100_w100=member
 	uci set mwan3.${intf}_m100_w100.interface="${intf}"
