@@ -426,7 +426,7 @@ CONFIG_TARGET_INIT_CMD="/sbin/init"
 CONFIG_TARGET_INIT_SUPPRESS_STDERR=y
 CONFIG_VERSIONOPT=y
 CONFIG_VERSION_DIST="X-WRT"
-CONFIG_VERSION_NUMBER="9.0_b202103270518"
+CONFIG_VERSION_NUMBER="9.0_b202104032036"
 CONFIG_VERSION_CODE="Hirsute"
 CONFIG_VERSION_REPO="http://downloads.openwrt.org/snapshots"
 CONFIG_VERSION_HOME_URL="https://x-wrt.com/"
@@ -5348,6 +5348,7 @@ CONFIG_PACKAGE_luci-app-firewall=y
 # CONFIG_PACKAGE_luci-app-hd-idle is not set
 # CONFIG_PACKAGE_luci-app-hnet is not set
 # CONFIG_PACKAGE_luci-app-https-dns-proxy is not set
+# CONFIG_PACKAGE_luci-app-jd-dailybonus is not set
 CONFIG_PACKAGE_luci-app-ksmbd=y
 CONFIG_PACKAGE_luci-app-ledtrig-rssi=y
 CONFIG_PACKAGE_luci-app-ledtrig-switch=y
@@ -7037,6 +7038,7 @@ CONFIG_PACKAGE_rssileds=y
 CONFIG_PACKAGE_tcpdump=y
 # CONFIG_PACKAGE_tcpdump-mini is not set
 # CONFIG_PACKAGE_tgt is not set
+# CONFIG_PACKAGE_tmate-ssh-server is not set
 # CONFIG_PACKAGE_tor is not set
 # CONFIG_PACKAGE_tor-basic is not set
 # CONFIG_PACKAGE_tor-fw-helper is not set
@@ -7163,6 +7165,7 @@ CONFIG_PACKAGE_wwan=y
 #
 # Disc
 #
+# CONFIG_PACKAGE_autopart is not set
 # CONFIG_PACKAGE_blkdiscard is not set
 CONFIG_PACKAGE_blkid=y
 # CONFIG_PACKAGE_blockdev is not set
@@ -7458,6 +7461,7 @@ CONFIG_PACKAGE_zoneinfo-southamerica=y
 # CONFIG_PACKAGE_coreutils is not set
 # CONFIG_PACKAGE_crconf is not set
 # CONFIG_PACKAGE_crelay is not set
+# CONFIG_PACKAGE_crun is not set
 # CONFIG_PACKAGE_csstidy is not set
 # CONFIG_PACKAGE_ct-bugcheck is not set
 # CONFIG_PACKAGE_ctop is not set
@@ -7472,7 +7476,6 @@ CONFIG_PACKAGE_dmidecode=y
 # CONFIG_PACKAGE_docker is not set
 # CONFIG_PACKAGE_docker-compose is not set
 # CONFIG_PACKAGE_dockerd is not set
-# CONFIG_PACKAGE_domoticz is not set
 # CONFIG_PACKAGE_dropbearconvert is not set
 # CONFIG_PACKAGE_dtc is not set
 # CONFIG_PACKAGE_dumb-init is not set
@@ -7606,6 +7609,7 @@ CONFIG_PACKAGE_pciutils=y
 # CONFIG_PACKAGE_pcsc-tools is not set
 # CONFIG_PACKAGE_pcscd is not set
 # CONFIG_PACKAGE_podman is not set
+# CONFIG_PACKAGE_podman-selinux is not set
 # CONFIG_PACKAGE_policycoreutils is not set
 # CONFIG_PACKAGE_powertop is not set
 # CONFIG_PACKAGE_pps-tools is not set
@@ -7771,6 +7775,12 @@ CONFIG_PACKAGE_kmod-exfat-linux=y
 # end of Filesystems
 
 #
+# Libs
+#
+# CONFIG_PACKAGE_lua-ipops is not set
+# end of Libs
+
+#
 # Macvlan
 #
 CONFIG_PACKAGE_luci-app-macvlan=y
@@ -7795,6 +7805,12 @@ CONFIG_PACKAGE_natcapd-client=y
 # CONFIG_PACKAGE_natcapd-peer is not set
 CONFIG_PACKAGE_natcapd-server=y
 # end of Natcap Support
+
+#
+# PPTP XWAN Support
+#
+# CONFIG_PACKAGE_luci-app-pptpxwan is not set
+# end of PPTP XWAN Support
 
 #
 # Printer
