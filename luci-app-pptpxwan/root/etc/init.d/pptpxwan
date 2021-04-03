@@ -28,6 +28,8 @@ cache_mwan3_add_one() {
 	local intf=$1
 	local src_net="$2"
 	local dst_net="$3"
+	local track_ips=$(uci get pptpxwan.pptp.track_ip 2>/dev/null)
+
 	uci set mwan3.${intf}=interface
 	uci set mwan3.${intf}.enabled='1'
 	uci set mwan3.${intf}.initial_state='online'
@@ -45,8 +47,9 @@ cache_mwan3_add_one() {
 	uci set mwan3.${intf}.down='3'
 	uci set mwan3.${intf}.up='3'
 	uci delete mwan3.${intf}.track_ip 2>/dev/null
-	uci add_list mwan3.${intf}.track_ip='114.114.114.114'
-	uci add_list mwan3.${intf}.track_ip='119.29.29.29'
+	for track_ip in $track_ips; do
+		uci add_list mwan3.${intf}.track_ip="${track_ip}"
+	done
 
 	uci set mwan3.${intf}_m100_w100=member
 	uci set mwan3.${intf}_m100_w100.interface="${intf}"

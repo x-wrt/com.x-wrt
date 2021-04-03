@@ -44,6 +44,10 @@ return view.extend({
 		s = m.section(form.NamedSection, 'pptp', 'globals', _('PPTP OPTIONS'));
 		s.addremove = false;
 
+		o = s.option(form.DynamicList, 'track_ip', _('Tracking hostname or IP address'));
+		o.datatype = 'ip4addr';
+		o.cast = 'string';
+
 		o = s.option(form.Flag, 'mppe', _("MPPE enabled"));
 		o.default = o.disabled;
 

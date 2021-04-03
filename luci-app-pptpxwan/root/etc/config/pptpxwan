@@ -1,2 +1,4 @@
 config globals 'pptp'
 	option mppe '0'
+	list track_ip '114.114.114.114'
+	list track_ip '119.29.29.29'
