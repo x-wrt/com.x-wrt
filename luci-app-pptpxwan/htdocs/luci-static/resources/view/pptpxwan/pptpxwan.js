@@ -51,6 +51,9 @@ return view.extend({
 		o = s.option(form.Flag, 'mppe', _("MPPE enabled"));
 		o.default = o.disabled;
 
+		o = s.option(form.Flag, 'enable', _("Enabled"));
+		o.default = o.disabled;
+
 		s = m.section(form.GridSection, 'line', 'PPTP XWAN LINE');
 		s.addremove = true;
 		s.anonymous = true;
