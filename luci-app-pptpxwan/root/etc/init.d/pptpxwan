@@ -1,6 +1,6 @@
 #!/bin/sh /etc/rc.common
 
-START=19
+START=18
 
 global_setup() {
 	local mppe=$(uci get pptpxwan.pptp.mppe 2>/dev/null || echo 0)
@@ -22,6 +22,10 @@ global_setup() {
 boot() {
 	XBOOT=1 #do nothing
 	global_setup
+	test -f /etc/pptpxwan || {
+		touch /etc/pptpxwan
+		XRELOAD=0 start
+	}
 }
 
 cache_mwan3_add_one() {
