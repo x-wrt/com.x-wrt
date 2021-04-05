@@ -28,7 +28,6 @@ mwan3_add_one() {
 	uci set mwan3.${intf}.recovery_interval='5'
 	uci set mwan3.${intf}.down='3'
 	uci set mwan3.${intf}.up='3'
-	uci set mwan3.${intf}.flush_conntrack='never'
 
 	uci set mwan3.${intf}_m100_w100=member
 	uci set mwan3.${intf}_m100_w100.interface="${intf}"
