@@ -128,8 +128,7 @@ CONFIG_TARGET_DEVICE_PACKAGES_ipq40xx_generic_DEVICE_avm_fritzbox-7530="aria2 at
 # CONFIG_TARGET_DEVICE_ipq40xx_generic_DEVICE_cellc_rtl30vw is not set
 # CONFIG_TARGET_DEVICE_ipq40xx_generic_DEVICE_meraki_mr33 is not set
 # CONFIG_TARGET_DEVICE_ipq40xx_generic_DEVICE_compex_wpj419 is not set
-CONFIG_TARGET_DEVICE_ipq40xx_generic_DEVICE_compex_wpj428=y
-CONFIG_TARGET_DEVICE_PACKAGES_ipq40xx_generic_DEVICE_compex_wpj428="aria2 ath10k-board-qca4019 ath10k-firmware-qca4019-ct blockd block-mount chat comgt comgt-ncm kmod-ath10k-ct kmod-crypto-ccm kmod-crypto-cmac kmod-crypto-ctr kmod-crypto-des kmod-crypto-gcm kmod-crypto-gf128 kmod-crypto-ghash kmod-crypto-hmac kmod-crypto-md4 kmod-crypto-md5 kmod-crypto-rng kmod-crypto-seqiv kmod-crypto-sha256 kmod-crypto-sha512 kmod-exfat-linux kmod-fs-autofs4 kmod-fs-ext4 kmod-fs-ksmbd kmod-fs-msdos kmod-fs-vfat kmod-fuse kmod-gpio-beeper kmod-gpio-button-hotplug kmod-input-core kmod-lib-crc16 kmod-mii kmod-nls-cp437 kmod-usb2 kmod-usb3 kmod-usb-ehci kmod-usb-net kmod-usb-net-cdc-ether kmod-usb-net-cdc-mbim kmod-usb-net-cdc-ncm kmod-usb-net-huawei-cdc-ncm kmod-usb-net-ipheth kmod-usb-net-qmi-wwan kmod-usb-net-rndis kmod-usb-net-rtl8152 kmod-usb-net-sierrawireless kmod-usb-ohci kmod-usb-printer kmod-usb-serial kmod-usb-serial-option kmod-usb-serial-pl2303 kmod-usb-serial-qualcomm kmod-usb-serial-sierrawireless kmod-usb-serial-wwan kmod-usb-storage kmod-usb-storage-uas kmod-usb-wdm kmod-usb-xhci-hcd ksmbd-server ksmbd-utils libcares liblzo libnl-core libnl-genl libopenssl libopenssl-conf libpcre libqrencode libsqlite3 libssh2 libstdcpp libusb-1.0 libxml2 luci-app-aria2 luci-app-ksmbd luci-app-openvpn luci-app-p910nd luci-app-wireguard luci-i18n-aria2-en luci-i18n-aria2-zh-cn luci-i18n-ksmbd-en luci-i18n-ksmbd-zh-cn luci-i18n-openvpn-en luci-i18n-openvpn-zh-cn luci-i18n-p910nd-en luci-i18n-p910nd-zh-cn luci-i18n-wireguard-en luci-i18n-wireguard-zh-cn luci-proto-3g luci-proto-mbim luci-proto-ncm luci-proto-qmi luci-proto-wireguard luci-ssl-nginx minicom nginx nginx-mod-luci nginx-mod-luci-ssl nginx-ssl nginx-ssl-util nginx-util ntfs-3g openssl-util openvpn-openssl p910nd qrencode sendip umbim uqmi usb-modeswitch uwsgi uwsgi-cgi-plugin uwsgi-luci-support uwsgi-syslog-plugin webui-aria2 wget-ssl wireguard-tools wpad-openssl wsdd2 wwan"
+# CONFIG_TARGET_DEVICE_ipq40xx_generic_DEVICE_compex_wpj428 is not set
 # CONFIG_TARGET_DEVICE_ipq40xx_generic_DEVICE_cilab_meshpoint-one is not set
 # CONFIG_TARGET_DEVICE_ipq40xx_generic_DEVICE_dlink_dap-2610 is not set
 # CONFIG_TARGET_DEVICE_ipq40xx_generic_DEVICE_devolo_magic-2-wifi-next is not set
@@ -228,7 +227,6 @@ CONFIG_DEFAULT_kmod-ath10k-ct=y
 CONFIG_MODULE_DEFAULT_kmod-ath10k-ct=y
 CONFIG_MODULE_DEFAULT_kmod-ath10k-ct-smallbuffers=y
 CONFIG_MODULE_DEFAULT_kmod-fs-ext4=y
-CONFIG_MODULE_DEFAULT_kmod-gpio-beeper=y
 CONFIG_DEFAULT_kmod-gpio-button-hotplug=y
 CONFIG_MODULE_DEFAULT_kmod-gpio-button-hotplug=y
 CONFIG_DEFAULT_kmod-ipt-offload=y
@@ -2805,6 +2803,7 @@ CONFIG_PACKAGE_ipq-wifi-glinet_gl-s1300=m
 CONFIG_PACKAGE_ipq-wifi-linksys_ea8300=m
 CONFIG_PACKAGE_ipq-wifi-linksys_mr8300-v0=m
 # CONFIG_PACKAGE_ipq-wifi-luma_wrtq-329acn is not set
+CONFIG_PACKAGE_ipq-wifi-mikrotik_hap-ac2=m
 CONFIG_PACKAGE_ipq-wifi-mobipromo_cm520-79f=m
 # CONFIG_PACKAGE_ipq-wifi-nec_wg2600hp3 is not set
 CONFIG_PACKAGE_ipq-wifi-p2w_r619ac=m
@@ -3994,6 +3993,7 @@ CONFIG_PACKAGE_luasocket=y
 # CONFIG_PACKAGE_python3-babel is not set
 # CONFIG_PACKAGE_python3-base is not set
 # CONFIG_PACKAGE_python3-bcrypt is not set
+# CONFIG_PACKAGE_python3-bidict is not set
 # CONFIG_PACKAGE_python3-boto3 is not set
 # CONFIG_PACKAGE_python3-botocore is not set
 # CONFIG_PACKAGE_python3-bottle is not set
@@ -4050,19 +4050,24 @@ CONFIG_PACKAGE_luasocket=y
 # CONFIG_PACKAGE_python3-dotenv is not set
 # CONFIG_PACKAGE_python3-drf-nested-routers is not set
 # CONFIG_PACKAGE_python3-email is not set
+# CONFIG_PACKAGE_python3-engineio is not set
 # CONFIG_PACKAGE_python3-et_xmlfile is not set
 # CONFIG_PACKAGE_python3-evdev is not set
+# CONFIG_PACKAGE_python3-eventlet is not set
 # CONFIG_PACKAGE_python3-execnet is not set
 # CONFIG_PACKAGE_python3-flask is not set
 # CONFIG_PACKAGE_python3-flask-babel is not set
+# CONFIG_PACKAGE_python3-flask-httpauth is not set
 # CONFIG_PACKAGE_python3-flask-login is not set
 # CONFIG_PACKAGE_python3-flask-seasurf is not set
 # CONFIG_PACKAGE_python3-flask-session is not set
+# CONFIG_PACKAGE_python3-flask-socketio is not set
 # CONFIG_PACKAGE_python3-flup is not set
 # CONFIG_PACKAGE_python3-gdbm is not set
 # CONFIG_PACKAGE_python3-gmpy2 is not set
 # CONFIG_PACKAGE_python3-gnupg is not set
 # CONFIG_PACKAGE_python3-gpiod is not set
+# CONFIG_PACKAGE_python3-greenlet is not set
 # CONFIG_PACKAGE_python3-hyperlink is not set
 # CONFIG_PACKAGE_python3-idna is not set
 # CONFIG_PACKAGE_python3-ifaddr is not set
@@ -4135,6 +4140,7 @@ CONFIG_PACKAGE_luasocket=y
 # CONFIG_PACKAGE_python3-pyroute2 is not set
 # CONFIG_PACKAGE_python3-pyrsistent is not set
 # CONFIG_PACKAGE_python3-pyserial is not set
+# CONFIG_PACKAGE_python3-pysocks is not set
 # CONFIG_PACKAGE_python3-pytest is not set
 # CONFIG_PACKAGE_python3-pytest-forked is not set
 # CONFIG_PACKAGE_python3-pytest-xdist is not set
@@ -4160,6 +4166,7 @@ CONFIG_PACKAGE_luasocket=y
 # CONFIG_PACKAGE_python3-six is not set
 # CONFIG_PACKAGE_python3-slugify is not set
 # CONFIG_PACKAGE_python3-smbus is not set
+# CONFIG_PACKAGE_python3-socketio is not set
 # CONFIG_PACKAGE_python3-speedtest-cli is not set
 # CONFIG_PACKAGE_python3-sqlalchemy is not set
 # CONFIG_PACKAGE_python3-sqlite3 is not set
@@ -4951,11 +4958,12 @@ CONFIG_PACKAGE_libcomerr=m
 # CONFIG_PACKAGE_libdb47xx is not set
 # CONFIG_PACKAGE_libdbi is not set
 # CONFIG_PACKAGE_libdbus is not set
-# CONFIG_PACKAGE_libdevmapper-normal is not set
+# CONFIG_PACKAGE_libdevmapper is not set
 # CONFIG_PACKAGE_libdevmapper-selinux is not set
 # CONFIG_PACKAGE_libdmapsharing is not set
 # CONFIG_PACKAGE_libdnet is not set
 # CONFIG_PACKAGE_libdrm is not set
+# CONFIG_PACKAGE_libdvbcsa is not set
 # CONFIG_PACKAGE_libdw is not set
 # CONFIG_PACKAGE_libecdsautil is not set
 # CONFIG_PACKAGE_libedit is not set
@@ -6674,6 +6682,7 @@ CONFIG_PACKAGE_pptpd=y
 # CONFIG_PACKAGE_softethervpn5-server is not set
 # CONFIG_PACKAGE_sstp-client is not set
 # CONFIG_PACKAGE_strongswan is not set
+# CONFIG_PACKAGE_strongswan-libnttfft is not set
 # CONFIG_PACKAGE_tinc is not set
 # CONFIG_PACKAGE_uanytun is not set
 # CONFIG_PACKAGE_uanytun-nettle is not set
@@ -7234,12 +7243,13 @@ CONFIG_PACKAGE_uboot-envtools=y
 # CONFIG_PACKAGE_hd-idle is not set
 # CONFIG_PACKAGE_hdparm is not set
 # CONFIG_PACKAGE_lsblk is not set
-# CONFIG_PACKAGE_lvm2-normal is not set
+# CONFIG_PACKAGE_lvm2 is not set
 # CONFIG_PACKAGE_lvm2-selinux is not set
 # CONFIG_PACKAGE_mdadm is not set
 # CONFIG_PACKAGE_partx-utils is not set
 # CONFIG_PACKAGE_sfdisk is not set
 # CONFIG_PACKAGE_sgdisk is not set
+# CONFIG_PACKAGE_uvol is not set
 # CONFIG_PACKAGE_wipefs is not set
 # end of Disc
 
