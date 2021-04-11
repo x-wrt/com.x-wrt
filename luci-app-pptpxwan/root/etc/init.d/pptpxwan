@@ -95,6 +95,7 @@ cache_add_pptpxwan_line() {
 	local cfg="$1"
 	local src_net dst_net pptp_user pptp_pass pptp_server
 	local change=0
+	local mtu=$(uci get pptpxwan.pptp.mtu 2>/dev/null || echo 0)
 
 	config_get src_net "$cfg" src_net
 	config_get dst_net "$cfg" dst_net
@@ -115,6 +116,7 @@ cache_add_pptpxwan_line() {
 	uci set network.xwan$idx.metric="$((900+line_idx))"
 	uci set network.xwan$idx.auto='1'
 	uci set network.xwan$idx.ipv6='0'
+	[ "$mtu" = "0" ] || uci set network.xwan$idx.mtu="$mtu"
 
 	cache_add_to_zone_wan xwan$idx
 	cache_mwan3_add_one xwan$idx "$src_net" "$dst_net"

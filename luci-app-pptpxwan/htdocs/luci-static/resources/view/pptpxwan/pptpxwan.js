@@ -51,6 +51,10 @@ return view.extend({
 		o = s.option(form.Flag, 'mppe', _("MPPE enabled"));
 		o.default = o.disabled;
 
+		o = s.option(form.Value, 'mtu', _('Override MTU'));
+		o.datatype = 'max(9200)';
+		o.placeholder = '1450';
+
 		o = s.option(form.Flag, 'enable', _("Enabled"));
 		o.default = o.disabled;
 
