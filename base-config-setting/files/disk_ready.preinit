@@ -109,7 +109,7 @@ do_disk_ready() {
 				UUID0=$(blkid ${ROOTPART}$((LASTNR-1)) | cut -d\" -f2)
 				UUID1=$(blkid ${ROOTPART}$((LASTNR)) | cut -d\" -f2)
 				cp /etc/fstab.config /tmp/fstab.config
-				sed -i "s,/dev/sda3,${UUID0},;s,/dev/sda4,${UUID1}," /tmp/fstab.config
+				sed -i "s,_UUID0_,${UUID0},;s,_UUID1_,${UUID1}," /tmp/fstab.config
 				cp /tmp/fstab.config /etc/config/fstab
 				mount -o remount,ro /
 			}
@@ -184,7 +184,7 @@ do_disk_ready() {
 				UUID0=$(blkid ${ROOTPART}$((LASTNR-1)) | cut -d\" -f2)
 				UUID1=$(blkid ${ROOTPART}$((LASTNR)) | cut -d\" -f2)
 				cp /etc/fstab.config /tmp/fstab.config
-				sed -i "s,/dev/sda3,${UUID0},;s,/dev/sda4,${UUID1}," /tmp/fstab.config
+				sed -i "s,_UUID0_,${UUID0},;s,_UUID1_,${UUID1}," /tmp/fstab.config
 				cp /tmp/fstab.config /etc/config/fstab
 				mount -o remount,ro /
 			}
