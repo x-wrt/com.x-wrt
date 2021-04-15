@@ -25,6 +25,7 @@ define Package/base-config-setting/Default
   DEPENDS:=+dnsmasq-full +busybox +base-files \
 		   +(TARGET_ROOTFS_EXT4FS):ethtool \
 		   +(TARGET_ROOTFS_EXT4FS):blockd \
+		   +(TARGET_ROOTFS_EXT4FS):blkid \
 		   +(TARGET_ROOTFS_EXT4FS):fdisk +(EFI_IMAGES):gdisk
 endef
 
