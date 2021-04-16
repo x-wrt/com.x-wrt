@@ -70,11 +70,12 @@ do_disk_ready() {
 			partx -a ${ROOTDEV}
 			test -b ${ROOTPART}$((LASTNR+1)) -a -b ${ROOTPART}$((LASTNR+2))  || {
 				MAJOR="`ls -l ${ROOTDEV} | grep ${ROOTDEV} | awk '{print $5}' | grep -o '[0-9]*'`"
+				MINOR="`ls -l ${ROOTDEV} | grep ${ROOTDEV} | awk '{print $6}' | grep -o '[0-9]*'`"
 				test -n "$MAJOR" && {
 					rm -f ${ROOTPART}$((LASTNR+1))
-					mknod ${ROOTPART}$((LASTNR+1)) b $MAJOR $((LASTNR+1))
+					mknod ${ROOTPART}$((LASTNR+1)) b $MAJOR $((MINOR+LASTNR+1))
 					rm -f ${ROOTPART}$((LASTNR+2))
-					mknod ${ROOTPART}$((LASTNR+2)) b $MAJOR $((LASTNR+2))
+					mknod ${ROOTPART}$((LASTNR+2)) b $MAJOR $((MINOR+LASTNR+2))
 				}
 			}
 
@@ -146,11 +147,12 @@ do_disk_ready() {
 			partx -a ${ROOTDEV}
 			test -b ${ROOTPART}$((LASTNR+1)) -a -b ${ROOTPART}$((LASTNR+2))  || {
 				MAJOR="`ls -l ${ROOTDEV} | grep ${ROOTDEV} | awk '{print $5}' | grep -o '[0-9]*'`"
+				MINOR="`ls -l ${ROOTDEV} | grep ${ROOTDEV} | awk '{print $6}' | grep -o '[0-9]*'`"
 				test -n "$MAJOR" && {
 					rm -f ${ROOTPART}$((LASTNR+1))
-					mknod ${ROOTPART}$((LASTNR+1)) b $MAJOR $((LASTNR+1))
+					mknod ${ROOTPART}$((LASTNR+1)) b $MAJOR $((MINOR+LASTNR+1))
 					rm -f ${ROOTPART}$((LASTNR+2))
-					mknod ${ROOTPART}$((LASTNR+2)) b $MAJOR $((LASTNR+2))
+					mknod ${ROOTPART}$((LASTNR+2)) b $MAJOR $((MINOR+LASTNR+2))
 				}
 			}
 
