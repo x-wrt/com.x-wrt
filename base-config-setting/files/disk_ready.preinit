@@ -104,18 +104,19 @@ do_disk_ready() {
 				fstab=1
 			fi
 		fi
+		test -b ${ROOTPART}$((LASTNR)) && [ "x`head -c5 ${ROOTPART}$((LASTNR))`" = "xerase" ] && {
+			echo -ne 'y\n' | mkfs.ext4 ${ROOTPART}$((LASTNR))
+			fstab=1
+		}
 		[ "x$fstab" = "x1" ] && {
 			mount -o remount,rw / && {
 				UUID0=$(blkid ${ROOTPART}$((LASTNR-1)) | cut -d\" -f2)
 				UUID1=$(blkid ${ROOTPART}$((LASTNR)) | cut -d\" -f2)
 				cp /etc/fstab.config /tmp/fstab.config
-				sed -i "s,_UUID0_,${UUID0},;s,_UUID1_,${UUID1}," /tmp/fstab.config
+				sed -i "s,\(option.*uuid.*\)'_UUID0_',\1\'${UUID0}\',;s,\(option.*uuid.*\)'_UUID1_',\1\'${UUID1}\'," /tmp/fstab.config
 				cp /tmp/fstab.config /etc/config/fstab
 				mount -o remount,ro /
 			}
-		}
-		test -b ${ROOTPART}$((LASTNR)) && [ "x`head -c5 ${ROOTPART}$((LASTNR))`" = "xerase" ] && {
-			echo -ne 'y\n' | mkfs.ext4 ${ROOTPART}$((LASTNR))
 		}
 	elif [ "$disktype" = "dos" ]; then
 		if [ "x$diskpart" = "x2" ]; then
@@ -179,18 +180,19 @@ do_disk_ready() {
 				fstab=1
 			fi
 		fi
+		test -b ${ROOTPART}$((LASTNR)) && [ "x`head -c5 ${ROOTPART}$((LASTNR))`" = "xerase" ] && {
+			echo -ne 'y\n' | mkfs.ext4 ${ROOTPART}$((LASTNR))
+			fstab=1
+		}
 		[ "x$fstab" = "x1" ] && {
 			mount -o remount,rw / && {
 				UUID0=$(blkid ${ROOTPART}$((LASTNR-1)) | cut -d\" -f2)
 				UUID1=$(blkid ${ROOTPART}$((LASTNR)) | cut -d\" -f2)
 				cp /etc/fstab.config /tmp/fstab.config
-				sed -i "s,_UUID0_,${UUID0},;s,_UUID1_,${UUID1}," /tmp/fstab.config
+				sed -i "s,\(option.*uuid.*\)'_UUID0_',\1\'${UUID0}\',;s,\(option.*uuid.*\)'_UUID1_',\1\'${UUID1}\'," /tmp/fstab.config
 				cp /tmp/fstab.config /etc/config/fstab
 				mount -o remount,ro /
 			}
-		}
-		test -b ${ROOTPART}$((LASTNR)) && [ "x`head -c5 ${ROOTPART}$((LASTNR))`" = "xerase" ] && {
-			echo -ne 'y\n' | mkfs.ext4 ${ROOTPART}$((LASTNR))
 		}
 	fi
 }
