@@ -56,6 +56,7 @@ CONFIG_TARGET_MULTI_PROFILE=y
 # CONFIG_TARGET_mediatek_mt7622_DEVICE_mediatek_mt7622-rfb1 is not set
 # CONFIG_TARGET_mediatek_mt7622_DEVICE_mediatek_mt7622-rfb1-ubi is not set
 # CONFIG_TARGET_mediatek_mt7622_DEVICE_ubnt_unifi-6-lr is not set
+# CONFIG_TARGET_mediatek_mt7622_DEVICE_ubnt_unifi-6-lr-ubootmod is not set
 # CONFIG_TARGET_mediatek_mt7622_DEVICE_xwrt_wr3200k-v1 is not set
 
 #
@@ -76,6 +77,7 @@ CONFIG_TARGET_DEVICE_PACKAGES_mediatek_mt7622_DEVICE_mediatek_mt7622-rfb1="aria2
 CONFIG_TARGET_DEVICE_mediatek_mt7622_DEVICE_mediatek_mt7622-rfb1-ubi=y
 CONFIG_TARGET_DEVICE_PACKAGES_mediatek_mt7622_DEVICE_mediatek_mt7622-rfb1-ubi="aria2 blockdev chat comgt comgt-ncm kmod-ata-ahci-mtk kmod-ata-core kmod-bluetooth kmod-btmtkuart kmod-crypto-ccm kmod-crypto-cmac kmod-crypto-ctr kmod-crypto-des kmod-crypto-ecdh kmod-crypto-gcm kmod-crypto-gf128 kmod-crypto-ghash kmod-crypto-hmac kmod-crypto-md4 kmod-crypto-md5 kmod-crypto-rng kmod-crypto-seqiv kmod-crypto-sha256 kmod-crypto-sha512 kmod-exfat-linux kmod-fs-ext4 kmod-fs-ksmbd kmod-fs-msdos kmod-fs-vfat kmod-fuse kmod-gpio-button-hotplug kmod-hid kmod-input-core kmod-input-evdev kmod-leds-gpio kmod-lib-crc16 kmod-mii kmod-nls-cp437 kmod-regmap-core kmod-rfkill kmod-scsi-core kmod-usb2 kmod-usb3 kmod-usb-ehci kmod-usb-net kmod-usb-net-cdc-ether kmod-usb-net-cdc-mbim kmod-usb-net-cdc-ncm kmod-usb-net-huawei-cdc-ncm kmod-usb-net-ipheth kmod-usb-net-qmi-wwan kmod-usb-net-rndis kmod-usb-net-rtl8152 kmod-usb-net-sierrawireless kmod-usb-ohci kmod-usb-printer kmod-usb-serial kmod-usb-serial-option kmod-usb-serial-pl2303 kmod-usb-serial-qualcomm kmod-usb-serial-sierrawireless kmod-usb-serial-wwan kmod-usb-storage kmod-usb-storage-uas kmod-usb-wdm kmod-usb-xhci-hcd ksmbd-server ksmbd-utils libcares liblzo libnl-core libnl-genl libopenssl libopenssl-conf libpcre libqrencode libsqlite3 libssh2 libusb-1.0 libxml2 luci-app-aria2 luci-app-ksmbd luci-app-openvpn luci-app-p910nd luci-app-wireguard luci-i18n-aria2-en luci-i18n-aria2-zh-cn luci-i18n-ksmbd-en luci-i18n-ksmbd-zh-cn luci-i18n-openvpn-en luci-i18n-openvpn-zh-cn luci-i18n-p910nd-en luci-i18n-p910nd-zh-cn luci-i18n-wireguard-en luci-i18n-wireguard-zh-cn luci-proto-3g luci-proto-mbim luci-proto-ncm luci-proto-qmi luci-proto-wireguard luci-ssl-nginx minicom mt7622bt-firmware nginx nginx-mod-luci nginx-mod-luci-ssl nginx-ssl nginx-ssl-util nginx-util ntfs-3g openssl-util openvpn-openssl p910nd qrencode sendip umbim uqmi usb-modeswitch uwsgi uwsgi-cgi-plugin uwsgi-luci-support uwsgi-syslog-plugin webui-aria2 wget-ssl wireguard-tools wpad-openssl wsdd2 wwan"
 # CONFIG_TARGET_DEVICE_mediatek_mt7622_DEVICE_ubnt_unifi-6-lr is not set
+# CONFIG_TARGET_DEVICE_mediatek_mt7622_DEVICE_ubnt_unifi-6-lr-ubootmod is not set
 CONFIG_TARGET_DEVICE_mediatek_mt7622_DEVICE_xwrt_wr3200k-v1=y
 CONFIG_TARGET_DEVICE_PACKAGES_mediatek_mt7622_DEVICE_xwrt_wr3200k-v1="aria2 blockdev chat comgt comgt-ncm kmod-crypto-ccm kmod-crypto-cmac kmod-crypto-ctr kmod-crypto-des kmod-crypto-gcm kmod-crypto-gf128 kmod-crypto-ghash kmod-crypto-hmac kmod-crypto-md4 kmod-crypto-md5 kmod-crypto-rng kmod-crypto-seqiv kmod-crypto-sha256 kmod-crypto-sha512 kmod-exfat-linux kmod-fs-ext4 kmod-fs-ksmbd kmod-fs-msdos kmod-fs-vfat kmod-fuse kmod-gpio-button-hotplug kmod-leds-gpio kmod-lib-crc16 kmod-mii kmod-mt7915e kmod-nls-cp437 kmod-scsi-core kmod-usb2 kmod-usb3 kmod-usb-ehci kmod-usb-net kmod-usb-net-cdc-ether kmod-usb-net-cdc-mbim kmod-usb-net-cdc-ncm kmod-usb-net-huawei-cdc-ncm kmod-usb-net-ipheth kmod-usb-net-qmi-wwan kmod-usb-net-rndis kmod-usb-net-rtl8152 kmod-usb-net-sierrawireless kmod-usb-ohci kmod-usb-printer kmod-usb-serial kmod-usb-serial-option kmod-usb-serial-pl2303 kmod-usb-serial-qualcomm kmod-usb-serial-sierrawireless kmod-usb-serial-wwan kmod-usb-storage kmod-usb-storage-uas kmod-usb-wdm kmod-usb-xhci-hcd ksmbd-server ksmbd-utils libcares liblzo libnl-core libnl-genl libopenssl libopenssl-conf libpcre libqrencode libsqlite3 libssh2 libusb-1.0 libxml2 luci-app-aria2 luci-app-ksmbd luci-app-openvpn luci-app-p910nd luci-app-wireguard luci-i18n-aria2-en luci-i18n-aria2-zh-cn luci-i18n-ksmbd-en luci-i18n-ksmbd-zh-cn luci-i18n-openvpn-en luci-i18n-openvpn-zh-cn luci-i18n-p910nd-en luci-i18n-p910nd-zh-cn luci-i18n-wireguard-en luci-i18n-wireguard-zh-cn luci-proto-3g luci-proto-mbim luci-proto-ncm luci-proto-qmi luci-proto-wireguard luci-ssl-nginx minicom nginx nginx-mod-luci nginx-mod-luci-ssl nginx-ssl nginx-ssl-util nginx-util ntfs-3g openssl-util openvpn-openssl p910nd qrencode sendip umbim uqmi usb-modeswitch uwsgi uwsgi-cgi-plugin uwsgi-luci-support uwsgi-syslog-plugin webui-aria2 wget-ssl wireguard-tools wpad-openssl wsdd2 wwan"
 # end of Target Devices
@@ -443,7 +445,7 @@ CONFIG_TARGET_INIT_CMD="/sbin/init"
 CONFIG_TARGET_INIT_SUPPRESS_STDERR=y
 CONFIG_VERSIONOPT=y
 CONFIG_VERSION_DIST="X-WRT"
-CONFIG_VERSION_NUMBER="9.0_b202104032047"
+CONFIG_VERSION_NUMBER="9.0_b202104170626"
 CONFIG_VERSION_CODE="Hirsute"
 CONFIG_VERSION_REPO="http://downloads.openwrt.org/snapshots"
 CONFIG_VERSION_HOME_URL="https://x-wrt.com/"
@@ -2609,8 +2611,10 @@ CONFIG_PACKAGE_trusted-firmware-a-mt7622-snand-1ddr=y
 CONFIG_PACKAGE_trusted-firmware-a-mt7622-snand-2ddr=y
 CONFIG_PACKAGE_u-boot-mt7622_bananapi_bpi-r64-emmc=y
 CONFIG_PACKAGE_u-boot-mt7622_bananapi_bpi-r64-sdmmc=y
+CONFIG_PACKAGE_u-boot-mt7622_bananapi_bpi-r64-snand=y
 CONFIG_PACKAGE_u-boot-mt7622_linksys_e8450=y
 CONFIG_PACKAGE_u-boot-mt7622_rfb1=y
+# CONFIG_PACKAGE_u-boot-mt7622_ubnt_unifi-6-lr is not set
 # end of Boot Loaders
 
 #
@@ -2907,7 +2911,6 @@ CONFIG_PACKAGE_kmod-crypto-gf128=m
 CONFIG_PACKAGE_kmod-crypto-ghash=m
 CONFIG_PACKAGE_kmod-crypto-hash=y
 CONFIG_PACKAGE_kmod-crypto-hmac=m
-# CONFIG_PACKAGE_kmod-crypto-hw-ccp is not set
 # CONFIG_PACKAGE_kmod-crypto-hw-geode is not set
 # CONFIG_PACKAGE_kmod-crypto-hw-hifn-795x is not set
 CONFIG_PACKAGE_kmod-crypto-hw-mtk=m
@@ -3287,6 +3290,8 @@ CONFIG_PACKAGE_kmod-mii=m
 # CONFIG_PACKAGE_kmod-phy-realtek is not set
 # CONFIG_PACKAGE_kmod-phylink is not set
 # CONFIG_PACKAGE_kmod-r6040 is not set
+# CONFIG_PACKAGE_kmod-r8125 is not set
+# CONFIG_PACKAGE_kmod-r8168 is not set
 # CONFIG_PACKAGE_kmod-r8169 is not set
 # CONFIG_PACKAGE_kmod-sfc is not set
 # CONFIG_PACKAGE_kmod-sfc-falcon is not set
@@ -3508,6 +3513,7 @@ CONFIG_PACKAGE_kmod-usb-net-qmi-wwan=m
 CONFIG_PACKAGE_kmod-usb-net-rndis=m
 # CONFIG_PACKAGE_kmod-usb-net-rtl8150 is not set
 CONFIG_PACKAGE_kmod-usb-net-rtl8152=m
+# CONFIG_PACKAGE_kmod-usb-net-rtl8152-vendor is not set
 CONFIG_PACKAGE_kmod-usb-net-sierrawireless=m
 # CONFIG_PACKAGE_kmod-usb-net-smsc95xx is not set
 # CONFIG_PACKAGE_kmod-usb-net-sr9700 is not set
@@ -3864,6 +3870,7 @@ CONFIG_PACKAGE_luasocket=y
 # CONFIG_PACKAGE_python3-babel is not set
 # CONFIG_PACKAGE_python3-base is not set
 # CONFIG_PACKAGE_python3-bcrypt is not set
+# CONFIG_PACKAGE_python3-bidict is not set
 # CONFIG_PACKAGE_python3-boto3 is not set
 # CONFIG_PACKAGE_python3-botocore is not set
 # CONFIG_PACKAGE_python3-bottle is not set
@@ -3920,19 +3927,24 @@ CONFIG_PACKAGE_luasocket=y
 # CONFIG_PACKAGE_python3-dotenv is not set
 # CONFIG_PACKAGE_python3-drf-nested-routers is not set
 # CONFIG_PACKAGE_python3-email is not set
+# CONFIG_PACKAGE_python3-engineio is not set
 # CONFIG_PACKAGE_python3-et_xmlfile is not set
 # CONFIG_PACKAGE_python3-evdev is not set
+# CONFIG_PACKAGE_python3-eventlet is not set
 # CONFIG_PACKAGE_python3-execnet is not set
 # CONFIG_PACKAGE_python3-flask is not set
 # CONFIG_PACKAGE_python3-flask-babel is not set
+# CONFIG_PACKAGE_python3-flask-httpauth is not set
 # CONFIG_PACKAGE_python3-flask-login is not set
 # CONFIG_PACKAGE_python3-flask-seasurf is not set
 # CONFIG_PACKAGE_python3-flask-session is not set
+# CONFIG_PACKAGE_python3-flask-socketio is not set
 # CONFIG_PACKAGE_python3-flup is not set
 # CONFIG_PACKAGE_python3-gdbm is not set
 # CONFIG_PACKAGE_python3-gmpy2 is not set
 # CONFIG_PACKAGE_python3-gnupg is not set
 # CONFIG_PACKAGE_python3-gpiod is not set
+# CONFIG_PACKAGE_python3-greenlet is not set
 # CONFIG_PACKAGE_python3-hyperlink is not set
 # CONFIG_PACKAGE_python3-idna is not set
 # CONFIG_PACKAGE_python3-ifaddr is not set
@@ -4005,6 +4017,7 @@ CONFIG_PACKAGE_luasocket=y
 # CONFIG_PACKAGE_python3-pyroute2 is not set
 # CONFIG_PACKAGE_python3-pyrsistent is not set
 # CONFIG_PACKAGE_python3-pyserial is not set
+# CONFIG_PACKAGE_python3-pysocks is not set
 # CONFIG_PACKAGE_python3-pytest is not set
 # CONFIG_PACKAGE_python3-pytest-forked is not set
 # CONFIG_PACKAGE_python3-pytest-xdist is not set
@@ -4030,6 +4043,7 @@ CONFIG_PACKAGE_luasocket=y
 # CONFIG_PACKAGE_python3-six is not set
 # CONFIG_PACKAGE_python3-slugify is not set
 # CONFIG_PACKAGE_python3-smbus is not set
+# CONFIG_PACKAGE_python3-socketio is not set
 # CONFIG_PACKAGE_python3-speedtest-cli is not set
 # CONFIG_PACKAGE_python3-sqlalchemy is not set
 # CONFIG_PACKAGE_python3-sqlite3 is not set
@@ -4821,11 +4835,12 @@ CONFIG_PACKAGE_libcomerr=y
 # CONFIG_PACKAGE_libdb47xx is not set
 # CONFIG_PACKAGE_libdbi is not set
 # CONFIG_PACKAGE_libdbus is not set
-# CONFIG_PACKAGE_libdevmapper-normal is not set
+# CONFIG_PACKAGE_libdevmapper is not set
 # CONFIG_PACKAGE_libdevmapper-selinux is not set
 # CONFIG_PACKAGE_libdmapsharing is not set
 # CONFIG_PACKAGE_libdnet is not set
 # CONFIG_PACKAGE_libdrm is not set
+# CONFIG_PACKAGE_libdvbcsa is not set
 # CONFIG_PACKAGE_libdw is not set
 # CONFIG_PACKAGE_libecdsautil is not set
 # CONFIG_PACKAGE_libedit is not set
@@ -6895,6 +6910,7 @@ CONFIG_PACKAGE_odhcpd_ipv6only_ext_cer_id=0
 
 # CONFIG_PACKAGE_ola is not set
 # CONFIG_PACKAGE_omcproxy is not set
+# CONFIG_PACKAGE_onionshare-cli is not set
 # CONFIG_PACKAGE_ooniprobe is not set
 # CONFIG_PACKAGE_oor is not set
 # CONFIG_PACKAGE_open-iscsi is not set
@@ -7105,12 +7121,13 @@ CONFIG_PACKAGE_gdisk=y
 # CONFIG_PACKAGE_hd-idle is not set
 # CONFIG_PACKAGE_hdparm is not set
 # CONFIG_PACKAGE_lsblk is not set
-# CONFIG_PACKAGE_lvm2-normal is not set
+# CONFIG_PACKAGE_lvm2 is not set
 # CONFIG_PACKAGE_lvm2-selinux is not set
 # CONFIG_PACKAGE_mdadm is not set
 CONFIG_PACKAGE_partx-utils=y
 CONFIG_PACKAGE_sfdisk=y
 CONFIG_PACKAGE_sgdisk=y
+# CONFIG_PACKAGE_uvol is not set
 # CONFIG_PACKAGE_wipefs is not set
 # end of Disc
 
