@@ -12,6 +12,7 @@ SECTOR_SIZE=512
 
 do_disk_ready() {
 	local partdev
+	. /lib/functions.sh
 	. /lib/upgrade/common.sh
 	if export_bootdevice && export_partdevice partdev 0; then
 		if echo $partdev | grep -q ^sd[a-z]; then

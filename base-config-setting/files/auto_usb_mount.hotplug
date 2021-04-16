@@ -22,6 +22,7 @@ try_mount()
 dev=/dev/$DEVNAME
 test -f /rom/etc/sda.ready && {
 	diskdev=sda
+	. /lib/functions.sh
 	. /lib/upgrade/common.sh
 	export_bootdevice && export_partdevice diskdev 0
 	diskdev=/dev/$diskdev

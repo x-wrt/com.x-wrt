@@ -9,6 +9,7 @@ do_disk_ready() {
 	local partdev
 	local ROOTDEV=/dev/sd-
 	local ROOTPART=/dev/sd-
+	. /lib/functions.sh
 	. /lib/upgrade/common.sh
 	if export_bootdevice && export_partdevice partdev 0; then
 		if echo $partdev | grep -q ^sd[a-z]; then

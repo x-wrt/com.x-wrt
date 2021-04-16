@@ -114,6 +114,7 @@ test $version -lt 2 && {
 	which fdisk && {
 		local partdev
 		local ROOTDEV=/dev/sda
+		. /lib/functions.sh
 		. /lib/upgrade/common.sh
 		if export_bootdevice && export_partdevice partdev 0; then
 			ROOTDEV=/dev/${partdev}

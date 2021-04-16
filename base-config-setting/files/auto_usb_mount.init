@@ -30,6 +30,7 @@ auto_mount_boot()
 	done
 
 	diskdev=sda
+	. /lib/functions.sh
 	. /lib/upgrade/common.sh
 	export_bootdevice && export_partdevice diskdev 0
 	diskdev=/dev/$diskdev
