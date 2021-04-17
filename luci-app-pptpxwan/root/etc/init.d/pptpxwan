@@ -25,9 +25,12 @@ delay_start_pptpxwan() {
 	local line_cnt=$2
 	local line_idx idx
 
+	touch /var/run/mwan3.init
+
 	logger -t pptpxwan "stop all($line_cnt) pptpxwan network first.."
 	line_idx=0
 	while test $line_idx -lt $line_cnt; do
+		touch /var/run/mwan3.init
 		idx=$(printf %03u $line_idx)
 		ubus call network.interface.xwan$idx down
 		line_idx=$((line_idx+1))
@@ -38,6 +41,7 @@ delay_start_pptpxwan() {
 	logger -t pptpxwan "start all($line_cnt) pptpxwan network one by one.."
 	line_idx=0
 	while test $line_idx -lt $line_cnt; do
+		touch /var/run/mwan3.init
 		idx=$(printf %03u $line_idx)
 		logger -t pptpxwan "starting network.xwan$idx..."
 		ubus call network.interface.xwan$idx up
@@ -45,7 +49,8 @@ delay_start_pptpxwan() {
 		sleep $delay_time
 	done
 
-	/etc/init.d/mwan3 start
+	rm /var/run/mwan3.init
+	/etc/init.d/mwan3 reload
 }
 
 delay_reload_boot() {
@@ -65,9 +70,6 @@ delay_reload_boot() {
 		fi
 		sleep 5
 	done
-
-	/etc/init.d/mwan3 stop
-	sleep 5
 
 	cache_count_line() {
 		line_idx=$((line_idx+1))
@@ -260,14 +262,12 @@ start() {
 	uci commit network
 
 	[ "x$XRELOAD" = "x1" ] && {
-		/etc/init.d/mwan3 stop
 		/etc/init.d/network reload
 		/etc/init.d/firewall reload
+		/etc/init.d/mwan3 reload
 		delay_reload=$(uci get pptpxwan.pptp.delay_reload 2>/dev/null || echo 0)
 		if test "${delay_reload}" -gt 0 && [ "$enable" = "1" ]; then
 			delay_start_pptpxwan "${delay_reload}" $line_idx
-		else
-			/etc/init.d/mwan3 start
 		fi
 	}
 }
