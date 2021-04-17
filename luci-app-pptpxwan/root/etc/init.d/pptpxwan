@@ -89,7 +89,7 @@ boot() {
 	local enable=$(uci get pptpxwan.pptp.enable 2>/dev/null || echo 0)
 
 	if [ "$enable" = "1" ]; then
-		delay_reload_boot 1000>&-
+		delay_reload_boot 1000>&- &
 	fi
 }
 
