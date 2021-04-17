@@ -34,7 +34,6 @@ delay_start_pptpxwan() {
 	done
 
 	logger -t pptpxwan "start mwan3.."
-	/etc/init.d/mwan3 start
 
 	logger -t pptpxwan "start all($line_cnt) pptpxwan network one by one.."
 	line_idx=0
@@ -45,6 +44,8 @@ delay_start_pptpxwan() {
 		line_idx=$((line_idx+1))
 		sleep $delay_time
 	done
+
+	/etc/init.d/mwan3 start
 }
 
 delay_reload_boot() {
