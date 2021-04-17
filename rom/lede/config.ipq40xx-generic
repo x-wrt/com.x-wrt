@@ -134,8 +134,7 @@ CONFIG_TARGET_DEVICE_PACKAGES_ipq40xx_generic_DEVICE_avm_fritzbox-7530="aria2 at
 # CONFIG_TARGET_DEVICE_ipq40xx_generic_DEVICE_devolo_magic-2-wifi-next is not set
 # CONFIG_TARGET_DEVICE_ipq40xx_generic_DEVICE_edgecore_ecw5211 is not set
 # CONFIG_TARGET_DEVICE_ipq40xx_generic_DEVICE_edgecore_oap100 is not set
-CONFIG_TARGET_DEVICE_ipq40xx_generic_DEVICE_engenius_eap1300=y
-CONFIG_TARGET_DEVICE_PACKAGES_ipq40xx_generic_DEVICE_engenius_eap1300="ath10k-board-qca4019 ath10k-firmware-qca4019-ct kmod-ath10k-ct kmod-gpio-button-hotplug kmod-usb3 kmod-usb-xhci-hcd liblzo libopenssl libopenssl-conf libpcre libqrencode libstdcpp libxml2 luci-app-openvpn luci-app-wireguard luci-i18n-openvpn-en luci-i18n-openvpn-zh-cn luci-i18n-wireguard-en luci-i18n-wireguard-zh-cn luci-proto-wireguard luci-ssl-nginx nginx nginx-mod-luci nginx-mod-luci-ssl nginx-ssl nginx-ssl-util nginx-util openssl-util openvpn-openssl qrencode uwsgi uwsgi-cgi-plugin uwsgi-luci-support uwsgi-syslog-plugin wireguard-tools wpad-openssl"
+# CONFIG_TARGET_DEVICE_ipq40xx_generic_DEVICE_engenius_eap1300 is not set
 # CONFIG_TARGET_DEVICE_ipq40xx_generic_DEVICE_engenius_eap2200 is not set
 # CONFIG_TARGET_DEVICE_ipq40xx_generic_DEVICE_engenius_emd1 is not set
 # CONFIG_TARGET_DEVICE_ipq40xx_generic_DEVICE_engenius_emr3500 is not set
