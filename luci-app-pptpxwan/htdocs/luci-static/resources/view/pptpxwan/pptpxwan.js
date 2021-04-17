@@ -55,6 +55,10 @@ return view.extend({
 		o.datatype = 'max(9200)';
 		o.placeholder = '1450';
 
+		o = s.option(form.Value, 'delay_reload', _('Delay Reload Time'), _('Start each interface with delay time (in seconds)'));
+		o.datatype = 'max(300)';
+		o.placeholder = '0';
+
 		o = s.option(form.Flag, 'enable', _("Enabled"));
 		o.default = o.disabled;
 

@@ -19,6 +19,64 @@ global_setup() {
 	fi
 }
 
+# <delay_time> <line_cnt>
+delay_start_pptpxwan() {
+	local delay_time=$1
+	local line_cnt=$2
+	local line_idx idx
+
+	logger -t pptpxwan "stop all($line_cnt) pptpxwan network first.."
+	line_idx=0
+	while test $line_idx -lt $line_cnt; do
+		idx=$(printf %03u $line_idx)
+		ubus call network.interface.xwan$idx down
+		line_idx=$((line_idx+1))
+	done
+
+	logger -t pptpxwan "start mwan3.."
+	/etc/init.d/mwan3 start
+
+	logger -t pptpxwan "start all($line_cnt) pptpxwan network one by one.."
+	line_idx=0
+	while test $line_idx -lt $line_cnt; do
+		idx=$(printf %03u $line_idx)
+		logger -t pptpxwan "starting network.xwan$idx..."
+		ubus call network.interface.xwan$idx up
+		line_idx=$((line_idx+1))
+		sleep $delay_time
+	done
+}
+
+delay_reload_boot() {
+	local line_idx=0
+	local delay_reload=$(uci get pptpxwan.pptp.delay_reload 2>/dev/null || echo 0)
+
+	if test "${delay_reload}" -eq 0; then
+		return
+	fi
+
+	#wait max 5 minutes for network ready
+	for i in `seq 1 60`; do
+		if ip r | grep -q ^default; then
+			/etc/init.d/firewall status >/dev/null 2>&1 && \
+			/etc/init.d/network status >/dev/null 2>&1 && \
+			/etc/init.d/mwan3 status >/dev/null 2>&1 && break
+		fi
+		sleep 5
+	done
+
+	/etc/init.d/mwan3 stop
+	sleep 5
+
+	cache_count_line() {
+		line_idx=$((line_idx+1))
+	}
+	config_load pptpxwan
+	config_foreach cache_count_line line
+
+	delay_start_pptpxwan "$delay_reload" "$line_idx"
+}
+
 boot() {
 	XBOOT=1 #do nothing
 	global_setup
@@ -26,6 +84,12 @@ boot() {
 		touch /etc/pptpxwan
 		XRELOAD=0 start
 	}
+
+	local enable=$(uci get pptpxwan.pptp.enable 2>/dev/null || echo 0)
+
+	if [ "$enable" = "1" ]; then
+		delay_reload_boot 1000>&-
+	fi
 }
 
 cache_mwan3_add_one() {
@@ -124,34 +188,6 @@ cache_add_pptpxwan_line() {
 	cache_mwan3_add_one xwan$idx "$src_net" "$dst_net"
 
 	line_idx=$((line_idx+1))
-}
-
-# <delay_time> <line_cnt>
-delay_start_pptpxwan() {
-	local delay_time=$1
-	local line_cnt=$2
-	local line_idx idx
-
-	logger -t pptpxwan "stop all($line_cnt) pptpxwan network first.."
-	line_idx=0
-	while test $line_idx -lt $line_cnt; do
-		idx=$(printf %03u $line_idx)
-		ubus call network.interface.xwan$idx down
-		line_idx=$((line_idx+1))
-	done
-
-	logger -t pptpxwan "start mwan3.."
-	/etc/init.d/mwan3 start
-
-	logger -t pptpxwan "start all($line_cnt) pptpxwan network one by one.."
-	line_idx=0
-	while test $line_idx -lt $line_cnt; do
-		idx=$(printf %03u $line_idx)
-		logger -t pptpxwan "starting network.xwan$idx..."
-		ubus call network.interface.xwan$idx up
-		line_idx=$((line_idx+1))
-		sleep $delay_time
-	done
 }
 
 start() {
