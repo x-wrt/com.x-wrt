@@ -182,6 +182,7 @@ cache_add_pptpxwan_line() {
 	uci set network.xwan$idx.metric="$((900+line_idx))"
 	uci set network.xwan$idx.auto='1'
 	uci set network.xwan$idx.ipv6='0'
+	uci set network.xwan$idx.keepalive='5 10'
 	[ "$mtu" = "0" ] || uci set network.xwan$idx.mtu="$mtu"
 
 	cache_add_to_zone_wan xwan$idx
