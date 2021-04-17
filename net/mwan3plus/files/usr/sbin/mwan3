@@ -145,10 +145,12 @@ start()
 {
 	local enabled hotplug_pids MWAN3_STARTUP
 	MWAN3_STARTUP=1
+
+	#Priority to get the lock
 	touch /var/run/mwan3.init
 	mwan3_lock "command" "mwan3"
-
 	uci_toggle_state mwan3 globals enabled "1"
+	rm -f /var/run/mwan3.init
 
 	mwan3_set_local_ipset
 	mwan3_set_connected_ipset
@@ -160,7 +162,6 @@ start()
 	mwan3_set_policies_iptables
 	mwan3_set_user_rules
 
-	rm -f /var/run/mwan3.init
 	mwan3_unlock "command" "mwan3"
 	mwan3_rtmon
 	unset MWAN3_STARTUP
@@ -170,9 +171,11 @@ stop()
 {
 	local ipset rule IP IPTR IPT kill_pid family table tid
 
+	#Priority to get the lock
 	touch /var/run/mwan3.init
 	mwan3_lock "command" "mwan3"
 	uci_toggle_state mwan3 globals enabled "0"
+	rm -f /var/run/mwan3.init
 
 	{
 		kill -TERM $(pgrep -f "mwan3rtmon") > /dev/null 2>&1
@@ -238,7 +241,6 @@ stop()
 
 	mwan3_ipv6_masq_cleanup
 
-	rm -f /var/run/mwan3.init
 	mwan3_unlock "command" "mwan3"
 
 }
