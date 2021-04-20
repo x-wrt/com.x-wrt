@@ -32,4 +32,4 @@ msgid "Delay Reload Time"
 msgstr "启动延迟时间"
 
 msgid "Start interface one by one with delay time (in seconds)"
-msgstr "延迟一定的时间（秒）一个个启动接口"
+msgstr "延迟一定的时间（秒）一个一个启动接口"
