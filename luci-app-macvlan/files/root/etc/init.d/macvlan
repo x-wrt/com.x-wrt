@@ -20,16 +20,20 @@ stop_macvlan() {
 
 add_macvlan() {
 	local cfg="$1"
-	local ifname macvlan
+	local ifname index type mode flag
 	local mvname
 
 	config_get ifname "$cfg" ifname
-	config_get macvlan "$cfg" macvlan
+	config_get index "$cfg" index
+	config_get type "$cfg" type
+	config_get mode "$cfg" mode
+	config_get flag "$cfg" flag
 
 	test -n "$ifname" || return 1
-	test -n "$macvlan" || return 1
+	test -n "$index" || return 1
+	test -n "$type" || return 1
 
-	mvname="mvlan${macvlan}${ifname}"
+	mvname="${type}${index}${ifname}"
 
 	echo "$ifname" | grep -q "^[a-zA-Z].*\.[0-9]*$" && {
 		ifn=`echo $ifname | cut -d"." -f 1`
@@ -38,13 +42,24 @@ add_macvlan() {
 		ifconfig $ifn up 2>/dev/null
 		vconfig set_name_type DEV_PLUS_VID_NO_PAD
 		vconfig add $ifn $iid 2>/dev/null && echo ip link del $ifname >>$MC
-		mvname="mvlan${macvlan}${ifn}t${iid}"
+		mvname="${type}${index}${ifn}t${iid}"
 	}
 
 	ifconfig $ifname >/dev/null 2>&1 || return 1
 
 	ifconfig $ifname up 2>/dev/null
-	ip link add link $ifname $mvname type macvlan 2>/dev/null && echo ip link del $mvname >>$MC
+	if [ "${type}" = "macvlan" ]; then
+		ip link add link $ifname $mvname type ${type} 2>/dev/null && echo ip link del $mvname >>$MC
+	elif [ "${type}" = "ipvlan" ]; then
+		case "$mode" in
+			"l2")
+				ip link add link $ifname $mvname type ${type} mode ${mode} ${flag} 2>/dev/null && echo ip link del $mvname >>$MC
+			;;
+			"l3")
+				ip link add link $ifname $mvname type ${type} 2>/dev/null && echo ip link del $mvname >>$MC
+			;;
+		esac
+	fi
 }
 
 start() {
