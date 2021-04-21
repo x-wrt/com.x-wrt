@@ -426,7 +426,7 @@ CONFIG_TARGET_INIT_CMD="/sbin/init"
 CONFIG_TARGET_INIT_SUPPRESS_STDERR=y
 CONFIG_VERSIONOPT=y
 CONFIG_VERSION_DIST="X-WRT"
-CONFIG_VERSION_NUMBER="9.0_b202104170928"
+CONFIG_VERSION_NUMBER="9.0_b202104211807"
 CONFIG_VERSION_CODE="Hirsute"
 CONFIG_VERSION_REPO="http://downloads.openwrt.org/snapshots"
 CONFIG_VERSION_HOME_URL="https://x-wrt.com/"
@@ -2654,6 +2654,7 @@ CONFIG_PACKAGE_nginx-util=y
 # CONFIG_PACKAGE_amdgpu-firmware is not set
 # CONFIG_PACKAGE_ar3k-firmware is not set
 CONFIG_PACKAGE_ath10k-board-qca4019=y
+# CONFIG_PACKAGE_ath10k-board-qca9377 is not set
 CONFIG_PACKAGE_ath10k-board-qca9887=y
 CONFIG_PACKAGE_ath10k-board-qca9888=y
 CONFIG_PACKAGE_ath10k-board-qca988x=y
@@ -2664,6 +2665,7 @@ CONFIG_PACKAGE_ath10k-firmware-qca4019=y
 # CONFIG_PACKAGE_ath10k-firmware-qca4019-ct-full-htt is not set
 # CONFIG_PACKAGE_ath10k-firmware-qca4019-ct-htt is not set
 CONFIG_PACKAGE_ath10k-firmware-qca6174=y
+# CONFIG_PACKAGE_ath10k-firmware-qca9377 is not set
 CONFIG_PACKAGE_ath10k-firmware-qca9887=y
 # CONFIG_PACKAGE_ath10k-firmware-qca9887-ct is not set
 # CONFIG_PACKAGE_ath10k-firmware-qca9887-ct-full-htt is not set
@@ -3260,6 +3262,7 @@ CONFIG_PACKAGE_kmod-ifb=y
 CONFIG_PACKAGE_kmod-igb=y
 # CONFIG_PACKAGE_kmod-igbvf is not set
 # CONFIG_PACKAGE_kmod-igc is not set
+CONFIG_PACKAGE_kmod-ipvlan=y
 CONFIG_PACKAGE_kmod-ixgbe=y
 # CONFIG_PACKAGE_kmod-ixgbevf is not set
 CONFIG_PACKAGE_kmod-libphy=y
@@ -3271,7 +3274,6 @@ CONFIG_PACKAGE_kmod-mii=y
 CONFIG_PACKAGE_kmod-natsemi=y
 CONFIG_PACKAGE_kmod-ne2k-pci=y
 # CONFIG_PACKAGE_kmod-niu is not set
-# CONFIG_PACKAGE_kmod-of-mdio is not set
 CONFIG_PACKAGE_kmod-pcnet32=y
 # CONFIG_PACKAGE_kmod-phy-bcm84881 is not set
 # CONFIG_PACKAGE_kmod-phy-broadcom is not set
@@ -6175,6 +6177,7 @@ CONFIG_PACKAGE_iptables-mod-u32=y
 
 # CONFIG_PACKAGE_miniupnpc is not set
 CONFIG_PACKAGE_miniupnpd=y
+# CONFIG_PACKAGE_miniupnpd-igdv1 is not set
 # CONFIG_PACKAGE_natpmpc is not set
 # CONFIG_PACKAGE_nftables-json is not set
 CONFIG_PACKAGE_nftables-nojson=y
@@ -6844,6 +6847,9 @@ CONFIG_PACKAGE_6to4=y
 # CONFIG_PACKAGE_apcupsd is not set
 # CONFIG_PACKAGE_apcupsd-cgi is not set
 # CONFIG_PACKAGE_apinger is not set
+# CONFIG_PACKAGE_atlas-probe is not set
+# CONFIG_PACKAGE_atlas-sw-probe is not set
+# CONFIG_PACKAGE_atlas-sw-probe-rpc is not set
 # CONFIG_PACKAGE_banip is not set
 # CONFIG_PACKAGE_batctl-default is not set
 # CONFIG_PACKAGE_batctl-full is not set
