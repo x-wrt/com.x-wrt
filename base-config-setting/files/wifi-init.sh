@@ -7,7 +7,7 @@ wifi_setup_radio()
 	uci get wireless.${radio} >/dev/null 2>&1 && {
 		#FIXME hack
 		local path
-		if test -e /sys/kernel/debug/ieee80211/phy0/mt76/dbdc &&
+		if test -e /sys/kernel/debug/ieee80211/phy0/mt76 &&
 		   [ "$(readlink /sys/class/ieee80211/phy0/device)" = "$(readlink /sys/class/ieee80211/phy1/device)" ]; then
 			path="$(uci get wireless.${radio}.path)"
 			if test -z "${path#*+1}"; then
