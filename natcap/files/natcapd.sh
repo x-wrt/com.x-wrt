@@ -141,10 +141,12 @@ client_mac=`cat $DEV | grep default_mac_addr | grep -o "[0-9a-f][0-9a-f]:[0-9a-f
 account="`uci get natcapd.default.account 2>/dev/null`"
 uhash=`echo -n $client_mac$account | cksum | awk '{print $1}'`
 u_hash=`uci get natcapd.default.u_hash 2>/dev/null || echo 0`
+u_hash=$((u_hash))
 [ "x$u_hash" = "x0" ] && u_hash=$uhash
 echo u_hash=${u_hash} >>$DEV
 
 u_mask=`uci get natcapd.default.u_mask 2>/dev/null || echo 0`
+u_mask=$((u_mask))
 echo u_mask=${u_mask} >>$DEV
 
 protocol=`uci get natcapd.default.protocol 2>/dev/null || echo 0`
@@ -470,6 +472,7 @@ _clean_natcap_rules() {
 
 _setup_natcap_rules() {
 	local si_mask=`uci get natcapd.default.si_mask 2>/dev/null || echo $((0xff000000))`
+	si_mask=$((si_mask))
 	if test $si_mask -eq 0; then
 		return
 	fi
