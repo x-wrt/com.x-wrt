@@ -432,7 +432,7 @@ CONFIG_TARGET_INIT_CMD="/sbin/init"
 CONFIG_TARGET_INIT_SUPPRESS_STDERR=y
 CONFIG_VERSIONOPT=y
 CONFIG_VERSION_DIST="X-WRT"
-CONFIG_VERSION_NUMBER="9.0_b202105042338"
+CONFIG_VERSION_NUMBER="9.0_b202105101437"
 CONFIG_VERSION_CODE="Hirsute"
 CONFIG_VERSION_REPO="http://downloads.openwrt.org/snapshots"
 CONFIG_VERSION_HOME_URL="https://x-wrt.com/"
@@ -6548,6 +6548,8 @@ CONFIG_PACKAGE_pptpd=y
 # CONFIG_PACKAGE_softethervpn5-server is not set
 # CONFIG_PACKAGE_sstp-client is not set
 # CONFIG_PACKAGE_strongswan is not set
+# CONFIG_PACKAGE_tailscale is not set
+# CONFIG_PACKAGE_tailscaled is not set
 # CONFIG_PACKAGE_tinc is not set
 # CONFIG_PACKAGE_uanytun is not set
 # CONFIG_PACKAGE_uanytun-nettle is not set
@@ -6946,6 +6948,7 @@ CONFIG_PACKAGE_rssileds=m
 # CONFIG_PACKAGE_samba4-libs is not set
 # CONFIG_PACKAGE_samba4-server is not set
 # CONFIG_PACKAGE_samba4-utils is not set
+# CONFIG_PACKAGE_samplicator is not set
 # CONFIG_PACKAGE_scapy is not set
 # CONFIG_PACKAGE_sctp-tools is not set
 # CONFIG_PACKAGE_seafile-ccnet is not set
@@ -7733,6 +7736,12 @@ CONFIG_PACKAGE_natcapd-server=y
 #
 # CONFIG_PACKAGE_luci-app-pptpxwan is not set
 # end of PPTP XWAN Support
+
+#
+# PROXY XWAN Support
+#
+# CONFIG_PACKAGE_luci-app-proxyxwan is not set
+# end of PROXY XWAN Support
 
 #
 # Printer
