@@ -87,7 +87,9 @@ return view.extend({
 		o = s.option(form.ListValue, 'type', _('Type'), _('Type'));
 		o.rmempty = false;
 		o.value('socks5');
-		o.value('https');
+		o.value('socks4');
+		o.value('http-connect');
+		o.value('http-relay');
 
 		return m.render();
 	}
