@@ -35,6 +35,9 @@ cache_add_proxyxwan_line() {
 
 	iptables -t nat -A proxy_hook -p tcp ${src_net:+-s} ${src_net} ${dst_net:+-d} ${dst_net} -j REDIRECT --to-ports $((1180+idx))
 
+	_LINE_LOGIN=${user:+login = "${user}";}
+	_LINE_PASSWORD=${user:+password = "${pass}";}
+
 	mkdir -p /tmp/etc
 	cat <<EOF >>/tmp/etc/redsocks.conf
 redsocks {
@@ -44,8 +47,8 @@ redsocks {
 	ip = "$server";
 	port = "$port";
 	type = "$type";
-	login = "$user";
-	password = "$pass";
+	$_LINE_LOGIN
+	$_LINE_PASSWORD
 }
 
 EOF
