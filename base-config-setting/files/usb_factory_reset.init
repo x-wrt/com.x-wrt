@@ -48,12 +48,14 @@ x_wrt_flash() {
 	sleep 90
 	test -f /tmp/usb_reset/x-wrt-sysupgrade-force* && \
 	cp /tmp/usb_reset/x-wrt-sysupgrade-force* /tmp/ && \
+	rm -f /tmp/usb_reset/x-wrt-sysupgrade-force* && \
 	sysupgrade -n -F /tmp/x-wrt-sysupgrade-force*
 
 	rm -f /tmp/x-wrt-sysupgrade-force*
 
 	test -f /tmp/usb_reset/x-wrt-sysupgrade* && \
 	cp /tmp/usb_reset/x-wrt-sysupgrade* /tmp/ && \
+	rm -f /tmp/usb_reset/x-wrt-sysupgrade* && \
 	sysupgrade -n /tmp/x-wrt-sysupgrade*
 
 	rm -f /tmp/x-wrt-sysupgrade*
