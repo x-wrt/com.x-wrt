@@ -84,6 +84,7 @@ CONFIG_TARGET_MULTI_PROFILE=y
 # CONFIG_TARGET_ath79_generic_DEVICE_comfast_cf-e130n-v2 is not set
 # CONFIG_TARGET_ath79_generic_DEVICE_comfast_cf-e313ac is not set
 # CONFIG_TARGET_ath79_generic_DEVICE_comfast_cf-e314n-v2 is not set
+# CONFIG_TARGET_ath79_generic_DEVICE_comfast_cf-e375ac is not set
 # CONFIG_TARGET_ath79_generic_DEVICE_comfast_cf-e5 is not set
 # CONFIG_TARGET_ath79_generic_DEVICE_comfast_cf-e560ac is not set
 # CONFIG_TARGET_ath79_generic_DEVICE_comfast_cf-ew72 is not set
@@ -229,6 +230,7 @@ CONFIG_TARGET_MULTI_PROFILE=y
 # CONFIG_TARGET_ath79_generic_DEVICE_yuncore_a770 is not set
 # CONFIG_TARGET_ath79_generic_DEVICE_yuncore_a782 is not set
 # CONFIG_TARGET_ath79_generic_DEVICE_yuncore_xd4200 is not set
+# CONFIG_TARGET_ath79_generic_DEVICE_ziking_cpe46b is not set
 # CONFIG_TARGET_ath79_generic_DEVICE_zbtlink_zbt-wd323 is not set
 # CONFIG_TARGET_ath79_generic_DEVICE_zyxel_nbg6616 is not set
 # CONFIG_TARGET_ath79_generic_DEVICE_tplink_archer-a7-v5 is not set
@@ -385,6 +387,7 @@ CONFIG_TARGET_DEVICE_PACKAGES_ath79_generic_DEVICE_buffalo_wzr-hp-g450h="aria2 b
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_comfast_cf-e130n-v2 is not set
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_comfast_cf-e313ac is not set
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_comfast_cf-e314n-v2 is not set
+# CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_comfast_cf-e375ac is not set
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_comfast_cf-e5 is not set
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_comfast_cf-e560ac is not set
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_comfast_cf-ew72 is not set
@@ -686,6 +689,7 @@ CONFIG_TARGET_DEVICE_PACKAGES_ath79_generic_DEVICE_xwrt_xd1202g="ath10k-board-qc
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_yuncore_a782 is not set
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_yuncore_xd4200 is not set
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_zbtlink_zbt-wd323 is not set
+# CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_ziking_cpe46b is not set
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_zyxel_nbg6616 is not set
 # end of Target Devices
 
@@ -1052,7 +1056,7 @@ CONFIG_TARGET_INIT_CMD="/sbin/init"
 CONFIG_TARGET_INIT_SUPPRESS_STDERR=y
 CONFIG_VERSIONOPT=y
 CONFIG_VERSION_DIST="X-WRT"
-CONFIG_VERSION_NUMBER="9.0_b202105160531"
+CONFIG_VERSION_NUMBER="9.0_b202105180518"
 CONFIG_VERSION_CODE="Hirsute"
 CONFIG_VERSION_REPO="http://downloads.openwrt.org/snapshots"
 CONFIG_VERSION_HOME_URL="https://x-wrt.com/"
