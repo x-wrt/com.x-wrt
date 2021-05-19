@@ -14,8 +14,7 @@ PKG_LICENSE:=Apache-2.0
 PKG_LICENSE_FILES:=
 
 PKG_BUILD_PARALLEL:=1
-
-PKG_FLAGS:=nonshared
+#PKG_FLAGS:=nonshared
 
 include $(INCLUDE_DIR)/package.mk
 include $(INCLUDE_DIR)/cmake.mk
@@ -38,7 +37,7 @@ define Package/amazon-kinesis-video-streams-producer-c/description
 endef
 
 TARGET_CFLAGS += \
-	-I$(STAGING_DIR)/usr/include -ffunction-sections -fdata-sections -DBUILD_DEPENDENCIES=FALSE
+	-I$(STAGING_DIR)/usr/include -ffunction-sections -fdata-sections
 
 TARGET_LDFLAGS += -Wl,--gc-sections
 
