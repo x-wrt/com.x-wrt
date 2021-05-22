@@ -17,7 +17,6 @@ CONFIG_HAVE_DOT_CONFIG=y
 # CONFIG_TARGET_octeon is not set
 # CONFIG_TARGET_gemini is not set
 # CONFIG_TARGET_mpc85xx is not set
-# CONFIG_TARGET_imx6 is not set
 # CONFIG_TARGET_mxs is not set
 # CONFIG_TARGET_lantiq is not set
 # CONFIG_TARGET_malta is not set
@@ -29,6 +28,7 @@ CONFIG_HAVE_DOT_CONFIG=y
 # CONFIG_TARGET_at91 is not set
 # CONFIG_TARGET_tegra is not set
 # CONFIG_TARGET_layerscape is not set
+# CONFIG_TARGET_imx6 is not set
 # CONFIG_TARGET_octeontx is not set
 # CONFIG_TARGET_oxnas is not set
 # CONFIG_TARGET_armvirt is not set
@@ -434,7 +434,7 @@ CONFIG_TARGET_INIT_CMD="/sbin/init"
 CONFIG_TARGET_INIT_SUPPRESS_STDERR=y
 CONFIG_VERSIONOPT=y
 CONFIG_VERSION_DIST="X-WRT-docker"
-CONFIG_VERSION_NUMBER="9.0_b202105192039"
+CONFIG_VERSION_NUMBER="9.0_b202105221018"
 CONFIG_VERSION_CODE="Hirsute"
 CONFIG_VERSION_REPO="http://downloads.openwrt.org/snapshots"
 CONFIG_VERSION_HOME_URL="https://x-wrt.com/"
@@ -4209,7 +4209,7 @@ CONFIG_SQLITE3_RTREE=y
 #
 # Filesystem
 #
-# CONFIG_PACKAGE_libacl is not set
+CONFIG_PACKAGE_libacl=y
 CONFIG_PACKAGE_libattr=y
 # CONFIG_PACKAGE_libfuse is not set
 # CONFIG_PACKAGE_libfuse3 is not set
@@ -5132,7 +5132,7 @@ CONFIG_PACKAGE_libncurses=y
 # CONFIG_PACKAGE_libnet-1.2.x is not set
 # CONFIG_PACKAGE_libnetconf2 is not set
 # CONFIG_PACKAGE_libnetfilter-acct is not set
-# CONFIG_PACKAGE_libnetfilter-conntrack is not set
+CONFIG_PACKAGE_libnetfilter-conntrack=y
 # CONFIG_PACKAGE_libnetfilter-cthelper is not set
 # CONFIG_PACKAGE_libnetfilter-cttimeout is not set
 # CONFIG_PACKAGE_libnetfilter-log is not set
@@ -5140,7 +5140,7 @@ CONFIG_PACKAGE_libncurses=y
 # CONFIG_PACKAGE_libnetsnmp is not set
 # CONFIG_PACKAGE_libnettle is not set
 # CONFIG_PACKAGE_libnewt is not set
-# CONFIG_PACKAGE_libnfnetlink is not set
+CONFIG_PACKAGE_libnfnetlink=y
 CONFIG_PACKAGE_libnftnl=y
 # CONFIG_PACKAGE_libnghttp2 is not set
 # CONFIG_PACKAGE_libnl is not set
@@ -7674,7 +7674,7 @@ CONFIG_PACKAGE_coreutils=y
 CONFIG_PACKAGE_coreutils-chroot=y
 # CONFIG_PACKAGE_coreutils-cksum is not set
 # CONFIG_PACKAGE_coreutils-comm is not set
-# CONFIG_PACKAGE_coreutils-cp is not set
+CONFIG_PACKAGE_coreutils-cp=y
 # CONFIG_PACKAGE_coreutils-csplit is not set
 # CONFIG_PACKAGE_coreutils-cut is not set
 # CONFIG_PACKAGE_coreutils-date is not set
@@ -7739,7 +7739,7 @@ CONFIG_PACKAGE_coreutils-sha1sum=y
 # CONFIG_PACKAGE_coreutils-sleep is not set
 # CONFIG_PACKAGE_coreutils-sort is not set
 # CONFIG_PACKAGE_coreutils-split is not set
-# CONFIG_PACKAGE_coreutils-stat is not set
+CONFIG_PACKAGE_coreutils-stat=y
 # CONFIG_PACKAGE_coreutils-stdbuf is not set
 # CONFIG_PACKAGE_coreutils-stty is not set
 # CONFIG_PACKAGE_coreutils-sum is not set
