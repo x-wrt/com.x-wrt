@@ -99,6 +99,7 @@ add_xwan() {
 				uci set network.device$idx=device
 				uci set network.device$idx.ifname="$ifname"
 				uci set network.device$idx.type="macvlan"
+				uci set network.device$idx.mode="vepa"
 				uci set network.device$idx.name="mvlan$idx"
 				change=1
 			}
