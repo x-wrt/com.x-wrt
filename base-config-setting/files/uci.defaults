@@ -71,23 +71,23 @@ test $version -lt 1 && {
 }
 
 test $version -lt 2 && {
-	if ! uci get network.wan >/dev/null 2>&1 && [ x`uci get network.lan.ifname | wc -w` = x1 ] && modinfo macvlan >/dev/null 2>&1; then
-		local ifname=`uci get network.lan.ifname 2>/dev/null || echo eth0`
+	if ! uci get network.wan >/dev/null 2>&1 && [ x`uci get network.lan.device | wc -w` = x1 ] && modinfo macvlan >/dev/null 2>&1; then
+		local device=`uci get network.lan.device 2>/dev/null || echo eth0`
 		uci -q batch <<-EOT
 			set network.wan=interface
-			set network.wan.ifname="$ifname"
+			set network.wan.device="$device"
 			set network.wan.proto='dhcp'
 			set network.wan.metric='31'
 			set network.wan6=interface
 			set network.wan6.proto='dhcpv6'
-			set network.wan6.ifname="$ifname"
+			set network.wan6.device="$device"
 			set network.wan6.reqaddress='try'
 			set network.wan6.reqprefix='auto'
-			set network.lan.ifname='macvlan0'
+			set network.lan.device='macvlan0'
 			add network device
 			set network.@device[-1].name='macvlan0'
 			set network.@device[-1].type='macvlan'
-			set network.@device[-1].ifname="$ifname"
+			set network.@device[-1].ifname="$device"
 			commit network
 		EOT
 	fi
@@ -96,7 +96,7 @@ test $version -lt 2 && {
 		uci -q batch <<-EOT
 			set network.usbwan=interface
 			set network.usbwan.proto='dhcp'
-			set network.usbwan.ifname='usb0'
+			set network.usbwan.device='usb0'
 			set network.usbwan.metric='800'
 			commit network
 		EOT
