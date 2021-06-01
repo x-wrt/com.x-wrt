@@ -47,7 +47,7 @@ make_config()
 		uci delete network.natcapovpn
 		uci set network.natcapovpn=interface
 		uci set network.natcapovpn.proto='none'
-		uci set network.natcapovpn.ifname='natcap+'
+		uci set network.natcapovpn.device='natcap+'
 		uci set network.natcapovpn.auto='1'
 		uci commit network
 
