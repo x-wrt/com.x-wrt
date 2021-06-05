@@ -1,3 +1,8 @@
+[ "x$ACTION" = "xremove" ] && {
+	umount /mnt/$DEVNAME
+	exit 0
+}
+
 [ "x$ACTION" = "xadd" ] || exit 0
 [ "x$DEVTYPE" = "xpartition" ] || exit 0
 test -b /dev/$DEVNAME || exit 0
