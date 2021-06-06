@@ -551,6 +551,8 @@ for t in $targets; do
 		TARGET_DEVICE_ramips_mt7620_DEVICE_lenovo_newifi-y1|\
 		TARGET_DEVICE_ramips_mt7620_DEVICE_lenovo_newifi-y1s|\
 		TARGET_DEVICE_ramips_mt7620_DEVICE_youku_yk1|\
+		TARGET_DEVICE_ramips_mt7620_DEVICE_youku_yk-l1|\
+		TARGET_DEVICE_ramips_mt7620_DEVICE_youku_yk-l1c|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_hiwifi_hc5962|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_netgear_r6220|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_netgear_r6220a|\
@@ -816,6 +818,8 @@ for t in $targets; do
 		TARGET_DEVICE_mvebu_cortexa9_DEVICE_linksys_wrt3200acm|\
 		TARGET_DEVICE_ramips_mt7620_DEVICE_lenovo_newifi-y1s|\
 		TARGET_DEVICE_ramips_mt7620_DEVICE_youku_yk1|\
+		TARGET_DEVICE_ramips_mt7620_DEVICE_youku_yk-l1|\
+		TARGET_DEVICE_ramips_mt7620_DEVICE_youku_yk-l1c|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_hiwifi_hc5962|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_netgear_wndr3700-v5|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_lenovo_newifi-d1)
