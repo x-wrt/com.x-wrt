@@ -285,6 +285,7 @@ for t in $targets; do
 		TARGET_DEVICE_ath79_generic_DEVICE_tplink_tl-wdr4900-v2-16m|\
 		TARGET_DEVICE_ath79_generic_DEVICE_xwrt_xd1202g|\
 		TARGET_DEVICE_rockchip_armv8_DEVICE_friendlyarm_nanopi-r2s|\
+		TARGET_DEVICE_rockchip_armv8_DEVICE_friendlyarm_nanopi-r4s|\
 		TARGET_DEVICE_ipq806x_generic_DEVICE_linksys_ea7500-v1|\
 		TARGET_DEVICE_ipq40xx_generic_DEVICE_glinet_gl-s1300|\
 		TARGET_DEVICE_ramips_mt7620_DEVICE_asus_rt-ac54u|\
@@ -834,6 +835,7 @@ for t in $targets; do
 		TARGET_DEVICE_ath79_generic_DEVICE_tplink_tl-wr842n-v1|\
 		TARGET_DEVICE_ramips_mt7620_DEVICE_nexx_wt3020-8m|\
 		TARGET_DEVICE_rockchip_armv8_DEVICE_friendlyarm_nanopi-r2s|\
+		TARGET_DEVICE_rockchip_armv8_DEVICE_friendlyarm_nanopi-r4s|\
 		TARGET_DEVICE_ramips_mt7620_DEVICE_asus_rt-ac54u|\
 		TARGET_DEVICE_ath79_generic_DEVICE_tplink_archer-d7-v1|\
 		TARGET_DEVICE_ath79_generic_DEVICE_tplink_archer-d7b-v1|\
