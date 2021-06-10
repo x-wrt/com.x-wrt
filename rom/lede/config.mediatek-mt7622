@@ -7937,7 +7937,7 @@ CONFIG_PACKAGE_luci-app-wizard=y
 #
 # Fast Forward Stacks
 #
-# CONFIG_PACKAGE_kmod-natflow is not set
+CONFIG_PACKAGE_kmod-natflow=y
 # CONFIG_PACKAGE_natflow-boot is not set
 # end of Fast Forward Stacks
 
