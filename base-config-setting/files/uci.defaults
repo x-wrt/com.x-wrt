@@ -71,8 +71,11 @@ test $version -lt 1 && {
 }
 
 test $version -lt 2 && {
-	if ! uci get network.wan >/dev/null 2>&1 && [ x`uci get network.lan.device | wc -w` = x1 ] && modinfo macvlan >/dev/null 2>&1; then
-		local device=`uci get network.lan.device 2>/dev/null || echo eth0`
+	if ! uci get network.wan >/dev/null 2>&1 && modinfo macvlan >/dev/null 2>&1; then
+		local lan_idx=0
+		while uci get network.@device[$lan_idx] >/dev/null 2>&1 && [ $(uci get network.@device[$lan_idx].name) != "br-lan" ]; do lan_idx=$((lan_idx+1)); done
+		local device=`uci get network.@device[$lan_idx].ports 2>/dev/null | cut -d" " -f1 || echo eth0`
+		if [ "$(uci get network.@device[$lan_idx].ports | wc -w)" = 1 ] && [ "$(uci get network.@device[$lan_idx].name)" = "br-lan" ]; then
 		uci -q batch <<-EOT
 			set network.wan=interface
 			set network.wan.device="$device"
@@ -83,13 +86,14 @@ test $version -lt 2 && {
 			set network.wan6.device="$device"
 			set network.wan6.reqaddress='try'
 			set network.wan6.reqprefix='auto'
-			set network.lan.device='macvlan0'
+			set network.@device[$lan_idx].ports='macvlan0'
 			add network device
 			set network.@device[-1].name='macvlan0'
 			set network.@device[-1].type='macvlan'
 			set network.@device[-1].ifname="$device"
 			commit network
 		EOT
+		fi
 	fi
 
 	lsmod | grep -q rndis_host && {
