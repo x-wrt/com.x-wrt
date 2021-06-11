@@ -14,10 +14,12 @@ wifi_setup_radio()
 				uci set wireless.${radio}.phy='phy1'
 				uci set wireless.${radio}.htmode='VHT80'
 				uci set wireless.${radio}.hwmode='11a'
+				uci set wireless.${radio}.band='5g'
 			else
 				uci set wireless.${radio}.phy='phy0'
 				uci set wireless.${radio}.htmode='HT20'
 				uci set wireless.${radio}.hwmode='11g'
+				uci set wireless.${radio}.band='2g'
 			fi
 			uci delete wireless.${radio}.path
 		fi
