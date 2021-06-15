@@ -6,23 +6,31 @@ wifi_setup_radio()
 
 	uci get wireless.${radio} >/dev/null 2>&1 && {
 		#FIXME hack
-		local path
+		local path htmode
+		if [ "${radio}" = "radio0" ] || [ "${radio}" = "radio1" ]; then
 		if test -e /sys/kernel/debug/ieee80211/phy0/mt76 &&
 		   [ "$(readlink /sys/class/ieee80211/phy0/device)" = "$(readlink /sys/class/ieee80211/phy1/device)" ]; then
+			htmode="$(uci get wireless.${radio}.htmode)"
 			path="$(uci get wireless.${radio}.path)"
+			if test -z "${htmode##HE*}"; then
+				htmode=HE
+			else
+				htmode=
+			fi
 			if test -z "${path#*+1}"; then
 				uci set wireless.${radio}.phy='phy1'
-				uci set wireless.${radio}.htmode='VHT80'
+				uci set wireless.${radio}.htmode="${htmode:-VHT}80"
 				uci set wireless.${radio}.hwmode='11a'
 				uci set wireless.${radio}.band='5g'
 			else
 				uci set wireless.${radio}.phy='phy0'
-				uci set wireless.${radio}.htmode='HT20'
+				uci set wireless.${radio}.htmode="${htmode:-HT}20"
 				uci set wireless.${radio}.hwmode='11g'
 				uci set wireless.${radio}.band='2g'
 			fi
 			uci delete wireless.${radio}.path
 		fi
+		fi # radio0/radio1
 
 		uci -q batch <<-EOT
 			set wireless.${radio}.disabled='0'
