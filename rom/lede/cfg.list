@@ -18,6 +18,7 @@ config.mvebu-cortexa53
 config.mediatek-mt7622
 config.bcm53xx-generic
 config.bcm27xx-bcm2710
+config.bcm4908_generic
 config.bcm27xx-bcm2711
 config.rockchip-armv8
 config.x86_64

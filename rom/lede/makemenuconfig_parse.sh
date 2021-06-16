@@ -269,6 +269,8 @@ for t in $targets; do
 	excludes="$excludes_basic"
 	case $t in
 		#>8M flash
+		TARGET_DEVICE_bcm4908_generic_DEVICE_asus_gt-ac5300|\
+		TARGET_DEVICE_bcm4908_generic_DEVICE_netgear_r8000p|\
 		TARGET_DEVICE_ipq806x_generic_DEVICE_ruijie_rg-mtfi-m520|\
 		TARGET_DEVICE_ipq806x_generic_DEVICE_tplink_ad7200|\
 		TARGET_DEVICE_ipq40xx_generic_DEVICE_mobipromo_cm520-79f|\
@@ -723,6 +725,8 @@ for t in $targets; do
 	#check usb
 	case $t in
 		#with usb3
+		TARGET_DEVICE_bcm4908_generic_DEVICE_asus_gt-ac5300|\
+		TARGET_DEVICE_bcm4908_generic_DEVICE_netgear_r8000p|\
 		TARGET_DEVICE_ipq806x_generic_DEVICE_ruijie_rg-mtfi-m520|\
 		TARGET_DEVICE_ipq806x_generic_DEVICE_tplink_ad7200|\
 		TARGET_DEVICE_ipq40xx_generic_DEVICE_mobipromo_cm520-79f|\
