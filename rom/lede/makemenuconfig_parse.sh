@@ -269,6 +269,8 @@ for t in $targets; do
 	excludes="$excludes_basic"
 	case $t in
 		#>8M flash
+		TARGET_DEVICE_ramips_mt7621_DEVICE_jcg_q20|\
+		TARGET_DEVICE_ramips_mt7621_DEVICE_jcg_jhr-ac876m|\
 		TARGET_DEVICE_bcm4908_generic_DEVICE_asus_gt-ac5300|\
 		TARGET_DEVICE_bcm4908_generic_DEVICE_netgear_r8000p|\
 		TARGET_DEVICE_ipq806x_generic_DEVICE_ruijie_rg-mtfi-m520|\
@@ -725,6 +727,7 @@ for t in $targets; do
 	#check usb
 	case $t in
 		#with usb3
+		TARGET_DEVICE_ramips_mt7621_DEVICE_jcg_jhr-ac876m|\
 		TARGET_DEVICE_bcm4908_generic_DEVICE_asus_gt-ac5300|\
 		TARGET_DEVICE_bcm4908_generic_DEVICE_netgear_r8000p|\
 		TARGET_DEVICE_ipq806x_generic_DEVICE_ruijie_rg-mtfi-m520|\
@@ -1051,6 +1054,7 @@ for t in $targets; do
 			has_usb=1
 		;;
 		#no usb
+		TARGET_DEVICE_ramips_mt7621_DEVICE_jcg_q20|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_xiaomi_mi-router-4|\
 		TARGET_DEVICE_ramips_mt76x8_DEVICE_xiaomi_mi-router-4c|\
 		TARGET_DEVICE_ramips_mt76x8_DEVICE_tplink_tl-mr6400-v4|\
