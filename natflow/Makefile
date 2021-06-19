@@ -28,7 +28,8 @@ define KernelPackage/natflow
   SUBMENU:=Fast Forward Stacks
   TITLE:=natflow kernel driver
   KCONFIG:= \
-	CONFIG_NETFILTER_INGRESS=y
+	CONFIG_NETFILTER_INGRESS=y \
+	CONFIG_NF_FLOW_TABLE
   FILES:=$(PKG_BUILD_DIR)/natflow.ko
   AUTOLOAD:=$(call AutoLoad,96,natflow)
   DEPENDS:= +kmod-ipt-conntrack +kmod-ipt-nat +kmod-ipt-ipset
