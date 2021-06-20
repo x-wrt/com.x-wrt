@@ -5,7 +5,7 @@
 START=11
 
 x_wrt_install_vps() {
-	local DEVS=$(fdisk -l | grep -o "^/dev.*" | head -n1 | awk '{print $1}')
+	local DEVS=$(fdisk -l | grep -o "^/dev.*" | awk '{print $1}')
 	DEVS="$DEVS /dev/sda1 /dev/vda1 /dev/xvda1"
 	DEVS=$(for dev in $DEVS; do echo $dev; done | sort | uniq)
 	for dev in $DEVS; do
@@ -28,8 +28,6 @@ x_wrt_install_vps() {
 }
 
 x_wrt_base_setup() {
-	uname -m | grep -q x86 || return 0
-
 	#allow all input
 	local idx=0
 	while uci get firewall.@zone[$idx] >/dev/null 2>&1; do
@@ -64,6 +62,7 @@ x_wrt_flash() {
 boot() {
 	test -f /etc/hotplug.d/usbmisc/50-usb-info && return 0
 	mount | grep -q "^/dev" || {
+		#it is initramfs boot
 		x_wrt_base_setup
 		x_wrt_install_vps &
 	}
