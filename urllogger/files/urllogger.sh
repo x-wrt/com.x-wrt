@@ -23,13 +23,37 @@ test -c /dev/urllogger_queue || exit 1
 	exit 0
 }
 
+urllogger_start()
+{
+	echo 1 >/proc/sys/urllogger_store/enable
+}
+
 # start:
-echo 1 >/proc/sys/urllogger_store/enable
+urllogger_start
 
 main_loop() {
+	local log_start=1
 	while :; do
 		test -f $LOCKDIR/$PID || return 0
 		sleep 11
+
+		LOGSIZE=$(ls -l /tmp/url.log | awk '{print $5}')
+		LOGSIZE=$((LOGSIZE+0))
+		if [ $log_start = 1 ]; then
+			#LOGSIZE over 10MB, stop log
+			if test $LOGSIZE -ge 10485760; then
+				log_start=0
+				urllogger_stop
+				logger -t urllogger[$PID] "stop log url due to log file[/tmp/url.log] over size 10MB"
+			fi
+		else
+			if test $LOGSIZE -lt 10485760; then
+				log_start=1
+				urllogger_start
+				logger -t urllogger[$PID] "restart log url due to log file[/tmp/url.log] less than size 10MB"
+			fi
+		fi
+
 		UP=$(cat /proc/uptime | cut -d\. -f1)
 		UP=$((UP%0xffffffff))
 		NOW=$(date +%s)
