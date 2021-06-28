@@ -283,6 +283,7 @@ for t in $targets; do
 		TARGET_DEVICE_ramips_mt7621_DEVICE_glinet_gl-mt1300|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_jcg_y2|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_totolink_x5000r|\
+		TARGET_DEVICE_ramips_mt7621_DEVICE_tenbay_t-mb5eu-v01|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_xwrt_wr1800k-ax-nor|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_xwrt_wr1800k-ax-nand|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_xwrt_tcb1800k-ax-nor|\
@@ -728,6 +729,7 @@ for t in $targets; do
 	#check usb
 	case $t in
 		#with usb3
+		TARGET_DEVICE_ramips_mt7621_DEVICE_tenbay_t-mb5eu-v01|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_jcg_jhr-ac876m|\
 		TARGET_DEVICE_bcm4908_generic_DEVICE_asus_gt-ac5300|\
 		TARGET_DEVICE_bcm4908_generic_DEVICE_netgear_r8000p|\
