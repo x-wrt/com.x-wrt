@@ -33,9 +33,13 @@ urllogger_start
 
 main_loop() {
 	local log_start=1
+	local time_count=0
 	while :; do
 		test -f $LOCKDIR/$PID || return 0
-		sleep 11
+		sleep 5
+		time_count=$((time_count+1))
+		test $time_count -ne 12 && continue
+		time_count=0
 
 		LOGSIZE=$(ls -l /tmp/url.log | awk '{print $5}')
 		LOGSIZE=$((LOGSIZE+0))
