@@ -59,7 +59,7 @@ main_loop() {
 		fi
 
 		UP=$(cat /proc/uptime | cut -d\. -f1)
-		UP=$((UP%0xffffffff))
+		UP=$((UP&0xffffffff))
 		NOW=$(date +%s)
 		cat /dev/urllogger_queue | sed 's/,/ /' | while read time data; do
 			T=$((NOW+time-UP))
