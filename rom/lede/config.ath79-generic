@@ -219,6 +219,7 @@ CONFIG_TARGET_MULTI_PROFILE=y
 # CONFIG_TARGET_ath79_generic_DEVICE_sitecom_wlr-7100 is not set
 # CONFIG_TARGET_ath79_generic_DEVICE_sitecom_wlr-8100 is not set
 # CONFIG_TARGET_ath79_generic_DEVICE_telco_t1 is not set
+# CONFIG_TARGET_ath79_generic_DEVICE_teltonika_rut230-v1 is not set
 # CONFIG_TARGET_ath79_generic_DEVICE_teltonika_rut955 is not set
 # CONFIG_TARGET_ath79_generic_DEVICE_teltonika_rut955-h7v3c0 is not set
 # CONFIG_TARGET_ath79_generic_DEVICE_trendnet_tew-823dru is not set
@@ -226,6 +227,7 @@ CONFIG_TARGET_MULTI_PROFILE=y
 # CONFIG_TARGET_ath79_generic_DEVICE_wd_mynet-n750 is not set
 # CONFIG_TARGET_ath79_generic_DEVICE_wd_mynet-wifi-rangeextender is not set
 # CONFIG_TARGET_ath79_generic_DEVICE_winchannel_wb2000 is not set
+# CONFIG_TARGET_ath79_generic_DEVICE_xiaomi_aiot-ac2350 is not set
 # CONFIG_TARGET_ath79_generic_DEVICE_xiaomi_mi-router-4q is not set
 # CONFIG_TARGET_ath79_generic_DEVICE_xwrt_mk-v0201 is not set
 # CONFIG_TARGET_ath79_generic_DEVICE_xwrt_csac is not set
@@ -307,6 +309,7 @@ CONFIG_TARGET_MULTI_PROFILE=y
 # CONFIG_TARGET_ath79_generic_DEVICE_tplink_tl-wr842n-v2 is not set
 # CONFIG_TARGET_ath79_generic_DEVICE_tplink_tl-wr842n-v3 is not set
 # CONFIG_TARGET_ath79_generic_DEVICE_tplink_tl-wr902ac-v1 is not set
+# CONFIG_TARGET_ath79_generic_DEVICE_tplink_tl-wr941hp-v1 is not set
 # CONFIG_TARGET_ath79_generic_DEVICE_tplink_wbs210-v1 is not set
 # CONFIG_TARGET_ath79_generic_DEVICE_tplink_wbs210-v2 is not set
 # CONFIG_TARGET_ath79_generic_DEVICE_tplink_wbs510-v1 is not set
@@ -334,6 +337,7 @@ CONFIG_TARGET_MULTI_PROFILE=y
 # CONFIG_TARGET_ath79_generic_DEVICE_ubnt_picostation-m is not set
 # CONFIG_TARGET_ath79_generic_DEVICE_ubnt_powerbeam-5ac-500 is not set
 # CONFIG_TARGET_ath79_generic_DEVICE_ubnt_powerbeam-5ac-gen2 is not set
+# CONFIG_TARGET_ath79_generic_DEVICE_ubnt_powerbeam-m-xw is not set
 # CONFIG_TARGET_ath79_generic_DEVICE_ubnt_powerbridge-m is not set
 # CONFIG_TARGET_ath79_generic_DEVICE_ubnt_rocket-5ac-lite is not set
 # CONFIG_TARGET_ath79_generic_DEVICE_ubnt_rocket-m is not set
@@ -561,6 +565,7 @@ CONFIG_TARGET_DEVICE_PACKAGES_ath79_generic_DEVICE_rosinson_wr818="aria2 blockd 
 CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_sitecom_wlr-8100=y
 CONFIG_TARGET_DEVICE_PACKAGES_ath79_generic_DEVICE_sitecom_wlr-8100="aria2 ath10k-board-qca988x ath10k-firmware-qca988x-ct blockd block-mount chat comgt comgt-ncm kmod-ath10k-ct kmod-ath9k kmod-ath9k-common kmod-crypto-des kmod-crypto-md4 kmod-crypto-md5 kmod-crypto-sha512 kmod-exfat-linux kmod-fs-autofs4 kmod-fs-ext4 kmod-fs-ksmbd kmod-fs-msdos kmod-fs-vfat kmod-fuse kmod-gpio-button-hotplug kmod-hwmon-core kmod-lib-crc16 kmod-mii kmod-nls-cp437 kmod-phy-ath79-usb kmod-scsi-core kmod-usb2 kmod-usb3 kmod-usb-core kmod-usb-ehci kmod-usb-net kmod-usb-net-cdc-ether kmod-usb-net-cdc-mbim kmod-usb-net-cdc-ncm kmod-usb-net-huawei-cdc-ncm kmod-usb-net-ipheth kmod-usb-net-qmi-wwan kmod-usb-net-rndis kmod-usb-net-rtl8152 kmod-usb-net-sierrawireless kmod-usb-ohci kmod-usb-printer kmod-usb-serial kmod-usb-serial-option kmod-usb-serial-pl2303 kmod-usb-serial-qualcomm kmod-usb-serial-sierrawireless kmod-usb-serial-wwan kmod-usb-storage kmod-usb-storage-uas kmod-usb-wdm kmod-usb-xhci-hcd ksmbd-server ksmbd-utils libcares liblzo libnl-core libnl-genl libopenssl libopenssl-conf libpcre libqrencode libsqlite3 libssh2 libstdcpp libusb-1.0 libxml2 luci-app-aria2 luci-app-ksmbd luci-app-openvpn luci-app-p910nd luci-app-wireguard luci-i18n-aria2-en luci-i18n-aria2-zh-cn luci-i18n-ksmbd-en luci-i18n-ksmbd-zh-cn luci-i18n-openvpn-en luci-i18n-openvpn-zh-cn luci-i18n-p910nd-en luci-i18n-p910nd-zh-cn luci-i18n-wireguard-en luci-i18n-wireguard-zh-cn luci-proto-3g luci-proto-mbim luci-proto-ncm luci-proto-qmi luci-proto-wireguard luci-ssl-nginx minicom nginx nginx-mod-luci nginx-mod-luci-ssl nginx-ssl nginx-ssl-util nginx-util ntfs-3g openssl-util openvpn-openssl p910nd qrencode sendip umbim uqmi usb-modeswitch uwsgi uwsgi-cgi-plugin uwsgi-luci-support uwsgi-syslog-plugin webui-aria2 wget-ssl wireguard-tools wpad-openssl wsdd2 wwan"
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_telco_t1 is not set
+# CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_teltonika_rut230-v1 is not set
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_teltonika_rut955 is not set
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_teltonika_rut955-h7v3c0 is not set
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_tplink_archer-c6-v2-us is not set
@@ -640,6 +645,7 @@ CONFIG_TARGET_DEVICE_PACKAGES_ath79_generic_DEVICE_tplink_tl-wr842n-v3="aria2 bl
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_tplink_tl-wr842n-v1 is not set
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_tplink_tl-wr842n-v2 is not set
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_tplink_tl-wr902ac-v1 is not set
+# CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_tplink_tl-wr941hp-v1 is not set
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_tplink_wbs210-v1 is not set
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_tplink_wbs210-v2 is not set
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_tplink_wbs510-v1 is not set
@@ -670,6 +676,7 @@ CONFIG_TARGET_DEVICE_PACKAGES_ath79_generic_DEVICE_ubnt_nanobeam-ac="ath10k-boar
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_ubnt_picostation-m is not set
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_ubnt_powerbeam-5ac-500 is not set
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_ubnt_powerbeam-5ac-gen2 is not set
+# CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_ubnt_powerbeam-m-xw is not set
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_ubnt_powerbridge-m is not set
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_ubnt_rocket-5ac-lite is not set
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_ubnt_rocket-m is not set
@@ -688,6 +695,8 @@ CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_wd_mynet-n750=y
 CONFIG_TARGET_DEVICE_PACKAGES_ath79_generic_DEVICE_wd_mynet-n750="aria2 blockd block-mount chat comgt comgt-ncm kmod-ath9k kmod-ath9k-common kmod-crypto-des kmod-crypto-md4 kmod-crypto-md5 kmod-crypto-sha512 kmod-exfat-linux kmod-fs-autofs4 kmod-fs-ext4 kmod-fs-ksmbd kmod-fs-msdos kmod-fs-vfat kmod-fuse kmod-gpio-button-hotplug kmod-lib-crc16 kmod-mii kmod-nls-cp437 kmod-phy-ath79-usb kmod-scsi-core kmod-usb2 kmod-usb-core kmod-usb-ehci kmod-usb-net kmod-usb-net-cdc-ether kmod-usb-net-cdc-mbim kmod-usb-net-cdc-ncm kmod-usb-net-huawei-cdc-ncm kmod-usb-net-ipheth kmod-usb-net-qmi-wwan kmod-usb-net-rndis kmod-usb-net-rtl8152 kmod-usb-net-sierrawireless kmod-usb-ohci kmod-usb-printer kmod-usb-serial kmod-usb-serial-option kmod-usb-serial-pl2303 kmod-usb-serial-qualcomm kmod-usb-serial-sierrawireless kmod-usb-serial-wwan kmod-usb-storage kmod-usb-storage-uas kmod-usb-wdm ksmbd-server ksmbd-utils libcares liblzo libnl-core libnl-genl libopenssl libopenssl-conf libpcre libqrencode libsqlite3 libssh2 libstdcpp libusb-1.0 libxml2 luci-app-aria2 luci-app-ksmbd luci-app-openvpn luci-app-p910nd luci-app-wireguard luci-i18n-aria2-en luci-i18n-aria2-zh-cn luci-i18n-ksmbd-en luci-i18n-ksmbd-zh-cn luci-i18n-openvpn-en luci-i18n-openvpn-zh-cn luci-i18n-p910nd-en luci-i18n-p910nd-zh-cn luci-i18n-wireguard-en luci-i18n-wireguard-zh-cn luci-proto-3g luci-proto-mbim luci-proto-ncm luci-proto-qmi luci-proto-wireguard luci-ssl-nginx minicom nginx nginx-mod-luci nginx-mod-luci-ssl nginx-ssl nginx-ssl-util nginx-util ntfs-3g openssl-util openvpn-openssl p910nd qrencode sendip umbim uqmi usb-modeswitch uwsgi uwsgi-cgi-plugin uwsgi-luci-support uwsgi-syslog-plugin webui-aria2 wget-ssl wireguard-tools wpad-openssl wsdd2 wwan"
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_wd_mynet-wifi-rangeextender is not set
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_winchannel_wb2000 is not set
+CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_xiaomi_aiot-ac2350=y
+CONFIG_TARGET_DEVICE_PACKAGES_ath79_generic_DEVICE_xiaomi_aiot-ac2350="ath10k-board-qca9984 ath10k-firmware-qca9984-ct kmod-ath10k-ct kmod-ath9k kmod-ath9k-common kmod-gpio-button-hotplug kmod-hwmon-core liblzo libopenssl libopenssl-conf libpcre libqrencode libstdcpp libxml2 luci-app-openvpn luci-app-wireguard luci-i18n-openvpn-en luci-i18n-openvpn-zh-cn luci-i18n-wireguard-en luci-i18n-wireguard-zh-cn luci-proto-wireguard luci-ssl-nginx nginx nginx-mod-luci nginx-mod-luci-ssl nginx-ssl nginx-ssl-util nginx-util openssl-util openvpn-openssl qrencode uwsgi uwsgi-cgi-plugin uwsgi-luci-support uwsgi-syslog-plugin wireguard-tools wpad-openssl"
 CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_xiaomi_mi-router-4q=y
 CONFIG_TARGET_DEVICE_PACKAGES_ath79_generic_DEVICE_xiaomi_mi-router-4q="kmod-ath9k kmod-ath9k-common kmod-gpio-button-hotplug liblzo libopenssl libopenssl-conf libpcre libqrencode libstdcpp libxml2 luci-app-openvpn luci-app-wireguard luci-i18n-openvpn-en luci-i18n-openvpn-zh-cn luci-i18n-wireguard-en luci-i18n-wireguard-zh-cn luci-proto-wireguard luci-ssl-nginx nginx nginx-mod-luci nginx-mod-luci-ssl nginx-ssl nginx-ssl-util nginx-util openssl-util openvpn-openssl qrencode uwsgi uwsgi-cgi-plugin uwsgi-luci-support uwsgi-syslog-plugin wireguard-tools wpad-openssl"
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_xwrt_csac is not set
@@ -720,6 +729,7 @@ CONFIG_LINUX_5_4=y
 CONFIG_MODULE_DEFAULT_ath10k-firmware-qca9887-ct=y
 CONFIG_MODULE_DEFAULT_ath10k-firmware-qca9888-ct=y
 CONFIG_MODULE_DEFAULT_ath10k-firmware-qca988x-ct=y
+CONFIG_MODULE_DEFAULT_ath10k-firmware-qca9984-ct=y
 CONFIG_MODULE_DEFAULT_ath10k-firmware-qca99x0-ct=y
 CONFIG_DEFAULT_base-files=y
 CONFIG_MODULE_DEFAULT_base-files=y
@@ -1081,7 +1091,7 @@ CONFIG_TARGET_INIT_CMD="/sbin/init"
 CONFIG_TARGET_INIT_SUPPRESS_STDERR=y
 CONFIG_VERSIONOPT=y
 CONFIG_VERSION_DIST="X-WRT"
-CONFIG_VERSION_NUMBER="9.0_b202106290618"
+CONFIG_VERSION_NUMBER="9.0_b202107052146"
 CONFIG_VERSION_CODE="Hirsute"
 CONFIG_VERSION_REPO="http://downloads.openwrt.org/snapshots"
 CONFIG_VERSION_HOME_URL="https://x-wrt.com/"
@@ -3303,7 +3313,7 @@ CONFIG_PACKAGE_nginx-util=m
 CONFIG_PACKAGE_ath10k-board-qca9887=m
 CONFIG_PACKAGE_ath10k-board-qca9888=m
 CONFIG_PACKAGE_ath10k-board-qca988x=m
-# CONFIG_PACKAGE_ath10k-board-qca9984 is not set
+CONFIG_PACKAGE_ath10k-board-qca9984=m
 CONFIG_PACKAGE_ath10k-board-qca99x0=m
 # CONFIG_PACKAGE_ath10k-firmware-qca4019 is not set
 # CONFIG_PACKAGE_ath10k-firmware-qca4019-ct is not set
@@ -3322,7 +3332,7 @@ CONFIG_PACKAGE_ath10k-firmware-qca9888-ct=m
 CONFIG_PACKAGE_ath10k-firmware-qca988x-ct=m
 # CONFIG_PACKAGE_ath10k-firmware-qca988x-ct-full-htt is not set
 # CONFIG_PACKAGE_ath10k-firmware-qca9984 is not set
-# CONFIG_PACKAGE_ath10k-firmware-qca9984-ct is not set
+CONFIG_PACKAGE_ath10k-firmware-qca9984-ct=m
 # CONFIG_PACKAGE_ath10k-firmware-qca9984-ct-full-htt is not set
 # CONFIG_PACKAGE_ath10k-firmware-qca9984-ct-htt is not set
 # CONFIG_PACKAGE_ath10k-firmware-qca99x0 is not set
@@ -7624,6 +7634,7 @@ CONFIG_PACKAGE_tcpdump=y
 # CONFIG_PACKAGE_u2pnpd is not set
 # CONFIG_PACKAGE_uacme is not set
 CONFIG_PACKAGE_uclient-fetch=y
+# CONFIG_PACKAGE_udhcpsnoop is not set
 # CONFIG_PACKAGE_udptunnel is not set
 # CONFIG_PACKAGE_udpxy is not set
 # CONFIG_PACKAGE_ulogd is not set
@@ -8135,6 +8146,7 @@ CONFIG_PACKAGE_libjson-script=y
 # CONFIG_PACKAGE_lm-sensors-detect is not set
 # CONFIG_PACKAGE_logger is not set
 # CONFIG_PACKAGE_logrotate is not set
+# CONFIG_PACKAGE_lolcat is not set
 # CONFIG_PACKAGE_look is not set
 # CONFIG_PACKAGE_losetup is not set
 # CONFIG_PACKAGE_lrzsz is not set

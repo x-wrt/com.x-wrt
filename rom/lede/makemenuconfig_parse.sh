@@ -269,6 +269,7 @@ for t in $targets; do
 	excludes="$excludes_basic"
 	case $t in
 		#>8M flash
+		TARGET_DEVICE_ath79_generic_DEVICE_xiaomi_aiot-ac2350|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_dlink_dir-882-a1|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_dlink_dir-882-r1|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_jcg_q20|\
@@ -1062,6 +1063,7 @@ for t in $targets; do
 			has_usb=1
 		;;
 		#no usb
+		TARGET_DEVICE_ath79_generic_DEVICE_xiaomi_aiot-ac2350|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_jcg_q20|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_xiaomi_mi-router-4|\
 		TARGET_DEVICE_ramips_mt76x8_DEVICE_xiaomi_mi-router-4c|\
