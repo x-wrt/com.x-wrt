@@ -67,9 +67,7 @@ get_mwan3_status() {
 	local age=0
 	local online=0
 	local offline=0
-	local up="0"
-	local uptime="0"
-	local enabled pid device time_p time_n time_u time_d status
+	local enabled pid device time_p time_n time_u time_d status up uptime
 
 	network_get_device device $1
 
@@ -84,12 +82,18 @@ get_mwan3_status() {
 		offline=$(get_offline_time "$iface" "$family")
 
 		config_get enabled "$iface" enabled 0
-		network_get_uptime uptime "$iface"
-		network_is_up "$iface" && up="1"
 
-		if [ -f "$MWAN3TRACK_STATUS_DIR/${iface}.$family/STATUS" ]; then
-			status="$(cat "$MWAN3TRACK_STATUS_DIR/${iface}.$family/STATUS")"
+		if [ -d "${MWAN3_STATUS_DIR}" ]; then
+			network_get_uptime uptime "$iface"
+			network_is_up "$iface" && up="1"
+			if [ -f "$MWAN3TRACK_STATUS_DIR/${iface}.$family/STATUS" ]; then
+				status="$(cat "$MWAN3TRACK_STATUS_DIR/${iface}.$family/STATUS")"
+			else
+				status="notracking"
+			fi
 		else
+			uptime=0
+			up=0
 			status="unknown"
 		fi
 
