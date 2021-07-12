@@ -16,6 +16,18 @@ test -n "$TAG" && release=0
 TAG=${TAG-$CONFIG_VERSION_NUMBER} &&
 test -n "$TAG" || fail no TAG
 
+for d in feeds/packages feeds/luci feeds/routing feeds/telephony feeds/freifunk; do
+	cd "$d" && {
+		echo
+		pwd
+		git tag | grep "^$TAG$" || {
+			git tag $TAG
+		}
+		git push origin $TAG || exit 1
+		cd -
+	} || exit 1
+done
+
 if git tag | grep "^$TAG$"; then
 	if [ "x$release" = "x1" ]; then
 	cd feeds/x && \
@@ -53,15 +65,3 @@ else
 	cd -
 fi
 fi
-
-for d in feeds/packages feeds/luci feeds/routing feeds/telephony feeds/freifunk; do
-	cd "$d" && {
-		echo
-		pwd
-		git tag | grep "^$TAG$" || {
-			git tag $TAG && \
-			git push origin $TAG || exit 1
-		}
-		cd -
-	} || exit 1
-done
