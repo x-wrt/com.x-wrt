@@ -665,6 +665,7 @@ mwan3_add_non_default_iface_route()
 	mwan3_update_dev_to_table
 	$IP route list table main | grep -v "^default\|linkdown\|^::/0\|^fe80::/64\|^unreachable" | while read -r route_line; do
 		mwan3_route_line_dev "tid" "$route_line" "$family"
+		[ -n "${route_line##* expires *}" ] || route_line="${route_line%expires *}${route_line#* expires * }"
 		[ "$tid" != "$id" ] && [ -z "${route_line##* scope link*}" ] && \
 		[ -n "${route_line##* metric *}" ] && \
 		$IP route add table $id $route_line metric ${tid:-256} && {
@@ -701,6 +702,7 @@ mwan3_add_all_nondefault_routes()
 	{
 		let id++
 		[ -n "${active_tbls##* $id *}" ] && return
+		[ -n "${route_line##* expires *}" ] || route_line="${route_line%expires *}${route_line#* expires * }"
 		[ "$tid" != "$id" ] && [ -z "${route_line##* scope link*}" ] && \
 		[ -n "${route_line##* metric *}" ] && \
 		$IP route add table $id $route_line metric ${tid:-256} && {
