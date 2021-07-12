@@ -6,6 +6,7 @@ get_uptime() {
 }
 
 SCRIPTNAME="$(basename "$0")"
+MWAN3_STATUS_DIR="/var/run/mwan3"
 MWAN3TRACK_STATUS_DIR="/var/run/mwan3track"
 LOG()
 {
