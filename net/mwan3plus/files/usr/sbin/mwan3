@@ -9,7 +9,7 @@
 command_help() {
 	local cmd="$1"
 	local help="$2"
-	echo "$(printf "%-25s%s" "${cmd}" "${help}")"
+	echo "$(printf "%-27s%s" "${cmd}" "${help}")"
 }
 
 help()
