@@ -170,9 +170,9 @@ internal()
 	echo "$dash"
 
 	if [ "$DISTRIB_RELEASE" != "" ]; then
-		echo "OpenWrt - $DISTRIB_RELEASE"
+		echo "$DISTRIB_ID - $DISTRIB_RELEASE"
 	else
-		echo "OpenWrt - unknown"
+		echo "$DISTRIB_ID - unknown"
 	fi
 
 	echo ""
