@@ -597,8 +597,6 @@ dns_proxy_server_reload () {
 }
 
 test -c $DEV && {
-	echo cone_nat_clean >$DEV
-
 	natcap_max_pmtu=`uci get natcapd.default.max_pmtu 2>/dev/null || echo 1440`
 	echo natcap_max_pmtu=${natcap_max_pmtu} >$DEV
 
