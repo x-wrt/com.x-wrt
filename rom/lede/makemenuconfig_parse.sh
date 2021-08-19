@@ -57,7 +57,7 @@ usb2="kmod-usb2 \
 	  kmod-fs-vfat \
 	  block-mount \
 	  blockd \
-	  ntfs-3g"
+	  kmod-fs-ntfs3"
 
 usb3="kmod-usb3 \
 	  kmod-usb-core \
@@ -77,7 +77,7 @@ usb3="kmod-usb3 \
 	  kmod-fs-vfat \
 	  block-mount \
 	  blockd \
-	  ntfs-3g"
+	  kmod-fs-ntfs3"
 moreapps="libstdcpp \
 		  libsqlite3 \
 		  libssh2 \
