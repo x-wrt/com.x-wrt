@@ -76,6 +76,9 @@ CONFIG_TARGET_MULTI_PROFILE=y
 # CONFIG_TARGET_ramips_mt7620_DEVICE_dlink_dwr-921-c3 is not set
 # CONFIG_TARGET_ramips_mt7620_DEVICE_dlink_dwr-922-e2 is not set
 # CONFIG_TARGET_ramips_mt7620_DEVICE_dlink_dwr-960 is not set
+# CONFIG_TARGET_ramips_mt7620_DEVICE_domywifi_dm202 is not set
+# CONFIG_TARGET_ramips_mt7620_DEVICE_domywifi_dm203 is not set
+# CONFIG_TARGET_ramips_mt7620_DEVICE_domywifi_dw22d is not set
 # CONFIG_TARGET_ramips_mt7620_DEVICE_dovado_tiny-ac is not set
 # CONFIG_TARGET_ramips_mt7620_DEVICE_edimax_br-6478ac-v2 is not set
 # CONFIG_TARGET_ramips_mt7620_DEVICE_edimax_ew-7476rpc is not set
@@ -118,9 +121,10 @@ CONFIG_TARGET_MULTI_PROFILE=y
 # CONFIG_TARGET_ramips_mt7620_DEVICE_nexx_wt3020-4m is not set
 # CONFIG_TARGET_ramips_mt7620_DEVICE_nexx_wt3020-8m is not set
 # CONFIG_TARGET_ramips_mt7620_DEVICE_ohyeah_oy-0001 is not set
+# CONFIG_TARGET_ramips_mt7620_DEVICE_phicomm_k2-v22.4 is not set
+# CONFIG_TARGET_ramips_mt7620_DEVICE_phicomm_k2-v22.5 is not set
 # CONFIG_TARGET_ramips_mt7620_DEVICE_phicomm_k2g is not set
 # CONFIG_TARGET_ramips_mt7620_DEVICE_phicomm_psg1208 is not set
-# CONFIG_TARGET_ramips_mt7620_DEVICE_phicomm_psg1218a is not set
 # CONFIG_TARGET_ramips_mt7620_DEVICE_phicomm_psg1218b is not set
 # CONFIG_TARGET_ramips_mt7620_DEVICE_planex_cs-qr10 is not set
 # CONFIG_TARGET_ramips_mt7620_DEVICE_planex_db-wrt01 is not set
@@ -207,6 +211,9 @@ CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt7620_DEVICE_dlink_dwr-921-c3="jboot-tools
 CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_dlink_dwr-922-e2=y
 CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt7620_DEVICE_dlink_dwr-922-e2="jboot-tools kmod-gpio-button-hotplug kmod-mii kmod-rt2800-lib kmod-rt2800-mmio kmod-rt2800-soc kmod-rt2x00-lib kmod-rt2x00-mmio kmod-usb2 kmod-usb-core kmod-usb-ehci kmod-usb-net kmod-usb-net-qmi-wwan kmod-usb-ohci kmod-usb-serial kmod-usb-serial-option kmod-usb-serial-wwan kmod-usb-wdm uqmi wpad-basic-wolfssl wwan"
 # CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_dlink_dwr-960 is not set
+# CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_domywifi_dm202 is not set
+# CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_domywifi_dm203 is not set
+# CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_domywifi_dw22d is not set
 # CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_dovado_tiny-ac is not set
 # CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_edimax_br-6478ac-v2 is not set
 # CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_edimax_ew-7476rpc is not set
@@ -265,9 +272,10 @@ CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt7620_DEVICE_modou_m101c="aria2 blockd blo
 # CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_nexx_wt3020-8m is not set
 CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_ohyeah_oy-0001=y
 CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt7620_DEVICE_ohyeah_oy-0001="aria2 blockd block-mount chat comgt comgt-ncm kmod-bonding kmod-crypto-cbc kmod-crypto-cts kmod-crypto-des kmod-crypto-md4 kmod-crypto-md5 kmod-crypto-sha512 kmod-exfat-linux kmod-fs-autofs4 kmod-fs-ext4 kmod-fs-ksmbd kmod-fs-msdos kmod-fs-nfs-common kmod-fs-nfs-common-rpcsec kmod-fs-ntfs3 kmod-fs-vfat kmod-fuse kmod-gpio-button-hotplug kmod-lib-crc16 kmod-mii kmod-nls-cp437 kmod-rt2800-lib kmod-rt2800-mmio kmod-rt2800-soc kmod-rt2x00-lib kmod-rt2x00-mmio kmod-scsi-core kmod-usb2 kmod-usb-core kmod-usb-ehci kmod-usb-net kmod-usb-net-cdc-ether kmod-usb-net-cdc-mbim kmod-usb-net-cdc-ncm kmod-usb-net-huawei-cdc-ncm kmod-usb-net-ipheth kmod-usb-net-qmi-wwan kmod-usb-net-rndis kmod-usb-net-rtl8152 kmod-usb-net-sierrawireless kmod-usb-ohci kmod-usb-printer kmod-usb-serial kmod-usb-serial-option kmod-usb-serial-pl2303 kmod-usb-serial-qualcomm kmod-usb-serial-sierrawireless kmod-usb-serial-wwan kmod-usb-storage kmod-usb-storage-uas kmod-usb-wdm ksmbd-server ksmbd-utils libcares liblzo libnl-core libnl-genl libopenssl libopenssl-conf libpcre libqrencode libsqlite3 libssh2 libstdcpp libusb-1.0 libxml2 luci-app-aria2 luci-app-ksmbd luci-app-openvpn luci-app-p910nd luci-app-wireguard luci-i18n-aria2-en luci-i18n-aria2-zh-cn luci-i18n-ksmbd-en luci-i18n-ksmbd-zh-cn luci-i18n-openvpn-en luci-i18n-openvpn-zh-cn luci-i18n-p910nd-en luci-i18n-p910nd-zh-cn luci-i18n-wireguard-en luci-i18n-wireguard-zh-cn luci-proto-3g luci-proto-bonding luci-proto-mbim luci-proto-ncm luci-proto-qmi luci-proto-wireguard luci-ssl-nginx minicom nginx nginx-mod-luci nginx-mod-luci-ssl nginx-ssl nginx-ssl-util nginx-util openssl-util openvpn-openssl p910nd proto-bonding qrencode sendip umbim uqmi usb-modeswitch uwsgi uwsgi-cgi-plugin uwsgi-luci-support uwsgi-syslog-plugin webui-aria2 wget-ssl wireguard-tools wpad-openssl wsdd2 wwan"
+# CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_phicomm_k2-v22.4 is not set
+# CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_phicomm_k2-v22.5 is not set
 # CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_phicomm_k2g is not set
 # CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_phicomm_psg1208 is not set
-# CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_phicomm_psg1218a is not set
 # CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_phicomm_psg1218b is not set
 # CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_planex_cs-qr10 is not set
 # CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_planex_db-wrt01 is not set
@@ -444,6 +452,7 @@ CONFIG_TARGET_UBIFS_JOURNAL_SIZE=""
 #
 # Image Options
 #
+# CONFIG_TARGET_ROOTFS_PERSIST_VAR is not set
 # end of Target Images
 
 # CONFIG_EXPERIMENTAL is not set
@@ -677,7 +686,7 @@ CONFIG_TARGET_INIT_CMD="/sbin/init"
 CONFIG_TARGET_INIT_SUPPRESS_STDERR=y
 CONFIG_VERSIONOPT=y
 CONFIG_VERSION_DIST="X-WRT"
-CONFIG_VERSION_NUMBER="9.0_b202108191115"
+CONFIG_VERSION_NUMBER="9.0_b202108250952"
 CONFIG_VERSION_CODE="Hirsute"
 CONFIG_VERSION_REPO="http://downloads.openwrt.org/snapshots"
 CONFIG_VERSION_HOME_URL="https://x-wrt.com/"

@@ -63,6 +63,7 @@ CONFIG_TARGET_MULTI_PROFILE=y
 # CONFIG_TARGET_ath79_generic_DEVICE_allnet_all-wap02860ac is not set
 # CONFIG_TARGET_ath79_generic_DEVICE_arduino_yun is not set
 # CONFIG_TARGET_ath79_generic_DEVICE_aruba_ap-105 is not set
+# CONFIG_TARGET_ath79_generic_DEVICE_atheros_db120 is not set
 # CONFIG_TARGET_ath79_generic_DEVICE_avm_fritz1750e is not set
 # CONFIG_TARGET_ath79_generic_DEVICE_avm_fritz300e is not set
 # CONFIG_TARGET_ath79_generic_DEVICE_avm_fritz4020 is not set
@@ -93,6 +94,7 @@ CONFIG_TARGET_MULTI_PROFILE=y
 # CONFIG_TARGET_ath79_generic_DEVICE_comfast_cf-wr752ac-v1 is not set
 # CONFIG_TARGET_ath79_generic_DEVICE_compex_wpj344-16m is not set
 # CONFIG_TARGET_ath79_generic_DEVICE_compex_wpj531-16m is not set
+# CONFIG_TARGET_ath79_generic_DEVICE_compex_wpj558-16m is not set
 # CONFIG_TARGET_ath79_generic_DEVICE_compex_wpj563 is not set
 # CONFIG_TARGET_ath79_generic_DEVICE_devolo_dlan-pro-1200plus-ac is not set
 # CONFIG_TARGET_ath79_generic_DEVICE_devolo_dvl1200e is not set
@@ -340,7 +342,8 @@ CONFIG_TARGET_MULTI_PROFILE=y
 # CONFIG_TARGET_ath79_generic_DEVICE_ubnt_picostation-m is not set
 # CONFIG_TARGET_ath79_generic_DEVICE_ubnt_powerbeam-5ac-500 is not set
 # CONFIG_TARGET_ath79_generic_DEVICE_ubnt_powerbeam-5ac-gen2 is not set
-# CONFIG_TARGET_ath79_generic_DEVICE_ubnt_powerbeam-m-xw is not set
+# CONFIG_TARGET_ath79_generic_DEVICE_ubnt_powerbeam-m2-xw is not set
+# CONFIG_TARGET_ath79_generic_DEVICE_ubnt_powerbeam-m5-xw is not set
 # CONFIG_TARGET_ath79_generic_DEVICE_ubnt_powerbridge-m is not set
 # CONFIG_TARGET_ath79_generic_DEVICE_ubnt_rocket-5ac-lite is not set
 # CONFIG_TARGET_ath79_generic_DEVICE_ubnt_rocket-m is not set
@@ -377,6 +380,7 @@ CONFIG_TARGET_DEVICE_PACKAGES_ath79_generic_DEVICE_adtran_bsap1840="fconfig kmod
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_arduino_yun is not set
 CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_aruba_ap-105=y
 CONFIG_TARGET_DEVICE_PACKAGES_ath79_generic_DEVICE_aruba_ap-105="kmod-ath9k kmod-ath9k-common kmod-bonding kmod-gpio-button-hotplug kmod-i2c-algo-bit kmod-i2c-core kmod-i2c-gpio kmod-random-core kmod-tpm kmod-tpm-i2c-atmel liblzo libopenssl libopenssl-conf libpcre libqrencode libstdcpp libxml2 luci-app-openvpn luci-app-wireguard luci-i18n-openvpn-en luci-i18n-openvpn-zh-cn luci-i18n-wireguard-en luci-i18n-wireguard-zh-cn luci-proto-bonding luci-proto-wireguard luci-ssl-nginx nginx nginx-mod-luci nginx-mod-luci-ssl nginx-ssl nginx-ssl-util nginx-util openssl-util openvpn-openssl proto-bonding qrencode uwsgi uwsgi-cgi-plugin uwsgi-luci-support uwsgi-syslog-plugin wireguard-tools wpad-openssl"
+# CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_atheros_db120 is not set
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_avm_fritz4020 is not set
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_avm_fritz1750e is not set
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_avm_fritz300e is not set
@@ -411,6 +415,7 @@ CONFIG_TARGET_DEVICE_PACKAGES_ath79_generic_DEVICE_buffalo_wzr-hp-g450h="aria2 b
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_comfast_cf-wr752ac-v1 is not set
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_compex_wpj344-16m is not set
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_compex_wpj531-16m is not set
+# CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_compex_wpj558-16m is not set
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_compex_wpj563 is not set
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_dlink_dap-1330-a1 is not set
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_dlink_dap-1365-a1 is not set
@@ -682,7 +687,8 @@ CONFIG_TARGET_DEVICE_PACKAGES_ath79_generic_DEVICE_ubnt_nanobeam-ac="ath10k-boar
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_ubnt_picostation-m is not set
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_ubnt_powerbeam-5ac-500 is not set
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_ubnt_powerbeam-5ac-gen2 is not set
-# CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_ubnt_powerbeam-m-xw is not set
+# CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_ubnt_powerbeam-m2-xw is not set
+# CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_ubnt_powerbeam-m5-xw is not set
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_ubnt_powerbridge-m is not set
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_ubnt_rocket-5ac-lite is not set
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_ubnt_rocket-m is not set
@@ -865,6 +871,7 @@ CONFIG_TARGET_UBIFS_JOURNAL_SIZE=""
 #
 # Image Options
 #
+# CONFIG_TARGET_ROOTFS_PERSIST_VAR is not set
 # end of Target Images
 
 # CONFIG_EXPERIMENTAL is not set
@@ -1097,7 +1104,7 @@ CONFIG_TARGET_INIT_CMD="/sbin/init"
 CONFIG_TARGET_INIT_SUPPRESS_STDERR=y
 CONFIG_VERSIONOPT=y
 CONFIG_VERSION_DIST="X-WRT"
-CONFIG_VERSION_NUMBER="9.0_b202108191115"
+CONFIG_VERSION_NUMBER="9.0_b202108250952"
 CONFIG_VERSION_CODE="Hirsute"
 CONFIG_VERSION_REPO="http://downloads.openwrt.org/snapshots"
 CONFIG_VERSION_HOME_URL="https://x-wrt.com/"

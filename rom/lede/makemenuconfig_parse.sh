@@ -723,6 +723,8 @@ for t in $targets; do
 		TARGET_DEVICE_ramips_mt7620_DEVICE_phicomm_k2g|\
 		TARGET_DEVICE_ramips_mt7620_DEVICE_phicomm_psg1208|\
 		TARGET_DEVICE_ramips_mt7620_DEVICE_phicomm_psg1218a|\
+		TARGET_DEVICE_ramips_mt7620_DEVICE_phicomm_k2-v22.4|\
+		TARGET_DEVICE_ramips_mt7620_DEVICE_phicomm_k2-v22.5|\
 		TARGET_DEVICE_ramips_mt7620_DEVICE_phicomm_psg1218b)
 			mods="$mods wpad-basic-wolfssl"
 			excludes="$excludes wpad-openssl"
@@ -1190,6 +1192,8 @@ for t in $targets; do
 		TARGET_DEVICE_ramips_mt7620_DEVICE_phicomm_k2g|\
 		TARGET_DEVICE_ramips_mt7620_DEVICE_phicomm_psg1208|\
 		TARGET_DEVICE_ramips_mt7620_DEVICE_phicomm_psg1218a|\
+		TARGET_DEVICE_ramips_mt7620_DEVICE_phicomm_k2-v22.4|\
+		TARGET_DEVICE_ramips_mt7620_DEVICE_phicomm_k2-v22.5|\
 		TARGET_DEVICE_ramips_mt7620_DEVICE_phicomm_psg1218b)
 			mods="$mods"
 		;;

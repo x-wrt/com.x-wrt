@@ -58,6 +58,7 @@ CONFIG_TARGET_MULTI_PROFILE=y
 # CONFIG_TARGET_ramips_mt76x8_DEVICE_buffalo_wcr-1166ds is not set
 # CONFIG_TARGET_ramips_mt76x8_DEVICE_cudy_wr1000 is not set
 # CONFIG_TARGET_ramips_mt76x8_DEVICE_d-team_pbr-d1 is not set
+# CONFIG_TARGET_ramips_mt76x8_DEVICE_dlink_dap-1325-a1 is not set
 # CONFIG_TARGET_ramips_mt76x8_DEVICE_duzun_dm06 is not set
 # CONFIG_TARGET_ramips_mt76x8_DEVICE_elecom_wrc-1167fs is not set
 # CONFIG_TARGET_ramips_mt76x8_DEVICE_glinet_gl-mt300n-v2 is not set
@@ -78,6 +79,7 @@ CONFIG_TARGET_MULTI_PROFILE=y
 # CONFIG_TARGET_ramips_mt76x8_DEVICE_mediatek_mt7628an-eval-board is not set
 # CONFIG_TARGET_ramips_mt76x8_DEVICE_mercury_mac1200r-v2 is not set
 # CONFIG_TARGET_ramips_mt76x8_DEVICE_minew_g1-c is not set
+# CONFIG_TARGET_ramips_mt76x8_DEVICE_motorola_mwr03 is not set
 # CONFIG_TARGET_ramips_mt76x8_DEVICE_netgear_r6020 is not set
 # CONFIG_TARGET_ramips_mt76x8_DEVICE_netgear_r6080 is not set
 # CONFIG_TARGET_ramips_mt76x8_DEVICE_netgear_r6120 is not set
@@ -142,6 +144,7 @@ CONFIG_TARGET_PER_DEVICE_ROOTFS=y
 # CONFIG_TARGET_DEVICE_ramips_mt76x8_DEVICE_asus_rt-n12-vp-b1 is not set
 # CONFIG_TARGET_DEVICE_ramips_mt76x8_DEVICE_buffalo_wcr-1166ds is not set
 # CONFIG_TARGET_DEVICE_ramips_mt76x8_DEVICE_cudy_wr1000 is not set
+# CONFIG_TARGET_DEVICE_ramips_mt76x8_DEVICE_dlink_dap-1325-a1 is not set
 # CONFIG_TARGET_DEVICE_ramips_mt76x8_DEVICE_duzun_dm06 is not set
 # CONFIG_TARGET_DEVICE_ramips_mt76x8_DEVICE_elecom_wrc-1167fs is not set
 CONFIG_TARGET_DEVICE_ramips_mt76x8_DEVICE_glinet_gl-mt300n-v2=y
@@ -167,6 +170,7 @@ CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt76x8_DEVICE_hiwifi_hc5861b="aria2 blockd 
 # CONFIG_TARGET_DEVICE_ramips_mt76x8_DEVICE_mediatek_mt7628an-eval-board is not set
 # CONFIG_TARGET_DEVICE_ramips_mt76x8_DEVICE_mercury_mac1200r-v2 is not set
 # CONFIG_TARGET_DEVICE_ramips_mt76x8_DEVICE_minew_g1-c is not set
+# CONFIG_TARGET_DEVICE_ramips_mt76x8_DEVICE_motorola_mwr03 is not set
 # CONFIG_TARGET_DEVICE_ramips_mt76x8_DEVICE_netgear_r6020 is not set
 # CONFIG_TARGET_DEVICE_ramips_mt76x8_DEVICE_netgear_r6080 is not set
 CONFIG_TARGET_DEVICE_ramips_mt76x8_DEVICE_netgear_r6120=y
@@ -350,6 +354,7 @@ CONFIG_TARGET_UBIFS_JOURNAL_SIZE=""
 #
 # Image Options
 #
+# CONFIG_TARGET_ROOTFS_PERSIST_VAR is not set
 # end of Target Images
 
 # CONFIG_EXPERIMENTAL is not set
@@ -583,7 +588,7 @@ CONFIG_TARGET_INIT_CMD="/sbin/init"
 CONFIG_TARGET_INIT_SUPPRESS_STDERR=y
 CONFIG_VERSIONOPT=y
 CONFIG_VERSION_DIST="X-WRT"
-CONFIG_VERSION_NUMBER="9.0_b202108191115"
+CONFIG_VERSION_NUMBER="9.0_b202108250952"
 CONFIG_VERSION_CODE="Hirsute"
 CONFIG_VERSION_REPO="http://downloads.openwrt.org/snapshots"
 CONFIG_VERSION_HOME_URL="https://x-wrt.com/"
