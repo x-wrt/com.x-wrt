@@ -123,6 +123,11 @@ wgmod="wireguard-tools \
 	   qrencode \
 	   libqrencode"
 
+ipv6extra="kmod-jool \
+	   kmod-nat46 \
+	   464xlat \
+	   jool-tools"
+
 
 openvpnmod="luci-app-openvpn \
 			luci-i18n-openvpn-en \
@@ -571,7 +576,7 @@ for t in $targets; do
 		TARGET_DEVICE_ramips_mt7621_DEVICE_netgear_r6220c|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_netgear_wndr3700-v5|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_lenovo_newifi-d1)
-			mods="$mods $lucibond"
+			mods="$mods $lucibond $ipv6extra"
 			mods="$mods $wgmod $openvpnmod wpad-openssl luci-ssl-nginx"
 			excludes="$excludes wpad-basic-wolfssl"
 			flash_gt8m=1
