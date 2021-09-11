@@ -277,6 +277,7 @@ for t in $targets; do
 	excludes="$excludes_basic"
 	case $t in
 		#>8M flash
+		TARGET_DEVICE_ramips_mt7621_DEVICE_xiaomi_mi-router-cr660x|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_tplink_archer-c6u-v1|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_tplink_archer-c6-v3|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_tplink_archer-a6-v3|\
@@ -1080,6 +1081,7 @@ for t in $targets; do
 			has_usb=1
 		;;
 		#no usb
+		TARGET_DEVICE_ramips_mt7621_DEVICE_xiaomi_mi-router-cr660x|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_tplink_archer-c6-v3|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_tplink_archer-a6-v3|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_linksys_e5600|\
