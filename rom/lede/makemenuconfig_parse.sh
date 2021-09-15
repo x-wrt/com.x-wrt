@@ -652,6 +652,7 @@ for t in $targets; do
 		TARGET_DEVICE_ramips_mt76x8_DEVICE_tplink_tl-mr3420-v5|\
 		TARGET_DEVICE_ramips_mt76x8_DEVICE_tplink_archer-c50-v3|\
 		TARGET_DEVICE_ramips_mt76x8_DEVICE_tplink_archer-c20-v4|\
+		TARGET_DEVICE_ramips_mt76x8_DEVICE_tplink_archer-c20-v5|\
 		TARGET_DEVICE_ath79_generic_DEVICE_netgear_wndr3700|\
 		TARGET_DEVICE_ath79_generic_DEVICE_ubnt_bullet-m|\
 		TARGET_DEVICE_ath79_generic_DEVICE_ubnt_nano-m|\
@@ -1178,6 +1179,7 @@ for t in $targets; do
 		TARGET_DEVICE_ramips_mt76x8_DEVICE_tplink_tl-wa801nd-v5|\
 		TARGET_DEVICE_ramips_mt76x8_DEVICE_tplink_archer-c50-v3|\
 		TARGET_DEVICE_ramips_mt76x8_DEVICE_tplink_archer-c20-v4|\
+		TARGET_DEVICE_ramips_mt76x8_DEVICE_tplink_archer-c20-v5|\
 		TARGET_DEVICE_ath79_generic_DEVICE_ubnt_unifiac-lite|\
 		TARGET_DEVICE_ath79_generic_DEVICE_ubnt_unifiac-mesh|\
 		TARGET_DEVICE_ath79_generic_DEVICE_ubnt_unifiac-mesh-pro|\
