@@ -125,7 +125,6 @@ wgmod="wireguard-tools \
 
 ipv6extra="kmod-jool \
 	   kmod-nat46 \
-	   464xlat \
 	   jool-tools"
 
 wifiextra="kmod-batman-adv batctl-default"
