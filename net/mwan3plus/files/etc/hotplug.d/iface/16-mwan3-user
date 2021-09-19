@@ -2,6 +2,8 @@
 
 [ -f "/etc/mwan3.user" ] && {
 	. /lib/functions.sh
+	. /lib/functions/network.sh
+	. /lib/mwan3/common.sh
 	. /lib/mwan3/mwan3.sh
 
 	#skip hotplug.d action if not total init start
