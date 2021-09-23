@@ -26,7 +26,9 @@ do_disk_ready() {
 
 	test -b ${ROOTDEV} && test -b ${ROOTPART}1 || return
 
-	overlay_size=$((1*1024*1024*1024)) #1G
+	overlay_size=$(cat /proc/cmdline | grep -o overlay_size=[0-9]* | cut -d= -f2)
+	test -n "$overlay_size" || overlay_size=$((1*1024)) #1G default
+	overlay_size=$((overlay_size*1024*1024))
 	disktype="dos"
 	fdisk -l ${ROOTDEV} 2>/dev/null | grep -q "type: gpt" && disktype="gpt"
 	sector_size=`fdisk -l ${ROOTDEV} | grep "^Sector size" | awk '{print $4}'`
