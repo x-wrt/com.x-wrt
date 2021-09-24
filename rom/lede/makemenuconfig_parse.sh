@@ -300,6 +300,7 @@ for t in $targets; do
 		TARGET_DEVICE_ramips_mt7621_DEVICE_jcg_y2|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_totolink_x5000r|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_tenbay_t-mb5eu-v01|\
+		TARGET_DEVICE_ramips_mt7621_DEVICE_xwrt_wr1800k-ax-norplusemmc|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_xwrt_wr1800k-ax-nor|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_xwrt_wr1800k-ax-nand|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_xwrt_tcb1800k-ax-nor|\
@@ -1093,6 +1094,7 @@ for t in $targets; do
 		TARGET_DEVICE_ramips_mt76x8_DEVICE_tplink_tl-mr6400-v5|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_totolink_x5000r|\
 		TARGET_DEVICE_ath79_generic_DEVICE_tplink_tl-wr810n-v2|\
+		TARGET_DEVICE_ramips_mt7621_DEVICE_xwrt_wr1800k-ax-norplusemmc|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_xwrt_wr1800k-ax-nor|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_xwrt_wr1800k-ax-nand|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_xwrt_tcb1800k-ax-nor|\
