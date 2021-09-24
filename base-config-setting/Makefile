@@ -26,7 +26,9 @@ define Package/base-config-setting/Default
 		   +(TARGET_ROOTFS_EXT4FS):ethtool \
 		   +(TARGET_ROOTFS_EXT4FS):blockd \
 		   +(TARGET_ROOTFS_EXT4FS):blkid \
-		   +(TARGET_ROOTFS_EXT4FS):fdisk +(EFI_IMAGES):gdisk
+		   +(TARGET_ROOTFS_EXT4FS):fdisk +(EFI_IMAGES):gdisk \
+		   +(TARGET_ROOTFS_EXT4FS):partx-utils \
+		   +(TARGET_ROOTFS_EXT4FS):e2fsprogs
 endef
 
 define Package/base-config-setting
@@ -51,6 +53,12 @@ if [ -z "$$IPKG_INSTROOT" ]; then
 fi
 
 exit 0
+endef
+
+define Package/base-config-setting-ext4fs
+  $(call Package/base-config-setting/Default)
+  TITLE:=base-config-setting ext4fs set
+  DEPENDS:=+base-config-setting +@TARGET_ROOTFS_EXT4FS
 endef
 
 define Package/base-config-setting/install
@@ -104,3 +112,4 @@ define Build/Compile
 endef
 
 $(eval $(call BuildPackage,base-config-setting))
+$(eval $(call BuildPackage,base-config-setting-ext4fs))
