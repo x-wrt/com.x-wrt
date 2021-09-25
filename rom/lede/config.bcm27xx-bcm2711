@@ -381,7 +381,7 @@ CONFIG_PKG_RELRO_FULL=y
 # CONFIG_SELINUX is not set
 # end of Global build settings
 
-CONFIG_DEVEL=y
+# CONFIG_DEVEL is not set
 # CONFIG_BROKEN is not set
 CONFIG_BINARY_FOLDER=""
 CONFIG_DOWNLOAD_FOLDER=""
@@ -394,60 +394,22 @@ CONFIG_TARGET_ROOTFS_DIR=""
 CONFIG_CCACHE_DIR=""
 CONFIG_EXTERNAL_KERNEL_TREE=""
 CONFIG_KERNEL_GIT_CLONE_URI=""
-# CONFIG_BUILD_LOG is not set
 CONFIG_BUILD_LOG_DIR=""
-# CONFIG_SRC_TREE_OVERRIDE is not set
 CONFIG_EXTRA_OPTIMIZATION="-fno-caller-saves -fno-plt"
-# CONFIG_TARGET_OPTIONS is not set
 CONFIG_TARGET_OPTIMIZATION="-Os -pipe"
-# CONFIG_EXTERNAL_TOOLCHAIN is not set
-CONFIG_NEED_TOOLCHAIN=y
-CONFIG_TOOLCHAINOPTS=y
 # CONFIG_EXTRA_TARGET_ARCH is not set
-
-#
-# Binary tools
-#
-# CONFIG_BINUTILS_USE_VERSION_2_32 is not set
-CONFIG_BINUTILS_USE_VERSION_2_34=y
-# CONFIG_BINUTILS_USE_VERSION_2_35_2 is not set
-# CONFIG_BINUTILS_USE_VERSION_2_36_1 is not set
-# CONFIG_BINUTILS_USE_VERSION_2_37 is not set
 CONFIG_EXTRA_BINUTILS_CONFIG_OPTIONS=""
-
-#
-# Compiler
-#
-# CONFIG_GCC_USE_VERSION_7 is not set
-# CONFIG_GCC_USE_VERSION_8 is not set
-# CONFIG_GCC_USE_VERSION_9 is not set
-# CONFIG_GCC_USE_VERSION_10 is not set
-CONFIG_GCC_USE_VERSION_11=y
-# CONFIG_GCC_USE_GRAPHITE is not set
 CONFIG_EXTRA_GCC_CONFIG_OPTIONS=""
 # CONFIG_GCC_DEFAULT_PIE is not set
 # CONFIG_GCC_DEFAULT_SSP is not set
 # CONFIG_SJLJ_EXCEPTIONS is not set
 # CONFIG_INSTALL_GFORTRAN is not set
-
-#
-# C Library
-#
-# CONFIG_LIBC_USE_GLIBC is not set
-CONFIG_LIBC_USE_MUSL=y
-# CONFIG_MUSL_DISABLE_CRYPT_SIZE_HACK is not set
-
-#
-# Debuggers
-#
 CONFIG_GDB=y
 # CONFIG_GDB_PYTHON is not set
 CONFIG_USE_MUSL=y
-CONFIG_BINUTILS_VERSION_2_34=y
-CONFIG_BINUTILS_VERSION="2.34"
-CONFIG_GCC_VERSION_11=y
+CONFIG_BINUTILS_VERSION_2_37=y
+CONFIG_BINUTILS_VERSION="2.37"
 CONFIG_GCC_VERSION="11.2.0"
-# CONFIG_GCC_USE_IREMAP is not set
 CONFIG_LIBC="musl"
 CONFIG_TARGET_SUFFIX="musl"
 # CONFIG_IB is not set
@@ -471,7 +433,7 @@ CONFIG_TARGET_INIT_CMD="/sbin/init"
 CONFIG_TARGET_INIT_SUPPRESS_STDERR=y
 CONFIG_VERSIONOPT=y
 CONFIG_VERSION_DIST="X-WRT"
-CONFIG_VERSION_NUMBER="9.0_b202109200103"
+CONFIG_VERSION_NUMBER="9.0_b202109251046"
 CONFIG_VERSION_CODE="Hirsute"
 CONFIG_VERSION_REPO="http://downloads.openwrt.org/snapshots"
 CONFIG_VERSION_HOME_URL="https://x-wrt.com/"
@@ -3392,14 +3354,8 @@ CONFIG_PACKAGE_kmod-nat46=m
 # CONFIG_PACKAGE_kmod-nsh is not set
 # CONFIG_PACKAGE_kmod-openvswitch is not set
 # CONFIG_PACKAGE_kmod-openvswitch-geneve is not set
-# CONFIG_PACKAGE_kmod-openvswitch-geneve-intree is not set
 # CONFIG_PACKAGE_kmod-openvswitch-gre is not set
-# CONFIG_PACKAGE_kmod-openvswitch-gre-intree is not set
-# CONFIG_PACKAGE_kmod-openvswitch-intree is not set
-# CONFIG_PACKAGE_kmod-openvswitch-lisp-intree is not set
-# CONFIG_PACKAGE_kmod-openvswitch-stt-intree is not set
 # CONFIG_PACKAGE_kmod-openvswitch-vxlan is not set
-# CONFIG_PACKAGE_kmod-openvswitch-vxlan-intree is not set
 # CONFIG_PACKAGE_kmod-pf-ring is not set
 # CONFIG_PACKAGE_kmod-pktgen is not set
 CONFIG_PACKAGE_kmod-ppp=y
@@ -3614,7 +3570,6 @@ CONFIG_PACKAGE_kmod-usb-serial-wwan=m
 CONFIG_PACKAGE_kmod-usb-storage=m
 CONFIG_PACKAGE_kmod-usb-storage-extras=m
 CONFIG_PACKAGE_kmod-usb-storage-uas=m
-# CONFIG_PACKAGE_kmod-usb-test is not set
 # CONFIG_PACKAGE_kmod-usb-uhci is not set
 CONFIG_PACKAGE_kmod-usb-wdm=m
 CONFIG_PACKAGE_kmod-usb-xhci-hcd=m
@@ -4074,7 +4029,6 @@ CONFIG_PACKAGE_luasocket=y
 # CONFIG_PACKAGE_python3-oauthlib is not set
 # CONFIG_PACKAGE_python3-openpyxl is not set
 # CONFIG_PACKAGE_python3-openssl is not set
-# CONFIG_PACKAGE_python3-packages is not set
 # CONFIG_PACKAGE_python3-packaging is not set
 # CONFIG_PACKAGE_python3-paho-mqtt is not set
 # CONFIG_PACKAGE_python3-paramiko is not set
@@ -7804,7 +7758,6 @@ CONFIG_PACKAGE_iwinfo=y
 CONFIG_PACKAGE_jshn=y
 # CONFIG_PACKAGE_kmod is not set
 # CONFIG_PACKAGE_lcd4linux-custom is not set
-# CONFIG_PACKAGE_lcd4linux-full is not set
 # CONFIG_PACKAGE_lcdproc-clients is not set
 # CONFIG_PACKAGE_lcdproc-drivers is not set
 # CONFIG_PACKAGE_lcdproc-server is not set
@@ -8008,6 +7961,7 @@ CONFIG_PACKAGE_luci-app-autoreboot=y
 # Base config setting for this board
 #
 CONFIG_PACKAGE_base-config-setting=y
+# CONFIG_PACKAGE_base-config-setting-ext4fs is not set
 # end of Base config setting for this board
 
 #
