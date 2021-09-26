@@ -103,6 +103,7 @@ CONFIG_TARGET_MULTI_PROFILE=y
 # CONFIG_TARGET_ramips_mt7621_DEVICE_iodata_wn-ax2033gr is not set
 # CONFIG_TARGET_ramips_mt7621_DEVICE_iodata_wn-dx1167r is not set
 # CONFIG_TARGET_ramips_mt7621_DEVICE_iodata_wn-dx1200gr is not set
+# CONFIG_TARGET_ramips_mt7621_DEVICE_iodata_wn-dx2033gr is not set
 # CONFIG_TARGET_ramips_mt7621_DEVICE_iodata_wn-gx300gr is not set
 # CONFIG_TARGET_ramips_mt7621_DEVICE_iodata_wnpr2600g is not set
 # CONFIG_TARGET_ramips_mt7621_DEVICE_iptime_a6ns-m is not set
@@ -158,6 +159,7 @@ CONFIG_TARGET_MULTI_PROFILE=y
 # CONFIG_TARGET_ramips_mt7621_DEVICE_ubnt_edgerouter-x-sfp is not set
 # CONFIG_TARGET_ramips_mt7621_DEVICE_ubnt_unifi-6-lite is not set
 # CONFIG_TARGET_ramips_mt7621_DEVICE_ubnt_unifi-nanohd is not set
+# CONFIG_TARGET_ramips_mt7621_DEVICE_ubnt_usw-flex is not set
 # CONFIG_TARGET_ramips_mt7621_DEVICE_unielec_u7621-01-16m is not set
 # CONFIG_TARGET_ramips_mt7621_DEVICE_unielec_u7621-06-16m is not set
 # CONFIG_TARGET_ramips_mt7621_DEVICE_unielec_u7621-06-64m is not set
@@ -269,6 +271,7 @@ CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt7621_DEVICE_iodata_wn-ax1167gr="batctl-de
 # CONFIG_TARGET_DEVICE_ramips_mt7621_DEVICE_iodata_wn-ax2033gr is not set
 # CONFIG_TARGET_DEVICE_ramips_mt7621_DEVICE_iodata_wn-dx1167r is not set
 # CONFIG_TARGET_DEVICE_ramips_mt7621_DEVICE_iodata_wn-dx1200gr is not set
+# CONFIG_TARGET_DEVICE_ramips_mt7621_DEVICE_iodata_wn-dx2033gr is not set
 # CONFIG_TARGET_DEVICE_ramips_mt7621_DEVICE_iodata_wn-gx300gr is not set
 # CONFIG_TARGET_DEVICE_ramips_mt7621_DEVICE_iodata_wnpr2600g is not set
 # CONFIG_TARGET_DEVICE_ramips_mt7621_DEVICE_iptime_a6ns-m is not set
@@ -358,6 +361,7 @@ CONFIG_TARGET_DEVICE_ramips_mt7621_DEVICE_ubnt_edgerouter-x-sfp=y
 CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt7621_DEVICE_ubnt_edgerouter-x-sfp="batctl-default jool-tools kmod-batman-adv kmod-bonding kmod-cfg80211 kmod-crypto-md5 kmod-gpio-button-hotplug kmod-gpio-pca953x kmod-hwmon-core kmod-i2c-algo-pca kmod-i2c-core kmod-jool kmod-leds-gpio kmod-lib-crc16 kmod-libphy kmod-nat46 kmod-phylink kmod-regmap-core kmod-regmap-i2c kmod-sfp liblzo libnl libnl-core libnl-genl libnl-nf libnl-route libopenssl libopenssl-conf libpcre libqrencode libstdcpp libxml2 luci-app-openvpn luci-app-wireguard luci-i18n-openvpn-en luci-i18n-openvpn-zh-cn luci-i18n-wireguard-en luci-i18n-wireguard-zh-cn luci-proto-bonding luci-proto-wireguard luci-ssl-nginx nginx nginx-mod-luci nginx-mod-luci-ssl nginx-ssl nginx-ssl-util nginx-util openssl-util openvpn-openssl proto-bonding qrencode uwsgi uwsgi-cgi-plugin uwsgi-luci-support uwsgi-syslog-plugin wireguard-tools wireless-regdb wpad-openssl"
 # CONFIG_TARGET_DEVICE_ramips_mt7621_DEVICE_ubnt_unifi-6-lite is not set
 # CONFIG_TARGET_DEVICE_ramips_mt7621_DEVICE_ubnt_unifi-nanohd is not set
+# CONFIG_TARGET_DEVICE_ramips_mt7621_DEVICE_ubnt_usw-flex is not set
 # CONFIG_TARGET_DEVICE_ramips_mt7621_DEVICE_unielec_u7621-01-16m is not set
 # CONFIG_TARGET_DEVICE_ramips_mt7621_DEVICE_unielec_u7621-06-16m is not set
 # CONFIG_TARGET_DEVICE_ramips_mt7621_DEVICE_unielec_u7621-06-64m is not set
@@ -801,7 +805,7 @@ CONFIG_TARGET_INIT_CMD="/sbin/init"
 CONFIG_TARGET_INIT_SUPPRESS_STDERR=y
 CONFIG_VERSIONOPT=y
 CONFIG_VERSION_DIST="X-WRT"
-CONFIG_VERSION_NUMBER="9.0_b202109251248"
+CONFIG_VERSION_NUMBER="9.0_b202109261814"
 CONFIG_VERSION_CODE="Hirsute"
 CONFIG_VERSION_REPO="http://downloads.openwrt.org/snapshots"
 CONFIG_VERSION_HOME_URL="https://x-wrt.com/"
