@@ -26,7 +26,8 @@ define Package/base-config-setting/Default
 		   +(TARGET_ROOTFS_EXT4FS):ethtool \
 		   +(TARGET_ROOTFS_EXT4FS):blockd \
 		   +(TARGET_ROOTFS_EXT4FS):blkid \
-		   +(TARGET_ROOTFS_EXT4FS):fdisk +(EFI_IMAGES):gdisk \
+		   +(TARGET_ROOTFS_EXT4FS):fdisk \
+		   +(TARGET_ROOTFS_EXT4FS):gdisk \
 		   +(TARGET_ROOTFS_EXT4FS):partx-utils \
 		   +(TARGET_ROOTFS_EXT4FS):e2fsprogs
 endef
