@@ -8,8 +8,7 @@ md5=http://$SERVER/factory_main.md5
 cd /tmp
 
 while :; do
-	ping -c1 $SERVER || {
-		sleep 1
+	ping -c1 -W1 $SERVER || {
 		continue
 	}
 
