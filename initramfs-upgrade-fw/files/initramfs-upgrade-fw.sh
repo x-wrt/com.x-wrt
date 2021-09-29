@@ -23,10 +23,14 @@ while :; do
 	wget --timeout=60 -O /tmp/x-wrt.bin $fw && {
 		wget --timeout=60 -O /tmp/x-wrt.bin.md5 $md5 && {
 			[ "$(md5sum /tmp/x-wrt.bin | head -c32)" = "$(cat /tmp/x-wrt.bin.md5 | head -c32)" ] && {
-				sysupgrade -n /tmp/x-wrt.bin || {
-					set_state failsafe
+				sysupgrade -T /tmp/x-wrt.bin && mtd write /tmp/x-wrt.bin firmware && {
+					set_state done
+					for led in /sys/class/leds/*/brightness; do
+						echo "1" >"$led"
+					done
 					break
 				}
+				set_state failsafe
 			}
 		}
 	}
