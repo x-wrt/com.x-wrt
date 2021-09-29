@@ -5,6 +5,11 @@ SERVER=192.168.1.254
 fw=http://$SERVER/factory_main.bin
 md5=http://$SERVER/factory_main.md5
 
+#close all led
+for led in /sys/class/leds/*/brightness; do
+	echo "0" >"$led"
+done
+
 . /etc/diag.sh
 set_state upgrade
 
