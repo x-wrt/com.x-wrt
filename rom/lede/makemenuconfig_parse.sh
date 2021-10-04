@@ -13,6 +13,8 @@ usbprint="kmod-usb-printer \
 		  luci-i18n-p910nd-en \
 		  luci-i18n-p910nd-zh-cn"
 
+iphone4g="usbutils usbmuxd libimobiledevice-utils libimobiledevice"
+
 usb4g="wwan \
 	   uqmi \
 	   kmod-usb-wdm \
@@ -1240,7 +1242,7 @@ for t in $targets; do
 	esac
 
 	if [ "x$flash_gt8m" = "x1" ] && [ "x$has_usb" = "x1" ]; then
-		mods="$mods $usb4g"
+		mods="$mods $usb4g $iphone4g"
 		mods="$mods $moreapps $usbprint"
 	else
 		mods="$mods $lucistd"
