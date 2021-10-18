@@ -455,6 +455,10 @@ for t in $targets; do
 		TARGET_DEVICE_ath79_generic_DEVICE_buffalo_wzr-hp-g302h-a1a0|\
 		TARGET_DEVICE_ath79_generic_DEVICE_buffalo_wzr-hp-g450h|\
 		TARGET_DEVICE_bcm53xx_generic_DEVICE_linksys_ea6500-v2|\
+		TARGET_DEVICE_bcm53xx_generic_DEVICE_linksys_ea6300-v1|\
+		TARGET_DEVICE_bcm53xx_generic_DEVICE_linksys_ea9200|\
+		TARGET_DEVICE_bcm53xx_generic_DEVICE_linksys_ea9500|\
+		TARGET_DEVICE_bcm53xx_generic_DEVICE_netgear_r8500|\
 		TARGET_DEVICE_ramips_mt7620_DEVICE_asus_rt-n12p|\
 		TARGET_DEVICE_ramips_mt7620_DEVICE_asus_rt-ac51u|\
 		TARGET_DEVICE_ramips_mt7620_DEVICE_asus_rt-n14u|\
@@ -805,6 +809,10 @@ for t in $targets; do
 		TARGET_DEVICE_bcm53xx_generic_DEVICE_tplink_archer-c9-v1|\
 		TARGET_DEVICE_bcm53xx_generic_DEVICE_dlink_dir-885l|\
 		TARGET_DEVICE_bcm53xx_generic_DEVICE_linksys_ea6500-v2|\
+		TARGET_DEVICE_bcm53xx_generic_DEVICE_linksys_ea6300-v1|\
+		TARGET_DEVICE_bcm53xx_generic_DEVICE_linksys_ea9200|\
+		TARGET_DEVICE_bcm53xx_generic_DEVICE_linksys_ea9500|\
+		TARGET_DEVICE_bcm53xx_generic_DEVICE_netgear_r8500|\
 		TARGET_DEVICE_mvebu_cortexa9_DEVICE_linksys_wrt32x|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_puppies|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_nxc200p|\
