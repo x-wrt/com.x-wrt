@@ -478,6 +478,7 @@ CONFIG_PKG_FORTIFY_SOURCE_1=y
 # CONFIG_PKG_RELRO_PARTIAL is not set
 CONFIG_PKG_RELRO_FULL=y
 # CONFIG_SELINUX is not set
+# CONFIG_SECCOMP is not set
 # end of Global build settings
 
 # CONFIG_DEVEL is not set
@@ -2602,7 +2603,6 @@ CONFIG_PACKAGE_procd=y
 # CONFIG_PROCD_ZRAM_TMPFS is not set
 # end of Configuration
 
-# CONFIG_PACKAGE_procd-seccomp is not set
 # CONFIG_PACKAGE_procd-selinux is not set
 # CONFIG_PACKAGE_procd-ujail is not set
 # CONFIG_PACKAGE_procd-ujail-console is not set
@@ -2746,6 +2746,7 @@ CONFIG_ZABBIX_POSTGRESQL=y
 # CONFIG_PACKAGE_nginx is not set
 # CONFIG_PACKAGE_nginx-mod-luci-ssl is not set
 # CONFIG_PACKAGE_nginx-util is not set
+# CONFIG_PACKAGE_rclone-config is not set
 # CONFIG_PACKAGE_tang is not set
 # end of Extra packages
 
@@ -3709,6 +3710,7 @@ CONFIG_PACKAGE_kmod-softdog=y
 # CONFIG_PACKAGE_kmod-mt76x2u is not set
 # CONFIG_PACKAGE_kmod-mt7915e is not set
 # CONFIG_PACKAGE_kmod-mt7921e is not set
+# CONFIG_PACKAGE_kmod-mt7921s is not set
 # CONFIG_PACKAGE_kmod-mwifiex-pcie is not set
 # CONFIG_PACKAGE_kmod-mwifiex-sdio is not set
 # CONFIG_PACKAGE_kmod-mwl8k is not set
@@ -5547,6 +5549,13 @@ CONFIG_POSTFIX_PCRE=y
 # end of Captive Portals
 
 #
+# Cloud Manager
+#
+# CONFIG_PACKAGE_rclone-ng is not set
+# CONFIG_PACKAGE_rclone-webui-react is not set
+# end of Cloud Manager
+
+#
 # Dial-in/up
 #
 # end of Dial-in/up
@@ -5569,6 +5578,7 @@ CONFIG_POSTFIX_PCRE=y
 # CONFIG_PACKAGE_curl is not set
 # CONFIG_PACKAGE_gnurl is not set
 # CONFIG_PACKAGE_lftp is not set
+# CONFIG_PACKAGE_rclone is not set
 # CONFIG_PACKAGE_rosy-file-server is not set
 # CONFIG_PACKAGE_rsync is not set
 # CONFIG_PACKAGE_rsyncd is not set
@@ -6473,6 +6483,7 @@ CONFIG_PACKAGE_uclient-fetch=y
 # CONFIG_PACKAGE_udpxy is not set
 # CONFIG_PACKAGE_ulogd is not set
 # CONFIG_PACKAGE_umdns is not set
+# CONFIG_PACKAGE_uradvd is not set
 # CONFIG_PACKAGE_usbip is not set
 # CONFIG_PACKAGE_ustp is not set
 # CONFIG_PACKAGE_vallumd is not set
@@ -6940,6 +6951,7 @@ CONFIG_PACKAGE_mkf2fs=y
 # CONFIG_PACKAGE_getopt is not set
 # CONFIG_PACKAGE_giflib-utils is not set
 # CONFIG_PACKAGE_gkermit is not set
+# CONFIG_PACKAGE_gl-puli-mcu is not set
 # CONFIG_PACKAGE_gnuplot is not set
 # CONFIG_PACKAGE_gpioctl-sysfs is not set
 # CONFIG_PACKAGE_gpiod-tools is not set
@@ -7194,6 +7206,7 @@ CONFIG_PACKAGE_base-config-setting=y
 # Fast Forward Stacks
 #
 # CONFIG_PACKAGE_kmod-natflow is not set
+# CONFIG_PACKAGE_natflow-auth is not set
 # CONFIG_PACKAGE_natflow-boot is not set
 # end of Fast Forward Stacks
 
