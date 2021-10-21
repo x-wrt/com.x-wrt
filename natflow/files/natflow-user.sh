@@ -5,6 +5,7 @@ list_users()
 	cat /proc/net/nf_conntrack | grep "udp.*dst=127.255.255.255 sport=0 dport=65535" | grep -v "mark=0 " | \
 	while read _ _ _ _ timeout sip _ _ _ rxp rxB _ himac _ lomac _ txp txB type _; \
 	do
+		[ "$timeout" = 0 ] && continue
 		himac=${himac##src=}
 		himac=$(printf '%02x:' ${himac//./ })
 		lomac=$(printf '%04x:' ${lomac##sport=})
