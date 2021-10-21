@@ -40,8 +40,11 @@ endef
 
 include $(INCLUDE_DIR)/kernel-defaults.mk
 
+EXTRA_CFLAGS += -DCONFIG_NATFLOW_PATH -DCONFIG_NATFLOW_URLLOGGER
+
 define Build/Compile/natflow
 	+$(MAKE) $(PKG_JOBS) -C "$(LINUX_DIR)" \
+		EXTRA_CFLAGS="$(EXTRA_CFLAGS)" \
 		$(KERNEL_MAKE_FLAGS) \
 		ARCH="$(LINUX_KARCH)" \
 		CROSS_COMPILE="$(KERNEL_CROSS)" \
