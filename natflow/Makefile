@@ -65,5 +65,25 @@ define Package/natflow-boot/install
 	$(INSTALL_BIN) ./files/natflow-boot.init $(1)/etc/init.d/natflow-boot
 endef
 
+define Package/natflow-auth
+  CATEGORY:=X
+  SUBMENU:=Fast Forward Stacks
+  TITLE:=natflow auth init script
+  DEPENDS:= +kmod-natflow +ipset +lua-ipops
+endef
+
+define Package/natflow-auth/conffiles
+/etc/config/natflow
+endef
+
+define Package/natflow-auth/install
+	$(INSTALL_DIR) $(1)/etc/init.d
+	$(INSTALL_BIN) ./files/natflow-user.init $(1)/etc/init.d/natflow-user
+	$(INSTALL_BIN) ./files/natflow-zone.init $(1)/etc/init.d/natflow-zone
+	$(INSTALL_DIR) $(1)/etc/config
+	$(INSTALL_DATA) ./files/natflow.config $(1)/etc/config/natflow
+endef
+
 $(eval $(call KernelPackage,natflow))
 $(eval $(call BuildPackage,natflow-boot))
+$(eval $(call BuildPackage,natflow-auth))
