@@ -10,14 +10,14 @@ include $(INCLUDE_DIR)/kernel.mk
 
 PKG_NAME:=natflow
 PKG_VERSION:=1.0.2
-PKG_RELEASE:=20210930
+PKG_RELEASE:=20211021
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION)-$(PKG_RELEASE).tar.xz
 PKG_SOURCE_URL:=https://github.com/ptpt52/natflow.git
 PKG_SOURCE_PROTO:=git
 PKG_SOURCE_VERSION:=$(PKG_RELEASE)
 PKG_SOURCE_SUBDIR:=$(PKG_NAME)-$(PKG_VERSION)
-PKG_MIRROR_HASH:=8c13e31a19edf89a864195f6ebbf6f7f09b18469f7e824ec75c323ed467e7dab
+PKG_MIRROR_HASH:=2ec5111001c2b37478ffc88fc57d61b3a5f08adbe80cc2dc315116a886708666
 PKG_MAINTAINER:=Chen Minqiang <ptpt52@gmail.com>
 PKG_LICENSE:=GPL-2.0
 
@@ -82,6 +82,8 @@ define Package/natflow-auth/install
 	$(INSTALL_BIN) ./files/natflow-zone.init $(1)/etc/init.d/natflow-zone
 	$(INSTALL_DIR) $(1)/etc/config
 	$(INSTALL_DATA) ./files/natflow.config $(1)/etc/config/natflow
+	$(INSTALL_DIR) $(1)/usr/sbin
+	$(INSTALL_BIN) ./files/natflow-user.sh $(1)/usr/sbin/natflow-user
 endef
 
 $(eval $(call KernelPackage,natflow))
