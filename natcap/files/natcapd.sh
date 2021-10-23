@@ -1161,7 +1161,11 @@ main_trigger() {
 							"https://$built_in_server$URI" || {
 							#XXX disable dns proxy, becasue of bad connection
 							ipset -n list knocklist >/dev/null 2>&1 || ipset -! create knocklist iphash hashsize 64 maxelem 1024
-							ipset add knocklist $hostip 2>/dev/null
+							if ipset test knocklist $hostip >/dev/null 2>&1; then
+								ipset del knocklist $hostip 2>/dev/null
+							else
+								ipset add knocklist $hostip 2>/dev/null
+							fi
 							cp /tmp/natcapd.txrx.old /tmp/natcapd.txrx
 						}
 					}
