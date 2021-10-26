@@ -351,7 +351,10 @@ test -x /usr/bin/wget && rm -f /bin/wget && ln -s /usr/bin/wget /bin/wget
 test -x /etc/init.d/nginx && test -e /etc/nginx/conf.d/dev.x-wrt.com.conf || rm -f /etc/uhttpd.key /etc/uhttpd.crt 
 
 #clean all log if new flash firmware
-rm -f rm /sys/fs/pstore/*
+mount -t pstore -o noatime pstore /sys/fs/pstore 2>/dev/null && {
+	rm -f rm /sys/fs/pstore/*
+	umount /sys/fs/pstore
+}
 
 uci set base_config.@status[0].version=$version
 uci commit base_config
