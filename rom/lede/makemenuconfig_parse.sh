@@ -543,6 +543,7 @@ for t in $targets; do
 		TARGET_DEVICE_ipq806x_generic_DEVICE_linksys_ea8500|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_buffalo_wsr-1166dhp|\
 		TARGET_DEVICE_ar71xx_nand_DEVICE_domywifi-dw33d|\
+		TARGET_DEVICE_ipq806x_generic_DEVICE_netgear_xr500|\
 		TARGET_DEVICE_ipq806x_generic_DEVICE_netgear_r7800|\
 		TARGET_DEVICE_ipq806x_generic_DEVICE_netgear_r7500v2|\
 		TARGET_DEVICE_ipq806x_generic_DEVICE_netgear_r7500|\
@@ -842,6 +843,7 @@ for t in $targets; do
 		TARGET_DEVICE_ramips_mt7621_DEVICE_zbtlink_zbt-wg3526-16m|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_zbtlink_zbt-wg3526-32m|\
 		TARGET_DEVICE_ipq806x_generic_DEVICE_linksys_ea8500|\
+		TARGET_DEVICE_ipq806x_generic_DEVICE_netgear_xr500|\
 		TARGET_DEVICE_ipq806x_generic_DEVICE_netgear_r7800|\
 		TARGET_DEVICE_ipq806x_generic_DEVICE_netgear_r7500v2|\
 		TARGET_DEVICE_ipq806x_generic_DEVICE_netgear_r7500|\
