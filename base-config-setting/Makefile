@@ -97,6 +97,7 @@ ifneq ($(CONFIG_TARGET_ROOTFS_EXT4FS),)
 	$(INSTALL_DATA) ./files/disk_ready.preinit $(1)/lib/preinit/79_disk_ready
 	$(INSTALL_DIR) $(1)/etc/init.d
 	$(INSTALL_BIN) ./files/disk_ready.init $(1)/etc/init.d/disk_ready
+	$(INSTALL_BIN) ./files/disk_ready_done.init $(1)/etc/init.d/disk_ready_done
 	$(INSTALL_BIN) ./files/ethtool.init $(1)/etc/init.d/ethtool
 	$(INSTALL_BIN) ./files/diskv.sh $(1)/usr/sbin/diskv
 endif
