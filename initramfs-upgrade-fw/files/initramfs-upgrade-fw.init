@@ -4,6 +4,7 @@
 START=99
 
 start() {
+	insmod mtd-rw i_want_a_brick=1
 	SERVICE_DAEMONIZE=1 service_start /usr/sbin/initramfs-upgrade-fw
 	echo start ok
 }
