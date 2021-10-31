@@ -100,6 +100,7 @@ CONFIG_TARGET_MULTI_PROFILE=y
 # CONFIG_TARGET_ramips_mt76x8_DEVICE_tplink_re200-v4 is not set
 # CONFIG_TARGET_ramips_mt76x8_DEVICE_tplink_re220-v2 is not set
 # CONFIG_TARGET_ramips_mt76x8_DEVICE_tplink_re305-v1 is not set
+# CONFIG_TARGET_ramips_mt76x8_DEVICE_tplink_re305-v3 is not set
 # CONFIG_TARGET_ramips_mt76x8_DEVICE_tplink_tl-mr3020-v3 is not set
 # CONFIG_TARGET_ramips_mt76x8_DEVICE_tplink_tl-mr3420-v5 is not set
 # CONFIG_TARGET_ramips_mt76x8_DEVICE_tplink_tl-mr6400-v4 is not set
@@ -195,6 +196,7 @@ CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt76x8_DEVICE_skylab_skw92a="aria2 batctl-d
 # CONFIG_TARGET_DEVICE_ramips_mt76x8_DEVICE_tplink_re200-v4 is not set
 # CONFIG_TARGET_DEVICE_ramips_mt76x8_DEVICE_tplink_re220-v2 is not set
 # CONFIG_TARGET_DEVICE_ramips_mt76x8_DEVICE_tplink_re305-v1 is not set
+# CONFIG_TARGET_DEVICE_ramips_mt76x8_DEVICE_tplink_re305-v3 is not set
 # CONFIG_TARGET_DEVICE_ramips_mt76x8_DEVICE_tplink_tl-mr3020-v3 is not set
 # CONFIG_TARGET_DEVICE_ramips_mt76x8_DEVICE_tplink_tl-mr3420-v5 is not set
 # CONFIG_TARGET_DEVICE_ramips_mt76x8_DEVICE_tplink_tl-mr6400-v4 is not set
@@ -586,8 +588,8 @@ CONFIG_TARGET_INIT_CMD="/sbin/init"
 CONFIG_TARGET_INIT_SUPPRESS_STDERR=y
 CONFIG_VERSIONOPT=y
 CONFIG_VERSION_DIST="X-WRT"
-CONFIG_VERSION_NUMBER="9.0_b202110300939"
-CONFIG_VERSION_CODE="Hirsute"
+CONFIG_VERSION_NUMBER="21.10_b202110311428"
+CONFIG_VERSION_CODE="Impish"
 CONFIG_VERSION_REPO="http://downloads.openwrt.org/snapshots"
 CONFIG_VERSION_HOME_URL="https://x-wrt.com/"
 CONFIG_VERSION_MANUFACTURER="X-WRT-TEAM"
@@ -2614,8 +2616,10 @@ CONFIG_DROPBEAR_ED25519=y
 CONFIG_DROPBEAR_CHACHA20POLY1305=y
 # CONFIG_DROPBEAR_ZLIB is not set
 CONFIG_DROPBEAR_DBCLIENT=y
+CONFIG_DROPBEAR_DBCLIENT_AGENTFORWARD=y
 CONFIG_DROPBEAR_SCP=y
 # CONFIG_DROPBEAR_ASKPASS is not set
+CONFIG_DROPBEAR_AGENTFORWARD=y
 # end of Configuration
 
 # CONFIG_PACKAGE_ead is not set
