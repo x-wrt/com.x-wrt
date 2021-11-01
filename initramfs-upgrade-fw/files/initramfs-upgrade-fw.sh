@@ -30,10 +30,12 @@ while :; do
 					mtd write /tmp/u-boot.bin u-boot
 				}
 				( \
+					fw_setenv telnetd on; \
 					test -b /dev/mmcblk0 && \
 					tar xf /tmp/x-wrt.bin && \
 					zcat sysupgrade-xwrt_wr1800k-ax-norplusemmc/root >/dev/mmcblk0 && \
-					mtd write sysupgrade-xwrt_wr1800k-ax-norplusemmc/kernel firmware \
+					mtd write sysupgrade-xwrt_wr1800k-ax-norplusemmc/kernel firmware || \
+					mtd write /tmp/x-wrt.bin firmware \
 				) && {
 					set_state done
 					for led in /sys/class/leds/*/brightness; do
