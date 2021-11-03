@@ -3,7 +3,6 @@
 wifi_setup_radio()
 {
 	local radio=$1
-	local wps_pushbutton=0
 
 	uci get wireless.${radio} >/dev/null 2>&1 && {
 		#FIXME hack
@@ -43,7 +42,6 @@ wifi_setup_radio()
 			uci set wireless.${radio}.txpower='23'
 		else
 			uci set wireless.${radio}.txpower='20'
-			wps_pushbutton=1
 		fi
 
 		obj=`uci add wireless wifi-iface`
@@ -59,7 +57,6 @@ wifi_setup_radio()
 			uci set wireless.$obj.wpa_master_rekey='0'
 			uci set wireless.$obj.disassoc_low_ack='0'
 			uci set wireless.$obj.key="${SSID_PASSWD}"
-			uci set wireless.$obj.wps_pushbutton="${wps_pushbutton}"
 		}
 	}
 }
