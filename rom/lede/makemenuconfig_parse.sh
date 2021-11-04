@@ -278,6 +278,7 @@ for t in $targets; do
 	excludes="$excludes_basic"
 	case $t in
 		#>8M flash
+		TARGET_DEVICE_ramips_mt76x8_DEVICE_xiaomi_miwifi-3c|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_xiaomi_mi-router-cr660x|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_tplink_archer-c6u-v1|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_tplink_archer-c6-v3|\
@@ -557,6 +558,7 @@ for t in $targets; do
 		TARGET_DEVICE_ath79_generic_DEVICE_qihoo_c301|\
 		TARGET_DEVICE_ar71xx_generic_DEVICE_qihoo-c301|\
 		TARGET_DEVICE_ar71xx_nand_DEVICE_R6100|\
+		TARGET_DEVICE_ath79_nand_DEVICE_netgear_r6100|\
 		TARGET_DEVICE_ar71xx_nand_DEVICE_WNDR3700V4|\
 		TARGET_DEVICE_ar71xx_nand_DEVICE_WNDR4300V1|\
 		TARGET_DEVICE_ath79_nand_DEVICE_netgear_wndr4300|\
@@ -1068,6 +1070,7 @@ for t in $targets; do
 		TARGET_DEVICE_ar71xx_nand_DEVICE_WNDR4300V1|\
 		TARGET_DEVICE_ar71xx_nand_DEVICE_WNDR3700V4|\
 		TARGET_DEVICE_ar71xx_nand_DEVICE_R6100|\
+		TARGET_DEVICE_ath79_nand_DEVICE_netgear_r6100|\
 		TARGET_DEVICE_bcm53xx_generic_DEVICE_tenda_ac9|\
 		TARGET_DEVICE_ar71xx_generic_DEVICE_WNR2200|\
 		TARGET_DEVICE_ar71xx_generic_DEVICE_wndr3800ch|\
@@ -1094,6 +1097,7 @@ for t in $targets; do
 			has_usb=1
 		;;
 		#no usb
+		TARGET_DEVICE_ramips_mt76x8_DEVICE_xiaomi_miwifi-3c|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_xiaomi_mi-router-cr660x|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_tplink_archer-c6-v3|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_tplink_archer-a6-v3|\
