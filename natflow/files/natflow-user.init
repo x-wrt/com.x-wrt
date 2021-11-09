@@ -63,7 +63,7 @@ start() {
 	test -c $DEVCTL || return 0
 
 	echo clean >$DEVCTL
-	echo disabled=0 >$DEVCTL
+	echo disabled=1 >$DEVCTL
 
 	config_load natflow
 	config_foreach natflow_user_setup auth
