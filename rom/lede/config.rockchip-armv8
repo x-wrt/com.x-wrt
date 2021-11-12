@@ -48,6 +48,7 @@ CONFIG_TARGET_rockchip=y
 # CONFIG_TARGET_x86 is not set
 CONFIG_TARGET_rockchip_armv8=y
 CONFIG_TARGET_MULTI_PROFILE=y
+# CONFIG_TARGET_rockchip_armv8_DEVICE_friendlyarm_nanopi-r2c is not set
 # CONFIG_TARGET_rockchip_armv8_DEVICE_friendlyarm_nanopi-r2s is not set
 # CONFIG_TARGET_rockchip_armv8_DEVICE_friendlyarm_nanopi-r4s is not set
 # CONFIG_TARGET_rockchip_armv8_DEVICE_pine64_rockpro64 is not set
@@ -58,10 +59,12 @@ CONFIG_TARGET_MULTI_PROFILE=y
 #
 # CONFIG_TARGET_ALL_PROFILES is not set
 CONFIG_TARGET_PER_DEVICE_ROOTFS=y
+CONFIG_TARGET_DEVICE_rockchip_armv8_DEVICE_friendlyarm_nanopi-r2c=y
+CONFIG_TARGET_DEVICE_PACKAGES_rockchip_armv8_DEVICE_friendlyarm_nanopi-r2c="aria2 batctl-default chat comgt comgt-ncm jool-tools kmod-batman-adv kmod-bonding kmod-crypto-cbc kmod-crypto-cts kmod-crypto-des kmod-crypto-md4 kmod-crypto-md5 kmod-exfat-linux kmod-fs-ext4 kmod-fs-ksmbd kmod-fs-msdos kmod-fs-nfs-common kmod-fs-nfs-common-rpcsec kmod-fs-ntfs3 kmod-fs-vfat kmod-fuse kmod-gpio-button-hotplug kmod-jool kmod-lib-crc16 kmod-mii kmod-nat46 kmod-nls-cp437 kmod-usb2 kmod-usb-ehci kmod-usb-net kmod-usb-net-cdc-ether kmod-usb-net-cdc-mbim kmod-usb-net-cdc-ncm kmod-usb-net-huawei-cdc-ncm kmod-usb-net-ipheth kmod-usb-net-qmi-wwan kmod-usb-net-rndis kmod-usb-net-rtl8152 kmod-usb-net-sierrawireless kmod-usb-ohci kmod-usb-printer kmod-usb-serial kmod-usb-serial-option kmod-usb-serial-pl2303 kmod-usb-serial-qualcomm kmod-usb-serial-sierrawireless kmod-usb-serial-wwan kmod-usb-storage kmod-usb-storage-uas kmod-usb-wdm ksmbd-server ksmbd-utils libcares libevdev libimobiledevice libimobiledevice-utils liblzo libnl libnl-core libnl-genl libnl-nf libnl-route libopenssl-conf libpcre libplist libqrencode libsqlite3 libssh2 libudev-zero libusb-1.0 libusbmuxd libxml2 luci-app-aria2 luci-app-ksmbd luci-app-openvpn luci-app-p910nd luci-app-wireguard luci-i18n-aria2-en luci-i18n-aria2-zh-cn luci-i18n-ksmbd-en luci-i18n-ksmbd-zh-cn luci-i18n-openvpn-en luci-i18n-openvpn-zh-cn luci-i18n-p910nd-en luci-i18n-p910nd-zh-cn luci-i18n-wireguard-en luci-i18n-wireguard-zh-cn luci-proto-3g luci-proto-bonding luci-proto-mbim luci-proto-ncm luci-proto-qmi luci-proto-wireguard luci-ssl-nginx minicom nginx nginx-mod-luci nginx-mod-luci-ssl nginx-ssl nginx-ssl-util nginx-util openssl-util openvpn-openssl p910nd proto-bonding qrencode sendip umbim uqmi usb-modeswitch usbmuxd usbutils uwsgi uwsgi-cgi-plugin uwsgi-luci-support uwsgi-syslog-plugin webui-aria2 wget-ssl wireguard-tools wsdd2 wwan"
 CONFIG_TARGET_DEVICE_rockchip_armv8_DEVICE_friendlyarm_nanopi-r2s=y
 CONFIG_TARGET_DEVICE_PACKAGES_rockchip_armv8_DEVICE_friendlyarm_nanopi-r2s="aria2 batctl-default chat comgt comgt-ncm jool-tools kmod-batman-adv kmod-bonding kmod-crypto-cbc kmod-crypto-cts kmod-crypto-des kmod-crypto-md4 kmod-crypto-md5 kmod-exfat-linux kmod-fs-ext4 kmod-fs-ksmbd kmod-fs-msdos kmod-fs-nfs-common kmod-fs-nfs-common-rpcsec kmod-fs-ntfs3 kmod-fs-vfat kmod-fuse kmod-gpio-button-hotplug kmod-jool kmod-lib-crc16 kmod-mii kmod-nat46 kmod-nls-cp437 kmod-usb2 kmod-usb-ehci kmod-usb-net kmod-usb-net-cdc-ether kmod-usb-net-cdc-mbim kmod-usb-net-cdc-ncm kmod-usb-net-huawei-cdc-ncm kmod-usb-net-ipheth kmod-usb-net-qmi-wwan kmod-usb-net-rndis kmod-usb-net-rtl8152 kmod-usb-net-sierrawireless kmod-usb-ohci kmod-usb-printer kmod-usb-serial kmod-usb-serial-option kmod-usb-serial-pl2303 kmod-usb-serial-qualcomm kmod-usb-serial-sierrawireless kmod-usb-serial-wwan kmod-usb-storage kmod-usb-storage-uas kmod-usb-wdm ksmbd-server ksmbd-utils libcares libevdev libimobiledevice libimobiledevice-utils liblzo libnl libnl-core libnl-genl libnl-nf libnl-route libopenssl-conf libpcre libplist libqrencode libsqlite3 libssh2 libudev-zero libusb-1.0 libusbmuxd libxml2 luci-app-aria2 luci-app-ksmbd luci-app-openvpn luci-app-p910nd luci-app-wireguard luci-i18n-aria2-en luci-i18n-aria2-zh-cn luci-i18n-ksmbd-en luci-i18n-ksmbd-zh-cn luci-i18n-openvpn-en luci-i18n-openvpn-zh-cn luci-i18n-p910nd-en luci-i18n-p910nd-zh-cn luci-i18n-wireguard-en luci-i18n-wireguard-zh-cn luci-proto-3g luci-proto-bonding luci-proto-mbim luci-proto-ncm luci-proto-qmi luci-proto-wireguard luci-ssl-nginx minicom nginx nginx-mod-luci nginx-mod-luci-ssl nginx-ssl nginx-ssl-util nginx-util openssl-util openvpn-openssl p910nd proto-bonding qrencode sendip umbim uqmi usb-modeswitch usbmuxd usbutils uwsgi uwsgi-cgi-plugin uwsgi-luci-support uwsgi-syslog-plugin webui-aria2 wget-ssl wireguard-tools wsdd2 wwan"
 CONFIG_TARGET_DEVICE_rockchip_armv8_DEVICE_friendlyarm_nanopi-r4s=y
-CONFIG_TARGET_DEVICE_PACKAGES_rockchip_armv8_DEVICE_friendlyarm_nanopi-r4s="aria2 batctl-default chat comgt comgt-ncm jool-tools kmod-batman-adv kmod-bonding kmod-crypto-cbc kmod-crypto-cts kmod-crypto-des kmod-crypto-md4 kmod-crypto-md5 kmod-exfat-linux kmod-fs-ext4 kmod-fs-ksmbd kmod-fs-msdos kmod-fs-nfs-common kmod-fs-nfs-common-rpcsec kmod-fs-ntfs3 kmod-fs-vfat kmod-fuse kmod-gpio-button-hotplug kmod-jool kmod-lib-crc16 kmod-mii kmod-nat46 kmod-nls-cp437 kmod-phy-realtek kmod-r8169 kmod-usb2 kmod-usb-ehci kmod-usb-net kmod-usb-net-cdc-ether kmod-usb-net-cdc-mbim kmod-usb-net-cdc-ncm kmod-usb-net-huawei-cdc-ncm kmod-usb-net-ipheth kmod-usb-net-qmi-wwan kmod-usb-net-rndis kmod-usb-net-rtl8152 kmod-usb-net-sierrawireless kmod-usb-ohci kmod-usb-printer kmod-usb-serial kmod-usb-serial-option kmod-usb-serial-pl2303 kmod-usb-serial-qualcomm kmod-usb-serial-sierrawireless kmod-usb-serial-wwan kmod-usb-storage kmod-usb-storage-uas kmod-usb-wdm ksmbd-server ksmbd-utils libcares libevdev libimobiledevice libimobiledevice-utils liblzo libnl libnl-core libnl-genl libnl-nf libnl-route libopenssl-conf libpcre libplist libqrencode libsqlite3 libssh2 libudev-zero libusb-1.0 libusbmuxd libxml2 luci-app-aria2 luci-app-ksmbd luci-app-openvpn luci-app-p910nd luci-app-wireguard luci-i18n-aria2-en luci-i18n-aria2-zh-cn luci-i18n-ksmbd-en luci-i18n-ksmbd-zh-cn luci-i18n-openvpn-en luci-i18n-openvpn-zh-cn luci-i18n-p910nd-en luci-i18n-p910nd-zh-cn luci-i18n-wireguard-en luci-i18n-wireguard-zh-cn luci-proto-3g luci-proto-bonding luci-proto-mbim luci-proto-ncm luci-proto-qmi luci-proto-wireguard luci-ssl-nginx minicom nginx nginx-mod-luci nginx-mod-luci-ssl nginx-ssl nginx-ssl-util nginx-util openssl-util openvpn-openssl p910nd proto-bonding qrencode r8169-firmware sendip umbim uqmi usb-modeswitch usbmuxd usbutils uwsgi uwsgi-cgi-plugin uwsgi-luci-support uwsgi-syslog-plugin webui-aria2 wget-ssl wireguard-tools wsdd2 wwan"
+CONFIG_TARGET_DEVICE_PACKAGES_rockchip_armv8_DEVICE_friendlyarm_nanopi-r4s="aria2 batctl-default chat comgt comgt-ncm jool-tools kmod-batman-adv kmod-bonding kmod-crypto-cbc kmod-crypto-cts kmod-crypto-des kmod-crypto-md4 kmod-crypto-md5 kmod-exfat-linux kmod-fs-ext4 kmod-fs-ksmbd kmod-fs-msdos kmod-fs-nfs-common kmod-fs-nfs-common-rpcsec kmod-fs-ntfs3 kmod-fs-vfat kmod-fuse kmod-gpio-button-hotplug kmod-jool kmod-lib-crc16 kmod-mdio-devres kmod-mii kmod-nat46 kmod-nls-cp437 kmod-phy-realtek kmod-r8169 kmod-usb2 kmod-usb-ehci kmod-usb-net kmod-usb-net-cdc-ether kmod-usb-net-cdc-mbim kmod-usb-net-cdc-ncm kmod-usb-net-huawei-cdc-ncm kmod-usb-net-ipheth kmod-usb-net-qmi-wwan kmod-usb-net-rndis kmod-usb-net-rtl8152 kmod-usb-net-sierrawireless kmod-usb-ohci kmod-usb-printer kmod-usb-serial kmod-usb-serial-option kmod-usb-serial-pl2303 kmod-usb-serial-qualcomm kmod-usb-serial-sierrawireless kmod-usb-serial-wwan kmod-usb-storage kmod-usb-storage-uas kmod-usb-wdm ksmbd-server ksmbd-utils libcares libevdev libimobiledevice libimobiledevice-utils liblzo libnl libnl-core libnl-genl libnl-nf libnl-route libopenssl-conf libpcre libplist libqrencode libsqlite3 libssh2 libudev-zero libusb-1.0 libusbmuxd libxml2 luci-app-aria2 luci-app-ksmbd luci-app-openvpn luci-app-p910nd luci-app-wireguard luci-i18n-aria2-en luci-i18n-aria2-zh-cn luci-i18n-ksmbd-en luci-i18n-ksmbd-zh-cn luci-i18n-openvpn-en luci-i18n-openvpn-zh-cn luci-i18n-p910nd-en luci-i18n-p910nd-zh-cn luci-i18n-wireguard-en luci-i18n-wireguard-zh-cn luci-proto-3g luci-proto-bonding luci-proto-mbim luci-proto-ncm luci-proto-qmi luci-proto-wireguard luci-ssl-nginx minicom nginx nginx-mod-luci nginx-mod-luci-ssl nginx-ssl nginx-ssl-util nginx-util openssl-util openvpn-openssl p910nd proto-bonding qrencode r8169-firmware sendip umbim uqmi usb-modeswitch usbmuxd usbutils uwsgi uwsgi-cgi-plugin uwsgi-luci-support uwsgi-syslog-plugin webui-aria2 wget-ssl wireguard-tools wsdd2 wwan"
 # CONFIG_TARGET_DEVICE_rockchip_armv8_DEVICE_pine64_rockpro64 is not set
 # CONFIG_TARGET_DEVICE_rockchip_armv8_DEVICE_radxa_rock-pi-4a is not set
 # end of Target Devices
@@ -5560,6 +5563,7 @@ CONFIG_PACKAGE_luci-i18n-base-zh-cn=y
 # CONFIG_PACKAGE_luci-i18n-ddns-bn is not set
 # CONFIG_PACKAGE_luci-i18n-ddns-ca is not set
 # CONFIG_PACKAGE_luci-i18n-ddns-cs is not set
+# CONFIG_PACKAGE_luci-i18n-ddns-da is not set
 # CONFIG_PACKAGE_luci-i18n-ddns-de is not set
 # CONFIG_PACKAGE_luci-i18n-ddns-el is not set
 CONFIG_PACKAGE_luci-i18n-ddns-en=y
@@ -5592,6 +5596,7 @@ CONFIG_PACKAGE_luci-i18n-ddns-zh-cn=y
 # CONFIG_PACKAGE_luci-i18n-firewall-bn is not set
 # CONFIG_PACKAGE_luci-i18n-firewall-ca is not set
 # CONFIG_PACKAGE_luci-i18n-firewall-cs is not set
+# CONFIG_PACKAGE_luci-i18n-firewall-da is not set
 # CONFIG_PACKAGE_luci-i18n-firewall-de is not set
 # CONFIG_PACKAGE_luci-i18n-firewall-el is not set
 CONFIG_PACKAGE_luci-i18n-firewall-en=y
@@ -5628,6 +5633,7 @@ CONFIG_PACKAGE_luci-i18n-firewall-zh-cn=y
 # CONFIG_PACKAGE_luci-i18n-ksmbd-bn is not set
 # CONFIG_PACKAGE_luci-i18n-ksmbd-ca is not set
 # CONFIG_PACKAGE_luci-i18n-ksmbd-cs is not set
+# CONFIG_PACKAGE_luci-i18n-ksmbd-da is not set
 # CONFIG_PACKAGE_luci-i18n-ksmbd-de is not set
 # CONFIG_PACKAGE_luci-i18n-ksmbd-el is not set
 CONFIG_PACKAGE_luci-i18n-ksmbd-en=m
@@ -5692,6 +5698,7 @@ CONFIG_PACKAGE_luci-i18n-mwan3-zh-cn=y
 # CONFIG_PACKAGE_luci-i18n-nft-qos-bn is not set
 # CONFIG_PACKAGE_luci-i18n-nft-qos-ca is not set
 # CONFIG_PACKAGE_luci-i18n-nft-qos-cs is not set
+# CONFIG_PACKAGE_luci-i18n-nft-qos-da is not set
 # CONFIG_PACKAGE_luci-i18n-nft-qos-de is not set
 # CONFIG_PACKAGE_luci-i18n-nft-qos-el is not set
 CONFIG_PACKAGE_luci-i18n-nft-qos-en=y
@@ -5724,6 +5731,7 @@ CONFIG_PACKAGE_luci-i18n-nft-qos-zh-cn=y
 # CONFIG_PACKAGE_luci-i18n-openvpn-bn is not set
 # CONFIG_PACKAGE_luci-i18n-openvpn-ca is not set
 # CONFIG_PACKAGE_luci-i18n-openvpn-cs is not set
+# CONFIG_PACKAGE_luci-i18n-openvpn-da is not set
 # CONFIG_PACKAGE_luci-i18n-openvpn-de is not set
 # CONFIG_PACKAGE_luci-i18n-openvpn-el is not set
 CONFIG_PACKAGE_luci-i18n-openvpn-en=m
@@ -5822,6 +5830,7 @@ CONFIG_PACKAGE_luci-i18n-p910nd-zh-cn=m
 # CONFIG_PACKAGE_luci-i18n-sqm-bn is not set
 # CONFIG_PACKAGE_luci-i18n-sqm-ca is not set
 # CONFIG_PACKAGE_luci-i18n-sqm-cs is not set
+# CONFIG_PACKAGE_luci-i18n-sqm-da is not set
 # CONFIG_PACKAGE_luci-i18n-sqm-de is not set
 # CONFIG_PACKAGE_luci-i18n-sqm-el is not set
 CONFIG_PACKAGE_luci-i18n-sqm-en=y
@@ -5854,6 +5863,7 @@ CONFIG_PACKAGE_luci-i18n-sqm-zh-cn=y
 # CONFIG_PACKAGE_luci-i18n-upnp-bn is not set
 # CONFIG_PACKAGE_luci-i18n-upnp-ca is not set
 # CONFIG_PACKAGE_luci-i18n-upnp-cs is not set
+# CONFIG_PACKAGE_luci-i18n-upnp-da is not set
 # CONFIG_PACKAGE_luci-i18n-upnp-de is not set
 # CONFIG_PACKAGE_luci-i18n-upnp-el is not set
 CONFIG_PACKAGE_luci-i18n-upnp-en=y
@@ -5886,6 +5896,7 @@ CONFIG_PACKAGE_luci-i18n-upnp-zh-cn=y
 # CONFIG_PACKAGE_luci-i18n-wireguard-bn is not set
 # CONFIG_PACKAGE_luci-i18n-wireguard-ca is not set
 # CONFIG_PACKAGE_luci-i18n-wireguard-cs is not set
+# CONFIG_PACKAGE_luci-i18n-wireguard-da is not set
 # CONFIG_PACKAGE_luci-i18n-wireguard-de is not set
 # CONFIG_PACKAGE_luci-i18n-wireguard-el is not set
 CONFIG_PACKAGE_luci-i18n-wireguard-en=m
@@ -5939,38 +5950,10 @@ CONFIG_PACKAGE_luci-i18n-wireguard-zh-cn=m
 # CONFIG_PACKAGE_msmtp-nossl is not set
 # CONFIG_PACKAGE_msmtp-queue is not set
 # CONFIG_PACKAGE_mutt is not set
-
-#
-# Select mutt build options
-#
-CONFIG_MUTT_POP=y
-CONFIG_MUTT_IMAP=y
-# CONFIG_MUTT_SMTP is not set
-# CONFIG_MUTT_SASL is not set
-# CONFIG_MUTT_GNUTLS is not set
-CONFIG_MUTT_OPENSSL=y
-# end of Select mutt build options
-
 # CONFIG_PACKAGE_nail is not set
 # CONFIG_PACKAGE_opendkim is not set
 # CONFIG_PACKAGE_opendkim-tools is not set
 # CONFIG_PACKAGE_postfix is not set
-
-#
-# Select postfix build options
-#
-CONFIG_POSTFIX_TLS=y
-CONFIG_POSTFIX_SASL=y
-CONFIG_POSTFIX_LDAP=y
-# CONFIG_POSTFIX_DB is not set
-CONFIG_POSTFIX_CDB=y
-CONFIG_POSTFIX_SQLITE=y
-# CONFIG_POSTFIX_MYSQL is not set
-# CONFIG_POSTFIX_PGSQL is not set
-CONFIG_POSTFIX_PCRE=y
-# CONFIG_POSTFIX_EAI is not set
-# end of Select postfix build options
-
 # CONFIG_PACKAGE_spamc is not set
 # CONFIG_PACKAGE_spamc-ssl is not set
 # end of Mail
@@ -6797,6 +6780,7 @@ CONFIG_PACKAGE_nginx-ssl-util=m
 # CONFIG_PACKAGE_spawn-fcgi is not set
 # CONFIG_PACKAGE_squid is not set
 # CONFIG_PACKAGE_tinyproxy is not set
+# CONFIG_PACKAGE_trojan-go is not set
 CONFIG_PACKAGE_uhttpd=y
 # CONFIG_PACKAGE_uhttpd-mod-lua is not set
 CONFIG_PACKAGE_uhttpd-mod-ubus=y
@@ -7749,7 +7733,6 @@ CONFIG_PACKAGE_jshn=y
 # CONFIG_PACKAGE_lcdproc-drivers is not set
 # CONFIG_PACKAGE_lcdproc-server is not set
 # CONFIG_PACKAGE_less is not set
-# CONFIG_PACKAGE_less-wide is not set
 CONFIG_PACKAGE_libjson-script=y
 # CONFIG_PACKAGE_libnetwork is not set
 # CONFIG_PACKAGE_libucode is not set
