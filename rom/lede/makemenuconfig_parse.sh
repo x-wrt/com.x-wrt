@@ -487,6 +487,7 @@ for t in $targets; do
 		TARGET_DEVICE_ipq40xx_generic_DEVICE_asus_rt-ac58u|\
 		TARGET_DEVICE_ipq40xx_generic_DEVICE_asus_rt-acrh17|\
 		TARGET_DEVICE_ipq40xx_generic_DEVICE_p2w_r619ac-128m|\
+		TARGET_DEVICE_ipq40xx_generic_DEVICE_p2w_r619ac-64m|\
 		TARGET_DEVICE_ipq40xx_generic_DEVICE_p2w_r619ac|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_zbtlink_zbt-we3526|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_d-team_newifi-d2|\
@@ -830,6 +831,7 @@ for t in $targets; do
 		TARGET_DEVICE_ipq40xx_generic_DEVICE_asus_rt-ac58u|\
 		TARGET_DEVICE_ipq40xx_generic_DEVICE_asus_rt-acrh17|\
 		TARGET_DEVICE_ipq40xx_generic_DEVICE_p2w_r619ac-128m|\
+		TARGET_DEVICE_ipq40xx_generic_DEVICE_p2w_r619ac-64m|\
 		TARGET_DEVICE_ipq40xx_generic_DEVICE_p2w_r619ac|\
 		TARGET_DEVICE_ipq806x_generic_DEVICE_zyxel_nbg6817|\
 		TARGET_DEVICE_ipq806x_generic_DEVICE_avm_fritzbox-4040|\
