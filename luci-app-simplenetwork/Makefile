@@ -64,6 +64,8 @@ define Package/luci-app-simplenetwork/install-overlay
 	$(INSTALL_DATA) ./root/usr/share/luci/menu.d/luci-base.json $(1)/usr/share/luci/menu.d/
 	$(INSTALL_DATA) ./root/usr/share/luci/menu.d/luci-mod-status.json $(1)/usr/share/luci/menu.d/
 	$(INSTALL_DATA) ./root/usr/share/luci/menu.d/luci-mod-system.json $(1)/usr/share/luci/menu.d/
+	$(INSTALL_DIR) $(1)/usr/share/rpcd/acl.d
+	$(INSTALL_DATA) ./root/usr/share/rpcd/acl.d/*.json $(1)/usr/share/rpcd/acl.d/
 endef
 
 
@@ -76,8 +78,6 @@ define Package/luci-app-simplenetwork/install
 	$(INSTALL_BIN) ./root/etc/init.d/simplenetwork $(1)/etc/init.d/simplenetwork
 	$(INSTALL_DIR) $(1)/etc/uci-defaults
 	$(INSTALL_DATA) ./root/etc/uci-defaults/40_luci-app-simplenetwork $(1)/etc/uci-defaults/40_luci-app-simplenetwork
-	$(INSTALL_DIR) $(1)/usr/share/rpcd/acl.d
-	$(INSTALL_DATA) ./root/usr/share/rpcd/acl.d/*.json $(1)/usr/share/rpcd/acl.d/
 	$(INSTALL_DIR) $(1)/usr/share/luci/menu.d
 	$(INSTALL_DATA) ./root/usr/share/luci/menu.d/luci-app-simplenetwork.json $(1)/usr/share/luci/menu.d/
 	$(INSTALL_DIR) $(1)/www/luci-static/resources/view/simplenetwork

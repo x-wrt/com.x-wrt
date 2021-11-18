@@ -9,6 +9,11 @@
 'require network';
 
 return view.extend({
+	handleSaveApply: function(ev, mode) {
+		return this.handleSave(ev).then(function() {
+			classes.ui.changes.apply(mode == '1');
+		});
+	},
 	load: function() {
 		return Promise.all([
 			uci.load('dhcp'),

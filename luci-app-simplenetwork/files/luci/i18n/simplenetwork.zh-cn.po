@@ -73,7 +73,7 @@ msgstr "系统设置"
 msgid "Device Status"
 msgstr "设备状态"
 
-msgid "Enable DHCP for this AP."
+msgid "Enable <abbr title=\"Dynamic Host Configuration Protocol\">DHCP</abbr> for this AP."
 msgstr "为AP开启DHCP服务"
 
 msgid "Backup / Upgrade"
@@ -89,7 +89,16 @@ msgid "USB Info"
 msgstr "USB信息"
 
 msgid "Configure the WiFi AP and STA"
-msgstr "设置无线的AP和客户端参数"
+msgstr "设置无线的 AP 和客户端参数"
 
 msgid "WiFi Wizard"
 msgstr "无线设置向导"
+
+msgid "Management IP"
+msgstr "管理口 IP 地址"
+
+msgid "Not connected, Please check your settings"
+msgstr "未连接，可能找不到上级 Wi-Fi 信号，或者密码不正确，请检查！"
+
+msgid "LAN Port Setting"
+msgstr "LAN 口设置"

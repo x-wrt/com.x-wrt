@@ -7,6 +7,11 @@
 'require form';
 
 return view.extend({
+	handleSaveApply: function(ev, mode) {
+		return this.handleSave(ev).then(function() {
+			classes.ui.changes.apply(mode == '1');
+		});
+	},
 	load: function() {
 		return Promise.all([
 			uci.load('network')
@@ -20,21 +25,7 @@ return view.extend({
 		m = new form.Map('network', [_('LAN Port')],
 			_('Configure the lan port network'));
 
-		s = m.section(form.NamedSection, 'lan', 'interface');
-		s.addremove = false;
-
-		o = s.option(form.Value, 'ipaddr', _('IPv4 address'));
-		o.datatype = 'ip4addr';
-		o.rmempty = false;
-
-		o = s.option(form.Value, 'netmask', _('IPv4 netmask'));
-		o.datatype = 'ip4addr';
-		o.value('255.255.255.0');
-		o.value('255.255.0.0');
-		o.value('255.0.0.0');
-		o.rmempty = false;
-
-		s = m.section(form.NamedSection, 'wan', 'interface', _('LAN Port') + "(" + _('auto') + ")");
+		s = m.section(form.NamedSection, 'wan', 'interface', _('LAN Port Setting') + "(" + _('auto') + ")");
 		s.addremove = false;
 
 		o = s.option(form.ListValue, 'wan_proto', _('Protocol'));
@@ -67,6 +58,20 @@ return view.extend({
 		o.datatype = 'ip4addr';
 		o.cast = 'string';
 		o.ucioption = 'dns';
+
+		s = m.section(form.NamedSection, 'lan', 'interface');
+		s.addremove = false;
+
+		o = s.option(form.Value, 'ipaddr', _('Management IP'));
+		o.datatype = 'ip4addr';
+		o.rmempty = false;
+
+		o = s.option(form.Value, 'netmask', _('IPv4 netmask'));
+		o.datatype = 'ip4addr';
+		o.value('255.255.255.0');
+		o.value('255.255.0.0');
+		o.value('255.0.0.0');
+		o.rmempty = false;
 
 		return m.render();
 	}

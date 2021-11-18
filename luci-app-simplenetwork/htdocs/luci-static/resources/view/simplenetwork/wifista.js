@@ -28,7 +28,13 @@ var ssidValid = function(ssid) {
 	return null;
 }
 
+var wwan_status_cnt = 0;
 return view.extend({
+	handleSaveApply: function(ev, mode) {
+		return this.handleSave(ev).then(function() {
+			classes.ui.changes.apply(mode == '1');
+		});
+	},
 	load: function() {
 		return Promise.all([
 			uci.changes(),
@@ -93,7 +99,20 @@ return view.extend({
 			status_gateway.innerHTML = '-';
 			status_dns.innerHTML = '-';
 
-			wwan_status.innerHTML = '<p style="color:red;"><b>' + _('Not connected') + '</b></p>';
+			if (uci.get('wireless', 'wifinet1', 'disabled', 0) == 1) {
+				wwan_status_cnt = 3;
+			}
+			if (wwan_status_cnt == 0) {
+				wwan_status_cnt = 1;
+				wwan_status.innerHTML = '<p style="color:black;"><b>' + _('Loading...') + '</b></p>';
+			} else if (wwan_status_cnt == 1) {
+				wwan_status_cnt = 2;
+				wwan_status.innerHTML = '<p style="color:black;"><b>' + _('Loading...') + '</b></p>';
+			} else if (wwan_status_cnt == 2) {
+				wwan_status.innerHTML = '<p style="color:red;"><b>' + _('Not connected, Please check your settings') + '</b></p>';
+			} else {
+				wwan_status.innerHTML = '<p style="color:red;"><b>' + _('Not connected') + '</b></p>';
+			}
 		}
 	},
 
