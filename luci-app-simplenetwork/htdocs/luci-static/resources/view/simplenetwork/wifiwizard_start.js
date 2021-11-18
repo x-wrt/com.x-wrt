@@ -154,6 +154,9 @@ return view.extend({
 		o.enabled = '0';
 		o.disabled = '1';
 		o.default = o.enabled;
+		o.onchange = function(ev, section, value) {
+			uci.set('wireless', 'wifinet1', 'disabled', value);
+		}
 
 		o = s.taboption('wifista', form.Value, 'wifinet1_ssid', _('<abbr title="Extended Service Set Identifier">ESSID</abbr>'));
 		o.datatype = 'maxlength(32)';
