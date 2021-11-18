@@ -301,18 +301,6 @@ test $version -lt 14 && {
 	version=14
 }
 
-test $version -lt 15 && {
-	sed -i '/^admin/d' /etc/shadow
-	cat /etc/shadow | grep -q ^admin: || cat /etc/shadow | grep ^root | sed 's/^root/admin/' >>/etc/shadow
-	cat /etc/passwd | grep -q ^admin: || echo "admin:x:0:0:root:/root:/bin/false" >>/etc/passwd
-
-	uci set rpcd.@login[0].username='admin'
-	uci set rpcd.@login[0].password='$p$admin'
-	uci commit rpcd
-
-	version=15
-}
-
 uci set fstab.@global[0].anon_mount_bak="`uci get fstab.@global[0].anon_mount_bak 2>/dev/null || uci get fstab.@global[0].anon_mount 2>/dev/null`"
 uci set fstab.@global[0].anon_mount='0'
 uci commit fstab
