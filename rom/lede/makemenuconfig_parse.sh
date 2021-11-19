@@ -9,6 +9,7 @@ lucistd="luci \
 
 usbprint="kmod-usb-printer \
 		  p910nd \
+		  p910nd-helper \
 		  luci-app-p910nd \
 		  luci-i18n-p910nd-en \
 		  luci-i18n-p910nd-zh-cn"
