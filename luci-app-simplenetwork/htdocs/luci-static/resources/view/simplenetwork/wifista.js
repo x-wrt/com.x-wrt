@@ -225,7 +225,7 @@ return view.extend({
 		o.depends('encryption', 'psk');
 		o.depends('encryption', 'psk2');
 		o.depends('encryption', 'psk-mixed');
-		o.rmempty = true;
+		o.rmempty = false;
 		o.password = true;
 		o.datatype = 'wpakey';
 
