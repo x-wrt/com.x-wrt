@@ -253,7 +253,6 @@ CONFIG_SHADOW_PASSWORDS=y
 CONFIG_KERNEL_BUILD_USER=""
 CONFIG_KERNEL_BUILD_DOMAIN=""
 CONFIG_KERNEL_PRINTK=y
-CONFIG_KERNEL_CRASHLOG=y
 CONFIG_KERNEL_SWAP=y
 # CONFIG_KERNEL_PROC_STRIPPED is not set
 CONFIG_KERNEL_DEBUG_FS=y
@@ -449,7 +448,7 @@ CONFIG_TARGET_INIT_CMD="/sbin/init"
 CONFIG_TARGET_INIT_SUPPRESS_STDERR=y
 CONFIG_VERSIONOPT=y
 CONFIG_VERSION_DIST="X-WRT"
-CONFIG_VERSION_NUMBER="21.10_b202111191156"
+CONFIG_VERSION_NUMBER="21.10_b202111231221"
 CONFIG_VERSION_CODE="Impish"
 CONFIG_VERSION_REPO="http://downloads.openwrt.org/snapshots"
 CONFIG_VERSION_HOME_URL="https://x-wrt.com/"
@@ -2769,6 +2768,7 @@ CONFIG_PACKAGE_nginx-util=m
 # CONFIG_PACKAGE_ibt-firmware is not set
 # CONFIG_PACKAGE_iwl3945-firmware is not set
 # CONFIG_PACKAGE_iwl4965-firmware is not set
+# CONFIG_PACKAGE_iwlwifi-firmware-ax200 is not set
 # CONFIG_PACKAGE_iwlwifi-firmware-iwl100 is not set
 # CONFIG_PACKAGE_iwlwifi-firmware-iwl1000 is not set
 # CONFIG_PACKAGE_iwlwifi-firmware-iwl105 is not set
@@ -3127,6 +3127,7 @@ CONFIG_PACKAGE_kmod-leds-gpio=m
 # CONFIG_PACKAGE_kmod-ledtrig-audio is not set
 # CONFIG_PACKAGE_kmod-ledtrig-gpio is not set
 # CONFIG_PACKAGE_kmod-ledtrig-oneshot is not set
+# CONFIG_PACKAGE_kmod-ledtrig-pattern is not set
 # CONFIG_PACKAGE_kmod-ledtrig-transient is not set
 # end of LED modules
 
@@ -3548,6 +3549,7 @@ CONFIG_PACKAGE_kmod-usb-net-rndis=m
 CONFIG_PACKAGE_kmod-usb-net-rtl8152=m
 # CONFIG_PACKAGE_kmod-usb-net-rtl8152-vendor is not set
 CONFIG_PACKAGE_kmod-usb-net-sierrawireless=m
+# CONFIG_PACKAGE_kmod-usb-net-smsc75xx is not set
 # CONFIG_PACKAGE_kmod-usb-net-smsc95xx is not set
 # CONFIG_PACKAGE_kmod-usb-net-sr9700 is not set
 CONFIG_PACKAGE_kmod-usb-ohci=m
@@ -4110,6 +4112,7 @@ CONFIG_PACKAGE_luasocket=y
 # CONFIG_PACKAGE_python3-unittest is not set
 # CONFIG_PACKAGE_python3-urllib is not set
 # CONFIG_PACKAGE_python3-urllib3 is not set
+# CONFIG_PACKAGE_python3-uuid is not set
 # CONFIG_PACKAGE_python3-vobject is not set
 # CONFIG_PACKAGE_python3-voluptuous is not set
 # CONFIG_PACKAGE_python3-voluptuous-serialize is not set
@@ -5024,7 +5027,6 @@ CONFIG_PACKAGE_libfdisk=y
 # CONFIG_PACKAGE_libiio is not set
 # CONFIG_PACKAGE_libinotifytools is not set
 # CONFIG_PACKAGE_libinput is not set
-# CONFIG_PACKAGE_libintl is not set
 # CONFIG_PACKAGE_libintl-full is not set
 # CONFIG_PACKAGE_libipfs-http-client is not set
 # CONFIG_PACKAGE_libiw is not set
@@ -5124,6 +5126,7 @@ CONFIG_PACKAGE_libpcre=m
 # CONFIG_PACKAGE_libpcre2-16 is not set
 # CONFIG_PACKAGE_libpcre2-32 is not set
 # CONFIG_PACKAGE_libpcre32 is not set
+# CONFIG_PACKAGE_libpcrecpp is not set
 # CONFIG_PACKAGE_libpcsclite is not set
 # CONFIG_PACKAGE_libpfring is not set
 # CONFIG_PACKAGE_libpkcs11-spy is not set

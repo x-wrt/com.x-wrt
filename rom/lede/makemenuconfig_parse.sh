@@ -312,6 +312,10 @@ for t in $targets; do
 		TARGET_DEVICE_rockchip_armv8_DEVICE_friendlyarm_nanopi-r2c|\
 		TARGET_DEVICE_rockchip_armv8_DEVICE_friendlyarm_nanopi-r2s|\
 		TARGET_DEVICE_rockchip_armv8_DEVICE_friendlyarm_nanopi-r4s|\
+		TARGET_DEVICE_ramips_mt7621_DEVICE_linksys_ea8100-v2|\
+		TARGET_DEVICE_ramips_mt7621_DEVICE_linksys_ea8100-v1|\
+		TARGET_DEVICE_ramips_mt7621_DEVICE_linksys_ea7300-v2|\
+		TARGET_DEVICE_ramips_mt7621_DEVICE_linksys_ea7300-v1|\
 		TARGET_DEVICE_ipq806x_generic_DEVICE_linksys_ea7500-v1|\
 		TARGET_DEVICE_ipq40xx_generic_DEVICE_glinet_gl-s1300|\
 		TARGET_DEVICE_ramips_mt7620_DEVICE_asus_rt-ac54u|\
@@ -776,6 +780,10 @@ for t in $targets; do
 		TARGET_DEVICE_ipq40xx_generic_DEVICE_glinet_gl-ap1300|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_glinet_gl-mt1300|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_jcg_y2|\
+		TARGET_DEVICE_ramips_mt7621_DEVICE_linksys_ea8100-v2|\
+		TARGET_DEVICE_ramips_mt7621_DEVICE_linksys_ea8100-v1|\
+		TARGET_DEVICE_ramips_mt7621_DEVICE_linksys_ea7300-v2|\
+		TARGET_DEVICE_ramips_mt7621_DEVICE_linksys_ea7300-v1|\
 		TARGET_DEVICE_ipq806x_generic_DEVICE_linksys_ea7500-v1|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_linksys_ea7500-v2|\
 		TARGET_DEVICE_mvebu_cortexa53_DEVICE_glinet_gl-mv1000|\
