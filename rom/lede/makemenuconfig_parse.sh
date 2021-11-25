@@ -604,6 +604,7 @@ for t in $targets; do
 			flash_gt8m=1
 		;;
 		#<=8M flash
+		TARGET_DEVICE_ramips_mt7621_DEVICE_xwrt_ms1201k|\
 		TARGET_DEVICE_ramips_mt76x8_DEVICE_xiaomi_mi-router-4c|\
 		TARGET_DEVICE_ramips_mt76x8_DEVICE_tplink_tl-mr6400-v4|\
 		TARGET_DEVICE_ramips_mt76x8_DEVICE_tplink_tl-mr6400-v5|\
@@ -1109,6 +1110,7 @@ for t in $targets; do
 			has_usb=1
 		;;
 		#no usb
+		TARGET_DEVICE_ramips_mt7621_DEVICE_xwrt_ms1201k|\
 		TARGET_DEVICE_ramips_mt76x8_DEVICE_xiaomi_miwifi-3c|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_xiaomi_mi-router-cr660x|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_tplink_archer-c6-v3|\
