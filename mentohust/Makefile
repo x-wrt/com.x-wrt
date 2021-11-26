@@ -21,6 +21,8 @@ PKG_MIRROR_HASH:=92ac91218e2c1d9ea70947cb7cf2ddf91ecf6bae45b472aa7c23f183e0b75b1
 PKG_MAINTAINER:=Chen Minqiang <ptpt52@gmail.com>
 PKG_LICENSE:=GPL-2.0
 
+PKG_BUILD_DEPENDS:=gettext-full/host
+
 include $(INCLUDE_DIR)/package.mk
 
 define Package/mentohust/Default
