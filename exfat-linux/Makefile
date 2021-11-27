@@ -10,13 +10,12 @@ include $(TOPDIR)/rules.mk
 include $(INCLUDE_DIR)/kernel.mk
 
 PKG_NAME:=exfat-linux
+PKG_VERSION:=20211128
 PKG_RELEASE:=1
-PKG_SOURCE_DATE:=2021-11-28
-PKG_SOURCE_VERSION:=20211128
 
-PKG_SOURCE_URL:=https://codeload.github.com/ptpt52/linux-exfat-oot/tar.gz/$(PKG_SOURCE_VERSION)?
+PKG_SOURCE_URL:=https://codeload.github.com/ptpt52/linux-exfat-oot/tar.gz/$(PKG_VERSION)?
 PKG_HASH:=b2d2232e3ccebb9a580bb5b7ad6e1dc62f9b3ff1686fd0053c8008a065d6a7d6
-PKG_SOURCE:=$(PKG_NAME)-$(PKG_SOURCE_DATE)-$(PKG_SOURCE_VERSION).tar.gz
+PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
 
 PKG_MAINTAINER:=Chen Minqiang <ptpt52@gmail.com>
 PKG_LICENSE:=GPL-2.0
