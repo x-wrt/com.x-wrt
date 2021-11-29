@@ -1,5 +1,5 @@
 diff --git a/Makefile b/Makefile
-index 93de6db..e63452a 100644
+index 93de6db..cc06969 100644
 --- a/Makefile
 +++ b/Makefile
 @@ -1,5 +1,5 @@
@@ -18,7 +18,17 @@ index 93de6db..e63452a 100644
  			-Wstrict-prototypes -Wnested-externs -Winline -Werror \
  			-Wcast-align -O3 \
  			-DSENDIP_LIBS=\"$(LIBDIR)\"
-@@ -32,7 +32,7 @@ LIBS= libsendipaux.a
+@@ -20,7 +20,8 @@ LDFLAGS_SOLARIS= -lsocket -lnsl -lm -ldl
+ # @@ Needed some flag fixes for Ubuntu; these are ok for Fedora, also
+ LDFLAGS_LINUX= -rdynamic -lm --enable-dependency-linking -Wl,--no-as-needed -ldl
+ LIBCFLAGS= -shared
+-CC=	gcc
++CC ?=	gcc
++AR ?=	ar
+ 
+ PROGS= sendip
+ BASEPROTOS= ipv4.so ipv6.so
+@@ -32,7 +33,7 @@ LIBS= libsendipaux.a
  LIBOBJS= csum.o compact.o protoname.o headers.o parseargs.o cryptomod.o crc32.o filearray.o
  SUBDIRS= mec
  
@@ -27,8 +37,17 @@ index 93de6db..e63452a 100644
  
  #there has to be a nice way to do this
  sendip:	sendip.o	gnugetopt.o gnugetopt1.o compact.o filearray.o
+@@ -45,7 +46,7 @@ $(CC) -o $@ $(LDFLAGS) $(CFLAGS) $+ ; \
+ fi"
+ 
+ libsendipaux.a: $(LIBOBJS)
+-	ar vr $@ $?
++	$(AR) vr $@ $?
+ 
+ subdirs:
+ 	for subdir in $(SUBDIRS) ; do \
 diff --git a/mec/Makefile b/mec/Makefile
-index 128c5ee..42d07d5 100644
+index 128c5ee..45c260c 100644
 --- a/mec/Makefile
 +++ b/mec/Makefile
 @@ -1,5 +1,5 @@
@@ -47,3 +66,14 @@ index 128c5ee..42d07d5 100644
  	-Wstrict-prototypes -Wnested-externs -Winline -Werror -O3 -Wcast-align \
  	-DSENDIP_LIBS=\"$(LIBDIR)\"
  #-Wcast-align causes problems on solaris, but not serious ones
+@@ -17,7 +17,9 @@ LDFLAGS=	-rdynamic -lm
+ LDFLAGS_SOLARIS= -lsocket -lnsl -lm -ldl
+ LDFLAGS_LINUX= -rdynamic -ldl -lm
+ LIBCFLAGS= -shared
+-CC=	gcc
++CC ?=	gcc
++AR ?=	ar
++
+ 
+ MYPROTOS= ah.so dest.so esp.so frag.so gre.so hop.so route.so sctp.so wesp.so
+ MYCRYPTOS= xorauth.so xorcrypto.so
