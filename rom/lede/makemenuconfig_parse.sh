@@ -1,5 +1,11 @@
 #!/bin/sh
 
+nfs="kmod-dnsresolver \
+     kmod-fs-nfs \
+     kmod-fs-nfs-v4 \
+     libwrap \
+     nfs-utils"
+
 lucibond="luci-proto-bonding proto-bonding kmod-bonding"
 
 lucistd="luci \
@@ -1270,7 +1276,7 @@ for t in $targets; do
 	esac
 
 	if [ "x$flash_gt8m" = "x1" ] && [ "x$has_usb" = "x1" ]; then
-		mods="$mods $usb4g $iphone4g"
+		mods="$mods $usb4g $iphone4g $nfs"
 		mods="$mods $moreapps $usbprint"
 	else
 		mods="$mods $lucistd"
