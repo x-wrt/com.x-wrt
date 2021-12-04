@@ -135,7 +135,7 @@ ipv6extra="kmod-jool \
 	   kmod-nat46 \
 	   jool-tools"
 
-wifiextra="kmod-batman-adv batctl-default"
+wifiextra="kmod-batman-adv batctl-full"
 
 openvpnmod="luci-app-openvpn \
 			luci-i18n-openvpn-en \
