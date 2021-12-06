@@ -20,6 +20,7 @@ PKG_FIXUP:=autoreconf
 PKG_INSTALL:=1
 
 include $(INCLUDE_DIR)/package.mk
+include $(INCLUDE_DIR)/host-build.mk
 
 define Package/libucl
   SECTION:=libs
@@ -35,10 +36,14 @@ compression ratio while allowing *very* fast decompression. Decompression
 requires no additional memory.
 endef
 
+HOST_CONFIGURE_ARGS += \
+	CFLAGS='-std=c90 -fPIC'
+
 CONFIGURE_ARGS += \
 	--enable-static \
 	--enable-shared \
-	--disable-asm
+	--disable-asm \
+	CFLAGS='-std=c90 -fPIC'
 
 define Build/InstallDev
 	$(INSTALL_DIR) $(1)/usr/include/ucl
@@ -54,3 +59,4 @@ define Package/libucl/install
 endef
 
 $(eval $(call BuildPackage,libucl))
+$(eval $(call HostBuild))
