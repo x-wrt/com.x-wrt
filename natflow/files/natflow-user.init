@@ -7,6 +7,18 @@ DEVCTL=/dev/natflow_user_ctl
 
 auth_idx=0
 
+# ipset_add ipsetname net
+ipv4set_add()
+{
+	local ipsetname=$1
+	local net=$2
+	#hack for 0.0.0.0/0
+	[ "$net" = "0.0.0.0/0" ] && net="0.0.0.0/1 128.0.0.0/1"
+	for n in $net; do
+		ipset add $ipsetname $n
+	done
+}
+
 natflow_user_setup()
 {
 	local idx=$auth_idx
@@ -29,7 +41,7 @@ natflow_user_setup()
 	ipset create auth_sipgrp_$idx nethash 2>/dev/null
 	ipset flush auth_sipgrp_$idx
 	for net in $(echo "$sipgrp" | sed 's/,/ /g'); do
-		ipset add auth_sipgrp_$idx $net
+		ipv4set_add auth_sipgrp_$idx $net
 	done
 
 	cmd="auth id=$idx,szone=$szone,type=$type,sipgrp=auth_sipgrp_$idx"
@@ -38,7 +50,7 @@ natflow_user_setup()
 		ipset create auth_ipwhite_$idx nethash 2>/dev/null
 		ipset flush auth_ipwhite_$idx
 		for net in $(echo "$ipwhite" | sed 's/,/ /g'); do
-			ipset add auth_ipwhite_$idx $net
+			ipv4set_add auth_ipwhite_$idx $net
 		done
 		cmd="$cmd,ipwhite=auth_ipwhite_$idx"
 	else
