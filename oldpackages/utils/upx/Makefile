@@ -52,8 +52,8 @@ HOST_MAKE_VARS += \
 #TAR_CMD:=$(HOST_TAR) -C $(PKG_BUILD_DIR) --strip-components 1 $(TAR_OPTIONS)
 #TAR_CMD=$(HOST_TAR) -C $(1) --strip-components 1 $(TAR_OPTIONS)
 
-TARGET_CPPFLAGS += \
-	-DUCL_NO_ASM \
+#TARGET_CPPFLAGS += \
+#	-DUCL_NO_ASM \
 
 define Host/Compile
 	+$(HOST_CONFIGURE_VARS) $(HOST_MAKE_VARS) \
