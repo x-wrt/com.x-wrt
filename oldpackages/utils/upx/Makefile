@@ -24,6 +24,8 @@ PKG_LICENSE:=GPL-2.0
 include $(INCLUDE_DIR)/package.mk
 include $(INCLUDE_DIR)/host-build.mk
 
+HOST_BUILD_DEPENDS:=ucl/host
+
 define Package/upx
   SECTION:=utils
   CATEGORY:=Utilities
