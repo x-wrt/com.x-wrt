@@ -50,6 +50,7 @@ for i in $IDXS; do
 		set +x
 		[ "x$WORKFLOW" = x1 ] || {
 			# skip touch if WORKFLOW == 1
+			touch ./package/feeds/x/base-config-setting/Makefile
 			touch ./package/base-files/files/etc/openwrt_release
 			touch ./feeds/packages/libs/libgpg-error/Makefile
 			find package -type f -name Makefile -exec touch {} \;
