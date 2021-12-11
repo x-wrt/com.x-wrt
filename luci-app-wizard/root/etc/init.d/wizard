@@ -14,7 +14,7 @@ add_wizard() {
 	local lan_ipaddr lan_netmask
 	local device
 
-	config_get wan_proto "$cfg" wan_proto
+	config_get wan_proto "$cfg" wan_proto dhcp
 
 	device=$(uci get network.wan.device 2>/dev/null)
 	case "${wan_proto}" in

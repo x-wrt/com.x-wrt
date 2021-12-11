@@ -37,6 +37,7 @@ return view.extend({
 
 		o = s.taboption('wansetup', form.ListValue, 'wan_proto', _('Protocol'));
 		o.rmempty = false;
+		o.default = 'dhcp';
 		o.value('dhcp', _('DHCP client'));
 		o.value('static', _('Static address'));
 		o.value('pppoe', _('PPPoE'));
