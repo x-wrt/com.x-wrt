@@ -1,5 +1,7 @@
 #!/bin/sh
 
+proxym="luci-app-tinyproxy luci-i18n-tinyproxy-en luci-i18n-tinyproxy-zh-cn sockd tinyproxy"
+
 nfs="kmod-dnsresolver \
      kmod-fs-nfs \
      kmod-fs-nfs-v4 \
@@ -1272,6 +1274,15 @@ for t in $targets; do
 		TARGET_DEVICE_ath79_generic_DEVICE_tplink_tl-wdr3600-v1|\
 		TARGET_DEVICE_ramips_mt76x8_DEVICE_tplink_tl-wr902ac-v3)
 			mods="$mods $usb4g"
+		;;
+	esac
+
+	#check proxym manual select
+	case $t in
+		TARGET_DEVICE_ipq40xx_generic_DEVICE_asus_rt-acrh17|\
+		TARGET_DEVICE_ramips_mt7621_DEVICE_xwrt_puppies|\
+		TARGET_DEVICE_ramips_mt7621_DEVICE_xwrt_nxc200p)
+			mods="$mods $proxym"
 		;;
 	esac
 

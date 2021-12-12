@@ -124,7 +124,7 @@ CONFIG_TARGET_DEVICE_PACKAGES_ipq40xx_generic_DEVICE_alfa-network_ap120c-ac="ari
 # CONFIG_TARGET_DEVICE_ipq40xx_generic_DEVICE_aruba_ap-365 is not set
 # CONFIG_TARGET_DEVICE_ipq40xx_generic_DEVICE_asus_map-ac2200 is not set
 CONFIG_TARGET_DEVICE_ipq40xx_generic_DEVICE_asus_rt-acrh17=y
-CONFIG_TARGET_DEVICE_PACKAGES_ipq40xx_generic_DEVICE_asus_rt-acrh17="aria2 ath10k-board-qca4019 ath10k-board-qca9984 ath10k-firmware-qca4019-ct ath10k-firmware-qca9984-ct batctl-full blockd block-mount chat comgt comgt-ncm dawn ipq-wifi-asus_rt-acrh17 jool-tools kmod-ath10k-ct kmod-batman-adv kmod-bonding kmod-crypto-cbc kmod-crypto-cts kmod-crypto-des kmod-crypto-md4 kmod-crypto-md5 kmod-dnsresolver kmod-exfat-linux kmod-fs-autofs4 kmod-fs-ext4 kmod-fs-ksmbd kmod-fs-msdos kmod-fs-nfs kmod-fs-nfs-common kmod-fs-nfs-common-rpcsec kmod-fs-nfs-v4 kmod-fs-ntfs3 kmod-fs-vfat kmod-fuse kmod-gpio-button-hotplug kmod-jool kmod-lib-crc16 kmod-mii kmod-nat46 kmod-nls-cp437 kmod-usb2 kmod-usb3 kmod-usb-ehci kmod-usb-ledtrig-usbport kmod-usb-net kmod-usb-net-cdc-ether kmod-usb-net-cdc-mbim kmod-usb-net-cdc-ncm kmod-usb-net-huawei-cdc-ncm kmod-usb-net-ipheth kmod-usb-net-qmi-wwan kmod-usb-net-rndis kmod-usb-net-rtl8152 kmod-usb-net-sierrawireless kmod-usb-ohci kmod-usb-printer kmod-usb-serial kmod-usb-serial-option kmod-usb-serial-pl2303 kmod-usb-serial-qualcomm kmod-usb-serial-sierrawireless kmod-usb-serial-wwan kmod-usb-storage kmod-usb-storage-uas kmod-usb-wdm kmod-usb-xhci-hcd ksmbd-server ksmbd-utils libblkid libcares libevdev libgcrypt libgpg-error libimobiledevice libimobiledevice-utils liblzo libnl libnl-core libnl-genl libnl-nf libnl-route libopenssl-conf libpcre libplist libqrencode libsqlite3 libssh2 libstdcpp libudev-zero libusb-1.0 libusbmuxd libwrap libxml2 luci-app-aria2 luci-app-dawn luci-app-ksmbd luci-app-ledtrig-usbport luci-app-openvpn luci-app-p910nd luci-app-wireguard luci-i18n-aria2-en luci-i18n-aria2-zh-cn luci-i18n-ksmbd-en luci-i18n-ksmbd-zh-cn luci-i18n-openvpn-en luci-i18n-openvpn-zh-cn luci-i18n-p910nd-en luci-i18n-p910nd-zh-cn luci-i18n-wireguard-en luci-i18n-wireguard-zh-cn luci-lib-json luci-proto-3g luci-proto-bonding luci-proto-mbim luci-proto-ncm luci-proto-qmi luci-proto-wireguard luci-ssl-nginx minicom nfs-utils nginx nginx-mod-luci nginx-mod-luci-ssl nginx-ssl nginx-ssl-util nginx-util openssl-util openvpn-openssl p910nd proto-bonding qrencode sendip umbim umdns uqmi usb-modeswitch usbmuxd usbutils uwsgi uwsgi-cgi-plugin uwsgi-luci-support uwsgi-syslog-plugin webui-aria2 wget-ssl wireguard-tools wpad-openssl wsdd2 wwan"
+CONFIG_TARGET_DEVICE_PACKAGES_ipq40xx_generic_DEVICE_asus_rt-acrh17="aria2 ath10k-board-qca4019 ath10k-board-qca9984 ath10k-firmware-qca4019-ct ath10k-firmware-qca9984-ct batctl-full blockd block-mount chat comgt comgt-ncm dawn ipq-wifi-asus_rt-acrh17 jool-tools kmod-ath10k-ct kmod-batman-adv kmod-bonding kmod-crypto-cbc kmod-crypto-cts kmod-crypto-des kmod-crypto-md4 kmod-crypto-md5 kmod-dnsresolver kmod-exfat-linux kmod-fs-autofs4 kmod-fs-ext4 kmod-fs-ksmbd kmod-fs-msdos kmod-fs-nfs kmod-fs-nfs-common kmod-fs-nfs-common-rpcsec kmod-fs-nfs-v4 kmod-fs-ntfs3 kmod-fs-vfat kmod-fuse kmod-gpio-button-hotplug kmod-jool kmod-lib-crc16 kmod-mii kmod-nat46 kmod-nls-cp437 kmod-usb2 kmod-usb3 kmod-usb-ehci kmod-usb-ledtrig-usbport kmod-usb-net kmod-usb-net-cdc-ether kmod-usb-net-cdc-mbim kmod-usb-net-cdc-ncm kmod-usb-net-huawei-cdc-ncm kmod-usb-net-ipheth kmod-usb-net-qmi-wwan kmod-usb-net-rndis kmod-usb-net-rtl8152 kmod-usb-net-sierrawireless kmod-usb-ohci kmod-usb-printer kmod-usb-serial kmod-usb-serial-option kmod-usb-serial-pl2303 kmod-usb-serial-qualcomm kmod-usb-serial-sierrawireless kmod-usb-serial-wwan kmod-usb-storage kmod-usb-storage-uas kmod-usb-wdm kmod-usb-xhci-hcd ksmbd-server ksmbd-utils libblkid libcares libevdev libgcrypt libgpg-error libimobiledevice libimobiledevice-utils liblzo libnl libnl-core libnl-genl libnl-nf libnl-route libopenssl-conf libpcre libplist libqrencode libsqlite3 libssh2 libstdcpp libudev-zero libusb-1.0 libusbmuxd libwrap libxml2 luci-app-aria2 luci-app-dawn luci-app-ksmbd luci-app-ledtrig-usbport luci-app-openvpn luci-app-p910nd luci-app-tinyproxy luci-app-wireguard luci-i18n-aria2-en luci-i18n-aria2-zh-cn luci-i18n-ksmbd-en luci-i18n-ksmbd-zh-cn luci-i18n-openvpn-en luci-i18n-openvpn-zh-cn luci-i18n-p910nd-en luci-i18n-p910nd-zh-cn luci-i18n-tinyproxy-en luci-i18n-tinyproxy-zh-cn luci-i18n-wireguard-en luci-i18n-wireguard-zh-cn luci-lib-json luci-proto-3g luci-proto-bonding luci-proto-mbim luci-proto-ncm luci-proto-qmi luci-proto-wireguard luci-ssl-nginx minicom nfs-utils nginx nginx-mod-luci nginx-mod-luci-ssl nginx-ssl nginx-ssl-util nginx-util openssl-util openvpn-openssl p910nd proto-bonding qrencode sendip sockd tinyproxy umbim umdns uqmi usb-modeswitch usbmuxd usbutils uwsgi uwsgi-cgi-plugin uwsgi-luci-support uwsgi-syslog-plugin webui-aria2 wget-ssl wireguard-tools wpad-openssl wsdd2 wwan"
 CONFIG_TARGET_DEVICE_ipq40xx_generic_DEVICE_asus_rt-ac58u=y
 CONFIG_TARGET_DEVICE_PACKAGES_ipq40xx_generic_DEVICE_asus_rt-ac58u="aria2 ath10k-board-qca4019 ath10k-firmware-qca4019-ct batctl-full blockd block-mount chat comgt comgt-ncm dawn jool-tools kmod-ath10k-ct-smallbuffers kmod-batman-adv kmod-bonding kmod-crypto-cbc kmod-crypto-cts kmod-crypto-des kmod-crypto-md4 kmod-crypto-md5 kmod-dnsresolver kmod-exfat-linux kmod-fs-autofs4 kmod-fs-ext4 kmod-fs-ksmbd kmod-fs-msdos kmod-fs-nfs kmod-fs-nfs-common kmod-fs-nfs-common-rpcsec kmod-fs-nfs-v4 kmod-fs-ntfs3 kmod-fs-vfat kmod-fuse kmod-gpio-button-hotplug kmod-jool kmod-lib-crc16 kmod-mii kmod-nat46 kmod-nls-cp437 kmod-usb2 kmod-usb3 kmod-usb-ehci kmod-usb-ledtrig-usbport kmod-usb-net kmod-usb-net-cdc-ether kmod-usb-net-cdc-mbim kmod-usb-net-cdc-ncm kmod-usb-net-huawei-cdc-ncm kmod-usb-net-ipheth kmod-usb-net-qmi-wwan kmod-usb-net-rndis kmod-usb-net-rtl8152 kmod-usb-net-sierrawireless kmod-usb-ohci kmod-usb-printer kmod-usb-serial kmod-usb-serial-option kmod-usb-serial-pl2303 kmod-usb-serial-qualcomm kmod-usb-serial-sierrawireless kmod-usb-serial-wwan kmod-usb-storage kmod-usb-storage-uas kmod-usb-wdm kmod-usb-xhci-hcd ksmbd-server ksmbd-utils libblkid libcares libevdev libgcrypt libgpg-error libimobiledevice libimobiledevice-utils liblzo libnl libnl-core libnl-genl libnl-nf libnl-route libopenssl-conf libpcre libplist libqrencode libsqlite3 libssh2 libstdcpp libudev-zero libusb-1.0 libusbmuxd libwrap libxml2 luci-app-aria2 luci-app-dawn luci-app-ksmbd luci-app-ledtrig-usbport luci-app-openvpn luci-app-p910nd luci-app-wireguard luci-i18n-aria2-en luci-i18n-aria2-zh-cn luci-i18n-ksmbd-en luci-i18n-ksmbd-zh-cn luci-i18n-openvpn-en luci-i18n-openvpn-zh-cn luci-i18n-p910nd-en luci-i18n-p910nd-zh-cn luci-i18n-wireguard-en luci-i18n-wireguard-zh-cn luci-lib-json luci-proto-3g luci-proto-bonding luci-proto-mbim luci-proto-ncm luci-proto-qmi luci-proto-wireguard luci-ssl-nginx minicom nfs-utils nginx nginx-mod-luci nginx-mod-luci-ssl nginx-ssl nginx-ssl-util nginx-util openssl-util openvpn-openssl p910nd proto-bonding qrencode sendip umbim umdns uqmi usb-modeswitch usbmuxd usbutils uwsgi uwsgi-cgi-plugin uwsgi-luci-support uwsgi-syslog-plugin webui-aria2 wget-ssl wireguard-tools wpad-openssl wsdd2 wwan"
 CONFIG_TARGET_DEVICE_ipq40xx_generic_DEVICE_avm_fritzbox-4040=y
@@ -5522,7 +5522,7 @@ CONFIG_PACKAGE_luci-app-p910nd=m
 CONFIG_PACKAGE_luci-app-sqm=y
 # CONFIG_PACKAGE_luci-app-squid is not set
 # CONFIG_PACKAGE_luci-app-statistics is not set
-# CONFIG_PACKAGE_luci-app-tinyproxy is not set
+CONFIG_PACKAGE_luci-app-tinyproxy=m
 # CONFIG_PACKAGE_luci-app-transmission is not set
 # CONFIG_PACKAGE_luci-app-travelmate is not set
 # CONFIG_PACKAGE_luci-app-ttyd is not set
@@ -5932,6 +5932,39 @@ CONFIG_PACKAGE_luci-i18n-sqm-en=y
 # CONFIG_PACKAGE_luci-i18n-sqm-vi is not set
 CONFIG_PACKAGE_luci-i18n-sqm-zh-cn=y
 # CONFIG_PACKAGE_luci-i18n-sqm-zh-tw is not set
+# CONFIG_PACKAGE_luci-i18n-tinyproxy-ar is not set
+# CONFIG_PACKAGE_luci-i18n-tinyproxy-bg is not set
+# CONFIG_PACKAGE_luci-i18n-tinyproxy-bn is not set
+# CONFIG_PACKAGE_luci-i18n-tinyproxy-ca is not set
+# CONFIG_PACKAGE_luci-i18n-tinyproxy-cs is not set
+# CONFIG_PACKAGE_luci-i18n-tinyproxy-da is not set
+# CONFIG_PACKAGE_luci-i18n-tinyproxy-de is not set
+# CONFIG_PACKAGE_luci-i18n-tinyproxy-el is not set
+CONFIG_PACKAGE_luci-i18n-tinyproxy-en=m
+# CONFIG_PACKAGE_luci-i18n-tinyproxy-es is not set
+# CONFIG_PACKAGE_luci-i18n-tinyproxy-fi is not set
+# CONFIG_PACKAGE_luci-i18n-tinyproxy-fr is not set
+# CONFIG_PACKAGE_luci-i18n-tinyproxy-he is not set
+# CONFIG_PACKAGE_luci-i18n-tinyproxy-hi is not set
+# CONFIG_PACKAGE_luci-i18n-tinyproxy-hu is not set
+# CONFIG_PACKAGE_luci-i18n-tinyproxy-it is not set
+# CONFIG_PACKAGE_luci-i18n-tinyproxy-ja is not set
+# CONFIG_PACKAGE_luci-i18n-tinyproxy-ko is not set
+# CONFIG_PACKAGE_luci-i18n-tinyproxy-mr is not set
+# CONFIG_PACKAGE_luci-i18n-tinyproxy-ms is not set
+# CONFIG_PACKAGE_luci-i18n-tinyproxy-no is not set
+# CONFIG_PACKAGE_luci-i18n-tinyproxy-pl is not set
+# CONFIG_PACKAGE_luci-i18n-tinyproxy-pt is not set
+# CONFIG_PACKAGE_luci-i18n-tinyproxy-pt-br is not set
+# CONFIG_PACKAGE_luci-i18n-tinyproxy-ro is not set
+# CONFIG_PACKAGE_luci-i18n-tinyproxy-ru is not set
+# CONFIG_PACKAGE_luci-i18n-tinyproxy-sk is not set
+# CONFIG_PACKAGE_luci-i18n-tinyproxy-sv is not set
+# CONFIG_PACKAGE_luci-i18n-tinyproxy-tr is not set
+# CONFIG_PACKAGE_luci-i18n-tinyproxy-uk is not set
+# CONFIG_PACKAGE_luci-i18n-tinyproxy-vi is not set
+CONFIG_PACKAGE_luci-i18n-tinyproxy-zh-cn=m
+# CONFIG_PACKAGE_luci-i18n-tinyproxy-zh-tw is not set
 # CONFIG_PACKAGE_luci-i18n-upnp-ar is not set
 # CONFIG_PACKAGE_luci-i18n-upnp-bg is not set
 # CONFIG_PACKAGE_luci-i18n-upnp-bn is not set
@@ -6849,11 +6882,11 @@ CONFIG_PACKAGE_nginx-ssl-util=m
 # CONFIG_PACKAGE_shadowsocks-libev-ss-rules is not set
 # CONFIG_PACKAGE_shadowsocks-libev-ss-server is not set
 # CONFIG_PACKAGE_shadowsocks-libev-ss-tunnel is not set
-# CONFIG_PACKAGE_sockd is not set
+CONFIG_PACKAGE_sockd=m
 # CONFIG_PACKAGE_socksify is not set
 # CONFIG_PACKAGE_spawn-fcgi is not set
 # CONFIG_PACKAGE_squid is not set
-# CONFIG_PACKAGE_tinyproxy is not set
+CONFIG_PACKAGE_tinyproxy=m
 # CONFIG_PACKAGE_trojan-go is not set
 CONFIG_PACKAGE_uhttpd=y
 # CONFIG_PACKAGE_uhttpd-mod-lua is not set
