@@ -836,11 +836,7 @@ for t in $targets; do
 		TARGET_DEVICE_bcm53xx_generic_DEVICE_linksys_ea9500|\
 		TARGET_DEVICE_bcm53xx_generic_DEVICE_netgear_r8500|\
 		TARGET_DEVICE_mvebu_cortexa9_DEVICE_linksys_wrt32x|\
-		TARGET_DEVICE_ramips_mt7621_DEVICE_puppies|\
-		TARGET_DEVICE_ramips_mt7621_DEVICE_nxc200p|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_xwrt_mac500f|\
-		TARGET_DEVICE_ramips_mt7621_DEVICE_xwrt_puppies|\
-		TARGET_DEVICE_ramips_mt7621_DEVICE_xwrt_nxc200p|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_wf-2881|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_dlink_dir-860l-b1|\
 		TARGET_DEVICE_sunxi_cortexa7_DEVICE_xunlong_orangepi-r1|\
@@ -1118,6 +1114,10 @@ for t in $targets; do
 			has_usb=1
 		;;
 		#no usb
+		TARGET_DEVICE_ramips_mt7621_DEVICE_puppies|\
+		TARGET_DEVICE_ramips_mt7621_DEVICE_nxc200p|\
+		TARGET_DEVICE_ramips_mt7621_DEVICE_xwrt_puppies|\
+		TARGET_DEVICE_ramips_mt7621_DEVICE_xwrt_nxc200p|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_xwrt_ms1201k|\
 		TARGET_DEVICE_ramips_mt76x8_DEVICE_xiaomi_miwifi-3c|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_xiaomi_mi-router-cr660x|\
