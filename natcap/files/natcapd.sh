@@ -14,6 +14,16 @@ PID=$$
 DEV=/dev/natcap_ctl
 LOCKDIR=/tmp/natcapd.lck
 
+natcapd_lock() {
+	while ! lock -n /var/run/natcapd.lock 2>/dev/null; do sleep 1; done
+	#LOG debug "$1 $2 (lock)"
+}
+
+natcapd_unlock() {
+	#LOG debug "$1 $2 (unlock)"
+	lock -u /var/run/natcapd.lock
+}
+
 # mytimeout [Time] [cmd]
 mytimeout() {
 	local to=$1
@@ -657,11 +667,14 @@ ipset -n list wechat_iplist >/dev/null 2>&1 || ipset -! create wechat_iplist iph
 test -n "$led" && echo "$enabled" >>"$led"
 
 if [ "x$enabled" = "x0" ] && test -c $DEV; then
+	natcapd_lock
 	natcapd_stop
 	rm -f /tmp/natcapd_to_cn
 
 	_reload_natcapd
+	natcapd_unlock
 elif test -c $DEV; then
+	natcapd_lock
 	echo disabled=0 >>$DEV
 	touch /tmp/natcapd.running
 	udp_seq_lock=`uci get natcapd.default.udp_seq_lock 2>/dev/null || echo 0`
@@ -910,6 +923,7 @@ elif test -c $DEV; then
 		[ x$access_to_cn != x1 -a x$full_proxy != x1 -a x$cnipwhitelist_mode != x2 ] && \
 		cn_domain_setup &
 	fi
+	natcapd_unlock
 fi
 
 #reload pptpd
