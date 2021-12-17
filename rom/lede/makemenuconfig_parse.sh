@@ -343,7 +343,6 @@ for t in $targets; do
 		TARGET_DEVICE_ar71xx_generic_DEVICE_AP143_16M|\
 		TARGET_DEVICE_ar71xx_generic_DEVICE_AP147_010|\
 		TARGET_DEVICE_ar71xx_generic_DEVICE_AP152_16M|\
-		TARGET_DEVICE_ath79_generic_DEVICE_bm100_hq55|\
 		TARGET_DEVICE_ath79_nand_DEVICE_netgear_wndr3700-v4|\
 		TARGET_DEVICE_ath79_generic_DEVICE_netgear_wnr2200-16m|\
 		TARGET_DEVICE_ath79_nand_DEVICE_xwrt_gw521-nand|\
@@ -362,19 +361,15 @@ for t in $targets; do
 		TARGET_DEVICE_ramips_mt7621_DEVICE_adslr_g7|\
 		TARGET_DEVICE_ath79_generic_DEVICE_glinet_gl-ar750|\
 		TARGET_DEVICE_ramips_rt305x_DEVICE_huawei_hg255d|\
-		TARGET_DEVICE_ath79_generic_DEVICE_pisen_wmb001n|\
 		TARGET_DEVICE_ath79_generic_DEVICE_dlink_dir-842-c3|\
 		TARGET_DEVICE_ramips_mt7620_DEVICE_fon_fon2601|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_thunder_timecloud|\
 		TARGET_DEVICE_ath79_generic_DEVICE_trendnet_tew-823dru|\
-		TARGET_DEVICE_ath79_generic_DEVICE_xwrt_csac|\
-		TARGET_DEVICE_ath79_generic_DEVICE_xwrt_csac2|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_xwrt_t-cpe1202kd-v01|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_xwrt_t-cpe1200k-v01|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_xwrt_t-cpe1201k-v01|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_xwrt_x-sdwan-1200|\
 		TARGET_DEVICE_ramips_mt76x8_DEVICE_xwrt_g4303k-v1|\
-		TARGET_DEVICE_ramips_mt7621_DEVICE_iodata_wn-ax1167gr|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_totolink_a7000r|\
 		TARGET_DEVICE_bcm27xx_bcm2709_DEVICE_rpi-2|\
 		TARGET_DEVICE_bcm27xx_bcm2710_DEVICE_rpi-3|\
@@ -384,7 +379,6 @@ for t in $targets; do
 		TARGET_DEVICE_ipq40xx_generic_DEVICE_avm_fritzbox-7530|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_tenbay_mac500f|\
 		TARGET_DEVICE_ath79_generic_DEVICE_wd_mynet-n750|\
-		TARGET_DEVICE_ath79_generic_DEVICE_engenius_epg5000|\
 		TARGET_DEVICE_ath79_generic_DEVICE_engenius_ecb1750|\
 		TARGET_DEVICE_ath79_generic_DEVICE_engenius_ews511ap|\
 		TARGET_DEVICE_ath79_generic_DEVICE_aruba_ap-105|\
@@ -476,7 +470,7 @@ for t in $targets; do
 		TARGET_DEVICE_ramips_mt7620_DEVICE_asus_rt-n12p|\
 		TARGET_DEVICE_ramips_mt7620_DEVICE_asus_rt-ac51u|\
 		TARGET_DEVICE_ramips_mt7620_DEVICE_asus_rt-n14u|\
-		TARGET_DEVICE_ath79_generic_DEVICE_iodata_wn-ac1167dgr|\
+		TARGET_DEVICE_ramips_mt7621_DEVICE_iodata_wn-ax1167gr|\
 		TARGET_DEVICE_ramips_mt76x8_DEVICE_hiwifi_hc5861b|\
 		TARGET_DEVICE_ramips_mt76x8_DEVICE_netgear_r6120|\
 		TARGET_DEVICE_ath79_generic_DEVICE_netgear_wndr3700-v2|\
@@ -611,7 +605,18 @@ for t in $targets; do
 			excludes="$excludes wpad-basic-wolfssl"
 			flash_gt8m=1
 		;;
-		#<=8M flash
+		#>8M flash <14M
+		TARGET_DEVICE_ath79_generic_DEVICE_xwrt_csac|\
+		TARGET_DEVICE_ath79_generic_DEVICE_xwrt_csac2|\
+		TARGET_DEVICE_ath79_generic_DEVICE_pisen_wmb001n|\
+		TARGET_DEVICE_ath79_generic_DEVICE_iodata_wn-ac1167dgr|\
+		TARGET_DEVICE_ath79_generic_DEVICE_engenius_epg5000|\
+		TARGET_DEVICE_ath79_generic_DEVICE_bm100_hq55)
+			mods="$mods $lucibond $ipv6extra"
+			mods="$mods $wgmod $openvpnmod wpad-openssl luci-ssl-nginx"
+			excludes="$excludes wpad-basic-wolfssl"
+			flash_gt8m=1
+		;;
 		TARGET_DEVICE_ramips_mt7621_DEVICE_xwrt_ms1201k|\
 		TARGET_DEVICE_ramips_mt76x8_DEVICE_xiaomi_mi-router-4c|\
 		TARGET_DEVICE_ramips_mt76x8_DEVICE_tplink_tl-mr6400-v4|\
