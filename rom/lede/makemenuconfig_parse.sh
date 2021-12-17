@@ -104,10 +104,9 @@ moreapps="libstdcpp \
 		  kmod-fs-ksmbd \
 		  webui-aria2 \
 		  aria2 \
-		  sendip \
-		  wget-ssl \
-		  minicom \
-		  kmod-usb-serial-pl2303"
+		  wget-ssl"
+
+utils="minicom kmod-usb-serial-pl2303 sendip"
 
 cdcmod="kmod-mii \
 		kmod-usb-net \
@@ -283,6 +282,7 @@ for t in $targets; do
 	mods="$us"
 	flash_gt8m=0
 	has_usb=0
+	extra_utils=0
 	excludes="$excludes_basic"
 	case $t in
 		#>8M flash
@@ -474,7 +474,6 @@ for t in $targets; do
 		TARGET_DEVICE_ramips_mt76x8_DEVICE_hiwifi_hc5861b|\
 		TARGET_DEVICE_ramips_mt76x8_DEVICE_netgear_r6120|\
 		TARGET_DEVICE_ath79_generic_DEVICE_netgear_wndr3700-v2|\
-		TARGET_DEVICE_ath79_generic_DEVICE_iodata_wn-ac1600dgr2|\
 		TARGET_DEVICE_ar71xx_generic_DEVICE_archer-c7-v5|\
 		TARGET_DEVICE_ath79_generic_DEVICE_glinet_ar300m_nor|\
 		TARGET_DEVICE_ath79_generic_DEVICE_tplink_tl-wr1043nd-v4|\
@@ -604,15 +603,16 @@ for t in $targets; do
 			mods="$mods $wgmod $openvpnmod wpad-openssl luci-ssl-nginx"
 			excludes="$excludes wpad-basic-wolfssl"
 			flash_gt8m=1
+			extra_utils=1
 		;;
 		#>8M flash <14M
 		TARGET_DEVICE_ath79_generic_DEVICE_xwrt_csac|\
 		TARGET_DEVICE_ath79_generic_DEVICE_xwrt_csac2|\
 		TARGET_DEVICE_ath79_generic_DEVICE_pisen_wmb001n|\
 		TARGET_DEVICE_ath79_generic_DEVICE_iodata_wn-ac1167dgr|\
+		TARGET_DEVICE_ath79_generic_DEVICE_iodata_wn-ac1600dgr2|\
 		TARGET_DEVICE_ath79_generic_DEVICE_engenius_epg5000|\
 		TARGET_DEVICE_ath79_generic_DEVICE_bm100_hq55)
-			mods="$mods $lucibond $ipv6extra"
 			mods="$mods $wgmod $openvpnmod wpad-openssl luci-ssl-nginx"
 			excludes="$excludes wpad-basic-wolfssl"
 			flash_gt8m=1
@@ -1294,6 +1294,9 @@ for t in $targets; do
 	if [ "x$flash_gt8m" = "x1" ] && [ "x$has_usb" = "x1" ]; then
 		mods="$mods $usb4g $iphone4g $nfs"
 		mods="$mods $moreapps $usbprint"
+		if [ "x$extra_utils" = "x1" ]; then
+			mods="$mods $utils"
+		fi
 	else
 		mods="$mods $lucistd"
 	fi
