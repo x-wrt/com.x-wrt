@@ -88,23 +88,12 @@ usb3="kmod-usb3 \
 	  block-mount \
 	  blockd \
 	  kmod-fs-ntfs3"
-moreapps="libstdcpp \
-		  libsqlite3 \
-		  libssh2 \
-		  libxml2 \
-		  luci-app-aria2 \
-		  luci-i18n-aria2-en \
-		  luci-i18n-aria2-zh-cn \
-		  luci-app-ksmbd \
-		  luci-i18n-ksmbd-en \
-		  luci-i18n-ksmbd-zh-cn \
-		  ksmbd-server \
-		  ksmbd-utils \
-		  wsdd2 \
-		  kmod-fs-ksmbd \
-		  webui-aria2 \
-		  aria2 \
-		  wget-ssl"
+
+aria2="luci-app-aria2 luci-i18n-aria2-en luci-i18n-aria2-zh-cn webui-aria2 aria2"
+
+ksmbd="luci-app-ksmbd luci-i18n-ksmbd-en luci-i18n-ksmbd-zh-cn ksmbd-server ksmbd-utils kmod-fs-ksmbd wsdd2"
+
+moreapps="wget-ssl"
 
 utils="minicom kmod-usb-serial-pl2303 sendip"
 
@@ -288,7 +277,6 @@ for t in $targets; do
 		#>8M flash
 		TARGET_DEVICE_ramips_mt76x8_DEVICE_xiaomi_miwifi-3c|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_xiaomi_mi-router-cr660x|\
-		TARGET_DEVICE_ramips_mt7621_DEVICE_tplink_archer-c6u-v1|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_tplink_archer-c6-v3|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_tplink_archer-a6-v3|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_linksys_e5600|\
@@ -310,7 +298,6 @@ for t in $targets; do
 		TARGET_DEVICE_ramips_mt7621_DEVICE_glinet_gl-mt1300|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_jcg_y2|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_totolink_x5000r|\
-		TARGET_DEVICE_ramips_mt7621_DEVICE_tenbay_t-mb5eu-v01|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_xwrt_wr1800k-ax-norplusemmc|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_xwrt_wr1800k-ax-nor|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_xwrt_wr1800k-ax-nand|\
@@ -430,7 +417,6 @@ for t in $targets; do
 		TARGET_DEVICE_ramips_mt7621_DEVICE_gehua_ghl-r-001|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_xzwifi_creativebox-v1|\
 		TARGET_DEVICE_ath79_generic_DEVICE_tplink_archer-c7-v4|\
-		TARGET_DEVICE_ath79_generic_DEVICE_tplink_archer-c7-v5|\
 		TARGET_DEVICE_ath79_generic_DEVICE_devolo_dvl1200e|\
 		TARGET_DEVICE_ath79_generic_DEVICE_devolo_dvl1750c|\
 		TARGET_DEVICE_ar71xx_nand_DEVICE_arris-sbr-ac1750|\
@@ -474,7 +460,6 @@ for t in $targets; do
 		TARGET_DEVICE_ramips_mt76x8_DEVICE_hiwifi_hc5861b|\
 		TARGET_DEVICE_ramips_mt76x8_DEVICE_netgear_r6120|\
 		TARGET_DEVICE_ath79_generic_DEVICE_netgear_wndr3700-v2|\
-		TARGET_DEVICE_ar71xx_generic_DEVICE_archer-c7-v5|\
 		TARGET_DEVICE_ath79_generic_DEVICE_glinet_ar300m_nor|\
 		TARGET_DEVICE_ath79_generic_DEVICE_tplink_tl-wr1043nd-v4|\
 		TARGET_DEVICE_ath79_generic_DEVICE_netgear_wndr3800|\
@@ -597,7 +582,6 @@ for t in $targets; do
 		TARGET_DEVICE_ramips_mt7621_DEVICE_netgear_r6220a|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_netgear_r6220b|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_netgear_r6220c|\
-		TARGET_DEVICE_ramips_mt7621_DEVICE_netgear_wndr3700-v5|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_lenovo_newifi-d1)
 			mods="$mods $lucibond $ipv6extra $wifiextra"
 			mods="$mods $wgmod $openvpnmod wpad-openssl luci-ssl-nginx"
@@ -606,12 +590,17 @@ for t in $targets; do
 			extra_utils=1
 		;;
 		#>8M flash <14M
+		TARGET_DEVICE_ramips_mt7621_DEVICE_tplink_archer-c6u-v1|\
+		TARGET_DEVICE_ramips_mt7621_DEVICE_tenbay_t-mb5eu-v01|\
+		TARGET_DEVICE_ramips_mt7621_DEVICE_netgear_wndr3700-v5|\
 		TARGET_DEVICE_ath79_generic_DEVICE_xwrt_csac|\
 		TARGET_DEVICE_ath79_generic_DEVICE_xwrt_csac2|\
 		TARGET_DEVICE_ath79_generic_DEVICE_pisen_wmb001n|\
 		TARGET_DEVICE_ath79_generic_DEVICE_iodata_wn-ac1167dgr|\
 		TARGET_DEVICE_ath79_generic_DEVICE_iodata_wn-ac1600dgr2|\
 		TARGET_DEVICE_ath79_generic_DEVICE_engenius_epg5000|\
+		TARGET_DEVICE_ar71xx_generic_DEVICE_archer-c7-v5|\
+		TARGET_DEVICE_ath79_generic_DEVICE_tplink_archer-c7-v5|\
 		TARGET_DEVICE_ath79_generic_DEVICE_bm100_hq55)
 			mods="$mods $wgmod $openvpnmod wpad-openssl luci-ssl-nginx"
 			excludes="$excludes wpad-basic-wolfssl"
@@ -1293,9 +1282,9 @@ for t in $targets; do
 
 	if [ "x$flash_gt8m" = "x1" ] && [ "x$has_usb" = "x1" ]; then
 		mods="$mods $usb4g $iphone4g $nfs"
-		mods="$mods $moreapps $usbprint"
+		mods="$mods $moreapps $usbprint $ksmbd"
 		if [ "x$extra_utils" = "x1" ]; then
-			mods="$mods $utils"
+			mods="$mods $utils $aria2"
 		fi
 	else
 		mods="$mods $lucistd"
