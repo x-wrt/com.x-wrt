@@ -171,7 +171,8 @@ CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt76x8_DEVICE_glinet_vixmini="kmod-gpio-but
 # CONFIG_TARGET_DEVICE_ramips_mt76x8_DEVICE_jotale_js76x8-8m is not set
 # CONFIG_TARGET_DEVICE_ramips_mt76x8_DEVICE_wavlink_wl-wn577a2 is not set
 # CONFIG_TARGET_DEVICE_ramips_mt76x8_DEVICE_mediatek_linkit-smart-7688 is not set
-# CONFIG_TARGET_DEVICE_ramips_mt76x8_DEVICE_mediatek_mt7628an-eval-board is not set
+CONFIG_TARGET_DEVICE_ramips_mt76x8_DEVICE_mediatek_mt7628an-eval-board=y
+CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt76x8_DEVICE_mediatek_mt7628an-eval-board="blockd block-mount kmod-exfat-linux kmod-fs-autofs4 kmod-fs-ext4 kmod-fs-msdos kmod-fs-ntfs3 kmod-fs-vfat kmod-fuse kmod-gpio-button-hotplug kmod-lib-crc16 kmod-mii kmod-nls-cp437 kmod-scsi-core kmod-usb2 kmod-usb-core kmod-usb-ehci kmod-usb-ledtrig-usbport kmod-usb-net kmod-usb-net-cdc-ether kmod-usb-net-rndis kmod-usb-ohci kmod-usb-storage kmod-usb-storage-uas luci-app-ledtrig-usbport wpad-basic-wolfssl"
 CONFIG_TARGET_DEVICE_ramips_mt76x8_DEVICE_mercury_mac1200r-v2=y
 CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt76x8_DEVICE_mercury_mac1200r-v2="kmod-gpio-button-hotplug kmod-mt76x02-common kmod-mt76x2 kmod-mt76x2-common wpad-basic-wolfssl"
 # CONFIG_TARGET_DEVICE_ramips_mt76x8_DEVICE_minew_g1-c is not set

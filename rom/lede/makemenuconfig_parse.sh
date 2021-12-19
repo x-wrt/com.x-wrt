@@ -606,6 +606,7 @@ for t in $targets; do
 			excludes="$excludes wpad-basic-wolfssl"
 			flash_gt8m=1
 		;;
+		TARGET_DEVICE_ramips_mt76x8_DEVICE_mediatek_mt7628an-eval-board|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_xwrt_ms1201k|\
 		TARGET_DEVICE_ramips_mt76x8_DEVICE_xiaomi_mi-router-4c|\
 		TARGET_DEVICE_ramips_mt76x8_DEVICE_tplink_tl-mr6400-v4|\
@@ -887,6 +888,7 @@ for t in $targets; do
 			has_usb=1
 		;;
 		#with usb2
+		TARGET_DEVICE_ramips_mt76x8_DEVICE_mediatek_mt7628an-eval-board|\
 		TARGET_DEVICE_ath79_generic_DEVICE_tplink_tl-wr710n-v1|\
 		TARGET_DEVICE_ath79_generic_DEVICE_tplink_tl-wr710n-v2.1|\
 		TARGET_DEVICE_ath79_generic_DEVICE_tplink_tl-wr810n-v1|\
