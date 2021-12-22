@@ -1,8 +1,8 @@
 #!/bin/sh
 
 mkdir /tmp/sta_disable_lck 2>/dev/null || exit 0
-sleep 60
-rm -f /tmp/sta_disable_lck
+sleep 45
+rm -rf /tmp/sta_disable_lck
 
 lock /tmp/sta_disable.lock
 
@@ -70,10 +70,10 @@ sleep 10
 lock -u /tmp/sta_disable.lock
 
 # reload network after 180s
-[ "x$wl_need_commit" = "x1" ] && {
-	mkdir /tmp/sta_disable_lck && {
-		sleep 180
-		rmdir /tmp/sta_disable_lck
-		/etc/init.d/network reload
-	}
-}
+#[ "x$wl_need_commit" = "x1" ] && {
+#	mkdir /tmp/sta_disable_lck && {
+#		sleep 180
+#		rmdir /tmp/sta_disable_lck
+#		/etc/init.d/network reload
+#	}
+#}

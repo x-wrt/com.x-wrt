@@ -1,7 +1,0 @@
-/etc/init.d/sta_disable enabled || exit 0
-
-[ "$ACTION" != "ifup" ] && exit 0
-
-iwinfo "$DEVICE" info >/dev/null 2>&1 || exit 0
-
-/etc/init.d/sta_disable start

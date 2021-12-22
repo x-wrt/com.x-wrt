@@ -354,6 +354,11 @@ test -x /etc/init.d/nginx && test -e /etc/nginx/conf.d/dev.x-wrt.com.conf || rm 
 mount -t pstore -o noatime pstore /sys/fs/pstore 2>/dev/null
 rm -f /sys/fs/pstore/*
 
+uci -q batch <<-EOF >/dev/null
+	set ucitrack.@wireless[0].exec='/etc/init.d/sta_disable reload'
+	commit ucitrack
+EOF
+
 uci set base_config.@status[0].version=$version
 uci commit base_config
 

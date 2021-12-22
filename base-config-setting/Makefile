@@ -71,8 +71,6 @@ define Package/base-config-setting/install
 	$(INSTALL_DIR) $(1)/usr/share/base-config-setting
 	cp -r ./files/etc $(1)/usr/share/base-config-setting/
 	$(INSTALL_DATA) ./files/uci.defaults $(1)/etc/uci-defaults/95-base-config-setting
-	$(INSTALL_DIR) $(1)/etc/hotplug.d/iface
-	$(INSTALL_DATA) ./files/sta_disable.hotplug $(1)/etc/hotplug.d/iface/99-sta_disable
 	$(INSTALL_DIR) $(1)/usr/sbin
 	$(INSTALL_BIN) ./files/sta_disable.sh $(1)/usr/sbin/sta_disable
 	$(INSTALL_BIN) ./files/system_reset.sh $(1)/usr/sbin/system_reset
