@@ -252,7 +252,6 @@ return view.extend({
 		o.depends('wifinet1_encryption', 'psk2');
 		o.depends('wifinet1_encryption', 'psk-mixed');
 		o.rmempty = false;
-		o.password = true;
 		o.ucisection = 'wifinet1';
 		o.ucioption = 'key';
 		o.datatype = 'wpakey';
