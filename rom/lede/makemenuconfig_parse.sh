@@ -280,7 +280,6 @@ for t in $targets; do
 		TARGET_DEVICE_ramips_mt7621_DEVICE_tplink_archer-a6-v3|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_linksys_e5600|\
 		TARGET_DEVICE_mediatek_mt7622_DEVICE_totolink_a8000ru|\
-		TARGET_DEVICE_ath79_generic_DEVICE_xiaomi_aiot-ac2350|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_dlink_dir-882-a1|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_dlink_dir-882-r1|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_jcg_q20|\
@@ -301,8 +300,6 @@ for t in $targets; do
 		TARGET_DEVICE_ramips_mt7621_DEVICE_xwrt_wr1800k-ax-nor|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_xwrt_wr1800k-ax-nand|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_xwrt_tcb1800k-ax-nor|\
-		TARGET_DEVICE_ath79_generic_DEVICE_tplink_tl-wdr4900-v2-16m|\
-		TARGET_DEVICE_ath79_generic_DEVICE_xwrt_xd1202g|\
 		TARGET_DEVICE_rockchip_armv8_DEVICE_friendlyarm_nanopi-r2c|\
 		TARGET_DEVICE_rockchip_armv8_DEVICE_friendlyarm_nanopi-r2s|\
 		TARGET_DEVICE_rockchip_armv8_DEVICE_friendlyarm_nanopi-r4s|\
@@ -314,12 +311,8 @@ for t in $targets; do
 		TARGET_DEVICE_ipq40xx_generic_DEVICE_glinet_gl-s1300|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_linksys_ea7500-v2|\
 		TARGET_DEVICE_mvebu_cortexa53_DEVICE_glinet_gl-mv1000|\
-		TARGET_DEVICE_ath79_generic_DEVICE_tplink_archer-d7-v1|\
-		TARGET_DEVICE_ath79_generic_DEVICE_tplink_archer-d7b-v1|\
 		TARGET_DEVICE_ath79_nand_DEVICE_domywifi_dw33d|\
 		TARGET_DEVICE_ath79_nand_DEVICE_domywifi_dw33d-nor|\
-		TARGET_DEVICE_ath79_generic_DEVICE_devolo_magic-2-wifi|\
-		TARGET_DEVICE_ath79_generic_DEVICE_sitecom_wlr-8100|\
 		TARGET_DEVICE_ipq806x_generic_DEVICE_tplink_c2600|\
 		TARGET_DEVICE_ipq806x_generic_DEVICE_tplink_vr2600v|\
 		TARGET_DEVICE_ipq806x_generic_DEVICE_buffalo_wxr-2533dhp|\
@@ -329,13 +322,8 @@ for t in $targets; do
 		TARGET_DEVICE_ar71xx_generic_DEVICE_AP147_010|\
 		TARGET_DEVICE_ar71xx_generic_DEVICE_AP152_16M|\
 		TARGET_DEVICE_ath79_nand_DEVICE_netgear_wndr3700-v4|\
-		TARGET_DEVICE_ath79_generic_DEVICE_netgear_wnr2200-16m|\
 		TARGET_DEVICE_ath79_nand_DEVICE_xwrt_gw521-nand|\
 		TARGET_DEVICE_ath79_nand_DEVICE_xwrt_gw521-nor|\
-		TARGET_DEVICE_ath79_generic_DEVICE_xwrt_gw521-16m|\
-		TARGET_DEVICE_ath79_generic_DEVICE_comfast_cf-wr650ac-v1|\
-		TARGET_DEVICE_ath79_generic_DEVICE_comfast_cf-wr650ac-v2|\
-		TARGET_DEVICE_ath79_generic_DEVICE_comfast_cf-e313ac|\
 		TARGET_DEVICE_ipq40xx_generic_DEVICE_alfa-network_ap120c-ac|\
 		TARGET_DEVICE_ipq40xx_generic_DEVICE_netgear_ex6200v2|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_asus_rt-ac85p|\
@@ -344,11 +332,8 @@ for t in $targets; do
 		TARGET_DEVICE_ramips_mt7621_DEVICE_netgear_r6260|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_netgear_r6850|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_adslr_g7|\
-		TARGET_DEVICE_ath79_generic_DEVICE_glinet_gl-ar750|\
 		TARGET_DEVICE_ramips_rt305x_DEVICE_huawei_hg255d|\
-		TARGET_DEVICE_ath79_generic_DEVICE_dlink_dir-842-c3|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_thunder_timecloud|\
-		TARGET_DEVICE_ath79_generic_DEVICE_trendnet_tew-823dru|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_xwrt_t-cpe1202kd-v01|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_xwrt_t-cpe1200k-v01|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_xwrt_t-cpe1201k-v01|\
@@ -360,11 +345,6 @@ for t in $targets; do
 		TARGET_DEVICE_ipq40xx_generic_DEVICE_avm_fritzbox-4040|\
 		TARGET_DEVICE_ipq40xx_generic_DEVICE_avm_fritzbox-7530|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_tenbay_mac500f|\
-		TARGET_DEVICE_ath79_generic_DEVICE_wd_mynet-n750|\
-		TARGET_DEVICE_ath79_generic_DEVICE_engenius_ecb1750|\
-		TARGET_DEVICE_ath79_generic_DEVICE_engenius_ews511ap|\
-		TARGET_DEVICE_ath79_generic_DEVICE_aruba_ap-105|\
-		TARGET_DEVICE_ath79_generic_DEVICE_tplink_tl-wr1043n-v5|\
 		TARGET_DEVICE_ath79_nand_DEVICE_glinet_gl-ar300m-nand|\
 		TARGET_DEVICE_ath79_nand_DEVICE_glinet_gl-ar300m-nor|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_youku_yk-l2|\
@@ -372,19 +352,10 @@ for t in $targets; do
 		TARGET_DEVICE_ramips_mt7621_DEVICE_ubiquiti_edgerouterx-sfp|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_ubnt_edgerouter-x|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_ubnt_edgerouter-x-sfp|\
-		TARGET_DEVICE_ath79_generic_DEVICE_comfast_cf-e5|\
-		TARGET_DEVICE_ath79_generic_DEVICE_ubnt_nanobeam-ac|\
-		TARGET_DEVICE_ath79_generic_DEVICE_glinet_gl-x750|\
-		TARGET_DEVICE_ath79_generic_DEVICE_glinet_gl-ar750s|\
 		TARGET_DEVICE_ath79_nand_DEVICE_glinet_gl-ar750s-nor|\
 		TARGET_DEVICE_ath79_nand_DEVICE_glinet_gl-ar750s-nor-nand|\
-		TARGET_DEVICE_ath79_generic_DEVICE_glinet_gl-ar300m16|\
-		TARGET_DEVICE_ath79_generic_DEVICE_glinet_gl-ar300m-lite|\
-		TARGET_DEVICE_ath79_generic_DEVICE_glinet_gl-ar150|\
 		TARGET_DEVICE_ar71xx_generic_DEVICE_gl-usb150|\
 		TARGET_DEVICE_ar71xx_generic_DEVICE_gl-mifi|\
-		TARGET_DEVICE_ath79_generic_DEVICE_glinet_gl-mifi|\
-		TARGET_DEVICE_ath79_generic_DEVICE_yuncore_a770|\
 		TARGET_DEVICE_ipq40xx_generic_DEVICE_netgear_ex6150v2|\
 		TARGET_DEVICE_ipq40xx_generic_DEVICE_netgear_ex6100v2|\
 		TARGET_DEVICE_ipq40xx_generic_DEVICE_glinet_gl-b1300|\
@@ -392,59 +363,33 @@ for t in $targets; do
 		TARGET_DEVICE_ipq40xx_generic_DEVICE_compex_wpj428|\
 		TARGET_DEVICE_ipq40xx_generic_DEVICE_asus_map-ac2200|\
 		TARGET_DEVICE_ipq40xx_generic_DEVICE_linksys_ea8300|\
-		TARGET_DEVICE_ath79_generic_DEVICE_tplink_archer-c5-v1|\
-		TARGET_DEVICE_ath79_generic_DEVICE_xiaomi_mi-router-4q|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_wevo_11acnas|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_wevo_w2914ns-v2|\
 		TARGET_DEVICE_ipq40xx_generic_DEVICE_linksys_ea6350v3|\
 		TARGET_DEVICE_ramips_rt305x_DEVICE_vocore_vocore-16m|\
 		TARGET_DEVICE_ramips_rt305x_DEVICE_hg255d|\
 		TARGET_DEVICE_bcm53xx_generic_DEVICE_phicomm_k3|\
-		TARGET_DEVICE_ath79_generic_DEVICE_devolo_dvl1200i|\
-		TARGET_DEVICE_ath79_generic_DEVICE_devolo_dvl1750i|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_mikrotik_routerboard-750gr3|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_mikrotik_routerboard-m11g|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_mikrotik_routerboard-m33g|\
-		TARGET_DEVICE_ath79_generic_DEVICE_dlink_dir-859-a1|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_gehua_ghl-r-001|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_xzwifi_creativebox-v1|\
-		TARGET_DEVICE_ath79_generic_DEVICE_tplink_archer-c7-v4|\
-		TARGET_DEVICE_ath79_generic_DEVICE_devolo_dvl1200e|\
-		TARGET_DEVICE_ath79_generic_DEVICE_devolo_dvl1750c|\
 		TARGET_DEVICE_ar71xx_nand_DEVICE_arris-sbr-ac1750|\
 		TARGET_DEVICE_ath79_nand_DEVICE_arris_sbr-ac1750|\
 		TARGET_DEVICE_ar71xx_generic_DEVICE_WZRHPG300NH2|\
-		TARGET_DEVICE_ath79_generic_DEVICE_tplink_archer-a7-v5|\
-		TARGET_DEVICE_ath79_generic_DEVICE_dlink_dir-825-c1|\
-		TARGET_DEVICE_ath79_generic_DEVICE_dlink_dir-835-a1|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_netgear_r6350|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_mtc_wr1201|\
-		TARGET_DEVICE_ath79_generic_DEVICE_ubnt_routerstation|\
-		TARGET_DEVICE_ath79_generic_DEVICE_ubnt_routerstation-pro|\
-		TARGET_DEVICE_ath79_generic_DEVICE_ubnt_nanostation-ac|\
-		TARGET_DEVICE_ath79_generic_DEVICE_ubnt_nanostation-ac-loco|\
-		TARGET_DEVICE_ath79_generic_DEVICE_ubnt_lap-120|\
-		TARGET_DEVICE_ath79_generic_DEVICE_tplink_archer-c59-v1|\
-		TARGET_DEVICE_ath79_generic_DEVICE_rosinson_wr818|\
 		TARGET_DEVICE_bcm53xx_generic_DEVICE_tplink_archer-c9-v1|\
 		TARGET_DEVICE_bcm53xx_generic_DEVICE_tplink_archer-c5-v2|\
 		TARGET_DEVICE_bcm53xx_generic_DEVICE_dlink_dir-885l|\
-		TARGET_DEVICE_ath79_generic_DEVICE_tplink_tl-wr842n-v3|\
 		TARGET_DEVICE_ar71xx_generic_DEVICE_tl-wr842n-v3|\
 		TARGET_DEVICE_ar71xx_generic_DEVICE_tl-wr942n-v1|\
-		TARGET_DEVICE_ath79_generic_DEVICE_buffalo_wzr-hp-ag300h|\
-		TARGET_DEVICE_ath79_generic_DEVICE_buffalo_wzr-hp-g302h-a1a0|\
-		TARGET_DEVICE_ath79_generic_DEVICE_buffalo_wzr-hp-g450h|\
 		TARGET_DEVICE_bcm53xx_generic_DEVICE_linksys_ea6500-v2|\
 		TARGET_DEVICE_bcm53xx_generic_DEVICE_linksys_ea6300-v1|\
 		TARGET_DEVICE_bcm53xx_generic_DEVICE_linksys_ea9200|\
 		TARGET_DEVICE_bcm53xx_generic_DEVICE_linksys_ea9500|\
 		TARGET_DEVICE_bcm53xx_generic_DEVICE_netgear_r8500|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_iodata_wn-ax1167gr|\
-		TARGET_DEVICE_ath79_generic_DEVICE_netgear_wndr3700-v2|\
-		TARGET_DEVICE_ath79_generic_DEVICE_glinet_ar300m_nor|\
-		TARGET_DEVICE_ath79_generic_DEVICE_tplink_tl-wr1043nd-v4|\
-		TARGET_DEVICE_ath79_generic_DEVICE_netgear_wndr3800|\
 		TARGET_DEVICE_mvebu_cortexa9_DEVICE_linksys_wrt32x|\
 		TARGET_DEVICE_ar71xx_generic_DEVICE_gl-ar150|\
 		TARGET_DEVICE_ar71xx_generic_DEVICE_gl-ar300|\
@@ -471,7 +416,6 @@ for t in $targets; do
 		TARGET_DEVICE_ar71xx_generic_DEVICE_AC9531_020|\
 		TARGET_DEVICE_ar71xx_generic_DEVICE_archer-c59-v1|\
 		TARGET_DEVICE_ar71xx_generic_DEVICE_archer-c59-v2|\
-		TARGET_DEVICE_ath79_generic_DEVICE_tplink_archer-c59-v2|\
 		TARGET_DEVICE_ipq806x_generic_DEVICE_zyxel_nbg6817|\
 		TARGET_DEVICE_ipq806x_generic_DEVICE_avm_fritzbox-4040|\
 		TARGET_DEVICE_bcm53xx_generic_DEVICE_netgear_r6250|\
@@ -517,7 +461,6 @@ for t in $targets; do
 		TARGET_DEVICE_ar71xx_generic_DEVICE_wndr3700v2|\
 		TARGET_DEVICE_ar71xx_generic_DEVICE_wndr3800|\
 		TARGET_DEVICE_ar71xx_generic_DEVICE_wndr3800ch|\
-		TARGET_DEVICE_ath79_generic_DEVICE_qihoo_c301|\
 		TARGET_DEVICE_ar71xx_generic_DEVICE_qihoo-c301|\
 		TARGET_DEVICE_ar71xx_nand_DEVICE_R6100|\
 		TARGET_DEVICE_ath79_nand_DEVICE_netgear_r6100|\
@@ -552,6 +495,63 @@ for t in $targets; do
 			extra_utils=1
 		;;
 		#>8M flash <14M
+		TARGET_DEVICE_ath79_generic_DEVICE_aruba_ap-105|\
+		TARGET_DEVICE_ath79_generic_DEVICE_buffalo_wzr-hp-ag300h|\
+		TARGET_DEVICE_ath79_generic_DEVICE_buffalo_wzr-hp-g302h-a1a0|\
+		TARGET_DEVICE_ath79_generic_DEVICE_buffalo_wzr-hp-g450h|\
+		TARGET_DEVICE_ath79_generic_DEVICE_comfast_cf-e313ac|\
+		TARGET_DEVICE_ath79_generic_DEVICE_comfast_cf-e5|\
+		TARGET_DEVICE_ath79_generic_DEVICE_comfast_cf-wr650ac-v1|\
+		TARGET_DEVICE_ath79_generic_DEVICE_comfast_cf-wr650ac-v2|\
+		TARGET_DEVICE_ath79_generic_DEVICE_devolo_dvl1200e|\
+		TARGET_DEVICE_ath79_generic_DEVICE_devolo_dvl1200i|\
+		TARGET_DEVICE_ath79_generic_DEVICE_devolo_dvl1750c|\
+		TARGET_DEVICE_ath79_generic_DEVICE_devolo_dvl1750i|\
+		TARGET_DEVICE_ath79_generic_DEVICE_devolo_magic-2-wifi|\
+		TARGET_DEVICE_ath79_generic_DEVICE_dlink_dir-825-c1|\
+		TARGET_DEVICE_ath79_generic_DEVICE_dlink_dir-835-a1|\
+		TARGET_DEVICE_ath79_generic_DEVICE_dlink_dir-842-c3|\
+		TARGET_DEVICE_ath79_generic_DEVICE_dlink_dir-859-a1|\
+		TARGET_DEVICE_ath79_generic_DEVICE_engenius_ecb1750|\
+		TARGET_DEVICE_ath79_generic_DEVICE_engenius_ews511ap|\
+		TARGET_DEVICE_ath79_generic_DEVICE_glinet_ar300m_nor|\
+		TARGET_DEVICE_ath79_generic_DEVICE_glinet_gl-ar150|\
+		TARGET_DEVICE_ath79_generic_DEVICE_glinet_gl-ar300m16|\
+		TARGET_DEVICE_ath79_generic_DEVICE_glinet_gl-ar300m-lite|\
+		TARGET_DEVICE_ath79_generic_DEVICE_glinet_gl-ar750|\
+		TARGET_DEVICE_ath79_generic_DEVICE_glinet_gl-ar750s|\
+		TARGET_DEVICE_ath79_generic_DEVICE_glinet_gl-mifi|\
+		TARGET_DEVICE_ath79_generic_DEVICE_glinet_gl-x750|\
+		TARGET_DEVICE_ath79_generic_DEVICE_netgear_wndr3700-v2|\
+		TARGET_DEVICE_ath79_generic_DEVICE_netgear_wndr3800|\
+		TARGET_DEVICE_ath79_generic_DEVICE_netgear_wnr2200-16m|\
+		TARGET_DEVICE_ath79_generic_DEVICE_qihoo_c301|\
+		TARGET_DEVICE_ath79_generic_DEVICE_rosinson_wr818|\
+		TARGET_DEVICE_ath79_generic_DEVICE_sitecom_wlr-8100|\
+		TARGET_DEVICE_ath79_generic_DEVICE_tplink_archer-a7-v5|\
+		TARGET_DEVICE_ath79_generic_DEVICE_tplink_archer-c59-v1|\
+		TARGET_DEVICE_ath79_generic_DEVICE_tplink_archer-c59-v2|\
+		TARGET_DEVICE_ath79_generic_DEVICE_tplink_archer-c5-v1|\
+		TARGET_DEVICE_ath79_generic_DEVICE_tplink_archer-c7-v4|\
+		TARGET_DEVICE_ath79_generic_DEVICE_tplink_archer-d7b-v1|\
+		TARGET_DEVICE_ath79_generic_DEVICE_tplink_archer-d7-v1|\
+		TARGET_DEVICE_ath79_generic_DEVICE_tplink_tl-wdr4900-v2-16m|\
+		TARGET_DEVICE_ath79_generic_DEVICE_tplink_tl-wr1043nd-v4|\
+		TARGET_DEVICE_ath79_generic_DEVICE_tplink_tl-wr1043n-v5|\
+		TARGET_DEVICE_ath79_generic_DEVICE_tplink_tl-wr842n-v3|\
+		TARGET_DEVICE_ath79_generic_DEVICE_trendnet_tew-823dru|\
+		TARGET_DEVICE_ath79_generic_DEVICE_ubnt_lap-120|\
+		TARGET_DEVICE_ath79_generic_DEVICE_ubnt_nanobeam-ac|\
+		TARGET_DEVICE_ath79_generic_DEVICE_ubnt_nanostation-ac|\
+		TARGET_DEVICE_ath79_generic_DEVICE_ubnt_nanostation-ac-loco|\
+		TARGET_DEVICE_ath79_generic_DEVICE_ubnt_routerstation|\
+		TARGET_DEVICE_ath79_generic_DEVICE_ubnt_routerstation-pro|\
+		TARGET_DEVICE_ath79_generic_DEVICE_wd_mynet-n750|\
+		TARGET_DEVICE_ath79_generic_DEVICE_xiaomi_aiot-ac2350|\
+		TARGET_DEVICE_ath79_generic_DEVICE_xiaomi_mi-router-4q|\
+		TARGET_DEVICE_ath79_generic_DEVICE_xwrt_gw521-16m|\
+		TARGET_DEVICE_ath79_generic_DEVICE_xwrt_xd1202g|\
+		TARGET_DEVICE_ath79_generic_DEVICE_yuncore_a770|\
 		TARGET_DEVICE_ramips_mt76x8_DEVICE_hiwifi_hc5661a|\
 		TARGET_DEVICE_ramips_mt76x8_DEVICE_hiwifi_hc5761a|\
 		TARGET_DEVICE_ramips_mt76x8_DEVICE_glinet_gl-mt300n-v2|\
