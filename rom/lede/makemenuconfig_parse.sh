@@ -297,9 +297,7 @@ for t in $targets; do
 		TARGET_DEVICE_ramips_mt7621_DEVICE_jcg_y2|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_totolink_x5000r|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_xwrt_wr1800k-ax-norplusemmc|\
-		TARGET_DEVICE_ramips_mt7621_DEVICE_xwrt_wr1800k-ax-nor|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_xwrt_wr1800k-ax-nand|\
-		TARGET_DEVICE_ramips_mt7621_DEVICE_xwrt_tcb1800k-ax-nor|\
 		TARGET_DEVICE_rockchip_armv8_DEVICE_friendlyarm_nanopi-r2c|\
 		TARGET_DEVICE_rockchip_armv8_DEVICE_friendlyarm_nanopi-r2s|\
 		TARGET_DEVICE_rockchip_armv8_DEVICE_friendlyarm_nanopi-r4s|\
@@ -312,7 +310,6 @@ for t in $targets; do
 		TARGET_DEVICE_ramips_mt7621_DEVICE_linksys_ea7500-v2|\
 		TARGET_DEVICE_mvebu_cortexa53_DEVICE_glinet_gl-mv1000|\
 		TARGET_DEVICE_ath79_nand_DEVICE_domywifi_dw33d|\
-		TARGET_DEVICE_ath79_nand_DEVICE_domywifi_dw33d-nor|\
 		TARGET_DEVICE_ipq806x_generic_DEVICE_tplink_c2600|\
 		TARGET_DEVICE_ipq806x_generic_DEVICE_tplink_vr2600v|\
 		TARGET_DEVICE_ipq806x_generic_DEVICE_buffalo_wxr-2533dhp|\
@@ -320,7 +317,6 @@ for t in $targets; do
 		TARGET_DEVICE_ramips_mt7621_DEVICE_netgear_r6700-v2|\
 		TARGET_DEVICE_ath79_nand_DEVICE_netgear_wndr3700-v4|\
 		TARGET_DEVICE_ath79_nand_DEVICE_xwrt_gw521-nand|\
-		TARGET_DEVICE_ath79_nand_DEVICE_xwrt_gw521-nor|\
 		TARGET_DEVICE_ipq40xx_generic_DEVICE_alfa-network_ap120c-ac|\
 		TARGET_DEVICE_ipq40xx_generic_DEVICE_netgear_ex6200v2|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_asus_rt-ac85p|\
@@ -343,13 +339,11 @@ for t in $targets; do
 		TARGET_DEVICE_ipq40xx_generic_DEVICE_avm_fritzbox-7530|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_tenbay_mac500f|\
 		TARGET_DEVICE_ath79_nand_DEVICE_glinet_gl-ar300m-nand|\
-		TARGET_DEVICE_ath79_nand_DEVICE_glinet_gl-ar300m-nor|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_youku_yk-l2|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_ubiquiti_edgerouterx|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_ubiquiti_edgerouterx-sfp|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_ubnt_edgerouter-x|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_ubnt_edgerouter-x-sfp|\
-		TARGET_DEVICE_ath79_nand_DEVICE_glinet_gl-ar750s-nor|\
 		TARGET_DEVICE_ath79_nand_DEVICE_glinet_gl-ar750s-nor-nand|\
 		TARGET_DEVICE_ipq40xx_generic_DEVICE_netgear_ex6150v2|\
 		TARGET_DEVICE_ipq40xx_generic_DEVICE_netgear_ex6100v2|\
@@ -402,11 +396,9 @@ for t in $targets; do
 		TARGET_DEVICE_ipq806x_generic_DEVICE_zyxel_nbg6817|\
 		TARGET_DEVICE_ipq806x_generic_DEVICE_avm_fritzbox-4040|\
 		TARGET_DEVICE_bcm53xx_generic_DEVICE_netgear_r6250|\
-		TARGET_DEVICE_ramips_mt7621_DEVICE_xiaomi_mi-router-3g-nor|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_xiaomi_mi-router-3g|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_xiaomi_mi-router-3g-v2|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_xiaomi_mi-router-4a-gigabit|\
-		TARGET_DEVICE_ramips_mt7621_DEVICE_xiaomi_mi-router-3-pro-nor|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_xiaomi_mi-router-3-pro|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_xiaomi_redmi-router-ac2100|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_xiaomi_mi-router-ac2100|\
@@ -464,6 +456,14 @@ for t in $targets; do
 			extra_utils=1
 		;;
 		#>8M flash <14M
+		TARGET_DEVICE_ramips_mt7621_DEVICE_xwrt_wr1800k-ax-nor|\
+		TARGET_DEVICE_ramips_mt7621_DEVICE_xwrt_tcb1800k-ax-nor|\
+		TARGET_DEVICE_ath79_nand_DEVICE_xwrt_gw521-nor|\
+		TARGET_DEVICE_ath79_nand_DEVICE_glinet_gl-ar300m-nor|\
+		TARGET_DEVICE_ath79_nand_DEVICE_glinet_gl-ar750s-nor|\
+		TARGET_DEVICE_ramips_mt7621_DEVICE_xiaomi_mi-router-3g-nor|\
+		TARGET_DEVICE_ramips_mt7621_DEVICE_xiaomi_mi-router-3-pro-nor|\
+		TARGET_DEVICE_ath79_nand_DEVICE_domywifi_dw33d-nor|\
 		TARGET_DEVICE_ath79_generic_DEVICE_aruba_ap-105|\
 		TARGET_DEVICE_ath79_generic_DEVICE_buffalo_wzr-hp-ag300h|\
 		TARGET_DEVICE_ath79_generic_DEVICE_buffalo_wzr-hp-g302h-a1a0|\
