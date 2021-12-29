@@ -409,6 +409,7 @@ CONFIG_EXTRA_GCC_CONFIG_OPTIONS=""
 # CONFIG_SJLJ_EXCEPTIONS is not set
 # CONFIG_INSTALL_GFORTRAN is not set
 CONFIG_NASM=y
+CONFIG_MUSL_DISABLE_CRYPT_SIZE_HACK=y
 CONFIG_GDB=y
 # CONFIG_GDB_PYTHON is not set
 # CONFIG_HAS_PREBUILT_LLVM_TOOLCHAIN is not set
@@ -439,7 +440,7 @@ CONFIG_TARGET_INIT_CMD="/sbin/init"
 CONFIG_TARGET_INIT_SUPPRESS_STDERR=y
 CONFIG_VERSIONOPT=y
 CONFIG_VERSION_DIST="X-WRT"
-CONFIG_VERSION_NUMBER="21.10_b202112271133"
+CONFIG_VERSION_NUMBER="21.10_b202112291137"
 CONFIG_VERSION_CODE="Impish"
 CONFIG_VERSION_REPO="http://downloads.openwrt.org/snapshots"
 CONFIG_VERSION_HOME_URL="https://x-wrt.com/"
@@ -2572,10 +2573,7 @@ CONFIG_ZABBIX_POSTGRESQL=y
 #
 # openwisp
 #
-# CONFIG_PACKAGE_openwisp-config-mbedtls is not set
-# CONFIG_PACKAGE_openwisp-config-nossl is not set
-# CONFIG_PACKAGE_openwisp-config-openssl is not set
-# CONFIG_PACKAGE_openwisp-config-wolfssl is not set
+# CONFIG_PACKAGE_openwisp-config is not set
 # end of openwisp
 
 # CONFIG_PACKAGE_atop is not set
