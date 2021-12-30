@@ -437,7 +437,7 @@ mwan3_set_general_iptables()
 	for IPT in "$IPT4" "$IPT6"; do
 		[ "$IPT" = "$IPT4" ] && [ $NEED_IPV4 -eq 0 ] && continue
 		[ "$IPT" = "$IPT6" ] && [ $NEED_IPV6 -eq 0 ] && continue
-		current="$($IPT -S)"
+		current="$($IPT -S)"$'\n'
 		update="*mangle"
 		if [ -n "${current##*-N mwan3_ifaces_in*}" ]; then
 			mwan3_push_update -N mwan3_ifaces_in
@@ -551,13 +551,14 @@ mwan3_create_iface_iptables()
 	else
 		return 0
 	fi
-	current="$($IPT -S)"
+
+	current="$($IPT -S)"$'\n'
 	update="*mangle"
 	if [ -n "${current##*-N mwan3_ifaces_in*}" ]; then
 		mwan3_push_update -N mwan3_ifaces_in
 	fi
 
-	if [ -n "${current##*-N mwan3_iface_in_$1*}" ]; then
+	if [ -n "${current##*-N mwan3_iface_in_$1$'\n'*}" ]; then
 		mwan3_push_update -N "mwan3_iface_in_$1"
 	else
 		mwan3_push_update -F "mwan3_iface_in_$1"
@@ -569,7 +570,7 @@ mwan3_create_iface_iptables()
 			  -m comment --comment "$1" \
 			  -j MARK --set-xmark "$(mwan3_id2mask id MMX_MASK)/$MMX_MASK"
 
-	if [ -n "${current##*-A mwan3_ifaces_in -m mark --mark 0x0/$MMX_MASK -j mwan3_iface_in_${1}*}" ]; then
+	if [ -n "${current##*-A mwan3_ifaces_in -m mark --mark 0x0/$MMX_MASK -j mwan3_iface_in_${1}$'\n'*}" ]; then
 		mwan3_push_update -A mwan3_ifaces_in \
 				  -m mark --mark 0x0/$MMX_MASK \
 				  -j "mwan3_iface_in_$1"
@@ -910,7 +911,7 @@ mwan3_set_policy()
 	else
 		continue
 	fi
-	current="$($IPT -S)"
+	current="$($IPT -S)"$'\n'
 	update="*mangle"
 
 	if [ "$family" = "ipv4" ] && [ $NEED_IPV4 -ne 0 ] && [ $is_offline -eq 0 ]; then
@@ -993,9 +994,9 @@ mwan3_create_policies_iptables()
 	for IPT in "$IPT4" "$IPT6"; do
 		[ "$IPT" = "$IPT4" ] && [ $NEED_IPV4 -eq 0 ] && continue
 		[ "$IPT" = "$IPT6" ] && [ $NEED_IPV6 -eq 0 ] && continue
-		current="$($IPT -S)"
+		current="$($IPT -S)"$'\n'
 		update="*mangle"
-		if [ -n "${current##*-N mwan3_policy_$1*}" ]; then
+		if [ -n "${current##*-N mwan3_policy_$1$'\n'*}" ]; then
 			mwan3_push_update -N "mwan3_policy_$1"
 		fi
 
@@ -1053,7 +1054,7 @@ mwan3_set_sticky_iptables()
 			mwan3_get_iface_id id "$1"
 
 			[ -n "$id" ] || return 0
-			if [ -z "${current##*-N mwan3_iface_in_$1*}" ]; then
+			if [ -z "${current##*-N mwan3_iface_in_$1$'\n'*}" ]; then
 				mwan3_push_update -I "mwan3_rule_$rule" \
 						  -m mark --mark "$(mwan3_id2mask id MMX_MASK)/$MMX_MASK" \
 						  -m set ! --match-set "mwan3_sticky_$rule" src,src \
@@ -1162,12 +1163,12 @@ mwan3_set_user_iptables_rule()
 	[ "$family" = "ipv4" ] && [ "$ipv" = "ipv6" ] && return
 	[ "$family" = "ipv6" ] && [ "$ipv" = "ipv4" ] && return
 
-	if [ $rule_policy -eq 1 ] && [ -n "${current##*-N $policy*}" ]; then
+	if [ $rule_policy -eq 1 ] && [ -n "${current##*-N $policy$'\n'*}" ]; then
 		mwan3_push_update -N "$policy"
 	fi
 
 	if [ $rule_policy -eq 1 ] && [ "$sticky" -eq 1 ]; then
-		if [ -n "${current##*-N mwan3_rule_$1*}" ]; then
+		if [ -n "${current##*-N mwan3_rule_$1$'\n'*}" ]; then
 			mwan3_push_update -N "mwan3_rule_$1"
 		fi
 
@@ -1269,7 +1270,7 @@ mwan3_set_user_rules()
 			continue
 		fi
 		update="*mangle"
-		current="$($IPT -S)"
+		current="$($IPT -S)"$'\n'
 
 
 		if [ -n "${current##*-N mwan3_rules*}" ]; then
