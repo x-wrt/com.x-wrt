@@ -153,6 +153,7 @@ CONFIG_TARGET_MULTI_PROFILE=y
 # CONFIG_TARGET_ramips_mt7620_DEVICE_vonets_var11n-300 is not set
 # CONFIG_TARGET_ramips_mt7620_DEVICE_wavlink_wl-wn530hg4 is not set
 # CONFIG_TARGET_ramips_mt7620_DEVICE_wavlink_wl-wn579x3 is not set
+# CONFIG_TARGET_ramips_mt7620_DEVICE_wevo_air-duo is not set
 # CONFIG_TARGET_ramips_mt7620_DEVICE_wrtnode_wrtnode is not set
 # CONFIG_TARGET_ramips_mt7620_DEVICE_xiaomi_miwifi-mini is not set
 # CONFIG_TARGET_ramips_mt7620_DEVICE_xiaomi_miwifi-r3 is not set
@@ -300,6 +301,7 @@ CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt7620_DEVICE_tplink_archer-mr200="adb adb-
 # CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_vonets_var11n-300 is not set
 # CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_wavlink_wl-wn530hg4 is not set
 # CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_wavlink_wl-wn579x3 is not set
+# CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_wevo_air-duo is not set
 # CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_wrtnode_wrtnode is not set
 # CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_xiaomi_miwifi-r3 is not set
 # CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_xiaomi_miwifi-mini is not set
@@ -676,7 +678,7 @@ CONFIG_TARGET_INIT_CMD="/sbin/init"
 CONFIG_TARGET_INIT_SUPPRESS_STDERR=y
 CONFIG_VERSIONOPT=y
 CONFIG_VERSION_DIST="X-WRT"
-CONFIG_VERSION_NUMBER="21.10_b202112291201"
+CONFIG_VERSION_NUMBER="21.10_b202201011437"
 CONFIG_VERSION_CODE="Impish"
 CONFIG_VERSION_REPO="http://downloads.openwrt.org/snapshots"
 CONFIG_VERSION_HOME_URL="https://x-wrt.com/"
