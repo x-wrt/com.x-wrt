@@ -327,10 +327,6 @@ for t in $targets; do
 		TARGET_DEVICE_ramips_mt7621_DEVICE_adslr_g7|\
 		TARGET_DEVICE_ramips_rt305x_DEVICE_huawei_hg255d|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_thunder_timecloud|\
-		TARGET_DEVICE_ramips_mt7621_DEVICE_xwrt_t-cpe1202kd-v01|\
-		TARGET_DEVICE_ramips_mt7621_DEVICE_xwrt_t-cpe1200k-v01|\
-		TARGET_DEVICE_ramips_mt7621_DEVICE_xwrt_t-cpe1201k-v01|\
-		TARGET_DEVICE_ramips_mt7621_DEVICE_xwrt_x-sdwan-1200|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_totolink_a7000r|\
 		TARGET_DEVICE_bcm27xx_bcm2709_DEVICE_rpi-2|\
 		TARGET_DEVICE_bcm27xx_bcm2710_DEVICE_rpi-3|\
@@ -387,11 +383,6 @@ for t in $targets; do
 		TARGET_DEVICE_ipq40xx_generic_DEVICE_p2w_r619ac|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_zbtlink_zbt-we3526|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_d-team_newifi-d2|\
-		TARGET_DEVICE_ramips_mt7621_DEVICE_puppies|\
-		TARGET_DEVICE_ramips_mt7621_DEVICE_nxc200p|\
-		TARGET_DEVICE_ramips_mt7621_DEVICE_xwrt_mac500f|\
-		TARGET_DEVICE_ramips_mt7621_DEVICE_xwrt_puppies|\
-		TARGET_DEVICE_ramips_mt7621_DEVICE_xwrt_nxc200p|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_zbt-we3526|\
 		TARGET_DEVICE_ipq806x_generic_DEVICE_zyxel_nbg6817|\
 		TARGET_DEVICE_ipq806x_generic_DEVICE_avm_fritzbox-4040|\
@@ -456,6 +447,13 @@ for t in $targets; do
 			extra_utils=1
 		;;
 		#>8M flash <14M
+		TARGET_DEVICE_ramips_mt7621_DEVICE_xwrt_t-cpe1202kd-v01|\
+		TARGET_DEVICE_ramips_mt7621_DEVICE_xwrt_t-cpe1200k-v01|\
+		TARGET_DEVICE_ramips_mt7621_DEVICE_xwrt_t-cpe1201k-v01|\
+		TARGET_DEVICE_ramips_mt7621_DEVICE_xwrt_x-sdwan-1200|\
+		TARGET_DEVICE_ramips_mt7621_DEVICE_xwrt_mac500f|\
+		TARGET_DEVICE_ramips_mt7621_DEVICE_xwrt_puppies|\
+		TARGET_DEVICE_ramips_mt7621_DEVICE_xwrt_nxc200p|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_xwrt_wr1800k-ax-nor|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_xwrt_tcb1800k-ax-nor|\
 		TARGET_DEVICE_ath79_nand_DEVICE_xwrt_gw521-nor|\
@@ -982,8 +980,6 @@ for t in $targets; do
 			has_usb=1
 		;;
 		#no usb
-		TARGET_DEVICE_ramips_mt7621_DEVICE_puppies|\
-		TARGET_DEVICE_ramips_mt7621_DEVICE_nxc200p|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_xwrt_puppies|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_xwrt_nxc200p|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_xwrt_ms1201k|\
@@ -1126,9 +1122,7 @@ for t in $targets; do
 
 	#check proxym manual select
 	case $t in
-		TARGET_DEVICE_ipq40xx_generic_DEVICE_asus_rt-acrh17|\
-		TARGET_DEVICE_ramips_mt7621_DEVICE_xwrt_puppies|\
-		TARGET_DEVICE_ramips_mt7621_DEVICE_xwrt_nxc200p)
+		TARGET_DEVICE_ipq40xx_generic_DEVICE_asus_rt-acrh17)
 			mods="$mods $proxym"
 		;;
 	esac
