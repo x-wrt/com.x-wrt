@@ -510,7 +510,8 @@ CONFIG_TARGET_DEVICE_PACKAGES_ath79_generic_DEVICE_iodata_wn-ac1600dgr2="ath10k-
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_jjplus_ja76pf2 is not set
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_jjplus_jwap230 is not set
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_joyit_jt-or750i is not set
-# CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_letv_lba-047-ch is not set
+CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_letv_lba-047-ch=y
+CONFIG_TARGET_DEVICE_PACKAGES_ath79_generic_DEVICE_letv_lba-047-ch="kmod-ath9k kmod-ath9k-common kmod-gpio-button-hotplug liblzo libopenssl libopenssl-conf libpcre libqrencode libstdcpp libxml2 luci-app-openvpn luci-app-wireguard luci-i18n-openvpn-en luci-i18n-openvpn-zh-cn luci-i18n-wireguard-en luci-i18n-wireguard-zh-cn luci-proto-wireguard luci-ssl-nginx nginx nginx-mod-luci nginx-mod-luci-ssl nginx-ssl nginx-ssl-util nginx-util openssl-util openvpn-openssl qrencode uwsgi uwsgi-cgi-plugin uwsgi-luci-support uwsgi-syslog-plugin wireguard-tools wpad-openssl"
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_librerouter_librerouter-v1 is not set
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_meraki_mr12 is not set
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_meraki_mr16 is not set

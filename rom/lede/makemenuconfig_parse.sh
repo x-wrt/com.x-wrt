@@ -447,6 +447,7 @@ for t in $targets; do
 			extra_utils=1
 		;;
 		#>8M flash <14M
+		TARGET_DEVICE_ath79_generic_DEVICE_letv_lba-047-ch|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_xwrt_t-cpe1202kd-v01|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_xwrt_t-cpe1200k-v01|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_xwrt_t-cpe1201k-v01|\
@@ -980,6 +981,7 @@ for t in $targets; do
 			has_usb=1
 		;;
 		#no usb
+		TARGET_DEVICE_ath79_generic_DEVICE_letv_lba-047-ch|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_xwrt_puppies|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_xwrt_nxc200p|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_xwrt_ms1201k|\
