@@ -3801,7 +3801,6 @@ CONFIG_PACKAGE_kmod-rt2x00-mmio=y
 # CONFIG_PACKAGE_erlang-compiler is not set
 # CONFIG_PACKAGE_erlang-crypto is not set
 # CONFIG_PACKAGE_erlang-erl-interface is not set
-# CONFIG_PACKAGE_erlang-hipe is not set
 # CONFIG_PACKAGE_erlang-inets is not set
 # CONFIG_PACKAGE_erlang-mnesia is not set
 # CONFIG_PACKAGE_erlang-os_mon is not set
