@@ -1,0 +1,14 @@
+{
+	"admin/services/fakemesh": {
+		"title": "Fake Mesh",
+		"order": 89,
+		"action": {
+			"type": "view",
+			"path": "fakemesh/fakemesh"
+		},
+		"depends": {
+			"acl": [ "luci-app-fakemesh" ],
+			"uci": { "fakemesh": true }
+		}
+	}
+}
