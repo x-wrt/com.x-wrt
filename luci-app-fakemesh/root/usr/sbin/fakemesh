@@ -1,0 +1,160 @@
+#!/bin/sh
+
+. /lib/functions.sh
+. /lib/functions/network.sh
+
+config_load fakemesh
+
+config_get_bool enabled default 'enabled' '0'
+
+test $enabled -eq 0 && {
+	exit 0
+}
+
+config_get role default 'role' 'agent'
+config_get band default 'band' '5g'
+config_get id default 'id'
+config_get key default 'key'
+
+test -n "$id" || {
+	uci delete wireless.meshx0
+	uci delete wireless.meshx1
+
+	uci set dhcp.lan.ignore='0'
+	uci delete dhcp.meshx0
+	uci delete network.meshx0
+
+	uci commit wireless
+	uci commit dhcp
+	uci commit network
+	/etc/init.d/network reload
+	/etc/init.d/dnsmasq reload
+	exit 0
+}
+
+MACADDR=""
+test -e /usr/share/natcapd/board_mac.lua && MACADDR=`lua /usr/share/natcapd/board_mac.lua`
+test -n "$MACADDR" || MACADDR=`cat /etc/board.json | grep macaddr | tr a-f A-F | grep -o "[0-9A-F][0-9A-F]:[0-9A-F][0-9A-F]:[0-9A-F][0-9A-F]:[0-9A-F][0-9A-F]:[0-9A-F][0-9A-F]:[0-9A-F][0-9A-F]" | head -n1`
+test -n "$MACADDR" || MACADDR=`cat /sys/class/net/eth0/address | tr a-z A-Z`
+test -n "$MACADDR" || MACADDR=`cat /sys/class/net/eth1/address | tr a-z A-Z`
+test -n "$MACADDR" || MACADDR=`head -c6 /dev/urandom | hexdump -e '/1 "%02X:"' | head -c17`
+test -n "$MACADDR" || MACADDR=`head -c6 /dev/random | hexdump -e '/1 "%02X:"' | head -c17`
+
+if [ "$role" = "controller" ]; then
+
+	# wireless.radio0.band='2g'
+	wbandstr=$(uci show wireless | grep =\'${band}\'$ | head -n1)
+	if test -n "$wbandstr"; then
+		radio=$(echo $wbandstr | cut -d\. -f2) # radio0
+
+		#meshx0
+		uci set wireless.meshx0=wifi-iface
+		uci set wireless.meshx0.device="${radio}"
+		uci set wireless.meshx0.network='lan'
+		uci set wireless.meshx0.ifname='meshx0'
+		uci set wireless.meshx0.mode='ap'
+		uci set wireless.meshx0.wds='1'
+		uci set wireless.meshx0.ssid="${id}"
+		if test -n "$key"; then
+			uci set wireless.meshx0.encryption='psk2'
+			uci set wireless.meshx0.key="${key}"
+		else
+			uci set wireless.meshx0.encryption='none'
+		fi
+		uci set wireless.meshx0.skip_inactivity_poll='1'
+		uci set wireless.meshx0.wpa_group_rekey='0'
+		uci set wireless.meshx0.wpa_pair_rekey='0'
+		uci set wireless.meshx0.wpa_master_rekey='0'
+		uci set wireless.meshx0.disassoc_low_ack='0'
+
+		#meshx1
+		uci delete wireless.meshx1
+
+		uci set dhcp.lan.ignore='0'
+		uci delete dhcp.meshx0
+		uci delete network.meshx0
+
+		uci commit wireless
+		uci commit dhcp
+		uci commit network
+		/etc/init.d/network reload
+		/etc/init.d/dnsmasq reload
+	fi
+else
+
+	# wireless.radio0.band='2g'
+	wbandstr=$(uci show wireless | grep =\'${band}\'$ | head -n1)
+	if test -n "$wbandstr"; then
+		radio=$(echo $wbandstr | cut -d\. -f2) # radio0
+
+		#meshx0
+		uci set wireless.meshx0=wifi-iface
+		uci set wireless.meshx0.device="${radio}"
+		uci set wireless.meshx0.network='lan'
+		uci set wireless.meshx0.ifname='meshx0'
+		uci set wireless.meshx0.mode='ap'
+		uci set wireless.meshx0.wds='1'
+		uci set wireless.meshx0.ssid="${id}"
+		if test -n "$key"; then
+			uci set wireless.meshx0.encryption='psk2'
+			uci set wireless.meshx0.key="${key}"
+		else
+			uci set wireless.meshx0.encryption='none'
+		fi
+		uci set wireless.meshx0.skip_inactivity_poll='1'
+		uci set wireless.meshx0.wpa_group_rekey='0'
+		uci set wireless.meshx0.wpa_pair_rekey='0'
+		uci set wireless.meshx0.wpa_master_rekey='0'
+		uci set wireless.meshx0.disassoc_low_ack='0'
+
+		#meshx1
+		uci set wireless.meshx1=wifi-iface
+		uci set wireless.meshx1.device="${radio}"
+		uci set wireless.meshx1.network='lan'
+		uci set wireless.meshx1.ifname='meshx1'
+		uci set wireless.meshx1.mode='sta'
+		uci set wireless.meshx1.wds='1'
+		uci set wireless.meshx1.ssid="${id}"
+		if test -n "$key"; then
+			uci set wireless.meshx1.encryption='psk2'
+			uci set wireless.meshx1.key="${key}"
+		else
+			uci set wireless.meshx1.encryption='none'
+		fi
+		uci set wireless.meshx1.skip_inactivity_poll='1'
+		uci set wireless.meshx1.wpa_group_rekey='0'
+		uci set wireless.meshx1.wpa_pair_rekey='0'
+		uci set wireless.meshx1.wpa_master_rekey='0'
+		uci set wireless.meshx1.disassoc_low_ack='0'
+
+		uci set wireless.${radio}.channel='36'
+
+		uci set dhcp.lan.ignore='1'
+
+		uci set dhcp.meshx0=dhcp
+		uci set dhcp.meshx0.ignore='1'
+
+		uci set network.meshx0=interface
+		uci set network.meshx0.device="$(uci get network.lan.device)"
+		uci set network.meshx0.proto='dhcp'
+		uci set network.meshx0.defaultroute='0'
+		uci set network.meshx0.hostname="MESH-AGENT_$(echo -n $MACADDR | sed 's/://g' | tr a-f A-F)"
+
+		uci commit wireless
+		uci commit dhcp
+		uci commit network
+		/etc/init.d/network reload
+		/etc/init.d/dnsmasq reload
+	fi
+fi
+
+fakemesh_main()
+{
+	while :; do
+		sta="$(ubus -S list wpa_supplicant.meshx1)"
+		if test -n "$sta"; then
+			;
+		fi
+		sleep 10
+	done
+}

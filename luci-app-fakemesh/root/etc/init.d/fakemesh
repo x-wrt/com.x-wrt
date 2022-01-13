@@ -7,7 +7,7 @@ boot() {
 }
 
 start() {
-	:
+	/usr/sbin/fakemesh
 }
 
 restart() {

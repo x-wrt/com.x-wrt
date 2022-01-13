@@ -35,7 +35,7 @@ return view.extend({
 		o.disabled = '0';
 		o.default = o.disabled;
 
-		o = s.option(form.Value, 'id', _('MESH ID'));
+		o = s.option(form.Value, 'id', _('Mesh ID'));
 		o.datatype = 'maxlength(32)';
 
 		o = s.option(form.Value, 'key', _('Key'), _('Leave empty if encryption is not required'));
