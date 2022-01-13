@@ -159,8 +159,10 @@ if [ "$role" = "controller" ]; then
 		uci commit wireless
 		uci commit dhcp
 		uci commit network
-		/etc/init.d/network reload
-		/etc/init.d/dnsmasq reload
+
+		(sleep 15
+		 /etc/init.d/network reload
+		 /etc/init.d/dnsmasq reload)&
 	fi
 else
 
@@ -225,9 +227,10 @@ else
 		uci commit wireless
 		uci commit dhcp
 		uci commit network
-		/etc/init.d/network reload
-		/etc/init.d/dnsmasq reload
 
-		fix_agent_channel &
+		(sleep 15
+		 /etc/init.d/network reload
+		 /etc/init.d/dnsmasq reload
+		 fix_agent_channel)&
 	fi
 fi
