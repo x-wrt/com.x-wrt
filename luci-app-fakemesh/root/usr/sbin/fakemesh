@@ -137,6 +137,7 @@ if [ "$role" = "controller" ]; then
 		uci set wireless.meshx0.mode='ap'
 		uci set wireless.meshx0.wds='1'
 		uci set wireless.meshx0.ssid="${id}"
+		uci set wireless.meshx0.hidden='1'
 		if test -n "$key"; then
 			uci set wireless.meshx0.encryption='psk2'
 			uci set wireless.meshx0.key="${key}"
@@ -186,6 +187,7 @@ else
 		uci set wireless.meshx0.mode='ap'
 		uci set wireless.meshx0.wds='1'
 		uci set wireless.meshx0.ssid="${id}"
+		uci set wireless.meshx0.hidden='1'
 		if test -n "$key"; then
 			uci set wireless.meshx0.encryption='psk2'
 			uci set wireless.meshx0.key="${key}"
