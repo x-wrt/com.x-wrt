@@ -218,7 +218,11 @@ else
 		uci set wireless.meshx1.wpa_master_rekey='0'
 		uci set wireless.meshx1.disassoc_low_ack='0'
 
-		uci set wireless.${radio}.channel='36'
+		if [ "$band" = "5g" ]; then
+			uci set wireless.${radio}.channel='36'
+		else
+			uci set wireless.${radio}.channel='1'
+		fi
 
 		uci set dhcp.lan.ignore='1'
 
