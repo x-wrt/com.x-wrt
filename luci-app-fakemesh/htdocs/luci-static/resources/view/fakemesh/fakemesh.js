@@ -38,20 +38,20 @@ return view.extend({
 		o = s.option(form.Value, 'id', _('Mesh ID'));
 		o.datatype = 'maxlength(32)';
 
-		o = s.option(form.Value, 'key', _('Key'), _('Leave empty if encryption is not required'));
+		o = s.option(form.Value, 'key', _('Key'), _('Leave empty if encryption is not required.'));
 		o.rmempty = true;
 		o.password = true;
 		o.datatype = 'wpakey';
+
+		o = s.option(form.ListValue, 'role', _('Role'), _('Set the gateway router as controller, others as agent.'));
+		o.value('agent', _('Agent'));
+		o.value('controller', _('Controller'));
+		o.default = 'agent';
 
 		o = s.option(form.ListValue, 'band', _('Band'));
 		o.value('5g', _('5G'));
 		o.value('2g', _('2G'));
 		o.default = '5g';
-
-		o = s.option(form.ListValue, 'role', _('Role'));
-		o.value('agent', _('Agent'));
-		o.value('controller', _('Controller'), _('Set the gateway router as controller, others as agent.'));
-		o.default = 'agent';
 
 		return m.render();
 	}
