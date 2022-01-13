@@ -8,15 +8,7 @@ config_load fakemesh
 config_get_bool enabled default 'enabled' '0'
 
 test $enabled -eq 0 && {
-	exit 0
-}
-
-config_get role default 'role' 'agent'
-config_get band default 'band' '5g'
-config_get id default 'id'
-config_get key default 'key'
-
-test -n "$id" || {
+	rm -rf /tmp/fakemesh_lck*
 	uci delete wireless.meshx0
 	uci delete wireless.meshx1
 
@@ -32,6 +24,94 @@ test -n "$id" || {
 	exit 0
 }
 
+config_get role default 'role' 'agent'
+config_get band default 'band' '5g'
+config_get id default 'id'
+config_get key default 'key'
+
+keep_agent_alive()
+{
+	sta_lost=0
+
+	wbandstr=$(uci show wireless | grep =\'${band}\'$ | head -n1)
+	radio=$(echo $wbandstr | cut -d\. -f2)
+	channel=$(uci get wireless.${radio}.channel)
+	test -n "$channel" || return 1
+
+	mkdir /tmp/fakemesh_lck2 || exit 0
+	pid=$$
+	touch /tmp/fakemesh_lck2/$pid
+
+	while :; do
+		sleep 10
+		sta="$(ubus -S list wpa_supplicant.meshx1)"
+		if test -n "$sta"; then
+			if [ $(iwinfo meshx1 info | grep -c 'ESSID: unknown') -ge 1 ]; then
+				sta_lost=$((sta_lost+1))
+				if [ "$sta_lost" -ge 3 ]; then
+					logger -t fakemesh "Agent lost connection!"
+					rm -f /tmp/fakemesh_lck2/$pid
+					rmdir /tmp/fakemesh_lck2
+					/usr/sbin/fakemesh fix_agent_channel &
+					break
+				fi
+			elif [ "$(iwinfo meshx1 info | head -n3 | tail -n1 | awk '{print $4}')" != "$channel" ]; then
+				logger -t fakemesh "Agent channel changed!"
+				rm -f /tmp/fakemesh_lck2/$pid
+				rmdir /tmp/fakemesh_lck2
+				/usr/sbin/fakemesh fix_agent_channel &
+				break
+			fi
+		fi
+		sleep 30
+		test -f /tmp/fakemesh_lck2/$pid || break
+	done
+}
+
+fix_agent_channel()
+{
+	[ "$role" = "agent" ] || exit 0
+
+	wbandstr=$(uci show wireless | grep =\'${band}\'$ | head -n1)
+	radio=$(echo $wbandstr | cut -d\. -f2)
+	channel=$(uci get wireless.${radio}.channel)
+	test -n "$channel" || return 1
+
+	mkdir /tmp/fakemesh_lck1 || exit 0
+	pid=$$
+	touch /tmp/fakemesh_lck1/$pid
+
+	while :; do
+		sleep 10
+		sta="$(ubus -S list wpa_supplicant.meshx1)"
+		if test -n "$sta"; then
+			chan=$(iwinfo meshx1 scan | grep -A1 -B1 "ESSID: \"${id}\"" | head -n3 | tail -n1 | awk '{print $4}')
+			if test -n "$chan" && [ "$chan" != "$channel" ]; then
+				logger -t fakemesh "Setting up channel ($chan) for ${radio}"
+				rm -f /tmp/fakemesh_lck1/$pid
+				rmdir /tmp/fakemesh_lck1
+				uci set wireless.${radio}.channel="$chan"
+				uci commit wireless
+				/etc/init.d/network reload &
+				break
+			fi
+		fi
+		sleep 20
+		test -f /tmp/fakemesh_lck1/$pid || break
+	done
+
+	keep_agent_alive &
+}
+
+[ "x$1" = "xfix-agent-channel" ] && {
+	fix_agent_channel
+	exit 0
+}
+
+test -n "$id" || {
+	exit 0
+}
+
 MACADDR=""
 test -e /usr/share/natcapd/board_mac.lua && MACADDR=`lua /usr/share/natcapd/board_mac.lua`
 test -n "$MACADDR" || MACADDR=`cat /etc/board.json | grep macaddr | tr a-f A-F | grep -o "[0-9A-F][0-9A-F]:[0-9A-F][0-9A-F]:[0-9A-F][0-9A-F]:[0-9A-F][0-9A-F]:[0-9A-F][0-9A-F]:[0-9A-F][0-9A-F]" | head -n1`
@@ -41,6 +121,8 @@ test -n "$MACADDR" || MACADDR=`head -c6 /dev/urandom | hexdump -e '/1 "%02X:"' |
 test -n "$MACADDR" || MACADDR=`head -c6 /dev/random | hexdump -e '/1 "%02X:"' | head -c17`
 
 if [ "$role" = "controller" ]; then
+
+	rm -rf /tmp/fakemesh_lck*
 
 	# wireless.radio0.band='2g'
 	wbandstr=$(uci show wireless | grep =\'${band}\'$ | head -n1)
@@ -145,16 +227,7 @@ else
 		uci commit network
 		/etc/init.d/network reload
 		/etc/init.d/dnsmasq reload
+
+		fix_agent_channel &
 	fi
 fi
-
-fakemesh_main()
-{
-	while :; do
-		sta="$(ubus -S list wpa_supplicant.meshx1)"
-		if test -n "$sta"; then
-			;
-		fi
-		sleep 10
-	done
-}
