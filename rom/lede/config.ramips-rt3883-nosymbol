@@ -429,7 +429,7 @@ CONFIG_TARGET_INIT_CMD="/sbin/init"
 CONFIG_TARGET_INIT_SUPPRESS_STDERR=y
 CONFIG_VERSIONOPT=y
 CONFIG_VERSION_DIST="X-WRT"
-CONFIG_VERSION_NUMBER="21.10_b202201091052"
+CONFIG_VERSION_NUMBER="21.10_b202201140800"
 CONFIG_VERSION_CODE="Impish"
 CONFIG_VERSION_REPO="http://downloads.openwrt.org/snapshots"
 CONFIG_VERSION_HOME_URL="https://x-wrt.com/"
@@ -3841,8 +3841,9 @@ CONFIG_PACKAGE_luasocket=y
 # Python
 #
 # CONFIG_PACKAGE_libpython3 is not set
-# CONFIG_PACKAGE_micropython is not set
 # CONFIG_PACKAGE_micropython-lib is not set
+# CONFIG_PACKAGE_micropython-mbedtls is not set
+# CONFIG_PACKAGE_micropython-nossl is not set
 # CONFIG_PACKAGE_python-pip-conf is not set
 # CONFIG_PACKAGE_python3 is not set
 # CONFIG_PACKAGE_python3-aiohttp is not set
@@ -5305,6 +5306,7 @@ CONFIG_PACKAGE_luci-app-mwan3=y
 # CONFIG_PACKAGE_luci-app-olsr-viz is not set
 # CONFIG_PACKAGE_luci-app-omcproxy is not set
 CONFIG_PACKAGE_luci-app-openvpn=m
+# CONFIG_PACKAGE_luci-app-openwisp is not set
 CONFIG_PACKAGE_luci-app-opkg=y
 CONFIG_PACKAGE_luci-app-p910nd=m
 # CONFIG_PACKAGE_luci-app-pagekitec is not set
@@ -6795,7 +6797,6 @@ CONFIG_PACKAGE_ipset=y
 # CONFIG_PACKAGE_iputils-arping is not set
 # CONFIG_PACKAGE_iputils-clockdiff is not set
 # CONFIG_PACKAGE_iputils-ping is not set
-# CONFIG_PACKAGE_iputils-tftpd is not set
 # CONFIG_PACKAGE_iputils-tracepath is not set
 # CONFIG_PACKAGE_ipvsadm is not set
 # CONFIG_PACKAGE_irtt is not set
@@ -7663,6 +7664,12 @@ CONFIG_PACKAGE_luci-app-autoreboot=y
 CONFIG_PACKAGE_base-config-setting=y
 # CONFIG_PACKAGE_base-config-setting-ext4fs is not set
 # end of Base config setting for this board
+
+#
+# Configuration Fake Mesh Support
+#
+CONFIG_PACKAGE_luci-app-fakemesh=y
+# end of Configuration Fake Mesh Support
 
 #
 # Configuration SimpleNetwork Support
