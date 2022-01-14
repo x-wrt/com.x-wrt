@@ -275,15 +275,7 @@ for t in $targets; do
 	excludes="$excludes_basic"
 	case $t in
 		#>8M flash
-		TARGET_DEVICE_ramips_mt7621_DEVICE_xiaomi_mi-router-cr660x|\
-		TARGET_DEVICE_ramips_mt7621_DEVICE_tplink_archer-c6-v3|\
-		TARGET_DEVICE_ramips_mt7621_DEVICE_tplink_archer-a6-v3|\
-		TARGET_DEVICE_ramips_mt7621_DEVICE_linksys_e5600|\
 		TARGET_DEVICE_mediatek_mt7622_DEVICE_totolink_a8000ru|\
-		TARGET_DEVICE_ramips_mt7621_DEVICE_dlink_dir-882-a1|\
-		TARGET_DEVICE_ramips_mt7621_DEVICE_dlink_dir-882-r1|\
-		TARGET_DEVICE_ramips_mt7621_DEVICE_jcg_q20|\
-		TARGET_DEVICE_ramips_mt7621_DEVICE_jcg_jhr-ac876m|\
 		TARGET_DEVICE_bcm4908_generic_DEVICE_asus_gt-ac5300|\
 		TARGET_DEVICE_bcm4908_generic_DEVICE_netgear_r8000p|\
 		TARGET_DEVICE_ipq806x_generic_DEVICE_ruijie_rg-mtfi-m520|\
@@ -291,23 +283,14 @@ for t in $targets; do
 		TARGET_DEVICE_ipq40xx_generic_DEVICE_mobipromo_cm520-79f|\
 		TARGET_DEVICE_ipq40xx_generic_DEVICE_linksys_mr8300|\
 		TARGET_DEVICE_mediatek_mt7622_DEVICE*|\
-		TARGET_DEVICE_ramips_mt7621_DEVICE_xiaomi_mi-router-4|\
 		TARGET_DEVICE_ipq40xx_generic_DEVICE_glinet_gl-ap1300|\
-		TARGET_DEVICE_ramips_mt7621_DEVICE_glinet_gl-mt1300|\
-		TARGET_DEVICE_ramips_mt7621_DEVICE_jcg_y2|\
-		TARGET_DEVICE_ramips_mt7621_DEVICE_totolink_x5000r|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_xwrt_wr1800k-ax-norplusemmc|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_xwrt_wr1800k-ax-nand|\
 		TARGET_DEVICE_rockchip_armv8_DEVICE_friendlyarm_nanopi-r2c|\
 		TARGET_DEVICE_rockchip_armv8_DEVICE_friendlyarm_nanopi-r2s|\
 		TARGET_DEVICE_rockchip_armv8_DEVICE_friendlyarm_nanopi-r4s|\
-		TARGET_DEVICE_ramips_mt7621_DEVICE_linksys_ea8100-v2|\
-		TARGET_DEVICE_ramips_mt7621_DEVICE_linksys_ea8100-v1|\
-		TARGET_DEVICE_ramips_mt7621_DEVICE_linksys_ea7300-v2|\
-		TARGET_DEVICE_ramips_mt7621_DEVICE_linksys_ea7300-v1|\
 		TARGET_DEVICE_ipq806x_generic_DEVICE_linksys_ea7500-v1|\
 		TARGET_DEVICE_ipq40xx_generic_DEVICE_glinet_gl-s1300|\
-		TARGET_DEVICE_ramips_mt7621_DEVICE_linksys_ea7500-v2|\
 		TARGET_DEVICE_mvebu_cortexa53_DEVICE_glinet_gl-mv1000|\
 		TARGET_DEVICE_ath79_nand_DEVICE_domywifi_dw33d|\
 		TARGET_DEVICE_ipq806x_generic_DEVICE_tplink_c2600|\
@@ -319,23 +302,16 @@ for t in $targets; do
 		TARGET_DEVICE_ath79_nand_DEVICE_xwrt_gw521-nand|\
 		TARGET_DEVICE_ipq40xx_generic_DEVICE_alfa-network_ap120c-ac|\
 		TARGET_DEVICE_ipq40xx_generic_DEVICE_netgear_ex6200v2|\
-		TARGET_DEVICE_ramips_mt7621_DEVICE_asus_rt-ac85p|\
-		TARGET_DEVICE_ramips_mt7621_DEVICE_asus_rt-ac57u|\
-		TARGET_DEVICE_ramips_mt7621_DEVICE_xiaoyu_xy-c5|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_netgear_r6260|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_netgear_r6850|\
-		TARGET_DEVICE_ramips_mt7621_DEVICE_adslr_g7|\
 		TARGET_DEVICE_ramips_rt305x_DEVICE_huawei_hg255d|\
-		TARGET_DEVICE_ramips_mt7621_DEVICE_thunder_timecloud|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_totolink_a7000r|\
 		TARGET_DEVICE_bcm27xx_bcm2709_DEVICE_rpi-2|\
 		TARGET_DEVICE_bcm27xx_bcm2710_DEVICE_rpi-3|\
 		TARGET_DEVICE_bcm27xx_bcm2711_DEVICE_rpi-4|\
 		TARGET_DEVICE_ipq40xx_generic_DEVICE_avm_fritzbox-4040|\
 		TARGET_DEVICE_ipq40xx_generic_DEVICE_avm_fritzbox-7530|\
-		TARGET_DEVICE_ramips_mt7621_DEVICE_tenbay_mac500f|\
 		TARGET_DEVICE_ath79_nand_DEVICE_glinet_gl-ar300m-nand|\
-		TARGET_DEVICE_ramips_mt7621_DEVICE_youku_yk-l2|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_ubiquiti_edgerouterx|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_ubiquiti_edgerouterx-sfp|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_ubnt_edgerouter-x|\
@@ -348,20 +324,12 @@ for t in $targets; do
 		TARGET_DEVICE_ipq40xx_generic_DEVICE_compex_wpj428|\
 		TARGET_DEVICE_ipq40xx_generic_DEVICE_asus_map-ac2200|\
 		TARGET_DEVICE_ipq40xx_generic_DEVICE_linksys_ea8300|\
-		TARGET_DEVICE_ramips_mt7621_DEVICE_wevo_11acnas|\
-		TARGET_DEVICE_ramips_mt7621_DEVICE_wevo_w2914ns-v2|\
 		TARGET_DEVICE_ipq40xx_generic_DEVICE_linksys_ea6350v3|\
 		TARGET_DEVICE_ramips_rt305x_DEVICE_vocore_vocore-16m|\
 		TARGET_DEVICE_ramips_rt305x_DEVICE_hg255d|\
 		TARGET_DEVICE_bcm53xx_generic_DEVICE_phicomm_k3|\
-		TARGET_DEVICE_ramips_mt7621_DEVICE_mikrotik_routerboard-750gr3|\
-		TARGET_DEVICE_ramips_mt7621_DEVICE_mikrotik_routerboard-m11g|\
-		TARGET_DEVICE_ramips_mt7621_DEVICE_mikrotik_routerboard-m33g|\
-		TARGET_DEVICE_ramips_mt7621_DEVICE_gehua_ghl-r-001|\
-		TARGET_DEVICE_ramips_mt7621_DEVICE_xzwifi_creativebox-v1|\
 		TARGET_DEVICE_ath79_nand_DEVICE_arris_sbr-ac1750|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_netgear_r6350|\
-		TARGET_DEVICE_ramips_mt7621_DEVICE_mtc_wr1201|\
 		TARGET_DEVICE_bcm53xx_generic_DEVICE_tplink_archer-c9-v1|\
 		TARGET_DEVICE_bcm53xx_generic_DEVICE_tplink_archer-c5-v2|\
 		TARGET_DEVICE_bcm53xx_generic_DEVICE_dlink_dir-885l|\
@@ -370,26 +338,16 @@ for t in $targets; do
 		TARGET_DEVICE_bcm53xx_generic_DEVICE_linksys_ea9200|\
 		TARGET_DEVICE_bcm53xx_generic_DEVICE_linksys_ea9500|\
 		TARGET_DEVICE_bcm53xx_generic_DEVICE_netgear_r8500|\
-		TARGET_DEVICE_ramips_mt7621_DEVICE_iodata_wn-ax1167gr|\
 		TARGET_DEVICE_mvebu_cortexa9_DEVICE_linksys_wrt32x|\
-		TARGET_DEVICE_ramips_mt7621_DEVICE_youhua_wr1200js|\
-		TARGET_DEVICE_ramips_mt7621_DEVICE_wf-2881|\
-		TARGET_DEVICE_ramips_mt7621_DEVICE_dlink_dir-860l-b1|\
-		TARGET_DEVICE_ramips_mt7621_DEVICE_d-team_pbr-m1|\
 		TARGET_DEVICE_ipq40xx_generic_DEVICE_asus_rt-ac58u|\
 		TARGET_DEVICE_ipq40xx_generic_DEVICE_asus_rt-acrh17|\
 		TARGET_DEVICE_ipq40xx_generic_DEVICE_p2w_r619ac-128m|\
 		TARGET_DEVICE_ipq40xx_generic_DEVICE_p2w_r619ac-64m|\
 		TARGET_DEVICE_ipq40xx_generic_DEVICE_p2w_r619ac|\
-		TARGET_DEVICE_ramips_mt7621_DEVICE_zbtlink_zbt-we3526|\
-		TARGET_DEVICE_ramips_mt7621_DEVICE_d-team_newifi-d2|\
-		TARGET_DEVICE_ramips_mt7621_DEVICE_zbt-we3526|\
 		TARGET_DEVICE_ipq806x_generic_DEVICE_zyxel_nbg6817|\
 		TARGET_DEVICE_ipq806x_generic_DEVICE_avm_fritzbox-4040|\
 		TARGET_DEVICE_bcm53xx_generic_DEVICE_netgear_r6250|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_xiaomi_mi-router-3g|\
-		TARGET_DEVICE_ramips_mt7621_DEVICE_xiaomi_mi-router-3g-v2|\
-		TARGET_DEVICE_ramips_mt7621_DEVICE_xiaomi_mi-router-4a-gigabit|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_xiaomi_mi-router-3-pro|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_xiaomi_redmi-router-ac2100|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_xiaomi_mi-router-ac2100|\
@@ -404,12 +362,7 @@ for t in $targets; do
 		TARGET_DEVICE_oxnas_DEVICE_pogoplug-v3|\
 		TARGET_DEVICE_kirkwood_DEVICE_pogo_e02|\
 		TARGET_DEVICE_brcm47xx_mips74k_DEVICE_linksys-e3200-v1|\
-		TARGET_DEVICE_ramips_mt7621_DEVICE_zbtlink_zbt-we1326|\
-		TARGET_DEVICE_ramips_mt7621_DEVICE_zbtlink_zbt-wg2626|\
-		TARGET_DEVICE_ramips_mt7621_DEVICE_zbtlink_zbt-wg3526-16m|\
-		TARGET_DEVICE_ramips_mt7621_DEVICE_zbtlink_zbt-wg3526-32m|\
 		TARGET_DEVICE_ipq806x_generic_DEVICE_linksys_ea8500|\
-		TARGET_DEVICE_ramips_mt7621_DEVICE_buffalo_wsr-1166dhp|\
 		TARGET_DEVICE_ipq806x_generic_DEVICE_netgear_xr500|\
 		TARGET_DEVICE_ipq806x_generic_DEVICE_netgear_r7800|\
 		TARGET_DEVICE_ipq806x_generic_DEVICE_netgear_r7500v2|\
@@ -434,12 +387,11 @@ for t in $targets; do
 		TARGET_DEVICE_mvebu_cortexa9_DEVICE_linksys_wrt1900acs|\
 		TARGET_DEVICE_mvebu_cortexa9_DEVICE_linksys_wrt1900ac-v2|\
 		TARGET_DEVICE_mvebu_cortexa9_DEVICE_linksys_wrt3200acm|\
-		TARGET_DEVICE_ramips_mt7621_DEVICE_hiwifi_hc5962|\
+		TARGET_DEVICE_ramips_mt7621_DEVICE_zbtlink_zbt-wg3526-32m|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_netgear_r6220|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_netgear_r6220a|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_netgear_r6220b|\
-		TARGET_DEVICE_ramips_mt7621_DEVICE_netgear_r6220c|\
-		TARGET_DEVICE_ramips_mt7621_DEVICE_lenovo_newifi-d1)
+		TARGET_DEVICE_ramips_mt7621_DEVICE_netgear_r6220c)
 			mods="$mods $lucibond $ipv6extra $wifiextra"
 			mods="$mods $wgmod $openvpnmod wpad-openssl luci-ssl-nginx"
 			excludes="$excludes wpad-basic-wolfssl"
@@ -447,6 +399,54 @@ for t in $targets; do
 			extra_utils=1
 		;;
 		#>8M flash <14M
+		TARGET_DEVICE_ramips_mt7621_DEVICE_thunder_timecloud|\
+		TARGET_DEVICE_ramips_mt7621_DEVICE_dlink_dir-882-a1|\
+		TARGET_DEVICE_ramips_mt7621_DEVICE_dlink_dir-882-r1|\
+		TARGET_DEVICE_ramips_mt7621_DEVICE_jcg_q20|\
+		TARGET_DEVICE_ramips_mt7621_DEVICE_jcg_jhr-ac876m|\
+		TARGET_DEVICE_ramips_mt7621_DEVICE_xiaomi_mi-router-4|\
+		TARGET_DEVICE_ramips_mt7621_DEVICE_glinet_gl-mt1300|\
+		TARGET_DEVICE_ramips_mt7621_DEVICE_jcg_y2|\
+		TARGET_DEVICE_ramips_mt7621_DEVICE_totolink_x5000r|\
+		TARGET_DEVICE_ramips_mt7621_DEVICE_linksys_ea8100-v2|\
+		TARGET_DEVICE_ramips_mt7621_DEVICE_linksys_ea8100-v1|\
+		TARGET_DEVICE_ramips_mt7621_DEVICE_linksys_ea7300-v2|\
+		TARGET_DEVICE_ramips_mt7621_DEVICE_linksys_ea7300-v1|\
+		TARGET_DEVICE_ramips_mt7621_DEVICE_asus_rt-ac85p|\
+		TARGET_DEVICE_ramips_mt7621_DEVICE_asus_rt-ac57u|\
+		TARGET_DEVICE_ramips_mt7621_DEVICE_xiaoyu_xy-c5|\
+		TARGET_DEVICE_ramips_mt7621_DEVICE_linksys_ea7500-v2|\
+		TARGET_DEVICE_ramips_mt7621_DEVICE_adslr_g7|\
+		TARGET_DEVICE_ramips_mt7621_DEVICE_youku_yk-l2|\
+		TARGET_DEVICE_ramips_mt7621_DEVICE_tenbay_mac500f|\
+		TARGET_DEVICE_ramips_mt7621_DEVICE_wevo_11acnas|\
+		TARGET_DEVICE_ramips_mt7621_DEVICE_wevo_w2914ns-v2|\
+		TARGET_DEVICE_ramips_mt7621_DEVICE_mikrotik_routerboard-750gr3|\
+		TARGET_DEVICE_ramips_mt7621_DEVICE_mikrotik_routerboard-m11g|\
+		TARGET_DEVICE_ramips_mt7621_DEVICE_mikrotik_routerboard-m33g|\
+		TARGET_DEVICE_ramips_mt7621_DEVICE_gehua_ghl-r-001|\
+		TARGET_DEVICE_ramips_mt7621_DEVICE_xzwifi_creativebox-v1|\
+		TARGET_DEVICE_ramips_mt7621_DEVICE_mtc_wr1201|\
+		TARGET_DEVICE_ramips_mt7621_DEVICE_iodata_wn-ax1167gr|\
+		TARGET_DEVICE_ramips_mt7621_DEVICE_youhua_wr1200js|\
+		TARGET_DEVICE_ramips_mt7621_DEVICE_wf-2881|\
+		TARGET_DEVICE_ramips_mt7621_DEVICE_dlink_dir-860l-b1|\
+		TARGET_DEVICE_ramips_mt7621_DEVICE_d-team_pbr-m1|\
+		TARGET_DEVICE_ramips_mt7621_DEVICE_zbtlink_zbt-we3526|\
+		TARGET_DEVICE_ramips_mt7621_DEVICE_d-team_newifi-d2|\
+		TARGET_DEVICE_ramips_mt7621_DEVICE_zbt-we3526|\
+		TARGET_DEVICE_ramips_mt7621_DEVICE_xiaomi_mi-router-3g-v2|\
+		TARGET_DEVICE_ramips_mt7621_DEVICE_xiaomi_mi-router-4a-gigabit|\
+		TARGET_DEVICE_ramips_mt7621_DEVICE_zbtlink_zbt-we1326|\
+		TARGET_DEVICE_ramips_mt7621_DEVICE_zbtlink_zbt-wg2626|\
+		TARGET_DEVICE_ramips_mt7621_DEVICE_zbtlink_zbt-wg3526-16m|\
+		TARGET_DEVICE_ramips_mt7621_DEVICE_buffalo_wsr-1166dhp|\
+		TARGET_DEVICE_ramips_mt7621_DEVICE_lenovo_newifi-d1|\
+		TARGET_DEVICE_ramips_mt7621_DEVICE_hiwifi_hc5962|\
+		TARGET_DEVICE_ramips_mt7621_DEVICE_xiaomi_mi-router-cr660x|\
+		TARGET_DEVICE_ramips_mt7621_DEVICE_tplink_archer-c6-v3|\
+		TARGET_DEVICE_ramips_mt7621_DEVICE_tplink_archer-a6-v3|\
+		TARGET_DEVICE_ramips_mt7621_DEVICE_linksys_e5600|\
 		TARGET_DEVICE_ath79_generic_DEVICE_letv_lba-047-ch|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_xwrt_t-cpe1202kd-v01|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_xwrt_t-cpe1200k-v01|\
