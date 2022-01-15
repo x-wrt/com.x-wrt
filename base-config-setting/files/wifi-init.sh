@@ -36,6 +36,7 @@ wifi_setup_radio()
 			set wireless.${radio}.disabled='0'
 			set wireless.${radio}.country='CN'
 			set wireless.${radio}.channel='auto'
+			set wireless.${radio}.cell_density='0'
 		EOT
 
 		if [ x`uci get wireless.${radio}.hwmode 2>/dev/null` = "x11a" ]; then
