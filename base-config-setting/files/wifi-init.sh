@@ -58,6 +58,9 @@ wifi_setup_radio()
 			uci set wireless.$obj.wpa_master_rekey='0'
 			uci set wireless.$obj.disassoc_low_ack='0'
 			uci set wireless.$obj.key="${SSID_PASSWD}"
+			uci set wireless.$obj.ieee80211r='1'
+			uci set wireless.$obj.ft_over_ds='1'
+			uci set wireless.$obj.ft_psk_generate_local='1'
 		}
 	}
 }
