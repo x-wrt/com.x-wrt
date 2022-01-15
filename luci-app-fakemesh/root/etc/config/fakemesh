@@ -4,4 +4,3 @@ config fakemesh 'default'
 	option key '88888888'
 	option band '5g'
 	option role 'agent' # agent/controller
-

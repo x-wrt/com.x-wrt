@@ -21,3 +21,9 @@ msgstr "卫星"
 
 msgid "Controller"
 msgstr "控制器"
+
+msgid "The simple ip address to access the controller."
+msgstr "访问控制器的简单ip地址。"
+
+msgid "Access IP address"
+msgstr "访问 IP 地址"

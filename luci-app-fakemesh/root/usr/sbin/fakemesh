@@ -9,18 +9,20 @@ config_get_bool enabled default 'enabled' '0'
 
 test $enabled -eq 0 && {
 	rm -rf /tmp/fakemesh_lck*
-	uci delete wireless.meshx0
-	uci delete wireless.meshx1
+	uci delete wireless.meshx0 >/dev/null 2>&1
+	uci delete wireless.meshx1 >/dev/null 2>&1
 
 	uci set dhcp.lan.ignore='0'
-	uci delete dhcp.meshx0
-	uci delete network.meshx0
+	uci delete dhcp.meshx0 >/dev/null 2>&1
+	uci delete network.meshx0 >/dev/null 2>&1
+	uci delete firewall.fakemesh >/dev/null 2>&1
 
 	uci commit wireless
 	uci commit dhcp
 	uci commit network
 	/etc/init.d/network reload
 	/etc/init.d/dnsmasq reload
+	/etc/init.d/firewall reload
 	exit 0
 }
 
@@ -28,6 +30,7 @@ config_get role default 'role' 'agent'
 config_get band default 'band' '5g'
 config_get id default 'id'
 config_get key default 'key'
+config_get access_ip default 'access_ip' '10.10.10.1'
 
 keep_agent_alive()
 {
@@ -151,11 +154,31 @@ if [ "$role" = "controller" ]; then
 		uci set wireless.meshx0.disassoc_low_ack='0'
 
 		#meshx1
-		uci delete wireless.meshx1
+		uci delete wireless.meshx1 >/dev/null 2>&1
 
 		uci set dhcp.lan.ignore='0'
-		uci delete dhcp.meshx0
-		uci delete network.meshx0
+		uci delete dhcp.meshx0 >/dev/null 2>&1
+		uci delete network.meshx0 >/dev/null 2>&1
+
+		# reload firewall
+		uci get firewall.fakemesh >/dev/null 2>&1 || {
+		uci -q batch <<-EOT
+		delete firewall.fakemesh
+		set firewall.fakemesh=include
+		set firewall.fakemesh.type=script
+		set firewall.fakemesh.path=/usr/share/fakemesh/firewall.include
+		set firewall.fakemesh.family=any
+		set firewall.fakemesh.reload=1
+		commit firewall
+		EOT
+		}
+
+		mkdir -p /usr/share/fakemesh
+		cat >/usr/share/fakemesh/firewall.include <<-EOT
+#!/bin/sh
+iptables -t nat -C prerouting_lan_rule -d $access_ip -p tcp --dport 80 -j REDIRECT --to-ports 80 2>/dev/null || \
+iptables -t nat -A prerouting_lan_rule -d $access_ip -p tcp --dport 80 -j REDIRECT --to-ports 80
+EOT
 
 		test $(uci changes | wc -l) -le 1 && {
 			uci revert wireless
@@ -170,7 +193,8 @@ if [ "$role" = "controller" ]; then
 
 		(sleep 15
 		 /etc/init.d/network reload
-		 /etc/init.d/dnsmasq reload)&
+		 /etc/init.d/dnsmasq reload
+		 /etc/init.d/firewall reload)&
 	fi
 else
 
@@ -250,9 +274,12 @@ else
 		uci commit dhcp
 		uci commit network
 
+		uci delete firewall.fakemesh >/dev/null 2>&1
+
 		(sleep 15
 		 /etc/init.d/network reload
 		 /etc/init.d/dnsmasq reload
+		 /etc/init.d/firewall reload
 		 fix_agent_channel)&
 	fi
 fi

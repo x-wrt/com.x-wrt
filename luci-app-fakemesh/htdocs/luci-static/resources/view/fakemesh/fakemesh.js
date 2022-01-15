@@ -43,15 +43,22 @@ return view.extend({
 		o.password = true;
 		o.datatype = 'wpakey';
 
+		o = s.option(form.ListValue, 'band', _('Band'));
+		o.value('5g', _('5G'));
+		o.value('2g', _('2G'));
+		o.default = '5g';
+
 		o = s.option(form.ListValue, 'role', _('Role'), _('Set the gateway router as controller, others as agent.'));
 		o.value('agent', _('Agent'));
 		o.value('controller', _('Controller'));
 		o.default = 'agent';
 
-		o = s.option(form.ListValue, 'band', _('Band'));
-		o.value('5g', _('5G'));
-		o.value('2g', _('2G'));
-		o.default = '5g';
+		o = s.option(form.Value, 'access_ip', _('Access IP address'), _('The simple ip address to access the controller.'));
+		o.depends('role', 'controller');
+		o.placeholder = '10.10.10.1'
+		o.rmempty = true;
+		o.datatype = 'ip4addr';
+		o.ucioption = 'ipaddr';
 
 		return m.render();
 	}
