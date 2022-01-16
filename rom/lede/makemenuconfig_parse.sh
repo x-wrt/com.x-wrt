@@ -340,6 +340,7 @@ for t in $targets; do
 		TARGET_DEVICE_bcm53xx_generic_DEVICE_netgear_r8500|\
 		TARGET_DEVICE_mvebu_cortexa9_DEVICE_linksys_wrt32x|\
 		TARGET_DEVICE_ipq40xx_generic_DEVICE_asus_rt-ac58u|\
+		TARGET_DEVICE_ipq40xx_generic_DEVICE_asus_rt-ac42u|\
 		TARGET_DEVICE_ipq40xx_generic_DEVICE_asus_rt-acrh17|\
 		TARGET_DEVICE_ipq40xx_generic_DEVICE_p2w_r619ac-128m|\
 		TARGET_DEVICE_ipq40xx_generic_DEVICE_p2w_r619ac-64m|\
@@ -764,6 +765,7 @@ for t in $targets; do
 		TARGET_DEVICE_sunxi_cortexa7_DEVICE_xunlong_orangepi-r1|\
 		TARGET_DEVICE_sunxi_cortexa7_DEVICE_friendlyarm_nanopi-neo|\
 		TARGET_DEVICE_ipq40xx_generic_DEVICE_asus_rt-ac58u|\
+		TARGET_DEVICE_ipq40xx_generic_DEVICE_asus_rt-ac42u|\
 		TARGET_DEVICE_ipq40xx_generic_DEVICE_asus_rt-acrh17|\
 		TARGET_DEVICE_ipq40xx_generic_DEVICE_p2w_r619ac-128m|\
 		TARGET_DEVICE_ipq40xx_generic_DEVICE_p2w_r619ac-64m|\
@@ -1124,6 +1126,7 @@ for t in $targets; do
 
 	#check proxym manual select
 	case $t in
+		TARGET_DEVICE_ipq40xx_generic_DEVICE_asus_rt-ac42u|\
 		TARGET_DEVICE_ipq40xx_generic_DEVICE_asus_rt-acrh17)
 			mods="$mods $proxym"
 		;;
