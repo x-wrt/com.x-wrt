@@ -45,6 +45,7 @@ keep_agent_alive()
 	pid=$$
 	touch /tmp/fakemesh_lck2/$pid
 
+	logger -t fakemesh "keep_agent_alive($pid): started!"
 	while :; do
 		sleep 10
 		sta="$(ubus -S list wpa_supplicant.meshx1)"
@@ -52,14 +53,14 @@ keep_agent_alive()
 			if [ $(iwinfo meshx1 info | grep -c 'ESSID: unknown') -ge 1 ]; then
 				sta_lost=$((sta_lost+1))
 				if [ "$sta_lost" -ge 3 ]; then
-					logger -t fakemesh "Agent lost connection!"
+					logger -t fakemesh "keep_agent_alive($pid): Agent lost connection!"
 					rm -f /tmp/fakemesh_lck2/$pid
 					rmdir /tmp/fakemesh_lck2
 					/usr/sbin/fakemesh fix_agent_channel &
 					break
 				fi
 			elif [ "$(iwinfo meshx1 info | head -n3 | tail -n1 | awk '{print $4}')" != "$channel" ]; then
-				logger -t fakemesh "Agent channel changed!"
+				logger -t fakemesh "keep_agent_alive($pid): Agent channel changed!"
 				rm -f /tmp/fakemesh_lck2/$pid
 				rmdir /tmp/fakemesh_lck2
 				/usr/sbin/fakemesh fix_agent_channel &
@@ -84,18 +85,22 @@ fix_agent_channel()
 	pid=$$
 	touch /tmp/fakemesh_lck1/$pid
 
+	logger -t fakemesh "fix_agent_channel($pid): started!"
 	while :; do
 		sleep 10
 		sta="$(ubus -S list wpa_supplicant.meshx1)"
 		if test -n "$sta"; then
 			chan=$(iwinfo meshx1 scan | grep -A1 -B1 "ESSID: \"${id}\"" | head -n3 | tail -n1 | awk '{print $4}')
-			if test -n "$chan" && [ "$chan" != "$channel" ]; then
-				logger -t fakemesh "Setting up channel ($chan) for ${radio}"
-				rm -f /tmp/fakemesh_lck1/$pid
-				rmdir /tmp/fakemesh_lck1
-				uci set wireless.${radio}.channel="$chan"
-				uci commit wireless
-				/etc/init.d/network reload &
+			if test -n "$chan"; then
+				if [ "$chan" != "$channel" ]; then
+					logger -t fakemesh "fix_agent_channel($pid): Setting up channel ($chan) for ${radio}"
+					rm -f /tmp/fakemesh_lck1/$pid
+					rmdir /tmp/fakemesh_lck1
+					uci set wireless.${radio}.channel="$chan"
+					uci commit wireless
+					/etc/init.d/network reload &
+				fi
+				logger -t fakemesh "fix_agent_channel($pid): Channel ($chan) for ${radio} ready!"
 				break
 			fi
 		fi
