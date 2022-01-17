@@ -55,13 +55,13 @@ keep_agent_alive()
 				if [ "$sta_lost" -ge 3 ]; then
 					logger -t fakemesh "keep_agent_alive($pid): Agent lost connection!"
 					rm -f /tmp/fakemesh_lck2/$pid; rmdir /tmp/fakemesh_lck2
-					/usr/sbin/fakemesh fix_agent_channel &
+					exec /usr/sbin/fakemesh fix_agent_channel &
 					return 0
 				fi
 			elif [ "$(iwinfo meshx1 info | head -n3 | tail -n1 | awk '{print $4}')" != "$channel" ]; then
 				logger -t fakemesh "keep_agent_alive($pid): Agent channel changed!"
 				rm -f /tmp/fakemesh_lck2/$pid; rmdir /tmp/fakemesh_lck2
-				/usr/sbin/fakemesh fix_agent_channel &
+				exec /usr/sbin/fakemesh fix_agent_channel &
 				return 0
 			fi
 		fi
@@ -94,15 +94,12 @@ fix_agent_channel()
 			if test -n "$chan"; then
 				if [ "$chan" != "$channel" ]; then
 					logger -t fakemesh "fix_agent_channel($pid): Setting up channel ($chan) for ${radio}"
-					rm -f /tmp/fakemesh_lck1/$pid; rmdir /tmp/fakemesh_lck1
 					uci set wireless.${radio}.channel="$chan"
 					uci commit wireless
 					/etc/init.d/network reload &
-					return 0
 				fi
 				logger -t fakemesh "fix_agent_channel($pid): Channel ($chan) for ${radio} ready!"
-				rm -f /tmp/fakemesh_lck1/$pid; rmdir /tmp/fakemesh_lck1
-				return 0
+				break
 			fi
 		fi
 		sleep 20
@@ -111,11 +108,16 @@ fix_agent_channel()
 
 	rm -f /tmp/fakemesh_lck1/$pid; rmdir /tmp/fakemesh_lck1
 
-	keep_agent_alive &
+	exec /usr/sbin/fakemesh keep_agent_alive &
 }
 
 [ "x$1" = "xfix-agent-channel" ] && {
 	fix_agent_channel
+	exit 0
+}
+
+[ "x$1" = "xkeep_agent_alive" ] && {
+	keep_agent_alive
 	exit 0
 }
 
