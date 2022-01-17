@@ -68,7 +68,7 @@ keep_agent_alive()
 			fi
 		fi
 		sleep 30
-		test -f /tmp/fakemesh_lck2/$pid || break
+		test -f /tmp/fakemesh_lck2/$pid || return 0
 	done
 }
 
@@ -105,7 +105,7 @@ fix_agent_channel()
 			fi
 		fi
 		sleep 20
-		test -f /tmp/fakemesh_lck1/$pid || break
+		test -f /tmp/fakemesh_lck1/$pid || return 0
 	done
 
 	keep_agent_alive &
