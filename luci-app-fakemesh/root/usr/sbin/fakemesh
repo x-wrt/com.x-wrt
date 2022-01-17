@@ -268,7 +268,8 @@ else
 		uci set network.meshx0=interface
 		uci set network.meshx0.device="$(uci get network.lan.device)"
 		uci set network.meshx0.proto='dhcp'
-		uci set network.meshx0.defaultroute='0'
+		uci set network.meshx0.defaultroute='1'
+		uci set network.meshx0.metric='1000'
 		uci set network.meshx0.hostname="MESH-AGENT_$(echo -n $MACADDR | sed 's/://g' | tr a-f A-F)"
 
 		test $(uci changes | wc -l) -le 5 && {
