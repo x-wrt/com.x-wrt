@@ -58,7 +58,6 @@ return view.extend({
 		o.placeholder = '10.10.10.1'
 		o.rmempty = true;
 		o.datatype = 'ip4addr';
-		o.ucioption = 'ipaddr';
 
 		return m.render();
 	}

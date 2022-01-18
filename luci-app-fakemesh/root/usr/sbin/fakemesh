@@ -121,6 +121,18 @@ agent_fix_channel()
 	exit 0
 }
 
+[ "x$1" = "xgen_config" ] && {
+	# http://controller.fakemesh/fakemesh.435ca8a686ae9f07eb4eb67d2216b154
+	[ "$role" = "controller" ] && {
+		hash=$(echo -n $id$key | md5sum | head -c32)
+		ln -s /etc/config/wireless /www/fakemesh.$hash
+		for f in $(ls /www/fakemesh.*); do
+			[ "$f" != "/www/fakemesh.$hash" ] && rm -f "$f"
+		done
+	}
+	exit 0
+}
+
 test -n "$id" || {
 	exit 0
 }
@@ -189,6 +201,15 @@ if [ "$role" = "controller" ]; then
 iptables -t nat -C prerouting_lan_rule -d $access_ip -p tcp --dport 80 -j REDIRECT --to-ports 80 2>/dev/null || \
 iptables -t nat -A prerouting_lan_rule -d $access_ip -p tcp --dport 80 -j REDIRECT --to-ports 80
 EOT
+
+		grep -q "^$access_ip controller.fakemesh" /etc/hosts || {
+			if grep -q ".* controller.fakemesh" /etc/hosts; then
+				sed -i "s/.* controller.fakemesh/$access_ip controller.fakemesh/" /etc/hosts
+			else
+				echo "$access_ip controller.fakemesh" >>/etc/hosts
+			fi
+			/etc/init.d/dnsmasq reload
+		}
 
 		test $(uci changes | wc -l) -le 1 && {
 			uci revert wireless
@@ -286,6 +307,8 @@ else
 		uci commit network
 
 		uci delete firewall.fakemesh >/dev/null 2>&1
+
+		sed -i "/.* controller.fakemesh/d" /etc/hosts
 
 		(sleep 15
 		 /etc/init.d/network reload
