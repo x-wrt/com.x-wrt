@@ -16,6 +16,7 @@ test $enabled -eq 0 && {
 	uci delete dhcp.meshx0 >/dev/null 2>&1
 	uci delete network.meshx0 >/dev/null 2>&1
 	uci delete firewall.fakemesh >/dev/null 2>&1
+	sed -i "/.* controller.fakemesh/d" /etc/hosts
 
 	uci commit wireless
 	uci commit dhcp
@@ -200,6 +201,8 @@ if [ "$role" = "controller" ]; then
 #!/bin/sh
 iptables -t nat -C prerouting_lan_rule -d $access_ip -p tcp --dport 80 -j REDIRECT --to-ports 80 2>/dev/null || \
 iptables -t nat -A prerouting_lan_rule -d $access_ip -p tcp --dport 80 -j REDIRECT --to-ports 80
+iptables -t nat -C prerouting_lan_rule -d $access_ip -p tcp --dport 443 -j REDIRECT --to-ports 443 2>/dev/null || \
+iptables -t nat -A prerouting_lan_rule -d $access_ip -p tcp --dport 443 -j REDIRECT --to-ports 443
 EOT
 
 		grep -q "^$access_ip controller.fakemesh" /etc/hosts || {
@@ -307,7 +310,6 @@ else
 		uci commit network
 
 		uci delete firewall.fakemesh >/dev/null 2>&1
-
 		sed -i "/.* controller.fakemesh/d" /etc/hosts
 
 		(sleep 15
