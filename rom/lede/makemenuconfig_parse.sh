@@ -400,6 +400,7 @@ for t in $targets; do
 			extra_utils=1
 		;;
 		#>8M flash <14M
+		TARGET_DEVICE_ramips_mt7621_DEVICE_zbtlink_zbt-wg108|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_thunder_timecloud|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_dlink_dir-882-a1|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_dlink_dir-882-r1|\
@@ -815,6 +816,7 @@ for t in $targets; do
 			has_usb=1
 		;;
 		#with usb2
+		TARGET_DEVICE_ramips_mt7621_DEVICE_zbtlink_zbt-wg108|\
 		TARGET_DEVICE_ramips_mt76x8_DEVICE_mediatek_mt7628an-eval-board|\
 		TARGET_DEVICE_ath79_generic_DEVICE_tplink_tl-wr710n-v1|\
 		TARGET_DEVICE_ath79_generic_DEVICE_tplink_tl-wr710n-v2.1|\
