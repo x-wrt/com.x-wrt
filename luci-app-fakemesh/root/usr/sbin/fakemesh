@@ -18,12 +18,22 @@ test $enabled -eq 0 && {
 	uci delete firewall.fakemesh >/dev/null 2>&1
 	sed -i "/.* controller.fakemesh/d" /etc/hosts
 
+	index=0
+	while uci get firewall.@zone[$index].name >/dev/null 2>&1; do
+		[ "$(uci get firewall.@zone[$index].name)" = "lan" ] && {
+			uci set firewall.@zone[$index].masq=0
+			uci commit firewall
+			break
+		}
+		index=$((index+1))
+	done
+
 	uci commit wireless
 	uci commit dhcp
 	uci commit network
 	/etc/init.d/network reload
 	/etc/init.d/dnsmasq reload
-	/etc/init.d/firewall restart
+	/etc/init.d/firewall restart >/dev/null 2>&1
 	exit 0
 }
 
@@ -215,7 +225,17 @@ EOT
 			/etc/init.d/dnsmasq reload
 		}
 
-		/etc/init.d/firewall restart
+		index=0
+		while uci get firewall.@zone[$index].name >/dev/null 2>&1; do
+			[ "$(uci get firewall.@zone[$index].name)" = "lan" ] && {
+				uci set firewall.@zone[$index].masq=0
+				uci commit firewall
+				break
+			}
+			index=$((index+1))
+		done
+
+		/etc/init.d/firewall restart >/dev/null 2>&1
 
 		test $(uci changes | wc -l) -le 1 && {
 			uci revert wireless
@@ -298,6 +318,19 @@ else
 		uci set network.meshx0.metric='1000'
 		uci set network.meshx0.hostname="MESH-AGENT_$(echo -n $MACADDR | sed 's/://g' | tr a-f A-F)"
 
+		uci delete firewall.fakemesh >/dev/null 2>&1
+
+		index=0
+		while uci get firewall.@zone[$index].name >/dev/null 2>&1; do
+			[ "$(uci get firewall.@zone[$index].name)" = "lan" ] && {
+				uci set firewall.@zone[$index].masq=1
+				uci commit firewall
+				break
+			}
+			index=$((index+1))
+		done
+		/etc/init.d/firewall restart >/dev/null 2>&1
+
 		test $(uci changes | wc -l) -le 5 && {
 			uci revert wireless
 			uci revert dhcp
@@ -310,14 +343,11 @@ else
 		uci commit wireless
 		uci commit dhcp
 		uci commit network
-
-		uci delete firewall.fakemesh >/dev/null 2>&1
 		sed -i "/.* controller.fakemesh/d" /etc/hosts
 
 		(sleep 15
 		 /etc/init.d/network reload
 		 /etc/init.d/dnsmasq reload
-		 /etc/init.d/firewall restart
 		 agent_fix_channel)&
 	fi
 fi
