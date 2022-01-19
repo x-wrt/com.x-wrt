@@ -18,16 +18,6 @@ test $enabled -eq 0 && {
 	uci delete firewall.fakemesh >/dev/null 2>&1
 	sed -i "/.* controller.fakemesh/d" /etc/hosts
 
-	index=0
-	while uci get firewall.@zone[$index].name >/dev/null 2>&1; do
-		[ "$(uci get firewall.@zone[$index].name)" = "lan" ] && {
-			uci set firewall.@zone[$index].masq=0
-			uci commit firewall
-			break
-		}
-		index=$((index+1))
-	done
-
 	uci commit wireless
 	uci commit dhcp
 	uci commit network
@@ -214,7 +204,7 @@ iptables -t nat -A prerouting_lan_rule -d $access_ip -p tcp --dport 80 -j REDIRE
 iptables -t nat -C prerouting_lan_rule -d $access_ip -p tcp --dport 443 -j REDIRECT --to-ports 443 2>/dev/null || \
 iptables -t nat -A prerouting_lan_rule -d $access_ip -p tcp --dport 443 -j REDIRECT --to-ports 443
 EOT
-		ln -s /tmp/fakemesh.firewall.include /usr/share/fakemesh/firewall.include
+		ln -s /tmp/fakemesh.firewall.include /usr/share/fakemesh/firewall.include 2>/dev/null
 
 		grep -q "^$access_ip controller.fakemesh" /etc/hosts || {
 			if grep -q ".* controller.fakemesh" /etc/hosts; then
@@ -224,16 +214,6 @@ EOT
 			fi
 			/etc/init.d/dnsmasq reload
 		}
-
-		index=0
-		while uci get firewall.@zone[$index].name >/dev/null 2>&1; do
-			[ "$(uci get firewall.@zone[$index].name)" = "lan" ] && {
-				uci set firewall.@zone[$index].masq=0
-				uci commit firewall
-				break
-			}
-			index=$((index+1))
-		done
 
 		/etc/init.d/firewall restart >/dev/null 2>&1
 
@@ -318,17 +298,29 @@ else
 		uci set network.meshx0.metric='1000'
 		uci set network.meshx0.hostname="MESH-AGENT_$(echo -n $MACADDR | sed 's/://g' | tr a-f A-F)"
 
-		uci delete firewall.fakemesh >/dev/null 2>&1
+		# reload firewall
+		uci get firewall.fakemesh >/dev/null 2>&1 || {
+		uci -q batch <<-EOT
+		delete firewall.fakemesh
+		set firewall.fakemesh=include
+		set firewall.fakemesh.type=script
+		set firewall.fakemesh.path=/usr/share/fakemesh/firewall.include
+		set firewall.fakemesh.family=any
+		set firewall.fakemesh.reload=1
+		commit firewall
+		EOT
+		}
 
-		index=0
-		while uci get firewall.@zone[$index].name >/dev/null 2>&1; do
-			[ "$(uci get firewall.@zone[$index].name)" = "lan" ] && {
-				uci set firewall.@zone[$index].masq=1
-				uci commit firewall
-				break
-			}
-			index=$((index+1))
-		done
+		mkdir -p /usr/share/fakemesh
+		cat >/tmp/fakemesh.firewall.include <<-EOT
+#!/bin/sh
+iptables -t filter -C output_lan_rule -j MARK --set-xmark 0x00010000/0x00010000 || \
+iptables -t filter -A output_lan_rule -j MARK --set-xmark 0x00010000/0x00010000
+iptables -t nat -C zone_lan_postrouting -m mark --mark 0x00010000/0x00010000 -j MASQUERADE || \
+iptables -t nat -A zone_lan_postrouting -m mark --mark 0x00010000/0x00010000 -j MASQUERADE
+EOT
+		ln -s /tmp/fakemesh.firewall.include /usr/share/fakemesh/firewall.include 2>/dev/null
+
 		/etc/init.d/firewall restart >/dev/null 2>&1
 
 		test $(uci changes | wc -l) -le 5 && {
