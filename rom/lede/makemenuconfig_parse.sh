@@ -275,6 +275,7 @@ for t in $targets; do
 	excludes="$excludes_basic"
 	case $t in
 		#>8M flash
+		TARGET_DEVICE_ramips_mt7621_DEVICE_xwrt_fm10-ax-nand|\
 		TARGET_DEVICE_mediatek_mt7622_DEVICE_totolink_a8000ru|\
 		TARGET_DEVICE_bcm4908_generic_DEVICE_asus_gt-ac5300|\
 		TARGET_DEVICE_bcm4908_generic_DEVICE_netgear_r8000p|\
@@ -697,6 +698,7 @@ for t in $targets; do
 	#check usb
 	case $t in
 		#with usb3
+		TARGET_DEVICE_ramips_mt7621_DEVICE_xwrt_fm10-ax-nand|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_tplink_archer-c6u-v1|\
 		TARGET_DEVICE_mediatek_mt7622_DEVICE_totolink_a8000ru|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_dlink_dir-882-a1|\
