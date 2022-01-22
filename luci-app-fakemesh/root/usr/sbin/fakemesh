@@ -233,6 +233,8 @@ EOT
 		 /etc/init.d/network reload
 		 /etc/init.d/dnsmasq reload)&
 	fi
+
+	exec /usr/sbin/fakemesh gen_config
 else
 
 	# wireless.radio0.band='2g'
