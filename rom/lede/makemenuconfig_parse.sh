@@ -121,9 +121,9 @@ wgmod="wireguard-tools \
 	   qrencode \
 	   libqrencode"
 
-ipv6extra="kmod-jool \
+ipv6extra="kmod-jool-netfilter \
 	   kmod-nat46 \
-	   jool-tools"
+	   jool-tools-netfilter"
 
 wifiextra="kmod-batman-adv batctl-full luci-app-dawn dawn"
 
