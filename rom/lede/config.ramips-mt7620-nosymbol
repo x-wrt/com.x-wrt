@@ -40,7 +40,6 @@ CONFIG_TARGET_ramips=y
 # CONFIG_TARGET_ipq806x is not set
 # CONFIG_TARGET_realtek is not set
 # CONFIG_TARGET_rockchip is not set
-# CONFIG_TARGET_arc770 is not set
 # CONFIG_TARGET_archs38 is not set
 # CONFIG_TARGET_omap is not set
 # CONFIG_TARGET_uml is not set
@@ -152,6 +151,7 @@ CONFIG_TARGET_MULTI_PROFILE=y
 # CONFIG_TARGET_ramips_mt7620_DEVICE_trendnet_tew-810dr is not set
 # CONFIG_TARGET_ramips_mt7620_DEVICE_vonets_var11n-300 is not set
 # CONFIG_TARGET_ramips_mt7620_DEVICE_wavlink_wl-wn530hg4 is not set
+# CONFIG_TARGET_ramips_mt7620_DEVICE_wavlink_wl-wn535k1 is not set
 # CONFIG_TARGET_ramips_mt7620_DEVICE_wavlink_wl-wn579x3 is not set
 # CONFIG_TARGET_ramips_mt7620_DEVICE_wevo_air-duo is not set
 # CONFIG_TARGET_ramips_mt7620_DEVICE_wrtnode_wrtnode is not set
@@ -286,6 +286,7 @@ CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt7620_DEVICE_planex_mzk-750dhp="kmod-gpio-
 # CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_sanlinking_d240 is not set
 # CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_sercomm_na930 is not set
 # CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_sitecom_wlr-4100-v1-002 is not set
+# CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_wavlink_wl-wn535k1 is not set
 CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_tplink_archer-c2-v1=y
 CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt7620_DEVICE_tplink_archer-c2-v1="blockd block-mount kmod-exfat-linux kmod-fs-autofs4 kmod-fs-ext4 kmod-fs-msdos kmod-fs-ntfs3 kmod-fs-vfat kmod-fuse kmod-gpio-button-hotplug kmod-lib-crc16 kmod-libphy kmod-mii kmod-mt76-core kmod-mt76x02-common kmod-mt76x0-common kmod-mt76x0e kmod-nls-cp437 kmod-rt2800-lib kmod-rt2800-mmio kmod-rt2800-soc kmod-rt2x00-lib kmod-rt2x00-mmio kmod-scsi-core kmod-swconfig kmod-switch-rtl8366-smi kmod-switch-rtl8367b kmod-usb2 kmod-usb-core kmod-usb-ehci kmod-usb-ledtrig-usbport kmod-usb-net kmod-usb-net-cdc-ether kmod-usb-net-rndis kmod-usb-ohci kmod-usb-storage kmod-usb-storage-uas luci-app-ledtrig-usbport wpad-basic-wolfssl"
 CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_tplink_archer-c20-v1=y
@@ -545,6 +546,7 @@ CONFIG_KERNEL_IPV6_MROUTE_MULTIPLE_TABLES=y
 CONFIG_KERNEL_IPV6_PIMSM_V2=y
 CONFIG_KERNEL_IPV6_SEG6_LWTUNNEL=y
 # CONFIG_KERNEL_LWTUNNEL_BPF is not set
+# CONFIG_KERNEL_NET_L3_MASTER_DEV is not set
 # CONFIG_KERNEL_IP_PNP is not set
 
 #
@@ -683,7 +685,7 @@ CONFIG_TARGET_INIT_CMD="/sbin/init"
 CONFIG_TARGET_INIT_SUPPRESS_STDERR=y
 CONFIG_VERSIONOPT=y
 CONFIG_VERSION_DIST="X-WRT"
-CONFIG_VERSION_NUMBER="21.10_b202201221720"
+CONFIG_VERSION_NUMBER="21.10_b202202041514"
 CONFIG_VERSION_CODE="Impish"
 CONFIG_VERSION_REPO="http://downloads.openwrt.org/snapshots"
 CONFIG_VERSION_HOME_URL="https://x-wrt.com/"
@@ -2752,7 +2754,6 @@ CONFIG_PACKAGE_logd=y
 CONFIG_PACKAGE_mtd=y
 CONFIG_PACKAGE_netifd=y
 # CONFIG_PACKAGE_nft-qos is not set
-# CONFIG_PACKAGE_om-watchdog is not set
 CONFIG_PACKAGE_openwrt-keyring=y
 CONFIG_PACKAGE_opkg=y
 CONFIG_PACKAGE_procd=y
@@ -2996,6 +2997,7 @@ CONFIG_PACKAGE_edgeport-firmware=m
 # CONFIG_PACKAGE_iwl3945-firmware is not set
 # CONFIG_PACKAGE_iwl4965-firmware is not set
 # CONFIG_PACKAGE_iwlwifi-firmware-ax200 is not set
+# CONFIG_PACKAGE_iwlwifi-firmware-ax210 is not set
 # CONFIG_PACKAGE_iwlwifi-firmware-iwl100 is not set
 # CONFIG_PACKAGE_iwlwifi-firmware-iwl1000 is not set
 # CONFIG_PACKAGE_iwlwifi-firmware-iwl105 is not set
@@ -3487,6 +3489,7 @@ CONFIG_PACKAGE_kmod-nfnetlink=y
 CONFIG_PACKAGE_kmod-nfnetlink-queue=y
 # CONFIG_PACKAGE_kmod-nft-arp is not set
 CONFIG_PACKAGE_kmod-nft-bridge=y
+CONFIG_PACKAGE_kmod-nft-compat=y
 CONFIG_PACKAGE_kmod-nft-core=y
 # CONFIG_PACKAGE_kmod-nft-fib is not set
 # CONFIG_PACKAGE_kmod-nft-nat is not set
@@ -4414,7 +4417,7 @@ CONFIG_SQLITE3_RTREE=y
 CONFIG_PACKAGE_libip4tc=y
 CONFIG_PACKAGE_libip6tc=y
 CONFIG_PACKAGE_libxtables=y
-# CONFIG_PACKAGE_libxtables-nft is not set
+CONFIG_PACKAGE_libxtables-nft=y
 # end of Firewall
 
 #
@@ -6227,9 +6230,10 @@ CONFIG_KSMBD_UTILS_SHAREADD=y
 CONFIG_PACKAGE_ip6tables=y
 CONFIG_PACKAGE_ip6tables-extra=y
 CONFIG_PACKAGE_ip6tables-mod-nat=y
+CONFIG_PACKAGE_ip6tables-nft=y
 CONFIG_PACKAGE_iptables=y
 # CONFIG_IPTABLES_CONNLABEL is not set
-# CONFIG_IPTABLES_NFTABLES is not set
+CONFIG_IPTABLES_NFTABLES=y
 # CONFIG_PACKAGE_iptables-mod-account is not set
 # CONFIG_PACKAGE_iptables-mod-chaos is not set
 # CONFIG_PACKAGE_iptables-mod-checksum is not set
@@ -6273,6 +6277,7 @@ CONFIG_PACKAGE_iptables-mod-tproxy=y
 # CONFIG_PACKAGE_iptables-mod-trace is not set
 # CONFIG_PACKAGE_iptables-mod-u32 is not set
 # CONFIG_PACKAGE_iptables-mod-ulog is not set
+CONFIG_PACKAGE_iptables-nft=y
 # CONFIG_PACKAGE_iptaccount is not set
 # CONFIG_PACKAGE_iptgeoip is not set
 
@@ -6344,6 +6349,7 @@ CONFIG_PACKAGE_ddns-scripts=y
 # CONFIG_PACKAGE_ddns-scripts-noip is not set
 # CONFIG_PACKAGE_ddns-scripts-ns1 is not set
 # CONFIG_PACKAGE_ddns-scripts-nsupdate is not set
+# CONFIG_PACKAGE_ddns-scripts-one is not set
 # CONFIG_PACKAGE_ddns-scripts-pdns is not set
 # CONFIG_PACKAGE_ddns-scripts-route53 is not set
 CONFIG_PACKAGE_ddns-scripts-services=y
@@ -6687,7 +6693,6 @@ CONFIG_PACKAGE_mwan3plus=y
 # CONFIG_PACKAGE_kamailio is not set
 # CONFIG_PACKAGE_miax is not set
 # CONFIG_PACKAGE_pcapsipdump is not set
-# CONFIG_PACKAGE_restund is not set
 # CONFIG_PACKAGE_rtpengine is not set
 # CONFIG_PACKAGE_rtpengine-no-transcode is not set
 # CONFIG_PACKAGE_rtpengine-recording is not set
@@ -7373,6 +7378,7 @@ CONFIG_PACKAGE_uboot-envtools=m
 # CONFIG_PACKAGE_jupp is not set
 # CONFIG_PACKAGE_mg is not set
 # CONFIG_PACKAGE_nano is not set
+# CONFIG_PACKAGE_nano-plus is not set
 # CONFIG_PACKAGE_vim is not set
 # CONFIG_PACKAGE_vim-full is not set
 # CONFIG_PACKAGE_vim-fuller is not set
@@ -7736,6 +7742,7 @@ CONFIG_PACKAGE_libjson-script=y
 # CONFIG_PACKAGE_losetup is not set
 # CONFIG_PACKAGE_lrzsz is not set
 # CONFIG_PACKAGE_lscpu is not set
+# CONFIG_PACKAGE_lslocks is not set
 CONFIG_PACKAGE_lsof=y
 # CONFIG_PACKAGE_lxc is not set
 # CONFIG_PACKAGE_maccalc is not set
