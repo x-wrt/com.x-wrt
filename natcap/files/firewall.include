@@ -32,7 +32,7 @@ else
 	#iptables
 	iptables -t mangle -D PREROUTING -m conntrack --ctstate NEW -p udp --dport 53 -j MARK --set-xmark 0x00800099/0x008000ff 2>/dev/null
 
-	iptables -I input_wan_rule -m mark --mark 0x00800000/0x00800000 -j RETURN 2>/dev/null
+	iptables -D input_wan_rule -m mark --mark 0x00800000/0x00800000 -j RETURN 2>/dev/null
 fi
 
 iptables -C forwarding_wan_rule -m mark --mark 0x99/0xff -j ACCEPT 2>/dev/null || \
