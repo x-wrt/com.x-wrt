@@ -2,6 +2,7 @@
 # natcapd integration for firewall3
 
 if [ x`uci get natcapd.default.dnsproxy 2>/dev/null` = x1 ]; then
+	#iptables
 	iptables -t mangle -C PREROUTING -m conntrack --ctstate NEW -p udp --dport 53 -j MARK --set-xmark 0x00800099/0x008000ff 2>/dev/null || \
 	iptables -t mangle -A PREROUTING -m conntrack --ctstate NEW -p udp --dport 53 -j MARK --set-xmark 0x00800099/0x008000ff
 	iptables -t nat -C prerouting_lan_rule -p udp --dport 53 -j REDIRECT --to-ports 53 2>/dev/null || \
@@ -11,19 +12,40 @@ if [ x`uci get natcapd.default.dnsproxy 2>/dev/null` = x1 ]; then
 
 	iptables -C input_wan_rule -m mark --mark 0x00800000/0x00800000 -j RETURN 2>/dev/null || \
 	iptables -I input_wan_rule -m mark --mark 0x00800000/0x00800000 -j RETURN
+
+	#nft
+	nft -a list chain inet fw4 mangle_prerouting | grep -o "natcap_dnsproxy.*" | while read _ _ _ handle; do nft delete rule inet fw4 mangle_prerouting handle $handle; done
+	nft insert rule inet fw4 mangle_prerouting ct state new udp dport 53 counter meta mark set mark and 0xff7fff00 xor 0x800099 comment "natcap_dnsproxy"
+
+	nft -a list chain inet fw4 dstnat | grep -o "natcap_dnsproxy.*" | while read _ _ _ handle; do nft delete rule inet fw4 dstnat handle $handle; done
+	nft insert rule inet fw4 dstnat iifname { $(echo $(fw4 -q zone lan | sort | uniq | sed 's/\(.*\)/"\1",/g') | sed 's/,$//') } udp dport 53 counter redirect to :53 comment "natcap_dnsproxy"
+	nft insert rule inet fw4 dstnat iifname { $(echo $(fw4 -q zone lan | sort | uniq | sed 's/\(.*\)/"\1",/g') | sed 's/,$//') } tcp dport 53 counter redirect to :53 comment "natcap_dnsproxy"
+
+	nft -a list chain inet fw4 input_wan | grep -o "natcap_dnsproxy.*" | while read _ _ _ handle; do nft delete rule inet fw4 input_wan handle $handle; done
+	nft insert rule inet fw4 input_wan mark and 0x800000 == 0x800000 counter return comment "natcap_dnsproxy"
 else
-	iptables -t nat -D prerouting_lan_rule -p udp --dport 53 -j REDIRECT --to-ports 53 2>/dev/null
-	iptables -t nat -D prerouting_lan_rule -p tcp --dport 53 -j REDIRECT --to-ports 53 2>/dev/null
+	#nft
+	nft -a list chain inet fw4 mangle_prerouting | grep -o "natcap_dnsproxy.*" | while read _ _ _ handle; do nft delete rule inet fw4 mangle_prerouting handle $handle; done
+	nft -a list chain inet fw4 dstnat | grep -o "natcap_dnsproxy.*" | while read _ _ _ handle; do nft delete rule inet fw4 dstnat handle $handle; done
+	nft -a list chain inet fw4 input_wan | grep -o "natcap_dnsproxy.*" | while read _ _ _ handle; do nft delete rule inet fw4 input_wan handle $handle; done
+
+	#iptables
 	iptables -t mangle -D PREROUTING -m conntrack --ctstate NEW -p udp --dport 53 -j MARK --set-xmark 0x00800099/0x008000ff 2>/dev/null
 
 	iptables -I input_wan_rule -m mark --mark 0x00800000/0x00800000 -j RETURN 2>/dev/null
 fi
 
 iptables -C forwarding_wan_rule -m mark --mark 0x99/0xff -j ACCEPT 2>/dev/null || \
-iptables -A forwarding_wan_rule -m mark --mark 0x99/0xff -j ACCEPT
+iptables -A forwarding_wan_rule -m mark --mark 0x99/0xff -j ACCEPT 2>/dev/null
+
+nft -a list chain inet fw4 reject_from_wan 2>/dev/null | grep -q "\"natcap_accept_mark_0x99\"" || \
+nft insert rule inet fw4 reject_from_wan mark and 0xff == 0x99 counter accept comment "natcap_accept_mark_0x99" 2>/dev/null
 
 iptables -C input_wan_rule -m mark --mark 0x99/0xff -j ACCEPT 2>/dev/null || \
-iptables -A input_wan_rule -m mark --mark 0x99/0xff -j ACCEPT
+iptables -A input_wan_rule -m mark --mark 0x99/0xff -j ACCEPT 2>/dev/null
+
+nft -a list chain inet fw4 reject_to_wan 2>/dev/null | grep -q "\"natcap_accept_mark_0x99\"" || \
+nft insert rule inet fw4 reject_to_wan mark and 0xff == 0x99 counter accept comment "natcap_accept_mark_0x99" 2>/dev/null
 
 test -f /usr/share/natcapd/natcapd.cone_nat_unused.sh && sh /usr/share/natcapd/natcapd.cone_nat_unused.sh init
 
