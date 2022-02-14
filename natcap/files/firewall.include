@@ -1,5 +1,11 @@
 #!/bin/sh
-# natcapd integration for firewall3
+# natcapd integration for firewall3/firewall4
+
+iptables -t nat -C zone_wan_postrouting -p udp -m comment --comment "!fw3" -j MASQUERADE --random-fully 2>/dev/null || \
+iptables -t nat -I zone_wan_postrouting -p udp -m comment --comment "!fw3" -j MASQUERADE --random-fully
+
+nft -a list chain inet fw4 srcnat_wan | grep -o "natcap_cone_nat.*" | while read _ _ _ handle; do nft delete rule inet fw4 srcnat_wan handle $handle; done
+nft insert rule inet fw4 srcnat_wan ip protocol udp meta nfproto ipv4 masquerade fully-random comment "natcap_cone_nat"
 
 if [ x`uci get natcapd.default.dnsproxy 2>/dev/null` = x1 ]; then
 	#iptables
