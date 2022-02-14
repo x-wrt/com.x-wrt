@@ -96,7 +96,7 @@ case $cmd in
 	eport=$4
 	test -n "$eport" && \
 	ipset del cone_nat_unused_port $eport >/dev/null 2>&1
-	if iptables -t nat -L MINIUPNPD | grep -q "^DNAT.*udp dpt:.*to:$iaddr:$iport$"; then
+	if iptables -t nat -L MINIUPNPD | grep -q "^DNAT.*udp dpt:.*to:$iaddr:$iport$" || nft list table ip miniupnpd | grep -q "udp dport .* dnat to $iaddr:$iport$"; then
 		:
 	else
 		test -n "$iaddr" && test -n "$iport" && \
