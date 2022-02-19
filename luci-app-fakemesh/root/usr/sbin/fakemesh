@@ -17,6 +17,7 @@ test $enabled -eq 0 && {
 	uci delete network.meshx0 >/dev/null 2>&1
 	uci delete firewall.fakemesh >/dev/null 2>&1
 	sed -i "/.* controller.fakemesh/d" /etc/hosts
+	sed -i ",sh /usr/share/fakemesh/firewall.include.*,d" /etc/firewall.include
 
 	uci commit wireless
 	uci commit dhcp
@@ -203,8 +204,14 @@ iptables -t nat -C prerouting_lan_rule -d $access_ip/32 -p tcp --dport 80 -j RED
 iptables -t nat -A prerouting_lan_rule -d $access_ip/32 -p tcp --dport 80 -j REDIRECT --to-ports 80
 iptables -t nat -C prerouting_lan_rule -d $access_ip/32 -p tcp --dport 443 -j REDIRECT --to-ports 443 2>/dev/null || \
 iptables -t nat -A prerouting_lan_rule -d $access_ip/32 -p tcp --dport 443 -j REDIRECT --to-ports 443
+
+nft -a list chain inet fw4 dstnat | grep -o "fakemesh.*" | while read _ _ _ handle; do nft delete rule inet fw4 dstnat handle $handle; done
+nft insert rule inet fw4 dstnat iifname { \$(echo \$(fw4 -q zone lan | sort | uniq | sed 's/\(.*\)/"\1",/g') | sed 's/,$//') } ip addr $access_ip/32 tcp dport 80 counter redirect to :80 comment "fakemesh"
+nft insert rule inet fw4 dstnat iifname { \$(echo \$(fw4 -q zone lan | sort | uniq | sed 's/\(.*\)/"\1",/g') | sed 's/,$//') } ip addr $access_ip/32 tcp dport 443 counter redirect to :443 comment "fakemesh"
+
 EOT
 		ln -s /tmp/fakemesh.firewall.include /usr/share/fakemesh/firewall.include 2>/dev/null
+		grep -q "^sh /usr/share/fakemesh/firewall.include" /etc/firewall.include || echo "sh /usr/share/fakemesh/firewall.include" >>/etc/firewall.include
 
 		grep -q "^$access_ip controller.fakemesh" /etc/hosts || {
 			if grep -q ".* controller.fakemesh" /etc/hosts; then
@@ -215,7 +222,6 @@ EOT
 			/etc/init.d/dnsmasq reload
 		}
 
-		iptables -t nat -C prerouting_lan_rule -d $access_ip/32 -p tcp --dport 443 -j REDIRECT --to-ports 443 2>/dev/null || \
 		/etc/init.d/firewall restart >/dev/null 2>&1
 
 		test $(uci changes | wc -l) -le 1 && {
@@ -321,10 +327,16 @@ iptables -t filter -C output_lan_rule -j MARK --set-xmark 0x00010000/0x00010000 
 iptables -t filter -A output_lan_rule -j MARK --set-xmark 0x00010000/0x00010000
 iptables -t nat -C zone_lan_postrouting -m mark --mark 0x00010000/0x00010000 -j MASQUERADE 2>/dev/null || \
 iptables -t nat -A zone_lan_postrouting -m mark --mark 0x00010000/0x00010000 -j MASQUERADE
+
+nft -a list chain inet fw4 output_lan | grep -o "fakemesh_mark_0x10000.*" | while read _ _ _ handle; do nft delete rule inet fw4 output_lan handle $handle; done
+nft insert rule inet fw4 output_lan counter meta mark set mark or 0x10000 comment "fakemesh_mark_0x10000"
+
+nft -a list chain inet fw4 srcnat | grep -o "fakemesh_mark_0x10000.*" | while read _ _ _ handle; do nft delete rule inet fw4 srcnat handle $handle; done
+nft insert rule inet fw4 srcnat oifname { \$(echo \$(fw4 -q zone lan | sort | uniq | sed 's/\(.*\)/"\1",/g') | sed 's/,$//') } mark and 0x10000 == 0x10000 counter masquerade comment "fakemesh_mark_0x10000"
 EOT
 		ln -s /tmp/fakemesh.firewall.include /usr/share/fakemesh/firewall.include 2>/dev/null
+		grep -q "^sh /usr/share/fakemesh/firewall.include" /etc/firewall.include || echo "sh /usr/share/fakemesh/firewall.include" >>/etc/firewall.include
 
-		iptables -t filter -C output_lan_rule -j MARK --set-xmark 0x00010000/0x00010000 2>/dev/null || \
 		/etc/init.d/firewall restart >/dev/null 2>&1
 
 		test $(uci changes | wc -l) -le 5 && {
