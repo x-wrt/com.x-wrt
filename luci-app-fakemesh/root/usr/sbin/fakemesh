@@ -17,7 +17,7 @@ test $enabled -eq 0 && {
 	uci delete network.meshx0 >/dev/null 2>&1
 	uci delete firewall.fakemesh >/dev/null 2>&1
 	sed -i "/.* controller.fakemesh/d" /etc/hosts
-	sed -i ",sh /usr/share/fakemesh/firewall.include.*,d" /etc/firewall.include
+	sed -i "/sh \/usr\/share\/fakemesh\/firewall.include.*/d" /etc/firewall.include
 
 	uci commit wireless
 	uci commit dhcp
