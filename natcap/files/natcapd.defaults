@@ -9,6 +9,9 @@ uci -q batch <<-EOT
 	commit firewall
 EOT
 
+grep -q "^test -f /usr/share/natcapd/firewall.include" /etc/firewall.include || \
+echo "test -f /usr/share/natcapd/firewall.include && sh /usr/share/natcapd/firewall.include" >>/etc/firewall.include
+
 uci -q batch <<-EOF >/dev/null
 	delete ucitrack.@natcapd[-1]
 	add ucitrack natcapd
