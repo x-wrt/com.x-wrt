@@ -1,11 +1,13 @@
-local jd = 'jd-dailybonus'
 local uci = luci.model.uci.cursor()
 local sys = require 'luci.sys'
 
-m = Map(jd)
+m = Map('jd-dailybonus')
+m.title = translate('京东签到服务')
+m.description = translate('<a href=\"https://github.com/jerrykuku/luci-app-jd-dailybonus\" target=\"_blank\"> GitHub 项目地址 </a>')
+
 -- [[ 基本设置 ]]--
 
-s = m:section(TypedSection, 'global', translate('基本设置'))
+s = m:section(TypedSection, 'global')
 s.anonymous = true
 
 o = s:option(DynamicList, "Cookies", translate("账号 Cookie 列表"))
@@ -15,6 +17,11 @@ o.description = translate('双击输入框可调出二维码，扫码后自动�
 o = s:option(DummyValue, '', '')
 o.rawhtml = true
 o.template = 'jd-dailybonus/cookie_tools'
+
+o = s:option(DynamicList, "jrBody", translate('金融 POST Body'))
+o.rmempty = false
+o.default = ''
+o.description = translate('京东金融签到 POST Body（以reqData=开头），与上方的Cookies列表一一对应，没有可不填（可能导致京东金融签到失败）')
 
 o = s:option(Value, 'stop', translate('延迟签到'))
 o.rmempty = false
@@ -29,6 +36,7 @@ o.datatype = integer
 o.description = translate('接口超时退出,单位毫秒 用于可能发生的网络不稳定, 0则关闭.')
 
 -- server chan
+
 o = s:option(ListValue, 'serverurl', translate('Server酱的推送接口地址'))
 o:value('scu', translate('SCU'))
 o:value('sct', translate('SCT'))
@@ -45,6 +53,12 @@ o.description = translate('微信推送，基于Server酱服务，请自行登�
 o = s:option(Value, 'dd_token', translate('Dingding Bot Token'))
 o.rmempty = true
 o.description = translate('创建一个群机器人并获取API Token，设置安全关键字为:京东')
+
+-- pushplus
+
+o = s:option(Value, 'pp_token', translate('pushplus Token'))
+o.rmempty = true
+o.description = translate('微信推送，基于pushplus服务，请自行登录 https://www.pushplus.plus/ 绑定并获取 Token。')
 
 -- telegram
 

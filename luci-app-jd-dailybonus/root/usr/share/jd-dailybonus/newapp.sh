@@ -75,7 +75,7 @@ notify() {
         if [ "$serverurlflag" = "sct" ]; then
             serverurl=https://sctapi.ftqq.com/
         fi
-        wget-ssl -q --output-document=/dev/null --post-data="text=$title~&desp=$desc" $serverurl$sckey.send
+        uclient-fetch -q --post-data="text=$title~&desp=$desc" $serverurl$sckey.send
     fi
     
     #Dingding
@@ -83,7 +83,14 @@ notify() {
     if [ ! -z $dtoken ]; then
     	DTJ_FILE=/tmp/jd-djson.json
 	echo "{\"msgtype\": \"markdown\",\"markdown\": {\"title\":\"${title}\",\"text\":\"${title} <br/> ${desc}\"}}" > ${DTJ_FILE}
-    	wget-ssl -q --output-document=/dev/null --header="Content-Type: application/json" --post-file=/tmp/jd-djson.json "https://oapi.dingtalk.com/robot/send?access_token=${dtoken}"
+    	uclient-fetch -q --post-file=/tmp/jd-djson.json "https://oapi.dingtalk.com/robot/send?access_token=${dtoken}"
+    fi
+
+    #pushplus
+    ptoken=$(uci_get_by_type global pp_token)
+    POST_URL="http://www.pushplus.plus/send"
+    if [ ! -z $ptoken ]; then
+        curl -s -d "{\"token\":\"$ptoken\",\"title\":\"$title\",\"content\":\"$desc\"}" -H 'Content-Type: application/json' $POST_URL
     fi
 
     #telegram
@@ -98,7 +105,7 @@ notify() {
 ===============================
 本消息来自京东签到插件 jd-dailybonus
 \`\`\`"
-        wget-ssl -q --output-document=/dev/null --post-data="chat_id=$TG_USER_ID&text=$text&parse_mode=markdownv2" $API_URL
+        uclient-fetch -q --post-data="chat_id=$TG_USER_ID&text=$text&parse_mode=markdownv2" $API_URL
     fi
 }
 
@@ -116,7 +123,7 @@ save() {
 # Update Script From Server
 download() {
     REMOTE_SCRIPT=$(uci_get_by_type global remote_url)
-    wget-ssl --user-agent="Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/77.0.3865.90 Safari/537.36" --no-check-certificate -t 3 -T 10 -q $REMOTE_SCRIPT -O $TEMP_SCRIPT
+    uclient-fetch --user-agent="Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/77.0.3865.90 Safari/537.36" --no-check-certificate -q $REMOTE_SCRIPT -O $TEMP_SCRIPT
     return $?
 }
 

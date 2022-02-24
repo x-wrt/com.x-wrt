@@ -6,10 +6,7 @@ function index()
         return
     end
 
-    local page
-    page = entry({'admin', 'services', 'jd-dailybonus'}, alias('admin', 'services', 'jd-dailybonus', 'client'), _('京东签到服务'), 10) -- 首页
-    page.dependent = true
-    page.acl_depends = { "luci-jd-dailybonus" }
+    entry({'admin', 'services', 'jd-dailybonus'}, alias('admin', 'services', 'jd-dailybonus', 'client'), _('京东签到服务'), 10).dependent = true -- 首页
     entry({'admin', 'services', 'jd-dailybonus', 'client'}, cbi('jd-dailybonus/client', {hidesavebtn = true, hideresetbtn = true}), _('客户端'), 10).leaf = true -- 基本设置
     entry({'admin', 'services', 'jd-dailybonus', 'log'}, form('jd-dailybonus/log'), _('日志'), 30).leaf = true -- 日志页面
     entry({'admin', 'services', 'jd-dailybonus', 'script'}, form('jd-dailybonus/script'), _('脚本查看'), 20).leaf = true -- 直接配置脚本
@@ -54,7 +51,7 @@ function update()
     luci.http.write_json(e)
 end
 
-local User_Agent='Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.111 Safari/537.36'
+local User_Agent='Mozilla/5.0 (iPad; CPU OS 12_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/12.0 Mobile/15E148 Safari/604.1'
 local Host='Host: plogin.m.jd.com'
 local Accept='Accept: application/json, text/plain, */*'
 local Accept_Language='Accept-Language: zh-cn'
@@ -73,7 +70,7 @@ function get_s_token()
     local referer = 
         'https://plogin.m.jd.com/login/login?appid=300&returnurl=https://wq.jd.com/passport/LoginRedirect?state=' ..
         timestamp .. '&returnurl=https://home.m.jd.com/myJd/newhome.action?sceneval=2&ufc=&/myJd/home.action&source=wq_passport'
-    local s_token = luci.sys.exec("echo -n $(wget-ssl --header='"..Accept.."' --header='"..Accept_Language.."' --header='"..Host.."' --referer='"..referer.."' --user-agent='"..User_Agent.."' --save-cookies="..cookie.." --keep-session-cookies -q -O - '"..url.."' | sed s/[[:space:]]//g | grep -oE '\"s_token\":\"(.+?)\"' | awk -F \\\" '{print $4}')")
+    local s_token = luci.sys.exec("echo -n $(wget --header='"..Accept.."' --header='"..Accept_Language.."' --header='"..Host.."' --referer='"..referer.."' --user-agent='"..User_Agent.."' --save-cookies="..cookie.." --keep-session-cookies -q -O - '"..url.."' | sed s/[[:space:]]//g | grep -oE '\"s_token\":\"(.+?)\"' | awk -F \\\" '{print $4}')")
     return s_token
 end
 
@@ -83,7 +80,7 @@ function qrcode()
     local s_token = get_s_token()
     local url = 'https://plogin.m.jd.com/cgi-bin/m/tmauthreflogurl?s_token='..s_token..'&v='..timestamp..'&remember=true'
     local referer = 'https://plogin.m.jd.com/login/login?appid=300&returnurl=https://wq.jd.com/passport/LoginRedirect?state=' .. timestamp .. '&returnurl=https://home.m.jd.com/myJd/newhome.action?sceneval=2&ufc=&/myJd/home.action&source=wq_passport'
-    local response = luci.sys.exec("echo -n $(wget-ssl --header='"..Accept.."' --header='"..Accept_Language.."' --header='"..Host.."' --referer='"..referer.."' --user-agent='"..User_Agent.."' --load-cookies="..cookie.." --save-cookies="..cookie.." --keep-session-cookies -q -O - '"..url.."')")
+    local response = luci.sys.exec("echo -n $(wget --header='"..Accept.."' --header='"..Accept_Language.."' --header='"..Host.."' --referer='"..referer.."' --user-agent='"..User_Agent.."' --load-cookies="..cookie.." --save-cookies="..cookie.." --keep-session-cookies -q -O - '"..url.."')")
     local token = luci.sys.exec("echo -n $(echo \'"..response.."\' | grep -oE '\"token\":\"(.+?)\"' | awk -F \\\" '{print $4}')")
     local ou_state = luci.sys.exec("echo -n $(echo \'"..response.."\' | grep -oE '\"ou_state\":(\\d+)' | awk -F : '{print $2}')")
     local okl_token = luci.sys.exec("echo -n $(cat "..cookie.." | grep okl_token | awk '{print $7}')")
@@ -101,7 +98,7 @@ function check_login()
     local data = luci.http.formvalue()
     local post_data = 'lang=chs&appid=300&source=wq_passport&returnurl=https://wqlogin2.jd.com/passport/LoginRedirect?state=1100399130787&returnurl=//home.m.jd.com/myJd/newhome.action?sceneval=2&ufc=&/myJd/home.action'
     local referer='https://plogin.m.jd.com/login/login?appid=300&returnurl=https://wqlogin2.jd.com/passport/LoginRedirect?state='
-    local response = luci.sys.exec("echo -n $(wget-ssl --post-data='"..post_data.."' --header='"..Accept.."' --header='"..Accept_Language.."' --header='"..Host.."' --referer='"..referer.."' --user-agent='"..User_Agent.."' --load-cookies="..cookie.." --save-cookies="..cookie.." --keep-session-cookies -q -O - '"..data.check_url.."')")
+    local response = luci.sys.exec("echo -n $(wget --post-data='"..post_data.."' --header='"..Accept.."' --header='"..Accept_Language.."' --header='"..Host.."' --referer='"..referer.."' --user-agent='"..User_Agent.."' --load-cookies="..cookie.." --save-cookies="..cookie.." --keep-session-cookies -q -O - '"..data.check_url.."')")
     local return_json = {
         error = tonumber(luci.sys.exec("echo -n $(echo \'"..response.."\' | grep -oE '\"errcode\":(\\d+)' | awk -F : '{print $2}')")),
         msg = luci.sys.exec("echo -n $(echo \'"..response.."\' | grep -oE '\"message\":\"(.+?)\"' | awk -F \\\" '{print $4}')"),
