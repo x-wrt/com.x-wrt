@@ -275,6 +275,7 @@ for t in $targets; do
 	excludes="$excludes_basic"
 	case $t in
 		#>8M flash
+		TARGET_DEVICE_mediatek_mt7622_DEVICE_ruijie_rg-ew3200gx-pro|\
 		TARGET_DEVICE_ipq40xx_generic_DEVICE_zte_mf286d|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_xwrt_fm10-ax-nand|\
 		TARGET_DEVICE_mediatek_mt7622_DEVICE_totolink_a8000ru|\
@@ -989,6 +990,7 @@ for t in $targets; do
 			has_usb=1
 		;;
 		#no usb
+		TARGET_DEVICE_mediatek_mt7622_DEVICE_ruijie_rg-ew3200gx-pro|\
 		TARGET_DEVICE_ath79_generic_DEVICE_letv_lba-047-ch|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_xwrt_puppies|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_xwrt_nxc200p|\
