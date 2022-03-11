@@ -304,7 +304,6 @@ for t in $targets; do
 		TARGET_DEVICE_ath79_nand_DEVICE_netgear_wndr3700-v4|\
 		TARGET_DEVICE_ath79_nand_DEVICE_xwrt_gw521-nand|\
 		TARGET_DEVICE_ipq40xx_generic_DEVICE_alfa-network_ap120c-ac|\
-		TARGET_DEVICE_ipq40xx_generic_DEVICE_netgear_ex6200v2|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_netgear_r6260|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_netgear_r6850|\
 		TARGET_DEVICE_ramips_rt305x_DEVICE_huawei_hg255d|\
@@ -403,6 +402,7 @@ for t in $targets; do
 			extra_utils=1
 		;;
 		#>8M flash <14M
+		TARGET_DEVICE_ipq40xx_generic_DEVICE_netgear_ex6200v2|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_zbtlink_zbt-wg108|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_thunder_timecloud|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_dlink_dir-882-a1|\
