@@ -61,22 +61,6 @@ init_cone_nat_unused()
 }
 
 case $cmd in
-	delfwindex)
-	chain=$2
-	index=$3
-	#udp dpt 12345 to 192.168.16.218 12345
-	iptables -t nat -L $chain $index | grep -o "udp dpt:[0-9].*to:.*" | sed 's/:/ /g' | while read _ _ eport _ iaddr iport; do
-		test -n "$eport" && \
-		ipset del cone_nat_unused_port $eport >/dev/null 2>&1
-		RULE_CNT=`iptables -t nat -L MINIUPNPD | grep "^DNAT.*udp dpt:.*to:$iaddr:$iport$" | wc -l`
-		RULE_CNT=$((RULE_CNT+0))
-		if test $RULE_CNT -le 1; then
-			test -n "$iaddr" && test -n "$iport" && \
-			ipset del cone_nat_unused_dst $iaddr,udp:$iport >/dev/null 2>&1
-		fi
-	done
-	;;
-
 	addrule)
 	iaddr=$2
 	iport=$3
@@ -96,12 +80,9 @@ case $cmd in
 	eport=$4
 	test -n "$eport" && \
 	ipset del cone_nat_unused_port $eport >/dev/null 2>&1
-	if iptables -t nat -L MINIUPNPD | grep -q "^DNAT.*udp dpt:.*to:$iaddr:$iport$" || nft list table ip miniupnpd | grep -q "udp dport .* dnat to $iaddr:$iport$"; then
-		:
-	else
-		test -n "$iaddr" && test -n "$iport" && \
-		ipset del cone_nat_unused_dst $iaddr,udp:$iport >/dev/null 2>&1
-	fi
+
+	test -n "$iaddr" && test -n "$iport" && \
+	ipset del cone_nat_unused_dst $iaddr,udp:$iport >/dev/null 2>&1
 	;;
 
 	init)
