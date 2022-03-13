@@ -579,6 +579,19 @@ for t in $targets; do
 			excludes="$excludes wpad-basic-wolfssl"
 			flash_gt8m=1
 		;;
+		TARGET_DEVICE_realtek_rtl838x_DEVICE_inaba_aml2-17gp|\
+		TARGET_DEVICE_realtek_rtl838x_DEVICE_iodata_bsh-g24mb|\
+		TARGET_DEVICE_realtek_rtl838x_DEVICE_netgear_gs108t-v3|\
+		TARGET_DEVICE_realtek_rtl838x_DEVICE_netgear_gs110tpp-v1|\
+		TARGET_DEVICE_realtek_rtl838x_DEVICE_netgear_gs308t-v1|\
+		TARGET_DEVICE_realtek_rtl838x_DEVICE_netgear_gs310tp-v1|\
+		TARGET_DEVICE_realtek_rtl838x_DEVICE_panasonic_m8eg-pn28080k|\
+		TARGET_DEVICE_realtek_rtl838x_DEVICE_zyxel_gs1900-10hp|\
+		TARGET_DEVICE_realtek_rtl838x_DEVICE_zyxel_gs1900-24hp-v2|\
+		TARGET_DEVICE_realtek_rtl838x_DEVICE_zyxel_gs1900-24-v1|\
+		TARGET_DEVICE_realtek_rtl838x_DEVICE_zyxel_gs1900-8|\
+		TARGET_DEVICE_realtek_rtl838x_DEVICE_zyxel_gs1900-8hp-v1|\
+		TARGET_DEVICE_realtek_rtl838x_DEVICE_zyxel_gs1900-8hp-v2|\
 		TARGET_DEVICE_ramips_mt76x8_DEVICE_mediatek_mt7628an-eval-board|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_xwrt_ms1201k|\
 		TARGET_DEVICE_ramips_mt76x8_DEVICE_xiaomi_mi-router-4c|\
@@ -991,6 +1004,19 @@ for t in $targets; do
 			has_usb=1
 		;;
 		#no usb
+		TARGET_DEVICE_realtek_rtl838x_DEVICE_inaba_aml2-17gp|\
+		TARGET_DEVICE_realtek_rtl838x_DEVICE_iodata_bsh-g24mb|\
+		TARGET_DEVICE_realtek_rtl838x_DEVICE_netgear_gs108t-v3|\
+		TARGET_DEVICE_realtek_rtl838x_DEVICE_netgear_gs110tpp-v1|\
+		TARGET_DEVICE_realtek_rtl838x_DEVICE_netgear_gs308t-v1|\
+		TARGET_DEVICE_realtek_rtl838x_DEVICE_netgear_gs310tp-v1|\
+		TARGET_DEVICE_realtek_rtl838x_DEVICE_panasonic_m8eg-pn28080k|\
+		TARGET_DEVICE_realtek_rtl838x_DEVICE_zyxel_gs1900-10hp|\
+		TARGET_DEVICE_realtek_rtl838x_DEVICE_zyxel_gs1900-24hp-v2|\
+		TARGET_DEVICE_realtek_rtl838x_DEVICE_zyxel_gs1900-24-v1|\
+		TARGET_DEVICE_realtek_rtl838x_DEVICE_zyxel_gs1900-8|\
+		TARGET_DEVICE_realtek_rtl838x_DEVICE_zyxel_gs1900-8hp-v1|\
+		TARGET_DEVICE_realtek_rtl838x_DEVICE_zyxel_gs1900-8hp-v2|\
 		TARGET_DEVICE_mediatek_mt7622_DEVICE_ruijie_rg-ew3200gx-pro|\
 		TARGET_DEVICE_ath79_generic_DEVICE_letv_lba-047-ch|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_xwrt_puppies|\
