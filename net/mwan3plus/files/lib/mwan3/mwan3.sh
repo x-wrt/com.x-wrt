@@ -1395,16 +1395,16 @@ mwan3_report_policies()
 
 	local percent total_weight weight iface
 
-	total_weight=$($ipt -S "$policy" | grep -v '.*--comment "out .*" .*$' | cut -s -d'"' -f2 | head -1 | awk '{print $3}')
+	total_weight=$($ipt -S "$policy" 2>/dev/null | grep -v '.*--comment "out .*" .*$' | cut -s -d'"' -f2 | head -1 | awk '{print $3}')
 
 	if [ -n "${total_weight##*[!0-9]*}" ]; then
-		for iface in $($ipt -S "$policy" | grep -v '.*--comment "out .*" .*$' | cut -s -d'"' -f2 | awk '{print $1}'); do
-			weight=$($ipt -S "$policy" | grep -v '.*--comment "out .*" .*$' | cut -s -d'"' -f2 | awk '$1 == "'$iface'"' | awk '{print $2}')
+		for iface in $($ipt -S "$policy" 2>/dev/null | grep -v '.*--comment "out .*" .*$' | cut -s -d'"' -f2 | awk '{print $1}'); do
+			weight=$($ipt -S "$policy" 2>/dev/null | grep -v '.*--comment "out .*" .*$' | cut -s -d'"' -f2 | awk '$1 == "'$iface'"' | awk '{print $2}')
 			percent=$((weight*100/total_weight))
 			echo " $iface ($percent%)"
 		done
 	else
-		echo " $($ipt -S "$policy" | grep -v '.*--comment "out .*" .*$' | sed '/.*--comment \([^ ]*\) .*$/!d;s//\1/;q')"
+		echo " $($ipt -S "$policy" 2>/dev/null | grep -v '.*--comment "out .*" .*$' | sed '/.*--comment \([^ ]*\) .*$/!d;s//\1/;q')"
 	fi
 }
 
@@ -1412,7 +1412,7 @@ mwan3_report_policies_v4()
 {
 	local policy
 
-	for policy in $($IPT4 -S | awk '{print $2}' | grep mwan3_policy_ | sort -u); do
+	for policy in $($IPT4 -S 2>/dev/null | awk '{print $2}' | grep mwan3_policy_ | sort -u); do
 		echo "$policy:" | sed 's/mwan3_policy_//'
 		mwan3_report_policies "$IPT4" "$policy"
 	done
@@ -1422,7 +1422,7 @@ mwan3_report_policies_v6()
 {
 	local policy
 
-	for policy in $($IPT6 -S | awk '{print $2}' | grep mwan3_policy_ | sort -u); do
+	for policy in $($IPT6 -S 2>/dev/null | awk '{print $2}' | grep mwan3_policy_ | sort -u); do
 		echo "$policy:" | sed 's/mwan3_policy_//'
 		mwan3_report_policies "$IPT6" "$policy"
 	done
