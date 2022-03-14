@@ -277,8 +277,8 @@ stop()
 
 		sleep 1
 
-		kill -TERM $(pgrep -f "ip -4 monitor route") > /dev/null 2>&1
-		kill -TERM $(pgrep -f "ip -6 monitor route") > /dev/null 2>&1
+		kill -KILL $(pgrep -f "ip -4 monitor route") > /dev/null 2>&1
+		kill -KILL $(pgrep -f "ip -6 monitor route") > /dev/null 2>&1
 		kill -KILL $(pgrep -f "mwan3rtmon") > /dev/null 2>&1
 		kill -KILL $(pgrep -f "mwan3track") > /dev/null 2>&1
 	} &
