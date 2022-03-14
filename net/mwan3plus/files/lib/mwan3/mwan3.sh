@@ -71,7 +71,7 @@ mwan3_ipv6_masq_help()
 	[ "$enabled" = "1" ] || return
 	[ "$family" = "ipv6" ] || [ "$family" = "any" ] || return
 
-	ip6tables -t nat -S POSTROUTING | grep "masq-help-${INTERFACE}-dev" | sed 's/^-A //' | while read line; do
+	ip6tables -t nat -S POSTROUTING 2>/dev/null | grep "masq-help-${INTERFACE}-dev" | sed 's/^-A //' | while read line; do
 		`echo ip6tables -t nat -D $line | sed 's/"//g'`
 		$IPS destroy mwan3_${INTERFACE}_ipv6_src_from &>/dev/null
 	done
@@ -97,7 +97,7 @@ mwan3_ipv6_masq_help()
 
 mwan3_ipv6_masq_cleanup()
 {
-	ip6tables -t nat -S POSTROUTING | grep masq-help-.*-dev | sed 's/^-A //' | while read line; do
+	ip6tables -t nat -S POSTROUTING 2>/dev/null | grep masq-help-.*-dev | sed 's/^-A //' | while read line; do
 		`echo ip6tables -t nat -D $line | sed 's/"//g'`
 	done
 	$IPS list -n | grep "mwan3_.*_ipv6_src_from" | while read line; do
@@ -437,7 +437,7 @@ mwan3_set_general_iptables()
 	for IPT in "$IPT4" "$IPT6"; do
 		[ "$IPT" = "$IPT4" ] && [ $NEED_IPV4 -eq 0 ] && continue
 		[ "$IPT" = "$IPT6" ] && [ $NEED_IPV6 -eq 0 ] && continue
-		current="$($IPT -S)"$'\n'
+		current="$($IPT -S 2>/dev/null)"$'\n'
 		update="*mangle"
 		if [ -n "${current##*-N mwan3_ifaces_in*}" ]; then
 			mwan3_push_update -N mwan3_ifaces_in
@@ -552,7 +552,7 @@ mwan3_create_iface_iptables()
 		return 0
 	fi
 
-	current="$($IPT -S)"$'\n'
+	current="$($IPT -S 2>/dev/null)"$'\n'
 	update="*mangle"
 	if [ -n "${current##*-N mwan3_ifaces_in*}" ]; then
 		mwan3_push_update -N mwan3_ifaces_in
@@ -911,7 +911,7 @@ mwan3_set_policy()
 	else
 		continue
 	fi
-	current="$($IPT -S)"$'\n'
+	current="$($IPT -S 2>/dev/null)"$'\n'
 	update="*mangle"
 
 	if [ "$family" = "ipv4" ] && [ $NEED_IPV4 -ne 0 ] && [ $is_offline -eq 0 ]; then
@@ -994,7 +994,7 @@ mwan3_create_policies_iptables()
 	for IPT in "$IPT4" "$IPT6"; do
 		[ "$IPT" = "$IPT4" ] && [ $NEED_IPV4 -eq 0 ] && continue
 		[ "$IPT" = "$IPT6" ] && [ $NEED_IPV6 -eq 0 ] && continue
-		current="$($IPT -S)"$'\n'
+		current="$($IPT -S 2>/dev/null)"$'\n'
 		update="*mangle"
 		if [ -n "${current##*-N mwan3_policy_$1$'\n'*}" ]; then
 			mwan3_push_update -N "mwan3_policy_$1"
@@ -1238,7 +1238,7 @@ mwan3_set_user_iface_rules()
 	else
 		continue
 	fi
-	$IPT -S | grep -q "^-A mwan3_rules.*-i $device" && return
+	$IPT -S 2>/dev/null | grep -q "^-A mwan3_rules.*-i $device" && return
 
 	is_src_iface=0
 
@@ -1270,7 +1270,7 @@ mwan3_set_user_rules()
 			continue
 		fi
 		update="*mangle"
-		current="$($IPT -S)"$'\n'
+		current="$($IPT -S 2>/dev/null)"$'\n'
 
 
 		if [ -n "${current##*-N mwan3_rules*}" ]; then

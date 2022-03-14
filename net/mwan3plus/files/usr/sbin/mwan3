@@ -305,7 +305,7 @@ stop()
 		for rule in $($IP rule list | grep -E '^[1-3][0-9]{3}\:' | cut -d ':' -f 1); do
 			$IP rule del pref $rule &> /dev/null
 		done
-		table="$($IPT -S)"
+		table="$($IPT -S 2>/dev/null)"
 		{
 			echo "*mangle";
 			[ -z "${table##*PREROUTING -j mwan3_hook*}" ] && echo "-D PREROUTING -j mwan3_hook"
