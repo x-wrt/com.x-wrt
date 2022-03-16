@@ -3,8 +3,9 @@
 'require poll';
 'require request';
 'require rpc';
+'require network';
 
-var callLuciConntrackList = rpc.declare({
+var callLuciGetUsers = rpc.declare({
 	object: 'luci.natflow',
 	method: 'get_users',
 	expect: { result: [] }
@@ -20,23 +21,27 @@ function rate(n, br) {
 }
 
 return view.extend({
-	updateConntrack: function(conn) {
+	updateUsers: function(data) {
 		var lookup_queue = [ ];
 		var rows = [];
+		var hosts = data[0];
+		var users = data[1];
 
-		conn.sort(function(a, b) {
+		users.sort(function(a, b) {
 			return b.rx_bytes - a.rx_bytes;
 		});
 
-		for (var i = 0; i < conn.length; i++)
+		for (var i = 0; i < users.length; i++)
 		{
-			var c  = conn[i];
+			var u  = users[i];
+			var mac = u.mac.toUpperCase();
+			var name = hosts.getHostnameByMACAddr(mac);
 
 			rows.push([
-				c.ip,
-				c.mac.toUpperCase(),
-				'%1024.2mB (%d %s)<br />'.format(c.rx_bytes, c.rx_pkts, _('Pkts.')) + ' ' + rate(c.rx_speed_bytes),
-				'%1024.2mB (%d %s)<br />'.format(c.tx_bytes, c.tx_pkts, _('Pkts.')) + ' ' + rate(c.tx_speed_bytes)
+				u.ip,
+				name ? "%s<br />(%s)".format(mac, name) : mac,
+				'%1024.2mB (%d %s)<br />'.format(u.rx_bytes, u.rx_pkts, _('Pkts.')) + ' ' + rate(u.rx_speed_bytes),
+				'%1024.2mB (%d %s)<br />'.format(u.tx_bytes, u.tx_pkts, _('Pkts.')) + ' ' + rate(u.tx_speed_bytes)
 			]);
 		}
 
@@ -46,11 +51,12 @@ return view.extend({
 	pollData: function() {
 		poll.add(L.bind(function() {
 			var tasks = [
-				L.resolveDefault(callLuciConntrackList(), [])
+				network.getHostHints(),
+				L.resolveDefault(callLuciGetUsers(), [])
 			];
 
 			return Promise.all(tasks).then(L.bind(function(datasets) {
-				this.updateConntrack(datasets[0]);
+				this.updateUsers(datasets);
 			}, this));
 		}, this), pollInterval);
 	},
