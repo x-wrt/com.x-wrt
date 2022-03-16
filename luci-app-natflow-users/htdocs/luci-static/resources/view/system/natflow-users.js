@@ -17,7 +17,7 @@ Math.log2 = Math.log2 || function(x) { return Math.log(x) * Math.LOG2E; };
 
 function rate(n, br) {
 	n = (n || 0).toFixed(2);
-	return '%1024.2mbit/s'.format(n * 8) + ' (%1024.2mB/s)'.format(n)
+	return '%1024.2mbit/s (%1024.2mB/s)'.format(n * 8, n)
 }
 
 return view.extend({
@@ -40,8 +40,8 @@ return view.extend({
 			rows.push([
 				u.ip,
 				name ? "%s<br />(%s)".format(mac, name) : mac,
-				'%1024.2mB (%d %s)<br />'.format(u.rx_bytes, u.rx_pkts, _('Pkts.')) + ' ' + rate(u.rx_speed_bytes),
-				'%1024.2mB (%d %s)<br />'.format(u.tx_bytes, u.tx_pkts, _('Pkts.')) + ' ' + rate(u.tx_speed_bytes)
+				'%1024.2mB (%d %s)<br />%s'.format(u.rx_bytes, u.rx_pkts, _('Pkts.'), rate(u.rx_speed_bytes)),
+				'%1024.2mB (%d %s)<br />%s'.format(u.tx_bytes, u.tx_pkts, _('Pkts.'), rate(u.tx_speed_bytes))
 			]);
 		}
 
