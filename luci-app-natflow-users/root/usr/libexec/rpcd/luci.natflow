@@ -39,6 +39,21 @@ local methods = {
 
 			return { result = users }
 		end
+	},
+	kick_user = {
+		args = { token = "token" },
+		call = function(args)
+			local util = require "luci.util"
+			local ip = args and args.token
+
+			if ip then
+				local cmd = [[echo kick %s >/dev/userinfo_ctl]]
+                                sys.call(string.format(cmd, ip))
+				return { result = "OK" }
+			end
+
+			return { result = "Bad request" }
+		end
 	}
 }
 

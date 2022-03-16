@@ -9,3 +9,6 @@ msgstr "发送"
 
 msgid "Users"
 msgstr "用户"
+
+msgid "Delete"
+msgstr "删除"
