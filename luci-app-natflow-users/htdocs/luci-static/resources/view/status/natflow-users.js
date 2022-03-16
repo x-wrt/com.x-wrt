@@ -34,7 +34,7 @@ return view.extend({
 
 			rows.push([
 				c.ip,
-				c.mac,
+				c.mac.toUpperCase(),
 				'%1024.2mB (%d %s)'.format(c.rx_bytes, c.rx_pkts, _('Pkts.')) + ' ' + rate(c.rx_speed_bytes),
 				'%1024.2mB (%d %s)'.format(c.tx_bytes, c.tx_pkts, _('Pkts.')) + ' ' + rate(c.tx_speed_bytes)
 			]);
