@@ -16,7 +16,7 @@ Math.log2 = Math.log2 || function(x) { return Math.log(x) * Math.LOG2E; };
 
 function rate(n, br) {
 	n = (n || 0).toFixed(2);
-	return [ '%1024.2mbit/s'.format(n * 8), '(%1024.2mB/s)'.format(n) ]
+	return '%1024.2mbit/s'.format(n * 8) + ' (%1024.2mB/s)'.format(n)
 }
 
 return view.extend({
