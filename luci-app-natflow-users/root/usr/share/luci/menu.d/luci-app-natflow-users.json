@@ -6,5 +6,16 @@
 			"type": "view",
 			"path": "status/natflow-users"
 		}
+	},
+	"admin/system/users": {
+		"title": "Users",
+		"order": 990,
+		"action": {
+			"type": "view",
+			"path": "status/natflow-users"
+		},
+		"depends": {
+			"acl": [ "luci-app-natflow-users" ]
+		}
 	}
 }
