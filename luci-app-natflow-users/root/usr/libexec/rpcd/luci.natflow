@@ -17,10 +17,10 @@ local methods = {
 			local line = nil
 			for line in userinfo do
 				--192.168.16.101,74:8f:3c:bb:be:cf,0x0,0x0,255,294,180537:185944989,120694:140495365,11:958,7:1215
-				local ip, mac, rx_pkts, rx_bytes, tx_pkts, tx_bytes, rx_speed_pkts, rx_speed_bytes, tx_speed_pkts, tx_speed_bytes =
-					line:match("^(%S+),(%S+),%S+,%S+,%S+,%S+,(%d+):(%d+),(%d+):(%d+),(%d+):(%d+),(%d+):(%d+)$")
+				local ip, mac, auth_type, rx_pkts, rx_bytes, tx_pkts, tx_bytes, rx_speed_pkts, rx_speed_bytes, tx_speed_pkts, tx_speed_bytes =
+					line:match("^(%S+),(%S+),(%S+),%S+,%S+,%S+,(%d+):(%d+),(%d+):(%d+),(%d+):(%d+),(%d+):(%d+)$")
 
-				if ip and mac then
+				if ip and mac and auth_type ~= "0x0" then
 					local entry = {
 						ip = ip,
 						mac = mac,
