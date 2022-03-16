@@ -1,4 +1,12 @@
 {
+	"admin/status/realtime/users": {
+		"title": "Users",
+		"order": 99,
+		"action": {
+			"type": "view",
+			"path": "status/natflow-users"
+		}
+	},
 	"admin/system/users": {
 		"title": "Users",
 		"order": 990,

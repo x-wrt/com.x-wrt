@@ -62,6 +62,9 @@ define Package/luci-app-natflow-users/install
 	$(INSTALL_BIN) ./root/usr/libexec/rpcd/luci.natflow $(1)/usr/libexec/rpcd/luci.natflow
 	$(INSTALL_DIR) $(1)/www/luci-static/resources/view/system
 	$(INSTALL_DATA) ./htdocs/luci-static/resources/view/system/natflow-users.js $(1)/www/luci-static/resources/view/system/natflow-users.js
+	$(INSTALL_DIR) $(1)/www/luci-static/resources/view/status/include
+	$(INSTALL_DATA) ./htdocs/luci-static/resources/view/status/include/35_natflow-users.js $(1)/www/luci-static/resources/view/status/include/35_natflow-users.js
+	$(INSTALL_DATA) ./htdocs/luci-static/resources/view/status/natflow-users.js $(1)/www/luci-static/resources/view/status/natflow-users.js
 endef
 
 $(eval $(call BuildPackage,luci-app-natflow-users))

@@ -12,3 +12,6 @@ msgstr "用户"
 
 msgid "Delete"
 msgstr "删除"
+
+msgid "Active Users"
+msgstr "活动的用户"

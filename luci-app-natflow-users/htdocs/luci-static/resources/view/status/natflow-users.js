@@ -101,7 +101,6 @@ return view.extend({
 
 		return E([], [
 			E('div', { 'class': 'cbi-section-node' }, [
-				E('h3', _('Active Users')),
 				table
 			])
 		]);
