@@ -24,7 +24,7 @@ define Package/luci-app-natflow-users
 	SUBMENU:=Natflow users module support
 	TITLE:=LuCI Support for natflow users
 	PKGARCH:=all
-	DEPENDS:= +luci-mod-status
+	DEPENDS:= +natflow-auth
 endef
 
 define Package/luci-app-natflow-users/description
@@ -60,8 +60,8 @@ define Package/luci-app-natflow-users/install
 	$(INSTALL_DATA) ./root/usr/share/luci/menu.d/*.json $(1)/usr/share/luci/menu.d/
 	$(INSTALL_DIR) $(1)/usr/libexec/rpcd
 	$(INSTALL_BIN) ./root/usr/libexec/rpcd/luci.natflow $(1)/usr/libexec/rpcd/luci.natflow
-	$(INSTALL_DIR) $(1)/www/luci-static/resources/view/status
-	$(INSTALL_DATA) ./htdocs/luci-static/resources/view/status/natflow-users.js $(1)/www/luci-static/resources/view/status/natflow-users.js
+	$(INSTALL_DIR) $(1)/www/luci-static/resources/view/system
+	$(INSTALL_DATA) ./htdocs/luci-static/resources/view/system/natflow-users.js $(1)/www/luci-static/resources/view/system/natflow-users.js
 endef
 
 $(eval $(call BuildPackage,luci-app-natflow-users))
