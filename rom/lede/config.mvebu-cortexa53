@@ -7878,6 +7878,12 @@ CONFIG_PACKAGE_natcapd-server=y
 # end of Natcap Support
 
 #
+# Natflow users module support
+#
+CONFIG_PACKAGE_luci-app-natflow-users=y
+# end of Natflow users module support
+
+#
 # PPTP XWAN Support
 #
 # CONFIG_PACKAGE_luci-app-pptpxwan is not set
