@@ -1,8 +1,11 @@
 msgid ""
 msgstr "Content-Type: text/plain; charset=UTF-8\n"
 
-msgid "Upload"
-msgstr "上行"
+msgid "RX"
+msgstr "接收"
 
-msgid "Download"
-msgstr "下行"
+msgid "TX"
+msgstr "发送"
+
+msgid "Users"
+msgstr "用户"

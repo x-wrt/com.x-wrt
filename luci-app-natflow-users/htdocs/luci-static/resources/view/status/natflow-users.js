@@ -12,6 +12,13 @@ var callLuciConntrackList = rpc.declare({
 
 var pollInterval = 3;
 
+Math.log2 = Math.log2 || function(x) { return Math.log(x) * Math.LOG2E; };
+
+function rate(n, br) {
+	n = (n || 0).toFixed(2);
+	return [ '%1024.2mbit/s'.format(n * 8), '(%1024.2mB/s)'.format(n) ]
+}
+
 return view.extend({
 	updateConntrack: function(conn) {
 		var lookup_queue = [ ];
@@ -28,8 +35,8 @@ return view.extend({
 			rows.push([
 				c.ip,
 				c.mac,
-				'%1024.2mB (%d %s)'.format(c.rx_bytes, c.rx_pkts, _('Pkts.')),
-				'%1024.2mB (%d %s)'.format(c.tx_bytes, c.tx_pkts, _('Pkts.'))
+				'%1024.2mB (%d %s)'.format(c.rx_bytes, c.rx_pkts, _('Pkts.')) + ' ' + rate(c.rx_speed_bytes),
+				'%1024.2mB (%d %s)'.format(c.tx_bytes, c.tx_pkts, _('Pkts.')) + ' ' + rate(c.tx_speed_bytes)
 			]);
 		}
 
@@ -57,8 +64,8 @@ return view.extend({
 					E('tr', { 'class': 'tr table-titles' }, [
 						E('th', { 'class': 'th col-2 hide-xs' }, [ _('IPv4 address') ]),
 						E('th', { 'class': 'th col-2' }, [ _('MAC address') ]),
-						E('th', { 'class': 'th col-7' }, [ _('Download') ]),
-						E('th', { 'class': 'th col-7' }, [ _('Upload') ])
+						E('th', { 'class': 'th col-7' }, [ _('RX') ]),
+						E('th', { 'class': 'th col-7' }, [ _('TX') ])
 					]),
 					E('tr', { 'class': 'tr placeholder' }, [
 						E('td', { 'class': 'td' }, [
