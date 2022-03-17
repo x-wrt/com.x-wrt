@@ -64,6 +64,10 @@ return baseclass.extend({
 		var hosts = data[0];
 		var users = Array.isArray(data[1]) ? data[1] : [];
 
+		users.sort(function(a, b) {
+			return b.rx_bytes - a.rx_bytes;
+		});
+
 		var rows = users.map(function(u) {
 			var mac = u.mac.toUpperCase();
 			var name = hosts.getHostnameByMACAddr(mac);
