@@ -43,14 +43,14 @@ return view.extend({
 		o.datatype = "range(0,23)";
 		o.rmempty = false;
 		for (var i = 0; i < 24; i++) {
-			o.value(i);
+			o.value(i, "%02d".format(i));
 		}
 
-		o = s.option(form.Value, "minute", _("Minute"));
+		o = s.option(form.ListValue, "minute", _("Minute"));
 		o.datatype = "range(0,59)";
 		o.rmempty = false;
 		for (var i = 0; i < 60; i++) {
-			o.value(i);
+			o.value(i, "%02d".format(i));
 		}
 
 		return m.render();
