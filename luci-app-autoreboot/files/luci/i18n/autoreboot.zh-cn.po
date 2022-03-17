@@ -17,7 +17,7 @@ msgid "Day"
 msgstr "天"
 
 msgid "Hour"
-msgstr "小时"
+msgstr "时"
 
 msgid "Minute"
-msgstr "分钟"
+msgstr "分"

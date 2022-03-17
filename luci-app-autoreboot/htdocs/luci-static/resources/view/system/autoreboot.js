@@ -39,13 +39,19 @@ return view.extend({
 		o.value(0, _("Sunday"));
 		o.default = 0;
 
-		o = s.option(form.Value, "hour", _("Hour"));
+		o = s.option(form.ListValue, "hour", _("Hour"));
 		o.datatype = "range(0,23)";
 		o.rmempty = false;
+		for (var i = 0; i < 24; i++) {
+			o.value(i);
+		}
 
 		o = s.option(form.Value, "minute", _("Minute"));
 		o.datatype = "range(0,59)";
 		o.rmempty = false;
+		for (var i = 0; i < 60; i++) {
+			o.value(i);
+		}
 
 		return m.render();
 	}
