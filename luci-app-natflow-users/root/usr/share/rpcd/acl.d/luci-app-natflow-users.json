@@ -4,7 +4,14 @@
 		"read": {
 			"ubus": {
 				"luci.natflow": [ "get_users", "kick_user" ]
-			}
+			},
+			"uci": [ "natflow" ]
+		},
+		"write": {
+			"ubus": {
+				"luci.natflow": [ "kick_user" ]
+			},
+			"uci": [ "natflow" ]
 		}
 	}
 }

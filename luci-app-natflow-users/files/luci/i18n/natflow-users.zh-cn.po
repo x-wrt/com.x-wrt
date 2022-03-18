@@ -15,3 +15,12 @@ msgstr "删除"
 
 msgid "Active Users"
 msgstr "活动的用户"
+
+msgid "User rules"
+msgstr "用户规则"
+
+msgid "IPs in this range are treated as users"
+msgstr "此范围内的 IP 被视为用户"
+
+msgid "IP range"
+msgstr "IP范围"
