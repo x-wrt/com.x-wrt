@@ -42,16 +42,20 @@ endef
 define Build/Compile
 endef
 
-define Package/luci-app-wizard/postinst
+define Package/luci-app-natflow-users/postinst
 #!/bin/sh
 if [ -z "$$IPKG_INSTROOT" ]; then
   rm -rf /tmp/luci-indexcache /tmp/luci-modulecache
+  ( . /etc/uci-defaults/95-natflow )
+  rm -f /etc/uci-defaults/95-natflow
 fi
 
 exit 0
 endef
 
 define Package/luci-app-natflow-users/install
+	$(INSTALL_DIR) $(1)/etc/uci-defaults
+	$(INSTALL_DATA) ./files/uci.defaults $(1)/etc/uci-defaults/95-natflow
 	$(INSTALL_DIR) $(1)/usr/lib/lua/luci/i18n
 	$(INSTALL_DATA) $(PKG_BUILD_DIR)/natflow-users.*.lmo $(1)/usr/lib/lua/luci/i18n/
 	$(INSTALL_DIR) $(1)/usr/share/rpcd/acl.d
