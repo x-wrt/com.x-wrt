@@ -24,3 +24,6 @@ msgstr "此范围内的 IP 被视为用户"
 
 msgid "IP range"
 msgstr "IP范围"
+
+msgid "User Authentication"
+msgstr "用户认证"
