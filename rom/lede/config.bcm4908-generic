@@ -2592,9 +2592,9 @@ CONFIG_PACKAGE_schroot=y
 # Boot Loaders
 #
 CONFIG_PACKAGE_bcm63xx-cfe=y
-CONFIG_PACKAGE_trusted-firmware-a-bcm4908=y
-CONFIG_PACKAGE_u-boot-bcm4908=y
-CONFIG_PACKAGE_u-boot-bcm4912=y
+# CONFIG_PACKAGE_trusted-firmware-a-bcm4908 is not set
+# CONFIG_PACKAGE_u-boot-bcm4908 is not set
+# CONFIG_PACKAGE_u-boot-bcm4912 is not set
 # end of Boot Loaders
 
 #
