@@ -148,7 +148,7 @@ return view.extend({
 			return E('div', { 'class': 'cbi-section cbi-tblsection' }, [ E('h3', _('Active Users')), table ]);
 		}, o, this);
 
-		s = m.section(form.GridSection, 'auth', ('User rules'), _('IPs in this range are treated as users'));
+		s = m.section(form.GridSection, 'auth', _('User rules'), _('IPs in this range are treated as users'));
 		s.addremove = false;
 		s.anonymous = true;
 		s.nodescriptions = true;
