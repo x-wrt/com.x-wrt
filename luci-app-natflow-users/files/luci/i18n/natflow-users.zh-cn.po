@@ -30,3 +30,6 @@ msgstr "用户认证"
 
 msgid "Can be a single or multiple ipaddr(s)(/cidr) or iprange, split with comma (e.g. \"192.168.100.0/24,1.2.3.4,172.16.0.100-172.16.0.111\") without quotes"
 msgstr "可以是单个或者多个IP地址、IP网段、IP范围，逗号隔开，比如 \"192.168.100.0/24,1.2.3.4,172.16.0.100-172.16.0.111\""
+
+msgid "No information available"
+msgstr "无可用信息"

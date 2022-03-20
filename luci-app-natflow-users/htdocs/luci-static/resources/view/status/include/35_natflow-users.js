@@ -84,7 +84,7 @@ return baseclass.extend({
 			];
 		});
 
-		cbi_update_table(table, rows, E('em', _('No information available.')));
+		cbi_update_table(table, rows, E('em', _('No information available')));
 
 		return table;
 	}
