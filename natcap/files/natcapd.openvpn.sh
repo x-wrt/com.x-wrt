@@ -44,11 +44,7 @@ make_config()
 [ "x`uci get natcapd.default.natcapovpn 2>/dev/null`" = x1 ] && {
 	[ "x`uci get openvpn.natcapovpn_tcp.enabled 2>/dev/null`" != x1 ] && {
 		/etc/init.d/openvpn stop
-		uci delete network.natcapovpn
-		uci set network.natcapovpn=interface
-		uci set network.natcapovpn.proto='none'
-		uci set network.natcapovpn.device='natcap+'
-		uci set network.natcapovpn.auto='1'
+		uci delete network.natcapovpn 2>/dev/null
 		uci commit network
 
 		index=0
@@ -56,10 +52,10 @@ make_config()
 			zone="`uci get firewall.@zone[$index].name 2>/dev/null`"
 			test -n "$zone" || break
 			[ "x$zone" = "xlan" ] && {
-				lans="`uci get firewall.@zone[$index].network`"
-				uci delete firewall.@zone[$index].network
-				for w in natcapovpn $lans; do
-					uci add_list firewall.@zone[$index].network="$w"
+				lans="`uci get firewall.@zone[$index].device`"
+				uci delete firewall.@zone[$index].device
+				for x in natcap+ $lans; do echo $x; done | sort | uniq | while read w; do
+					uci add_list firewall.@zone[$index].device="$w"
 				done
 				break
 			}
@@ -125,7 +121,7 @@ make_config()
 	done
 	uci commit openvpn
 
-	uci delete network.natcapovpn
+	uci delete network.natcapovpn 2>/dev/null
 	uci commit network
 
 	for p in tcp udp; do
@@ -136,11 +132,11 @@ make_config()
 		zone="`uci get firewall.@zone[$index].name 2>/dev/null`"
 		test -n "$zone" || break
 		[ "x$zone" = "xlan" ] && {
-			lans="`uci get firewall.@zone[$index].network`"
-			uci delete firewall.@zone[$index].network
-			for w in natcapovpn $lans; do
-				[ "x$w" = "xnatcapovpn" ] && continue
-				uci add_list firewall.@zone[$index].network="$w"
+			lans="`uci get firewall.@zone[$index].device`"
+			uci delete firewall.@zone[$index].device
+			for w in $lans; do
+				[ "x$w" = "xnatcap+" ] && continue
+				uci add_list firewall.@zone[$index].device="$w"
 			done
 			break
 		}

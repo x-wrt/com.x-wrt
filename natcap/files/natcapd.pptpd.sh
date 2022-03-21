@@ -2,11 +2,7 @@
 
 [ "x`uci get natcapd.default.pptpd`" = x1 ] && {
 	! [ "x`uci get pptpd.pptpd.enabled`" = x1 ] && {
-		uci delete network.natcapd
-		uci set network.natcapd=interface
-		uci set network.natcapd.proto='none'
-		uci set network.natcapd.device='pcap+'
-		uci set network.natcapd.auto='1'
+		uci delete network.natcapd 2>/dev/null
 		uci commit network
 
 		index=0
@@ -14,16 +10,11 @@
 			zone="`uci get firewall.@zone[$index].name 2>/dev/null`"
 			test -n "$zone" || break
 			[ "x$zone" = "xlan" ] && {
-				obj=`uci add firewall zone`
-				for key in `uci show firewall.@zone[$index] | grep "firewall\..*\." | cut -d\. -f3 | cut -d= -f1`; do
-					uci set firewall.$obj.$key=`uci get firewall.@zone[$index].$key`
+				lans="`uci get firewall.@zone[$index].device`"
+				uci delete firewall.@zone[$index].device
+				for x in pcap+ $lans; do echo $x; done | sort | uniq | while read w; do
+					uci add_list firewall.@zone[$index].device="$w"
 				done
-				lans="`uci get firewall.@zone[$index].network`"
-				uci delete firewall.$obj.network
-				for w in natcapd $lans; do
-					uci add_list firewall.$obj.network="$w"
-				done
-				uci delete firewall.@zone[$index]
 				break
 			}
 			index=$((index+1))
@@ -102,7 +93,7 @@
 	uci commit pptpd
 	/etc/init.d/pptpd stop
 
-	uci delete network.natcapd
+	uci delete network.natcapd 2>/dev/null
 	uci commit network
 
 	uci delete firewall.natcapd_pptp_tcp
@@ -112,11 +103,11 @@
 		zone="`uci get firewall.@zone[$index].name 2>/dev/null`"
 		test -n "$zone" || break
 		[ "x$zone" = "xlan" ] && {
-			lans="`uci get firewall.@zone[$index].network`"
-			uci delete firewall.@zone[$index].network
-			for w in natcapd $lans; do
-				[ "x$w" = "xnatcapd" ] && continue
-				uci add_list firewall.@zone[$index].network="$w"
+			lans="`uci get firewall.@zone[$index].device`"
+			uci delete firewall.@zone[$index].device
+			for w in $lans; do
+				[ "x$w" = "xpcap+" ] && continue
+				uci add_list firewall.@zone[$index].device="$w"
 			done
 			break
 		}
