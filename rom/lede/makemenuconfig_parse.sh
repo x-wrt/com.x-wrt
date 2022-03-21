@@ -275,6 +275,7 @@ for t in $targets; do
 	excludes="$excludes_basic"
 	case $t in
 		#>8M flash
+		TARGET_DEVICE_mediatek_mt7622_DEVICE_xiaomi_redmi-router-ax6s|\
 		TARGET_DEVICE_mediatek_mt7622_DEVICE_ruijie_rg-ew3200gx-pro|\
 		TARGET_DEVICE_ipq40xx_generic_DEVICE_zte_mf286d|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_xwrt_fm10-ax-nand|\
@@ -1004,6 +1005,7 @@ for t in $targets; do
 			has_usb=1
 		;;
 		#no usb
+		TARGET_DEVICE_mediatek_mt7622_DEVICE_xiaomi_redmi-router-ax6s|\
 		TARGET_DEVICE_realtek_rtl838x_DEVICE_inaba_aml2-17gp|\
 		TARGET_DEVICE_realtek_rtl838x_DEVICE_iodata_bsh-g24mb|\
 		TARGET_DEVICE_realtek_rtl838x_DEVICE_netgear_gs108t-v3|\
