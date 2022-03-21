@@ -24,8 +24,8 @@ if [ x`uci get natcapd.default.dnsproxy 2>/dev/null` = x1 ]; then
 	nft insert rule inet fw4 mangle_prerouting ct state new udp dport 53 counter meta mark set mark and 0xff7fff00 xor 0x800099 comment "natcap_dnsproxy"
 
 	nft -a list chain inet fw4 dstnat | grep -o "natcap_dnsproxy.*" | while read _ _ _ handle; do nft delete rule inet fw4 dstnat handle $handle; done
-	nft insert rule inet fw4 dstnat iifname { $(echo $(fw4 -q zone lan | sort | uniq | sed 's/\(.*\)/"\1",/g') | sed 's/,$//') } udp dport 53 counter redirect to :53 comment "natcap_dnsproxy"
-	nft insert rule inet fw4 dstnat iifname { $(echo $(fw4 -q zone lan | sort | uniq | sed 's/\(.*\)/"\1",/g') | sed 's/,$//') } tcp dport 53 counter redirect to :53 comment "natcap_dnsproxy"
+	nft insert rule inet fw4 dstnat iifname { $(echo $(fw4 -q zone lan | grep -v '*' | sort | uniq | sed 's/\(.*\)/"\1",/g') | sed 's/,$//') } udp dport 53 counter redirect to :53 comment "natcap_dnsproxy"
+	nft insert rule inet fw4 dstnat iifname { $(echo $(fw4 -q zone lan | grep -v '*' | sort | uniq | sed 's/\(.*\)/"\1",/g') | sed 's/,$//') } tcp dport 53 counter redirect to :53 comment "natcap_dnsproxy"
 
 	nft -a list chain inet fw4 input_wan | grep -o "natcap_dnsproxy.*" | while read _ _ _ handle; do nft delete rule inet fw4 input_wan handle $handle; done
 	nft insert rule inet fw4 input_wan mark and 0x800000 == 0x800000 counter return comment "natcap_dnsproxy"

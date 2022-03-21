@@ -206,8 +206,8 @@ iptables -t nat -C prerouting_lan_rule -d $access_ip/32 -p tcp --dport 443 -j RE
 iptables -t nat -A prerouting_lan_rule -d $access_ip/32 -p tcp --dport 443 -j REDIRECT --to-ports 443
 
 nft -a list chain inet fw4 dstnat | grep -o "fakemesh.*" | while read _ _ _ handle; do nft delete rule inet fw4 dstnat handle \$handle; done
-nft insert rule inet fw4 dstnat iifname { \$(echo \$(fw4 -q zone lan | sort | uniq | sed 's/\(.*\)/"\1",/g') | sed 's/,$//') } ip daddr $access_ip/32 tcp dport 80 counter redirect to :80 comment "fakemesh"
-nft insert rule inet fw4 dstnat iifname { \$(echo \$(fw4 -q zone lan | sort | uniq | sed 's/\(.*\)/"\1",/g') | sed 's/,$//') } ip daddr $access_ip/32 tcp dport 443 counter redirect to :443 comment "fakemesh"
+nft insert rule inet fw4 dstnat iifname { \$(echo \$(fw4 -q zone lan | grep -v '*' | sort | uniq | sed 's/\(.*\)/"\1",/g') | sed 's/,$//') } ip daddr $access_ip/32 tcp dport 80 counter redirect to :80 comment "fakemesh"
+nft insert rule inet fw4 dstnat iifname { \$(echo \$(fw4 -q zone lan | grep -v '*' | sort | uniq | sed 's/\(.*\)/"\1",/g') | sed 's/,$//') } ip daddr $access_ip/32 tcp dport 443 counter redirect to :443 comment "fakemesh"
 
 EOT
 		ln -s /tmp/fakemesh.firewall.include /usr/share/fakemesh/firewall.include 2>/dev/null
@@ -332,7 +332,7 @@ nft -a list chain inet fw4 output_lan | grep -o "fakemesh_mark_0x10000.*" | whil
 nft insert rule inet fw4 output_lan counter meta mark set mark or 0x10000 comment "fakemesh_mark_0x10000"
 
 nft -a list chain inet fw4 srcnat | grep -o "fakemesh_mark_0x10000.*" | while read _ _ _ handle; do nft delete rule inet fw4 srcnat handle \$handle; done
-nft insert rule inet fw4 srcnat oifname { \$(echo \$(fw4 -q zone lan | sort | uniq | sed 's/\(.*\)/"\1",/g') | sed 's/,$//') } mark and 0x10000 == 0x10000 counter masquerade comment "fakemesh_mark_0x10000"
+nft insert rule inet fw4 srcnat oifname { \$(echo \$(fw4 -q zone lan | grep -v '*' | sort | uniq | sed 's/\(.*\)/"\1",/g') | sed 's/,$//') } mark and 0x10000 == 0x10000 counter masquerade comment "fakemesh_mark_0x10000"
 EOT
 		ln -s /tmp/fakemesh.firewall.include /usr/share/fakemesh/firewall.include 2>/dev/null
 		grep -q "^sh /usr/share/fakemesh/firewall.include" /etc/firewall.include || echo "sh /usr/share/fakemesh/firewall.include" >>/etc/firewall.include
