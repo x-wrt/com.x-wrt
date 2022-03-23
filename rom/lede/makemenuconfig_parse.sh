@@ -275,6 +275,12 @@ for t in $targets; do
 	excludes="$excludes_basic"
 	case $t in
 		#>8M flash
+		TARGET_DEVICE_mediatek_mt7622_DEVICE_xwrt_wr3200k-v1|\
+		TARGET_DEVICE_mediatek_mt7622_DEVICE_mediatek_mt7622-rfb1-ubi|\
+		TARGET_DEVICE_mediatek_mt7622_DEVICE_mediatek_mt7622-rfb1|\
+		TARGET_DEVICE_mediatek_mt7622_DEVICE_linksys_e8450-ubi|\
+		TARGET_DEVICE_mediatek_mt7622_DEVICE_linksys_e8450|\
+		TARGET_DEVICE_mediatek_mt7622_DEVICE_bananapi_bpi-r64|\
 		TARGET_DEVICE_mediatek_mt7622_DEVICE_xiaomi_redmi-router-ax6s|\
 		TARGET_DEVICE_mediatek_mt7622_DEVICE_ruijie_rg-ew3200gx-pro|\
 		TARGET_DEVICE_ipq40xx_generic_DEVICE_zte_mf286d|\
@@ -286,7 +292,6 @@ for t in $targets; do
 		TARGET_DEVICE_ipq806x_generic_DEVICE_tplink_ad7200|\
 		TARGET_DEVICE_ipq40xx_generic_DEVICE_mobipromo_cm520-79f|\
 		TARGET_DEVICE_ipq40xx_generic_DEVICE_linksys_mr8300|\
-		TARGET_DEVICE_mediatek_mt7622_DEVICE*|\
 		TARGET_DEVICE_ipq40xx_generic_DEVICE_glinet_gl-ap1300|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_xwrt_wr1800k-ax-norplusemmc|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_xwrt_wr1800k-ax-nand|\
@@ -715,6 +720,12 @@ for t in $targets; do
 	#check usb
 	case $t in
 		#with usb3
+		TARGET_DEVICE_mediatek_mt7622_DEVICE_xwrt_wr3200k-v1|\
+		TARGET_DEVICE_mediatek_mt7622_DEVICE_mediatek_mt7622-rfb1-ubi|\
+		TARGET_DEVICE_mediatek_mt7622_DEVICE_mediatek_mt7622-rfb1|\
+		TARGET_DEVICE_mediatek_mt7622_DEVICE_linksys_e8450-ubi|\
+		TARGET_DEVICE_mediatek_mt7622_DEVICE_linksys_e8450|\
+		TARGET_DEVICE_mediatek_mt7622_DEVICE_bananapi_bpi-r64|\
 		TARGET_DEVICE_ipq40xx_generic_DEVICE_zte_mf286d|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_xwrt_fm10-ax-nand|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_tplink_archer-c6u-v1|\
@@ -729,7 +740,6 @@ for t in $targets; do
 		TARGET_DEVICE_ipq806x_generic_DEVICE_tplink_ad7200|\
 		TARGET_DEVICE_ipq40xx_generic_DEVICE_mobipromo_cm520-79f|\
 		TARGET_DEVICE_ipq40xx_generic_DEVICE_linksys_mr8300|\
-		TARGET_DEVICE_mediatek_mt7622_DEVICE*|\
 		TARGET_DEVICE_ipq40xx_generic_DEVICE_glinet_gl-ap1300|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_glinet_gl-mt1300|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_jcg_y2|\
