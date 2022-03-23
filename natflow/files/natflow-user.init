@@ -32,11 +32,8 @@ natflow_user_setup()
 	config_get sipgrp "$cfg" sipgrp
 	config_get ipwhite "$cfg" ipwhite
 	config_get macwhite "$cfg" macwhite
-	config_get no_flow_timeout "$cfg" no_flow_timeout 1800
 
 	[ "$enabled" = "1" ] || return 0
-
-	echo no_flow_timeout=${no_flow_timeout} >$DEVCTL
 
 	#echo auth id=0,szone=0,type=auto,sipgrp=auth_sipgrp,ipwhite=,macwhite=
 
@@ -82,6 +79,11 @@ start() {
 
 	config_load natflow
 	config_foreach natflow_user_setup auth
+
+	no_flow_timeout=$(uci get natflow.globals.no_flow_timeout 2>/dev/null || echo 1800)
+	echo no_flow_timeout=${no_flow_timeout} >$DEVCTL
+	redirect_ip=$(uci get natflow.globals.redirect_ip 2>/dev/null || echo 10.10.10.10)
+	echo redirect_ip=${redirect_ip} >$DEVCTL
 
 	echo update_magic >$DEVCTL
 }
