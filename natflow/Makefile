@@ -9,10 +9,10 @@ include $(TOPDIR)/rules.mk
 include $(INCLUDE_DIR)/kernel.mk
 
 PKG_NAME:=natflow
-PKG_VERSION:=20220326
+PKG_VERSION:=20220327
 
 PKG_SOURCE_URL:=https://codeload.github.com/ptpt52/natflow/tar.gz/$(PKG_VERSION)?
-PKG_HASH:=54e9b5ba448d63fc1da4882113f9955a26d399f1097ecdbb216e4ba26a71f007
+PKG_HASH:=447afab37ed1aadf8915f754ee77ac91ec725dd31537f813e8a61d3a54ef257a
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
 
 PKG_MAINTAINER:=Chen Minqiang <ptpt52@gmail.com>
@@ -38,6 +38,9 @@ endef
 include $(INCLUDE_DIR)/kernel-defaults.mk
 
 EXTRA_CFLAGS += -DCONFIG_NATFLOW_PATH -DCONFIG_NATFLOW_URLLOGGER
+ifneq ($(CONFIG_TARGET_mediatek_mt7622),)
+EXTRA_CFLAGS += -DCONFIG_HWNAT_EXTDEV_USE_VLAN_HASH
+endif
 
 define Build/Compile/natflow
 	+$(MAKE) $(PKG_JOBS) -C "$(LINUX_DIR)" \
