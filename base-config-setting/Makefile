@@ -24,14 +24,7 @@ define Package/base-config-setting/Default
   SECTION:=Applications
   CATEGORY:=X
   SUBMENU:=Base config setting for this board
-  DEPENDS:=+busybox +base-files \
-		   +(TARGET_ROOTFS_EXT4FS):ethtool \
-		   +(TARGET_ROOTFS_EXT4FS):blockd \
-		   +(TARGET_ROOTFS_EXT4FS):blkid \
-		   +(TARGET_ROOTFS_EXT4FS):fdisk \
-		   +(TARGET_ROOTFS_EXT4FS):gdisk \
-		   +(TARGET_ROOTFS_EXT4FS):partx-utils \
-		   +(TARGET_ROOTFS_EXT4FS):e2fsprogs
+  DEPENDS:=+busybox +base-files
 endef
 
 define Package/base-config-setting
@@ -61,7 +54,27 @@ endef
 define Package/base-config-setting-ext4fs
   $(call Package/base-config-setting/Default)
   TITLE:=base-config-setting ext4fs set
-  DEPENDS:=+base-config-setting +@TARGET_ROOTFS_EXT4FS
+  DEPENDS:=+base-config-setting +@TARGET_ROOTFS_EXT4FS \
+	   +ethtool \
+	   +blockd \
+	   +blkid \
+	   +fdisk \
+	   +gdisk \
+	   +partx-utils \
+	   +e2fsprogs
+endef
+
+define Package/base-config-setting-ext4fs/install
+	$(INSTALL_DIR) $(1)/etc
+	$(INSTALL_DATA) ./files/fstab.config $(1)/etc/fstab.config
+	$(INSTALL_DIR) $(1)/lib/preinit
+	$(INSTALL_DATA) ./files/disk_ready.preinit $(1)/lib/preinit/79_disk_ready
+	$(INSTALL_DIR) $(1)/etc/init.d
+	$(INSTALL_BIN) ./files/disk_ready.init $(1)/etc/init.d/disk_ready
+	$(INSTALL_BIN) ./files/disk_ready_done.init $(1)/etc/init.d/disk_ready_done
+	$(INSTALL_BIN) ./files/ethtool.init $(1)/etc/init.d/ethtool
+	$(INSTALL_DIR) $(1)/usr/sbin
+	$(INSTALL_BIN) ./files/diskv.sh $(1)/usr/sbin/diskv
 endef
 
 define Package/base-config-setting/install
@@ -89,16 +102,6 @@ define Package/base-config-setting/install
 	$(INSTALL_DATA) ./files/mnt_ready.preinit $(1)/lib/preinit/81_mnt_ready
 	$(INSTALL_DIR) $(1)/etc/hotplug.d/net
 	$(INSTALL_DATA) ./files/15-mgr-ipaddr $(1)/etc/hotplug.d/net/15-mgr-ipaddr
-ifneq ($(CONFIG_TARGET_ROOTFS_EXT4FS),)
-	$(INSTALL_DATA) ./files/fstab.config $(1)/etc/fstab.config
-	$(INSTALL_DIR) $(1)/lib/preinit
-	$(INSTALL_DATA) ./files/disk_ready.preinit $(1)/lib/preinit/79_disk_ready
-	$(INSTALL_DIR) $(1)/etc/init.d
-	$(INSTALL_BIN) ./files/disk_ready.init $(1)/etc/init.d/disk_ready
-	$(INSTALL_BIN) ./files/disk_ready_done.init $(1)/etc/init.d/disk_ready_done
-	$(INSTALL_BIN) ./files/ethtool.init $(1)/etc/init.d/ethtool
-	$(INSTALL_BIN) ./files/diskv.sh $(1)/usr/sbin/diskv
-endif
 endef
 
 define Build/Configure
