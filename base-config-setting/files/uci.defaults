@@ -335,9 +335,9 @@ echo net.ipv4.fib_multipath_hash_policy=1 >>$SYSCTL_LOCAL
 
 echo net.core.default_qdisc=fq_codel >>$SYSCTL_LOCAL
 echo net.core.default_qdisc=fq >>$SYSCTL_LOCAL
+echo net.ipv4.tcp_congestion_control=bbr >>$SYSCTL_LOCAL
 echo net.ipv4.tcp_congestion_control=htcp >>$SYSCTL_LOCAL
 echo net.ipv4.tcp_congestion_control=cubic >>$SYSCTL_LOCAL
-echo net.ipv4.tcp_congestion_control=bbr >>$SYSCTL_LOCAL
 echo net.netfilter.nf_conntrack_helper=1 >>$SYSCTL_LOCAL
 
 #replace wget
