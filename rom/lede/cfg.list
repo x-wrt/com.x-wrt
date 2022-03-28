@@ -7,9 +7,6 @@ config.ramips-mt7621
 config.ramips-mt7621-ext4fs
 config.ramips-mt76x8
 config.ramips-mt76x8-nosymbol
-config.ramips-rt3883-nosymbol
-config.ramips-rt305x
-config.realtek-rtl838x
 config.ipq40xx-generic
 config.sunxi-cortexa7
 config.bcm27xx-bcm2709
