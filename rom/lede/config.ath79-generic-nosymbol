@@ -6590,6 +6590,7 @@ CONFIG_PACKAGE_luci-i18n-wireguard-zh-cn=m
 #
 # CONFIG_PACKAGE_apfree-wifidog is not set
 # CONFIG_PACKAGE_coova-chilli is not set
+# CONFIG_PACKAGE_mesh11sd is not set
 # CONFIG_PACKAGE_nodogsplash is not set
 # CONFIG_PACKAGE_opennds is not set
 # CONFIG_PACKAGE_wifidog is not set
@@ -8317,6 +8318,7 @@ CONFIG_PACKAGE_qrencode=m
 # CONFIG_PACKAGE_rtl-ais is not set
 # CONFIG_PACKAGE_rtl-sdr is not set
 # CONFIG_PACKAGE_rtl_433 is not set
+# CONFIG_PACKAGE_rtl_433-ssl is not set
 # CONFIG_PACKAGE_runc is not set
 # CONFIG_PACKAGE_sane-backends is not set
 # CONFIG_PACKAGE_sane-daemon is not set
