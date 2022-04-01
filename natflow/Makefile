@@ -12,7 +12,7 @@ PKG_NAME:=natflow
 PKG_VERSION:=20220408
 
 PKG_SOURCE_URL:=https://codeload.github.com/ptpt52/natflow/tar.gz/$(PKG_VERSION)?
-PKG_HASH:=6787a4dc7638f93865613c8e4ea7801ecb795bb18f5f357f438127e3f54972f8
+PKG_HASH:=57b6cf82dadbf77061e0dac0df8d0fb45fcc05ea5f5b9b820ec98641a738f81f
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
 
 PKG_MAINTAINER:=Chen Minqiang <ptpt52@gmail.com>
