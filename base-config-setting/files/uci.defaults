@@ -101,6 +101,7 @@ test $version -lt 2 && {
 			set network.usbwan=interface
 			set network.usbwan.proto='dhcp'
 			set network.usbwan.device='usb0'
+			set network.usbwan.mtu='1492'
 			set network.usbwan.metric='800'
 			commit network
 		EOT
