@@ -686,7 +686,7 @@ CONFIG_TARGET_INIT_CMD="/sbin/init"
 CONFIG_TARGET_INIT_SUPPRESS_STDERR=y
 CONFIG_VERSIONOPT=y
 CONFIG_VERSION_DIST="X-WRT"
-CONFIG_VERSION_NUMBER="22.03_b202204152324"
+CONFIG_VERSION_NUMBER="22.03_b202204172100"
 CONFIG_VERSION_CODE="Jammy"
 CONFIG_VERSION_REPO="http://downloads.openwrt.org/snapshots"
 CONFIG_VERSION_HOME_URL="https://x-wrt.com/"
@@ -5663,6 +5663,7 @@ CONFIG_PACKAGE_luci-theme-openwrt-2020=y
 # 5. Protocols
 #
 CONFIG_PACKAGE_luci-proto-3g=m
+CONFIG_PACKAGE_luci-proto-batman-adv=m
 CONFIG_PACKAGE_luci-proto-bonding=m
 # CONFIG_PACKAGE_luci-proto-gre is not set
 # CONFIG_PACKAGE_luci-proto-hnet is not set
@@ -7561,6 +7562,7 @@ CONFIG_PACKAGE_nfs-utils=m
 #
 # CONFIG_PACKAGE_agetty is not set
 # CONFIG_PACKAGE_dvtm is not set
+# CONFIG_PACKAGE_kitty-terminfo is not set
 CONFIG_PACKAGE_minicom=m
 # CONFIG_PACKAGE_picocom is not set
 # CONFIG_PACKAGE_rtty-mbedtls is not set
@@ -7670,6 +7672,7 @@ CONFIG_PACKAGE_adb=m
 # CONFIG_PACKAGE_bc is not set
 # CONFIG_PACKAGE_bluelog is not set
 # CONFIG_PACKAGE_bluez-daemon is not set
+# CONFIG_PACKAGE_bluez-tools is not set
 # CONFIG_PACKAGE_bluez-utils is not set
 # CONFIG_PACKAGE_bluez-utils-extra is not set
 # CONFIG_PACKAGE_bluld is not set
