@@ -106,8 +106,8 @@ txrx_vals_dump() {
 			tx=$((tx2-tx1))
 			rx=$((rx2-rx1))
 			if test $tx2 -lt $tx1 || test $rx2 -lt $rx1; then
-				tx=$tx2
-				rx=$rx2
+				tx=0
+				rx=0
 			fi
 			echo $tx $rx
 			return 0
@@ -1070,8 +1070,8 @@ txrx_vals() {
 			tx=$((tx2-tx1))
 			rx=$((rx2-rx1))
 			if test $tx2 -lt $tx1 || test $rx2 -lt $rx1; then
-				tx=$tx2
-				rx=$rx2
+				tx=0
+				rx=0
 			fi
 			echo $tx $rx
 			cp /tmp/natcapd.txrx /tmp/natcapd.txrx.old
