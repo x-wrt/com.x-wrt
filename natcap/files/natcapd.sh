@@ -99,6 +99,10 @@ txrx_vals_dump() {
 	test -f /tmp/natcapd.txrx || echo "0 0" >/tmp/natcapd.txrx
 	cat /tmp/natcapd.txrx | while read tx1 rx1; do
 		echo `cat $DEV  | grep flow_total_ | cut -d= -f2` | while read tx2 rx2; do
+			tx1=$((tx1+0))
+			rx1=$((rx1+0))
+			tx2=$((tx2+0))
+			rx2=$((rx2+0))
 			tx=$((tx2-tx1))
 			rx=$((rx2-rx1))
 			if test $tx2 -lt $tx1 || test $rx2 -lt $rx1; then
@@ -1059,6 +1063,10 @@ txrx_vals() {
 	test -f /tmp/natcapd.txrx || echo "0 0" >/tmp/natcapd.txrx
 	cat /tmp/natcapd.txrx | while read tx1 rx1; do
 		echo `cat $DEV  | grep flow_total_ | cut -d= -f2` | while read tx2 rx2; do
+			tx1=$((tx1+0))
+			rx1=$((rx1+0))
+			tx2=$((tx2+0))
+			rx2=$((rx2+0))
 			tx=$((tx2-tx1))
 			rx=$((rx2-rx1))
 			if test $tx2 -lt $tx1 || test $rx2 -lt $rx1; then
