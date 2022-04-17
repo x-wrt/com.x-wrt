@@ -408,7 +408,7 @@ CONFIG_TARGET_DEVICE_PACKAGES_ath79_generic_DEVICE_adtran_bsap1840="fconfig kmod
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_araknis_an-700-ap-i-ac is not set
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_arduino_yun is not set
 CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_aruba_ap-105=y
-CONFIG_TARGET_DEVICE_PACKAGES_ath79_generic_DEVICE_aruba_ap-105="kmod-ath9k kmod-ath9k-common kmod-gpio-button-hotplug kmod-i2c-algo-bit kmod-i2c-core kmod-i2c-gpio kmod-random-core kmod-tpm kmod-tpm-i2c-atmel liblzo libopenssl libopenssl-conf libpcre libqrencode libstdcpp libxml2 luci-app-openvpn luci-app-wireguard luci-i18n-openvpn-en luci-i18n-openvpn-zh-cn luci-i18n-wireguard-en luci-i18n-wireguard-zh-cn luci-proto-wireguard luci-ssl-nginx nginx nginx-mod-luci nginx-mod-luci-ssl nginx-ssl nginx-ssl-util nginx-util openssl-util openvpn-openssl qrencode uwsgi uwsgi-cgi-plugin uwsgi-luci-support uwsgi-syslog-plugin wireguard-tools wpad-openssl"
+CONFIG_TARGET_DEVICE_PACKAGES_ath79_generic_DEVICE_aruba_ap-105="kmod-ath9k kmod-ath9k-common kmod-gpio-button-hotplug kmod-i2c-algo-bit kmod-i2c-core kmod-i2c-gpio kmod-oid-registry kmod-random-core kmod-tpm kmod-tpm-i2c-atmel liblzo libopenssl libopenssl-conf libpcre libqrencode libstdcpp libxml2 luci-app-openvpn luci-app-wireguard luci-i18n-openvpn-en luci-i18n-openvpn-zh-cn luci-i18n-wireguard-en luci-i18n-wireguard-zh-cn luci-proto-wireguard luci-ssl-nginx nginx nginx-mod-luci nginx-mod-luci-ssl nginx-ssl nginx-ssl-util nginx-util openssl-util openvpn-openssl qrencode uwsgi uwsgi-cgi-plugin uwsgi-luci-support uwsgi-syslog-plugin wireguard-tools wpad-openssl"
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_asus_rp-ac66 is not set
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_atheros_db120 is not set
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_avm_fritz4020 is not set
@@ -1154,7 +1154,7 @@ CONFIG_TARGET_INIT_CMD="/sbin/init"
 CONFIG_TARGET_INIT_SUPPRESS_STDERR=y
 CONFIG_VERSIONOPT=y
 CONFIG_VERSION_DIST="X-WRT"
-CONFIG_VERSION_NUMBER="22.03_b202204172100"
+CONFIG_VERSION_NUMBER="22.03_b202204172121"
 CONFIG_VERSION_CODE="Jammy"
 CONFIG_VERSION_REPO="http://downloads.openwrt.org/snapshots"
 CONFIG_VERSION_HOME_URL="https://x-wrt.com/"
