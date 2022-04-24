@@ -1154,8 +1154,8 @@ main_trigger() {
 	local hostip
 	local built_in_server
 	local crashlog=0
-	test -e /sys/kernel/debug/crashlog && crashlog=37
-	test -e /tmp/pstore && crashlog=37
+	test -e /sys/kernel/debug/crashlog && crashlog=38
+	test -e /tmp/pstore && crashlog=38
 	cp /usr/share/natcapd/cacert.pem /tmp/cacert.pem
 	while :; do
 		test -f $LOCKDIR/$PID || return 0
