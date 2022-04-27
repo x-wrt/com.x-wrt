@@ -50,9 +50,11 @@ init_cone_nat_unused()
 	cat /tmp/run/miniupnpd.leases 2>/dev/null | grep ^UDP | cut -d: -f2,3,4 | sed 's/:/ /g' | while read eport iaddr iport; do
 		ipset add cone_nat_unused_port $eport >/dev/null 2>&1
 		ipset add cone_nat_unused_dst $iaddr,udp:$iport >/dev/null 2>&1
+		lock /var/run/natcapd.lock
 		for eaddr in $(ipset list cone_wan_ip | grep ^[1-9]); do
 			echo cone_nat_drop=$iaddr:$iport-$eaddr:$eport >$DEV
 		done
+		lock -u /var/run/natcapd.lock
 	done
 
 	get_fw_cone_unused_ports | while read eport; do
@@ -69,9 +71,11 @@ case $cmd in
 	ipset add cone_nat_unused_port $eport >/dev/null 2>&1
 	test -n "$iaddr" && test -n "$iport" && \
 	ipset add cone_nat_unused_dst $iaddr,udp:$iport >/dev/null 2>&1
+	lock /var/run/natcapd.lock
 	for eaddr in $(ipset list cone_wan_ip | grep ^[1-9]); do
 		echo cone_nat_drop=$iaddr:$iport-$eaddr:$eport >$DEV
 	done
+	lock -u /var/run/natcapd.lock
 	;;
 
 	delrule)

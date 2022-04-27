@@ -145,10 +145,13 @@ natcapd_boot() {
 }
 
 [ x$1 = xboot ] && {
+	natcapd_lock
 	natcapd_boot
+	natcapd_unlock
 	exit 0
 }
 
+natcapd_lock
 enabled="`uci get natcapd.default.enabled 2>/dev/null || echo 0`"
 led="`uci get natcapd.default.led 2>/dev/null`"
 
@@ -176,6 +179,7 @@ echo si_mask=${si_mask} >>$DEV
 ni_mask=`uci get natcapd.default.ni_mask 2>/dev/null || echo 0x00800000`
 ni_mask=$((ni_mask))
 echo ni_mask=${ni_mask} >>$DEV
+natcapd_unlock
 
 ACC="$account"
 CLI=`echo $client_mac | sed 's/:/-/g' | tr a-z A-Z`
@@ -971,10 +975,14 @@ dns_proxy_check () {
 	$TO 8 nslookup `date +%s`.dev.x-wrt.com | grep ".dev.x-wrt.com" -A5 | grep Address || \
 	$TO 5 nslookup `date +%s`.dev.x-wrt.com | grep ".dev.x-wrt.com" -A5 | grep Address || {
 		logger -t "natcapd" "dns_proxy_server failed to lookup for x.dev.x-wrt.com"
+		natcapd_lock
 		test -c $DEV && echo dns_proxy_server=0.0.0.0:0-e-T-T >$DEV
+		natcapd_unlock
 		sleep 60
 		logger -t "natcapd" "restart dns_proxy_server"
+		natcapd_lock
 		dns_proxy_server_reload
+		natcapd_unlock
 	}
 }
 
@@ -1017,6 +1025,7 @@ gfwlist_update_main () {
 				logger -t "natcapd" "FLOWS: $line"
 				flows=$(echo "$line" | cut -d, -f4)
 				flows=$((flows+0))
+				natcapd_lock
 				if test $flows -ge $FL; then
 					logger -t "natcapd" "FLOWS: server_flow_stop=1"
 					echo server_flow_stop=1  >$DEV
@@ -1024,6 +1033,7 @@ gfwlist_update_main () {
 					echo server_flow_stop=0  >$DEV
 					logger -t "natcapd" "FLOWS: server_flow_stop=0"
 				fi
+				natcapd_unlock
 			done
 		}
 	done
