@@ -67,6 +67,7 @@ usb2="kmod-usb2 \
 	  kmod-fs-vfat \
 	  block-mount \
 	  blockd \
+	  kmod-fs-ntfs3-oot \
 	  kmod-fs-ntfs3"
 
 usb3="kmod-usb3 \
