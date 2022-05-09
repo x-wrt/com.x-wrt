@@ -967,6 +967,20 @@ nslookup_check () {
 	echo "$ipaddr"
 }
 
+nslookup_check_local () {
+	local domain ipaddr
+	domain=${1-www.baidu.com}
+	ipaddr=`busybox nslookup $domain 2>/dev/null | grep "$domain" -A5 | grep Address | grep -o '\([0-9]\{1,3\}\)\.\([0-9]\{1,3\}\)\.\([0-9]\{1,3\}\)\.\([0-9]\{1,3\}\)' | head -n1`
+	test -n "$ipaddr" || {
+		ipaddr=`busybox nslookup $domain 114.114.114.114 2>/dev/null | grep "$domain" -A5 | grep Address | grep -o '\([0-9]\{1,3\}\)\.\([0-9]\{1,3\}\)\.\([0-9]\{1,3\}\)\.\([0-9]\{1,3\}\)' | head -n1`
+		test -n "$ipaddr" || {
+			ipaddr=`busybox nslookup $domain 8.8.8.8 2>/dev/null | grep "$domain" -A5 | grep Address | grep -o '\([0-9]\{1,3\}\)\.\([0-9]\{1,3\}\)\.\([0-9]\{1,3\}\)\.\([0-9]\{1,3\}\)' | head -n1`
+		}
+	}
+	test -n "$ipaddr" || ipaddr=`echo -n $domain | grep -o '\([0-9]\{1,3\}\)\.\([0-9]\{1,3\}\)\.\([0-9]\{1,3\}\)\.\([0-9]\{1,3\}\)'`
+	echo "$ipaddr"
+}
+
 dns_proxy_check () {
 	test -c $DEV || return
 	cat $DEV | grep -q "dns_proxy_server=[1-9]" || return
@@ -1139,13 +1153,21 @@ ping_cli() {
 		PINGH=`uci get natcapd.default.peer_host`
 		test -n "$PINGH" || PINGH=ec2ns.ptpt52.com
 		if [ "$(echo $PINGH | wc -w)" = "1" ]; then
+			PINGIP=`nslookup_check_local $PINGH`
 			$PING -t1 -s16 -c16 -W1 -q $PINGH
+			test -n "$PINGIP" && \
+			$PING -t1 -s16 -c16 -W1 -q $PINGIP
 			sleep 1
 		else
 			for hh in $PINGH; do
-				$PING -t1 -s16 -c16 -W1 -q "$hh" &
+				(
+				hhip=`nslookup_check_local $hh`
+				$PING -t1 -s16 -c16 -W1 -q "$hh"
+				test -n "$hhip" && \
+				$PING -t1 -s16 -c16 -W1 -q "$hhip"
+				) &
 			done
-			sleep 16
+			sleep 34
 		fi
 		# about every 160 secs do peer_check
 		PEER_CHECK=`uci get natcapd.default.peer_check 2>/dev/null || echo 0`
