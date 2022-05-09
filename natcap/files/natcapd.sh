@@ -1111,11 +1111,8 @@ peer_check() {
 	test -n "$PINGH" || PINGH=ec2ns.ptpt52.com
 
 	res=`nslookup_check $PINGH`
-	if ! test -n "$res"; then
-		ipset add cniplist 0.0.0.0/1; ipset add cniplist 128.0.0.0/1
-		nslookup_check $PINGH
-		res=clean
-	fi
+	test -n "$res" || res=`nslookup_check_local $PINGH`
+	test -n "$res" && PINGH=$res
 
 	up1=`ping -W2 -c2 -q www.baidu.com 2>&1 | grep "packets received" | awk '{print $4}'`
 	up1=$((up1+0))
@@ -1130,9 +1127,6 @@ peer_check() {
 			}
 		fi
 	fi
-	[ "$res" = "clean" ] && {
-		ipset del cniplist 0.0.0.0/1; ipset del cniplist 128.0.0.0/1
-	}
 }
 
 peer_upstream_check() {
