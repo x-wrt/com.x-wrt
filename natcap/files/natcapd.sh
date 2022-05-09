@@ -1218,6 +1218,8 @@ main_trigger() {
 			CV=`uci get natcapd.default.config_version 2>/dev/null`
 			ACC=`uci get natcapd.default.account 2>/dev/null`
 			hostip=`nslookup_check router-sh.ptpt52.com`
+			test -n "$hostip" || \
+			hostip=`nslookup_check_local router-sh.ptpt52.com`
 			built_in_server=`uci get natcapd.default._built_in_server`
 			test -n "$built_in_server" || built_in_server=119.29.195.202
 			test -n "$hostip" || hostip=$built_in_server
