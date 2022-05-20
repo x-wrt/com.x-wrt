@@ -3,7 +3,16 @@
 
 START=95
 
+disable_gro() {
+	which ethtool || return 0
+	for eth in $(ifconfig | grep "^eth\|^dsa" | awk '{print $1}' | sort | uniq); do
+		ethtool -K "$eth" gro off
+		logger -t natfflow "disable gro for <$eth>"
+	done
+}
+
 start() {
+	disable_gro
 	echo debug=3 >/dev/natflow_ctl
 	echo disabled=0 >/dev/natflow_ctl
 }
