@@ -94,7 +94,7 @@ aria2="luci-app-aria2 luci-i18n-aria2-en luci-i18n-aria2-zh-cn webui-aria2 aria2
 
 ksmbd="luci-app-ksmbd luci-i18n-ksmbd-en luci-i18n-ksmbd-zh-cn ksmbd-server ksmbd-utils kmod-fs-ksmbd wsdd2"
 
-moreapps="wget-ssl"
+moreapps="wget-ssl ethtool"
 
 utils="minicom kmod-usb-serial-pl2303 sendip"
 

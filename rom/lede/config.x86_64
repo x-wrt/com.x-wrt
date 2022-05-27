@@ -5936,6 +5936,7 @@ CONFIG_PACKAGE_luci-i18n-openvpn-zh-cn=y
 # CONFIG_PACKAGE_luci-i18n-opkg-el is not set
 CONFIG_PACKAGE_luci-i18n-opkg-en=y
 # CONFIG_PACKAGE_luci-i18n-opkg-es is not set
+# CONFIG_PACKAGE_luci-i18n-opkg-fa is not set
 # CONFIG_PACKAGE_luci-i18n-opkg-fi is not set
 # CONFIG_PACKAGE_luci-i18n-opkg-fr is not set
 # CONFIG_PACKAGE_luci-i18n-opkg-he is not set
@@ -8211,7 +8212,7 @@ CONFIG_PACKAGE_luci-app-wizard=y
 #
 CONFIG_PACKAGE_kmod-natflow=y
 CONFIG_PACKAGE_natflow-auth=y
-# CONFIG_PACKAGE_natflow-boot is not set
+CONFIG_PACKAGE_natflow-boot=y
 # end of Fast Forward Stacks
 
 #
