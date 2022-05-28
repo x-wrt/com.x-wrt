@@ -583,6 +583,7 @@ uci get firewall.natcapd >/dev/null 2>&1 || {
 	/etc/init.d/firewall reload >/dev/null 2>&1 || echo /etc/init.d/firewall reload failed
 }
 
+test -x /etc/init.d/natflow-boot || {
 test -c /dev/natflow_ctl && {
 	enable_natflow=`uci get natcapd.default.enable_natflow 2>/dev/null || echo 0`
 	enable_natflow_hw=`uci get natcapd.default.enable_natflow_hw 2>/dev/null || echo 0`
@@ -597,6 +598,7 @@ test -c /dev/natflow_ctl && {
 	echo debug=3 >/dev/natflow_ctl
 	echo disabled=$((!enable_natflow)) >/dev/natflow_ctl
 	echo hwnat=$((enable_natflow_hw)) >/dev/natflow_ctl
+}
 }
 
 test -c /dev/natcap_peer_ctl && {
