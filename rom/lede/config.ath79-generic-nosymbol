@@ -746,8 +746,7 @@ CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_ubnt_unifiac-mesh-pro=y
 CONFIG_TARGET_DEVICE_PACKAGES_ath79_generic_DEVICE_ubnt_unifiac-mesh-pro="ath10k-board-qca988x ath10k-firmware-qca988x-ct kmod-ath10k-ct kmod-ath9k kmod-ath9k-common kmod-gpio-button-hotplug kmod-hwmon-core wpad-basic-wolfssl"
 CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_ubnt_unifiac-pro=y
 CONFIG_TARGET_DEVICE_PACKAGES_ath79_generic_DEVICE_ubnt_unifiac-pro="ath10k-board-qca988x ath10k-firmware-qca988x-ct blockd block-mount kmod-ath10k-ct kmod-ath9k kmod-ath9k-common kmod-exfat-linux kmod-fs-autofs4 kmod-fs-ext4 kmod-fs-msdos kmod-fs-ntfs3-oot kmod-fs-vfat kmod-fuse kmod-gpio-button-hotplug kmod-hwmon-core kmod-lib-crc16 kmod-mii kmod-nls-cp437 kmod-phy-ath79-usb kmod-scsi-core kmod-usb2 kmod-usb-core kmod-usb-ehci kmod-usb-net kmod-usb-net-cdc-ether kmod-usb-net-rndis kmod-usb-ohci kmod-usb-storage kmod-usb-storage-uas wpad-basic-wolfssl"
-CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_ubnt_unifi=y
-CONFIG_TARGET_DEVICE_PACKAGES_ath79_generic_DEVICE_ubnt_unifi="ath10k-board-qca988x ath10k-firmware-qca988x-ct blockd block-mount kmod-ath10k-ct kmod-ath9k kmod-ath9k-common kmod-exfat-linux kmod-fs-autofs4 kmod-fs-ext4 kmod-fs-msdos kmod-fs-ntfs3-oot kmod-fs-vfat kmod-fuse kmod-gpio-button-hotplug kmod-hwmon-core kmod-lib-crc16 kmod-mii kmod-nls-cp437 kmod-phy-ath79-usb kmod-scsi-core kmod-usb2 kmod-usb-core kmod-usb-ehci kmod-usb-net kmod-usb-net-cdc-ether kmod-usb-net-rndis kmod-usb-ohci kmod-usb-storage kmod-usb-storage-uas wpad-basic-wolfssl"
+# CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_ubnt_unifi is not set
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_ubnt_unifi-ap-outdoor-plus is not set
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_ubnt_unifi-ap-pro is not set
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_wallys_dr531 is not set
@@ -6018,7 +6017,6 @@ CONFIG_PACKAGE_luci-mod-system=y
 CONFIG_PACKAGE_luci-app-aria2=m
 # CONFIG_PACKAGE_luci-app-attendedsysupgrade is not set
 # CONFIG_PACKAGE_luci-app-babeld is not set
-# CONFIG_PACKAGE_luci-app-banip is not set
 # CONFIG_PACKAGE_luci-app-bcp38 is not set
 # CONFIG_PACKAGE_luci-app-bird1-ipv4 is not set
 # CONFIG_PACKAGE_luci-app-bird1-ipv6 is not set
@@ -7483,7 +7481,6 @@ CONFIG_PACKAGE_6to4=y
 # CONFIG_PACKAGE_atlas-probe is not set
 # CONFIG_PACKAGE_atlas-sw-probe is not set
 # CONFIG_PACKAGE_atlas-sw-probe-rpc is not set
-# CONFIG_PACKAGE_banip is not set
 # CONFIG_PACKAGE_batctl-default is not set
 CONFIG_PACKAGE_batctl-full=m
 # CONFIG_PACKAGE_batctl-tiny is not set
