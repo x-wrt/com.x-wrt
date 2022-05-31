@@ -316,6 +316,7 @@ test $version -lt 15 && {
 
 test $version -lt 16 && {
 	rm -f /etc/nginx/conf.d/_lan.crt  /etc/nginx/conf.d/_lan.key
+	version=16
 }
 
 uci set fstab.@global[0].anon_mount_bak="`uci get fstab.@global[0].anon_mount_bak 2>/dev/null || uci get fstab.@global[0].anon_mount 2>/dev/null`"
