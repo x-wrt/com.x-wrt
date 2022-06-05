@@ -30,3 +30,12 @@ msgstr "访问控制器的简单ip地址。"
 
 msgid "Access IP address"
 msgstr "访问 IP 地址"
+
+msgid "Sync Config"
+msgstr "同步配置"
+
+msgid "Sync config from the Controller."
+msgstr "从AC控制器同步配置。"
+
+msgid "Wireless Management"
+msgstr "无线管理"
