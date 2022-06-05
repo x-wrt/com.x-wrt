@@ -169,7 +169,7 @@ agent_fix_channel()
 	# http://controller.fakemesh/fakemesh.435ca8a686ae9f07eb4eb67d2216b154
 	[ "$role" = "controller" ] && {
 		hash=$(echo -n $id$key | md5sum | head -c32)
-		ln -s /etc/config/fakemesh /www/fakemesh.$hash
+		ln -s /etc/config/fakemesh /www/fakemesh.$hash 2>/dev/null
 		for f in $(ls /www/fakemesh.*); do
 			[ "$f" != "/www/fakemesh.$hash" ] && rm -f "$f"
 		done
@@ -221,26 +221,27 @@ if [ "$role" = "controller" ]; then
 
 		#meshx1
 		uci delete wireless.meshx1 >/dev/null 2>&1
+	fi
 
-		uci set dhcp.lan.ignore='0'
-		uci delete dhcp.meshx0 >/dev/null 2>&1
-		uci delete network.meshx0 >/dev/null 2>&1
+	uci set dhcp.lan.ignore='0'
+	uci delete dhcp.meshx0 >/dev/null 2>&1
+	uci delete network.meshx0 >/dev/null 2>&1
 
-		# reload firewall
-		uci get firewall.fakemesh >/dev/null 2>&1 || {
-		uci -q batch <<-EOT
-		delete firewall.fakemesh
-		set firewall.fakemesh=include
-		set firewall.fakemesh.type=script
-		set firewall.fakemesh.path=/usr/share/fakemesh/firewall.include
-		set firewall.fakemesh.family=any
-		set firewall.fakemesh.reload=1
-		commit firewall
-		EOT
-		}
+	# reload firewall
+	uci get firewall.fakemesh >/dev/null 2>&1 || {
+	uci -q batch <<-EOT
+	delete firewall.fakemesh
+	set firewall.fakemesh=include
+	set firewall.fakemesh.type=script
+	set firewall.fakemesh.path=/usr/share/fakemesh/firewall.include
+	set firewall.fakemesh.family=any
+	set firewall.fakemesh.reload=1
+	commit firewall
+	EOT
+	}
 
-		mkdir -p /usr/share/fakemesh
-		cat >/tmp/fakemesh.firewall.include <<-EOT
+	mkdir -p /usr/share/fakemesh
+	cat >/tmp/fakemesh.firewall.include <<-EOT
 #!/bin/sh
 iptables -t nat -C prerouting_lan_rule -d $access_ip/32 -p tcp --dport 80 -j REDIRECT --to-ports 80 2>/dev/null || \
 iptables -t nat -A prerouting_lan_rule -d $access_ip/32 -p tcp --dport 80 -j REDIRECT --to-ports 80
@@ -252,35 +253,34 @@ nft insert rule inet fw4 dstnat iifname { \$(echo \$(fw4 -q zone lan | grep -v '
 nft insert rule inet fw4 dstnat iifname { \$(echo \$(fw4 -q zone lan | grep -v '*' | sort | uniq | sed 's/\(.*\)/"\1",/g') | sed 's/,$//') } ip daddr $access_ip/32 tcp dport 443 counter redirect to :443 comment "fakemesh"
 
 EOT
-		ln -s /tmp/fakemesh.firewall.include /usr/share/fakemesh/firewall.include 2>/dev/null
-		grep -q "^sh /usr/share/fakemesh/firewall.include" /etc/firewall.include || echo "sh /usr/share/fakemesh/firewall.include" >>/etc/firewall.include
+	ln -s /tmp/fakemesh.firewall.include /usr/share/fakemesh/firewall.include 2>/dev/null
+	grep -q "^sh /usr/share/fakemesh/firewall.include" /etc/firewall.include || echo "sh /usr/share/fakemesh/firewall.include" >>/etc/firewall.include
 
-		grep -q "^$access_ip controller.fakemesh" /etc/hosts || {
-			if grep -q ".* controller.fakemesh" /etc/hosts; then
-				sed -i "s/.* controller.fakemesh/$access_ip controller.fakemesh/" /etc/hosts
-			else
-				echo "$access_ip controller.fakemesh" >>/etc/hosts
-			fi
-			/etc/init.d/dnsmasq reload
-		}
+	grep -q "^$access_ip controller.fakemesh" /etc/hosts || {
+		if grep -q ".* controller.fakemesh" /etc/hosts; then
+			sed -i "s/.* controller.fakemesh/$access_ip controller.fakemesh/" /etc/hosts
+		else
+			echo "$access_ip controller.fakemesh" >>/etc/hosts
+		fi
+		/etc/init.d/dnsmasq reload
+	}
 
-		/etc/init.d/firewall restart >/dev/null 2>&1
+	/etc/init.d/firewall restart >/dev/null 2>&1
 
-		test $(uci changes | wc -l) -le 1 && {
-			uci revert wireless
-			uci revert dhcp
-			uci revert network
-			exit 0
-		}
+	test $(uci changes | wc -l) -le 1 && {
+		uci revert wireless
+		uci revert dhcp
+		uci revert network
+		exit 0
+	}
 
-		uci commit wireless
-		uci commit dhcp
-		uci commit network
+	uci commit wireless
+	uci commit dhcp
+	uci commit network
 
-		(sleep 15
-		 /etc/init.d/network reload
-		 /etc/init.d/dnsmasq reload)&
-	fi
+	(sleep 15
+	 /etc/init.d/network reload
+	 /etc/init.d/dnsmasq reload)&
 
 	exec /usr/sbin/fakemesh gen_config
 else
