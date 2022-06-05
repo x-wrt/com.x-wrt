@@ -49,6 +49,7 @@ return view.extend({
 		o.default = '5g';
 
 		o = s.option(form.ListValue, 'role', _('Role'), _('Set the gateway router as controller, others as agent.'));
+		o.value('wap', _('Wired AP'));
 		o.value('agent', _('Agent'));
 		o.value('controller', _('Controller'));
 		o.default = 'agent';

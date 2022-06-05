@@ -34,8 +34,43 @@ config_get id default 'id'
 config_get key default 'key'
 config_get access_ip default 'access_ip' '10.10.10.1'
 
+agent_sync_config()
+{
+	[ "$role" = "agent" ] || [ "$role" = "wap" ] || exit 0
+	[ "$role" = "wap" ] && {
+		#make sure agent_keep_alive stopped
+		rm -rf /tmp/fakemesh_lck2*
+	}
+
+	mkdir /tmp/fakemesh_lck3 || exit 0
+	pid=$$
+	touch /tmp/fakemesh_lck3/$pid
+
+	logger -t fakemesh "agent_sync_config($pid): started!"
+
+	ln -s /tmp/fakemesh.ac.config /etc/config/fakemeshac 2>/dev/null
+
+	while :; do
+		sleep 10
+		hash=$(echo -n $id$key | md5sum | head -c32)
+		timeout 30 wget -O /tmp/fakemesh.ac.config http://controller.fakemesh/fakemesh.$hash || {
+			logger -t fakemesh "agent_sync_config($pid): fetch config failed!"
+			sleep 30
+			test -f /tmp/fakemesh_lck3/$pid || return 0
+		}
+
+		rand=$(hexdump -e '16/1  "%u"' -n4 /dev/urandom)
+		sleep $((50+rand%20))
+		test -f /tmp/fakemesh_lck3/$pid || return 0
+	done
+
+	rm -f /tmp/fakemesh_lck3/$pid; rmdir /tmp/fakemesh_lck3
+}
+
 agent_keep_alive()
 {
+	[ "$role" = "agent" ] || exit 0
+
 	sta_lost=0
 
 	wbandstr=$(uci show wireless | grep =\'${band}\'$ | head -n1)
@@ -76,6 +111,8 @@ agent_keep_alive()
 
 agent_fix_channel()
 {
+	exec /usr/sbin/fakemesh agent_sync_config &
+
 	[ "$role" = "agent" ] || exit 0
 
 	wbandstr=$(uci show wireless | grep =\'${band}\'$ | head -n1)
@@ -123,11 +160,16 @@ agent_fix_channel()
 	exit 0
 }
 
+[ "x$1" = "xagent_sync_config" ] && {
+	agent_sync_config
+	exit 0
+}
+
 [ "x$1" = "xgen_config" ] && {
 	# http://controller.fakemesh/fakemesh.435ca8a686ae9f07eb4eb67d2216b154
 	[ "$role" = "controller" ] && {
 		hash=$(echo -n $id$key | md5sum | head -c32)
-		ln -s /etc/config/wireless /www/fakemesh.$hash
+		ln -s /etc/config/fakemesh /www/fakemesh.$hash
 		for f in $(ls /www/fakemesh.*); do
 			[ "$f" != "/www/fakemesh.$hash" ] && rm -f "$f"
 		done
@@ -288,6 +330,7 @@ else
 		uci set wireless.meshx1.wpa_pair_rekey='0'
 		uci set wireless.meshx1.wpa_master_rekey='0'
 		uci set wireless.meshx1.disassoc_low_ack='0'
+		[ "$role" = "wap" ] && uci set wireless.meshx1.disabled='1'
 
 		if [ "$band" = "5g" ]; then
 			uci set wireless.${radio}.channel='36'

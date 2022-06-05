@@ -16,6 +16,9 @@ msgstr "不需要加密请留空白。"
 msgid "Set the gateway router as controller, others as agent."
 msgstr "把网关路由器设置成控制器，其他设置成卫星。"
 
+msgid "Wired AP"
+msgstr "有线AP"
+
 msgid "Agent"
 msgstr "卫星"
 
