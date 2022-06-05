@@ -337,21 +337,22 @@ else
 		else
 			uci set wireless.${radio}.channel='1'
 		fi
+	fi
 
-		uci set dhcp.lan.ignore='1'
+	uci set dhcp.lan.ignore='1'
 
-		uci set dhcp.meshx0=dhcp
-		uci set dhcp.meshx0.ignore='1'
+	uci set dhcp.meshx0=dhcp
+	uci set dhcp.meshx0.ignore='1'
 
-		uci set network.meshx0=interface
-		uci set network.meshx0.device="$(uci get network.lan.device)"
-		uci set network.meshx0.proto='dhcp'
-		uci set network.meshx0.defaultroute='1'
-		uci set network.meshx0.metric='1000'
-		uci set network.meshx0.hostname="MESH-AGENT_$(echo -n $MACADDR | sed 's/://g' | tr a-f A-F)"
+	uci set network.meshx0=interface
+	uci set network.meshx0.device="$(uci get network.lan.device)"
+	uci set network.meshx0.proto='dhcp'
+	uci set network.meshx0.defaultroute='1'
+	uci set network.meshx0.metric='1000'
+	uci set network.meshx0.hostname="MESH-AGENT_$(echo -n $MACADDR | sed 's/://g' | tr a-f A-F)"
 
-		# reload firewall
-		uci get firewall.fakemesh >/dev/null 2>&1 || {
+	# reload firewall
+	uci get firewall.fakemesh >/dev/null 2>&1 || {
 		uci -q batch <<-EOT
 		delete firewall.fakemesh
 		set firewall.fakemesh=include
@@ -361,10 +362,10 @@ else
 		set firewall.fakemesh.reload=1
 		commit firewall
 		EOT
-		}
+	}
 
-		mkdir -p /usr/share/fakemesh
-		cat >/tmp/fakemesh.firewall.include <<-EOT
+	mkdir -p /usr/share/fakemesh
+	cat >/tmp/fakemesh.firewall.include <<-EOT
 #!/bin/sh
 iptables -t filter -C output_lan_rule -j MARK --set-xmark 0x00010000/0x00010000 2>/dev/null || \
 iptables -t filter -A output_lan_rule -j MARK --set-xmark 0x00010000/0x00010000
@@ -377,28 +378,27 @@ nft insert rule inet fw4 output_lan counter meta mark set mark or 0x10000 commen
 nft -a list chain inet fw4 srcnat | grep -o "fakemesh_mark_0x10000.*" | while read _ _ _ handle; do nft delete rule inet fw4 srcnat handle \$handle; done
 nft insert rule inet fw4 srcnat oifname { \$(echo \$(fw4 -q zone lan | grep -v '*' | sort | uniq | sed 's/\(.*\)/"\1",/g') | sed 's/,$//') } mark and 0x10000 == 0x10000 counter masquerade comment "fakemesh_mark_0x10000"
 EOT
-		ln -s /tmp/fakemesh.firewall.include /usr/share/fakemesh/firewall.include 2>/dev/null
-		grep -q "^sh /usr/share/fakemesh/firewall.include" /etc/firewall.include || echo "sh /usr/share/fakemesh/firewall.include" >>/etc/firewall.include
+	ln -s /tmp/fakemesh.firewall.include /usr/share/fakemesh/firewall.include 2>/dev/null
+	grep -q "^sh /usr/share/fakemesh/firewall.include" /etc/firewall.include || echo "sh /usr/share/fakemesh/firewall.include" >>/etc/firewall.include
 
-		/etc/init.d/firewall restart >/dev/null 2>&1
+	/etc/init.d/firewall restart >/dev/null 2>&1
 
-		test $(uci changes | wc -l) -le 5 && {
-			uci revert wireless
-			uci revert dhcp
-			uci revert network
+	test $(uci changes | wc -l) -le 5 && {
+		uci revert wireless
+		uci revert dhcp
+		uci revert network
 
-			agent_fix_channel &
-			exit 0
-		}
+		agent_fix_channel &
+		exit 0
+	}
 
-		uci commit wireless
-		uci commit dhcp
-		uci commit network
-		sed -i "/.* controller.fakemesh/d" /etc/hosts
+	uci commit wireless
+	uci commit dhcp
+	uci commit network
+	sed -i "/.* controller.fakemesh/d" /etc/hosts
 
-		(sleep 15
-		 /etc/init.d/network reload
-		 /etc/init.d/dnsmasq reload
-		 agent_fix_channel)&
-	fi
+	(sleep 15
+	 /etc/init.d/network reload
+	 /etc/init.d/dnsmasq reload
+	 agent_fix_channel)&
 fi
