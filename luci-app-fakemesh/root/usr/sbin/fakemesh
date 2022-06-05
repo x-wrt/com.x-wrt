@@ -59,6 +59,67 @@ agent_sync_config()
 			test -f /tmp/fakemesh_lck3/$pid || return 0
 		}
 
+		oldcfgmd5=$(uci get fakemesh.default.wifim_md5 2>/dev/null)
+		newcfgmd5=$(uci show fakemeshac | grep "^fakemeshac.@wifim" | md5sum | head -c 32)
+		[ "${oldcfgmd5}" = "${newcfgmd5}" ] || {
+			#delete old wifi config
+			I=0
+			while uci get wireless.@wifi-iface[$I] >/dev/null 2>&1; do
+				if uci show wireless.@wifi-iface[$I] | grep -q wireless.meshx[01]=wifi-iface; then
+					I=$((I+1))
+				fi
+				uci delete wireless.@wifi-iface[$I]
+			done
+
+			J=0
+			K=0
+			while uci get fakemeshac.@wifim[$J] >/dev/null 2>&1; do
+				ssid=$(uci get fakemeshac.@wifim[$J].ssid)
+				encryption=$(uci get fakemeshac.@wifim[$J].encryption)
+				key=$(uci get fakemeshac.@wifim[$J].key)
+				bands=$(uci get fakemeshac.@wifim[$J].band)
+				enabled=$(uci get fakemeshac.@wifim[$J].enabled || echo 1)
+
+				[ "$bands" = "2g5g" ] && bands="2g 5g"
+
+				[ "$enabled" = "1" ] && {
+					for band in $bands; do
+						wbandstr=$(uci show wireless | grep .band=\'${band}\'$ | head -n1)
+						if test -n "$wbandstr"; then
+							radio=$(echo $wbandstr | cut -d\. -f2)
+
+							uci set wireless.wifinet$K=wifi-iface
+							uci set wireless.wifinet$K.device="${radio}"
+							uci set wireless.wifinet$K.network='lan'
+							uci set wireless.wifinet$K.mode='ap'
+							uci set wireless.wifinet$K.ssid="${ssid}"
+							if [ "${encryption}" != "none" ]; then
+								uci set wireless.wifinet$K.encryption="${encryption}"
+								uci set wireless.wifinet$K.key="${key}"
+							else
+								uci set wireless.wifinet$K.encryption='none'
+							fi
+							uci set wireless.wifinet$K.skip_inactivity_poll='1'
+							uci set wireless.wifinet$K.wpa_group_rekey='0'
+							uci set wireless.wifinet$K.wpa_pair_rekey='0'
+							uci set wireless.wifinet$K.wpa_master_rekey='0'
+							uci set wireless.wifinet$K.disassoc_low_ack='0'
+
+							K=$((K+1))
+						fi
+					done
+				}
+
+				J=$((J+1))
+			done
+
+			uci set fakemesh.default.wifim_md5="${newcfgmd5}"
+
+			uci commit fakemesh
+			uci commit wireless
+			/etc/init.d/network reload &
+		}
+
 		rand=$(hexdump -e '16/1  "%u"' -n4 /dev/urandom)
 		sleep $((50+rand%20))
 		test -f /tmp/fakemesh_lck3/$pid || return 0
@@ -73,7 +134,7 @@ agent_keep_alive()
 
 	sta_lost=0
 
-	wbandstr=$(uci show wireless | grep =\'${band}\'$ | head -n1)
+	wbandstr=$(uci show wireless | grep .band=\'${band}\'$ | head -n1)
 	radio=$(echo $wbandstr | cut -d\. -f2)
 	channel=$(uci get wireless.${radio}.channel)
 	test -n "$channel" || return 1
@@ -115,7 +176,7 @@ agent_fix_channel()
 
 	[ "$role" = "agent" ] || exit 0
 
-	wbandstr=$(uci show wireless | grep =\'${band}\'$ | head -n1)
+	wbandstr=$(uci show wireless | grep .band=\'${band}\'$ | head -n1)
 	radio=$(echo $wbandstr | cut -d\. -f2)
 	channel=$(uci get wireless.${radio}.channel)
 	test -n "$channel" || return 1
@@ -194,7 +255,7 @@ if [ "$role" = "controller" ]; then
 	rm -rf /tmp/fakemesh_lck*
 
 	# wireless.radio0.band='2g'
-	wbandstr=$(uci show wireless | grep =\'${band}\'$ | head -n1)
+	wbandstr=$(uci show wireless | grep .band=\'${band}\'$ | head -n1)
 	if test -n "$wbandstr"; then
 		radio=$(echo $wbandstr | cut -d\. -f2) # radio0
 
@@ -286,7 +347,7 @@ EOT
 else
 
 	# wireless.radio0.band='2g'
-	wbandstr=$(uci show wireless | grep =\'${band}\'$ | head -n1)
+	wbandstr=$(uci show wireless | grep .band=\'${band}\'$ | head -n1)
 	if test -n "$wbandstr"; then
 		radio=$(echo $wbandstr | cut -d\. -f2) # radio0
 
