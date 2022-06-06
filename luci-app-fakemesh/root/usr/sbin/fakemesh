@@ -58,7 +58,6 @@ config_get sync_ac default 'sync_ac' '1'
 agent_sync_config()
 {
 	[ "$sync_ac" = "1" ] || return 0
-	[ "$role" = "agent" ] || [ "$role" = "wap" ] || return 0
 	[ "$role" = "wap" ] && {
 		#make sure agent_keep_alive stopped
 		rm -rf /tmp/fakemesh_lck2*
@@ -75,6 +74,7 @@ agent_sync_config()
 	while :; do
 		sleep 10
 		hash=$(echo -n $id$key | md5sum | head -c32)
+		[ "$role" = "controller" ] && cp /etc/config/fakemesh /tmp/fakemesh.ac.config.tmp || \
 		timeout 30 wget -qO /tmp/fakemesh.ac.config.tmp http://controller.fakemesh/fakemesh.$hash || {
 			logger -t fakemesh "agent_sync_config($pid): fetch config failed!"
 			sleep 30
@@ -383,6 +383,8 @@ EOT
 		uci revert wireless
 		uci revert dhcp
 		uci revert network
+
+		exec /usr/sbin/fakemesh agent_sync_config &
 		exit 0
 	}
 
@@ -392,7 +394,8 @@ EOT
 
 	(sleep 15
 	 /etc/init.d/network reload
-	 /etc/init.d/dnsmasq reload)&
+	 /etc/init.d/dnsmasq reload
+	 exec /usr/sbin/fakemesh agent_sync_config & )&
 else
 
 	# wireless.radio0.band='2g'
@@ -517,7 +520,7 @@ EOT
 		uci revert dhcp
 		uci revert network
 
-		agent_fix_channel &
+		exec /usr/sbin/fakemesh agent_fix_channel &
 		exit 0
 	}
 
@@ -529,5 +532,5 @@ EOT
 	(sleep 15
 	 /etc/init.d/network reload
 	 /etc/init.d/dnsmasq reload
-	 agent_fix_channel)&
+	 exec /usr/sbin/fakemesh agent_fix_channel & )&
 fi

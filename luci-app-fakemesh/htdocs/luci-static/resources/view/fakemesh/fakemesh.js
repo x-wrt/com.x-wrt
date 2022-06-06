@@ -62,8 +62,6 @@ return view.extend({
 		o.datatype = 'ip4addr';
 
 		o = s.option(form.Flag, 'sync_ac', _('Sync Config'), _('Sync config from the Controller.'));
-		o.depends('role', 'wap');
-		o.depends('role', 'agent');
 		o.enabled = '1';
 		o.disabled = '0';
 		o.default = o.enabled;
