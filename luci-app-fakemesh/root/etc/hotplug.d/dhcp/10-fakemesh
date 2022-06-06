@@ -23,7 +23,9 @@ esac
 	echo -n >/tmp/hosts/fakemesh.idx
 	idx=1
 	cat /tmp/hosts/fakemesh | while read ip h; do
-		echo $ip $((idx++)).ap.fakemesh >>/tmp/hosts/fakemesh.idx
+		echo $h $ip
+	done | sort | while read h ip; do
+		echo "$ip $((idx++)).ap.fakemesh # $h" >>/tmp/hosts/fakemesh.idx
 	done
 	/etc/init.d/dnsmasq reload &
 }
