@@ -8,6 +8,8 @@ config_load fakemesh
 config_get_bool enabled default 'enabled' '0'
 
 test $enabled -eq 0 && {
+	rm -f /tmp/fakemesh.ac.config
+	rm -f /etc/config/fakemeshac
 	rm -rf /tmp/fakemesh_lck*
 	uci delete wireless.meshx0 >/dev/null 2>&1
 	uci delete wireless.meshx1 >/dev/null 2>&1
@@ -57,6 +59,7 @@ config_get sync_ac default 'sync_ac' '1'
 
 agent_sync_config()
 {
+	touch /tmp/fakemesh.ac.config
 	[ "$sync_ac" = "1" ] || return 0
 	[ "$role" = "wap" ] && {
 		#make sure agent_keep_alive stopped
