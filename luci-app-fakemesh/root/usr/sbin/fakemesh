@@ -53,11 +53,13 @@ agent_sync_config()
 	while :; do
 		sleep 10
 		hash=$(echo -n $id$key | md5sum | head -c32)
-		timeout 30 wget -qO /tmp/fakemesh.ac.config http://controller.fakemesh/fakemesh.$hash || {
+		timeout 30 wget -qO /tmp/fakemesh.ac.config.tmp http://controller.fakemesh/fakemesh.$hash || {
 			logger -t fakemesh "agent_sync_config($pid): fetch config failed!"
 			sleep 30
+			rm -f /tmp/fakemesh.ac.config.tmp
 			test -f /tmp/fakemesh_lck3/$pid || return 0
 		}
+		mv /tmp/fakemesh.ac.config.tmp /tmp/fakemesh.ac.config
 
 		logger -t fakemesh "agent_sync_config($pid): fetch config ok!"
 
