@@ -2,12 +2,14 @@
 ssid=$(uci get base_config.@status[0].SSID)
 ssid_passwd=$(uci get base_config.@status[0].SSID_PASSWD)
 
-uci get fakemesh.@wifim[0] || {
+uci get fakemesh.default.init || {
 	uci add fakemesh wifim
 	uci set fakemesh.@wifim[0].ssid="${ssid}"
 	uci set fakemesh.@wifim[0].encryption='psk2'
 	uci set fakemesh.@wifim[0].key="${ssid_passwd}"
 	uci set fakemesh.@wifim[0].band='2g5g'
+
+	uci set fakemesh.default.init=1
 	uci commit fakemesh
 }
 
