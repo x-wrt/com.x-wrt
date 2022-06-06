@@ -126,7 +126,7 @@ agent_sync_config()
 			/etc/init.d/network reload &
 		}
 
-		rand=$(hexdump -e '16/1  "%u"' -n4 /dev/urandom)
+		rand=$(hexdump -e '2/1  "%u"' -n2 /dev/urandom)
 		sleep $((50+rand%20))
 		test -f /tmp/fakemesh_lck3/$pid || return 0
 	done
