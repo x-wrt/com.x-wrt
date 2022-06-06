@@ -19,6 +19,20 @@ test $enabled -eq 0 && {
 	sed -i "/.* controller.fakemesh/d" /etc/hosts
 	sed -i "/sh \/usr\/share\/fakemesh\/firewall.include.*/d" /etc/firewall.include
 
+	#re-enable wan
+	uci set network.wan.auto='1'
+	uci set network.wan6.auto='1'
+	#del wan port from br-lan
+	local lan_idx=0
+	while uci get network.@device[$lan_idx] >/dev/null 2>&1 && [ $(uci get network.@device[$lan_idx].name) != "br-lan" ]; do lan_idx=$((lan_idx+1)); done
+	lan_ports="$(uci get network.@device[$lan_idx].ports 2>/dev/null)"
+	wan_port="$(uci get network.wan.device 2>/dev/null)"
+	lan_ports=`for lp in $lan_ports; do [ "$lp" = "$wan_port" ] || echo $lp; done | sort | uniq`
+	uci delete network.@device[$lan_idx].ports
+	for lp in $lan_ports; do
+		uci add_list network.@device[$lan_idx].ports="$lp"
+	done
+
 	uci commit wireless
 	uci commit dhcp
 	uci commit network
@@ -296,6 +310,20 @@ if [ "$role" = "controller" ]; then
 	uci delete dhcp.meshx0 >/dev/null 2>&1
 	uci delete network.meshx0 >/dev/null 2>&1
 
+	#re-enable wan
+	uci set network.wan.auto='1'
+	uci set network.wan6.auto='1'
+	#del wan port from br-lan
+	local lan_idx=0
+	while uci get network.@device[$lan_idx] >/dev/null 2>&1 && [ $(uci get network.@device[$lan_idx].name) != "br-lan" ]; do lan_idx=$((lan_idx+1)); done
+	lan_ports="$(uci get network.@device[$lan_idx].ports 2>/dev/null)"
+	wan_port="$(uci get network.wan.device 2>/dev/null)"
+	lan_ports=`for lp in $lan_ports; do [ "$lp" = "$wan_port" ] || echo $lp; done | sort | uniq`
+	uci delete network.@device[$lan_idx].ports
+	for lp in $lan_ports; do
+		uci add_list network.@device[$lan_idx].ports="$lp"
+	done
+
 	# reload firewall
 	uci get firewall.fakemesh >/dev/null 2>&1 || {
 	uci -q batch <<-EOT
@@ -419,6 +447,19 @@ else
 	uci set network.meshx0.defaultroute='1'
 	uci set network.meshx0.metric='10'
 	uci set network.meshx0.hostname="MESH-AGENT_$(echo -n $MACADDR | sed 's/://g' | tr a-f A-F)"
+
+	#disable wan
+	uci set network.wan.auto='0'
+	uci set network.wan6.auto='0'
+	#add wan port to br-lan
+	local lan_idx=0
+	while uci get network.@device[$lan_idx] >/dev/null 2>&1 && [ $(uci get network.@device[$lan_idx].name) != "br-lan" ]; do lan_idx=$((lan_idx+1)); done
+	lan_ports="$(uci get network.@device[$lan_idx].ports 2>/dev/null) $(uci get network.wan.device 2>/dev/null)"
+	lan_ports=`for lp in $lan_ports; do echo $lp; done | sort | uniq`
+	uci delete network.@device[$lan_idx].ports
+	for lp in $lan_ports; do
+		uci add_list network.@device[$lan_idx].ports="$lp"
+	done
 
 	# reload firewall
 	uci get firewall.fakemesh >/dev/null 2>&1 || {
