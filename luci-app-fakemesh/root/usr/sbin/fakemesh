@@ -373,7 +373,7 @@ EOT
 
 	/etc/init.d/firewall restart >/dev/null 2>&1
 
-	exec /usr/sbin/fakemesh gen_config
+	exec /usr/sbin/fakemesh gen_config &
 
 	uci changes
 
@@ -460,8 +460,8 @@ else
 	uci set network.meshx0.hostname="MESH-AGENT_$(echo -n $MACADDR | sed 's/://g' | tr a-f A-F)"
 
 	#disable wan
-	uci set network.wan.auto='0'
-	uci set network.wan6.auto='0'
+	uci set network.wan.auto='0' 2>/dev/null
+	uci set network.wan6.auto='0' 2>/dev/null
 	#add wan port to br-lan
 	lan_idx=0
 	while uci get network.@device[$lan_idx] >/dev/null 2>&1 && [ $(uci get network.@device[$lan_idx].name) != "br-lan" ]; do lan_idx=$((lan_idx+1)); done
