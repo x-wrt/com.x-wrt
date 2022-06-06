@@ -59,9 +59,12 @@ agent_sync_config()
 			test -f /tmp/fakemesh_lck3/$pid || return 0
 		}
 
+		logger -t fakemesh "agent_sync_config($pid): fetch config ok!"
+
 		oldcfgmd5=$(uci get fakemesh.default.wifim_md5 2>/dev/null)
 		newcfgmd5=$(uci show fakemeshac | grep "^fakemeshac.@wifim" | md5sum | head -c 32)
 		[ "${oldcfgmd5}" = "${newcfgmd5}" ] || {
+			logger -t fakemesh "agent_sync_config($pid): config change!"
 			#delete old wifi config
 			I=0
 			while uci get wireless.@wifi-iface[$I] >/dev/null 2>&1; do
@@ -328,7 +331,9 @@ EOT
 
 	/etc/init.d/firewall restart >/dev/null 2>&1
 
-	test $(uci changes | wc -l) -le 1 && {
+	exec /usr/sbin/fakemesh gen_config
+
+	test $(uci changes 2>/dev/null | wc -l) -le 1 && {
 		uci revert wireless
 		uci revert dhcp
 		uci revert network
@@ -342,8 +347,6 @@ EOT
 	(sleep 15
 	 /etc/init.d/network reload
 	 /etc/init.d/dnsmasq reload)&
-
-	exec /usr/sbin/fakemesh gen_config
 else
 
 	# wireless.radio0.band='2g'
