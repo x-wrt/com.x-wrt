@@ -53,7 +53,7 @@ agent_sync_config()
 	while :; do
 		sleep 10
 		hash=$(echo -n $id$key | md5sum | head -c32)
-		timeout 30 wget -O /tmp/fakemesh.ac.config http://controller.fakemesh/fakemesh.$hash || {
+		timeout 30 wget -qO /tmp/fakemesh.ac.config http://controller.fakemesh/fakemesh.$hash || {
 			logger -t fakemesh "agent_sync_config($pid): fetch config failed!"
 			sleep 30
 			test -f /tmp/fakemesh_lck3/$pid || return 0
@@ -244,6 +244,8 @@ agent_fix_channel()
 test -n "$id" || {
 	exit 0
 }
+
+rm -rf /tmp/fakemesh_lck*
 
 MACADDR=""
 test -e /usr/share/natcapd/board_mac.lua && MACADDR=`lua /usr/share/natcapd/board_mac.lua`
