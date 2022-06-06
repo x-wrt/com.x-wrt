@@ -72,6 +72,7 @@ agent_sync_config()
 			while uci get wireless.@wifi-iface[$I] >/dev/null 2>&1; do
 				if uci show wireless.@wifi-iface[$I] | grep -q wireless.meshx[01]=wifi-iface; then
 					I=$((I+1))
+					continue
 				fi
 				uci delete wireless.@wifi-iface[$I]
 			done
