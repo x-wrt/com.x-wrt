@@ -53,9 +53,11 @@ config_get band default 'band' '5g'
 config_get id default 'id'
 config_get key default 'key'
 config_get access_ip default 'access_ip' '10.10.10.1'
+config_get sync_ac default 'sync_ac' '1'
 
 agent_sync_config()
 {
+	[ "$sync_ac" = "1" ] || return 0
 	[ "$role" = "agent" ] || [ "$role" = "wap" ] || return 0
 	[ "$role" = "wap" ] && {
 		#make sure agent_keep_alive stopped
