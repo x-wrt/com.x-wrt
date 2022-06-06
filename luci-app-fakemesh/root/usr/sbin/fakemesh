@@ -14,6 +14,7 @@ test $enabled -eq 0 && {
 
 	uci set dhcp.lan.ignore='0'
 	uci delete dhcp.meshx0 >/dev/null 2>&1
+	uci delete dhcp.@dnsmasq[0].addnhosts >/dev/null 2>&1
 	uci delete network.meshx0 >/dev/null 2>&1
 	uci delete firewall.fakemesh >/dev/null 2>&1
 	sed -i "/.* controller.fakemesh/d" /etc/hosts
@@ -318,6 +319,9 @@ if [ "$role" = "controller" ]; then
 	uci delete dhcp.meshx0 >/dev/null 2>&1
 	uci delete network.meshx0 >/dev/null 2>&1
 
+	uci set dhcp.@dnsmasq[0].addnhosts='/tmp/fakemesh.hosts'
+	touch /tmp/fakemesh.hosts
+
 	#re-enable wan
 	uci delete network.wan.auto >/dev/null 2>&1
 	uci delete network.wan6.auto >/dev/null 2>&1
@@ -456,6 +460,8 @@ else
 
 	uci set dhcp.meshx0=dhcp
 	uci set dhcp.meshx0.ignore='1'
+
+	uci delete dhcp.@dnsmasq[0].addnhosts >/dev/null 2>&1
 
 	uci set network.meshx0=interface
 	uci set network.meshx0.device="$(uci get network.lan.device)"
