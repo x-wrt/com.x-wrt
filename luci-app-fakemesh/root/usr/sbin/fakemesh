@@ -20,21 +20,27 @@ test $enabled -eq 0 && {
 	sed -i "/sh \/usr\/share\/fakemesh\/firewall.include.*/d" /etc/firewall.include
 
 	#re-enable wan
-	uci set network.wan.auto='1'
-	uci set network.wan6.auto='1'
+	uci delete network.wan.auto >/dev/null 2>&1
+	uci delete network.wan6.auto >/dev/null 2>&1
 	#del wan port from br-lan
-	local lan_idx=0
+	lan_idx=0
 	while uci get network.@device[$lan_idx] >/dev/null 2>&1 && [ $(uci get network.@device[$lan_idx].name) != "br-lan" ]; do lan_idx=$((lan_idx+1)); done
 	lan_ports="$(uci get network.@device[$lan_idx].ports 2>/dev/null)"
 	wan_port="$(uci get network.wan.device 2>/dev/null)"
-	lan_ports=`for lp in $lan_ports; do [ "$lp" = "$wan_port" ] || echo $lp; done | sort | uniq`
-	uci delete network.@device[$lan_idx].ports
-	for lp in $lan_ports; do
-		uci add_list network.@device[$lan_idx].ports="$lp"
-	done
+	newlan_ports=$(for lp in $lan_ports; do [ "$lp" = "$wan_port" ] || echo $lp; done | sort | uniq)
+	newlan_ports=$(echo $newlan_ports)
+	[ "$lan_ports" != "$newlan_ports" ] && {
+		uci delete network.@device[$lan_idx].ports >/dev/null 2>&1
+		for lp in $newlan_ports; do
+			uci add_list network.@device[$lan_idx].ports="$lp"
+		done
+	}
+
+	uci changes
 
 	uci commit wireless
 	uci commit dhcp
+	uci commit firewall
 	uci commit network
 	/etc/init.d/network reload
 	/etc/init.d/dnsmasq reload
@@ -50,13 +56,13 @@ config_get access_ip default 'access_ip' '10.10.10.1'
 
 agent_sync_config()
 {
-	[ "$role" = "agent" ] || [ "$role" = "wap" ] || exit 0
+	[ "$role" = "agent" ] || [ "$role" = "wap" ] || return 0
 	[ "$role" = "wap" ] && {
 		#make sure agent_keep_alive stopped
 		rm -rf /tmp/fakemesh_lck2*
 	}
 
-	mkdir /tmp/fakemesh_lck3 || exit 0
+	mkdir /tmp/fakemesh_lck3 || return 0
 	pid=$$
 	touch /tmp/fakemesh_lck3/$pid
 
@@ -88,7 +94,7 @@ agent_sync_config()
 					I=$((I+1))
 					continue
 				fi
-				uci delete wireless.@wifi-iface[$I]
+				uci delete wireless.@wifi-iface[$I] >/dev/null 2>&1
 			done
 
 			J=0
@@ -150,7 +156,7 @@ agent_sync_config()
 
 agent_keep_alive()
 {
-	[ "$role" = "agent" ] || exit 0
+	[ "$role" = "agent" ] || return 0
 
 	sta_lost=0
 
@@ -159,7 +165,7 @@ agent_keep_alive()
 	channel=$(uci get wireless.${radio}.channel)
 	test -n "$channel" || return 1
 
-	mkdir /tmp/fakemesh_lck2 || exit 0
+	mkdir /tmp/fakemesh_lck2 || return 0
 	pid=$$
 	touch /tmp/fakemesh_lck2/$pid
 
@@ -194,14 +200,14 @@ agent_fix_channel()
 {
 	exec /usr/sbin/fakemesh agent_sync_config &
 
-	[ "$role" = "agent" ] || exit 0
+	[ "$role" = "agent" ] || return 0
 
 	wbandstr=$(uci show wireless | grep .band=\'${band}\'$ | head -n1)
 	radio=$(echo $wbandstr | cut -d\. -f2)
 	channel=$(uci get wireless.${radio}.channel)
 	test -n "$channel" || return 1
 
-	mkdir /tmp/fakemesh_lck1 || exit 0
+	mkdir /tmp/fakemesh_lck1 || return 0
 	pid=$$
 	touch /tmp/fakemesh_lck1/$pid
 
@@ -311,18 +317,21 @@ if [ "$role" = "controller" ]; then
 	uci delete network.meshx0 >/dev/null 2>&1
 
 	#re-enable wan
-	uci set network.wan.auto='1'
-	uci set network.wan6.auto='1'
+	uci delete network.wan.auto >/dev/null 2>&1
+	uci delete network.wan6.auto >/dev/null 2>&1
 	#del wan port from br-lan
-	local lan_idx=0
+	lan_idx=0
 	while uci get network.@device[$lan_idx] >/dev/null 2>&1 && [ $(uci get network.@device[$lan_idx].name) != "br-lan" ]; do lan_idx=$((lan_idx+1)); done
 	lan_ports="$(uci get network.@device[$lan_idx].ports 2>/dev/null)"
 	wan_port="$(uci get network.wan.device 2>/dev/null)"
-	lan_ports=`for lp in $lan_ports; do [ "$lp" = "$wan_port" ] || echo $lp; done | sort | uniq`
-	uci delete network.@device[$lan_idx].ports
-	for lp in $lan_ports; do
-		uci add_list network.@device[$lan_idx].ports="$lp"
-	done
+	newlan_ports=$(for lp in $lan_ports; do [ "$lp" = "$wan_port" ] || echo $lp; done | sort | uniq)
+	newlan_ports=$(echo $newlan_ports)
+	[ "$lan_ports" != "$newlan_ports" ] && {
+		uci delete network.@device[$lan_idx].ports >/dev/null 2>&1
+		for lp in $newlan_ports; do
+			uci add_list network.@device[$lan_idx].ports="$lp"
+		done
+	}
 
 	# reload firewall
 	uci get firewall.fakemesh >/dev/null 2>&1 || {
@@ -365,6 +374,8 @@ EOT
 	/etc/init.d/firewall restart >/dev/null 2>&1
 
 	exec /usr/sbin/fakemesh gen_config
+
+	uci changes
 
 	test $(uci changes 2>/dev/null | wc -l) -le 1 && {
 		uci revert wireless
@@ -452,14 +463,18 @@ else
 	uci set network.wan.auto='0'
 	uci set network.wan6.auto='0'
 	#add wan port to br-lan
-	local lan_idx=0
+	lan_idx=0
 	while uci get network.@device[$lan_idx] >/dev/null 2>&1 && [ $(uci get network.@device[$lan_idx].name) != "br-lan" ]; do lan_idx=$((lan_idx+1)); done
-	lan_ports="$(uci get network.@device[$lan_idx].ports 2>/dev/null) $(uci get network.wan.device 2>/dev/null)"
-	lan_ports=`for lp in $lan_ports; do echo $lp; done | sort | uniq`
-	uci delete network.@device[$lan_idx].ports
-	for lp in $lan_ports; do
-		uci add_list network.@device[$lan_idx].ports="$lp"
-	done
+	lan_ports="$(uci get network.@device[$lan_idx].ports 2>/dev/null)"
+	wan_port="$(uci get network.wan.device 2>/dev/null)"
+	newlan_ports=$(for lp in $lan_ports $wan_port; do echo $lp; done | sort | uniq)
+	newlan_ports=$(echo $newlan_ports)
+	[ "$lan_ports" != "$newlan_ports" ] && {
+		uci delete network.@device[$lan_idx].ports >/dev/null 2>&1
+		for lp in $newlan_ports; do
+			uci add_list network.@device[$lan_idx].ports="$lp"
+		done
+	}
 
 	# reload firewall
 	uci get firewall.fakemesh >/dev/null 2>&1 || {
@@ -492,6 +507,8 @@ EOT
 	grep -q "^sh /usr/share/fakemesh/firewall.include" /etc/firewall.include || echo "sh /usr/share/fakemesh/firewall.include" >>/etc/firewall.include
 
 	/etc/init.d/firewall restart >/dev/null 2>&1
+
+	uci changes
 
 	test $(uci changes | wc -l) -le 5 && {
 		uci revert wireless
