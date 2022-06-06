@@ -59,8 +59,10 @@ config_get sync_ac default 'sync_ac' '1'
 
 agent_sync_config()
 {
-	touch /tmp/fakemesh.ac.config
-	[ "$sync_ac" = "1" ] || return 0
+	[ "$sync_ac" = "1" ] || {
+		rm -f /etc/config/fakemeshac
+		return 0
+	}
 	[ "$role" = "wap" ] && {
 		#make sure agent_keep_alive stopped
 		rm -rf /tmp/fakemesh_lck2*
@@ -72,6 +74,7 @@ agent_sync_config()
 
 	logger -t fakemesh "agent_sync_config($pid): started!"
 
+	touch /tmp/fakemesh.ac.config
 	ln -s /tmp/fakemesh.ac.config /etc/config/fakemeshac 2>/dev/null
 
 	while :; do
