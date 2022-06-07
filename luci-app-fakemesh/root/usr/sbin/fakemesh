@@ -172,7 +172,7 @@ agent_sync_config()
 
 	while :; do
 		sleep 10
-		if test $lost_ac -gt 0; then
+		if test $lost_ac -gt 2; then
 			ubus call network.interface.meshx0 down
 			sleep 1
 			ubus call network.interface.meshx0 up
