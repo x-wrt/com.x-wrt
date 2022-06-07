@@ -4,7 +4,7 @@
 
 访问控制器的地址: `http://controller.fakemesh/`
 
-访问AP得地址: `http://{mac}.ap.fakemesh/` 或者 `http://N.ap.fakemesh/`
+访问AP的地址: `http://{mac}.ap.fakemesh/` 或者 `http://N.ap.fakemesh/`
 
 其中`{mac}`是AP的MAC地址，比如`{mac}=1122334455AB`，`N`是AP的自动编号，比如 N=1, N=2, N=3, ...
 
