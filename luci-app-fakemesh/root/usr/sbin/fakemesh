@@ -21,6 +21,8 @@ test $enabled -eq 0 && {
 	sed -i "/.* controller.fakemesh/d" /etc/hosts
 	sed -i "/sh \/usr\/share\/fakemesh\/firewall.include.*/d" /etc/firewall.include
 
+	#re-enable lan
+	uci delete network.lan.auto >/dev/null 2>&1
 	#re-enable wan
 	uci delete network.wan.auto >/dev/null 2>&1
 	uci delete network.wan6.auto >/dev/null 2>&1
@@ -70,10 +72,13 @@ agent_lost_ac()
 		return 0
 	fi
 
-	#enable dhcp
+	#re-enable lan
+	uci delete network.lan.auto >/dev/null 2>&1
+	uci set network.lan.ipaddr='10.10.10.1'
+	uci set network.lan.netmask='255.255.255.0'
+	#re-enable lan dhcp
 	uci set dhcp.lan.ignore='0'
-
-	#enable wifi
+	#re-enable lan enable wifi
 	ssid=$(uci get base_config.@status[0].SSID)
 	ssid_passwd=$(uci get base_config.@status[0].SSID_PASSWD)
 	K=0
@@ -107,6 +112,7 @@ agent_lost_ac()
 	/etc/init.d/dnsmasq reload
 	sleep 10
 	uci revert dhcp
+	uci revert network
 	uci revert wireless
 
 	logger -t fakemesh "agent_lost_ac($pid): done!"
@@ -190,7 +196,11 @@ agent_sync_config()
 
 							uci set wireless.wifinet$K=wifi-iface
 							uci set wireless.wifinet$K.device="${radio}"
-							uci set wireless.wifinet$K.network='lan'
+							if [ "$role" = "controller" ]; then
+								uci set wireless.wifinet$K.network='lan'
+							else
+								uci set wireless.wifinet$K.network='meshx0'
+							fi
 							uci set wireless.wifinet$K.mode='ap'
 							uci set wireless.wifinet$K.ssid="${ssid}"
 							if [ "${encryption}" != "none" ]; then
@@ -486,7 +496,7 @@ else
 		#meshx0
 		uci set wireless.meshx0=wifi-iface
 		uci set wireless.meshx0.device="${radio}"
-		uci set wireless.meshx0.network='lan'
+		uci set wireless.meshx0.network='meshx0'
 		uci set wireless.meshx0.ifname='meshx0'
 		uci set wireless.meshx0.mode='ap'
 		uci set wireless.meshx0.wds='1'
@@ -507,7 +517,7 @@ else
 		#meshx1
 		uci set wireless.meshx1=wifi-iface
 		uci set wireless.meshx1.device="${radio}"
-		uci set wireless.meshx1.network='lan'
+		uci set wireless.meshx1.network='meshx0'
 		uci set wireless.meshx1.ifname='meshx1'
 		uci set wireless.meshx1.mode='sta'
 		uci set wireless.meshx1.wds='1'
@@ -536,6 +546,8 @@ else
 
 	uci set dhcp.meshx0=dhcp
 	uci set dhcp.meshx0.ignore='1'
+
+	uci set network.lan.auto='0'
 
 	uci set network.meshx0=interface
 	uci set network.meshx0.device="$(uci get network.lan.device)"
