@@ -40,6 +40,20 @@ test $enabled -eq 0 && {
 		done
 	}
 
+	#delete meshx0 from lan zone
+	lan_idx=0
+	while uci get firewall.@zone[$lan_idx] >/dev/null 2>&1 && [ $(uci get firewall.@zone[$lan_idx].name) != "lan" ]; do lan_idx=$((lan_idx+1)); done
+	lan_net="$(uci get firewall.@zone[$lan_idx].network 2>/dev/null)"
+	newlan_net=$(for ln in $lan_net; do [ "$ln" = "meshx0" ] || echo $ln; done | sort | uniq)
+	newlan_net=$(echo $newlan_net)
+	[ "$lan_net" != "$newlan_net" ] && {
+		uci delete firewall.@zone[$lan_idx].network >/dev/null 2>&1
+		for ln in $newlan_net; do
+			uci add_list firewall.@zone[$lan_idx].network="$ln"
+		done
+		uci commit firewall
+	}
+
 	uci changes
 
 	uci commit wireless
@@ -48,7 +62,7 @@ test $enabled -eq 0 && {
 	uci commit network
 	/etc/init.d/network reload
 	/etc/init.d/dnsmasq reload
-	/etc/init.d/firewall restart >/dev/null 2>&1
+	/etc/init.d/firewall reload >/dev/null 2>&1
 	exit 0
 }
 
@@ -157,11 +171,14 @@ agent_sync_config()
 	while :; do
 		sleep 10
 		hash=$(echo -n $id$key | md5sum | head -c32)
+		if ( \
 		[ "$role" = "controller" ] && cp /etc/config/fakemesh /tmp/fakemesh.ac.config.tmp || \
-		timeout 30 wget -qO /tmp/fakemesh.ac.config.tmp http://controller.fakemesh/fakemesh.$hash || {
+		timeout 30 wget -qO /tmp/fakemesh.ac.config.tmp http://controller.fakemesh/fakemesh.$hash ); then
+			:
+		else
 			lost_ac=$((lost_ac++))
 			logger -t fakemesh "agent_sync_config($pid): fetch config failed($lost_ac)!"
-			if test $lost_ac -ge 5 then
+			if test $lost_ac -ge 5; then
 				lost_ac=$lost_ac exec /usr/sbin/fakemesh agent_lost_ac &
 				return 0
 			fi
@@ -169,7 +186,7 @@ agent_sync_config()
 			rm -f /tmp/fakemesh.ac.config.tmp
 			test -f /tmp/fakemesh_lck3/$pid || return 0
 			continue
-		}
+		fi
 
 		mv /tmp/fakemesh.ac.config.tmp /tmp/fakemesh.ac.config
 
@@ -442,6 +459,20 @@ if [ "$role" = "controller" ]; then
 		done
 	}
 
+	#delete meshx0 from lan zone
+	lan_idx=0
+	while uci get firewall.@zone[$lan_idx] >/dev/null 2>&1 && [ $(uci get firewall.@zone[$lan_idx].name) != "lan" ]; do lan_idx=$((lan_idx+1)); done
+	lan_net="$(uci get firewall.@zone[$lan_idx].network 2>/dev/null)"
+	newlan_net=$(for ln in $lan_net; do [ "$ln" = "meshx0" ] || echo $ln; done | sort | uniq)
+	newlan_net=$(echo $newlan_net)
+	[ "$lan_net" != "$newlan_net" ] && {
+		uci delete firewall.@zone[$lan_idx].network >/dev/null 2>&1
+		for ln in $newlan_net; do
+			uci add_list firewall.@zone[$lan_idx].network="$ln"
+		done
+		uci commit firewall
+	}
+
 	# reload firewall
 	uci get firewall.fakemesh >/dev/null 2>&1 || {
 	uci -q batch <<-EOT
@@ -480,7 +511,7 @@ EOT
 		/etc/init.d/dnsmasq reload
 	}
 
-	/etc/init.d/firewall restart >/dev/null 2>&1
+	/etc/init.d/firewall reload >/dev/null 2>&1
 
 	exec /usr/sbin/fakemesh gen_config &
 
@@ -573,6 +604,20 @@ else
 	uci set network.meshx0.metric='10'
 	uci set network.meshx0.hostname="MESH-AGENT_$(echo -n $MACADDR | sed 's/://g' | tr a-f A-F)"
 
+	#add meshx0 to lan zone
+	lan_idx=0
+	while uci get firewall.@zone[$lan_idx] >/dev/null 2>&1 && [ $(uci get firewall.@zone[$lan_idx].name) != "lan" ]; do lan_idx=$((lan_idx+1)); done
+	lan_net="$(uci get firewall.@zone[$lan_idx].network 2>/dev/null)"
+	newlan_net=$(for ln in $lan_net meshx0; do echo $ln; done | sort | uniq)
+	newlan_net=$(echo $newlan_net)
+	[ "$lan_net" != "$newlan_net" ] && {
+		uci delete firewall.@zone[$lan_idx].network >/dev/null 2>&1
+		for ln in $newlan_net; do
+			uci add_list firewall.@zone[$lan_idx].network="$ln"
+		done
+		uci commit firewall
+	}
+
 	#disable wan
 	uci set network.wan.auto='0' 2>/dev/null
 	uci set network.wan6.auto='0' 2>/dev/null
@@ -620,7 +665,7 @@ EOT
 	ln -s /tmp/fakemesh.firewall.include /usr/share/fakemesh/firewall.include 2>/dev/null
 	grep -q "^sh /usr/share/fakemesh/firewall.include" /etc/firewall.include || echo "sh /usr/share/fakemesh/firewall.include" >>/etc/firewall.include
 
-	/etc/init.d/firewall restart >/dev/null 2>&1
+	/etc/init.d/firewall reload >/dev/null 2>&1
 
 	uci changes
 
