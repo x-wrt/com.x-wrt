@@ -64,8 +64,10 @@ lost_ac=${lost_ac:-0}
 agent_lost_ac()
 {
 	[ "$role" = "agent" ] || [ "$role" = "wap" ] || return 0
+
 	pid=$$
 	logger -t fakemesh "agent_lost_ac($pid): started! lost_ac=$lost_ac"
+
 	if test $lost_ac -gt 5; then
 		rm -rf /tmp/fakemesh_lck3
 		lost_ac=$lost_ac exec /usr/sbin/fakemesh agent_sync_config &
@@ -74,8 +76,18 @@ agent_lost_ac()
 
 	#re-enable lan
 	uci delete network.lan.auto >/dev/null 2>&1
-	uci set network.lan.ipaddr='10.10.10.1'
+	uci set network.lan.ipaddr="192.168.1.1"
+	for lip in `seq 1 16`; do
+		if ip route | grep -q "192.168.$lip.0/"; then
+			:
+		else
+			uci set network.lan.ipaddr="192.168.$lip.1"
+			break
+		fi
+	done
 	uci set network.lan.netmask='255.255.255.0'
+	logger -t fakemesh "agent_lost_ac($pid): setup temporary lan ip=$(uci get network.lan.ipaddr)"
+
 	#re-enable lan dhcp
 	uci set dhcp.lan.ignore='0'
 	#re-enable lan enable wifi
@@ -110,7 +122,7 @@ agent_lost_ac()
 	done
 	/etc/init.d/network reload
 	/etc/init.d/dnsmasq reload
-	sleep 10
+	sleep 5
 	uci revert dhcp
 	uci revert network
 	uci revert wireless
@@ -327,6 +339,11 @@ agent_fix_channel()
 	rm -f /tmp/fakemesh_lck1/$pid; rmdir /tmp/fakemesh_lck1
 
 	exec /usr/sbin/fakemesh agent_keep_alive &
+}
+
+[ "x$1" = "xagent_lost_ac" ] && {
+	agent_lost_ac
+	exit 0
 }
 
 [ "x$1" = "xagent_fix_channel" ] && {
