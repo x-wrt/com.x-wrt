@@ -57,6 +57,65 @@ config_get key default 'key'
 config_get access_ip default 'access_ip' '10.10.10.1'
 config_get sync_ac default 'sync_ac' '1'
 
+lost_ac=${lost_ac:-0}
+
+agent_lost_ac()
+{
+	[ "$role" = "agent" ] || [ "$role" = "wap" ] || return 0
+	pid=$$
+	logger -t fakemesh "agent_lost_ac($pid): started! lost_ac=$lost_ac"
+	if test $lost_ac -gt 5; then
+		rm -rf /tmp/fakemesh_lck3
+		lost_ac=$lost_ac exec /usr/sbin/fakemesh agent_sync_config &
+		return 0
+	fi
+
+	#enable dhcp
+	uci set dhcp.lan.ignore='0'
+
+	#enable wifi
+	ssid=$(uci get base_config.@status[0].SSID)
+	ssid_passwd=$(uci get base_config.@status[0].SSID_PASSWD)
+	K=0
+	for band in 2g 5g; do
+		wbandstr=$(uci show wireless | grep .band=\'${band}\'$ | head -n1)
+		if test -n "$wbandstr"; then
+			radio=$(echo $wbandstr | cut -d\. -f2)
+
+			uci set wireless.wifinet$K=wifi-iface
+			uci set wireless.wifinet$K.device="${radio}"
+			uci set wireless.wifinet$K.network='lan'
+			uci set wireless.wifinet$K.mode='ap'
+			uci set wireless.wifinet$K.ssid="${ssid}"
+			uci set wireless.wifinet$K.encryption="psk2"
+			uci set wireless.wifinet$K.key="${ssid_passwd}"
+			uci set wireless.wifinet$K.skip_inactivity_poll='1'
+			uci set wireless.wifinet$K.wpa_group_rekey='0'
+			uci set wireless.wifinet$K.wpa_pair_rekey='0'
+			uci set wireless.wifinet$K.wpa_master_rekey='0'
+			uci set wireless.wifinet$K.disassoc_low_ack='0'
+			uci set wireless.wifinet$K.disabled='0'
+			K=$((K+1))
+		fi
+		while uci get wireless.wifinet$K 2>/dev/null; do
+			uci set wireless.wifinet$K.disabled='1'
+			K=$((K+1))
+		done
+		logger -t fakemesh "agent_lost_ac($pid): starting wifi SSID=\'${ssid}\' on ${radio} $band!"
+	done
+	/etc/init.d/network reload
+	/etc/init.d/dnsmasq reload
+	sleep 10
+	uci revert dhcp
+	uci revert wireless
+
+	logger -t fakemesh "agent_lost_ac($pid): done!"
+
+	#make sure agent_sync_config stopped
+	rm -rf /tmp/fakemesh_lck3
+	lost_ac=$lost_ac exec /usr/sbin/fakemesh agent_sync_config &
+}
+
 agent_sync_config()
 {
 	[ "$sync_ac" = "1" ] || {
@@ -82,11 +141,18 @@ agent_sync_config()
 		hash=$(echo -n $id$key | md5sum | head -c32)
 		[ "$role" = "controller" ] && cp /etc/config/fakemesh /tmp/fakemesh.ac.config.tmp || \
 		timeout 30 wget -qO /tmp/fakemesh.ac.config.tmp http://controller.fakemesh/fakemesh.$hash || {
-			logger -t fakemesh "agent_sync_config($pid): fetch config failed!"
+			lost_ac=$((lost_ac++))
+			logger -t fakemesh "agent_sync_config($pid): fetch config failed($lost_ac)!"
+			if test $lost_ac -ge 5 then
+				lost_ac=$lost_ac exec /usr/sbin/fakemesh agent_lost_ac &
+				return 0
+			fi
 			sleep 30
 			rm -f /tmp/fakemesh.ac.config.tmp
 			test -f /tmp/fakemesh_lck3/$pid || return 0
+			continue
 		}
+
 		mv /tmp/fakemesh.ac.config.tmp /tmp/fakemesh.ac.config
 
 		logger -t fakemesh "agent_sync_config($pid): fetch config ok!"
@@ -157,6 +223,14 @@ agent_sync_config()
 		rand=$(hexdump -e '2/1  "%u"' -n2 /dev/urandom)
 		sleep $((50+(rand+0)%20))
 		test -f /tmp/fakemesh_lck3/$pid || return 0
+
+		if test $lost_ac -ge 5; then
+			logger -t fakemesh "agent_sync_config($pid): recovery from lost_ac=$lost_ac!"
+			sleep 5
+			/etc/init.d/network reload
+			/etc/init.d/dnsmasq reload
+		fi
+		lost_ac=0
 	done
 
 	rm -f /tmp/fakemesh_lck3/$pid; rmdir /tmp/fakemesh_lck3
