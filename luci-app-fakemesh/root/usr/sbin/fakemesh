@@ -128,12 +128,14 @@ agent_lost_ac()
 			uci set wireless.wifinet$K.disabled='0'
 			K=$((K+1))
 		fi
-		while uci get wireless.wifinet$K 2>/dev/null; do
-			uci set wireless.wifinet$K.disabled='1'
-			K=$((K+1))
-		done
-		logger -t fakemesh "agent_lost_ac($pid): starting wifi SSID=\'${ssid}\' on ${radio} $band!"
 	done
+	while uci get wireless.wifinet$K 2>/dev/null; do
+		uci set wireless.wifinet$K.disabled='1'
+		K=$((K+1))
+	done
+
+	logger -t fakemesh "agent_lost_ac($pid): starting wifi SSID=\'${ssid}\' on ${radio} $band!"
+
 	/etc/init.d/network reload
 	/etc/init.d/dnsmasq reload
 	sleep 5
@@ -176,7 +178,7 @@ agent_sync_config()
 		timeout 30 wget -qO /tmp/fakemesh.ac.config.tmp http://controller.fakemesh/fakemesh.$hash ); then
 			:
 		else
-			lost_ac=$((lost_ac++))
+			lost_ac=$((lost_ac+1))
 			logger -t fakemesh "agent_sync_config($pid): fetch config failed($lost_ac)!"
 			if test $lost_ac -ge 5; then
 				lost_ac=$lost_ac exec /usr/sbin/fakemesh agent_lost_ac &
