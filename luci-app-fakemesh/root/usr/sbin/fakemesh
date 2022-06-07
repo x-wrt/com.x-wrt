@@ -172,6 +172,13 @@ agent_sync_config()
 
 	while :; do
 		sleep 10
+		if test $lost_ac -gt 0; then
+			ubus call network.interface.meshx0 down
+			sleep 1
+			ubus call network.interface.meshx0 up
+			sleep 1
+		fi
+
 		hash=$(echo -n $id$key | md5sum | head -c32)
 		if ( \
 		[ "$role" = "controller" ] && cp /etc/config/fakemesh /tmp/fakemesh.ac.config.tmp || \
