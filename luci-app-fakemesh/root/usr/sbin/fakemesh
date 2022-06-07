@@ -261,8 +261,6 @@ agent_sync_config()
 			/etc/init.d/network reload &
 		}
 
-		rand=$(hexdump -e '2/1  "%u"' -n2 /dev/urandom)
-		sleep $((50+(rand+0)%20))
 		test -f /tmp/fakemesh_lck3/$pid || return 0
 
 		if test $lost_ac -ge 5; then
@@ -272,6 +270,10 @@ agent_sync_config()
 			/etc/init.d/dnsmasq reload
 		fi
 		lost_ac=0
+
+		rand=$(hexdump -e '2/1  "%u"' -n2 /dev/urandom)
+		sleep $((50+(rand+0)%20))
+		test -f /tmp/fakemesh_lck3/$pid || return 0
 	done
 
 	rm -f /tmp/fakemesh_lck3/$pid; rmdir /tmp/fakemesh_lck3
