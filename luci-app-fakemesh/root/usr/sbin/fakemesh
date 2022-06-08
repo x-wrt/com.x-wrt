@@ -281,7 +281,7 @@ agent_sync_config()
 		fi
 		lost_ac=0
 
-		rand=$(hexdump -e '2/1  "%u"' -n2 /dev/urandom)
+		rand=$(hexdump -e '"%u"' -n1 /dev/urandom)
 		sleep $((50+(rand+0)%20))
 		test -f /tmp/fakemesh_lck3/$pid || return 0
 	done
