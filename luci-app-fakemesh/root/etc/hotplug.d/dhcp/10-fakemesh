@@ -1,7 +1,5 @@
 #!/bin/sh
 
-logger -t fakemesh "dhcp ACTION=$ACTION, MACADDR=$MACADDR, IPADDR=$IPADDR, HOSTNAME=$HOSTNAME"
-
 [ -z "${HOSTNAME##MESH-AGENT_*}" ] || exit 0
 
 case "$ACTION" in
