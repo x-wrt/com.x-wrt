@@ -532,7 +532,7 @@ EOT
 
 	uci changes
 
-	test $(uci changes 2>/dev/null | wc -l) -le 1 && {
+	test $(uci changes 2>/dev/null | grep -v "='dhcp'\|='interface'\|='wifi-iface'" | wc -l) -le 0 && {
 		uci revert wireless
 		uci revert dhcp
 		uci revert network
@@ -684,7 +684,7 @@ EOT
 
 	uci changes
 
-	test $(uci changes | wc -l) -le 5 && {
+	test $(uci changes 2>/dev/null | grep -v "='dhcp'\|='interface'\|='wifi-iface'" | wc -l) -le 0 && {
 		uci revert wireless
 		uci revert dhcp
 		uci revert network
