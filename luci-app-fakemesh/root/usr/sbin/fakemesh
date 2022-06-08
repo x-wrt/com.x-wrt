@@ -199,7 +199,7 @@ agent_sync_config()
 
 		mv /tmp/fakemesh.ac.config.tmp /tmp/fakemesh.ac.config
 
-		logger -t fakemesh "agent_sync_config($pid): fetch config ok!"
+		test $lost_ac -gt 0 && logger -t fakemesh "agent_sync_config($pid): fetch config ok!"
 
 		oldcfgmd5=$(uci get fakemesh.default.wifim_md5 2>/dev/null)
 		newcfgmd5=$(uci show fakemeshac | grep "^fakemeshac.@wifim" | md5sum | head -c 32)
