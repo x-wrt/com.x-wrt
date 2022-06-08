@@ -74,6 +74,7 @@ config_get access_ip default 'access_ip' '10.10.10.1'
 config_get sync_ac default 'sync_ac' '1'
 
 lost_ac=${lost_ac:-0}
+LOST_AC_CNT=3
 
 agent_lost_ac()
 {
@@ -82,7 +83,7 @@ agent_lost_ac()
 	pid=$$
 	logger -t fakemesh "agent_lost_ac($pid): started! lost_ac=$lost_ac"
 
-	if test $lost_ac -gt 5; then
+	if test $lost_ac -gt $LOST_AC_CNT; then
 		rm -rf /tmp/fakemesh_lck3
 		lost_ac=$lost_ac exec /usr/sbin/fakemesh agent_sync_config &
 		return 0
@@ -187,7 +188,7 @@ agent_sync_config()
 		else
 			lost_ac=$((lost_ac+1))
 			logger -t fakemesh "agent_sync_config($pid): fetch config failed($lost_ac)!"
-			if test $lost_ac -ge 5; then
+			if test $lost_ac -ge $LOST_AC_CNT; then
 				lost_ac=$lost_ac exec /usr/sbin/fakemesh agent_lost_ac &
 				return 0
 			fi
@@ -273,7 +274,7 @@ agent_sync_config()
 
 		test -f /tmp/fakemesh_lck3/$pid || return 0
 
-		if test $lost_ac -ge 5; then
+		if test $lost_ac -ge $LOST_AC_CNT; then
 			logger -t fakemesh "agent_sync_config($pid): recovery from lost_ac=$lost_ac!"
 			sleep 5
 			/etc/init.d/network reload
