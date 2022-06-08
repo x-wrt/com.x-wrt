@@ -8,6 +8,7 @@ config_load fakemesh
 config_get_bool enabled default 'enabled' '0'
 
 test $enabled -eq 0 && {
+	rm -f /www/fakemesh.*
 	rm -f /tmp/fakemesh.ac.config
 	rm -f /etc/config/fakemeshac
 	rm -rf /tmp/fakemesh_lck*
@@ -550,7 +551,7 @@ EOT
 	 /etc/init.d/dnsmasq reload
 	 exec /usr/sbin/fakemesh agent_sync_config & )&
 else
-
+	rm -f /www/fakemesh.*
 	# wireless.radio0.band='2g'
 	wbandstr=$(uci show wireless | grep .band=\'${band}\'$ | head -n1)
 	if test -n "$wbandstr"; then
