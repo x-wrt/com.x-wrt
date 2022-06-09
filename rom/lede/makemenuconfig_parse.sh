@@ -126,8 +126,6 @@ ipv6extra="kmod-jool-netfilter \
 	   kmod-nat46 \
 	   jool-tools-netfilter"
 
-wifiextra="luci-proto-batman-adv kmod-batman-adv batctl-full"
-
 openvpnmod="luci-app-openvpn \
 			luci-i18n-openvpn-en \
 			luci-i18n-openvpn-zh-cn \
@@ -403,7 +401,7 @@ for t in $targets; do
 		TARGET_DEVICE_ramips_mt7621_DEVICE_netgear_r6220a|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_netgear_r6220b|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_netgear_r6220c)
-			mods="$mods $lucibond $ipv6extra $wifiextra"
+			mods="$mods $lucibond $ipv6extra"
 			mods="$mods $wgmod $openvpnmod wpad-openssl luci-ssl-nginx"
 			excludes="$excludes wpad-basic-wolfssl"
 			flash_gt8m=1
