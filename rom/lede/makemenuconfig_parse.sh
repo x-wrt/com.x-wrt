@@ -126,7 +126,7 @@ ipv6extra="kmod-jool-netfilter \
 	   kmod-nat46 \
 	   jool-tools-netfilter"
 
-wifiextra="luci-proto-batman-adv kmod-batman-adv batctl-full luci-app-dawn dawn"
+wifiextra="luci-proto-batman-adv kmod-batman-adv batctl-full"
 
 openvpnmod="luci-app-openvpn \
 			luci-i18n-openvpn-en \
