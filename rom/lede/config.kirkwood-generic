@@ -3396,7 +3396,7 @@ CONFIG_PACKAGE_kmod-mii=m
 #
 # CONFIG_PACKAGE_kmod-atm is not set
 # CONFIG_PACKAGE_kmod-ax25 is not set
-CONFIG_PACKAGE_kmod-batman-adv=m
+# CONFIG_PACKAGE_kmod-batman-adv is not set
 CONFIG_BATMAN_ADV_BATMAN_V=y
 CONFIG_BATMAN_ADV_BLA=y
 CONFIG_BATMAN_ADV_DAT=y
@@ -5451,7 +5451,7 @@ CONFIG_PACKAGE_luci-theme-openwrt-2020=y
 # 5. Protocols
 #
 CONFIG_PACKAGE_luci-proto-3g=m
-CONFIG_PACKAGE_luci-proto-batman-adv=m
+# CONFIG_PACKAGE_luci-proto-batman-adv is not set
 CONFIG_PACKAGE_luci-proto-bonding=m
 # CONFIG_PACKAGE_luci-proto-gre is not set
 # CONFIG_PACKAGE_luci-proto-hnet is not set
