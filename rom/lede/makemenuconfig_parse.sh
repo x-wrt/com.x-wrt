@@ -277,7 +277,6 @@ for t in $targets; do
 	case $t in
 		#>8M flash
 		TARGET_DEVICE_ramips_mt7621_DEVICE_planex_vr500|\
-		TARGET_DEVICE_ramips_mt7621_DEVICE_xwrt_t-cpe1201k-v01|\
 		TARGET_DEVICE_mediatek_mt7622_DEVICE_xwrt_wr3200k-v1|\
 		TARGET_DEVICE_mediatek_mt7622_DEVICE_mediatek_mt7622-rfb1-ubi|\
 		TARGET_DEVICE_mediatek_mt7622_DEVICE_mediatek_mt7622-rfb1|\
@@ -466,6 +465,7 @@ for t in $targets; do
 		TARGET_DEVICE_ath79_generic_DEVICE_letv_lba-047-ch|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_xwrt_t-cpe1202kd-v01|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_xwrt_t-cpe1200k-v01|\
+		TARGET_DEVICE_ramips_mt7621_DEVICE_xwrt_t-cpe1201k-v01|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_xwrt_x-sdwan-1200|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_xwrt_mac500f|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_xwrt_puppies|\
