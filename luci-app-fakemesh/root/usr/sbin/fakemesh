@@ -138,6 +138,14 @@ agent_lost_ac()
 
 	logger -t fakemesh "agent_lost_ac($pid): starting wifi SSID=\'${ssid}\' on ${radio} $band!"
 
+	#drop all in-comming DHCP request from eth port
+	for brif in $(cd /sys/class/net/br-lan/brif/ && ls); do
+		iwinfo $brif info >/dev/null 2>&1 && continue
+		nft add table netdev brmeshfilters_$brif
+		nft "add chain netdev brmeshfilters_$brif devfilter { type filter hook ingress device $brif priority 0 ; }"
+		nft insert rule netdev brmeshfilters_$brif devfilter udp sport 68 drop
+	done
+
 	/etc/init.d/network reload
 	/etc/init.d/dnsmasq reload
 	sleep 5
@@ -280,6 +288,9 @@ agent_sync_config()
 			sleep 5
 			/etc/init.d/network reload
 			/etc/init.d/dnsmasq reload
+			nft list tables | grep 'table netdev brmeshfilters_' | while read tb; do
+				nft delete $tb
+			done
 		fi
 		lost_ac=0
 
