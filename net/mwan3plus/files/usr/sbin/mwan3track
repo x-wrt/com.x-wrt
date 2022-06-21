@@ -13,7 +13,7 @@ IFDOWN_EVENT=0
 
 clean_up() {
 	LOG notice "Stopping mwan3track for interface \"${INTERFACE}\""
-	exit 0
+	return 0
 }
 
 if_down() {
@@ -121,7 +121,7 @@ main() {
 	local recovery_latency failure_loss recovery_loss
 	local max_ttl httping_ssl
 
-	[ -z "$5" ] && echo "Error: should not be started manually" && exit 0
+	[ -z "$5" ] && echo "Error: should not be started manually" && return 0
 
 	family=$1
 	INTERFACE=$2
@@ -168,7 +168,7 @@ main() {
 	fi
 	validate_track_method "$track_method" "$family" || {
 		LOG err "track method($track_method) src_ip($SRC_IP) invalid"
-		exit 1
+		return 1
 	}
 
 	WRAP() {

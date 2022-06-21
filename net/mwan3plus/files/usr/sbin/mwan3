@@ -35,11 +35,11 @@ EOF
 ifdown()
 {
 	if [ -z "$1" ]; then
-		echo "Error: Expecting interface. Usage: mwan3 ifdown <interface>" && exit 0
+		echo "Error: Expecting interface. Usage: mwan3 ifdown <interface>" && return 0
 	fi
 
 	if [ -n "$2" ]; then
-		echo "Error: Too many arguments. Usage: mwan3 ifdown <interface>" && exit 0
+		echo "Error: Too many arguments. Usage: mwan3 ifdown <interface>" && return 0
 	fi
 
 	ACTION=ifdown INTERFACE=$1 /sbin/hotplug-call iface
@@ -58,7 +58,7 @@ ifup()
 
 	if [ -z "$1" ]; then
 		echo "Expecting interface. Usage: mwan3 ifup <interface>"
-		exit 0
+		return 0
 	fi
 
 	interface=$1
@@ -71,7 +71,7 @@ ifup()
 		[ ${enabled} -gt 0 ] || {
 			echo "The service mwan3 is global disabled."
 			echo "Please execute \"/etc/init.d/mwan3 start\" first."
-			exit 1
+			return 1
 		}
 	else
 		enabled=1
