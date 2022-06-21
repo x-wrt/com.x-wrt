@@ -570,6 +570,7 @@ get_rate_data()
 }
 
 # reload firewall
+test -e /etc/firewall.include || {
 uci get firewall.natcapd >/dev/null 2>&1 || {
 	uci -q batch <<-EOT
 		delete firewall.natcapd
@@ -581,6 +582,7 @@ uci get firewall.natcapd >/dev/null 2>&1 || {
 		commit firewall
 	EOT
 	/etc/init.d/firewall reload >/dev/null 2>&1 || echo /etc/init.d/firewall reload failed
+}
 }
 
 test -x /etc/init.d/natflow-boot || {
