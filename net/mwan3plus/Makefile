@@ -99,10 +99,6 @@ define Package/mwan3plus/install
 	$(INSTALL_BIN) ./files/usr/libexec/rpcd/mwan3 \
 		$(1)/usr/libexec/rpcd/
 
-	$(INSTALL_DIR) $(1)/usr/share/mwan3
-	$(INSTALL_DATA) ./files/usr/share/mwan3/mwan3-reload.sh \
-		$(1)/usr/share/mwan3/
-
 	$(INSTALL_DIR) $(1)/usr/sbin
 	$(INSTALL_BIN) ./files/usr/sbin/mwan3 \
 		$(1)/usr/sbin/
