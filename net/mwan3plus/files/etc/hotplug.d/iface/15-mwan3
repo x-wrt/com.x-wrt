@@ -38,14 +38,14 @@ mwan3_init
 
 [ $NEED_IPV4 -ne 0 ] && {
 	$IPT4 -S mwan3_hook &>/dev/null || {
-		mwan3_unlock "$ACTION" "$INTERFACE"
+		[ "$MWAN3_STARTUP" != 1 ] && mwan3_unlock "$ACTION" "$INTERFACE"
 		LOG warn "hotplug called on $INTERFACE(ipv4) before mwan3 has been set up"
 		exit 0
 	}
 }
 [ $NEED_IPV6 -ne 0 ] && {
 	$IPT6 -S mwan3_hook &>/dev/null || {
-		mwan3_unlock "$ACTION" "$INTERFACE"
+		[ "$MWAN3_STARTUP" != 1 ] && mwan3_unlock "$ACTION" "$INTERFACE"
 		LOG warn "hotplug called on $INTERFACE(ipv6) before mwan3 has been set up"
 		exit 0
 	}
