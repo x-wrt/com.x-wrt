@@ -109,6 +109,9 @@ e = s:taboption("system", Flag, "access_to_cn", translate("Access to China from 
 e.default = e.disabled
 e.rmempty = false
 
+e = s:taboption("system", Value, "config_version", translate("Config Version"))
+e.rmempty = true
+
 e = s:taboption("system", Flag, "full_proxy", translate("Full Proxy"), translate("All traffic goes to proxy."))
 e.default = e.disabled
 e.rmempty = false
