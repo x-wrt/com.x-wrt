@@ -501,17 +501,7 @@ if [ "$role" = "controller" ]; then
 	}
 
 	# reload firewall
-	uci get firewall.fakemesh >/dev/null 2>&1 || {
-	uci -q batch <<-EOT
-	delete firewall.fakemesh
-	set firewall.fakemesh=include
-	set firewall.fakemesh.type=script
-	set firewall.fakemesh.path=/usr/share/fakemesh/firewall.include
-	set firewall.fakemesh.family=any
-	set firewall.fakemesh.reload=1
-	commit firewall
-	EOT
-	}
+	uci delete firewall.fakemesh >/dev/null 2>&1 && uci commit firewall
 
 	mkdir -p /usr/share/fakemesh
 	cat >/tmp/fakemesh.firewall.include <<-EOT
@@ -663,17 +653,7 @@ else
 	}
 
 	# reload firewall
-	uci get firewall.fakemesh >/dev/null 2>&1 || {
-		uci -q batch <<-EOT
-		delete firewall.fakemesh
-		set firewall.fakemesh=include
-		set firewall.fakemesh.type=script
-		set firewall.fakemesh.path=/usr/share/fakemesh/firewall.include
-		set firewall.fakemesh.family=any
-		set firewall.fakemesh.reload=1
-		commit firewall
-		EOT
-	}
+	uci delete firewall.fakemesh >/dev/null 2>&1 && uci commit firewall
 
 	mkdir -p /usr/share/fakemesh
 	cat >/tmp/fakemesh.firewall.include <<-EOT
