@@ -569,22 +569,6 @@ get_rate_data()
 	echo -n $num # assume num bps
 }
 
-# reload firewall
-test -e /etc/firewall.include || {
-uci get firewall.natcapd >/dev/null 2>&1 || {
-	uci -q batch <<-EOT
-		delete firewall.natcapd
-		set firewall.natcapd=include
-		set firewall.natcapd.type=script
-		set firewall.natcapd.path=/usr/share/natcapd/firewall.include
-		set firewall.natcapd.family=any
-		set firewall.natcapd.reload=1
-		commit firewall
-	EOT
-	/etc/init.d/firewall reload >/dev/null 2>&1 || echo /etc/init.d/firewall reload failed
-}
-}
-
 test -x /etc/init.d/natflow-boot || {
 test -c /dev/natflow_ctl && {
 	enable_natflow=`uci get natcapd.default.enable_natflow 2>/dev/null || echo 0`
