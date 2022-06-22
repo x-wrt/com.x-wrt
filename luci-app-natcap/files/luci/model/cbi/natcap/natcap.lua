@@ -171,6 +171,10 @@ e = s:taboption("system", Flag, "peer_sni_ban", translate("Disable Remote Mgr"))
 e.default = e.disabled
 e.rmempty = false
 
+e = s:taboption("system", Flag, "peer_mode", translate("Peer Mode"), translate("Do not enable unless the normal mode is not working."))
+e.default = e.disabled
+e.rmempty = false
+
 e = s:taboption("system", Value, "ui", translate("UI"))
 e.rmempty = true
 e.placeholder = 'none'
