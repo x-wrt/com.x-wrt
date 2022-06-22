@@ -718,6 +718,8 @@ elif test -c $DEV; then
 	gfw_udp_port_list=`uci get natcapd.default.gfw_udp_port_list 2>/dev/null`
 	bypasslist_domain_file=`uci get natcapd.default.bypasslist_domain_file 2>/dev/null`
 	bypasslist_domain=`uci get natcapd.default.bypasslist_domain 2>/dev/null`
+	bypasslist=`uci get natcapd.default.bypasslist 2>/dev/null`
+	app_bypass_list=`uci get natcapd.default.app_bypass_list 2>/dev/null`
 	app_list=`uci get natcapd.default.app_list 2>/dev/null`
 	encode_mode=`uci get natcapd.default.encode_mode 2>/dev/null || echo 0`
 	udp_encode_mode=`uci get natcapd.default.udp_encode_mode 2>/dev/null || echo 0`
@@ -779,8 +781,19 @@ elif test -c $DEV; then
 		ipset -n list app_list0 >/dev/null 2>&1 || ipset -! create app_list0 hash:net,port hashsize 1024 maxelem 65536
 	fi
 
+	ipset destroy app_bypass_list >/dev/null 2>&1
+	if test -n "$app_bypass_list"; then
+		ipset -n list app_bypass_list >/dev/null 2>&1 || ipset -! create app_bypass_list hash:net,port hashsize 1024 maxelem 65536
+		for a in $app_bypass_list; do
+			ipset -! add app_bypass_list $a
+		done
+	fi
+
 	ipset -n list knocklist >/dev/null 2>&1 || ipset -! create knocklist iphash hashsize 64 maxelem 1024
 	ipset -n list bypasslist >/dev/null 2>&1 || ipset -! create bypasslist nethash hashsize 1024 maxelem 65536
+	for d in $bypasslist; do
+		ipset -! add bypasslist $d
+	done
 
 	ipset destroy cniplist >/dev/null 2>&1
 	echo 'create cniplist hash:net family inet hashsize 4096 maxelem 65536' >/tmp/cniplist.set
