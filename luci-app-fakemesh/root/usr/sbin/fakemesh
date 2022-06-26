@@ -140,7 +140,7 @@ agent_lost_ac()
 
 	#drop all in-comming DHCP request from eth port
 	for brif in $(cd /sys/class/net/br-lan/brif/ && ls); do
-		iwinfo $brif info >/dev/null 2>&1 && continue
+		iwinfo $brif info >/dev/null 2>&1 && [ "$brif" != "meshx0" ] && [ "$brif" != "meshx1" ] && continue
 		nft add table netdev brmeshfilters_$brif
 		nft "add chain netdev brmeshfilters_$brif devfilter { type filter hook ingress device $brif priority 0 ; }"
 		nft insert rule netdev brmeshfilters_$brif devfilter udp sport 68 drop
