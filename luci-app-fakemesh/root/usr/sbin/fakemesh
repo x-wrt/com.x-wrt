@@ -138,12 +138,17 @@ agent_lost_ac()
 
 	logger -t fakemesh "agent_lost_ac($pid): starting wifi SSID=\'${ssid}\' on ${radio} $band!"
 
+	nft_add_brmeshfilters() {
+		brif="$1"
+		nft add table netdev brmeshfilters_$brif
+		nft "add chain netdev brmeshfilters_$brif devfilter { type filter hook ingress device $brif priority 0 ; }"
+		nft add rule netdev brmeshfilters_$brif devfilter udp sport 68 drop
+	}
+
 	#drop all in-comming DHCP request from eth port
 	for brif in $(cd /sys/class/net/br-lan/brif/ && ls); do
 		iwinfo $brif info >/dev/null 2>&1 && [ "$brif" != "meshx0" ] && [ "$brif" != "meshx1" ] && continue
-		nft add table netdev brmeshfilters_$brif
-		nft "add chain netdev brmeshfilters_$brif devfilter { type filter hook ingress device $brif priority 0 ; }"
-		nft insert rule netdev brmeshfilters_$brif devfilter udp sport 68 drop
+		nft_add_brmeshfilters $brif
 	done
 
 	/etc/init.d/network reload
@@ -152,6 +157,13 @@ agent_lost_ac()
 	uci revert dhcp
 	uci revert network
 	uci revert wireless
+
+	#drop all in-comming DHCP request from eth port
+	#XXX: since network reload, netdevice may unregister and re-create, it is safe to re-add filter rules again.
+	for brif in $(cd /sys/class/net/br-lan/brif/ && ls); do
+		iwinfo $brif info >/dev/null 2>&1 && [ "$brif" != "meshx0" ] && [ "$brif" != "meshx1" ] && continue
+		nft_add_brmeshfilters $brif
+	done
 
 	logger -t fakemesh "agent_lost_ac($pid): done!"
 
