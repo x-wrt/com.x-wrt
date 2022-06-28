@@ -479,7 +479,7 @@ CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt7621_DEVICE_xwrt_ms1201k="kmod-cfg80211 k
 CONFIG_TARGET_DEVICE_ramips_mt7621_DEVICE_xwrt_ms1800k-ax-nor=y
 CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt7621_DEVICE_xwrt_ms1800k-ax-nor="kmod-cfg80211 kmod-crypto-ccm kmod-crypto-cmac kmod-crypto-ctr kmod-crypto-gcm kmod-crypto-gf128 kmod-crypto-ghash kmod-crypto-hmac kmod-crypto-rng kmod-crypto-seqiv kmod-crypto-sha256 kmod-gpio-button-hotplug kmod-hwmon-core kmod-leds-gpio kmod-mac80211 kmod-mt7615-common kmod-mt76-connac kmod-mt76-core kmod-mt7915e kmod-thermal liblzo libopenssl libopenssl-conf libpcre libqrencode libstdcpp libxml2 luci-app-openvpn luci-app-wireguard luci-i18n-openvpn-en luci-i18n-openvpn-zh-cn luci-i18n-wireguard-en luci-i18n-wireguard-zh-cn luci-proto-wireguard luci-ssl-nginx nginx nginx-mod-luci nginx-mod-luci-ssl nginx-ssl nginx-ssl-util nginx-util openssl-util openvpn-openssl qrencode uboot-envtools uwsgi uwsgi-cgi-plugin uwsgi-luci-support uwsgi-syslog-plugin wireguard-tools wireless-regdb wpad-openssl"
 CONFIG_TARGET_DEVICE_ramips_mt7621_DEVICE_xwrt_nxc2009e-v100=y
-CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt7621_DEVICE_xwrt_nxc2009e-v100="i2c-tools kmod-eeprom-at24 kmod-gpio-button-hotplug kmod-gsw150 kmod-i2c-core kmod-leds-gpio kmod-regmap-core kmod-regmap-i2c libi2c liblzo libopenssl libopenssl-conf libpcre libqrencode libstdcpp libxml2 luci-app-openvpn luci-app-wireguard luci-i18n-openvpn-en luci-i18n-openvpn-zh-cn luci-i18n-wireguard-en luci-i18n-wireguard-zh-cn luci-proto-wireguard luci-ssl-nginx nginx nginx-mod-luci nginx-mod-luci-ssl nginx-ssl nginx-ssl-util nginx-util openssl-util openvpn-openssl qrencode uboot-envtools uwsgi uwsgi-cgi-plugin uwsgi-luci-support uwsgi-syslog-plugin wireguard-tools wpad-openssl"
+CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt7621_DEVICE_xwrt_nxc2009e-v100="i2c-tools kmod-gpio-button-hotplug kmod-gsw150 kmod-i2c-algo-bit kmod-i2c-core kmod-i2c-gpio kmod-leds-gpio libi2c liblzo libopenssl libopenssl-conf libpcre libqrencode libstdcpp libxml2 luci-app-openvpn luci-app-wireguard luci-i18n-openvpn-en luci-i18n-openvpn-zh-cn luci-i18n-wireguard-en luci-i18n-wireguard-zh-cn luci-proto-wireguard luci-ssl-nginx nginx nginx-mod-luci nginx-mod-luci-ssl nginx-ssl nginx-ssl-util nginx-util openssl-util openvpn-openssl qrencode uboot-envtools uwsgi uwsgi-cgi-plugin uwsgi-luci-support uwsgi-syslog-plugin wireguard-tools wpad-openssl xs2184"
 CONFIG_TARGET_DEVICE_ramips_mt7621_DEVICE_xwrt_nxc200p=y
 CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt7621_DEVICE_xwrt_nxc200p="kmod-gpio-button-hotplug kmod-leds-gpio kmod-usb3 kmod-usb-core kmod-usb-ledtrig-usbport kmod-usb-xhci-hcd kmod-usb-xhci-mtk liblzo libopenssl libopenssl-conf libpcre libqrencode libstdcpp libxml2 luci-app-ledtrig-usbport luci-app-openvpn luci-app-wireguard luci-i18n-openvpn-en luci-i18n-openvpn-zh-cn luci-i18n-wireguard-en luci-i18n-wireguard-zh-cn luci-proto-wireguard luci-ssl-nginx nginx nginx-mod-luci nginx-mod-luci-ssl nginx-ssl nginx-ssl-util nginx-util openssl-util openvpn-openssl qrencode uboot-envtools uwsgi uwsgi-cgi-plugin uwsgi-luci-support uwsgi-syslog-plugin wireguard-tools wpad-openssl"
 CONFIG_TARGET_DEVICE_ramips_mt7621_DEVICE_xwrt_puppies=y
@@ -558,6 +558,7 @@ CONFIG_MODULE_DEFAULT_kmod-gpio-pca953x=y
 CONFIG_MODULE_DEFAULT_kmod-gsw150=y
 CONFIG_MODULE_DEFAULT_kmod-i2c-algo-pca=y
 CONFIG_MODULE_DEFAULT_kmod-i2c-core=y
+CONFIG_MODULE_DEFAULT_kmod-i2c-gpio=y
 CONFIG_DEFAULT_kmod-leds-gpio=y
 CONFIG_MODULE_DEFAULT_kmod-leds-gpio=y
 CONFIG_MODULE_DEFAULT_kmod-mt7603=y
@@ -616,6 +617,7 @@ CONFIG_DEFAULT_urngd=y
 CONFIG_MODULE_DEFAULT_urngd=y
 CONFIG_DEFAULT_wpad-basic-wolfssl=y
 CONFIG_MODULE_DEFAULT_wpad-basic-wolfssl=y
+CONFIG_MODULE_DEFAULT_xs2184=y
 CONFIG_HAS_TESTING_KERNEL=y
 CONFIG_AUDIO_SUPPORT=y
 CONFIG_GPIO_SUPPORT=y
@@ -3318,6 +3320,7 @@ CONFIG_PACKAGE_wireless-regdb=m
 CONFIG_PACKAGE_base-settings-xwrt-t-cpe1202kd-v01=m
 CONFIG_PACKAGE_base-settings-xwrt-x-sdwan-1200=m
 CONFIG_PACKAGE_lte-modem-xwrt-fm10-ax-nand=m
+CONFIG_PACKAGE_xs2184=m
 # end of Independent
 
 #
@@ -3509,12 +3512,12 @@ CONFIG_PACKAGE_kmod-hwmon-core=m
 #
 # I2C support
 #
-# CONFIG_PACKAGE_kmod-i2c-algo-bit is not set
+CONFIG_PACKAGE_kmod-i2c-algo-bit=m
 CONFIG_PACKAGE_kmod-i2c-algo-pca=m
 # CONFIG_PACKAGE_kmod-i2c-algo-pcf is not set
 CONFIG_PACKAGE_kmod-i2c-core=m
 # CONFIG_PACKAGE_kmod-i2c-designware-pci is not set
-# CONFIG_PACKAGE_kmod-i2c-gpio is not set
+CONFIG_PACKAGE_kmod-i2c-gpio=m
 # CONFIG_PACKAGE_kmod-i2c-mux is not set
 # CONFIG_PACKAGE_kmod-i2c-mux-gpio is not set
 # CONFIG_PACKAGE_kmod-i2c-mux-pca9541 is not set

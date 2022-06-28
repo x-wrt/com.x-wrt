@@ -470,6 +470,7 @@ for t in $targets; do
 		TARGET_DEVICE_ramips_mt7621_DEVICE_xwrt_nxc200p|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_xwrt_nxc2009e-v100|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_xwrt_dm2-t-mb2ep-v02-nor|\
+		TARGET_DEVICE_ramips_mt7621_DEVICE_xwrt_ms1800k-ax-nor|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_xwrt_wr1800k-ax-nor|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_xwrt_tcb1800k-ax-nor|\
 		TARGET_DEVICE_ath79_nand_DEVICE_xwrt_gw521-nor|\
@@ -1022,6 +1023,7 @@ for t in $targets; do
 		;;
 		#no usb
 		TARGET_DEVICE_ramips_mt7621_DEVICE_xwrt_dm2-t-mb2ep-v02-nor|\
+		TARGET_DEVICE_ramips_mt7621_DEVICE_xwrt_ms1800k-ax-nor|\
 		TARGET_DEVICE_mediatek_mt7622_DEVICE_xiaomi_redmi-router-ax6s|\
 		TARGET_DEVICE_realtek_rtl838x_DEVICE_inaba_aml2-17gp|\
 		TARGET_DEVICE_realtek_rtl838x_DEVICE_iodata_bsh-g24mb|\
