@@ -204,7 +204,7 @@ agent_sync_config()
 		hash=$(echo -n $id$key | md5sum | head -c32)
 		if ( \
 		[ "$role" = "controller" ] && cp /etc/config/fakemesh /tmp/fakemesh.ac.config.tmp || \
-		timeout 30 wget -qO /tmp/fakemesh.ac.config.tmp http://controller.fakemesh/fakemesh.$hash ); then
+		timeout 30 wget -4 -qO /tmp/fakemesh.ac.config.tmp http://controller.fakemesh/fakemesh.$hash ); then
 			:
 		else
 			lost_ac=$((lost_ac+1))
