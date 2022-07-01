@@ -68,6 +68,8 @@ CONFIG_TARGET_MULTI_PROFILE=y
 # CONFIG_TARGET_ath79_generic_DEVICE_araknis_an-700-ap-i-ac is not set
 # CONFIG_TARGET_ath79_generic_DEVICE_arduino_yun is not set
 # CONFIG_TARGET_ath79_generic_DEVICE_aruba_ap-105 is not set
+# CONFIG_TARGET_ath79_generic_DEVICE_asus_pl-ac56 is not set
+# CONFIG_TARGET_ath79_generic_DEVICE_asus_rp-ac51 is not set
 # CONFIG_TARGET_ath79_generic_DEVICE_asus_rp-ac66 is not set
 # CONFIG_TARGET_ath79_generic_DEVICE_atheros_db120 is not set
 # CONFIG_TARGET_ath79_generic_DEVICE_avm_fritz1750e is not set
@@ -402,6 +404,8 @@ CONFIG_TARGET_PER_DEVICE_ROOTFS=y
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_araknis_an-700-ap-i-ac is not set
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_arduino_yun is not set
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_aruba_ap-105 is not set
+# CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_asus_pl-ac56 is not set
+# CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_asus_rp-ac51 is not set
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_asus_rp-ac66 is not set
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_atheros_db120 is not set
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_avm_fritz4020 is not set
@@ -728,8 +732,7 @@ CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_ubnt_unifiac-mesh=y
 CONFIG_TARGET_DEVICE_PACKAGES_ath79_generic_DEVICE_ubnt_unifiac-mesh="ath10k-board-qca988x ath10k-firmware-qca988x-ct kmod-ath10k-ct kmod-ath9k kmod-ath9k-common kmod-gpio-button-hotplug kmod-hwmon-core wpad-basic-wolfssl"
 CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_ubnt_unifiac-mesh-pro=y
 CONFIG_TARGET_DEVICE_PACKAGES_ath79_generic_DEVICE_ubnt_unifiac-mesh-pro="ath10k-board-qca988x ath10k-firmware-qca988x-ct kmod-ath10k-ct kmod-ath9k kmod-ath9k-common kmod-gpio-button-hotplug kmod-hwmon-core wpad-basic-wolfssl"
-CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_ubnt_unifiac-pro=y
-CONFIG_TARGET_DEVICE_PACKAGES_ath79_generic_DEVICE_ubnt_unifiac-pro="ath10k-board-qca988x ath10k-firmware-qca988x-ct blockd block-mount kmod-ath10k-ct kmod-ath9k kmod-ath9k-common kmod-exfat-linux kmod-fs-autofs4 kmod-fs-ext4 kmod-fs-msdos kmod-fs-ntfs3-oot kmod-fs-vfat kmod-fuse kmod-gpio-button-hotplug kmod-hwmon-core kmod-lib-crc16 kmod-mii kmod-nls-cp437 kmod-phy-ath79-usb kmod-scsi-core kmod-usb2 kmod-usb-core kmod-usb-ehci kmod-usb-net kmod-usb-net-cdc-ether kmod-usb-net-rndis kmod-usb-ohci kmod-usb-storage kmod-usb-storage-uas wpad-basic-wolfssl"
+# CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_ubnt_unifiac-pro is not set
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_ubnt_unifi is not set
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_ubnt_unifi-ap-outdoor-plus is not set
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_ubnt_unifi-ap-pro is not set
