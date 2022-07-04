@@ -545,6 +545,7 @@ for t in $targets; do
 		TARGET_DEVICE_ramips_mt76x8_DEVICE_vocore_vocore2|\
 		TARGET_DEVICE_ramips_mt76x8_DEVICE_skylab_skw92a|\
 		TARGET_DEVICE_ramips_mt76x8_DEVICE_xiaomi_mi-router-4a-100m|\
+		TARGET_DEVICE_ramips_mt76x8_DEVICE_xiaomi_mi-router-4a-100m-intl|\
 		TARGET_DEVICE_ramips_mt76x8_DEVICE_xwrt_g4303k-v1|\
 		TARGET_DEVICE_ramips_mt76x8_DEVICE_xiaomi_miwifi-3c|\
 		TARGET_DEVICE_ramips_mt7620_DEVICE_glinet_gl-mt300n|\
@@ -1087,6 +1088,7 @@ for t in $targets; do
 		TARGET_DEVICE_ramips_mt7621_DEVICE_iodata_wn-ax1167gr|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_totolink_a7000r|\
 		TARGET_DEVICE_ramips_mt76x8_DEVICE_xiaomi_mi-router-4a-100m|\
+		TARGET_DEVICE_ramips_mt76x8_DEVICE_xiaomi_mi-router-4a-100m-intl|\
 		TARGET_DEVICE_ath79_generic_DEVICE_engenius_ecb1750|\
 		TARGET_DEVICE_ath79_generic_DEVICE_engenius_ews511ap|\
 		TARGET_DEVICE_ath79_generic_DEVICE_tplink_archer-d50-v1|\
