@@ -59,6 +59,7 @@ CONFIG_TARGET_MULTI_PROFILE=y
 # CONFIG_TARGET_ramips_mt76x8_DEVICE_asus_rt-n11p-b1 is not set
 # CONFIG_TARGET_ramips_mt76x8_DEVICE_asus_rt-n12-vp-b1 is not set
 # CONFIG_TARGET_ramips_mt76x8_DEVICE_buffalo_wcr-1166ds is not set
+# CONFIG_TARGET_ramips_mt76x8_DEVICE_comfast_cf-wr617ac is not set
 # CONFIG_TARGET_ramips_mt76x8_DEVICE_comfast_cf-wr758ac-v1 is not set
 # CONFIG_TARGET_ramips_mt76x8_DEVICE_comfast_cf-wr758ac-v2 is not set
 # CONFIG_TARGET_ramips_mt76x8_DEVICE_cudy_wr1000 is not set
@@ -134,6 +135,7 @@ CONFIG_TARGET_MULTI_PROFILE=y
 # CONFIG_TARGET_ramips_mt76x8_DEVICE_wrtnode_wrtnode2p is not set
 # CONFIG_TARGET_ramips_mt76x8_DEVICE_wrtnode_wrtnode2r is not set
 # CONFIG_TARGET_ramips_mt76x8_DEVICE_xiaomi_mi-router-4a-100m is not set
+# CONFIG_TARGET_ramips_mt76x8_DEVICE_xiaomi_mi-router-4a-100m-intl is not set
 # CONFIG_TARGET_ramips_mt76x8_DEVICE_xiaomi_mi-router-4c is not set
 # CONFIG_TARGET_ramips_mt76x8_DEVICE_xiaomi_miwifi-3c is not set
 # CONFIG_TARGET_ramips_mt76x8_DEVICE_xiaomi_miwifi-nano is not set
@@ -155,6 +157,7 @@ CONFIG_TARGET_PER_DEVICE_ROOTFS=y
 # CONFIG_TARGET_DEVICE_ramips_mt76x8_DEVICE_asus_rt-n12-vp-b1 is not set
 CONFIG_TARGET_DEVICE_ramips_mt76x8_DEVICE_buffalo_wcr-1166ds=y
 CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt76x8_DEVICE_buffalo_wcr-1166ds="kmod-gpio-button-hotplug kmod-mt76x02-common kmod-mt76x2 kmod-mt76x2-common wpad-basic-wolfssl"
+# CONFIG_TARGET_DEVICE_ramips_mt76x8_DEVICE_comfast_cf-wr617ac is not set
 # CONFIG_TARGET_DEVICE_ramips_mt76x8_DEVICE_comfast_cf-wr758ac-v1 is not set
 # CONFIG_TARGET_DEVICE_ramips_mt76x8_DEVICE_comfast_cf-wr758ac-v2 is not set
 CONFIG_TARGET_DEVICE_ramips_mt76x8_DEVICE_cudy_wr1000=y
@@ -250,6 +253,7 @@ CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt76x8_DEVICE_wavlink_wl-wn570ha1="kmod-gpi
 # CONFIG_TARGET_DEVICE_ramips_mt76x8_DEVICE_wrtnode_wrtnode2p is not set
 # CONFIG_TARGET_DEVICE_ramips_mt76x8_DEVICE_wrtnode_wrtnode2r is not set
 # CONFIG_TARGET_DEVICE_ramips_mt76x8_DEVICE_xiaomi_mi-router-4a-100m is not set
+# CONFIG_TARGET_DEVICE_ramips_mt76x8_DEVICE_xiaomi_mi-router-4a-100m-intl is not set
 CONFIG_TARGET_DEVICE_ramips_mt76x8_DEVICE_xiaomi_mi-router-4c=y
 CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt76x8_DEVICE_xiaomi_mi-router-4c="kmod-gpio-button-hotplug uboot-envtools wpad-basic-wolfssl"
 # CONFIG_TARGET_DEVICE_ramips_mt76x8_DEVICE_xiaomi_miwifi-3c is not set
@@ -617,7 +621,7 @@ CONFIG_TARGET_INIT_CMD="/sbin/init"
 CONFIG_TARGET_INIT_SUPPRESS_STDERR=y
 CONFIG_VERSIONOPT=y
 CONFIG_VERSION_DIST="X-WRT"
-CONFIG_VERSION_NUMBER="22.03_b202207031414"
+CONFIG_VERSION_NUMBER="22.03_b202207060147"
 CONFIG_VERSION_CODE="Jammy"
 CONFIG_VERSION_REPO="http://downloads.openwrt.org/snapshots"
 CONFIG_VERSION_HOME_URL="https://x-wrt.com/"
@@ -4931,6 +4935,7 @@ CONFIG_WOLFSSL_HAS_SESSION_TICKET=y
 CONFIG_WOLFSSL_HAS_OCSP=y
 CONFIG_WOLFSSL_HAS_WPAS=y
 # CONFIG_WOLFSSL_HAS_ECC25519 is not set
+# CONFIG_WOLFSSL_HAS_ECC448 is not set
 CONFIG_WOLFSSL_HAS_OPENVPN=y
 CONFIG_WOLFSSL_ALT_NAMES=y
 # CONFIG_WOLFSSL_ASM_CAPABLE is not set
