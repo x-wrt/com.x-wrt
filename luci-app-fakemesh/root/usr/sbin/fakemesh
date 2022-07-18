@@ -92,8 +92,8 @@ agent_lost_ac()
 
 	#re-enable lan
 	uci delete network.lan.auto >/dev/null 2>&1
-	uci set network.lan.ipaddr="192.168.1.1"
-	for lip in `seq 1 16`; do
+	uci set network.lan.ipaddr="192.168.16.1"
+	for lip in `seq 16 20`; do
 		if ip route | grep -q "192.168.$lip.0/"; then
 			:
 		else
