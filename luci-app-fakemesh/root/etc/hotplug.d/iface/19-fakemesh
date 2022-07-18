@@ -1,0 +1,33 @@
+#!/bin/sh
+
+interface=lan
+
+enabled="$(uci get fakemesh.default.enabled)"
+role="$(uci get fakemesh.default.role)"
+
+[ "$enabled" = "1" ] && [ "$role" != "controller" ] && interface=meshx0
+
+[ "$INTERFACE" = "$interface" ] || exit 0
+
+status="$(ubus -S call network.interface.$INTERFACE status)"
+[ -n "$status" ] && {
+	. /usr/share/libubox/jshn.sh
+	json_load "$status"
+	json_select "ipv4-address" && {
+		json_select 1 && {
+			json_get_var address address
+			json_get_var mask mask
+			test -n "$address" && test -n "$mask" && {
+				broadcast="$(ipcalc.sh "$address/$mask" | grep BROADCAST | cut -d= -f2)"
+				uci get dawn.@network[0] && {
+					old_broadcast="$(uci get dawn.@network[0].broadcast_ip)"
+					[ "$broadcast" = "$old_broadcast" ] || {
+						uci set dawn.@network[0].broadcast_ip="$broadcast"
+						uci commit dawn
+						/etc/init.d/dawn reload
+					}
+				}
+			}
+		}
+	}
+}
