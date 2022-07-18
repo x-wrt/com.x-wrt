@@ -238,7 +238,7 @@ CONFIG_TARGET_DEVICE_ramips_mt76x8_DEVICE_tplink_tl-wr842n-v5=y
 CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt76x8_DEVICE_tplink_tl-wr842n-v5="blockd block-mount kmod-exfat-linux kmod-fs-autofs4 kmod-fs-ext4 kmod-fs-msdos kmod-fs-ntfs3-oot kmod-fs-vfat kmod-fuse kmod-gpio-button-hotplug kmod-lib-crc16 kmod-mii kmod-nls-cp437 kmod-scsi-core kmod-usb2 kmod-usb-core kmod-usb-ehci kmod-usb-ledtrig-usbport kmod-usb-net kmod-usb-net-cdc-ether kmod-usb-net-rndis kmod-usb-ohci kmod-usb-storage kmod-usb-storage-uas luci-app-ledtrig-usbport wpad-basic-wolfssl"
 # CONFIG_TARGET_DEVICE_ramips_mt76x8_DEVICE_tplink_tl-wr850n-v2 is not set
 CONFIG_TARGET_DEVICE_ramips_mt76x8_DEVICE_tplink_tl-wr902ac-v3=y
-CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt76x8_DEVICE_tplink_tl-wr902ac-v3="blockd block-mount chat comgt comgt-ncm kmod-exfat-linux kmod-fs-autofs4 kmod-fs-ext4 kmod-fs-msdos kmod-fs-ntfs3-oot kmod-fs-vfat kmod-fuse kmod-gpio-button-hotplug kmod-lib-crc16 kmod-mii kmod-mt76x02-common kmod-mt76x0-common kmod-mt76x0e kmod-nls-cp437 kmod-scsi-core kmod-usb2 kmod-usb-core kmod-usb-ehci kmod-usb-ledtrig-usbport kmod-usb-net kmod-usb-net-cdc-ether kmod-usb-net-cdc-mbim kmod-usb-net-cdc-ncm kmod-usb-net-huawei-cdc-ncm kmod-usb-net-ipheth kmod-usb-net-qmi-wwan kmod-usb-net-rndis kmod-usb-net-rtl8152 kmod-usb-net-sierrawireless kmod-usb-ohci kmod-usb-serial kmod-usb-serial-option kmod-usb-serial-qualcomm kmod-usb-serial-sierrawireless kmod-usb-serial-wwan kmod-usb-storage kmod-usb-storage-uas kmod-usb-wdm libusb-1.0 luci-app-ledtrig-usbport luci-proto-3g luci-proto-mbim luci-proto-ncm luci-proto-qmi r8152-firmware umbim uqmi usb-modeswitch wpad-basic-wolfssl wwan"
+CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt76x8_DEVICE_tplink_tl-wr902ac-v3="blockd block-mount chat comgt comgt-ncm kmod-exfat-linux kmod-fs-autofs4 kmod-fs-ext4 kmod-fs-msdos kmod-fs-ntfs3-oot kmod-fs-vfat kmod-fuse kmod-gpio-button-hotplug kmod-lib-crc16 kmod-mii kmod-mt76x02-common kmod-mt76x0-common kmod-mt76x0e kmod-nls-cp437 kmod-scsi-core kmod-usb2 kmod-usb-core kmod-usb-ehci kmod-usb-ledtrig-usbport kmod-usb-net kmod-usb-net-cdc-ether kmod-usb-net-cdc-mbim kmod-usb-net-cdc-ncm kmod-usb-net-huawei-cdc-ncm kmod-usb-net-ipheth kmod-usb-net-qmi-wwan kmod-usb-net-rndis kmod-usb-net-rtl8152 kmod-usb-net-sierrawireless kmod-usb-ohci kmod-usb-serial kmod-usb-serial-option kmod-usb-serial-qualcomm kmod-usb-serial-sierrawireless kmod-usb-serial-wwan kmod-usb-storage kmod-usb-storage-uas kmod-usb-wdm libatomic libusb-1.0 luci-app-ledtrig-usbport luci-proto-3g luci-proto-mbim luci-proto-ncm luci-proto-qmi r8152-firmware umbim uqmi usb-modeswitch wpad-basic-wolfssl wwan"
 # CONFIG_TARGET_DEVICE_ramips_mt76x8_DEVICE_unielec_u7628-01-16m is not set
 # CONFIG_TARGET_DEVICE_ramips_mt76x8_DEVICE_vocore_vocore2 is not set
 CONFIG_TARGET_DEVICE_ramips_mt76x8_DEVICE_vocore_vocore2-lite=y
@@ -622,7 +622,7 @@ CONFIG_TARGET_INIT_CMD="/sbin/init"
 CONFIG_TARGET_INIT_SUPPRESS_STDERR=y
 CONFIG_VERSIONOPT=y
 CONFIG_VERSION_DIST="X-WRT"
-CONFIG_VERSION_NUMBER="22.03_b202207181529"
+CONFIG_VERSION_NUMBER="22.03_b202207181607"
 CONFIG_VERSION_CODE="Jammy"
 CONFIG_VERSION_REPO="http://downloads.openwrt.org/snapshots"
 CONFIG_VERSION_HOME_URL="https://x-wrt.com/"
