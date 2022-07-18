@@ -277,6 +277,13 @@ agent_sync_config()
 							uci set wireless.wifinet$K.ieee80211r='1'
 							uci set wireless.wifinet$K.ft_over_ds='1'
 							uci set wireless.wifinet$K.ft_psk_generate_local='1'
+							uci set wireless.wifinet$K.bss_transition='1'
+							uci set wireless.wifinet$K.wnm_sleep_mode='1'
+							uci set wireless.wifinet$K.time_advertisement='2'
+							uci set wireless.wifinet$K.time_zone='GMT0'
+							uci set wireless.wifinet$K.ieee80211k='1'
+							uci set wireless.wifinet$K.rrm_neighbor_report='1'
+							uci set wireless.wifinet$K.rrm_beacon_report='1'
 
 							K=$((K+1))
 						fi
