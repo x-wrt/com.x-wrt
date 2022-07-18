@@ -1,5 +1,7 @@
 #!/bin/sh
 
+[ "$ACTION" = ifup -o "$ACTION" = ifupdate ] || exit 0
+
 interface=lan
 
 enabled="$(uci get fakemesh.default.enabled)"
