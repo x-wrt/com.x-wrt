@@ -126,7 +126,7 @@ agent_lost_ac()
 			uci set wireless.wifinet$K.wpa_group_rekey='0'
 			uci set wireless.wifinet$K.wpa_pair_rekey='0'
 			uci set wireless.wifinet$K.wpa_master_rekey='0'
-			uci set wireless.wifinet$K.disassoc_low_ack='0'
+			uci set wireless.wifinet$K.disassoc_low_ack='1'
 			uci set wireless.wifinet$K.disabled='0'
 			K=$((K+1))
 		fi
@@ -273,7 +273,7 @@ agent_sync_config()
 							uci set wireless.wifinet$K.wpa_group_rekey='0'
 							uci set wireless.wifinet$K.wpa_pair_rekey='0'
 							uci set wireless.wifinet$K.wpa_master_rekey='0'
-							uci set wireless.wifinet$K.disassoc_low_ack='0'
+							uci set wireless.wifinet$K.disassoc_low_ack='1'
 							uci set wireless.wifinet$K.ieee80211r='1'
 							uci set wireless.wifinet$K.ft_over_ds='1'
 							uci set wireless.wifinet$K.ft_psk_generate_local='1'
@@ -471,7 +471,7 @@ if [ "$role" = "controller" ]; then
 		uci set wireless.meshx0.wpa_group_rekey='0'
 		uci set wireless.meshx0.wpa_pair_rekey='0'
 		uci set wireless.meshx0.wpa_master_rekey='0'
-		uci set wireless.meshx0.disassoc_low_ack='0'
+		uci set wireless.meshx0.disassoc_low_ack='1'
 
 		#meshx1
 		uci delete wireless.meshx1 >/dev/null 2>&1
@@ -589,7 +589,7 @@ else
 		uci set wireless.meshx0.wpa_group_rekey='0'
 		uci set wireless.meshx0.wpa_pair_rekey='0'
 		uci set wireless.meshx0.wpa_master_rekey='0'
-		uci set wireless.meshx0.disassoc_low_ack='0'
+		uci set wireless.meshx0.disassoc_low_ack='1'
 
 		#meshx1
 		uci set wireless.meshx1=wifi-iface
@@ -609,7 +609,7 @@ else
 		uci set wireless.meshx1.wpa_group_rekey='0'
 		uci set wireless.meshx1.wpa_pair_rekey='0'
 		uci set wireless.meshx1.wpa_master_rekey='0'
-		uci set wireless.meshx1.disassoc_low_ack='0'
+		uci set wireless.meshx1.disassoc_low_ack='1'
 		[ "$role" = "wap" ] && uci set wireless.meshx1.disabled='1'
 
 		if [ "$band" = "5g" ]; then
