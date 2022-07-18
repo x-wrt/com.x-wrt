@@ -13,4 +13,12 @@ uci get fakemesh.default.init || {
 	uci commit fakemesh
 }
 
+#update cfg_version if new config need to apply
+cfg_version=1
+
+[ "$(uci get fakemesh.@wifim[0].cfg_version || echo 0)" = "$cfg_version" ] || {
+	uci set fakemesh.@wifim[0].cfg_version="$cfg_version"
+	uci commit fakemesh
+}
+
 exit 0
