@@ -9,6 +9,20 @@ role="$(uci get fakemesh.default.role)"
 
 [ "$INTERFACE" = "$interface" ] || exit 0
 
+[ "$interface" = "meshx0" ] && uci get umdns.@umdns[0] && {
+	old_net=$(uci get umdns.@umdns[0].network)
+	new_net=$(for net in $old_net meshx0; do echo $net; done | sort | uniq)
+	new_net=$(echo $new_net)
+	[ "$old_net" != "$new_net" ] && {
+		uci delete umdns.@umdns[0].network >/dev/null 2>&1
+		for net in $new_net; do
+			uci add_list umdns.@umdns[0].network="$net"
+		done
+		uci commit umdns
+		/etc/init.d/umdns reload
+	}
+}
+
 status="$(ubus -S call network.interface.$INTERFACE status)"
 [ -n "$status" ] && {
 	. /usr/share/libubox/jshn.sh
