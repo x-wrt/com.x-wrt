@@ -102,6 +102,8 @@ define Package/base-config-setting/install
 	$(INSTALL_DATA) ./files/mnt_ready.preinit $(1)/lib/preinit/81_mnt_ready
 	$(INSTALL_DIR) $(1)/etc/hotplug.d/net
 	$(INSTALL_DATA) ./files/15-mgr-ipaddr $(1)/etc/hotplug.d/net/15-mgr-ipaddr
+	$(INSTALL_DIR) $(1)/etc/hotplug.d/iface
+	$(INSTALL_DATA) ./files/15-mgr-ipaddr $(1)/etc/hotplug.d/iface/15-mgr-ipaddr
 endef
 
 define Build/Configure
