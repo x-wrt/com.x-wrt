@@ -19,6 +19,7 @@ role="$(uci get fakemesh.default.role)"
 		uci set system.@system[0].hostname="$new_hostname"
 		uci commit system
 		/etc/init.d/system reload
+		/etc/init.d/umdns restart
 	}
 }
 
