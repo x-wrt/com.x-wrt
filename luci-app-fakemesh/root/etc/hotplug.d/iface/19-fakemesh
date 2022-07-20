@@ -26,6 +26,7 @@ role="$(uci get fakemesh.default.role)"
 		uci commit umdns
 		/etc/init.d/umdns reload
 	}
+	(sleep 60 && /etc/init.d/umdns reload) &
 }
 [ "$interface" = "lan" ] && uci get umdns.@umdns[0] && {
 	old_net=$(uci get umdns.@umdns[0].network)
@@ -39,6 +40,7 @@ role="$(uci get fakemesh.default.role)"
 		uci commit umdns
 		/etc/init.d/umdns reload
 	}
+	(sleep 60 && /etc/init.d/umdns reload) &
 }
 
 status="$(ubus -S call network.interface.$INTERFACE status)"
