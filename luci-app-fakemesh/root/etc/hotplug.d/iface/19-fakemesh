@@ -11,6 +11,17 @@ role="$(uci get fakemesh.default.role)"
 
 [ "$INTERFACE" = "$interface" ] || exit 0
 
+#change hostname if mesh enabled
+[ "$enabled" = "1" ] && {
+	old_hostname="$(uci get system.@system[0].hostname || echo X-WRT)"
+	new_hostname="$(uci get network.meshx0.hostname || echo $old_hostname)"
+	[ "$old_hostname" != "$new_hostname" ] && {
+		uci set system.@system[0].hostname="$new_hostname"
+		uci commit system
+		/etc/init.d/system reload
+	}
+}
+
 [ "$interface" = "meshx0" ] && uci get umdns.@umdns[0] && {
 	old_net=$(uci get umdns.@umdns[0].network)
 	new_net=$(for net in $old_net meshx0; do echo $net; done | sort | uniq)
