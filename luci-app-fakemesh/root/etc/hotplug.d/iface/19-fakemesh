@@ -60,7 +60,7 @@ role="$(uci get fakemesh.default.role)"
 } ##/etc/init.d/umdns enabled
 
 ###use usteer first
-if /etc/init.d/usteer enabled; then
+if [ "$(uci get fakemesh.default.band_steer_helper)" = "usteer" ]; then
 	old_net=$(uci get usteer.@usteer[0].network)
 	new_net="$interface"
 	[ "$old_net" != "$new_net" ] && {

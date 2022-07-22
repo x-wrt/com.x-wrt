@@ -73,6 +73,27 @@ config_get id default 'id'
 config_get key default 'key'
 config_get access_ip default 'access_ip' '10.10.10.1'
 config_get sync_ac default 'sync_ac' '1'
+config_get band_steer_helper default 'band_steer_helper' 'usteer'
+
+if [ "$band_steer_helper" = "usteer" ]; then
+	test -x /etc/init.d/dawn && {
+		/etc/init.d/dawn enabled && /etc/init.d/dawn disable
+		/etc/init.d/dawn running && /etc/init.d/dawn stop
+	}
+	test -x /etc/init.d/usteer && {
+		/etc/init.d/usteer enabled || /etc/init.d/usteer enable
+		/etc/init.d/usteer running || /etc/init.d/usteer start
+	}
+else
+	test -x /etc/init.d/usteer && {
+		/etc/init.d/usteer enabled && /etc/init.d/usteer disable
+		/etc/init.d/usteer running && /etc/init.d/usteer stop
+	}
+	test -x /etc/init.d/dawn && {
+		/etc/init.d/dawn enabled || /etc/init.d/dawn enable
+		/etc/init.d/dawn running || /etc/init.d/dawn start
+	}
+fi
 
 lost_ac=${lost_ac:-0}
 LOST_AC_CNT=3

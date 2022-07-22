@@ -66,6 +66,11 @@ return view.extend({
 		o.disabled = '0';
 		o.default = o.enabled;
 
+		o = s.option(form.ListValue, 'band_steer_helper', _('Band Steer Helper'));
+		o.value('usteer', _('usteer'));
+		o.value('dawn', _('DAWN'));
+		o.default = 'usteer';
+
 		s = m.section(form.GridSection, 'wifim', _('Wireless Management'));
 		s.addremove = true;
 		s.anonymous = true;
