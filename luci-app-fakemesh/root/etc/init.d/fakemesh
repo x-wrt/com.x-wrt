@@ -7,7 +7,7 @@ boot() {
 }
 
 start() {
-	band_steer_helper=$(uci get fakemesh.default.band_steer_helper || echo usteer) exec /usr/sbin/fakemesh band_steer_helper_switch
+	band_steer_helper=$(uci get fakemesh.default.band_steer_helper || echo usteer) exec /usr/sbin/fakemesh band_steer_helper_switch &
 	/usr/sbin/fakemesh
 }
 
