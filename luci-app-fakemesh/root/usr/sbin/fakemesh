@@ -310,6 +310,8 @@ agent_sync_config()
 			nft list tables | grep 'table netdev brmeshfilters_' | while read tb; do
 				nft delete $tb
 			done
+			test -x /etc/init.d/umdns && /etc/init.d/umdns reload
+			test -x /etc/init.d/dawn && /etc/init.d/dawn restart
 		fi
 		lost_ac=0
 
