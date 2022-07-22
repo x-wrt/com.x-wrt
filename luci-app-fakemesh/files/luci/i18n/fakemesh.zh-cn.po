@@ -39,3 +39,6 @@ msgstr "从AC控制器同步配置。"
 
 msgid "Wireless Management"
 msgstr "无线管理"
+
+msgid "Band Steer Helper"
+msgstr "漫游组件"
