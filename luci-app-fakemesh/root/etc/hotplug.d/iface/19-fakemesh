@@ -19,9 +19,11 @@ role="$(uci get fakemesh.default.role)"
 		uci set system.@system[0].hostname="$new_hostname"
 		uci commit system
 		/etc/init.d/system reload
-		/etc/init.d/umdns restart
+		/etc/init.d/umdns running && /etc/init.d/umdns restart
 	}
 }
+
+/etc/init.d/umdns enabled && {
 
 [ "$interface" = "meshx0" ] && uci get umdns.@umdns[0] && {
 	old_net=$(uci get umdns.@umdns[0].network)
@@ -55,6 +57,20 @@ role="$(uci get fakemesh.default.role)"
 	(sleep 60 && /etc/init.d/umdns reload) &
 }
 
+} ##/etc/init.d/umdns enabled
+
+###use usteer first
+if /etc/init.d/usteer enabled; then
+	old_net=$(uci get usteer.@usteer[0].network)
+	new_net="$interface"
+	[ "$old_net" != "$new_net" ] && {
+		uci set usteer.@usteer[0].network="$new_net"
+		uci commit usteer
+		/etc/init.d/usteer restart
+	}
+
+else ### use dawn
+
 status="$(ubus -S call network.interface.$INTERFACE status)"
 [ -n "$status" ] && {
 	. /usr/share/libubox/jshn.sh
@@ -77,3 +93,5 @@ status="$(ubus -S call network.interface.$INTERFACE status)"
 		}
 	}
 }
+
+fi
