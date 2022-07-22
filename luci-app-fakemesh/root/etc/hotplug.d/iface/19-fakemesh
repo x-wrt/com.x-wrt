@@ -59,17 +59,17 @@ role="$(uci get fakemesh.default.role)"
 
 } ##/etc/init.d/umdns enabled
 
-###use usteer first
-if [ "$(uci get fakemesh.default.band_steer_helper)" = "usteer" ]; then
+band_steer_helper="$(uci get fakemesh.default.band_steer_helper)"
+
+uci get usteer.@usteer[0] && {
 	old_net=$(uci get usteer.@usteer[0].network)
 	new_net="$interface"
 	[ "$old_net" != "$new_net" ] && {
 		uci set usteer.@usteer[0].network="$new_net"
 		uci commit usteer
-		/etc/init.d/usteer restart
+		[ "$band_steer_helper" = "usteer" ] && /etc/init.d/usteer restart
 	}
-
-else ### use dawn
+}
 
 status="$(ubus -S call network.interface.$INTERFACE status)"
 [ -n "$status" ] && {
@@ -86,12 +86,10 @@ status="$(ubus -S call network.interface.$INTERFACE status)"
 					[ "$broadcast" = "$old_broadcast" ] || {
 						uci set dawn.@network[0].broadcast_ip="$broadcast"
 						uci commit dawn
-						/etc/init.d/dawn reload
+						[ "$band_steer_helper" = "dawn" ] && /etc/init.d/dawn reload
 					}
 				}
 			}
 		}
 	}
 }
-
-fi
