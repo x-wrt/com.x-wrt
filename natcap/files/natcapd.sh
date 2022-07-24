@@ -569,7 +569,18 @@ get_rate_data()
 	echo -n $num # assume num bps
 }
 
-test -x /etc/init.d/natflow-boot || {
+if test -x /etc/init.d/natflow-boot; then
+	enable_natflow=`uci get natcapd.default.enable_natflow 2>/dev/null || echo 0`
+	enable_natflow_hw=`uci get natcapd.default.enable_natflow_hw 2>/dev/null || echo 0`
+	old_enabled=$(uci get natflow.main.enabled)
+	old_hwnat=$(uci get natflow.main.hwnat)
+	[ "$old_enabled" = "$enable_natflow" -a "$old_hwnat" = "$enable_natflow_hw" ] || {
+		uci set natflow.main.enabled="$enable_natflow"
+		uci set natflow.main.hwnat="$enable_natflow_hw"
+		uci commit natflow
+		/etc/init.d/natflow-boot reload
+	}
+else
 test -c /dev/natflow_ctl && {
 	enable_natflow=`uci get natcapd.default.enable_natflow 2>/dev/null || echo 0`
 	enable_natflow_hw=`uci get natcapd.default.enable_natflow_hw 2>/dev/null || echo 0`
@@ -585,7 +596,7 @@ test -c /dev/natflow_ctl && {
 	echo disabled=$((!enable_natflow)) >/dev/natflow_ctl
 	echo hwnat=$((enable_natflow_hw)) >/dev/natflow_ctl
 }
-}
+fi
 
 test -c /dev/natcap_peer_ctl && {
 	peer_mode=`uci get natcapd.default.peer_mode 2>/dev/null || echo 0`
