@@ -427,6 +427,7 @@ for t in $targets; do
 		TARGET_DEVICE_ramips_mt7621_DEVICE_linksys_ea7300-v2|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_linksys_ea7300-v1|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_asus_rt-ac85p|\
+		TARGET_DEVICE_ramips_mt7621_DEVICE_asus_rt-ac65p|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_asus_rt-ac57u|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_xiaoyu_xy-c5|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_linksys_ea7500-v2|\
@@ -772,6 +773,7 @@ for t in $targets; do
 		TARGET_DEVICE_ramips_mt7621_DEVICE_netgear_r6800|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_netgear_r6700-v2|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_asus_rt-ac85p|\
+		TARGET_DEVICE_ramips_mt7621_DEVICE_asus_rt-ac65p|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_xiaoyu_xy-c5|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_netgear_r6260|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_netgear_r6850|\
