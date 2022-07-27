@@ -224,7 +224,6 @@ agent_sync_config()
 	ln -s /tmp/fakemesh.ac.config /etc/config/fakemeshac 2>/dev/null
 
 	while :; do
-		sleep 5
 		if test $lost_ac -gt 2; then
 			ubus call network.interface.meshx0 down
 			sleep 1
@@ -232,7 +231,7 @@ agent_sync_config()
 			sleep 1
 		fi
 		ubus -t 15 wait_for network.interface.meshx0
-		sleep 5
+		sleep 10
 
 		hash=$(echo -n $id$key | md5sum | head -c32)
 		if ( \
