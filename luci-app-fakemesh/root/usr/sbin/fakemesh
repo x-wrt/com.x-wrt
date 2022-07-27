@@ -534,6 +534,8 @@ if [ "$role" = "controller" ]; then
 	uci delete dhcp.meshx0 >/dev/null 2>&1
 	uci delete network.meshx0 >/dev/null 2>&1
 
+	#re-enable lan
+	uci delete network.lan.auto >/dev/null 2>&1
 	#re-enable wan
 	uci delete network.wan.auto >/dev/null 2>&1
 	uci delete network.wan6.auto >/dev/null 2>&1
