@@ -73,6 +73,7 @@ config_get id default 'id'
 config_get key default 'key'
 config_get access_ip default 'access_ip' '10.10.10.1'
 config_get sync_ac default 'sync_ac' '1'
+config_get fronthaul_disabled default 'fronthaul_disabled' '0'
 
 band_steer_helper=${band_steer_helper:-usteer}
 
@@ -519,6 +520,7 @@ if [ "$role" = "controller" ]; then
 		uci set wireless.meshx0.wpa_pair_rekey='0'
 		uci set wireless.meshx0.wpa_master_rekey='0'
 		uci set wireless.meshx0.disassoc_low_ack='1'
+		[ "$fronthaul_disabled" = "1" ] && uci set wireless.meshx0.disabled='1'
 
 		#meshx1
 		uci delete wireless.meshx1 >/dev/null 2>&1
@@ -637,6 +639,7 @@ else
 		uci set wireless.meshx0.wpa_pair_rekey='0'
 		uci set wireless.meshx0.wpa_master_rekey='0'
 		uci set wireless.meshx0.disassoc_low_ack='1'
+		[ "$fronthaul_disabled" = "1" ] && uci set wireless.meshx0.disabled='1'
 
 		#meshx1
 		uci set wireless.meshx1=wifi-iface
