@@ -50,8 +50,8 @@ return view.extend({
 		o.default = '5g';
 
 		o = s.option(form.ListValue, 'role', _('Role'), _('Set the gateway router as controller, others as agent.'));
-		o.value('wap', _('Wired AP'));
-		o.value('agent', _('Agent'));
+		o.value('wap', _('Wired AP (ethernet as backhaul)'));
+		o.value('agent', _('Agent (wifi as backhaul)'));
 		o.value('controller', _('Controller'));
 		o.default = 'agent';
 
@@ -70,6 +70,11 @@ return view.extend({
 		o.value('usteer', _('usteer'));
 		o.value('dawn', _('DAWN'));
 		o.default = 'usteer';
+
+		o = s.option(form.Flag, 'fronthaul_disabled', _('Fronthaul Disabled'), _('Disable fronthaul Wi-Fi signal on this node.'));
+		o.enabled = '1';
+		o.disabled = '0';
+		o.default = o.disabled;
 
 		s = m.section(form.GridSection, 'wifim', _('Wireless Management'));
 		s.addremove = true;
