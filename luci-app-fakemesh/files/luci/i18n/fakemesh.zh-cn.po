@@ -44,7 +44,7 @@ msgid "Band Steer Helper"
 msgstr "漫游组件"
 
 msgid "Fronthaul Disabled"
-msgstr "关闭前程"
+msgstr "关闭前传"
 
 msgid "Disable fronthaul Wi-Fi signal on this node."
-msgstr "这个节点关闭前程无线信号。"
+msgstr "这个节点关闭前传无线信号。"
