@@ -158,7 +158,7 @@ agent_lost_ac()
 			uci set wireless.wifinet$K.wpa_pair_rekey='0'
 			uci set wireless.wifinet$K.wpa_master_rekey='0'
 			uci set wireless.wifinet$K.disassoc_low_ack='1'
-			uci set wireless.wifinet$K.disabled='0'
+			uci delete wireless.wifinet$K.disabled 2>/dev/null
 			K=$((K+1))
 		fi
 	done
@@ -520,7 +520,11 @@ if [ "$role" = "controller" ]; then
 		uci set wireless.meshx0.wpa_pair_rekey='0'
 		uci set wireless.meshx0.wpa_master_rekey='0'
 		uci set wireless.meshx0.disassoc_low_ack='1'
-		[ "$fronthaul_disabled" = "1" ] && uci set wireless.meshx0.disabled='1'
+		if [ "$fronthaul_disabled" = "1" ]; then
+			uci set wireless.meshx0.disabled='1'
+		else
+			uci delete wireless.meshx0.disabled 2>/dev/null
+		fi
 
 		#meshx1
 		uci delete wireless.meshx1 >/dev/null 2>&1
@@ -639,7 +643,11 @@ else
 		uci set wireless.meshx0.wpa_pair_rekey='0'
 		uci set wireless.meshx0.wpa_master_rekey='0'
 		uci set wireless.meshx0.disassoc_low_ack='1'
-		[ "$fronthaul_disabled" = "1" ] && uci set wireless.meshx0.disabled='1'
+		if [ "$fronthaul_disabled" = "1" ]; then
+			uci set wireless.meshx0.disabled='1'
+		else
+			uci delete wireless.meshx0.disabled 2>/dev/null
+		fi
 
 		#meshx1
 		uci set wireless.meshx1=wifi-iface
@@ -660,7 +668,11 @@ else
 		uci set wireless.meshx1.wpa_pair_rekey='0'
 		uci set wireless.meshx1.wpa_master_rekey='0'
 		uci set wireless.meshx1.disassoc_low_ack='1'
-		[ "$role" = "wap" ] && uci set wireless.meshx1.disabled='1'
+		if [ "$role" = "wap" ]; then
+			uci set wireless.meshx1.disabled='1'
+		else
+			uci delete wireless.meshx1.disabled 2>/dev/null
+		fi
 
 		if [ "$band" = "5g" ]; then
 			uci set wireless.${radio}.channel='36'
