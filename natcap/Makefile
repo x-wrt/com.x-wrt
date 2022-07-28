@@ -9,10 +9,10 @@ include $(TOPDIR)/rules.mk
 include $(INCLUDE_DIR)/kernel.mk
 
 PKG_NAME:=natcap
-PKG_VERSION:=20220719
+PKG_VERSION:=20220728
 
 PKG_SOURCE_URL:=https://codeload.github.com/ptpt52/natcap/tar.gz/$(PKG_VERSION)?
-PKG_HASH:=e912698d6edd5d43e7febb16cd12ac94e4331cefcb26df5db082ae0f40c8c6fc
+PKG_HASH:=3213fb9da510d79161afbf3c7a6301c57b18db7404c8effdf4ca4b8af79123ea
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
 
 PKG_MAINTAINER:=Chen Minqiang <ptpt52@gmail.com>
@@ -157,7 +157,8 @@ define KernelPackage/natcap
   SUBMENU:=Natcap Support
   TITLE:=Natcap kernel driver
   FILES:=$(PKG_BUILD_DIR)/natcap.ko
-  KCONFIG:=
+  KCONFIG:= \
+	    CONFIG_NF_CONNTRACK_MARK=y
   AUTOLOAD:=$(call AutoLoad,96,natcap)
   DEPENDS:= +kmod-ipt-conntrack +kmod-ipt-nat +kmod-ipt-ipset
 endef
