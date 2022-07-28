@@ -431,7 +431,7 @@ agent_fix_channel()
 		sleep 10
 		sta="$(ubus -S list wpa_supplicant.meshx1)"
 		if test -n "$sta"; then
-			chan=$(iwinfo meshx0 scan | grep -A1 -B1 "ESSID: \"${id}\"" | head -n3 | tail -n1 | awk '{print $4}')
+			chan=$(iwinfo meshx1 scan | grep -A1 -B1 "ESSID: \"${id}\"" | head -n3 | tail -n1 | awk '{print $4}')
 			if test -n "$chan"; then
 				if [ "$chan" != "$channel" ]; then
 					logger -t fakemesh "agent_fix_channel($pid): Setting up channel ($chan) for ${radio}"
