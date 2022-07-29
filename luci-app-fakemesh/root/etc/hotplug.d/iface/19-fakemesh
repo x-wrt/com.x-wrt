@@ -12,7 +12,7 @@ role="$(uci get fakemesh.default.role)"
 [ "$INTERFACE" = "$interface" ] || exit 0
 
 #change hostname if mesh enabled
-[ "$enabled" = "1" ] && {
+if [ "$enabled" = "1" ]; then
 	old_hostname="$(uci get system.@system[0].hostname || echo X-WRT)"
 	new_hostname="$(uci get network.meshx0.hostname || echo $old_hostname)"
 	[ "$old_hostname" != "$new_hostname" ] && {
@@ -21,7 +21,9 @@ role="$(uci get fakemesh.default.role)"
 		/etc/init.d/system reload
 		/etc/init.d/umdns running && /etc/init.d/umdns restart
 	}
-}
+fi
+band_steer_helper=$(uci get fakemesh.default.band_steer_helper || echo usteer)
+band_steer_helper="$band_steer_helper" /usr/sbin/fakemesh band_steer_helper_switch
 
 /etc/init.d/umdns enabled && {
 
@@ -58,8 +60,6 @@ role="$(uci get fakemesh.default.role)"
 }
 
 } ##/etc/init.d/umdns enabled
-
-band_steer_helper="$(uci get fakemesh.default.band_steer_helper)"
 
 uci get usteer.@usteer[0] && {
 	old_net=$(uci get usteer.@usteer[0].network)

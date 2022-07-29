@@ -3,6 +3,39 @@
 . /lib/functions.sh
 . /lib/functions/network.sh
 
+band_steer_helper=${band_steer_helper:-usteer}
+
+band_steer_helper_switch()
+{
+	if [ "$band_steer_helper" = "usteer" ]; then
+		uci delete usteer.@usteer[0].event_log_types 2>/dev/null
+		uci delete usteer.@usteer[0].ssid_list 2>/dev/null
+		uci commit usteer
+		test -x /etc/init.d/dawn && {
+			/etc/init.d/dawn enabled && /etc/init.d/dawn disable
+			/etc/init.d/dawn running && /etc/init.d/dawn stop
+		}
+		test -x /etc/init.d/usteer && {
+			/etc/init.d/usteer enabled || /etc/init.d/usteer enable
+			/etc/init.d/usteer running || /etc/init.d/usteer start
+		}
+	else
+		test -x /etc/init.d/usteer && {
+			/etc/init.d/usteer enabled && /etc/init.d/usteer disable
+			/etc/init.d/usteer running && /etc/init.d/usteer stop
+		}
+		test -x /etc/init.d/dawn && {
+			/etc/init.d/dawn enabled || /etc/init.d/dawn enable
+			/etc/init.d/dawn running || /etc/init.d/dawn start
+		}
+	fi
+}
+
+[ "x$1" = "xband_steer_helper_switch" ] && {
+	band_steer_helper_switch
+	exit 0
+}
+
 config_load fakemesh
 
 config_get_bool enabled default 'enabled' '0'
@@ -74,36 +107,6 @@ config_get key default 'key'
 config_get access_ip default 'access_ip' '10.10.10.1'
 config_get sync_ac default 'sync_ac' '1'
 config_get fronthaul_disabled default 'fronthaul_disabled' '0'
-
-band_steer_helper=${band_steer_helper:-usteer}
-
-band_steer_helper_switch()
-{
-	if [ "$band_steer_helper" = "usteer" ]; then
-		test -x /etc/init.d/dawn && {
-			/etc/init.d/dawn enabled && /etc/init.d/dawn disable
-			/etc/init.d/dawn running && /etc/init.d/dawn stop
-		}
-		test -x /etc/init.d/usteer && {
-			/etc/init.d/usteer enabled || /etc/init.d/usteer enable
-			/etc/init.d/usteer running || /etc/init.d/usteer start
-		}
-	else
-		test -x /etc/init.d/usteer && {
-			/etc/init.d/usteer enabled && /etc/init.d/usteer disable
-			/etc/init.d/usteer running && /etc/init.d/usteer stop
-		}
-		test -x /etc/init.d/dawn && {
-			/etc/init.d/dawn enabled || /etc/init.d/dawn enable
-			/etc/init.d/dawn running || /etc/init.d/dawn start
-		}
-	fi
-}
-
-[ "x$1" = "xband_steer_helper_switch" ] && {
-	band_steer_helper_switch
-	exit 0
-}
 
 lost_ac=${lost_ac:-0}
 LOST_AC_CNT=3
