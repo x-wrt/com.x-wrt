@@ -10,7 +10,8 @@ DISTRIB_ID=`echo -n $DISTRIB_ID | tr a-z A-Z`
 
 MACADDR=""
 test -e /usr/share/natcapd/board_mac.lua && MACADDR=`lua /usr/share/natcapd/board_mac.lua`
-test -n "$MACADDR" || MACADDR=`cat /etc/board.json | grep macaddr | tr a-f A-F | grep -o "[0-9A-F][0-9A-F]:[0-9A-F][0-9A-F]:[0-9A-F][0-9A-F]:[0-9A-F][0-9A-F]:[0-9A-F][0-9A-F]:[0-9A-F][0-9A-F]" | head -n1`
+test -n "$MACADDR" || MACADDR=$(. /lib/functions/system.sh; get_mac_label)
+test -n "$MACADDR" || MACADDR=`cat /etc/board.json | grep '"wan": {\|"lan": {' -A4 | grep macaddr | tr a-f A-F | grep -o "[0-9A-F][0-9A-F]:[0-9A-F][0-9A-F]:[0-9A-F][0-9A-F]:[0-9A-F][0-9A-F]:[0-9A-F][0-9A-F]:[0-9A-F][0-9A-F]" | tail -n1`
 test -n "$MACADDR" || MACADDR=`cat /sys/class/net/eth0/address | tr a-z A-Z`
 test -n "$MACADDR" || MACADDR=`cat /sys/class/net/eth1/address | tr a-z A-Z`
 test -n "$MACADDR" || MACADDR=`head -c6 /dev/urandom | hexdump -e '/1 "%02X:"' | head -c17`
