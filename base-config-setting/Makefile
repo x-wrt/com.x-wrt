@@ -24,7 +24,7 @@ define Package/base-config-setting/Default
   SECTION:=Applications
   CATEGORY:=X
   SUBMENU:=Base config setting for this board
-  DEPENDS:=+busybox +base-files
+  DEPENDS:=+busybox +base-files +jsonfilter
 endef
 
 define Package/base-config-setting
