@@ -518,7 +518,7 @@ if [ "$role" = "controller" ]; then
 	mkdir -p /etc/umdns
 	ln -s /tmp/fakemesh.umdns.json /etc/umdns 2>/dev/null
 	umdns_json="{
-		\"fakemesh\": {
+	\"fakemesh\": {
 		\"service\": \"_fakemesh_${id}._tcp.local\",
 		\"port\": 65535,
 		\"txt\": [ \"id=${id}\" ]
