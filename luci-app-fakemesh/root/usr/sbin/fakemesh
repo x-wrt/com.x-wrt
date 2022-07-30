@@ -519,7 +519,7 @@ if [ "$role" = "controller" ]; then
 	ln -s /tmp/fakemesh.umdns.json /etc/umdns 2>/dev/null
 	umdns_json="{
 		\"fakemesh\": {
-		\"service\": \"_fakemesh._tcp.local\",
+		\"service\": \"_fakemesh_${id}._tcp.local\",
 		\"port\": 65535,
 		\"txt\": [ \"id=${id}\" ]
 	}
