@@ -45,6 +45,7 @@ test $enabled -eq 0 && {
 	rm -f /tmp/fakemesh.ac.config
 	rm -f /etc/config/fakemeshac
 	rm -rf /tmp/fakemesh_lck*
+	rm -f /tmp/fakemesh.firewall.include
 
 	test -e /etc/init.d/umdns && {
 	rm /tmp/fakemesh.umdns.json 2>/dev/null && \
