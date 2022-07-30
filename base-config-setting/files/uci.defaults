@@ -109,9 +109,10 @@ test $version -lt 2 && {
 
 		[ "$(uci get firewall.@zone[1].name 2>/dev/null)" = "wan" ] && {
 			wans="$(uci get firewall.@zone[1].network 2>/dev/null) usbwan"
-			wans=$(for w in $wans; do echo $w; done | sort | uniq)
-			wans=$(echo $wans)
-			uci set firewall.@zone[1].network="$wans"
+			uci delete firewall.@zone[1].network
+			for w in $wans; do echo $w; done | sort | uniq | while read wan; do
+				uci add_list firewall.@zone[1].network="$wan"
+			done
 			uci commit firewall
 		}
 	}
