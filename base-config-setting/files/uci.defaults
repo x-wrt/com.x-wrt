@@ -1,21 +1,21 @@
 
 touch /etc/config/base_config
 uci get base_config.@status[0] >/dev/null 2>&1 || uci add base_config status >/dev/null 2>&1
-version=`uci get base_config.@status[0].version 2>/dev/null`
+version=$(uci get base_config.@status[0].version 2>/dev/null)
 version=$((version+0))
 
 . /etc/openwrt_release
 test -n "${DISTRIB_ID}" || DISTRIB_ID=X-WRT
-DISTRIB_ID=`echo -n $DISTRIB_ID | tr a-z A-Z`
+DISTRIB_ID=$(echo -n $DISTRIB_ID | tr a-z A-Z)
 
 MACADDR=""
-test -e /usr/share/natcapd/board_mac.lua && MACADDR=`lua /usr/share/natcapd/board_mac.lua`
+test -e /usr/share/natcapd/board_mac.lua && MACADDR=$(lua /usr/share/natcapd/board_mac.lua)
 test -n "$MACADDR" || MACADDR=$(. /lib/functions/system.sh; get_mac_label)
-test -n "$MACADDR" || MACADDR=`cat /etc/board.json | grep '"wan": {\|"lan": {' -A4 | grep macaddr | tr a-f A-F | grep -o "[0-9A-F][0-9A-F]:[0-9A-F][0-9A-F]:[0-9A-F][0-9A-F]:[0-9A-F][0-9A-F]:[0-9A-F][0-9A-F]:[0-9A-F][0-9A-F]" | tail -n1`
-test -n "$MACADDR" || MACADDR=`cat /sys/class/net/eth0/address | tr a-z A-Z`
-test -n "$MACADDR" || MACADDR=`cat /sys/class/net/eth1/address | tr a-z A-Z`
-test -n "$MACADDR" || MACADDR=`head -c6 /dev/urandom | hexdump -e '/1 "%02X:"' | head -c17`
-test -n "$MACADDR" || MACADDR=`head -c6 /dev/random | hexdump -e '/1 "%02X:"' | head -c17`
+test -n "$MACADDR" || MACADDR=$(cat /etc/board.json | grep '"wan": {\|"lan": {' -A4 | grep macaddr | tr a-f A-F | grep -o "[0-9A-F][0-9A-F]:[0-9A-F][0-9A-F]:[0-9A-F][0-9A-F]:[0-9A-F][0-9A-F]:[0-9A-F][0-9A-F]:[0-9A-F][0-9A-F]" | tail -n1)
+test -n "$MACADDR" || MACADDR=$(cat /sys/class/net/eth0/address | tr a-z A-Z)
+test -n "$MACADDR" || MACADDR=$(cat /sys/class/net/eth1/address | tr a-z A-Z)
+test -n "$MACADDR" || MACADDR=$(head -c6 /dev/urandom | hexdump -e '/1 "%02X:"' | head -c17)
+test -n "$MACADDR" || MACADDR=$(head -c6 /dev/random | hexdump -e '/1 "%02X:"' | head -c17)
 
 test $version -lt 1 && {
 	uci set luci.main.lang='auto'
@@ -35,12 +35,12 @@ test $version -lt 1 && {
 	uci set dhcp.lan.force='1'
 	uci commit dhcp
 
-	[ x`uci get firewall.@zone[0].name 2>/dev/null` = xlan ] && {
-		[ x`uci get firewall.@zone[0].mtu_fix 2>/dev/null` = x1 ] || uci set firewall.@zone[0].mtu_fix='1'
+	[ "$(uci get firewall.@zone[0].name 2>/dev/null)" = "lan" ] && {
+		[ "$(uci get firewall.@zone[0].mtu_fix 2>/dev/null)" = "1" ] || uci set firewall.@zone[0].mtu_fix='1'
 	}
 	uci commit firewall
 
-	[ x`uci get dropbear.@dropbear[0] 2>/dev/null` = xdropbear ] && {
+	[ "$(uci get dropbear.@dropbear[0] 2>/dev/null)" = "dropbear" ] && {
 		uci set dropbear.@dropbear[0].PasswordAuth='off'
 		uci set dropbear.@dropbear[0].RootPasswordAuth='off'
 		uci set dropbear.@dropbear[0].Port='22'
@@ -61,7 +61,7 @@ test $version -lt 1 && {
 
 	cp /usr/share/base-config-setting/etc/shadow /etc/shadow && chmod 600 /etc/shadow
 
-	SUBFIX=`echo -n $MACADDR | sed 's/://g' | tr a-z A-Z | tail -c4`
+	SUBFIX=$(echo -n $MACADDR | sed 's/://g' | tr a-z A-Z | tail -c4)
 	SSID=${DISTRIB_ID}_${SUBFIX}
 	SSID_PASSWD=88888888
 
@@ -75,7 +75,7 @@ test $version -lt 2 && {
 	if ! uci get network.wan >/dev/null 2>&1 && modinfo macvlan >/dev/null 2>&1; then
 		local lan_idx=0
 		while uci get network.@device[$lan_idx] >/dev/null 2>&1 && [ $(uci get network.@device[$lan_idx].name) != "br-lan" ]; do lan_idx=$((lan_idx+1)); done
-		local device=`uci get network.@device[$lan_idx].ports 2>/dev/null | cut -d" " -f1 || echo eth0`
+		local device=$(uci get network.@device[$lan_idx].ports 2>/dev/null | cut -d" " -f1 || echo eth0)
 		if [ "$(uci get network.@device[$lan_idx].ports | wc -w)" = 1 ] && [ "$(uci get network.@device[$lan_idx].name)" = "br-lan" ]; then
 		uci -q batch <<-EOT
 			set network.wan=interface
@@ -107,10 +107,10 @@ test $version -lt 2 && {
 			commit network
 		EOT
 
-		[ x`uci get firewall.@zone[1].name 2>/dev/null` = xwan ] && {
+		[ "$(uci get firewall.@zone[1].name 2>/dev/null)" = "wan" ] && {
 			wans="$(uci get firewall.@zone[1].network 2>/dev/null) usbwan"
 			wans=$(for w in $wans; do echo $w; done | sort | uniq)
-			wans=`echo $wans`
+			wans=$(echo $wans)
 			uci set firewall.@zone[1].network="$wans"
 			uci commit firewall
 		}
@@ -126,18 +126,18 @@ test $version -lt 2 && {
 			ROOTDEV=/dev/${partdev}
 		fi
 		test -b ${ROOTDEV} && {
-			sector_size=`fdisk -l ${ROOTDEV} | grep "^Sector size" | awk '{print $4}'`
+			sector_size=$(fdisk -l ${ROOTDEV} | grep "^Sector size" | awk '{print $4}')
 			sector_size=$((sector_size+0))
 			test ${sector_size} -gt 0 || sector_size=512
 			lastsec=0
 			if fdisk -l ${ROOTDEV} 2>/dev/null | grep -q "type: gpt"; then
-				lastsec=`fdisk -l ${ROOTDEV} | grep ^${ROOTDEV} | head -n4 | tail -n1 | awk '{print $3}'`
+				lastsec=$(fdisk -l ${ROOTDEV} | grep ^${ROOTDEV} | head -n4 | tail -n1 | awk '{print $3}')
 				lastsec=$((lastsec+34))
 			else
-				lastsec=`fdisk -l ${ROOTDEV} | grep ^${ROOTDEV} | head -n2 | tail -n1 | awk '{print $3}'`
+				lastsec=$(fdisk -l ${ROOTDEV} | grep ^${ROOTDEV} | head -n2 | tail -n1 | awk '{print $3}')
 				lastsec=$((lastsec+1))
 			fi
-			config_line=`dd if=${ROOTDEV} bs=${sector_size} skip=${lastsec} count=1 2>/dev/null | head -n1 | grep "open=\|network=\|initscript="`
+			config_line=$(dd if=${ROOTDEV} bs=${sector_size} skip=${lastsec} count=1 2>/dev/null | head -n1 | grep "open=\|network=\|initscript=")
 		}
 	}
 	echo ${config_line} | grep -o network=.* | sed 's/=/ /;s/,/ /g' | while read _ _ip _mask _gw _dns _; do
@@ -155,7 +155,7 @@ test $version -lt 2 && {
 		}
 		break
 	done
-	openport=`echo ${config_line} | grep -o open=[0-9]* | cut -d= -f2`
+	openport=$(echo ${config_line} | grep -o open=[0-9]* | cut -d= -f2)
 	test -n "$openport" && {
 		uci -q batch <<-EOT
 			set firewall.open=rule
@@ -177,7 +177,7 @@ test $version -lt 2 && {
 }
 
 # kB
-memtotal=`grep MemTotal /proc/meminfo | awk '{print $2}'`
+memtotal=$(grep MemTotal /proc/meminfo | awk '{print $2}')
 cachesize=2048
 dnsforwardmax=2048
 nf_conntrack_max=16384
@@ -322,7 +322,7 @@ test $version -lt 16 && {
 	version=16
 }
 
-uci set fstab.@global[0].anon_mount_bak="`uci get fstab.@global[0].anon_mount_bak 2>/dev/null || uci get fstab.@global[0].anon_mount 2>/dev/null`"
+uci set fstab.@global[0].anon_mount_bak="$(uci get fstab.@global[0].anon_mount_bak 2>/dev/null || uci get fstab.@global[0].anon_mount 2>/dev/null)"
 uci set fstab.@global[0].anon_mount='0'
 uci commit fstab
 
