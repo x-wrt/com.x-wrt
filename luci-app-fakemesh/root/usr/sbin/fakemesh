@@ -45,6 +45,12 @@ test $enabled -eq 0 && {
 	rm -f /tmp/fakemesh.ac.config
 	rm -f /etc/config/fakemeshac
 	rm -rf /tmp/fakemesh_lck*
+
+	test -e /etc/init.d/umdns && {
+	rm /tmp/fakemesh.umdns.json 2>/dev/null && \
+	/etc/init.d/umdns restart
+	}
+
 	uci delete wireless.meshx0 >/dev/null 2>&1
 	uci delete wireless.meshx1 >/dev/null 2>&1
 
@@ -507,6 +513,22 @@ if [ "$role" = "controller" ]; then
 
 	rm -rf /tmp/fakemesh_lck*
 
+	test -e /etc/init.d/umdns && {
+	mkdir -p /etc/umdns
+	ln -s /tmp/fakemesh.umdns.json /etc/umdns 2>/dev/null
+	umdns_json="{
+		\"fakemesh\": {
+		\"service\": \"_fakemesh._tcp.local\",
+		\"port\": 65535,
+		\"txt\": [ \"id=${id}\" ]
+	}
+}"
+	[ "$(cat /tmp/fakemesh.umdns.json 2>/dev/null | md5sum | head -c32)" = "$(echo "$umdns_json" | md5sum | head -c32)" ] || {
+	echo "$umdns_json" >/tmp/fakemesh.umdns.json
+	/etc/init.d/umdns restart
+	}
+	}
+
 	# wireless.radio0.band='2g'
 	wbandstr=$(uci show wireless | grep .band=\'${band}\'$ | head -n1)
 	if test -n "$wbandstr"; then
@@ -632,6 +654,12 @@ EOT
 	 exec /usr/sbin/fakemesh agent_sync_config & )&
 else
 	rm -f /www/fakemesh.*
+
+	test -e /etc/init.d/umdns && {
+	rm /tmp/fakemesh.umdns.json 2>/dev/null && \
+	/etc/init.d/umdns restart
+	}
+
 	# wireless.radio0.band='2g'
 	wbandstr=$(uci show wireless | grep .band=\'${band}\'$ | head -n1)
 	if test -n "$wbandstr"; then
