@@ -2912,6 +2912,7 @@ CONFIG_PACKAGE_kmod-md-raid10=y
 CONFIG_PACKAGE_kmod-md-raid456=y
 CONFIG_PACKAGE_kmod-mvsas=y
 # CONFIG_PACKAGE_kmod-nbd is not set
+CONFIG_PACKAGE_kmod-nvme=y
 # CONFIG_PACKAGE_kmod-scsi-cdrom is not set
 CONFIG_PACKAGE_kmod-scsi-core=y
 # CONFIG_PACKAGE_kmod-scsi-generic is not set
