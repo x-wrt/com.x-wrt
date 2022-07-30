@@ -73,8 +73,8 @@ uci get usteer.@usteer[0] && {
 
 status="$(ubus -S call network.interface.$INTERFACE status)"
 [ -n "$status" ] && {
-	address=$(echo "$status" | jsonfilter -e "$['ipv4-address'][*]['address']")
-	mask=$(echo "$status" | jsonfilter -e "$['ipv4-address'][*]['mask']")
+	address=$(echo "$status" | jsonfilter -e '@["ipv4-address"][0].address')
+	mask=$(echo "$status" | jsonfilter -e '@["ipv4-address"][0].mask')
 	test -n "$address" && test -n "$mask" && {
 		broadcast="$(ipcalc.sh "$address/$mask" | grep BROADCAST | cut -d= -f2)"
 		uci get dawn.@network[0] && {
