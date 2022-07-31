@@ -248,13 +248,13 @@ agent_sync_config()
 		hash=$(echo -n $id$key | md5sum | head -c32)
 		if ( \
 		[ "$role" = "controller" ] && cp /etc/config/fakemesh /tmp/fakemesh.ac.config.tmp || \
-		timeout 10 wget -4 -qO /tmp/fakemesh.ac.config.tmp http://controller.fakemesh/fakemesh.$hash ); then
+		timeout 10 wget -4 -qO /tmp/fakemesh.ac.config.tmp http://controller.fakemesh/fakemesh.$hash 2>/dev/null ); then
 			:
 		else
 			lost_ac=$((lost_ac+1))
 			logger -t fakemesh "agent_sync_config($pid): fetch config from controller.fakemesh failed($lost_ac)!"
 			acip=$(ip route | grep "default via" | head -n1 | awk '{print $3}')
-			if test -n "$acip" && [ "$role" != "controller" ] && timeout 5 wget -4 -qO /tmp/fakemesh.ac.config.tmp http://$acip/fakemesh.$hash; then
+			if test -n "$acip" && [ "$role" != "controller" ] && timeout 5 wget -4 -qO /tmp/fakemesh.ac.config.tmp http://$acip/fakemesh.$hash 2>/dev/null; then
 				logger -t fakemesh "agent_sync_config($pid): fetch config from gateway($acip) ok(lost_ac=$lost_ac)"
 			else
 				if test $lost_ac -ge $LOST_AC_CNT; then
