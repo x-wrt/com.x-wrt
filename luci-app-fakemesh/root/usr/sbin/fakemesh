@@ -243,12 +243,12 @@ agent_sync_config()
 			fi
 			ubus -t 15 wait_for network.interface.meshx0
 		}
-		sleep 10
+		sleep 15
 
 		hash=$(echo -n $id$key | md5sum | head -c32)
 		if ( \
 		[ "$role" = "controller" ] && cp /etc/config/fakemesh /tmp/fakemesh.ac.config.tmp || \
-		timeout 15 wget -4 -qO /tmp/fakemesh.ac.config.tmp http://controller.fakemesh/fakemesh.$hash ); then
+		timeout 10 wget -4 -qO /tmp/fakemesh.ac.config.tmp http://controller.fakemesh/fakemesh.$hash ); then
 			:
 		else
 			lost_ac=$((lost_ac+1))
