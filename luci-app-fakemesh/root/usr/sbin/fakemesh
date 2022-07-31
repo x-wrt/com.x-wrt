@@ -719,7 +719,7 @@ else
 			uci delete wireless.meshx1.disabled 2>/dev/null
 		fi
 
-		if [ "$(uci get wireless.${radio}.channel 2>/dev/null || echo auto)" = "auto" ]; then
+		if [ "$role" = "agent" ] && [ "$(uci get wireless.${radio}.channel 2>/dev/null || echo auto)" = "auto" ]; then
 			if [ "$band" = "5g" ]; then
 				uci set wireless.${radio}.channel='36'
 			else
