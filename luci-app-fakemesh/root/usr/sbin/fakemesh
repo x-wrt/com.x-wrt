@@ -263,6 +263,12 @@ agent_sync_config()
 			lost_ac=$((lost_ac+1))
 			logger -t fakemesh "agent_sync_config($pid): fetch config from $achost failed($lost_ac)!"
 			acip=$(ip route | grep "default via" | head -n1 | awk '{print $3}')
+			if test -n "$acip" && ifconfig br-lan | grep -q "addr:$acip "; then
+				logger -t fakemesh "agent_sync_config($pid): acip=$acip is setup on br-lan(lost_ac=$lost_ac)!"
+				ubus call network.interface.lan down
+				/etc/init.d/network reload
+				sleep 5
+			fi
 			if test -n "$acip" && [ "$role" != "controller" ] && timeout 5 wget -4 -qO /tmp/fakemesh.ac.config.tmp http://$acip/fakemesh.$hash 2>/dev/null; then
 				logger -t fakemesh "agent_sync_config($pid): fetch config from gateway($acip) ok(lost_ac=$lost_ac)"
 			elif test -n "$achost" && [ "$role" != "controller" ] && timeout 5 wget -4 -qO /tmp/fakemesh.ac.config.tmp http://$achost/fakemesh.$hash 2>/dev/null; then
