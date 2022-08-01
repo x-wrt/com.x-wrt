@@ -247,10 +247,18 @@ agent_sync_config()
 				/etc/init.d/umdns reload
 				sleep 5
 			fi
-			achost=$(ubus call umdns browse | jsonfilter -e "@['_fakemesh_${id}._tcp'][*]['ipv4']")
+			achost="$(ubus call umdns browse | jsonfilter -e "@['_fakemesh_${id}._tcp'][*]['ipv4']")"
 			if ! test -n "$achost"; then
 				logger -t fakemesh "agent_sync_config($pid): umdns: achost not found(lost_ac=$lost_ac)!"
 				achost=controller.fakemesh
+			fi
+			acnum=$(echo -n "$achost" | wc -w)
+			if [ "$acnum" -gt 1 ]; then
+				logger -t fakemesh "agent_sync_config($pid): umdns: achost found $acnum($achost)(lost_ac=$lost_ac)!"
+				rand=$(hexdump -e '"%u"' -n1 /dev/urandom)
+				rand=$(((rand % acnum) + 1))
+				achost=$(for w in $achost; do echo $w; done | head -n$rand | tail -n1)
+				logger -t fakemesh "agent_sync_config($pid): umdns: achost found random select($achost)(lost_ac=$lost_ac)!"
 			fi
 		fi
 
