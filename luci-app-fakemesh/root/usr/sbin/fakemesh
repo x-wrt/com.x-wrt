@@ -55,7 +55,6 @@ test $enabled -eq 0 && {
 	uci delete wireless.meshx0 >/dev/null 2>&1
 	uci delete wireless.meshx1 >/dev/null 2>&1
 
-	uci set dhcp.lan.ignore='0'
 	uci delete dhcp.meshx0 >/dev/null 2>&1
 	uci delete network.meshx0 >/dev/null 2>&1
 	uci delete firewall.fakemesh >/dev/null 2>&1
@@ -145,8 +144,6 @@ agent_lost_ac()
 	uci set network.lan.netmask='255.255.255.0'
 	logger -t fakemesh "agent_lost_ac($pid): setup temporary lan ip=$(uci get network.lan.ipaddr)"
 
-	#re-enable lan dhcp
-	uci set dhcp.lan.ignore='0'
 	#re-enable lan enable wifi
 	ssid=$(uci get base_config.@status[0].SSID)
 	ssid_passwd=$(uci get base_config.@status[0].SSID_PASSWD)
@@ -244,24 +241,38 @@ agent_sync_config()
 			ubus -t 15 wait_for network.interface.meshx0
 		}
 		sleep 15
+		achost=controller.fakemesh
+		if [ "$role" != "controller" ]; then
+			if test $lost_ac -gt 0; then
+				/etc/init.d/umdns reload
+				sleep 5
+			fi
+			achost=$(ubus call umdns browse | jsonfilter -e "@['_fakemesh_${id}._tcp'][*]['ipv4']")
+			if ! test -n "$achost"; then
+				logger -t fakemesh "agent_sync_config($pid): umdns: achost not found(lost_ac=$lost_ac)!"
+				achost=controller.fakemesh
+			fi
+		fi
 
 		hash=$(echo -n $id$key | md5sum | head -c32)
 		if ( \
 		[ "$role" = "controller" ] && cp /etc/config/fakemesh /tmp/fakemesh.ac.config.tmp || \
-		timeout 10 wget -4 -qO /tmp/fakemesh.ac.config.tmp http://controller.fakemesh/fakemesh.$hash 2>/dev/null ); then
+		timeout 10 wget -4 -qO /tmp/fakemesh.ac.config.tmp http://$achost/fakemesh.$hash 2>/dev/null ); then
 			:
 		else
 			lost_ac=$((lost_ac+1))
-			logger -t fakemesh "agent_sync_config($pid): fetch config from controller.fakemesh failed($lost_ac)!"
+			logger -t fakemesh "agent_sync_config($pid): fetch config from $achost failed($lost_ac)!"
 			acip=$(ip route | grep "default via" | head -n1 | awk '{print $3}')
 			if test -n "$acip" && [ "$role" != "controller" ] && timeout 5 wget -4 -qO /tmp/fakemesh.ac.config.tmp http://$acip/fakemesh.$hash 2>/dev/null; then
 				logger -t fakemesh "agent_sync_config($pid): fetch config from gateway($acip) ok(lost_ac=$lost_ac)"
+			elif test -n "$achost" && [ "$role" != "controller" ] && timeout 5 wget -4 -qO /tmp/fakemesh.ac.config.tmp http://$achost/fakemesh.$hash 2>/dev/null; then
+				logger -t fakemesh "agent_sync_config($pid): fetch config from achost($achost) ok(lost_ac=$lost_ac)"
 			else
 				if test $lost_ac -ge $LOST_AC_CNT; then
 					lost_ac=$lost_ac exec /usr/sbin/fakemesh agent_lost_ac &
 					return 0
 				fi
-				logger -t fakemesh "agent_sync_config($pid): fetch config from gateway($acip) failed($lost_ac), wait 30s"
+				logger -t fakemesh "agent_sync_config($pid): fetch config from achost($achost)/gateway($acip) failed($lost_ac), wait 30s"
 				sleep 30
 				rm -f /tmp/fakemesh.ac.config.tmp
 				test -f /tmp/fakemesh_lck3/$pid || return 0
@@ -567,7 +578,6 @@ if [ "$role" = "controller" ]; then
 		uci delete wireless.meshx1 >/dev/null 2>&1
 	fi
 
-	uci set dhcp.lan.ignore='0'
 	uci delete dhcp.meshx0 >/dev/null 2>&1
 	uci delete network.meshx0 >/dev/null 2>&1
 
@@ -727,8 +737,6 @@ else
 			fi
 		fi
 	fi
-
-	uci set dhcp.lan.ignore='1'
 
 	uci set dhcp.meshx0=dhcp
 	uci set dhcp.meshx0.ignore='1'
