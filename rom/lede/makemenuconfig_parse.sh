@@ -94,6 +94,10 @@ usb3="kmod-usb3 \
 	  blockd \
 	  kmod-fs-ntfs3"
 
+usb_extra="kmod-usb-storage-extras"
+
+exclude_for_tiny="kmod-usb-storage-uas kmod-scsi-core kmod-exfat-linux kmod-fs-exfat kmod-fs-msdos kmod-fs-vfat kmod-fs-ntfs3-oot kmod-fs-ntfs3"
+
 aria2="luci-app-aria2 luci-i18n-aria2-en luci-i18n-aria2-zh-cn webui-aria2 aria2"
 
 ksmbd="luci-app-ksmbd luci-i18n-ksmbd-en luci-i18n-ksmbd-zh-cn ksmbd-server ksmbd-utils kmod-fs-ksmbd wsdd2"
@@ -1182,6 +1186,12 @@ for t in $targets; do
 		;;
 	esac
 
+	case $t in
+		TARGET_DEVICE_ath79_generic_DEVICE_tplink_tl-wdr7500-v3)
+			excludes="$excludes $exclude_for_tiny"
+		;;
+	esac
+
 	#check 4g manual select
 	case $t in
 		TARGET_DEVICE_ath79_generic_DEVICE_netgear_wnr2200-8m|\
@@ -1203,7 +1213,7 @@ for t in $targets; do
 
 	if [ "x$flash_gt8m" = "x1" ] && [ "x$has_usb" = "x1" ]; then
 		mods="$mods $usb4g $iphone4g $nfs"
-		mods="$mods $moreapps $usbprint $ksmbd"
+		mods="$mods $moreapps $usbprint $ksmbd $usb_extra"
 		if [ "x$extra_utils" = "x1" ]; then
 			mods="$mods $utils $aria2"
 		fi
