@@ -96,7 +96,7 @@ usb3="kmod-usb3 \
 
 usb_extra="kmod-usb-storage-extras"
 
-exclude_for_tiny="kmod-usb-storage-uas kmod-scsi-core kmod-exfat-linux kmod-fs-exfat kmod-fs-msdos kmod-fs-vfat kmod-fs-ntfs3-oot kmod-fs-ntfs3"
+exclude_for_tiny="kmod-usb-storage-uas kmod-scsi-core kmod-fs-ext4 kmod-fs-msdos kmod-fs-vfat"
 
 aria2="luci-app-aria2 luci-i18n-aria2-en luci-i18n-aria2-zh-cn webui-aria2 aria2"
 
@@ -1186,12 +1186,6 @@ for t in $targets; do
 		;;
 	esac
 
-	case $t in
-		TARGET_DEVICE_ath79_generic_DEVICE_tplink_tl-wdr7500-v3)
-			excludes="$excludes $exclude_for_tiny"
-		;;
-	esac
-
 	#check 4g manual select
 	case $t in
 		TARGET_DEVICE_ath79_generic_DEVICE_netgear_wnr2200-8m|\
@@ -1219,6 +1213,9 @@ for t in $targets; do
 		fi
 	else
 		mods="$mods $lucistd"
+	fi
+	if [ "x$flash_gt8m" = "x0" ] && [ "x$has_usb" = "x1" ]; then
+		excludes="$excludes $exclude_for_tiny"
 	fi
 	tname=`echo $t | sed 's/TARGET_DEVICE_/CONFIG_TARGET_DEVICE_PACKAGES_/'`
 	mods="$mods `get_target_mods $t`"
