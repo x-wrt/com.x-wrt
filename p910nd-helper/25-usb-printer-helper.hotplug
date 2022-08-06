@@ -3,9 +3,8 @@
 [ "$DEVTYPE" = "usb_interface" ] || exit 0
 
 FIRMWARE=
-DEVICE=/dev/usb/lp0
-
-logger -t p910nd "Loading device[$PRODUCT]"
+DEVICES=$(listlp | grep ",$PRODUCT," | cut -d, -f1)
+logger -t p910nd "Loading device[$PRODUCT] dev[$DEVICES]"
 
 case "$PRODUCT" in
 	#HP LaserJet 1000
@@ -67,22 +66,23 @@ test -e "$FIRMWARE" || exit 0
 mkdir -p /var/run
 lock /var/run/p910nd-usb.lck
 
+for DEVICE in $DEVICES; do
+
 for i in $(seq 30); do
 	if [ -c $DEVICE ] && usb_printerid $DEVICE >/dev/null 2>&1; then
 		if usb_printerid $DEVICE | grep -q FWVER; then
-			logger -t p910nd "Firmware already there on $DEVICE"
+			logger -t p910nd "Firmware already there on $DEVICE[$PRODUCT]"
 		else
-			logger -t p910nd "No firmware found on $DEVICE"
+			logger -t p910nd "No firmware found on $DEVICE[$PRODUCT]"
 			logger -t p910nd "Sending firmware to printer…"
 			cat $FIRMWARE > $DEVICE
-			#wait for ready
-			sleep 8
-			logger -t p910nd "Done"
 		fi
-		logger -t p910nd "EXITING"
-		lock -u /var/run/p910nd-usb.lck
-		exit 0
+		break
+	else
+		logger -t p910nd "Device $DEVICE[$PRODUCT] not found..."
 	fi
 	sleep 1
+done
+
 done
 lock -u /var/run/p910nd-usb.lck
