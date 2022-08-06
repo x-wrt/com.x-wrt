@@ -1,8 +1,14 @@
+## fakemesh简介
+
+fakemesh是由一个`控制器（AC）`和一个或者多个`有线AP（Wired AP）`和`卫星（Agent）`组成的网络，是混合了`无线Mesh`和`AC+AP`两种组网模式的混合网络，`有线AP`通过网线和AC相连，`卫星`则通过无线STA方式接入，共同组成一个无线（包括有线）覆盖网络。
+
+fakemesh在部署上非常方便，只需要设置好节点设备的角色，Mesh ID等信息，就可以轻松接入。
+
 ## fakemesh 使用
 
 ### 组网成功后统一的访问设备的地址格式如下:
 
-访问控制器的地址: `http://controller.fakemesh/`
+访问控制器的地址: `http://controller.fakemesh/`或者`http://ac.fakemesh/`
 
 访问AP的地址: `http://{mac}.ap.fakemesh/` 或者 `http://N.ap.fakemesh/`
 
@@ -66,3 +72,9 @@ AP包括: `卫星(Agent)`和`有线AP(Wired AP)`两种
 ## 无线管理(Wireless Management)
 
    可以在控制器界面上统一管理无线，包括增删SSID，设置SSID的加密方式，频宽。
+
+## 控制器(Controller)旁路部署
+
+   有时候可以让控制器旁路部署，这种情况，控制器可以选择不作为网关出口，可以不提供dhcp服务，这个时候用户需要根据自己的需要，自行关闭控制器lan口的DHCP服务，如果需要，也可以自行设置lan口的IP地址和网关IP和DNS。
+
+   需要注意的是，通常会设置lan口dhcp自动上网，自动从第三方网关获取IP和网关，也可以设置静态IP，但是要保证和第三方网关ping通，如果不通/不在一个网段，就无法和其他AP同步配置了。
