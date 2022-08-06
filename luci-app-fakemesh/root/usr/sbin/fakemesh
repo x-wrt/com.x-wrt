@@ -647,11 +647,11 @@ EOT
 	ln -s /tmp/fakemesh.firewall.include /usr/share/fakemesh/firewall.include 2>/dev/null
 	grep -q "^sh /usr/share/fakemesh/firewall.include" /etc/firewall.include || echo "sh /usr/share/fakemesh/firewall.include" >>/etc/firewall.include
 
-	grep -q "^$access_ip controller.fakemesh" /etc/hosts || {
-		if grep -q ".* controller.fakemesh" /etc/hosts; then
-			sed -i "s/.* controller.fakemesh/$access_ip controller.fakemesh/" /etc/hosts
+	grep -q "^$access_ip controller.fakemesh ac.fakemesh" /etc/hosts || {
+		if grep -q ".* controller.fakemesh ac.fakemesh" /etc/hosts; then
+			sed -i "s/.* controller.fakemesh ac.fakemesh/$access_ip controller.fakemesh ac.fakemesh/" /etc/hosts
 		else
-			echo "$access_ip controller.fakemesh" >>/etc/hosts
+			echo "$access_ip controller.fakemesh ac.fakemesh" >>/etc/hosts
 		fi
 		/etc/init.d/dnsmasq reload
 	}
