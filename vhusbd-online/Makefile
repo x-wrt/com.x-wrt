@@ -7,7 +7,6 @@
 #
 
 include $(TOPDIR)/rules.mk
-include $(INCLUDE_DIR)/kernel.mk
 
 PKG_NAME:=vhusbd-online
 PKG_VERSION:=1.0.0
@@ -20,6 +19,7 @@ include $(INCLUDE_DIR)/package.mk
 
 define Package/vhusbd-online/Default
   SECTION:=Applications
+  PKGARCH:=all
   CATEGORY:=X
 endef
 
@@ -49,15 +49,12 @@ define Package/vhusbd-online/install
 endef
 
 define Build/Configure
-  true
 endef
 
 define Build/Prepare
-  true
 endef
 
 define Build/Compile
-  true
 endef
 
 $(eval $(call BuildPackage,vhusbd-online))
