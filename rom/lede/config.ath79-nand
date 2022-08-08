@@ -5395,6 +5395,7 @@ CONFIG_PACKAGE_luci-mod-system=y
 # CONFIG_PACKAGE_luci-app-adblock is not set
 # CONFIG_PACKAGE_luci-app-advanced-reboot is not set
 # CONFIG_PACKAGE_luci-app-ahcp is not set
+# CONFIG_PACKAGE_luci-app-apinger is not set
 CONFIG_PACKAGE_luci-app-aria2=m
 # CONFIG_PACKAGE_luci-app-attendedsysupgrade is not set
 # CONFIG_PACKAGE_luci-app-babeld is not set
@@ -7990,6 +7991,7 @@ CONFIG_PACKAGE_hmac-sha1-util=y
 CONFIG_PACKAGE_sendip=m
 # CONFIG_PACKAGE_telnetd-test is not set
 CONFIG_PACKAGE_urllogger=m
+# CONFIG_PACKAGE_vhusbd-online is not set
 # end of X
 
 #
