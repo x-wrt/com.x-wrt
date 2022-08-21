@@ -29,11 +29,20 @@ return view.extend({
 
 		s = m.section(form.NamedSection, 'default', 'wizard');
 		s.addremove = false;
-		s.tab('wansetup', _('Wan Settings'), _('Three different ways to access the Internet, please choose according to your own situation.'));
+		s.tab('lansetup', _('Lan Settings'));
 		if (has_wifi) {
 			s.tab('wifisetup', _('Wireless Settings'), _('Set the router\'s wireless name and password. For more advanced settings, please go to the Network-Wireless page.'));
 		}
-		s.tab('lansetup', _('Lan Settings'));
+		s.tab('wansetup', _('Wan Settings'), _('Three different ways to access the Internet, please choose according to your own situation.'));
+
+		o = s.taboption('lansetup', form.Value, 'lan_ipaddr', _('IPv4 address'));
+		o.datatype = 'ip4addr';
+
+		o = s.taboption('lansetup', form.Value, 'lan_netmask', _('IPv4 netmask'));
+		o.datatype = 'ip4addr';
+		o.value('255.255.255.0');
+		o.value('255.255.0.0');
+		o.value('255.0.0.0');
 
 		o = s.taboption('wansetup', form.ListValue, 'wan_proto', _('Protocol'));
 		o.rmempty = false;
@@ -76,15 +85,6 @@ return view.extend({
 			o.datatype = 'wpakey';
 			o.password = true;
 		}
-
-		o = s.taboption('lansetup', form.Value, 'lan_ipaddr', _('IPv4 address'));
-		o.datatype = 'ip4addr';
-
-		o = s.taboption('lansetup', form.Value, 'lan_netmask', _('IPv4 netmask'));
-		o.datatype = 'ip4addr';
-		o.value('255.255.255.0');
-		o.value('255.255.0.0');
-		o.value('255.0.0.0');
 
 		return m.render();
 	}
