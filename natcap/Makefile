@@ -12,7 +12,7 @@ PKG_NAME:=natcap
 PKG_VERSION:=20220822
 
 PKG_SOURCE_URL:=https://codeload.github.com/ptpt52/natcap/tar.gz/$(PKG_VERSION)?
-PKG_HASH:=9e68c9b38e2bb5a7c9dc09546f4bf56ec1a20e960af7d0ae47e817ca2c649e00
+PKG_HASH:=b38f9b01d4e5302c18542c2ed50ce4061b7b09a21c1e54440fa817c3ca73d842
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
 
 PKG_MAINTAINER:=Chen Minqiang <ptpt52@gmail.com>
