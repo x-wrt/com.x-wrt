@@ -940,7 +940,7 @@ elif test -c $DEV; then
 	_setup_natcap_rules
 
 	if [ $cn_domain_enabled = 1 ]; then
-		[ x$access_to_cn != x1 -a x$full_proxy != x1 -a x$cnipwhitelist_mode != x2 ] && \
+		[ x$full_proxy != x1 -a x$cnipwhitelist_mode != x2 ] && \
 		cn_domain_setup &
 	fi
 	natcapd_unlock
