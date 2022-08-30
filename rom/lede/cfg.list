@@ -10,6 +10,7 @@ config.ramips-mt76x8-nosymbol
 config.ipq40xx-generic
 config.ipq806x-generic
 config.mediatek-mt7622
+config.mediatek-filogic
 config.sunxi-cortexa7
 config.bcm27xx-bcm2709
 config.kirkwood-generic
