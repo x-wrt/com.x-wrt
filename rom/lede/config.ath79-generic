@@ -145,6 +145,7 @@ CONFIG_TARGET_MULTI_PROFILE=y
 # CONFIG_TARGET_ath79_generic_DEVICE_engenius_ews511ap is not set
 # CONFIG_TARGET_ath79_generic_DEVICE_enterasys_ws-ap3705i is not set
 # CONFIG_TARGET_ath79_generic_DEVICE_etactica_eg200 is not set
+# CONFIG_TARGET_ath79_generic_DEVICE_extreme-networks_ws-ap3805i is not set
 # CONFIG_TARGET_ath79_generic_DEVICE_glinet_6408 is not set
 # CONFIG_TARGET_ath79_generic_DEVICE_glinet_6416 is not set
 # CONFIG_TARGET_ath79_generic_DEVICE_glinet_gl-ar150 is not set
@@ -506,6 +507,7 @@ CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_engenius_ews511ap=y
 CONFIG_TARGET_DEVICE_PACKAGES_ath79_generic_DEVICE_engenius_ews511ap="ath10k-board-qca9887 ath10k-firmware-qca9887-ct dawn kmod-ath10k-ct kmod-ath9k kmod-ath9k-common kmod-gpio-button-hotplug kmod-hwmon-core libgcrypt libgpg-error liblzo libopenssl libopenssl-conf libpcre libqrencode libstdcpp libxml2 luci-app-dawn luci-app-openvpn luci-app-sqm luci-app-wireguard luci-i18n-dashboard-zh-cn luci-i18n-openvpn-zh-cn luci-i18n-sqm-zh-cn luci-i18n-wireguard-zh-cn luci-lib-json luci-mod-dashboard luci-proto-wireguard luci-ssl-nginx nginx nginx-mod-luci nginx-mod-luci-ssl nginx-ssl nginx-ssl-util nginx-util openssl-util openvpn-openssl qrencode sqm-scripts tc-tiny uwsgi uwsgi-cgi-plugin uwsgi-luci-support uwsgi-syslog-plugin wireguard-tools wpad-openssl"
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_enterasys_ws-ap3705i is not set
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_etactica_eg200 is not set
+# CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_extreme-networks_ws-ap3805i is not set
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_glinet_6408 is not set
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_glinet_6416 is not set
 CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_glinet_gl-ar150=y
@@ -1168,7 +1170,7 @@ CONFIG_TARGET_INIT_CMD="/sbin/init"
 CONFIG_TARGET_INIT_SUPPRESS_STDERR=y
 CONFIG_VERSIONOPT=y
 CONFIG_VERSION_DIST="X-WRT"
-CONFIG_VERSION_NUMBER="22.03_b202208290812"
+CONFIG_VERSION_NUMBER="22.03_b202208310549"
 CONFIG_VERSION_CODE="Jammy"
 CONFIG_VERSION_REPO="http://downloads.openwrt.org/snapshots"
 CONFIG_VERSION_HOME_URL="https://x-wrt.com/"
@@ -4414,12 +4416,10 @@ CONFIG_ATH_USER_REGD=y
 CONFIG_PACKAGE_ATH_DFS=y
 CONFIG_PACKAGE_ATH_DYNACK=y
 # CONFIG_PACKAGE_kmod-ath10k is not set
-CONFIG_ATH10K_LEDS=y
-# CONFIG_ATH10K_THERMAL is not set
 CONFIG_PACKAGE_kmod-ath10k-ct=m
 CONFIG_ATH10K-CT_LEDS=y
 CONFIG_PACKAGE_kmod-ath10k-ct-smallbuffers=m
-CONFIG_PACKAGE_kmod-ath10k-smallbuffers=m
+# CONFIG_PACKAGE_kmod-ath10k-smallbuffers is not set
 # CONFIG_PACKAGE_kmod-ath5k is not set
 # CONFIG_PACKAGE_kmod-ath6kl-sdio is not set
 # CONFIG_PACKAGE_kmod-ath6kl-usb is not set
@@ -7819,6 +7819,7 @@ CONFIG_PACKAGE_uclient-fetch=y
 # CONFIG_PACKAGE_udpxy is not set
 # CONFIG_PACKAGE_ulogd is not set
 CONFIG_PACKAGE_umdns=y
+# CONFIG_PACKAGE_unetd is not set
 # CONFIG_PACKAGE_uradvd is not set
 # CONFIG_PACKAGE_usbip is not set
 CONFIG_PACKAGE_usteer=y
