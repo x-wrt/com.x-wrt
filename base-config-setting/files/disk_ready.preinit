@@ -59,8 +59,8 @@ do_disk_ready() {
 			sda4_start=$2
 			sda4_end=$3
 
-			# overlay partition
-			sda5_start=$((sda4_end+512+1))
+			# overlay partition +512 to align with dos part type
+			sda5_start=$((sda4_end+512+512+1))
 			sda5_end=$((sda5_start+overlay_size/sector_size - 1))
 
 			# data partition
