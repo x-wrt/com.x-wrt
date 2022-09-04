@@ -44,6 +44,8 @@ do_disk_ready() {
 	done | tail -n1`
 	LASTNR=`echo $LASTDEV | grep -o "[0-9]*" | tail -n1`
 	BLKCNT=`fdisk -l ${ROOTDEV} | head -n1 | awk '{print $7}'`
+	SCNT=$((4096/sector_size))
+	test $SCNT -eq 0 && SCNT=1
 
 	if [ "$disktype" = "gpt" ]; then
 		which gdisk || return
@@ -66,7 +68,7 @@ do_disk_ready() {
 
 			# data partition
 			sda6_start=$((sda5_end+512+1))
-			sda6_end=$((BLKCNT-34))
+			sda6_end=$(((BLKCNT-34)/SCNT*SCNT))
 
 			# [_boot_|_rootfs_...1G...][cfg 1G][data...]
 			echo -ne "n\n\n${sda5_start}\n${sda5_end}\n8300\nn\n\n${sda6_start}\n${sda6_end}\n8300\nw\ny\n" | gdisk ${ROOTDEV}
@@ -143,7 +145,7 @@ do_disk_ready() {
 
 			# data partition
 			sda4_start=$((sda3_end+512+1))
-			sda4_end=$((BLKCNT-34))
+			sda4_end=$(((BLKCNT-34)/SCNT*SCNT))
 
 			# [_boot_|_rootfs_...1G...][cfg 1G][data...]
 			echo -ne "n\np\n\n${sda3_start}\n${sda3_end}\nn\np\n${sda4_start}\n${sda4_end}\nw\n" | fdisk ${ROOTDEV}
