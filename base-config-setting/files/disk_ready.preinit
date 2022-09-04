@@ -82,9 +82,8 @@ do_disk_ready() {
 			}
 
 			# check to format
-			if mount -t ext4 -o ro,noatime ${ROOTPART}$((LASTNR+2)) /mnt; then
+			if blkid ${ROOTPART}$((LASTNR+2)) | grep -q 'TYPE="ext4"'; then
 				echo ${ROOTPART}$((LASTNR+2)) has valid filesystem, no need to format
-				umount /mnt
 			else
 				test -b ${ROOTPART}$((LASTNR+2)) && echo erase >${ROOTPART}$((LASTNR+2))
 			fi
@@ -159,9 +158,8 @@ do_disk_ready() {
 			}
 
 			# check to format
-			if mount -t ext4 -o ro,noatime ${ROOTPART}$((LASTNR+2)) /mnt; then
+			if blkid ${ROOTPART}$((LASTNR+2)) | grep -q 'TYPE="ext4"'; then
 				echo ${ROOTPART}$((LASTNR+2)) has valid filesystem, no need to format
-				umount /mnt
 			else
 				test -b ${ROOTPART}$((LASTNR+2)) && echo erase >${ROOTPART}$((LASTNR+2))
 			fi
