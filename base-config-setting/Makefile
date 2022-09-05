@@ -55,6 +55,7 @@ define Package/base-config-setting-ext4fs
   $(call Package/base-config-setting/Default)
   TITLE:=base-config-setting ext4fs set
   DEPENDS:=+base-config-setting +@TARGET_ROOTFS_EXT4FS \
+	   +kmod-fs-ext4 \
 	   +ethtool \
 	   +blockd \
 	   +blkid \
