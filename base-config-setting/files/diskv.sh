@@ -27,11 +27,16 @@ do_disk_ready() {
 			ROOTDEV=/dev/${partdev}
 			ROOTPART=/dev/${partdev}
 		fi
+		SECTOR_SIZE=`fdisk -l ${ROOTDEV} | grep "^Sector size" | awk '{print $4}'`
+		return 0
 	fi
-	SECTOR_SIZE=`fdisk -l ${ROOTDEV} | grep "^Sector size" | awk '{print $4}'`
+	return 1
 }
 
-do_disk_ready
+do_disk_ready || {
+	echo diskv not ready
+	exit 1
+}
 
 #echo ROOTDEV=$ROOTDEV
 #echo ROOTPART=$ROOTPART
