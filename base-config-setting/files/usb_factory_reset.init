@@ -67,7 +67,13 @@ boot() {
 		x_wrt_install_vps &
 	}
 
-	local DEV=`test -f /rom/etc/sda.ready && echo /dev/sdb1 || echo /dev/sda1`
+	diskdev=""
+	. /lib/functions.sh
+	. /lib/upgrade/common.sh
+	export_bootdevice && export_partdevice diskdev 0
+	diskdev=/dev/$diskdev
+
+	local DEV=$(test -b "$diskdev" && (echo /dev/sda1 | grep -q "$diskdev") && echo /dev/sdb1 || echo /dev/sda1)
 	mkdir /tmp/usb_reset || return 0
 	mount $DEV /tmp/usb_reset || {
 		rmdir /tmp/usb_reset

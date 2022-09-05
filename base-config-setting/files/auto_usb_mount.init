@@ -31,7 +31,7 @@ auto_mount_boot()
 		sleep 2
 	done
 
-	diskdev=sda
+	diskdev=""
 	. /lib/functions.sh
 	. /lib/upgrade/common.sh
 	export_bootdevice && export_partdevice diskdev 0
@@ -40,9 +40,7 @@ auto_mount_boot()
 	for DEV in `ls /dev/sd*[0-9]* 2>/dev/null`; do
 		[ x$DEV = x`mount | grep "$DEV " | awk '{print $1}'` ] && continue
 
-		test -f /rom/etc/sda.ready && {
-			echo $DEV | grep -q $diskdev && continue
-		}
+		test -b "$diskdev" && (echo $DEV | grep -q "$diskdev") && continue
 
 		ddir=/mnt/`basename $DEV`
 		mkdir -p "$ddir" || continue

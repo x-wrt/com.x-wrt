@@ -56,6 +56,7 @@ define Package/base-config-setting-ext4fs
   TITLE:=base-config-setting ext4fs set
   DEPENDS:=+base-config-setting +@TARGET_ROOTFS_EXT4FS \
 	   +kmod-fs-ext4 \
+	   +tune2fs \
 	   +ethtool \
 	   +blockd \
 	   +blkid \
@@ -66,8 +67,8 @@ define Package/base-config-setting-ext4fs
 endef
 
 define Package/base-config-setting-ext4fs/install
-	$(INSTALL_DIR) $(1)/etc
-	$(INSTALL_DATA) ./files/fstab.config $(1)/etc/fstab.config
+	$(INSTALL_DIR) $(1)/etc/config
+	$(INSTALL_DATA) ./files/fstab.config $(1)/etc/config/fstab
 	$(INSTALL_DIR) $(1)/lib/preinit
 	$(INSTALL_DATA) ./files/disk_ready.preinit $(1)/lib/preinit/79_disk_ready
 	$(INSTALL_DIR) $(1)/etc/init.d

@@ -85,47 +85,8 @@ do_disk_ready() {
 				}
 			}
 
-			# check to format
-			if blkid ${ROOTPART}$((LASTNR+2)) | grep -q 'TYPE="ext4"'; then
-				echo ${ROOTPART}$((LASTNR+2)) has valid filesystem, no need to format
-			else
-				test -b ${ROOTPART}$((LASTNR+2)) && echo erase >${ROOTPART}$((LASTNR+2))
-			fi
-			mount -o remount,rw / && {
-				test -b ${ROOTPART}$((LASTNR+1)) && rm -f /etc/sda.ready
-				mount -o remount,ro /
-			}
 			LASTNR=$((LASTNR+2))
 		fi
-
-		fstab=0
-		if test -b ${ROOTPART}$((LASTNR-1)); then
-			test -f /etc/sda.ready || {
-				echo -ne 'y\n' | mkfs.ext4 -L rootfs_data ${ROOTPART}$((LASTNR-1))
-				fstab=1
-			}
-			if mount -t ext4 -o ro,noatime ${ROOTPART}$((LASTNR-1)) /mnt; then
-				umount /mnt
-			else
-				echo -ne 'y\n' | mkfs.ext4 -L rootfs_data ${ROOTPART}$((LASTNR-1))
-				fstab=1
-			fi
-		fi
-		test -b ${ROOTPART}$((LASTNR)) && [ "x`head -c5 ${ROOTPART}$((LASTNR))`" = "xerase" ] && {
-			UUID=$(blkid ${ROOTPART}$((LASTNR)) | grep -o "UUID=.*" | cut -d\" -f2)
-			echo -ne 'y\n' | mkfs.ext4 `[ "$UUID" ] && echo -U $UUID` -L data ${ROOTPART}$((LASTNR))
-			fstab=1
-		}
-		[ "x$fstab" = "x1" ] && {
-			mount -o remount,rw / && {
-				UUID0=$(blkid ${ROOTPART}$((LASTNR-1)) | grep -o "UUID=.*" | cut -d\" -f2)
-				UUID1=$(blkid ${ROOTPART}$((LASTNR)) | grep -o "UUID=.*" | cut -d\" -f2)
-				cp /etc/fstab.config /tmp/fstab.config
-				sed -i "s,\(option.*uuid.*\)'_UUID0_',\1\'${UUID0}\',;s,\(option.*uuid.*\)'_UUID1_',\1\'${UUID1}\'," /tmp/fstab.config
-				cp /tmp/fstab.config /etc/config/fstab
-				mount -o remount,ro /
-			}
-		}
 	elif [ "$disktype" = "dos" ]; then
 		if [ "x$diskpart" = "x2" ]; then
 			disksize="`fdisk -l ${ROOTDEV} | grep ${ROOTDEV}: | head -n1 | awk '{print $5}'`"
@@ -163,46 +124,54 @@ do_disk_ready() {
 				}
 			}
 
-			# check to format
-			if blkid ${ROOTPART}$((LASTNR+2)) | grep -q 'TYPE="ext4"'; then
-				echo ${ROOTPART}$((LASTNR+2)) has valid filesystem, no need to format
-			else
-				test -b ${ROOTPART}$((LASTNR+2)) && echo erase >${ROOTPART}$((LASTNR+2))
-			fi
-			mount -o remount,rw / && {
-				test -b ${ROOTPART}$((LASTNR+1)) && rm -f /etc/sda.ready
-				mount -o remount,ro /
-			}
 			LASTNR=$((LASTNR+2))
 		fi
+	fi
 
-		fstab=0
-		if test -b ${ROOTPART}$((LASTNR-1)); then
-			test -f /etc/sda.ready || {
-				echo -ne 'y\n' | mkfs.ext4 -L rootfs_data ${ROOTPART}$((LASTNR-1))
-				fstab=1
-			}
-			if mount -t ext4 -o ro,noatime ${ROOTPART}$((LASTNR-1)) /mnt; then
-				umount /mnt
-			else
-				echo -ne 'y\n' | mkfs.ext4 -L rootfs_data ${ROOTPART}$((LASTNR-1))
-				fstab=1
-			fi
+	#check rootfs_data
+	if test -b ${ROOTPART}$((LASTNR-1)); then
+		uuid=$(uci get fstab.overlay.uuid)
+		format=0
+		if [ "x`head -c5 ${ROOTPART}$((LASTNR-1))`" = "xerase" ]; then
+			echo request format ${ROOTPART}$((LASTNR-1))
+			format=1
 		fi
-		test -b ${ROOTPART}$((LASTNR)) && [ "x`head -c5 ${ROOTPART}$((LASTNR))`" = "xerase" ] && {
-			UUID=$(blkid ${ROOTPART}$((LASTNR)) | grep -o "UUID=.*" | cut -d\" -f2)
-			echo -ne 'y\n' | mkfs.ext4 `[ "$UUID" ] && echo -U $UUID` -L data ${ROOTPART}$((LASTNR))
-			fstab=1
+		if mount -t ext4 -o ro,noatime ${ROOTPART}$((LASTNR-1)) /mnt; then
+			umount /mnt
+		else
+			format=1
+		fi
+		[ "$format" = "1" ] && {
+			echo -ne 'y\n' | mkfs.ext4 -U $uuid -L rootfs_data ${ROOTPART}$((LASTNR-1))
 		}
-		[ "x$fstab" = "x1" ] && {
-			mount -o remount,rw / && {
-				UUID0=$(blkid ${ROOTPART}$((LASTNR-1)) | grep -o "UUID=.*" | cut -d\" -f2)
-				UUID1=$(blkid ${ROOTPART}$((LASTNR)) | grep -o "UUID=.*" | cut -d\" -f2)
-				cp /etc/fstab.config /tmp/fstab.config
-				sed -i "s,\(option.*uuid.*\)'_UUID0_',\1\'${UUID0}\',;s,\(option.*uuid.*\)'_UUID1_',\1\'${UUID1}\'," /tmp/fstab.config
-				cp /tmp/fstab.config /etc/config/fstab
-				mount -o remount,ro /
-			}
+		UUID=$(blkid ${ROOTPART}$((LASTNR-1)) | grep -o "UUID=.*" | cut -d\" -f2)
+		[ "$uuid" = "$UUID" ] || {
+			echo ${ROOTPART}$((LASTNR-1)) change uuid to $uuid
+			e2fsck -f ${ROOTPART}$((LASTNR-1))
+			tune2fs -U $uuid ${ROOTPART}$((LASTNR-1))
+		}
+	fi
+	#check data
+	if test -b ${ROOTPART}$((LASTNR)); then
+		uuid=$(uci get fstab.data.uuid)
+		format=0
+		if [ "x`head -c5 ${ROOTPART}$((LASTNR))`" = "xerase" ]; then
+			echo request format ${ROOTPART}$((LASTNR))
+			format=1
+		fi
+		if blkid ${ROOTPART}$((LASTNR)) | grep -q 'TYPE="ext4"'; then
+			echo ${ROOTPART}$((LASTNR)) has valid filesystem, no need to format
+		else
+			format=1
+		fi
+		[ "$format" = "1" ] && {
+			echo -ne 'y\n' | mkfs.ext4 -U $uuid -L data ${ROOTPART}$((LASTNR))
+		}
+		UUID=$(blkid ${ROOTPART}$((LASTNR)) | grep -o "UUID=.*" | cut -d\" -f2)
+		[ "$uuid" = "$UUID" ] || {
+			echo ${ROOTPART}$((LASTNR)) change uuid to $uuid
+			e2fsck -f ${ROOTPART}$((LASTNR))
+			tune2fs -U $uuid ${ROOTPART}$((LASTNR))
 		}
 	fi
 }
