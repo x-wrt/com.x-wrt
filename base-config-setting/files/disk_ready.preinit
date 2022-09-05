@@ -85,6 +85,7 @@ do_disk_ready() {
 				}
 			}
 
+			test -b ${ROOTPART}$((LASTNR+1)) && echo erase >${ROOTPART}$((LASTNR+1))
 			LASTNR=$((LASTNR+2))
 		fi
 	elif [ "$disktype" = "dos" ]; then
@@ -124,6 +125,7 @@ do_disk_ready() {
 				}
 			}
 
+			test -b ${ROOTPART}$((LASTNR+1)) && echo erase >${ROOTPART}$((LASTNR+1))
 			LASTNR=$((LASTNR+2))
 		fi
 	fi
@@ -136,7 +138,12 @@ do_disk_ready() {
 			echo request format ${ROOTPART}$((LASTNR-1))
 			format=1
 		fi
-		if mount -t ext4 -o ro,noatime ${ROOTPART}$((LASTNR-1)) /mnt; then
+		if mount -t ext4 -o rw,noatime ${ROOTPART}$((LASTNR-1)) /mnt; then
+			if [ "$format" = "1" ]; then
+				format=0
+				rm -rf /mnt/upper /mnt/work /mnt/etc /mnt/.fs_state
+				dd if=/dev/zero of=${ROOTPART}$((LASTNR-1)) bs=1 count=6
+			fi
 			umount /mnt
 		else
 			format=1
