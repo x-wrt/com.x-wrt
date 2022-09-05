@@ -118,8 +118,8 @@ do_disk_ready() {
 		}
 		[ "x$fstab" = "x1" ] && {
 			mount -o remount,rw / && {
-				UUID0=$(blkid ${ROOTPART}$((LASTNR-1)) | cut -d\" -f2)
-				UUID1=$(blkid ${ROOTPART}$((LASTNR)) | cut -d\" -f2)
+				UUID0=$(blkid ${ROOTPART}$((LASTNR-1)) | grep -o "UUID=.*" | cut -d\" -f2)
+				UUID1=$(blkid ${ROOTPART}$((LASTNR)) | grep -o "UUID=.*" | cut -d\" -f2)
 				cp /etc/fstab.config /tmp/fstab.config
 				sed -i "s,\(option.*uuid.*\)'_UUID0_',\1\'${UUID0}\',;s,\(option.*uuid.*\)'_UUID1_',\1\'${UUID1}\'," /tmp/fstab.config
 				cp /tmp/fstab.config /etc/config/fstab
@@ -196,8 +196,8 @@ do_disk_ready() {
 		}
 		[ "x$fstab" = "x1" ] && {
 			mount -o remount,rw / && {
-				UUID0=$(blkid ${ROOTPART}$((LASTNR-1)) | cut -d\" -f2)
-				UUID1=$(blkid ${ROOTPART}$((LASTNR)) | cut -d\" -f2)
+				UUID0=$(blkid ${ROOTPART}$((LASTNR-1)) | grep -o "UUID=.*" | cut -d\" -f2)
+				UUID1=$(blkid ${ROOTPART}$((LASTNR)) | grep -o "UUID=.*" | cut -d\" -f2)
 				cp /etc/fstab.config /tmp/fstab.config
 				sed -i "s,\(option.*uuid.*\)'_UUID0_',\1\'${UUID0}\',;s,\(option.*uuid.*\)'_UUID1_',\1\'${UUID1}\'," /tmp/fstab.config
 				cp /tmp/fstab.config /etc/config/fstab
