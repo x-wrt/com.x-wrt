@@ -112,7 +112,8 @@ do_disk_ready() {
 			fi
 		fi
 		test -b ${ROOTPART}$((LASTNR)) && [ "x`head -c5 ${ROOTPART}$((LASTNR))`" = "xerase" ] && {
-			echo -ne 'y\n' | mkfs.ext4 ${ROOTPART}$((LASTNR))
+			UUID=$(blkid ${ROOTPART}$((LASTNR)) | grep -o "UUID=.*" | cut -d\" -f2)
+			echo -ne 'y\n' | mkfs.ext4 `[ "$UUID" ] && echo -U $UUID` -L data ${ROOTPART}$((LASTNR))
 			fstab=1
 		}
 		[ "x$fstab" = "x1" ] && {
@@ -189,7 +190,8 @@ do_disk_ready() {
 			fi
 		fi
 		test -b ${ROOTPART}$((LASTNR)) && [ "x`head -c5 ${ROOTPART}$((LASTNR))`" = "xerase" ] && {
-			echo -ne 'y\n' | mkfs.ext4 ${ROOTPART}$((LASTNR))
+			UUID=$(blkid ${ROOTPART}$((LASTNR)) | grep -o "UUID=.*" | cut -d\" -f2)
+			echo -ne 'y\n' | mkfs.ext4 `[ "$UUID" ] && echo -U $UUID` -L data ${ROOTPART}$((LASTNR))
 			fstab=1
 		}
 		[ "x$fstab" = "x1" ] && {
