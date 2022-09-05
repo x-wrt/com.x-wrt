@@ -324,6 +324,12 @@ test $version -lt 16 && {
 	version=16
 }
 
+#upgrade fstab config
+test $version -lt 17 && {
+	test -f /rom/lib/preinit/79_disk_ready && cp /rom/etc/config/fstab /etc/config/fstab
+	version=17
+}
+
 uci set fstab.@global[0].anon_mount_bak="$(uci get fstab.@global[0].anon_mount_bak 2>/dev/null || uci get fstab.@global[0].anon_mount 2>/dev/null)"
 uci set fstab.@global[0].anon_mount='0'
 uci commit fstab
