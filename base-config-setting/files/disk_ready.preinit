@@ -101,13 +101,13 @@ do_disk_ready() {
 		fstab=0
 		if test -b ${ROOTPART}$((LASTNR-1)); then
 			test -f /etc/sda.ready || {
-				echo -ne 'y\n' | mkfs.ext4 ${ROOTPART}$((LASTNR-1))
+				echo -ne 'y\n' | mkfs.ext4 -L rootfs_data ${ROOTPART}$((LASTNR-1))
 				fstab=1
 			}
 			if mount -t ext4 -o ro,noatime ${ROOTPART}$((LASTNR-1)) /mnt; then
 				umount /mnt
 			else
-				echo -ne 'y\n' | mkfs.ext4 ${ROOTPART}$((LASTNR-1))
+				echo -ne 'y\n' | mkfs.ext4 -L rootfs_data ${ROOTPART}$((LASTNR-1))
 				fstab=1
 			fi
 		fi
@@ -179,13 +179,13 @@ do_disk_ready() {
 		fstab=0
 		if test -b ${ROOTPART}$((LASTNR-1)); then
 			test -f /etc/sda.ready || {
-				echo -ne 'y\n' | mkfs.ext4 ${ROOTPART}$((LASTNR-1))
+				echo -ne 'y\n' | mkfs.ext4 -L rootfs_data ${ROOTPART}$((LASTNR-1))
 				fstab=1
 			}
 			if mount -t ext4 -o ro,noatime ${ROOTPART}$((LASTNR-1)) /mnt; then
 				umount /mnt
 			else
-				echo -ne 'y\n' | mkfs.ext4 ${ROOTPART}$((LASTNR-1))
+				echo -ne 'y\n' | mkfs.ext4 -L rootfs_data ${ROOTPART}$((LASTNR-1))
 				fstab=1
 			fi
 		fi
