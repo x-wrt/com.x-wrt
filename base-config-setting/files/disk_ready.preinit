@@ -137,18 +137,20 @@ do_disk_ready() {
 		if [ "x`head -c5 ${ROOTPART}$((LASTNR-1))`" = "xerase" ]; then
 			echo request format ${ROOTPART}$((LASTNR-1))
 			format=1
+		elif [ "x`head -c6 ${ROOTPART}$((LASTNR-1))`" = "xformat" ]; then
+			format=2
 		fi
 		if mount -t ext4 -o rw,noatime ${ROOTPART}$((LASTNR-1)) /mnt; then
-			if [ "$format" = "1" ]; then
-				format=0
+			if [ "$format" -ne "0" ]; then
+				format=$((format-1))
 				rm -rf /mnt/upper /mnt/work /mnt/etc /mnt/.fs_state
-				dd if=/dev/zero of=${ROOTPART}$((LASTNR-1)) bs=1 count=6
+				dd if=/dev/zero of=${ROOTPART}$((LASTNR-1)) bs=1 count=8
 			fi
 			umount /mnt
 		else
 			format=1
 		fi
-		[ "$format" = "1" ] && {
+		[ "$format" -ne "0" ] && {
 			echo -ne 'y\n' | mkfs.ext4 -U $uuid -L rootfs_data ${ROOTPART}$((LASTNR-1))
 		}
 		UUID=$(blkid ${ROOTPART}$((LASTNR-1)) | grep -o "UUID=.*" | cut -d\" -f2)
