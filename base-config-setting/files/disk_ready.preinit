@@ -157,6 +157,7 @@ do_disk_ready() {
 			e2fsck -f ${ROOTPART}$((LASTNR-1))
 			tune2fs -U $uuid ${ROOTPART}$((LASTNR-1))
 		}
+		blkid ${ROOTPART}$((LASTNR-1)) | grep -q 'LABEL="rootfs_data"' || tune2fs -L rootfs_data ${ROOTPART}$((LASTNR-1))
 	fi
 	#check data
 	if test -b ${ROOTPART}$((LASTNR)); then
@@ -180,6 +181,7 @@ do_disk_ready() {
 			e2fsck -f ${ROOTPART}$((LASTNR))
 			tune2fs -U $uuid ${ROOTPART}$((LASTNR))
 		}
+		blkid ${ROOTPART}$((LASTNR)) | grep -q 'LABEL="data"' || tune2fs -L data ${ROOTPART}$((LASTNR))
 	fi
 }
 
