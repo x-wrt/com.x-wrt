@@ -74,6 +74,9 @@ case "$cmd" in
 		dd if=/dev/zero of=/tmp/pd.img bs=1 seek=$ds count=$ps >/dev/null conv=notrunc >/dev/null 2>&1
 		dd if=/tmp/pd.img of=$ROOTDEV bs=$SECTOR_SIZE seek=$START count=$COUNT conv=notrunc >/dev/null 2>&1
 	;;
+	clearall)
+		dd if=/dev/zero of=$ROOTDEV bs=$SECTOR_SIZE seek=$START count=$COUNT conv=notrunc >/dev/null 2>&1
+	;;
 	show)
 		cat /tmp/pd.img | grep "="
 	;;
@@ -82,6 +85,7 @@ case "$cmd" in
 		echo "    diskv show"
 		echo "    diskv get <key>"
 		echo "    diskv set <key> <value>"
+		echo "    diskv clearall"
 	;;
 esac
 rm -f /tmp/pd.img
