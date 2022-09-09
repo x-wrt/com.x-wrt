@@ -423,7 +423,6 @@ for t in $targets; do
 		;;
 		#>8M flash <14M
 		TARGET_DEVICE_ramips_mt7621_DEVICE_zbtlink_zbt-wg1608-16m|\
-		TARGET_DEVICE_ipq40xx_generic_DEVICE_netgear_ex6200v2|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_zbtlink_zbt-wg108|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_thunder_timecloud|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_dlink_dir-882-a1|\
@@ -606,6 +605,7 @@ for t in $targets; do
 			excludes="$excludes wpad-basic-wolfssl"
 			flash_gt8m=1
 		;;
+		TARGET_DEVICE_ipq40xx_generic_DEVICE_netgear_ex6200v2|\
 		TARGET_DEVICE_realtek_rtl838x_DEVICE_inaba_aml2-17gp|\
 		TARGET_DEVICE_realtek_rtl838x_DEVICE_iodata_bsh-g24mb|\
 		TARGET_DEVICE_realtek_rtl838x_DEVICE_netgear_gs108t-v3|\
