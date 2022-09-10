@@ -20,7 +20,7 @@ e.rmempty = false
 
 e = s:option(DynamicList, "track_ip", translate("Tracking hostname or IP address"), translate("This hostname or IP address will be pinged to determine if the link is up or down. Leave blank to assume interface is always online"))
 e.datatype = 'host'
-e.default = "gateway"
+e.default = ""
 e.placeholder = "gateway"
 
 e = s:option(ListValue, 'family', translate("Internet Protocol"))
