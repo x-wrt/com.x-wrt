@@ -88,7 +88,7 @@ add_xwan() {
 		}
 		[ "x$balanced" = "x1" ] && {
 			uci get mwan3.wan >/dev/null 2>&1 || {
-				family="$family" track_ip="$track_ip" mwan3_add_one wan
+				family="" track_ip="$track_ip" mwan3_add_one wan
 				change=1
 			}
 		}
