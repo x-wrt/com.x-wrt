@@ -2,3 +2,5 @@ config xwan
 	option enabled '0'
 	option number '1'
 	option balanced '1'
+	list track_ip 'gateway'
+	option family 'ipv4'

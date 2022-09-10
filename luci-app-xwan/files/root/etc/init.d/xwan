@@ -10,11 +10,10 @@ mwan3_add_one() {
 	local intf=$1
 	uci set mwan3.${intf}=interface
 	uci set mwan3.${intf}.enabled='1'
+	test -n "$family" && uci set mwan3.${intf}.family="$family"
 	uci set mwan3.${intf}.initial_state='online'
 	uci delete mwan3.${intf}.track_ip 2>/dev/null
-	uci add_list mwan3.${intf}.track_ip='114.114.114.114'
-	uci add_list mwan3.${intf}.track_ip='119.29.29.29'
-	uci add_list mwan3.${intf}.track_ip='8.8.8.8'
+	for tip in $track_ip; do uci add_list mwan3.${intf}.track_ip="$tip"; done
 	uci set mwan3.${intf}.track_method='ping'
 	uci set mwan3.${intf}.reliability='1'
 	uci set mwan3.${intf}.count='1'
@@ -64,6 +63,8 @@ add_xwan() {
 	config_get enabled "$cfg" enabled
 	config_get number "$cfg" number
 	config_get balanced "$cfg" balanced
+	config_get family "$cfg" family
+	config_get track_ip "$cfg" track_ip
 
 	xwan_new=$(uci show xwan | md5sum | head -c32)
 	xwan_old=$(uci get mwan3.globals.xwan_md5)
@@ -87,7 +88,7 @@ add_xwan() {
 		}
 		[ "x$balanced" = "x1" ] && {
 			uci get mwan3.wan >/dev/null 2>&1 || {
-				mwan3_add_one wan
+				family="$family" track_ip="$track_ip" mwan3_add_one wan
 				change=1
 			}
 		}
@@ -119,7 +120,7 @@ add_xwan() {
 
 			[ "x$balanced" = "x1" ] && {
 				uci get mwan3.xwan$idx >/dev/null 2>&1 || {
-					mwan3_add_one xwan$idx
+					family="$family" track_ip="$track_ip" mwan3_add_one xwan$idx
 					change=1
 				}
 			}

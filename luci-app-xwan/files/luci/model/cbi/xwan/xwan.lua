@@ -18,4 +18,15 @@ e = s:option(Flag, "balanced", translate("Auto balanced setup"))
 e.default = e.disabled
 e.rmempty = false
 
+e = s:option(DynamicList, "track_ip", translate("Tracking hostname or IP address"), translate("This hostname or IP address will be pinged to determine if the link is up or down. Leave blank to assume interface is always online"))
+e.datatype = 'host'
+e.default = "gateway"
+e.placeholder = "gateway"
+
+e = s:option(ListValue, 'family', translate("Internet Protocol"))
+e.default = ''
+e:value('', translate('IPv4 and IPv6'))
+e:value('ipv4', translate('IPv4'))
+e:value('ipv6', translate('IPv6'))
+
 return m
