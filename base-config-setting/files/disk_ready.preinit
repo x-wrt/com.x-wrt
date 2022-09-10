@@ -50,7 +50,7 @@ do_disk_ready() {
 	if [ "$disktype" = "gpt" ]; then
 		which gdisk || return
 		if [ "x$diskpart" = "x3" ] || [ "x$diskpart" = "x4" ]; then
-			disksize="`fdisk -l ${ROOTDEV} | grep ${ROOTDEV}: | head -n1 | awk '{print $5}'`"
+			disksize="`fdisk -l ${ROOTDEV} | grep ${ROOTDEV}: -m1 | awk '{print $5}'`"
 			test -n "$disksize" || return
 			# <= 2GiB && return
 			test $disksize -le 2147483648 && return
@@ -90,7 +90,7 @@ do_disk_ready() {
 		fi
 	elif [ "$disktype" = "dos" ]; then
 		if [ "x$diskpart" = "x2" ]; then
-			disksize="`fdisk -l ${ROOTDEV} | grep ${ROOTDEV}: | head -n1 | awk '{print $5}'`"
+			disksize="`fdisk -l ${ROOTDEV} | grep ${ROOTDEV}: -m1 | awk '{print $5}'`"
 			test -n "$disksize" || return
 			# <= 2GiB && return
 			test $disksize -le 2147483648 && return
