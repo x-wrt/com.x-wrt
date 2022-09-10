@@ -149,7 +149,7 @@ agent_lost_ac()
 	ssid_passwd=$(uci get base_config.@status[0].SSID_PASSWD)
 	K=0
 	for band in 2g 5g; do
-		wbandstr=$(uci show wireless | grep .band=\'${band}\'$ | head -n1)
+		wbandstr=$(uci show wireless | grep .band=\'${band}\'$ -m1)
 		if test -n "$wbandstr"; then
 			radio=$(echo $wbandstr | cut -d\. -f2)
 
@@ -270,7 +270,7 @@ agent_sync_config()
 		else
 			lost_ac=$((lost_ac+1))
 			logger -t fakemesh "agent_sync_config($pid): fetch config from $achost failed($lost_ac)!"
-			acip=$(ip route | grep "default via" | head -n1 | awk '{print $3}')
+			acip=$(ip route | grep "default via" -m1 | awk '{print $3}')
 			if test -n "$acip" && ifconfig br-lan | grep -q "addr:$acip "; then
 				logger -t fakemesh "agent_sync_config($pid): acip=$acip is setup on br-lan(lost_ac=$lost_ac)!"
 				ubus call network.interface.lan down
@@ -333,7 +333,7 @@ agent_sync_config()
 
 				[ "$enabled" = "1" ] && {
 					for band in $bands; do
-						wbandstr=$(uci show wireless | grep .band=\'${band}\'$ | head -n1)
+						wbandstr=$(uci show wireless | grep .band=\'${band}\'$ -m1)
 						if test -n "$wbandstr"; then
 							radio=$(echo $wbandstr | cut -d\. -f2)
 
@@ -412,7 +412,7 @@ agent_keep_alive()
 
 	sta_lost=0
 
-	wbandstr=$(uci show wireless | grep .band=\'${band}\'$ | head -n1)
+	wbandstr=$(uci show wireless | grep .band=\'${band}\'$ -m1)
 	radio=$(echo $wbandstr | cut -d\. -f2)
 	channel=$(uci get wireless.${radio}.channel)
 	test -n "$channel" || return 1
@@ -454,7 +454,7 @@ agent_fix_channel()
 
 	[ "$role" = "agent" ] || return 0
 
-	wbandstr=$(uci show wireless | grep .band=\'${band}\'$ | head -n1)
+	wbandstr=$(uci show wireless | grep .band=\'${band}\'$ -m1)
 	radio=$(echo $wbandstr | cut -d\. -f2)
 	channel=$(uci get wireless.${radio}.channel)
 	test -n "$channel" || return 1
@@ -558,7 +558,7 @@ if [ "$role" = "controller" ]; then
 	}
 
 	# wireless.radio0.band='2g'
-	wbandstr=$(uci show wireless | grep .band=\'${band}\'$ | head -n1)
+	wbandstr=$(uci show wireless | grep .band=\'${band}\'$ -m1)
 	if test -n "$wbandstr"; then
 		radio=$(echo $wbandstr | cut -d\. -f2) # radio0
 
@@ -688,7 +688,7 @@ else
 	}
 
 	# wireless.radio0.band='2g'
-	wbandstr=$(uci show wireless | grep .band=\'${band}\'$ | head -n1)
+	wbandstr=$(uci show wireless | grep .band=\'${band}\'$ -m1)
 	if test -n "$wbandstr"; then
 		radio=$(echo $wbandstr | cut -d\. -f2) # radio0
 
