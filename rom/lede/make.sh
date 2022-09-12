@@ -72,7 +72,7 @@ for i in $IDXS; do
 				last_arch=$new_arch
 				last_subarch=$new_subarch
 			elif [ "$last_subarch" != "$new_subarch" ]; then
-				rm -rf build_dir/target-*/linux-$last_subarch build_dir/toolchain-*
+				rm -rf build_dir/target-*/*$last_subarch* build_dir/target-*/u-boot-* build_dir/toolchain-*
 				last_subarch=$new_subarch
 			fi
 		}
