@@ -606,6 +606,7 @@ for t in $targets; do
 			excludes="$excludes wpad-basic-wolfssl"
 			flash_gt8m=1
 		;;
+		TARGET_DEVICE_ath79_nand_DEVICE_glinet_gl-xe300|\
 		TARGET_DEVICE_ipq40xx_generic_DEVICE_netgear_ex6200v2|\
 		TARGET_DEVICE_realtek_rtl838x_DEVICE_inaba_aml2-17gp|\
 		TARGET_DEVICE_realtek_rtl838x_DEVICE_iodata_bsh-g24mb|\
@@ -876,6 +877,7 @@ for t in $targets; do
 			has_usb=1
 		;;
 		#with usb2
+		TARGET_DEVICE_ath79_nand_DEVICE_glinet_gl-xe300|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_zbtlink_zbt-wg108|\
 		TARGET_DEVICE_ramips_mt76x8_DEVICE_mediatek_mt7628an-eval-board|\
 		TARGET_DEVICE_ath79_generic_DEVICE_tplink_tl-wr710n-v1|\
@@ -1198,6 +1200,7 @@ for t in $targets; do
 
 	#check 4g manual select
 	case $t in
+		TARGET_DEVICE_ath79_nand_DEVICE_glinet_gl-xe300|\
 		TARGET_DEVICE_ath79_generic_DEVICE_netgear_wnr2200-8m|\
 		TARGET_DEVICE_ath79_generic_DEVICE_tplink_tl-wdr3500-v1|\
 		TARGET_DEVICE_ath79_generic_DEVICE_tplink_tl-wdr4300-v1|\
