@@ -68,12 +68,13 @@ for i in $IDXS; do
 		}
 		[ "x$TMPFS" = x1 ] && {
 			rm -rf build_dir/target-*/linux-*/tmp
+			rm -rf build_dir/toolchain-*
 			if [ "$last_arch" != "$new_arch" ]; then
-				rm -rf build_dir/target-* build_dir/toolchain-*
+				rm -rf build_dir/target-*
 				last_arch=$new_arch
 				last_subarch=$new_subarch
 			elif [ "$last_subarch" != "$new_subarch" ]; then
-				rm -rf build_dir/target-*/*$last_subarch* build_dir/target-*/u-boot-* build_dir/target-*/linux-firmware-* build_dir/toolchain-*
+				rm -rf build_dir/target-*/*$last_subarch* build_dir/target-*/u-boot-* build_dir/target-*/linux-firmware-*
 				last_subarch=$new_subarch
 			fi
 		}
