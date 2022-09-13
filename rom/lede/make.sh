@@ -67,6 +67,7 @@ for i in $IDXS; do
 			done
 		}
 		[ "x$TMPFS" = x1 ] && {
+			rm -rf build_dir/target-*/linux-*/tmp
 			if [ "$last_arch" != "$new_arch" ]; then
 				rm -rf build_dir/target-* build_dir/toolchain-*
 				last_arch=$new_arch
