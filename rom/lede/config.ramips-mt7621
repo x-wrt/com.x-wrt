@@ -303,7 +303,8 @@ CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt7621_DEVICE_buffalo_wsr-1166dhp="blockd b
 # CONFIG_TARGET_DEVICE_ramips_mt7621_DEVICE_dlink_dir-867-a1 is not set
 # CONFIG_TARGET_DEVICE_ramips_mt7621_DEVICE_dlink_dir-878-a1 is not set
 # CONFIG_TARGET_DEVICE_ramips_mt7621_DEVICE_dlink_dir-878-r1 is not set
-# CONFIG_TARGET_DEVICE_ramips_mt7621_DEVICE_dlink_dir-882-a1 is not set
+CONFIG_TARGET_DEVICE_ramips_mt7621_DEVICE_dlink_dir-882-a1=y
+CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt7621_DEVICE_dlink_dir-882-a1="blockd block-mount chat comgt comgt-ncm dawn ethtool kmod-cfg80211 kmod-crypto-cbc kmod-crypto-ccm kmod-crypto-cmac kmod-crypto-ctr kmod-crypto-cts kmod-crypto-des kmod-crypto-gcm kmod-crypto-gf128 kmod-crypto-ghash kmod-crypto-hmac kmod-crypto-md4 kmod-crypto-md5 kmod-crypto-rng kmod-crypto-seqiv kmod-crypto-sha256 kmod-crypto-sha512 kmod-dnsresolver kmod-exfat-linux kmod-fs-autofs4 kmod-fs-ext4 kmod-fs-ksmbd kmod-fs-msdos kmod-fs-nfs kmod-fs-nfs-common kmod-fs-nfs-common-rpcsec kmod-fs-nfs-v4 kmod-fs-ntfs3-oot kmod-fs-vfat kmod-fuse kmod-gpio-button-hotplug kmod-hwmon-core kmod-leds-gpio kmod-lib-crc16 kmod-mac80211 kmod-mii kmod-mt7615-common kmod-mt7615e kmod-mt7615-firmware kmod-mt76-connac kmod-mt76-core kmod-nls-cp437 kmod-oid-registry kmod-scsi-core kmod-usb2 kmod-usb3 kmod-usb-core kmod-usb-ehci kmod-usb-ledtrig-usbport kmod-usb-net kmod-usb-net-cdc-ether kmod-usb-net-cdc-mbim kmod-usb-net-cdc-ncm kmod-usb-net-huawei-cdc-ncm kmod-usb-net-ipheth kmod-usb-net-qmi-wwan kmod-usb-net-rndis kmod-usb-net-rtl8152 kmod-usb-net-sierrawireless kmod-usb-ohci kmod-usb-printer kmod-usb-serial kmod-usb-serial-option kmod-usb-serial-qualcomm kmod-usb-serial-sierrawireless kmod-usb-serial-wwan kmod-usb-storage kmod-usb-storage-extras kmod-usb-storage-uas kmod-usb-wdm kmod-usb-xhci-hcd kmod-usb-xhci-mtk ksmbd-server ksmbd-utils libatomic libblkid libevdev libgcrypt libgpg-error libimobiledevice libimobiledevice-utils liblzo libnl-core libnl-genl libopenssl libopenssl-conf libpcre libplist libqrencode libstdcpp libudev-zero libusb-1.0 libusbmuxd libwrap libxml2 luci-app-dawn luci-app-ksmbd luci-app-ledtrig-usbport luci-app-openvpn luci-app-p910nd luci-app-sqm luci-app-wireguard luci-i18n-dashboard-zh-cn luci-i18n-ksmbd-zh-cn luci-i18n-openvpn-zh-cn luci-i18n-p910nd-zh-cn luci-i18n-sqm-zh-cn luci-i18n-wireguard-zh-cn luci-lib-json luci-mod-dashboard luci-proto-3g luci-proto-mbim luci-proto-ncm luci-proto-qmi luci-proto-wireguard luci-ssl-nginx nfs-utils nginx nginx-mod-luci nginx-mod-luci-ssl nginx-ssl nginx-ssl-util nginx-util openssl-util openvpn-openssl p910nd qrencode r8152-firmware sqm-scripts tc-tiny umbim uqmi usb-modeswitch usbmuxd usbutils uwsgi uwsgi-cgi-plugin uwsgi-luci-support uwsgi-syslog-plugin wget-ssl wireguard-tools wireless-regdb wpad-openssl wsdd2 wwan"
 # CONFIG_TARGET_DEVICE_ramips_mt7621_DEVICE_dlink_dir-882-r1 is not set
 # CONFIG_TARGET_DEVICE_ramips_mt7621_DEVICE_dual-q_h721 is not set
 # CONFIG_TARGET_DEVICE_ramips_mt7621_DEVICE_edimax_rg21s is not set
@@ -3116,8 +3117,8 @@ CONFIG_ZABBIX_POSTGRESQL=y
 #
 # Boot Loaders
 #
-# CONFIG_PACKAGE_u-boot-mt7621_nand_rfb is not set
-# CONFIG_PACKAGE_u-boot-mt7621_rfb is not set
+CONFIG_PACKAGE_u-boot-mt7621_nand_rfb=y
+CONFIG_PACKAGE_u-boot-mt7621_rfb=y
 # end of Boot Loaders
 
 #
@@ -3276,6 +3277,7 @@ CONFIG_PACKAGE_nginx-util=m
 # CONFIG_PACKAGE_libertas-sdio-firmware is not set
 # CONFIG_PACKAGE_libertas-spi-firmware is not set
 # CONFIG_PACKAGE_libertas-usb-firmware is not set
+# CONFIG_PACKAGE_midisport-firmware is not set
 # CONFIG_PACKAGE_mt7601u-firmware is not set
 # CONFIG_PACKAGE_mt7622bt-firmware is not set
 # CONFIG_PACKAGE_mt7921bt-firmware is not set
