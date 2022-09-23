@@ -1045,6 +1045,11 @@ CONFIG_KERNEL_IPV6_PIMSM_V2=y
 CONFIG_KERNEL_IPV6_SEG6_LWTUNNEL=y
 # CONFIG_KERNEL_LWTUNNEL_BPF is not set
 # CONFIG_KERNEL_NET_L3_MASTER_DEV is not set
+# CONFIG_KERNEL_WIRELESS_EXT is not set
+# CONFIG_KERNEL_WEXT_CORE is not set
+# CONFIG_KERNEL_WEXT_PRIV is not set
+# CONFIG_KERNEL_WEXT_PROC is not set
+# CONFIG_KERNEL_WEXT_SPY is not set
 # CONFIG_KERNEL_IP_PNP is not set
 
 #
@@ -1184,7 +1189,7 @@ CONFIG_TARGET_INIT_CMD="/sbin/init"
 CONFIG_TARGET_INIT_SUPPRESS_STDERR=y
 CONFIG_VERSIONOPT=y
 CONFIG_VERSION_DIST="X-WRT"
-CONFIG_VERSION_NUMBER="22.03_b202209171639"
+CONFIG_VERSION_NUMBER="22.03_b202209230614"
 CONFIG_VERSION_CODE="Jammy"
 CONFIG_VERSION_REPO="http://downloads.openwrt.org/snapshots"
 CONFIG_VERSION_HOME_URL="https://x-wrt.com/"
@@ -3522,6 +3527,7 @@ CONFIG_PACKAGE_ath10k-firmware-qca99x0-ct=m
 # CONFIG_PACKAGE_libertas-sdio-firmware is not set
 # CONFIG_PACKAGE_libertas-spi-firmware is not set
 # CONFIG_PACKAGE_libertas-usb-firmware is not set
+# CONFIG_PACKAGE_midisport-firmware is not set
 # CONFIG_PACKAGE_mt7601u-firmware is not set
 # CONFIG_PACKAGE_mt7622bt-firmware is not set
 # CONFIG_PACKAGE_mt7921bt-firmware is not set
@@ -5653,6 +5659,7 @@ CONFIG_PACKAGE_libcares=m
 # CONFIG_PACKAGE_libcbor is not set
 # CONFIG_PACKAGE_libcgroup is not set
 # CONFIG_PACKAGE_libcharset is not set
+# CONFIG_PACKAGE_libcli is not set
 # CONFIG_PACKAGE_libcoap is not set
 CONFIG_PACKAGE_libcomerr=m
 # CONFIG_PACKAGE_libconfig is not set
@@ -5905,6 +5912,7 @@ CONFIG_PACKAGE_libqrencode=m
 # CONFIG_PACKAGE_libsocks is not set
 # CONFIG_PACKAGE_libsodium is not set
 # CONFIG_PACKAGE_libsoup is not set
+# CONFIG_PACKAGE_libsoup3 is not set
 # CONFIG_PACKAGE_libsoxr is not set
 # CONFIG_PACKAGE_libspeex is not set
 # CONFIG_PACKAGE_libspeexdsp is not set
@@ -7678,6 +7686,7 @@ CONFIG_PACKAGE_ethtool=m
 # CONFIG_PACKAGE_hnet-full-secure is not set
 # CONFIG_PACKAGE_hnetd-nossl is not set
 # CONFIG_PACKAGE_hnetd-openssl is not set
+# CONFIG_PACKAGE_hping3 is not set
 # CONFIG_PACKAGE_httping is not set
 # CONFIG_PACKAGE_httping-nossl is not set
 # CONFIG_PACKAGE_https-dns-proxy is not set
@@ -7721,6 +7730,7 @@ CONFIG_PACKAGE_libipset=y
 # CONFIG_PACKAGE_mac-telnet-ping is not set
 # CONFIG_PACKAGE_mac-telnet-server is not set
 # CONFIG_PACKAGE_map is not set
+# CONFIG_PACKAGE_mausezahn is not set
 # CONFIG_PACKAGE_mbusd is not set
 # CONFIG_PACKAGE_mdns-repeater is not set
 # CONFIG_PACKAGE_memcached is not set
