@@ -514,7 +514,7 @@ CONFIG_TARGET_INIT_CMD="/sbin/init"
 CONFIG_TARGET_INIT_SUPPRESS_STDERR=y
 CONFIG_VERSIONOPT=y
 CONFIG_VERSION_DIST="X-WRT"
-CONFIG_VERSION_NUMBER="22.03_b202209232002"
+CONFIG_VERSION_NUMBER="22.03_b202209270655"
 CONFIG_VERSION_CODE="Jammy"
 CONFIG_VERSION_REPO="http://downloads.openwrt.org/snapshots"
 CONFIG_VERSION_HOME_URL="https://x-wrt.com/"
@@ -2757,6 +2757,7 @@ CONFIG_PACKAGE_ar=y
 #
 # CONFIG_PACKAGE_jose is not set
 CONFIG_PACKAGE_libiwinfo-data=y
+# CONFIG_PACKAGE_libjose is not set
 CONFIG_PACKAGE_nginx=m
 CONFIG_PACKAGE_nginx-mod-luci-ssl=m
 CONFIG_PACKAGE_nginx-util=m
@@ -3078,7 +3079,7 @@ CONFIG_PACKAGE_kmod-fs-ntfs3=m
 CONFIG_PACKAGE_kmod-fs-vfat=m
 # CONFIG_PACKAGE_kmod-fs-virtiofs is not set
 # CONFIG_PACKAGE_kmod-fs-xfs is not set
-CONFIG_PACKAGE_kmod-fuse=m
+# CONFIG_PACKAGE_kmod-fuse is not set
 # CONFIG_PACKAGE_kmod-pstore is not set
 # end of Filesystems
 
@@ -3463,7 +3464,7 @@ CONFIG_PACKAGE_kmod-mii=m
 # CONFIG_PACKAGE_kmod-via-rhine is not set
 # CONFIG_PACKAGE_kmod-via-velocity is not set
 # CONFIG_PACKAGE_kmod-vmxnet3 is not set
-CONFIG_PACKAGE_kmod-wwan=m
+# CONFIG_PACKAGE_kmod-wwan is not set
 # end of Network Devices
 
 #
@@ -3803,7 +3804,6 @@ CONFIG_PACKAGE_kmod-cfg80211=y
 # CONFIG_PACKAGE_kmod-iwl3945 is not set
 # CONFIG_PACKAGE_kmod-iwl4965 is not set
 # CONFIG_PACKAGE_kmod-iwlwifi is not set
-# CONFIG_PACKAGE_kmod-lib80211 is not set
 # CONFIG_PACKAGE_kmod-libertas-sdio is not set
 # CONFIG_PACKAGE_kmod-libertas-spi is not set
 # CONFIG_PACKAGE_kmod-libertas-usb is not set
@@ -4902,7 +4902,7 @@ CONFIG_WOLFSSL_HAS_NO_HW=y
 # CONFIG_WOLFSSL_HAS_DEVCRYPTO_FULL is not set
 # end of wolfSSL Library Configuration
 
-# CONFIG_PACKAGE_libwolfssl-cpu-crypto is not set
+# CONFIG_PACKAGE_libwolfsslcpu-crypto is not set
 # CONFIG_PACKAGE_libwolfssl-benchmark is not set
 # end of SSL
 
@@ -6863,6 +6863,7 @@ CONFIG_PACKAGE_cgi-io=y
 # CONFIG_PACKAGE_frpc is not set
 # CONFIG_PACKAGE_frps is not set
 # CONFIG_PACKAGE_gateway-go is not set
+# CONFIG_PACKAGE_gatling is not set
 # CONFIG_PACKAGE_haproxy is not set
 # CONFIG_PACKAGE_haproxy-nossl is not set
 # CONFIG_PACKAGE_kcptun-client is not set
@@ -7251,6 +7252,12 @@ CONFIG_PACKAGE_rssileds=m
 # CONFIG_PACKAGE_snmp-utils is not set
 # CONFIG_PACKAGE_snmpd is not set
 # CONFIG_PACKAGE_snmptrapd is not set
+# CONFIG_PACKAGE_snowflake-broker is not set
+# CONFIG_PACKAGE_snowflake-client is not set
+# CONFIG_PACKAGE_snowflake-distinctcounter is not set
+# CONFIG_PACKAGE_snowflake-probetest is not set
+# CONFIG_PACKAGE_snowflake-proxy is not set
+# CONFIG_PACKAGE_snowflake-server is not set
 # CONFIG_PACKAGE_socat is not set
 # CONFIG_PACKAGE_softflowd is not set
 # CONFIG_PACKAGE_soloscli is not set
