@@ -39,7 +39,7 @@ endef
 include $(INCLUDE_DIR)/kernel-defaults.mk
 
 EXTRA_CFLAGS += -DCONFIG_NATFLOW_PATH -DCONFIG_NATFLOW_URLLOGGER
-ifneq ($(CONFIG_TARGET_mediatek_mt7622),)
+ifneq ($(CONFIG_TARGET_mediatek),)
 EXTRA_CFLAGS += -DCONFIG_HWNAT_EXTDEV_USE_VLAN_HASH
 endif
 
