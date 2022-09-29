@@ -251,7 +251,7 @@ activation_sn()
 natcap_setup_firewall()
 {
 	block_dns6="`uci get natcapd.default.block_dns6 2>/dev/null || echo 0`"
-	if [ "x$block_dns6" = "x1" ]; then
+	if [ "x$block_dns6" = "x1" ] && [ "$enabled" = "1" ]; then
 		uci get firewall.natcap_dns1 >/dev/null 2>&1 || {
 			uci set firewall.natcap_dns1=rule
 			uci set firewall.natcap_dns1.enabled='1'
