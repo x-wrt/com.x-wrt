@@ -21,7 +21,9 @@ start() {
 
 	echo debug=$debug >/dev/natflow_ctl
 	echo disabled=$((!enabled)) >/dev/natflow_ctl
-	echo hwnat=$hwnat >/dev/natflow_ctl
+	cat /dev/natflow_ctl | grep -q hwnat= && {
+		echo hwnat=$hwnat >/dev/natflow_ctl
+	}
 	echo delay_pkts=$delay_pkts >/dev/natflow_ctl
 	echo ifname_clear >/dev/natflow_ctl
 	for ifn in ${ifname_filter}; do
