@@ -1,5 +1,7 @@
 -- Copyright 2019 X-WRT <dev@x-wrt.com>
 
+local ut = require "luci.util"
+local sys  = require "luci.sys"
 local nt = require "luci.sys".net
 
 local m = Map("natcapd", luci.xml.pcdata(translate("Advanced Options")))
@@ -18,9 +20,12 @@ e = s:taboption("system", Flag, "enable_natflow", translate("Enable Fast Forward
 e.default = e.disabled
 e.rmempty = false
 
-e = s:taboption("system", Flag, "enable_natflow_hw", translate("Enable Fast Forwarding Hardware Offload"))
-e.default = e.disabled
-e.rmempty = false
-e:depends("enable_natflow","1")
+local has_hwnat = ut.trim(sys.exec("cat /dev/natflow_ctl | grep hwnat= 2>/dev/null"))
+if has_hwnat and string.len(has_hwnat) > 0 then
+	e = s:taboption("system", Flag, "enable_natflow_hw", translate("Enable Fast Forwarding Hardware Offload"))
+	e.default = e.disabled
+	e.rmempty = false
+	e:depends("enable_natflow","1")
+end
 
 return m
