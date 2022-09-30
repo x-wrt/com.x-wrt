@@ -594,7 +594,9 @@ test -c /dev/natflow_ctl && {
 	fi
 	echo debug=3 >/dev/natflow_ctl
 	echo disabled=$((!enable_natflow)) >/dev/natflow_ctl
-	echo hwnat=$((enable_natflow_hw)) >/dev/natflow_ctl
+	cat /dev/natflow_ctl | grep -q hwnat= && {
+		echo hwnat=$((enable_natflow_hw)) >/dev/natflow_ctl
+	}
 }
 fi
 
