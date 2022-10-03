@@ -111,14 +111,21 @@ case "$ACTION" in
 
 		mwan3_set_iface_hotplug_state $INTERFACE "$binary_status" $family
 
-		[ "$MWAN3_STARTUP" != 1 ] && [ "$binary_status" == "online" ] && mwan3_set_policies_iptables
+		if [ "$MWAN3_STARTUP" != 1 ] && mwan3_state_is_changed; then
+			LOG notice "mwan3_set_policies_iptables interface $INTERFACE($family) (${DEVICE})"
+			mwan3_set_policies_iptables
+		fi
 
 		[ "$family" = "ipv6" ] && INTERFACE=$INTERFACE DEVICE=$DEVICE ACTION=ifup mwan3_ipv6_masq_help
 
 		[ "$ACTION" = "ifup" ] && {
 			if [ -n "${trackpid}" ]; then
 				mwan3_track $INTERFACE $DEVICE "$binary_status" $family
-				LOG notice "Restarted tracker [$!] on interface $INTERFACE($family) (${DEVICE})"
+				if [ "$!" ]; then
+					LOG notice "Restarted tracker [$!] on interface $INTERFACE($family) (${DEVICE})"
+				else
+					LOG notice "Skiped restart tracker[${trackpid}] on interface $INTERFACE($family) (${DEVICE})"
+				fi
 			else
 				mwan3_track $INTERFACE $DEVICE "$binary_status" $family
 				LOG notice "Started tracker [$!] on interface $INTERFACE($family) (${DEVICE})"
@@ -137,7 +144,9 @@ case "$ACTION" in
 		if [ "$ACTION" = "ifdown" ]; then
 			[ -n "$trackpid" ] && kill -USR1 "$trackpid"
 		fi
-		mwan3_set_policies_iptables
+		if mwan3_state_is_changed; then
+			mwan3_set_policies_iptables
+		fi
 	;;
 esac
 

@@ -867,9 +867,12 @@ mwan3_track()
 	[ "$4" = "ipv6" ] && track_ips="$track_ips_v6"
 
 	old_pids=$(pgrep -f "mwan3track $4 $1 ")
-	old_pid=$(mwan3track $4 "$1" "$2" "$3" $track_ips")
+	old_pid=`echo mwan3track $4 $1 $2 $3 $track_ips`
+	old_pid=$(pgrep -f "$old_pid")
 
-	[ "$old_pids" = "$old_pid" ] && return
+	if [ "$old_pids" ] && [ "$old_pids" = "$old_pid" ]; then
+		return
+	fi
 
 	# don't match device in case it changed from last launch
 	if pids=$(pgrep -f "mwan3track $4 $1 "); then
@@ -1303,6 +1306,16 @@ mwan3_set_iface_hotplug_state() {
 	local family=$3
 
 	echo "$state" > "$MWAN3_STATUS_DIR/iface_state/$iface.$family"
+}
+
+mwan3_state_is_changed() {
+	local old_state_sum=$( cat "$MWAN3_STATUS_DIR/iface_state.sum" 2>/dev/null )
+	local new_state_sum=$( ( ls /var/run/mwan3/iface_state/; cat /var/run/mwan3/iface_state/* 2>/dev/null ) | md5sum | head -c32 )
+	if [ "$old_state_sum" = "$new_state_sum" ]; then
+		return 1
+	fi
+	echo "$new_state_sum" > "$MWAN3_STATUS_DIR/iface_state.sum"
+	return 0
 }
 
 mwan3_get_iface_hotplug_state() {
