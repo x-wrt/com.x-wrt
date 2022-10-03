@@ -866,6 +866,11 @@ mwan3_track()
 	track_ips="$track_ips_v4"
 	[ "$4" = "ipv6" ] && track_ips="$track_ips_v6"
 
+	old_pids=$(pgrep -f "mwan3track $4 $1 ")
+	old_pid=$(mwan3track $4 "$1" "$2" "$3" $track_ips")
+
+	[ "$old_pids" = "$old_pid" ] && return
+
 	# don't match device in case it changed from last launch
 	if pids=$(pgrep -f "mwan3track $4 $1 "); then
 		kill -TERM $pids > /dev/null 2>&1
