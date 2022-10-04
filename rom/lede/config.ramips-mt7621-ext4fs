@@ -178,6 +178,7 @@ CONFIG_TARGET_MULTI_PROFILE=y
 # CONFIG_TARGET_ramips_mt7621_DEVICE_samknows_whitebox-v8 is not set
 # CONFIG_TARGET_ramips_mt7621_DEVICE_sercomm_na502 is not set
 # CONFIG_TARGET_ramips_mt7621_DEVICE_sercomm_na502s is not set
+# CONFIG_TARGET_ramips_mt7621_DEVICE_snr_snr-cpe-me2-lite is not set
 # CONFIG_TARGET_ramips_mt7621_DEVICE_storylink_sap-g3200u3 is not set
 # CONFIG_TARGET_ramips_mt7621_DEVICE_telco-electronics_x1 is not set
 # CONFIG_TARGET_ramips_mt7621_DEVICE_tenbay_t-mb5eu-v01 is not set
@@ -390,6 +391,7 @@ CONFIG_TARGET_PER_DEVICE_ROOTFS=y
 # CONFIG_TARGET_DEVICE_ramips_mt7621_DEVICE_samknows_whitebox-v8 is not set
 # CONFIG_TARGET_DEVICE_ramips_mt7621_DEVICE_sercomm_na502 is not set
 # CONFIG_TARGET_DEVICE_ramips_mt7621_DEVICE_sercomm_na502s is not set
+# CONFIG_TARGET_DEVICE_ramips_mt7621_DEVICE_snr_snr-cpe-me2-lite is not set
 # CONFIG_TARGET_DEVICE_ramips_mt7621_DEVICE_storylink_sap-g3200u3 is not set
 # CONFIG_TARGET_DEVICE_ramips_mt7621_DEVICE_telco-electronics_x1 is not set
 # CONFIG_TARGET_DEVICE_ramips_mt7621_DEVICE_tenbay_t-mb5eu-v01 is not set
@@ -855,7 +857,7 @@ CONFIG_TARGET_INIT_CMD="/sbin/init"
 CONFIG_TARGET_INIT_SUPPRESS_STDERR=y
 CONFIG_VERSIONOPT=y
 CONFIG_VERSION_DIST="X-WRT"
-CONFIG_VERSION_NUMBER="22.03_b202210012032"
+CONFIG_VERSION_NUMBER="22.03_b202210041356"
 CONFIG_VERSION_CODE="Jammy"
 CONFIG_VERSION_REPO="http://downloads.openwrt.org/snapshots"
 CONFIG_VERSION_HOME_URL="https://x-wrt.com/"
