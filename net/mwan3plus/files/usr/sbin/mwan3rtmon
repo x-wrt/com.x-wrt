@@ -41,6 +41,7 @@ mwan3_rtmon_route_handle()
 	# never add default route lines, since this is handled elsewhere
 	[ -z "${route_line##default*}" ] && return
 	[ -z "${route_line##::/0*}" ] && return
+	[ -z "${route_line##fe80:*}" ] && return
 	route_line=${route_line%% linkdown*}
 	route_line=${route_line%% unreachable*}
 	mwan3_update_dev_to_table
