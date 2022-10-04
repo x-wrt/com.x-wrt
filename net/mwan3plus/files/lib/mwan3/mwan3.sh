@@ -1485,3 +1485,24 @@ mwan3_track_clean()
 	rm -rf "${MWAN3_STATUS_DIR:?}/${1}.${2}" &> /dev/null
 	rmdir "$MWAN3_STATUS_DIR" 2>/dev/null
 }
+
+mwan3_delay_hotplug_call()
+{
+	local line="DELAY_HOTPLUG=$DELAY_HOTPLUG MWAN3_STARTUP=$MWAN3_STARTUP ACTION=$ACTION INTERFACE=$INTERFACE DEVICE=$DEVICE FAMILY=$FAMILY sh /etc/hotplug.d/iface/15-mwan3"
+	echo $line >>$MWAN3_STATUS_DIR/iface_hotplug.cmd
+	(
+	sleep 11
+	last_time=$(date -r $MWAN3_STATUS_DIR/iface_hotplug.cmd +%s)
+	now_time=$(date +%s)
+	if test "$((now_time-last_time))" -gt 9; then
+		NR=$(cat $MWAN3_STATUS_DIR/iface_hotplug.cmd | wc -l)
+		mv $MWAN3_STATUS_DIR/iface_hotplug.cmd $MWAN3_STATUS_DIR/iface_hotplug.cmd.tmp && \
+		head -n$((NR-1)) $MWAN3_STATUS_DIR/iface_hotplug.cmd.tmp | while read cmd; do
+			env -i $cmd
+		done
+		cmd=$(echo $line | sed 's/MWAN3_STARTUP=1/MWAN3_STARTUP=0/')
+		env -i $cmd
+		rm -f $MWAN3_STATUS_DIR/iface_hotplug.cmd.tmp
+	fi
+	) &
+}

@@ -75,6 +75,12 @@ fi
 	exit 0
 }
 
+if [ -z "$DELAY_HOTPLUG" ] && [ "$MWAN3_STARTUP" != 1 ]; then
+	mwan3_unlock "$ACTION" "$INTERFACE"
+	DELAY_HOTPLUG=1 MWAN3_STARTUP=1 ACTION=$ACTION INTERFACE=$INTERFACE DEVICE=$DEVICE FAMILY=$FAMILY mwan3_delay_hotplug_call
+	exit 0
+fi
+
 [ "$MWAN3_STARTUP" != 1 ] && [ "$ACTION" = "ifup" ] && {
 	mwan3_set_user_iface_rules $INTERFACE $DEVICE
 }
