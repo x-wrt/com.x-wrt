@@ -75,8 +75,20 @@ fi
 	exit 0
 }
 
+familys="$FAMILY"
+if [ "$familys" != "ipv4" ] && [ "$familys" != "ipv6" ]; then
+	config_get familys "$INTERFACE" family "any"
+	[ "$familys" = "any" ] && familys="ipv4 ipv6"
+fi
+
 if [ -z "$DELAY_HOTPLUG" ] && [ "$MWAN3_STARTUP" != 1 ]; then
 	mwan3_unlock "$ACTION" "$INTERFACE"
+	if [ "$ACTION" = "ifup" ] || [ "$ACTION" = "ifdown" ]; then
+		for family in $familys; do
+			trackpid=$(pgrep -f "mwan3track $family $INTERFACE ")
+			kill -TERM $trackpid > /dev/null 2>&1
+		done
+	fi
 	DELAY_HOTPLUG=1 MWAN3_STARTUP=1 ACTION=$ACTION INTERFACE=$INTERFACE DEVICE=$DEVICE FAMILY=$FAMILY mwan3_delay_hotplug_call
 	exit 0
 fi
@@ -85,12 +97,7 @@ fi
 	mwan3_set_user_iface_rules $INTERFACE $DEVICE
 }
 
-[ "$FAMILY" = "ipv4" ] || [ "$FAMILY" = "ipv6" ] || {
-	config_get family "$INTERFACE" family "any"
-	[ "$family" = "any" ] && family="ipv4 ipv6"
-	FAMILY="$family"
-}
-
+FAMILY="$familys"
 for family in $FAMILY; do
 
 trackpid=$(pgrep -f "mwan3track $family $INTERFACE ")
@@ -150,7 +157,7 @@ case "$ACTION" in
 		if [ "$ACTION" = "ifdown" ]; then
 			[ -n "$trackpid" ] && kill -USR1 "$trackpid"
 		fi
-		if mwan3_state_is_changed; then
+		if [ "$MWAN3_STARTUP" != 1 ] && mwan3_state_is_changed; then
 			mwan3_set_policies_iptables
 		fi
 	;;

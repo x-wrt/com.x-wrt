@@ -8,11 +8,13 @@
 INTERFACE=""
 DEVICE=""
 PING="/bin/ping"
+FAMILY="any"
 
 IFDOWN_EVENT=0
 
 clean_up() {
 	LOG notice "Stopping mwan3track for interface \"${INTERFACE}\""
+	IFDOWN_EVENT=2
 	return 0
 }
 
@@ -325,9 +327,14 @@ main() {
 		wait
 
 		if [ "${IFDOWN_EVENT}" -eq 1 ]; then
-			LOG debug "Register ifdown event on interface ${INTERFACE}($family) (${DEVICE})"
+			LOG info "Register ifdown event on interface ${INTERFACE}($family) (${DEVICE})"
 			disconnected 1
 			IFDOWN_EVENT=0
+		elif [ "${IFDOWN_EVENT}" -eq 2 ]; then
+			LOG info "Tracker: exit by ifdown event on interface ${INTERFACE}($family) (${DEVICE})"
+			disconnected 1
+			IFDOWN_EVENT=0
+			break
 		fi
 	done
 }
