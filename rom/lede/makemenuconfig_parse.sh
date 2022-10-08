@@ -1,5 +1,7 @@
 #!/bin/sh
 
+kmodext="kmod-nf-conntrack-netlink kmod-inet-diag"
+
 proxym="luci-app-tinyproxy luci-i18n-tinyproxy-en luci-i18n-tinyproxy-zh-cn sockd tinyproxy"
 
 nfs="kmod-dnsresolver \
@@ -417,7 +419,7 @@ for t in $targets; do
 		TARGET_DEVICE_ramips_mt7621_DEVICE_netgear_r6220a|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_netgear_r6220b|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_netgear_r6220c)
-			mods="$mods $lucibond $ipv6extra $wifiext $sqm $lucidashboard"
+			mods="$mods $lucibond $ipv6extra $wifiext $sqm $lucidashboard $kmodext"
 			mods="$mods $wgmod $openvpnmod wpad-openssl luci-ssl-nginx"
 			excludes="$excludes wpad-basic-wolfssl"
 			flash_gt8m=1
