@@ -265,7 +265,7 @@ mwan3_init()
 }
 
 mwan3_lock() {
-	while ! lock -n /var/run/mwan3.lock 2>/dev/null; do sleep 1; done
+	lock /var/run/mwan3.lock
 	#LOG debug "$1 $2 (lock)"
 }
 
