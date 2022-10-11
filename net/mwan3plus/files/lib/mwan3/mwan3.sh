@@ -1495,14 +1495,18 @@ mwan3_delay_hotplug_call()
 	last_time=$(date -r $MWAN3_STATUS_DIR/iface_hotplug.cmd +%s)
 	now_time=$(date +%s)
 	if test "$((now_time-last_time))" -gt 9; then
-		NR=$(cat $MWAN3_STATUS_DIR/iface_hotplug.cmd | wc -l)
-		mv $MWAN3_STATUS_DIR/iface_hotplug.cmd $MWAN3_STATUS_DIR/iface_hotplug.cmd.tmp && \
-		head -n$((NR-1)) $MWAN3_STATUS_DIR/iface_hotplug.cmd.tmp | while read cmd; do
-			env -i $cmd
-		done
-		cmd=$(echo $line | sed 's/MWAN3_STARTUP=2/MWAN3_STARTUP=0/')
-		env -i $cmd
-		rm -f $MWAN3_STATUS_DIR/iface_hotplug.cmd.tmp
+		mv $MWAN3_STATUS_DIR/iface_hotplug.cmd $MWAN3_STATUS_DIR/iface_hotplug.cmd.tmp && {
+			NR=$(cat $MWAN3_STATUS_DIR/iface_hotplug.cmd.tmp | wc -l)
+			if test $NR -ge 8; then
+				rm -f $MWAN3_STATUS_DIR/iface_hotplug.cmd*
+				/etc/init.d/mwan3 restart
+			else
+				cat $MWAN3_STATUS_DIR/iface_hotplug.cmd.tmp | while read cmd; do
+					env -i $cmd
+				done
+				rm -f $MWAN3_STATUS_DIR/iface_hotplug.cmd.tmp
+			fi
+		}
 	fi
 	) &
 }
