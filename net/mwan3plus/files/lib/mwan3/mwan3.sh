@@ -1500,7 +1500,7 @@ mwan3_delay_hotplug_call()
 		head -n$((NR-1)) $MWAN3_STATUS_DIR/iface_hotplug.cmd.tmp | while read cmd; do
 			env -i $cmd
 		done
-		cmd=$(echo $line | sed 's/MWAN3_STARTUP=1/MWAN3_STARTUP=0/')
+		cmd=$(echo $line | sed 's/MWAN3_STARTUP=2/MWAN3_STARTUP=0/')
 		env -i $cmd
 		rm -f $MWAN3_STATUS_DIR/iface_hotplug.cmd.tmp
 	fi

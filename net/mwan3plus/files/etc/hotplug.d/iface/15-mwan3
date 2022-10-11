@@ -89,7 +89,7 @@ if [ -z "$DELAY_HOTPLUG" ] && [ "$MWAN3_STARTUP" != 1 ]; then
 			kill -TERM $trackpid > /dev/null 2>&1
 		done
 	fi
-	DELAY_HOTPLUG=1 MWAN3_STARTUP=1 ACTION=$ACTION INTERFACE=$INTERFACE DEVICE=$DEVICE FAMILY=$FAMILY mwan3_delay_hotplug_call
+	DELAY_HOTPLUG=1 MWAN3_STARTUP=2 ACTION=$ACTION INTERFACE=$INTERFACE DEVICE=$DEVICE FAMILY=$FAMILY mwan3_delay_hotplug_call
 	exit 0
 fi
 
