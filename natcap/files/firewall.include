@@ -7,7 +7,7 @@ iptables -t nat -I zone_wan_postrouting -p udp -m comment --comment "!fw3" -j MA
 nft -a list chain inet fw4 srcnat_wan | grep -o "natcap_cone_nat.*" | while read _ _ _ handle; do nft delete rule inet fw4 srcnat_wan handle $handle; done
 nft insert rule inet fw4 srcnat_wan ip protocol udp meta nfproto ipv4 masquerade fully-random comment "natcap_cone_nat"
 
-if [ x`uci get natcapd.default.dnsproxy 2>/dev/null` = x1 ]; then
+if [ x`uci get natcapd.default.dnsproxy 2>/dev/null` = x1 ] && [ x`uci get natcapd.default.enabled 2>/dev/null` = x1 ]; then
 	#iptables
 	iptables -t mangle -C PREROUTING -m conntrack --ctstate NEW -p udp --dport 53 -j MARK --set-xmark 0x00800099/0x008000ff >/dev/null 2>&1 || \
 	iptables -t mangle -A PREROUTING -m conntrack --ctstate NEW -p udp --dport 53 -j MARK --set-xmark 0x00800099/0x008000ff 2>/dev/null
