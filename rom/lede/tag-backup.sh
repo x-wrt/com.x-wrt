@@ -17,6 +17,7 @@ TAG=${TAG-$CONFIG_VERSION_NUMBER} &&
 test -n "$TAG" || fail no TAG
 
 for d in feeds/packages feeds/luci feeds/routing feeds/telephony; do
+	echo CD: $d
 	cd "$d" && {
 		echo
 		pwd
@@ -30,38 +31,62 @@ done
 
 if git tag | grep "^$TAG$"; then
 	if [ "x$release" = "x1" ]; then
-	cd feeds/x && \
-	sed -i "s/CONFIG_VERSION_NUMBER=\".*\"/CONFIG_VERSION_NUMBER=\"$TAG\"/" rom/lede/config.* && \
-	git commit --signoff -am "release: $TAG" && \
-	git tag $TAG && \
-	git push origin $TAG || exit 1
-	cd -
+	echo CD: feeds/x
+	cd feeds/x && {
+		echo
+		pwd
+		git tag | grep "^$TAG$" || {
+			sed -i "s/CONFIG_VERSION_NUMBER=\".*\"/CONFIG_VERSION_NUMBER=\"$TAG\"/" rom/lede/config.* && \
+			git commit --signoff -am "release: $TAG" && \
+			git tag $TAG
+		}
+		git push origin $TAG || exit 1
+		cd -
+	} || exit 1
 	else
-	cd feeds/x && \
-	git tag $TAG && \
-	git push origin $TAG || exit 1
-	cd -
+	echo CD: feeds/x
+	cd feeds/x && {
+		echo
+		pwd
+		git tag | grep "^$TAG$" || {
+			git tag $TAG
+		}
+		git push origin $TAG || exit 1
+		cd -
+	} || exit 1
 	fi
 else
 if [ "x$release" = "x1" ]; then
+	echo CD: feeds/x
+	cd feeds/x && {
+		echo
+		pwd
+		git tag | grep "^$TAG$" || {
+			sed -i "s/CONFIG_VERSION_NUMBER=\".*\"/CONFIG_VERSION_NUMBER=\"$TAG\"/" rom/lede/config.* && \
+			git commit --signoff -am "release: $TAG" && \
+			git tag $TAG
+		}
+		git push origin $TAG || exit 1
+		cd -
+	} || exit 1
+
 	sed -i "s/\(^src-git.*\.git$\)/\1;$TAG/" feeds.conf.default && \
 	git commit --signoff -am "release: $TAG" && \
 	git tag $TAG && \
 	git push origin $TAG || exit 1
-
-	cd feeds/x && \
-	sed -i "s/CONFIG_VERSION_NUMBER=\".*\"/CONFIG_VERSION_NUMBER=\"$TAG\"/" rom/lede/config.* && \
-	git commit --signoff -am "release: $TAG" && \
-	git tag $TAG && \
-	git push origin $TAG || exit 1
-	cd -
 else
-	git tag $TAG && \
-	git push origin $TAG || exit 1
+	echo CD: feeds/x
+	cd feeds/x && {
+		echo
+		pwd
+		git tag | grep "^$TAG$" || {
+			git tag $TAG
+		}
+		git push origin $TAG || exit 1
+		cd -
+	} || exit 1
 
-	cd feeds/x && \
 	git tag $TAG && \
 	git push origin $TAG || exit 1
-	cd -
 fi
 fi
