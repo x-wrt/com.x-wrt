@@ -17,6 +17,7 @@ TAG=${TAG-$CONFIG_VERSION_NUMBER} &&
 test -n "$TAG" || fail no TAG
 
 for d in feeds/packages feeds/luci feeds/routing feeds/telephony; do
+	echo CD: $d
 	cd "$d" && {
 		echo
 		pwd
@@ -30,6 +31,7 @@ done
 
 if git tag | grep "^$TAG$"; then
 	if [ "x$release" = "x1" ]; then
+	echo CD: feeds/x
 	cd feeds/x && \
 	sed -i "s/CONFIG_VERSION_NUMBER=\".*\"/CONFIG_VERSION_NUMBER=\"$TAG\"/" rom/lede/config.* && \
 	git commit --signoff -am "release: $TAG" && \
@@ -37,6 +39,7 @@ if git tag | grep "^$TAG$"; then
 	git push origin $TAG || exit 1
 	cd -
 	else
+	echo CD: feeds/x
 	cd feeds/x && \
 	git tag $TAG && \
 	git push origin $TAG || exit 1
@@ -44,24 +47,26 @@ if git tag | grep "^$TAG$"; then
 	fi
 else
 if [ "x$release" = "x1" ]; then
-	sed -i "s/\(^src-git.*\.git$\)/\1;$TAG/" feeds.conf.default && \
-	git commit --signoff -am "release: $TAG" && \
-	git tag $TAG && \
-	git push origin $TAG || exit 1
-
+	echo CD: feeds/x
 	cd feeds/x && \
 	sed -i "s/CONFIG_VERSION_NUMBER=\".*\"/CONFIG_VERSION_NUMBER=\"$TAG\"/" rom/lede/config.* && \
 	git commit --signoff -am "release: $TAG" && \
 	git tag $TAG && \
 	git push origin $TAG || exit 1
 	cd -
-else
+
+	sed -i "s/\(^src-git.*\.git$\)/\1;$TAG/" feeds.conf.default && \
+	git commit --signoff -am "release: $TAG" && \
 	git tag $TAG && \
 	git push origin $TAG || exit 1
-
+else
+	echo CD: feeds/x
 	cd feeds/x && \
 	git tag $TAG && \
 	git push origin $TAG || exit 1
 	cd -
+
+	git tag $TAG && \
+	git push origin $TAG || exit 1
 fi
 fi
