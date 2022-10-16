@@ -597,6 +597,7 @@ for t in $targets; do
 		TARGET_DEVICE_ramips_mt7621_DEVICE_tplink_archer-c6u-v1|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_tenbay_t-mb5eu-v01|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_netgear_wndr3700-v5|\
+		TARGET_DEVICE_ramips_mt7621_DEVICE_phicomm_k2p|\
 		TARGET_DEVICE_ath79_generic_DEVICE_xwrt_csac|\
 		TARGET_DEVICE_ath79_generic_DEVICE_xwrt_csac2|\
 		TARGET_DEVICE_ath79_generic_DEVICE_pisen_wmb001n|\
@@ -718,7 +719,6 @@ for t in $targets; do
 		TARGET_DEVICE_ramips_mt76x8_DEVICE_tplink_tl-wr841n-v13|\
 		TARGET_DEVICE_ramips_mt76x8_DEVICE_tplink_tl-wr840n-v4|\
 		TARGET_DEVICE_ramips_mt76x8_DEVICE_mercury_mac1200r-v2|\
-		TARGET_DEVICE_ramips_mt7621_DEVICE_phicomm_k2p|\
 		TARGET_DEVICE_ath79_generic_DEVICE_tplink_tl-wdr7500-v3|\
 		TARGET_DEVICE_ath79_generic_DEVICE_phicomm_k2t|\
 		TARGET_DEVICE_ramips_mt76x8_DEVICE_xiaomi_miwifi-nano|\
