@@ -70,7 +70,7 @@ if [ "x$release" = "x1" ]; then
 		cd -
 	} || exit 1
 
-	sed -i "s/\(^src-git.*\.git$\)/\1;$TAG/" feeds.conf.default && \
+	sed -i "s/^src-git[^ ]*\( .*\.git$\)/src-git\1;$TAG/" feeds.conf.default && \
 	git commit --signoff -am "release: $TAG" && \
 	git tag $TAG && \
 	git push origin $TAG || exit 1
