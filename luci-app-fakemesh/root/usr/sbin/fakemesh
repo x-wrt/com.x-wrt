@@ -365,9 +365,9 @@ agent_sync_config()
 							else
 								uci set wireless.wifinet$K.bss_transition='1'
 								uci set wireless.wifinet$K.wnm_sleep_mode='1'
+								uci set wireless.wifinet$K.time_advertisement='2'
+								uci set wireless.wifinet$K.time_zone='GMT0'
 							fi
-							uci set wireless.wifinet$K.time_advertisement='2'
-							uci set wireless.wifinet$K.time_zone='GMT0'
 							uci set wireless.wifinet$K.ieee80211k='1'
 							uci set wireless.wifinet$K.rrm_neighbor_report='1'
 							uci set wireless.wifinet$K.rrm_beacon_report='1'
