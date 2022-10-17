@@ -77,18 +77,18 @@ return view.extend({
 		o.default = o.disabled;
 
 		var current_role = uci.get('fakemesh', 'default', 'role');
-		if (current_role != 'controller') {
-			return m.render();
-		}
 
-		s = m.section(form.GridSection, 'wifim', _('Wireless Management'));
+		s = m.section(form.GridSection, 'wifim', _('Wireless Management'), current_role != 'controller' ? _('Not available on AP') : '');
 		s.addremove = true;
 		s.anonymous = true;
 		s.nodescriptions = true;
 		s.sortable = false;
+		if (current_role != 'controller') s.addremove = false;
 
 		o = s.option(form.Value, 'ssid', _('<abbr title="Extended Service Set Identifier">ESSID</abbr>'));
 		o.datatype = 'maxlength(32)';
+		o.rmempty = false;
+		if (current_role != 'controller') o.readonly = true;
 
 		o = s.option(form.ListValue, 'encryption', _('Encryption'));
 		o.value('none', _('No Encryption'));
@@ -97,6 +97,7 @@ return view.extend({
 		o.value('psk-mixed', _('WPA-PSK/WPA2-PSK Mixed Mode'));
 		o.value('sae', _('WPA3-SAE'));
 		o.value('sae-mixed', _('WPA2-PSK/WPA3-SAE Mixed Mode'));
+		if (current_role != 'controller') o.readonly = true;
 
 		o = s.option(form.Value, 'key', _('Key'));
 		o.depends('encryption', 'psk');
@@ -107,15 +108,18 @@ return view.extend({
 		o.rmempty = false;
 		o.password = true;
 		o.datatype = 'wpakey';
+		if (current_role != 'controller') o.readonly = true;
 
 		o = s.option(form.ListValue, 'band', _('Band'));
 		o.value('2g5g', _('2G+5G'));
 		o.value('5g', _('5G'));
 		o.value('2g', _('2G'));
 		o.default = '2g5g';
+		if (current_role != 'controller') o.readonly = true;
 
 		o = s.option(form.Flag, 'enabled', _('Enable'));
 		o.default = o.enabled;
+		if (current_role != 'controller') o.readonly = true;
 
 		return m.render();
 	}
