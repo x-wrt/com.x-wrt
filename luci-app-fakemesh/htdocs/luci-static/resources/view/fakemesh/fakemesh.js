@@ -11,7 +11,8 @@ return view.extend({
 	load: function() {
 		return Promise.all([
 			uci.changes(),
-			uci.load('fakemesh')
+			uci.load('fakemesh'),
+			uci.load('fakemeshac')
 		]);
 	},
 
@@ -77,7 +78,13 @@ return view.extend({
 		s.anonymous = true;
 		s.nodescriptions = true;
 		s.sortable = false;
-		if (current_role != 'controller') s.addremove = false;
+		if (current_role != 'controller') {
+			s.addremove = false;
+			s.uciconfig = 'fakemeshac';
+			s.renderRowActions = function (section_id) {
+				return E('td', { 'class': 'td middle cbi-section-actions' }, E('div', ''));
+			};
+		}
 
 		o = s.option(form.Value, 'ssid', _('<abbr title="Extended Service Set Identifier">ESSID</abbr>'));
 		o.datatype = 'maxlength(32)';

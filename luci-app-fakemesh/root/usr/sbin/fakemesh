@@ -42,8 +42,6 @@ config_get_bool enabled default 'enabled' '0'
 
 test $enabled -eq 0 && {
 	rm -f /www/fakemesh.*
-	rm -f /tmp/fakemesh.ac.config
-	rm -f /etc/config/fakemeshac
 	rm -rf /tmp/fakemesh_lck*
 	rm -f /tmp/fakemesh.firewall.include
 
@@ -213,7 +211,6 @@ agent_lost_ac()
 agent_sync_config()
 {
 	[ "$sync_ac" = "1" ] || {
-		rm -f /etc/config/fakemeshac
 		return 0
 	}
 	[ "$role" = "wap" ] && {
