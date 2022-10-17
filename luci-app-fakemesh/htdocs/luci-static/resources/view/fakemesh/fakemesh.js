@@ -76,6 +76,11 @@ return view.extend({
 		o.disabled = '0';
 		o.default = o.disabled;
 
+		var current_role = uci.get('fakemesh', 'default', 'role');
+		if (current_role != 'controller') {
+			return m.render();
+		}
+
 		s = m.section(form.GridSection, 'wifim', _('Wireless Management'));
 		s.addremove = true;
 		s.anonymous = true;
