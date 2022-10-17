@@ -606,8 +606,8 @@ for t in $targets; do
 		TARGET_DEVICE_ath79_generic_DEVICE_engenius_epg5000|\
 		TARGET_DEVICE_ath79_generic_DEVICE_tplink_archer-c7-v5|\
 		TARGET_DEVICE_ath79_generic_DEVICE_bm100_hq55)
-			mods="$mods $wgmod $openvpnmod wpad-openssl luci-ssl-nginx $wifiext $sqm $lucidashboard"
-			excludes="$excludes wpad-basic-wolfssl"
+			mods="$mods $wgmod $openvpnmod openvpn-wolfssl wpad-wolfssl $wifiext $sqm $lucidashboard"
+			excludes="$excludes wpad-basic-wolfssl openvpn-openssl"
 			flash_gt8m=1
 		;;
 		TARGET_DEVICE_ath79_nand_DEVICE_glinet_gl-xe300|\
@@ -1223,10 +1223,10 @@ for t in $targets; do
 	esac
 
 	if [ "x$flash_gt8m" = "x1" ] && [ "x$has_usb" = "x1" ]; then
-		mods="$mods $usb4g $iphone4g $nfs"
-		mods="$mods $moreapps $usbprint $ksmbd $usb_extra"
+		mods="$mods $usb4g $nfs"
+		mods="$mods $usbprint $ksmbd $usb_extra"
 		if [ "x$extra_utils" = "x1" ]; then
-			mods="$mods $utils $aria2"
+			mods="$mods $utils $aria2 $moreapps $iphone4g"
 		fi
 	else
 		mods="$mods $lucistd"
