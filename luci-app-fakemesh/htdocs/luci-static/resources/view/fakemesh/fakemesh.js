@@ -11,7 +11,6 @@ return view.extend({
 	load: function() {
 		return Promise.all([
 			uci.changes(),
-			uci.load('wireless'),
 			uci.load('fakemesh')
 		]);
 	},
@@ -19,11 +18,6 @@ return view.extend({
 	render: function(data) {
 
 		var m, s, o;
-		var has_wifi = false;
-
-		if (uci.sections('wireless', 'wifi-device').length > 0) {
-			has_wifi = true;
-		}
 
 		m = new form.Map('fakemesh', [_('Fake Mesh Setup')],
 			_('Basic settings for your fake mesh overlay network'));
