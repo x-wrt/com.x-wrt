@@ -39,7 +39,24 @@ test $version -lt 1 && {
 	[ "$(uci get firewall.@zone[0].name 2>/dev/null)" = "lan" ] && {
 		[ "$(uci get firewall.@zone[0].mtu_fix 2>/dev/null)" = "1" ] || uci set firewall.@zone[0].mtu_fix='1'
 	}
-	uci commit firewall
+	uci -q batch <<-EOT
+		firewall.nat6=nat
+		firewall.nat6.name='nat6'
+		firewall.nat6.src='wan'
+		firewall.nat6.enabled='0'
+		firewall.nat6.family='ipv6'
+		firewall.nat6.proto='all'
+		firewall.nat6.target='MASQUERADE'
+		firewall.ipv6_forward=rule
+		firewall.ipv6_forward.family='ipv6'
+		firewall.ipv6_forward.src='wan'
+		firewall.ipv6_forward.dest='lan'
+		firewall.ipv6_forward.target='ACCEPT'
+		firewall.ipv6_forward.name='Allow-IPv6-Forward'
+		firewall.ipv6_forward.proto='all'
+		firewall.ipv6_forward.enabled='0'
+		commit firewall
+	EOT
 
 	[ "$(uci get dropbear.@dropbear[0] 2>/dev/null)" = "dropbear" ] && {
 		uci set dropbear.@dropbear[0].PasswordAuth='off'
