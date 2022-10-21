@@ -104,7 +104,7 @@ exclude_for_tiny="kmod-usb-storage-uas kmod-scsi-core kmod-fs-ext4 kmod-fs-msdos
 
 aria2="luci-app-aria2 luci-i18n-aria2-en luci-i18n-aria2-zh-cn webui-aria2 aria2"
 
-ksmbd="luci-app-ksmbd luci-i18n-ksmbd-en luci-i18n-ksmbd-zh-cn ksmbd-server ksmbd-utils kmod-fs-ksmbd wsdd2"
+ksmbd="luci-app-ksmbd luci-i18n-ksmbd-en luci-i18n-ksmbd-zh-cn ksmbd-server kmod-fs-ksmbd wsdd2"
 
 moreapps="wget-ssl ethtool"
 
