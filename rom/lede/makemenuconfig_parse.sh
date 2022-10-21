@@ -404,6 +404,7 @@ for t in $targets; do
 		TARGET_DEVICE_bcm53xx_generic_DEVICE_asus_rt-ac56u|\
 		TARGET_DEVICE_bcm53xx_generic_DEVICE_asus_rt-ac68u|\
 		TARGET_DEVICE_bcm53xx_generic_DEVICE_asus_rt-ac87u|\
+		TARGET_DEVICE_bcm53xx_generic_DEVICE_asus_rt-ac88u|\
 		TARGET_DEVICE_bcm53xx_generic_DEVICE_asus_rt-n18u|\
 		TARGET_DEVICE_bcm53xx_generic_DEVICE_netgear_r6300-v2|\
 		TARGET_DEVICE_bcm53xx_generic_DEVICE_netgear_r7000|\
@@ -858,6 +859,7 @@ for t in $targets; do
 		TARGET_DEVICE_bcm53xx_generic_DEVICE_asus_rt-ac56u|\
 		TARGET_DEVICE_bcm53xx_generic_DEVICE_asus_rt-ac68u|\
 		TARGET_DEVICE_bcm53xx_generic_DEVICE_asus_rt-ac87u|\
+		TARGET_DEVICE_bcm53xx_generic_DEVICE_asus_rt-ac88u|\
 		TARGET_DEVICE_bcm53xx_generic_DEVICE_asus_rt-n18u|\
 		TARGET_DEVICE_bcm53xx_generic_DEVICE_netgear_r6300-v2|\
 		TARGET_DEVICE_bcm53xx_generic_DEVICE_netgear_r7000|\
