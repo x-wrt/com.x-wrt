@@ -2717,7 +2717,7 @@ CONFIG_ZABBIX_POSTGRESQL=y
 #
 # CONFIG_PACKAGE_u-boot-fritz1200 is not set
 # CONFIG_PACKAGE_u-boot-fritz3000 is not set
-# CONFIG_PACKAGE_u-boot-fritz4040 is not set
+CONFIG_PACKAGE_u-boot-fritz4040=y
 # CONFIG_PACKAGE_u-boot-fritz7520 is not set
 # CONFIG_PACKAGE_u-boot-fritz7530 is not set
 # end of Boot Loaders
