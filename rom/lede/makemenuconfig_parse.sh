@@ -308,8 +308,10 @@ for t in $targets; do
 		TARGET_DEVICE_ipq806x_generic_DEVICE_ruijie_rg-mtfi-m520|\
 		TARGET_DEVICE_ipq806x_generic_DEVICE_tplink_ad7200|\
 		TARGET_DEVICE_ipq40xx_generic_DEVICE_mobipromo_cm520-79f|\
+		TARGET_DEVICE_ipq40xx_generic_DEVICE_zte_mf289f|\
 		TARGET_DEVICE_ipq40xx_generic_DEVICE_linksys_mr8300|\
 		TARGET_DEVICE_ipq40xx_generic_DEVICE_glinet_gl-ap1300|\
+		TARGET_DEVICE_ipq40xx_generic_DEVICE_glinet_gl-b2200|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_xwrt_wr1800k-ax-norplusemmc|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_xwrt_wr1800k-ax-nand|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_xwrt_nxc2005ex|\
@@ -747,6 +749,7 @@ for t in $targets; do
 	#check usb
 	case $t in
 		#with usb3
+		TARGET_DEVICE_ipq40xx_generic_DEVICE_glinet_gl-b2200|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_bananapi_bpi-r3|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_zbtlink_zbt-wg1608-16m|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_mikrotik_routerboard-750gr3|\
@@ -773,6 +776,7 @@ for t in $targets; do
 		TARGET_DEVICE_ipq806x_generic_DEVICE_ruijie_rg-mtfi-m520|\
 		TARGET_DEVICE_ipq806x_generic_DEVICE_tplink_ad7200|\
 		TARGET_DEVICE_ipq40xx_generic_DEVICE_mobipromo_cm520-79f|\
+		TARGET_DEVICE_ipq40xx_generic_DEVICE_zte_mf289f|\
 		TARGET_DEVICE_ipq40xx_generic_DEVICE_linksys_mr8300|\
 		TARGET_DEVICE_ipq40xx_generic_DEVICE_glinet_gl-ap1300|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_glinet_gl-mt1300|\
