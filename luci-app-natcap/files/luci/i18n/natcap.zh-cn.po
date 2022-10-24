@@ -211,6 +211,9 @@ msgstr "启用转发加速(natflow)"
 msgid "Enable Fast Forwarding Hardware Offload"
 msgstr "启用硬件转发加速"
 
+msgid "Enable Fast Forwarding Hardware Offload WED"
+msgstr "启用WED硬件转发加速"
+
 msgid "One Key VPN"
 msgstr "一键VPN服务"
 
