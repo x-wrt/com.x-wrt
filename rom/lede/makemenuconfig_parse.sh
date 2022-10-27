@@ -286,6 +286,7 @@ for t in $targets; do
 	excludes="$excludes_basic"
 	case $t in
 		#>8M flash
+		TARGET_DEVICE_ramips_mt7621_DEVICE_bolt_arion|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_netgear_wax202|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_xiaomi_redmi-router-ax6000|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_bananapi_bpi-r3|\
@@ -1055,6 +1056,7 @@ for t in $targets; do
 			has_usb=1
 		;;
 		#no usb
+		TARGET_DEVICE_ramips_mt7621_DEVICE_bolt_arion|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_netgear_wax202|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_xiaomi_redmi-router-ax6000|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_yuncore_ax820|\
