@@ -24,7 +24,7 @@ define Package/luci-app-wizard
 	SUBMENU:=Configuration Wizard Support
 	TITLE:=LuCI Support for wizard
 	PKGARCH:=all
-	DEPENDS:=+luci-base +libiwinfo-lua +rpcd-mod-iwinfo
+	DEPENDS:=+luci-base +rpcd-mod-iwinfo
 endef
 
 define Package/luci-app-wizard/description
