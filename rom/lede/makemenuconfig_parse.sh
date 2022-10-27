@@ -429,6 +429,7 @@ for t in $targets; do
 			extra_utils=1
 		;;
 		#>8M flash <14M
+		TARGET_DEVICE_ath79_generic_DEVICE_hiwifi_hc6361|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_zbtlink_zbt-wg1608-16m|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_zbtlink_zbt-wg108|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_thunder_timecloud|\
@@ -886,6 +887,7 @@ for t in $targets; do
 			has_usb=1
 		;;
 		#with usb2
+		TARGET_DEVICE_ath79_generic_DEVICE_hiwifi_hc6361|\
 		TARGET_DEVICE_ath79_nand_DEVICE_glinet_gl-xe300|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_zbtlink_zbt-wg108|\
 		TARGET_DEVICE_ramips_mt76x8_DEVICE_mediatek_mt7628an-eval-board|\

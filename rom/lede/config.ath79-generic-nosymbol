@@ -509,7 +509,8 @@ CONFIG_TARGET_PER_DEVICE_ROOTFS=y
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_hak5_lan-turtle is not set
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_hak5_packet-squirrel is not set
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_hak5_wifi-pineapple-nano is not set
-# CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_hiwifi_hc6361 is not set
+CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_hiwifi_hc6361=y
+CONFIG_TARGET_DEVICE_PACKAGES_ath79_generic_DEVICE_hiwifi_hc6361="blockd block-mount chat comgt comgt-ncm dawn e2fsprogs kmod-ath9k kmod-ath9k-common kmod-crypto-cbc kmod-crypto-cts kmod-crypto-des kmod-crypto-md4 kmod-crypto-md5 kmod-crypto-sha512 kmod-dnsresolver kmod-exfat-linux kmod-fs-autofs4 kmod-fs-ext4 kmod-fs-ksmbd kmod-fs-msdos kmod-fs-nfs kmod-fs-nfs-common kmod-fs-nfs-common-rpcsec kmod-fs-nfs-v4 kmod-fs-ntfs3 kmod-fs-vfat kmod-gpio-button-hotplug kmod-lib-crc16 kmod-mii kmod-nls-cp437 kmod-oid-registry kmod-phy-ath79-usb kmod-scsi-core kmod-usb2 kmod-usb-chipidea kmod-usb-chipidea2 kmod-usb-core kmod-usb-ehci kmod-usb-gadget kmod-usb-net kmod-usb-net-cdc-ether kmod-usb-net-cdc-mbim kmod-usb-net-cdc-ncm kmod-usb-net-huawei-cdc-ncm kmod-usb-net-ipheth kmod-usb-net-qmi-wwan kmod-usb-net-rndis kmod-usb-net-rtl8152 kmod-usb-net-sierrawireless kmod-usb-ohci kmod-usb-phy-nop kmod-usb-printer kmod-usb-roles kmod-usb-serial kmod-usb-serial-option kmod-usb-serial-qualcomm kmod-usb-serial-sierrawireless kmod-usb-serial-wwan kmod-usb-storage kmod-usb-storage-extras kmod-usb-storage-uas kmod-usb-wdm ksmbd-server libatomic libblkid libcomerr libext2fs libgcrypt libgpg-error liblzo libnl-core libnl-genl libqrencode libss libusb-1.0 libwrap luci-app-dawn luci-app-ksmbd luci-app-openvpn luci-app-p910nd luci-app-sqm luci-app-wireguard luci-i18n-dashboard-zh-cn luci-i18n-ksmbd-zh-cn luci-i18n-openvpn-zh-cn luci-i18n-p910nd-zh-cn luci-i18n-sqm-zh-cn luci-i18n-wireguard-zh-cn luci-lib-json luci-mod-dashboard luci-proto-3g luci-proto-mbim luci-proto-ncm luci-proto-qmi luci-proto-wireguard nfs-utils openvpn-wolfssl p910nd qrencode r8152-firmware sqm-scripts tc-tiny umbim uqmi usb-modeswitch wireguard-tools wpad-wolfssl wsdd2 wwan"
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_iodata_etg3-r is not set
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_iodata_wn-ac1167dgr is not set
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_iodata_wn-ac1600dgr is not set
@@ -807,6 +808,7 @@ CONFIG_DEFAULT_dnsmasq=y
 CONFIG_MODULE_DEFAULT_dnsmasq=y
 CONFIG_DEFAULT_dropbear=y
 CONFIG_MODULE_DEFAULT_dropbear=y
+CONFIG_MODULE_DEFAULT_e2fsprogs=y
 CONFIG_MODULE_DEFAULT_fconfig=y
 CONFIG_DEFAULT_firewall4=y
 CONFIG_MODULE_DEFAULT_firewall4=y
@@ -818,10 +820,12 @@ CONFIG_MODULE_DEFAULT_kmod-ath10k-ct=y
 CONFIG_MODULE_DEFAULT_kmod-ath10k-ct-smallbuffers=y
 CONFIG_DEFAULT_kmod-ath9k=y
 CONFIG_MODULE_DEFAULT_kmod-ath9k=y
+CONFIG_MODULE_DEFAULT_kmod-fs-ext4=y
 CONFIG_DEFAULT_kmod-gpio-button-hotplug=y
 CONFIG_MODULE_DEFAULT_kmod-gpio-button-hotplug=y
 CONFIG_MODULE_DEFAULT_kmod-leds-gpio=y
 CONFIG_MODULE_DEFAULT_kmod-leds-reset=y
+CONFIG_MODULE_DEFAULT_kmod-nls-iso8859-1=y
 CONFIG_MODULE_DEFAULT_kmod-owl-loader=y
 CONFIG_MODULE_DEFAULT_kmod-switch-rtl8366rb=y
 CONFIG_MODULE_DEFAULT_kmod-switch-rtl8366s=y
@@ -830,6 +834,7 @@ CONFIG_MODULE_DEFAULT_kmod-usb-chipidea2=y
 CONFIG_MODULE_DEFAULT_kmod-usb-core=y
 CONFIG_MODULE_DEFAULT_kmod-usb-ledtrig-usbport=y
 CONFIG_MODULE_DEFAULT_kmod-usb-ohci=y
+CONFIG_MODULE_DEFAULT_kmod-usb-storage=y
 CONFIG_MODULE_DEFAULT_kmod-usb2=y
 CONFIG_DEFAULT_libc=y
 CONFIG_MODULE_DEFAULT_libc=y
