@@ -33,7 +33,7 @@ if has_hwnat_wed and string.len(has_hwnat_wed) > 0 then
 	e = s:taboption("system", Flag, "enable_natflow_hw_wed", translate("Enable Fast Forwarding Hardware Offload WED"))
 	e.default = e.disabled
 	e.rmempty = false
-	e:depends("enable_natflow","1")
+	e:depends("enable_natflow_hw","1")
 end
 
 return m
