@@ -40,21 +40,21 @@ test $version -lt 1 && {
 		[ "$(uci get firewall.@zone[0].mtu_fix 2>/dev/null)" = "1" ] || uci set firewall.@zone[0].mtu_fix='1'
 	}
 	uci -q batch <<-EOT
-		firewall.nat6=nat
-		firewall.nat6.name='nat6'
-		firewall.nat6.src='wan'
-		firewall.nat6.enabled='0'
-		firewall.nat6.family='ipv6'
-		firewall.nat6.proto='all'
-		firewall.nat6.target='MASQUERADE'
-		firewall.ipv6_forward=rule
-		firewall.ipv6_forward.family='ipv6'
-		firewall.ipv6_forward.src='wan'
-		firewall.ipv6_forward.dest='lan'
-		firewall.ipv6_forward.target='ACCEPT'
-		firewall.ipv6_forward.name='Allow-IPv6-Forward'
-		firewall.ipv6_forward.proto='all'
-		firewall.ipv6_forward.enabled='0'
+		set firewall.nat6=nat
+		set firewall.nat6.name='nat6'
+		set firewall.nat6.src='wan'
+		set firewall.nat6.enabled='0'
+		set firewall.nat6.family='ipv6'
+		set firewall.nat6.proto='all'
+		set firewall.nat6.target='MASQUERADE'
+		set firewall.ipv6_forward=rule
+		set firewall.ipv6_forward.family='ipv6'
+		set firewall.ipv6_forward.src='wan'
+		set firewall.ipv6_forward.dest='lan'
+		set firewall.ipv6_forward.target='ACCEPT'
+		set firewall.ipv6_forward.name='Allow-IPv6-Forward'
+		set firewall.ipv6_forward.proto='all'
+		set firewall.ipv6_forward.enabled='0'
 		commit firewall
 	EOT
 
