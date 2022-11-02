@@ -65,7 +65,7 @@ endef
 define Package/natcapd/Default
   CATEGORY:=X
   SUBMENU:=Natcap Support
-  DEPENDS:= +kmod-natcap
+  DEPENDS:= +kmod-natcap +luasocket
 endef
 
 define Package/natcapd
