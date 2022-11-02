@@ -145,6 +145,7 @@ do_disk_ready() {
 				format=$((format-1))
 				rm -rf /mnt/upper /mnt/work /mnt/etc /mnt/.fs_state
 				dd if=/dev/zero of=${ROOTPART}$((LASTNR-1)) bs=1 count=8
+				sync
 			fi
 			umount /mnt
 		else
