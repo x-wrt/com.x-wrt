@@ -30,7 +30,6 @@ config_get_bool enabled globals 'enabled' '0'
 [ "${enabled}" -gt 0 ] || {
 	[ "$MWAN3_STARTUP" != 1 ] && mwan3_unlock "$ACTION" "$INTERFACE"
 	LOG notice "mwan3 hotplug on $INTERFACE not called because globally disabled"
-	mwan3_flush_conntrack "$INTERFACE" "$ACTION"
 	exit 0
 }
 
@@ -164,6 +163,8 @@ case "$ACTION" in
 esac
 
 done
+
+mwan3_flush_conntrack "$INTERFACE" "$ACTION"
 
 [ "$MWAN3_STARTUP" != 1 ] && mwan3_unlock "$ACTION" "$INTERFACE"
 
