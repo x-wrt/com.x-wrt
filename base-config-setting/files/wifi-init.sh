@@ -1,10 +1,12 @@
 #!/bin/sh
 
+WLAN_IDX=0
+
 wifi_setup_radio()
 {
 	local radio=$1
 
-	uci get wireless.${radio} >/dev/null 2>&1 && {
+	if uci get wireless.${radio} >/dev/null 2>&1; then
 		#FIXME hack
 		local path htmode
 		if [ "${radio}" = "radio0" ] || [ "${radio}" = "radio1" ]; then
@@ -46,7 +48,7 @@ wifi_setup_radio()
 		fi
 
 		obj=`uci add wireless wifi-iface`
-		test -n "$obj" && {
+		if test -n "$obj"; then
 			uci set wireless.$obj.device="${radio}"
 			uci set wireless.$obj.network='lan'
 			uci set wireless.$obj.mode='ap'
@@ -61,8 +63,12 @@ wifi_setup_radio()
 			uci set wireless.$obj.ieee80211r='1'
 			uci set wireless.$obj.ft_over_ds='1'
 			uci set wireless.$obj.ft_psk_generate_local='1'
-		}
-	}
+			if uci get wireless.${radio}.path | grep -q bcma; then
+				uci set wireless.$obj.ifname="wlan${WLAN_IDX}"
+				WLAN_IDX=$((WLAN_IDX+1))
+			fi
+		fi
+	fi
 }
 
 wifi_first_init()
