@@ -67,13 +67,21 @@ validate_track_method() {
 }
 
 disconnected() {
+	local status="$(cat ${MWAN3TRACK_STATUS_DIR}/${INTERFACE}.$FAMILY/STATUS)"
+
 	echo "offline" > $MWAN3TRACK_STATUS_DIR/$INTERFACE.$FAMILY/STATUS
 	get_uptime > $MWAN3TRACK_STATUS_DIR/$INTERFACE.$FAMILY/OFFLINE
 	echo "0" > $MWAN3TRACK_STATUS_DIR/$INTERFACE.$FAMILY/ONLINE
 	score=0
 	[ "$1" = 1 ] && return
-	LOG notice "Interface $INTERFACE($FAMILY) ($DEVICE) is offline"
-	env -i ACTION="disconnected" INTERFACE="$INTERFACE" DEVICE="$DEVICE" FAMILY="$FAMILY" /sbin/hotplug-call iface
+
+	# Only execute disconnectd action if status was online or disconnecting
+	if [ "$status" = "online" ] || [ "$status" = "disconnecting" ]; then
+		LOG notice "Interface $INTERFACE($FAMILY) ($DEVICE) is offline"
+		env -i ACTION="disconnected" INTERFACE="$INTERFACE" DEVICE="$DEVICE" FAMILY="$FAMILY" /sbin/hotplug-call iface
+	else
+		LOG notice "Skip disconnected event for $INTERFACE($FAMILY) ($DEVICE)"
+	fi
 }
 
 connected() {
