@@ -682,7 +682,7 @@ EOT
 	 exec /usr/sbin/fakemesh agent_sync_config & )&
 else
 	rm -f /www/fakemesh.*
-	/etc/init.d/sta_disable enabled && /etc/init.d/sta_disable disable
+	/etc/init.d/sta_disable enabled 2>/dev/null && /etc/init.d/sta_disable disable
 
 	test -e /etc/init.d/umdns && {
 	rm /tmp/fakemesh.umdns.json 2>/dev/null && \
