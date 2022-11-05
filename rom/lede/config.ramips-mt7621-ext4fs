@@ -114,6 +114,7 @@ CONFIG_TARGET_MULTI_PROFILE=y
 # CONFIG_TARGET_ramips_mt7621_DEVICE_h3c_tx1800-plus is not set
 # CONFIG_TARGET_ramips_mt7621_DEVICE_h3c_tx1801-plus is not set
 # CONFIG_TARGET_ramips_mt7621_DEVICE_h3c_tx1806 is not set
+# CONFIG_TARGET_ramips_mt7621_DEVICE_haier_har-20s2u1 is not set
 # CONFIG_TARGET_ramips_mt7621_DEVICE_hilink_hlk-7621a-evb is not set
 # CONFIG_TARGET_ramips_mt7621_DEVICE_hiwifi_hc5962 is not set
 # CONFIG_TARGET_ramips_mt7621_DEVICE_humax_e10 is not set
@@ -178,6 +179,7 @@ CONFIG_TARGET_MULTI_PROFILE=y
 # CONFIG_TARGET_ramips_mt7621_DEVICE_samknows_whitebox-v8 is not set
 # CONFIG_TARGET_ramips_mt7621_DEVICE_sercomm_na502 is not set
 # CONFIG_TARGET_ramips_mt7621_DEVICE_sercomm_na502s is not set
+# CONFIG_TARGET_ramips_mt7621_DEVICE_sim_simax1800t is not set
 # CONFIG_TARGET_ramips_mt7621_DEVICE_snr_snr-cpe-me2-lite is not set
 # CONFIG_TARGET_ramips_mt7621_DEVICE_storylink_sap-g3200u3 is not set
 # CONFIG_TARGET_ramips_mt7621_DEVICE_telco-electronics_x1 is not set
@@ -250,6 +252,8 @@ CONFIG_TARGET_MULTI_PROFILE=y
 # CONFIG_TARGET_ramips_mt7621_DEVICE_zbtlink_zbt-wg108 is not set
 # CONFIG_TARGET_ramips_mt7621_DEVICE_zbtlink_zbt-we3526 is not set
 # CONFIG_TARGET_ramips_mt7621_DEVICE_zbtlink_zbt-wg1602-16m is not set
+# CONFIG_TARGET_ramips_mt7621_DEVICE_zbtlink_zbt-wg1602-v04-16m is not set
+# CONFIG_TARGET_ramips_mt7621_DEVICE_zbtlink_zbt-wg1602-v04-32m is not set
 # CONFIG_TARGET_ramips_mt7621_DEVICE_zbtlink_zbt-wg1608-16m is not set
 # CONFIG_TARGET_ramips_mt7621_DEVICE_zbtlink_zbt-wg2626 is not set
 # CONFIG_TARGET_ramips_mt7621_DEVICE_zbtlink_zbt-wg3526-16m is not set
@@ -327,6 +331,7 @@ CONFIG_TARGET_PER_DEVICE_ROOTFS=y
 # CONFIG_TARGET_DEVICE_ramips_mt7621_DEVICE_h3c_tx1800-plus is not set
 # CONFIG_TARGET_DEVICE_ramips_mt7621_DEVICE_h3c_tx1801-plus is not set
 # CONFIG_TARGET_DEVICE_ramips_mt7621_DEVICE_h3c_tx1806 is not set
+# CONFIG_TARGET_DEVICE_ramips_mt7621_DEVICE_haier_har-20s2u1 is not set
 # CONFIG_TARGET_DEVICE_ramips_mt7621_DEVICE_hilink_hlk-7621a-evb is not set
 # CONFIG_TARGET_DEVICE_ramips_mt7621_DEVICE_hiwifi_hc5962 is not set
 # CONFIG_TARGET_DEVICE_ramips_mt7621_DEVICE_humax_e10 is not set
@@ -393,6 +398,7 @@ CONFIG_TARGET_PER_DEVICE_ROOTFS=y
 # CONFIG_TARGET_DEVICE_ramips_mt7621_DEVICE_samknows_whitebox-v8 is not set
 # CONFIG_TARGET_DEVICE_ramips_mt7621_DEVICE_sercomm_na502 is not set
 # CONFIG_TARGET_DEVICE_ramips_mt7621_DEVICE_sercomm_na502s is not set
+# CONFIG_TARGET_DEVICE_ramips_mt7621_DEVICE_sim_simax1800t is not set
 # CONFIG_TARGET_DEVICE_ramips_mt7621_DEVICE_snr_snr-cpe-me2-lite is not set
 # CONFIG_TARGET_DEVICE_ramips_mt7621_DEVICE_storylink_sap-g3200u3 is not set
 # CONFIG_TARGET_DEVICE_ramips_mt7621_DEVICE_telco-electronics_x1 is not set
@@ -464,6 +470,8 @@ CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt7621_DEVICE_xwrt_wr1800k-ax-norplusemmc="
 # CONFIG_TARGET_DEVICE_ramips_mt7621_DEVICE_zbtlink_zbt-we3526 is not set
 # CONFIG_TARGET_DEVICE_ramips_mt7621_DEVICE_zbtlink_zbt-wg108 is not set
 # CONFIG_TARGET_DEVICE_ramips_mt7621_DEVICE_zbtlink_zbt-wg1602-16m is not set
+# CONFIG_TARGET_DEVICE_ramips_mt7621_DEVICE_zbtlink_zbt-wg1602-v04-16m is not set
+# CONFIG_TARGET_DEVICE_ramips_mt7621_DEVICE_zbtlink_zbt-wg1602-v04-32m is not set
 # CONFIG_TARGET_DEVICE_ramips_mt7621_DEVICE_zbtlink_zbt-wg1608-16m is not set
 # CONFIG_TARGET_DEVICE_ramips_mt7621_DEVICE_zbtlink_zbt-wg2626 is not set
 # CONFIG_TARGET_DEVICE_ramips_mt7621_DEVICE_zbtlink_zbt-wg3526-16m is not set
@@ -860,7 +868,7 @@ CONFIG_TARGET_INIT_CMD="/sbin/init"
 CONFIG_TARGET_INIT_SUPPRESS_STDERR=y
 CONFIG_VERSIONOPT=y
 CONFIG_VERSION_DIST="X-WRT"
-CONFIG_VERSION_NUMBER="22.10_b202211050505"
+CONFIG_VERSION_NUMBER="22.10_b202211060726"
 CONFIG_VERSION_CODE="Kinetic"
 CONFIG_VERSION_REPO="http://downloads.openwrt.org/snapshots"
 CONFIG_VERSION_HOME_URL="https://x-wrt.com/"
@@ -3027,6 +3035,7 @@ CONFIG_ZABBIX_POSTGRESQL=y
 # CONFIG_PACKAGE_muninlite is not set
 # CONFIG_PACKAGE_netatop is not set
 # CONFIG_PACKAGE_netdata is not set
+# CONFIG_PACKAGE_nload is not set
 # CONFIG_PACKAGE_nyx is not set
 # CONFIG_PACKAGE_rsyslog is not set
 # CONFIG_PACKAGE_schroot is not set
@@ -8036,6 +8045,7 @@ CONFIG_PACKAGE_usbmuxd=m
 # CONFIG_PACKAGE_docker-compose is not set
 # CONFIG_PACKAGE_dockerd is not set
 # CONFIG_PACKAGE_domoticz is not set
+# CONFIG_PACKAGE_dos2unix is not set
 # CONFIG_PACKAGE_dropbearconvert is not set
 # CONFIG_PACKAGE_dtc is not set
 # CONFIG_PACKAGE_dumb-init is not set
@@ -8106,6 +8116,7 @@ CONFIG_PACKAGE_jshn=y
 # CONFIG_PACKAGE_less is not set
 CONFIG_PACKAGE_libjson-script=y
 # CONFIG_PACKAGE_libnetwork is not set
+# CONFIG_PACKAGE_librespeed-cli is not set
 CONFIG_PACKAGE_libucode=y
 # CONFIG_PACKAGE_libxml2-utils is not set
 # CONFIG_PACKAGE_lm-sensors is not set
@@ -8246,16 +8257,19 @@ CONFIG_PACKAGE_qrencode=m
 # CONFIG_PACKAGE_smartd-mail is not set
 # CONFIG_PACKAGE_smartmontools is not set
 # CONFIG_PACKAGE_smartmontools-drivedb is not set
+# CONFIG_PACKAGE_sms-tool is not set
 # CONFIG_PACKAGE_smstools3 is not set
 # CONFIG_PACKAGE_sockread is not set
 # CONFIG_PACKAGE_spi-tools is not set
 # CONFIG_PACKAGE_spidev-test is not set
 # CONFIG_PACKAGE_ssdeep is not set
 # CONFIG_PACKAGE_sshpass is not set
+# CONFIG_PACKAGE_stdiscosrv is not set
 # CONFIG_PACKAGE_strace is not set
 CONFIG_STRACE_NONE=y
 # CONFIG_STRACE_LIBDW is not set
 # CONFIG_STRACE_LIBUNWIND is not set
+# CONFIG_PACKAGE_strelaysrv is not set
 # CONFIG_PACKAGE_stress is not set
 # CONFIG_PACKAGE_stress-ng is not set
 # CONFIG_PACKAGE_sumo is not set
@@ -8297,6 +8311,7 @@ CONFIG_PACKAGE_ucode-mod-uci=y
 # CONFIG_PACKAGE_ugps is not set
 # CONFIG_PACKAGE_uhubctl is not set
 # CONFIG_PACKAGE_uledd is not set
+# CONFIG_PACKAGE_unix2dos is not set
 # CONFIG_PACKAGE_unshare is not set
 # CONFIG_PACKAGE_upx is not set
 CONFIG_PACKAGE_usb-modeswitch=m
