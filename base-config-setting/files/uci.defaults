@@ -105,6 +105,11 @@ test $version -lt 2 && {
 			set network.usbwan.device='usb0'
 			set network.usbwan.mtu='1492'
 			set network.usbwan.metric='800'
+			set network.usbwan6=interface
+			set network.usbwan6.proto='dhcpv6'
+			set network.usbwan6.device='@usbwan'
+			set network.usbwan6.reqaddress='try'
+			set network.usbwan6.reqprefix='auto'
 			commit network
 		EOT
 
