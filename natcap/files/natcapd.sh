@@ -1283,6 +1283,7 @@ main_trigger() {
 										ip route >/root/$dir/lost.route.log
 										nft list table inet fw4 >/root/$dir/lost.nft.log
 										iptables-save >/root/$dir/lost.nft.log
+										logread >/root/$dir/lost.logread.log
 										log=$((log+1))
 									fi
 								fi
