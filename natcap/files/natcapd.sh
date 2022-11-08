@@ -1195,6 +1195,7 @@ ping_cli() {
 }
 
 main_trigger() {
+	local log=0
 	local SEQ=0
 	local hostip
 	local built_in_server
@@ -1255,6 +1256,37 @@ main_trigger() {
 							ipset -n list knocklist >/dev/null 2>&1 || ipset -! create knocklist iphash hashsize 64 maxelem 1024
 							ipset test knocklist $hostip >/dev/null 2>&1 && ipset del knocklist $hostip 2>/dev/null || ipset add knocklist $hostip 2>/dev/null
 							cp /tmp/natcapd.txrx.old /tmp/natcapd.txrx
+							#lost connections, log:
+							track_ip=`ip r | grep -m1 default | awk '{print $3}' | grep '[0-9]*\.[0-9]*\.[0-9]*\.[0-9]*'`
+							space=$(df | grep "/overlay$" | awk '{print $4}')
+							memtotal=$(grep MemTotal /proc/meminfo | awk '{print $2}')
+							if $memtotal -gt 65536 && test $log -le 8 && test -n "$track_ip" && test -n "$space"; then
+								if ! ping -c1 -W1 $track_ip &>/dev/null; then
+									local log_cnt=0
+									for dir in /root/log.*; do
+										test -d $dir && log_cnt=$((log_cnt+1))
+										if $log_cnt -ge 8; then
+											for dird in /root/log.*; do
+												test -d $dir && rm -rf $dir
+												break
+											done
+										fi
+									done
+									if test $space -le 512; then
+										rm -rf /root/log.*
+										space=$(df | grep "/overlay$" | awk '{print $4}')
+									fi
+									if test $space -gt 384; then
+										dir=log.$(date +%Y%m%d%H%M%S)
+										mkdir -p /root/$dir
+										dmesg >/root/$dir/lost.dmesg.log &
+										ip route >/root/$dir/lost.route.log
+										nft list table inet fw4 >/root/$dir/lost.nft.log
+										iptables-save >/root/$dir/lost.nft.log
+										log=$((log+1))
+									fi
+								fi
+							fi
 						}
 					}
 			head -n1 /tmp/xx.tmp.json | grep -q '#!/bin/sh' >/dev/null 2>&1 && {
