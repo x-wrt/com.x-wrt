@@ -286,6 +286,7 @@ for t in $targets; do
 	excludes="$excludes_basic"
 	case $t in
 		#>8M flash
+		TARGET_DEVICE_ipq40xx_generic_DEVICE_glinet_gl-a1300|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_bolt_arion|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_netgear_wax202|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_xiaomi_redmi-router-ax6000|\
@@ -754,6 +755,7 @@ for t in $targets; do
 	#check usb
 	case $t in
 		#with usb3
+		TARGET_DEVICE_ipq40xx_generic_DEVICE_glinet_gl-a1300|\
 		TARGET_DEVICE_ipq40xx_generic_DEVICE_glinet_gl-b2200|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_bananapi_bpi-r3|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_zbtlink_zbt-wg1608-16m|\
