@@ -251,6 +251,7 @@ CONFIG_TARGET_MULTI_PROFILE=y
 # CONFIG_TARGET_ath79_generic_DEVICE_sophos_ap100c is not set
 # CONFIG_TARGET_ath79_generic_DEVICE_telco_t1 is not set
 # CONFIG_TARGET_ath79_generic_DEVICE_teltonika_rut230-v1 is not set
+# CONFIG_TARGET_ath79_generic_DEVICE_teltonika_rut300 is not set
 # CONFIG_TARGET_ath79_generic_DEVICE_teltonika_rut955 is not set
 # CONFIG_TARGET_ath79_generic_DEVICE_teltonika_rut955-h7v3c0 is not set
 # CONFIG_TARGET_ath79_generic_DEVICE_trendnet_tew-673gru is not set
@@ -606,6 +607,7 @@ CONFIG_TARGET_DEVICE_PACKAGES_ath79_generic_DEVICE_pisen_ts-d084="blockd block-m
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_sophos_ap55c is not set
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_telco_t1 is not set
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_teltonika_rut230-v1 is not set
+# CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_teltonika_rut300 is not set
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_teltonika_rut955 is not set
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_teltonika_rut955-h7v3c0 is not set
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_tplink_archer-c6-v2-us is not set
@@ -1163,7 +1165,7 @@ CONFIG_TARGET_INIT_CMD="/sbin/init"
 CONFIG_TARGET_INIT_SUPPRESS_STDERR=y
 CONFIG_VERSIONOPT=y
 CONFIG_VERSION_DIST="X-WRT"
-CONFIG_VERSION_NUMBER="22.10_b202211111111"
+CONFIG_VERSION_NUMBER="22.10_b202211120236"
 CONFIG_VERSION_CODE="Kinetic"
 CONFIG_VERSION_REPO="http://downloads.openwrt.org/snapshots"
 CONFIG_VERSION_HOME_URL="https://x-wrt.com/"
