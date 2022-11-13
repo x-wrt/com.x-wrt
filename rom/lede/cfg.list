@@ -13,7 +13,6 @@ config.sunxi-cortexa7
 config.mediatek-mt7622
 config.mediatek-filogic
 config.bcm27xx-bcm2710
-config.bcm4908-generic
 config.mvebu-cortexa53
 config.bcm27xx-bcm2711
 config.rockchip-armv8
