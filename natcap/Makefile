@@ -173,6 +173,7 @@ define Build/Compile/natcap
 	+$(MAKE) $(PKG_JOBS) -C "$(LINUX_DIR)" \
 		$(KERNEL_MAKE_FLAGS) \
 		M="$(PKG_BUILD_DIR)" \
+		$(if $(CONFIG_KERNEL_DEBUG_INFO),,NO_DEBUG=1) \
 		modules
 endef
 
