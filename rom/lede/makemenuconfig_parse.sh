@@ -31,6 +31,8 @@ wifiext="luci-app-dawn dawn"
 
 sqm="luci-app-sqm luci-i18n-sqm-zh-cn sqm-scripts tc-tiny"
 
+relay="luci-proto-relay relayd"
+
 usb4g="wwan \
 	   uqmi \
 	   kmod-usb-wdm \
@@ -425,7 +427,7 @@ for t in $targets; do
 		TARGET_DEVICE_ramips_mt7621_DEVICE_netgear_r6220a|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_netgear_r6220b|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_netgear_r6220c)
-			mods="$mods $lucibond $ipv6extra $wifiext $sqm $lucidashboard $kmodext"
+			mods="$mods $lucibond $ipv6extra $wifiext $sqm $lucidashboard $kmodext $relay"
 			mods="$mods $wgmod $openvpnmod wpad-openssl luci-ssl-nginx"
 			excludes="$excludes wpad-basic-wolfssl"
 			flash_gt8m=1
@@ -616,7 +618,7 @@ for t in $targets; do
 		TARGET_DEVICE_ath79_generic_DEVICE_engenius_epg5000|\
 		TARGET_DEVICE_ath79_generic_DEVICE_tplink_archer-c7-v5|\
 		TARGET_DEVICE_ath79_generic_DEVICE_bm100_hq55)
-			mods="$mods $wgmod $openvpnmod openvpn-wolfssl wpad-wolfssl $wifiext $sqm $lucidashboard"
+			mods="$mods $wgmod $openvpnmod openvpn-wolfssl wpad-wolfssl $wifiext $sqm $lucidashboard $relay"
 			excludes="$excludes wpad-basic-wolfssl openvpn-openssl"
 			flash_gt8m=1
 		;;
