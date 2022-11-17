@@ -293,6 +293,7 @@ for t in $targets; do
 		TARGET_DEVICE_ramips_mt7621_DEVICE_bolt_arion|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_netgear_wax202|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_xiaomi_redmi-router-ax6000|\
+		TARGET_DEVICE_mediatek_filogic_DEVICE_xiaomi_redmi-router-ax6000-stock|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_bananapi_bpi-r3|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_yuncore_ax820|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_h3c_tx1806|\
@@ -1071,6 +1072,7 @@ for t in $targets; do
 		TARGET_DEVICE_ramips_mt7621_DEVICE_bolt_arion|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_netgear_wax202|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_xiaomi_redmi-router-ax6000|\
+		TARGET_DEVICE_mediatek_filogic_DEVICE_xiaomi_redmi-router-ax6000-stock|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_yuncore_ax820|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_h3c_tx1806|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_xwrt_dm2-t-mb2ep-v02-nor|\
