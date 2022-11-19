@@ -114,7 +114,7 @@ test $version -lt 2 && {
 		EOT
 
 		[ "$(uci get firewall.@zone[1].name 2>/dev/null)" = "wan" ] && {
-			wans="$(uci get firewall.@zone[1].network 2>/dev/null) usbwan"
+			wans="$(uci get firewall.@zone[1].network 2>/dev/null) usbwan usbwan6"
 			uci delete firewall.@zone[1].network
 			for w in $wans; do echo $w; done | sort | uniq | while read wan; do
 				uci add_list firewall.@zone[1].network="$wan"
