@@ -129,10 +129,7 @@ ssmod="libmbedtls \
 	   shadowsocks-libev-ss-tunnel"
 
 wgmod="wireguard-tools \
-	   luci-app-wireguard \
 	   luci-proto-wireguard \
-	   luci-i18n-wireguard-en \
-	   luci-i18n-wireguard-zh-cn \
 	   qrencode \
 	   libqrencode"
 
