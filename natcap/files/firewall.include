@@ -47,14 +47,17 @@ fi
 iptables -C forwarding_wan_rule -m mark --mark 0x99/0xff -j ACCEPT 2>/dev/null || \
 iptables -A forwarding_wan_rule -m mark --mark 0x99/0xff -j ACCEPT 2>/dev/null
 
-nft -a list chain inet fw4 reject_from_wan 2>/dev/null | grep -q "\"natcap_accept_mark_0x99\"" || \
-nft insert rule inet fw4 reject_from_wan mark and 0xff == 0x99 counter accept comment "natcap_accept_mark_0x99" 2>/dev/null
-
 iptables -C input_wan_rule -m mark --mark 0x99/0xff -j ACCEPT 2>/dev/null || \
 iptables -A input_wan_rule -m mark --mark 0x99/0xff -j ACCEPT 2>/dev/null
 
-nft -a list chain inet fw4 reject_to_wan 2>/dev/null | grep -q "\"natcap_accept_mark_0x99\"" || \
-nft insert rule inet fw4 reject_to_wan mark and 0xff == 0x99 counter accept comment "natcap_accept_mark_0x99" 2>/dev/null
+for act in reject drop; do
+	for via in to from; do
+		for zone in lan wan; do
+			nft -a list chain inet fw4 ${act}_${via}_${zone} 2>/dev/null | grep -q "\"natcap_accept_mark_0x99\"" || \
+			nft insert rule inet fw4 ${act}_${via}_${zone} mark and 0xff == 0x99 counter accept comment "natcap_accept_mark_0x99" 2>/dev/null
+		done
+	done
+done
 
 test -f /usr/share/natcapd/natcapd.cone_nat_unused.sh && sh /usr/share/natcapd/natcapd.cone_nat_unused.sh init
 
