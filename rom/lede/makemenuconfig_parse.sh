@@ -432,6 +432,7 @@ for t in $targets; do
 			extra_utils=1
 		;;
 		#>8M flash <14M
+		TARGET_DEVICE_ramips_mt7621_DEVICE_ruijie_rg-ew1800gx|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_haier_har-20s2u1|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_sim_simax1800t|\
 		TARGET_DEVICE_ramips_mt7620_DEVICE_youku_x2|\
@@ -1064,6 +1065,7 @@ for t in $targets; do
 			has_usb=1
 		;;
 		#no usb
+		TARGET_DEVICE_ramips_mt7621_DEVICE_ruijie_rg-ew1800gx|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_haier_har-20s2u1|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_sim_simax1800t|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_bolt_arion|\
