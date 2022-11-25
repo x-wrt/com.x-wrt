@@ -242,6 +242,7 @@ CONFIG_TARGET_MULTI_PROFILE=y
 # CONFIG_TARGET_ramips_mt7621_DEVICE_xwrt_wr1800k-ax-nand is not set
 # CONFIG_TARGET_ramips_mt7621_DEVICE_xwrt_wr1800k-ax-norplusemmc is not set
 # CONFIG_TARGET_ramips_mt7621_DEVICE_xwrt_wr1800k-ax-nor is not set
+# CONFIG_TARGET_ramips_mt7621_DEVICE_ruijie_rg-ew1800gx is not set
 # CONFIG_TARGET_ramips_mt7621_DEVICE_xwrt_dm2-t-mb2ep-v02-nor is not set
 # CONFIG_TARGET_ramips_mt7621_DEVICE_xwrt_ms1800k-ax-nor is not set
 # CONFIG_TARGET_ramips_mt7621_DEVICE_xwrt_t-cpe1200k-v01 is not set
@@ -406,6 +407,7 @@ CONFIG_TARGET_PER_DEVICE_ROOTFS=y
 # CONFIG_TARGET_DEVICE_ramips_mt7621_DEVICE_planex_vr500 is not set
 # CONFIG_TARGET_DEVICE_ramips_mt7621_DEVICE_renkforce_ws-wn530hp3-a is not set
 # CONFIG_TARGET_DEVICE_ramips_mt7621_DEVICE_rostelecom_rt-sf-1 is not set
+# CONFIG_TARGET_DEVICE_ramips_mt7621_DEVICE_ruijie_rg-ew1800gx is not set
 # CONFIG_TARGET_DEVICE_ramips_mt7621_DEVICE_samknows_whitebox-v8 is not set
 # CONFIG_TARGET_DEVICE_ramips_mt7621_DEVICE_sercomm_na502 is not set
 # CONFIG_TARGET_DEVICE_ramips_mt7621_DEVICE_sercomm_na502s is not set
@@ -880,7 +882,7 @@ CONFIG_TARGET_INIT_CMD="/sbin/init"
 CONFIG_TARGET_INIT_SUPPRESS_STDERR=y
 CONFIG_VERSIONOPT=y
 CONFIG_VERSION_DIST="X-WRT"
-CONFIG_VERSION_NUMBER="22.10_b202211231105"
+CONFIG_VERSION_NUMBER="22.10_b202211250846"
 CONFIG_VERSION_CODE="Kinetic"
 CONFIG_VERSION_REPO="http://downloads.openwrt.org/snapshots"
 CONFIG_VERSION_HOME_URL="https://x-wrt.com/"
