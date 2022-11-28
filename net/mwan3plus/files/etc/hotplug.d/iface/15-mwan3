@@ -80,7 +80,7 @@ if [ "$familys" != "ipv4" ] && [ "$familys" != "ipv6" ]; then
 	[ "$familys" = "any" ] && familys="ipv4 ipv6"
 fi
 
-if [ -z "$DELAY_HOTPLUG" ] && [ "$MWAN3_STARTUP" != 1 ]; then
+if [ -z "$DELAY_HOTPLUG" ] && [ "$MWAN3_STARTUP" != 1 ] && [ "$(uci show mwan3 | grep =interface | wc -l)" -ge 10 ]; then
 	mwan3_unlock "$ACTION" "$INTERFACE"
 	if [ "$ACTION" = "ifup" ] || [ "$ACTION" = "ifdown" ]; then
 		for family in $familys; do
