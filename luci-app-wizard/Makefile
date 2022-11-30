@@ -51,8 +51,6 @@ define Package/luci-app-wizard/postinst
 if [ -z "$$IPKG_INSTROOT" ]; then
   ( . /etc/uci-defaults/40_luci-app-wizard )
   rm -f /etc/uci-defaults/40_luci-app-wizard
-  ( . /etc/uci-defaults/96-wizard-defaults )
-  rm -f /etc/uci-defaults/96-wizard-defaults
 
   rm -rf /tmp/luci-indexcache /tmp/luci-modulecache
 fi
@@ -69,7 +67,6 @@ define Package/luci-app-wizard/install
 	$(INSTALL_BIN) ./root/etc/init.d/wizard $(1)/etc/init.d/wizard
 	$(INSTALL_DIR) $(1)/etc/uci-defaults
 	$(INSTALL_DATA) ./root/etc/uci-defaults/40_luci-app-wizard $(1)/etc/uci-defaults/40_luci-app-wizard
-	$(INSTALL_DATA) ./root/etc/uci-defaults/96-wizard-defaults $(1)/etc/uci-defaults/96-wizard-defaults
 	$(INSTALL_DIR) $(1)/usr/share/rpcd/acl.d
 	$(INSTALL_DATA) ./root/usr/share/rpcd/acl.d/*.json $(1)/usr/share/rpcd/acl.d/
 	$(INSTALL_DIR) $(1)/usr/share/luci/menu.d

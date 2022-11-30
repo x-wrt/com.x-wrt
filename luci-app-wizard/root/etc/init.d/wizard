@@ -1,9 +1,24 @@
 #!/bin/sh /etc/rc.common
 
-START=19
+START=99
 
 boot() {
 	XBOOT=1 start
+	SSID=$(uci get wireless.@wifi-iface[0].ssid 2>/dev/null)
+	KEY=$(uci get wireless.@wifi-iface[0].key 2>/dev/null)
+	IPADDR=$(uci get network.lan.ipaddr 2>/dev/null)
+	NETMASK=$(uci get network.lan.netmask 2>/dev/null)
+
+	if [ "$(uci get wizard.default.wifi_ssid 2>/dev/null)" = "$SSID" ] && [ "$(uci get wizard.default.lan_ipaddr 2>/dev/null)" = "$IPADDR" ]; then
+		:
+	else
+		uci set wizard.default=wizard
+		uci set wizard.default.wifi_ssid="$SSID"
+		uci set wizard.default.wifi_key="$KEY"
+		uci set wizard.default.lan_ipaddr="$IPADDR"
+		uci set wizard.default.lan_netmask="$NETMASK"
+		uci commit wizard
+	fi
 }
 
 add_wizard() {
