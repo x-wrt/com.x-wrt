@@ -1,7 +1,5 @@
 #!/bin/sh
 
-WLAN_IDX=0
-
 wifi_setup_radio()
 {
 	local radio=$1
@@ -60,9 +58,9 @@ wifi_setup_radio()
 			uci set wireless.$obj.wpa_master_rekey='0'
 			uci set wireless.$obj.disassoc_low_ack='0'
 			uci set wireless.$obj.key="${SSID_PASSWD}"
-			if uci get wireless.${radio}.path | grep -q bcma; then
+			if uci get wireless.${radio}.path | grep -q bcma || iwinfo wlan${radio:5} info | grep -qi Cypress; then
+				WLAN_IDX=${radio:5}
 				uci set wireless.$obj.ifname="wlan${WLAN_IDX}"
-				WLAN_IDX=$((WLAN_IDX+1))
 			else
 				uci set wireless.$obj.ieee80211r='1'
 				uci set wireless.$obj.ft_over_ds='1'

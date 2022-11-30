@@ -163,6 +163,15 @@ agent_lost_ac()
 			uci set wireless.wifinet$K.wpa_pair_rekey='0'
 			uci set wireless.wifinet$K.wpa_master_rekey='0'
 			uci set wireless.wifinet$K.disassoc_low_ack='1'
+			if uci get wireless.${radio}.path | grep -q bcma || iwinfo wlan${radio:5} info | grep -qi Cypress; then
+				WLAN_IDX=${radio:5}
+				uci set wireless.wifinet$K.ifname="wlan${WLAN_IDX}"
+			else
+				uci set wireless.wifinet$K.ieee80211r='1'
+				uci set wireless.wifinet$K.ft_over_ds='1'
+				uci set wireless.wifinet$K.ft_psk_generate_local='1'
+			fi
+
 			uci delete wireless.wifinet$K.disabled 2>/dev/null
 			K=$((K+1))
 		fi
@@ -354,9 +363,14 @@ agent_sync_config()
 							uci set wireless.wifinet$K.wpa_pair_rekey='0'
 							uci set wireless.wifinet$K.wpa_master_rekey='0'
 							uci set wireless.wifinet$K.disassoc_low_ack='1'
-							uci set wireless.wifinet$K.ieee80211r='1'
-							uci set wireless.wifinet$K.ft_over_ds='1'
-							uci set wireless.wifinet$K.ft_psk_generate_local='1'
+							if uci get wireless.${radio}.path | grep -q bcma || iwinfo wlan${radio:5} info | grep -qi Cypress; then
+								WLAN_IDX=${radio:5}
+								uci set wireless.wifinet$K.ifname="wlan${WLAN_IDX}"
+							else
+								uci set wireless.wifinet$K.ieee80211r='1'
+								uci set wireless.wifinet$K.ft_over_ds='1'
+								uci set wireless.wifinet$K.ft_psk_generate_local='1'
+							fi
 							if opkg list-installed | grep -q wpad-basic; then
 								:
 							else
