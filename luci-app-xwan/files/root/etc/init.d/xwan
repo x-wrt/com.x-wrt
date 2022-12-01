@@ -32,6 +32,7 @@ mwan3_add_one() {
 	uci set mwan3.${intf}_m100_w100.metric='100'
 	uci set mwan3.${intf}_m100_w100.weight='100'
 
+	uci delete mwan3.balanced 2>/dev/null
 	uci set mwan3.balanced=policy
 	uci set mwan3.balanced.last_resort='unreachable'
 	uci add_list mwan3.balanced.use_member="${intf}_m100_w100"
