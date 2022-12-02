@@ -285,6 +285,7 @@ for t in $targets; do
 	excludes="$excludes_basic"
 	case $t in
 		#>8M flash
+		TARGET_DEVICE_mediatek_mt7622_DEVICE_netgear_wax206|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_tplink_tl-xdr6088|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_raisecom_msg1500-x-00|\
 		TARGET_DEVICE_ipq40xx_generic_DEVICE_glinet_gl-a1300|\
@@ -1067,6 +1068,7 @@ for t in $targets; do
 			has_usb=1
 		;;
 		#no usb
+		TARGET_DEVICE_mediatek_mt7622_DEVICE_netgear_wax206|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_ruijie_rg-ew1800gx|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_haier_har-20s2u1|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_sim_simax1800t|\
