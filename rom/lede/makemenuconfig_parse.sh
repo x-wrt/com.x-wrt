@@ -305,6 +305,7 @@ for t in $targets; do
 		TARGET_DEVICE_mediatek_mt7622_DEVICE_bananapi_bpi-r64|\
 		TARGET_DEVICE_mediatek_mt7622_DEVICE_xiaomi_redmi-router-ax6s|\
 		TARGET_DEVICE_mediatek_mt7622_DEVICE_ruijie_rg-ew3200gx-pro|\
+		TARGET_DEVICE_mediatek_mt7622_DEVICE_reyee_ax3200-e5|\
 		TARGET_DEVICE_ipq40xx_generic_DEVICE_zte_mf286d|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_xwrt_fm10-ax-nand|\
 		TARGET_DEVICE_mediatek_mt7622_DEVICE_totolink_a8000ru|\
@@ -1097,6 +1098,7 @@ for t in $targets; do
 		TARGET_DEVICE_realtek_rtl838x_DEVICE_zyxel_gs1900-8hp-v1|\
 		TARGET_DEVICE_realtek_rtl838x_DEVICE_zyxel_gs1900-8hp-v2|\
 		TARGET_DEVICE_mediatek_mt7622_DEVICE_ruijie_rg-ew3200gx-pro|\
+		TARGET_DEVICE_mediatek_mt7622_DEVICE_reyee_ax3200-e5|\
 		TARGET_DEVICE_ath79_generic_DEVICE_letv_lba-047-ch|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_xwrt_ac8000p|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_xwrt_puppies|\
