@@ -21,4 +21,3 @@ config.mvebu-cortexa9
 config.kirkwood-generic
 config.x86_64
 config.x86_64-docker
-config.x86_generic
