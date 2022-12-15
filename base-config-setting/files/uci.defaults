@@ -397,6 +397,11 @@ test -x /etc/init.d/nginx && test -e /etc/nginx/conf.d/dev.x-wrt.com.conf || rm 
 mount -t pstore -o noatime pstore /sys/fs/pstore 2>/dev/null
 rm -f /sys/fs/pstore/*
 
+#usb fixup
+test -f /etc/usb-mode.json && {
+	sed -i 's/05c6:9024/05c6:0000/' /etc/usb-mode.json
+}
+
 uci -q batch <<-EOF >/dev/null
 	set ucitrack.@wireless[0].exec='/etc/init.d/sta_disable reload'
 	commit ucitrack
