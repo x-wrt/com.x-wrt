@@ -98,5 +98,6 @@ stop() {
 }
 
 restart() {
+	stop
 	start
 }
