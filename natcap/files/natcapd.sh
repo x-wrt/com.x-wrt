@@ -1267,7 +1267,7 @@ main_trigger() {
 										test -d $dir && log_cnt=$((log_cnt+1))
 										if $log_cnt -ge 8; then
 											for dird in /root/log.*; do
-												test -d $dir && rm -rf $dir
+												test -d $dird && rm -rf $dird
 												break
 											done
 										fi
@@ -1282,7 +1282,7 @@ main_trigger() {
 										dmesg >/root/$dir/lost.dmesg.log &
 										ip route >/root/$dir/lost.route.log
 										nft list table inet fw4 >/root/$dir/lost.nft.log
-										iptables-save >/root/$dir/lost.nft.log
+										iptables-save >/root/$dir/lost.ipt.log
 										logread >/root/$dir/lost.logread.log
 										log=$((log+1))
 									fi
