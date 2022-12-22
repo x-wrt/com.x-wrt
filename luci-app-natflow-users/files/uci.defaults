@@ -5,6 +5,7 @@ uci -q batch <<-EOF >/dev/null
 	set ucitrack.@natflow[-1].init=natflow-user
 	set ucitrack.@natflow[-1].exec="/etc/init.d/natflow-zone reload"
 	set ucitrack.@natflow[-1].exec="/etc/init.d/natflow-qos reload"
+	set ucitrack.@natflow[-1].exec="/etc/init.d/natflow-simple-qos reload"
 	commit ucitrack
 EOF
 
