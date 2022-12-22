@@ -71,7 +71,7 @@ return view.extend({
 
 		m = new form.Map('natflow', [_('QoS traffic shaping')]);
 
-		s = m.section(form.GridSection, 'qos', _('QoS rules'), _('This feature allows you to apply Quality of Service (QoS) traffic shaping to a specific group of traffic that meets certain conditions.'));
+		s = m.section(form.GridSection, 'qos', _('QoS rules'), _('Implement traffic control measures on eligible traffic groups and distribute bandwidth evenly among group members.'));
 		s.addremove = true;
 		s.anonymous = false;
 		s.nodescriptions = true;
@@ -115,6 +115,42 @@ return view.extend({
 		o.placeholder = '80,443,10000-20000'
 		o.validate = function(section_id, value) {
 			return value == '' || ports_validate(value);
+		}
+
+		o = s.option(form.Value, 'rx_rate', _('Download rate limit'), _('Unit: <code>Kbps</code> <code>Mbps</code> <code>Gbps</code> Example: 10Mbps or 0 = no limit'));
+		o.default = '0Mbps';
+		o.rmempty = true;
+		o.placeholder = '0Mbps'
+		o.validate = function(section_id, value) {
+			return value == '' || value == "0" || speed_validate(value);
+		}
+
+		o = s.option(form.Value, 'tx_rate', _('Upload rate limit'), _('Unit: <code>Kbps</code> <code>Mbps</code> <code>Gbps</code> Example: 10Mbps or 0 = no limit'));
+		o.default = '0Mbps';
+		o.rmempty = true;
+		o.placeholder = '0Mbps'
+		o.validate = function(section_id, value) {
+			return value == '' || value == "0" || speed_validate(value);
+		}
+
+		o = s.option(form.Flag, 'disabled', _('Enable'));
+		o.enabled = '0';
+		o.disabled = '1';
+		o.default = o.enabled;
+
+		s = m.section(form.GridSection, 'qos_simple', _('Simple QoS rules'), _('Apply traffic control measures on a per-user basis, setting non-sharing limits on bandwidth allocation.'));
+		s.addremove = true;
+		s.anonymous = false;
+		s.nodescriptions = true;
+		s.sortable = false;
+
+		o = s.option(form.Value, 'user', _('User IP'),
+			_('Can be a single or multiple ipaddr(s)(/cidr) or iprange, split with comma (e.g. "192.168.100.0/24,1.2.3.4,172.16.0.100-172.16.0.111") without quotes'));
+		o.default = '';
+		o.rmempty = true;
+		o.placeholder = '192.168.15.2-192.168.15.254'
+		o.validate = function(section_id, value) {
+			return value == '' || nets_validate(value);
 		}
 
 		o = s.option(form.Value, 'rx_rate', _('Download rate limit'), _('Unit: <code>Kbps</code> <code>Mbps</code> <code>Gbps</code> Example: 10Mbps or 0 = no limit'));

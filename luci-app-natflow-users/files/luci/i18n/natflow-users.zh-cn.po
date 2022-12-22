@@ -43,8 +43,11 @@ msgstr "流量整形"
 msgid "QoS rules"
 msgstr "流控规则"
 
-msgid "This feature allows you to apply Quality of Service (QoS) traffic shaping to a specific group of traffic that meets certain conditions."
-msgstr "这个功能允许您将质量服务（QoS）流量整形应用于符合某些条件的特定流量组。"
+msgid "Simple QoS rules"
+msgstr "简单流控规则"
+
+msgid "Implement traffic control measures on eligible traffic groups and distribute bandwidth evenly among group members."
+msgstr "对符合条件的流量组实施流量控制措施，并在组内均衡分配带宽。"
 
 msgid "User IP"
 msgstr "用户IP"
@@ -63,3 +66,6 @@ msgstr "下行速度限制"
 
 msgid "Upload rate limit"
 msgstr "上行速度限制"
+
+msgid "Apply traffic control measures on a per-user basis, setting non-sharing limits on bandwidth allocation."
+msgstr "对每个用户单独施加流量控制措施，在带宽分配上设置不共享的限制。"
