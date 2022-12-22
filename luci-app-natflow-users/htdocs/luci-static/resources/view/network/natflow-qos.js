@@ -80,9 +80,9 @@ return view.extend({
 		o = s.option(form.Value, 'proto', _('Protocol'))
 		o.default = '';
 		o.rmempty = true;
-		o.value('', "tcp+udp");
-		o.value('tcp');
-		o.value('udp');
+		o.value('', 'TCP and UDP');
+		o.value('tcp', 'TCP');
+		o.value('udp', 'UDP');
 
 		o = s.option(form.Value, 'user', _('User IP'),
 			_('Can be a single or multiple ipaddr(s)(/cidr) or iprange, split with comma (e.g. "192.168.100.0/24,1.2.3.4,172.16.0.100-172.16.0.111") without quotes'));
