@@ -75,7 +75,7 @@ return view.extend({
 		s.addremove = true;
 		s.anonymous = false;
 		s.nodescriptions = true;
-		s.sortable = false;
+		s.sortable = true;
 
 		o = s.option(form.Value, 'proto', _('Protocol'))
 		o.default = '';
@@ -142,7 +142,7 @@ return view.extend({
 		s.addremove = true;
 		s.anonymous = false;
 		s.nodescriptions = true;
-		s.sortable = false;
+		s.sortable = true;
 
 		o = s.option(form.Value, 'user', _('User IP'),
 			_('Can be a single or multiple ipaddr(s)(/cidr) or iprange, split with comma (e.g. "192.168.100.0/24,1.2.3.4,172.16.0.100-172.16.0.111") without quotes'));
