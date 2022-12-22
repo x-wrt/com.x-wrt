@@ -46,8 +46,8 @@ msgstr "流控规则"
 msgid "Simple QoS rules"
 msgstr "简单流控规则"
 
-msgid "Implement traffic control measures on eligible traffic groups and distribute bandwidth evenly among group members."
-msgstr "对符合条件的流量组实施流量控制措施，并在组内均衡分配带宽。"
+msgid "Set traffic control for traffic groups that meet certain conditions, with shared bandwidth."
+msgstr "对符合条件的流量组设置流量控制，宽带是共享的。"
 
 msgid "User IP"
 msgstr "用户IP"
@@ -67,5 +67,5 @@ msgstr "下行速度限制"
 msgid "Upload rate limit"
 msgstr "上行速度限制"
 
-msgid "Apply traffic control measures on a per-user basis, setting non-sharing limits on bandwidth allocation."
-msgstr "对每个用户单独施加流量控制措施，在带宽分配上设置不共享的限制。"
+msgid "Set traffic control for each IP user and limit bandwidth without sharing."
+msgstr "对每一个IP用户设置流量控制，宽带限制不共享。"
