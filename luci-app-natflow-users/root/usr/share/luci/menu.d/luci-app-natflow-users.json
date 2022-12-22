@@ -17,5 +17,16 @@
 		"depends": {
 			"acl": [ "luci-app-natflow-users" ]
 		}
+	},
+	"admin/network/qos": {
+		"title": "QoS",
+		"order": 990,
+		"action": {
+			"type": "view",
+			"path": "network/natflow-qos"
+		},
+		"depends": {
+			"acl": [ "luci-app-natflow-users" ]
+		}
 	}
 }

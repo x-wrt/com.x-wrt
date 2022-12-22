@@ -64,6 +64,8 @@ define Package/luci-app-natflow-users/install
 	$(INSTALL_DATA) ./root/usr/share/luci/menu.d/*.json $(1)/usr/share/luci/menu.d/
 	$(INSTALL_DIR) $(1)/usr/libexec/rpcd
 	$(INSTALL_BIN) ./root/usr/libexec/rpcd/luci.natflow $(1)/usr/libexec/rpcd/luci.natflow
+	$(INSTALL_DIR) $(1)/www/luci-static/resources/view/network
+	$(INSTALL_DATA) ./htdocs/luci-static/resources/view/network/natflow-qos.js $(1)/www/luci-static/resources/view/network/natflow-qos.js
 	$(INSTALL_DIR) $(1)/www/luci-static/resources/view/system
 	$(INSTALL_DATA) ./htdocs/luci-static/resources/view/system/natflow-users.js $(1)/www/luci-static/resources/view/system/natflow-users.js
 	$(INSTALL_DIR) $(1)/www/luci-static/resources/view/status/include

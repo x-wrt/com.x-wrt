@@ -33,3 +33,33 @@ msgstr "可以是单个或者多个IP地址、IP网段、IP范围，逗号隔开
 
 msgid "No information available"
 msgstr "无可用信息"
+
+msgid "Unit: <code>Kbps</code> <code>Mbps</code> <code>Gbps</code> Example: 10Mbps or 0 = no limit"
+msgstr "单位: <code>Kbps</code> <code>Mbps</code> <code>Gbps</code> 例如: 10Mbps 或者 0 = 无限制"
+
+msgid "QoS traffic shaping"
+msgstr "流量整形"
+
+msgid "QoS rules"
+msgstr "流控规则"
+
+msgid "This feature allows you to apply Quality of Service (QoS) traffic shaping to a specific group of traffic that meets certain conditions."
+msgstr "这个功能允许您将质量服务（QoS）流量整形应用于符合某些条件的特定流量组。"
+
+msgid "User IP"
+msgstr "用户IP"
+
+msgid "User Port"
+msgstr "用户端口"
+
+msgid "Remote IP"
+msgstr "远端IP"
+
+msgid "Remote Port"
+msgstr "远端端口"
+
+msgid "Download rate limit"
+msgstr "下行速度限制"
+
+msgid "Upload rate limit"
+msgstr "上行速度限制"
