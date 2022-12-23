@@ -71,7 +71,8 @@ return view.extend({
 
 		m = new form.Map('natflow', [_('QoS traffic shaping')]);
 
-		s = m.section(form.GridSection, 'qos', _('QoS rules'), _('Set traffic control for traffic groups that meet certain conditions, with shared bandwidth.'));
+		s = m.section(form.GridSection, 'qos', _('QoS rules'),
+				_('Set traffic control for traffic groups that meet the conditions, and share a bandwidth limitation rule within the same group. Multiple rules can be added and matched in order of priority until a match is successful.'));
 		s.addremove = true;
 		s.anonymous = false;
 		s.nodescriptions = true;
@@ -138,7 +139,8 @@ return view.extend({
 		o.disabled = '1';
 		o.default = o.enabled;
 
-		s = m.section(form.GridSection, 'qos_simple', _('Simple QoS rules'), _('Set traffic control for each IP user and limit bandwidth without sharing.'));
+		s = m.section(form.GridSection, 'qos_simple', _('Simple QoS rules'),
+				_('Set traffic control rules for specific IP users, where multiple rules can be added. Each matched IP user is subject to traffic control based on the bandwidth limits set in the rules.'));
 		s.addremove = true;
 		s.anonymous = false;
 		s.nodescriptions = true;
