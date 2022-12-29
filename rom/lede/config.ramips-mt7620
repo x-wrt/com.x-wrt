@@ -8166,6 +8166,7 @@ CONFIG_PACKAGE_usbutils=m
 # CONFIG_PACKAGE_ykclient is not set
 # CONFIG_PACKAGE_ykpers is not set
 # CONFIG_PACKAGE_yq is not set
+# CONFIG_PACKAGE_zyxel-reset is not set
 # end of Utilities
 
 #
