@@ -6,7 +6,7 @@ CONFIG_MODULES=y
 CONFIG_HAVE_DOT_CONFIG=y
 CONFIG_HOST_OS_LINUX=y
 # CONFIG_HOST_OS_MACOS is not set
-CONFIG_DEFAULT_TARGET_kirkwood=y
+CONFIG_DEFAULT_TARGET_kirkwood_generic=y
 # CONFIG_TARGET_airoha is not set
 # CONFIG_TARGET_sunxi is not set
 # CONFIG_TARGET_apm821xx is not set
@@ -46,62 +46,64 @@ CONFIG_TARGET_kirkwood=y
 # CONFIG_TARGET_uml is not set
 # CONFIG_TARGET_zynq is not set
 # CONFIG_TARGET_x86 is not set
+CONFIG_TARGET_kirkwood_generic=y
 CONFIG_TARGET_MULTI_PROFILE=y
-# CONFIG_TARGET_kirkwood_DEVICE_checkpoint_l-50 is not set
-# CONFIG_TARGET_kirkwood_DEVICE_cisco_on100 is not set
-# CONFIG_TARGET_kirkwood_DEVICE_cloudengines_pogoe02 is not set
-# CONFIG_TARGET_kirkwood_DEVICE_cloudengines_pogoplugv4 is not set
-# CONFIG_TARGET_kirkwood_DEVICE_ctera_c200-v1 is not set
-# CONFIG_TARGET_kirkwood_DEVICE_endian_4i-edge-200 is not set
-# CONFIG_TARGET_kirkwood_DEVICE_globalscale_sheevaplug is not set
-# CONFIG_TARGET_kirkwood_DEVICE_iom_iconnect-1.1 is not set
-# CONFIG_TARGET_kirkwood_DEVICE_iom_ix2-200 is not set
-# CONFIG_TARGET_kirkwood_DEVICE_iptime_nas1 is not set
-# CONFIG_TARGET_kirkwood_DEVICE_linksys_e4200-v2 is not set
-# CONFIG_TARGET_kirkwood_DEVICE_linksys_ea3500 is not set
-# CONFIG_TARGET_kirkwood_DEVICE_linksys_ea4500 is not set
-# CONFIG_TARGET_kirkwood_DEVICE_netgear_readynas-duo-v2 is not set
-# CONFIG_TARGET_kirkwood_DEVICE_raidsonic_ib-nas62x0 is not set
-# CONFIG_TARGET_kirkwood_DEVICE_seagate_blackarmor-nas220 is not set
-# CONFIG_TARGET_kirkwood_DEVICE_seagate_dockstar is not set
-# CONFIG_TARGET_kirkwood_DEVICE_seagate_goflexnet is not set
-# CONFIG_TARGET_kirkwood_DEVICE_seagate_goflexhome is not set
-# CONFIG_TARGET_kirkwood_DEVICE_zyxel_nsa310b is not set
-# CONFIG_TARGET_kirkwood_DEVICE_zyxel_nsa310s is not set
-# CONFIG_TARGET_kirkwood_DEVICE_zyxel_nsa325 is not set
+# CONFIG_TARGET_kirkwood_generic_DEVICE_checkpoint_l-50 is not set
+# CONFIG_TARGET_kirkwood_generic_DEVICE_cisco_on100 is not set
+# CONFIG_TARGET_kirkwood_generic_DEVICE_cloudengines_pogoe02 is not set
+# CONFIG_TARGET_kirkwood_generic_DEVICE_cloudengines_pogoplugv4 is not set
+# CONFIG_TARGET_kirkwood_generic_DEVICE_ctera_c200-v1 is not set
+# CONFIG_TARGET_kirkwood_generic_DEVICE_endian_4i-edge-200 is not set
+# CONFIG_TARGET_kirkwood_generic_DEVICE_globalscale_sheevaplug is not set
+# CONFIG_TARGET_kirkwood_generic_DEVICE_iom_iconnect-1.1 is not set
+# CONFIG_TARGET_kirkwood_generic_DEVICE_iom_ix2-200 is not set
+# CONFIG_TARGET_kirkwood_generic_DEVICE_iptime_nas1 is not set
+# CONFIG_TARGET_kirkwood_generic_DEVICE_linksys_e4200-v2 is not set
+# CONFIG_TARGET_kirkwood_generic_DEVICE_linksys_ea3500 is not set
+# CONFIG_TARGET_kirkwood_generic_DEVICE_linksys_ea4500 is not set
+# CONFIG_TARGET_kirkwood_generic_DEVICE_netgear_readynas-duo-v2 is not set
+# CONFIG_TARGET_kirkwood_generic_DEVICE_raidsonic_ib-nas62x0 is not set
+# CONFIG_TARGET_kirkwood_generic_DEVICE_seagate_blackarmor-nas220 is not set
+# CONFIG_TARGET_kirkwood_generic_DEVICE_seagate_dockstar is not set
+# CONFIG_TARGET_kirkwood_generic_DEVICE_seagate_goflexnet is not set
+# CONFIG_TARGET_kirkwood_generic_DEVICE_seagate_goflexhome is not set
+# CONFIG_TARGET_kirkwood_generic_DEVICE_zyxel_nsa310b is not set
+# CONFIG_TARGET_kirkwood_generic_DEVICE_zyxel_nsa310s is not set
+# CONFIG_TARGET_kirkwood_generic_DEVICE_zyxel_nsa325 is not set
 
 #
 # Target Devices
 #
 # CONFIG_TARGET_ALL_PROFILES is not set
 CONFIG_TARGET_PER_DEVICE_ROOTFS=y
-# CONFIG_TARGET_DEVICE_kirkwood_DEVICE_checkpoint_l-50 is not set
-# CONFIG_TARGET_DEVICE_kirkwood_DEVICE_cisco_on100 is not set
-# CONFIG_TARGET_DEVICE_kirkwood_DEVICE_cloudengines_pogoe02 is not set
-# CONFIG_TARGET_DEVICE_kirkwood_DEVICE_cloudengines_pogoplugv4 is not set
-# CONFIG_TARGET_DEVICE_kirkwood_DEVICE_ctera_c200-v1 is not set
-# CONFIG_TARGET_DEVICE_kirkwood_DEVICE_endian_4i-edge-200 is not set
-# CONFIG_TARGET_DEVICE_kirkwood_DEVICE_globalscale_sheevaplug is not set
-# CONFIG_TARGET_DEVICE_kirkwood_DEVICE_iom_iconnect-1.1 is not set
-# CONFIG_TARGET_DEVICE_kirkwood_DEVICE_iom_ix2-200 is not set
-# CONFIG_TARGET_DEVICE_kirkwood_DEVICE_iptime_nas1 is not set
-CONFIG_TARGET_DEVICE_kirkwood_DEVICE_linksys_e4200-v2=y
-CONFIG_TARGET_DEVICE_PACKAGES_kirkwood_DEVICE_linksys_e4200-v2="aria2 blockd block-mount chat comgt comgt-ncm dawn ethtool jool-tools-netfilter kmod-bonding kmod-crypto-des kmod-crypto-md4 kmod-crypto-md5 kmod-crypto-sha512 kmod-dnsresolver kmod-exfat-linux kmod-fs-autofs4 kmod-fs-ext4 kmod-fs-ksmbd kmod-fs-msdos kmod-fs-nfs kmod-fs-nfs-common kmod-fs-nfs-v4 kmod-fs-ntfs3-oot kmod-fs-vfat kmod-gpio-button-hotplug kmod-inet-diag kmod-jool-netfilter kmod-lib-crc16 kmod-mii kmod-nat46 kmod-nf-conntrack-netlink kmod-nls-cp437 kmod-oid-registry kmod-usb2 kmod-usb-core kmod-usb-ehci kmod-usb-net kmod-usb-net-cdc-ether kmod-usb-net-cdc-mbim kmod-usb-net-cdc-ncm kmod-usb-net-huawei-cdc-ncm kmod-usb-net-ipheth kmod-usb-net-qmi-wwan kmod-usb-net-rndis kmod-usb-net-rtl8152 kmod-usb-net-sierrawireless kmod-usb-ohci kmod-usb-printer kmod-usb-serial kmod-usb-serial-option kmod-usb-serial-pl2303 kmod-usb-serial-qualcomm kmod-usb-serial-sierrawireless kmod-usb-serial-wwan kmod-usb-storage kmod-usb-storage-extras kmod-usb-storage-uas kmod-usb-wdm ksmbd-server libatomic libcares libevdev libgcrypt libgpg-error libimobiledevice libimobiledevice-utils liblzo libnl libnl-core libnl-genl libnl-nf libnl-route libopenssl-conf libpcre libplist libqrencode libsqlite3 libssh2 libstdcpp libudev-zero libusb-1.0 libusbmuxd libwrap libxml2 luci-app-aria2 luci-app-dawn luci-app-ksmbd luci-app-openvpn luci-app-p910nd luci-app-sqm luci-i18n-aria2-zh-cn luci-i18n-dashboard-zh-cn luci-i18n-ksmbd-zh-cn luci-i18n-openvpn-zh-cn luci-i18n-p910nd-zh-cn luci-i18n-sqm-zh-cn luci-lib-json luci-mod-dashboard luci-proto-3g luci-proto-bonding luci-proto-mbim luci-proto-ncm luci-proto-qmi luci-proto-relay luci-proto-wireguard luci-ssl-nginx minicom nfs-utils nginx nginx-mod-luci nginx-mod-luci-ssl nginx-ssl nginx-ssl-util nginx-util openssl-util openvpn-openssl p910nd proto-bonding qrencode r8152-firmware relayd sendip sqm-scripts tc-tiny umbim uqmi usb-modeswitch usbmuxd usbutils uwsgi uwsgi-cgi-plugin uwsgi-luci-support uwsgi-syslog-plugin webui-aria2 wget-ssl wireguard-tools wpad-openssl wsdd2 wwan"
-CONFIG_TARGET_DEVICE_kirkwood_DEVICE_linksys_ea3500=y
-CONFIG_TARGET_DEVICE_PACKAGES_kirkwood_DEVICE_linksys_ea3500="aria2 blockd block-mount chat comgt comgt-ncm dawn ethtool jool-tools-netfilter kmod-bonding kmod-crypto-des kmod-crypto-md4 kmod-crypto-md5 kmod-crypto-sha512 kmod-dnsresolver kmod-exfat-linux kmod-fs-autofs4 kmod-fs-ext4 kmod-fs-ksmbd kmod-fs-msdos kmod-fs-nfs kmod-fs-nfs-common kmod-fs-nfs-v4 kmod-fs-ntfs3-oot kmod-fs-vfat kmod-gpio-button-hotplug kmod-inet-diag kmod-jool-netfilter kmod-lib-crc16 kmod-mii kmod-nat46 kmod-nf-conntrack-netlink kmod-nls-cp437 kmod-oid-registry kmod-usb2 kmod-usb-core kmod-usb-ehci kmod-usb-net kmod-usb-net-cdc-ether kmod-usb-net-cdc-mbim kmod-usb-net-cdc-ncm kmod-usb-net-huawei-cdc-ncm kmod-usb-net-ipheth kmod-usb-net-qmi-wwan kmod-usb-net-rndis kmod-usb-net-rtl8152 kmod-usb-net-sierrawireless kmod-usb-ohci kmod-usb-printer kmod-usb-serial kmod-usb-serial-option kmod-usb-serial-pl2303 kmod-usb-serial-qualcomm kmod-usb-serial-sierrawireless kmod-usb-serial-wwan kmod-usb-storage kmod-usb-storage-extras kmod-usb-storage-uas kmod-usb-wdm ksmbd-server libatomic libcares libevdev libgcrypt libgpg-error libimobiledevice libimobiledevice-utils liblzo libnl libnl-core libnl-genl libnl-nf libnl-route libopenssl-conf libpcre libplist libqrencode libsqlite3 libssh2 libstdcpp libudev-zero libusb-1.0 libusbmuxd libwrap libxml2 luci-app-aria2 luci-app-dawn luci-app-ksmbd luci-app-openvpn luci-app-p910nd luci-app-sqm luci-i18n-aria2-zh-cn luci-i18n-dashboard-zh-cn luci-i18n-ksmbd-zh-cn luci-i18n-openvpn-zh-cn luci-i18n-p910nd-zh-cn luci-i18n-sqm-zh-cn luci-lib-json luci-mod-dashboard luci-proto-3g luci-proto-bonding luci-proto-mbim luci-proto-ncm luci-proto-qmi luci-proto-relay luci-proto-wireguard luci-ssl-nginx minicom nfs-utils nginx nginx-mod-luci nginx-mod-luci-ssl nginx-ssl nginx-ssl-util nginx-util openssl-util openvpn-openssl p910nd proto-bonding qrencode r8152-firmware relayd sendip sqm-scripts tc-tiny umbim uqmi usb-modeswitch usbmuxd usbutils uwsgi uwsgi-cgi-plugin uwsgi-luci-support uwsgi-syslog-plugin webui-aria2 wget-ssl wireguard-tools wpad-openssl wsdd2 wwan"
-CONFIG_TARGET_DEVICE_kirkwood_DEVICE_linksys_ea4500=y
-CONFIG_TARGET_DEVICE_PACKAGES_kirkwood_DEVICE_linksys_ea4500="aria2 blockd block-mount chat comgt comgt-ncm dawn ethtool jool-tools-netfilter kmod-bonding kmod-crypto-des kmod-crypto-md4 kmod-crypto-md5 kmod-crypto-sha512 kmod-dnsresolver kmod-exfat-linux kmod-fs-autofs4 kmod-fs-ext4 kmod-fs-ksmbd kmod-fs-msdos kmod-fs-nfs kmod-fs-nfs-common kmod-fs-nfs-v4 kmod-fs-ntfs3-oot kmod-fs-vfat kmod-gpio-button-hotplug kmod-inet-diag kmod-jool-netfilter kmod-lib-crc16 kmod-mii kmod-nat46 kmod-nf-conntrack-netlink kmod-nls-cp437 kmod-oid-registry kmod-usb2 kmod-usb-core kmod-usb-ehci kmod-usb-net kmod-usb-net-cdc-ether kmod-usb-net-cdc-mbim kmod-usb-net-cdc-ncm kmod-usb-net-huawei-cdc-ncm kmod-usb-net-ipheth kmod-usb-net-qmi-wwan kmod-usb-net-rndis kmod-usb-net-rtl8152 kmod-usb-net-sierrawireless kmod-usb-ohci kmod-usb-printer kmod-usb-serial kmod-usb-serial-option kmod-usb-serial-pl2303 kmod-usb-serial-qualcomm kmod-usb-serial-sierrawireless kmod-usb-serial-wwan kmod-usb-storage kmod-usb-storage-extras kmod-usb-storage-uas kmod-usb-wdm ksmbd-server libatomic libcares libevdev libgcrypt libgpg-error libimobiledevice libimobiledevice-utils liblzo libnl libnl-core libnl-genl libnl-nf libnl-route libopenssl-conf libpcre libplist libqrencode libsqlite3 libssh2 libstdcpp libudev-zero libusb-1.0 libusbmuxd libwrap libxml2 luci-app-aria2 luci-app-dawn luci-app-ksmbd luci-app-openvpn luci-app-p910nd luci-app-sqm luci-i18n-aria2-zh-cn luci-i18n-dashboard-zh-cn luci-i18n-ksmbd-zh-cn luci-i18n-openvpn-zh-cn luci-i18n-p910nd-zh-cn luci-i18n-sqm-zh-cn luci-lib-json luci-mod-dashboard luci-proto-3g luci-proto-bonding luci-proto-mbim luci-proto-ncm luci-proto-qmi luci-proto-relay luci-proto-wireguard luci-ssl-nginx minicom nfs-utils nginx nginx-mod-luci nginx-mod-luci-ssl nginx-ssl nginx-ssl-util nginx-util openssl-util openvpn-openssl p910nd proto-bonding qrencode r8152-firmware relayd sendip sqm-scripts tc-tiny umbim uqmi usb-modeswitch usbmuxd usbutils uwsgi uwsgi-cgi-plugin uwsgi-luci-support uwsgi-syslog-plugin webui-aria2 wget-ssl wireguard-tools wpad-openssl wsdd2 wwan"
-# CONFIG_TARGET_DEVICE_kirkwood_DEVICE_netgear_readynas-duo-v2 is not set
-# CONFIG_TARGET_DEVICE_kirkwood_DEVICE_raidsonic_ib-nas62x0 is not set
-# CONFIG_TARGET_DEVICE_kirkwood_DEVICE_seagate_blackarmor-nas220 is not set
-# CONFIG_TARGET_DEVICE_kirkwood_DEVICE_seagate_dockstar is not set
-# CONFIG_TARGET_DEVICE_kirkwood_DEVICE_seagate_goflexhome is not set
-# CONFIG_TARGET_DEVICE_kirkwood_DEVICE_seagate_goflexnet is not set
-# CONFIG_TARGET_DEVICE_kirkwood_DEVICE_zyxel_nsa310b is not set
-# CONFIG_TARGET_DEVICE_kirkwood_DEVICE_zyxel_nsa310s is not set
-# CONFIG_TARGET_DEVICE_kirkwood_DEVICE_zyxel_nsa325 is not set
+# CONFIG_TARGET_DEVICE_kirkwood_generic_DEVICE_checkpoint_l-50 is not set
+# CONFIG_TARGET_DEVICE_kirkwood_generic_DEVICE_cisco_on100 is not set
+# CONFIG_TARGET_DEVICE_kirkwood_generic_DEVICE_cloudengines_pogoe02 is not set
+# CONFIG_TARGET_DEVICE_kirkwood_generic_DEVICE_cloudengines_pogoplugv4 is not set
+# CONFIG_TARGET_DEVICE_kirkwood_generic_DEVICE_ctera_c200-v1 is not set
+# CONFIG_TARGET_DEVICE_kirkwood_generic_DEVICE_endian_4i-edge-200 is not set
+# CONFIG_TARGET_DEVICE_kirkwood_generic_DEVICE_globalscale_sheevaplug is not set
+# CONFIG_TARGET_DEVICE_kirkwood_generic_DEVICE_iom_iconnect-1.1 is not set
+# CONFIG_TARGET_DEVICE_kirkwood_generic_DEVICE_iom_ix2-200 is not set
+# CONFIG_TARGET_DEVICE_kirkwood_generic_DEVICE_iptime_nas1 is not set
+CONFIG_TARGET_DEVICE_kirkwood_generic_DEVICE_linksys_e4200-v2=y
+CONFIG_TARGET_DEVICE_PACKAGES_kirkwood_generic_DEVICE_linksys_e4200-v2="aria2 blockd block-mount chat comgt comgt-ncm dawn ethtool jool-tools-netfilter kmod-bonding kmod-crypto-des kmod-crypto-md4 kmod-crypto-md5 kmod-crypto-sha512 kmod-dnsresolver kmod-exfat-linux kmod-fs-autofs4 kmod-fs-ext4 kmod-fs-ksmbd kmod-fs-msdos kmod-fs-nfs kmod-fs-nfs-common kmod-fs-nfs-v4 kmod-fs-ntfs3-oot kmod-fs-vfat kmod-gpio-button-hotplug kmod-inet-diag kmod-jool-netfilter kmod-lib-crc16 kmod-mii kmod-nat46 kmod-nf-conntrack-netlink kmod-nls-cp437 kmod-oid-registry kmod-usb2 kmod-usb-core kmod-usb-ehci kmod-usb-net kmod-usb-net-cdc-ether kmod-usb-net-cdc-mbim kmod-usb-net-cdc-ncm kmod-usb-net-huawei-cdc-ncm kmod-usb-net-ipheth kmod-usb-net-qmi-wwan kmod-usb-net-rndis kmod-usb-net-rtl8152 kmod-usb-net-sierrawireless kmod-usb-ohci kmod-usb-printer kmod-usb-serial kmod-usb-serial-option kmod-usb-serial-pl2303 kmod-usb-serial-qualcomm kmod-usb-serial-sierrawireless kmod-usb-serial-wwan kmod-usb-storage kmod-usb-storage-extras kmod-usb-storage-uas kmod-usb-wdm ksmbd-server libatomic libcares libevdev libgcrypt libgpg-error libimobiledevice libimobiledevice-utils liblzo libnl libnl-core libnl-genl libnl-nf libnl-route libopenssl-conf libpcre libplist libqrencode libsqlite3 libssh2 libstdcpp libudev-zero libusb-1.0 libusbmuxd libwrap libxml2 luci-app-aria2 luci-app-dawn luci-app-ksmbd luci-app-openvpn luci-app-p910nd luci-app-sqm luci-i18n-aria2-zh-cn luci-i18n-dashboard-zh-cn luci-i18n-ksmbd-zh-cn luci-i18n-openvpn-zh-cn luci-i18n-p910nd-zh-cn luci-i18n-sqm-zh-cn luci-lib-json luci-mod-dashboard luci-proto-3g luci-proto-bonding luci-proto-mbim luci-proto-ncm luci-proto-qmi luci-proto-relay luci-proto-wireguard luci-ssl-nginx minicom nfs-utils nginx nginx-mod-luci nginx-mod-luci-ssl nginx-ssl nginx-ssl-util nginx-util openssl-util openvpn-openssl p910nd proto-bonding qrencode r8152-firmware relayd sendip sqm-scripts tc-tiny umbim uqmi usb-modeswitch usbmuxd usbutils uwsgi uwsgi-cgi-plugin uwsgi-luci-support uwsgi-syslog-plugin webui-aria2 wget-ssl wireguard-tools wpad-openssl wsdd2 wwan"
+CONFIG_TARGET_DEVICE_kirkwood_generic_DEVICE_linksys_ea3500=y
+CONFIG_TARGET_DEVICE_PACKAGES_kirkwood_generic_DEVICE_linksys_ea3500="aria2 blockd block-mount chat comgt comgt-ncm dawn ethtool jool-tools-netfilter kmod-bonding kmod-crypto-des kmod-crypto-md4 kmod-crypto-md5 kmod-crypto-sha512 kmod-dnsresolver kmod-exfat-linux kmod-fs-autofs4 kmod-fs-ext4 kmod-fs-ksmbd kmod-fs-msdos kmod-fs-nfs kmod-fs-nfs-common kmod-fs-nfs-v4 kmod-fs-ntfs3-oot kmod-fs-vfat kmod-gpio-button-hotplug kmod-inet-diag kmod-jool-netfilter kmod-lib-crc16 kmod-mii kmod-nat46 kmod-nf-conntrack-netlink kmod-nls-cp437 kmod-oid-registry kmod-usb2 kmod-usb-core kmod-usb-ehci kmod-usb-net kmod-usb-net-cdc-ether kmod-usb-net-cdc-mbim kmod-usb-net-cdc-ncm kmod-usb-net-huawei-cdc-ncm kmod-usb-net-ipheth kmod-usb-net-qmi-wwan kmod-usb-net-rndis kmod-usb-net-rtl8152 kmod-usb-net-sierrawireless kmod-usb-ohci kmod-usb-printer kmod-usb-serial kmod-usb-serial-option kmod-usb-serial-pl2303 kmod-usb-serial-qualcomm kmod-usb-serial-sierrawireless kmod-usb-serial-wwan kmod-usb-storage kmod-usb-storage-extras kmod-usb-storage-uas kmod-usb-wdm ksmbd-server libatomic libcares libevdev libgcrypt libgpg-error libimobiledevice libimobiledevice-utils liblzo libnl libnl-core libnl-genl libnl-nf libnl-route libopenssl-conf libpcre libplist libqrencode libsqlite3 libssh2 libstdcpp libudev-zero libusb-1.0 libusbmuxd libwrap libxml2 luci-app-aria2 luci-app-dawn luci-app-ksmbd luci-app-openvpn luci-app-p910nd luci-app-sqm luci-i18n-aria2-zh-cn luci-i18n-dashboard-zh-cn luci-i18n-ksmbd-zh-cn luci-i18n-openvpn-zh-cn luci-i18n-p910nd-zh-cn luci-i18n-sqm-zh-cn luci-lib-json luci-mod-dashboard luci-proto-3g luci-proto-bonding luci-proto-mbim luci-proto-ncm luci-proto-qmi luci-proto-relay luci-proto-wireguard luci-ssl-nginx minicom nfs-utils nginx nginx-mod-luci nginx-mod-luci-ssl nginx-ssl nginx-ssl-util nginx-util openssl-util openvpn-openssl p910nd proto-bonding qrencode r8152-firmware relayd sendip sqm-scripts tc-tiny umbim uqmi usb-modeswitch usbmuxd usbutils uwsgi uwsgi-cgi-plugin uwsgi-luci-support uwsgi-syslog-plugin webui-aria2 wget-ssl wireguard-tools wpad-openssl wsdd2 wwan"
+CONFIG_TARGET_DEVICE_kirkwood_generic_DEVICE_linksys_ea4500=y
+CONFIG_TARGET_DEVICE_PACKAGES_kirkwood_generic_DEVICE_linksys_ea4500="aria2 blockd block-mount chat comgt comgt-ncm dawn ethtool jool-tools-netfilter kmod-bonding kmod-crypto-des kmod-crypto-md4 kmod-crypto-md5 kmod-crypto-sha512 kmod-dnsresolver kmod-exfat-linux kmod-fs-autofs4 kmod-fs-ext4 kmod-fs-ksmbd kmod-fs-msdos kmod-fs-nfs kmod-fs-nfs-common kmod-fs-nfs-v4 kmod-fs-ntfs3-oot kmod-fs-vfat kmod-gpio-button-hotplug kmod-inet-diag kmod-jool-netfilter kmod-lib-crc16 kmod-mii kmod-nat46 kmod-nf-conntrack-netlink kmod-nls-cp437 kmod-oid-registry kmod-usb2 kmod-usb-core kmod-usb-ehci kmod-usb-net kmod-usb-net-cdc-ether kmod-usb-net-cdc-mbim kmod-usb-net-cdc-ncm kmod-usb-net-huawei-cdc-ncm kmod-usb-net-ipheth kmod-usb-net-qmi-wwan kmod-usb-net-rndis kmod-usb-net-rtl8152 kmod-usb-net-sierrawireless kmod-usb-ohci kmod-usb-printer kmod-usb-serial kmod-usb-serial-option kmod-usb-serial-pl2303 kmod-usb-serial-qualcomm kmod-usb-serial-sierrawireless kmod-usb-serial-wwan kmod-usb-storage kmod-usb-storage-extras kmod-usb-storage-uas kmod-usb-wdm ksmbd-server libatomic libcares libevdev libgcrypt libgpg-error libimobiledevice libimobiledevice-utils liblzo libnl libnl-core libnl-genl libnl-nf libnl-route libopenssl-conf libpcre libplist libqrencode libsqlite3 libssh2 libstdcpp libudev-zero libusb-1.0 libusbmuxd libwrap libxml2 luci-app-aria2 luci-app-dawn luci-app-ksmbd luci-app-openvpn luci-app-p910nd luci-app-sqm luci-i18n-aria2-zh-cn luci-i18n-dashboard-zh-cn luci-i18n-ksmbd-zh-cn luci-i18n-openvpn-zh-cn luci-i18n-p910nd-zh-cn luci-i18n-sqm-zh-cn luci-lib-json luci-mod-dashboard luci-proto-3g luci-proto-bonding luci-proto-mbim luci-proto-ncm luci-proto-qmi luci-proto-relay luci-proto-wireguard luci-ssl-nginx minicom nfs-utils nginx nginx-mod-luci nginx-mod-luci-ssl nginx-ssl nginx-ssl-util nginx-util openssl-util openvpn-openssl p910nd proto-bonding qrencode r8152-firmware relayd sendip sqm-scripts tc-tiny umbim uqmi usb-modeswitch usbmuxd usbutils uwsgi uwsgi-cgi-plugin uwsgi-luci-support uwsgi-syslog-plugin webui-aria2 wget-ssl wireguard-tools wpad-openssl wsdd2 wwan"
+# CONFIG_TARGET_DEVICE_kirkwood_generic_DEVICE_netgear_readynas-duo-v2 is not set
+# CONFIG_TARGET_DEVICE_kirkwood_generic_DEVICE_raidsonic_ib-nas62x0 is not set
+# CONFIG_TARGET_DEVICE_kirkwood_generic_DEVICE_seagate_blackarmor-nas220 is not set
+# CONFIG_TARGET_DEVICE_kirkwood_generic_DEVICE_seagate_dockstar is not set
+# CONFIG_TARGET_DEVICE_kirkwood_generic_DEVICE_seagate_goflexhome is not set
+# CONFIG_TARGET_DEVICE_kirkwood_generic_DEVICE_seagate_goflexnet is not set
+# CONFIG_TARGET_DEVICE_kirkwood_generic_DEVICE_zyxel_nsa310b is not set
+# CONFIG_TARGET_DEVICE_kirkwood_generic_DEVICE_zyxel_nsa310s is not set
+# CONFIG_TARGET_DEVICE_kirkwood_generic_DEVICE_zyxel_nsa325 is not set
 # end of Target Devices
 
+CONFIG_HAS_SUBTARGETS=y
 CONFIG_HAS_DEVICES=y
 CONFIG_TARGET_BOARD="kirkwood"
 CONFIG_TARGET_SUBTARGET="generic"

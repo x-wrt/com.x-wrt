@@ -392,6 +392,9 @@ for t in $targets; do
 		TARGET_DEVICE_kirkwood_DEVICE_linksys_ea4500|\
 		TARGET_DEVICE_kirkwood_DEVICE_linksys_ea3500|\
 		TARGET_DEVICE_kirkwood_DEVICE_linksys_e4200-v2|\
+		TARGET_DEVICE_kirkwood_generic_DEVICE_linksys_e4200-v2|\
+		TARGET_DEVICE_kirkwood_generic_DEVICE_linksys_ea3500|\
+		TARGET_DEVICE_kirkwood_generic_DEVICE_linksys_ea4500|\
 		TARGET_DEVICE_ipq806x_generic_DEVICE_qcom_ap-dk04.1-c1|\
 		TARGET_DEVICE_brcm47xx_mips74k_DEVICE_asus-rt-n16|\
 		TARGET_DEVICE_oxnas_DEVICE_pogoplug-pro|\
@@ -1038,6 +1041,9 @@ for t in $targets; do
 		TARGET_DEVICE_kirkwood_DEVICE_linksys_ea4500|\
 		TARGET_DEVICE_kirkwood_DEVICE_linksys_ea3500|\
 		TARGET_DEVICE_kirkwood_DEVICE_linksys_e4200-v2|\
+		TARGET_DEVICE_kirkwood_generic_DEVICE_linksys_e4200-v2|\
+		TARGET_DEVICE_kirkwood_generic_DEVICE_linksys_ea3500|\
+		TARGET_DEVICE_kirkwood_generic_DEVICE_linksys_ea4500|\
 		TARGET_DEVICE_ath79_generic_DEVICE_tplink_tl-wdr7500-v3|\
 		TARGET_DEVICE_ramips_mt76x8_DEVICE_hiwifi_hc5661a|\
 		TARGET_DEVICE_ramips_mt76x8_DEVICE_hiwifi_hc5761a|\
