@@ -170,8 +170,9 @@ do_disk_ready() {
 			echo request format ${ROOTPART}$((LASTNR))
 			format=1
 		fi
-		if blkid ${ROOTPART}$((LASTNR)) | grep -q 'TYPE="ext4"'; then
+		if mount -t ext4 -o rw,noatime ${ROOTPART}$((LASTNR)) /mnt; then
 			echo ${ROOTPART}$((LASTNR)) has valid filesystem, no need to format
+			umount /mnt
 		else
 			format=1
 		fi
