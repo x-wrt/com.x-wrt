@@ -4,8 +4,8 @@
 
 START=96
 
-MOUNT_NTFS0="mount -t ntfs3 -o noatime,async,discard,prealloc,nls=utf8"
-MOUNT_NTFS1="mount -t ntfs3 -o noatime,async,discard,prealloc"
+MOUNT_NTFS0="mount -t ntfs3 -o noatime,async,discard,prealloc,iocharset=utf8,uid=1000,gid=1000"
+MOUNT_NTFS1="mount -t ntfs3 -o noatime,async,discard,prealloc,nls=utf8"
 MOUNT_CMD1="mount -o noatime,async,iocharset=utf8,uid=1000,gid=1000,fmask=0000,dmask=0000,rw"
 MOUNT_CMD2="mount -o noatime,async,rw"
 MOUNT_CMD3="mount -o rw"
