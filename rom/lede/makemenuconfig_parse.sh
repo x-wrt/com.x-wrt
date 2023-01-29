@@ -285,6 +285,7 @@ for t in $targets; do
 	excludes="$excludes_basic"
 	case $t in
 		#>8M flash
+		TARGET_DEVICE_ipq806x_generic_DEVICE_askey_rt4230w-rev6|\
 		TARGET_DEVICE_ipq807x_generic_DEVICE_qnap_301w|\
 		TARGET_DEVICE_ipq807x_generic_DEVICE_redmi_ax6|\
 		TARGET_DEVICE_ipq807x_generic_DEVICE_xiaomi_ax3600|\
@@ -491,6 +492,7 @@ for t in $targets; do
 		TARGET_DEVICE_ramips_mt7621_DEVICE_zbt-we3526|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_xiaomi_mi-router-3g-v2|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_xiaomi_mi-router-4a-gigabit|\
+		TARGET_DEVICE_ramips_mt7621_DEVICE_xiaomi_mi-router-4a-gigabit-v2|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_zbtlink_zbt-we1326|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_zbtlink_zbt-wg2626|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_zbtlink_zbt-wg3526-16m|\
@@ -877,6 +879,7 @@ for t in $targets; do
 		TARGET_DEVICE_ramips_mt7621_DEVICE_zbtlink_zbt-wg3526-32m|\
 		TARGET_DEVICE_ipq806x_generic_DEVICE_linksys_ea8500|\
 		TARGET_DEVICE_ipq806x_generic_DEVICE_netgear_xr500|\
+		TARGET_DEVICE_ipq806x_generic_DEVICE_askey_rt4230w-rev6|\
 		TARGET_DEVICE_ipq806x_generic_DEVICE_netgear_r7800|\
 		TARGET_DEVICE_ipq806x_generic_DEVICE_netgear_r7500v2|\
 		TARGET_DEVICE_ipq806x_generic_DEVICE_netgear_r7500|\
@@ -1148,6 +1151,7 @@ for t in $targets; do
 		TARGET_DEVICE_ath79_generic_DEVICE_devolo_magic-2-wifi|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_xiaomi_mi-router-3g-v2|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_xiaomi_mi-router-4a-gigabit|\
+		TARGET_DEVICE_ramips_mt7621_DEVICE_xiaomi_mi-router-4a-gigabit-v2|\
 		TARGET_DEVICE_ath79_generic_DEVICE_comfast_cf-wr650ac-v1|\
 		TARGET_DEVICE_ath79_generic_DEVICE_comfast_cf-wr650ac-v2|\
 		TARGET_DEVICE_ath79_generic_DEVICE_comfast_cf-e313ac|\
