@@ -3935,7 +3935,6 @@ CONFIG_PACKAGE_lua-cjson=y
 # CONFIG_PACKAGE_lua-eco-ssl is not set
 CONFIG_LUA_ECO_DEFAULT_OPENSSL=y
 CONFIG_LUA_ECO_OPENSSL=y
-# CONFIG_LUA_ECO_WOLFSSL is not set
 # CONFIG_LUA_ECO_MBEDTLS is not set
 # CONFIG_PACKAGE_lua-eco-sys is not set
 # CONFIG_PACKAGE_lua-eco-ubus is not set
@@ -4975,8 +4974,7 @@ CONFIG_WOLFSSL_HAS_OPENVPN=y
 CONFIG_WOLFSSL_ALT_NAMES=y
 # end of wolfSSL Library Configuration
 
-CONFIG_PACKAGE_libwolfsslcpu-crypto=y
-# CONFIG_PACKAGE_libwolfssl-benchmark is not set
+# CONFIG_PACKAGE_libwolfsslcpu-crypto is not set
 # end of SSL
 
 #
