@@ -98,7 +98,7 @@ b64encode() {
 txrx_vals_dump() {
 	test -f /tmp/natcapd.txrx || echo "0 0" >/tmp/natcapd.txrx
 	cat /tmp/natcapd.txrx | while read tx1 rx1; do
-		echo `cat $DEV  | grep flow_total_ | cut -d= -f2` | while read tx2 rx2; do
+		echo `cat "$DEV"  | grep flow_total_ | cut -d= -f2` | while read tx2 rx2; do
 			tx1=$((tx1+0))
 			rx1=$((rx1+0))
 			tx2=$((tx2+0))
@@ -125,7 +125,7 @@ natcapd_boot() {
 
 	client_mac=$board_mac_addr
 	test -n "$client_mac" || {
-		client_mac=`cat $DEV | grep default_mac_addr | grep -o "[0-9a-f][0-9a-f]:[0-9a-f][0-9a-f]:[0-9a-f][0-9a-f]:[0-9a-f][0-9a-f]:[0-9a-f][0-9a-f]:[0-9a-f][0-9a-f]"`
+		client_mac=`cat "$DEV" | grep default_mac_addr | grep -o "[0-9a-f][0-9a-f]:[0-9a-f][0-9a-f]:[0-9a-f][0-9a-f]:[0-9a-f][0-9a-f]:[0-9a-f][0-9a-f]:[0-9a-f][0-9a-f]"`
 		if [ "x$client_mac" = "x00:00:00:00:00:00" ]; then
 			client_mac=`uci get natcapd.default.default_mac_addr 2>/dev/null`
 			test -n "$client_mac" || client_mac=`cat /sys/class/net/eth0/address | tr a-z A-Z`
@@ -155,7 +155,7 @@ natcapd_lock
 enabled="`uci get natcapd.default.enabled 2>/dev/null || echo 0`"
 led="`uci get natcapd.default.led 2>/dev/null`"
 
-client_mac=`cat $DEV | grep default_mac_addr | grep -o "[0-9a-f][0-9a-f]:[0-9a-f][0-9a-f]:[0-9a-f][0-9a-f]:[0-9a-f][0-9a-f]:[0-9a-f][0-9a-f]:[0-9a-f][0-9a-f]"`
+client_mac=`cat "$DEV" | grep default_mac_addr | grep -o "[0-9a-f][0-9a-f]:[0-9a-f][0-9a-f]:[0-9a-f][0-9a-f]:[0-9a-f][0-9a-f]:[0-9a-f][0-9a-f]:[0-9a-f][0-9a-f]"`
 account="`uci get natcapd.default.account 2>/dev/null`"
 uhash=`echo -n $client_mac$account | cksum | awk '{print $1}'`
 u_hash=`uci get natcapd.default.u_hash 2>/dev/null || echo 0`
@@ -383,7 +383,7 @@ add_list () {
 }
 # add_list_file <listname> <file>
 add_list_file () {
-	for ip in `cat $2`; do
+	for ip in `cat "$2"`; do
 		echo add $1 $ip >>/tmp/add_${1}.${PID}.set
 	done
 }
@@ -473,7 +473,7 @@ natcap_id2mask() {
 
 natcap_target2idx() {
 	local idx=1
-	(cat $DEV | grep "^server 0 " | while read line; do
+	(cat "$DEV" | grep "^server 0 " | while read line; do
 		if echo $line | grep -q "server 0 $1$"; then
 			echo $idx
 			return
@@ -800,7 +800,7 @@ elif test -c $DEV; then
 	ipset destroy cniplist >/dev/null 2>&1
 	echo 'create cniplist hash:net family inet hashsize 4096 maxelem 65536' >/tmp/cniplist.set
 	(ip route | grep -o '\([0-9]\{1,3\}\)\.\([0-9]\{1,3\}\)\.\([0-9]\{1,3\}\)\.\([0-9]\{1,3\}\)/[0-9]\{1,2\}'; \
-	cat $cniplist_set) | sort | uniq | sed 's/^/add cniplist /' >>/tmp/cniplist.set
+	cat "$cniplist_set") | sort | uniq | sed 's/^/add cniplist /' >>/tmp/cniplist.set
 	ipset restore -f /tmp/cniplist.set
 	rm -f /tmp/cniplist.set
 	natcap_connected
@@ -908,7 +908,7 @@ elif test -c $DEV; then
 	rm -f /tmp/dnsmasq.d/custom-domains.bypasslist.dnsmasq.conf
 	mkdir -p /tmp/dnsmasq.d
 	touch /tmp/dnsmasq.d/custom-domains.bypasslist.dnsmasq.conf
-	cat $bypasslist_domain_file | while read d; do
+	cat "$bypasslist_domain_file" 2>/dev/null | while read d; do
 		echo ipset=/$d/bypasslist >>/tmp/dnsmasq.d/custom-domains.bypasslist.dnsmasq.conf
 	done
 	for d in $bypasslist_domain; do
@@ -922,7 +922,7 @@ elif test -c $DEV; then
 		add_gfwlist_domain $d
 	done
 	for h in $gfwlist_host; do
-		cat $h | while read d; do
+		cat "$h" | while read d; do
 			add_gfwlist_domain $d
 		done
 	done
@@ -931,7 +931,7 @@ elif test -c $DEV; then
 		add_gfwlist1_domain $d
 	done
 	for h in $gfwlist1_host; do
-		cat $h | while read d; do
+		cat "$h" | while read d; do
 			add_gfwlist1_domain $d
 		done
 	done
@@ -1002,7 +1002,7 @@ nslookup_check_local () {
 
 dns_proxy_check () {
 	test -c $DEV || return
-	cat $DEV | grep -q "dns_proxy_server=[1-9]" || return
+	cat "$DEV" | grep -q "dns_proxy_server=[1-9]" || return
 	#check dns
 	$TO 10 nslookup `date +%s`.dev.x-wrt.com | grep ".dev.x-wrt.com" -A5 | grep Address || \
 	$TO 8 nslookup `date +%s`.dev.x-wrt.com | grep ".dev.x-wrt.com" -A5 | grep Address || \
@@ -1105,7 +1105,7 @@ natcapd_first_boot() {
 txrx_vals() {
 	test -f /tmp/natcapd.txrx || echo "0 0" >/tmp/natcapd.txrx
 	cat /tmp/natcapd.txrx | while read tx1 rx1; do
-		echo `cat $DEV  | grep flow_total_ | cut -d= -f2` | while read tx2 rx2; do
+		echo `cat "$DEV"  | grep flow_total_ | cut -d= -f2` | while read tx2 rx2; do
 			tx1=$((tx1+0))
 			rx1=$((rx1+0))
 			tx2=$((tx2+0))
@@ -1227,7 +1227,7 @@ main_trigger() {
 			done
 			LIP6=`echo $LIP6 | sed 's/^,//;s/ /,/g'`
 
-			SFS=$(cat $DEV | grep server_flow_stop | cut -d= -f2)
+			SFS=$(cat "$DEV" | grep server_flow_stop | cut -d= -f2)
 			#checking extra run status
 			UP=`cat /proc/uptime | cut -d"." -f1`
 
