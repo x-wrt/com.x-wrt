@@ -49,6 +49,7 @@ CONFIG_TARGET_ipq807x=y
 # CONFIG_TARGET_x86 is not set
 CONFIG_TARGET_ipq807x_generic=y
 CONFIG_TARGET_MULTI_PROFILE=y
+# CONFIG_TARGET_ipq807x_generic_DEVICE_buffalo_wxr-5950ax12 is not set
 # CONFIG_TARGET_ipq807x_generic_DEVICE_dynalink_dl-wrx36 is not set
 # CONFIG_TARGET_ipq807x_generic_DEVICE_edgecore_eap102 is not set
 # CONFIG_TARGET_ipq807x_generic_DEVICE_edimax_cax1800 is not set
@@ -63,6 +64,7 @@ CONFIG_TARGET_MULTI_PROFILE=y
 #
 # CONFIG_TARGET_ALL_PROFILES is not set
 CONFIG_TARGET_PER_DEVICE_ROOTFS=y
+# CONFIG_TARGET_DEVICE_ipq807x_generic_DEVICE_buffalo_wxr-5950ax12 is not set
 # CONFIG_TARGET_DEVICE_ipq807x_generic_DEVICE_dynalink_dl-wrx36 is not set
 # CONFIG_TARGET_DEVICE_ipq807x_generic_DEVICE_edgecore_eap102 is not set
 # CONFIG_TARGET_DEVICE_ipq807x_generic_DEVICE_edimax_cax1800 is not set
@@ -120,6 +122,8 @@ CONFIG_DEFAULT_kmod-gpio-button-hotplug=y
 CONFIG_MODULE_DEFAULT_kmod-gpio-button-hotplug=y
 CONFIG_DEFAULT_kmod-leds-gpio=y
 CONFIG_MODULE_DEFAULT_kmod-leds-gpio=y
+CONFIG_DEFAULT_kmod-phy-aquantia=y
+CONFIG_MODULE_DEFAULT_kmod-phy-aquantia=y
 CONFIG_DEFAULT_kmod-qca-nss-dp=y
 CONFIG_MODULE_DEFAULT_kmod-qca-nss-dp=y
 CONFIG_DEFAULT_kmod-usb-dwc3=y
@@ -438,6 +442,7 @@ CONFIG_TARGET_SUFFIX="musl"
 CONFIG_SDK=y
 # CONFIG_MAKE_TOOLCHAIN is not set
 CONFIG_IMAGEOPT=y
+# CONFIG_TARGET_DEFAULT_LAN_IP_FROM_PREINIT is not set
 CONFIG_PREINITOPT=y
 CONFIG_TARGET_PREINIT_SUPPRESS_STDERR=y
 # CONFIG_TARGET_PREINIT_DISABLE_FAILSAFE is not set
@@ -455,7 +460,7 @@ CONFIG_TARGET_INIT_CMD="/sbin/init"
 CONFIG_TARGET_INIT_SUPPRESS_STDERR=y
 CONFIG_VERSIONOPT=y
 CONFIG_VERSION_DIST="X-WRT"
-CONFIG_VERSION_NUMBER="22.10_b202302102335"
+CONFIG_VERSION_NUMBER="22.10_b202302180938"
 CONFIG_VERSION_CODE="Kinetic"
 CONFIG_VERSION_REPO="http://downloads.openwrt.org/snapshots"
 CONFIG_VERSION_HOME_URL="https://x-wrt.com/"
@@ -2727,6 +2732,7 @@ CONFIG_PACKAGE_nginx-util=m
 # ath10k Board-Specific Overrides
 #
 # CONFIG_PACKAGE_ipq-wifi-aruba_ap-365 is not set
+# CONFIG_PACKAGE_ipq-wifi-buffalo_wxr-5950ax12 is not set
 # CONFIG_PACKAGE_ipq-wifi-devolo_magic-2-wifi-next is not set
 # CONFIG_PACKAGE_ipq-wifi-dynalink_dl-wrx36 is not set
 # CONFIG_PACKAGE_ipq-wifi-edgecore_eap102 is not set
@@ -3407,7 +3413,7 @@ CONFIG_PACKAGE_kmod-ifb=y
 CONFIG_PACKAGE_kmod-ipvlan=y
 # CONFIG_PACKAGE_kmod-ixgbe is not set
 # CONFIG_PACKAGE_kmod-ixgbevf is not set
-CONFIG_PACKAGE_kmod-libphy=m
+CONFIG_PACKAGE_kmod-libphy=y
 CONFIG_PACKAGE_kmod-macvlan=y
 # CONFIG_PACKAGE_kmod-mdio-gpio is not set
 # CONFIG_PACKAGE_kmod-mhi-net is not set
@@ -3422,6 +3428,7 @@ CONFIG_PACKAGE_kmod-mii=m
 # CONFIG_PACKAGE_kmod-niu is not set
 # CONFIG_PACKAGE_kmod-of-mdio is not set
 # CONFIG_PACKAGE_kmod-pcnet32 is not set
+CONFIG_PACKAGE_kmod-phy-aquantia=y
 # CONFIG_PACKAGE_kmod-phy-ax88796b is not set
 # CONFIG_PACKAGE_kmod-phy-bcm84881 is not set
 # CONFIG_PACKAGE_kmod-phy-broadcom is not set
@@ -7260,6 +7267,7 @@ CONFIG_PACKAGE_rssileds=m
 # CONFIG_PACKAGE_sctp-tools is not set
 # CONFIG_PACKAGE_ser2net is not set
 # CONFIG_PACKAGE_simple-adblock is not set
+# CONFIG_PACKAGE_sing-box is not set
 # CONFIG_PACKAGE_slirp4netns is not set
 # CONFIG_PACKAGE_smartdns is not set
 # CONFIG_PACKAGE_smbinfo is not set
