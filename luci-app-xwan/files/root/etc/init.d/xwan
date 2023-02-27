@@ -32,9 +32,6 @@ mwan3_add_one() {
 	uci set mwan3.${intf}_m100_w100.metric='100'
 	uci set mwan3.${intf}_m100_w100.weight='100'
 
-	uci delete mwan3.balanced 2>/dev/null
-	uci set mwan3.balanced=policy
-	uci set mwan3.balanced.last_resort='unreachable'
 	uci add_list mwan3.balanced.use_member="${intf}_m100_w100"
 }
 
@@ -88,6 +85,9 @@ add_xwan() {
 			change=1
 		}
 		[ "x$balanced" = "x1" ] && {
+			uci delete mwan3.balanced 2>/dev/null
+			uci set mwan3.balanced=policy
+			uci set mwan3.balanced.last_resort='unreachable'
 			uci get mwan3.wan >/dev/null 2>&1 || {
 				family="" track_ip="$track_ip" mwan3_add_one wan
 				change=1
