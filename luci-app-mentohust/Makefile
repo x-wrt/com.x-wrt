@@ -24,7 +24,7 @@ define Package/luci-app-mentohust
 	SUBMENU:=Mentohust
 	TITLE:=LuCI Support for mentohust
 	PKGARCH:=all
-	DEPENDS:=+mentohust
+	DEPENDS:=+mentohust +luci-compat
 endef
 
 define Package/luci-app-mentohust/description
