@@ -195,11 +195,9 @@ main() {
 			if [ x$track_ip = xgateway ]; then
 				if [ "$family" = "ipv4" ]; then
 					track_ip=`ip r | grep default | grep " "$DEVICE" " | awk '{print $3}' | grep '[0-9]*\.[0-9]*\.[0-9]*\.[0-9]*'`
+					test -n "$track_ip" || track_ip=255.255.255.255
 				else
-					track_ip=""
-				fi
-				if ! test -n "$track_ip" && [ $host_up_count -lt $reliability ]; then
-					let host_up_count++
+					continue
 				fi
 			fi
 			if [ $host_up_count -lt $reliability ]; then
