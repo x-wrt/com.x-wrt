@@ -79,6 +79,8 @@ CONFIG_TARGET_MULTI_PROFILE=y
 # CONFIG_TARGET_ipq40xx_generic_DEVICE_meraki_mr33 is not set
 # CONFIG_TARGET_ipq40xx_generic_DEVICE_meraki_mr74 is not set
 # CONFIG_TARGET_ipq40xx_generic_DEVICE_mobipromo_cm520-79f is not set
+# CONFIG_TARGET_ipq40xx_generic_DEVICE_netgear_ex6100v2 is not set
+# CONFIG_TARGET_ipq40xx_generic_DEVICE_netgear_ex6150v2 is not set
 # CONFIG_TARGET_ipq40xx_generic_DEVICE_netgear_rbr50 is not set
 # CONFIG_TARGET_ipq40xx_generic_DEVICE_netgear_rbs50 is not set
 # CONFIG_TARGET_ipq40xx_generic_DEVICE_netgear_srr60 is not set
@@ -142,6 +144,8 @@ CONFIG_TARGET_DEVICE_PACKAGES_ipq40xx_generic_DEVICE_linksys_mr8300="aria2 ath10
 # CONFIG_TARGET_DEVICE_ipq40xx_generic_DEVICE_luma_wrtq-329acn is not set
 CONFIG_TARGET_DEVICE_ipq40xx_generic_DEVICE_mobipromo_cm520-79f=y
 CONFIG_TARGET_DEVICE_PACKAGES_ipq40xx_generic_DEVICE_mobipromo_cm520-79f="aria2 ath10k-board-qca4019 ath10k-firmware-qca4019-ct blockd block-mount chat comgt comgt-ncm dawn ethtool jool-tools-netfilter kmod-ath10k-ct kmod-bonding kmod-crypto-des kmod-crypto-md4 kmod-crypto-md5 kmod-crypto-sha512 kmod-dnsresolver kmod-exfat-linux kmod-fs-autofs4 kmod-fs-ext4 kmod-fs-ksmbd kmod-fs-msdos kmod-fs-nfs kmod-fs-nfs-common kmod-fs-nfs-v4 kmod-fs-ntfs3 kmod-fs-vfat kmod-gpio-button-hotplug kmod-inet-diag kmod-jool-netfilter kmod-lib-crc16 kmod-mii kmod-nat46 kmod-nf-conntrack-netlink kmod-nls-cp437 kmod-oid-registry kmod-usb2 kmod-usb3 kmod-usb-ehci kmod-usb-ledtrig-usbport kmod-usb-net kmod-usb-net-cdc-ether kmod-usb-net-cdc-mbim kmod-usb-net-cdc-ncm kmod-usb-net-huawei-cdc-ncm kmod-usb-net-ipheth kmod-usb-net-qmi-wwan kmod-usb-net-rndis kmod-usb-net-rtl8152 kmod-usb-net-sierrawireless kmod-usb-ohci kmod-usb-printer kmod-usb-serial kmod-usb-serial-option kmod-usb-serial-pl2303 kmod-usb-serial-qualcomm kmod-usb-serial-sierrawireless kmod-usb-serial-wwan kmod-usb-storage kmod-usb-storage-extras kmod-usb-storage-uas kmod-usb-wdm kmod-usb-xhci-hcd ksmbd-server libatomic libblkid libcares libevdev libgcrypt libgpg-error libimobiledevice libimobiledevice-utils liblzo libnl libnl-core libnl-genl libnl-nf libnl-route libopenssl-conf libpcre libplist libqrencode libsqlite3 libssh2 libstdcpp libudev-zero libusb-1.0 libusbmuxd libwrap libxml2 luci-app-aria2 luci-app-dawn luci-app-ksmbd luci-app-ledtrig-usbport luci-app-openvpn luci-app-p910nd luci-app-sqm luci-i18n-aria2-zh-cn luci-i18n-dashboard-zh-cn luci-i18n-ksmbd-zh-cn luci-i18n-openvpn-zh-cn luci-i18n-p910nd-zh-cn luci-i18n-sqm-zh-cn luci-lib-json luci-mod-dashboard luci-proto-3g luci-proto-bonding luci-proto-mbim luci-proto-ncm luci-proto-qmi luci-proto-relay luci-proto-wireguard luci-ssl-nginx minicom nfs-utils nginx nginx-mod-luci nginx-mod-luci-ssl nginx-ssl nginx-ssl-util nginx-util openssl-util openvpn-openssl p910nd proto-bonding qrencode r8152-firmware relayd sendip sqm-scripts tc-tiny umbim uqmi usb-modeswitch usbmuxd usbutils uwsgi uwsgi-cgi-plugin uwsgi-luci-support uwsgi-syslog-plugin webui-aria2 wget-ssl wireguard-tools wpad-openssl wsdd2 wwan"
+# CONFIG_TARGET_DEVICE_ipq40xx_generic_DEVICE_netgear_ex6100v2 is not set
+# CONFIG_TARGET_DEVICE_ipq40xx_generic_DEVICE_netgear_ex6150v2 is not set
 # CONFIG_TARGET_DEVICE_ipq40xx_generic_DEVICE_netgear_rbr50 is not set
 # CONFIG_TARGET_DEVICE_ipq40xx_generic_DEVICE_netgear_rbs50 is not set
 # CONFIG_TARGET_DEVICE_ipq40xx_generic_DEVICE_netgear_srr60 is not set
@@ -557,7 +561,7 @@ CONFIG_TARGET_INIT_CMD="/sbin/init"
 CONFIG_TARGET_INIT_SUPPRESS_STDERR=y
 CONFIG_VERSIONOPT=y
 CONFIG_VERSION_DIST="X-WRT"
-CONFIG_VERSION_NUMBER="22.10_b202303061504"
+CONFIG_VERSION_NUMBER="22.10_b202303121313"
 CONFIG_VERSION_CODE="Kinetic"
 CONFIG_VERSION_REPO="http://downloads.openwrt.org/snapshots"
 CONFIG_VERSION_HOME_URL="https://x-wrt.com/"
@@ -3048,10 +3052,6 @@ CONFIG_PACKAGE_lte-modem-p2w-r619ac=m
 # end of Independent
 
 #
-# Kernel
-#
-
-#
 # Kernel modules
 #
 
@@ -3522,6 +3522,7 @@ CONFIG_PACKAGE_kmod-ifb=y
 CONFIG_PACKAGE_kmod-ipvlan=y
 # CONFIG_PACKAGE_kmod-ixgbe is not set
 # CONFIG_PACKAGE_kmod-ixgbevf is not set
+# CONFIG_PACKAGE_kmod-lan743x is not set
 CONFIG_PACKAGE_kmod-libphy=m
 # CONFIG_PACKAGE_kmod-ltq-vdsl-vr11 is not set
 # CONFIG_PACKAGE_kmod-ltq-vdsl-vr11-mei is not set
@@ -4042,6 +4043,7 @@ CONFIG_PACKAGE_lua-cjson=y
 # CONFIG_PACKAGE_lua-eco-http is not set
 # CONFIG_PACKAGE_lua-eco-log is not set
 # CONFIG_PACKAGE_lua-eco-mqtt is not set
+# CONFIG_PACKAGE_lua-eco-network is not set
 # CONFIG_PACKAGE_lua-eco-sha1 is not set
 # CONFIG_PACKAGE_lua-eco-socket is not set
 # CONFIG_PACKAGE_lua-eco-ssl is not set
@@ -4360,6 +4362,12 @@ CONFIG_PACKAGE_luasocket=y
 # end of Ruby
 
 #
+# Rust
+#
+# CONFIG_PACKAGE_maturin is not set
+# end of Rust
+
+#
 # Tcl
 #
 # CONFIG_PACKAGE_tcl is not set
@@ -4383,6 +4391,12 @@ CONFIG_PACKAGE_ucode-mod-uci=y
 # CONFIG_PACKAGE_chicken-scheme-full is not set
 # CONFIG_PACKAGE_chicken-scheme-interpreter is not set
 # CONFIG_PACKAGE_python3-gensio is not set
+# CONFIG_PACKAGE_rust is not set
+CONFIG_RUST_OPTION_CHECKING=y
+CONFIG_RUST_ENABLE_NINJA=y
+CONFIG_RUST_MISSING_TOOLS=y
+CONFIG_RUST_OPTIMIZE_LLVM=y
+CONFIG_RUST_MANAGE_SUBMODULES=y
 # CONFIG_PACKAGE_slsh is not set
 # end of Languages
 
@@ -5209,8 +5223,10 @@ CONFIG_PACKAGE_libcomerr=m
 # CONFIG_PACKAGE_libdb47xx is not set
 # CONFIG_PACKAGE_libdbi is not set
 # CONFIG_PACKAGE_libdbus is not set
+# CONFIG_PACKAGE_libdeflate is not set
 # CONFIG_PACKAGE_libdevmapper is not set
 # CONFIG_PACKAGE_libdevmapper-selinux is not set
+# CONFIG_PACKAGE_libdht is not set
 # CONFIG_PACKAGE_libdmapsharing is not set
 # CONFIG_PACKAGE_libdnet is not set
 # CONFIG_PACKAGE_libdrm is not set
@@ -5498,6 +5514,7 @@ CONFIG_PACKAGE_libusb-1.0=m
 CONFIG_PACKAGE_libustream-mbedtls=y
 # CONFIG_PACKAGE_libustream-openssl is not set
 # CONFIG_PACKAGE_libustream-wolfssl is not set
+# CONFIG_PACKAGE_libutp is not set
 CONFIG_PACKAGE_libuuid=y
 # CONFIG_PACKAGE_libuv is not set
 # CONFIG_PACKAGE_libuwifi is not set
@@ -5657,6 +5674,7 @@ CONFIG_PACKAGE_luci-mod-system=y
 CONFIG_PACKAGE_luci-app-aria2=m
 # CONFIG_PACKAGE_luci-app-attendedsysupgrade is not set
 # CONFIG_PACKAGE_luci-app-babeld is not set
+# CONFIG_PACKAGE_luci-app-banip is not set
 # CONFIG_PACKAGE_luci-app-bcp38 is not set
 # CONFIG_PACKAGE_luci-app-bird1-ipv4 is not set
 # CONFIG_PACKAGE_luci-app-bird1-ipv6 is not set
@@ -7223,6 +7241,7 @@ CONFIG_PACKAGE_6to4=y
 # CONFIG_PACKAGE_bwping is not set
 CONFIG_PACKAGE_chat=m
 # CONFIG_PACKAGE_cifsmount is not set
+# CONFIG_PACKAGE_cni-protocol is not set
 # CONFIG_PACKAGE_cni-route-override is not set
 # CONFIG_PACKAGE_coap-server is not set
 # CONFIG_PACKAGE_conserver is not set
@@ -8112,6 +8131,7 @@ CONFIG_PACKAGE_qrencode=m
 # CONFIG_PACKAGE_rename is not set
 # CONFIG_PACKAGE_reptyr is not set
 # CONFIG_PACKAGE_restic is not set
+# CONFIG_PACKAGE_ripgrep is not set
 # CONFIG_PACKAGE_rng-tools is not set
 # CONFIG_PACKAGE_rtl-ais is not set
 # CONFIG_PACKAGE_rtl-sdr is not set
