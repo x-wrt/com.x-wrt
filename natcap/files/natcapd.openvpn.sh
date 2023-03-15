@@ -15,11 +15,16 @@ make_config()
 	KEY_ID=client
 	KEY_DIR=/usr/share/natcapd/openvpn
 	BASE_CONFIG=/usr/share/natcapd/openvpn/client.conf
+	mode="$(uci get natcapd.default.natcapovpn_tap 2>/dev/null || echo 0)"
 	hname=`cat /dev/natcap_ctl  | grep default_mac_addr | grep -o '[0-9a-f][0-9a-f]:[0-9a-f][0-9a-f]:[0-9a-f][0-9a-f]:[0-9a-f][0-9a-f]:[0-9a-f][0-9a-f]:[0-9a-f][0-9a-f]' | sed 's/://g'`
 	TA_KEY=${KEY_DIR}/ta.key
 	test -f /etc/openvpn/natcap-ta.key && TA_KEY=/etc/openvpn/natcap-ta.key
 
-	cat ${BASE_CONFIG} | sed "s/^remote .*4911$/remote $hname.dns.x-wrt.com 4911/;s/^proto tcp$/proto $PROTO/"
+	if [ "$mode" = "1" ]; then
+		cat ${BASE_CONFIG} | sed "s/^remote .*4911$/remote $hname.dns.x-wrt.com 4911/;s/^proto tcp$/proto $PROTO/;s/dev tun/dev tap/"
+	else
+		cat ${BASE_CONFIG} | sed "s/^remote .*4911$/remote $hname.dns.x-wrt.com 4911/;s/^proto tcp$/proto $PROTO/"
+	fi
 	echo -e '<ca>'
 	cat ${KEY_DIR}/ca.crt
 	echo -e '</ca>\n<cert>'
@@ -42,6 +47,7 @@ make_config()
 }
 
 [ "x`uci get natcapd.default.natcapovpn 2>/dev/null`" = x1 ] && {
+	mode="$(uci get natcapd.default.natcapovpn_tap 2>/dev/null || echo 0)"
 	[ "x`uci get openvpn.natcapovpn_tcp.enabled 2>/dev/null`" != x1 ] && {
 		/etc/init.d/openvpn stop
 		uci delete network.natcapovpn 2>/dev/null
@@ -79,7 +85,11 @@ make_config()
 			uci set openvpn.natcapovpn_$p.enabled='1'
 			uci set openvpn.natcapovpn_$p.port='4911'
 			uci set openvpn.natcapovpn_$p.dev="natcap$p"
-			uci set openvpn.natcapovpn_$p.dev_type='tun'
+			if [ "$mode" = "1" ]; then
+				uci set openvpn.natcapovpn_$p.dev_type='tap'
+			else
+				uci set openvpn.natcapovpn_$p.dev_type='tun'
+			fi
 			uci set openvpn.natcapovpn_$p.ca='/usr/share/natcapd/openvpn/ca.crt'
 			uci set openvpn.natcapovpn_$p.cert='/usr/share/natcapd/openvpn/server.crt'
 			uci set openvpn.natcapovpn_$p.key='/usr/share/natcapd/openvpn/server.key'

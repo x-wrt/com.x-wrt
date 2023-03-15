@@ -16,6 +16,10 @@ if nixio.fs.access("/etc/init.d/openvpn") then
 	e = s:taboption("system", Flag, "natcapovpn", translate("Enable OpenVPN Server"), translate("Allows you connect to router via VPN, the router need to have a public IP."))
 	e.default = e.disabled
 	e.rmempty = false
+
+	e = s:taboption("system", Flag, "natcapovpn_tap", translate("OpenVPN TAP Mode"), translate("Use tap mode."))
+	e.default = e.disabled
+	e.rmempty = false
 end
 
 e = s:taboption("system", Flag, "pptpd", translate("Enable The PPTP Server"), translate("Allows you connect to router via VPN, the router need to have a public IP."))
