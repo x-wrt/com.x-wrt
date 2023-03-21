@@ -282,6 +282,7 @@ for t in $targets; do
 	excludes="$excludes_basic"
 	case $t in
 		#>8M flash
+		TARGET_DEVICE_mediatek_filogic_DEVICE_tenbay_ac-2210e|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_tplink_tl-xdr6086|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_tplink_tl-xdr6088|\
 		TARGET_DEVICE_ipq806x_generic_DEVICE_askey_rt4230w-rev6|\
@@ -437,6 +438,7 @@ for t in $targets; do
 		TARGET_DEVICE_ramips_mt7621_DEVICE_netgear_r6220c)
 			mods="$mods $lucibond $ipv6extra $wifiext $sqm $lucidashboard $kmodext $relay"
 			mods="$mods $wgmod $openvpnmod wpad-openssl luci-ssl-nginx"
+			mods="$mods kmod-ipt-compat-xtables kmod-ipt-dhcpmac kmod-ipt-dnetmap iptables-mod-dhcpmac iptables-mod-dnetmap"
 			excludes="$excludes wpad-basic-mbedtls"
 			flash_gt8m=1
 			extra_utils=1
@@ -1088,6 +1090,7 @@ for t in $targets; do
 			has_usb=1
 		;;
 		#no usb
+		TARGET_DEVICE_mediatek_filogic_DEVICE_tenbay_ac-2210e|\
 		TARGET_DEVICE_ipq807x_generic_DEVICE_redmi_ax6|\
 		TARGET_DEVICE_ipq807x_generic_DEVICE_xiaomi_ax3600|\
 		TARGET_DEVICE_ipq807x_generic_DEVICE_xiaomi_ax9000|\
