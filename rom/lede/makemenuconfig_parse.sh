@@ -146,6 +146,91 @@ excludes_basic="dnsmasq \
 		  kmod-ipt-offload \
 		  kmod-nf-flow"
 
+strongswan="\
+strongswan \
+strongswan-charon \
+strongswan-charon-cmd \
+strongswan-default \
+strongswan-ipsec \
+strongswan-libnttfft \
+strongswan-libtls \
+strongswan-mod-addrblock \
+strongswan-mod-aes \
+strongswan-mod-af-alg \
+strongswan-mod-attr \
+strongswan-mod-bliss \
+strongswan-mod-blowfish \
+strongswan-mod-ccm \
+strongswan-mod-chapoly \
+strongswan-mod-cmac \
+strongswan-mod-connmark \
+strongswan-mod-constraints \
+strongswan-mod-coupling \
+strongswan-mod-ctr \
+strongswan-mod-curve25519 \
+strongswan-mod-des \
+strongswan-mod-dhcp \
+strongswan-mod-dnskey \
+strongswan-mod-drbg \
+strongswan-mod-duplicheck \
+strongswan-mod-eap-identity \
+strongswan-mod-eap-md5 \
+strongswan-mod-eap-mschapv2 \
+strongswan-mod-eap-radius \
+strongswan-mod-eap-tls \
+strongswan-mod-farp \
+strongswan-mod-fips-prf \
+strongswan-mod-forecast \
+strongswan-mod-gcm \
+strongswan-mod-gcrypt \
+strongswan-mod-gmp \
+strongswan-mod-gmpdh \
+strongswan-mod-hmac \
+strongswan-mod-kernel-netlink \
+strongswan-mod-md4 \
+strongswan-mod-md5 \
+strongswan-mod-mgf1 \
+strongswan-mod-newhope \
+strongswan-mod-nonce \
+strongswan-mod-ntru \
+strongswan-mod-openssl \
+strongswan-mod-pem \
+strongswan-mod-pgp \
+strongswan-mod-pkcs1 \
+strongswan-mod-pkcs11 \
+strongswan-mod-pkcs12 \
+strongswan-mod-pkcs7 \
+strongswan-mod-pkcs8 \
+strongswan-mod-pubkey \
+strongswan-mod-random \
+strongswan-mod-rc2 \
+strongswan-mod-resolve \
+strongswan-mod-revocation \
+strongswan-mod-sha1 \
+strongswan-mod-sha2 \
+strongswan-mod-sha3 \
+strongswan-mod-socket-default \
+strongswan-mod-socket-dynamic \
+strongswan-mod-sshkey \
+strongswan-mod-stroke \
+strongswan-mod-test-vectors \
+strongswan-mod-unity \
+strongswan-mod-updown \
+strongswan-mod-vici \
+strongswan-mod-whitelist \
+strongswan-mod-x509 \
+strongswan-mod-xauth-eap \
+strongswan-mod-xauth-generic \
+strongswan-mod-xcbc \
+strongswan-pki \
+strongswan-swanctl \
+"
+
+extra_vpn="xl2tpd \
+	   luci-proto-gre \
+	   luci-proto-vti \
+	   luci-proto-xfrm"
+
 excludes=""
 
 get_modules()
@@ -280,6 +365,94 @@ for t in $targets; do
 	has_usb=0
 	extra_utils=0
 	excludes="$excludes_basic"
+	case $t in
+		TARGET_DEVICE_mediatek_filogic_DEVICE_tenbay_ac-2210e|\
+		TARGET_DEVICE_mediatek_filogic_DEVICE_tplink_tl-xdr6086|\
+		TARGET_DEVICE_mediatek_filogic_DEVICE_tplink_tl-xdr6088|\
+		TARGET_DEVICE_ipq807x_generic_DEVICE_redmi_ax6|\
+		TARGET_DEVICE_ipq807x_generic_DEVICE_xiaomi_ax3600|\
+		TARGET_DEVICE_ipq807x_generic_DEVICE_xiaomi_ax9000|\
+		TARGET_DEVICE_mediatek_mt7622_DEVICE_netgear_wax206|\
+		TARGET_DEVICE_ipq40xx_generic_DEVICE_glinet_gl-a1300|\
+		TARGET_DEVICE_ramips_mt7621_DEVICE_netgear_wax202|\
+		TARGET_DEVICE_mediatek_filogic_DEVICE_xiaomi_redmi-router-ax6000|\
+		TARGET_DEVICE_mediatek_filogic_DEVICE_xiaomi_redmi-router-ax6000-ubootmod|\
+		TARGET_DEVICE_mediatek_filogic_DEVICE_xiaomi_redmi-router-ax6000-stock|\
+		TARGET_DEVICE_mediatek_filogic_DEVICE_bananapi_bpi-r3|\
+		TARGET_DEVICE_mediatek_mt7622_DEVICE_linksys_e8450-ubi|\
+		TARGET_DEVICE_mediatek_mt7622_DEVICE_linksys_e8450|\
+		TARGET_DEVICE_mediatek_mt7622_DEVICE_bananapi_bpi-r64|\
+		TARGET_DEVICE_mediatek_mt7622_DEVICE_xiaomi_redmi-router-ax6s|\
+		TARGET_DEVICE_bcm4908_generic_DEVICE_netgear_r8000p|\
+		TARGET_DEVICE_ipq806x_generic_DEVICE_ruijie_rg-mtfi-m520|\
+		TARGET_DEVICE_ipq806x_generic_DEVICE_tplink_ad7200|\
+		TARGET_DEVICE_ramips_mt7621_DEVICE_xwrt_wr1800k-ax-norplusemmc|\
+		TARGET_DEVICE_ramips_mt7621_DEVICE_xwrt_wr1800k-ax-nand|\
+		TARGET_DEVICE_ramips_mt7621_DEVICE_xwrt_nxc2005ex|\
+		TARGET_DEVICE_rockchip_armv8_DEVICE_friendlyarm_nanopi-r2c|\
+		TARGET_DEVICE_rockchip_armv8_DEVICE_friendlyarm_nanopi-r2s|\
+		TARGET_DEVICE_rockchip_armv8_DEVICE_friendlyarm_nanopi-r4s|\
+		TARGET_DEVICE_ath79_nand_DEVICE_domywifi_dw33d|\
+		TARGET_DEVICE_ramips_mt7621_DEVICE_netgear_r6800|\
+		TARGET_DEVICE_ramips_mt7621_DEVICE_netgear_r6700-v2|\
+		TARGET_DEVICE_ramips_mt7621_DEVICE_netgear_r6260|\
+		TARGET_DEVICE_ramips_mt7621_DEVICE_netgear_r6850|\
+		TARGET_DEVICE_bcm27xx_bcm2709_DEVICE_rpi-2|\
+		TARGET_DEVICE_bcm27xx_bcm2710_DEVICE_rpi-3|\
+		TARGET_DEVICE_bcm27xx_bcm2711_DEVICE_rpi-4|\
+		TARGET_DEVICE_ath79_nand_DEVICE_glinet_gl-ar300m-nand|\
+		TARGET_DEVICE_ramips_mt7621_DEVICE_ubiquiti_edgerouterx|\
+		TARGET_DEVICE_ramips_mt7621_DEVICE_ubiquiti_edgerouterx-sfp|\
+		TARGET_DEVICE_ramips_mt7621_DEVICE_ubnt_edgerouter-x|\
+		TARGET_DEVICE_ramips_mt7621_DEVICE_ubnt_edgerouter-x-sfp|\
+		TARGET_DEVICE_ipq40xx_generic_DEVICE_netgear_ex6150v2|\
+		TARGET_DEVICE_ipq40xx_generic_DEVICE_netgear_ex6100v2|\
+		TARGET_DEVICE_ipq40xx_generic_DEVICE_glinet_gl-b1300|\
+		TARGET_DEVICE_ipq40xx_generic_DEVICE_engenius_eap1300|\
+		TARGET_DEVICE_ipq40xx_generic_DEVICE_compex_wpj428|\
+		TARGET_DEVICE_ipq40xx_generic_DEVICE_asus_map-ac2200|\
+		TARGET_DEVICE_ipq40xx_generic_DEVICE_linksys_ea8300|\
+		TARGET_DEVICE_ipq40xx_generic_DEVICE_linksys_ea6350v3|\
+		TARGET_DEVICE_bcm53xx_generic_DEVICE_phicomm_k3|\
+		TARGET_DEVICE_ath79_nand_DEVICE_arris_sbr-ac1750|\
+		TARGET_DEVICE_ramips_mt7621_DEVICE_netgear_r6350|\
+		TARGET_DEVICE_bcm53xx_generic_DEVICE_netgear_r8500|\
+		TARGET_DEVICE_mvebu_cortexa9_DEVICE_linksys_wrt32x|\
+		TARGET_DEVICE_ipq40xx_generic_DEVICE_asus_rt-ac58u|\
+		TARGET_DEVICE_ipq40xx_generic_DEVICE_asus_rt-ac42u|\
+		TARGET_DEVICE_ipq40xx_generic_DEVICE_asus_rt-acrh17|\
+		TARGET_DEVICE_ipq40xx_generic_DEVICE_p2w_r619ac-128m|\
+		TARGET_DEVICE_ipq40xx_generic_DEVICE_p2w_r619ac-64m|\
+		TARGET_DEVICE_ipq40xx_generic_DEVICE_p2w_r619ac|\
+		TARGET_DEVICE_ipq806x_generic_DEVICE_zyxel_nbg6817|\
+		TARGET_DEVICE_ipq806x_generic_DEVICE_avm_fritzbox-4040|\
+		TARGET_DEVICE_bcm53xx_generic_DEVICE_netgear_r6250|\
+		TARGET_DEVICE_ramips_mt7621_DEVICE_xiaomi_mi-router-3g|\
+		TARGET_DEVICE_ramips_mt7621_DEVICE_xiaomi_mi-router-3-pro|\
+		TARGET_DEVICE_ramips_mt7621_DEVICE_xiaomi_redmi-router-ac2100|\
+		TARGET_DEVICE_ramips_mt7621_DEVICE_xiaomi_mi-router-ac2100|\
+		TARGET_DEVICE_ipq806x_generic_DEVICE_linksys_ea8500|\
+		TARGET_DEVICE_ipq806x_generic_DEVICE_netgear_xr500|\
+		TARGET_DEVICE_ipq806x_generic_DEVICE_netgear_r7800|\
+		TARGET_DEVICE_ipq806x_generic_DEVICE_netgear_r7500v2|\
+		TARGET_DEVICE_ipq806x_generic_DEVICE_netgear_r7500|\
+		TARGET_DEVICE_ipq806x_generic_DEVICE_netgear_d7800|\
+		TARGET_DEVICE_kirkwood_DEVICE_linksys_viper|\
+		TARGET_DEVICE_ath79_nand_DEVICE_netgear_r6100|\
+		TARGET_DEVICE_ath79_nand_DEVICE_netgear_wndr4300|\
+		TARGET_DEVICE_ath79_nand_DEVICE_netgear_wndr4300-v2|\
+		TARGET_DEVICE_ath79_nand_DEVICE_netgear_wndr4500-v3|\
+		TARGET_DEVICE_bcm53xx_generic_DEVICE_netgear_r8000|\
+		TARGET_DEVICE_mvebu_cortexa9_DEVICE_linksys_wrt1200ac|\
+		TARGET_DEVICE_mvebu_cortexa9_DEVICE_linksys_wrt1900ac-v1|\
+		TARGET_DEVICE_mvebu_cortexa9_DEVICE_linksys_wrt1900acs|\
+		TARGET_DEVICE_mvebu_cortexa9_DEVICE_linksys_wrt1900ac-v2|\
+		TARGET_DEVICE_mvebu_cortexa9_DEVICE_linksys_wrt3200acm|\
+		TARGET_DEVICE_ramips_mt7621_DEVICE_zbtlink_zbt-wg3526-32m|\
+		TARGET_DEVICE_ramips_mt7621_DEVICE_netgear_r6220)
+			mods="$modes $extra_vpn $strongswan"
+		;;
+	esac
 	case $t in
 		#>8M flash
 		TARGET_DEVICE_mediatek_filogic_DEVICE_tenbay_ac-2210e|\
