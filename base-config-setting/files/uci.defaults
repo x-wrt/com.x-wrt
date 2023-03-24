@@ -358,6 +358,19 @@ test $version -lt 18 && {
 	version=18
 }
 
+test $version -lt 19 && {
+	uci -q batch <<-EOT
+		set firewall.ipv6_igmp_input=rule
+		set firewall.ipv6_igmp_input.name='Allow-IPv6-IGMP'
+		set firewall.ipv6_igmp_input.src='wan'
+		set firewall.ipv6_igmp_input.proto='igmp'
+		set firewall.ipv6_igmp_input.target='ACCEPT'
+		set firewall.ipv6_igmp_input.family='ipv6'
+		commit firewall
+	EOT
+	version=19
+}
+
 uci set fstab.@global[0].anon_mount_bak="$(uci get fstab.@global[0].anon_mount_bak 2>/dev/null || uci get fstab.@global[0].anon_mount 2>/dev/null)"
 uci set fstab.@global[0].anon_mount='0'
 uci commit fstab
