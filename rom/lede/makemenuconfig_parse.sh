@@ -366,6 +366,7 @@ for t in $targets; do
 	extra_utils=0
 	excludes="$excludes_basic"
 	case $t in
+		TARGET_DEVICE_mediatek_filogic_DEVICE_asus_tuf-ax4200|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_tenbay_ac-2210e|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_tplink_tl-xdr6086|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_tplink_tl-xdr6088|\
@@ -455,6 +456,7 @@ for t in $targets; do
 	esac
 	case $t in
 		#>8M flash
+		TARGET_DEVICE_mediatek_filogic_DEVICE_asus_tuf-ax4200|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_tenbay_ac-2210e|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_tplink_tl-xdr6086|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_tplink_tl-xdr6088|\
@@ -1263,6 +1265,7 @@ for t in $targets; do
 			has_usb=1
 		;;
 		#no usb
+		TARGET_DEVICE_mediatek_filogic_DEVICE_asus_tuf-ax4200|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_tenbay_ac-2210e|\
 		TARGET_DEVICE_ipq807x_generic_DEVICE_redmi_ax6|\
 		TARGET_DEVICE_ipq807x_generic_DEVICE_xiaomi_ax3600|\
