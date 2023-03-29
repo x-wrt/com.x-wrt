@@ -80,13 +80,7 @@ add_wizard() {
 			uci set network.wan.password="${wan_pppoe_pass}"
 			uci set network.wan.keepalive='5 5'
 			uci set network.wan.mtu='1492'
-			uci set network.wan.ipv6='1'
-
-			uci get network.wan6 2>/dev/null && {
-				uci set network.wan6.device='@wan'
-				uci set network.wan6.reqaddress='try'
-				uci set network.wan6.reqprefix='auto'
-			}
+			uci set network.wan.ipv6='auto'
 
 			config_get wan_dns "$cfg" wan_dns
 			test -n "${wan_dns}" && {
