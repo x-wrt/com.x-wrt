@@ -133,11 +133,7 @@ case "$ACTION" in
 		[ "$ACTION" = "ifup" ] && {
 			if [ -n "${trackpid}" ]; then
 				mwan3_track $INTERFACE $DEVICE "$binary_status" $family
-				if [ "$!" ]; then
-					LOG notice "Restarted tracker [$!] on interface $INTERFACE($family) (${DEVICE})"
-				else
-					LOG notice "Skiped restart tracker[${trackpid}] on interface $INTERFACE($family) (${DEVICE})"
-				fi
+				LOG notice "Restarted tracker [${trackpid}]->[$!] on interface $INTERFACE($family) (${DEVICE})"
 			else
 				mwan3_track $INTERFACE $DEVICE "$binary_status" $family
 				LOG notice "Started tracker [$!] on interface $INTERFACE($family) (${DEVICE})"
