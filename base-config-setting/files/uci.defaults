@@ -113,6 +113,14 @@ test $version -lt 2 && {
 			commit network
 		EOT
 
+		if uci get network.lan.ifname &>/dev/null; then
+			uci set network.usbwan.ifname='usb0'
+			uci set network.usbwan6.ifname='@usbwan'
+			uci delete network.usbwan.device
+			uci delete network.usbwan6.device
+			uci commit network
+		fi
+
 		[ "$(uci get firewall.@zone[1].name 2>/dev/null)" = "wan" ] && {
 			wans="$(uci get firewall.@zone[1].network 2>/dev/null) usbwan usbwan6"
 			uci delete firewall.@zone[1].network
