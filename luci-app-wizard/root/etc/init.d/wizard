@@ -27,16 +27,18 @@ add_wizard() {
 	local wan_proto wan_ipaddr wan_netmask wan_gateway wan_dns wan_pppoe_user wan_pppoe_pass
 	local wifi_ssid wifi_key
 	local lan_ipaddr lan_netmask
-	local device
+	local device ifname
 
 	config_get wan_proto "$cfg" wan_proto dhcp
 
 	device=$(uci get network.wan.device 2>/dev/null)
+	ifname=$(uci get network.wan.ifname 2>/dev/null)
 	case "${wan_proto}" in
 		dhcp)
 			uci delete network.wan
 			uci set network.wan=interface
-			uci set network.wan.device="$device"
+			test -n "$device" && uci set network.wan.device="$device"
+			test -n "$ifname" && uci set network.wan.ifname="$ifname"
 			uci set network.wan.proto='dhcp'
 			uci set network.wan.metric='40'
 
@@ -55,7 +57,8 @@ add_wizard() {
 				uci set network.wan=interface
 				uci set network.wan.proto='static'
 				uci set network.wan.force_link='0'
-				uci set network.wan.device="$device"
+				test -n "$device" && uci set network.wan.device="$device"
+				test -n "$ifname" && uci set network.wan.ifname="$ifname"
 				uci set network.wan.metric='40'
 				uci set network.wan.ipaddr="${wan_ipaddr}"
 				uci set network.wan.netmask="${wan_netmask}"
@@ -74,7 +77,8 @@ add_wizard() {
 			uci delete network.wan
 			uci set network.wan=interface
 			uci set network.wan.proto='pppoe'
-			uci set network.wan.device="$device"
+			test -n "$device" && uci set network.wan.device="$device"
+			test -n "$ifname" && uci set network.wan.ifname="$ifname"
 			uci set network.wan.metric='40'
 			uci set network.wan.username="${wan_pppoe_user}"
 			uci set network.wan.password="${wan_pppoe_pass}"
