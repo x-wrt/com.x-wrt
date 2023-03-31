@@ -311,13 +311,16 @@ test $version -lt 14 && {
 }
 
 test $version -lt 15 && {
-	sed -i '/^admin/d' /etc/shadow
-	cat /etc/shadow | grep -q ^admin: || cat /etc/shadow | grep ^root | sed 's/^root/admin/' >>/etc/shadow
-	cat /etc/passwd | grep -q ^admin: || echo "admin:x:0:0:root:/root:/bin/false" >>/etc/passwd
+	config_luci_login=%LUCI_LOGIN%
+	if [ "$config_luci_login" != "root" ]; then
+	sed -i "/^$config_luci_login/d" /etc/shadow
+	cat /etc/shadow | grep -q "^$config_luci_login:" || cat /etc/shadow | grep ^root | sed "s/^root/$config_luci_login/" >>/etc/shadow
+	cat /etc/passwd | grep -q "^$config_luci_login:" || echo "$config_luci_login:x:0:0:root:/root:/bin/false" >>/etc/passwd
 
-	uci set rpcd.@login[0].username='admin'
-	uci set rpcd.@login[0].password='$p$admin'
+	uci set rpcd.@login[0].username="$config_luci_login"
+	uci set rpcd.@login[0].password="\$p\$$config_luci_login"
 	uci commit rpcd
+	fi
 
 	version=15
 }
