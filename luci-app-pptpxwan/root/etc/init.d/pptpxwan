@@ -199,6 +199,8 @@ start() {
 	local line_idx=0
 	local enable=$(uci get pptpxwan.pptp.enable 2>/dev/null || echo 0)
 
+	[ "x$enable" = "x1" ] || return 0
+
 	global_setup
 
 	while uci delete mwan3.@interface[0] >/dev/null 2>&1; do :; done
