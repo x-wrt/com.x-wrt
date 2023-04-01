@@ -93,6 +93,21 @@ add_xwan() {
 				family="" track_ip="$track_ip" mwan3_add_one wan
 				change=1
 			}
+			uci get mwan3.https &>/dev/null || {
+				uci set mwan3.https=rule
+				uci set mwan3.https.sticky='1'
+				uci set mwan3.https.dest_port='443'
+				uci set mwan3.https.proto='tcp'
+				uci set mwan3.https.use_policy='balanced'
+				uci set mwan3.default_rule_v4=rule
+				uci set mwan3.default_rule_v4.dest_ip='0.0.0.0/0'
+				uci set mwan3.default_rule_v4.use_policy='balanced'
+				uci set mwan3.default_rule_v4.family='ipv4'
+				uci set mwan3.default_rule_v6=rule
+				uci set mwan3.default_rule_v6.dest_ip='::/0'
+				uci set mwan3.default_rule_v6.use_policy='balanced'
+				uci set mwan3.default_rule_v6.family='ipv6'
+			}
 		}
 		while test $number -ge 2; do
 			id=$((id + 1))
