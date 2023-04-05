@@ -619,6 +619,7 @@ for t in $targets; do
 			extra_utils=1
 		;;
 		#>8M flash <14M
+		TARGET_DEVICE_ramips_mt7620_DEVICE_bolt_bl201|\
 		TARGET_DEVICE_ath79_nand_DEVICE_glinet_gl-x1200-nor|\
 		TARGET_DEVICE_ath79_nand_DEVICE_glinet_gl-x1200-nor-nand|\
 		TARGET_DEVICE_ramips_mt76x8_DEVICE_hiwifi_hc5611|\
@@ -1265,6 +1266,7 @@ for t in $targets; do
 			has_usb=1
 		;;
 		#no usb
+		TARGET_DEVICE_ramips_mt7620_DEVICE_bolt_bl201|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_asus_tuf-ax4200|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_tenbay_ac-2210e|\
 		TARGET_DEVICE_ipq807x_generic_DEVICE_redmi_ax6|\
