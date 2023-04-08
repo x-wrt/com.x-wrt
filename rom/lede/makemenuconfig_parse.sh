@@ -705,6 +705,8 @@ for t in $targets; do
 		TARGET_DEVICE_ath79_generic_DEVICE_buffalo_wzr-hp-ag300h|\
 		TARGET_DEVICE_ath79_generic_DEVICE_buffalo_wzr-hp-g302h-a1a0|\
 		TARGET_DEVICE_ath79_generic_DEVICE_buffalo_wzr-hp-g450h|\
+		TARGET_DEVICE_ath79_generic_DEVICE_buffalo_wzr-hp-g300nh-rb|\
+		TARGET_DEVICE_ath79_generic_DEVICE_buffalo_wzr-hp-g300nh-s|\
 		TARGET_DEVICE_ath79_generic_DEVICE_comfast_cf-e313ac|\
 		TARGET_DEVICE_ath79_generic_DEVICE_comfast_cf-e5|\
 		TARGET_DEVICE_ath79_generic_DEVICE_comfast_cf-wr650ac-v1|\
@@ -1172,6 +1174,8 @@ for t in $targets; do
 		TARGET_DEVICE_ath79_generic_DEVICE_buffalo_wzr-hp-ag300h|\
 		TARGET_DEVICE_ath79_generic_DEVICE_buffalo_wzr-hp-g302h-a1a0|\
 		TARGET_DEVICE_ath79_generic_DEVICE_buffalo_wzr-hp-g450h|\
+		TARGET_DEVICE_ath79_generic_DEVICE_buffalo_wzr-hp-g300nh-rb|\
+		TARGET_DEVICE_ath79_generic_DEVICE_buffalo_wzr-hp-g300nh-s|\
 		TARGET_DEVICE_ath79_generic_DEVICE_ubnt_nanostation-ac|\
 		TARGET_DEVICE_ath79_generic_DEVICE_ubnt_nanostation-ac-loco|\
 		TARGET_DEVICE_ath79_generic_DEVICE_ubnt_routerstation|\
