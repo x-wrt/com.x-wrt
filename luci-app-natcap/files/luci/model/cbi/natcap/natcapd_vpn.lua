@@ -2,7 +2,7 @@
 
 local nt = require "luci.sys".net
 
-local m = Map("natcapd", luci.xml.pcdata(translate("One Key VPN")))
+local m = Map("natcapd", translate("One Key VPN"))
 
 m:section(SimpleSection).template  = "natcap/natcapd"
 
