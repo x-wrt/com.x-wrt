@@ -370,6 +370,7 @@ for t in $targets; do
 		TARGET_DEVICE_mediatek_filogic_DEVICE_tenbay_ac-2210e|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_tplink_tl-xdr6086|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_tplink_tl-xdr6088|\
+		TARGET_DEVICE_mediatek_filogic_DEVICE_tplink_tl-xdr4288|\
 		TARGET_DEVICE_ipq807x_generic_DEVICE_redmi_ax6|\
 		TARGET_DEVICE_ipq807x_generic_DEVICE_xiaomi_ax3600|\
 		TARGET_DEVICE_ipq807x_generic_DEVICE_xiaomi_ax9000|\
@@ -953,6 +954,7 @@ for t in $targets; do
 		#with usb3
 		TARGET_DEVICE_mediatek_filogic_DEVICE_tplink_tl-xdr6086|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_tplink_tl-xdr6088|\
+		TARGET_DEVICE_mediatek_filogic_DEVICE_tplink_tl-xdr4288|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_raisecom_msg1500-x-00|\
 		TARGET_DEVICE_ipq40xx_generic_DEVICE_glinet_gl-a1300|\
 		TARGET_DEVICE_ipq40xx_generic_DEVICE_glinet_gl-b2200|\
