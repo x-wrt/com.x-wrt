@@ -380,6 +380,7 @@ for t in $targets; do
 		TARGET_DEVICE_mediatek_filogic_DEVICE_xiaomi_redmi-router-ax6000|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_xiaomi_redmi-router-ax6000-ubootmod|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_xiaomi_redmi-router-ax6000-stock|\
+		TARGET_DEVICE_mediatek_filogic_DEVICE_xiaomi_redmi-router-ax6000-ubootlayout|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_bananapi_bpi-r3|\
 		TARGET_DEVICE_mediatek_mt7622_DEVICE_linksys_e8450-ubi|\
 		TARGET_DEVICE_mediatek_mt7622_DEVICE_linksys_e8450|\
@@ -461,6 +462,7 @@ for t in $targets; do
 		TARGET_DEVICE_mediatek_filogic_DEVICE_tenbay_ac-2210e|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_tplink_tl-xdr6086|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_tplink_tl-xdr6088|\
+		TARGET_DEVICE_mediatek_filogic_DEVICE_tplink_tl-xdr4288|\
 		TARGET_DEVICE_ipq806x_generic_DEVICE_askey_rt4230w-rev6|\
 		TARGET_DEVICE_ipq807x_generic_DEVICE_qnap_301w|\
 		TARGET_DEVICE_ipq807x_generic_DEVICE_redmi_ax6|\
@@ -474,6 +476,7 @@ for t in $targets; do
 		TARGET_DEVICE_mediatek_filogic_DEVICE_xiaomi_redmi-router-ax6000|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_xiaomi_redmi-router-ax6000-ubootmod|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_xiaomi_redmi-router-ax6000-stock|\
+		TARGET_DEVICE_mediatek_filogic_DEVICE_xiaomi_redmi-router-ax6000-ubootlayout|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_bananapi_bpi-r3|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_yuncore_ax820|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_h3c_tx1806|\
@@ -1288,6 +1291,7 @@ for t in $targets; do
 		TARGET_DEVICE_mediatek_filogic_DEVICE_xiaomi_redmi-router-ax6000|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_xiaomi_redmi-router-ax6000-ubootmod|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_xiaomi_redmi-router-ax6000-stock|\
+		TARGET_DEVICE_mediatek_filogic_DEVICE_xiaomi_redmi-router-ax6000-ubootlayout|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_yuncore_ax820|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_h3c_tx1806|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_xwrt_dm2-t-mb2ep-v02-nor|\
