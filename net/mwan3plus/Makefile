@@ -114,6 +114,8 @@ define Package/mwan3plus/install
 		$(1)/etc/uci-defaults/
 	$(INSTALL_DATA) ./files/etc/uci-defaults/mwan3-reload-firewall \
 		$(1)/etc/uci-defaults/
+	$(INSTALL_DATA) ./files/etc/uci-defaults/95-mwan3 \
+		$(1)/etc/uci-defaults/
 endef
 
 $(eval $(call BuildPackage,mwan3plus))
