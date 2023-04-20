@@ -524,7 +524,6 @@ for t in $targets; do
 		TARGET_DEVICE_ramips_mt7621_DEVICE_netgear_r6260|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_netgear_r6850|\
 		TARGET_DEVICE_ramips_rt305x_DEVICE_huawei_hg255d|\
-		TARGET_DEVICE_ramips_mt7621_DEVICE_totolink_a7000r|\
 		TARGET_DEVICE_bcm27xx_bcm2709_DEVICE_rpi-2|\
 		TARGET_DEVICE_bcm27xx_bcm2710_DEVICE_rpi-3|\
 		TARGET_DEVICE_bcm27xx_bcm2711_DEVICE_rpi-4|\
@@ -820,6 +819,7 @@ for t in $targets; do
 			excludes="$excludes wpad-basic-mbedtls openvpn-openssl"
 			flash_gt8m=1
 		;;
+		TARGET_DEVICE_ramips_mt7621_DEVICE_totolink_a7000r|\
 		TARGET_DEVICE_ramips_mt76x8_DEVICE_xiaomi_mi-ra75|\
 		TARGET_DEVICE_ath79_nand_DEVICE_glinet_gl-xe300|\
 		TARGET_DEVICE_ipq40xx_generic_DEVICE_netgear_ex6200v2|\
