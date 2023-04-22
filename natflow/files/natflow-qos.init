@@ -142,12 +142,16 @@ natflow_qos_zone_setup_tc()
 					cat /dev/qos_ctl | grep "^add user=" | while read line; do
 						line="${line/*rxbytes=}"
 						rxbytes="${line/,*}"
+						quantum=$(($rxbytes/1000))
+						if test $quantum -lt 256; then
+							quantum=256
+						fi
+						echo setup tc for $lan @lan rxbytes=$rxbytes quantum=$quantum
 						tc qdisc del dev $lan root &>/dev/null
 						tc qdisc add dev $lan root handle 1: htb
-						tc class add dev $lan parent 1: classid 1:1 htb rate ${rxbytes}Bps
+						tc class add dev $lan parent 1: classid 1:1 htb rate ${rxbytes}Bps quantum $quantum
 						tc filter add dev $lan parent 1: protocol ip prio 1 handle 1 fw classid 1:1
 						tc filter add dev $lan parent 1: protocol 0x8864 prio 2 handle 1 fw classid 1:1
-						echo setup tc for $lan @lan rxbytes=$rxbytes
 					done
 				fi
 			done
@@ -157,12 +161,16 @@ natflow_qos_zone_setup_tc()
 				if [ "${wan}" = "${wan//:}" ]; then
 					cat /dev/qos_ctl | grep "^add user=" | while read line; do
 						txbytes="${line/*,txbytes=}"
+						quantum=$(($txbytes/1000))
+						if test $quantum -lt 256; then
+							quantum=256
+						fi
+						echo setup tc for $wan @wan txbytes=$txbytes quantum=$quantum
 						tc qdisc del dev $wan root &>/dev/null
 						tc qdisc add dev $wan root handle 1: htb
-						tc class add dev $wan parent 1: classid 1:1 htb rate ${txbytes}Bps
+						tc class add dev $wan parent 1: classid 1:1 htb rate ${txbytes}Bps quantum $quantum
 						tc filter add dev $wan parent 1: protocol ip prio 1 handle 1 fw classid 1:1
 						tc filter add dev $wan parent 1: protocol 0x8864 prio 2 handle 1 fw classid 1:1
-						echo setup tc for $wan @wan txbytes=$txbytes
 					done
 				fi
 			done
