@@ -367,6 +367,7 @@ for t in $targets; do
 	excludes="$excludes_basic"
 	case $t in
 		#>=32M flash
+		TARGET_DEVICE_mediatek_filogic_DEVICE_glinet_gl-mt3000|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_asus_tuf-ax4200|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_tenbay_ac-2210e|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_tplink_tl-xdr6086|\
@@ -459,6 +460,7 @@ for t in $targets; do
 	esac
 	case $t in
 		#>=14M flash
+		TARGET_DEVICE_mediatek_filogic_DEVICE_glinet_gl-mt3000|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_asus_tuf-ax4200|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_tenbay_ac-2210e|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_tplink_tl-xdr6086|\
@@ -819,6 +821,7 @@ for t in $targets; do
 			excludes="$excludes wpad-basic-mbedtls openvpn-openssl"
 			flash_gt8m=1
 		;;
+		# <= 8M
 		TARGET_DEVICE_ramips_mt7621_DEVICE_totolink_a7000r|\
 		TARGET_DEVICE_ramips_mt76x8_DEVICE_xiaomi_mi-ra75|\
 		TARGET_DEVICE_ath79_nand_DEVICE_glinet_gl-xe300|\
@@ -957,6 +960,7 @@ for t in $targets; do
 	#check usb
 	case $t in
 		#with usb3
+		TARGET_DEVICE_mediatek_filogic_DEVICE_glinet_gl-mt3000|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_tplink_tl-xdr6086|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_tplink_tl-xdr6088|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_tplink_tl-xdr4288|\
