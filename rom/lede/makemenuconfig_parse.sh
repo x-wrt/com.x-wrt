@@ -367,6 +367,7 @@ for t in $targets; do
 	excludes="$excludes_basic"
 	case $t in
 		#>=32M flash
+		TARGET_DEVICE_ipq40xx_generic_DEVICE_glinet_gl-ap1300|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_tenbay_wr3000k-gsw-emmc-nor|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_glinet_gl-mt3000|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_asus_tuf-ax4200|\
