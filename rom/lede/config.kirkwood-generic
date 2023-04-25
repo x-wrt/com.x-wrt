@@ -6900,7 +6900,6 @@ CONFIG_PACKAGE_strongswan-mod-md5=m
 CONFIG_PACKAGE_strongswan-mod-mgf1=m
 # CONFIG_PACKAGE_strongswan-mod-mysql is not set
 CONFIG_PACKAGE_strongswan-mod-newhope=m
-CONFIG_PACKAGE_strongswan-mod-nonce=m
 CONFIG_PACKAGE_strongswan-mod-ntru=m
 CONFIG_PACKAGE_strongswan-mod-openssl=m
 CONFIG_PACKAGE_strongswan-mod-pem=m
