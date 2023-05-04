@@ -829,6 +829,7 @@ for t in $targets; do
 			flash_gt8m=1
 		;;
 		# <= 8M
+		TARGET_DEVICE_mediatek_filogic_DEVICE_tenbay_ms3000k|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_totolink_a7000r|\
 		TARGET_DEVICE_ramips_mt76x8_DEVICE_xiaomi_mi-ra75|\
 		TARGET_DEVICE_ath79_nand_DEVICE_glinet_gl-xe300|\
@@ -1295,6 +1296,7 @@ for t in $targets; do
 		TARGET_DEVICE_mediatek_filogic_DEVICE_tenbay_ac-2210e|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_tenbay_ac-2205ex|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_tenbay_wr3000k|\
+		TARGET_DEVICE_mediatek_filogic_DEVICE_tenbay_ms3000k|\
 		TARGET_DEVICE_ipq807x_generic_DEVICE_redmi_ax6|\
 		TARGET_DEVICE_ipq807x_generic_DEVICE_xiaomi_ax3600|\
 		TARGET_DEVICE_ipq807x_generic_DEVICE_xiaomi_ax9000|\
