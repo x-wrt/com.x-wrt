@@ -60,7 +60,7 @@ CONFIG_TARGET_MULTI_PROFILE=y
 # CONFIG_TARGET_ALL_PROFILES is not set
 CONFIG_TARGET_PER_DEVICE_ROOTFS=y
 CONFIG_TARGET_DEVICE_bcm27xx_bcm2709_DEVICE_rpi-2=y
-CONFIG_TARGET_DEVICE_PACKAGES_bcm27xx_bcm2709_DEVICE_rpi-2="aria2 brcmfmac-firmware-usb brcmfmac-nvram-43430-sdio brcmfmac-nvram-43455-sdio chat comgt comgt-ncm cypress-firmware-43430-sdio cypress-firmware-43455-sdio dawn gre iptables-mod-dhcpmac iptables-mod-dnetmap iptables-mod-ipsec jool-tools-netfilter kmod-bonding kmod-brcmfmac kmod-brcmutil kmod-crypto-authenc kmod-crypto-cbc kmod-crypto-chacha20poly1305 kmod-crypto-deflate kmod-crypto-des kmod-crypto-echainiv kmod-crypto-md4 kmod-crypto-md5 kmod-crypto-sha512 kmod-dnsresolver kmod-exfat-linux kmod-fs-ksmbd kmod-fs-msdos kmod-fs-nfs kmod-fs-nfs-common kmod-fs-nfs-v4 kmod-fs-ntfs3 kmod-fs-vfat kmod-hid kmod-hid-generic kmod-inet-diag kmod-input-core kmod-input-evdev kmod-ip6-vti kmod-ipsec kmod-ipsec4 kmod-ipsec6 kmod-ipt-compat-xtables kmod-ipt-dhcpmac kmod-ipt-dnetmap kmod-ipt-ipsec kmod-ip-vti kmod-jool-netfilter kmod-l2tp kmod-lib-zlib-deflate kmod-lib-zlib-inflate kmod-mii kmod-mmc kmod-nat46 kmod-nf-conntrack-netlink kmod-nls-cp437 kmod-oid-registry kmod-pppol2tp kmod-sound-arm-bcm2835 kmod-sound-core kmod-usb2 kmod-usb3 kmod-usb-ehci kmod-usb-hid kmod-usb-net kmod-usb-net-cdc-ether kmod-usb-net-cdc-mbim kmod-usb-net-cdc-ncm kmod-usb-net-huawei-cdc-ncm kmod-usb-net-ipheth kmod-usb-net-qmi-wwan kmod-usb-net-rndis kmod-usb-net-rtl8152 kmod-usb-net-sierrawireless kmod-usb-ohci kmod-usb-printer kmod-usb-serial kmod-usb-serial-option kmod-usb-serial-pl2303 kmod-usb-serial-qualcomm kmod-usb-serial-sierrawireless kmod-usb-serial-wwan kmod-usb-storage kmod-usb-storage-extras kmod-usb-storage-uas kmod-usb-wdm kmod-usb-xhci-hcd kmod-xfrm-interface ksmbd-server libcares libevdev libgcrypt libgmp libgpg-error libimobiledevice libimobiledevice-utils liblzo libnl libnl-core libnl-genl libnl-nf libnl-route libopenssl-conf libpcre libplist libqrencode libsqlite3 libssh2 libudev-zero libusb-1.0 libusbmuxd libwrap libxml2 luci-app-aria2 luci-app-dawn luci-app-ksmbd luci-app-openvpn luci-app-p910nd luci-app-sqm luci-i18n-aria2-zh-cn luci-i18n-dashboard-zh-cn luci-i18n-ksmbd-zh-cn luci-i18n-openvpn-zh-cn luci-i18n-p910nd-zh-cn luci-i18n-sqm-zh-cn luci-lib-json luci-mod-dashboard luci-proto-3g luci-proto-bonding luci-proto-gre luci-proto-mbim luci-proto-ncm luci-proto-qmi luci-proto-relay luci-proto-vti luci-proto-wireguard luci-proto-xfrm luci-ssl-nginx minicom nfs-utils nginx nginx-mod-luci nginx-mod-luci-ssl nginx-mod-ubus nginx-ssl nginx-ssl-util nginx-util openssl-util openvpn-openssl p910nd ppp-mod-pppol2tp proto-bonding qrencode r8152-firmware relayd sendip sqm-scripts strongswan strongswan-charon strongswan-charon-cmd strongswan-default strongswan-ipsec strongswan-libnttfft strongswan-libtls strongswan-mod-addrblock strongswan-mod-aes strongswan-mod-af-alg strongswan-mod-attr strongswan-mod-bliss strongswan-mod-blowfish strongswan-mod-ccm strongswan-mod-chapoly strongswan-mod-cmac strongswan-mod-connmark strongswan-mod-constraints strongswan-mod-coupling strongswan-mod-ctr strongswan-mod-curve25519 strongswan-mod-des strongswan-mod-dhcp strongswan-mod-dnskey strongswan-mod-drbg strongswan-mod-duplicheck strongswan-mod-eap-identity strongswan-mod-eap-md5 strongswan-mod-eap-mschapv2 strongswan-mod-eap-radius strongswan-mod-eap-tls strongswan-mod-farp strongswan-mod-fips-prf strongswan-mod-forecast strongswan-mod-gcm strongswan-mod-gcrypt strongswan-mod-gmp strongswan-mod-gmpdh strongswan-mod-hmac strongswan-mod-kernel-netlink strongswan-mod-md4 strongswan-mod-md5 strongswan-mod-mgf1 strongswan-mod-newhope strongswan-mod-ntru strongswan-mod-openssl strongswan-mod-pem strongswan-mod-pgp strongswan-mod-pkcs1 strongswan-mod-pkcs11 strongswan-mod-pkcs12 strongswan-mod-pkcs7 strongswan-mod-pkcs8 strongswan-mod-pubkey strongswan-mod-random strongswan-mod-rc2 strongswan-mod-resolve strongswan-mod-revocation strongswan-mod-sha1 strongswan-mod-sha2 strongswan-mod-sha3 strongswan-mod-socket-default strongswan-mod-socket-dynamic strongswan-mod-sshkey strongswan-mod-stroke strongswan-mod-test-vectors strongswan-mod-unity strongswan-mod-updown strongswan-mod-vici strongswan-mod-whitelist strongswan-mod-x509 strongswan-mod-xauth-eap strongswan-mod-xauth-generic strongswan-mod-xcbc strongswan-pki strongswan-swanctl tc-tiny umbim uqmi usb-modeswitch usbmuxd usbutils uwsgi uwsgi-cgi-plugin uwsgi-luci-support uwsgi-syslog-plugin vti webui-aria2 wget-ssl wireguard-tools wpad-openssl wsdd2 wwan xfrm xl2tpd"
+CONFIG_TARGET_DEVICE_PACKAGES_bcm27xx_bcm2709_DEVICE_rpi-2="aria2 brcmfmac-firmware-usb brcmfmac-nvram-43430-sdio brcmfmac-nvram-43455-sdio chat comgt comgt-ncm cypress-firmware-43430-sdio cypress-firmware-43455-sdio dawn gre iptables-mod-dhcpmac iptables-mod-dnetmap iptables-mod-ipsec jool-tools-netfilter kmod-bonding kmod-brcmfmac kmod-brcmutil kmod-crypto-authenc kmod-crypto-cbc kmod-crypto-chacha20poly1305 kmod-crypto-deflate kmod-crypto-des kmod-crypto-echainiv kmod-crypto-md4 kmod-crypto-md5 kmod-crypto-sha256 kmod-dnsresolver kmod-exfat-linux kmod-fs-ksmbd kmod-fs-msdos kmod-fs-nfs kmod-fs-nfs-common kmod-fs-nfs-v4 kmod-fs-ntfs3 kmod-fs-vfat kmod-hid kmod-hid-generic kmod-ifb kmod-inet-diag kmod-input-core kmod-input-evdev kmod-ip6-vti kmod-ipsec kmod-ipsec4 kmod-ipsec6 kmod-ipt-compat-xtables kmod-ipt-dhcpmac kmod-ipt-dnetmap kmod-ipt-ipsec kmod-ip-vti kmod-jool-netfilter kmod-l2tp kmod-lib-zlib-deflate kmod-lib-zlib-inflate kmod-mii kmod-mmc kmod-nat46 kmod-nf-conntrack-netlink kmod-nls-cp437 kmod-oid-registry kmod-pppol2tp kmod-sound-arm-bcm2835 kmod-sound-core kmod-usb2 kmod-usb3 kmod-usb-ehci kmod-usb-hid kmod-usb-net kmod-usb-net-cdc-ether kmod-usb-net-cdc-mbim kmod-usb-net-cdc-ncm kmod-usb-net-huawei-cdc-ncm kmod-usb-net-ipheth kmod-usb-net-qmi-wwan kmod-usb-net-rndis kmod-usb-net-rtl8152 kmod-usb-net-sierrawireless kmod-usb-ohci kmod-usb-printer kmod-usb-serial kmod-usb-serial-option kmod-usb-serial-pl2303 kmod-usb-serial-qualcomm kmod-usb-serial-sierrawireless kmod-usb-serial-wwan kmod-usb-storage kmod-usb-storage-extras kmod-usb-storage-uas kmod-usb-wdm kmod-usb-xhci-hcd kmod-xfrm-interface ksmbd-server libcares libevdev libgcrypt libgmp libgpg-error libimobiledevice libimobiledevice-utils liblzo libnl libnl-core libnl-genl libnl-nf libnl-route libopenssl libopenssl-conf libpcre libplist libqrencode libsqlite3 libssh2 libudev-zero libusb-1.0 libusbmuxd libwrap libxml2 luci-app-aria2 luci-app-dawn luci-app-ksmbd luci-app-openvpn luci-app-p910nd luci-app-sqm luci-i18n-aria2-zh-cn luci-i18n-dashboard-zh-cn luci-i18n-ksmbd-zh-cn luci-i18n-openvpn-zh-cn luci-i18n-p910nd-zh-cn luci-i18n-sqm-zh-cn luci-lib-json luci-mod-dashboard luci-proto-3g luci-proto-bonding luci-proto-gre luci-proto-mbim luci-proto-ncm luci-proto-qmi luci-proto-relay luci-proto-vti luci-proto-wireguard luci-proto-xfrm luci-ssl-nginx minicom nfs-utils nginx nginx-mod-luci nginx-mod-luci-ssl nginx-mod-ubus nginx-ssl nginx-ssl-util nginx-util openssl-util openvpn-openssl p910nd ppp-mod-pppol2tp proto-bonding qrencode r8152-firmware relayd sendip sqm-scripts strongswan strongswan-charon strongswan-charon-cmd strongswan-default strongswan-ipsec strongswan-libnttfft strongswan-libtls strongswan-mod-addrblock strongswan-mod-aes strongswan-mod-af-alg strongswan-mod-attr strongswan-mod-bliss strongswan-mod-blowfish strongswan-mod-ccm strongswan-mod-chapoly strongswan-mod-cmac strongswan-mod-connmark strongswan-mod-constraints strongswan-mod-coupling strongswan-mod-ctr strongswan-mod-curve25519 strongswan-mod-des strongswan-mod-dhcp strongswan-mod-dnskey strongswan-mod-drbg strongswan-mod-duplicheck strongswan-mod-eap-identity strongswan-mod-eap-md5 strongswan-mod-eap-mschapv2 strongswan-mod-eap-radius strongswan-mod-eap-tls strongswan-mod-farp strongswan-mod-fips-prf strongswan-mod-forecast strongswan-mod-gcm strongswan-mod-gcrypt strongswan-mod-gmp strongswan-mod-gmpdh strongswan-mod-hmac strongswan-mod-kernel-netlink strongswan-mod-md4 strongswan-mod-md5 strongswan-mod-mgf1 strongswan-mod-newhope strongswan-mod-ntru strongswan-mod-openssl strongswan-mod-pem strongswan-mod-pgp strongswan-mod-pkcs1 strongswan-mod-pkcs11 strongswan-mod-pkcs12 strongswan-mod-pkcs7 strongswan-mod-pkcs8 strongswan-mod-pubkey strongswan-mod-random strongswan-mod-rc2 strongswan-mod-resolve strongswan-mod-revocation strongswan-mod-sha1 strongswan-mod-sha2 strongswan-mod-sha3 strongswan-mod-socket-default strongswan-mod-socket-dynamic strongswan-mod-sshkey strongswan-mod-stroke strongswan-mod-test-vectors strongswan-mod-unity strongswan-mod-updown strongswan-mod-vici strongswan-mod-whitelist strongswan-mod-x509 strongswan-mod-xauth-eap strongswan-mod-xauth-generic strongswan-mod-xcbc strongswan-pki strongswan-swanctl tc-tiny umbim uqmi usb-modeswitch usbmuxd usbutils uwsgi uwsgi-cgi-plugin uwsgi-luci-support uwsgi-syslog-plugin vti webui-aria2 wget-ssl wireguard-tools wpad-openssl wsdd2 wwan xfrm xl2tpd"
 # end of Target Devices
 
 CONFIG_HAS_SUBTARGETS=y
@@ -452,7 +452,7 @@ CONFIG_TARGET_INIT_CMD="/sbin/init"
 CONFIG_TARGET_INIT_SUPPRESS_STDERR=y
 CONFIG_VERSIONOPT=y
 CONFIG_VERSION_DIST="X-WRT"
-CONFIG_VERSION_NUMBER="23.04_b202305040504"
+CONFIG_VERSION_NUMBER="23.04_b202305042322"
 CONFIG_VERSION_CODE="Lunar"
 CONFIG_VERSION_REPO="http://downloads.openwrt.org/snapshots"
 CONFIG_VERSION_HOME_URL="https://x-wrt.com/"
@@ -3018,7 +3018,7 @@ CONFIG_PACKAGE_kmod-crypto-null=y
 CONFIG_PACKAGE_kmod-crypto-rng=y
 CONFIG_PACKAGE_kmod-crypto-seqiv=y
 CONFIG_PACKAGE_kmod-crypto-sha1=y
-CONFIG_PACKAGE_kmod-crypto-sha256=y
+CONFIG_PACKAGE_kmod-crypto-sha256=m
 CONFIG_PACKAGE_kmod-crypto-sha512=y
 # CONFIG_PACKAGE_kmod-crypto-test is not set
 CONFIG_PACKAGE_kmod-crypto-user=y
@@ -3223,7 +3223,7 @@ CONFIG_PACKAGE_kmod-asn1-decoder=y
 # CONFIG_PACKAGE_kmod-lib-842 is not set
 # CONFIG_PACKAGE_kmod-lib-cordic is not set
 CONFIG_PACKAGE_kmod-lib-crc-ccitt=y
-CONFIG_PACKAGE_kmod-lib-crc-itu-t=y
+CONFIG_PACKAGE_kmod-lib-crc-itu-t=m
 CONFIG_PACKAGE_kmod-lib-crc16=y
 CONFIG_PACKAGE_kmod-lib-crc32c=y
 # CONFIG_PACKAGE_kmod-lib-crc7 is not set
@@ -3401,7 +3401,7 @@ CONFIG_PACKAGE_kmod-nft-tproxy=y
 # CONFIG_PACKAGE_kmod-hfcpci is not set
 # CONFIG_PACKAGE_kmod-i40e is not set
 # CONFIG_PACKAGE_kmod-iavf is not set
-CONFIG_PACKAGE_kmod-ifb=y
+CONFIG_PACKAGE_kmod-ifb=m
 # CONFIG_PACKAGE_kmod-igb is not set
 # CONFIG_PACKAGE_kmod-igc is not set
 CONFIG_PACKAGE_kmod-ipvlan=y
@@ -4947,7 +4947,7 @@ CONFIG_MBEDTLS_ECP_DP_CURVE25519_ENABLED=y
 CONFIG_MBEDTLS_ENTROPY_FORCE_SHA256=y
 # CONFIG_MBEDTLS_SSL_RENEGOTIATION is not set
 # CONFIG_PACKAGE_libnss is not set
-CONFIG_PACKAGE_libopenssl=y
+CONFIG_PACKAGE_libopenssl=m
 
 #
 # Build Options
@@ -5328,7 +5328,7 @@ CONFIG_PCRE_JIT_ENABLED=y
 # CONFIG_PACKAGE_libpkcs11-spy is not set
 # CONFIG_PACKAGE_libpkgconf is not set
 # CONFIG_PACKAGE_libpng is not set
-CONFIG_PACKAGE_libpopt=y
+# CONFIG_PACKAGE_libpopt is not set
 # CONFIG_PACKAGE_libpri is not set
 # CONFIG_PACKAGE_libprotobuf-c is not set
 # CONFIG_PACKAGE_libpsl is not set
@@ -5414,7 +5414,7 @@ CONFIG_PACKAGE_libubox=y
 CONFIG_PACKAGE_libubus=y
 CONFIG_PACKAGE_libubus-lua=y
 CONFIG_PACKAGE_libuci=y
-CONFIG_PACKAGE_libuci-lua=y
+# CONFIG_PACKAGE_libuci-lua is not set
 # CONFIG_PACKAGE_libuci2 is not set
 # CONFIG_PACKAGE_libucl is not set
 CONFIG_PACKAGE_libuclient=y
@@ -5991,6 +5991,7 @@ CONFIG_PACKAGE_luci-i18n-mwan3-zh-cn=y
 # CONFIG_PACKAGE_luci-i18n-openvpn-ko is not set
 # CONFIG_PACKAGE_luci-i18n-openvpn-mr is not set
 # CONFIG_PACKAGE_luci-i18n-openvpn-ms is not set
+# CONFIG_PACKAGE_luci-i18n-openvpn-nl is not set
 # CONFIG_PACKAGE_luci-i18n-openvpn-no is not set
 # CONFIG_PACKAGE_luci-i18n-openvpn-pl is not set
 # CONFIG_PACKAGE_luci-i18n-openvpn-pt is not set
@@ -6056,6 +6057,7 @@ CONFIG_PACKAGE_luci-i18n-opkg-zh-cn=y
 # CONFIG_PACKAGE_luci-i18n-p910nd-ko is not set
 # CONFIG_PACKAGE_luci-i18n-p910nd-mr is not set
 # CONFIG_PACKAGE_luci-i18n-p910nd-ms is not set
+# CONFIG_PACKAGE_luci-i18n-p910nd-nl is not set
 # CONFIG_PACKAGE_luci-i18n-p910nd-no is not set
 # CONFIG_PACKAGE_luci-i18n-p910nd-pl is not set
 # CONFIG_PACKAGE_luci-i18n-p910nd-pt is not set
@@ -6088,6 +6090,7 @@ CONFIG_PACKAGE_luci-i18n-p910nd-zh-cn=m
 # CONFIG_PACKAGE_luci-i18n-sqm-ko is not set
 # CONFIG_PACKAGE_luci-i18n-sqm-mr is not set
 # CONFIG_PACKAGE_luci-i18n-sqm-ms is not set
+# CONFIG_PACKAGE_luci-i18n-sqm-nl is not set
 # CONFIG_PACKAGE_luci-i18n-sqm-no is not set
 # CONFIG_PACKAGE_luci-i18n-sqm-pl is not set
 # CONFIG_PACKAGE_luci-i18n-sqm-pt is not set
@@ -7562,7 +7565,7 @@ CONFIG_PACKAGE_xfrm=m
 # Boot Loaders
 #
 # CONFIG_PACKAGE_fconfig is not set
-CONFIG_PACKAGE_uboot-envtools=y
+CONFIG_PACKAGE_uboot-envtools=m
 # end of Boot Loaders
 
 #
@@ -7622,8 +7625,8 @@ CONFIG_PACKAGE_gdisk=y
 # CONFIG_PACKAGE_mtools is not set
 # CONFIG_PACKAGE_parted is not set
 CONFIG_PACKAGE_partx-utils=y
-CONFIG_PACKAGE_sfdisk=y
-CONFIG_PACKAGE_sgdisk=y
+# CONFIG_PACKAGE_sfdisk is not set
+# CONFIG_PACKAGE_sgdisk is not set
 # CONFIG_PACKAGE_uvol is not set
 # CONFIG_PACKAGE_wipefs is not set
 # end of Disc
@@ -7866,10 +7869,8 @@ CONFIG_PACKAGE_usbmuxd=m
 # CONFIG_PACKAGE_acpid is not set
 # CONFIG_PACKAGE_adb is not set
 # CONFIG_PACKAGE_airos-dfs-reset is not set
-# CONFIG_PACKAGE_alpine-keys is not set
-CONFIG_PACKAGE_alpine-repositories=y
 # CONFIG_PACKAGE_ap51-flash is not set
-CONFIG_PACKAGE_apk=y
+# CONFIG_PACKAGE_apk is not set
 # CONFIG_PACKAGE_at is not set
 # CONFIG_PACKAGE_atheepmgr is not set
 # CONFIG_PACKAGE_audit is not set
