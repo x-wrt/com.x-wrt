@@ -132,7 +132,7 @@ for t in $targets; do
 		}
 ##################################
 		}
-		bin=`echo "$bins" | grep $arch | grep -i "\($name-ext4-sysupgrade\|$name-ext4-sdcard\|$name-ext4-factory\|$name-sdcard\|$name-squashfs\|$name-factory\|$name-initramfs-factory\|$name-initramfs-recovery\|$name-preloader\|$name-bl31-uboot\)"`
+		bin=`echo "$bins" | grep $arch | grep -i "\($name-ext4-sysupgrade\|$name-ext4-sdcard\|$name-ext4-factory\|$name-sdcard\|$name-squashfs\|$name-factory\|$name-initramfs-factory\|$name-initramfs-recovery\|$name-preloader\|$name-bl31-uboot\|$name-initramfs-.*-factory\)"`
 		test -n "$bin" || {
 			name=`echo $name | tr _ -`
 			bin=`echo "$bins" | grep -i "\($name-ex\|$name-sq\|$name-fa\|$name-ub\|$name-ue\|$name-in\)"`
