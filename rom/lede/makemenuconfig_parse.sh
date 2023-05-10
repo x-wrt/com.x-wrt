@@ -831,6 +831,7 @@ for t in $targets; do
 			flash_gt8m=1
 		;;
 		# <= 8M
+		TARGET_DEVICE_ramips_mt76x8_DEVICE_xwrt_xf-949|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_tenbay_ms3000k|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_totolink_a7000r|\
 		TARGET_DEVICE_ramips_mt76x8_DEVICE_xiaomi_mi-ra75|\
@@ -1114,6 +1115,7 @@ for t in $targets; do
 			has_usb=1
 		;;
 		#with usb2
+		TARGET_DEVICE_ramips_mt76x8_DEVICE_xwrt_xf-949|\
 		TARGET_DEVICE_ath79_nand_DEVICE_glinet_gl-x1200-nor|\
 		TARGET_DEVICE_ath79_nand_DEVICE_glinet_gl-x1200-nor-nand|\
 		TARGET_DEVICE_ramips_mt76x8_DEVICE_hiwifi_hc5611|\
