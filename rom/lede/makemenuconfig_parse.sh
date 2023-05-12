@@ -460,7 +460,7 @@ for t in $targets; do
 		TARGET_DEVICE_mvebu_cortexa9_DEVICE_linksys_wrt3200acm|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_zbtlink_zbt-wg3526-32m|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_netgear_r6220)
-			mods="$modes $extra_vpn $strongswan"
+			mods="$mods $extra_vpn $strongswan"
 		;;
 	esac
 	case $t in
@@ -634,6 +634,7 @@ for t in $targets; do
 			extra_utils=1
 		;;
 		#>8M flash <14M
+		TARGET_DEVICE_ath79_nand_DEVICE_glinet_gl-e750|\
 		TARGET_DEVICE_ramips_mt7620_DEVICE_bolt_bl201|\
 		TARGET_DEVICE_ath79_nand_DEVICE_glinet_gl-x1200-nor|\
 		TARGET_DEVICE_ath79_nand_DEVICE_glinet_gl-x1200-nor-nand|\
@@ -1115,6 +1116,7 @@ for t in $targets; do
 			has_usb=1
 		;;
 		#with usb2
+		TARGET_DEVICE_ath79_nand_DEVICE_glinet_gl-e750|\
 		TARGET_DEVICE_ramips_mt76x8_DEVICE_xwrt_xf-949|\
 		TARGET_DEVICE_ath79_nand_DEVICE_glinet_gl-x1200-nor|\
 		TARGET_DEVICE_ath79_nand_DEVICE_glinet_gl-x1200-nor-nand|\
