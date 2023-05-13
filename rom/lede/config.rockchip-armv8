@@ -2658,6 +2658,7 @@ CONFIG_ZABBIX_POSTGRESQL=y
 # Boot Loaders
 #
 CONFIG_PACKAGE_arm-trusted-firmware-rockchip=y
+CONFIG_PACKAGE_u-boot-nanopi-r2c-rk3328=y
 CONFIG_PACKAGE_u-boot-nanopi-r2s-rk3328=y
 CONFIG_PACKAGE_u-boot-nanopi-r4s-rk3399=y
 # end of Boot Loaders
