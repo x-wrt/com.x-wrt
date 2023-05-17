@@ -53,6 +53,14 @@ test $enabled -eq 0 && {
 	uci delete wireless.meshx0 >/dev/null 2>&1
 	uci delete wireless.meshx1 >/dev/null 2>&1
 
+	I=0
+	while uci get wireless.@wifi-iface[$I] >/dev/null 2>&1; do
+		echo "$(uci get wireless.@wifi-iface[$I].network)" | grep -q "^meshx" && {
+			uci set wireless.@wifi-iface[$I].network="lan"
+		}
+		I=$((I+1))
+	done
+
 	uci delete dhcp.meshx0 >/dev/null 2>&1
 	uci delete network.meshx0 >/dev/null 2>&1
 	uci delete firewall.fakemesh >/dev/null 2>&1
