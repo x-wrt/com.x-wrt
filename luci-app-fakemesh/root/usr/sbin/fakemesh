@@ -103,6 +103,7 @@ test $enabled -eq 0 && {
 
 	uci changes
 
+	uci commit fakemesh
 	uci commit wireless
 	uci commit dhcp
 	uci commit firewall
