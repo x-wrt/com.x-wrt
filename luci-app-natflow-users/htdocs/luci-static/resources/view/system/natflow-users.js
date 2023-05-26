@@ -21,12 +21,42 @@ var callKickUser = rpc.declare({
         expect: { result : "OK" },
 });
 
+var callBlockUser = rpc.declare({
+        object: 'luci.natflow',
+        method: 'block_user',
+        params: [ 'token' ],
+        expect: { result : "OK" },
+});
+
+var callAllowUser = rpc.declare({
+        object: 'luci.natflow',
+        method: 'allow_user',
+        params: [ 'token' ],
+        expect: { result : "OK" },
+});
+
 var handleKickUser = function(num, ev) {
         dom.parent(ev.currentTarget, '.tr').style.opacity = 0.5;
         ev.currentTarget.classList.add('spinning');
         ev.currentTarget.disabled = true;
         ev.currentTarget.blur();
         callKickUser(num);
+};
+
+var handleBlockUser = function(num, ev) {
+        dom.parent(ev.currentTarget, '.tr').style.opacity = 0.5;
+        ev.currentTarget.classList.add('spinning');
+        ev.currentTarget.disabled = true;
+        ev.currentTarget.blur();
+        callBlockUser(num);
+};
+
+var handleAllowUser = function(num, ev) {
+        dom.parent(ev.currentTarget, '.tr').style.opacity = 0.5;
+        ev.currentTarget.classList.add('spinning');
+        ev.currentTarget.disabled = true;
+        ev.currentTarget.blur();
+        callAllowUser(num);
 };
 
 var pollInterval = 5;
@@ -85,10 +115,15 @@ return view.extend({
 				name ? "%s<br />(%s)".format(mac, name) : mac,
 				'%1024.2mB (%d %s)<br />%s'.format(u.rx_bytes, u.rx_pkts, _('Pkts.'), rate(u.rx_speed_bytes)),
 				'%1024.2mB (%d %s)<br />%s'.format(u.tx_bytes, u.tx_pkts, _('Pkts.'), rate(u.tx_speed_bytes)),
+				u.status == 6 ?
 				E('button', {
 					'class': 'btn cbi-button-remove',
-					'click': L.bind(handleKickUser, this, u.ip)
-				}, [ _('Delete') ])
+					'click': L.bind(handleAllowUser, this, u.ip)
+				}, [ _('Allow') ]) :
+				E('button', {
+					'class': 'btn cbi-button-remove',
+					'click': L.bind(handleBlockUser, this, u.ip)
+				}, [ _('Block') ])
 			];
 		});
 
@@ -136,10 +171,15 @@ return view.extend({
 					name ? "%s<br />(%s)".format(mac, name) : mac,
 					'%1024.2mB (%d %s)<br />%s'.format(u.rx_bytes, u.rx_pkts, _('Pkts.'), rate(u.rx_speed_bytes)),
 					'%1024.2mB (%d %s)<br />%s'.format(u.tx_bytes, u.tx_pkts, _('Pkts.'), rate(u.tx_speed_bytes)),
+					u.status == 6 ?
 					E('button', {
 						'class': 'btn cbi-button-remove',
-						'click': L.bind(handleKickUser, this, u.ip)
-					}, [ _('Delete') ])
+						'click': L.bind(handleAllowUser, this, u.ip)
+					}, [ _('Allow') ]) :
+					E('button', {
+						'class': 'btn cbi-button-remove',
+						'click': L.bind(handleBlockUser, this, u.ip)
+					}, [ _('Block') ])
 				];
 			});
 

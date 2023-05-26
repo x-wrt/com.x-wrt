@@ -9,7 +9,7 @@
 		},
 		"write": {
 			"ubus": {
-				"luci.natflow": [ "kick_user" ]
+				"luci.natflow": [ "kick_user", "block_user", "allow_user" ]
 			},
 			"uci": [ "natflow" ]
 		}
