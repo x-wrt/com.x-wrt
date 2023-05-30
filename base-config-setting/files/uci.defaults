@@ -382,10 +382,10 @@ test $version -lt 19 && {
 	version=19
 }
 
-test $version -lt 20 && {
+test $version -lt 21 && {
 	#fix nginx upgrade
 	test -f /rom/etc/nginx/uci.conf.template && cp /rom/etc/nginx/uci.conf.template /etc/nginx/uci.conf.template
-	version=20
+	version=21
 }
 
 uci set fstab.@global[0].anon_mount_bak="$(uci get fstab.@global[0].anon_mount_bak 2>/dev/null || uci get fstab.@global[0].anon_mount 2>/dev/null)"
