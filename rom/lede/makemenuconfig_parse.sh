@@ -375,6 +375,7 @@ for t in $targets; do
 		TARGET_DEVICE_mediatek_filogic_DEVICE_tenbay_ac-2210e|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_tenbay_ac-2205ex|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_tenbay_wr3000k|\
+		TARGET_DEVICE_mediatek_filogic_DEVICE_qihoo_360t7-ubootlayout|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_qihoo_360t7|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_tplink_tl-xdr6086|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_tplink_tl-xdr6088|\
@@ -473,6 +474,7 @@ for t in $targets; do
 		TARGET_DEVICE_mediatek_filogic_DEVICE_tenbay_ac-2210e|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_tenbay_ac-2205ex|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_tenbay_wr3000k|\
+		TARGET_DEVICE_mediatek_filogic_DEVICE_qihoo_360t7-ubootlayout|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_qihoo_360t7|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_tplink_tl-xdr6086|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_tplink_tl-xdr6088|\
@@ -1305,6 +1307,7 @@ for t in $targets; do
 		TARGET_DEVICE_mediatek_filogic_DEVICE_tenbay_ac-2210e|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_tenbay_ac-2205ex|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_tenbay_wr3000k|\
+		TARGET_DEVICE_mediatek_filogic_DEVICE_qihoo_360t7-ubootlayout|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_qihoo_360t7|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_tenbay_ms3000k|\
 		TARGET_DEVICE_ipq807x_generic_DEVICE_redmi_ax6|\
