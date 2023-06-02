@@ -2878,14 +2878,14 @@ CONFIG_PACKAGE_ipq-wifi-wallys_dr40x9=m
 # CONFIG_PACKAGE_aircard-pcmcia-firmware is not set
 # CONFIG_PACKAGE_amdgpu-firmware is not set
 # CONFIG_PACKAGE_ar3k-firmware is not set
-CONFIG_PACKAGE_ath10k-board-qca4019=y
+CONFIG_PACKAGE_ath10k-board-qca4019=m
 # CONFIG_PACKAGE_ath10k-board-qca9377 is not set
 # CONFIG_PACKAGE_ath10k-board-qca9887 is not set
 CONFIG_PACKAGE_ath10k-board-qca9888=m
 # CONFIG_PACKAGE_ath10k-board-qca988x is not set
 CONFIG_PACKAGE_ath10k-board-qca9984=m
 # CONFIG_PACKAGE_ath10k-board-qca99x0 is not set
-CONFIG_PACKAGE_ath10k-firmware-qca4019=y
+CONFIG_PACKAGE_ath10k-firmware-qca4019=m
 CONFIG_PACKAGE_ath10k-firmware-qca4019-ct=m
 # CONFIG_PACKAGE_ath10k-firmware-qca4019-ct-full-htt is not set
 # CONFIG_PACKAGE_ath10k-firmware-qca4019-ct-htt is not set
