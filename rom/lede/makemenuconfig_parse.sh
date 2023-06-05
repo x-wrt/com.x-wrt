@@ -840,6 +840,7 @@ for t in $targets; do
 			flash_gt8m=1
 		;;
 		# <= 8M
+		TARGET_DEVICE_ath79_generic_DEVICE_tplink_tl-wdr6500-v2|\
 		TARGET_DEVICE_ramips_mt76x8_DEVICE_xwrt_xf-949|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_tenbay_ms3000k|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_totolink_a7000r|\
@@ -1233,6 +1234,7 @@ for t in $targets; do
 		TARGET_DEVICE_ath79_generic_DEVICE_ubnt_unifi|\
 		TARGET_DEVICE_ath79_generic_DEVICE_ubnt_unifiac-pro|\
 		TARGET_DEVICE_ath79_generic_DEVICE_tplink_tl-wdr4900-v2-16m|\
+		TARGET_DEVICE_ath79_generic_DEVICE_tplink_tl-wdr6500-v2|\
 		TARGET_DEVICE_ath79_generic_DEVICE_tplink_tl-wdr4900-v2|\
 		TARGET_DEVICE_ath79_generic_DEVICE_iodata_wn-ac1600dgr2|\
 		TARGET_DEVICE_ath79_generic_DEVICE_tplink_tl-wr2543-v1|\
