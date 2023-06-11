@@ -15,6 +15,7 @@ config.mediatek-filogic
 config.bcm27xx-bcm2710
 config.bcm27xx-bcm2711
 config.rockchip-armv8
+config.armsr-armv8
 config.ipq806x-generic
 config.ipq807x-generic
 config.bcm53xx-generic
