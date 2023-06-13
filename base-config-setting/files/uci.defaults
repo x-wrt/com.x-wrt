@@ -94,7 +94,7 @@ test $version -lt 2 && {
 			set network.@device[-1].name='macvlan0'
 			set network.@device[-1].type='macvlan'
 			set network.@device[-1].ifname="$device"
-			set network.@device[-1].macaddr="${MACADDR:0:12}:${MACmd5:0:2}:${MACmd5:2:2}"
+			set network.@device[-1].macaddr="${MACADDR:0:12}${MACmd5:0:2}:${MACmd5:2:2}"
 			commit network
 		EOT
 		fi
