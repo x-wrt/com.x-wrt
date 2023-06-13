@@ -73,6 +73,7 @@ test $version -lt 1 && {
 }
 
 test $version -lt 2 && {
+	MACmd5=$(echo -n $MACADDR | md5sum | tr a-f A-F)
 	if ! uci get network.wan >/dev/null 2>&1 && modinfo macvlan >/dev/null 2>&1; then
 		local lan_idx=0
 		while uci get network.@device[$lan_idx] >/dev/null 2>&1 && [ $(uci get network.@device[$lan_idx].name) != "br-lan" ]; do lan_idx=$((lan_idx+1)); done
@@ -93,6 +94,7 @@ test $version -lt 2 && {
 			set network.@device[-1].name='macvlan0'
 			set network.@device[-1].type='macvlan'
 			set network.@device[-1].ifname="$device"
+			set network.@device[-1].macaddr="${MACADDR:0:12}:${MACmd5:0:2}:${MACmd5:2:2}"
 			commit network
 		EOT
 		fi
