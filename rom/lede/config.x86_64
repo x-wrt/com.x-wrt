@@ -8609,7 +8609,7 @@ CONFIG_PACKAGE_natflow-boot=y
 #
 # Filesystems
 #
-CONFIG_PACKAGE_kmod-exfat-linux=y
+# CONFIG_PACKAGE_kmod-exfat-linux is not set
 # end of Filesystems
 
 #
