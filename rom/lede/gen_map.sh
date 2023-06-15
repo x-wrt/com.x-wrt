@@ -86,7 +86,10 @@ for t in $targets; do
 	name=`echo $tt | cut -d: -f3`
 	echo $tt | cut -d: -f2 | sed 's/_/ /' | while read arch subarch; do
 		test -n "$arch" || continue
-		dis=`cat tmp/.targetinfo | grep "Target: $arch/$subarch$" -A30 | grep "Target-Profile: DEVICE_$name$" -A1 | grep "Target-Profile-Name: " | sed 's/Target-Profile-Name: //'`
+		dis=`sed -n "/Target: $arch\/$subarch/,/Target: .*/p" tmp/.targetinfo | sed '1d;$d' | grep "Target-Profile: DEVICE_$name$" -A1 | grep "Target-Profile-Name: " | sed 's/Target-Profile-Name: //'`
+		#dis=`cat tmp/.targetinfo | grep "Target: $arch/$subarch$" -A30 | grep "Target-Profile: DEVICE_$name$" -A1 | grep "Target-Profile-Name: " | sed 's/Target-Profile-Name: //'`
+		test -n "$dis" || \
+		dis=`cat tmp/.targetinfo | grep "Target-Profile: DEVICE_$name$" -A1 | grep "Target-Profile-Name: " | sed 's/Target-Profile-Name: //'`
 		#dis=`cat tmp/.config-target.in | grep "^config.*_DEVICE_$name$" -A1 | grep "bool .*" | cut -d\" -f2`
 		test -n "$dis" || {
 ##################################
