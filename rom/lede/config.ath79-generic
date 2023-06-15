@@ -581,7 +581,7 @@ CONFIG_TARGET_DEVICE_PACKAGES_ath79_generic_DEVICE_letv_lba-047-ch="dawn kmod-if
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_nec_wg800hp is not set
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_netgear_ex7300-v2 is not set
 CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_netgear_ex7300=y
-CONFIG_TARGET_DEVICE_PACKAGES_ath79_generic_DEVICE_netgear_ex7300="ath10k-board-qca9984 ath10k-board-qca99x0 ath10k-firmware-qca9984-ct ath10k-firmware-qca99x0-ct kmod-ath10k-ct kmod-hwmon-core wpad-basic-mbedtls"
+CONFIG_TARGET_DEVICE_PACKAGES_ath79_generic_DEVICE_netgear_ex7300="ath10k-board-qca99x0 ath10k-firmware-qca99x0-ct kmod-ath10k-ct kmod-hwmon-core wpad-basic-mbedtls"
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_netgear_wndap360 is not set
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_netgear_wndr3700 is not set
 CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_netgear_wndr3700-v2=y
@@ -1211,7 +1211,7 @@ CONFIG_TARGET_INIT_CMD="/sbin/init"
 CONFIG_TARGET_INIT_SUPPRESS_STDERR=y
 CONFIG_VERSIONOPT=y
 CONFIG_VERSION_DIST="X-WRT"
-CONFIG_VERSION_NUMBER="23.06_b202306142256"
+CONFIG_VERSION_NUMBER="23.06_b202306151802"
 CONFIG_VERSION_CODE="Lunar"
 CONFIG_VERSION_REPO="http://downloads.openwrt.org/snapshots"
 CONFIG_VERSION_HOME_URL="https://x-wrt.com/"
