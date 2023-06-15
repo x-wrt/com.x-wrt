@@ -268,7 +268,7 @@ exclude_modules()
 rm -rf /tmp/config_lede
 mkdir /tmp/config_lede
 cat .config | grep TARGET_DEVICE_.*=y | sed 's/CONFIG_//;s/=y//' | while read target; do
-	cat tmp/.config-target.in | grep "menuconfig $target" -A200 | while read line; do
+	cat tmp/.config-target.in | sed -n "/menuconfig $target$/,/menuconfig .*/p" | while read line; do
 		test -n "$line" || break
 		echo $line | grep -q 'select MODULE_DEFAULT' && {
 			echo $line | awk '{print $2}' | sed 's/MODULE_DEFAULT_//'
@@ -312,7 +312,7 @@ get_target_mods()
 {
 	local addms_tmp
 	local addms
-	addms_tmp=$(cat tmp/.config-feeds.in tmp/.config-target.in tmp/.config-package.in | grep "config $1$" -A80 | while read line; do
+	addms_tmp=$(cat tmp/.config-feeds.in tmp/.config-target.in tmp/.config-package.in | sed -n "/menuconfig $1$/,/menuconfig .*/p" | while read line; do
 		test -n "$line" || break
 		echo $line | grep "select MODULE_DEFAULT_" | awk '{print $2}' | grep MODULE_DEFAULT_ | sed 's/MODULE_DEFAULT_//'
 	done)
@@ -330,7 +330,7 @@ get_deps()
 	local addms_tmp
 	local addms
 	local addm
-	addms_tmp=$(cat tmp/.config-feeds.in tmp/.config-target.in tmp/.config-package.in | grep "config PACKAGE_$1$" -A40 | while read line; do
+	addms_tmp=$(cat tmp/.config-feeds.in tmp/.config-target.in tmp/.config-package.in | sed -n "/config PACKAGE_$1$/,/config PACKAGE_.*/p" | while read line; do
 		test -n "$line" || break
 		echo $line | grep "select PACKAGE_" | awk '{print $2}' | grep PACKAGE_ | sed 's/PACKAGE_//'
 		echo $line | grep "depends on PACKAGE_" | awk '{print $3}' | grep PACKAGE_ | sed 's/PACKAGE_//'
@@ -356,6 +356,9 @@ get_deps()
 }
 
 for t in $targets; do
+	touch /tmp/config_lede/$t.run
+	(
+	echo running /tmp/config_lede/$t.run
 	us=$(for u in $uniqs; do
 		is_in_set $u /tmp/config_lede/$t && echo $u
 	done)
@@ -1539,6 +1542,18 @@ for t in $targets; do
 	mods=`exclude_modules $mods`
 	#echo $tname=$mods
 	sed -i "s/$tname=\".*\"/$tname=\"$mods\"/" ./.config
+	rm -f /tmp/config_lede/$t.run
+	echo exit /tmp/config_lede/$t.run
+	) &
+	while :; do
+		test $(ls /tmp/config_lede/*.run | wc -l) -lt 8 && break
+		sleep 2
+	done
+done
+sleep 1
+while :; do
+	test $(ls /tmp/config_lede/*.run | wc -l) -eq 0 && break
+	sleep 2
 done
 
 rm -rf /tmp/config_lede
