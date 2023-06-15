@@ -330,6 +330,13 @@ get_deps()
 	local addms_tmp
 	local addms
 	local addm
+	xid=$(echo -n $1 | base64 | tr = _)
+	addms=$(eval "echo \${DEPS_cache_$xid}")
+	test -n "$addms" && {
+		#echo DEPS_cache_$1=$addms 1>&2
+		echo $addms
+		return 0
+	}
 	addms_tmp=$(cat tmp/.config-feeds.in tmp/.config-target.in tmp/.config-package.in | sed -n "/config PACKAGE_$1$/,/config PACKAGE_.*/p" | while read line; do
 		test -n "$line" || break
 		echo $line | grep "select PACKAGE_" | awk '{print $2}' | grep PACKAGE_ | sed 's/PACKAGE_//'
@@ -354,6 +361,11 @@ get_deps()
 	done
 	echo $addms
 }
+
+for x in $modules; do
+       xid=$(echo -n $x | base64 | tr = _)
+       export DEPS_cache_$xid="$(get_deps $x)"
+done
 
 for t in $targets; do
 	touch /tmp/config_lede/$t.run
@@ -1541,7 +1553,7 @@ for t in $targets; do
 	mods=`get_modules_only $mods`
 	mods=`exclude_modules $mods`
 	#echo $tname=$mods
-	while ! mkdir /tmp/config_lede/lck; do sleep 1; done
+	while ! mkdir /tmp/config_lede/lck 2>/dev/null; do sleep 1; done
 	sed -i "s/$tname=\".*\"/$tname=\"$mods\"/" ./.config
 	rmdir /tmp/config_lede/lck
 	rm -f /tmp/config_lede/$t.run
@@ -1554,7 +1566,7 @@ for t in $targets; do
 done
 sleep 1
 while :; do
-	test $(ls /tmp/config_lede/*.run | wc -l) -eq 0 && break
+	ls /tmp/config_lede/*.run &>/dev/null || break
 	sleep 2
 done
 
