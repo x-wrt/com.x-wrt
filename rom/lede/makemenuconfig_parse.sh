@@ -1541,7 +1541,9 @@ for t in $targets; do
 	mods=`get_modules_only $mods`
 	mods=`exclude_modules $mods`
 	#echo $tname=$mods
+	while ! mkdir /tmp/config_lede/lck; do sleep 1; done
 	sed -i "s/$tname=\".*\"/$tname=\"$mods\"/" ./.config
+	rmdir /tmp/config_lede/lck
 	rm -f /tmp/config_lede/$t.run
 	echo exit /tmp/config_lede/$t.run
 	) &
