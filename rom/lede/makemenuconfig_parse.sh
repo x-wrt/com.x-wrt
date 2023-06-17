@@ -383,7 +383,7 @@ for t in $targets; do
 	case $t in
 		#>=32M flash
 		TARGET_DEVICE_armsr_armv8_DEVICE_generic|\
-		TARGET_DEVICE_ipq807x_generic_DEVICE_netgear_wax218|\
+		TARGET_DEVICE_qualcommax_ipq807x_DEVICE_netgear_wax218|\
 		TARGET_DEVICE_ipq806x_generic_DEVICE_netgear_xr450|\
 		TARGET_DEVICE_ipq40xx_generic_DEVICE_glinet_gl-ap1300|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_tenbay_wr3000k-gsw-emmc-nor|\
@@ -397,9 +397,9 @@ for t in $targets; do
 		TARGET_DEVICE_mediatek_filogic_DEVICE_tplink_tl-xdr6086|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_tplink_tl-xdr6088|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_tplink_tl-xdr4288|\
-		TARGET_DEVICE_ipq807x_generic_DEVICE_redmi_ax6|\
-		TARGET_DEVICE_ipq807x_generic_DEVICE_xiaomi_ax3600|\
-		TARGET_DEVICE_ipq807x_generic_DEVICE_xiaomi_ax9000|\
+		TARGET_DEVICE_qualcommax_ipq807x_DEVICE_redmi_ax6|\
+		TARGET_DEVICE_qualcommax_ipq807x_DEVICE_xiaomi_ax3600|\
+		TARGET_DEVICE_qualcommax_ipq807x_DEVICE_xiaomi_ax9000|\
 		TARGET_DEVICE_mediatek_mt7622_DEVICE_netgear_wax206|\
 		TARGET_DEVICE_ipq40xx_generic_DEVICE_glinet_gl-a1300|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_netgear_wax202|\
@@ -487,7 +487,7 @@ for t in $targets; do
 	case $t in
 		#>=14M flash
 		TARGET_DEVICE_armsr_armv8_DEVICE_generic|\
-		TARGET_DEVICE_ipq807x_generic_DEVICE_netgear_wax218|\
+		TARGET_DEVICE_qualcommax_ipq807x_DEVICE_netgear_wax218|\
 		TARGET_DEVICE_ipq806x_generic_DEVICE_netgear_xr450|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_tenbay_wr3000k-gsw-emmc-nor|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_glinet_gl-mt3000|\
@@ -501,10 +501,10 @@ for t in $targets; do
 		TARGET_DEVICE_mediatek_filogic_DEVICE_tplink_tl-xdr6088|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_tplink_tl-xdr4288|\
 		TARGET_DEVICE_ipq806x_generic_DEVICE_askey_rt4230w-rev6|\
-		TARGET_DEVICE_ipq807x_generic_DEVICE_qnap_301w|\
-		TARGET_DEVICE_ipq807x_generic_DEVICE_redmi_ax6|\
-		TARGET_DEVICE_ipq807x_generic_DEVICE_xiaomi_ax3600|\
-		TARGET_DEVICE_ipq807x_generic_DEVICE_xiaomi_ax9000|\
+		TARGET_DEVICE_qualcommax_ipq807x_DEVICE_qnap_301w|\
+		TARGET_DEVICE_qualcommax_ipq807x_DEVICE_redmi_ax6|\
+		TARGET_DEVICE_qualcommax_ipq807x_DEVICE_xiaomi_ax3600|\
+		TARGET_DEVICE_qualcommax_ipq807x_DEVICE_xiaomi_ax9000|\
 		TARGET_DEVICE_mediatek_mt7622_DEVICE_netgear_wax206|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_raisecom_msg1500-x-00|\
 		TARGET_DEVICE_ipq40xx_generic_DEVICE_glinet_gl-a1300|\
@@ -1326,7 +1326,7 @@ for t in $targets; do
 			has_usb=1
 		;;
 		#no usb
-		TARGET_DEVICE_ipq807x_generic_DEVICE_netgear_wax218|\
+		TARGET_DEVICE_qualcommax_ipq807x_DEVICE_netgear_wax218|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_tenbay_wr3000k-gsw-emmc-nor|\
 		TARGET_DEVICE_ramips_mt76x8_DEVICE_xiaomi_mi-ra75|\
 		TARGET_DEVICE_ramips_mt7620_DEVICE_bolt_bl201|\
@@ -1337,10 +1337,10 @@ for t in $targets; do
 		TARGET_DEVICE_mediatek_filogic_DEVICE_qihoo_360t7-ubootlayout|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_qihoo_360t7|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_tenbay_ms3000k|\
-		TARGET_DEVICE_ipq807x_generic_DEVICE_redmi_ax6|\
-		TARGET_DEVICE_ipq807x_generic_DEVICE_xiaomi_ax3600|\
-		TARGET_DEVICE_ipq807x_generic_DEVICE_xiaomi_ax9000|\
-		TARGET_DEVICE_ipq807x_generic_DEVICE_qnap_301w|\
+		TARGET_DEVICE_qualcommax_ipq807x_DEVICE_redmi_ax6|\
+		TARGET_DEVICE_qualcommax_ipq807x_DEVICE_xiaomi_ax3600|\
+		TARGET_DEVICE_qualcommax_ipq807x_DEVICE_xiaomi_ax9000|\
+		TARGET_DEVICE_qualcommax_ipq807x_DEVICE_qnap_301w|\
 		TARGET_DEVICE_mediatek_mt7622_DEVICE_netgear_wax206|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_ruijie_rg-ew1800gx|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_haier_har-20s2u1|\
