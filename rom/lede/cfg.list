@@ -17,7 +17,7 @@ config.bcm27xx-bcm2711
 config.rockchip-armv8
 config.armsr-armv8
 config.ipq806x-generic
-config.ipq807x-generic
+config.qualcommax_ipq807x
 config.bcm53xx-generic
 config.mvebu-cortexa9
 config.kirkwood-generic
