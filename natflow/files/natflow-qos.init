@@ -81,7 +81,7 @@ natflow_qos_setup()
 		user=qos_u$idx
 	fi
 
-	if [ "$(echo $user_port | sed 's/,/ /g' | wc -w)" -gt 1 ]; then
+	if [ "$(echo $user_port | sed 's/,/ /g;s/-/ /g' | wc -w)" -gt 1 ]; then
 		ipset create qos_up$idx bitmap:port range 0-65535 2>/dev/null
 		ipset flush qos_up$idx
 		for port in $(echo $user_port | sed 's/,/ /g'); do
@@ -100,7 +100,7 @@ natflow_qos_setup()
 		remote=qos_r$idx
 	fi
 
-	if [ "$(echo $remote_port | sed 's/,/ /g' | wc -w)" -gt 1 ]; then
+	if [ "$(echo $remote_port | sed 's/,/ /g;s/-/ /g' | wc -w)" -gt 1 ]; then
 		ipset create qos_rp$idx bitmap:port range 0-65535 2>/dev/null
 		ipset flush qos_rp$idx
 		for port in $(echo $remote_port | sed 's/,/ /g'); do
