@@ -137,7 +137,7 @@ natflow_qos_zone_setup_tc()
 		#echo $type $idx=$IFN >$DEVCTL
 		case $type in
 		lan_zone)
-			ifconfig -a | grep "^$IFN" | awk '{print $1}' | while read lan; do
+			ifconfig -a | grep "^$IFN " | awk '{print $1}' | while read lan; do
 				if [ "${lan}" = "${lan//:}" ]; then
 					qos_id=0
 					tc qdisc add dev $lan root handle 1: htb
@@ -158,7 +158,7 @@ natflow_qos_zone_setup_tc()
 			done
 		;;
 		wan_zone)
-			ifconfig -a | grep "^$IFN" | awk '{print $1}' | while read wan; do
+			ifconfig -a | grep "^$IFN " | awk '{print $1}' | while read wan; do
 				if [ "${wan}" = "${wan//:}" ]; then
 					qos_id=0
 					tc qdisc add dev $wan root handle 1: htb
