@@ -382,6 +382,7 @@ for t in $targets; do
 	excludes="$excludes_basic"
 	case $t in
 		#>=32M flash
+		TARGET_DEVICE_mediatek_filogic_DEVICE_netgear_wax220|\
 		TARGET_DEVICE_armsr_armv8_DEVICE_generic|\
 		TARGET_DEVICE_qualcommax_ipq807x_DEVICE_netgear_wax218|\
 		TARGET_DEVICE_ipq806x_generic_DEVICE_netgear_xr450|\
@@ -486,6 +487,7 @@ for t in $targets; do
 	esac
 	case $t in
 		#>=14M flash
+		TARGET_DEVICE_mediatek_filogic_DEVICE_netgear_wax220|\
 		TARGET_DEVICE_armsr_armv8_DEVICE_generic|\
 		TARGET_DEVICE_qualcommax_ipq807x_DEVICE_netgear_wax218|\
 		TARGET_DEVICE_ipq806x_generic_DEVICE_netgear_xr450|\
@@ -1326,6 +1328,7 @@ for t in $targets; do
 			has_usb=1
 		;;
 		#no usb
+		TARGET_DEVICE_mediatek_filogic_DEVICE_netgear_wax220|\
 		TARGET_DEVICE_qualcommax_ipq807x_DEVICE_netgear_wax218|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_tenbay_wr3000k-gsw-emmc-nor|\
 		TARGET_DEVICE_ramips_mt76x8_DEVICE_xiaomi_mi-ra75|\
