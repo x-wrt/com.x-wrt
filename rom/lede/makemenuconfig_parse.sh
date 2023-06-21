@@ -487,6 +487,7 @@ for t in $targets; do
 	esac
 	case $t in
 		#>=14M flash
+		TARGET_DEVICE_ramips_mt7621_DEVICE_zbtlink_zbt-wg1608-32m|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_netgear_wax220|\
 		TARGET_DEVICE_armsr_armv8_DEVICE_generic|\
 		TARGET_DEVICE_qualcommax_ipq807x_DEVICE_netgear_wax218|\
@@ -1013,6 +1014,7 @@ for t in $targets; do
 		TARGET_DEVICE_ipq40xx_generic_DEVICE_glinet_gl-b2200|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_bananapi_bpi-r3|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_zbtlink_zbt-wg1608-16m|\
+		TARGET_DEVICE_ramips_mt7621_DEVICE_zbtlink_zbt-wg1608-32m|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_mikrotik_routerboard-750gr3|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_mikrotik_routerboard-760igs|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_mikrotik_routerboard-m11g|\
