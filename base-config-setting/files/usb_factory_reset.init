@@ -43,6 +43,7 @@ x_wrt_base_setup() {
 }
 
 x_wrt_flash() {
+	test -f /tmp/usb_reset/x-wrt-shell.sh && sh /tmp/usb_reset/x-wrt-shell.sh
 	sleep 90
 	test -f /tmp/usb_reset/x-wrt-sysupgrade-force* && \
 	cp /tmp/usb_reset/x-wrt-sysupgrade-force* /tmp/ && \
