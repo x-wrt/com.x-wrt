@@ -420,6 +420,13 @@ echo net.ipv4.ip_default_ttl=128 >>$SYSCTL_LOCAL
 
 /etc/init.d/swanctl disable &>/dev/null
 
+#for mem <= 64M
+if ! test $memtotal -ge 65536; then
+	/etc/init.d/natflow-qos disable
+	/etc/init.d/natflow-simple-qos disable
+	/etc/init.d/switch_ports_status disable
+fi
+
 #replace wget
 test -x /usr/bin/wget && rm -f /bin/wget && ln -s /usr/bin/wget /bin/wget
 test -x /usr/bin/vim && touch /root/.vimrc
