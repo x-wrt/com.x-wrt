@@ -622,8 +622,7 @@ CONFIG_TARGET_DEVICE_PACKAGES_ath79_generic_DEVICE_netgear_wnr2200-16m="blockd b
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_openmesh_om5p-ac-v1 is not set
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_openmesh_om5p-ac-v2 is not set
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_openmesh_om5p-an is not set
-CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_phicomm_k2t=y
-CONFIG_TARGET_DEVICE_PACKAGES_ath79_generic_DEVICE_phicomm_k2t="ath10k-board-qca9888 ath10k-firmware-qca9888-ct kmod-ath10k-ct-smallbuffers kmod-hwmon-core kmod-leds-reset wpad-basic-mbedtls"
+# CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_phicomm_k2t is not set
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_pisen_wmm003n is not set
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_pisen_ts-d084 is not set
 CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_pisen_wmb001n=y

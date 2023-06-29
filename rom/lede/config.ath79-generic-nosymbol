@@ -601,7 +601,8 @@ CONFIG_TARGET_DEVICE_PACKAGES_ath79_generic_DEVICE_netgear_wnr2200-8m="blockd bl
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_openmesh_om5p-ac-v1 is not set
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_openmesh_om5p-ac-v2 is not set
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_openmesh_om5p-an is not set
-# CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_phicomm_k2t is not set
+CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_phicomm_k2t=y
+CONFIG_TARGET_DEVICE_PACKAGES_ath79_generic_DEVICE_phicomm_k2t="ath10k-board-qca9888 ath10k-firmware-qca9888-ct kmod-ath10k-ct-smallbuffers kmod-hwmon-core kmod-leds-reset wpad-basic-mbedtls"
 CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_pisen_wmm003n=y
 CONFIG_TARGET_DEVICE_PACKAGES_ath79_generic_DEVICE_pisen_wmm003n="blockd block-mount kmod-fs-autofs4 kmod-fs-exfat kmod-fs-ntfs3 kmod-lib-crc16 kmod-mii kmod-nls-cp437 kmod-phy-ath79-usb kmod-usb2 kmod-usb-chipidea kmod-usb-chipidea2 kmod-usb-core kmod-usb-ehci kmod-usb-gadget kmod-usb-net kmod-usb-net-cdc-ether kmod-usb-net-rndis kmod-usb-ohci kmod-usb-phy-nop kmod-usb-roles kmod-usb-storage wpad-basic-mbedtls"
 CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_pisen_ts-d084=y
