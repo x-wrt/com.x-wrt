@@ -100,6 +100,7 @@ CONFIG_TARGET_MULTI_PROFILE=y
 # CONFIG_TARGET_ath79_generic_DEVICE_comfast_cf-e313ac is not set
 # CONFIG_TARGET_ath79_generic_DEVICE_comfast_cf-e314n-v2 is not set
 # CONFIG_TARGET_ath79_generic_DEVICE_comfast_cf-e375ac is not set
+# CONFIG_TARGET_ath79_generic_DEVICE_comfast_cf-e380ac-v2 is not set
 # CONFIG_TARGET_ath79_generic_DEVICE_comfast_cf-e5 is not set
 # CONFIG_TARGET_ath79_generic_DEVICE_comfast_cf-e560ac is not set
 # CONFIG_TARGET_ath79_generic_DEVICE_comfast_cf-ew72 is not set
@@ -477,6 +478,7 @@ CONFIG_TARGET_DEVICE_PACKAGES_ath79_generic_DEVICE_buffalo_wzr-hp-g450h="blockd 
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_comfast_cf-e313ac is not set
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_comfast_cf-e314n-v2 is not set
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_comfast_cf-e375ac is not set
+# CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_comfast_cf-e380ac-v2 is not set
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_comfast_cf-e5 is not set
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_comfast_cf-e560ac is not set
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_comfast_cf-ew72 is not set
@@ -1214,7 +1216,7 @@ CONFIG_TARGET_INIT_CMD="/sbin/init"
 CONFIG_TARGET_INIT_SUPPRESS_STDERR=y
 CONFIG_VERSIONOPT=y
 CONFIG_VERSION_DIST="X-WRT"
-CONFIG_VERSION_NUMBER="23.06_b202307010740"
+CONFIG_VERSION_NUMBER="23.06_b202307020809"
 CONFIG_VERSION_CODE="Lunar"
 CONFIG_VERSION_REPO="http://downloads.openwrt.org/snapshots"
 CONFIG_VERSION_HOME_URL="https://x-wrt.com/"

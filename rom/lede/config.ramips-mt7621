@@ -73,6 +73,7 @@ CONFIG_TARGET_MULTI_PROFILE=y
 # CONFIG_TARGET_ramips_mt7621_DEVICE_asus_rt-ax54 is not set
 # CONFIG_TARGET_ramips_mt7621_DEVICE_beeline_smartbox-flash is not set
 # CONFIG_TARGET_ramips_mt7621_DEVICE_beeline_smartbox-giga is not set
+# CONFIG_TARGET_ramips_mt7621_DEVICE_beeline_smartbox-pro is not set
 # CONFIG_TARGET_ramips_mt7621_DEVICE_beeline_smartbox-turbo is not set
 # CONFIG_TARGET_ramips_mt7621_DEVICE_beeline_smartbox-turbo-plus is not set
 # CONFIG_TARGET_ramips_mt7621_DEVICE_belkin_rt1800 is not set
@@ -80,6 +81,7 @@ CONFIG_TARGET_MULTI_PROFILE=y
 # CONFIG_TARGET_ramips_mt7621_DEVICE_buffalo_wsr-2533dhpl is not set
 # CONFIG_TARGET_ramips_mt7621_DEVICE_buffalo_wsr-600dhp is not set
 # CONFIG_TARGET_ramips_mt7621_DEVICE_bolt_arion is not set
+# CONFIG_TARGET_ramips_mt7621_DEVICE_comfast_cf-e390ax is not set
 # CONFIG_TARGET_ramips_mt7621_DEVICE_cudy_m1800 is not set
 # CONFIG_TARGET_ramips_mt7621_DEVICE_cudy_wr1300-v1 is not set
 # CONFIG_TARGET_ramips_mt7621_DEVICE_cudy_wr1300-v2 is not set
@@ -177,6 +179,7 @@ CONFIG_TARGET_MULTI_PROFILE=y
 # CONFIG_TARGET_ramips_mt7621_DEVICE_mqmaker_witi is not set
 # CONFIG_TARGET_ramips_mt7621_DEVICE_mtc_wr1201 is not set
 # CONFIG_TARGET_ramips_mt7621_DEVICE_mts_wg430223 is not set
+# CONFIG_TARGET_ramips_mt7621_DEVICE_netgear_eax12 is not set
 # CONFIG_TARGET_ramips_mt7621_DEVICE_netgear_ex6150 is not set
 # CONFIG_TARGET_ramips_mt7621_DEVICE_netgear_r6220 is not set
 # CONFIG_TARGET_ramips_mt7621_DEVICE_netgear_r6260 is not set
@@ -242,6 +245,7 @@ CONFIG_TARGET_MULTI_PROFILE=y
 # CONFIG_TARGET_ramips_mt7621_DEVICE_wavlink_ws-wn572hp3-4g is not set
 # CONFIG_TARGET_ramips_mt7621_DEVICE_wevo_11acnas is not set
 # CONFIG_TARGET_ramips_mt7621_DEVICE_wevo_w2914ns-v2 is not set
+# CONFIG_TARGET_ramips_mt7621_DEVICE_wifire_s1500-nbn is not set
 # CONFIG_TARGET_ramips_mt7621_DEVICE_winstars_ws-wn583a6 is not set
 # CONFIG_TARGET_ramips_mt7621_DEVICE_xiaomi_mi-router-3g is not set
 # CONFIG_TARGET_ramips_mt7621_DEVICE_xiaomi_mi-router-3g-nor is not set
@@ -327,6 +331,7 @@ CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt7621_DEVICE_asus_rt-ac85p="blockd block-m
 # CONFIG_TARGET_DEVICE_ramips_mt7621_DEVICE_asus_rt-n56u-b1 is not set
 # CONFIG_TARGET_DEVICE_ramips_mt7621_DEVICE_beeline_smartbox-flash is not set
 # CONFIG_TARGET_DEVICE_ramips_mt7621_DEVICE_beeline_smartbox-giga is not set
+# CONFIG_TARGET_DEVICE_ramips_mt7621_DEVICE_beeline_smartbox-pro is not set
 # CONFIG_TARGET_DEVICE_ramips_mt7621_DEVICE_beeline_smartbox-turbo is not set
 # CONFIG_TARGET_DEVICE_ramips_mt7621_DEVICE_beeline_smartbox-turbo-plus is not set
 # CONFIG_TARGET_DEVICE_ramips_mt7621_DEVICE_belkin_rt1800 is not set
@@ -335,6 +340,7 @@ CONFIG_TARGET_DEVICE_ramips_mt7621_DEVICE_buffalo_wsr-1166dhp=y
 CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt7621_DEVICE_buffalo_wsr-1166dhp="blockd block-mount chat comgt comgt-ncm dawn kmod-cfg80211 kmod-crypto-ccm kmod-crypto-cmac kmod-crypto-ctr kmod-crypto-des kmod-crypto-gcm kmod-crypto-gf128 kmod-crypto-ghash kmod-crypto-hmac kmod-crypto-md4 kmod-crypto-md5 kmod-crypto-rng kmod-crypto-seqiv kmod-crypto-sha256 kmod-crypto-sha512 kmod-dnsresolver kmod-fs-autofs4 kmod-fs-exfat kmod-fs-ext4 kmod-fs-ksmbd kmod-fs-msdos kmod-fs-nfs kmod-fs-nfs-common kmod-fs-nfs-v4 kmod-fs-ntfs3 kmod-fs-smbfs-common kmod-fs-vfat kmod-ifb kmod-leds-gpio kmod-lib-crc16 kmod-mac80211 kmod-mii kmod-mt7603 kmod-mt76-core kmod-mt76x02-common kmod-mt76x2 kmod-mt76x2-common kmod-nls-cp437 kmod-oid-registry kmod-scsi-core kmod-usb2 kmod-usb-core kmod-usb-ehci kmod-usb-net kmod-usb-net-cdc-ether kmod-usb-net-cdc-mbim kmod-usb-net-cdc-ncm kmod-usb-net-huawei-cdc-ncm kmod-usb-net-ipheth kmod-usb-net-qmi-wwan kmod-usb-net-rndis kmod-usb-net-rtl8152 kmod-usb-net-sierrawireless kmod-usb-ohci kmod-usb-printer kmod-usb-serial kmod-usb-serial-option kmod-usb-serial-qualcomm kmod-usb-serial-sierrawireless kmod-usb-serial-wwan kmod-usb-storage kmod-usb-storage-extras kmod-usb-storage-uas kmod-usb-wdm ksmbd-server libatomic libblkid libgcrypt libgpg-error liblzo libnl-core libnl-genl libqrencode libusb-1.0 libwrap luci-app-dawn luci-app-ksmbd luci-app-openvpn luci-app-p910nd luci-app-sqm luci-i18n-dashboard-zh-cn luci-i18n-ksmbd-zh-cn luci-i18n-openvpn-zh-cn luci-i18n-p910nd-zh-cn luci-i18n-sqm-zh-cn luci-lib-json luci-mod-dashboard luci-proto-3g luci-proto-mbim luci-proto-ncm luci-proto-qmi luci-proto-relay luci-proto-wireguard nfs-utils openvpn-mbedtls p910nd qrencode r8152-firmware relayd sqm-scripts tc-tiny umbim uqmi usb-modeswitch wireguard-tools wireless-regdb wpad-mbedtls wsdd2 wwan"
 # CONFIG_TARGET_DEVICE_ramips_mt7621_DEVICE_buffalo_wsr-2533dhpl is not set
 # CONFIG_TARGET_DEVICE_ramips_mt7621_DEVICE_buffalo_wsr-600dhp is not set
+# CONFIG_TARGET_DEVICE_ramips_mt7621_DEVICE_comfast_cf-e390ax is not set
 # CONFIG_TARGET_DEVICE_ramips_mt7621_DEVICE_xzwifi_creativebox-v1 is not set
 # CONFIG_TARGET_DEVICE_ramips_mt7621_DEVICE_cudy_m1800 is not set
 # CONFIG_TARGET_DEVICE_ramips_mt7621_DEVICE_cudy_wr1300-v1 is not set
@@ -447,6 +453,7 @@ CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt7621_DEVICE_linksys_ea8100-v2="blockd blo
 # CONFIG_TARGET_DEVICE_ramips_mt7621_DEVICE_mqmaker_witi is not set
 # CONFIG_TARGET_DEVICE_ramips_mt7621_DEVICE_mtc_wr1201 is not set
 # CONFIG_TARGET_DEVICE_ramips_mt7621_DEVICE_mts_wg430223 is not set
+# CONFIG_TARGET_DEVICE_ramips_mt7621_DEVICE_netgear_eax12 is not set
 # CONFIG_TARGET_DEVICE_ramips_mt7621_DEVICE_netgear_ex6150 is not set
 # CONFIG_TARGET_DEVICE_ramips_mt7621_DEVICE_netgear_r6700-v2 is not set
 CONFIG_TARGET_DEVICE_ramips_mt7621_DEVICE_netgear_r6220=y
@@ -484,6 +491,7 @@ CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt7621_DEVICE_ruijie_rg-ew1800gx="dawn kmod
 # CONFIG_TARGET_DEVICE_ramips_mt7621_DEVICE_samknows_whitebox-v8 is not set
 # CONFIG_TARGET_DEVICE_ramips_mt7621_DEVICE_sercomm_na502 is not set
 # CONFIG_TARGET_DEVICE_ramips_mt7621_DEVICE_sercomm_na502s is not set
+# CONFIG_TARGET_DEVICE_ramips_mt7621_DEVICE_wifire_s1500-nbn is not set
 CONFIG_TARGET_DEVICE_ramips_mt7621_DEVICE_sim_simax1800t=y
 CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt7621_DEVICE_sim_simax1800t="dawn kmod-cfg80211 kmod-crypto-ccm kmod-crypto-cmac kmod-crypto-ctr kmod-crypto-gcm kmod-crypto-gf128 kmod-crypto-ghash kmod-crypto-hmac kmod-crypto-rng kmod-crypto-seqiv kmod-crypto-sha512 kmod-hwmon-core kmod-ifb kmod-leds-gpio kmod-mac80211 kmod-mt76-connac kmod-mt76-core kmod-mt7915e kmod-mt7915-firmware kmod-thermal libgcrypt libgpg-error liblzo libqrencode luci-app-dawn luci-app-openvpn luci-app-sqm luci-i18n-dashboard-zh-cn luci-i18n-openvpn-zh-cn luci-i18n-sqm-zh-cn luci-lib-json luci-mod-dashboard luci-proto-relay luci-proto-wireguard openvpn-mbedtls qrencode relayd sqm-scripts tc-tiny wireguard-tools wireless-regdb wpad-mbedtls"
 # CONFIG_TARGET_DEVICE_ramips_mt7621_DEVICE_snr_snr-cpe-me1 is not set
@@ -1018,7 +1026,7 @@ CONFIG_TARGET_INIT_CMD="/sbin/init"
 CONFIG_TARGET_INIT_SUPPRESS_STDERR=y
 CONFIG_VERSIONOPT=y
 CONFIG_VERSION_DIST="X-WRT"
-CONFIG_VERSION_NUMBER="23.06_b202307010740"
+CONFIG_VERSION_NUMBER="23.06_b202307020809"
 CONFIG_VERSION_CODE="Lunar"
 CONFIG_VERSION_REPO="http://downloads.openwrt.org/snapshots"
 CONFIG_VERSION_HOME_URL="https://x-wrt.com/"

@@ -73,6 +73,7 @@ CONFIG_TARGET_MULTI_PROFILE=y
 # CONFIG_TARGET_ramips_mt7621_DEVICE_asus_rt-ax54 is not set
 # CONFIG_TARGET_ramips_mt7621_DEVICE_beeline_smartbox-flash is not set
 # CONFIG_TARGET_ramips_mt7621_DEVICE_beeline_smartbox-giga is not set
+# CONFIG_TARGET_ramips_mt7621_DEVICE_beeline_smartbox-pro is not set
 # CONFIG_TARGET_ramips_mt7621_DEVICE_beeline_smartbox-turbo is not set
 # CONFIG_TARGET_ramips_mt7621_DEVICE_beeline_smartbox-turbo-plus is not set
 # CONFIG_TARGET_ramips_mt7621_DEVICE_belkin_rt1800 is not set
@@ -80,6 +81,7 @@ CONFIG_TARGET_MULTI_PROFILE=y
 # CONFIG_TARGET_ramips_mt7621_DEVICE_buffalo_wsr-2533dhpl is not set
 # CONFIG_TARGET_ramips_mt7621_DEVICE_buffalo_wsr-600dhp is not set
 # CONFIG_TARGET_ramips_mt7621_DEVICE_bolt_arion is not set
+# CONFIG_TARGET_ramips_mt7621_DEVICE_comfast_cf-e390ax is not set
 # CONFIG_TARGET_ramips_mt7621_DEVICE_cudy_m1800 is not set
 # CONFIG_TARGET_ramips_mt7621_DEVICE_cudy_wr1300-v1 is not set
 # CONFIG_TARGET_ramips_mt7621_DEVICE_cudy_wr1300-v2 is not set
@@ -177,6 +179,7 @@ CONFIG_TARGET_MULTI_PROFILE=y
 # CONFIG_TARGET_ramips_mt7621_DEVICE_mqmaker_witi is not set
 # CONFIG_TARGET_ramips_mt7621_DEVICE_mtc_wr1201 is not set
 # CONFIG_TARGET_ramips_mt7621_DEVICE_mts_wg430223 is not set
+# CONFIG_TARGET_ramips_mt7621_DEVICE_netgear_eax12 is not set
 # CONFIG_TARGET_ramips_mt7621_DEVICE_netgear_ex6150 is not set
 # CONFIG_TARGET_ramips_mt7621_DEVICE_netgear_r6220 is not set
 # CONFIG_TARGET_ramips_mt7621_DEVICE_netgear_r6260 is not set
@@ -242,6 +245,7 @@ CONFIG_TARGET_MULTI_PROFILE=y
 # CONFIG_TARGET_ramips_mt7621_DEVICE_wavlink_ws-wn572hp3-4g is not set
 # CONFIG_TARGET_ramips_mt7621_DEVICE_wevo_11acnas is not set
 # CONFIG_TARGET_ramips_mt7621_DEVICE_wevo_w2914ns-v2 is not set
+# CONFIG_TARGET_ramips_mt7621_DEVICE_wifire_s1500-nbn is not set
 # CONFIG_TARGET_ramips_mt7621_DEVICE_winstars_ws-wn583a6 is not set
 # CONFIG_TARGET_ramips_mt7621_DEVICE_xiaomi_mi-router-3g is not set
 # CONFIG_TARGET_ramips_mt7621_DEVICE_xiaomi_mi-router-3g-nor is not set
@@ -324,6 +328,7 @@ CONFIG_TARGET_PER_DEVICE_ROOTFS=y
 # CONFIG_TARGET_DEVICE_ramips_mt7621_DEVICE_asus_rt-n56u-b1 is not set
 # CONFIG_TARGET_DEVICE_ramips_mt7621_DEVICE_beeline_smartbox-flash is not set
 # CONFIG_TARGET_DEVICE_ramips_mt7621_DEVICE_beeline_smartbox-giga is not set
+# CONFIG_TARGET_DEVICE_ramips_mt7621_DEVICE_beeline_smartbox-pro is not set
 # CONFIG_TARGET_DEVICE_ramips_mt7621_DEVICE_beeline_smartbox-turbo is not set
 # CONFIG_TARGET_DEVICE_ramips_mt7621_DEVICE_beeline_smartbox-turbo-plus is not set
 # CONFIG_TARGET_DEVICE_ramips_mt7621_DEVICE_belkin_rt1800 is not set
@@ -331,6 +336,7 @@ CONFIG_TARGET_PER_DEVICE_ROOTFS=y
 # CONFIG_TARGET_DEVICE_ramips_mt7621_DEVICE_buffalo_wsr-1166dhp is not set
 # CONFIG_TARGET_DEVICE_ramips_mt7621_DEVICE_buffalo_wsr-2533dhpl is not set
 # CONFIG_TARGET_DEVICE_ramips_mt7621_DEVICE_buffalo_wsr-600dhp is not set
+# CONFIG_TARGET_DEVICE_ramips_mt7621_DEVICE_comfast_cf-e390ax is not set
 # CONFIG_TARGET_DEVICE_ramips_mt7621_DEVICE_xzwifi_creativebox-v1 is not set
 # CONFIG_TARGET_DEVICE_ramips_mt7621_DEVICE_cudy_m1800 is not set
 # CONFIG_TARGET_DEVICE_ramips_mt7621_DEVICE_cudy_wr1300-v1 is not set
@@ -429,6 +435,7 @@ CONFIG_TARGET_PER_DEVICE_ROOTFS=y
 # CONFIG_TARGET_DEVICE_ramips_mt7621_DEVICE_mqmaker_witi is not set
 # CONFIG_TARGET_DEVICE_ramips_mt7621_DEVICE_mtc_wr1201 is not set
 # CONFIG_TARGET_DEVICE_ramips_mt7621_DEVICE_mts_wg430223 is not set
+# CONFIG_TARGET_DEVICE_ramips_mt7621_DEVICE_netgear_eax12 is not set
 # CONFIG_TARGET_DEVICE_ramips_mt7621_DEVICE_netgear_ex6150 is not set
 # CONFIG_TARGET_DEVICE_ramips_mt7621_DEVICE_netgear_r6700-v2 is not set
 # CONFIG_TARGET_DEVICE_ramips_mt7621_DEVICE_netgear_r6220 is not set
@@ -455,6 +462,7 @@ CONFIG_TARGET_PER_DEVICE_ROOTFS=y
 # CONFIG_TARGET_DEVICE_ramips_mt7621_DEVICE_samknows_whitebox-v8 is not set
 # CONFIG_TARGET_DEVICE_ramips_mt7621_DEVICE_sercomm_na502 is not set
 # CONFIG_TARGET_DEVICE_ramips_mt7621_DEVICE_sercomm_na502s is not set
+# CONFIG_TARGET_DEVICE_ramips_mt7621_DEVICE_wifire_s1500-nbn is not set
 # CONFIG_TARGET_DEVICE_ramips_mt7621_DEVICE_sim_simax1800t is not set
 # CONFIG_TARGET_DEVICE_ramips_mt7621_DEVICE_snr_snr-cpe-me1 is not set
 # CONFIG_TARGET_DEVICE_ramips_mt7621_DEVICE_snr_snr-cpe-me2-lite is not set
@@ -935,7 +943,7 @@ CONFIG_TARGET_INIT_CMD="/sbin/init"
 CONFIG_TARGET_INIT_SUPPRESS_STDERR=y
 CONFIG_VERSIONOPT=y
 CONFIG_VERSION_DIST="X-WRT"
-CONFIG_VERSION_NUMBER="23.06_b202307010740"
+CONFIG_VERSION_NUMBER="23.06_b202307020809"
 CONFIG_VERSION_CODE="Lunar"
 CONFIG_VERSION_REPO="http://downloads.openwrt.org/snapshots"
 CONFIG_VERSION_HOME_URL="https://x-wrt.com/"
