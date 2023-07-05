@@ -422,6 +422,7 @@ CONFIG_KERNEL_CC_OPTIMIZE_FOR_PERFORMANCE=y
 # CONFIG_KERNEL_F2FS_FS_SECURITY is not set
 # CONFIG_KERNEL_UBIFS_FS_SECURITY is not set
 # CONFIG_KERNEL_JFFS2_FS_SECURITY is not set
+CONFIG_KERNEL_WERROR=y
 # end of Kernel build options
 
 #
@@ -518,7 +519,7 @@ CONFIG_TARGET_INIT_CMD="/sbin/init"
 CONFIG_TARGET_INIT_SUPPRESS_STDERR=y
 CONFIG_VERSIONOPT=y
 CONFIG_VERSION_DIST="X-WRT"
-CONFIG_VERSION_NUMBER="23.06_b202307020809"
+CONFIG_VERSION_NUMBER="23.06_b202307050916"
 CONFIG_VERSION_CODE="Lunar"
 CONFIG_VERSION_REPO="http://downloads.openwrt.org/snapshots"
 CONFIG_VERSION_HOME_URL="https://x-wrt.com/"
@@ -3163,6 +3164,7 @@ CONFIG_PACKAGE_kmod-hwmon-core=m
 # CONFIG_PACKAGE_kmod-hwmon-ina209 is not set
 # CONFIG_PACKAGE_kmod-hwmon-ina2xx is not set
 # CONFIG_PACKAGE_kmod-hwmon-it87 is not set
+# CONFIG_PACKAGE_kmod-hwmon-jc42 is not set
 # CONFIG_PACKAGE_kmod-hwmon-lm63 is not set
 # CONFIG_PACKAGE_kmod-hwmon-lm70 is not set
 # CONFIG_PACKAGE_kmod-hwmon-lm75 is not set
@@ -3173,6 +3175,7 @@ CONFIG_PACKAGE_kmod-hwmon-core=m
 # CONFIG_PACKAGE_kmod-hwmon-lm95241 is not set
 # CONFIG_PACKAGE_kmod-hwmon-ltc4151 is not set
 # CONFIG_PACKAGE_kmod-hwmon-max6642 is not set
+# CONFIG_PACKAGE_kmod-hwmon-max6697 is not set
 # CONFIG_PACKAGE_kmod-hwmon-mcp3021 is not set
 # CONFIG_PACKAGE_kmod-hwmon-nct7802 is not set
 # CONFIG_PACKAGE_kmod-hwmon-pwmfan is not set
@@ -3202,6 +3205,7 @@ CONFIG_PACKAGE_kmod-i2c-core=m
 # CONFIG_PACKAGE_kmod-i2c-mux-gpio is not set
 # CONFIG_PACKAGE_kmod-i2c-mux-pca9541 is not set
 # CONFIG_PACKAGE_kmod-i2c-mux-pca954x is not set
+# CONFIG_PACKAGE_kmod-i2c-mux-reg is not set
 # CONFIG_PACKAGE_kmod-i2c-pxa is not set
 # CONFIG_PACKAGE_kmod-i2c-smbus is not set
 # CONFIG_PACKAGE_kmod-i2c-tiny-usb is not set
