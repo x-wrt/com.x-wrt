@@ -382,6 +382,7 @@ for t in $targets; do
 	excludes="$excludes_basic"
 	case $t in
 		#>=32M flash
+		TARGET_DEVICE_ramips_mt7621_DEVICE_zyxel_wsm20|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_h3c_magic-nx30-pro|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_mercusys_mr90x-v1|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_netgear_wax220|\
@@ -489,6 +490,7 @@ for t in $targets; do
 	esac
 	case $t in
 		#>=14M flash
+		TARGET_DEVICE_ramips_mt7621_DEVICE_zyxel_wsm20|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_h3c_magic-nx30-pro|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_mercusys_mr90x-v1|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_zbtlink_zbt-wg1608-32m|\
@@ -1334,6 +1336,7 @@ for t in $targets; do
 			has_usb=1
 		;;
 		#no usb
+		TARGET_DEVICE_ramips_mt7621_DEVICE_zyxel_wsm20|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_h3c_magic-nx30-pro|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_mercusys_mr90x-v1|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_netgear_wax220|\
