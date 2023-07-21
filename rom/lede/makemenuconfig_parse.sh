@@ -670,6 +670,7 @@ for t in $targets; do
 			extra_utils=1
 		;;
 		#>8M flash <14M
+		TARGET_DEVICE_ramips_mt7621_DEVICE_mercusys_mr70x-v1|\
 		TARGET_DEVICE_ath79_nand_DEVICE_glinet_gl-e750|\
 		TARGET_DEVICE_ramips_mt7620_DEVICE_bolt_bl201|\
 		TARGET_DEVICE_ath79_nand_DEVICE_glinet_gl-x1200-nor|\
@@ -1336,6 +1337,7 @@ for t in $targets; do
 			has_usb=1
 		;;
 		#no usb
+		TARGET_DEVICE_ramips_mt7621_DEVICE_mercusys_mr70x-v1|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_zyxel_wsm20|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_h3c_magic-nx30-pro|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_mercusys_mr90x-v1|\
