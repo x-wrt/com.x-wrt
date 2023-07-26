@@ -140,7 +140,7 @@ ipv6extra="kmod-jool-netfilter \
 openvpnmod="luci-app-openvpn \
 			luci-i18n-openvpn-en \
 			luci-i18n-openvpn-zh-cn \
-			openvpn-openssl"
+			openvpn-openssl kmod-ovpn-dco-v2"
 
 excludes_basic="dnsmasq \
 		  kmod-ipt-offload \
