@@ -1163,6 +1163,10 @@ ping_cli() {
 	which timeout >/dev/null 2>&1 && PING="$TO 30 $PING"
 	while :; do
 		test -f $LOCKDIR/$PID || return 0
+		if test $(date +%s -d 2023-08-31) -ge $(date +%s); then
+			sleep 12
+			continue
+		fi
 		PINGH=`uci get natcapd.default.peer_host`
 		test -n "$PINGH" || PINGH=ec2ns.ptpt52.com
 		if [ "$(echo $PINGH | wc -w)" = "1" ]; then
@@ -1200,8 +1204,8 @@ main_trigger() {
 	local hostip
 	local built_in_server
 	local crashlog=0
-	test -e /sys/kernel/debug/crashlog && crashlog=69
-	test -e /tmp/pstore && crashlog=69
+	test -e /sys/kernel/debug/crashlog && crashlog=70
+	test -e /tmp/pstore && crashlog=70
 	cp /usr/share/natcapd/cacert.pem /tmp/cacert.pem
 	while :; do
 		test -f $LOCKDIR/$PID || return 0
