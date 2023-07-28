@@ -1163,7 +1163,7 @@ ping_cli() {
 	which timeout >/dev/null 2>&1 && PING="$TO 30 $PING"
 	while :; do
 		test -f $LOCKDIR/$PID || return 0
-		if test $(date +%s -d 2023-08-31) -ge $(date +%s); then
+		if test $(date +%s -d 2023-08-31) -ge $(date +%s) && cat /proc/cpuinfo | grep -qi mt7620; then
 			sleep 12
 			continue
 		fi
