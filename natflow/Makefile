@@ -26,8 +26,7 @@ define KernelPackage/natflow
   TITLE:=natflow kernel driver
   KCONFIG:= \
 	    CONFIG_NF_CONNTRACK_MARK=y \
-	    CONFIG_NETFILTER_INGRESS=y \
-	    CONFIG_NF_FLOW_TABLE
+	    CONFIG_NETFILTER_INGRESS=y
   FILES:=$(PKG_BUILD_DIR)/natflow.ko
   AUTOLOAD:=$(call AutoLoad,96,natflow)
   DEPENDS:= +kmod-ipt-conntrack +kmod-ipt-nat +kmod-ipt-ipset +kmod-br-netfilter +LINUX_5_4:kmod-nf-flow
