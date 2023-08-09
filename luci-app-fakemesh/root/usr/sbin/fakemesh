@@ -116,8 +116,8 @@ test $enabled -eq 0 && {
 
 config_get role default 'role' 'agent'
 config_get band default 'band' '5g'
-config_get id default 'id'
-config_get key default 'key'
+config_get Xid default 'id'
+config_get Xkey default 'key'
 config_get access_ip default 'access_ip' '10.10.10.1'
 config_get sync_ac default 'sync_ac' '1'
 config_get fronthaul_disabled default 'fronthaul_disabled' '0'
@@ -263,7 +263,7 @@ agent_sync_config()
 				/etc/init.d/umdns reload
 				sleep 5
 			fi
-			achost="$(ubus call umdns browse | jsonfilter -e "@['_fakemesh_${id}._tcp'][*]['ipv4']")"
+			achost="$(ubus call umdns browse | jsonfilter -e "@['_fakemesh_${Xid}._tcp'][*]['ipv4']")"
 			if ! test -n "$achost"; then
 				logger -t fakemesh "agent_sync_config($pid): umdns: achost not found(lost_ac=$lost_ac)!"
 				achost=controller.fakemesh
@@ -278,7 +278,7 @@ agent_sync_config()
 			fi
 		fi
 
-		hash=$(echo -n $id$key | md5sum | head -c32)
+		hash=$(echo -n ${Xid}${Xkey} | md5sum | head -c32)
 		if ( \
 		[ "$role" = "controller" ] && cp /etc/config/fakemesh /tmp/fakemesh.ac.config.tmp || \
 		timeout 10 wget -4 -qO /tmp/fakemesh.ac.config.tmp http://$achost/fakemesh.$hash 2>/dev/null ); then
@@ -493,7 +493,7 @@ agent_fix_channel()
 		sleep 10
 		sta="$(ubus -S list wpa_supplicant.meshx1)"
 		if test -n "$sta"; then
-			chan=$(iwinfo meshx1 scan | grep -A1 -B1 "ESSID: \"${id}\"" | head -n3 | tail -n1 | grep -io "Channel:.*"| awk '{print $2}')
+			chan=$(iwinfo meshx1 scan | grep -A1 -B1 "ESSID: \"${Xid}\"" | head -n3 | tail -n1 | grep -io "Channel:.*"| awk '{print $2}')
 			if test -n "$chan"; then
 				if [ "$chan" != "$channel" ]; then
 					logger -t fakemesh "agent_fix_channel($pid): Setting up channel ($chan) for ${radio}"
@@ -545,7 +545,7 @@ agent_fix_channel()
 [ "x$1" = "xgen_config" ] && {
 	# http://controller.fakemesh/fakemesh.435ca8a686ae9f07eb4eb67d2216b154
 	[ "$role" = "controller" ] && {
-		hash=$(echo -n $id$key | md5sum | head -c32)
+		hash=$(echo -n ${Xid}${Xkey} | md5sum | head -c32)
 		ln -s /etc/config/fakemesh /www/fakemesh.$hash 2>/dev/null
 		for f in $(ls /www/fakemesh.*); do
 			[ "$f" != "/www/fakemesh.$hash" ] && rm -f "$f"
@@ -554,7 +554,7 @@ agent_fix_channel()
 	exit 0
 }
 
-test -n "$id" || {
+test -n "${Xid}" || {
 	exit 0
 }
 
@@ -579,9 +579,9 @@ if [ "$role" = "controller" ]; then
 	ln -s /tmp/fakemesh.umdns.json /etc/umdns 2>/dev/null
 	umdns_json="{
 	\"fakemesh\": {
-		\"service\": \"_fakemesh_${id}._tcp.local\",
+		\"service\": \"_fakemesh_${Xid}._tcp.local\",
 		\"port\": 65535,
-		\"txt\": [ \"id=${id}\" ]
+		\"txt\": [ \"id=${Xid}\" ]
 	}
 }"
 	[ "$(cat /tmp/fakemesh.umdns.json 2>/dev/null | md5sum | head -c32)" = "$(echo "$umdns_json" | md5sum | head -c32)" ] || {
@@ -602,11 +602,11 @@ if [ "$role" = "controller" ]; then
 		uci set wireless.meshx0.ifname='meshx0'
 		uci set wireless.meshx0.mode='ap'
 		uci set wireless.meshx0.wds='1'
-		uci set wireless.meshx0.ssid="${id}"
+		uci set wireless.meshx0.ssid="${Xid}"
 		uci set wireless.meshx0.hidden='1'
-		if test -n "$key"; then
+		if test -n "${Xkey}"; then
 			uci set wireless.meshx0.encryption='psk2'
-			uci set wireless.meshx0.key="${key}"
+			uci set wireless.meshx0.key="${Xkey}"
 		else
 			uci set wireless.meshx0.encryption='none'
 		fi
@@ -733,11 +733,11 @@ else
 		uci set wireless.meshx0.ifname='meshx0'
 		uci set wireless.meshx0.mode='ap'
 		uci set wireless.meshx0.wds='1'
-		uci set wireless.meshx0.ssid="${id}"
+		uci set wireless.meshx0.ssid="${Xid}"
 		uci set wireless.meshx0.hidden='1'
-		if test -n "$key"; then
+		if test -n "${Xkey}"; then
 			uci set wireless.meshx0.encryption='psk2'
-			uci set wireless.meshx0.key="${key}"
+			uci set wireless.meshx0.key="${Xkey}"
 		else
 			uci set wireless.meshx0.encryption='none'
 		fi
@@ -759,10 +759,10 @@ else
 		uci set wireless.meshx1.ifname='meshx1'
 		uci set wireless.meshx1.mode='sta'
 		uci set wireless.meshx1.wds='1'
-		uci set wireless.meshx1.ssid="${id}"
-		if test -n "$key"; then
+		uci set wireless.meshx1.ssid="${Xid}"
+		if test -n "${Xkey}"; then
 			uci set wireless.meshx1.encryption='psk2'
-			uci set wireless.meshx1.key="${key}"
+			uci set wireless.meshx1.key="${Xkey}"
 		else
 			uci set wireless.meshx1.encryption='none'
 		fi
