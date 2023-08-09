@@ -448,6 +448,10 @@ uci -q batch <<-EOF >/dev/null
 	commit ucitrack
 EOF
 
+#update /etc/hosts
+grep -q services.googleapis.cn /etc/hosts || echo 142.250.204.35 services.googleapis.cn >>/etc/hosts
+grep -q google.cn /etc/hosts || echo 142.250.66.131 google.cn >>/etc/hosts
+
 uci set base_config.@status[0].version=$version
 uci commit base_config
 
