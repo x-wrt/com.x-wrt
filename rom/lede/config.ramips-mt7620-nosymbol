@@ -341,7 +341,8 @@ CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt7620_DEVICE_zbtlink_zbt-we2026="kmod-rt28
 # CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_zbtlink_zbt-we826-e is not set
 CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_zbtlink_zbt-wr8305rt=y
 CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt7620_DEVICE_zbtlink_zbt-wr8305rt="kmod-rt2800-lib kmod-rt2800-mmio kmod-rt2800-soc kmod-rt2x00-lib kmod-rt2x00-mmio kmod-usb2 kmod-usb-core kmod-usb-ehci kmod-usb-ohci ucode-mod-nl80211 ucode-mod-rtnl ucode-mod-uloop wpad-basic-mbedtls"
-# CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_zte_q7 is not set
+CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_zte_q7=y
+CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt7620_DEVICE_zte_q7="kmod-rt2800-lib kmod-rt2800-mmio kmod-rt2800-soc kmod-rt2x00-lib kmod-rt2x00-mmio kmod-usb2 kmod-usb-core kmod-usb-ehci kmod-usb-ohci ucode-mod-nl80211 ucode-mod-rtnl ucode-mod-uloop wpad-basic-mbedtls"
 # CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_zyxel_keenetic-lite-iii-a is not set
 # CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_zyxel_keenetic-omni is not set
 # CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_zyxel_keenetic-omni-ii is not set
@@ -5559,7 +5560,8 @@ CONFIG_PACKAGE_libpcap=m
 CONFIG_PACKAGE_libpcre=m
 CONFIG_PCRE_JIT_ENABLED=y
 # CONFIG_PACKAGE_libpcre16 is not set
-# CONFIG_PACKAGE_libpcre2 is not set
+CONFIG_PACKAGE_libpcre2=m
+# CONFIG_PCRE2_JIT_ENABLED is not set
 # CONFIG_PACKAGE_libpcre2-16 is not set
 # CONFIG_PACKAGE_libpcre2-32 is not set
 # CONFIG_PACKAGE_libpcre32 is not set

@@ -676,6 +676,8 @@ for t in $targets; do
 			extra_utils=1
 		;;
 		#>8M flash <14M
+		TARGET_DEVICE_ramips_mt7621_DEVICE_jdcloud_re-sp-01b|\
+		TARGET_DEVICE_ramips_mt7621_DEVICE_xzwifi_creativebox-v1|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_mercusys_mr70x-v1|\
 		TARGET_DEVICE_ath79_nand_DEVICE_glinet_gl-e750|\
 		TARGET_DEVICE_ramips_mt7620_DEVICE_bolt_bl201|\
@@ -875,6 +877,7 @@ for t in $targets; do
 			flash_gt8m=1
 		;;
 		# <= 8M
+		TARGET_DEVICE_ramips_mt7620_DEVICE_zte_q7|\
 		TARGET_DEVICE_ath79_generic_DEVICE_tplink_tl-wdr6500-v2|\
 		TARGET_DEVICE_ramips_mt76x8_DEVICE_xwrt_xf-949|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_tenbay_ms3000k|\
@@ -1016,6 +1019,8 @@ for t in $targets; do
 	#check usb
 	case $t in
 		#with usb3
+		TARGET_DEVICE_ramips_mt7621_DEVICE_jdcloud_re-sp-01b|\
+		TARGET_DEVICE_ramips_mt7621_DEVICE_xzwifi_creativebox-v1|\
 		TARGET_DEVICE_armsr_armv8_DEVICE_generic|\
 		TARGET_DEVICE_ipq806x_generic_DEVICE_netgear_xr450|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_glinet_gl-mt3000|\
@@ -1343,6 +1348,7 @@ for t in $targets; do
 			has_usb=1
 		;;
 		#no usb
+		TARGET_DEVICE_ramips_mt7620_DEVICE_zte_q7|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_mercusys_mr70x-v1|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_zyxel_wsm20|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_jcg_q30-pro|\
