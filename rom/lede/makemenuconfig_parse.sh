@@ -42,6 +42,7 @@ usb4g="wwan \
 	   kmod-usb-net-huawei-cdc-ncm \
 	   kmod-usb-net-ipheth \
 	   kmod-usb-net-rtl8152 \
+	   kmod-usb-net-rtl8152-vendor \
 	   kmod-usb-net-sierrawireless \
 	   kmod-usb-serial \
 	   kmod-usb-serial-option \
@@ -493,6 +494,9 @@ for t in $targets; do
 	esac
 	case $t in
 		#>=14M flash
+		TARGET_DEVICE_ipq40xx_generic_DEVICE_zte_mf287pro|\
+		TARGET_DEVICE_ipq40xx_generic_DEVICE_zte_mf287plus|\
+		TARGET_DEVICE_ipq40xx_generic_DEVICE_zte_mf18a|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_zyxel_wsm20|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_jcg_q30-pro|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_h3c_magic-nx30-pro|\
@@ -1168,6 +1172,7 @@ for t in $targets; do
 			has_usb=1
 		;;
 		#with usb2
+		TARGET_DEVICE_ipq40xx_generic_DEVICE_zte_mf287pro|\
 		TARGET_DEVICE_ath79_nand_DEVICE_glinet_gl-e750|\
 		TARGET_DEVICE_ramips_mt76x8_DEVICE_xwrt_xf-949|\
 		TARGET_DEVICE_ath79_nand_DEVICE_glinet_gl-x1200-nor|\
@@ -1348,6 +1353,8 @@ for t in $targets; do
 			has_usb=1
 		;;
 		#no usb
+		TARGET_DEVICE_ipq40xx_generic_DEVICE_zte_mf287plus|\
+		TARGET_DEVICE_ipq40xx_generic_DEVICE_zte_mf18a|\
 		TARGET_DEVICE_ramips_mt7620_DEVICE_zte_q7|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_mercusys_mr70x-v1|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_zyxel_wsm20|\
