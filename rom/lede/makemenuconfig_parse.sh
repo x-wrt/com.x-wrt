@@ -494,6 +494,7 @@ for t in $targets; do
 	esac
 	case $t in
 		#>=14M flash
+		TARGET_DEVICE_ipq40xx_generic_DEVICE_yyets_le1|\
 		TARGET_DEVICE_ipq40xx_generic_DEVICE_zte_mf287pro|\
 		TARGET_DEVICE_ipq40xx_generic_DEVICE_zte_mf287plus|\
 		TARGET_DEVICE_ipq40xx_generic_DEVICE_zte_mf18a|\
@@ -1023,6 +1024,7 @@ for t in $targets; do
 	#check usb
 	case $t in
 		#with usb3
+		TARGET_DEVICE_ipq40xx_generic_DEVICE_yyets_le1|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_jdcloud_re-sp-01b|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_xzwifi_creativebox-v1|\
 		TARGET_DEVICE_armsr_armv8_DEVICE_generic|\
