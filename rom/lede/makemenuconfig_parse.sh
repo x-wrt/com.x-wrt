@@ -385,6 +385,7 @@ for t in $targets; do
 		#>=32M flash
 		TARGET_DEVICE_ramips_mt7621_DEVICE_zyxel_wsm20|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_jcg_q30-pro|\
+		TARGET_DEVICE_mediatek_filogic_DEVICE_jcg_q30-pro-nmbm|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_h3c_magic-nx30-pro|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_h3c_magic-nx30-pro-nmbm|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_mercusys_mr90x-v1|\
@@ -501,6 +502,7 @@ for t in $targets; do
 		TARGET_DEVICE_ipq40xx_generic_DEVICE_zte_mf18a|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_zyxel_wsm20|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_jcg_q30-pro|\
+		TARGET_DEVICE_mediatek_filogic_DEVICE_jcg_q30-pro-nmbm|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_h3c_magic-nx30-pro|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_h3c_magic-nx30-pro-nmbm|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_mercusys_mr90x-v1|\
@@ -1363,6 +1365,7 @@ for t in $targets; do
 		TARGET_DEVICE_ramips_mt7621_DEVICE_mercusys_mr70x-v1|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_zyxel_wsm20|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_jcg_q30-pro|\
+		TARGET_DEVICE_mediatek_filogic_DEVICE_jcg_q30-pro-nmbm|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_h3c_magic-nx30-pro|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_h3c_magic-nx30-pro-nmbm|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_mercusys_mr90x-v1|\
