@@ -104,6 +104,7 @@ CONFIG_TARGET_MULTI_PROFILE=y
 # CONFIG_TARGET_ramips_mt7621_DEVICE_dlink_dir-878-r1 is not set
 # CONFIG_TARGET_ramips_mt7621_DEVICE_dlink_dir-882-a1 is not set
 # CONFIG_TARGET_ramips_mt7621_DEVICE_dlink_dir-882-r1 is not set
+# CONFIG_TARGET_ramips_mt7621_DEVICE_dlink_dra-1360-a1 is not set
 # CONFIG_TARGET_ramips_mt7621_DEVICE_dual-q_h721 is not set
 # CONFIG_TARGET_ramips_mt7621_DEVICE_d-team_newifi-d2 is not set
 # CONFIG_TARGET_ramips_mt7621_DEVICE_d-team_pbr-m1 is not set
@@ -363,6 +364,7 @@ CONFIG_TARGET_PER_DEVICE_ROOTFS=y
 # CONFIG_TARGET_DEVICE_ramips_mt7621_DEVICE_dlink_dir-878-r1 is not set
 # CONFIG_TARGET_DEVICE_ramips_mt7621_DEVICE_dlink_dir-882-a1 is not set
 # CONFIG_TARGET_DEVICE_ramips_mt7621_DEVICE_dlink_dir-882-r1 is not set
+# CONFIG_TARGET_DEVICE_ramips_mt7621_DEVICE_dlink_dra-1360-a1 is not set
 # CONFIG_TARGET_DEVICE_ramips_mt7621_DEVICE_d-team_newifi-d2 is not set
 # CONFIG_TARGET_DEVICE_ramips_mt7621_DEVICE_dual-q_h721 is not set
 # CONFIG_TARGET_DEVICE_ramips_mt7621_DEVICE_edimax_rg21s is not set
@@ -951,7 +953,7 @@ CONFIG_TARGET_INIT_CMD="/sbin/init"
 CONFIG_TARGET_INIT_SUPPRESS_STDERR=y
 CONFIG_VERSIONOPT=y
 CONFIG_VERSION_DIST="X-WRT"
-CONFIG_VERSION_NUMBER="23.06_b202308271014"
+CONFIG_VERSION_NUMBER="23.06_b202308301100"
 CONFIG_VERSION_CODE="Lunar"
 CONFIG_VERSION_REPO="http://downloads.openwrt.org/snapshots"
 CONFIG_VERSION_HOME_URL="https://x-wrt.com/"
