@@ -206,6 +206,11 @@ start() {
 	else
 		echo tc_classid_mode=0 >/dev/qos_ctl
 	fi
+
+	touch /tmp/natflow-qos.config
+	ln -s /tmp/natflow-qos.config /etc/config/natflow-qos &>/dev/null
+	config_load natflow-qos
+	config_foreach natflow_qos_setup qos
 }
 
 stop() {
