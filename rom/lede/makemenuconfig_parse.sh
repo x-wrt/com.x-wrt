@@ -689,6 +689,7 @@ for t in $targets; do
 			extra_utils=1
 		;;
 		#>8M flash <14M
+		TARGET_DEVICE_ramips_mt7621_DEVICE_dual-q_h721|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_jdcloud_re-sp-01b|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_xzwifi_creativebox-v1|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_mercusys_mr70x-v1|\
@@ -1032,6 +1033,7 @@ for t in $targets; do
 	#check usb
 	case $t in
 		#with usb3
+		TARGET_DEVICE_ramips_mt7621_DEVICE_dual-q_h721|\
 		TARGET_DEVICE_ipq40xx_generic_DEVICE_yyets_le1|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_jdcloud_re-sp-01b|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_xzwifi_creativebox-v1|\
