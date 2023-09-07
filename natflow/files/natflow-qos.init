@@ -151,8 +151,7 @@ natflow_qos_zone_setup_tc()
 						qos_id=$((qos_id+1))
 						echo setup tc for $lan @lan rxbytes=$rxbytes quantum=$quantum qos_id=$qos_id
 						tc class add dev $lan parent 1: classid 1:${qos_id} htb rate ${rxbytes}Bps quantum $quantum
-						tc filter add dev $lan parent 1: protocol ip prio 1 handle ${qos_id} fw classid 1:${qos_id}
-						tc filter add dev $lan parent 1: protocol 0x8864 prio 2 handle ${qos_id} fw classid 1:${qos_id}
+						tc filter add dev $lan parent 1: protocol all prio 1 handle ${qos_id} fw classid 1:${qos_id}
 					done
 				fi
 			done
@@ -171,8 +170,7 @@ natflow_qos_zone_setup_tc()
 						qos_id=$((qos_id+1))
 						echo setup tc for $wan @wan txbytes=$txbytes quantum=$quantum qos_id=$qos_id
 						tc class add dev $wan parent 1: classid 1:${qos_id} htb rate ${txbytes}Bps quantum $quantum
-						tc filter add dev $wan parent 1: protocol ip prio 1 handle ${qos_id} fw classid 1:${qos_id}
-						tc filter add dev $wan parent 1: protocol 0x8864 prio 2 handle ${qos_id} fw classid 1:${qos_id}
+						tc filter add dev $wan parent 1: protocol all prio 1 handle ${qos_id} fw classid 1:${qos_id}
 					done
 				fi
 			done
