@@ -149,9 +149,10 @@ natflow_qos_zone_setup_tc()
 							quantum=256
 						fi
 						qos_id=$((qos_id+1))
-						echo setup tc for $lan @lan rxbytes=$rxbytes quantum=$quantum qos_id=$qos_id
-						tc class add dev $lan parent 1: classid 1:${qos_id} htb rate ${rxbytes}Bps quantum $quantum
-						tc filter add dev $lan parent 1: protocol all prio 1 handle ${qos_id} fw classid 1:${qos_id}
+						QOSID=$((qos_id*2-1))
+						echo setup tc for $lan @lan rxbytes=$rxbytes quantum=$quantum rule_id=${qos_id} QOSID=${QOSID}
+						tc class add dev $lan parent 1: classid 1:${QOSID} htb rate ${rxbytes}Bps quantum $quantum
+						tc filter add dev $lan parent 1: protocol all prio 1 handle ${QOSID} fw classid 1:${QOSID}
 					done
 				fi
 			done
@@ -168,9 +169,10 @@ natflow_qos_zone_setup_tc()
 							quantum=256
 						fi
 						qos_id=$((qos_id+1))
-						echo setup tc for $wan @wan txbytes=$txbytes quantum=$quantum qos_id=$qos_id
-						tc class add dev $wan parent 1: classid 1:${qos_id} htb rate ${txbytes}Bps quantum $quantum
-						tc filter add dev $wan parent 1: protocol all prio 1 handle ${qos_id} fw classid 1:${qos_id}
+						QOSID=$((qos_id*2))
+						echo setup tc for $wan @wan txbytes=$txbytes quantum=$quantum rule_id=${qos_id} QOSID=${QOSID}
+						tc class add dev $wan parent 1: classid 1:${QOSID} htb rate ${txbytes}Bps quantum $quantum
+						tc filter add dev $wan parent 1: protocol all prio 1 handle ${QOSID} fw classid 1:${QOSID}
 					done
 				fi
 			done
