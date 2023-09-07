@@ -140,7 +140,6 @@ natflow_qos_zone_setup_tc()
 			ifconfig -a | grep "^$IFN " | awk '{print $1}' | while read lan; do
 				if [ "${lan}" = "${lan//:}" ]; then
 					qos_id=0
-					tc qdisc add dev $lan root handle 1: htb
 					cat /dev/qos_ctl | grep "^add user=" | while read line; do
 						line="${line/*rxbytes=}"
 						rxbytes="${line/,*}"
@@ -150,9 +149,13 @@ natflow_qos_zone_setup_tc()
 						fi
 						qos_id=$((qos_id+1))
 						QOSID=$((qos_id*2-1))
-						echo setup tc for $lan @lan rxbytes=$rxbytes quantum=$quantum rule_id=${qos_id} QOSID=${QOSID}
-						tc class add dev $lan parent 1: classid 1:${QOSID} htb rate ${rxbytes}Bps quantum $quantum
-						tc filter add dev $lan parent 1: protocol all prio 1 handle ${QOSID} fw classid 1:${QOSID}
+						lower=$(for vif in /sys/class/net/$lan/lower_*; do test -e $vif && echo ${vif##/sys/class/net/*/lower_}; done)
+						for DEVICE in $lan $lower; do
+							tc qdisc add dev $DEVICE root handle 1: htb &>/dev/null
+							echo setup tc for $DEVICE @lan rxbytes=$rxbytes quantum=$quantum rule_id=${qos_id} QOSID=${QOSID}
+							tc class add dev $DEVICE parent 1: classid 1:${QOSID} htb rate ${rxbytes}Bps quantum $quantum
+							tc filter add dev $DEVICE parent 1: protocol all prio 1 handle ${QOSID} fw classid 1:${QOSID}
+						done
 					done
 				fi
 			done
@@ -161,7 +164,6 @@ natflow_qos_zone_setup_tc()
 			ifconfig -a | grep "^$IFN " | awk '{print $1}' | while read wan; do
 				if [ "${wan}" = "${wan//:}" ]; then
 					qos_id=0
-					tc qdisc add dev $wan root handle 1: htb
 					cat /dev/qos_ctl | grep "^add user=" | while read line; do
 						txbytes="${line/*,txbytes=}"
 						quantum=$(($txbytes/1000))
@@ -170,9 +172,13 @@ natflow_qos_zone_setup_tc()
 						fi
 						qos_id=$((qos_id+1))
 						QOSID=$((qos_id*2))
-						echo setup tc for $wan @wan txbytes=$txbytes quantum=$quantum rule_id=${qos_id} QOSID=${QOSID}
-						tc class add dev $wan parent 1: classid 1:${QOSID} htb rate ${txbytes}Bps quantum $quantum
-						tc filter add dev $wan parent 1: protocol all prio 1 handle ${QOSID} fw classid 1:${QOSID}
+						lower=$(for vif in /sys/class/net/$wan/lower_*; do test -e $vif && echo ${vif##/sys/class/net/*/lower_}; done)
+						for DEVICE in $wan $lower; do
+							tc qdisc add dev $DEVICE root handle 1: htb &>/dev/null
+							echo setup tc for $DEVICE @wan txbytes=$txbytes quantum=$quantum rule_id=${qos_id} QOSID=${QOSID}
+							tc class add dev $DEVICE parent 1: classid 1:${QOSID} htb rate ${txbytes}Bps quantum $quantum
+							tc filter add dev $DEVICE parent 1: protocol all prio 1 handle ${QOSID} fw classid 1:${QOSID}
+						done
 					done
 				fi
 			done
