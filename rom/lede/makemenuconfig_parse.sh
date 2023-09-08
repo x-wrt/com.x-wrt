@@ -1567,7 +1567,7 @@ for t in $targets; do
 	#check special select
 	case $t in
 		TARGET_DEVICE_ramips_mt7621_DEVICE_dual-q_h721)
-			mods="$mods ath10k-firmware-qca988x-ct kmod-ath10k-ct kmod-ath9k kmod-mt7916-firmware kmod-mt7915e"
+			mods="$mods ath10k-firmware-qca988x-ct kmod-ath10k-ct kmod-ath9k kmod-mt7915-firmware kmod-mt7915e"
 		;;
 	esac
 
