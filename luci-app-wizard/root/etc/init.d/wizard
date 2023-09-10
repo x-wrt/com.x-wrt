@@ -8,7 +8,7 @@ boot() {
 	KEY=$(uci get wireless.@wifi-iface[0].key 2>/dev/null)
 	IPADDR=$(uci get network.lan.ipaddr 2>/dev/null)
 	NETMASK=$(uci get network.lan.netmask 2>/dev/null)
-	fakemesh=$(uci fakemesh.default.enabled 2>/dev/null || echo 0)
+	fakemesh=$(uci get fakemesh.default.enabled 2>/dev/null || echo 0)
 
 	if [ "$(uci get wizard.default.wifi_ssid 2>/dev/null)" = "$SSID" ] && [ "$(uci get wizard.default.lan_ipaddr 2>/dev/null)" = "$IPADDR" ]; then
 		:
@@ -104,7 +104,7 @@ add_wizard() {
 		uci set network.lan.netmask="${lan_netmask}"
 	}
 
-	fakemesh=$(uci fakemesh.default.enabled 2>/dev/null || echo 0)
+	fakemesh=$(uci get fakemesh.default.enabled 2>/dev/null || echo 0)
 	if ! [ "$fakemesh" = "1" ]; then
 
 	config_get wifi_ssid "$cfg" wifi_ssid
