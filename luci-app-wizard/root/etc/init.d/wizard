@@ -8,13 +8,16 @@ boot() {
 	KEY=$(uci get wireless.@wifi-iface[0].key 2>/dev/null)
 	IPADDR=$(uci get network.lan.ipaddr 2>/dev/null)
 	NETMASK=$(uci get network.lan.netmask 2>/dev/null)
+	fakemesh=$(uci fakemesh.default.enabled 2>/dev/null || echo 0)
 
 	if [ "$(uci get wizard.default.wifi_ssid 2>/dev/null)" = "$SSID" ] && [ "$(uci get wizard.default.lan_ipaddr 2>/dev/null)" = "$IPADDR" ]; then
 		:
 	else
 		uci set wizard.default=wizard
-		uci set wizard.default.wifi_ssid="$SSID"
-		uci set wizard.default.wifi_key="$KEY"
+		[ "$fakemesh" = "1" ] || {
+			uci set wizard.default.wifi_ssid="$SSID"
+			uci set wizard.default.wifi_key="$KEY"
+		}
 		uci set wizard.default.lan_ipaddr="$IPADDR"
 		uci set wizard.default.lan_netmask="$NETMASK"
 		uci commit wizard
@@ -101,6 +104,9 @@ add_wizard() {
 		uci set network.lan.netmask="${lan_netmask}"
 	}
 
+	fakemesh=$(uci fakemesh.default.enabled 2>/dev/null || echo 0)
+	if ! [ "$fakemesh" = "1" ]; then
+
 	config_get wifi_ssid "$cfg" wifi_ssid
 	config_get wifi_key "$cfg" wifi_key
 
@@ -114,6 +120,8 @@ add_wizard() {
 			}
 		done
 	}
+
+	fi
 
 	uci commit network
 	uci commit wireless
