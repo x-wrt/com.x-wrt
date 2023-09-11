@@ -559,6 +559,7 @@ for t in $targets; do
 		TARGET_DEVICE_mediatek_mt7622_DEVICE_reyee_ax3200-e5|\
 		TARGET_DEVICE_ipq40xx_generic_DEVICE_zte_mf286d|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_xwrt_fm10-ax-nand|\
+		TARGET_DEVICE_ramips_mt7621_DEVICE_xwrt_5g-cpe1801k|\
 		TARGET_DEVICE_mediatek_mt7622_DEVICE_totolink_a8000ru|\
 		TARGET_DEVICE_bcm4908_generic_DEVICE_asus_gt-ac5300|\
 		TARGET_DEVICE_bcm4908_generic_DEVICE_netgear_r8000p|\
@@ -1064,6 +1065,7 @@ for t in $targets; do
 		TARGET_DEVICE_mediatek_mt7622_DEVICE_bananapi_bpi-r64|\
 		TARGET_DEVICE_ipq40xx_generic_DEVICE_zte_mf286d|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_xwrt_fm10-ax-nand|\
+		TARGET_DEVICE_ramips_mt7621_DEVICE_xwrt_5g-cpe1801k|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_tplink_archer-c6u-v1|\
 		TARGET_DEVICE_mediatek_mt7622_DEVICE_totolink_a8000ru|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_dlink_dir-882-a1|\
