@@ -101,7 +101,7 @@ usb3="kmod-usb3 \
 	  blockd \
 	  kmod-fs-ntfs3"
 
-usb_extra="kmod-usb-storage-extras"
+usb_extra="kmod-usb-storage-extras luci-proto-modemmanager"
 
 exclude_for_tiny="kmod-usb-storage-uas kmod-scsi-core kmod-fs-ext4 kmod-fs-msdos kmod-fs-vfat"
 
