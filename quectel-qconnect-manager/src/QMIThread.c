@@ -1830,6 +1830,7 @@ static int requestSetupDataCall(PROFILE_T *profile, int curIpFamily) {
     PQCQMIMSG pResponse;
     PQMUX_MSG pMUXMsg;
     int err = 0;
+    int ret;
     UCHAR QMIType = (curIpFamily == IpFamilyV4) ? QMUX_TYPE_WDS : QMUX_TYPE_WDS_IPV6;
 
 //DualIPSupported means can get ipv4 & ipv6 address at the same time, one wds for ipv4, the other wds for ipv6
@@ -1858,8 +1859,9 @@ static int requestSetupDataCall(PROFILE_T *profile, int curIpFamily) {
             dbg_time("call_end_reason_verbose is %d", verbose_call_end_reason);
         }
 
+        ret = le16_to_cpu(pMUXMsg->QMUXMsgHdrResp.QMUXError);
         free(pResponse);
-        return le16_to_cpu(pMUXMsg->QMUXMsgHdrResp.QMUXError);
+        return ret;
     }
 
     if (curIpFamily == IpFamilyV4) {
