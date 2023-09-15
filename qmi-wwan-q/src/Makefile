@@ -1,36 +1,12 @@
-obj-m += qmi_wwan_q.o
+# SPDX-License-Identifier: GPL-2.0
 
-PWD := $(shell pwd)
-OUTPUTDIR=/lib/modules/`uname -r`/kernel/drivers/net/usb/
+# to check robot warnings
+ccflags-y += -Wunused-but-set-variable -Wold-style-declaration -Wint-to-pointer-cast
 
-ifeq ($(ARCH),)
-ARCH := $(shell uname -m)
-endif
-ifeq ($(CROSS_COMPILE),)
-CROSS_COMPILE :=
-endif
-ifeq ($(KDIR),)
-KDIR := /lib/modules/$(shell uname -r)/build
-ifeq ($(ARCH),i686)
-ifeq ($(wildcard $KDIR/arch/$ARCH),)
-ARCH=i386
-endif
-endif
-endif
+obj-$(CONFIG_USB_NET_QMI_WWAN) += qmi_wwan_q.o
 
-ifneq ($(findstring &,${PWD}),)
-$(warning "${PWD}")
-$(warning "current directory contain special char '&' !")
-$(error "please remove it!")
-endif
-
-default:
-	$(MAKE) ARCH=${ARCH} CROSS_COMPILE=${CROSS_COMPILE} -C $(KDIR) M=$(PWD) modules
-
-install: default
-	cp $(PWD)/qmi_wwan_q.ko /lib/modules/$(shell uname -r)/kernel/drivers/net/usb/
-	depmod
+all:
+	make -C /lib/modules/$(KVERSION)/build M=$(PWD) modules
 
 clean:
-	rm -rf *~ .tmp_versions modules.order Module.symvers
-	find . -type f -name "*~" -o -name "*.o" -o -name "*.ko" -o -name "*.cmd" -o -name "*.mod.c" |  xargs rm -rf
+	make -C /lib/modules/$(KVERSION)/build M=$(PWD) clean
