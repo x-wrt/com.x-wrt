@@ -1314,7 +1314,11 @@ int qma_setting_store(struct device *dev, QMAP_SETTING *qmap_settings, size_t si
 	return -EOPNOTSUPP;
 }
 
+#if (LINUX_VERSION_CODE >= KERNEL_VERSION(5, 15, 0))
+static int qmap_ndo_do_ioctl(struct net_device *dev, struct ifreq *ifr, void __user *udata, int cmd) {
+#else
 static int qmap_ndo_do_ioctl(struct net_device *dev, struct ifreq *ifr, int cmd) {
+#endif
 	struct usbnet * usbnetdev = netdev_priv( dev );
 	struct qmi_wwan_state *info = (void *)&usbnetdev->data;
 	sQmiWwanQmap *pQmapDev = (sQmiWwanQmap *)info->unused;
@@ -1765,7 +1769,11 @@ static const struct net_device_ops qmi_wwan_netdev_ops = {
 	.ndo_set_mac_address	= qmi_wwan_mac_addr,
 	.ndo_validate_addr	= eth_validate_addr,
 #if defined(QUECTEL_WWAN_QMAP)// && defined(CONFIG_ANDROID)
+#if (LINUX_VERSION_CODE >= KERNEL_VERSION(5, 15, 0))
+	.ndo_siocdevprivate = qmap_ndo_do_ioctl,
+#else
 	.ndo_do_ioctl = qmap_ndo_do_ioctl,
+#endif
 #endif
 };
 
