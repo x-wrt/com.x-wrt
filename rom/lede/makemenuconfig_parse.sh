@@ -103,7 +103,7 @@ usb3="kmod-usb3 \
 
 usb_extra="kmod-usb-storage-extras"
 
-modem="luci-proto-modemmanager qmi-utils kmod-mhi-wwan-ctrl kmod-mhi-wwan-mbim"
+modem="luci-proto-modemmanager qmi-utils"
 
 exclude_for_tiny="kmod-usb-storage-uas kmod-scsi-core kmod-fs-ext4 kmod-fs-msdos kmod-fs-vfat"
 
