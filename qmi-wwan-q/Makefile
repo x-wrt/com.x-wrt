@@ -19,7 +19,7 @@ define KernelPackage/qmi-wwan-q
   CATEGORY:=X
   TITLE:=QMI WWAN QMAP driver
   FILES:=$(PKG_BUILD_DIR)/qmi_wwan_q.ko
-  AUTOLOAD:=$(call AutoProbe,qmi_wwan_q)
+  #AUTOLOAD:=$(call AutoProbe,qmi_wwan_q)
   DEPENDS:=+kmod-usb-net-qmi-wwan
 endef
 
