@@ -101,7 +101,9 @@ usb3="kmod-usb3 \
 	  blockd \
 	  kmod-fs-ntfs3"
 
-usb_extra="kmod-usb-storage-extras luci-proto-modemmanager"
+usb_extra="kmod-usb-storage-extras"
+
+modem="luci-proto-modemmanager qmi-utils kmod-mhi-wwan-ctrl kmod-mhi-wwan-mbim"
 
 exclude_for_tiny="kmod-usb-storage-uas kmod-scsi-core kmod-fs-ext4 kmod-fs-msdos kmod-fs-vfat"
 
@@ -1570,6 +1572,8 @@ for t in $targets; do
 	case $t in
 		TARGET_DEVICE_ramips_mt7621_DEVICE_dual-q_h721)
 			mods="$mods ath10k-firmware-qca988x-ct kmod-ath10k-ct kmod-ath9k kmod-mt7915-firmware kmod-mt7915e usbutils pciutils"
+			mods="$mods $usb4g $modem"
+			has_usb=0
 		;;
 	esac
 
