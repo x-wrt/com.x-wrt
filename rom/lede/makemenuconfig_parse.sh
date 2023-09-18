@@ -1573,7 +1573,7 @@ for t in $targets; do
 	case $t in
 		TARGET_DEVICE_ramips_mt7621_DEVICE_dual-q_h721)
 			mods="$mods ath10k-firmware-qca988x-ct kmod-ath10k-ct kmod-ath9k kmod-mt7915-firmware kmod-mt7915e usbutils pciutils"
-			mods="$mods $usb4g $modem $quectel"
+			mods="$mods $usb4g $quectel iperf nload"
 			has_usb=0
 		;;
 	esac
