@@ -395,6 +395,7 @@ for t in $targets; do
 		TARGET_DEVICE_mediatek_filogic_DEVICE_konka_komi-a31|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_mercusys_mr90x-v1|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_netgear_wax220|\
+		TARGET_DEVICE_mediatek_filogic_DEVICE_cetron_ct3003|\
 		TARGET_DEVICE_armsr_armv8_DEVICE_generic|\
 		TARGET_DEVICE_qualcommax_ipq807x_DEVICE_netgear_wax218|\
 		TARGET_DEVICE_ipq806x_generic_DEVICE_netgear_xr450|\
@@ -506,6 +507,7 @@ for t in $targets; do
 		TARGET_DEVICE_ipq40xx_generic_DEVICE_zte_mf287plus|\
 		TARGET_DEVICE_ipq40xx_generic_DEVICE_zte_mf18a|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_zyxel_wsm20|\
+		TARGET_DEVICE_mediatek_filogic_DEVICE_cetron_ct3003|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_jcg_q30-pro|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_jcg_q30-pro-nmbm|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_h3c_magic-nx30-pro|\
@@ -1372,6 +1374,7 @@ for t in $targets; do
 			has_usb=1
 		;;
 		#no usb
+		TARGET_DEVICE_mediatek_filogic_DEVICE_cetron_ct3003|\
 		TARGET_DEVICE_ipq40xx_generic_DEVICE_zte_mf287plus|\
 		TARGET_DEVICE_ipq40xx_generic_DEVICE_zte_mf18a|\
 		TARGET_DEVICE_ramips_mt7620_DEVICE_zte_q7|\
