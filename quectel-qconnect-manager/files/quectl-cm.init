@@ -36,6 +36,7 @@ start() {
 	done
 	for pf in /sys/class/net/*; do
 		test -e $pf/qmap_mode && {
+			ifconfig ${pf#/sys/class/net/*}_1 mtu 1400
 			SERVICE_DAEMONIZE=1 service_start /usr/bin/quectel-cm -i  ${pf#/sys/class/net/*} &
 		}
 	done
