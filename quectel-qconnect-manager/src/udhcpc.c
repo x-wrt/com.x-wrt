@@ -555,7 +555,7 @@ void udhcpc_start(PROFILE_T *profile) {
             //-n,--now        Exit if lease is not obtained
             //-q,--quit        Exit after obtaining lease
             //-t,--retries N        Send up to N discover packets (default 3)
-            snprintf(udhcpc_cmd, sizeof(udhcpc_cmd), "busybox udhcpc -f -n -q -t 5 -i %s", ifname);
+            snprintf(udhcpc_cmd, sizeof(udhcpc_cmd), "echo fake %s; ubus call network.interface.usbwan down; ubus call network.interface.usbwan up", ifname);
 #endif
 
 #if 1 //for OpenWrt
