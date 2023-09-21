@@ -36,7 +36,14 @@ start() {
 	done
 	for pf in /sys/class/net/*; do
 		test -e $pf/qmap_mode && {
-			ifconfig ${pf#/sys/class/net/*}_1 mtu 1400
+			ifname=${pf#/sys/class/net/*}_1
+			uci get network.${ifname} &>/dev/null || {
+				uci set network.${ifname}=device
+				uci set network.${ifname}.name="${ifname}"
+				uci set network.${ifname}.mtu='1400'
+				uci commit network
+			}
+			/etc/init.d/network reload
 			SERVICE_DAEMONIZE=1 service_start /usr/bin/quectel-cm -i  ${pf#/sys/class/net/*} &
 		}
 	done
