@@ -2,8 +2,8 @@
 #define __QUECTEL_LIST_H__
 struct qlistnode
 {
-    struct qlistnode *next;
-    struct qlistnode *prev;
+	struct qlistnode *next;
+	struct qlistnode *prev;
 };
 
 #define qnode_to_item(node, container, member) \
@@ -18,21 +18,21 @@ struct qlistnode
 
 static void qlist_init(struct qlistnode *node)
 {
-    node->next = node;
-    node->prev = node;
+	node->next = node;
+	node->prev = node;
 }
 
 static void qlist_add_tail(struct qlistnode *head, struct qlistnode *item)
 {
-    item->next = head;
-    item->prev = head->prev;
-    head->prev->next = item;
-    head->prev = item;
+	item->next = head;
+	item->prev = head->prev;
+	head->prev->next = item;
+	head->prev = item;
 }
 
 static void qlist_remove(struct qlistnode *item)
 {
-    item->next->prev = item->prev;
-    item->prev->next = item->next;
+	item->next->prev = item->prev;
+	item->prev->next = item->next;
 }
 #endif

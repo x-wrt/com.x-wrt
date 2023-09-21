@@ -51,7 +51,7 @@ struct ethtool_cmd {
 };
 
 static __inline__ void ethtool_cmd_speed_set(struct ethtool_cmd *ep,
-					 __u32 speed)
+        __u32 speed)
 {
 
 	ep->speed = (__u16)speed;
@@ -86,16 +86,16 @@ struct ethtool_drvinfo {
 	char	version[32];	/* driver version string */
 	char	fw_version[ETHTOOL_FWVERS_LEN];	/* firmware version string */
 	char	bus_info[ETHTOOL_BUSINFO_LEN];	/* Bus info for this IF. */
-				/* For PCI devices, use pci_name(pci_dev). */
+	/* For PCI devices, use pci_name(pci_dev). */
 	char	reserved1[32];
 	char	reserved2[12];
-				/*
-				 * Some struct members below are filled in
-				 * using ops->get_sset_count().  Obtaining
-				 * this info from ethtool_drvinfo is now
-				 * deprecated; Use ETHTOOL_GSSET_INFO
-				 * instead.
-				 */
+	/*
+	 * Some struct members below are filled in
+	 * using ops->get_sset_count().  Obtaining
+	 * this info from ethtool_drvinfo is now
+	 * deprecated; Use ETHTOOL_GSSET_INFO
+	 * instead.
+	 */
 	__u32	n_priv_flags;	/* number of flags valid in ETHTOOL_GPFLAGS */
 	__u32	n_stats;	/* number of u64's from ETHTOOL_GSTATS */
 	__u32	testinfo_len;
@@ -369,7 +369,7 @@ struct ethtool_sset_info {
 	__u32	cmd;		/* ETHTOOL_GSSET_INFO */
 	__u32	reserved;
 	__u64	sset_mask;	/* input: each bit selects an sset to query */
-				/* output: each bit a returned sset */
+	/* output: each bit a returned sset */
 	__u32	data[0];	/* ETH_SS_xxx count, in order, based on bits
 				   in sset_mask.  One bit implies one
 				   __u32, two bits implies two

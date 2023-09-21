@@ -1,4 +1,4 @@
-/**  
+/**
   @file
   util.h
 
@@ -15,8 +15,8 @@
 
 struct listnode
 {
-    struct listnode *next;
-    struct listnode *prev;
+	struct listnode *next;
+	struct listnode *prev;
 };
 
 #define node_to_item(node, container, member) \

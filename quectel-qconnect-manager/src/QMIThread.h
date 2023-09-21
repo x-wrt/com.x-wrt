@@ -81,40 +81,40 @@
 #define WWAN_DATA_CLASS_CUSTOM          0x80000000
 
 struct wwan_data_class_str {
-    ULONG class;
-    const char *str;
+	ULONG class;
+	const char *str;
 };
 
 #pragma pack(push, 1)
 typedef struct __IPV4 {
-    uint32_t Address;
-    uint32_t Gateway;
-    uint32_t SubnetMask;
-    uint32_t DnsPrimary;
-    uint32_t DnsSecondary;
-    uint32_t Mtu;
+	uint32_t Address;
+	uint32_t Gateway;
+	uint32_t SubnetMask;
+	uint32_t DnsPrimary;
+	uint32_t DnsSecondary;
+	uint32_t Mtu;
 } IPV4_T;
 
 typedef struct __IPV6 {
-    UCHAR Address[16];
-    UCHAR Gateway[16];
-    UCHAR SubnetMask[16];
-    UCHAR DnsPrimary[16];
-    UCHAR DnsSecondary[16];
-    UCHAR PrefixLengthIPAddr;
-    UCHAR PrefixLengthGateway;
-    ULONG Mtu;
+	UCHAR Address[16];
+	UCHAR Gateway[16];
+	UCHAR SubnetMask[16];
+	UCHAR DnsPrimary[16];
+	UCHAR DnsSecondary[16];
+	UCHAR PrefixLengthIPAddr;
+	UCHAR PrefixLengthGateway;
+	ULONG Mtu;
 } IPV6_T;
 
 typedef struct {
-    UINT size;
-    UINT rx_urb_size;
-    UINT ep_type;
-    UINT iface_id;
-    UINT MuxId;
-    UINT ul_data_aggregation_max_datagrams; //0x17
-    UINT ul_data_aggregation_max_size ;//0x18
-    UINT dl_minimum_padding; //0x1A
+	UINT size;
+	UINT rx_urb_size;
+	UINT ep_type;
+	UINT iface_id;
+	UINT MuxId;
+	UINT ul_data_aggregation_max_datagrams; //0x17
+	UINT ul_data_aggregation_max_size ;//0x18
+	UINT dl_minimum_padding; //0x1A
 } QMAP_SETTING;
 
 //Configured downlink data aggregationprotocol
@@ -130,15 +130,15 @@ typedef struct {
 #define WDA_DL_DATA_AGG_QMAP_V5_ENABLED (0x09) // DL QMAP V5 is enabled
 
 typedef struct {
-    unsigned int size;
-    unsigned int rx_urb_size;
-    unsigned int ep_type;
-    unsigned int iface_id;
-    unsigned int qmap_mode;
-    unsigned int qmap_version;
-    unsigned int dl_minimum_padding;
-    char ifname[8][16];
-    unsigned char mux_id[8];
+	unsigned int size;
+	unsigned int rx_urb_size;
+	unsigned int ep_type;
+	unsigned int iface_id;
+	unsigned int qmap_mode;
+	unsigned int qmap_version;
+	unsigned int dl_minimum_padding;
+	char ifname[8][16];
+	unsigned char mux_id[8];
 } RMNET_INFO;
 
 #define IpFamilyV4 (0x04)
@@ -161,19 +161,19 @@ extern const struct qmi_device_ops atc_dev_ops;
 extern int (*qmidev_send)(PQCQMIMSG pRequest);
 
 struct usb_device_info {
-    int idVendor;
-    int idProduct;
-    int  busnum;
-    int devnum;
-    int bNumInterfaces;
+	int idVendor;
+	int idProduct;
+	int  busnum;
+	int devnum;
+	int bNumInterfaces;
 };
 
 struct usb_interface_info {
-    int bNumEndpoints;
-    int bInterfaceClass;
-    int bInterfaceSubClass;
-    int bInterfaceProtocol;
-    char driver[32];
+	int bNumEndpoints;
+	int bInterfaceClass;
+	int bInterfaceSubClass;
+	int bInterfaceProtocol;
+	char driver[32];
 };
 
 #define LIBQMI_PROXY "qmi-proxy" //src/libqmi-glib/qmi-proxy.h
@@ -188,66 +188,66 @@ struct usb_interface_info {
 #endif
 struct request_ops;
 typedef struct __PROFILE {
-    //user input start
-    const char *apn;
-    const char *user;
-    const char *password;
-    int auth;
-    int iptype;
-    const char *pincode;
-    char proxy[32];
-    int pdp;
-    int enable_bridge;
-    bool enable_ipv4;
-    bool enable_ipv6;
-    const char *logfile;
-    const char *usblogfile;
-    char expect_adapter[32];
-    int kill_pdp;
-    int replication_factor;
-    //user input end
+	//user input start
+	const char *apn;
+	const char *user;
+	const char *password;
+	int auth;
+	int iptype;
+	const char *pincode;
+	char proxy[32];
+	int pdp;
+	int enable_bridge;
+	bool enable_ipv4;
+	bool enable_ipv6;
+	const char *logfile;
+	const char *usblogfile;
+	char expect_adapter[32];
+	int kill_pdp;
+	int replication_factor;
+	//user input end
 
-    char qmichannel[32];
-    char usbnet_adapter[32];
-    char qmapnet_adapter[32];
-    char driver_name[32];
-    int qmap_mode;
-    int qmap_size;
-    int qmap_version;
-    int curIpFamily;
-    int rawIP;
-    int muxid;
+	char qmichannel[32];
+	char usbnet_adapter[32];
+	char qmapnet_adapter[32];
+	char driver_name[32];
+	int qmap_mode;
+	int qmap_size;
+	int qmap_version;
+	int curIpFamily;
+	int rawIP;
+	int muxid;
 #ifdef CONFIG_ENABLE_QOS
-    UINT qos_id;
+	UINT qos_id;
 #endif
-    int wda_client;
-    IPV4_T ipv4;
-    IPV6_T ipv6;
-    UINT PCSCFIpv4Addr1;
-    UINT PCSCFIpv4Addr2;
-    UCHAR PCSCFIpv6Addr1[16];
-    UCHAR PCSCFIpv6Addr2[16];
-    bool reattach_flag;
-    int hardware_interface;
-    int software_interface;
+	int wda_client;
+	IPV4_T ipv4;
+	IPV6_T ipv6;
+	UINT PCSCFIpv4Addr1;
+	UINT PCSCFIpv4Addr2;
+	UCHAR PCSCFIpv6Addr1[16];
+	UCHAR PCSCFIpv6Addr2[16];
+	bool reattach_flag;
+	int hardware_interface;
+	int software_interface;
 
-    struct usb_device_info usb_dev;
-    struct usb_interface_info usb_intf;
+	struct usb_device_info usb_dev;
+	struct usb_interface_info usb_intf;
 
-    int usbmon_fd;
-    FILE  *usbmon_logfile_fp;
-    bool loopback_state;
+	int usbmon_fd;
+	FILE  *usbmon_logfile_fp;
+	bool loopback_state;
 
-    char BaseBandVersion[64];
-    char old_apn[64];
-    char old_user[64];
-    char old_password[64];
-    int old_auth;
-    int old_iptype;
+	char BaseBandVersion[64];
+	char old_apn[64];
+	char old_user[64];
+	char old_password[64];
+	int old_auth;
+	int old_iptype;
 
-    const struct qmi_device_ops *qmi_ops;
-    const struct request_ops *request_ops;
-    RMNET_INFO rmnet_info;
+	const struct qmi_device_ops *qmi_ops;
+	const struct request_ops *request_ops;
+	RMNET_INFO rmnet_info;
 } PROFILE_T;
 
 #ifdef QUECTEL_QMI_MERGE
@@ -255,27 +255,27 @@ typedef struct __PROFILE {
 #define MERGE_PACKET_VERSION 0x0001
 #define MERGE_PACKET_MAX_PAYLOAD_SIZE 56
 typedef struct __QMI_MSG_HEADER {
-    uint16_t idenity;
-    uint16_t version;
-    uint16_t cur_len;
-    uint16_t total_len;
+	uint16_t idenity;
+	uint16_t version;
+	uint16_t cur_len;
+	uint16_t total_len;
 } QMI_MSG_HEADER;
 
 typedef struct __QMI_MSG_PACKET {
-    QMI_MSG_HEADER header;
-    uint16_t len;
-    char buf[4096];
+	QMI_MSG_HEADER header;
+	uint16_t len;
+	char buf[4096];
 } QMI_MSG_PACKET;
 #endif
 
 typedef enum {
-    SIM_ABSENT = 0,
-    SIM_NOT_READY = 1,
-    SIM_READY = 2, /* SIM_READY means the radio state is RADIO_STATE_SIM_READY */
-    SIM_PIN = 3,
-    SIM_PUK = 4,
-    SIM_NETWORK_PERSONALIZATION = 5,
-    SIM_BAD = 6,
+	SIM_ABSENT = 0,
+	SIM_NOT_READY = 1,
+	SIM_READY = 2, /* SIM_READY means the radio state is RADIO_STATE_SIM_READY */
+	SIM_PIN = 3,
+	SIM_PUK = 4,
+	SIM_NETWORK_PERSONALIZATION = 5,
+	SIM_BAD = 6,
 } SIM_Status;
 
 #pragma pack(pop)
@@ -319,26 +319,26 @@ extern UCHAR ql_get_global_qos_flow_ind_data_rate(PQCQMIMSG pResponse, void *max
 #endif
 
 struct request_ops {
-    int (*requestBaseBandVersion)(PROFILE_T *profile);
-    int (*requestSetEthMode)(PROFILE_T *profile);
-    int (*requestSetLoopBackState)(UCHAR loopback_state, ULONG replication_factor);
-    int (*requestGetSIMStatus)(SIM_Status *pSIMStatus);
-    int (*requestEnterSimPin)(const char *pPinCode);
-    int (*requestSetProfile)(PROFILE_T *profile); // 1 ~ success and apn change, 0 ~ success and no apn change, -1 ~ fail
-    int (*requestGetProfile)(PROFILE_T *profile);
-    int (*requestRegistrationState)(UCHAR *pPSAttachedState);
-    int (*requestSetupDataCall)(PROFILE_T *profile, int curIpFamily);
-    int (*requestQueryDataCall)(UCHAR  *pConnectionStatus, int curIpFamily);
-    int (*requestDeactivateDefaultPDP)(PROFILE_T *profile, int curIpFamily);
-    int (*requestGetIPAddress)(PROFILE_T *profile, int curIpFamily);
-    int (*requestGetSignalInfo)(void);
-    int (*requestGetCellInfoList)(void);
-    int (*requestGetICCID)(void);
-    int (*requestGetIMSI)(void);
-    int (*requestRadioPower)(int state);
-    int (*requestRegisterQos)(PROFILE_T *profile);
-    int (*requestGetQosInfo)(PROFILE_T *profile);
-    int (*requestGetCoexWWANState)(void);
+	int (*requestBaseBandVersion)(PROFILE_T *profile);
+	int (*requestSetEthMode)(PROFILE_T *profile);
+	int (*requestSetLoopBackState)(UCHAR loopback_state, ULONG replication_factor);
+	int (*requestGetSIMStatus)(SIM_Status *pSIMStatus);
+	int (*requestEnterSimPin)(const char *pPinCode);
+	int (*requestSetProfile)(PROFILE_T *profile); // 1 ~ success and apn change, 0 ~ success and no apn change, -1 ~ fail
+	int (*requestGetProfile)(PROFILE_T *profile);
+	int (*requestRegistrationState)(UCHAR *pPSAttachedState);
+	int (*requestSetupDataCall)(PROFILE_T *profile, int curIpFamily);
+	int (*requestQueryDataCall)(UCHAR  *pConnectionStatus, int curIpFamily);
+	int (*requestDeactivateDefaultPDP)(PROFILE_T *profile, int curIpFamily);
+	int (*requestGetIPAddress)(PROFILE_T *profile, int curIpFamily);
+	int (*requestGetSignalInfo)(void);
+	int (*requestGetCellInfoList)(void);
+	int (*requestGetICCID)(void);
+	int (*requestGetIMSI)(void);
+	int (*requestRadioPower)(int state);
+	int (*requestRegisterQos)(PROFILE_T *profile);
+	int (*requestGetQosInfo)(PROFILE_T *profile);
+	int (*requestGetCoexWWANState)(void);
 };
 extern const struct request_ops qmi_request_ops;
 extern const struct request_ops mbim_request_ops;
@@ -353,7 +353,7 @@ extern int ql_enable_qmi_wwan_rawip_mode(PROFILE_T *profile);
 extern int ql_qmap_mode_detect(PROFILE_T *profile);
 #ifdef CONFIG_QRTR
 extern int rtrmnet_ctl_create_vnd(char *devname, char *vndname, uint8_t muxid,
-		       uint32_t qmap_version, uint32_t ul_agg_cnt, uint32_t ul_agg_size);
+                                  uint32_t qmap_version, uint32_t ul_agg_cnt, uint32_t ul_agg_size);
 #endif
 
 #define qmidev_is_gobinet(_qmichannel) (strncmp(_qmichannel, "/dev/qcqmi", strlen("/dev/qcqmi")) == 0)
@@ -386,23 +386,23 @@ enum
 
 enum
 {
-    SIG_EVENT_START,
-    SIG_EVENT_CHECK,
-    SIG_EVENT_STOP,
+	SIG_EVENT_START,
+	SIG_EVENT_CHECK,
+	SIG_EVENT_STOP,
 };
 
 typedef enum
 {
-    DMS_OP_MODE_ONLINE,
-    DMS_OP_MODE_LOW_POWER,
-    DMS_OP_MODE_FACTORY_TEST_MODE,
-    DMS_OP_MODE_OFFLINE,
-    DMS_OP_MODE_RESETTING,
-    DMS_OP_MODE_SHUTTING_DOWN,
-    DMS_OP_MODE_PERSISTENT_LOW_POWER,
-    DMS_OP_MODE_MODE_ONLY_LOW_POWER,
-    DMS_OP_MODE_NET_TEST_GW,
-}Device_operating_mode;
+	DMS_OP_MODE_ONLINE,
+	DMS_OP_MODE_LOW_POWER,
+	DMS_OP_MODE_FACTORY_TEST_MODE,
+	DMS_OP_MODE_OFFLINE,
+	DMS_OP_MODE_RESETTING,
+	DMS_OP_MODE_SHUTTING_DOWN,
+	DMS_OP_MODE_PERSISTENT_LOW_POWER,
+	DMS_OP_MODE_MODE_ONLY_LOW_POWER,
+	DMS_OP_MODE_NET_TEST_GW,
+} Device_operating_mode;
 
 #ifdef CM_DEBUG
 #define dbg_time(fmt, args...) do { \

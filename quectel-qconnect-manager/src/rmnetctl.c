@@ -36,10 +36,10 @@ enum rmnetctl_error_codes_e {
 };
 
 struct rmnetctl_hndl_s {
-	 uint32_t pid;
-	 uint32_t transaction_id;
-	 int netlink_fd;
-	 struct sockaddr_nl src_addr, dest_addr;
+	uint32_t pid;
+	uint32_t transaction_id;
+	int netlink_fd;
+	struct sockaddr_nl src_addr, dest_addr;
 };
 typedef struct rmnetctl_hndl_s rmnetctl_hndl_t;
 
@@ -141,8 +141,8 @@ static int rtrmnet_ctl_init(rmnetctl_hndl_t **hndl, uint16_t *error_code)
 
 	saddr_ptr = &(*hndl)->src_addr;
 	if (bind((*hndl)->netlink_fd,
-		(struct sockaddr *)saddr_ptr,
-		sizeof(struct sockaddr_nl)) < 0) {
+	         (struct sockaddr *)saddr_ptr,
+	         sizeof(struct sockaddr_nl)) < 0) {
 		close((*hndl)->netlink_fd);
 		free(*hndl);
 		*error_code = RMNETCTL_INIT_ERR_BIND;
@@ -170,8 +170,8 @@ static int rtrmnet_ctl_deinit(rmnetctl_hndl_t *hndl)
 }
 
 static int rtrmnet_ctl_newvnd(rmnetctl_hndl_t *hndl, char *devname, char *vndname,
-		       uint16_t *error_code, uint8_t  index,
-		       uint32_t flagconfig, uint32_t ul_agg_cnt, uint32_t ul_agg_size)
+                              uint16_t *error_code, uint8_t  index,
+                              uint32_t flagconfig, uint32_t ul_agg_cnt, uint32_t ul_agg_size)
 {
 	struct rtattr *attrinfo, *datainfo, *linkinfo;
 	struct ifla_vlan_flags flags;
@@ -187,7 +187,7 @@ static int rtrmnet_ctl_newvnd(rmnetctl_hndl_t *hndl, char *devname, char *vndnam
 	req.nl_addr.nlmsg_type = RTM_NEWLINK;
 	req.nl_addr.nlmsg_len = NLMSG_LENGTH(sizeof(struct ifinfomsg));
 	req.nl_addr.nlmsg_flags = NLM_F_REQUEST | NLM_F_CREATE | NLM_F_EXCL |
-				  NLM_F_ACK;
+	                          NLM_F_ACK;
 	req.nl_addr.nlmsg_seq = hndl->transaction_id;
 	hndl->transaction_id++;
 
@@ -201,80 +201,80 @@ static int rtrmnet_ctl_newvnd(rmnetctl_hndl_t *hndl, char *devname, char *vndnam
 	/* Setup link attr with devindex as data */
 	val = devindex;
 	attrinfo = (struct rtattr *)(((char *)&req) +
-				     NLMSG_ALIGN(req.nl_addr.nlmsg_len));
+	                             NLMSG_ALIGN(req.nl_addr.nlmsg_len));
 	attrinfo->rta_type = IFLA_LINK;
 	attrinfo->rta_len = RTA_ALIGN(RTA_LENGTH(sizeof(val)));
 	memcpy(RTA_DATA(attrinfo), &val, sizeof(val));
 	req.nl_addr.nlmsg_len = NLMSG_ALIGN(req.nl_addr.nlmsg_len) +
-				RTA_ALIGN(RTA_LENGTH(sizeof(val)));
+	                        RTA_ALIGN(RTA_LENGTH(sizeof(val)));
 
 	/* Set up IFLA info kind  RMNET that has linkinfo and type */
 	attrinfo = (struct rtattr *)(((char *)&req) +
-				     NLMSG_ALIGN(req.nl_addr.nlmsg_len));
+	                             NLMSG_ALIGN(req.nl_addr.nlmsg_len));
 	attrinfo->rta_type =  IFLA_IFNAME;
 	attrinfo->rta_len = RTA_ALIGN(RTA_LENGTH(strlen(vndname) + 1));
 	memcpy(RTA_DATA(attrinfo), vndname, strlen(vndname) + 1);
 	req.nl_addr.nlmsg_len = NLMSG_ALIGN(req.nl_addr.nlmsg_len) +
-				RTA_ALIGN(RTA_LENGTH(strlen(vndname) + 1));
+	                        RTA_ALIGN(RTA_LENGTH(strlen(vndname) + 1));
 
 	linkinfo = (struct rtattr *)(((char *)&req) +
-				     NLMSG_ALIGN(req.nl_addr.nlmsg_len));
+	                             NLMSG_ALIGN(req.nl_addr.nlmsg_len));
 	linkinfo->rta_type = IFLA_LINKINFO;
 	linkinfo->rta_len = RTA_ALIGN(RTA_LENGTH(0));
 	req.nl_addr.nlmsg_len = NLMSG_ALIGN(req.nl_addr.nlmsg_len) +
-				RTA_ALIGN(RTA_LENGTH(0));
+	                        RTA_ALIGN(RTA_LENGTH(0));
 
 	attrinfo = (struct rtattr *)(((char *)&req) +
-				     NLMSG_ALIGN(req.nl_addr.nlmsg_len));
+	                             NLMSG_ALIGN(req.nl_addr.nlmsg_len));
 	attrinfo->rta_type =  IFLA_INFO_KIND;
 	attrinfo->rta_len = RTA_ALIGN(RTA_LENGTH(strlen(kind)));
 	memcpy(RTA_DATA(attrinfo), kind, strlen(kind));
 	req.nl_addr.nlmsg_len = NLMSG_ALIGN(req.nl_addr.nlmsg_len) +
-				RTA_ALIGN(RTA_LENGTH(strlen(kind)));
+	                        RTA_ALIGN(RTA_LENGTH(strlen(kind)));
 
 	datainfo = (struct rtattr *)(((char *)&req) +
-				     NLMSG_ALIGN(req.nl_addr.nlmsg_len));
+	                             NLMSG_ALIGN(req.nl_addr.nlmsg_len));
 	datainfo->rta_type =  IFLA_INFO_DATA;
 	datainfo->rta_len = RTA_ALIGN(RTA_LENGTH(0));
 	req.nl_addr.nlmsg_len = NLMSG_ALIGN(req.nl_addr.nlmsg_len) +
-				RTA_ALIGN(RTA_LENGTH(0));
+	                        RTA_ALIGN(RTA_LENGTH(0));
 
 	id = index;
 	attrinfo = (struct rtattr *)(((char *)&req) +
-				     NLMSG_ALIGN(req.nl_addr.nlmsg_len));
+	                             NLMSG_ALIGN(req.nl_addr.nlmsg_len));
 	attrinfo->rta_type =  IFLA_VLAN_ID;
 	attrinfo->rta_len = RTA_LENGTH(sizeof(id));
 	memcpy(RTA_DATA(attrinfo), &id, sizeof(id));
 	req.nl_addr.nlmsg_len = NLMSG_ALIGN(req.nl_addr.nlmsg_len) +
-				RTA_ALIGN(RTA_LENGTH(sizeof(id)));
+	                        RTA_ALIGN(RTA_LENGTH(sizeof(id)));
 
 	if (flagconfig != 0) {
 		flags.mask  = flagconfig;
 		flags.flags = flagconfig;
 
 		attrinfo = (struct rtattr *)(((char *)&req) +
-					     NLMSG_ALIGN(req.nl_addr.nlmsg_len));
+		                             NLMSG_ALIGN(req.nl_addr.nlmsg_len));
 		attrinfo->rta_type =  IFLA_VLAN_FLAGS;
 		attrinfo->rta_len = RTA_LENGTH(sizeof(flags));
 		memcpy(RTA_DATA(attrinfo), &flags, sizeof(flags));
 		req.nl_addr.nlmsg_len = NLMSG_ALIGN(req.nl_addr.nlmsg_len) +
-					RTA_ALIGN(RTA_LENGTH(sizeof(flags)));
+		                        RTA_ALIGN(RTA_LENGTH(sizeof(flags)));
 	}
 
 	if (ul_agg_cnt > 1) {
-            struct rmnet_egress_agg_params agg_params;
+		struct rmnet_egress_agg_params agg_params;
 
-            agg_params.agg_size = ul_agg_size;
-            agg_params.agg_count = ul_agg_cnt;
-            agg_params.agg_time = 3000000;
+		agg_params.agg_size = ul_agg_size;
+		agg_params.agg_count = ul_agg_cnt;
+		agg_params.agg_time = 3000000;
 
 		attrinfo = (struct rtattr *)(((char *)&req) +
-					     NLMSG_ALIGN(req.nl_addr.nlmsg_len));
+		                             NLMSG_ALIGN(req.nl_addr.nlmsg_len));
 		attrinfo->rta_type =  IFLA_RMNET_UL_AGG_PARAMS;
 		attrinfo->rta_len = RTA_LENGTH(sizeof(agg_params));
 		memcpy(RTA_DATA(attrinfo), &agg_params, sizeof(agg_params));
 		req.nl_addr.nlmsg_len = NLMSG_ALIGN(req.nl_addr.nlmsg_len) +
-					RTA_ALIGN(RTA_LENGTH(sizeof(agg_params)));
+		                        RTA_ALIGN(RTA_LENGTH(sizeof(agg_params)));
 	}
 
 	datainfo->rta_len = (char *)NLMSG_TAIL(&req.nl_addr) - (char *)datainfo;
@@ -290,53 +290,53 @@ static int rtrmnet_ctl_newvnd(rmnetctl_hndl_t *hndl, char *devname, char *vndnam
 }
 
 int rtrmnet_ctl_create_vnd(char *devname, char *vndname, uint8_t muxid,
-		       uint32_t qmap_version, uint32_t ul_agg_cnt, uint32_t ul_agg_size)
+                           uint32_t qmap_version, uint32_t ul_agg_cnt, uint32_t ul_agg_size)
 {
-    struct rmnetctl_hndl_s *handle;
-    uint16_t error_code;
-    int return_code;
-    uint32_t flagconfig = RMNET_FLAGS_INGRESS_DEAGGREGATION;
+	struct rmnetctl_hndl_s *handle;
+	uint16_t error_code;
+	int return_code;
+	uint32_t flagconfig = RMNET_FLAGS_INGRESS_DEAGGREGATION;
 
-    printf("%s devname: %s, vndname: %s, muxid: %d, qmap_version: %d\n",
-        __func__, devname, vndname, muxid, qmap_version);
+	printf("%s devname: %s, vndname: %s, muxid: %d, qmap_version: %d\n",
+	       __func__, devname, vndname, muxid, qmap_version);
 
-    ul_agg_cnt = 0; //TODO
+	ul_agg_cnt = 0; //TODO
 
-    if (ul_agg_cnt > 1)
-        flagconfig |= RMNET_EGRESS_FORMAT_AGGREGATION;
+	if (ul_agg_cnt > 1)
+		flagconfig |= RMNET_EGRESS_FORMAT_AGGREGATION;
 
-    if (qmap_version == 9) { //QMAPV5
+	if (qmap_version == 9) { //QMAPV5
 #ifdef RMNET_FLAGS_INGRESS_MAP_CKSUMV5
-        flagconfig |= RMNET_FLAGS_INGRESS_MAP_CKSUMV5;
-        flagconfig |= RMNET_FLAGS_EGRESS_MAP_CKSUMV5;
+		flagconfig |= RMNET_FLAGS_INGRESS_MAP_CKSUMV5;
+		flagconfig |= RMNET_FLAGS_EGRESS_MAP_CKSUMV5;
 #else
-        return -1001;
+		return -1001;
 #endif
-    }
-    else if (qmap_version == 8) { //QMAPV4
-        flagconfig |= RMNET_FLAGS_INGRESS_MAP_CKSUMV4;
-        flagconfig |= RMNET_FLAGS_EGRESS_MAP_CKSUMV4;
-    }
-    else if (qmap_version == 5) { //QMAPV1
-    }
-    else {
-        flagconfig = 0;
-    }
-    
-    return_code = rtrmnet_ctl_init(&handle, &error_code);
-    if (return_code) {
-        printf("rtrmnet_ctl_init error_code: %d, return_code: %d, errno: %d (%s)\n",
-            error_code, return_code, errno, strerror(errno));
-    }
-    if (return_code == RMNETCTL_SUCCESS) {
-        return_code = rtrmnet_ctl_newvnd(handle, devname, vndname, &error_code,
-            muxid, flagconfig, ul_agg_cnt, ul_agg_size);
-            if (return_code) {
-                printf("rtrmnet_ctl_newvnd error_code: %d, return_code: %d, errno: %d (%s)\n",
-                    error_code, return_code, errno, strerror(errno));
-            }
-        rtrmnet_ctl_deinit(handle);
-    }
+	}
+	else if (qmap_version == 8) { //QMAPV4
+		flagconfig |= RMNET_FLAGS_INGRESS_MAP_CKSUMV4;
+		flagconfig |= RMNET_FLAGS_EGRESS_MAP_CKSUMV4;
+	}
+	else if (qmap_version == 5) { //QMAPV1
+	}
+	else {
+		flagconfig = 0;
+	}
 
-    return return_code;
+	return_code = rtrmnet_ctl_init(&handle, &error_code);
+	if (return_code) {
+		printf("rtrmnet_ctl_init error_code: %d, return_code: %d, errno: %d (%s)\n",
+		       error_code, return_code, errno, strerror(errno));
+	}
+	if (return_code == RMNETCTL_SUCCESS) {
+		return_code = rtrmnet_ctl_newvnd(handle, devname, vndname, &error_code,
+		                                 muxid, flagconfig, ul_agg_cnt, ul_agg_size);
+		if (return_code) {
+			printf("rtrmnet_ctl_newvnd error_code: %d, return_code: %d, errno: %d (%s)\n",
+			       error_code, return_code, errno, strerror(errno));
+		}
+		rtrmnet_ctl_deinit(handle);
+	}
+
+	return return_code;
 }
