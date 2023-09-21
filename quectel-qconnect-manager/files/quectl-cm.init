@@ -42,8 +42,8 @@ start() {
 				uci set network.${ifname}.name="${ifname}"
 				uci set network.${ifname}.mtu='1400'
 				uci commit network
+				/etc/init.d/network reload
 			}
-			/etc/init.d/network reload
 			SERVICE_DAEMONIZE=1 service_start /usr/bin/quectel-cm -i  ${pf#/sys/class/net/*} &
 		}
 	done
