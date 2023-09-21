@@ -44,7 +44,7 @@ start() {
 				uci commit network
 				/etc/init.d/network reload
 			}
-			SERVICE_DAEMONIZE=1 service_start /usr/bin/quectel-cm -i  ${pf#/sys/class/net/*} &
+			SERVICE_DAEMONIZE=1 service_start /usr/bin/quectel-cm -i  ${pf#/sys/class/net/*} -4 -6 &
 		}
 	done
 }
