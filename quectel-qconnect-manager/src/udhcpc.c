@@ -63,27 +63,6 @@ static void ql_set_mtu(const char *ifname, int ifru_mtu) {
 	}
 }
 
-static int ifc_get_addr(const char *name, in_addr_t *addr)
-{
-	int inet_sock;
-	struct ifreq ifr;
-	int ret = 0;
-
-	inet_sock = socket(AF_INET, SOCK_DGRAM, 0);
-
-	ifc_init_ifr(name, &ifr);
-	if (addr != NULL) {
-		ret = ioctl(inet_sock, SIOCGIFADDR, &ifr);
-		if (ret < 0) {
-			*addr = 0;
-		} else {
-			*addr = ((struct sockaddr_in*) &ifr.ifr_addr)->sin_addr.s_addr;
-		}
-	}
-	close(inet_sock);
-	return ret;
-}
-
 static short ifc_get_flags(const char *ifname)
 {
 	int inet_sock;
@@ -103,50 +82,6 @@ static short ifc_get_flags(const char *ifname)
 	}
 
 	return ret;
-}
-
-static int ql_netcard_ipv4_address_check(const char *ifname, in_addr_t ip) {
-	in_addr_t addr = 0;
-
-	ifc_get_addr(ifname, &addr);
-	return addr == ip;
-}
-
-static int ql_raw_ip_mode_check(const char *ifname, uint32_t ip) {
-	int fd;
-	char raw_ip[128];
-	char shell_cmd[128];
-	char mode[2] = "X";
-	int mode_change = 0;
-
-	if (ql_netcard_ipv4_address_check(ifname, qmi2addr(ip)))
-		return 0;
-
-	snprintf(raw_ip, sizeof(raw_ip), "/sys/class/net/%s/qmi/raw_ip", ifname);
-	if (access(raw_ip, F_OK))
-		return 0;
-
-	fd = open(raw_ip, O_RDWR | O_NONBLOCK | O_NOCTTY);
-	if (fd < 0) {
-		dbg_time("%s %d fail to open(%s), errno:%d (%s)", __FILE__, __LINE__, raw_ip, errno, strerror(errno));
-		return 0;
-	}
-
-	if (read(fd, mode, 2) == -1) {};
-	if (mode[0] == '0' || mode[0] == 'N') {
-		dbg_time("File:%s Line:%d udhcpc fail to get ip address, try next:", __func__, __LINE__);
-		snprintf(shell_cmd, sizeof(shell_cmd), "ifconfig %s down", ifname);
-		ql_system(shell_cmd);
-		dbg_time("echo Y > /sys/class/net/%s/qmi/raw_ip", ifname);
-		mode[0] = 'Y';
-		if (write(fd, mode, 2) == -1) {};
-		mode_change = 1;
-		snprintf(shell_cmd, sizeof(shell_cmd), "ifconfig %s up", ifname);
-		ql_system(shell_cmd);
-	}
-
-	close(fd);
-	return mode_change;
 }
 
 static void* udhcpc_thread_function(void* arg) {
@@ -518,188 +453,27 @@ void udhcpc_start(PROFILE_T *profile) {
 	}
 #endif
 
-//because must use udhcpc to obtain IP when working on ETH mode,
-//so it is better also use udhcpc to obtain IP when working on IP mode.
-//use the same policy for all modules
-#if 0
-	if (profile->rawIP != 0) //mdm9x07/ec25,ec20 R2.0
-	{
-		update_ip_address_by_qmi(ifname, &profile->ipv4, &profile->ipv6);
-		return;
-	}
-#endif
-
-	if (profile->ipv4.Address == 0)
-		goto set_ipv6;
-
 	if (profile->request_ops == &mbim_request_ops) { //lots of mbim modem do not support DHCP
 		update_ip_address_by_qmi(ifname, &profile->ipv4, NULL);
 	}
 	else
 		/* Do DHCP using busybox tools */
 	{
+		int mtu = 1492;
 		char udhcpc_cmd[128];
+		if (profile->rawIP && profile->ipv4.Address && profile->ipv4.Mtu) {
+			mtu = profile->ipv4.Mtu;
+		}
 		pthread_attr_t udhcpc_thread_attr;
 		pthread_t udhcpc_thread_id;
 
 		pthread_attr_init(&udhcpc_thread_attr);
 		pthread_attr_setdetachstate(&udhcpc_thread_attr, PTHREAD_CREATE_DETACHED);
 
-#ifdef USE_DHCLIENT
-		snprintf(udhcpc_cmd, sizeof(udhcpc_cmd), "dhclient -4 -d --no-pid %s", ifname);
-		dhclient_alive++;
-#else
-		if (access("/usr/share/udhcpc/default.script", X_OK)
-		        && access("/etc//udhcpc/default.script", X_OK)) {
-			dbg_time("No default.script found, it should be in '/usr/share/udhcpc/' or '/etc//udhcpc' depend on your udhcpc version!");
-		}
+		snprintf(udhcpc_cmd, sizeof(udhcpc_cmd), "/usr/bin/quectl-cm-helper %s %s %d;", profile->usbnet_adapter, ifname, mtu);
 
-		//-f,--foreground    Run in foreground
-		//-b,--background    Background if lease is not obtained
-		//-n,--now        Exit if lease is not obtained
-		//-q,--quit        Exit after obtaining lease
-		//-t,--retries N        Send up to N discover packets (default 3)
-		snprintf(udhcpc_cmd, sizeof(udhcpc_cmd), "echo fake %s; ubus call network.interface.usbwan down; ubus call network.interface.usbwan up", ifname);
-#endif
-
-#if 1 //for OpenWrt
-		if (!access("/lib/netifd/dhcp.script", X_OK) && !access("/sbin/ifup", X_OK) && !access("/sbin/ifstatus", X_OK)) {
-#if 0 //20210415 do not promot these message
-			dbg_time("you are use OpenWrt?");
-			dbg_time("should not calling udhcpc manually?");
-			dbg_time("should modify /etc/config/network as below?");
-			dbg_time("config interface wan");
-			dbg_time("\toption ifname	%s", ifname);
-			dbg_time("\toption proto	dhcp");
-			dbg_time("should use \"/sbin/ifstaus wan\" to check %s 's status?", ifname);
-#endif
-		}
-#endif
-
-#ifdef USE_DHCLIENT
-		pthread_create(&udhcpc_thread_id, &udhcpc_thread_attr, udhcpc_thread_function, (void*)strdup(udhcpc_cmd));
-		sleep(1);
-#else
 		pthread_create(&udhcpc_thread_id, NULL, udhcpc_thread_function, (void*)strdup(udhcpc_cmd));
 		pthread_join(udhcpc_thread_id, NULL);
-
-		if (profile->request_ops == &atc_request_ops
-		        && !ql_netcard_ipv4_address_check(ifname, qmi2addr(profile->ipv4.Address))) {
-			ql_get_netcard_carrier_state(ifname);
-		}
-
-		if (profile->request_ops != &qmi_request_ops) { //only QMI modem support next fixup!
-			goto set_ipv6;
-		}
-
-		if (ql_raw_ip_mode_check(ifname, profile->ipv4.Address)) {
-			pthread_create(&udhcpc_thread_id, NULL, udhcpc_thread_function, (void*)strdup(udhcpc_cmd));
-			pthread_join(udhcpc_thread_id, NULL);
-		}
-
-		if (!ql_netcard_ipv4_address_check(ifname, qmi2addr(profile->ipv4.Address))) {
-			//no udhcpc's default.script exist, directly set ip and dns
-			update_ip_address_by_qmi(ifname, &profile->ipv4, NULL);
-		}
-		//Add by Demon. check default route
-		FILE *rt_fp = NULL;
-		char rt_cmd[128] = {0};
-
-		//Check if there is a default route.
-		snprintf(rt_cmd, sizeof(rt_cmd), "route -n | grep %s | awk '{print $1}' | grep 0.0.0.0", ifname);
-		rt_fp = popen((const char *)rt_cmd, "r");
-		if (rt_fp != NULL) {
-			char buf[20] = {0};
-			int found_default_rt = 0;
-
-			if (fgets(buf, sizeof(buf), rt_fp) != NULL) {
-				//Find the specified interface
-				found_default_rt = 1;
-			}
-
-			if (1 == found_default_rt) {
-				//dbg_time("Route items found for %s", ifname);
-			}
-			else {
-				dbg_time("Warning: No route items found for %s", ifname);
-			}
-
-			pclose(rt_fp);
-		}
-		//End by Demon.
-#endif
-	}
-
-#ifdef QL_OPENWER_NETWORK_SETUP
-	ql_openwrt_setup_wan(ifname, &profile->ipv4);
-#endif
-
-set_ipv6:
-	if (profile->ipv6.Address[0] && profile->ipv6.PrefixLengthIPAddr) {
-#if 1
-		//module do not support DHCPv6, only support 'Router Solicit'
-		//and it seem if enable /proc/sys/net/ipv6/conf/all/forwarding, Kernel do not send RS
-		const char *forward_file = "/proc/sys/net/ipv6/conf/all/forwarding";
-		int forward_fd = open(forward_file, O_RDONLY);
-		if (forward_fd > 0) {
-			char forward_state[2];
-			if (read(forward_fd, forward_state, 2) == -1) {};
-			if (forward_state[0] == '1') {
-				//dbg_time("%s enabled, kernel maybe donot send 'Router Solicit'", forward_file);
-			}
-			close(forward_fd);
-		}
-
-		update_ip_address_by_qmi(ifname, NULL, &profile->ipv6);
-
-		if (profile->ipv6.DnsPrimary[0] || profile->ipv6.DnsSecondary[0]) {
-			char dns1str[64], dns2str[64];
-
-			if (profile->ipv6.DnsPrimary[0]) {
-				strcpy(dns1str, ipv6Str(profile->ipv6.DnsPrimary));
-			}
-
-			if (profile->ipv6.DnsSecondary[0]) {
-				strcpy(dns2str, ipv6Str(profile->ipv6.DnsSecondary));
-			}
-
-			update_resolv_conf(6, ifname, profile->ipv6.DnsPrimary[0] ? dns1str : NULL,
-			                   profile->ipv6.DnsSecondary[0] != '\0' ? dns2str : NULL);
-		}
-
-#ifdef QL_OPENWER_NETWORK_SETUP
-		ql_openwrt_setup_wan6(ifname, &profile->ipv6);
-#endif
-#else
-#ifdef USE_DHCLIENT
-		snprintf(udhcpc_cmd, sizeof(udhcpc_cmd), "dhclient -6 -d --no-pid %s",  ifname);
-		dhclient_alive++;
-#else
-		/*
-		    DHCPv6: Dibbler - a portable DHCPv6
-		    1. download from http://klub.com.pl/dhcpv6/
-		    2. cross-compile
-		        2.1 ./configure --host=arm-linux-gnueabihf
-		        2.2 copy dibbler-client to your board
-		    3. mkdir -p /var/log/dibbler/ /var/lib/ on your board
-		    4. create /etc/dibbler/client.conf on your board, the content is
-		        log-mode short
-		        log-level 7
-		        iface wwan0 {
-		            ia
-		            option dns-server
-		        }
-		     5. run "dibbler-client start" to get ipV6 address
-		     6. run "route -A inet6 add default dev wwan0" to add default route
-		*/
-		snprintf(shell_cmd, sizeof(shell_cmd), "route -A inet6 add default %s", ifname);
-		ql_system(shell_cmd);
-		snprintf(udhcpc_cmd, sizeof(udhcpc_cmd), "dibbler-client run");
-		dibbler_client_alive++;
-#endif
-
-		pthread_create(&udhcpc_thread_id, &udhcpc_thread_attr, udhcpc_thread_function, (void*)strdup(udhcpc_cmd));
-#endif
 	}
 }
 
