@@ -26,6 +26,7 @@ endef
 define Package/quectel-cm/install
 	$(INSTALL_DIR) $(1)/usr/bin
 	$(INSTALL_BIN) $(PKG_BUILD_DIR)/quectel-CM $(1)/usr/bin/quectel-cm
+	$(INSTALL_BIN) $(PKG_BUILD_DIR)/quectel-qmi-proxy $(1)/usr/bin/quectel-qmi-proxy
 	$(INSTALL_DIR) $(1)/etc/init.d
 	$(INSTALL_BIN) ./files/quectl-cm.init $(1)/etc/init.d/quectl-cm
 	$(INSTALL_BIN) ./files/quectl-cm-helper.sh $(1)/usr/bin/quectl-cm-helper

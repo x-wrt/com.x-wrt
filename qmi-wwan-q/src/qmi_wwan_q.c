@@ -115,7 +115,7 @@ static const u8 default_modem_addr[ETH_ALEN] = {0x02, 0x50, 0xf3};
     1 - QMAP (Aggregation protocol)
     X - QMAP (Multiplexing and Aggregation protocol)
 */
-#define QUECTEL_WWAN_QMAP 1 //MAX is 7
+#define QUECTEL_WWAN_QMAP 4 //MAX is 7
 
 #if defined(QUECTEL_WWAN_QMAP)
 #define QUECTEL_QMAP_MUX_ID 0x81
