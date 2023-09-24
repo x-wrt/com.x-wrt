@@ -531,7 +531,7 @@ CONFIG_TARGET_INIT_CMD="/sbin/init"
 CONFIG_TARGET_INIT_SUPPRESS_STDERR=y
 CONFIG_VERSIONOPT=y
 CONFIG_VERSION_DIST="X-WRT"
-CONFIG_VERSION_NUMBER="23.06_b202309190919"
+CONFIG_VERSION_NUMBER="23.06_b202309242322"
 CONFIG_VERSION_CODE="Lunar"
 CONFIG_VERSION_REPO="http://downloads.openwrt.org/snapshots"
 CONFIG_VERSION_HOME_URL="https://x-wrt.com/"
@@ -2815,6 +2815,7 @@ CONFIG_PACKAGE_nginx-util=m
 # CONFIG_PACKAGE_ipq-wifi-edimax_cax1800 is not set
 # CONFIG_PACKAGE_ipq-wifi-netgear_rax120v2 is not set
 # CONFIG_PACKAGE_ipq-wifi-netgear_wax218 is not set
+# CONFIG_PACKAGE_ipq-wifi-netgear_wax620 is not set
 # CONFIG_PACKAGE_ipq-wifi-prpl_haze is not set
 # CONFIG_PACKAGE_ipq-wifi-qnap_301w is not set
 # CONFIG_PACKAGE_ipq-wifi-redmi_ax6 is not set
@@ -2822,6 +2823,7 @@ CONFIG_PACKAGE_nginx-util=m
 # CONFIG_PACKAGE_ipq-wifi-xiaomi_ax3600 is not set
 # CONFIG_PACKAGE_ipq-wifi-xiaomi_ax9000 is not set
 # CONFIG_PACKAGE_ipq-wifi-yyets_le1 is not set
+# CONFIG_PACKAGE_ipq-wifi-zte_mf287 is not set
 # CONFIG_PACKAGE_ipq-wifi-zte_mf287plus is not set
 # CONFIG_PACKAGE_ipq-wifi-zte_mf289f is not set
 # CONFIG_PACKAGE_ipq-wifi-zyxel_nbg7815 is not set
@@ -4085,6 +4087,7 @@ CONFIG_LUA_ECO_OPENSSL=y
 # CONFIG_PACKAGE_luaexpat is not set
 # CONFIG_PACKAGE_luafilesystem is not set
 # CONFIG_PACKAGE_luajit is not set
+# CONFIG_PACKAGE_luajit2 is not set
 # CONFIG_PACKAGE_lualanes is not set
 # CONFIG_PACKAGE_luaossl is not set
 # CONFIG_PACKAGE_luaposix is not set
@@ -4217,7 +4220,6 @@ CONFIG_PACKAGE_luasocket=y
 # CONFIG_PACKAGE_python3-et_xmlfile is not set
 # CONFIG_PACKAGE_python3-evdev is not set
 # CONFIG_PACKAGE_python3-eventlet is not set
-# CONFIG_PACKAGE_python3-exceptiongroup is not set
 # CONFIG_PACKAGE_python3-execnet is not set
 # CONFIG_PACKAGE_python3-flask is not set
 # CONFIG_PACKAGE_python3-flask-babel is not set
@@ -4386,7 +4388,6 @@ CONFIG_PACKAGE_luasocket=y
 # Rust
 #
 # CONFIG_PACKAGE_maturin is not set
-# CONFIG_PACKAGE_rust is not set
 # end of Rust
 
 #
@@ -7153,6 +7154,8 @@ CONFIG_PACKAGE_cgi-io=y
 # CONFIG_PACKAGE_nginx-mod-geoip2 is not set
 # CONFIG_PACKAGE_nginx-mod-headers-more is not set
 # CONFIG_PACKAGE_nginx-mod-lua is not set
+# CONFIG_PACKAGE_nginx-mod-lua-resty-core is not set
+# CONFIG_PACKAGE_nginx-mod-lua-resty-lrucache is not set
 CONFIG_PACKAGE_nginx-mod-luci=m
 # CONFIG_PACKAGE_nginx-mod-naxsi is not set
 # CONFIG_PACKAGE_nginx-mod-rtmp is not set

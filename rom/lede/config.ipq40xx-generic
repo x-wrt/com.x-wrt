@@ -109,8 +109,10 @@ CONFIG_TARGET_MULTI_PROFILE=y
 # CONFIG_TARGET_ipq40xx_generic_DEVICE_wallys_dr40x9 is not set
 # CONFIG_TARGET_ipq40xx_generic_DEVICE_yyets_le1 is not set
 # CONFIG_TARGET_ipq40xx_generic_DEVICE_zte_mf18a is not set
+# CONFIG_TARGET_ipq40xx_generic_DEVICE_zte_mf282plus is not set
 # CONFIG_TARGET_ipq40xx_generic_DEVICE_zte_mf286d is not set
 # CONFIG_TARGET_ipq40xx_generic_DEVICE_zte_mf287plus is not set
+# CONFIG_TARGET_ipq40xx_generic_DEVICE_zte_mf287 is not set
 # CONFIG_TARGET_ipq40xx_generic_DEVICE_zte_mf287pro is not set
 # CONFIG_TARGET_ipq40xx_generic_DEVICE_zte_mf289f is not set
 # CONFIG_TARGET_ipq40xx_generic_DEVICE_zyxel_nbg6617 is not set
@@ -192,8 +194,10 @@ CONFIG_TARGET_DEVICE_ipq40xx_generic_DEVICE_yyets_le1=y
 CONFIG_TARGET_DEVICE_PACKAGES_ipq40xx_generic_DEVICE_yyets_le1="aria2 ath10k-board-qca4019 ath10k-firmware-qca4019-ct blockd block-mount chat comgt comgt-ncm dawn ethtool ipq-wifi-yyets_le1 iptables-mod-dhcpmac iptables-mod-dnetmap jool-tools-netfilter kmod-ath10k-ct kmod-bonding kmod-crypto-des kmod-crypto-md4 kmod-crypto-md5 kmod-crypto-sha256 kmod-dnsresolver kmod-fs-autofs4 kmod-fs-exfat kmod-fs-ext4 kmod-fs-ksmbd kmod-fs-msdos kmod-fs-nfs kmod-fs-nfs-common kmod-fs-nfs-v4 kmod-fs-ntfs3 kmod-fs-smbfs-common kmod-fs-vfat kmod-ifb kmod-inet-diag kmod-ipt-compat-xtables kmod-ipt-dhcpmac kmod-ipt-dnetmap kmod-jool-netfilter kmod-lib-crc16 kmod-mii kmod-nat46 kmod-nf-conntrack-netlink kmod-nls-cp437 kmod-oid-registry kmod-ovpn-dco-v2 kmod-usb2 kmod-usb3 kmod-usb-ehci kmod-usb-ledtrig-usbport kmod-usb-net kmod-usb-net-cdc-ether kmod-usb-net-cdc-mbim kmod-usb-net-cdc-ncm kmod-usb-net-huawei-cdc-ncm kmod-usb-net-ipheth kmod-usb-net-qmi-wwan kmod-usb-net-rndis kmod-usb-net-rtl8152-vendor kmod-usb-net-sierrawireless kmod-usb-ohci kmod-usb-printer kmod-usb-serial kmod-usb-serial-option kmod-usb-serial-pl2303 kmod-usb-serial-qualcomm kmod-usb-serial-sierrawireless kmod-usb-serial-wwan kmod-usb-storage kmod-usb-storage-extras kmod-usb-storage-uas kmod-usb-wdm kmod-usb-xhci-hcd ksmbd-server libblkid libcap libcares libevdev libexpat libgcrypt libgmp libgpg-error libimobiledevice libimobiledevice-utils liblz4 liblzo libnl libnl-core libnl-genl libnl-nf libnl-route libopenssl libopenssl-conf libopenssl-legacy libpcre libplist libqrencode libsqlite3 libssh2 libstdcpp libudev-zero libusb-1.0 libusbmuxd libwrap libxml2 luci-app-aria2 luci-app-dawn luci-app-ksmbd luci-app-ledtrig-usbport luci-app-openvpn luci-app-p910nd luci-app-sqm luci-i18n-aria2-zh-cn luci-i18n-dashboard-zh-cn luci-i18n-ksmbd-zh-cn luci-i18n-openvpn-zh-cn luci-i18n-p910nd-zh-cn luci-i18n-sqm-zh-cn luci-lib-json luci-mod-dashboard luci-proto-3g luci-proto-bonding luci-proto-mbim luci-proto-ncm luci-proto-qmi luci-proto-relay luci-proto-wireguard luci-ssl-nginx minicom nfs-utils nginx-mod-luci nginx-mod-luci-ssl nginx-mod-ubus nginx-ssl nginx-ssl-util nginx-util openssl-util openvpn-openssl p910nd proto-bonding qrencode relayd sendip sqm-scripts tc-tiny umbim uqmi usb-modeswitch usbmuxd usbutils uwsgi uwsgi-cgi-plugin uwsgi-luci-support uwsgi-syslog-plugin webui-aria2 wget-ssl wireguard-tools wpad-openssl wsdd2 wwan"
 CONFIG_TARGET_DEVICE_ipq40xx_generic_DEVICE_zte_mf18a=y
 CONFIG_TARGET_DEVICE_PACKAGES_ipq40xx_generic_DEVICE_zte_mf18a="ath10k-board-qca4019 ath10k-board-qca99x0 ath10k-firmware-qca4019-ct ath10k-firmware-qca99x0-ct dawn iptables-mod-dhcpmac iptables-mod-dnetmap jool-tools-netfilter kmod-ath10k-ct kmod-bonding kmod-crypto-md5 kmod-ifb kmod-inet-diag kmod-ipt-compat-xtables kmod-ipt-dhcpmac kmod-ipt-dnetmap kmod-jool-netfilter kmod-nat46 kmod-nf-conntrack-netlink kmod-ovpn-dco-v2 kmod-usb3 kmod-usb-xhci-hcd libcap libgcrypt libgpg-error liblz4 liblzo libnl libnl-core libnl-genl libnl-nf libnl-route libopenssl libopenssl-conf libopenssl-legacy libpcre libqrencode libstdcpp libxml2 luci-app-dawn luci-app-openvpn luci-app-sqm luci-i18n-dashboard-zh-cn luci-i18n-openvpn-zh-cn luci-i18n-sqm-zh-cn luci-lib-json luci-mod-dashboard luci-proto-bonding luci-proto-relay luci-proto-wireguard luci-ssl-nginx nginx-mod-luci nginx-mod-luci-ssl nginx-mod-ubus nginx-ssl nginx-ssl-util nginx-util openssl-util openvpn-openssl proto-bonding qrencode relayd sqm-scripts tc-tiny uwsgi uwsgi-cgi-plugin uwsgi-luci-support uwsgi-syslog-plugin wireguard-tools wpad-openssl"
+# CONFIG_TARGET_DEVICE_ipq40xx_generic_DEVICE_zte_mf282plus is not set
 CONFIG_TARGET_DEVICE_ipq40xx_generic_DEVICE_zte_mf286d=y
 CONFIG_TARGET_DEVICE_PACKAGES_ipq40xx_generic_DEVICE_zte_mf286d="aria2 ath10k-board-qca4019 ath10k-firmware-qca4019-ct blockd block-mount chat comgt comgt-ncm dawn ethtool iptables-mod-dhcpmac iptables-mod-dnetmap jool-tools-netfilter kmod-ath10k-ct kmod-bonding kmod-crypto-des kmod-crypto-md4 kmod-crypto-md5 kmod-crypto-sha256 kmod-dnsresolver kmod-fs-autofs4 kmod-fs-exfat kmod-fs-ext4 kmod-fs-ksmbd kmod-fs-msdos kmod-fs-nfs kmod-fs-nfs-common kmod-fs-nfs-v4 kmod-fs-ntfs3 kmod-fs-smbfs-common kmod-fs-vfat kmod-ifb kmod-inet-diag kmod-ipt-compat-xtables kmod-ipt-dhcpmac kmod-ipt-dnetmap kmod-jool-netfilter kmod-lib-crc16 kmod-mii kmod-nat46 kmod-nf-conntrack-netlink kmod-nls-cp437 kmod-oid-registry kmod-ovpn-dco-v2 kmod-usb2 kmod-usb3 kmod-usb-ehci kmod-usb-net kmod-usb-net-cdc-ether kmod-usb-net-cdc-mbim kmod-usb-net-cdc-ncm kmod-usb-net-huawei-cdc-ncm kmod-usb-net-ipheth kmod-usb-net-qmi-wwan kmod-usb-net-rndis kmod-usb-net-rtl8152-vendor kmod-usb-net-sierrawireless kmod-usb-ohci kmod-usb-printer kmod-usb-serial kmod-usb-serial-option kmod-usb-serial-pl2303 kmod-usb-serial-qualcomm kmod-usb-serial-sierrawireless kmod-usb-serial-wwan kmod-usb-storage kmod-usb-storage-extras kmod-usb-storage-uas kmod-usb-wdm kmod-usb-xhci-hcd ksmbd-server libblkid libcap libcares libevdev libexpat libgcrypt libgmp libgpg-error libimobiledevice libimobiledevice-utils liblz4 liblzo libnl libnl-core libnl-genl libnl-nf libnl-route libopenssl libopenssl-conf libopenssl-legacy libpcre libplist libqrencode libsqlite3 libssh2 libstdcpp libudev-zero libusb-1.0 libusbmuxd libwrap libxml2 luci-app-aria2 luci-app-dawn luci-app-ksmbd luci-app-openvpn luci-app-p910nd luci-app-sqm luci-i18n-aria2-zh-cn luci-i18n-dashboard-zh-cn luci-i18n-ksmbd-zh-cn luci-i18n-openvpn-zh-cn luci-i18n-p910nd-zh-cn luci-i18n-sqm-zh-cn luci-lib-json luci-mod-dashboard luci-proto-3g luci-proto-bonding luci-proto-mbim luci-proto-ncm luci-proto-qmi luci-proto-relay luci-proto-wireguard luci-ssl-nginx minicom nfs-utils nginx-mod-luci nginx-mod-luci-ssl nginx-mod-ubus nginx-ssl nginx-ssl-util nginx-util openssl-util openvpn-openssl p910nd proto-bonding qrencode relayd sendip sqm-scripts tc-tiny umbim uqmi usb-modeswitch usbmuxd usbutils uwsgi uwsgi-cgi-plugin uwsgi-luci-support uwsgi-syslog-plugin webui-aria2 wget-ssl wireguard-tools wpad-openssl wsdd2 wwan"
+# CONFIG_TARGET_DEVICE_ipq40xx_generic_DEVICE_zte_mf287 is not set
 CONFIG_TARGET_DEVICE_ipq40xx_generic_DEVICE_zte_mf287plus=y
 CONFIG_TARGET_DEVICE_PACKAGES_ipq40xx_generic_DEVICE_zte_mf287plus="ath10k-board-qca4019 ath10k-firmware-qca4019-ct dawn ipq-wifi-zte_mf287plus iptables-mod-dhcpmac iptables-mod-dnetmap jool-tools-netfilter kmod-ath10k-ct kmod-bonding kmod-crypto-md5 kmod-ifb kmod-inet-diag kmod-ipt-compat-xtables kmod-ipt-dhcpmac kmod-ipt-dnetmap kmod-jool-netfilter kmod-mii kmod-nat46 kmod-nf-conntrack-netlink kmod-ovpn-dco-v2 kmod-usb3 kmod-usb-net kmod-usb-net-qmi-wwan kmod-usb-serial kmod-usb-serial-option kmod-usb-serial-wwan kmod-usb-wdm kmod-usb-xhci-hcd libcap libgcrypt libgpg-error liblz4 liblzo libnl libnl-core libnl-genl libnl-nf libnl-route libopenssl libopenssl-conf libopenssl-legacy libpcre libqrencode libstdcpp libxml2 luci-app-dawn luci-app-openvpn luci-app-sqm luci-i18n-dashboard-zh-cn luci-i18n-openvpn-zh-cn luci-i18n-sqm-zh-cn luci-lib-json luci-mod-dashboard luci-proto-bonding luci-proto-relay luci-proto-wireguard luci-ssl-nginx nginx-mod-luci nginx-mod-luci-ssl nginx-mod-ubus nginx-ssl nginx-ssl-util nginx-util openssl-util openvpn-openssl proto-bonding qrencode relayd sqm-scripts tc-tiny uqmi uwsgi uwsgi-cgi-plugin uwsgi-luci-support uwsgi-syslog-plugin wireguard-tools wpad-openssl wwan"
 CONFIG_TARGET_DEVICE_ipq40xx_generic_DEVICE_zte_mf287pro=y
@@ -604,7 +608,7 @@ CONFIG_TARGET_INIT_CMD="/sbin/init"
 CONFIG_TARGET_INIT_SUPPRESS_STDERR=y
 CONFIG_VERSIONOPT=y
 CONFIG_VERSION_DIST="X-WRT"
-CONFIG_VERSION_NUMBER="23.06_b202309190919"
+CONFIG_VERSION_NUMBER="23.06_b202309242322"
 CONFIG_VERSION_CODE="Lunar"
 CONFIG_VERSION_REPO="http://downloads.openwrt.org/snapshots"
 CONFIG_VERSION_HOME_URL="https://x-wrt.com/"
@@ -2893,6 +2897,7 @@ CONFIG_PACKAGE_nginx-util=m
 # CONFIG_PACKAGE_ipq-wifi-edimax_cax1800 is not set
 # CONFIG_PACKAGE_ipq-wifi-netgear_rax120v2 is not set
 # CONFIG_PACKAGE_ipq-wifi-netgear_wax218 is not set
+# CONFIG_PACKAGE_ipq-wifi-netgear_wax620 is not set
 # CONFIG_PACKAGE_ipq-wifi-prpl_haze is not set
 # CONFIG_PACKAGE_ipq-wifi-qnap_301w is not set
 # CONFIG_PACKAGE_ipq-wifi-redmi_ax6 is not set
@@ -2900,6 +2905,7 @@ CONFIG_PACKAGE_nginx-util=m
 # CONFIG_PACKAGE_ipq-wifi-xiaomi_ax3600 is not set
 # CONFIG_PACKAGE_ipq-wifi-xiaomi_ax9000 is not set
 CONFIG_PACKAGE_ipq-wifi-yyets_le1=m
+# CONFIG_PACKAGE_ipq-wifi-zte_mf287 is not set
 CONFIG_PACKAGE_ipq-wifi-zte_mf287plus=m
 CONFIG_PACKAGE_ipq-wifi-zte_mf289f=m
 # CONFIG_PACKAGE_ipq-wifi-zyxel_nbg7815 is not set
@@ -4166,6 +4172,7 @@ CONFIG_LUA_ECO_OPENSSL=y
 # CONFIG_PACKAGE_luaexpat is not set
 # CONFIG_PACKAGE_luafilesystem is not set
 # CONFIG_PACKAGE_luajit is not set
+# CONFIG_PACKAGE_luajit2 is not set
 # CONFIG_PACKAGE_lualanes is not set
 # CONFIG_PACKAGE_luaossl is not set
 # CONFIG_PACKAGE_luaposix is not set
@@ -4298,7 +4305,6 @@ CONFIG_PACKAGE_luasocket=y
 # CONFIG_PACKAGE_python3-et_xmlfile is not set
 # CONFIG_PACKAGE_python3-evdev is not set
 # CONFIG_PACKAGE_python3-eventlet is not set
-# CONFIG_PACKAGE_python3-exceptiongroup is not set
 # CONFIG_PACKAGE_python3-execnet is not set
 # CONFIG_PACKAGE_python3-flask is not set
 # CONFIG_PACKAGE_python3-flask-babel is not set
@@ -4467,7 +4473,6 @@ CONFIG_PACKAGE_luasocket=y
 # Rust
 #
 # CONFIG_PACKAGE_maturin is not set
-# CONFIG_PACKAGE_rust is not set
 # end of Rust
 
 #
@@ -7267,6 +7272,8 @@ CONFIG_PACKAGE_cgi-io=y
 # CONFIG_PACKAGE_nginx-mod-geoip2 is not set
 # CONFIG_PACKAGE_nginx-mod-headers-more is not set
 # CONFIG_PACKAGE_nginx-mod-lua is not set
+# CONFIG_PACKAGE_nginx-mod-lua-resty-core is not set
+# CONFIG_PACKAGE_nginx-mod-lua-resty-lrucache is not set
 CONFIG_PACKAGE_nginx-mod-luci=m
 # CONFIG_PACKAGE_nginx-mod-naxsi is not set
 # CONFIG_PACKAGE_nginx-mod-rtmp is not set

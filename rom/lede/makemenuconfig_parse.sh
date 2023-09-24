@@ -386,6 +386,8 @@ for t in $targets; do
 	excludes="$excludes_basic"
 	case $t in
 		#>=32M flash
+		TARGET_DEVICE_qualcommax_ipq807x_DEVICE_netgear_wax620|\
+		TARGET_DEVICE_qualcommax_ipq807x_DEVICE_netgear_rax120v2|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_zyxel_wsm20|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_jcg_q30-pro|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_jcg_q30-pro-nmbm|\
@@ -502,6 +504,8 @@ for t in $targets; do
 	esac
 	case $t in
 		#>=14M flash
+		TARGET_DEVICE_qualcommax_ipq807x_DEVICE_netgear_wax620|\
+		TARGET_DEVICE_qualcommax_ipq807x_DEVICE_netgear_rax120v2|\
 		TARGET_DEVICE_ipq40xx_generic_DEVICE_yyets_le1|\
 		TARGET_DEVICE_ipq40xx_generic_DEVICE_zte_mf287pro|\
 		TARGET_DEVICE_ipq40xx_generic_DEVICE_zte_mf287plus|\
@@ -1040,6 +1044,8 @@ for t in $targets; do
 	#check usb
 	case $t in
 		#with usb3
+		TARGET_DEVICE_qualcommax_ipq807x_DEVICE_netgear_rax120v2|\
+		TARGET_DEVICE_ipq40xx_generic_DEVICE_yyets_le1|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_asus_rt-ac57u-v1|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_dual-q_h721|\
 		TARGET_DEVICE_ipq40xx_generic_DEVICE_yyets_le1|\
