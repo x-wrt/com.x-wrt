@@ -72,6 +72,7 @@ CONFIG_TARGET_MULTI_PROFILE=y
 # CONFIG_TARGET_ipq40xx_generic_DEVICE_dlink_dap-2610 is not set
 # CONFIG_TARGET_ipq40xx_generic_DEVICE_edgecore_ecw5211 is not set
 # CONFIG_TARGET_ipq40xx_generic_DEVICE_extreme-networks_ws-ap3915i is not set
+# CONFIG_TARGET_ipq40xx_generic_DEVICE_extreme-networks_ws-ap391x is not set
 # CONFIG_TARGET_ipq40xx_generic_DEVICE_ezviz_cs-w3-wd1200g-eup is not set
 # CONFIG_TARGET_ipq40xx_generic_DEVICE_glinet_gl-a1300 is not set
 # CONFIG_TARGET_ipq40xx_generic_DEVICE_glinet_gl-ap1300 is not set
@@ -147,6 +148,7 @@ CONFIG_TARGET_DEVICE_PACKAGES_ipq40xx_generic_DEVICE_asus_rt-ac58u="aria2 ath10k
 # CONFIG_TARGET_DEVICE_ipq40xx_generic_DEVICE_devolo_magic-2-wifi-next is not set
 # CONFIG_TARGET_DEVICE_ipq40xx_generic_DEVICE_edgecore_ecw5211 is not set
 # CONFIG_TARGET_DEVICE_ipq40xx_generic_DEVICE_extreme-networks_ws-ap3915i is not set
+# CONFIG_TARGET_DEVICE_ipq40xx_generic_DEVICE_extreme-networks_ws-ap391x is not set
 # CONFIG_TARGET_DEVICE_ipq40xx_generic_DEVICE_ezviz_cs-w3-wd1200g-eup is not set
 CONFIG_TARGET_DEVICE_ipq40xx_generic_DEVICE_glinet_gl-a1300=y
 CONFIG_TARGET_DEVICE_PACKAGES_ipq40xx_generic_DEVICE_glinet_gl-a1300="aria2 ath10k-board-qca4019 ath10k-firmware-qca4019-ct blockd block-mount chat comgt comgt-ncm dawn ethtool gre iptables-mod-dhcpmac iptables-mod-dnetmap iptables-mod-ipsec jool-tools-netfilter kmod-ath10k-ct kmod-bonding kmod-crypto-authenc kmod-crypto-cbc kmod-crypto-chacha20poly1305 kmod-crypto-deflate kmod-crypto-des kmod-crypto-echainiv kmod-crypto-md4 kmod-crypto-md5 kmod-crypto-sha256 kmod-dnsresolver kmod-fs-autofs4 kmod-fs-exfat kmod-fs-ext4 kmod-fs-ksmbd kmod-fs-msdos kmod-fs-nfs kmod-fs-nfs-common kmod-fs-nfs-v4 kmod-fs-ntfs3 kmod-fs-smbfs-common kmod-fs-vfat kmod-ifb kmod-inet-diag kmod-ip6-vti kmod-ipsec kmod-ipsec4 kmod-ipsec6 kmod-ipt-compat-xtables kmod-ipt-dhcpmac kmod-ipt-dnetmap kmod-ipt-ipsec kmod-ip-vti kmod-jool-netfilter kmod-l2tp kmod-lib-crc16 kmod-lib-zlib-deflate kmod-lib-zlib-inflate kmod-mii kmod-nat46 kmod-nf-conntrack-netlink kmod-nls-cp437 kmod-oid-registry kmod-ovpn-dco-v2 kmod-pppol2tp kmod-usb2 kmod-usb3 kmod-usb-ehci kmod-usb-net kmod-usb-net-cdc-ether kmod-usb-net-cdc-mbim kmod-usb-net-cdc-ncm kmod-usb-net-huawei-cdc-ncm kmod-usb-net-ipheth kmod-usb-net-qmi-wwan kmod-usb-net-rndis kmod-usb-net-rtl8152-vendor kmod-usb-net-sierrawireless kmod-usb-ohci kmod-usb-printer kmod-usb-serial kmod-usb-serial-option kmod-usb-serial-pl2303 kmod-usb-serial-qualcomm kmod-usb-serial-sierrawireless kmod-usb-serial-wwan kmod-usb-storage kmod-usb-storage-extras kmod-usb-storage-uas kmod-usb-wdm kmod-usb-xhci-hcd kmod-xfrm-interface ksmbd-server libblkid libcap libcares libevdev libexpat libgcrypt libgmp libgpg-error libimobiledevice libimobiledevice-utils liblz4 liblzo libnl libnl-core libnl-genl libnl-nf libnl-route libopenssl libopenssl-conf libopenssl-legacy libpcre libplist libqrencode libsqlite3 libssh2 libstdcpp libudev-zero libusb-1.0 libusbmuxd libwrap libxml2 luci-app-aria2 luci-app-dawn luci-app-ksmbd luci-app-openvpn luci-app-p910nd luci-app-sqm luci-i18n-aria2-zh-cn luci-i18n-dashboard-zh-cn luci-i18n-ksmbd-zh-cn luci-i18n-openvpn-zh-cn luci-i18n-p910nd-zh-cn luci-i18n-sqm-zh-cn luci-lib-json luci-mod-dashboard luci-proto-3g luci-proto-bonding luci-proto-gre luci-proto-mbim luci-proto-ncm luci-proto-qmi luci-proto-relay luci-proto-vti luci-proto-wireguard luci-proto-xfrm luci-ssl-nginx minicom nfs-utils nginx-mod-luci nginx-mod-luci-ssl nginx-mod-ubus nginx-ssl nginx-ssl-util nginx-util openssl-util openvpn-openssl p910nd ppp-mod-pppol2tp proto-bonding qrencode relayd sendip sqm-scripts strongswan strongswan-charon strongswan-charon-cmd strongswan-default strongswan-ipsec strongswan-libnttfft strongswan-libtls strongswan-mod-addrblock strongswan-mod-aes strongswan-mod-af-alg strongswan-mod-attr strongswan-mod-bliss strongswan-mod-blowfish strongswan-mod-ccm strongswan-mod-chapoly strongswan-mod-cmac strongswan-mod-connmark strongswan-mod-constraints strongswan-mod-coupling strongswan-mod-ctr strongswan-mod-curve25519 strongswan-mod-des strongswan-mod-dhcp strongswan-mod-dnskey strongswan-mod-drbg strongswan-mod-duplicheck strongswan-mod-eap-identity strongswan-mod-eap-md5 strongswan-mod-eap-mschapv2 strongswan-mod-eap-radius strongswan-mod-eap-tls strongswan-mod-farp strongswan-mod-fips-prf strongswan-mod-forecast strongswan-mod-gcm strongswan-mod-gcrypt strongswan-mod-gmp strongswan-mod-gmpdh strongswan-mod-hmac strongswan-mod-kernel-netlink strongswan-mod-md4 strongswan-mod-md5 strongswan-mod-mgf1 strongswan-mod-newhope strongswan-mod-ntru strongswan-mod-openssl strongswan-mod-pem strongswan-mod-pgp strongswan-mod-pkcs1 strongswan-mod-pkcs11 strongswan-mod-pkcs12 strongswan-mod-pkcs7 strongswan-mod-pkcs8 strongswan-mod-pubkey strongswan-mod-random strongswan-mod-rc2 strongswan-mod-resolve strongswan-mod-revocation strongswan-mod-sha1 strongswan-mod-sha2 strongswan-mod-sha3 strongswan-mod-socket-default strongswan-mod-socket-dynamic strongswan-mod-sshkey strongswan-mod-stroke strongswan-mod-test-vectors strongswan-mod-unity strongswan-mod-updown strongswan-mod-vici strongswan-mod-whitelist strongswan-mod-x509 strongswan-mod-xauth-eap strongswan-mod-xauth-generic strongswan-mod-xcbc strongswan-pki strongswan-swanctl tc-tiny umbim uqmi usb-modeswitch usbmuxd usbutils uwsgi uwsgi-cgi-plugin uwsgi-luci-support uwsgi-syslog-plugin vti webui-aria2 wget-ssl wireguard-tools wpad-openssl wsdd2 wwan xfrm xl2tpd"
@@ -214,7 +216,7 @@ CONFIG_TARGET_SUBTARGET="generic"
 CONFIG_TARGET_ARCH_PACKAGES="arm_cortex-a7_neon-vfpv4"
 CONFIG_DEFAULT_TARGET_OPTIMIZATION="-Os -pipe"
 CONFIG_CPU_TYPE="cortex-a7+neon-vfpv4"
-CONFIG_LINUX_5_15=y
+CONFIG_LINUX_6_1=y
 CONFIG_DEFAULT_ath10k-board-qca4019=y
 CONFIG_MODULE_DEFAULT_ath10k-board-qca4019=y
 CONFIG_DEFAULT_ath10k-firmware-qca4019-ct=y
@@ -305,7 +307,6 @@ CONFIG_DEFAULT_urngd=y
 CONFIG_MODULE_DEFAULT_urngd=y
 CONFIG_DEFAULT_wpad-basic-mbedtls=y
 CONFIG_MODULE_DEFAULT_wpad-basic-mbedtls=y
-CONFIG_HAS_TESTING_KERNEL=y
 CONFIG_HAS_FPU=y
 CONFIG_AUDIO_SUPPORT=y
 CONFIG_GPIO_SUPPORT=y
@@ -375,7 +376,6 @@ CONFIG_DOWNLOAD_CHECK_CERTIFICATE=y
 #
 # General build options
 #
-# CONFIG_TESTING_KERNEL is not set
 # CONFIG_DISPLAY_SUPPORT is not set
 CONFIG_BUILD_PATENTED=y
 # CONFIG_BUILD_NLS is not set
@@ -608,7 +608,7 @@ CONFIG_TARGET_INIT_CMD="/sbin/init"
 CONFIG_TARGET_INIT_SUPPRESS_STDERR=y
 CONFIG_VERSIONOPT=y
 CONFIG_VERSION_DIST="X-WRT"
-CONFIG_VERSION_NUMBER="23.06_b202309242322"
+CONFIG_VERSION_NUMBER="23.06_b202309260551"
 CONFIG_VERSION_CODE="Lunar"
 CONFIG_VERSION_REPO="http://downloads.openwrt.org/snapshots"
 CONFIG_VERSION_HOME_URL="https://x-wrt.com/"
@@ -4172,6 +4172,7 @@ CONFIG_LUA_ECO_OPENSSL=y
 # CONFIG_PACKAGE_luaexpat is not set
 # CONFIG_PACKAGE_luafilesystem is not set
 # CONFIG_PACKAGE_luajit is not set
+CONFIG_HAS_LUAJIT_ARCH=y
 # CONFIG_PACKAGE_luajit2 is not set
 # CONFIG_PACKAGE_lualanes is not set
 # CONFIG_PACKAGE_luaossl is not set
