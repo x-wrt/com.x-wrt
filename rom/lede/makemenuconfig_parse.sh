@@ -148,7 +148,8 @@ openvpnmod="luci-app-openvpn \
 
 excludes_basic="dnsmasq \
 		  kmod-ipt-offload \
-		  kmod-nf-flow"
+		  kmod-nf-flow \
+		  ip-tiny"
 
 strongswan="\
 strongswan \
@@ -386,6 +387,7 @@ for t in $targets; do
 	excludes="$excludes_basic"
 	case $t in
 		#>=32M flash
+		TARGET_DEVICE_mediatek_filogic_DEVICE_glinet_gl-mt6000|\
 		TARGET_DEVICE_qualcommax_ipq807x_DEVICE_netgear_wax620|\
 		TARGET_DEVICE_qualcommax_ipq807x_DEVICE_netgear_rax120v2|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_zyxel_wsm20|\
@@ -504,6 +506,7 @@ for t in $targets; do
 	esac
 	case $t in
 		#>=14M flash
+		TARGET_DEVICE_mediatek_filogic_DEVICE_glinet_gl-mt6000|\
 		TARGET_DEVICE_qualcommax_ipq807x_DEVICE_netgear_wax620|\
 		TARGET_DEVICE_qualcommax_ipq807x_DEVICE_netgear_rax120v2|\
 		TARGET_DEVICE_ipq40xx_generic_DEVICE_yyets_le1|\
@@ -1044,6 +1047,7 @@ for t in $targets; do
 	#check usb
 	case $t in
 		#with usb3
+		TARGET_DEVICE_mediatek_filogic_DEVICE_glinet_gl-mt6000|\
 		TARGET_DEVICE_qualcommax_ipq807x_DEVICE_netgear_rax120v2|\
 		TARGET_DEVICE_ipq40xx_generic_DEVICE_yyets_le1|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_asus_rt-ac57u-v1|\
