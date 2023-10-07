@@ -111,6 +111,7 @@ test $version -lt 2 && {
 			set network.usbwan6.device='@usbwan'
 			set network.usbwan6.reqaddress='try'
 			set network.usbwan6.reqprefix='auto'
+			set network.usbwan6.extendprefix='1'
 			commit network
 		EOT
 
