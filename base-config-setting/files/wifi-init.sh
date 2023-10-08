@@ -59,7 +59,11 @@ wifi_setup_radio()
 			uci set wireless.$obj.disassoc_low_ack='0'
 			uci set wireless.$obj.key="${SSID_PASSWD}"
 			if uci get wireless.${radio}.path | grep -q bcma || iwinfo wlan${radio:5} info | grep -qi Cypress; then
-				:
+				if [ "$(uci get wireless.${radio}.band)" = "2g" ]; then
+					uci set wireless.${radio}.channel='1'
+				else
+					uci set wireless.${radio}.channel='36'
+				fi
 			else
 				uci set wireless.$obj.ieee80211r='1'
 				uci set wireless.$obj.ft_over_ds='1'
