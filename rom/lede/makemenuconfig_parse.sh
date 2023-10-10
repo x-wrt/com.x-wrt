@@ -1051,6 +1051,9 @@ for t in $targets; do
 	#check usb
 	case $t in
 		#with usb3
+		TARGET_DEVICE_rockchip_armv8_DEVICE_friendlyarm_nanopi-r4s|\
+		TARGET_DEVICE_rockchip_armv8_DEVICE_friendlyarm_nanopi-r5c|\
+		TARGET_DEVICE_rockchip_armv8_DEVICE_friendlyarm_nanopi-r5s|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_glinet_gl-mt6000|\
 		TARGET_DEVICE_qualcommax_ipq807x_DEVICE_netgear_rax120v2|\
 		TARGET_DEVICE_ipq40xx_generic_DEVICE_yyets_le1|\
@@ -1225,9 +1228,6 @@ for t in $targets; do
 		TARGET_DEVICE_ramips_mt7620_DEVICE_nexx_wt3020-8m|\
 		TARGET_DEVICE_rockchip_armv8_DEVICE_friendlyarm_nanopi-r2c|\
 		TARGET_DEVICE_rockchip_armv8_DEVICE_friendlyarm_nanopi-r2s|\
-		TARGET_DEVICE_rockchip_armv8_DEVICE_friendlyarm_nanopi-r4s|\
-		TARGET_DEVICE_rockchip_armv8_DEVICE_friendlyarm_nanopi-r5c|\
-		TARGET_DEVICE_rockchip_armv8_DEVICE_friendlyarm_nanopi-r5s|\
 		TARGET_DEVICE_ramips_mt7620_DEVICE_asus_rt-ac54u|\
 		TARGET_DEVICE_ath79_generic_DEVICE_tplink_archer-d7-v1|\
 		TARGET_DEVICE_ath79_generic_DEVICE_tplink_archer-d7b-v1|\
