@@ -443,6 +443,8 @@ for t in $targets; do
 		TARGET_DEVICE_rockchip_armv8_DEVICE_friendlyarm_nanopi-r2c|\
 		TARGET_DEVICE_rockchip_armv8_DEVICE_friendlyarm_nanopi-r2s|\
 		TARGET_DEVICE_rockchip_armv8_DEVICE_friendlyarm_nanopi-r4s|\
+		TARGET_DEVICE_rockchip_armv8_DEVICE_friendlyarm_nanopi-r5c|\
+		TARGET_DEVICE_rockchip_armv8_DEVICE_friendlyarm_nanopi-r5s|\
 		TARGET_DEVICE_ath79_nand_DEVICE_domywifi_dw33d|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_netgear_r6800|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_netgear_r6700-v2|\
@@ -588,6 +590,8 @@ for t in $targets; do
 		TARGET_DEVICE_rockchip_armv8_DEVICE_friendlyarm_nanopi-r2c|\
 		TARGET_DEVICE_rockchip_armv8_DEVICE_friendlyarm_nanopi-r2s|\
 		TARGET_DEVICE_rockchip_armv8_DEVICE_friendlyarm_nanopi-r4s|\
+		TARGET_DEVICE_rockchip_armv8_DEVICE_friendlyarm_nanopi-r5c|\
+		TARGET_DEVICE_rockchip_armv8_DEVICE_friendlyarm_nanopi-r5s|\
 		TARGET_DEVICE_ipq806x_generic_DEVICE_linksys_ea7500-v1|\
 		TARGET_DEVICE_ipq40xx_generic_DEVICE_glinet_gl-s1300|\
 		TARGET_DEVICE_mvebu_cortexa53_DEVICE_glinet_gl-mv1000|\
@@ -697,7 +701,7 @@ for t in $targets; do
 			mods="$mods $lucibond $ipv6extra $wifiext $sqm $lucidashboard $kmodext $relay"
 			mods="$mods $wgmod $openvpnmod wpad-openssl luci-ssl-nginx"
 			mods="$mods kmod-ipt-compat-xtables kmod-ipt-dhcpmac kmod-ipt-dnetmap iptables-mod-dhcpmac iptables-mod-dnetmap"
-			excludes="$excludes wpad-basic-mbedtls"
+			excludes="$excludes wpad-basic-mbedtls wpad-basic-wolfssl"
 			flash_gt8m=1
 			extra_utils=1
 		;;
@@ -901,7 +905,7 @@ for t in $targets; do
 		TARGET_DEVICE_ath79_generic_DEVICE_tplink_archer-c7-v5|\
 		TARGET_DEVICE_ath79_generic_DEVICE_bm100_hq55)
 			mods="$mods $wgmod $openvpnmod openvpn-mbedtls wpad-mbedtls $wifiext $sqm $lucidashboard $relay"
-			excludes="$excludes wpad-basic-mbedtls openvpn-openssl"
+			excludes="$excludes wpad-basic-mbedtls openvpn-openssl wpad-basic-wolfssl"
 			flash_gt8m=1
 		;;
 		# <= 8M
@@ -1037,7 +1041,7 @@ for t in $targets; do
 		TARGET_DEVICE_ramips_mt7620_DEVICE_phicomm_k2-v22.4|\
 		TARGET_DEVICE_ramips_mt7620_DEVICE_phicomm_k2-v22.5|\
 		TARGET_DEVICE_ramips_mt7620_DEVICE_phicomm_psg1218b)
-			mods="$mods wpad-basic-mbedtls"
+			mods="$mods wpad-basic-mbedtls wpad-basic-wolfssl"
 			excludes="$excludes wpad-openssl"
 		;;
 		*)
@@ -1222,6 +1226,8 @@ for t in $targets; do
 		TARGET_DEVICE_rockchip_armv8_DEVICE_friendlyarm_nanopi-r2c|\
 		TARGET_DEVICE_rockchip_armv8_DEVICE_friendlyarm_nanopi-r2s|\
 		TARGET_DEVICE_rockchip_armv8_DEVICE_friendlyarm_nanopi-r4s|\
+		TARGET_DEVICE_rockchip_armv8_DEVICE_friendlyarm_nanopi-r5c|\
+		TARGET_DEVICE_rockchip_armv8_DEVICE_friendlyarm_nanopi-r5s|\
 		TARGET_DEVICE_ramips_mt7620_DEVICE_asus_rt-ac54u|\
 		TARGET_DEVICE_ath79_generic_DEVICE_tplink_archer-d7-v1|\
 		TARGET_DEVICE_ath79_generic_DEVICE_tplink_archer-d7b-v1|\
