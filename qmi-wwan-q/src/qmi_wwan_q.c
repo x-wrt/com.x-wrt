@@ -1625,10 +1625,9 @@ static void qmap_packet_decode(sQmiWwanQmap *pQmapDev,
 			goto skip_pkt;
 		}
 
-		qmap_skb = netdev_alloc_skb(qmap_net, skb_len);
+		qmap_skb = netdev_alloc_skb_ip_align(qmap_net, skb_len);
 		if (qmap_skb) {
-			skb_put(qmap_skb, skb_len);
-			memcpy(qmap_skb->data, skb_in->data + hdr_size, skb_len);
+			__skb_put_data(qmap_skb, skb_in->data + hdr_size, skb_len);
 		}
 
 		if (qmap_skb == NULL) {
