@@ -3,7 +3,7 @@
 CFGS=${CFGS-"`cat feeds/x/rom/lede/cfg.list`"}
 
 echo get bins
-bins="`find bin/targets/ | grep -- '\(-kernel.bin\|-ext4-rootfs.img.gz\|-combined.img.gz\|-ext4-sdcard\|-ext4-factory\|-sdcard\|-squashfs\|-factory\|-sysupgrade\|-initramfs-factory\|-initramfs-recovery\|-preloader\|-bl31-uboot\)' | grep "natcap\|x-wrt" | grep -v vmlinux | grep -v '\.dtb$' | while read line; do basename $line; done`"
+bins="`find bin/targets/ | grep -- '\(-emmc-bl31-uboot\|-emmc-gpt\|-emmc-preloader\|-nand-bl31-uboot\|-nand-preloader\|-kernel.bin\|-ext4-rootfs.img.gz\|-combined.img.gz\|-ext4-sdcard\|-ext4-factory\|-sdcard\|-squashfs\|-factory\|-sysupgrade\|-initramfs-factory\|-initramfs-recovery\|-preloader\|-bl31-uboot\)' | grep "natcap\|x-wrt" | grep -v vmlinux | grep -v '\.dtb$' | while read line; do basename $line; done`"
 
 echo get sha256sums
 sha256sums="`find bin/targets/ -type f -name sha256sums`"
@@ -135,7 +135,7 @@ for t in $targets; do
 		}
 ##################################
 		}
-		bin=`echo "$bins" | grep $arch | grep -i "\($name-ext4-rootfs.img.gz\|$name-kernel.bin\|$name-ext4-combined.img.gz\|$name-ext4-sysupgrade\|$name-ext4-sdcard\|$name-ext4-factory\|$name-sdcard\|$name-squashfs\|$name-factory\|$name-initramfs-factory\|$name-initramfs-recovery\|$name-preloader\|$name-bl31-uboot\|$name-initramfs-.*-factory\)"`
+		bin=`echo "$bins" | grep $arch | grep -i "\($name-ext4-rootfs.img.gz\|$name-kernel.bin\|$name-ext4-combined.img.gz\|$name-ext4-sysupgrade\|$name-ext4-sdcard\|$name-ext4-factory\|$name-sdcard\|$name-squashfs\|$name-factory\|$name-initramfs-factory\|$name-initramfs-recovery\|$name-preloader\|$name-bl31-uboot\|$name-emmc-bl31-uboot\|$name-emmc-gpt\|$name-emmc-preloader\|$name-nand-bl31-uboot\|$name-nand-preloader\|$name-initramfs-.*-factory\)"`
 		test -n "$bin" || {
 			name=`echo $name | tr _ -`
 			bin=`echo "$bins" | grep -i "\($name-ex\|$name-sq\|$name-fa\|$name-ub\|$name-ue\|$name-in\)"`
