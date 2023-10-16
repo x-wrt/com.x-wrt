@@ -1561,8 +1561,6 @@ static void qmap_packet_decode(sQmiWwanQmap *pQmapDev,
 		__be16 protocol;
 		int mux_id;
 		int skip_nss = 0;
-		int skb_idx = 0;
-		qmap_skb = NULL;
 
 		if (map_header->next_hdr) {
 			ul_header = (struct rmnet_map_v5_csum_header *)(map_header + 1);
@@ -1627,20 +1625,10 @@ static void qmap_packet_decode(sQmiWwanQmap *pQmapDev,
 			goto skip_pkt;
 		}
 
-		if (((size_t)skb_in->data + hdr_size + 6 + 6 + 2) % 4 == 0 && skb_idx == 1) {
-			qmap_skb = skb_clone(skb_in, GFP_ATOMIC);
-			if (qmap_skb) {
-				qmap_skb->dev = qmap_net;
-				__skb_pull(qmap_skb, hdr_size);
-				skb_trim(qmap_skb, skb_len);
-			}
-			skb_idx = 0;
-		} else {
-			qmap_skb = netdev_alloc_skb_ip_align(qmap_net, skb_len);
-			if (qmap_skb) {
-				__skb_put_data(qmap_skb, skb_in->data + hdr_size, skb_len);
-			}
-			skb_idx = 1;
+		qmap_skb = netdev_alloc_skb(qmap_net, skb_len);
+		if (qmap_skb) {
+			skb_put(qmap_skb, skb_len);
+			memcpy(qmap_skb->data, skb_in->data + hdr_size, skb_len);
 		}
 
 		if (qmap_skb == NULL) {
