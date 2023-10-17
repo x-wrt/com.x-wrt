@@ -1642,6 +1642,22 @@ static void qmap_packet_decode(sQmiWwanQmap *pQmapDev,
 		skb_set_mac_header(qmap_skb, 0);
 		qmap_skb->protocol = protocol;
 
+		if (pQmapDev->use_rmnet_usb) {
+			/*
+			if (qmap_skb->dev->type == ARPHRD_ETHER) {
+				skb_push(qmap_skb, ETH_HLEN);
+				skb_reset_mac_header(qmap_skb);
+				memcpy(eth_hdr(qmap_skb)->h_source, default_modem_addr, ETH_ALEN);
+				memcpy(eth_hdr(qmap_skb)->h_dest, qmap_net->dev_addr, ETH_ALEN);
+				eth_hdr(qmap_skb)->h_proto = protocol;
+				__skb_pull(qmap_skb, ETH_HLEN);
+			}
+			*/
+			rmnet_vnd_update_rx_stats(qmap_net, 1, qmap_skb->dev->type == ARPHRD_ETHER ? ETH_HLEN : 0 + qmap_skb->len);
+			netif_receive_skb(qmap_skb);
+			goto skip_pkt;
+		}
+
 		if(skip_nss)
 			qmap_skb->cb[0] = 1;
 
