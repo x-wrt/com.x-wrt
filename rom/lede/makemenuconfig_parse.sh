@@ -114,7 +114,7 @@ ksmbd="luci-app-ksmbd luci-i18n-ksmbd-en luci-i18n-ksmbd-zh-cn ksmbd-server kmod
 
 moreapps="wget-ssl ethtool"
 
-utils="minicom kmod-usb-serial-pl2303 sendip"
+utils="minicom kmod-usb-serial-pl2303 kmod-usb-serial-cp210x sendip"
 
 cdcmod="kmod-mii \
 		kmod-usb-net \
