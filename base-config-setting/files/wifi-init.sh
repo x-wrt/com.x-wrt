@@ -38,12 +38,6 @@ wifi_setup_radio()
 			set wireless.${radio}.channel='auto'
 		EOT
 
-		if [ x`uci get wireless.${radio}.hwmode 2>/dev/null` = "x11a" ]; then
-			uci set wireless.${radio}.txpower='23'
-		else
-			uci set wireless.${radio}.txpower='20'
-		fi
-
 		obj=`uci add wireless wifi-iface`
 		test -n "$obj" && {
 			uci set wireless.$obj.device="${radio}"
