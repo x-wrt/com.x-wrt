@@ -306,10 +306,6 @@ test $version -lt 15 && {
 	cat /etc/shadow | grep -q ^admin: || cat /etc/shadow | grep ^root | sed 's/^root/admin/' >>/etc/shadow
 	cat /etc/passwd | grep -q ^admin: || echo "admin:x:0:0:root:/root:/bin/false" >>/etc/passwd
 
-	uci set rpcd.@login[0].username='admin'
-	uci set rpcd.@login[0].password='$p$admin'
-	uci commit rpcd
-
 	version=15
 }
 
