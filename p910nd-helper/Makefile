@@ -29,6 +29,7 @@ define Package/p910nd-helper/install
 	$(INSTALL_DATA) ./firmware/* $(1)/usr/share/p910nd/firmware/
 	$(INSTALL_DIR) $(1)/usr/bin
 	$(INSTALL_BIN) $(PKG_BUILD_DIR)/usb_printerid $(1)/usr/bin/usb_printerid
+	$(INSTALL_BIN) ./listlp.sh $(1)/usr/bin/listlp
 	$(INSTALL_DIR) $(1)/etc/hotplug.d/usb
 	$(INSTALL_BIN) ./25-usb-printer-helper.hotplug $(1)/etc/hotplug.d/usb/25-usb-printer-helper
 
