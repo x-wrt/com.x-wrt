@@ -1055,6 +1055,7 @@ for t in $targets; do
 	#check usb
 	case $t in
 		#with usb3
+		TARGET_DEVICE_mediatek_filogic_DEVICE_cmcc_rax3000m|\
 		TARGET_DEVICE_rockchip_armv8_DEVICE_friendlyarm_nanopi-r4s|\
 		TARGET_DEVICE_rockchip_armv8_DEVICE_friendlyarm_nanopi-r5c|\
 		TARGET_DEVICE_rockchip_armv8_DEVICE_friendlyarm_nanopi-r5s|\
@@ -1394,7 +1395,6 @@ for t in $targets; do
 			has_usb=1
 		;;
 		#no usb
-		TARGET_DEVICE_mediatek_filogic_DEVICE_cmcc_rax3000m|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_cetron_ct3003|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_cetron_ct3003-ubootlayout|\
 		TARGET_DEVICE_ipq40xx_generic_DEVICE_zte_mf287plus|\
