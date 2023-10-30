@@ -1,5 +1,5 @@
 {
-	"luci-app-3ginfo": {
+	"luci-app-3ginfo-lite": {
 		"description": "Grant access to LuCI app 3ginfo-lite",
 		"read": {
    			"cgi-io": [ "exec" ],

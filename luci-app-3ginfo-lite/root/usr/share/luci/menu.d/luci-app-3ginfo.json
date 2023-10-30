@@ -16,7 +16,7 @@
 			"path": "admin/modem/3ginfo-lite/3gdetail"
 		},
 		"depends": {
-			"acl": [ "luci-app-3ginfo" ],
+			"acl": [ "luci-app-3ginfo-lite" ],
 			"uci": { "3ginfo": true }
 		}
 	},
