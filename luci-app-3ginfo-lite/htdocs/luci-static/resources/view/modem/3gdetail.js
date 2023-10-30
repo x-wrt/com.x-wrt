@@ -228,10 +228,10 @@ modemDialog: baseclass.extend({
 			var sections = uci.sections('modemdefine');
 			var portM = sections.length;
 
-    			var result = "";
-    			for (var i = 1; i < portM; i++) {
-       			result += sections[i].comm_port + '#' + sections[i].modem + ' (' + sections[i].user_desc + ');';
-    			}
+				var result = "";
+			for (var i = 1; i < portM; i++) {
+			result += sections[i].comm_port + '#' + sections[i].modem + ' (' + sections[i].user_desc + ');';
+			}
 			var result = result.slice(0, -1);
 			var result = result.replace("(undefined)", "");
 
@@ -1069,7 +1069,7 @@ modemDialog: baseclass.extend({
 
 			window.open(searchsite + json.operator_mcc + cutmnc + '.' + zzcid);
 			}
-    		});
+		});
 		};
 
 		return m.render();
