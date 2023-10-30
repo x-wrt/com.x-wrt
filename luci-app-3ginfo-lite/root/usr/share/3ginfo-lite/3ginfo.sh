@@ -194,10 +194,10 @@ else
 		SEC=$(uci -q get 3ginfo.@3ginfo[0].network)
 fi
 	if [ -z "$SEC" ]; then
-		getpath $DEVICE
+		P=$DEVICE
 		PORIG=$P
 		for DEV in /sys/class/tty/* /sys/class/usbmisc/*; do
-			getpath "/dev/"${DEV##/*/}
+			P="/dev/"${DEV##/*/}
 			if [ "x$PORIG" = "x$P" ]; then
 				SEC=$(uci show network | grep "/dev/"${DEV##/*/} | cut -f2 -d.)
 				[ -n "$SEC" ] && break
@@ -393,7 +393,7 @@ cat <<EOF
 "tac_d":"$T_DEC",
 "cid_dec":"$CID_DEC",
 "cid_hex":"$CID_HEX",
-"pci":"$PCI",
+"pci":"$(echo -n $PCI | tr -d '\r')",
 "earfcn":"$EARFCN",
 "pband":"$PBAND",
 "s1band":"$S1BAND",

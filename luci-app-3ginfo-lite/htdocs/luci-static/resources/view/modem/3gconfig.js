@@ -28,7 +28,7 @@ return view.extend({
 		s = m.section(form.TypedSection, '3ginfo', '', null);
 		s.anonymous = true;
 		
-		o = s.option(widgets.DeviceSelect, 'network', _('Interface'),
+		o = s.option(widgets.NetworkSelect, 'network', _('Network'),
 		_('Network interface for Internet access.')
 		);
 		o.noaliases  = false;
