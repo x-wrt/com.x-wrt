@@ -47,6 +47,13 @@ proto_qmap_setup() {
 
 	[ -n "$delay" ] && sleep "$delay"
 
+	modinfo qmi_wwan_q &>/dev/null || {
+		echo "The interface driver could not be found."
+		proto_notify_error "$interface" NO_IFACE
+		proto_set_available "$interface" 0
+		return 1
+	}
+
 	for i in $(seq 1 180); do
 		lsmod | grep -q qmi_wwan_q && break
 		sleep 1
