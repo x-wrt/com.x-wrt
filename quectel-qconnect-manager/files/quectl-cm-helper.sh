@@ -4,6 +4,8 @@ device=$1
 ifname=$2
 mtu=$3
 
+exit 0
+
 ubus call network.interface.usbwan down; ubus call network.interface.usbwan up
 exit 0
 

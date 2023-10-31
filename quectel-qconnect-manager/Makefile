@@ -30,6 +30,8 @@ define Package/quectel-cm/install
 	$(INSTALL_DIR) $(1)/etc/init.d
 	$(INSTALL_BIN) ./files/quectl-cm.init $(1)/etc/init.d/quectl-cm
 	$(INSTALL_BIN) ./files/quectl-cm-helper.sh $(1)/usr/bin/quectl-cm-helper
+	$(INSTALL_DIR) $(1)/lib/netifd/proto
+	$(INSTALL_BIN) ./files/lib/netifd/proto/qmap.sh $(1)/lib/netifd/proto/qmap.sh
 endef
 
 define Build/Prepare
