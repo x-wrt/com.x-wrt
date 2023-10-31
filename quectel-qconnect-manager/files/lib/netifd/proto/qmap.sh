@@ -81,7 +81,7 @@ proto_qmap_setup() {
 	[ -n "$auth" ] || auth="none"
 
 	/usr/bin/quectel-cm -i "$ifname" $ipv4opt $ipv6opt ${pincode:+-p $pincode} -s "$apn" "$username" "$password" "$auth" &
-	pid=$?
+	pid=$!
 	sleep 3
 
 	echo "Setting up ${ifname}_1"
