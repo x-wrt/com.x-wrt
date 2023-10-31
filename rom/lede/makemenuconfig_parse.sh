@@ -415,6 +415,7 @@ for t in $targets; do
 		TARGET_DEVICE_mediatek_filogic_DEVICE_tenbay_wr3000k|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_qihoo_360t7-ubootlayout|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_qihoo_360t7|\
+		TARGET_DEVICE_mediatek_filogic_DEVICE_asus_tuf-ax6000|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_tplink_tl-xdr6086|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_tplink_tl-xdr6088|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_tplink_tl-xdr4288|\
@@ -542,6 +543,7 @@ for t in $targets; do
 		TARGET_DEVICE_mediatek_filogic_DEVICE_tenbay_wr3000k|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_qihoo_360t7-ubootlayout|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_qihoo_360t7|\
+		TARGET_DEVICE_mediatek_filogic_DEVICE_asus_tuf-ax6000|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_tplink_tl-xdr6086|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_tplink_tl-xdr6088|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_tplink_tl-xdr4288|\
@@ -1070,6 +1072,7 @@ for t in $targets; do
 		TARGET_DEVICE_ramips_mt7621_DEVICE_xzwifi_creativebox-v1|\
 		TARGET_DEVICE_armsr_armv8_DEVICE_generic|\
 		TARGET_DEVICE_ipq806x_generic_DEVICE_netgear_xr450|\
+		TARGET_DEVICE_mediatek_filogic_DEVICE_asus_tuf-ax6000|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_glinet_gl-mt3000|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_tplink_tl-xdr6086|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_tplink_tl-xdr6088|\
