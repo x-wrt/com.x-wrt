@@ -78,17 +78,14 @@ proto_qmap_setup() {
 		fi
 		sleep 1
 	done
-	sleep 1
 
 	kill -15 $(pgrep -f "/usr/bin/quectel-cm -i $ifname") &>/dev/null
 	sleep 1
 
 	pdptype="$(echo "$pdptype" | awk '{print tolower($0)}')"
 	[ "$pdptype" = "ip" -o "$pdptype" = "ipv6" -o "$pdptype" = "ipv4v6" ] || pdptype="ip"
-
 	[ "$pdptype" = "ip" -o "$pdptype" = "ipv4v6" ] && ipv4opt="-4"
 	[ "$pdptype" = "ipv6" -o "$pdptype" = "ipv4v6" ] && ipv6opt="-6"
-
 	[ -n "$auth" ] || auth="none"
 
 	/usr/bin/quectel-cm -i "$ifname" $ipv4opt $ipv6opt ${pincode:+-p $pincode} -s "$apn" "$username" "$password" "$auth" &
