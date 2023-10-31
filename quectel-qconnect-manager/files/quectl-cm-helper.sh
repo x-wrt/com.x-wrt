@@ -4,13 +4,10 @@ device=$1
 ifname=$2
 mtu=$3
 
-exit 0
-
-ubus call network.interface.usbwan down; ubus call network.interface.usbwan up
-exit 0
-
-mkdir -p /var/run
-mkfifo /var/run/quectl-$device.fifo
-echo "$device $ifname $mtu" >/var/run/quectl-$device.fifo
+test -n "$mtu" && test -n "$ifname" && {
+	ifconfig "${ifname}_1" &>/dev/null && \
+	/sbin/ip link set dev "${ifname}_1" mtu $mtu || \
+	/sbin/ip link set dev "${ifname}" mtu $mtu
+}
 
 exit 0
