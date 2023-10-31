@@ -119,6 +119,7 @@ proto_qmap_setup() {
 		[ "$pdptype" = "ipv4v6" ] && json_add_string iface_464xlat "0"
 		json_add_string proto "dhcpv6"
 		proto_add_dynamic_defaults
+		[ -n "$ip6table" ] && json_add_string ip6table "$ip6table"
 		# RFC 7278: Extend an IPv6 /64 Prefix to LAN
 		json_add_string extendprefix 1
 		[ -n "$zone" ] && json_add_string zone "$zone"
@@ -131,6 +132,7 @@ proto_qmap_setup() {
 		json_add_string name "${interface}_4"
 		json_add_string ifname "@$interface"
 		json_add_string proto "dhcp"
+		[ -n "$ip4table" ] && json_add_string ip4table "$ip4table"
 		proto_add_dynamic_defaults
 		[ -n "$zone" ] && json_add_string zone "$zone"
 		json_close_object
