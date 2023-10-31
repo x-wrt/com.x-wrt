@@ -105,7 +105,7 @@ usb_extra="kmod-usb-storage-extras"
 
 modem_info="luci-app-3ginfo-lite sms-tool luci-app-sms-tool"
 modem="luci-proto-modemmanager qmi-utils"
-quectel="kmod-qmi-wwan-q quectel-cm"
+quectel="kmod-qmi-wwan-q quectel-cm luci-proto-qmap"
 
 exclude_for_tiny="kmod-usb-storage-uas kmod-scsi-core kmod-fs-ext4 kmod-fs-msdos kmod-fs-vfat"
 
