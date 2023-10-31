@@ -15,6 +15,7 @@ proto_qmap_init_config() {
 	proto_config_add_string username
 	proto_config_add_string password
 	proto_config_add_string pincode
+	proto_config_add_int delay
 	proto_config_add_string pdptype
 	proto_config_add_boolean dhcp
 	proto_config_add_boolean dhcpv6
@@ -24,11 +25,11 @@ proto_qmap_init_config() {
 
 proto_qmap_setup() {
 	local interface="$1"
-	local device apn auth username password pincode pdptype
+	local device apn auth username password pincode delay pdptype
 	local dhcp dhcpv6 mtu $PROTO_DEFAULT_OPTIONS
 	local pid zone
 
-	json_get_vars device apn auth username password pincode
+	json_get_vars device apn auth username password pincode delay
 	json_get_vars pdptype dhcp dhcpv6
 	json_get_vars mtu $PROTO_DEFAULT_OPTIONS
 
@@ -42,6 +43,8 @@ proto_qmap_setup() {
 		proto_set_available "$interface" 0
 		return 1
 	}
+
+	[ -n "$delay" ] && sleep "$delay"
 
 	device="$(readlink -f $device)"
 	[ -c "$device" ] || {
@@ -60,7 +63,6 @@ proto_qmap_setup() {
 		proto_set_available "$interface" 0
 		return 1
 	}
-	mtu=1400
 
 	[ -n "$mtu" ] && {
 		echo "Setting MTU to $mtu"
