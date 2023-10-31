@@ -64,11 +64,6 @@ proto_qmap_setup() {
 		return 1
 	}
 
-	[ -n "$mtu" ] && {
-		echo "Setting MTU to $mtu"
-		/sbin/ip link set dev ${ifname}_1 mtu $mtu
-	}
-
 	kill -15 $(pgrep -f "/usr/bin/quectel-cm -i $ifname")
 	sleep 1
 
@@ -82,10 +77,18 @@ proto_qmap_setup() {
 
 	/usr/bin/quectel-cm -i "$ifname" $ipv4opt $ipv6opt ${pincode:+-p $pincode} -s "$apn" "$username" "$password" "$auth" &
 	pid=$!
-	sleep 3
+	sleep 5
 
-	echo "Setting up ${ifname}_1"
-	proto_init_update "${ifname}_1" 1
+	ifconfig $ifname up
+	ifconfig ${ifname}_1 &>/dev/null && ifname=${ifname}_1
+
+	[ -n "$mtu" ] && {
+		echo "Setting MTU to $mtu"
+		/sbin/ip link set dev $ifname mtu $mtu
+	}
+
+	echo "Setting up $ifname"
+	proto_init_update "$ifname" 1
 	proto_set_keep 1
 	proto_add_data
 	[ -n "$pid" ] && {
