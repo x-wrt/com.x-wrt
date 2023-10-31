@@ -27,11 +27,12 @@ proto_qmap_setup() {
 	local interface="$1"
 	local device apn auth username password pincode delay pdptype
 	local dhcp dhcpv6 mtu $PROTO_DEFAULT_OPTIONS
+	local ip4table ip6table
 	local pid zone
 
 	json_get_vars device apn auth username password pincode delay
-	json_get_vars pdptype dhcp dhcpv6
-	json_get_vars mtu $PROTO_DEFAULT_OPTIONS
+	json_get_vars pdptype dhcp dhcpv6 ip4table
+	json_get_vars ip6table mtu $PROTO_DEFAULT_OPTIONS
 
 	[ "$metric" = "" ] && metric="0"
 
@@ -45,6 +46,12 @@ proto_qmap_setup() {
 	}
 
 	[ -n "$delay" ] && sleep "$delay"
+
+	for i in $(seq 1 180); do
+		lsmod | grep -q qmi_wwan_q && break
+		sleep 1
+	done
+	sleep 1
 
 	device="$(readlink -f $device)"
 	[ -c "$device" ] || {
@@ -64,7 +71,7 @@ proto_qmap_setup() {
 		return 1
 	}
 
-	kill -15 $(pgrep -f "/usr/bin/quectel-cm -i $ifname")
+	kill -15 $(pgrep -f "/usr/bin/quectel-cm -i $ifname") &>/dev/null
 	sleep 1
 
 	pdptype="$(echo "$pdptype" | awk '{print tolower($0)}')"

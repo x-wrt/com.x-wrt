@@ -34,25 +34,4 @@ start() {
 			}
 		done
 	done
-	return 0
-	for pf in /sys/class/net/*; do
-		test -e $pf/qmap_mode && {
-			ifname=${pf#/sys/class/net/*}_1
-			uci get network.${ifname} &>/dev/null || {
-				uci set network.${ifname}=device
-				uci set network.${ifname}.name="${ifname}"
-				uci set network.${ifname}.mtu='1400'
-				uci commit network
-				/etc/init.d/network reload
-			}
-			/usr/bin/quectel-cm -i  ${pf#/sys/class/net/*} -4 -6 &
-		}
-	done
-}
-
-stop() {
-	return 0
-	kill -15 $(pgrep -f "quectel-cm -i") &>/dev/null
-	sleep 2
-	kill -9 $(pgrep -f "quectel-cm -i") &>/dev/null
 }
