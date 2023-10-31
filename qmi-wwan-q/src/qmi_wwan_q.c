@@ -1653,7 +1653,7 @@ static void qmap_packet_decode(sQmiWwanQmap *pQmapDev,
 				__skb_pull(qmap_skb, ETH_HLEN);
 			}
 			*/
-			rmnet_vnd_update_rx_stats(qmap_net, 1, qmap_skb->dev->type == ARPHRD_ETHER ? ETH_HLEN : 0 + qmap_skb->len);
+			rmnet_vnd_update_rx_stats(qmap_net, 1, (qmap_skb->dev->type == ARPHRD_ETHER ? ETH_HLEN : 0) + qmap_skb->len);
 			netif_receive_skb(qmap_skb);
 			goto skip_pkt;
 		}
