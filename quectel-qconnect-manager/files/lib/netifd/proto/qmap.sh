@@ -54,12 +54,6 @@ proto_qmap_setup() {
 		return 1
 	}
 
-	for i in $(seq 1 180); do
-		lsmod | grep -q qmi_wwan_q && break
-		sleep 1
-	done
-	sleep 1
-
 	device="$(readlink -f $device)"
 	[ -c "$device" ] || {
 		echo "The specified control device does not exist"
@@ -77,6 +71,14 @@ proto_qmap_setup() {
 		proto_set_available "$interface" 0
 		return 1
 	}
+
+	for i in $(seq 1 180); do
+		if lsmod | grep -q qmi_wwan_q && test -e "$devpath"/net/$ifname/qmap_mode; then
+			break
+		fi
+		sleep 1
+	done
+	sleep 1
 
 	kill -15 $(pgrep -f "/usr/bin/quectel-cm -i $ifname") &>/dev/null
 	sleep 1
