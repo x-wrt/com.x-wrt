@@ -715,6 +715,7 @@ for t in $targets; do
 			extra_utils=1
 		;;
 		#>8M flash <14M
+		TARGET_DEVICE_mediatek_filogic_DEVICE_tenbay_ms3000k|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_asus_rt-ac57u-v1|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_dual-q_h721|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_jdcloud_re-sp-01b|\
@@ -921,7 +922,6 @@ for t in $targets; do
 		TARGET_DEVICE_ramips_mt7620_DEVICE_zte_q7|\
 		TARGET_DEVICE_ath79_generic_DEVICE_tplink_tl-wdr6500-v2|\
 		TARGET_DEVICE_ramips_mt76x8_DEVICE_xwrt_xf-949|\
-		TARGET_DEVICE_mediatek_filogic_DEVICE_tenbay_ms3000k|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_totolink_a7000r|\
 		TARGET_DEVICE_ramips_mt76x8_DEVICE_xiaomi_mi-ra75|\
 		TARGET_DEVICE_ath79_nand_DEVICE_glinet_gl-xe300|\
