@@ -310,7 +310,7 @@ agent_sync_config()
 			fi
 		fi
 
-		if ! grep -q wifim_md5 /tmp/fakemesh.ac.config.tmp || ! grep -q fakemesh /tmp/fakemesh.ac.config.tmp; then
+		if ! grep -q fakemesh /tmp/fakemesh.ac.config.tmp; then
 			rm -f /tmp/fakemesh.ac.config.tmp
 			test -f /tmp/fakemesh_lck3/$pid || return 0
 			continue
