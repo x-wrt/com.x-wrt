@@ -176,6 +176,7 @@ CONFIG_TARGET_MULTI_PROFILE=y
 # CONFIG_TARGET_ramips_mt7621_DEVICE_linksys_re7000 is not set
 # CONFIG_TARGET_ramips_mt7621_DEVICE_mediatek_ap-mt7621a-v60 is not set
 # CONFIG_TARGET_ramips_mt7621_DEVICE_mediatek_mt7621-eval-board is not set
+# CONFIG_TARGET_ramips_mt7621_DEVICE_meig_slt866 is not set
 # CONFIG_TARGET_ramips_mt7621_DEVICE_mercusys_mr70x-v1 is not set
 # CONFIG_TARGET_ramips_mt7621_DEVICE_mikrotik_ltap-2hnd is not set
 # CONFIG_TARGET_ramips_mt7621_DEVICE_mikrotik_routerboard-750gr3 is not set
@@ -441,6 +442,7 @@ CONFIG_TARGET_PER_DEVICE_ROOTFS=y
 # CONFIG_TARGET_DEVICE_ramips_mt7621_DEVICE_linksys_re7000 is not set
 # CONFIG_TARGET_DEVICE_ramips_mt7621_DEVICE_mediatek_ap-mt7621a-v60 is not set
 # CONFIG_TARGET_DEVICE_ramips_mt7621_DEVICE_mediatek_mt7621-eval-board is not set
+# CONFIG_TARGET_DEVICE_ramips_mt7621_DEVICE_meig_slt866 is not set
 # CONFIG_TARGET_DEVICE_ramips_mt7621_DEVICE_mercusys_mr70x-v1 is not set
 # CONFIG_TARGET_DEVICE_ramips_mt7621_DEVICE_mikrotik_ltap-2hnd is not set
 # CONFIG_TARGET_DEVICE_ramips_mt7621_DEVICE_mikrotik_routerboard-750gr3 is not set
@@ -967,7 +969,7 @@ CONFIG_TARGET_INIT_CMD="/sbin/init"
 CONFIG_TARGET_INIT_SUPPRESS_STDERR=y
 CONFIG_VERSIONOPT=y
 CONFIG_VERSION_DIST="X-WRT"
-CONFIG_VERSION_NUMBER="23.10_b202311030747"
+CONFIG_VERSION_NUMBER="23.10_b202311041612"
 CONFIG_VERSION_CODE="Lunar"
 CONFIG_VERSION_REPO="http://downloads.openwrt.org/snapshots"
 CONFIG_VERSION_HOME_URL="https://x-wrt.com/"

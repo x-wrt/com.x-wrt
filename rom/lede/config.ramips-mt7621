@@ -176,6 +176,7 @@ CONFIG_TARGET_MULTI_PROFILE=y
 # CONFIG_TARGET_ramips_mt7621_DEVICE_linksys_re7000 is not set
 # CONFIG_TARGET_ramips_mt7621_DEVICE_mediatek_ap-mt7621a-v60 is not set
 # CONFIG_TARGET_ramips_mt7621_DEVICE_mediatek_mt7621-eval-board is not set
+# CONFIG_TARGET_ramips_mt7621_DEVICE_meig_slt866 is not set
 # CONFIG_TARGET_ramips_mt7621_DEVICE_mercusys_mr70x-v1 is not set
 # CONFIG_TARGET_ramips_mt7621_DEVICE_mikrotik_ltap-2hnd is not set
 # CONFIG_TARGET_ramips_mt7621_DEVICE_mikrotik_routerboard-750gr3 is not set
@@ -463,6 +464,7 @@ CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt7621_DEVICE_linksys_ea8100-v2="blockd blo
 # CONFIG_TARGET_DEVICE_ramips_mt7621_DEVICE_linksys_re7000 is not set
 # CONFIG_TARGET_DEVICE_ramips_mt7621_DEVICE_mediatek_ap-mt7621a-v60 is not set
 # CONFIG_TARGET_DEVICE_ramips_mt7621_DEVICE_mediatek_mt7621-eval-board is not set
+# CONFIG_TARGET_DEVICE_ramips_mt7621_DEVICE_meig_slt866 is not set
 CONFIG_TARGET_DEVICE_ramips_mt7621_DEVICE_mercusys_mr70x-v1=y
 CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt7621_DEVICE_mercusys_mr70x-v1="dawn kmod-cfg80211 kmod-crypto-ccm kmod-crypto-cmac kmod-crypto-ctr kmod-crypto-gcm kmod-crypto-gf128 kmod-crypto-ghash kmod-crypto-hmac kmod-crypto-rng kmod-crypto-seqiv kmod-crypto-sha512 kmod-hwmon-core kmod-ifb kmod-leds-gpio kmod-mac80211 kmod-mt76-connac kmod-mt76-core kmod-mt7915e kmod-mt7915-firmware kmod-ovpn-dco-v2 kmod-thermal libgcrypt libgpg-error liblz4 liblzo libnl-core libnl-genl libqrencode luci-app-dawn luci-app-openvpn luci-app-sqm luci-i18n-dashboard-zh-cn luci-i18n-openvpn-zh-cn luci-i18n-sqm-zh-cn luci-mod-dashboard luci-proto-relay luci-proto-wireguard openvpn-mbedtls qrencode relayd sqm-scripts tc-tiny wireguard-tools wireless-regdb wpad-mbedtls"
 # CONFIG_TARGET_DEVICE_ramips_mt7621_DEVICE_mikrotik_ltap-2hnd is not set
@@ -1059,7 +1061,7 @@ CONFIG_TARGET_INIT_CMD="/sbin/init"
 CONFIG_TARGET_INIT_SUPPRESS_STDERR=y
 CONFIG_VERSIONOPT=y
 CONFIG_VERSION_DIST="X-WRT"
-CONFIG_VERSION_NUMBER="23.10_b202311030747"
+CONFIG_VERSION_NUMBER="23.10_b202311041612"
 CONFIG_VERSION_CODE="Lunar"
 CONFIG_VERSION_REPO="http://downloads.openwrt.org/snapshots"
 CONFIG_VERSION_HOME_URL="https://x-wrt.com/"

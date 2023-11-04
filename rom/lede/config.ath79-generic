@@ -166,6 +166,7 @@ CONFIG_TARGET_MULTI_PROFILE=y
 # CONFIG_TARGET_ath79_generic_DEVICE_enterasys_ws-ap3705i is not set
 # CONFIG_TARGET_ath79_generic_DEVICE_etactica_eg200 is not set
 # CONFIG_TARGET_ath79_generic_DEVICE_extreme-networks_ws-ap3805i is not set
+# CONFIG_TARGET_ath79_generic_DEVICE_fortinet_fap-220-b is not set
 # CONFIG_TARGET_ath79_generic_DEVICE_fortinet_fap-221-b is not set
 # CONFIG_TARGET_ath79_generic_DEVICE_glinet_6408 is not set
 # CONFIG_TARGET_ath79_generic_DEVICE_glinet_6416 is not set
@@ -555,6 +556,7 @@ CONFIG_TARGET_DEVICE_PACKAGES_ath79_generic_DEVICE_engenius_ecb1750="ath10k-boar
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_enterasys_ws-ap3705i is not set
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_etactica_eg200 is not set
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_extreme-networks_ws-ap3805i is not set
+# CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_fortinet_fap-220-b is not set
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_fortinet_fap-221-b is not set
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_glinet_6408 is not set
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_glinet_6416 is not set
@@ -1234,7 +1236,7 @@ CONFIG_TARGET_INIT_CMD="/sbin/init"
 CONFIG_TARGET_INIT_SUPPRESS_STDERR=y
 CONFIG_VERSIONOPT=y
 CONFIG_VERSION_DIST="X-WRT"
-CONFIG_VERSION_NUMBER="23.10_b202311030747"
+CONFIG_VERSION_NUMBER="23.10_b202311041612"
 CONFIG_VERSION_CODE="Lunar"
 CONFIG_VERSION_REPO="http://downloads.openwrt.org/snapshots"
 CONFIG_VERSION_HOME_URL="https://x-wrt.com/"
