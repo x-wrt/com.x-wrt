@@ -7,10 +7,10 @@ include $(TOPDIR)/rules.mk
 include $(INCLUDE_DIR)/kernel.mk
 
 PKG_NAME:=rtw8852cu
-PKG_VERSION:=20231103
+PKG_VERSION:=20231106
 
 PKG_SOURCE_URL:=https://codeload.github.com/x-wrt/rtw8852cu/tar.gz/$(PKG_VERSION)?
-PKG_HASH:=ae6627c07ef9bba6d743b58e1108b943c401a45c69997fe63d9ac48489e6f314
+PKG_HASH:=b4e045b384c03353e8531e1a1ece099d52a540080a169b26ed558bfffc6e94c1
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
 
 PKG_MAINTAINER:=Chen Minqiang <ptpt52@gmail.com>
