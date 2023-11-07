@@ -1,0 +1,17 @@
+#!/bin/sh
+# handle option output_ttl in network.@interface[*]
+
+local i=0
+
+iptables-save | grep overwrite-ttl | while read line; do iptables -t mangle ${line//-A/-D}; done
+
+while uci get network.@interface[$i] &>/dev/null; do
+	ttl=$(uci get network.@interface[$i].output_ttl 2>/dev/null)
+	if test -n "$ttl"; then
+		ifn=$(uci show network.@interface[$i] | head -n1)
+		ifn=${ifn//=interface}
+		ifn=${ifn//network.}
+		ifd=$(ubus call network.interface.usbwan status | jsonfilter -e '$["l3_device"]')
+		iptables -t mangle -A POSTROUTING -o "$ifd" -m comment --comment overwrite-ttl -j TTL --ttl-set $ttl
+	fi
+done

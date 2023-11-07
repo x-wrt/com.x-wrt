@@ -110,6 +110,8 @@ define Package/base-config-setting/install
 	$(INSTALL_DATA) ./files/15-mgr-ipaddr $(1)/etc/hotplug.d/net/15-mgr-ipaddr
 	$(INSTALL_DIR) $(1)/etc/hotplug.d/iface
 	$(INSTALL_DATA) ./files/15-mgr-ipaddr $(1)/etc/hotplug.d/iface/15-mgr-ipaddr
+	$(INSTALL_DIR) $(1)/usr/share/firewall4
+	$(INSTALL_DATA) ./files/output-ttl.include $(1)/usr/share/firewall4/output-ttl.include
 endef
 
 define Build/Configure
