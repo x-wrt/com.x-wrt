@@ -103,7 +103,7 @@ usb3="kmod-usb3 \
 
 usb_extra="kmod-usb-storage-extras"
 
-modem_info="luci-app-3ginfo-lite sms-tool luci-app-sms-tool"
+modem_info="luci-app-3ginfo-lite sms-tool luci-app-sms-tool luci-app-modemband modemband"
 modem="luci-proto-modemmanager qmi-utils"
 quectel="kmod-qmi-wwan-q quectel-cm luci-proto-qmap"
 
