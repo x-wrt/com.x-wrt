@@ -455,6 +455,10 @@ grep -q google.cn /etc/hosts || echo 142.250.66.131 google.cn >>/etc/hosts
 #firewall4 output_ttl support
 grep -q "^sh /usr/share/firewall4/output-ttl.include" /etc/firewall.include || \
 echo "sh /usr/share/firewall4/output-ttl.include" >>/etc/firewall.include
+uci -q batch <<-EOF >/dev/null
+	set ucitrack.@network[0].exec='/bin/sh /usr/share/firewall4/output-ttl.include'
+	commit ucitrack
+EOF
 
 uci set base_config.@status[0].version=$version
 uci commit base_config
