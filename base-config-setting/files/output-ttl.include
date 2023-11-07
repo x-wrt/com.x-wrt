@@ -11,7 +11,8 @@ while uci get network.@interface[$i] &>/dev/null; do
 		ifn=$(uci show network.@interface[$i] | head -n1)
 		ifn=${ifn//=interface}
 		ifn=${ifn//network.}
-		ifd=$(ubus call network.interface.usbwan status | jsonfilter -e '$["l3_device"]')
+		ifd=$(ubus call network.interface.$ifn status | jsonfilter -e '$["l3_device"]')
+		test -n "$ifd" && \
 		iptables -t mangle -A POSTROUTING -o "$ifd" -m comment --comment overwrite-ttl -j TTL --ttl-set $ttl
 	fi
 done
