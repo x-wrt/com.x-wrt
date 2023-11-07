@@ -1608,6 +1608,9 @@ for t in $targets; do
 			mods="$mods $usb4g $quectel $modem_info iperf nload"
 			has_usb=0
 		;;
+		TARGET_DEVICE_ramips_mt7621_DEVICE_xwrt_5g-cpe1801k)
+			mods="$mods $usb4g $modem_info"
+		;;
 	esac
 
 	#check 4g manual select
