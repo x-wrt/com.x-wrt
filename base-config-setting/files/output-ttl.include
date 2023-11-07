@@ -5,10 +5,10 @@ iptables -t mangle -F mangle_ttl || iptables -t mangle -N mangle_ttl
 ip6tables -t mangle -F mangle_hotlimit || ip6tables -t mangle -N mangle_hotlimit
 
 iptables -t mangle -C POSTROUTING -j mangle_ttl || \
-iptables -t mangle -A POSTROUTING -j mangle_ttl
+iptables -t mangle -I POSTROUTING -j mangle_ttl
 
 ip6tables -t mangle -C POSTROUTING -j mangle_hotlimit || \
-ip6tables -t mangle -A POSTROUTING -j mangle_hotlimit
+ip6tables -t mangle -I POSTROUTING -j mangle_hotlimit
 
 #DHCPv6
 ip6tables -t mangle -A mangle_hotlimit -p udp -m udp --dport 547 -j RETURN
