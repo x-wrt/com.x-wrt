@@ -6,13 +6,17 @@ local i=0
 iptables-save | grep overwrite-ttl | while read line; do iptables -t mangle ${line//-A/-D}; done
 
 while uci get network.@interface[$i] &>/dev/null; do
+	ifn=$(uci show network.@interface[$i] | head -n1)
+	ifn=${ifn//=interface}
+	ifn=${ifn//network.}
+	ifd=$(ubus call network.interface.$ifn status | jsonfilter -e '$["l3_device"]')
+
 	ttl=$(uci get network.@interface[$i].output_ttl 2>/dev/null)
-	if test -n "$ttl"; then
-		ifn=$(uci show network.@interface[$i] | head -n1)
-		ifn=${ifn//=interface}
-		ifn=${ifn//network.}
-		ifd=$(ubus call network.interface.$ifn status | jsonfilter -e '$["l3_device"]')
-		test -n "$ifd" && \
+	if test -n "$ttl" && test -n "$ifd"; then
 		iptables -t mangle -A POSTROUTING -o "$ifd" -m comment --comment overwrite-ttl -j TTL --ttl-set $ttl
+	fi
+	hl=$(uci get network.@interface[$i].output_hotlimit 2>/dev/null)
+	if test -n "$hl" && test -n "$ifd"; then
+		ip6tables -t mangle -A POSTROUTING -o "$ifd" -m comment --comment overwrite-hotlimit -j HL --hl-set $hl
 	fi
 done
