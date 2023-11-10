@@ -1159,6 +1159,7 @@ peer_upstream_check() {
 
 ping_cli() {
 	local idx=0
+	local peer_mark_connected=1
 	PING="ping"
 	which timeout >/dev/null 2>&1 && PING="$TO 30 $PING"
 	while :; do
@@ -1167,12 +1168,16 @@ ping_cli() {
 		PINGM=$(uci get natcapd.default.peer_mark 2>/dev/null)
 		PINGM=$((PINGM))
 		[ "$PINGM" = "0" ] && PINGM=""
+		if test -n "$PINGM"; then
+			test $peer_mark_connected -eq 0 && test $((idx%2)) -eq 1 && PINGM=
+		fi
+		peer_mark_connected=0
 		test -n "$PINGH" || PINGH=ec2ns.ptpt52.com
 		if [ "$(echo $PINGH | wc -w)" = "1" ]; then
 			PINGIP=`nslookup_check_local $PINGH`
-			$PING ${PINGM:+-m $PINGM} -t1 -s16 -c16 -W1 -q $PINGH
-			test -n "$PINGIP" && \
-			$PING ${PINGM:+-m $PINGM} -t1 -s16 -c16 -W1 -q $PINGIP
+			recv1=$($PING ${PINGM:+-m $PINGM} -t1 -s16 -c16 -W1 $PINGH | grep "packets received" | awk '{print $4}')
+			recv2=$(test -n "$PINGIP" && $PING ${PINGM:+-m $PINGM} -t1 -s16 -c16 -W1 $PINGIP | grep "packets received" | awk '{print $4}')
+			test -n "$PINGM" && test $((recv1+recv2)) -ge 1 && peer_mark_connected=1
 			sleep 1
 		else
 			for hh in $PINGH; do
