@@ -388,6 +388,7 @@ for t in $targets; do
 	excludes="$excludes_basic"
 	case $t in
 		#>=32M flash
+		TARGET_DEVICE_qualcommax_ipq807x_DEVICE_yuncore_ax880|\
 		TARGET_DEVICE_qualcommax_ipq807x_DEVICE_netgear_wax630|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_cmcc_rax3000m|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_glinet_gl-mt6000|\
@@ -513,6 +514,7 @@ for t in $targets; do
 	esac
 	case $t in
 		#>=14M flash
+		TARGET_DEVICE_qualcommax_ipq807x_DEVICE_yuncore_ax880|\
 		TARGET_DEVICE_qualcommax_ipq807x_DEVICE_netgear_wax630|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_cmcc_rax3000m|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_glinet_gl-mt6000|\
@@ -1401,6 +1403,7 @@ for t in $targets; do
 			has_usb=1
 		;;
 		#no usb
+		TARGET_DEVICE_qualcommax_ipq807x_DEVICE_yuncore_ax880|\
 		TARGET_DEVICE_qualcommax_ipq807x_DEVICE_netgear_wax630|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_cetron_ct3003|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_cetron_ct3003-ubootlayout|\
