@@ -1163,21 +1163,24 @@ ping_cli() {
 	which timeout >/dev/null 2>&1 && PING="$TO 30 $PING"
 	while :; do
 		test -f $LOCKDIR/$PID || return 0
-		PINGH=`uci get natcapd.default.peer_host`
+		PINGH=$(uci get natcapd.default.peer_host 2>/dev/null)
+		PINGM=$(uci get natcapd.default.peer_mark 2>/dev/null)
+		PINGM=$((PINGM))
+		[ "$PINGM" = "0" ] && PINGM=""
 		test -n "$PINGH" || PINGH=ec2ns.ptpt52.com
 		if [ "$(echo $PINGH | wc -w)" = "1" ]; then
 			PINGIP=`nslookup_check_local $PINGH`
-			$PING -t1 -s16 -c16 -W1 -q $PINGH
+			$PING ${PINGM:+-m $PINGM} -t1 -s16 -c16 -W1 -q $PINGH
 			test -n "$PINGIP" && \
-			$PING -t1 -s16 -c16 -W1 -q $PINGIP
+			$PING ${PINGM:+-m $PINGM} -t1 -s16 -c16 -W1 -q $PINGIP
 			sleep 1
 		else
 			for hh in $PINGH; do
 				(
 				hhip=`nslookup_check_local $hh`
-				$PING -t1 -s16 -c16 -W1 -q "$hh"
+				$PING ${PINGM:+-m $PINGM} -t1 -s16 -c16 -W1 -q "$hh"
 				test -n "$hhip" && \
-				$PING -t1 -s16 -c16 -W1 -q "$hhip"
+				$PING ${PINGM:+-m $PINGM} -t1 -s16 -c16 -W1 -q "$hhip"
 				) &
 			done
 			sleep 34
