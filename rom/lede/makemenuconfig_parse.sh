@@ -133,6 +133,8 @@ ssmod="libmbedtls \
 	   shadowsocks-libev-ss-server \
 	   shadowsocks-libev-ss-tunnel"
 
+wgmodtiny="wireguard-tools luci-proto-wireguard"
+
 wgmod="wireguard-tools \
 	   luci-proto-wireguard \
 	   qrencode \
@@ -1053,6 +1055,7 @@ for t in $targets; do
 		TARGET_DEVICE_ramips_mt7620_DEVICE_phicomm_k2-v22.5|\
 		TARGET_DEVICE_ramips_mt7620_DEVICE_phicomm_psg1218b)
 			mods="$mods wpad-basic-mbedtls wpad-basic-wolfssl"
+			mods="$mods $wgmodtiny"
 			excludes="$excludes wpad-openssl"
 		;;
 		*)
