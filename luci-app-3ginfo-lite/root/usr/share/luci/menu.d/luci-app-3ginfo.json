@@ -9,7 +9,7 @@
 	},
 	
 	"admin/modem/3ginfo-lite": {
-		"title": "Information about 3G/4G/5G connection",
+		"title": "Information about 3G/4G/5G modems",
 		"order": 10,
 		"action": {
 			"type": "alias",
@@ -30,21 +30,21 @@
 		}
 	},
 
+	"admin/modem/3ginfo-lite/atcommand": {
+		"title": "AT command",
+		"order": 20,
+		"action": {
+			"type": "view",
+			"path": "modem/atcommand"
+		}
+	},
+
 	"admin/modem/3ginfo-lite/3gconfig": {
 		"title": "Configuration",
 		"order": 30,
 		"action": {
 			"type": "view",
 			"path": "modem/3gconfig"
-		}
-	},
-
-	"admin/modem/3ginfo-lite/3gdebug": {
-		"title": "USB debug information",
-		"order": 20,
-		"action": {
-			"type": "view",
-			"path": "modem/3gdebug"
 		}
 	}
 }

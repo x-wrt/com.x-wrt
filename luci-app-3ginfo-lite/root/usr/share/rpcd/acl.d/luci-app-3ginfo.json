@@ -4,6 +4,7 @@
 		"read": {
 			"cgi-io": [ "exec" ],
 			"file": {
+				"/usr/bin/sms_tool": [ "exec" ],
 				"/usr/share/3ginfo-lite/3ginfo.sh": [ "exec" ],
 				"/usr/share/3ginfo-lite/detect.sh": [ "exec" ],
 				"/usr/share/3ginfo-lite/check.gcom": [ "exec" ],
