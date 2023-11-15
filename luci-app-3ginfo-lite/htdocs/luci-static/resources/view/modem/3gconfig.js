@@ -31,9 +31,9 @@ return view.extend({
 		s.nodescriptions = true;
 
 		o = s.option(widgets.NetworkSelect, 'network', _('Network'),
-		_('Network interface for Internet access.')
+			_('Network interface for Internet access.')
 		);
-		o.noaliases  = false;
+		o.noaliases = false;
 		o.default = 'wan';
 		o.rmempty = false;
 

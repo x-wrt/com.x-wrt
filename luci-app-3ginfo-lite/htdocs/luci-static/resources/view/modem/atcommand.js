@@ -16,9 +16,9 @@ return view.extend({
 		return fs.exec(exec, args).then(function(res) {
 			var out = document.querySelector('textarea');
 
-			dom.content(out, [ res.stdout || '', res.stderr || '' ]);
+			dom.content(out, [res.stdout || '', res.stderr || '']);
 		}).catch(function(err) {
-			ui.addNotification(null, E('p', [ err ]))
+			ui.addNotification(null, E('p', [err]))
 		}).finally(function() {
 			for (var i = 0; i < buttons.length; i++)
 				buttons[i].removeAttribute('disabled');
@@ -27,8 +27,8 @@ return view.extend({
 
 	handleAT: function(ev, path) {
 		var exec = 'sms_tool',
-		    atcmd = ev.currentTarget.parentNode.previousSibling.value,
-		    args = [ '-d', path, 'at', atcmd ];
+			atcmd = ev.currentTarget.parentNode.previousSibling.value,
+			args = ['-d', path, 'at', atcmd];
 
 		console.log("path=" + path);
 		console.log("atcmd=" + atcmd);
@@ -51,30 +51,47 @@ return view.extend({
 		devs.forEach(dev => devs_arr['/dev/' + dev.name] = 'Send AT command to ' + '/dev/' + dev.name);
 		devs.forEach(dev => devs_cla['/dev/' + dev.name] = 'btn cbi-button cbi-button-action');
 		//console.log(devs_arr);
-		var table = E('table', { 'class': 'table' }, [
-				E('tr', { 'class': 'tr' }, [
-					E('td', { 'class': 'td left', 'style': 'overflow:initial' }, [
-						E('input', {
-							'style': 'margin:5px 0',
-							'type': 'text',
-							'value': 'ATI'
-						}),
-						E('span', { 'class': 'diag-action' }, [
-							new ui.ComboButton('/dev/ttyUSB2', devs_arr, {
-								'click': ui.createHandlerFn(this, 'handleAT'),
-								'classes': devs_cla,
-							}).render()
-						])
-					]),
-				])
-			]);
+		var table = E('table', {
+			'class': 'table'
+		}, [
+			E('tr', {
+				'class': 'tr'
+			}, [
+				E('td', {
+					'class': 'td left',
+					'style': 'overflow:initial'
+				}, [
+					E('input', {
+						'style': 'margin:5px 0',
+						'type': 'text',
+						'value': 'ATI'
+					}),
+					E('span', {
+						'class': 'diag-action'
+					}, [
+						new ui.ComboButton('/dev/ttyUSB2', devs_arr, {
+							'click': ui.createHandlerFn(this, 'handleAT'),
+							'classes': devs_cla,
+						}).render()
+					])
+				]),
+			])
+		]);
 
-		var view = E('div', { 'class': 'cbi-map'}, [
-			E('h2', {}, [ _('Send AT command:') ]),
-			E('div', { 'class': 'cbi-map-descr'}, _('Sending AT command to selected device com port.')),
+		var view = E('div', {
+			'class': 'cbi-map'
+		}, [
+			E('h2', {}, [_('Send AT command:')]),
+			E('div', {
+				'class': 'cbi-map-descr'
+			}, _('Sending AT command to selected device com port.')),
 			table,
-			E('div', {'class': 'cbi-section'}, [
-				E('div', { 'id' : 'command-output'},
+			E('div', {
+				'class': 'cbi-section'
+			}, [
+				E('div', {
+						'id': 'command-output'
+					},
 					E('textarea', {
 						'id': 'widget.command-output',
 						'style': 'width: 100%; font-family:monospace; white-space:pre',
