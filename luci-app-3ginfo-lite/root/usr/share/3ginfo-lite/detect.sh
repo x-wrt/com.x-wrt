@@ -11,7 +11,7 @@
 # from config modemdefine
 #
 CONFIG=modemdefine
-MODEMZ=$(uci show $CONFIG | grep -o "@modemdefine\[[0-9]*\]\.modem" | wc -l | xargs)
+MODEMZ=$(uci -q show $CONFIG | grep -o "@modemdefine\[[0-9]*\]\.modem" | wc -l | xargs)
 if [ -n "$MODEMZ" ]; then
 
 	if [[ $MODEMZ = 0 ]]; then
