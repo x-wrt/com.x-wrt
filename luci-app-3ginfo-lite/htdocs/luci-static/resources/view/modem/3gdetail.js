@@ -196,127 +196,7 @@ function SIMdata(data) {
 	}
 }
 
-function active_select() {
-	uci.load('modemdefine').then(function() {
-		var modemz = (uci.get('modemdefine', '@modemdefine[1]', 'comm_port'));
-		if (!modemz) {
-			document.getElementById("modc").disabled = true;
-		}
-		else {
-			document.getElementById("modc").disabled = false;
-		}
-	});
-}
-
-
 return view.extend({
-
-
-modemDialog: baseclass.extend({
-		__init__: function(title, description, callback) {
-			this.title       = title;
-			this.description = description;
-			this.callback    = callback;
-		},
-
-		load: function() {
-			return uci.load('modemdefine');
-		},
-
-		render: function(content) {
-
-			var sections = uci.sections('modemdefine');
-			var portM = sections.length;
-
-				var result = "";
-			for (var i = 1; i < portM; i++) {
-			result += sections[i].comm_port + '#' + sections[i].modem + ' (' + sections[i].user_desc + ');';
-			}
-			var result = result.slice(0, -1);
-			var result = result.replace("(undefined)", "");
-
-			ui.showModal(this.title, [
-				E('div', { 'class': 'cbi-section' }, [
-					E('div', { 'class': 'cbi-section-descr' }, this.description),
-					E('div', { 'class': 'cbi-section' },
-						E('p', {},
-							E('div', { 'class': 'cbi-value' }, [
-							E('p'),
-							E('label', { 'class': 'cbi-value-title' }, [ _('Modem') ]),
-							E('div', { 'class': 'cbi-value-field' }, [
-								E('select', { 'class': 'cbi-input-select',
-										'id': 'mselect',
-										'style': 'margin:0px 0; width:100%;',
-										},
-									(result || "").trim().split(/;/).map(function(cmd) {
-										var fields = cmd.split(/#/);
-										var name = fields[1];
-										var code = fields[0];
-									return E('option', { 'value': code }, name ) })
-
-								)
-							]) 
-						]),
-						)
-					),
-				]),
-				E('div', { 'class': 'right' }, [
-					E('button', {
-						'class': 'btn',
-						'click': ui.createHandlerFn(this, this.handleDissmis),
-					}, _('Cancel')),
-
-					' ',
-					E('button', {
-						'id': 'btn_save',
-						'class': 'btn cbi-button-positive important',
-						'click': ui.createHandlerFn(this, this.handleSave),
-					}, _('Save')),
-
-				]),
-			]);
-		},
-
-		handleSave: function(ev) {
-
-			return uci.load('modemdefine').then(function() {
-
-				var vx = document.getElementById('mselect').value; 
-
-				uci.set('modemdefine', '@general[0]', 'main_modem', vx.toString());
-
-				uci.save();
-				uci.apply();
-
-				window.setTimeout(function() {
-					if (!poll.active()) poll.start();
-					location.reload();
-					//ev.target.blur();
-				}, 2000).finally();
-			});
-
-		},
-
-		handleDissmis: function(ev) {
-				ui.hideModal();
-				if (!poll.active()) poll.start();
-		},
-
-		show: function() {
-			ui.showModal(null,
-				E('p', { 'class': 'spinning' }, _('Loading'))
-			);
-			poll.stop();
-			this.load().then(content => {
-				ui.hideModal();
-				return this.render(content);
-			}).catch(e => {
-				ui.hideModal();
-				return this.error(e);
-			})
-		},
-	}),
-
 	formdata: { threeginfo: {} },
 	
 	load: function() {
@@ -325,13 +205,6 @@ modemDialog: baseclass.extend({
 
 	render: function(data) {
 		var m, s, o;
-
-		active_select();
-
-		var upModemDialog = new this.modemDialog(
-			_('Defined modems'),
-			_('Interface for selecting user defined modems.'),
-		);
 
 		if (data != null){
 		try {
@@ -1008,69 +881,6 @@ modemDialog: baseclass.extend({
 				])
 			]);
 		}, o, this);
-
-		s = m.section(form.TypedSection, 'threeginfo', null);
-		s.anonymous = true;
-		s.addremove = false;
-
-		s.tab('opt1', _('BTS Search'));
-		s.anonymous = true;
-
-		o = s.taboption('opt1', form.Button, '_search');
-		o.title      = _('Search BTS using Cell ID');
-		o.inputtitle = _('Search');
-		o.onclick = function() {
-
-		return uci.load('3ginfo').then(function() {
-		var searchsite = (uci.get('3ginfo', '@3ginfo[0]', 'website'));
-
-			if (searchsite.includes('btsearch')) {
-			//http://www.btsearch.pl/szukaj.php?mode=std&search=CellID
-			
-				var id_dec = json.cid_dec;
-				var id_hex = json.cid_hex;
-				var id_dec_conv = parseInt(id_hex, 16);
-
-				if ( id_dec.length > 2 ) {
-					window.open(searchsite + id_dec);
-				}
-				else {
-					window.open(searchsite + id_dec_conv);
-				}
-			}
-
-			if (searchsite.includes('lteitaly')) {
-			//https://lteitaly.it/internal/map.php#bts=MCCMNC.CellIDdiv256
-
-			var zzmnc = json.operator_mnc;
-			var first = zzmnc.slice(0, 1);
-			var second = zzmnc.slice(1, 2);
-			var zzcid = Math.round(json.cid_dec/256);
-				if ( zzmnc.length == 3 ) {
-					if (first.includes('0')) {
-					var cutmnc = zzmnc.slice(1, 3);
-					}
-					if (first.includes('0') && second.includes('0')) {
-					var cutmnc = zzmnc.slice(2, 3);
-					}
-				}
-				if ( zzmnc.length == 2 ) {
-					var first = zzmnc.slice(0, 1);
-					if (first.includes('0')) {
-						var cutmnc = zzmnc.slice(1, 2);
-						}
-					else {
-					var cutmnc = zzmnc;
-						}
-					}
-				if ( zzmnc.length < 2 || !first.includes('0') && !second.includes('0')) {
-				var cutmnc = zzmnc;
-				}
-
-			window.open(searchsite + json.operator_mcc + cutmnc + '.' + zzcid);
-			}
-		});
-		};
 
 		return m.render();
 	},
