@@ -635,7 +635,7 @@ return view.extend({
 			}
 		}
 
-		m = new form.JSONMap(this.formdata, _('3ginfo-lite'));
+		m = new form.JSONMap(this.formdata, _('Modem2 Details'));
 
 		s = m.section(form.TypedSection, '3ginfo', '', null);
 		s.anonymous = true;

@@ -26,7 +26,7 @@ return view.extend({
 		m = new form.Map('3ginfo', _('Configuration 3ginfo-lite'), _('Configuration panel for the 3ginfo-lite application.'));
 
 		s = m.section(form.GridSection, '3ginfo');
-		s.addremove = true;
+		s.addremove = false;
 		s.anonymous = false;
 		s.nodescriptions = true;
 

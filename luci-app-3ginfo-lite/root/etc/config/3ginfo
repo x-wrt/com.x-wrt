@@ -1,4 +1,7 @@
+config 3ginfo 'modem1'
+	option network 'usbwan'
+	option device '/dev/ttyUSB2'
 
-config 3ginfo
-	option device ''
-	option website 'http://www.btsearch.pl/szukaj.php?mode=std&search='
+config 3ginfo 'modem2'
+	option network 'usbwan'
+	option device '/dev/ttyUSB2'
