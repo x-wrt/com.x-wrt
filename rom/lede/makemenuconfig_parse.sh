@@ -1056,8 +1056,15 @@ for t in $targets; do
 		TARGET_DEVICE_ramips_mt7620_DEVICE_phicomm_k2-v22.5|\
 		TARGET_DEVICE_ramips_mt7620_DEVICE_phicomm_psg1218b)
 			mods="$mods wpad-basic-mbedtls wpad-basic-wolfssl"
-			mods="$mods $wgmodtiny"
 			excludes="$excludes wpad-openssl"
+			case $t in
+				*tplink*)
+					:
+				;;
+				*)
+					mods="$mods $wgmodtiny"
+				;;
+			esac
 		;;
 		*)
 			echo not handle moreapps $t
