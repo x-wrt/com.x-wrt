@@ -699,19 +699,6 @@ return view.extend({
 
 			return E('div', { 'class': 'cbi-section' }, [
 
-			E('div', { 'class': 'right' }, [
-				E('button', {
-					'id': 'modc',
-					'style': 'position:relative; display:block; margin:0 !important; margin-top:-3% !important; left:95%; top:',
- 					'disabled': 'true',
-					'data-tooltip': _('Modem selection menu'),
-					'class': 'btn cbi-button',
-					'click': ui.createHandlerFn(this, function() {
-							return upModemDialog.show();
-					}),
-				}, _('☰')),
-			]),
-
 			E('h4', {}, [ _('General Information') ]),
 			E('table', { 'class': 'table' }, [
 				E('tr', { 'class': 'tr' }, [

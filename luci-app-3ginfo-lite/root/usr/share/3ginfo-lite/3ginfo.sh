@@ -171,7 +171,10 @@ getdevicevendorproduct() {
 
 RES="/usr/share/3ginfo-lite"
 
-DEVICE=$($RES/detect.sh)
+idx=$1
+test -n "$idx" || idx=0
+
+DEVICE=$($RES/detect.sh $idx)
 if [ -z "$DEVICE" ]; then
 	echo '{"error":"Device not found"}'
 	exit 0
@@ -185,13 +188,13 @@ else
 fi
 
 
-SECT=$(uci -q get 3ginfo.@3ginfo[0].network)
+SECT=$(uci -q get 3ginfo.@3ginfo[$idx].network)
 
 SUB='@'
 if [[ "$SECT" == *"$SUB"* ]]; then
 		SEC=$(echo $SECT | sed 's/@//')
 else
-		SEC=$(uci -q get 3ginfo.@3ginfo[0].network)
+		SEC=$(uci -q get 3ginfo.@3ginfo[$idx].network)
 fi
 	if [ -z "$SEC" ]; then
 		P=$DEVICE
@@ -330,7 +333,7 @@ else
 	TAC_HEX="-"
 fi
 
-CONF_DEVICE=$(uci -q get 3ginfo.@3ginfo[0].device)
+CONF_DEVICE=$(uci -q get 3ginfo.@3ginfo[$idx].device)
 if echo "x$CONF_DEVICE" | grep -q "192.168."; then
 	if grep -q "Vendor=1bbb" /sys/kernel/debug/usb/devices; then
 		. $RES/hilink/alcatel_hilink.sh $DEVICE
@@ -341,7 +344,7 @@ if echo "x$CONF_DEVICE" | grep -q "192.168."; then
 	if grep -q "Vendor=19d2" /sys/kernel/debug/usb/devices; then
 		. $RES/hilink/zte.sh $DEVICE
 	fi
-	SEC=$(uci -q get 3ginfo.@3ginfo[0].network)
+	SEC=$(uci -q get 3ginfo.@3ginfo[$idx].network)
 	SEC=${SEC:-wan}
 else
 
