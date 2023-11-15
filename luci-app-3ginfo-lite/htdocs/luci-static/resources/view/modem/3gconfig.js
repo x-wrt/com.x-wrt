@@ -8,7 +8,7 @@
 
 /*
 	Copyright 2021-2023 Rafał Wabik - IceG - From eko.one.pl forum
-	
+
 	Licensed to the GNU General Public License v3.0.
 */
 
@@ -29,7 +29,7 @@ return view.extend({
 		s.addremove = true;
 		s.anonymous = false;
 		s.nodescriptions = true;
-		
+
 		o = s.option(widgets.NetworkSelect, 'network', _('Network'),
 		_('Network interface for Internet access.')
 		);
@@ -37,8 +37,8 @@ return view.extend({
 		o.default = 'wan';
 		o.rmempty = false;
 
-		o = s.option(form.Value, 'device', 
-			_('IP adress / Port for communication with the modem'), 
+		o = s.option(form.Value, 'device',
+			_('IP adress / Port for communication with the modem'),
 			_("Select the appropriate settings. <br /> \
 				<br />Traditional modem. <br /> \
 				Select one of the available ttyUSBX ports.<br /> \
