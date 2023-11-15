@@ -179,7 +179,7 @@ pg.setAttribute('title', '%s'.format(v) + ' | ' + tip + ' ');
 function SIMdata(data) {
 	var sdata = JSON.parse(data);
 
-	if (sdata.simslot.length > 0) {
+	if (sdata && sdata.simslot && sdata.simslot.length > 0) {
 		return ui.itemlist(E('span'), [
 		_('SIM Slot'), sdata.simslot,
 		_('SIM IMSI'), sdata.imsi,
@@ -200,7 +200,7 @@ return view.extend({
 	formdata: { threeginfo: {} },
 	
 	load: function() {
-		return L.resolveDefault(fs.exec_direct('/usr/share/3ginfo-lite/3ginfo.sh', [ 'json' ]));
+		return L.resolveDefault(fs.exec_direct('/usr/share/3ginfo-lite/3ginfo.sh', [ '0' ]));
 	},
 
 	render: function(data) {
@@ -210,7 +210,6 @@ return view.extend({
 		try {
 
 		var json = JSON.parse(data);
-
 			if(!json.hasOwnProperty('error')){
 				
 				if (json.registration == 'SIM not inserted' || json.registration == '-') { 
@@ -253,7 +252,7 @@ return view.extend({
 
 
 			pollData: poll.add(function() {
-				return L.resolveDefault(fs.exec_direct('/usr/share/3ginfo-lite/3ginfo.sh', 'json'))
+				return L.resolveDefault(fs.exec_direct('/usr/share/3ginfo-lite/3ginfo.sh', '0'))
 					.then(function(res) {
 					var json = JSON.parse(res);
 
@@ -689,8 +688,7 @@ return view.extend({
 				}
 		}		
 
-		var info = _('More information about the 3ginfo on the %seko.one.pl forum%s.').format('<a href="https://eko.one.pl/?p=openwrt-3ginfo" target="_blank">', '</a>');
-		m = new form.JSONMap(this.formdata, _('3ginfo-lite'), info);
+		m = new form.JSONMap(this.formdata, _('3ginfo-lite'));
 
 		s = m.section(form.TypedSection, '3ginfo', '', null);
 		s.anonymous = true;
