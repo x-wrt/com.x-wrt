@@ -1,39 +1,12 @@
 # Thales MV31-w (MBIM) / 
 
-O=$(sms_tool -D -d $DEVICE at "AT^CA_INFO?;^RFSTS?;+TEMP")
+O=$(sms_tool -D -d $DEVICE at "AT^CA_INFO?;^debug?;^temp?")
 
-TR=$(echo "$O" |grep -A2 RFSTS: | awk 'NR ==2{print $0}')
-
-if [ "$MODE" = "LTE" ]; then
-	RSRP=$(echo "$TR" | awk -F [,] '{printf "%.0f\n",$3}')
-	RSSI=$(echo "$TR" | awk -F [,] '{printf "%.0f\n",$4}')
-	RSRQ=$(echo "$TR" | awk -F [,] '{printf "%.0f\n",$5}')
-	SINR=$(echo "$TR" | awk -F [,] '{printf "%.0f\n",$16*2-20}')
-else
-	SINR=$(echo "$TR" | awk -F [,] '{printf "%.0f\n",$4}')
-	RSSI=$(echo "$TR" | awk -F [,] '{printf "%.0f\n",$6}')
-fi
-
-T=$(echo "$O" | awk -F[,:] '/^\PCC info: /{print $2}' | sed 's/Band is //g')
-[ -z "$T" ] && T=$(echo "$O" | awk -F[,] '/^\PCC info: /{print $2}')
-if [ -n "$T" ]; then
-	PC=$(echo $T | tr -d 'LTE_B')
-	MODE="LTE | $(band $PC)"
-
-	T=$(echo "$O" | awk -F[,:] '/^\SCC1 info: /{print $2}' | sed 's/Band is //g')
-	if [ -n "$T" ]; then
-		SC1=$(echo $T | tr -d 'LTE_B')
-		MODE="${MODE/LTE/LTE_A} / "$(band ${SC1} "")
-	fi
-
-	T=$(echo "$O" | awk -F[,:] '/^\SCC2 info: /{print $2}' | sed 's/Band is //g')
-	if [ -n "$T" ]; then
-		SC2=$(echo $T | tr -d 'LTE_B')
-		MODE="${MODE} / "$(band ${SC2} "")
-	fi
-fi
-
-MODE=$(echo $MODE | sed 's,/,+,' | sed 's,LTE_A,LTE-A ,')
+RSRP=$(echo "$O" | grep nr_rsrp: | awk -F [:] '{printf "%.0f\n",$2}')
+RSRQ=$(echo "$O" | grep nr_rsrq: | awk -F [:] '{printf "%.0f\n",$2}')
+SINR=$(echo "$O" | grep nr_snr: | awk -F [:] '{printf "%.0f\n",$2}')
+MODE=$(echo "$O" | grep RAT: | cut -d: -f2 | tr -d '\n\r')
+RSSI=$(echo "$O" | grep -i rssi | cut -d: -f2 | tr -d '\n\r')
 
 # Primary band
 T1=$(echo "$O" | awk '/PCC/{print $5}' | sed -e 's/LTE_//g' -e 's/.$//')
@@ -43,6 +16,8 @@ if [ -n "$T1" ]; then
 	EARFCN=$(echo "$TR" |awk -F [,] '{print $2}')
 	PCI=$(echo "$TR" |awk -F [,] '{print $11}')
 fi
+
+test -n "$PCI" || PCI=$(echo "$O" | grep nr_pci: | cut -d: -f2 | tr -d '\n\r')
 
 # CA band (S1)
 T3=$(echo "$O" | awk '/SCC1/{print $5}' | sed -e 's/LTE_//g' -e 's/.$//')
@@ -63,17 +38,30 @@ if [ -n "$T5" ]; then
 fi
 
 # Temperature
-T=$(echo "$O" | awk -F [:] '/tsens_tz_sensor0:/ {print $2}' | xargs)
+T=$(echo "$O" | grep TSENS: | awk -F [:] '{printf "%.0f\n",$2}')
 if [ -n "$T" ]; then
 	TEMP=$(echo "$T &deg;C")
 fi
 
-# Cell ID & LAC & TAC
-LAC_HEX=$(printf "%X" $LAC_DEC)
-if [ -n "$LAC_DEC" ]; then
-	TAC_HEX=$LAC_HEX
+if test -z "$CSQ_PER"; then
+	CSQ_PER=1
 fi
+
+if test -z "$TAC_DEC"; then
+	TAC_DEC=$(echo "$O" | grep nr_tac: | cut -d: -f2 | tr -d '\n\r')
+	TAC_HEX=$(printf "%X" $TAC_DEC)
+fi
+CID_DEC=$(echo "$O" | grep nr_cell_id: | cut -d: -f2 | tr -d '\n\r')
 CID_HEX=$(printf "%X" $CID_DEC)
+LAC_DEC=$(echo "$O" | grep -i lac | cut -d: -f2 | tr -d '\n\r')
+LAC_HEX=$(printf "%X" $LAC_DEC)
+
+# Slot SIM
+O=$(sms_tool -d $DEVICE at "AT+CPIN?")
+T=$(echo "$O" | awk -F [:] '/^\+CPIN/{print $2}' | xargs)
+if [ "$T" = "READY" ]; then
+        SSIM=1
+fi
 
 # Protocol
 # DRIVER=QMI_WWAN & DRIVER=CDC_MBIM & DRIVER=CDC_ETHER
