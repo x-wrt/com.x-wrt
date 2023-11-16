@@ -18,7 +18,7 @@
 */
 
 function csq_bar(v, m) {
-	var pg = document.querySelector('#csq')
+	var pg = document.querySelector('#csq_1')
 	var vn = parseInt(v) || 0;
 	var mn = parseInt(m) || 100;
 	var pc = Math.floor((100 / mn) * vn);
@@ -44,7 +44,7 @@ function csq_bar(v, m) {
 }
 
 function rssi_bar(v, m) {
-	var pg = document.querySelector('#rssi')
+	var pg = document.querySelector('#rssi_1')
 	var vn = parseInt(v) || 0;
 	var mn = parseInt(m) || 100;
 	if (vn > -50) {
@@ -77,7 +77,7 @@ function rssi_bar(v, m) {
 }
 
 function rsrp_bar(v, m) {
-	var pg = document.querySelector('#rsrp')
+	var pg = document.querySelector('#rsrp_1')
 	var vn = parseInt(v) || 0;
 	var mn = parseInt(m) || 100;
 	if (vn > -50) {
@@ -110,7 +110,7 @@ function rsrp_bar(v, m) {
 }
 
 function sinr_bar(v, m) {
-	var pg = document.querySelector('#sinr')
+	var pg = document.querySelector('#sinr_1')
 	var vn = parseInt(v) || 0;
 	var mn = parseInt(m) || 100;
 	var pc = Math.floor(100 - (100 * (1 - ((mn - vn) / (mn - 40)))));
@@ -137,7 +137,7 @@ function sinr_bar(v, m) {
 }
 
 function rsrq_bar(v, m) {
-	var pg = document.querySelector('#rsrq')
+	var pg = document.querySelector('#rsrq_1')
 	var vn = parseInt(v) || 0;
 	var mn = parseInt(m) || 100;
 	var pc = Math.floor(115 - (100 / mn) * vn);
@@ -242,9 +242,10 @@ return view.extend({
 
 
 						pollData: poll.add(function() {
-							return L.resolveDefault(fs.exec_direct('/usr/share/3ginfo-lite/3ginfo.sh', '1'))
+							return L.resolveDefault(fs.exec_direct('/usr/share/3ginfo-lite/3ginfo.sh', ['1']))
 								.then(function(res) {
 									var json = JSON.parse(res);
+									console.log(json);
 
 									if (json.signal == '0' || json.signal == '') {
 										fs.exec('sleep 1');
@@ -284,8 +285,8 @@ return view.extend({
 										icon = L.resource('icons/3ginfo-80-100.png');
 
 
-									if (document.getElementById('signal')) {
-										var view = document.getElementById("signal");
+									if (document.getElementById('signal_1')) {
+										var view = document.getElementById("signal_1");
 										if (json.signal == 0 || json.signal == '') {
 											view.textContent = '-';
 										} else {
@@ -293,8 +294,8 @@ return view.extend({
 										}
 									}
 
-									if (document.getElementById('connst')) {
-										var view = document.getElementById("connst");
+									if (document.getElementById('connst_1')) {
+										var view = document.getElementById("connst_1");
 										if (json.signal == 0 || json.signal == '') {
 											view.textContent = '-';
 										} else {
@@ -306,8 +307,8 @@ return view.extend({
 										}
 									}
 
-									if (document.getElementById('operator')) {
-										var view = document.getElementById("operator");
+									if (document.getElementById('operator_1')) {
+										var view = document.getElementById("operator_1");
 										if (json.signal == 0 || json.signal == '') {
 											view.textContent = '-';
 										} else {
@@ -319,9 +320,9 @@ return view.extend({
 										}
 									}
 
-									if (document.getElementById('sim')) {
-										var view = document.getElementById("sim");
-										var sv = document.getElementById("simv");
+									if (document.getElementById('sim_1')) {
+										var view = document.getElementById("sim_1");
+										var sv = document.getElementById("simv_1");
 										if (json.registration == '') {
 											view.textContent = '-';
 										} else {
@@ -345,8 +346,8 @@ return view.extend({
 										}
 									}
 
-									if (document.getElementById('mode')) {
-										var view = document.getElementById("mode");
+									if (document.getElementById('mode_1')) {
+										var view = document.getElementById("mode_1");
 										if (json.signal == 0 || json.signal == '') {
 											view.textContent = '-';
 										} else {
@@ -358,8 +359,8 @@ return view.extend({
 										}
 									}
 
-									if (document.getElementById('modem')) {
-										var view = document.getElementById("modem");
+									if (document.getElementById('modem_1')) {
+										var view = document.getElementById("modem_1");
 										if (json.signal == 0 || json.signal == '') {
 											view.textContent = '-';
 										} else {
@@ -371,8 +372,8 @@ return view.extend({
 										}
 									}
 
-									if (document.getElementById('fw')) {
-										var view = document.getElementById("fw");
+									if (document.getElementById('fw_1')) {
+										var view = document.getElementById("fw_1");
 										if (json.signal == 0 || json.signal == '') {
 											view.textContent = '-';
 										} else {
@@ -384,8 +385,8 @@ return view.extend({
 										}
 									}
 
-									if (document.getElementById('cport')) {
-										var view = document.getElementById("cport");
+									if (document.getElementById('cport_1')) {
+										var view = document.getElementById("cport_1");
 										if (json.signal == 0 || json.signal == '') {
 											view.textContent = '-';
 										} else {
@@ -397,8 +398,8 @@ return view.extend({
 										}
 									}
 
-									if (document.getElementById('protocol')) {
-										var view = document.getElementById("protocol");
+									if (document.getElementById('protocol_1')) {
+										var view = document.getElementById("protocol_1");
 										if (json.signal == 0 || json.signal == '') {
 											view.textContent = '-';
 										} else {
@@ -410,9 +411,9 @@ return view.extend({
 										}
 									}
 
-									if (document.getElementById('temp')) {
-										var view = document.getElementById("temp");
-										var viewn = document.getElementById("tempn");
+									if (document.getElementById('temp_1')) {
+										var view = document.getElementById("temp_1");
+										var viewn = document.getElementById("tempn_1");
 										var t = json.mtemp;
 										if (t == '') {
 											viewn.style.display = "none";
@@ -421,9 +422,9 @@ return view.extend({
 										}
 									}
 
-									if (document.getElementById('csq')) {
-										var view = document.getElementById("csq");
-										var viewn = document.getElementById("csqn");
+									if (document.getElementById('csq_1')) {
+										var view = document.getElementById("csq_1");
+										var viewn = document.getElementById("csqn_1");
 										if (json.signal == 0 || json.signal == '') {
 											viewn.style.display = "none";
 										} else {
@@ -435,9 +436,9 @@ return view.extend({
 										}
 									}
 
-									if (document.getElementById('rssi')) {
-										var view = document.getElementById("rssi");
-										var viewn = document.getElementById("rssin");
+									if (document.getElementById('rssi_1')) {
+										var view = document.getElementById("rssi_1");
+										var viewn = document.getElementById("rssin_1");
 										if (json.rssi == '') {
 											viewn.style.display = "none";
 										} else {
@@ -452,9 +453,9 @@ return view.extend({
 										}
 									}
 
-									if (document.getElementById('rsrp')) {
-										var view = document.getElementById('rsrp');
-										var viewn = document.getElementById("rsrpn");
+									if (document.getElementById('rsrp_1')) {
+										var view = document.getElementById('rsrp_1');
+										var viewn = document.getElementById("rsrpn_1");
 										if (json.rsrp == '') {
 											viewn.style.display = "none";
 										} else {
@@ -470,9 +471,9 @@ return view.extend({
 										}
 									}
 
-									if (document.getElementById('sinr')) {
-										var view = document.getElementById("sinr");
-										var viewn = document.getElementById("sinrn");
+									if (document.getElementById('sinr_1')) {
+										var view = document.getElementById("sinr_1");
+										var viewn = document.getElementById("sinrn_1");
 										if (json.sinr == '') {
 											viewn.style.display = "none";
 										} else {
@@ -486,9 +487,9 @@ return view.extend({
 										}
 									}
 
-									if (document.getElementById('rsrq')) {
-										var view = document.getElementById("rsrq");
-										var viewn = document.getElementById("rsrqn");
+									if (document.getElementById('rsrq_1')) {
+										var view = document.getElementById("rsrq_1");
+										var viewn = document.getElementById("rsrqn_1");
 										if (json.rsrq == '') {
 											viewn.style.display = "none";
 										} else {
@@ -502,8 +503,8 @@ return view.extend({
 										}
 									}
 
-									if (document.getElementById('mccmnc')) {
-										var view = document.getElementById("mccmnc");
+									if (document.getElementById('mccmnc_1')) {
+										var view = document.getElementById("mccmnc_1");
 										if (json.operator_mcc == '' & json.operator_mnc == '') {
 											view.textContent = '-';
 										} else {
@@ -511,8 +512,8 @@ return view.extend({
 										}
 									}
 
-									if (document.getElementById('lac')) {
-										var view = document.getElementById("lac");
+									if (document.getElementById('lac_1')) {
+										var view = document.getElementById("lac_1");
 
 										if (json.lac_dec == 0 || json.lac_hex == 0) {
 											view.textContent = '-';
@@ -528,8 +529,8 @@ return view.extend({
 
 									}
 
-									if (document.getElementById('tac')) {
-										var view = document.getElementById("tac");
+									if (document.getElementById('tac_1')) {
+										var view = document.getElementById("tac_1");
 										var tac_dh, tac_dec_hex, lac_dec_hex;
 
 										if (json.signal == 0 || json.signal == '') {
@@ -549,8 +550,8 @@ return view.extend({
 										}
 									}
 
-									if (document.getElementById('cid')) {
-										var view = document.getElementById("cid");
+									if (document.getElementById('cid_1')) {
+										var view = document.getElementById("cid_1");
 										if (json.cid_dec == '' || json.cid_hex == '') {
 											var cc = json.cid_hex + ' ' + json.cid_dec;
 											var cd = cc.split(' ').join('');
@@ -560,8 +561,8 @@ return view.extend({
 										}
 									}
 
-									if (document.getElementById('pband')) {
-										var view = document.getElementById("pband");
+									if (document.getElementById('pband_1')) {
+										var view = document.getElementById("pband_1");
 										if (json.pband == '') {
 											view.textContent = '-';
 										} else {
@@ -573,8 +574,8 @@ return view.extend({
 										}
 									}
 
-									if (document.getElementById('s1band')) {
-										var view = document.getElementById("s1band");
+									if (document.getElementById('s1band_1')) {
+										var view = document.getElementById("s1band_1");
 										if (json.s1band == '') {
 											view.textContent = '-';
 										} else {
@@ -586,8 +587,8 @@ return view.extend({
 										}
 									}
 
-									if (document.getElementById('s2band')) {
-										var view = document.getElementById("s2band");
+									if (document.getElementById('s2band_1')) {
+										var view = document.getElementById("s2band_1");
 										if (json.s2band == '') {
 											view.textContent = '-';
 										} else {
@@ -599,8 +600,8 @@ return view.extend({
 										}
 									}
 
-									if (document.getElementById('s3band')) {
-										var view = document.getElementById("s3band");
+									if (document.getElementById('s3band_1')) {
+										var view = document.getElementById("s3band_1");
 										if (json.s3band == '') {
 											view.textContent = '-';
 										} else {
@@ -612,8 +613,8 @@ return view.extend({
 										}
 									}
 
-									if (document.getElementById('s4band')) {
-										var view = document.getElementById("s4band");
+									if (document.getElementById('s4band_1')) {
+										var view = document.getElementById("s4band_1");
 										if (json.s4band == '') {
 											view.textContent = '-';
 										} else {
@@ -659,7 +660,7 @@ return view.extend({
 						}, [_('Signal strength')]),
 						E('td', {
 							'class': 'td left',
-							'id': 'signal'
+							'id': 'signal_1'
 						}, ['-']),
 					]),
 					E('tr', {
@@ -671,7 +672,7 @@ return view.extend({
 						}, [_('Operator')]),
 						E('td', {
 							'class': 'td left',
-							'id': 'operator'
+							'id': 'operator_1'
 						}, ['-']),
 					]),
 					E('tr', {
@@ -687,7 +688,7 @@ return view.extend({
 							E('span', {
 								'class': 'ifacebadge',
 								'title': null,
-								'id': 'simv',
+								'id': 'simv_1',
 								'style': 'visibility: hidden; max-width:3em; display: inline-block;',
 							}, [
 								E('div', {
@@ -710,7 +711,7 @@ return view.extend({
 								]),
 							]),
 							E('normal', {
-								'id': 'sim',
+								'id': 'sim_1',
 								'style': 'margin-left: 0.5em;'
 							}, ['-']),
 						]),
@@ -724,7 +725,7 @@ return view.extend({
 						}, [_('Connection statistics')]),
 						E('td', {
 							'class': 'td left',
-							'id': 'connst'
+							'id': 'connst_1'
 						}, ['-']),
 					]),
 					E('tr', {
@@ -736,7 +737,7 @@ return view.extend({
 						}, [_('Technology')]),
 						E('td', {
 							'class': 'td left',
-							'id': 'mode'
+							'id': 'mode_1'
 						}, ['-']),
 					]),
 				]),
@@ -753,7 +754,7 @@ return view.extend({
 						}, [_('Modem type')]),
 						E('td', {
 							'class': 'td left',
-							'id': 'modem'
+							'id': 'modem_1'
 						}, ['-']),
 					]),
 					E('tr', {
@@ -765,7 +766,7 @@ return view.extend({
 						}, [_('Revision / Firmware')]),
 						E('td', {
 							'class': 'td left',
-							'id': 'fw'
+							'id': 'fw_1'
 						}, ['-']),
 					]),
 					E('tr', {
@@ -777,7 +778,7 @@ return view.extend({
 						}, [_('IP adress / Communication Port')]),
 						E('td', {
 							'class': 'td left',
-							'id': 'cport'
+							'id': 'cport_1'
 						}, ['-']),
 					]),
 					E('tr', {
@@ -789,11 +790,11 @@ return view.extend({
 						}, [_('Protocol')]),
 						E('td', {
 							'class': 'td left',
-							'id': 'protocol'
+							'id': 'protocol_1'
 						}, ['-']),
 					]),
 					E('tr', {
-						'id': 'tempn',
+						'id': 'tempn_1',
 						'class': 'tr'
 					}, [
 						E('td', {
@@ -802,7 +803,7 @@ return view.extend({
 						}, [_('Chip Temperature')]),
 						E('td', {
 							'class': 'td left',
-							'id': 'temp'
+							'id': 'temp_1'
 						}, ['-']),
 					]),
 				]),
@@ -819,7 +820,7 @@ return view.extend({
 						}, [_('MCC MNC')]),
 						E('td', {
 							'class': 'td left',
-							'id': 'mccmnc'
+							'id': 'mccmnc_1'
 						}, ['-']),
 					]),
 					E('tr', {
@@ -831,7 +832,7 @@ return view.extend({
 						}, [_('Cell ID')]),
 						E('td', {
 							'class': 'td left',
-							'id': 'cid'
+							'id': 'cid_1'
 						}, ['-']),
 					]),
 					E('tr', {
@@ -843,7 +844,7 @@ return view.extend({
 						}, [_('TAC')]),
 						E('td', {
 							'class': 'td left',
-							'id': 'tac'
+							'id': 'tac_1'
 						}, ['-']),
 					]),
 					E('tr', {
@@ -855,12 +856,12 @@ return view.extend({
 						}, [_('LAC')]),
 						E('td', {
 							'class': 'td left',
-							'id': 'lac'
+							'id': 'lac_1'
 						}, ['-']),
 					]),
 
 					E('tr', {
-						'id': 'csqn',
+						'id': 'csqn_1',
 						'class': 'tr'
 					}, [
 						E('td', {
@@ -875,13 +876,13 @@ return view.extend({
 						E('td', {
 							'class': 'td'
 						}, E('div', {
-							'id': 'csq',
+							'id': 'csq_1',
 							'class': 'cbi-progressbar',
 							'title': '-'
 						}, E('div')))
 					]),
 					E('tr', {
-						'id': 'rssin',
+						'id': 'rssin_1',
 						'class': 'tr'
 					}, [
 						E('td', {
@@ -896,13 +897,13 @@ return view.extend({
 						E('td', {
 							'class': 'td'
 						}, E('div', {
-							'id': 'rssi',
+							'id': 'rssi_1',
 							'class': 'cbi-progressbar',
 							'title': '-'
 						}, E('div')))
 					]),
 					E('tr', {
-						'id': 'rsrpn',
+						'id': 'rsrpn_1',
 						'class': 'tr'
 					}, [
 						E('td', {
@@ -917,13 +918,13 @@ return view.extend({
 						E('td', {
 							'class': 'td'
 						}, E('div', {
-							'id': 'rsrp',
+							'id': 'rsrp_1',
 							'class': 'cbi-progressbar',
 							'title': '-'
 						}, E('div')))
 					]),
 					E('tr', {
-						'id': 'sinrn',
+						'id': 'sinrn_1',
 						'class': 'tr'
 					}, [
 						E('td', {
@@ -938,13 +939,13 @@ return view.extend({
 						E('td', {
 							'class': 'td'
 						}, E('div', {
-							'id': 'sinr',
+							'id': 'sinr_1',
 							'class': 'cbi-progressbar',
 							'title': '-'
 						}, E('div')))
 					]),
 					E('tr', {
-						'id': 'rsrqn',
+						'id': 'rsrqn_1',
 						'class': 'tr'
 					}, [
 						E('td', {
@@ -959,7 +960,7 @@ return view.extend({
 						E('td', {
 							'class': 'td'
 						}, E('div', {
-							'id': 'rsrq',
+							'id': 'rsrq_1',
 							'class': 'cbi-progressbar',
 							'title': '-'
 						}, E('div')))
@@ -973,7 +974,7 @@ return view.extend({
 						}, [_('Primary band | PCI & EARFCN')]),
 						E('td', {
 							'class': 'td left',
-							'id': 'pband'
+							'id': 'pband_1'
 						}, ['-']),
 					]),
 					E('tr', {
@@ -985,7 +986,7 @@ return view.extend({
 						}, [_('CA band (S1)')]),
 						E('td', {
 							'class': 'td left',
-							'id': 's1band'
+							'id': 's1band_1'
 						}, ['-']),
 					]),
 					E('tr', {
@@ -997,7 +998,7 @@ return view.extend({
 						}, [_('CA band (S2)')]),
 						E('td', {
 							'class': 'td left',
-							'id': 's2band'
+							'id': 's2band_1'
 						}, ['-']),
 					]),
 					E('tr', {
@@ -1009,7 +1010,7 @@ return view.extend({
 						}, [_('CA band (S3)')]),
 						E('td', {
 							'class': 'td left',
-							'id': 's3band'
+							'id': 's3band_1'
 						}, ['-']),
 					]),
 					E('tr', {
@@ -1021,7 +1022,7 @@ return view.extend({
 						}, [_('CA band (S4)')]),
 						E('td', {
 							'class': 'td left',
-							'id': 's4band'
+							'id': 's4band_1'
 						}, ['-']),
 					]),
 

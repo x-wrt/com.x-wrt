@@ -242,7 +242,7 @@ return view.extend({
 
 
 						pollData: poll.add(function() {
-							return L.resolveDefault(fs.exec_direct('/usr/share/3ginfo-lite/3ginfo.sh', '0'))
+							return L.resolveDefault(fs.exec_direct('/usr/share/3ginfo-lite/3ginfo.sh', ['0']))
 								.then(function(res) {
 									var json = JSON.parse(res);
 
