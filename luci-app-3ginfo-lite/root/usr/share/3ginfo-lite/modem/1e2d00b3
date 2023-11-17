@@ -2,18 +2,35 @@
 
 O=$(sms_tool -D -d $DEVICE at "AT^CA_INFO?;^debug?;^temp?")
 
-RSRP=$(echo "$O" | grep nr_rsrp: | awk -F [:] '{printf "%.0f\n",$2}')
-RSRQ=$(echo "$O" | grep nr_rsrq: | awk -F [:] '{printf "%.0f\n",$2}')
-SINR=$(echo "$O" | grep nr_snr: | awk -F [:] '{printf "%.0f\n",$2}')
 MODE=$(echo "$O" | grep RAT: | cut -d: -f2 | tr -d '\n\r')
-RSSI=$(echo "$O" | grep -i rssi | cut -d: -f2 | tr -d '\n\r')
 
-if ((RSRP >= -80)); then
+	RSRP=$(echo "$O" | grep -o [rea]_rsrp:.* | awk -F [:] '{printf "%.0f\n",$2}')
+	RSRQ=$(echo "$O" | grep -o rsrq:.* | awk -F [:] '{printf "%.0f\n",$2}')
+	RSSI=$(echo "$O" | grep -o rssi:.* | awk -F [:] '{printf "%.0f\n",$2}')
+	SINR=$(echo "$O" | grep -o snr:.* | awk -F [:] '{printf "%.0f\n",$2}')
+	PCI=$(echo "$O" | grep -o pci:.* | awk -F [:] '{printf "%.0f\n",$2}')
+
+if echo "$MODE" | grep -qi LTE; then
+	PBAND=$(echo "$O" | grep -o _band:.* | awk -F [:] '{printf "%.0f\n",$2}')
+	PBAND_W=$(echo "$O" | grep -o _band_width:.* | awk -F [:] '{printf "%.0f\n",$2}')
+	PBAND="$(band $PBAND "") @${PBAND_W}MHz"
+fi
+
+	TAC_DEC=$(echo "$O" | grep -o tac:.* | awk -F [:] '{printf "%.0f\n",$2}')
+	TAC_HEX=$(printf "%X" $TAC_DEC)
+	CID_DEC=$(echo "$O" | grep cell_id:.* | awk -F [:] '{printf "%.0f\n",$2}')
+	CID_HEX=$(printf "%X" $CID_DEC)
+	LAC_DEC=$(echo "$O" | grep -o lac.* | awk -F [:] '{printf "%.0f\n",$2}')
+	LAC_HEX=$(printf "%X" $((LAC_DEC+0)))
+
+if test -z "$CSQ_PER"; then
+if test "$RSRP" -ge "-80"; then
 	CSQ_PER=80
-elif ((RSRP >= -100)); then
+elif test "$RSRP" -ge "-100"; then
 	CSQ_PER=50
 else
 	CSQ_PER=25
+fi
 fi
 
 # Primary band
@@ -50,15 +67,6 @@ T=$(echo "$O" | grep TSENS: | awk -F [:] '{printf "%.0f\n",$2}')
 if [ -n "$T" ]; then
 	TEMP=$(echo "$T &deg;C")
 fi
-
-if test -z "$TAC_DEC"; then
-	TAC_DEC=$(echo "$O" | grep nr_tac: | cut -d: -f2 | tr -d '\n\r')
-	TAC_HEX=$(printf "%X" $TAC_DEC)
-fi
-CID_DEC=$(echo "$O" | grep nr_cell_id: | cut -d: -f2 | tr -d '\n\r')
-CID_HEX=$(printf "%X" $CID_DEC)
-LAC_DEC=$(echo "$O" | grep -i lac | cut -d: -f2 | tr -d '\n\r')
-LAC_HEX=$(printf "%X" $LAC_DEC)
 
 # Slot SIM
 O=$(sms_tool -d $DEVICE at "AT+CPIN?")
