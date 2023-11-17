@@ -8,6 +8,14 @@ SINR=$(echo "$O" | grep nr_snr: | awk -F [:] '{printf "%.0f\n",$2}')
 MODE=$(echo "$O" | grep RAT: | cut -d: -f2 | tr -d '\n\r')
 RSSI=$(echo "$O" | grep -i rssi | cut -d: -f2 | tr -d '\n\r')
 
+if ((RSRP >= -80)); then
+	CSQ_PER=80
+elif ((RSRP >= -100)); then
+	CSQ_PER=50
+else
+	CSQ_PER=25
+fi
+
 # Primary band
 T1=$(echo "$O" | awk '/PCC/{print $5}' | sed -e 's/LTE_//g' -e 's/.$//')
 if [ -n "$T1" ]; then
@@ -41,10 +49,6 @@ fi
 T=$(echo "$O" | grep TSENS: | awk -F [:] '{printf "%.0f\n",$2}')
 if [ -n "$T" ]; then
 	TEMP=$(echo "$T &deg;C")
-fi
-
-if test -z "$CSQ_PER"; then
-	CSQ_PER=1
 fi
 
 if test -z "$TAC_DEC"; then
