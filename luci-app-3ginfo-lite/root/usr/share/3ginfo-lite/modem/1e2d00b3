@@ -1,4 +1,4 @@
-# Thales MV31-w (MBIM) / 
+# Thales MV31-w (MBIM) /
 
 O=$(sms_tool -D -d $DEVICE at "AT^CA_INFO?;^debug?;^temp?")
 
@@ -21,9 +21,10 @@ fi
 	CID_DEC=$(echo "$O" | grep cell_id:.* | awk -F [:] '{printf "%.0f\n",$2}')
 	CID_HEX=$(printf "%X" $CID_DEC)
 	LAC_DEC=$(echo "$O" | grep -o lac.* | awk -F [:] '{printf "%.0f\n",$2}')
-	LAC_HEX=$(printf "%X" $((LAC_DEC+0)))
+	LAC_HEX=$(printf "%X" $((LAC_DEC + 0)))
 
 if test -z "$CSQ_PER"; then
+
 if test "$RSRP" -ge "-80"; then
 	CSQ_PER=80
 elif test "$RSRP" -ge "-100"; then
@@ -31,6 +32,14 @@ elif test "$RSRP" -ge "-100"; then
 else
 	CSQ_PER=25
 fi
+
+if [ -n "$RSSI" ]; then
+	_RSSI=$RSSI
+	[ $_RSSI -lt -113 ] && _RSSI="-113"
+	[ $_RSSI -gt -51 ] && _RSSI="-51"
+	[ -z "$CSQ_PER" ] && CSQ_PER=$(((_RSSI + 113) * 100 / 62 ))
+fi
+
 fi
 
 # Primary band
