@@ -171,10 +171,10 @@ if [ "x$MODE_NUM" = "x11" ]; then
 				N=$((BW * 5))
 				RSSI=$(echo "$T $N" | awk '{printf "%d\n", $1 + 10*log(12*$2)/log(10)}')
 				if [ -n "$RSSI" ]; then
-					[ $RSSI -lt -113 ] && RSSI="-113"
-					[ $RSSI -gt -51 ] && RSSI="-51"
-					RSSI=$T
-					[ -z "$CSQ_PER" ] && CSQ_PER=$(((RSSI + 113) * 100 / 62 ))
+					_RSSI=$RSSI
+					[ $_RSSI -lt -113 ] && _RSSI="-113"
+					[ $_RSSI -gt -51 ] && _RSSI="-51"
+					[ -z "$CSQ_PER" ] && CSQ_PER=$(((_RSSI + 113) * 100 / 62 ))
 				fi
 			fi
 		fi
