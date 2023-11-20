@@ -45,6 +45,7 @@ proto_qmap_setup() {
 		return 1
 	}
 
+	test "$((delay+0))" -lt 20 && test "$(cut -d\. -f1 </proc/uptime)" -lt 180 && delay=25
 	[ -n "$delay" ] && sleep "$delay"
 
 	modinfo qmi_wwan_q &>/dev/null || {
