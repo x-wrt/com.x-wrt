@@ -41,6 +41,7 @@ auto_mount_boot()
 		[ x$DEV = x`mount | grep "$DEV " | awk '{print $1}'` ] && continue
 
 		test -b "$diskdev" && (echo $DEV | grep -q "$diskdev") && continue
+		(echo $DEV | grep -q "/dev/ubi") && continue
 
 		ddir=/mnt/`basename $DEV`
 		mkdir -p "$ddir" || continue
