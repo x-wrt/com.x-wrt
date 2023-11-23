@@ -310,8 +310,10 @@ case "$T" in
 esac
 
 # MODE
+MODE_NUM=$(echo "$MODE_NUM" | tr -d '\r\n')
 if [ -z "$MODE_NUM" ] || [ "x$MODE_NUM" = "x0" ]; then
 	MODE_NUM=$(echo "$O" | awk -F[,] '/^\+COPS/ {print $4;exit}')
+	MODE_NUM=$(echo "$MODE_NUM" | tr -d '\r\n')
 fi
 case "$MODE_NUM" in
 	2*) MODE="UMTS";;
