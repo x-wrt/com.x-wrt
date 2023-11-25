@@ -391,6 +391,7 @@ for t in $targets; do
 	excludes="$excludes_basic"
 	case $t in
 		#>=32M flash
+		TARGET_DEVICE_mediatek_filogic_DEVICE_zbtlink_zbt-z8102ax|\
 		TARGET_DEVICE_qualcommax_ipq807x_DEVICE_yuncore_ax880|\
 		TARGET_DEVICE_qualcommax_ipq807x_DEVICE_netgear_wax630|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_cmcc_rax3000m|\
@@ -517,6 +518,7 @@ for t in $targets; do
 	esac
 	case $t in
 		#>=14M flash
+		TARGET_DEVICE_mediatek_filogic_DEVICE_zbtlink_zbt-z8102ax|\
 		TARGET_DEVICE_qualcommax_ipq807x_DEVICE_yuncore_ax880|\
 		TARGET_DEVICE_qualcommax_ipq807x_DEVICE_netgear_wax630|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_cmcc_rax3000m|\
@@ -720,6 +722,7 @@ for t in $targets; do
 			extra_utils=1
 		;;
 		#>8M flash <14M
+		TARGET_DEVICE_mediatek_filogic_DEVICE_zbtlink_zbt-z8102ax|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_tenbay_ms3000k|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_asus_rt-ac57u-v1|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_dual-q_h721|\
@@ -1073,6 +1076,7 @@ for t in $targets; do
 	#check usb
 	case $t in
 		#with usb3
+		TARGET_DEVICE_mediatek_filogic_DEVICE_zbtlink_zbt-z8102ax|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_cmcc_rax3000m|\
 		TARGET_DEVICE_rockchip_armv8_DEVICE_friendlyarm_nanopi-r4s|\
 		TARGET_DEVICE_rockchip_armv8_DEVICE_friendlyarm_nanopi-r5c|\
@@ -1617,6 +1621,9 @@ for t in $targets; do
 
 	#check special select
 	case $t in
+		TARGET_DEVICE_mediatek_filogic_DEVICE_zbtlink_zbt-z8102ax)
+			mods="$mods $usb4g $quectel $modem_info"
+		;;
 		TARGET_DEVICE_ramips_mt7621_DEVICE_dual-q_h721)
 			mods="$mods ath10k-firmware-qca988x-ct kmod-ath10k-ct kmod-ath9k kmod-mt7915-firmware kmod-mt7915e usbutils pciutils"
 			mods="$mods $usb4g $quectel $modem_info iperf nload"
