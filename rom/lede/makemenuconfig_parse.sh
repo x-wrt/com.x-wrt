@@ -1663,6 +1663,14 @@ for t in $targets; do
 		;;
 	esac
 
+	if [ "x$flash_gt8m" = "x1" ]; then
+		case $t in
+		TARGET_DEVICE_mediatek_filogic_*)
+			mods="$mods libopenssl-devcrypto kmod-cryptodev"
+			;;
+		esac
+	fi
+
 	if [ "x$flash_gt8m" = "x1" ] && [ "x$has_usb" = "x1" ]; then
 		mods="$mods $usb4g $nfs"
 		mods="$mods $usbprint $ksmbd $usb_extra"
