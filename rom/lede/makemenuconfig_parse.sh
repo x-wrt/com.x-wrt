@@ -30,6 +30,7 @@ iphone4g="usbutils usbmuxd libimobiledevice-utils libimobiledevice"
 wifiext="luci-app-dawn dawn"
 
 sqm="luci-app-sqm luci-i18n-sqm-zh-cn sqm-scripts tc-tiny"
+tc="tc-tiny"
 
 relay="luci-proto-relay relayd"
 
@@ -718,7 +719,7 @@ for t in $targets; do
 		TARGET_DEVICE_ramips_mt7621_DEVICE_netgear_r6220a|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_netgear_r6220b|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_netgear_r6220c)
-			mods="$mods $lucibond $ipv6extra $wifiext $sqm $lucidashboard $kmodext $relay"
+			mods="$mods $lucibond $ipv6extra $wifiext $tc $lucidashboard $kmodext $relay"
 			mods="$mods $wgmod $openvpnmod wpad-openssl luci-ssl-nginx"
 			mods="$mods kmod-ipt-compat-xtables kmod-ipt-dhcpmac kmod-ipt-dnetmap iptables-mod-dhcpmac iptables-mod-dnetmap"
 			excludes="$excludes wpad-basic-mbedtls wpad-basic-wolfssl"
@@ -926,7 +927,7 @@ for t in $targets; do
 		TARGET_DEVICE_ath79_generic_DEVICE_engenius_epg5000|\
 		TARGET_DEVICE_ath79_generic_DEVICE_tplink_archer-c7-v5|\
 		TARGET_DEVICE_ath79_generic_DEVICE_bm100_hq55)
-			mods="$mods $wgmod $openvpnmod openvpn-mbedtls wpad-mbedtls $wifiext $sqm $lucidashboard $relay"
+			mods="$mods $wgmod $openvpnmod openvpn-mbedtls wpad-mbedtls $wifiext $tc $lucidashboard $relay"
 			excludes="$excludes wpad-basic-mbedtls openvpn-openssl wpad-basic-wolfssl"
 			flash_gt8m=1
 		;;
