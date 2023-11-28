@@ -43,6 +43,8 @@ function index()
 	entry({"admin", "services", "natcap", "get_natcap_flows1"}, call("get_natcap_flows1")).leaf = true
 	entry({"admin", "services", "natcap", "get_openvpn_client"}, call("get_openvpn_client")).leaf = true
 	entry({"admin", "services", "natcap", "get_openvpn_client_udp"}, call("get_openvpn_client_udp")).leaf = true
+	entry({"admin", "services", "natcap", "get_openvpn_client6"}, call("get_openvpn_client6")).leaf = true
+	entry({"admin", "services", "natcap", "get_openvpn_client6_udp"}, call("get_openvpn_client6_udp")).leaf = true
 	entry({"admin", "services", "natcap", "status"}, call("status")).leaf = true
 	entry({"admin", "services", "natcap", "change_server"}, call("change_server")).leaf = true
 
@@ -176,6 +178,22 @@ function get_openvpn_client_udp()
 	local reader = ltn12_popen("sh /usr/share/natcapd/natcapd.openvpn.sh gen_client_udp")
 
 	luci.http.header('Content-Disposition', 'attachment; filename="natcap-client-udp.ovpn"')
+	luci.http.prepare_content("application/x-openvpn-profile")
+	luci.ltn12.pump.all(reader, luci.http.write)
+end
+
+function get_openvpn_client6()
+	local reader = ltn12_popen("sh /usr/share/natcapd/natcapd.openvpn.sh gen_client6")
+
+	luci.http.header('Content-Disposition', 'attachment; filename="natcap-client-tcp6.ovpn"')
+	luci.http.prepare_content("application/x-openvpn-profile")
+	luci.ltn12.pump.all(reader, luci.http.write)
+end
+
+function get_openvpn_client6_udp()
+	local reader = ltn12_popen("sh /usr/share/natcapd/natcapd.openvpn.sh gen_client6_udp")
+
+	luci.http.header('Content-Disposition', 'attachment; filename="natcap-client-udp6.ovpn"')
 	luci.http.prepare_content("application/x-openvpn-profile")
 	luci.ltn12.pump.all(reader, luci.http.write)
 end

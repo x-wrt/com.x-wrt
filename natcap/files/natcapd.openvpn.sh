@@ -46,8 +46,19 @@ make_config()
 	exit 0
 }
 
+[ "x$1" = "xgen_client6" ] && {
+	make_config tcp6
+	exit 0
+}
+
+[ "x$1" = "xgen_client6_udp" ] && {
+	make_config udp6
+	exit 0
+}
+
 [ "x`uci get natcapd.default.natcapovpn 2>/dev/null`" = x1 ] && {
 	mode="$(uci get natcapd.default.natcapovpn_tap 2>/dev/null || echo 0)"
+	ip6="$(uci get natcapd.default.natcapovpn_ip6 2>/dev/null || echo 0)"
 	[ "x`uci get openvpn.natcapovpn_tcp.enabled 2>/dev/null`" != x1 ] && {
 		/etc/init.d/openvpn stop
 		uci delete network.natcapovpn 2>/dev/null
@@ -78,8 +89,9 @@ make_config()
 		done
 		uci commit firewall
 
+		[ "$ip6" = "1" ] && ip6="tcp6 udp6" || ip6=""
 		I=0
-		for p in tcp udp; do
+		for p in tcp4 udp4 $ip6; do
 			uci delete openvpn.natcapovpn_$p
 			uci set openvpn.natcapovpn_$p=openvpn
 			uci set openvpn.natcapovpn_$p.enabled='1'
@@ -111,7 +123,7 @@ make_config()
 			uci add_list openvpn.natcapovpn_$p.push='dhcp-option DNS 8.8.8.8'
 			uci set openvpn.natcapovpn_$p.proto="${p}4"
 			uci set openvpn.natcapovpn_$p.verb='3'
-			uci set openvpn.natcapovpn_$p.cipher='AES-256-GCM'
+			uci set openvpn.natcapovpn_$p.cipher='AES-256-CBC'
 			uci set openvpn.natcapovpn_$p.auth='SHA256'
 			I=$((I+1))
 		done
@@ -126,7 +138,7 @@ make_config()
 
 [ "x`uci get natcapd.default.natcapovpn 2>/dev/null`" != x1 ] && [ "x`uci get openvpn.natcapovpn_tcp.enabled 2>/dev/null`" = x1 ] && {
 	/etc/init.d/openvpn stop
-	for p in tcp udp; do
+	for p in tcp udp tcp4 udp4 tcp6 udp6; do
 		uci delete openvpn.natcapovpn_$p
 	done
 	uci commit openvpn
