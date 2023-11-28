@@ -61,7 +61,7 @@ make_config()
 [ "x`uci get natcapd.default.natcapovpn 2>/dev/null`" = x1 ] && {
 	mode="$(uci get natcapd.default.natcapovpn_tap 2>/dev/null || echo 0)"
 	ip6="$(uci get natcapd.default.natcapovpn_ip6 2>/dev/null || echo 0)"
-	[ "x`uci get openvpn.natcapovpn_tcp.enabled 2>/dev/null`" != x1 ] && {
+	[ "x`uci get openvpn.natcapovpn_tcp4.enabled 2>/dev/null`" != x1 ] && {
 		/etc/init.d/openvpn stop
 		uci delete network.natcapovpn 2>/dev/null
 		uci commit network
@@ -140,7 +140,7 @@ make_config()
 	exit 0
 }
 
-[ "x`uci get natcapd.default.natcapovpn 2>/dev/null`" != x1 ] && [ "x`uci get openvpn.natcapovpn_tcp.enabled 2>/dev/null`" = x1 ] && {
+[ "x`uci get natcapd.default.natcapovpn 2>/dev/null`" != x1 ] && [ "x`uci get openvpn.natcapovpn_tcp4.enabled 2>/dev/null`" = x1 ] && {
 	/etc/init.d/openvpn stop
 	for p in tcp udp tcp4 udp4 tcp6 udp6; do
 		uci delete openvpn.natcapovpn_$p
