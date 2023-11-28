@@ -123,8 +123,13 @@ make_config()
 			uci add_list openvpn.natcapovpn_$p.push='persist-key'
 			uci add_list openvpn.natcapovpn_$p.push='persist-tun'
 			uci add_list openvpn.natcapovpn_$p.push='dhcp-option DNS 8.8.8.8'
-			uci add_list openvpn.natcapovpn_$p.proto="${p}-server"
-			[ "$ip6" = "1" ] && uci add_list openvpn.natcapovpn_$p.proto="${p}6-server"
+			if [ "$p" = "tcp" ]; then
+				uci add_list openvpn.natcapovpn_$p.proto="${p}-server"
+				[ "$ip6" = "1" ] && uci add_list openvpn.natcapovpn_$p.proto="${p}6-server"
+			else
+				uci add_list openvpn.natcapovpn_$p.proto="${p}"
+				[ "$ip6" = "1" ] && uci add_list openvpn.natcapovpn_$p.proto="${p}6"
+			fi
 			uci set openvpn.natcapovpn_$p.verb='3'
 			uci set openvpn.natcapovpn_$p.cipher='AES-256-GCM'
 			uci set openvpn.natcapovpn_$p.auth='SHA256'
