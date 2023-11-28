@@ -22,8 +22,10 @@ make_config()
 
 	if [ "$mode" = "1" ]; then
 		cat ${BASE_CONFIG} | sed "s/^remote .*4911$/remote $hname.dns.x-wrt.com 4911/;s/^proto tcp$/proto $PROTO/;s/dev tun/dev tap/"
+		echo tun_mtu 1434
 	else
 		cat ${BASE_CONFIG} | sed "s/^remote .*4911$/remote $hname.dns.x-wrt.com 4911/;s/^proto tcp$/proto $PROTO/"
+		echo tun_mtu 1420
 	fi
 	echo -e '<ca>'
 	cat ${KEY_DIR}/ca.crt
@@ -99,8 +101,10 @@ make_config()
 			uci set openvpn.natcapovpn_$p.dev="natcap$p"
 			if [ "$mode" = "1" ]; then
 				uci set openvpn.natcapovpn_$p.dev_type='tap'
+				uci set openvpn.natcapovpn_$p.tun_mtu='1434'
 			else
 				uci set openvpn.natcapovpn_$p.dev_type='tun'
+				uci set openvpn.natcapovpn_$p.tun_mtu='1420'
 			fi
 			uci set openvpn.natcapovpn_$p.ca='/usr/share/natcapd/openvpn/ca.crt'
 			uci set openvpn.natcapovpn_$p.cert='/usr/share/natcapd/openvpn/server.crt'
