@@ -127,8 +127,8 @@ make_config()
 			uci add_list openvpn.natcapovpn_$p.push='dhcp-option DNS 8.8.8.8'
 			uci set openvpn.natcapovpn_$p.proto="${p}"
 			uci set openvpn.natcapovpn_$p.verb='3'
-			uci set openvpn.natcapovpn_$p.cipher='AES-256-CBC'
-			uci set openvpn.natcapovpn_$p.auth='SHA256'
+			uci set openvpn.natcapovpn_$p.cipher='AES-256-GCM'
+			uci set openvpn.natcapovpn_$p.auth='AEAD'
 			I=$((I+1))
 		done
 		uci commit openvpn
