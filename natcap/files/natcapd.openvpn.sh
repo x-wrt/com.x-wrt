@@ -129,6 +129,7 @@ make_config()
 			uci set openvpn.natcapovpn_$p.verb='3'
 			uci set openvpn.natcapovpn_$p.cipher='AES-256-GCM'
 			uci set openvpn.natcapovpn_$p.auth='AEAD'
+			uci set openvpn.natcapovpn_$p.topology='subnet'
 			I=$((I+1))
 		done
 		uci commit openvpn
