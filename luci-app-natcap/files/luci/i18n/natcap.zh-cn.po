@@ -46,6 +46,12 @@ msgstr "下载OpenVPN客户端配置"
 msgid "Download OpenVPN Client Config (UDP)"
 msgstr "下载OpenVPN客户端配置（UDP）"
 
+msgid "Download OpenVPN IPv6 Client Config"
+msgstr "下载OpenVPN IPv6客户端配置"
+
+msgid "Download OpenVPN IPv6 Client Config (UDP)"
+msgstr "下载OpenVPN IPv6客户端配置（UDP）"
+
 msgid "Natcap Service"
 msgstr "Natcap 服务"
 
