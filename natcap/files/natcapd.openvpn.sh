@@ -128,14 +128,14 @@ make_config()
 					#ipv4 ipv6 dual support
 					uci set openvpn.natcapovpn_$p.proto="${p}6-server"
 				else
-					uci set openvpn.natcapovpn_$p.proto="${p}-server"
+					uci set openvpn.natcapovpn_$p.proto="${p}4-server"
 				fi
 			else
 				if [ "$ip6" = "1" ]; then
 					#ipv4 ipv6 dual support
 					uci set openvpn.natcapovpn_$p.proto="${p}6"
 				else
-					uci set openvpn.natcapovpn_$p.proto="${p}"
+					uci set openvpn.natcapovpn_$p.proto="${p}4"
 				fi
 			fi
 			uci set openvpn.natcapovpn_$p.verb='3'
