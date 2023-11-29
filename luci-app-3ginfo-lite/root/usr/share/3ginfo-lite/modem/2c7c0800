@@ -24,7 +24,7 @@ if [ "$REG" = "0" ] || [ "x$MODE_NUM" = "x11" ]; then
 	[ -n "$CID_HEX" ] && CID_DEC=$(printf "%d" "0x${CID_HEX}")
 fi
 
-if [ "$REGOK" = "1" ]; then
+if [ "$REGOK" = "1" ] || :; then
 
 O=$(sms_tool -d $DEVICE at "at+qnwinfo;+qcainfo;+qeng=\"servingcell\";+qspn")
 
