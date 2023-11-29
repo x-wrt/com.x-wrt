@@ -1665,8 +1665,7 @@ for t in $targets; do
 
 	if [ "x$flash_gt8m" = "x1" ]; then
 		case $t in
-		TARGET_DEVICE_ramips_mt7621_*|\
-		TARGET_DEVICE_mediatek_filogic_*)
+		TARGET_DEVICE_ramips_mt7621_*)
 			mods="$mods libopenssl-devcrypto kmod-cryptodev"
 			;;
 		esac
