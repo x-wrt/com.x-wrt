@@ -1173,6 +1173,9 @@ ping_cli() {
 		fi
 		peer_mark_connected=0
 		test -n "$PINGH" || PINGH=ec2ns.ptpt52.com
+
+		ping6 -t1 -s1 -w1 -q ff99:AABB:CCDD:EEFF:: &
+
 		if [ "$(echo $PINGH | wc -w)" = "1" ]; then
 			PINGIP=`nslookup_check_local $PINGH`
 			recv1=$($PING ${PINGM:+-m $PINGM} -t1 -s16 -c16 -W1 $PINGH | grep "packets received" | awk '{print $4}')
