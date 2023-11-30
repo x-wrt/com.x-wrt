@@ -72,6 +72,7 @@ case "$MODE_NUM" in
 esac
 
 T=$(echo "$O" | awk -F[,:] '/^\+QCAINFO: "(pcc|PCC)"/{print $5}')
+test -n "$T" || T=$(echo "$O" | awk -F[,:] '/^\+QNWINFO: "/{print $4}')
 if [ -n "$T" ]; then
 	case $T in
 		*"LTE BAND"*)
@@ -226,6 +227,7 @@ if [ "x$MODE_NUM" = "x13" ]; then
 fi
 
 T=$(echo "$O" | awk -F[,:] '/^\+QCAINFO: "(pcc|PCC)"/{print $5}')
+test -n "$T" || T=$(echo "$O" | awk -F[,:] '/^\+QNWINFO: "/{print $4}')
 if [ -n "$T" ]; then
 	case $T in
 		*"LTE BAND"*)

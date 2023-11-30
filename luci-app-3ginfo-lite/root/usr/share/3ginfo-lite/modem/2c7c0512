@@ -19,6 +19,7 @@ if [ "x$MODE_NUM" = "x7" ]; then
 fi
 
 T=$(echo "$O" | awk -F[,:] '/^\+QCAINFO: "(pcc|PCC)"/{print $5}')
+test -n "$T" || T=$(echo "$O" | awk -F[,:] '/^\+QNWINFO: "/{print $4}')
 if [ -n "$T" ]; then
 	B=$(echo $T | sed 's/"LTE BAND \(.*\)"/\1/')
 	MODE="$MODE $(band ${B})"
@@ -70,6 +71,7 @@ IFS="
 "
 
 T=$(echo "$O" | awk -F[,:] '/^\+QCAINFO: "(pcc|PCC)"/{print $5}')
+test -n "$T" || T=$(echo "$O" | awk -F[,:] '/^\+QNWINFO: "/{print $4}')
 if [ -n "$T" ]; then
 	B=$(echo $T | sed 's/"LTE BAND \(.*\)"/\1/')
 	T2=$(band ${B})
