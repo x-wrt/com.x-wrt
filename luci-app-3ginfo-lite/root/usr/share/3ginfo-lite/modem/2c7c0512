@@ -7,7 +7,7 @@ O=$(sms_tool -d $DEVICE at "at+qtemp")
 T=$(echo "$O" | awk -F[,:] '/^\+QTEMP/ {print $3}' | sort -r | head -n1 | xargs)
 [ -n "$T" ] && TEMP="$T &deg;C"
 
-O=$(sms_tool -d $DEVICE at "at+qnwinfo;+qcainfo;+qeng=\"servingcell\";+qspn")
+O=$(sms_tool -d $DEVICE at "at+qeng=\"servingcell\";+qnwinfo;+qspn;+qcainfo")
 
 T=$(echo "$O" | awk -F[,:] '/^\+QSPN/ {print $2}' | xargs)
 if [ -n "$T" ] && [ -z "$FORCE_PLMN" ]; then

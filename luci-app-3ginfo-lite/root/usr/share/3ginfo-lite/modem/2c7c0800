@@ -26,7 +26,7 @@ fi
 
 if [ "$REGOK" = "1" ] || :; then
 
-O=$(sms_tool -d $DEVICE at "at+qnwinfo;+qcainfo;+qeng=\"servingcell\";+qspn")
+O=$(sms_tool -d $DEVICE at "at+qeng=\"servingcell\";+qnwinfo;+qspn;+qcainfo")
 
 T=$(echo "$O" | awk -F[,:] '/^\+QSPN/ {print $2}' | xargs)
 if [ -n "$T" ] && [ -z "$FORCE_PLMN" ]; then
