@@ -1224,19 +1224,19 @@ main_trigger() {
 			SP=`uci get dropbear.@dropbear[0].Port 2>/dev/null`
 			HSET=`cat /usr/share/natcapd/cniplist.set /usr/share/natcapd/C_cniplist.set /usr/share/natcapd/local.set | cksum | awk '{print $1}'`
 			HKEY=`cat /etc/uhttpd.crt /etc/uhttpd.key | cksum | awk '{print $1}'`
-			IFACES=`ip r | grep default | grep -o 'dev .*' | cut -d" " -f2 | sort | uniq`
+			IFACES=$(ip r | grep default | grep -o 'dev .*' | cut -d" " -f2 | sort | uniq)
 			LIP=""
 			for IFACE in $IFACES; do
-				LIP="$LIP:`ifconfig $IFACE | grep 'inet addr:' | sed 's/:/ /' | awk '{print $3}'`"
+				LIP="$LIP:$(ip -4 addr list dev $IFACE | awk '/inet.*scope.*global/ {print $2}')"
 			done
 			LIP=`echo $LIP | sed 's/^://'`
 
-			IFACE6S=`ip -6 r | grep default | grep -o 'dev .*' | cut -d" " -f2 | sort | uniq`
+			IFACE6S=$(ip -6 r | grep default | grep -o 'dev .*' | cut -d" " -f2 | sort | uniq)
 			LIP6=""
 			for IFACE6 in $IFACE6S; do
-				LIP6="$LIP6,`ip -6 addr list dev $IFACE6 | grep '\(inet6.*scope.*global[ ]*$\|inet6.*scope.*global.*dynamic\)' | awk '{print $2}'`"
+				LIP6="$LIP6,$(ip -6 addr list dev $IFACE6 | awk '/(inet6.*scope.*global[ ]*$|inet6.*scope.*global.*dynamic)/ {print $2}')"
 			done
-			LIP6=`echo $LIP6 | sed 's/^,//;s/ /,/g'`
+			LIP6=$(echo $LIP6 | sed 's/^,//;s/ /,/g')
 
 			SFS=$(cat "$DEV" | grep server_flow_stop | cut -d= -f2)
 			#checking extra run status
