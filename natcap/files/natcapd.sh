@@ -1227,16 +1227,20 @@ main_trigger() {
 			IFACES=$(ip r | grep default | grep -o 'dev .*' | cut -d" " -f2 | sort | uniq)
 			LIP=""
 			for IFACE in $IFACES; do
-				LIP="$LIP:$(ip -4 addr list dev $IFACE | awk '/inet.*scope.*global/ {print $2}')"
+   				for lip in $(ip -4 addr list dev $IFACE | awk '/inet.*scope.*global/ {print $2}'); do
+					LIP="$LIP,$lip"
+       				done
 			done
-			LIP=`echo $LIP | sed 's/^://'`
+			LIP=$(echo $LIP | sed 's/^,//')
 
 			IFACE6S=$(ip -6 r | grep default | grep -o 'dev .*' | cut -d" " -f2 | sort | uniq)
 			LIP6=""
 			for IFACE6 in $IFACE6S; do
-				LIP6="$LIP6,$(ip -6 addr list dev $IFACE6 | awk '/(inet6.*scope.*global[ ]*$|inet6.*scope.*global.*dynamic)/ {print $2}')"
+   				for lip in $(ip -6 addr list dev $IFACE6 | awk '/inet6.*scope.*global/ {print $2}'); do
+					LIP6="$LIP6,$lip"
+    				done
 			done
-			LIP6=$(echo $LIP6 | sed 's/^,//;s/ /,/g')
+			LIP6=$(echo $LIP6 | sed 's/^,//')
 
 			SFS=$(cat "$DEV" | grep server_flow_stop | cut -d= -f2)
 			#checking extra run status
