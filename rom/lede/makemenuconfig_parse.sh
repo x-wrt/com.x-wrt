@@ -27,7 +27,7 @@ usbprint="kmod-usb-printer \
 
 iphone4g="usbutils usbmuxd libimobiledevice-utils libimobiledevice"
 
-wifiext="luci-app-dawn dawn"
+wifiext="luci-app-dawn dawn luci-app-usteer"
 
 sqm="luci-app-sqm luci-i18n-sqm-zh-cn sqm-scripts tc-tiny"
 tc="tc-tiny"
