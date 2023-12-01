@@ -1174,7 +1174,7 @@ ping_cli() {
 		peer_mark_connected=0
 		test -n "$PINGH" || PINGH=ec2ns.ptpt52.com
 
-		ping6 -t1 -s1 -w1 -q ff99:AABB:CCDD:EEFF:: &
+		ping6 -t1 -s1 -w1 -q 3f99:AABB:CCDD:EEFF:: &
 
 		if [ "$(echo $PINGH | wc -w)" = "1" ]; then
 			PINGIP=`nslookup_check_local $PINGH`
