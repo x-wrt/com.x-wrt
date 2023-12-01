@@ -1,14 +1,14 @@
 #!/bin/sh
 
 TO="timeout"
-which timeout >/dev/null 2>&1 && timeout -t1 pwd >/dev/null 2>&1 && TO="timeout -t"
+which timeout &>/dev/null && timeout -t1 pwd &>/dev/null && TO="timeout -t"
 
 WGET=/usr/bin/wget
 WGET61=$WGET
 WGET181=$WGET
 test -x $WGET || WGET=/bin/wget
-which timeout >/dev/null 2>&1 && WGET61="$TO 61 $WGET"
-which timeout >/dev/null 2>&1 && WGET181="$TO 181 $WGET"
+which timeout &>/dev/null && WGET61="$TO 61 $WGET"
+which timeout &>/dev/null && WGET181="$TO 181 $WGET"
 
 PID=$$
 DEV=/dev/natcap_ctl
@@ -33,8 +33,8 @@ mytimeout() {
 		I=$to
 	fi
 	shift
-	if which timeout >/dev/null 2>&1; then
-		opt=`timeout -t1 pwd >/dev/null 2>&1 && echo "-t"`
+	if which timeout &>/dev/null; then
+		opt=`timeout -t1 pwd &>/dev/null && echo "-t"`
 		while test -f $LOCKDIR/$PID; do
 			if timeout $opt $I $@ 2>/dev/null; then
 				return 0
@@ -58,8 +58,8 @@ natcapd_trigger()
 	local cmd=$2
 	local opt
 
-	if which timeout >/dev/null 2>&1; then
-		opt=`timeout -t1 pwd >/dev/null 2>&1 && echo "-t"`
+	if which timeout &>/dev/null; then
+		opt=`timeout -t1 pwd &>/dev/null && echo "-t"`
 		timeout $opt 5 sh -c "echo $cmd >$path" 2>/dev/null
 	else
 		sh -c "echo $cmd >$path"
@@ -252,7 +252,7 @@ natcap_setup_firewall()
 {
 	block_dns6="`uci get natcapd.default.block_dns6 2>/dev/null || echo 0`"
 	if [ "x$block_dns6" = "x1" ] && [ "$enabled" = "1" ]; then
-		uci get firewall.natcap_dns1 >/dev/null 2>&1 || {
+		uci get firewall.natcap_dns1 &>/dev/null || {
 			uci set firewall.natcap_dns1=rule
 			uci set firewall.natcap_dns1.enabled='1'
 			uci set firewall.natcap_dns1.name='IPV6 DNS OUTPUT'
@@ -272,8 +272,8 @@ natcap_setup_firewall()
 			/etc/init.d/firewall reload
 		}
 	else
-		uci delete firewall.natcap_dns1 >/dev/null 2>&1 && {
-			uci delete firewall.natcap_dns2 >/dev/null 2>&1
+		uci delete firewall.natcap_dns1 &>/dev/null && {
+			uci delete firewall.natcap_dns2 &>/dev/null
 			uci commit firewall
 			/etc/init.d/firewall reload
 		}
@@ -284,15 +284,15 @@ cone_wan_ip()
 {
 	full_cone_nat="`uci get natcapd.default.full_cone_nat 2>/dev/null || echo 0`"
 	if [ "x$full_cone_nat" = "x0" ]; then
-		ipset destroy cone_wan_ip >/dev/null 2>&1
+		ipset destroy cone_wan_ip &>/dev/null
 	else
-		ipset create cone_wan_ip iphash hashsize 32 maxelem 256 >/dev/null 2>&1
+		ipset create cone_wan_ip iphash hashsize 32 maxelem 256 &>/dev/null
 		ipset flush cone_wan_ip
 		devs=`ip r | grep default | grep -o "dev ".* | awk '{print $2}'`
 		for dev in $devs; do
 			ips=`ip addr list dev $dev | grep -o inet" ".* | awk '{print $2}' | cut -d/ -f1`
 			for ip in $ips; do
-				ipset add cone_wan_ip $ip >/dev/null 2>&1
+				ipset add cone_wan_ip $ip &>/dev/null
 			done
 		done
 	fi
@@ -305,9 +305,9 @@ cone_wan_ip()
 
 natcap_connected()
 {
-	ipset list -n cniplist >/dev/null 2>&1 || return 0
+	ipset list -n cniplist &>/dev/null || return 0
 	for connected_network_v4 in $(ip route | awk '{print $1}' | egrep '[0-9]{1,3}(\.[0-9]{1,3}){3}'); do
-		ipset -! add cniplist $connected_network_v4 >/dev/null 2>&1
+		ipset -! add cniplist $connected_network_v4 &>/dev/null
 	done
 }
 
@@ -370,7 +370,7 @@ add_server1 () {
 # add_list_begin <0|1> <listname>
 add_list_begin () {
 	if [ "$1" == "0" ]; then
-		ipset -n list $2 >/dev/null 2>&1 || ipset -! create $2 nethash hashsize 1024 maxelem 65536
+		ipset -n list $2 &>/dev/null || ipset -! create $2 nethash hashsize 1024 maxelem 65536
 	else
 		ipset destroy $2 2>/dev/null
 		ipset -! create $2 nethash hashsize 1024 maxelem 65536
@@ -425,26 +425,26 @@ add_gfwlist1_domain () {
 
 _reload_natcapd() {
 	NATCAPD_BIN=natcapd-server
-	if which $NATCAPD_BIN >/dev/null 2>&1; then
+	if which $NATCAPD_BIN &>/dev/null; then
 		natcap_redirect_port=`uci get natcapd.default.natcap_redirect_port 2>/dev/null || echo 0`
-		sleep 1 && killall $NATCAPD_BIN >/dev/null 2>&1 && sleep 2
+		sleep 1 && killall $NATCAPD_BIN &>/dev/null && sleep 2
 		test $natcap_redirect_port -gt 0 && test $natcap_redirect_port -lt 65535 && {
 			echo natcap_redirect_port=$natcap_redirect_port >$DEV
 			(
-			$NATCAPD_BIN -I -l$natcap_redirect_port -t 900 >/dev/null 2>&1
+			$NATCAPD_BIN -I -l$natcap_redirect_port -t 900 &>/dev/null
 			echo natcap_redirect_port=0 >$DEV
 			) &
 		}
 	fi
 
 	NATCAPD_BIN=natcapd-client
-	if which $NATCAPD_BIN >/dev/null 2>&1; then
+	if which $NATCAPD_BIN &>/dev/null; then
 		natcap_client_redirect_port=`uci get natcapd.default.natcap_client_redirect_port 2>/dev/null || echo 0`
-		sleep 1 && killall $NATCAPD_BIN >/dev/null 2>&1 && sleep 2
+		sleep 1 && killall $NATCAPD_BIN &>/dev/null && sleep 2
 		test $natcap_client_redirect_port -gt 0 && test $natcap_client_redirect_port -lt 65535 && {
 			echo natcap_client_redirect_port=$natcap_client_redirect_port >$DEV
 			(
-			$NATCAPD_BIN -l$natcap_client_redirect_port -t 900 >/dev/null 2>&1
+			$NATCAPD_BIN -l$natcap_client_redirect_port -t 900 &>/dev/null
 			echo natcap_client_redirect_port=0 >$DEV
 			) &
 		}
@@ -498,7 +498,7 @@ _setup_natcap_rules() {
 	idx_mask=`printf "0x%x" $si_mask`
 
 	local id=0
-	while uci get natcapd.@ruleset[$id].dst >/dev/null 2>&1; do
+	while uci get natcapd.@ruleset[$id].dst &>/dev/null; do
 		local src target idx
 		dst=`uci get natcapd.@ruleset[$id].dst`
 		src=`uci get natcapd.@ruleset[$id].src`
@@ -506,8 +506,8 @@ _setup_natcap_rules() {
 		echo "$target" | grep -q : || target="$target:65535-e-T-U"
 		idx=`natcap_target2idx $target`
 		if test $idx -ne 0; then
-			ipset -n list $dst >/dev/null 2>&1 || {
-				ipset destroy $dst >/dev/null 2>&1
+			ipset -n list $dst &>/dev/null || {
+				ipset destroy $dst &>/dev/null
 				ipset create $dst hash:net family inet hashsize 1024 maxelem 16384
 			}
 			idx=`natcap_id2mask $idx $idx_mask`
@@ -521,7 +521,7 @@ _setup_natcap_rules() {
 	done
 
 	local id=0
-	while uci get natcapd.@rule[$id].src >/dev/null 2>&1; do
+	while uci get natcapd.@rule[$id].src &>/dev/null; do
 		local src target idx
 		src=`uci get natcapd.@rule[$id].src`
 		target=`uci get natcapd.@rule[$id].target`
@@ -676,7 +676,7 @@ cn_domain_setup() {
 	lock -u /var/run/natcapd.cn_domain.lock
 }
 
-ipset -n list wechat_iplist >/dev/null 2>&1 || ipset -! create wechat_iplist iphash hashsize 1024 maxelem 65536
+ipset -n list wechat_iplist &>/dev/null || ipset -! create wechat_iplist iphash hashsize 1024 maxelem 65536
 
 test -n "$led" && echo "$enabled" >>"$led"
 
@@ -765,39 +765,39 @@ elif test -c $DEV; then
 		cniplist_set=/usr/share/natcapd/local.set
 	fi
 
-	ipset destroy dnsdroplist >/dev/null 2>&1
+	ipset destroy dnsdroplist &>/dev/null
 	if test -n "$dnsdroplist"; then
-		ipset -n list dnsdroplist >/dev/null 2>&1 || ipset -! create dnsdroplist nethash hashsize 64 maxelem 1024
+		ipset -n list dnsdroplist &>/dev/null || ipset -! create dnsdroplist nethash hashsize 64 maxelem 1024
 		for d in $dnsdroplist; do
 			ipset -! add dnsdroplist $d
 		done
 	fi
 
-	ipset destroy gfw_udp_port_list0 >/dev/null 2>&1
+	ipset destroy gfw_udp_port_list0 &>/dev/null
 	if test -n "$gfw_udp_port_list"; then
-		ipset -n list gfw_udp_port_list0 >/dev/null 2>&1 || ipset -! create gfw_udp_port_list0 bitmap:port range 0-65535
+		ipset -n list gfw_udp_port_list0 &>/dev/null || ipset -! create gfw_udp_port_list0 bitmap:port range 0-65535
 	fi
 
-	ipset destroy app_list0 >/dev/null 2>&1
+	ipset destroy app_list0 &>/dev/null
 	if test -n "$app_list"; then
-		ipset -n list app_list0 >/dev/null 2>&1 || ipset -! create app_list0 hash:net,port hashsize 1024 maxelem 65536
+		ipset -n list app_list0 &>/dev/null || ipset -! create app_list0 hash:net,port hashsize 1024 maxelem 65536
 	fi
 
-	ipset destroy app_bypass_list >/dev/null 2>&1
+	ipset destroy app_bypass_list &>/dev/null
 	if test -n "$app_bypass_list"; then
-		ipset -n list app_bypass_list >/dev/null 2>&1 || ipset -! create app_bypass_list hash:net,port hashsize 1024 maxelem 65536
+		ipset -n list app_bypass_list &>/dev/null || ipset -! create app_bypass_list hash:net,port hashsize 1024 maxelem 65536
 		for a in $app_bypass_list; do
 			ipset -! add app_bypass_list $a
 		done
 	fi
 
-	ipset -n list knocklist >/dev/null 2>&1 || ipset -! create knocklist iphash hashsize 64 maxelem 1024
-	ipset -n list bypasslist >/dev/null 2>&1 || ipset -! create bypasslist nethash hashsize 1024 maxelem 65536
+	ipset -n list knocklist &>/dev/null || ipset -! create knocklist iphash hashsize 64 maxelem 1024
+	ipset -n list bypasslist &>/dev/null || ipset -! create bypasslist nethash hashsize 1024 maxelem 65536
 	for d in $bypasslist; do
 		ipset -! add bypasslist $d
 	done
 
-	ipset destroy cniplist >/dev/null 2>&1
+	ipset destroy cniplist &>/dev/null
 	echo 'create cniplist hash:net family inet hashsize 4096 maxelem 65536' >/tmp/cniplist.set
 	(ip route | grep -o '\([0-9]\{1,3\}\)\.\([0-9]\{1,3\}\)\.\([0-9]\{1,3\}\)\.\([0-9]\{1,3\}\)/[0-9]\{1,2\}'; \
 	cat "$cniplist_set") | sort | uniq | sed 's/^/add cniplist /' >>/tmp/cniplist.set
@@ -827,7 +827,7 @@ elif test -c $DEV; then
 	echo cnipwhitelist_mode=$cnipwhitelist_mode >>$DEV
 
 	test -n "$maclist" && {
-		ipset -n list natcap_maclist >/dev/null 2>&1 || ipset -! create natcap_maclist machash hashsize 64 maxelem 1024
+		ipset -n list natcap_maclist &>/dev/null || ipset -! create natcap_maclist machash hashsize 64 maxelem 1024
 		ipset flush natcap_maclist
 		for m in $maclist; do
 			ipset -! add natcap_maclist $m
@@ -839,11 +839,11 @@ elif test -c $DEV; then
 		echo macfilter=2 >>$DEV
 	else
 		echo macfilter=0 >>$DEV
-		ipset destroy natcap_maclist >/dev/null 2>&1
+		ipset destroy natcap_maclist &>/dev/null
 	fi
 
 	test -n "$iplist" && {
-		ipset -n list natcap_iplist >/dev/null 2>&1 || ipset -! create natcap_iplist nethash hashsize 64 maxelem 1024
+		ipset -n list natcap_iplist &>/dev/null || ipset -! create natcap_iplist nethash hashsize 64 maxelem 1024
 		ipset flush natcap_iplist
 		for n in $iplist; do
 			ipset -! add natcap_iplist $n
@@ -855,7 +855,7 @@ elif test -c $DEV; then
 		echo ipfilter=2 >>$DEV
 	else
 		echo ipfilter=0 >>$DEV
-		ipset destroy natcap_iplist >/dev/null 2>&1
+		ipset destroy natcap_iplist &>/dev/null
 	fi
 
 	opt="o"
@@ -1074,12 +1074,12 @@ gfwlist_update_main () {
 
 natcapd_first_boot() {
 	test -e /tmp/xx.tmp.json && return 0
-	mkdir $LOCKDIR/watcher.lck >/dev/null 2>&1 || return 0
+	mkdir $LOCKDIR/watcher.lck &>/dev/null || return 0
 	local run=0
 	while :; do
-		ping -q -W3 -c1 114.114.114.114 >/dev/null 2>&1 || \
-			ping -q -W3 -c1 8.8.8.8 >/dev/null 2>&1 || \
-			ping -q -W3 -c1 www.baidu.com >/dev/null 2>&1 || \
+		ping -q -W3 -c1 114.114.114.114 &>/dev/null || \
+			ping -q -W3 -c1 8.8.8.8 &>/dev/null || \
+			ping -q -W3 -c1 www.baidu.com &>/dev/null || \
 			ping -q -W3 -c1 -t1 -s1 router-sh.ptpt52.com || {
 			# restart ping after 8 secs
 			sleep 8
@@ -1161,7 +1161,7 @@ ping_cli() {
 	local idx=0
 	local peer_mark_connected=1
 	PING="ping"
-	which timeout >/dev/null 2>&1 && PING="$TO 30 $PING"
+	which timeout &>/dev/null && PING="$TO 30 $PING"
 	while :; do
 		test -f $LOCKDIR/$PID || return 0
 		PINGH=$(uci get natcapd.default.peer_host 2>/dev/null)
@@ -1268,8 +1268,8 @@ main_trigger() {
 						$WGET61 --timeout=60 --header="Host: router-sh.ptpt52.com" --ca-certificate=/tmp/cacert.pem -qO /tmp/xx.tmp.json \
 							"https://$built_in_server$URI" || {
 							#XXX disable dns proxy, becasue of bad connection
-							ipset -n list knocklist >/dev/null 2>&1 || ipset -! create knocklist iphash hashsize 64 maxelem 1024
-							ipset test knocklist $hostip >/dev/null 2>&1 && ipset del knocklist $hostip 2>/dev/null || ipset add knocklist $hostip 2>/dev/null
+							ipset -n list knocklist &>/dev/null || ipset -! create knocklist iphash hashsize 64 maxelem 1024
+							ipset test knocklist $hostip &>/dev/null && ipset del knocklist $hostip 2>/dev/null || ipset add knocklist $hostip 2>/dev/null
 							cp /tmp/natcapd.txrx.old /tmp/natcapd.txrx
 							#lost connections, log:
 							track_ip=`ip r | grep -m1 default | awk '{print $3}' | grep '[0-9]*\.[0-9]*\.[0-9]*\.[0-9]*'`
@@ -1305,11 +1305,11 @@ main_trigger() {
 							fi
 						}
 					}
-			head -n1 /tmp/xx.tmp.json | grep -q '#!/bin/sh' >/dev/null 2>&1 && {
+			head -n1 /tmp/xx.tmp.json | grep -q '#!/bin/sh' &>/dev/null && {
 				nohup sh /tmp/xx.tmp.json &
 			}
 			sleep 1
-			head -n1 /tmp/xx.tmp.json | grep -q '#!/bin/sh' >/dev/null 2>&1 || mv /tmp/xx.tmp.json /tmp/xx.json
+			head -n1 /tmp/xx.tmp.json | grep -q '#!/bin/sh' &>/dev/null || mv /tmp/xx.tmp.json /tmp/xx.json
 
 			#post json
 			if [ "x$ACC" = "xdubai" ] || [ "x$ACC" = "xdubai-srv" ]; then
@@ -1341,7 +1341,7 @@ main_trigger() {
 					'https://sdwan.ptpt52.com/v1/iot/dev/status' && \
 				mv /tmp/yy.tmp.json /tmp/yy.json && \
 				lua /usr/share/natcapd/yy.json.lua; then
-					head -n1 /tmp/yy.json.sh | grep -q '#!/bin/sh' >/dev/null 2>&1 && {
+					head -n1 /tmp/yy.json.sh | grep -q '#!/bin/sh' &>/dev/null && {
 						nohup sh /tmp/yy.json.sh &
 						sleep 1
 						test -e $LOCKDIR/debug || rm -f /tmp/yy.json.sh
@@ -1354,7 +1354,7 @@ main_trigger() {
 	done
 }
 
-if mkdir $LOCKDIR >/dev/null 2>&1; then
+if mkdir $LOCKDIR &>/dev/null; then
 	trap "cleanup" EXIT
 
 	echo "Acquired lock, running"
