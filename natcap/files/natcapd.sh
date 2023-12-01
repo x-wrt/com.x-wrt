@@ -1231,7 +1231,7 @@ main_trigger() {
 					LIP="$LIP,$lip"
        				done
 			done
-			LIP=$(echo $LIP | sed 's/^,//')
+			LIP=${LIP#,}
 
 			IFACE6S=$(ip -6 r | grep default | grep -o 'dev .*' | cut -d" " -f2 | sort | uniq)
 			LIP6=""
@@ -1240,7 +1240,7 @@ main_trigger() {
 					LIP6="$LIP6,$lip"
     				done
 			done
-			LIP6=$(echo $LIP6 | sed 's/^,//')
+			LIP6=${LIP6#,}
 
 			SFS=$(cat "$DEV" | grep server_flow_stop | cut -d= -f2)
 			#checking extra run status
