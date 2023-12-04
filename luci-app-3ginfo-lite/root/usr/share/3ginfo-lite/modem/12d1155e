@@ -36,7 +36,7 @@ fi
 
 # Modem
 OF=$(sms_tool -d $DEVICE at "ati")
-DEV2=$(echo $OF | tr -s "\n"  | xargs)
+DEV2=$(echo $OF | tr -s "\n" | xargs)
 MODELB=$(echo $DEV2 | awk -F 'Manufacturer:|Revision:' '{print $2}'| xargs)
 MODELC=$(echo $MODELB | sed 's/Model://' | xargs)
 MODEL=$(echo $MODELC | awk '{print toupper(substr($0,0,1))tolower(substr($0,2))}')
@@ -106,7 +106,7 @@ PCI="-"
 if [[ "$MODE" == *"LTE"* ]] && [ -n "$TB" ]; then
 MODE="LTE | "$(band $TB "")
 fi
-      
+  
 fi
 
 # LAC & TAC
