@@ -1007,6 +1007,7 @@ for t in $targets; do
 		TARGET_DEVICE_ramips_rt3883_DEVICE_asus_rt-n56u|\
 		TARGET_DEVICE_ath79_generic_DEVICE_pisen_wmm003n|\
 		TARGET_DEVICE_ramips_mt76x8_DEVICE_tplink_tl-wr902ac-v3|\
+		TARGET_DEVICE_ramips_mt76x8_DEVICE_tplink_tl-wr902ac-v4|\
 		TARGET_DEVICE_ramips_mt76x8_DEVICE_tplink_tl-wr842n-v5|\
 		TARGET_DEVICE_ramips_mt76x8_DEVICE_tplink_tl-wa801nd-v5|\
 		TARGET_DEVICE_ramips_mt76x8_DEVICE_tplink_tl-mr3420-v5|\
@@ -1341,6 +1342,7 @@ for t in $targets; do
 		TARGET_DEVICE_ramips_mt76x8_DEVICE_hiwifi_hc5861b|\
 		TARGET_DEVICE_ath79_generic_DEVICE_pisen_wmm003n|\
 		TARGET_DEVICE_ramips_mt76x8_DEVICE_tplink_tl-wr902ac-v3|\
+		TARGET_DEVICE_ramips_mt76x8_DEVICE_tplink_tl-wr902ac-v4|\
 		TARGET_DEVICE_ramips_mt76x8_DEVICE_tplink_tl-wr842n-v5|\
 		TARGET_DEVICE_ramips_mt76x8_DEVICE_tplink_tl-mr3420-v5|\
 		TARGET_DEVICE_ramips_mt76x8_DEVICE_netgear_r6120|\
