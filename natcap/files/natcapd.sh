@@ -4,9 +4,12 @@ TO="timeout"
 which timeout &>/dev/null && timeout -t1 pwd &>/dev/null && TO="timeout -t"
 
 WGET=/usr/bin/wget
+test -x $WGET || WGET=/bin/wget
+if readlink $WGET | grep -q busybox; then
+	WGET=/bin/uclient-fetch
+fi
 WGET61=$WGET
 WGET181=$WGET
-test -x $WGET || WGET=/bin/wget
 which timeout &>/dev/null && WGET61="$TO 61 $WGET"
 which timeout &>/dev/null && WGET181="$TO 181 $WGET"
 
