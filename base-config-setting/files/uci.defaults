@@ -75,9 +75,9 @@ test $version -lt 1 && {
 test $version -lt 2 && {
 	MACmd5=$(echo -n $MACADDR | md5sum | tr a-f A-F)
 	if ! uci get network.wan >/dev/null 2>&1 && modinfo macvlan >/dev/null 2>&1; then
-		local lan_idx=0
+		lan_idx=0
 		while uci get network.@device[$lan_idx] >/dev/null 2>&1 && [ $(uci get network.@device[$lan_idx].name) != "br-lan" ]; do lan_idx=$((lan_idx+1)); done
-		local device=$(uci get network.@device[$lan_idx].ports 2>/dev/null | cut -d" " -f1 || echo eth0)
+		device=$(uci get network.@device[$lan_idx].ports 2>/dev/null | cut -d" " -f1 || echo eth0)
 		if [ "$(uci get network.@device[$lan_idx].ports | wc -w)" = 1 ] && [ "$(uci get network.@device[$lan_idx].name)" = "br-lan" ]; then
 		uci -q batch <<-EOT
 			set network.wan=interface
@@ -135,8 +135,8 @@ test $version -lt 2 && {
 
 	config_line=
 	which fdisk && {
-		local partdev
-		local ROOTDEV=/dev/sda
+		partdev
+		ROOTDEV=/dev/sda
 		. /lib/functions.sh
 		. /lib/upgrade/common.sh
 		if export_bootdevice && export_partdevice partdev 0; then
