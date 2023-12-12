@@ -408,20 +408,20 @@ uci delete openvpn_recipes.client_tun.pkcs12 2>/dev/null && uci commit openvpn_r
 # sysctl overwrite
 SYSCTL_LOCAL=/etc/sysctl.d/50-local.conf
 mkdir -p /etc/sysctl.d
-echo -n >$SYSCTL_LOCAL
 
-echo net.nf_conntrack_max=$nf_conntrack_max >>$SYSCTL_LOCAL
-echo net.ipv4.ip_early_demux=0 >>$SYSCTL_LOCAL
-echo net.bridge.bridge-nf-call-iptables=0 >>$SYSCTL_LOCAL
-echo net.ipv4.fib_multipath_hash_policy=1 >>$SYSCTL_LOCAL
-
-echo net.core.default_qdisc=fq_codel >>$SYSCTL_LOCAL
-echo net.core.default_qdisc=fq >>$SYSCTL_LOCAL
-echo net.ipv4.tcp_congestion_control=bbr >>$SYSCTL_LOCAL
-echo net.ipv4.tcp_congestion_control=htcp >>$SYSCTL_LOCAL
-echo net.ipv4.tcp_congestion_control=cubic >>$SYSCTL_LOCAL
-echo net.netfilter.nf_conntrack_helper=1 >>$SYSCTL_LOCAL
-echo net.ipv4.ip_default_ttl=128 >>$SYSCTL_LOCAL
+cat <<-EOF >$SYSCTL_LOCAL
+net.nf_conntrack_max=$nf_conntrack_max
+net.ipv4.ip_early_demux=0
+net.bridge.bridge-nf-call-iptables=0
+net.ipv4.fib_multipath_hash_policy=1
+net.core.default_qdisc=fq_codel
+net.core.default_qdisc=fq
+net.ipv4.tcp_congestion_control=bbr
+net.ipv4.tcp_congestion_control=htcp
+net.ipv4.tcp_congestion_control=cubic
+net.netfilter.nf_conntrack_helper=1
+net.ipv4.ip_default_ttl=128
+EOF
 
 /etc/init.d/swanctl disable &>/dev/null
 
