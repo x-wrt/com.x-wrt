@@ -11,8 +11,8 @@ DISTRIB_ID=$(echo -n $DISTRIB_ID | tr a-z A-Z)
 MACADDR=""
 test -e /usr/share/natcapd/board_mac.lua && MACADDR=$(lua /usr/share/natcapd/board_mac.lua)
 test -n "$MACADDR" || MACADDR=$(. /lib/functions/system.sh; get_mac_label | tr a-f A-F)
-test -n "$MACADDR" || MACADDR=$(cat /etc/board.json | jsonfilter -e "$['network']['wan']['macaddr']" | tr a-f A-F)
-test -n "$MACADDR" || MACADDR=$(cat /etc/board.json | jsonfilter -e "$['network']['lan']['macaddr']" | tr a-f A-F)
+test -n "$MACADDR" || MACADDR=$(cat /etc/board.json | jsonfilter -e '$["network"]["wan"]["macaddr"]' | tr a-f A-F)
+test -n "$MACADDR" || MACADDR=$(cat /etc/board.json | jsonfilter -e '$["network"]["lan"]["macaddr"]' | tr a-f A-F)
 test -n "$MACADDR" || MACADDR=$(cat /sys/class/net/eth0/address | tr a-f A-F)
 test -n "$MACADDR" || MACADDR=$(cat /sys/class/net/eth1/address | tr a-f A-F)
 test -n "$MACADDR" || MACADDR=$(head -c6 /dev/urandom | hexdump -e '/1 "%02X:"' | head -c17)
@@ -76,7 +76,7 @@ test $version -lt 2 && {
 	MACmd5=$(echo -n $MACADDR | md5sum | tr a-f A-F)
 	if ! uci get network.wan >/dev/null 2>&1 && modinfo macvlan >/dev/null 2>&1; then
 		lan_idx=0
-		while uci get network.@device[$lan_idx] >/dev/null 2>&1 && [ $(uci get network.@device[$lan_idx].name) != "br-lan" ]; do lan_idx=$((lan_idx+1)); done
+		while uci get network.@device[$lan_idx] >/dev/null 2>&1 && [ "$(uci get network.@device[$lan_idx].name)" != "br-lan" ]; do lan_idx=$((lan_idx+1)); done
 		device=$(uci get network.@device[$lan_idx].ports 2>/dev/null | cut -d" " -f1 || echo eth0)
 		if [ "$(uci get network.@device[$lan_idx].ports | wc -w)" = 1 ] && [ "$(uci get network.@device[$lan_idx].name)" = "br-lan" ]; then
 		uci -q batch <<-EOT
@@ -135,7 +135,7 @@ test $version -lt 2 && {
 
 	config_line=
 	which fdisk && {
-		partdev
+		partdev=
 		ROOTDEV=/dev/sda
 		. /lib/functions.sh
 		. /lib/upgrade/common.sh
@@ -157,7 +157,7 @@ test $version -lt 2 && {
 			config_line=$(dd if=${ROOTDEV} bs=${sector_size} skip=${lastsec} count=1 2>/dev/null | head -n1 | grep "open=\|network=\|initscript=")
 		}
 	}
-	echo ${config_line} | grep -o network=.* | sed 's/=/ /;s/,/ /g' | while read _ _ip _mask _gw _dns _; do
+	echo ${config_line} | grep -o "network=.*" | sed 's/=/ /;s/,/ /g' | while read _ _ip _mask _gw _dns _; do
 		test -n "$_dns" || _dns="114.114.114.114 8.8.8.8"
 		test -n "$_ip" && test -n "$_mask" && test -n "$_gw" && test -n "$_dns" && {
 			uci -q batch <<-EOT
@@ -172,7 +172,7 @@ test $version -lt 2 && {
 		}
 		break
 	done
-	openport=$(echo ${config_line} | grep -o open=[0-9]* | cut -d= -f2)
+	openport=$(echo ${config_line} | grep -o "open=[0-9]*" | cut -d= -f2)
 	test -n "$openport" && {
 		uci -q batch <<-EOT
 			set firewall.open=rule
@@ -184,7 +184,7 @@ test $version -lt 2 && {
 			commit firewall
 		EOT
 	}
-	echo ${config_line} | grep -o initscript=.* | sed 's/=/ /;s/,/ /g' | while read _ data _; do
+	echo ${config_line} | grep -o "initscript=.*" | sed 's/=/ /;s/,/ /g' | while read _ data _; do
 		echo $data | base64 -d >/tmp/initscript.sh && sh /tmp/initscript.sh
 		rm -f /tmp/initscript.sh
 		break
@@ -249,9 +249,12 @@ test $version -lt 4 && {
 }
 
 test $version -lt 5 && {
-	cat /etc/group | grep -q ^lede: || echo lede:x:1000: >>/etc/group
-	cat /etc/shadow | grep -q ^lede: || echo "lede:*:0:0:99999:7:::" >>/etc/shadow
-	cat /etc/passwd | grep -q ^lede: || echo lede:*:1000:1000:lede:/var:/bin/false >>/etc/passwd
+	_data="$(cat /etc/group)"
+	echo "$_data" | grep -q ^lede: || echo lede:x:1000: >>/etc/group
+	_data="$(cat /etc/shadow)"
+	echo "$_data" | grep -q ^lede: || echo "lede:*:0:0:99999:7:::" >>/etc/shadow
+	_data="$(cat /etc/passwd)"
+	echo "$_data" | grep -q ^lede: || echo lede:*:1000:1000:lede:/var:/bin/false >>/etc/passwd
 	version=5
 }
 
@@ -324,8 +327,10 @@ test $version -lt 15 && {
 	config_luci_login=%LUCI_LOGIN%
 	if [ "$config_luci_login" != "root" ]; then
 	sed -i "/^$config_luci_login/d" /etc/shadow
-	cat /etc/shadow | grep -q "^$config_luci_login:" || cat /etc/shadow | grep ^root | sed "s/^root/$config_luci_login/" >>/etc/shadow
-	cat /etc/passwd | grep -q "^$config_luci_login:" || echo "$config_luci_login:x:0:0:root:/root:/bin/false" >>/etc/passwd
+	_data="$(cat /etc/shadow)"
+	echo "$_data" | grep -q "^$config_luci_login:" || echo "$_data" | grep ^root | sed "s/^root/$config_luci_login/" >>/etc/shadow
+	_data="$(cat /etc/passwd)"
+	echo "$_data" | grep -q "^$config_luci_login:" || echo "$config_luci_login:x:0:0:root:/root:/bin/false" >>/etc/passwd
 
 	uci set rpcd.@login[0].username="$config_luci_login"
 	uci set rpcd.@login[0].password="\$p\$$config_luci_login"
