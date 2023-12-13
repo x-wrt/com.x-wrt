@@ -733,6 +733,7 @@ for t in $targets; do
 			extra_utils=1
 		;;
 		#>8M flash <14M
+		TARGET_DEVICE_ath79_generic_DEVICE_comfast_cf-e5|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_tenbay_ms3000k|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_asus_rt-ac57u-v1|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_dual-q_h721|\
@@ -1252,6 +1253,7 @@ for t in $targets; do
 			has_usb=1
 		;;
 		#with usb2
+		TARGET_DEVICE_ath79_generic_DEVICE_comfast_cf-e5|\
 		TARGET_DEVICE_ipq40xx_generic_DEVICE_zte_mf287pro|\
 		TARGET_DEVICE_ath79_nand_DEVICE_glinet_gl-e750|\
 		TARGET_DEVICE_ramips_mt76x8_DEVICE_xwrt_xf-949|\

@@ -486,7 +486,8 @@ CONFIG_TARGET_PER_DEVICE_ROOTFS=y
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_comfast_cf-e314n-v2 is not set
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_comfast_cf-e375ac is not set
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_comfast_cf-e380ac-v2 is not set
-# CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_comfast_cf-e5 is not set
+CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_comfast_cf-e5=y
+CONFIG_TARGET_DEVICE_PACKAGES_ath79_generic_DEVICE_comfast_cf-e5="blockd block-mount chat comgt comgt-ncm dawn kmod-crypto-des kmod-crypto-lib-chacha20 kmod-crypto-lib-chacha20poly1305 kmod-crypto-lib-curve25519 kmod-crypto-lib-poly1305 kmod-crypto-md4 kmod-crypto-md5 kmod-crypto-sha256 kmod-dnsresolver kmod-fs-autofs4 kmod-fs-exfat kmod-fs-ext4 kmod-fs-ksmbd kmod-fs-msdos kmod-fs-nfs kmod-fs-nfs-common kmod-fs-nfs-v4 kmod-fs-ntfs3 kmod-fs-smbfs-common kmod-fs-vfat kmod-lib-crc16 kmod-mii kmod-nls-cp437 kmod-oid-registry kmod-ovpn-dco-v2 kmod-phy-ath79-usb kmod-sched-core kmod-scsi-core kmod-tun kmod-udptunnel4 kmod-udptunnel6 kmod-usb2 kmod-usb-core kmod-usb-ehci kmod-usb-net kmod-usb-net-cdc-ether kmod-usb-net-cdc-mbim kmod-usb-net-cdc-ncm kmod-usb-net-huawei-cdc-ncm kmod-usb-net-ipheth kmod-usb-net-qmi-wwan kmod-usb-net-rndis kmod-usb-net-rtl8152-vendor kmod-usb-net-sierrawireless kmod-usb-ohci kmod-usb-printer kmod-usb-serial kmod-usb-serial-option kmod-usb-serial-qualcomm kmod-usb-serial-sierrawireless kmod-usb-serial-wwan kmod-usb-storage kmod-usb-storage-extras kmod-usb-storage-uas kmod-usb-wdm kmod-wireguard ksmbd-server libatomic libblkid libgcrypt libgpg-error liblz4 liblzo libnl-core libnl-genl libqrencode libusb-1.0 libwrap luci-app-dawn luci-app-ksmbd luci-app-ledtrig-rssi luci-app-openvpn luci-app-p910nd luci-app-usteer luci-i18n-dashboard-zh-cn luci-i18n-ksmbd-zh-cn luci-i18n-openvpn-zh-cn luci-i18n-p910nd-zh-cn luci-mod-dashboard luci-proto-3g luci-proto-mbim luci-proto-ncm luci-proto-qmi luci-proto-relay luci-proto-wireguard nfs-utils openvpn-mbedtls p910nd qrencode relayd rssileds tc-tiny umbim uqmi usb-modeswitch wireguard-tools wpad-mbedtls wsdd2 wwan"
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_comfast_cf-e560ac is not set
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_comfast_cf-ew72 is not set
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_comfast_cf-wr650ac-v1 is not set
@@ -891,6 +892,7 @@ CONFIG_MODULE_DEFAULT_kmod-switch-rtl8367=y
 CONFIG_MODULE_DEFAULT_kmod-usb-chipidea2=y
 CONFIG_MODULE_DEFAULT_kmod-usb-core=y
 CONFIG_MODULE_DEFAULT_kmod-usb-ledtrig-usbport=y
+CONFIG_MODULE_DEFAULT_kmod-usb-net-qmi-wwan=y
 CONFIG_MODULE_DEFAULT_kmod-usb-ohci=y
 CONFIG_MODULE_DEFAULT_kmod-usb-storage=y
 CONFIG_MODULE_DEFAULT_kmod-usb2=y
@@ -3459,6 +3461,8 @@ CONFIG_PACKAGE_nload=m
 # CONFIG_PACKAGE_gdbserver is not set
 # CONFIG_PACKAGE_gitlab-runner is not set
 # CONFIG_PACKAGE_gperf is not set
+# CONFIG_PACKAGE_ledhwbmon is not set
+# CONFIG_PACKAGE_ledumon is not set
 # CONFIG_PACKAGE_libtool-bin is not set
 # CONFIG_PACKAGE_lpc21isp is not set
 # CONFIG_PACKAGE_lttng-tools is not set
