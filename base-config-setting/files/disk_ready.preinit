@@ -12,10 +12,10 @@ do_disk_ready() {
 	. /lib/functions.sh
 	. /lib/upgrade/common.sh
 	if export_bootdevice && export_partdevice partdev 0; then
-		if echo $partdev | grep -q ^sd[a-z]; then
+		if echo $partdev | grep -q "^sd[a-z]"; then
 			ROOTDEV=/dev/${partdev}
 			ROOTPART=/dev/${partdev}
-		elif echo $partdev | grep -q ^mmcblk[0-9]; then
+		elif echo $partdev | grep -q "^mmcblk[0-9]"; then
 			ROOTDEV=/dev/${partdev}
 			ROOTPART=/dev/${partdev}p
 		else
@@ -26,7 +26,7 @@ do_disk_ready() {
 
 	test -b ${ROOTDEV} && test -b ${ROOTPART}1 || return
 
-	overlay_size=$(cat /proc/cmdline | grep -o overlay_size=[0-9]* | cut -d= -f2)
+	overlay_size=$(cat /proc/cmdline | grep -o "overlay_size=[0-9]*" | cut -d= -f2)
 	test -n "$overlay_size" || overlay_size=$((1*768)) #768M default
 	overlay_size=$((overlay_size*1024*1024))
 	disktype="dos"
@@ -50,7 +50,7 @@ do_disk_ready() {
 	if [ "$disktype" = "gpt" ]; then
 		which gdisk || return
 		if [ "$diskpart" = "3" ] || [ "$diskpart" = "4" ]; then
-			disksize="$(fdisk -l ${ROOTDEV} | grep ${ROOTDEV}: -m1 | awk '{print $5}')"
+			disksize="$(fdisk -l ${ROOTDEV} | grep "${ROOTDEV}:" -m1 | awk '{print $5}')"
 			test -n "$disksize" || return
 			# <= 2GiB && return
 			test $disksize -le 2147483648 && return
@@ -58,7 +58,7 @@ do_disk_ready() {
 			#clean
 			echo -ne "w\ny\ny\n" | gdisk ${ROOTDEV}
 			echo -ne "d\n$((LASTNR+2))\nd\n$((LASTNR+1))\nw\ny\n" | gdisk ${ROOTDEV}
-			set $(fdisk -l ${ROOTDEV} 2>/dev/null | grep ^${ROOTPART}$((LASTNR)))
+			set $(fdisk -l ${ROOTDEV} 2>/dev/null | grep "^${ROOTPART}$((LASTNR))")
 			sda4_start=$2
 			sda4_end=$3
 
@@ -90,7 +90,7 @@ do_disk_ready() {
 		fi
 	elif [ "$disktype" = "dos" ]; then
 		if [ "$diskpart" = "2" ]; then
-			disksize="$(fdisk -l ${ROOTDEV} | grep ${ROOTDEV}: -m1 | awk '{print $5}')"
+			disksize="$(fdisk -l ${ROOTDEV} | grep "${ROOTDEV}:" -m1 | awk '{print $5}')"
 			test -n "$disksize" || return
 			# <= 2GiB && return
 			test $disksize -le 2147483648 && return
@@ -98,7 +98,7 @@ do_disk_ready() {
 			#clean
 			echo -ne "w\ny\ny\n" | fdisk ${ROOTDEV}
 			echo -ne "d\n$((LASTNR+2))\nd\n$((LASTNR+1))\nw\ny\n" | fdisk ${ROOTDEV}
-			set $(fdisk -l ${ROOTDEV} 2>/dev/null | grep ^${ROOTPART}$((LASTNR)))
+			set $(fdisk -l ${ROOTDEV} 2>/dev/null | grep "^${ROOTPART}$((LASTNR))")
 			sda2_start=$2
 			sda2_end=$3
 
