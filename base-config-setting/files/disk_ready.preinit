@@ -31,26 +31,26 @@ do_disk_ready() {
 	overlay_size=$((overlay_size*1024*1024))
 	disktype="dos"
 	fdisk -l ${ROOTDEV} 2>/dev/null | grep -q "type: gpt" && disktype="gpt"
-	sector_size=`fdisk -l ${ROOTDEV} | grep "^Sector size" | awk '{print $4}'`
+	sector_size=$(fdisk -l ${ROOTDEV} | grep "^Sector size" | awk '{print $4}')
 	sector_size=$((sector_size+0))
 	test ${sector_size} -gt 0 || sector_size=512
-	diskpart=`fdisk -l ${ROOTDEV} | grep -c "^${ROOTPART}[0-9]"`
+	diskpart=$(fdisk -l ${ROOTDEV} | grep -c "^${ROOTPART}[0-9]")
 	O=0
-	LASTDEV=`fdisk -l ${ROOTDEV} | grep "^${ROOTPART}[0-9]" | while read D _ E _; do
+	LASTDEV=$(fdisk -l ${ROOTDEV} | grep "^${ROOTPART}[0-9]" | while read D _ E _; do
 		if test $E -gt $O; then
 			echo $D
 			O=$E
 		fi
-	done | tail -n1`
-	LASTNR=`echo $LASTDEV | grep -o "[0-9]*" | tail -n1`
-	BLKCNT=`fdisk -l ${ROOTDEV} | head -n1 | awk '{print $7}'`
+	done | tail -n1)
+	LASTNR=$(echo $LASTDEV | grep -o "[0-9]*" | tail -n1)
+	BLKCNT=$(fdisk -l ${ROOTDEV} | head -n1 | awk '{print $7}')
 	SCNT=$((4096/sector_size))
 	test $SCNT -eq 0 && SCNT=1
 
 	if [ "$disktype" = "gpt" ]; then
 		which gdisk || return
-		if [ "x$diskpart" = "x3" ] || [ "x$diskpart" = "x4" ]; then
-			disksize="`fdisk -l ${ROOTDEV} | grep ${ROOTDEV}: -m1 | awk '{print $5}'`"
+		if [ "$diskpart" = "3" ] || [ "$diskpart" = "4" ]; then
+			disksize="$(fdisk -l ${ROOTDEV} | grep ${ROOTDEV}: -m1 | awk '{print $5}')"
 			test -n "$disksize" || return
 			# <= 2GiB && return
 			test $disksize -le 2147483648 && return
@@ -58,7 +58,7 @@ do_disk_ready() {
 			#clean
 			echo -ne "w\ny\ny\n" | gdisk ${ROOTDEV}
 			echo -ne "d\n$((LASTNR+2))\nd\n$((LASTNR+1))\nw\ny\n" | gdisk ${ROOTDEV}
-			set `fdisk -l ${ROOTDEV} 2>/dev/null | grep ^${ROOTPART}$((LASTNR))`
+			set $(fdisk -l ${ROOTDEV} 2>/dev/null | grep ^${ROOTPART}$((LASTNR)))
 			sda4_start=$2
 			sda4_end=$3
 
@@ -89,8 +89,8 @@ do_disk_ready() {
 			LASTNR=$((LASTNR+2))
 		fi
 	elif [ "$disktype" = "dos" ]; then
-		if [ "x$diskpart" = "x2" ]; then
-			disksize="`fdisk -l ${ROOTDEV} | grep ${ROOTDEV}: -m1 | awk '{print $5}'`"
+		if [ "$diskpart" = "2" ]; then
+			disksize="$(fdisk -l ${ROOTDEV} | grep ${ROOTDEV}: -m1 | awk '{print $5}')"
 			test -n "$disksize" || return
 			# <= 2GiB && return
 			test $disksize -le 2147483648 && return
@@ -98,7 +98,7 @@ do_disk_ready() {
 			#clean
 			echo -ne "w\ny\ny\n" | fdisk ${ROOTDEV}
 			echo -ne "d\n$((LASTNR+2))\nd\n$((LASTNR+1))\nw\ny\n" | fdisk ${ROOTDEV}
-			set `fdisk -l ${ROOTDEV} 2>/dev/null | grep ^${ROOTPART}$((LASTNR))`
+			set $(fdisk -l ${ROOTDEV} 2>/dev/null | grep ^${ROOTPART}$((LASTNR)))
 			sda2_start=$2
 			sda2_end=$3
 
@@ -134,10 +134,10 @@ do_disk_ready() {
 	if test -b ${ROOTPART}$((LASTNR-1)); then
 		uuid=$(uci get fstab.overlay.uuid)
 		format=0
-		if [ "x`head -c5 ${ROOTPART}$((LASTNR-1))`" = "xerase" ]; then
+		if [ "$(head -c5 ${ROOTPART}$((LASTNR-1)))" = "erase" ]; then
 			echo request format ${ROOTPART}$((LASTNR-1))
 			format=1
-		elif [ "x`head -c6 ${ROOTPART}$((LASTNR-1))`" = "xformat" ]; then
+		elif [ "$(head -c6 ${ROOTPART}$((LASTNR-1)))" = "format" ]; then
 			format=2
 		fi
 		if mount -t ext4 -o rw,noatime ${ROOTPART}$((LASTNR-1)) /mnt; then
@@ -166,7 +166,7 @@ do_disk_ready() {
 	if test -b ${ROOTPART}$((LASTNR)); then
 		uuid=$(uci get fstab.data.uuid)
 		format=0
-		if [ "x`head -c5 ${ROOTPART}$((LASTNR))`" = "xerase" ]; then
+		if [ "$(head -c5 ${ROOTPART}$((LASTNR)))" = "erase" ]; then
 			echo request format ${ROOTPART}$((LASTNR))
 			format=1
 		fi
