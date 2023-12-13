@@ -437,7 +437,7 @@ test -x /usr/bin/wget && rm -f /bin/wget && ln -s /usr/bin/wget /bin/wget
 test -x /usr/bin/vim && touch /root/.vimrc
 
 #make sure nginx work with remote-mgr
-test -x /etc/init.d/nginx && test -e /etc/nginx/conf.d/dev.x-wrt.com.conf || rm -f /etc/uhttpd.key /etc/uhttpd.crt 
+( test -x /etc/init.d/nginx && test -e /etc/nginx/conf.d/dev.x-wrt.com.conf ) || rm -f /etc/uhttpd.key /etc/uhttpd.crt
 
 rootfs_type() {
 	/bin/mount | awk '($3 ~ /^\/$/) && ($5 !~ /rootfs/) { print $5 }'
