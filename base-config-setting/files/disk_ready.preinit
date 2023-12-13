@@ -34,7 +34,7 @@ do_disk_ready() {
 	sector_size=`fdisk -l ${ROOTDEV} | grep "^Sector size" | awk '{print $4}'`
 	sector_size=$((sector_size+0))
 	test ${sector_size} -gt 0 || sector_size=512
-	diskpart=`fdisk -l ${ROOTDEV} | grep "^${ROOTPART}[0-9]" | wc -l`
+	diskpart=`fdisk -l ${ROOTDEV} | grep -c "^${ROOTPART}[0-9]"`
 	O=0
 	LASTDEV=`fdisk -l ${ROOTDEV} | grep "^${ROOTPART}[0-9]" | while read D _ E _; do
 		if test $E -gt $O; then
@@ -75,8 +75,8 @@ do_disk_ready() {
 
 			partx -a ${ROOTDEV}
 			test -b ${ROOTPART}$((LASTNR+1)) -a -b ${ROOTPART}$((LASTNR+2))  || {
-				MAJOR="`ls -l ${ROOTDEV} | grep ${ROOTDEV} | awk '{print $5}' | grep -o '[0-9]*'`"
-				MINOR="`ls -l ${ROOTDEV} | grep ${ROOTDEV} | awk '{print $6}' | grep -o '[0-9]*'`"
+				MAJOR=$(printf "%d" "0x$(stat -c "%t" ${ROOTDEV})")
+				MINOR=$(printf "%d" "0x$(stat -c "%T" ${ROOTDEV})")
 				test -n "$MAJOR" && {
 					rm -f ${ROOTPART}$((LASTNR+1))
 					mknod ${ROOTPART}$((LASTNR+1)) b $MAJOR $((MINOR+LASTNR+1))
@@ -115,8 +115,8 @@ do_disk_ready() {
 
 			partx -a ${ROOTDEV}
 			test -b ${ROOTPART}$((LASTNR+1)) -a -b ${ROOTPART}$((LASTNR+2))  || {
-				MAJOR="`ls -l ${ROOTDEV} | grep ${ROOTDEV} | awk '{print $5}' | grep -o '[0-9]*'`"
-				MINOR="`ls -l ${ROOTDEV} | grep ${ROOTDEV} | awk '{print $6}' | grep -o '[0-9]*'`"
+				MAJOR=$(printf "%d" "0x$(stat -c "%t" ${ROOTDEV})")
+				MINOR=$(printf "%d" "0x$(stat -c "%T" ${ROOTDEV})")
 				test -n "$MAJOR" && {
 					rm -f ${ROOTPART}$((LASTNR+1))
 					mknod ${ROOTPART}$((LASTNR+1)) b $MAJOR $((MINOR+LASTNR+1))

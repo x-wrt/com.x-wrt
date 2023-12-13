@@ -59,6 +59,8 @@ define Package/base-config-setting-ext4fs
   $(call Package/base-config-setting/Default)
   TITLE:=base-config-setting ext4fs set
   DEPENDS:=+base-config-setting +@TARGET_ROOTFS_EXT4FS \
+	   +busybox +@BUSYBOX_CUSTOM \
+	   +@BUSYBOX_CONFIG_STAT \
 	   +kmod-fs-ext4 \
 	   +tune2fs \
 	   +ethtool \
