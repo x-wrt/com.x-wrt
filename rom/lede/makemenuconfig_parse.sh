@@ -392,6 +392,9 @@ for t in $targets; do
 	excludes="$excludes_basic"
 	case $t in
 		#>=32M flash
+		TARGET_DEVICE_mediatek_filogic_DEVICE_abt_asr3000-ubootlayout|\
+		TARGET_DEVICE_mediatek_filogic_DEVICE_cmcc_a10-ubootlayout|\
+		TARGET_DEVICE_mediatek_filogic_DEVICE_imou_lc-hx3001-ubootlayout|\
 		TARGET_DEVICE_qualcommax_ipq807x_DEVICE_zte_mf269|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_glinet_gl-mt2500|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_zbtlink_zbt-z8102ax|\
@@ -525,6 +528,9 @@ for t in $targets; do
 	esac
 	case $t in
 		#>=14M flash
+		TARGET_DEVICE_mediatek_filogic_DEVICE_abt_asr3000-ubootlayout|\
+		TARGET_DEVICE_mediatek_filogic_DEVICE_cmcc_a10-ubootlayout|\
+		TARGET_DEVICE_mediatek_filogic_DEVICE_imou_lc-hx3001-ubootlayout|\
 		TARGET_DEVICE_qualcommax_ipq807x_DEVICE_zte_mf269|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_glinet_gl-mt2500|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_zbtlink_zbt-z8102ax|\
@@ -1438,6 +1444,9 @@ for t in $targets; do
 			has_usb=1
 		;;
 		#no usb
+		TARGET_DEVICE_mediatek_filogic_DEVICE_abt_asr3000-ubootlayout|\
+		TARGET_DEVICE_mediatek_filogic_DEVICE_cmcc_a10-ubootlayout|\
+		TARGET_DEVICE_mediatek_filogic_DEVICE_imou_lc-hx3001-ubootlayout|\
 		TARGET_DEVICE_qualcommax_ipq807x_DEVICE_yuncore_ax880|\
 		TARGET_DEVICE_qualcommax_ipq807x_DEVICE_netgear_wax630|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_cetron_ct3003|\
