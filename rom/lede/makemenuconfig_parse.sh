@@ -234,6 +234,7 @@ strongswan-mod-xauth-generic \
 strongswan-mod-xcbc \
 strongswan-pki \
 strongswan-swanctl \
+luci-app-strongswan-swanctl \
 "
 
 extra_vpn="xl2tpd \
