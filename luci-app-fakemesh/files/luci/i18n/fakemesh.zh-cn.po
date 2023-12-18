@@ -22,8 +22,8 @@ msgstr "有线AP（有线回程）"
 msgid "Agent (wifi as backhaul)"
 msgstr "卫星（无线回程）"
 
-msgid "Controller"
-msgstr "控制器"
+msgid "Controller (AC)"
+msgstr "控制器 (AC)"
 
 msgid "The simple ip address to access the controller."
 msgstr "访问控制器的简单ip地址。"

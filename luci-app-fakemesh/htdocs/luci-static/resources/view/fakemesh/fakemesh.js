@@ -47,7 +47,7 @@ return view.extend({
 		o = s.option(form.ListValue, 'role', _('Role'), _('Set the gateway router as controller, others as agent.'));
 		o.value('wap', _('Wired AP (ethernet as backhaul)'));
 		o.value('agent', _('Agent (wifi as backhaul)'));
-		o.value('controller', _('Controller'));
+		o.value('controller', _('Controller (AC)'));
 		o.default = 'agent';
 
 		o = s.option(form.Value, 'access_ip', _('Access IP address'), _('The simple ip address to access the controller.'));
