@@ -429,8 +429,8 @@ EOF
 if ! test $memtotal -ge 65536; then
 	/etc/init.d/natflow-qos disable
 	/etc/init.d/natflow-simple-qos disable
+	/etc/init.d/switch_ports_status disable
 fi
-/etc/init.d/switch_ports_status disable
 
 #replace wget
 test -x /usr/bin/wget && rm -f /bin/wget && ln -s /usr/bin/wget /bin/wget
