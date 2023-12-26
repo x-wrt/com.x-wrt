@@ -488,7 +488,6 @@ for t in $targets; do
 		TARGET_DEVICE_ipq40xx_generic_DEVICE_compex_wpj428|\
 		TARGET_DEVICE_ipq40xx_generic_DEVICE_asus_map-ac2200|\
 		TARGET_DEVICE_ipq40xx_generic_DEVICE_linksys_ea8300|\
-		TARGET_DEVICE_ipq40xx_generic_DEVICE_linksys_ea6350v3|\
 		TARGET_DEVICE_bcm53xx_generic_DEVICE_phicomm_k3|\
 		TARGET_DEVICE_ath79_nand_DEVICE_arris_sbr-ac1750|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_netgear_r6350|\
@@ -526,11 +525,12 @@ for t in $targets; do
 		TARGET_DEVICE_mvebu_cortexa9_DEVICE_linksys_wrt3200acm|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_zbtlink_zbt-wg3526-32m|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_netgear_r6220)
-			mods="$mods $extra_vpn $strongswan"
+			mods="$mods $extra_vpn $strongswan alist"
 		;;
 	esac
 	case $t in
 		#>=14M flash
+		TARGET_DEVICE_ipq40xx_generic_DEVICE_linksys_ea6350v3|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_zbtlink_zbt-z8103ax|\
 		TARGET_DEVICE_qualcommax_ipq807x_DEVICE_cmcc_rm2-6|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_abt_asr3000-ubootlayout|\
