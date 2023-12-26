@@ -416,7 +416,6 @@ for t in $targets; do
 		TARGET_DEVICE_mediatek_filogic_DEVICE_konka_komi-a31-nmbm|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_konka_komi-a31|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_mercusys_mr90x-v1|\
-		TARGET_DEVICE_mediatek_filogic_DEVICE_netgear_wax220|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_cetron_ct3003|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_cetron_ct3003-ubootlayout|\
 		TARGET_DEVICE_armsr_armv8_DEVICE_generic|\
@@ -502,34 +501,6 @@ for t in $targets; do
 	esac
 	case $t in
 		#>=14M flash
-		TARGET_DEVICE_ramips_mt7621_DEVICE_netgear_r6220|\
-		TARGET_DEVICE_ramips_mt7621_DEVICE_zbtlink_zbt-wg3526-32m|\
-		TARGET_DEVICE_ramips_mt7621_DEVICE_xiaomi_mi-router-3g|\
-		TARGET_DEVICE_ramips_mt7621_DEVICE_xiaomi_mi-router-3-pro|\
-		TARGET_DEVICE_ramips_mt7621_DEVICE_xiaomi_redmi-router-ac2100|\
-		TARGET_DEVICE_ramips_mt7621_DEVICE_xiaomi_mi-router-ac2100|\
-		TARGET_DEVICE_ramips_mt7621_DEVICE_netgear_r6350|\
-		TARGET_DEVICE_ramips_mt7621_DEVICE_ubiquiti_edgerouterx|\
-		TARGET_DEVICE_ramips_mt7621_DEVICE_ubiquiti_edgerouterx-sfp|\
-		TARGET_DEVICE_ramips_mt7621_DEVICE_ubnt_edgerouter-x|\
-		TARGET_DEVICE_ramips_mt7621_DEVICE_ubnt_edgerouter-x-sfp|\
-		TARGET_DEVICE_ramips_mt7621_DEVICE_netgear_r6800|\
-		TARGET_DEVICE_ramips_mt7621_DEVICE_netgear_r6700-v2|\
-		TARGET_DEVICE_ramips_mt7621_DEVICE_netgear_r6260|\
-		TARGET_DEVICE_ramips_mt7621_DEVICE_netgear_r6850|\
-		TARGET_DEVICE_ramips_mt7621_DEVICE_xwrt_wr1800k-ax-norplusemmc|\
-		TARGET_DEVICE_ramips_mt7621_DEVICE_xwrt_wr1800k-ax-nand|\
-		TARGET_DEVICE_ramips_mt7621_DEVICE_xwrt_nxc2005ex|\
-		TARGET_DEVICE_ramips_mt7621_DEVICE_netgear_wax202|\
-		TARGET_DEVICE_ramips_mt7621_DEVICE_zyxel_wsm20|\
-		TARGET_DEVICE_mediatek_mt7622_DEVICE_netgear_wax206|\
-		TARGET_DEVICE_ath79_nand_DEVICE_netgear_r6100|\
-		TARGET_DEVICE_ath79_nand_DEVICE_netgear_wndr4300|\
-		TARGET_DEVICE_ath79_nand_DEVICE_netgear_wndr4300-v2|\
-		TARGET_DEVICE_ath79_nand_DEVICE_netgear_wndr4500-v3|\
-		TARGET_DEVICE_ath79_nand_DEVICE_glinet_gl-ar300m-nand|\
-		TARGET_DEVICE_ath79_nand_DEVICE_domywifi_dw33d|\
-		TARGET_DEVICE_ath79_nand_DEVICE_arris_sbr-ac1750|\
 		TARGET_DEVICE_ipq40xx_generic_DEVICE_linksys_ea6350v3|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_zbtlink_zbt-z8103ax|\
 		TARGET_DEVICE_qualcommax_ipq807x_DEVICE_cmcc_rm2-6|\
