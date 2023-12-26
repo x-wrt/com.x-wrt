@@ -496,7 +496,7 @@ for t in $targets; do
 		TARGET_DEVICE_mvebu_cortexa9_DEVICE_linksys_wrt1900acs|\
 		TARGET_DEVICE_mvebu_cortexa9_DEVICE_linksys_wrt1900ac-v2|\
 		TARGET_DEVICE_mvebu_cortexa9_DEVICE_linksys_wrt3200acm)
-			mods="$mods $extra_vpn $strongswan alist"
+			mods="$mods $extra_vpn $strongswan"
 		;;
 	esac
 	case $t in
