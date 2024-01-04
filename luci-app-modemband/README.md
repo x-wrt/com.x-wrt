@@ -39,10 +39,14 @@ Supported devices:
 - Quectel EM12-G
 - Quectel EM160R-GL
 - Quectel EP06-E
+- Quectel RG500Q-EA
 - Quectel RG502Q-EA
 - Quectel RM500Q-GL
 - Quectel RM502Q-AE
 - Quectel RM520N-GL
+- Sierra Wireless EM7455/MC7455/DW5811e
+- SIMCOM SIM8200EA-M2
+- Telit LM940
 - Telit LN940 (Foxconn T77W676)
 - Telit LN940 (Foxconn T77W676) in mbim mode
 - Telit LN960 (Foxconn T77W968)
@@ -51,7 +55,7 @@ Supported devices:
 - ZTE MF286A (router)
 - ZTE MF286D (router)
 - ZTE MF286R (router)
-- ZTE MF289F (router)
+- ZTE MF289R (router)
 
 ```
 
@@ -182,15 +186,15 @@ make V=s -j1 feeds/luci/applications/luci-app-modemband/compile
 
 > "Preferred LTE bands" window / Okno "Preferowane pasma LTE":
 
-![](https://github.com/4IceG/Personal_data/blob/master/zrzuty/luci-app-modemband_a.png?raw=true)
+![](https://github.com/4IceG/Personal_data/blob/master/zrzuty/luci-app-modemband_la.png?raw=true)
 
 > "Preferred 5G SA bands" window / Okno "Preferowane pasma 5G SA":
 
-![](https://github.com/4IceG/Personal_data/blob/master/zrzuty/luci-app-modemband_b.png?raw=true)
+![](https://github.com/4IceG/Personal_data/blob/master/zrzuty/luci-app-modemband_lb.png?raw=true)
 
 > "Preferred 5G NSA bands" window / Okno "Preferowane pasma 5G NSA":
 
-![](https://github.com/4IceG/Personal_data/blob/master/zrzuty/luci-app-modemband_c.png?raw=true)
+![](https://github.com/4IceG/Personal_data/blob/master/zrzuty/luci-app-modemband_lc.png?raw=true)
 
 > "Configuration" window / Okno "Konfiguracji":
 

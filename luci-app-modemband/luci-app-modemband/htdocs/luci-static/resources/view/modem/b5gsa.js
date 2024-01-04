@@ -9,8 +9,35 @@
 'require tools.widgets as widgets';
 
 /*
-	Copyright 2022-2023 Rafał Wabik - IceG - From eko.one.pl forum
+	Copyright 2022-2024 Rafał Wabik - IceG - From eko.one.pl forum
 */
+
+
+var CBISelectswitch = form.DummyValue.extend({
+    renderWidget: function(section_id, option_id, cfgvalue) {
+        var section = this.section;
+        return E([], [
+            E('span', { 'class': 'control-group' }, [
+                E('button', {
+                    'class': 'cbi-button cbi-button-apply',
+                    'click': ui.createHandlerFn(this, function() {
+                        var dropdown = section.getUIElement(section_id, 'set_5gsabands');
+                        dropdown.setValue([]);
+                    }),
+                }, _('Deselect all')),
+                ' ',
+                E('button', {
+                    'class': 'cbi-button cbi-button-action important',
+                    'click': ui.createHandlerFn(this, function() {
+                        var dropdown = section.getUIElement(section_id, 'set_5gsabands');
+                        dropdown.setValue(Object.keys(dropdown.choices));
+                    })
+                }, _('Select all'))
+            ])
+        ]);
+    },
+});
+
 
 var BANDmagic = form.DummyValue.extend({
 
@@ -119,6 +146,9 @@ var cbiRichListValue = form.ListValue.extend({
 			id: this.cbid(section_id),
 			sort: this.keylist,
 			optional: true,
+			multiple: true,
+			display_items: 5,
+			dropdown_items: 10,
 			select_placeholder: this.select_placeholder || this.placeholder,
 			custom_placeholder: this.custom_placeholder || this.placeholder,
 			validate: L.bind(this.validate, this, section_id),
@@ -148,14 +178,14 @@ function handleAction(ev) {
 	if (ev === 'reload') {
 		location.reload();
 	}
-	if (ev === 'resetbandz') {		
+	if (ev === 'resetbandz') {
 		if (confirm(_('Do you really want to set up all possible bands for the modem?')))
 			{
 			fs.exec_direct('/usr/bin/modemband.sh', [ 'setbands5gsa', 'default' ]);
 
 			return uci.load('modemband').then(function() {
 				var nuser = (uci.get('modemband', '@modemband[0]', 'notify'));
-				
+
 				if ( nuser != '1' || nuser == null ) {
 				ui.addNotification(null, E('p', _('The new bands settings have been sent to the modem. If the changes are not visible, a restart of the connection, modem or router may be required.')), 'info');
 				}
@@ -174,7 +204,7 @@ function handleAction(ev) {
 	if (ev === 'restartwan') {
 		return uci.load('modemband').then(function() {
 		var wname = (uci.get('modemband', '@modemband[0]', 'iface'));
-		
+
 			if (wname.includes('@')) {
 				wname = wname.replace(/@/g, '')
 			};
@@ -213,16 +243,16 @@ return view.extend({
 		else {
 
 		var modem = json.modem;
-		for (var i = 0; i < json.enabled5gsa.length; i++) 
+		for (var i = 0; i < json.enabled5gsa.length; i++)
 		{
 				var txtband = json.enabled5gsa[i].toString();
 				var numb = txtband.match(/\d+$/);
 				modemen += 'n' + numb + '  ';
 				modemen = modemen.replace('undefined', '');
 		}
-		modemen = modemen.trim();
+		modemen = modemen.includes('n0') == true ? modemen = _('Bands are disabled...') : modemen = modemen.trim();
 
-		for (var i = 0; i < json.supported5gsa.length; i++) 
+		for (var i = 0; i < json.supported5gsa.length; i++)
 		{
 				var txtband = json.supported5gsa[i].band.toString();
 				var numb = txtband.match(/\d+$/);
@@ -230,17 +260,17 @@ return view.extend({
 				sbands = sbands.replace('undefined', '');
 		}
 		sbands = sbands.trim();
-		
+
 		pollData: poll.add(function() {
 			return L.resolveDefault(fs.exec_direct('/usr/bin/modemband.sh', [ 'json' ]))
 			.then(function(res) {
 				var json = JSON.parse(res);
 				//modemen = _('Waiting for device...');
-				if ( json != null ) { 
+				if ( json != null ) {
 
 				var renderHTML = "";
 				var view = document.getElementById("modemlteb");
-				for (var i = 0; i < json.enabled5gsa.length; i++) 
+				for (var i = 0; i < json.enabled5gsa.length; i++)
 				{
 				var txtband = json.enabled5gsa[i].toString();
 				var numb = txtband.match(/\d+$/);
@@ -248,7 +278,7 @@ return view.extend({
 				view.innerHTML  = '';
   				view.innerHTML  = renderHTML.trim();
 				}
-
+				view.innerHTML = view.innerHTML.includes('n0') == true ? view.innerHTML = _('Bands are disabled...') : view.innerHTML  = renderHTML.trim();
 				}
 				else {
 				var view = document.getElementById("modemlteb");
@@ -258,7 +288,7 @@ return view.extend({
 			});
 		});
 		}
-		}		
+		}
 		else {
 			if (json.error.includes('No supported') == true) {
 			modemen = '-';
@@ -275,7 +305,7 @@ return view.extend({
 			} catch (err) {
   				console.log('Error: ', err.message);
 			}
-		}		
+		}
 
 		var info = _('Configuration modem frequency bands. More information about the modemband application on the %seko.one.pl forum%s.').format('<a href="https://eko.one.pl/?p=openwrt-modemband" target="_blank">', '</a>');
 
@@ -317,20 +347,22 @@ return view.extend({
 		else {
 
 		s.tab('bandset', _('Preferred bands settings'));
- 
+
 		o = s.taboption('bandset', cbiRichListValue, 'set_5gsabands',
-		_('Modification of the bands'), 
+		_('Modification of the bands'),
 		_("Select the preferred band(s) for the modem."));
-		for (var i = 0; i < json.supported5gsa.length; i++) 
+		for (var i = 0; i < json.supported5gsa.length; i++)
 		{
 			o.value(json.supported5gsa[i].band, _('n')+json.supported5gsa[i].band,json.supported5gsa[i].txt);
 		}
-		
+
 		o.multiple = true;
 		o.placeholder = _('Please select a band(s)');
 		o.cfgvalue = function(section_id) {
 			return L.toArray((json.enabled5gsa).join(' '));
 		};
+
+		o = s.taboption('bandset', CBISelectswitch, '_switch', _('Band selection switch'));
 
 		s = m.section(form.TypedSection);
 		s.anonymous = true;
@@ -351,7 +383,7 @@ return view.extend({
 
 		o = s.taboption('opt1', SYSTmagic);
 		}
-		
+
 		return m.render();
 	},
 
@@ -371,18 +403,18 @@ return view.extend({
 				var mrestart = (uci.get('modemband', '@modemband[0]', 'modemrestart'));
 				var cmdrestart = (uci.get('modemband', '@modemband[0]', 'restartcmd'));
 				var wname = (uci.get('modemband', '@modemband[0]', 'iface'));
-				
+
 				if (wname.includes('@')) {
 					wname = wname.replace(/@/g, '')
 				};
-				
+
 				var sport = (uci.get('modemband', '@modemband[0]', 'set_port'));
 				var nuser = (uci.get('modemband', '@modemband[0]', 'notify'));
-				
+
 				if ( nuser != '1' || nuser == null ) {
 				ui.addNotification(null, E('p', _('The new bands settings have been sent to the modem. If the changes are not visible, a restart of the connection, modem or router may be required.')), 'info');
 				}
-				
+
 				if (wrestart == '1') {
 				fs.exec('/sbin/ifdown', [ wname ]);
 				fs.exec('sleep 3');

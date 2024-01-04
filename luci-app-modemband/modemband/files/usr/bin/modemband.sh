@@ -1,10 +1,11 @@
 #!/bin/sh
 
 #
-# (c) 2022-2023 Cezary Jackiewicz <cezary@eko.one.pl>
+# (c) 2022-2024 Cezary Jackiewicz <cezary@eko.one.pl>
 #
 
 hextobands() {
+	BANDS=""
 	HEX="$1"
 	LEN=${#HEX}
 	if [ $LEN -gt 18 ]; then

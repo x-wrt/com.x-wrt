@@ -7,14 +7,14 @@
 'require tools.widgets as widgets'
 
 /*
-	Copyright 2022-2023 Rafał Wabik - IceG - From eko.one.pl forum
+	Copyright 2022-2024 Rafał Wabik - IceG - From eko.one.pl forum
 */
 
 return view.extend({
 	load: function() {
 		return fs.list('/dev').then(function(devs) {
 			return devs.filter(function(dev) {
-				return dev.name.match(/^ttyUSB/) || dev.name.match(/^cdc-wdm/) || dev.name.match(/^ttyACM/) || dev.name.match(/^mhi_/);
+				return dev.name.match(/^ttyUSB/) || dev.name.match(/^cdc-wdm/) || dev.name.match(/^ttyACM/) || dev.name.match(/^mhi_/) || dev.name.match(/^wwan/);
 			});
 		});
 	},
@@ -26,17 +26,27 @@ return view.extend({
 		s = m.section(form.TypedSection, 'modemband', '', null);
 		s.anonymous = true;
 
+/*		Old config
 		o = s.option(widgets.DeviceSelect, 'iface', _('Interface'),
 		_('Network interface for Internet access.')
 		);
 		o.noaliases  = false;
 		o.default = 'wan';
+*/
 
-		o = s.option(form.Value, 'set_port', _('Port for communication with the modem'), 
+		o = s.option(widgets.NetworkSelect, 'iface', _('Interface'),
+		_('Network interface for Internet access.')
+		);
+		o.exclude = s.section;
+		o.nocreate = true;
+		o.rmempty = false;
+		o.default = 'wan';
+
+		o = s.option(form.Value, 'set_port', _('Port for communication with the modem'),
 			_("Select one of the available ttyUSBX ports."));
 		devs.sort((a, b) => a.name > b.name);
 		devs.forEach(dev => o.value('/dev/' + dev.name));
-		
+
 		o.placeholder = _('Please select a port');
 		o.rmempty = false;
 
