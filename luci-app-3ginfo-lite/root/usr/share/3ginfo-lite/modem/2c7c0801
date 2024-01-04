@@ -108,7 +108,7 @@ if [ "x$MODE_NUM" = "x7" ]; then
 		T=$(echo "$O" | awk -F[,:] '/^\+QENG:/ {print $14}')
 		TAC_DEC=$(printf "%d" "0x$T")
 		TAC_HEX=$T
-		T=$(echo "$O" | awk -F[,:] '/^\+QENG:/ {print $18}' | awk '{printf "%.1f\n", 0.2*$1*10 - 20}')
+		T=$(echo "$O" | awk -F[,:] '/^\+QENG:/ {print $18}' | awk '{printf "%.0f\n", 0.2*$1*10 - 20}')
 		SINR=$T
 		T=$(echo "$O" | awk -F[,:] '/^\+QENG:/ {print $12}')
 		case $T in
@@ -198,7 +198,7 @@ if [ "x$MODE_NUM" = "x13" ]; then
 			TAC_DEC=$(printf "%d" "0x$T")
 			TAC_HEX=$T
 
-			T=$(echo "$LINE" | awk -F[,:] '/^\+QENG:/ {print $16}' | awk '{printf "%.1f\n", 0.2*$1*10 - 20}')
+			T=$(echo "$LINE" | awk -F[,:] '/^\+QENG:/ {print $16}' | awk '{printf "%.0f\n", 0.2*$1*10 - 20}')
 			SINR=$T
 			T=$(echo "$LINE" | awk -F[,:] '/^\+QENG:/ {print $10}')
 			case $T in
