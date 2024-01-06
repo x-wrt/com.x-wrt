@@ -393,6 +393,8 @@ for t in $targets; do
 	excludes="$excludes_basic"
 	case $t in
 		#>=32M flash
+		TARGET_DEVICE_qualcommax_ipq807x_DEVICE_linksys_mx4200v1|\
+		TARGET_DEVICE_qualcommax_ipq807x_DEVICE_linksys_mx4200v2|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_zbtlink_zbt-z8103ax|\
 		TARGET_DEVICE_qualcommax_ipq807x_DEVICE_cmcc_rm2-6|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_abt_asr3000-ubootlayout|\
@@ -501,6 +503,8 @@ for t in $targets; do
 	esac
 	case $t in
 		#>=14M flash
+		TARGET_DEVICE_qualcommax_ipq807x_DEVICE_linksys_mx4200v1|\
+		TARGET_DEVICE_qualcommax_ipq807x_DEVICE_linksys_mx4200v2|\
 		TARGET_DEVICE_ipq40xx_generic_DEVICE_linksys_ea6350v3|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_zbtlink_zbt-z8103ax|\
 		TARGET_DEVICE_qualcommax_ipq807x_DEVICE_cmcc_rm2-6|\
@@ -1421,6 +1425,8 @@ for t in $targets; do
 			has_usb=1
 		;;
 		#no usb
+		TARGET_DEVICE_qualcommax_ipq807x_DEVICE_linksys_mx4200v1|\
+		TARGET_DEVICE_qualcommax_ipq807x_DEVICE_linksys_mx4200v2|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_zbtlink_zbt-z8103ax|\
 		TARGET_DEVICE_qualcommax_ipq807x_DEVICE_netgear_wax620|\
 		TARGET_DEVICE_qualcommax_ipq807x_DEVICE_cmcc_rm2-6|\
