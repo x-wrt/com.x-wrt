@@ -447,7 +447,7 @@ for t in $targets; do
 		TARGET_DEVICE_mediatek_filogic_DEVICE_xiaomi_mi-router-wr30u-112m-nmbm|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_xiaomi_mi-router-wr30u-stock|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_xiaomi_mi-router-wr30u-ubootmod|\
-		TARGET_DEVICE_mediatek_filogic_DEVICE_xiaomi_mi-router-ax3000t-stock|\
+		TARGET_DEVICE_mediatek_filogic_DEVICE_xiaomi_mi-router-ax3000t|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_xiaomi_mi-router-ax3000t-ubootmod|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_acer_predator-w6|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_bananapi_bpi-r3|\
@@ -570,7 +570,7 @@ for t in $targets; do
 		TARGET_DEVICE_mediatek_filogic_DEVICE_xiaomi_mi-router-wr30u-112m-nmbm|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_xiaomi_mi-router-wr30u-stock|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_xiaomi_mi-router-wr30u-ubootmod|\
-		TARGET_DEVICE_mediatek_filogic_DEVICE_xiaomi_mi-router-ax3000t-stock|\
+		TARGET_DEVICE_mediatek_filogic_DEVICE_xiaomi_mi-router-ax3000t|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_xiaomi_mi-router-ax3000t-ubootmod|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_acer_predator-w6|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_bananapi_bpi-r3|\
@@ -1479,7 +1479,7 @@ for t in $targets; do
 		TARGET_DEVICE_mediatek_filogic_DEVICE_xiaomi_mi-router-wr30u-112m-nmbm|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_xiaomi_mi-router-wr30u-stock|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_xiaomi_mi-router-wr30u-ubootmod|\
-		TARGET_DEVICE_mediatek_filogic_DEVICE_xiaomi_mi-router-ax3000t-stock|\
+		TARGET_DEVICE_mediatek_filogic_DEVICE_xiaomi_mi-router-ax3000t|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_xiaomi_mi-router-ax3000t-ubootmod|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_acer_predator-w6|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_yuncore_ax820|\
