@@ -1,0 +1,142 @@
+#!/bin/sh
+
+. /lib/functions.sh
+. /lib/functions/network.sh
+. /lib/mwan3/common.sh
+. /lib/mwan3/mwan3.sh
+
+mwan3_rtmon_route_handle()
+{
+	config_load mwan3
+	local section action route_line family tbl device metric tos dst line tid id
+	route_line=${1##"Deleted "}
+	route_family=$2
+
+	if [ "$route_family" = "ipv4" ]; then
+		IP="$IP4"
+	elif [ "$route_family" = "ipv6" ] && [ $NO_IPV6 -eq 0 ]; then
+		IP="$IP6"
+	else
+		return
+	fi
+
+	if [ "$route_line" == "$1" ]; then
+		action="add"
+	else
+		action="del"
+	fi
+
+	[ "$route_family" = "ipv6" ] &&
+	if [ -z "${route_line##default from*}" ] || [ -z "${route_line##::/0 from*}" ]; then
+		echo $route_line | sed 's/.* from \([^ ]*\) .*dev \([^ ]*\) .*/\1 \2/' | while read from dev; do
+			interface=$(ip6tables -t nat -S POSTROUTING | grep masq-help-.*-dev | grep "o $dev " | sed 's/.* mwan3_\([^ ]*\)_ipv6_src_from.*/\1/')
+			[ -n "$interface" ] && {
+				INTERFACE=$interface DEVICE=$dev ACTION=ifup mwan3_ipv6_masq_help
+				LOG debug "call INTERFACE=$interface DEVICE=$dev ACTION=ifup mwan3_ipv6_masq_help by($action $route_line)"
+			}
+		done
+		return
+	fi
+
+	# never add default route lines, since this is handled elsewhere
+	[ -z "${route_line##default*}" ] && return
+	[ -z "${route_line##::/0*}" ] && return
+	[ -z "${route_line##fe80:*}" ] && return
+	route_line=${route_line%% linkdown*}
+	route_line=${route_line%% unreachable*}
+	mwan3_update_dev_to_table
+	mwan3_route_line_dev "tid" "$route_line" "$route_family"
+	handle_route() {
+		tbl=$($IP route list table $id 2>/dev/null)
+		if [ $action = "add" ]; then
+			echo "$tbl" | grep -q "^default\|^::/0" || return
+		else
+			[ -z "$tbl" ] && return
+		fi
+		# check that action needs to be performed. May not need to take action if:
+		# Got a route update on ipv6 where route is already in the table
+		# Got a delete event, but table was already flushed
+
+		[ $action = "add" ] && [ -z "${tbl##*$route_line*}" ] && return
+		[ $action = "del" ] && [ -n "${tbl##*$route_line*}" ] && return
+		network_get_device device "$section"
+
+		[ "$tid" != "$id" ] && [ -z "${route_line##* scope link*}" ] && \
+		[ -n "${route_line##* metric *}" ] && \
+		$IP route "$action" table $id $route_line metric ${tid:-256} && {
+			LOG debug "adjusting route $device: $IP route "$action" table $id $route_line metric ${tid:-256}"
+			return
+		}
+		[ "$tid" == "$id" ] && [ -z "${route_line##* scope link*}" ] && \
+		[ -z "${route_line##* metric *}" ] && \
+		$IP route "$action" table $id ${route_line%% metric *} && {
+			LOG debug "adjusting route $device: $IP route "$action" table $id ${route_line%% metric *}"
+			return
+		}
+
+		LOG debug "adjusting route $device: $IP route "$action" table $id $route_line"
+		$IP route "$action" table $id $route_line || {
+			#add fail? check change/replace
+			if [ $action = "add" ]; then
+				## handle old routes from 'change' or 'replace'
+				metric=${route_line##*metric }
+				[ "$metric" = "$route_line" ] && unset metric || metric=${metric%% *}
+
+				tos=${route_line##*tos }
+				[ "$tos" = "$route_line" ] && unset tos || tos=${tos%% *}
+
+				dst=${route_line%% *}
+				grep_line="^$dst ${tos:+tos $tos}.*table [0-9].*${metric:+metric $metric}"
+				$IP route list table all | grep "$grep_line" | while read line; do
+					tbl=${line##*table }
+					tbl=${tbl%% *}
+					[ $tbl -gt $MWAN3_INTERFACE_MAX ] && continue
+					LOG debug "removing route on ip route change/replace: $line"
+					$IP route del $line
+				done
+			fi
+			# just retry add
+			$IP route "$action" table $id $route_line ||
+				LOG warn "failed2: $IP route $action table $id $route_line"
+		}
+	}
+	handle_route_cb(){
+		let id++
+		config_get family "$section" family "any"
+		[ "$family" != "$route_family" ] && [ "$family" != "any" ] && return
+		handle_route
+	}
+
+	id=0 config_foreach handle_route_cb interface
+
+	mwan3_set_connected_${route_family}
+}
+
+main()
+{
+	local IP family
+
+	config_load mwan3
+	family=$1
+	[ -z $family ] && family=ipv4
+	if [ "$family" = ipv6 ]; then
+		IP="$IP6"
+	else
+		IP="$IP4"
+	fi
+	mwan3_init
+
+	mwan3_set_local_${family}
+	mwan3_set_connected_${family}
+
+	$IP monitor route | while read -r line; do
+		[ -z "${line##*local*table local*}" ] && {
+			mwan3_set_local_${family}
+			continue
+		}
+		[ -z "${line##*table*}" ] && continue
+		LOG debug "handling route update $family $line"
+		mwan3_rtmon_route_handle "$line" "$family"
+	done
+}
+main "$@"

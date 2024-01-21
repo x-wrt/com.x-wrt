@@ -1,0 +1,34 @@
+#!/bin/sh
+
+[ -f "/etc/mwan3.user" ] && {
+	. /lib/functions.sh
+	. /lib/functions/network.sh
+	. /lib/mwan3/common.sh
+	. /lib/mwan3/mwan3.sh
+
+	#skip hotplug.d action if not total init start
+	[ "$MWAN3_STARTUP" != 1 ] && test -e /var/run/mwan3.init && exit 0
+
+	[ "$MWAN3_STARTUP" != 1 ] && mwan3_lock "$ACTION" "$INTERFACE-user"
+
+	config_load mwan3
+	mwan3_init
+	config_get_bool enabled globals 'enabled' '0'
+	[ "${enabled}" -gt 0 ] || {
+		[ "$MWAN3_STARTUP" != 1 ] && mwan3_unlock "$ACTION" "$INTERFACE-user"
+		exit 0
+	}
+
+	config_get_bool enabled "$INTERFACE" enabled 0
+	[ "${enabled}" -eq 1 ] || {
+		[ "$MWAN3_STARTUP" != 1 ] && mwan3_unlock "$ACTION" "$INTERFACE-user"
+		exit 0
+	}
+
+	[ "$MWAN3_STARTUP" != 1 ] && mwan3_unlock "$ACTION" "$INTERFACE-user"
+
+	env -i ACTION="$ACTION" INTERFACE="$INTERFACE" DEVICE="$DEVICE" \
+		/bin/sh /etc/mwan3.user
+}
+
+exit 0

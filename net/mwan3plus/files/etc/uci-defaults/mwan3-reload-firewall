@@ -1,0 +1,9 @@
+#!/bin/sh
+
+uci -q batch <<-EOT
+	delete firewall.mwan3_ipv6_masq
+	delete firewall.mwan3
+	commit firewall
+EOT
+
+exit 0

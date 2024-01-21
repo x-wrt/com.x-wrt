@@ -1,0 +1,386 @@
+#!/bin/sh
+
+. /lib/functions.sh
+. /usr/share/libubox/jshn.sh
+. /lib/functions/network.sh
+. /lib/mwan3/mwan3.sh
+. /lib/mwan3/common.sh
+
+command_help() {
+	local cmd="$1"
+	local help="$2"
+	echo "$(printf "%-27s%s" "${cmd}" "${help}")"
+}
+
+help()
+{
+	cat <<EOF
+Syntax: mwan3 [command]
+
+Available commands:
+EOF
+	command_help "start" "Load iptables rules, ip rules and ip routes"
+	command_help "stop" "Unload iptables rules, ip rules and ip routes"
+	command_help "restart" "Reload iptables rules, ip rules and ip routes"
+	command_help "ifup <iface>" "Load rules and routes for specific interface"
+	command_help "ifdown <iface>" "Unload rules and routes for specific interface"
+	command_help "interfaces" "Show interfaces status"
+	command_help "policies" "Show currently active policy"
+	command_help "rules" "Show active rules"
+	command_help "status" "Show all status"
+	command_help "internal <ipv4|ipv6>" "Show internal configuration <default: ipv4>"
+	command_help "use <iface> <family> <cmd>"   "Run a command bound to <iface> and avoid mwan3 rules"
+}
+
+ifdown()
+{
+	if [ -z "$1" ]; then
+		echo "Error: Expecting interface. Usage: mwan3 ifdown <interface>" && return 0
+	fi
+
+	if [ -n "$2" ]; then
+		echo "Error: Too many arguments. Usage: mwan3 ifdown <interface>" && return 0
+	fi
+
+	ACTION=ifdown INTERFACE=$1 /sbin/hotplug-call iface
+
+	for family in "ipv4" "ipv6"; do
+
+	kill $(pgrep -f "mwan3track $family $1 ") &> /dev/null
+	mwan3_track_clean $1 $family
+
+	done
+}
+
+ifup()
+{
+	local enabled up l3_device status interface true_iface family family_list
+
+	if [ -z "$1" ]; then
+		echo "Expecting interface. Usage: mwan3 ifup <interface>"
+		return 0
+	fi
+
+	interface=$1
+
+	if [ "${MWAN3_STARTUP}" != 1 ]; then
+		# It is not necessary to obtain a lock here, because it is obtained in the hotplug
+		# script, but we still want to do the check to print a useful error message
+		config_get_bool enabled globals 'enabled' 0
+
+		[ ${enabled} -gt 0 ] || {
+			echo "The service mwan3 is global disabled."
+			echo "Please execute \"/etc/init.d/mwan3 start\" first."
+			return 1
+		}
+	else
+		enabled=1
+	fi
+
+	[ "$enabled" != "1" ] && return
+
+	config_get family_list "$1" family "any"
+	[ "$family_list" = "any" ] && family_list="ipv4 ipv6"
+	for family in $family_list; do
+
+	mwan3_get_true_iface true_iface $interface $family
+	status=$(ubus -S call network.interface.$true_iface status)
+
+	[ -n "$status" ] && {
+		json_load "$status"
+		json_get_vars up l3_device
+	}
+
+	if [ "$up" != "1" ] || [ -z "$l3_device" ]; then
+		continue
+	fi
+
+	hotplug_startup()
+	{
+		MWAN3_STARTUP=$MWAN3_STARTUP ACTION=ifup INTERFACE=$interface DEVICE=$l3_device FAMILY=$family sh /etc/hotplug.d/iface/15-mwan3
+		MWAN3_STARTUP=$MWAN3_STARTUP ACTION=ifup INTERFACE=$interface DEVICE=$l3_device FAMILY=$family sh /etc/hotplug.d/iface/16-mwan3-user
+	}
+
+	if [ "${MWAN3_STARTUP}" = 1 ]; then
+		hotplug_startup &
+		hotplug_pids="$hotplug_pids $!"
+	else
+		hotplug_startup
+	fi
+
+	done
+}
+
+interfaces()
+{
+	echo "Interface status:"
+	config_foreach mwan3_report_iface_status interface
+	echo
+}
+
+policies()
+{
+	echo "Current ipv4 policies:"
+	mwan3_report_policies_v4
+	echo
+	[ $NO_IPV6 -ne 0 ] && return
+	echo "Current ipv6 policies:"
+	mwan3_report_policies_v6
+	echo
+}
+
+rules()
+{
+	echo "Active ipv4 user rules:"
+	mwan3_report_rules_v4
+	echo
+	[ $NO_IPV6 -ne 0 ] && return
+	echo "Active ipv6 user rules:"
+	mwan3_report_rules_v6
+	echo
+}
+
+status()
+{
+	interfaces
+	policies
+	rules
+}
+
+internal()
+{
+	local family="$1"
+	local dash="-------------------------------------------------"
+
+	if [ -f "/etc/openwrt_release" ]; then
+		. /etc/openwrt_release
+	fi
+
+	local ipt ip output
+
+	if [ "$family" = "ipv6" ]; then
+		ipt="$IPT6"
+		ip="$IP6"
+	else
+		ipt="$IPT4"
+		ip="$IP4"
+	fi
+
+	echo "Software-Version"
+	echo "$dash"
+
+	if [ "$DISTRIB_RELEASE" != "" ]; then
+		echo "$DISTRIB_ID - $DISTRIB_RELEASE"
+	else
+		echo "$DISTRIB_ID - unknown"
+	fi
+
+	echo ""
+	echo "Output of \"$ip a show\""
+	echo "$dash"
+	output="$($ip a show)"
+	if [ "$output" != "" ]; then
+		echo "$output"
+	else
+		echo "No data found"
+	fi
+
+	echo ""
+	echo "Output of \"$ip route show\""
+	echo "$dash"
+	output="$($ip route show)"
+	if [ "$output" != "" ]; then
+		echo "$output"
+	else
+		echo "No data found"
+	fi
+
+	echo ""
+	echo "Output of \"$ip rule show\""
+	echo "$dash"
+	output="$($ip rule show)"
+	if [ "$output" != "" ]; then
+		echo "$output"
+	else
+		echo "No data found"
+	fi
+
+	echo ""
+	echo "Output of \"$ip route list table 1-250\""
+	echo "$dash"
+	local dump=0
+	for i in $(seq 1 250); do
+		output=$($ip route list table $i 2>/dev/null)
+		if [ "$output" != "" ];then
+			dump=1
+			echo "Routing table $i:"
+			echo "$output"
+			echo ""
+		fi
+	done
+	if [ "$dump" = "0" ]; then
+		echo "No data found"
+		echo ""
+	fi
+
+	echo "Output of \"$ipt -L -v -n\""
+	echo "$dash"
+	output="$($ipt -L -v -n)"
+	if [ "$output" != "" ]; then
+		echo "$output"
+	else
+		echo "No data found"
+	fi
+}
+
+start()
+{
+	local enabled hotplug_pids MWAN3_STARTUP
+	MWAN3_STARTUP=1
+
+	#Priority to get the lock
+	touch /var/run/mwan3.init
+	mwan3_lock "command" "mwan3"
+	uci_toggle_state mwan3 globals enabled "1"
+	rm -f /var/run/mwan3.init
+
+	mwan3_set_local_ipset
+	mwan3_set_connected_ipset
+	mwan3_set_general_rules
+	mwan3_set_general_iptables
+	config_foreach ifup interface
+	wait $hotplug_pids
+	mwan3_add_all_nondefault_routes
+	mwan3_set_policies_iptables
+	mwan3_set_user_rules
+
+	mwan3_unlock "command" "mwan3"
+	mwan3_rtmon
+	unset MWAN3_STARTUP
+}
+
+stop()
+{
+	local ipset rule IP IPTR IPT kill_pid family table tid
+
+	#Priority to get the lock
+	touch /var/run/mwan3.init
+	mwan3_lock "command" "mwan3"
+	uci_toggle_state mwan3 globals enabled "0"
+	rm -f /var/run/mwan3.init
+
+	{
+		kill -TERM $(pgrep -f "ip -4 monitor route") > /dev/null 2>&1
+		kill -TERM $(pgrep -f "ip -6 monitor route") > /dev/null 2>&1
+		kill -TERM $(pgrep -f "mwan3rtmon") > /dev/null 2>&1
+		kill -TERM $(pgrep -f "mwan3track") > /dev/null 2>&1
+
+		sleep 1
+
+		kill -KILL $(pgrep -f "ip -4 monitor route") > /dev/null 2>&1
+		kill -KILL $(pgrep -f "ip -6 monitor route") > /dev/null 2>&1
+		kill -KILL $(pgrep -f "mwan3rtmon") > /dev/null 2>&1
+		kill -KILL $(pgrep -f "mwan3track") > /dev/null 2>&1
+	} &
+	kill_pid=$!
+	config_foreach mwan3_track_clean interface
+
+	for family in ipv4 ipv6; do
+		if [ "$family" = "ipv4" ]; then
+			IPT="$IPT4"
+			IPTR="$IPT4R"
+			IP="$IP4"
+		elif [ "$family" = "ipv6" ]; then
+			[ $NO_IPV6 -ne 0 ] && continue
+			IPT="$IPT6"
+			IPTR="$IPT6R"
+			IP="$IP6"
+		fi
+
+		for tid in $(ip route list table all | sed -ne 's/.*table \([0-9]\+\).*/\1/p' | sort -u); do
+			[ $tid -gt $MWAN3_INTERFACE_MAX ] && continue
+			$IP route flush table $tid &> /dev/null
+		done
+
+		for rule in $($IP rule list | grep -E '^[1-3][0-9]{3}\:' | cut -d ':' -f 1); do
+			$IP rule del pref $rule &> /dev/null
+		done
+		table="$($IPT -S 2>/dev/null)"
+		{
+			echo "*mangle";
+			[ -z "${table##*PREROUTING -j mwan3_hook*}" ] && echo "-D PREROUTING -j mwan3_hook"
+			[ -z "${table##*OUTPUT -j mwan3_hook*}" ] && echo "-D OUTPUT -j mwan3_hook"
+			echo "$table" | awk '{print "-F "$2}' | grep mwan3 | sort -u
+			echo "$table" | awk '{print "-X "$2}' | grep mwan3 | sort -u
+			echo "COMMIT"
+		} | $IPTR
+	done
+
+	for ipset in $($IPS -n list | grep mwan3_); do
+		$IPS -q destroy $ipset
+	done
+
+	for ipset in $($IPS -n list | grep mwan3 | grep -E '_v4|_v6'); do
+		$IPS -q destroy $ipset
+	done
+
+	if ! pgrep -f "mwan3track" >/dev/null && ! pgrep -f "mwan3rtmon" >/dev/null; then
+		# mwan3track has already exited, no need to send
+		# TERM signal
+		kill $kill_pid 2>/dev/null
+	else
+		# mwan3track has not exited, wait for the killer
+		# to do its work
+		wait $kill_pid
+	fi
+	rm -rf $MWAN3_STATUS_DIR $MWAN3TRACK_STATUS_DIR
+
+	mwan3_ipv6_masq_cleanup
+
+	mwan3_unlock "command" "mwan3"
+
+}
+
+restart() {
+	stop
+	start
+}
+
+use() {
+	local interface device src_ip family ipv
+
+	[ -z "$*" ] && echo "no interface specified for mwan3 use" && return
+	interface=$1; shift
+	[ -z "$*" ] && echo "no family specified for mwan3 use" && return
+	ipv=$1; shift
+	[ -z "$*" ] && echo "no command specified for mwan3 use" && return
+	network_get_device device $interface
+	[ -z "$device" ] && echo "could not find device for $interface" && return
+
+	config_get family "$interface" family "any"
+	[ "$family" = "any" ] && family=$ipv
+	[ "$family" != "$ipv" ] && echo "family specified no equal to interface family" && return
+
+	if [ "$family" = "ipv6" ]; then
+		mwan3_get_src_ip6 src_ip $interface
+	else
+		mwan3_get_src_ip src_ip $interface
+	fi
+
+	echo FAMILY=$family DEVICE=$device SRCIP=$src_ip FWMARK=$MMX_MASK LD_PRELOAD=/lib/mwan3/libwrap_mwan3_sockopt.so.1.0 $*
+	FAMILY=$family DEVICE=$device SRCIP=$src_ip FWMARK=$MMX_MASK LD_PRELOAD=/lib/mwan3/libwrap_mwan3_sockopt.so.1.0 $*
+}
+
+case "$1" in
+	ifup|ifdown|interfaces|policies|rules|status|start|stop|restart|use|internal)
+		config_load mwan3
+		mwan3_init
+		# shellcheck disable=SC2048
+		$*
+	;;
+	*)
+		help
+	;;
+esac
+
+exit 0

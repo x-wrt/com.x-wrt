@@ -1,0 +1,167 @@
+#!/bin/sh
+
+. /lib/functions.sh
+. /lib/functions/network.sh
+. /lib/mwan3/common.sh
+. /lib/mwan3/mwan3.sh
+
+SCRIPTNAME="mwan3-hotplug"
+
+[ -n "$INTERFACE" ] || exit 2
+
+# 'ifupdate' treat as 'ifup'
+[ "$ACTION" = ifupdate -a -z "$IFUPDATE_ADDRESSES" -a -z "$IFUPDATE_DATA" ] && exit 0
+[ "$ACTION" = ifupdate ] && ACTION="ifup"
+
+[ "$ACTION" = "ifup" ] || [ "$ACTION" = "ifdown" ] || [ "$ACTION" = "connected" ] || [ "$ACTION" = "disconnected" ] || exit 1
+if { [ "$ACTION" = "ifup" ] || [ "$ACTION" = "connected" ] ; } && [ -z "$DEVICE" ]; then
+	LOG notice "$ACTION called on $INTERFACE with no device set"
+	exit 3
+fi
+
+#skip hotplug.d action if not total init start
+[ "$MWAN3_STARTUP" != 1 ] && test -e /var/run/mwan3.init && exit 0
+
+[ "$MWAN3_STARTUP" != 1 ] && mwan3_lock "$ACTION" "$INTERFACE"
+
+config_load mwan3
+
+config_get_bool enabled globals 'enabled' '0'
+[ "${enabled}" -gt 0 ] || {
+	[ "$MWAN3_STARTUP" != 1 ] && mwan3_unlock "$ACTION" "$INTERFACE"
+	LOG notice "mwan3 hotplug on $INTERFACE not called because globally disabled"
+	exit 0
+}
+
+mwan3_init
+
+[ $NEED_IPV4 -ne 0 ] && {
+	$IPT4 -S mwan3_hook &>/dev/null || {
+		[ "$MWAN3_STARTUP" != 1 ] && mwan3_unlock "$ACTION" "$INTERFACE"
+		LOG warn "hotplug called on $INTERFACE(ipv4) before mwan3 has been set up"
+		exit 0
+	}
+}
+[ $NEED_IPV6 -ne 0 ] && {
+	$IPT6 -S mwan3_hook &>/dev/null || {
+		[ "$MWAN3_STARTUP" != 1 ] && mwan3_unlock "$ACTION" "$INTERFACE"
+		LOG warn "hotplug called on $INTERFACE(ipv6) before mwan3 has been set up"
+		exit 0
+	}
+}
+
+config_get initial_state $INTERFACE initial_state "online"
+config_get_bool enabled $INTERFACE 'enabled' '0'
+
+FAMILY=$FAMILY
+
+# XXX: ifup event on wan_6 but we use wan as interface
+if [ "${enabled}" -ne 1 ] && [ "${INTERFACE}" != "${INTERFACE%_6}" ]; then
+	INTERFACE=${INTERFACE%_6}
+	config_get_bool enabled $INTERFACE 'enabled' '0'
+	FAMILY="ipv6"
+fi
+# XXX: ifup event on wan_4 but we use wan as interface
+if [ "${enabled}" -ne 1 ] && [ "${INTERFACE}" != "${INTERFACE%_4}" ]; then
+	INTERFACE=${INTERFACE%_4}
+	config_get_bool enabled $INTERFACE 'enabled' '0'
+	FAMILY="ipv4"
+fi
+
+[ "${enabled}" -ne 1 ] && {
+	[ "$MWAN3_STARTUP" != 1 ] && mwan3_unlock "$ACTION" "$INTERFACE"
+	LOG notice "mwan3 hotplug on $INTERFACE not called because interface disabled"
+	exit 0
+}
+
+familys="$FAMILY"
+if [ "$familys" != "ipv4" ] && [ "$familys" != "ipv6" ]; then
+	config_get familys "$INTERFACE" family "any"
+	[ "$familys" = "any" ] && familys="ipv4 ipv6"
+fi
+
+if [ -z "$DELAY_HOTPLUG" ] && [ "$MWAN3_STARTUP" != 1 ] && [ "$(uci show mwan3 | grep =interface | wc -l)" -ge 10 ]; then
+	mwan3_unlock "$ACTION" "$INTERFACE"
+	if [ "$ACTION" = "ifup" ] || [ "$ACTION" = "ifdown" ]; then
+		for family in $familys; do
+			trackpid=$(pgrep -f "mwan3track $family $INTERFACE ")
+			kill -TERM $trackpid > /dev/null 2>&1
+		done
+	fi
+	DELAY_HOTPLUG=1 MWAN3_STARTUP=2 ACTION=$ACTION INTERFACE=$INTERFACE DEVICE=$DEVICE FAMILY=$FAMILY mwan3_delay_hotplug_call
+	exit 0
+fi
+
+[ "$MWAN3_STARTUP" != 1 ] && [ "$ACTION" = "ifup" ] && {
+	mwan3_set_user_iface_rules $INTERFACE $DEVICE
+}
+
+FAMILY="$familys"
+for family in $FAMILY; do
+
+trackpid=$(pgrep -f "mwan3track $family $INTERFACE ")
+
+if [ "$initial_state" = "offline" ]; then
+	status=$(cat $MWAN3TRACK_STATUS_DIR/$INTERFACE.$family/STATUS 2>/dev/null || echo unknown)
+else
+	status=online
+fi
+
+binary_status=$status
+[ "$binary_status" = "online" ] || binary_status=offline
+
+LOG notice "Execute $ACTION event on interface $INTERFACE($family) (${DEVICE:-unknown})"
+
+case "$ACTION" in
+	ifup|connected)
+		[ "$MWAN3_STARTUP" != 1 ] && mwan3_set_general_rules
+		[ "$MWAN3_STARTUP" != 1 ] && mwan3_set_general_iptables
+		mwan3_create_iface_iptables $INTERFACE $DEVICE $family
+		mwan3_create_iface_rules $INTERFACE $DEVICE $family
+		mwan3_create_iface_route $INTERFACE $DEVICE $family
+		[ "$MWAN3_STARTUP" != 1 ] && mwan3_add_non_default_iface_route $INTERFACE $DEVICE $family
+
+		mwan3_set_iface_hotplug_state $INTERFACE "$binary_status" $family
+
+		if [ "$MWAN3_STARTUP" != 1 ] && mwan3_state_is_changed; then
+			LOG notice "mwan3_set_policies_iptables interface $INTERFACE($family) (${DEVICE})"
+			mwan3_set_policies_iptables
+		fi
+
+		[ "$family" = "ipv6" ] && INTERFACE=$INTERFACE DEVICE=$DEVICE ACTION=ifup mwan3_ipv6_masq_help
+
+		[ "$ACTION" = "ifup" ] && {
+			if [ -n "${trackpid}" ]; then
+				mwan3_track $INTERFACE $DEVICE "$binary_status" $family
+				LOG notice "Restarted tracker [${trackpid}]->[$!] on interface $INTERFACE($family) (${DEVICE})"
+			else
+				mwan3_track $INTERFACE $DEVICE "$binary_status" $family
+				LOG notice "Started tracker [$!] on interface $INTERFACE($family) (${DEVICE})"
+			fi
+		}
+	;;
+	ifdown|disconnected)
+		[ "$family" = "ipv6" ] && INTERFACE=$INTERFACE DEVICE=$DEVICE ACTION=ifdown mwan3_ipv6_masq_help
+
+		mwan3_set_iface_hotplug_state $INTERFACE "offline" $family
+
+		mwan3_delete_iface_ipset_entries $INTERFACE $family
+		mwan3_delete_iface_rules $INTERFACE $family
+		mwan3_delete_iface_route $INTERFACE $family
+		mwan3_delete_iface_iptables $INTERFACE $family
+		if [ "$ACTION" = "ifdown" ]; then
+			[ -n "$trackpid" ] && kill -USR1 "$trackpid"
+		fi
+		if [ "$MWAN3_STARTUP" != 1 ] && mwan3_state_is_changed; then
+			mwan3_set_policies_iptables
+		fi
+	;;
+esac
+
+done
+
+mwan3_flush_conntrack "$INTERFACE" "$ACTION"
+
+[ "$MWAN3_STARTUP" != 1 ] && mwan3_unlock "$ACTION" "$INTERFACE"
+
+exit 0

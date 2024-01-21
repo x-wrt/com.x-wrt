@@ -1,0 +1,19 @@
+#!/bin/sh /etc/rc.common
+
+START=19
+
+start() {
+	/usr/sbin/mwan3 start
+}
+
+stop() {
+	/usr/sbin/mwan3 stop
+}
+
+restart() {
+	/usr/sbin/mwan3 restart
+}
+
+reload() {
+	/usr/sbin/mwan3 restart
+}
