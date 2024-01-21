@@ -1,0 +1,150 @@
+#!/usr/bin/env lua
+
+local json = require "luci.jsonc"
+local UCI = require "luci.model.uci"
+local fs   = require "nixio.fs"
+local sys  = require "luci.sys"
+
+local methods = {
+	get_users = {
+		call = function()
+			local ok, userinfo = pcall(io.lines, "/dev/userinfo_ctl")
+			if not ok or not userinfo then
+				return nil
+			end
+			local users = { }
+
+			local line = nil
+			for line in userinfo do
+				--192.168.16.101,74:8f:3c:bb:be:cf,0x0,0x0,255,294,180537:185944989,120694:140495365,11:958,7:1215
+				local ip, mac, auth_type, auth_status, rx_pkts, rx_bytes, tx_pkts, tx_bytes, rx_speed_pkts, rx_speed_bytes, tx_speed_pkts, tx_speed_bytes =
+					line:match("^(%S+),(%S+),(%S+),(%S+),%S+,%S+,(%d+):(%d+),(%d+):(%d+),(%d+):(%d+),(%d+):(%d+)$")
+
+				if ip and mac and auth_type ~= "0x0" then
+					local entry = {
+						ip = ip,
+						mac = mac,
+						status = tonumber(auth_status) or 0,
+						rx_pkts = tonumber(rx_pkts) or 0,
+						rx_bytes = tonumber(rx_bytes) or 0,
+						tx_pkts = tonumber(tx_pkts) or 0,
+						tx_bytes = tonumber(tx_bytes) or 0,
+						rx_speed_pkts = tonumber(rx_speed_pkts) or 0,
+						rx_speed_bytes = tonumber(rx_speed_bytes) or 0,
+						tx_speed_pkts = tonumber(tx_speed_pkts) or 0,
+						tx_speed_bytes = tonumber(tx_speed_bytes) or 0
+					}
+					users[#users+1] = entry
+				end
+			end
+
+			return { result = users }
+		end
+	},
+	kick_user = {
+		args = { token = "token" },
+		call = function(args)
+			local util = require "luci.util"
+			local ip = args and args.token
+
+			if ip then
+				local cmd = [[echo kick %s >/dev/userinfo_ctl]]
+                                sys.call(string.format(cmd, ip))
+				return { result = "OK" }
+			end
+
+			return { result = "Bad request" }
+		end
+	},
+	block_user = {
+		args = { token = "token" },
+		call = function(args)
+			local util = require "luci.util"
+			local ip = args and args.token
+
+			if ip then
+				local cmd = [[echo set-status %s 6 >/dev/userinfo_ctl]]
+                                sys.call(string.format(cmd, ip))
+				return { result = "OK" }
+			end
+
+			return { result = "Bad request" }
+		end
+	},
+	allow_user = {
+		args = { token = "token" },
+		call = function(args)
+			local util = require "luci.util"
+			local ip = args and args.token
+
+			if ip then
+				local cmd = [[echo set-status %s 1 >/dev/userinfo_ctl]]
+                                sys.call(string.format(cmd, ip))
+				return { result = "OK" }
+			end
+
+			return { result = "Bad request" }
+		end
+	}
+}
+
+local function parseInput()
+	local parse = json.new()
+	local done, err
+
+	while true do
+		local chunk = io.read(4096)
+		if not chunk then
+			break
+		elseif not done and not err then
+			done, err = parse:parse(chunk)
+		end
+	end
+
+	if not done then
+		print(json.stringify({ error = err or "Incomplete input" }))
+		os.exit(1)
+	end
+
+	return parse:get()
+end
+
+local function validateArgs(func, uargs)
+	local method = methods[func]
+	if not method then
+		print(json.stringify({ error = "Method not found" .. func }))
+		os.exit(1)
+	end
+
+	if type(uargs) ~= "table" then
+		print(json.stringify({ error = "Invalid arguments" }))
+		os.exit(1)
+	end
+
+	uargs.ubus_rpc_session = nil
+
+	local k, v
+	local margs = method.args or {}
+	for k, v in pairs(uargs) do
+		if margs[k] == nil or
+		   (v ~= nil and type(v) ~= type(margs[k]))
+		then
+			print(json.stringify({ error = "Invalid arguments" }))
+			os.exit(1)
+		end
+	end
+
+	return method
+end
+
+if arg[1] == "list" then
+	local _, method, rv = nil, nil, {}
+	for _, method in pairs(methods) do rv[_] = method.args or {} end
+	print((json.stringify(rv):gsub(":%[%]", ":{}")))
+elseif arg[1] == "call" then
+	local args = parseInput()
+	local method = validateArgs(arg[2], args)
+	local result, code = method.call(args)
+	print((json.stringify(result):gsub("^%[%]$", "{}")))
+	os.exit(code or 0)
+end

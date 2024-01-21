@@ -24,7 +24,7 @@ define Package/luci-app-wizard
 	SUBMENU:=Configuration Wizard Support
 	TITLE:=LuCI Support for wizard
 	PKGARCH:=all
-	DEPENDS:=
+	DEPENDS:=+luci-base +rpcd-mod-iwinfo
 endef
 
 define Package/luci-app-wizard/description
@@ -51,8 +51,6 @@ define Package/luci-app-wizard/postinst
 if [ -z "$$IPKG_INSTROOT" ]; then
   ( . /etc/uci-defaults/40_luci-app-wizard )
   rm -f /etc/uci-defaults/40_luci-app-wizard
-  ( . /etc/uci-defaults/96-wizard-defaults )
-  rm -f /etc/uci-defaults/96-wizard-defaults
 
   rm -rf /tmp/luci-indexcache /tmp/luci-modulecache
 fi
@@ -63,19 +61,18 @@ endef
 define Package/luci-app-wizard/install
 	$(INSTALL_DIR) $(1)/usr/lib/lua/luci/i18n
 	$(INSTALL_DATA) $(PKG_BUILD_DIR)/wizard.*.lmo $(1)/usr/lib/lua/luci/i18n/
-	$(INSTALL_DIR) $(1)/usr/lib/lua/luci/controller
-	$(INSTALL_DATA) ./files/luci/controller/*.lua $(1)/usr/lib/lua/luci/controller/
-	$(INSTALL_DIR) $(1)/usr/lib/lua/luci/model/cbi/wizard
-	$(INSTALL_DATA) ./files/luci/model/cbi/wizard/*.lua $(1)/usr/lib/lua/luci/model/cbi/wizard/
 	$(INSTALL_DIR) $(1)/etc/config
-	$(INSTALL_DATA) ./files/root/etc/config/wizard $(1)/etc/config/wizard
+	$(INSTALL_DATA) ./root/etc/config/wizard $(1)/etc/config/wizard
 	$(INSTALL_DIR) $(1)/etc/init.d
-	$(INSTALL_BIN) ./files/root/etc/init.d/wizard $(1)/etc/init.d/wizard
+	$(INSTALL_BIN) ./root/etc/init.d/wizard $(1)/etc/init.d/wizard
 	$(INSTALL_DIR) $(1)/etc/uci-defaults
-	$(INSTALL_DATA) ./files/root/etc/uci-defaults/40_luci-app-wizard $(1)/etc/uci-defaults/40_luci-app-wizard
-	$(INSTALL_DATA) ./files/uci.defaults $(1)/etc/uci-defaults/96-wizard-defaults
+	$(INSTALL_DATA) ./root/etc/uci-defaults/40_luci-app-wizard $(1)/etc/uci-defaults/40_luci-app-wizard
 	$(INSTALL_DIR) $(1)/usr/share/rpcd/acl.d
 	$(INSTALL_DATA) ./root/usr/share/rpcd/acl.d/*.json $(1)/usr/share/rpcd/acl.d/
+	$(INSTALL_DIR) $(1)/usr/share/luci/menu.d
+	$(INSTALL_DATA) ./root/usr/share/luci/menu.d/*.json $(1)/usr/share/luci/menu.d/
+	$(INSTALL_DIR) $(1)/www/luci-static/resources/view/wizard
+	$(INSTALL_DATA) ./htdocs/luci-static/resources/view/wizard/wizard.js $(1)/www/luci-static/resources/view/wizard/wizard.js
 endef
 
 $(eval $(call BuildPackage,luci-app-wizard))

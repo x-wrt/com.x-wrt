@@ -24,7 +24,7 @@ define Package/luci-app-xwan
 	SUBMENU:=Xwan
 	TITLE:=LuCI Support for xwan
 	PKGARCH:=all
-	DEPENDS:=+kmod-macvlan +busybox +@BUSYBOX_CUSTOM +@BUSYBOX_CONFIG_VCONFIG
+	DEPENDS:=+kmod-macvlan +busybox +@BUSYBOX_CUSTOM +@BUSYBOX_CONFIG_VCONFIG +luci-compat
 endef
 
 define Package/luci-app-xwan/description

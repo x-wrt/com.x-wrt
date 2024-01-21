@@ -1,0 +1,17 @@
+{
+	"luci-app-natflow-users": {
+		"description": "Grant UCI access for luci-app-natflow-users",
+		"read": {
+			"ubus": {
+				"luci.natflow": [ "get_users", "kick_user" ]
+			},
+			"uci": [ "natflow" ]
+		},
+		"write": {
+			"ubus": {
+				"luci.natflow": [ "kick_user", "block_user", "allow_user" ]
+			},
+			"uci": [ "natflow" ]
+		}
+	}
+}
