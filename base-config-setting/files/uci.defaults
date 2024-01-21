@@ -1,54 +1,25 @@
 
-wifi_setup_radio()
-{
-	local radio=$1
-	uci get wireless.${radio} >/dev/null 2>&1 && {
-		uci -q batch <<-EOT
-			set wireless.${radio}.disabled='0'
-			set wireless.${radio}.country='CN'
-			set wireless.${radio}.channel='auto'
-		EOT
-
-		if [ x`uci get wireless.${radio}.hwmode 2>/dev/null` = "x11a" ]; then
-			uci set wireless.${radio}.txpower='23'
-		else
-			uci set wireless.${radio}.txpower='20'
-		fi
-
-		obj=`uci add wireless wifi-iface`
-		test -n "$obj" && {
-			uci set wireless.$obj.device="${radio}"
-			uci set wireless.$obj.network='lan'
-			uci set wireless.$obj.mode='ap'
-			uci set wireless.$obj.ssid="${SSID}"
-			uci set wireless.$obj.encryption='psk2'
-			uci set wireless.$obj.skip_inactivity_poll='1'
-			uci set wireless.$obj.wpa_group_rekey='0'
-			uci set wireless.$obj.wpa_pair_rekey='0'
-			uci set wireless.$obj.wpa_master_rekey='0'
-			uci set wireless.$obj.disassoc_low_ack='0'
-			uci set wireless.$obj.key="${SSID_PASSWD}"
-		}
-	}
-}
-
-version=`uci get base_config.@status[0].version 2>/dev/null`
-test -n "$version" || version=0
+touch /etc/config/base_config
+uci get base_config.@status[0] >/dev/null 2>&1 || uci add base_config status >/dev/null 2>&1
+version=$(uci get base_config.@status[0].version 2>/dev/null)
+version=$((version+0))
 
 . /etc/openwrt_release
 test -n "${DISTRIB_ID}" || DISTRIB_ID=X-WRT
-DISTRIB_ID=`echo -n $DISTRIB_ID | tr a-z A-Z`
+DISTRIB_ID=$(echo -n $DISTRIB_ID | tr a-z A-Z)
 
 MACADDR=""
-test -e /usr/share/natcapd/board_mac.lua && MACADDR=`lua /usr/share/natcapd/board_mac.lua`
-test -n "$MACADDR" || MACADDR=`cat /etc/board.json | grep macaddr | tr a-f A-F | grep -o "[0-9A-F][0-9A-F]:[0-9A-F][0-9A-F]:[0-9A-F][0-9A-F]:[0-9A-F][0-9A-F]:[0-9A-F][0-9A-F]:[0-9A-F][0-9A-F]" | head -n1`
-test -n "$MACADDR" || MACADDR=`cat /sys/class/net/eth0/address | tr a-z A-Z`
-test -n "$MACADDR" || MACADDR=`cat /sys/class/net/eth1/address | tr a-z A-Z`
-test -n "$MACADDR" || MACADDR=`head -c6 /dev/urandom | hexdump -e '/1 "%02X:"' | head -c17`
-test -n "$MACADDR" || MACADDR=`head -c6 /dev/random | hexdump -e '/1 "%02X:"' | head -c17`
+test -e /usr/share/natcapd/board_mac.lua && MACADDR=$(lua /usr/share/natcapd/board_mac.lua)
+test -n "$MACADDR" || MACADDR=$(. /lib/functions/system.sh; get_mac_label | tr a-f A-F)
+test -n "$MACADDR" || MACADDR=$(cat /etc/board.json | jsonfilter -e '$["network"]["wan"]["macaddr"]' | tr a-f A-F)
+test -n "$MACADDR" || MACADDR=$(cat /etc/board.json | jsonfilter -e '$["network"]["lan"]["macaddr"]' | tr a-f A-F)
+test -n "$MACADDR" || MACADDR=$(cat /sys/class/net/eth0/address | tr a-f A-F)
+test -n "$MACADDR" || MACADDR=$(cat /sys/class/net/eth1/address | tr a-f A-F)
+test -n "$MACADDR" || MACADDR=$(head -c6 /dev/urandom | hexdump -e '/1 "%02X:"' | head -c17)
+test -n "$MACADDR" || MACADDR=$(head -c6 /dev/random | hexdump -e '/1 "%02X:"' | head -c17)
 
 test $version -lt 1 && {
-	uci set luci.main.lang='zh_cn'
+	uci set luci.main.lang='auto'
 	uci commit luci
 
 	uci get system.@system[0] >/dev/null 2>&1 && {
@@ -65,12 +36,12 @@ test $version -lt 1 && {
 	uci set dhcp.lan.force='1'
 	uci commit dhcp
 
-	[ x`uci get firewall.@zone[0].name 2>/dev/null` = xlan ] && {
-		[ x`uci get firewall.@zone[0].mtu_fix 2>/dev/null` = x1 ] || uci set firewall.@zone[0].mtu_fix='1'
+	[ "$(uci get firewall.@zone[0].name 2>/dev/null)" = "lan" ] && {
+		[ "$(uci get firewall.@zone[0].mtu_fix 2>/dev/null)" = "1" ] || uci set firewall.@zone[0].mtu_fix='1'
 	}
 	uci commit firewall
 
-	[ x`uci get dropbear.@dropbear[0] 2>/dev/null` = xdropbear ] && {
+	[ "$(uci get dropbear.@dropbear[0] 2>/dev/null)" = "dropbear" ] && {
 		uci set dropbear.@dropbear[0].PasswordAuth='off'
 		uci set dropbear.@dropbear[0].RootPasswordAuth='off'
 		uci set dropbear.@dropbear[0].Port='22'
@@ -78,7 +49,7 @@ test $version -lt 1 && {
 		uci commit dropbear
 		touch /etc/dropbear/authorized_keys && chmod 600 /etc/dropbear/authorized_keys
 	}
-	test -f /etc/config/uhttpd || test -d /etc/nginx/conf.d || {
+	test -f /etc/config/uhttpd || test -d /etc/nginx/conf.d || test -f /etc/nginx/nginx.conf || {
 		uci set dropbear.@dropbear[0].PasswordAuth='on'
 		uci set dropbear.@dropbear[0].RootPasswordAuth='on'
 		uci commit dropbear
@@ -91,83 +62,102 @@ test $version -lt 1 && {
 
 	cp /usr/share/base-config-setting/etc/shadow /etc/shadow && chmod 600 /etc/shadow
 
-	SUBFIX=`echo -n $MACADDR | sed 's/://g' | tr a-z A-Z | tail -c4`
+	SUBFIX=$(echo -n $MACADDR | sed 's/://g' | tr a-z A-Z | tail -c4)
 	SSID=${DISTRIB_ID}_${SUBFIX}
 	SSID_PASSWD=88888888
 
-	while uci delete wireless.@wifi-iface[0] >/dev/null 2>&1; do :; done
-	for radio in radio0 radio1 radio2 radio3 wifi0 wifi1 wifi2 wifi3; do
-		wifi_setup_radio ${radio}
-	done
-	uci commit wireless
+	uci set base_config.@status[0].SSID=${SSID}
+	uci set base_config.@status[0].SSID_PASSWD=${SSID_PASSWD}
 
 	version=1
 }
 
 test $version -lt 2 && {
-	if ! uci get network.wan >/dev/null 2>&1 && [ x`uci get network.lan.ifname | wc -w` = x1 ]; then
-		local ifname=`uci get network.lan.ifname 2>/dev/null || echo eth0`
+	MACmd5=$(echo -n $MACADDR | md5sum | tr a-f A-F)
+	if ! uci get network.wan >/dev/null 2>&1 && modinfo macvlan >/dev/null 2>&1; then
+		lan_idx=0
+		while uci get network.@device[$lan_idx] >/dev/null 2>&1 && [ "$(uci get network.@device[$lan_idx].name)" != "br-lan" ]; do lan_idx=$((lan_idx+1)); done
+		device=$(uci get network.@device[$lan_idx].ports 2>/dev/null | cut -d" " -f1 || echo eth0)
+		if [ "$(uci get network.@device[$lan_idx].ports | wc -w)" = 1 ] && [ "$(uci get network.@device[$lan_idx].name)" = "br-lan" ]; then
 		uci -q batch <<-EOT
 			set network.wan=interface
-			set network.wan.ifname="$ifname"
+			set network.wan.device="$device"
 			set network.wan.proto='dhcp'
 			set network.wan.metric='31'
 			set network.wan6=interface
 			set network.wan6.proto='dhcpv6'
-			set network.wan6.ifname="$ifname"
+			set network.wan6.device="$device"
 			set network.wan6.reqaddress='try'
 			set network.wan6.reqprefix='auto'
-			set network.lan.ifname='macvlan0'
+			set network.@device[$lan_idx].ports='macvlan0'
 			add network device
 			set network.@device[-1].name='macvlan0'
 			set network.@device[-1].type='macvlan'
-			set network.@device[-1].ifname="$ifname"
+			set network.@device[-1].ifname="$device"
+			set network.@device[-1].macaddr="${MACADDR:0:12}${MACmd5:0:2}:${MACmd5:2:2}"
 			commit network
 		EOT
+		fi
 	fi
 
 	lsmod | grep -q rndis_host && {
 		uci -q batch <<-EOT
 			set network.usbwan=interface
 			set network.usbwan.proto='dhcp'
-			set network.usbwan.ifname='usb0'
+			set network.usbwan.device='usb0'
 			set network.usbwan.metric='800'
+			set network.usbwan6=interface
+			set network.usbwan6.proto='dhcpv6'
+			set network.usbwan6.device='@usbwan'
+			set network.usbwan6.reqaddress='try'
+			set network.usbwan6.reqprefix='auto'
+			set network.usbwan6.extendprefix='1'
 			commit network
 		EOT
 
-		[ x`uci get firewall.@zone[1].name 2>/dev/null` = xwan ] && {
-			wans="$(uci get firewall.@zone[1].network 2>/dev/null) usbwan"
-			wans=$(for w in $wans; do echo $w; done | sort | uniq)
-			wans=`echo $wans`
-			uci set firewall.@zone[1].network="$wans"
+		if uci get network.lan.ifname &>/dev/null; then
+			uci set network.usbwan.ifname='usb0'
+			uci set network.usbwan6.ifname='@usbwan'
+			uci delete network.usbwan.device
+			uci delete network.usbwan6.device
+			uci commit network
+		fi
+
+		[ "$(uci get firewall.@zone[1].name 2>/dev/null)" = "wan" ] && {
+			wans="$(uci get firewall.@zone[1].network 2>/dev/null) usbwan usbwan6"
+			uci delete firewall.@zone[1].network
+			for w in $wans; do echo $w; done | sort | uniq | while read wan; do
+				uci add_list firewall.@zone[1].network="$wan"
+			done
 			uci commit firewall
 		}
 	}
 
 	config_line=
 	which fdisk && {
-		local partdev
-		local ROOTDEV=/dev/sda
+		partdev=
+		ROOTDEV=/dev/sda
+		. /lib/functions.sh
 		. /lib/upgrade/common.sh
 		if export_bootdevice && export_partdevice partdev 0; then
 			ROOTDEV=/dev/${partdev}
 		fi
 		test -b ${ROOTDEV} && {
-			sector_size=`fdisk -l ${ROOTDEV} | grep "^Sector size" | awk '{print $4}'`
+			sector_size=$(fdisk -l ${ROOTDEV} | grep "^Sector size" | awk '{print $4}')
 			sector_size=$((sector_size+0))
 			test ${sector_size} -gt 0 || sector_size=512
 			lastsec=0
 			if fdisk -l ${ROOTDEV} 2>/dev/null | grep -q "type: gpt"; then
-				lastsec=`fdisk -l ${ROOTDEV} | grep ^${ROOTDEV} | head -n4 | tail -n1 | awk '{print $3}'`
+				lastsec=$(fdisk -l ${ROOTDEV} | grep ^${ROOTDEV} | head -n4 | tail -n1 | awk '{print $3}')
 				lastsec=$((lastsec+34))
 			else
-				lastsec=`fdisk -l ${ROOTDEV} | grep ^${ROOTDEV} | head -n2 | tail -n1 | awk '{print $3}'`
+				lastsec=$(fdisk -l ${ROOTDEV} | grep ^${ROOTDEV} | head -n2 | tail -n1 | awk '{print $3}')
 				lastsec=$((lastsec+1))
 			fi
-			config_line=`dd if=${ROOTDEV} bs=${sector_size} skip=${lastsec} count=1 2>/dev/null | head -n1 | grep "open=\|network=\|initscript="`
+			config_line=$(dd if=${ROOTDEV} bs=${sector_size} skip=${lastsec} count=1 2>/dev/null | head -n1 | grep "open=\|network=\|initscript=")
 		}
 	}
-	echo ${config_line} | grep -o network=.* | sed 's/=/ /;s/,/ /g' | while read _ _ip _mask _gw _dns _; do
+	echo ${config_line} | grep -o "network=.*" | sed 's/=/ /;s/,/ /g' | while read _ _ip _mask _gw _dns _; do
 		test -n "$_dns" || _dns="114.114.114.114 8.8.8.8"
 		test -n "$_ip" && test -n "$_mask" && test -n "$_gw" && test -n "$_dns" && {
 			uci -q batch <<-EOT
@@ -182,7 +172,7 @@ test $version -lt 2 && {
 		}
 		break
 	done
-	openport=`echo ${config_line} | grep -o open=[0-9]* | cut -d= -f2`
+	openport=$(echo ${config_line} | grep -o "open=[0-9]*" | cut -d= -f2)
 	test -n "$openport" && {
 		uci -q batch <<-EOT
 			set firewall.open=rule
@@ -194,7 +184,7 @@ test $version -lt 2 && {
 			commit firewall
 		EOT
 	}
-	echo ${config_line} | grep -o initscript=.* | sed 's/=/ /;s/,/ /g' | while read _ data _; do
+	echo ${config_line} | grep -o "initscript=.*" | sed 's/=/ /;s/,/ /g' | while read _ data _; do
 		echo $data | base64 -d >/tmp/initscript.sh && sh /tmp/initscript.sh
 		rm -f /tmp/initscript.sh
 		break
@@ -204,7 +194,7 @@ test $version -lt 2 && {
 }
 
 # kB
-memtotal=`grep MemTotal /proc/meminfo | awk '{print $2}'`
+memtotal=$(grep MemTotal /proc/meminfo | awk '{print $2}')
 cachesize=2048
 dnsforwardmax=2048
 nf_conntrack_max=16384
@@ -212,17 +202,17 @@ if test $memtotal -ge 1048576; then
 	# > 1024M
 	cachesize=10000
 	dnsforwardmax=10000
-	nf_conntrack_max=262144
+	nf_conntrack_max=524288
 elif test $memtotal -ge 524288; then
 	# <= 1024M
 	cachesize=10000
 	dnsforwardmax=10000
-	nf_conntrack_max=131072
+	nf_conntrack_max=262144
 elif test $memtotal -ge 262144; then
 	# <= 512M
 	cachesize=8192
 	dnsforwardmax=8192
-	nf_conntrack_max=65536
+	nf_conntrack_max=131072
 elif test $memtotal -ge 131072; then
 	# <= 256M
 	cachesize=4096
@@ -259,9 +249,12 @@ test $version -lt 4 && {
 }
 
 test $version -lt 5 && {
-	cat /etc/group | grep -q ^lede: || echo lede:x:1000: >>/etc/group
-	cat /etc/shadow | grep -q ^lede: || echo "lede:*:0:0:99999:7:::" >>/etc/shadow
-	cat /etc/passwd | grep -q ^lede: || echo lede:*:1000:1000:lede:/var:/bin/false >>/etc/passwd
+	_data="$(cat /etc/group)"
+	echo "$_data" | grep -q ^lede: || echo lede:x:1000: >>/etc/group
+	_data="$(cat /etc/shadow)"
+	echo "$_data" | grep -q ^lede: || echo "lede:*:0:0:99999:7:::" >>/etc/shadow
+	_data="$(cat /etc/passwd)"
+	echo "$_data" | grep -q ^lede: || echo lede:*:1000:1000:lede:/var:/bin/false >>/etc/passwd
 	version=5
 }
 
@@ -272,24 +265,7 @@ test $version -lt 6 && {
 }
 
 test $version -lt 7 && {
-	[ "x`uci get samba.@samba[0] 2>/dev/null`" = "xsamba" ] && {
-		local name=`uci get system.@system[0].hostname 2>/dev/null || echo ${DISTRIB_ID}`
-		uci set samba.@samba[0].homes='0'
-		uci set samba.@samba[0].name="${name}"
-		uci set samba.@samba[0].description="${name}"
-		uci -q batch <<-EOF >/dev/null
-			add samba sambashare
-			set samba.@sambashare[-1].browseable='yes'
-			set samba.@sambashare[-1].name='ShareDisks'
-			set samba.@sambashare[-1].path='/mnt/'
-			set samba.@sambashare[-1].users='lede'
-			set samba.@sambashare[-1].read_only='no'
-			set samba.@sambashare[-1].guest_ok='no'
-			set samba.@sambashare[-1].create_mask='0644'
-			set samba.@sambashare[-1].dir_mask='0755'
-			commit samba
-		EOF
-	}
+	#drop samba config
 	version=7
 }
 
@@ -339,30 +315,89 @@ test $version -lt 14 && {
 	if test -x /etc/init.d/nginx && ! test -e /etc/nginx/conf.d/dev.x-wrt.com.conf; then
 		rm -f /etc/uhttpd.crt /etc/uhttpd.key
 	fi
+
+	#default theme use bootstrap
+	uci set luci.main.mediaurlbase='/luci-static/bootstrap'
+	uci commit luci
+
 	version=14
 }
 
+test $version -lt 15 && {
+	config_luci_login=%LUCI_LOGIN%
+	if [ "$config_luci_login" != "root" ]; then
+	sed -i "/^$config_luci_login/d" /etc/shadow
+	_data="$(cat /etc/shadow)"
+	echo "$_data" | grep -q "^$config_luci_login:" || echo "$_data" | grep ^root | sed "s/^root/$config_luci_login/" >>/etc/shadow
+	_data="$(cat /etc/passwd)"
+	echo "$_data" | grep -q "^$config_luci_login:" || echo "$config_luci_login:x:0:0:root:/root:/bin/false" >>/etc/passwd
 
-#default theme use bootstrap
-uci set luci.main.mediaurlbase='/luci-static/bootstrap'
-uci commit luci
+	uci set rpcd.@login[0].username="$config_luci_login"
+	uci set rpcd.@login[0].password="\$p\$$config_luci_login"
+	uci commit rpcd
+	fi
 
-uci set fstab.@global[0].anon_mount_bak="`uci get fstab.@global[0].anon_mount_bak 2>/dev/null || uci get fstab.@global[0].anon_mount 2>/dev/null`"
+	version=15
+}
+
+test $version -lt 16 && {
+	rm -f /etc/nginx/conf.d/_lan.crt  /etc/nginx/conf.d/_lan.key
+	test -e /etc/nginx/conf.d/_lan.conf && \
+	/usr/bin/nginx-util 'add_ssl' '_lan'
+	version=16
+}
+
+#upgrade fstab config
+test $version -lt 17 && {
+	test -f /rom/lib/preinit/79_disk_ready && cp /rom/etc/config/fstab /etc/config/fstab
+	version=17
+}
+
+#upgrade fw4 config
+test $version -lt 18 && {
+	uci -q batch <<-EOT
+		set firewall.nat6=nat
+		set firewall.nat6.name='nat6'
+		set firewall.nat6.src='wan'
+		set firewall.nat6.enabled='0'
+		set firewall.nat6.family='ipv6'
+		set firewall.nat6.proto='all'
+		set firewall.nat6.target='MASQUERADE'
+		set firewall.ipv6_forward=rule
+		set firewall.ipv6_forward.family='ipv6'
+		set firewall.ipv6_forward.src='wan'
+		set firewall.ipv6_forward.dest='lan'
+		set firewall.ipv6_forward.target='ACCEPT'
+		set firewall.ipv6_forward.name='Allow-IPv6-Forward'
+		set firewall.ipv6_forward.proto='all'
+		set firewall.ipv6_forward.enabled='0'
+		commit firewall
+	EOT
+	version=18
+}
+
+test $version -lt 19 && {
+	uci -q batch <<-EOT
+		set firewall.ipv6_igmp_input=rule
+		set firewall.ipv6_igmp_input.name='Allow-IPv6-IGMP'
+		set firewall.ipv6_igmp_input.src='wan'
+		set firewall.ipv6_igmp_input.proto='igmp'
+		set firewall.ipv6_igmp_input.target='ACCEPT'
+		set firewall.ipv6_igmp_input.family='ipv6'
+		commit firewall
+	EOT
+	version=19
+}
+
+test $version -lt 21 && {
+	#fix nginx upgrade
+	test -f /rom/etc/nginx/uci.conf.template && cp /rom/etc/nginx/uci.conf.template /etc/nginx/uci.conf.template
+	version=21
+}
+
+uci set fstab.@global[0].anon_mount_bak="$(uci get fstab.@global[0].anon_mount_bak 2>/dev/null || uci get fstab.@global[0].anon_mount 2>/dev/null)"
 uci set fstab.@global[0].anon_mount='0'
 uci commit fstab
-
-# wireless migration
-widx=0
-change=0
-while uci rename wireless.@wifi-iface[$widx]=wifinet$widx >/dev/null 2>&1; do widx=$((widx+1)); done
-uci changes wireless | tr ".='" "   " | while read _ a b; do
-	if [ "x$a" != "x$b" ]; then
-		uci commit wireless
-		change=1
-		break
-	fi
-done
-[ "x$change" = "x0" ] && uci revert wireless
 
 # fix usb auto umount bug
 cp /usr/share/base-config-setting/mount.hotplug /etc/hotplug.d/block/10-mount
@@ -373,29 +408,72 @@ uci delete openvpn_recipes.client_tun.pkcs12 2>/dev/null && uci commit openvpn_r
 # sysctl overwrite
 SYSCTL_LOCAL=/etc/sysctl.d/50-local.conf
 mkdir -p /etc/sysctl.d
-echo -n >$SYSCTL_LOCAL
 
-echo net.nf_conntrack_max=$nf_conntrack_max >>$SYSCTL_LOCAL
-echo net.ipv4.ip_early_demux=0 >>$SYSCTL_LOCAL
-echo net.bridge.bridge-nf-call-iptables=0 >>$SYSCTL_LOCAL
-echo net.ipv4.fib_multipath_hash_policy=1 >>$SYSCTL_LOCAL
+cat <<-EOF >$SYSCTL_LOCAL
+net.nf_conntrack_max=$nf_conntrack_max
+net.ipv4.ip_early_demux=0
+net.bridge.bridge-nf-call-iptables=0
+net.ipv4.fib_multipath_hash_policy=1
+net.core.default_qdisc=fq_codel
+net.core.default_qdisc=fq
+net.ipv4.tcp_congestion_control=bbr
+net.ipv4.tcp_congestion_control=htcp
+net.ipv4.tcp_congestion_control=cubic
+net.netfilter.nf_conntrack_helper=1
+net.ipv4.ip_default_ttl=128
+EOF
 
-#echo net.core.default_qdisc=fq_codel >>$SYSCTL_LOCAL
-#echo net.core.default_qdisc=fq >>$SYSCTL_LOCAL
-#echo net.ipv4.tcp_congestion_control=htcp >>$SYSCTL_LOCAL
-#echo net.ipv4.tcp_congestion_control=bbr >>$SYSCTL_LOCAL
+/etc/init.d/swanctl disable &>/dev/null
 
-echo net.ipv4.tcp_congestion_control=cubic >>$SYSCTL_LOCAL
-echo net.netfilter.nf_conntrack_helper=1 >>$SYSCTL_LOCAL
+#for mem <= 64M
+if ! test $memtotal -ge 65536; then
+	/etc/init.d/natflow-qos disable
+	/etc/init.d/natflow-simple-qos disable
+	/etc/init.d/switch_ports_status disable
+fi
 
 #replace wget
 test -x /usr/bin/wget && rm -f /bin/wget && ln -s /usr/bin/wget /bin/wget
+test -x /usr/bin/vim && touch /root/.vimrc
 
-#disable switch_ports_status by default
-/etc/init.d/switch_ports_status disable
+#make sure nginx work with remote-mgr
+( test -x /etc/init.d/nginx && test -e /etc/nginx/conf.d/dev.x-wrt.com.conf ) || rm -f /etc/uhttpd.key /etc/uhttpd.crt
 
-touch /etc/config/base_config
-uci get base_config.@status[0] >/dev/null 2>&1 || uci add base_config status >/dev/null 2>&1
+rootfs_type() {
+	/bin/mount | awk '($3 ~ /^\/$/) && ($5 !~ /rootfs/) { print $5 }'
+}
+#clean all log if new flash firmware
+mount -t pstore -o noatime pstore /sys/fs/pstore 2>/dev/null
+if ! [ "$(rootfs_type)" = "tmpfs" ]; then
+	rm -f /sys/fs/pstore/*
+else
+	mkdir -p /tmp/pstore
+	mv /sys/fs/pstore/* /tmp/pstore/
+fi
+
+#usb fixup
+test -f /etc/usb-mode.json && {
+	sed -i 's/05c6:9024/05c6:0000/' /etc/usb-mode.json
+}
+
+uci -q batch <<-EOF >/dev/null
+	set ucitrack.@wireless[0].exec='/etc/init.d/sta_disable reload'
+	commit ucitrack
+EOF
+
+#update /etc/hosts
+grep -q services.googleapis.cn /etc/hosts || echo 142.250.204.35 services.googleapis.cn >>/etc/hosts
+grep -q google.cn /etc/hosts || echo 142.250.66.131 google.cn >>/etc/hosts
+
+#firewall4 output_ttl support
+grep -q "^sh /usr/share/firewall4/output-ttl.include" /etc/firewall.include || \
+echo "sh /usr/share/firewall4/output-ttl.include" >>/etc/firewall.include
+uci -q batch <<-EOF >/dev/null
+	set ucitrack.@network[0].exec='/bin/sh /usr/share/firewall4/output-ttl.include'
+	commit ucitrack
+EOF
+
 uci set base_config.@status[0].version=$version
 uci commit base_config
+
 exit 0

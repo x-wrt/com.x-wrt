@@ -1,8 +1,14 @@
+[ "x$ACTION" = "xremove" ] && {
+	umount /mnt/$DEVNAME
+	exit 0
+}
+
 [ "x$ACTION" = "xadd" ] || exit 0
 [ "x$DEVTYPE" = "xpartition" ] || exit 0
 test -b /dev/$DEVNAME || exit 0
 
-MOUNT_NTFS="mount.ntfs-3g -o noatime,async,iocharset=utf8,uid=1000,gid=1000,fmask=0000,dmask=0000,rw,big_writes"
+MOUNT_NTFS0="mount -t ntfs3 -o noatime,async,discard,prealloc,iocharset=utf8,uid=1000,gid=1000"
+MOUNT_NTFS1="mount -t ntfs3 -o noatime,async,discard,prealloc,nls=utf8"
 MOUNT_CMD1="mount -o noatime,async,iocharset=utf8,uid=1000,gid=1000,fmask=0000,dmask=0000,rw"
 MOUNT_CMD2="mount -o noatime,async,rw"
 MOUNT_CMD3="mount -o rw"
@@ -11,7 +17,8 @@ MOUNT_CMD4="mount"
 #try_mount "$1" "$2"
 try_mount()
 {
-	$MOUNT_NTFS "$1" "$2" && return 0
+	$MOUNT_NTFS0 "$1" "$2" && return 0
+	$MOUNT_NTFS1 "$1" "$2" && return 0
 	$MOUNT_CMD1 "$1" "$2" && return 0
 	$MOUNT_CMD2 "$1" "$2" && return 0
 	$MOUNT_CMD3 "$1" "$2" && return 0
@@ -20,13 +27,15 @@ try_mount()
 }
 
 dev=/dev/$DEVNAME
-test -f /rom/etc/sda.ready && {
-	diskdev=sda
-	. /lib/upgrade/common.sh
-	export_bootdevice && export_partdevice diskdev 0
-	diskdev=/dev/$diskdev
-	echo $dev | grep -q $diskdev && exit 0
-}
+
+diskdev=""
+. /lib/functions.sh
+. /lib/upgrade/common.sh
+export_bootdevice && export_partdevice diskdev 0
+diskdev=/dev/$diskdev
+test -b "$diskdev" && (echo $dev | grep -q "$diskdev") && exit 0
+(echo $dev | grep -q "/dev/ubi") && exit 0
+
 edev=`mount | grep "$dev " | awk '{print $1}'`
 [ "x$dev" = "x$edev" ] && exit 0
 ddir=/mnt/`basename $dev`

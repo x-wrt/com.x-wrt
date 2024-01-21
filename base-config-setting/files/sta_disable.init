@@ -5,7 +5,7 @@
 START=99
 
 start() {
-	SERVICE_DAEMONIZE=1 service_start /usr/sbin/sta_disable
+	:
 }
 
 stop() {
@@ -17,5 +17,5 @@ restart() {
 }
 
 reload() {
-	:
+	SERVICE_DAEMONIZE=1 service_start /usr/sbin/sta_disable
 }

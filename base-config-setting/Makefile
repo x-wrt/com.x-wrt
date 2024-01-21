@@ -16,21 +16,24 @@ PKG_RELEASE:=1
 PKG_MAINTAINER:=Chen Minqiang <ptpt52@gmail.com>
 PKG_LICENSE:=GPL-2.0
 
+PKG_FLAGS:=nonshared
+
 include $(INCLUDE_DIR)/package.mk
 
 define Package/base-config-setting/Default
   SECTION:=Applications
   CATEGORY:=X
   SUBMENU:=Base config setting for this board
-  DEPENDS:=+dnsmasq-full +busybox +base-files \
-		   +(TARGET_ROOTFS_EXT4FS):ethtool \
-		   +(TARGET_ROOTFS_EXT4FS):blockd \
-		   +(TARGET_ROOTFS_EXT4FS):fdisk +(EFI_IMAGES):gdisk
+  DEPENDS:=+busybox +base-files +jsonfilter
 endef
 
 define Package/base-config-setting
   $(call Package/base-config-setting/Default)
   TITLE:=base-config-setting
+endef
+
+define Package/base-config-setting/config
+  source "$(SOURCE)/Config.in"
 endef
 
 define Package/base-config-setting/description
@@ -52,6 +55,35 @@ fi
 exit 0
 endef
 
+define Package/base-config-setting-ext4fs
+  $(call Package/base-config-setting/Default)
+  TITLE:=base-config-setting ext4fs set
+  DEPENDS:=+base-config-setting +@TARGET_ROOTFS_EXT4FS \
+	   +busybox +@BUSYBOX_CUSTOM \
+	   +@BUSYBOX_CONFIG_STAT \
+	   +kmod-fs-ext4 \
+	   +tune2fs \
+	   +ethtool \
+	   +blockd \
+	   +blkid \
+	   +fdisk \
+	   +gdisk \
+	   +partx-utils \
+	   +e2fsprogs
+endef
+
+define Package/base-config-setting-ext4fs/install
+	$(INSTALL_DIR) $(1)/etc/config
+	$(INSTALL_DATA) ./files/fstab.config $(1)/etc/config/fstab
+	$(INSTALL_DIR) $(1)/lib/preinit
+	$(INSTALL_DATA) ./files/disk_ready.preinit $(1)/lib/preinit/79_disk_ready
+	$(INSTALL_DIR) $(1)/etc/init.d
+	$(INSTALL_BIN) ./files/disk_ready_done.init $(1)/etc/init.d/disk_ready_done
+	$(INSTALL_BIN) ./files/ethtool.init $(1)/etc/init.d/ethtool
+	$(INSTALL_DIR) $(1)/usr/sbin
+	$(INSTALL_BIN) ./files/diskv.sh $(1)/usr/sbin/diskv
+endef
+
 define Package/base-config-setting/install
 	$(INSTALL_DIR) $(1)/etc/uci-defaults
 	$(INSTALL_DIR) $(1)/etc/config
@@ -59,12 +91,16 @@ define Package/base-config-setting/install
 	$(INSTALL_DIR) $(1)/usr/share/base-config-setting
 	cp -r ./files/etc $(1)/usr/share/base-config-setting/
 	$(INSTALL_DATA) ./files/uci.defaults $(1)/etc/uci-defaults/95-base-config-setting
+	$(SED) "s#%LUCI_LOGIN%#$(CONFIG_BASE_CONFIG_SETTING_LUCI_LOGIN)#g" $(1)/etc/uci-defaults/95-base-config-setting
 	$(INSTALL_DIR) $(1)/usr/sbin
 	$(INSTALL_BIN) ./files/sta_disable.sh $(1)/usr/sbin/sta_disable
 	$(INSTALL_BIN) ./files/system_reset.sh $(1)/usr/sbin/system_reset
 	$(INSTALL_DIR) $(1)/etc
 	$(INSTALL_DATA) ./files/adv_luci_disabled $(1)/etc/adv_luci_disabled
+	$(INSTALL_DIR) $(1)/lib/wifi/
+	$(INSTALL_DATA) ./files/wifi-init.sh $(1)/lib/wifi/wifi-init.sh
 	$(INSTALL_DIR) $(1)/etc/init.d
+	$(INSTALL_BIN) ./files/wifi-init.init $(1)/etc/init.d/wifi-init
 	$(INSTALL_BIN) ./files/sta_disable.init $(1)/etc/init.d/sta_disable
 	$(INSTALL_BIN) ./files/usb_factory_reset.init $(1)/etc/init.d/usb_factory_reset
 	$(INSTALL_BIN) ./files/auto_usb_mount.init $(1)/etc/init.d/auto_usb_mount
@@ -72,15 +108,12 @@ define Package/base-config-setting/install
 	$(INSTALL_DATA) ./files/mount.hotplug $(1)/usr/share/base-config-setting/mount.hotplug
 	$(INSTALL_DIR) $(1)/lib/preinit
 	$(INSTALL_DATA) ./files/mnt_ready.preinit $(1)/lib/preinit/81_mnt_ready
-ifneq ($(CONFIG_TARGET_ROOTFS_EXT4FS),)
-	$(INSTALL_DATA) ./files/fstab.config $(1)/etc/fstab.config
-	$(INSTALL_DIR) $(1)/lib/preinit
-	$(INSTALL_DATA) ./files/disk_ready.preinit $(1)/lib/preinit/79_disk_ready
-	$(INSTALL_DIR) $(1)/etc/init.d
-	$(INSTALL_BIN) ./files/disk_ready.init $(1)/etc/init.d/disk_ready
-	$(INSTALL_BIN) ./files/ethtool.init $(1)/etc/init.d/ethtool
-	$(INSTALL_BIN) ./files/diskv.sh $(1)/usr/sbin/diskv
-endif
+	$(INSTALL_DIR) $(1)/etc/hotplug.d/net
+	$(INSTALL_DATA) ./files/15-mgr-ipaddr $(1)/etc/hotplug.d/net/15-mgr-ipaddr
+	$(INSTALL_DIR) $(1)/etc/hotplug.d/iface
+	$(INSTALL_DATA) ./files/15-mgr-ipaddr $(1)/etc/hotplug.d/iface/15-mgr-ipaddr
+	$(INSTALL_DIR) $(1)/usr/share/firewall4
+	$(INSTALL_DATA) ./files/output-ttl.include $(1)/usr/share/firewall4/output-ttl.include
 endef
 
 define Build/Configure
@@ -96,3 +129,4 @@ define Build/Compile
 endef
 
 $(eval $(call BuildPackage,base-config-setting))
+$(eval $(call BuildPackage,base-config-setting-ext4fs))
