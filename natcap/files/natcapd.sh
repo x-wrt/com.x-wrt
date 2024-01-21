@@ -1230,18 +1230,18 @@ main_trigger() {
 			IFACES=$(ip r | grep default | grep -o 'dev .*' | cut -d" " -f2 | sort | uniq)
 			LIP=""
 			for IFACE in $IFACES; do
-   				for lip in $(ip -4 addr list dev $IFACE | awk '/inet.*scope.*global/ {print $2}'); do
+				for lip in $(ip -4 addr list dev $IFACE | awk '/inet.*scope.*global/ {print $2}'); do
 					LIP="$LIP,$lip"
-       				done
+				done
 			done
 			LIP=${LIP#,}
 
 			IFACE6S=$(ip -6 r | grep default | grep -o 'dev .*' | cut -d" " -f2 | sort | uniq)
 			LIP6=""
 			for IFACE6 in $IFACE6S; do
-   				for lip in $(ip -6 addr list dev $IFACE6 | awk '/inet6.*scope.*global/ {print $2}'); do
+				for lip in $(ip -6 addr list dev $IFACE6 | awk '/inet6.*scope.*global/ {print $2}'); do
 					LIP6="$LIP6,$lip"
-    				done
+				done
 			done
 			LIP6=${LIP6#,}
 
