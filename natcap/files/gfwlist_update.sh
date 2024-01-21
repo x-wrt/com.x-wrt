@@ -1,5 +1,13 @@
 #!/bin/sh
 
+memtotal=`grep MemTotal /proc/meminfo | awk '{print $2}'`
+
+#mem less than 64M
+if test $memtotal -le 65536; then
+	touch /tmp/natcapd.lck/gfwlist
+	exit 0
+fi
+
 gfwlist_enable=`uci get natcapd.default.gfwlist_enable 2>/dev/null || echo 0`
 [ x$gfwlist_enable = x1 ] || {
 	touch /tmp/natcapd.lck/gfwlist

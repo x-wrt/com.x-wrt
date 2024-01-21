@@ -9,14 +9,12 @@ include $(TOPDIR)/rules.mk
 include $(INCLUDE_DIR)/kernel.mk
 
 PKG_NAME:=natcap
-PKG_VERSION:=8.0.1
-PKG_RELEASE:=20200807
+PKG_VERSION:=20231216
 
-PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION)-$(PKG_RELEASE).tar.xz
-PKG_SOURCE_URL:=https://github.com/ptpt52/natcap.git
-PKG_SOURCE_PROTO:=git
-PKG_SOURCE_VERSION:=$(PKG_RELEASE)
-PKG_SOURCE_SUBDIR:=$(PKG_NAME)-$(PKG_VERSION)
+PKG_SOURCE_URL:=https://codeload.github.com/ptpt52/natcap/tar.gz/$(PKG_VERSION)?
+PKG_HASH:=c41876b19e51e36756a9166ab3d65f870b9e5a2cfbc8a664bb52db2a6753bc08
+PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
+
 PKG_MAINTAINER:=Chen Minqiang <ptpt52@gmail.com>
 PKG_LICENSE:=GPL-2.0
 
@@ -67,13 +65,13 @@ endef
 define Package/natcapd/Default
   CATEGORY:=X
   SUBMENU:=Natcap Support
-  DEPENDS:= +kmod-natcap
+  DEPENDS:= +kmod-natcap +luasocket
 endef
 
 define Package/natcapd
   $(call Package/natcapd/Default)
   TITLE:=natcapd agent for natcap
-  DEPENDS += +libustream-mbedtls +uclient-fetch \
+  DEPENDS += +libustream-ssl +uclient-fetch \
 			 +lua-cjson \
 			 +ipset \
 			 +dnsmasq-full +@PACKAGE_dnsmasq_full_ipset \
@@ -97,14 +95,15 @@ define Package/natcapd-mini/install
 	$(INSTALL_DATA) ./files/natcapd.config $(1)/etc/config/natcapd
 	$(INSTALL_DIR) $(1)/usr/share/natcapd
 	$(INSTALL_DATA) ./files/firewall.include $(1)/usr/share/natcapd/firewall.include
-	$(INSTALL_DATA) ./files/accelerated-domains.gfwlist.dnsmasq.conf $(1)/usr/share/natcapd/accelerated-domains.gfwlist.dnsmasq.conf
 	$(INSTALL_DATA) ./files/gfwlist_update.sh $(1)/usr/share/natcapd/gfwlist_update.sh
+	$(INSTALL_DATA) ./files/cnlist_update.sh $(1)/usr/share/natcapd/cnlist_update.sh
 	$(INSTALL_DATA) ./files/board_mac.lua $(1)/usr/share/natcapd/board_mac.lua
 	$(INSTALL_DATA) ./files/yy.json.lua $(1)/usr/share/natcapd/yy.json.lua
 	$(INSTALL_DATA) ./files/yy.sn.json.lua $(1)/usr/share/natcapd/yy.sn.json.lua
 	$(INSTALL_DATA) $(PKG_BUILD_DIR)/cniplist.set $(1)/usr/share/natcapd/cniplist.set
 	$(INSTALL_DATA) $(PKG_BUILD_DIR)/C_cniplist.set $(1)/usr/share/natcapd/C_cniplist.set
 	$(INSTALL_DATA) $(PKG_BUILD_DIR)/cniplist.orig.set $(1)/usr/share/natcapd/cniplist.orig.set
+	$(INSTALL_DATA) $(PKG_BUILD_DIR)/hkiplist.orig.set $(1)/usr/share/natcapd/hkiplist.orig.set
 	$(INSTALL_DATA) $(PKG_BUILD_DIR)/local.set $(1)/usr/share/natcapd/local.set
 	$(INSTALL_DATA) $(PKG_BUILD_DIR)/getflix.set $(1)/usr/share/natcapd/getflix.set
 	$(INSTALL_DATA) $(PKG_BUILD_DIR)/gfwlist1.tocn.ip.txt $(1)/usr/share/natcapd/gfwlist1.tocn.ip.txt
@@ -157,7 +156,8 @@ define KernelPackage/natcap
   SUBMENU:=Natcap Support
   TITLE:=Natcap kernel driver
   FILES:=$(PKG_BUILD_DIR)/natcap.ko
-  KCONFIG:=
+  KCONFIG:= \
+	    CONFIG_NF_CONNTRACK_MARK=y
   AUTOLOAD:=$(call AutoLoad,96,natcap)
   DEPENDS:= +kmod-ipt-conntrack +kmod-ipt-nat +kmod-ipt-ipset
 endef
@@ -172,6 +172,7 @@ define Build/Compile/natcap
 	+$(MAKE) $(PKG_JOBS) -C "$(LINUX_DIR)" \
 		$(KERNEL_MAKE_FLAGS) \
 		M="$(PKG_BUILD_DIR)" \
+		$(if $(CONFIG_KERNEL_DEBUG_INFO),,NO_DEBUG=1) \
 		modules
 endef
 
