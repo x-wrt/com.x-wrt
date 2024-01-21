@@ -2,7 +2,7 @@
 
 local nt = require "luci.sys".net
 
-local m = Map("natcapd", luci.xml.pcdata(translate("Natcap Service")), translate("Natcap to avoid censorship/filtering/logging"))
+local m = Map("natcapd", translate("Natcap Service"), translate("Natcap to avoid censorship/filtering/logging"))
 
 m:section(SimpleSection).template  = "natcap/natcap"
 
@@ -29,8 +29,11 @@ e = s:taboption("serverlist", DynamicList, "server", translate("Natcap Servers")
 e.datatype = "list(string)"
 e.placeholder = "1.2.3.4:0"
 
-e = s:taboption("general", Flag, "cnipwhitelist_mode", translate("Domestic and International Diversion"), translate("Generally do not need to be enabled unless used to play games."))
-e.default = e.disabled
+e = s:taboption("general", ListValue, "cnipwhitelist_mode", translate("Network traffic strategy"))
+e.default = "0"
+e:value("0", translate("Smart auto proxy"))
+e:value("1", translate("All International traffic proxy"))
+e:value("2", translate("Customization proxy"))
 e.rmempty = false
 
 e = s:taboption("general", Value, "server_persist_timeout", translate("Server Switching Interval (s)"), translate("How long to switch the server."))
@@ -106,6 +109,9 @@ e = s:taboption("system", Flag, "access_to_cn", translate("Access to China from 
 e.default = e.disabled
 e.rmempty = false
 
+e = s:taboption("system", Value, "config_version", translate("Config Version"))
+e.rmempty = true
+
 e = s:taboption("system", Flag, "full_proxy", translate("Full Proxy"), translate("All traffic goes to proxy."))
 e.default = e.disabled
 e.rmempty = false
@@ -162,6 +168,10 @@ e.rmempty = true
 e.validate = speed_validate
 
 e = s:taboption("system", Flag, "peer_sni_ban", translate("Disable Remote Mgr"))
+e.default = e.disabled
+e.rmempty = false
+
+e = s:taboption("system", Flag, "peer_mode", translate("Peer Mode"), translate("Do not enable unless the normal mode is not working."))
 e.default = e.disabled
 e.rmempty = false
 

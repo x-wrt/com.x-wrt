@@ -2,7 +2,7 @@
 
 local nt = require "luci.sys".net
 
-local m = Map("natcapd", luci.xml.pcdata(translate("Natcap Service")))
+local m = Map("natcapd", translate("Natcap Service"))
 
 m:section(SimpleSection).template  = "natcap/natcap"
 
@@ -25,6 +25,17 @@ e.default = e.disabled
 e.rmempty = false
 
 e = s:taboption("general", Flag, "peer_mode", translate("Peer Mode"), translate("Do not enable unless the normal mode is not working."))
+e.default = e.disabled
+e.rmempty = false
+
+e = s:taboption("general", ListValue, "cnipwhitelist_mode", translate("Network traffic strategy"))
+e.default = "0"
+e:value("0", translate("Smart auto proxy"))
+e:value("1", translate("All International traffic proxy"))
+e:value("2", translate("Customization proxy"))
+e.rmempty = false
+
+e = s:taboption("general", Flag, "full_proxy", translate("Full Proxy"), translate("All traffic goes to proxy."))
 e.default = e.disabled
 e.rmempty = false
 

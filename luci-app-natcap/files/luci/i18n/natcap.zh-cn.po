@@ -46,6 +46,12 @@ msgstr "下载OpenVPN客户端配置"
 msgid "Download OpenVPN Client Config (UDP)"
 msgstr "下载OpenVPN客户端配置（UDP）"
 
+msgid "Download OpenVPN IPv6 Client Config"
+msgstr "下载OpenVPN IPv6客户端配置"
+
+msgid "Download OpenVPN IPv6 Client Config (UDP)"
+msgstr "下载OpenVPN IPv6客户端配置（UDP）"
+
 msgid "Natcap Service"
 msgstr "Natcap 服务"
 
@@ -82,8 +88,17 @@ msgstr "服务器列表"
 msgid "Please fill in the server by format (ip:port)"
 msgstr "请按照格式填写服务器（ip:port）"
 
-msgid "Domestic and International Diversion"
-msgstr "启用国内国际分流模式"
+msgid "Network traffic strategy"
+msgstr "网络流量策略"
+
+msgid "Smart auto proxy"
+msgstr "智能自动代理"
+
+msgid "All International traffic proxy"
+msgstr "全部国际流量走代理"
+
+msgid "Customization proxy"
+msgstr "后台自定义(不要选)"
 
 msgid "Full Proxy"
 msgstr "全局完全代理"
@@ -160,10 +175,7 @@ msgstr "开启OpenVPN服务"
 msgid "Enable The PPTP Server"
 msgstr "启用PPTP服务器"
 
-msgid "Please enable compress option on OpenVPN client side."
-msgstr "请注意开启客户端的压缩(compress)选项，否则连上了网络也不通。"
-
-msgid "Allows you to use VPN to connect to router, the router need to have a public IP."
+msgid "Allows you connect to router via VPN, the router need to have a public IP."
 msgstr "允许你用VPN连接自己的路由器，路由器需要有公网IP。"
 
 msgid "PPTP Username"
@@ -201,6 +213,12 @@ msgstr "启用快速转发(offload)"
 
 msgid "Enable Fast Forwarding"
 msgstr "启用转发加速(natflow)"
+
+msgid "Enable Fast Forwarding Hardware Offload"
+msgstr "启用硬件转发加速"
+
+msgid "Enable Fast Forwarding Hardware Offload WED"
+msgstr "启用WED硬件转发加速"
 
 msgid "One Key VPN"
 msgstr "一键VPN服务"

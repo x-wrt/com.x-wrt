@@ -43,6 +43,8 @@ function index()
 	entry({"admin", "services", "natcap", "get_natcap_flows1"}, call("get_natcap_flows1")).leaf = true
 	entry({"admin", "services", "natcap", "get_openvpn_client"}, call("get_openvpn_client")).leaf = true
 	entry({"admin", "services", "natcap", "get_openvpn_client_udp"}, call("get_openvpn_client_udp")).leaf = true
+	entry({"admin", "services", "natcap", "get_openvpn_client6"}, call("get_openvpn_client6")).leaf = true
+	entry({"admin", "services", "natcap", "get_openvpn_client6_udp"}, call("get_openvpn_client6_udp")).leaf = true
 	entry({"admin", "services", "natcap", "status"}, call("status")).leaf = true
 	entry({"admin", "services", "natcap", "change_server"}, call("change_server")).leaf = true
 
@@ -99,7 +101,7 @@ function status()
 	data.total_tx = tonumber(data.total_tx) or 0
 	data.total_rx = tonumber(data.total_rx) or 0
 	data.uid = data.client_mac .. "-" .. data.uhash
-	data.mgr = "http://" .. string.lower(data.client_mac) .. ".x-wrt.dev/"
+	data.mgr = "https://" .. string.lower(data.client_mac) .. ".x-wrt.dev/"
 	data.domain = string.lower(data.client_mac) .. ".dns.x-wrt.com"
 	data.client_mac = nil
 	data.uhash = nill
@@ -137,12 +139,10 @@ end
 function get_natcap_flows0()
 	local js = require "cjson.safe"
 	local sys  = require "luci.sys"
-	local filename = "Data-not-found"
-	local flows = sys.exec("cat /tmp/xx.json 2>/dev/null")
-	flows = js.decode(flows) or {}
-	if flows.flows and flows.flows[1] and flows.flows[1].from and flows.flows[1].to then
-		filename = string.format("Flows_%s-%s", flows.flows[1].from, flows.flows[1].to)
-	end
+	local now = os.date("*t")
+	local from = os.date("%Y%m%d", os.time({year=now.year, month=now.month, day=1}))
+	local to = os.date("%Y%m%d")
+	local filename = string.format("Flows_%s-%s", from, to)
 
 	local reader = ltn12_popen("/usr/sbin/natcapd get_flows0")
 
@@ -154,12 +154,10 @@ end
 function get_natcap_flows1()
 	local sys  = require "luci.sys"
 	local js = require "cjson.safe"
-	local filename = "Data-not-found"
-	local flows = sys.exec("cat /tmp/xx.json 2>/dev/null")
-	flows = js.decode(flows) or {}
-	if flows.flows and flows.flows[2] and flows.flows[2].from and flows.flows[2].to then
-		filename = string.format("Flows_%s-%s", flows.flows[2].from, flows.flows[2].to)
-	end
+	local now = os.date("*t")
+	local from = os.date("%Y%m%d", os.time({year=now.year, month=now.month-1, day=1}))
+	local to = os.date("%Y%m%d", os.time({year=now.year, month=now.month, day=0}))
+	local filename = string.format("Flows_%s-%s", from, to)
 
 	local reader = ltn12_popen("/usr/sbin/natcapd get_flows1")
 
@@ -180,6 +178,22 @@ function get_openvpn_client_udp()
 	local reader = ltn12_popen("sh /usr/share/natcapd/natcapd.openvpn.sh gen_client_udp")
 
 	luci.http.header('Content-Disposition', 'attachment; filename="natcap-client-udp.ovpn"')
+	luci.http.prepare_content("application/x-openvpn-profile")
+	luci.ltn12.pump.all(reader, luci.http.write)
+end
+
+function get_openvpn_client6()
+	local reader = ltn12_popen("sh /usr/share/natcapd/natcapd.openvpn.sh gen_client6")
+
+	luci.http.header('Content-Disposition', 'attachment; filename="natcap-client-tcp6.ovpn"')
+	luci.http.prepare_content("application/x-openvpn-profile")
+	luci.ltn12.pump.all(reader, luci.http.write)
+end
+
+function get_openvpn_client6_udp()
+	local reader = ltn12_popen("sh /usr/share/natcapd/natcapd.openvpn.sh gen_client6_udp")
+
+	luci.http.header('Content-Disposition', 'attachment; filename="natcap-client-udp6.ovpn"')
 	luci.http.prepare_content("application/x-openvpn-profile")
 	luci.ltn12.pump.all(reader, luci.http.write)
 end

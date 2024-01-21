@@ -2,7 +2,7 @@
 
 local nt = require "luci.sys".net
 
-local m = Map("natcapd", luci.xml.pcdata(translate("SD-WAN Service")))
+local m = Map("natcapd", translate("SD-WAN Service"))
 
 m:section(SimpleSection).template  = "natcap/natcap"
 
