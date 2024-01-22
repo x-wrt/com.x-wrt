@@ -1177,7 +1177,19 @@ ping_cli() {
 		peer_mark_connected=0
 		test -n "$PINGH" || PINGH=ec2ns.ptpt52.com
 
-		ping6 -t1 -s1 -w1 -q 3f99:AABB:CCDD:EEFF:: &
+		IFACE6S=$(ip -6 r | grep default | grep -o 'dev .*' | cut -d" " -f2 | sort | uniq)
+		LIP6=""
+		for IFACE6 in $IFACE6S; do
+			for lip in $(ip -6 addr list dev $IFACE6 | awk '/inet6.*scope.*global/ {print $2}'); do
+				LIP6="${lip%%/*}"
+				break
+			done
+		done
+		if test -n "${LIP6}"; then
+			ping6 -I ${LIP6} -t1 -s1 -w1 -q 3f99:AABB:CCDD:EEFF:: &
+		else
+			ping6 -t1 -s1 -w1 -q 3f99:AABB:CCDD:EEFF:: &
+		fi
 
 		if [ "$(echo $PINGH | wc -w)" = "1" ]; then
 			PINGIP=`nslookup_check_local $PINGH`
