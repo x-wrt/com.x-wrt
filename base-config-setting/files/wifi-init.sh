@@ -60,7 +60,7 @@ wifi_setup_radio()
 				fi
 			else
 				uci set wireless.$obj.ieee80211r='1'
-				uci set wireless.$obj.ft_over_ds='1'
+				uci set wireless.$obj.ft_over_ds='0'
 				uci set wireless.$obj.ft_psk_generate_local='1'
 			fi
 		fi

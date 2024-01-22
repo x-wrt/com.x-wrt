@@ -178,7 +178,7 @@ agent_lost_ac()
 				uci set wireless.wifinet$K.ifname="wlan${WLAN_IDX}"
 			else
 				uci set wireless.wifinet$K.ieee80211r='1'
-				uci set wireless.wifinet$K.ft_over_ds='1'
+				uci set wireless.wifinet$K.ft_over_ds='0'
 				uci set wireless.wifinet$K.ft_psk_generate_local='1'
 			fi
 
