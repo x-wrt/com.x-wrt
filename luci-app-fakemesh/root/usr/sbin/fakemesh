@@ -64,6 +64,7 @@ test $enabled -eq 0 && {
 	uci delete fakemesh.default.wifim_md5 &>/dev/null
 	uci delete dhcp.meshx0 &>/dev/null
 	uci delete network.meshx0 &>/dev/null
+	uci delete network.meshx0_6 &>/dev/null
 	uci delete firewall.fakemesh &>/dev/null
 	sed -i "/.* controller.fakemesh/d" /etc/hosts
 	sed -i "/sh \/usr\/share\/fakemesh\/firewall.include.*/d" /etc/firewall.include
@@ -91,7 +92,7 @@ test $enabled -eq 0 && {
 	lan_idx=0
 	while uci get firewall.@zone[$lan_idx] &>/dev/null && [ $(uci get firewall.@zone[$lan_idx].name) != "lan" ]; do lan_idx=$((lan_idx+1)); done
 	lan_net="$(uci get firewall.@zone[$lan_idx].network 2>/dev/null)"
-	newlan_net=$(for ln in $lan_net; do [ "$ln" = "meshx0" ] || echo $ln; done | sort | uniq)
+	newlan_net=$(for ln in $lan_net; do [ "$ln" = "meshx0" -o "$ln" = "meshx0_6" ] || echo $ln; done | sort | uniq)
 	newlan_net=$(echo $newlan_net)
 	[ "$lan_net" != "$newlan_net" ] && {
 		uci delete firewall.@zone[$lan_idx].network &>/dev/null
@@ -633,6 +634,7 @@ if [ "$role" = "controller" ]; then
 
 	uci delete dhcp.meshx0 &>/dev/null
 	uci delete network.meshx0 &>/dev/null
+	uci delete network.meshx0_6 &>/dev/null
 
 	#re-enable lan
 	uci delete network.lan.auto &>/dev/null
@@ -657,7 +659,7 @@ if [ "$role" = "controller" ]; then
 	lan_idx=0
 	while uci get firewall.@zone[$lan_idx] &>/dev/null && [ $(uci get firewall.@zone[$lan_idx].name) != "lan" ]; do lan_idx=$((lan_idx+1)); done
 	lan_net="$(uci get firewall.@zone[$lan_idx].network 2>/dev/null)"
-	newlan_net=$(for ln in $lan_net; do [ "$ln" = "meshx0" ] || echo $ln; done | sort | uniq)
+	newlan_net=$(for ln in $lan_net; do [ "$ln" = "meshx0" -o "$ln" = "meshx0_6" ] || echo $ln; done | sort | uniq)
 	newlan_net=$(echo $newlan_net)
 	[ "$lan_net" != "$newlan_net" ] && {
 		uci delete firewall.@zone[$lan_idx].network &>/dev/null
@@ -804,11 +806,18 @@ else
 	uci set network.meshx0.metric='10'
 	uci set network.meshx0.hostname="MESH-AGENT_$(echo -n $MACADDR | sed 's/://g' | tr a-f A-F)"
 
+	uci set network.meshx0_6=interface
+	uci set network.meshx0_6.proto='dhcpv6'
+	uci set network.meshx0_6.device='@meshx0'
+	uci set network.meshx0_6.reqaddress='try'
+	uci set network.meshx0_6.reqprefix='auto'
+	uci set network.meshx0_6.hostname="MESH-AGENT_$(echo -n $MACADDR | sed 's/://g' | tr a-f A-F)"
+
 	#add meshx0 to lan zone
 	lan_idx=0
 	while uci get firewall.@zone[$lan_idx] &>/dev/null && [ $(uci get firewall.@zone[$lan_idx].name) != "lan" ]; do lan_idx=$((lan_idx+1)); done
 	lan_net="$(uci get firewall.@zone[$lan_idx].network 2>/dev/null)"
-	newlan_net=$(for ln in $lan_net meshx0; do echo $ln; done | sort | uniq)
+	newlan_net=$(for ln in $lan_net meshx0 meshx0_6; do echo $ln; done | sort | uniq)
 	newlan_net=$(echo $newlan_net)
 	[ "$lan_net" != "$newlan_net" ] && {
 		uci delete firewall.@zone[$lan_idx].network &>/dev/null
