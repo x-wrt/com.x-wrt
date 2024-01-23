@@ -811,6 +811,7 @@ else
 	uci set network.meshx0_6.device='@meshx0'
 	uci set network.meshx0_6.reqaddress='try'
 	uci set network.meshx0_6.reqprefix='auto'
+	uci set network.meshx0_6.delegate='0'
 	uci set network.meshx0_6.hostname="MESH-AGENT_$(echo -n $MACADDR | sed 's/://g' | tr a-f A-F)"
 
 	#add meshx0 to lan zone
