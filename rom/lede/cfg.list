@@ -18,6 +18,7 @@ config.qualcommax-ipq807x
 config.bcm53xx-generic
 config.mvebu-cortexa9
 config.kirkwood-generic
+config.bcm27xx-bcm2712
 config.x86_64
 config.x86_64-docker
 config.ath79-generic

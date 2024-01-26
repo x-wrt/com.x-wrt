@@ -467,6 +467,7 @@ for t in $targets; do
 		TARGET_DEVICE_bcm27xx_bcm2709_DEVICE_rpi-2|\
 		TARGET_DEVICE_bcm27xx_bcm2710_DEVICE_rpi-3|\
 		TARGET_DEVICE_bcm27xx_bcm2711_DEVICE_rpi-4|\
+		TARGET_DEVICE_bcm27xx_bcm2712_DEVICE_rpi-5|\
 		TARGET_DEVICE_ipq40xx_generic_DEVICE_netgear_ex6150v2|\
 		TARGET_DEVICE_ipq40xx_generic_DEVICE_netgear_ex6100v2|\
 		TARGET_DEVICE_ipq40xx_generic_DEVICE_glinet_gl-b1300|\
@@ -627,6 +628,7 @@ for t in $targets; do
 		TARGET_DEVICE_bcm27xx_bcm2709_DEVICE_rpi-2|\
 		TARGET_DEVICE_bcm27xx_bcm2710_DEVICE_rpi-3|\
 		TARGET_DEVICE_bcm27xx_bcm2711_DEVICE_rpi-4|\
+		TARGET_DEVICE_bcm27xx_bcm2712_DEVICE_rpi-5|\
 		TARGET_DEVICE_ipq40xx_generic_DEVICE_avm_fritzbox-4040|\
 		TARGET_DEVICE_ipq40xx_generic_DEVICE_avm_fritzbox-7530|\
 		TARGET_DEVICE_ath79_nand_DEVICE_glinet_gl-ar300m-nand|\
@@ -1164,6 +1166,7 @@ for t in $targets; do
 		TARGET_DEVICE_bcm27xx_bcm2709_DEVICE_rpi-2|\
 		TARGET_DEVICE_bcm27xx_bcm2710_DEVICE_rpi-3|\
 		TARGET_DEVICE_bcm27xx_bcm2711_DEVICE_rpi-4|\
+		TARGET_DEVICE_bcm27xx_bcm2712_DEVICE_rpi-5|\
 		TARGET_DEVICE_ipq40xx_generic_DEVICE_avm_fritzbox-4040|\
 		TARGET_DEVICE_ipq40xx_generic_DEVICE_avm_fritzbox-7530|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_tenbay_mac500f|\
