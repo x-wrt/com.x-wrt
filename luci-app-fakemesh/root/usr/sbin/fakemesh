@@ -169,11 +169,6 @@ agent_lost_ac()
 			uci set wireless.wifinet$K.ssid="${ssid}"
 			uci set wireless.wifinet$K.encryption="psk2"
 			uci set wireless.wifinet$K.key="${ssid_passwd}"
-			uci set wireless.wifinet$K.skip_inactivity_poll='1'
-			uci set wireless.wifinet$K.wpa_group_rekey='0'
-			uci set wireless.wifinet$K.wpa_pair_rekey='0'
-			uci set wireless.wifinet$K.wpa_master_rekey='0'
-			uci set wireless.wifinet$K.disassoc_low_ack='1'
 			if uci get wireless.${radio}.path | grep -q bcma || iwinfo wlan${radio:5} info | grep -qi Cypress; then
 				WLAN_IDX=${radio:5}
 				uci set wireless.wifinet$K.ifname="wlan${WLAN_IDX}"
@@ -375,11 +370,6 @@ agent_sync_config()
 							else
 								uci set wireless.wifinet$K.encryption='none'
 							fi
-							uci set wireless.wifinet$K.skip_inactivity_poll='1'
-							uci set wireless.wifinet$K.wpa_group_rekey='0'
-							uci set wireless.wifinet$K.wpa_pair_rekey='0'
-							uci set wireless.wifinet$K.wpa_master_rekey='0'
-							uci set wireless.wifinet$K.disassoc_low_ack='1'
 							if uci get wireless.${radio}.path | grep -q bcma || iwinfo wlan${radio:5} info | grep -qi Cypress; then
 								WLAN_IDX=${radio:5}
 								uci set wireless.wifinet$K.ifname="wlan${WLAN_IDX}"
@@ -617,11 +607,6 @@ if [ "$role" = "controller" ]; then
 		else
 			uci set wireless.meshx0.encryption='none'
 		fi
-		uci set wireless.meshx0.skip_inactivity_poll='1'
-		uci set wireless.meshx0.wpa_group_rekey='0'
-		uci set wireless.meshx0.wpa_pair_rekey='0'
-		uci set wireless.meshx0.wpa_master_rekey='0'
-		uci set wireless.meshx0.disassoc_low_ack='1'
 		if [ "$fronthaul_disabled" = "1" ]; then
 			uci set wireless.meshx0.disabled='1'
 		else
@@ -749,11 +734,6 @@ else
 		else
 			uci set wireless.meshx0.encryption='none'
 		fi
-		uci set wireless.meshx0.skip_inactivity_poll='1'
-		uci set wireless.meshx0.wpa_group_rekey='0'
-		uci set wireless.meshx0.wpa_pair_rekey='0'
-		uci set wireless.meshx0.wpa_master_rekey='0'
-		uci set wireless.meshx0.disassoc_low_ack='1'
 		if [ "$fronthaul_disabled" = "1" ]; then
 			uci set wireless.meshx0.disabled='1'
 		else
@@ -774,11 +754,6 @@ else
 		else
 			uci set wireless.meshx1.encryption='none'
 		fi
-		uci set wireless.meshx1.skip_inactivity_poll='1'
-		uci set wireless.meshx1.wpa_group_rekey='0'
-		uci set wireless.meshx1.wpa_pair_rekey='0'
-		uci set wireless.meshx1.wpa_master_rekey='0'
-		uci set wireless.meshx1.disassoc_low_ack='1'
 		if [ "$role" = "wap" ]; then
 			uci set wireless.meshx1.disabled='1'
 		else
