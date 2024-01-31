@@ -46,11 +46,6 @@ wifi_setup_radio()
 			uci set wireless.$obj.mode='ap'
 			uci set wireless.$obj.ssid="${SSID}"
 			uci set wireless.$obj.encryption='psk2'
-			uci set wireless.$obj.skip_inactivity_poll='1'
-			uci set wireless.$obj.wpa_group_rekey='0'
-			uci set wireless.$obj.wpa_pair_rekey='0'
-			uci set wireless.$obj.wpa_master_rekey='0'
-			uci set wireless.$obj.disassoc_low_ack='0'
 			uci set wireless.$obj.key="${SSID_PASSWD}"
 			if uci get wireless.${radio}.path | grep -q bcma || iwinfo wlan${radio:5} info | grep -qi Cypress; then
 				if [ "$(uci get wireless.${radio}.band)" = "2g" ]; then
