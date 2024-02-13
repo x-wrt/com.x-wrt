@@ -140,6 +140,7 @@ make_config()
 				else
 					uci set openvpn.natcapovpn_$p.proto="${p}4"
 				fi
+				uci set openvpn.natcapovpn_$p.multihome='1'
 			fi
 			uci set openvpn.natcapovpn_$p.verb='3'
 			uci set openvpn.natcapovpn_$p.cipher='AES-256-GCM'
