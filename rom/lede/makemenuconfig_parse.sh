@@ -452,6 +452,8 @@ for t in $targets; do
 		TARGET_DEVICE_mediatek_filogic_DEVICE_xiaomi_mi-router-ax3000t-ubootmod|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_acer_predator-w6|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_bananapi_bpi-r3|\
+		TARGET_DEVICE_mediatek_filogic_DEVICE_bananapi_bpi-r3-mini|\
+		TARGET_DEVICE_mediatek_filogic_DEVICE_bananapi_bpi-r4|\
 		TARGET_DEVICE_mediatek_mt7622_DEVICE_linksys_e8450-ubi|\
 		TARGET_DEVICE_mediatek_mt7622_DEVICE_linksys_e8450|\
 		TARGET_DEVICE_mediatek_mt7622_DEVICE_bananapi_bpi-r64|\
@@ -577,6 +579,8 @@ for t in $targets; do
 		TARGET_DEVICE_mediatek_filogic_DEVICE_xiaomi_mi-router-ax3000t-ubootmod|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_acer_predator-w6|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_bananapi_bpi-r3|\
+		TARGET_DEVICE_mediatek_filogic_DEVICE_bananapi_bpi-r3-mini|\
+		TARGET_DEVICE_mediatek_filogic_DEVICE_bananapi_bpi-r4|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_yuncore_ax820|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_h3c_tx1806|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_planex_vr500|\
@@ -1108,6 +1112,8 @@ for t in $targets; do
 		TARGET_DEVICE_ipq40xx_generic_DEVICE_glinet_gl-a1300|\
 		TARGET_DEVICE_ipq40xx_generic_DEVICE_glinet_gl-b2200|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_bananapi_bpi-r3|\
+		TARGET_DEVICE_mediatek_filogic_DEVICE_bananapi_bpi-r3-mini|\
+		TARGET_DEVICE_mediatek_filogic_DEVICE_bananapi_bpi-r4|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_zbtlink_zbt-wg1608-16m|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_zbtlink_zbt-wg1608-32m|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_mikrotik_routerboard-750gr3|\
