@@ -462,6 +462,7 @@ for t in $targets; do
 		TARGET_DEVICE_ipq806x_generic_DEVICE_ruijie_rg-mtfi-m520|\
 		TARGET_DEVICE_ipq806x_generic_DEVICE_tplink_ad7200|\
 		TARGET_DEVICE_rockchip_armv8_DEVICE_friendlyarm_nanopi-r2c|\
+		TARGET_DEVICE_rockchip_armv8_DEVICE_friendlyarm_nanopi-r2c-plus|\
 		TARGET_DEVICE_rockchip_armv8_DEVICE_friendlyarm_nanopi-r2s|\
 		TARGET_DEVICE_rockchip_armv8_DEVICE_friendlyarm_nanopi-r4s|\
 		TARGET_DEVICE_rockchip_armv8_DEVICE_friendlyarm_nanopi-r5c|\
@@ -610,6 +611,7 @@ for t in $targets; do
 		TARGET_DEVICE_ramips_mt7621_DEVICE_xwrt_wr1800k-ax-nand|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_xwrt_nxc2005ex|\
 		TARGET_DEVICE_rockchip_armv8_DEVICE_friendlyarm_nanopi-r2c|\
+		TARGET_DEVICE_rockchip_armv8_DEVICE_friendlyarm_nanopi-r2c-plus|\
 		TARGET_DEVICE_rockchip_armv8_DEVICE_friendlyarm_nanopi-r2s|\
 		TARGET_DEVICE_rockchip_armv8_DEVICE_friendlyarm_nanopi-r4s|\
 		TARGET_DEVICE_rockchip_armv8_DEVICE_friendlyarm_nanopi-r5c|\
@@ -1272,6 +1274,7 @@ for t in $targets; do
 		TARGET_DEVICE_ath79_generic_DEVICE_tplink_tl-wr842n-v1|\
 		TARGET_DEVICE_ramips_mt7620_DEVICE_nexx_wt3020-8m|\
 		TARGET_DEVICE_rockchip_armv8_DEVICE_friendlyarm_nanopi-r2c|\
+		TARGET_DEVICE_rockchip_armv8_DEVICE_friendlyarm_nanopi-r2c-plus|\
 		TARGET_DEVICE_rockchip_armv8_DEVICE_friendlyarm_nanopi-r2s|\
 		TARGET_DEVICE_ramips_mt7620_DEVICE_asus_rt-ac54u|\
 		TARGET_DEVICE_ath79_generic_DEVICE_tplink_archer-d7-v1|\
