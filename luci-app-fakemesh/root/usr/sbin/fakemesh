@@ -495,7 +495,7 @@ agent_fix_channel()
 				if [ "$chan" != "$channel" ]; then
 					logger -t fakemesh "agent_fix_channel($pid): Setting up channel ($chan) for ${radio}"
 					uci set wireless.${radio}.channel="$chan"
-					[ "$chan" = "36" ] || {
+					test "$chan" -ge "36" -a "$chan" -le "44" || {
 						htmode=$(uci get wireless.${radio}.htmode 2>/dev/null)
 						if [ "$htmode" = "VHT160" ]; then
 							uci set wireless.${radio}.htmode="VHT80"
