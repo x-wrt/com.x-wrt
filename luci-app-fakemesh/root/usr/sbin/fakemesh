@@ -169,6 +169,8 @@ agent_lost_ac()
 			uci set wireless.wifinet$K.ssid="${ssid}"
 			uci set wireless.wifinet$K.encryption="psk2"
 			uci set wireless.wifinet$K.key="${ssid_passwd}"
+			uci set wireless.wifinet$K.wpa_group_rekey='601'
+			uci set wireless.wifinet$K.max_inactivity='301'
 			if uci get wireless.${radio}.path | grep -q bcma || iwinfo wlan${radio:5} info | grep -qi Cypress; then
 				WLAN_IDX=${radio:5}
 				uci set wireless.wifinet$K.ifname="wlan${WLAN_IDX}"
@@ -364,6 +366,8 @@ agent_sync_config()
 							fi
 							uci set wireless.wifinet$K.mode='ap'
 							uci set wireless.wifinet$K.ssid="${ssid}"
+							uci set wireless.wifinet$K.wpa_group_rekey='601'
+							uci set wireless.wifinet$K.max_inactivity='301'
 							if [ "${encryption}" != "none" ]; then
 								uci set wireless.wifinet$K.encryption="${encryption}"
 								uci set wireless.wifinet$K.key="${key}"
@@ -601,6 +605,8 @@ if [ "$role" = "controller" ]; then
 		uci set wireless.meshx0.wds='1'
 		uci set wireless.meshx0.ssid="${Xid}"
 		uci set wireless.meshx0.hidden='1'
+		uci set wireless.meshx0.wpa_group_rekey='601'
+		uci set wireless.meshx0.max_inactivity='301'
 		if test -n "${Xkey}"; then
 			uci set wireless.meshx0.encryption='psk2'
 			uci set wireless.meshx0.key="${Xkey}"
@@ -728,6 +734,8 @@ else
 		uci set wireless.meshx0.wds='1'
 		uci set wireless.meshx0.ssid="${Xid}"
 		uci set wireless.meshx0.hidden='1'
+		uci set wireless.meshx0.wpa_group_rekey='601'
+		uci set wireless.meshx0.max_inactivity='301'
 		if test -n "${Xkey}"; then
 			uci set wireless.meshx0.encryption='psk2'
 			uci set wireless.meshx0.key="${Xkey}"
