@@ -75,3 +75,6 @@ msgstr "禁网"
 
 msgid "Allow"
 msgstr "允许上网"
+
+msgid "IPv4/IPv6 address"
+msgstr "IPv4/IPv6 地址"
