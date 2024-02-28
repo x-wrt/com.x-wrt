@@ -66,7 +66,7 @@ for i in $IDXS; do
 				touch $f && echo touch $f
 			done
 		}
-		rm -rf build_dir/target-*/linux-*/tmp
+		rm -rf build_dir/target-*/linux-*
 		rm -rf build_dir/toolchain-*
 		[ "x$TMPFS" = x1 ] && {
 			if [ "$last_arch" != "$new_arch" ]; then
