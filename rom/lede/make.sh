@@ -66,10 +66,8 @@ for i in $IDXS; do
 				touch $f && echo touch $f
 			done
 		}
-		rm -rf build_dir/target-*
+		rm -rf build_dir/target-*/linux-*/tmp
 		rm -rf build_dir/toolchain-*
-		test -z "$(readlink build_dir/hostpkg)" && rm -rf build_dir/hostpkg
-		test -z "$(readlink build_dir/host)" && rm -rf build_dir/host
 		[ "x$TMPFS" = x1 ] && {
 			if [ "$last_arch" != "$new_arch" ]; then
 				rm -rf build_dir/target-*
