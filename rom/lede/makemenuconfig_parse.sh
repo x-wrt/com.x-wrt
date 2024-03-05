@@ -512,6 +512,7 @@ for t in $targets; do
 		TARGET_DEVICE_mediatek_filogic_DEVICE_jdcloud_re-cp-03|\
 		TARGET_DEVICE_qualcommax_ipq807x_DEVICE_linksys_mx5300|\
 		TARGET_DEVICE_qualcommax_ipq807x_DEVICE_qnap_301w|\
+		TARGET_DEVICE_qualcommax_ipq60xx_DEVICE_netgear_wax214|\
 		TARGET_DEVICE_qualcommax_ipq807x_DEVICE_linksys_mx4200v1|\
 		TARGET_DEVICE_qualcommax_ipq807x_DEVICE_linksys_mx4200v2|\
 		TARGET_DEVICE_ipq40xx_generic_DEVICE_linksys_ea6350v3|\
@@ -563,7 +564,6 @@ for t in $targets; do
 		TARGET_DEVICE_mediatek_filogic_DEVICE_tplink_tl-xdr6088|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_tplink_tl-xdr4288|\
 		TARGET_DEVICE_ipq806x_generic_DEVICE_askey_rt4230w-rev6|\
-		TARGET_DEVICE_qualcommax_ipq807x_DEVICE_qnap_301w|\
 		TARGET_DEVICE_qualcommax_ipq807x_DEVICE_redmi_ax6|\
 		TARGET_DEVICE_qualcommax_ipq807x_DEVICE_xiaomi_ax3600|\
 		TARGET_DEVICE_qualcommax_ipq807x_DEVICE_xiaomi_ax9000|\
@@ -1447,6 +1447,7 @@ for t in $targets; do
 		TARGET_DEVICE_mediatek_filogic_DEVICE_jdcloud_re-cp-03|\
 		TARGET_DEVICE_qualcommax_ipq807x_DEVICE_linksys_mx5300|\
 		TARGET_DEVICE_qualcommax_ipq807x_DEVICE_qnap_301w|\
+		TARGET_DEVICE_qualcommax_ipq60xx_DEVICE_netgear_wax214|\
 		TARGET_DEVICE_qualcommax_ipq807x_DEVICE_linksys_mx4200v1|\
 		TARGET_DEVICE_qualcommax_ipq807x_DEVICE_linksys_mx4200v2|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_zbtlink_zbt-z8103ax|\
@@ -1487,7 +1488,6 @@ for t in $targets; do
 		TARGET_DEVICE_qualcommax_ipq807x_DEVICE_redmi_ax6|\
 		TARGET_DEVICE_qualcommax_ipq807x_DEVICE_xiaomi_ax3600|\
 		TARGET_DEVICE_qualcommax_ipq807x_DEVICE_xiaomi_ax9000|\
-		TARGET_DEVICE_qualcommax_ipq807x_DEVICE_qnap_301w|\
 		TARGET_DEVICE_mediatek_mt7622_DEVICE_netgear_wax206|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_ruijie_rg-ew1800gx|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_haier_har-20s2u1|\

@@ -15,6 +15,7 @@ config.rockchip-armv8
 config.armsr-armv8
 config.ipq806x-generic
 config.qualcommax-ipq807x
+config.qualcommax-ipq60xx
 config.bcm53xx-generic
 config.mvebu-cortexa9
 config.kirkwood-generic
