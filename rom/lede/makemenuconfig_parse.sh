@@ -510,6 +510,8 @@ for t in $targets; do
 	case $t in
 		#>=14M flash
 		TARGET_DEVICE_mediatek_filogic_DEVICE_jdcloud_re-cp-03|\
+		TARGET_DEVICE_qualcommax_ipq807x_DEVICE_linksys_mx5300|\
+		TARGET_DEVICE_qualcommax_ipq807x_DEVICE_qnap_301w|\
 		TARGET_DEVICE_qualcommax_ipq807x_DEVICE_linksys_mx4200v1|\
 		TARGET_DEVICE_qualcommax_ipq807x_DEVICE_linksys_mx4200v2|\
 		TARGET_DEVICE_ipq40xx_generic_DEVICE_linksys_ea6350v3|\
@@ -1443,6 +1445,8 @@ for t in $targets; do
 		;;
 		#no usb
 		TARGET_DEVICE_mediatek_filogic_DEVICE_jdcloud_re-cp-03|\
+		TARGET_DEVICE_qualcommax_ipq807x_DEVICE_linksys_mx5300|\
+		TARGET_DEVICE_qualcommax_ipq807x_DEVICE_qnap_301w|\
 		TARGET_DEVICE_qualcommax_ipq807x_DEVICE_linksys_mx4200v1|\
 		TARGET_DEVICE_qualcommax_ipq807x_DEVICE_linksys_mx4200v2|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_zbtlink_zbt-z8103ax|\
