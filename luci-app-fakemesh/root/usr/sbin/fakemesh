@@ -323,7 +323,7 @@ agent_sync_config()
 		[ "${oldbsh}" = "${newbsh}" ] || {
 			uci set fakemesh.default.band_steer_helper="${newbsh}"
 			uci commit fakemesh
-			band_steer_helper="${newbsh}" band_steer_helper_switch
+			band_steer_helper="${newbsh}" exec /usr/sbin/fakemesh band_steer_helper_switch &
 		}
 
 		oldcfgmd5=$(uci get fakemesh.default.wifim_md5 2>/dev/null)
