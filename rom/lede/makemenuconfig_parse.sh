@@ -509,6 +509,8 @@ for t in $targets; do
 	esac
 	case $t in
 		#>=14M flash
+		TARGET_DEVICE_mediatek_filogic_DEVICE_glinet_gl-x3000|\
+		TARGET_DEVICE_mediatek_filogic_DEVICE_glinet_gl-xe3000|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_jdcloud_re-cp-03|\
 		TARGET_DEVICE_qualcommax_ipq807x_DEVICE_linksys_mx5300|\
 		TARGET_DEVICE_qualcommax_ipq807x_DEVICE_qnap_301w|\
@@ -1091,6 +1093,8 @@ for t in $targets; do
 	#check usb
 	case $t in
 		#with usb3
+		TARGET_DEVICE_mediatek_filogic_DEVICE_glinet_gl-x3000|\
+		TARGET_DEVICE_mediatek_filogic_DEVICE_glinet_gl-xe3000|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_glinet_gl-mt2500|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_zbtlink_zbt-z8102ax|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_cmcc_rax3000m|\
