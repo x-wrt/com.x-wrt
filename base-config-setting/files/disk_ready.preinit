@@ -15,7 +15,7 @@ do_disk_ready() {
 		if echo $partdev | grep -q "^sd[a-z]"; then
 			ROOTDEV=/dev/${partdev}
 			ROOTPART=/dev/${partdev}
-		elif echo $partdev | grep -q "^mmcblk[0-9]"; then
+		elif echo $partdev | grep -q ".*[0-9]"; then
 			ROOTDEV=/dev/${partdev}
 			ROOTPART=/dev/${partdev}p
 		else
