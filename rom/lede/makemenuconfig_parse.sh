@@ -1363,7 +1363,6 @@ for t in $targets; do
 		TARGET_DEVICE_ramips_mt76x8_DEVICE_hiwifi_hc5861b|\
 		TARGET_DEVICE_ath79_generic_DEVICE_pisen_wmm003n|\
 		TARGET_DEVICE_ramips_mt76x8_DEVICE_tplink_tl-wr902ac-v3|\
-		TARGET_DEVICE_ramips_mt76x8_DEVICE_tplink_tl-wr902ac-v4|\
 		TARGET_DEVICE_ramips_mt76x8_DEVICE_tplink_tl-wr842n-v5|\
 		TARGET_DEVICE_ramips_mt76x8_DEVICE_tplink_tl-mr3420-v5|\
 		TARGET_DEVICE_ramips_mt76x8_DEVICE_netgear_r6120|\
@@ -1448,6 +1447,7 @@ for t in $targets; do
 			has_usb=1
 		;;
 		#no usb
+		TARGET_DEVICE_ramips_mt76x8_DEVICE_tplink_tl-wr902ac-v4|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_jdcloud_re-cp-03|\
 		TARGET_DEVICE_qualcommax_ipq807x_DEVICE_linksys_mx5300|\
 		TARGET_DEVICE_qualcommax_ipq807x_DEVICE_qnap_301w|\
