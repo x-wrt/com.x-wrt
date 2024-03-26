@@ -115,6 +115,7 @@ CONFIG_TARGET_MULTI_PROFILE=y
 # CONFIG_TARGET_ramips_mt76x8_DEVICE_tplink_re200-v2 is not set
 # CONFIG_TARGET_ramips_mt76x8_DEVICE_tplink_re200-v3 is not set
 # CONFIG_TARGET_ramips_mt76x8_DEVICE_tplink_re200-v4 is not set
+# CONFIG_TARGET_ramips_mt76x8_DEVICE_tplink_re205-v3 is not set
 # CONFIG_TARGET_ramips_mt76x8_DEVICE_tplink_re220-v2 is not set
 # CONFIG_TARGET_ramips_mt76x8_DEVICE_tplink_re305-v1 is not set
 # CONFIG_TARGET_ramips_mt76x8_DEVICE_tplink_re305-v3 is not set
@@ -233,6 +234,7 @@ CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt76x8_DEVICE_tplink_archer-c50-v4="kmod-mt
 # CONFIG_TARGET_DEVICE_ramips_mt76x8_DEVICE_tplink_re200-v2 is not set
 # CONFIG_TARGET_DEVICE_ramips_mt76x8_DEVICE_tplink_re200-v3 is not set
 # CONFIG_TARGET_DEVICE_ramips_mt76x8_DEVICE_tplink_re200-v4 is not set
+# CONFIG_TARGET_DEVICE_ramips_mt76x8_DEVICE_tplink_re205-v3 is not set
 # CONFIG_TARGET_DEVICE_ramips_mt76x8_DEVICE_tplink_re220-v2 is not set
 # CONFIG_TARGET_DEVICE_ramips_mt76x8_DEVICE_tplink_re305-v1 is not set
 # CONFIG_TARGET_DEVICE_ramips_mt76x8_DEVICE_tplink_re305-v3 is not set
@@ -619,7 +621,7 @@ CONFIG_USE_MUSL=y
 CONFIG_SSP_SUPPORT=y
 CONFIG_BINUTILS_VERSION_2_40=y
 CONFIG_BINUTILS_VERSION="2.40"
-CONFIG_GCC_VERSION="12.3.0"
+CONFIG_GCC_VERSION="13.2.0"
 CONFIG_LIBC="musl"
 CONFIG_TARGET_SUFFIX="musl"
 # CONFIG_IB is not set
@@ -644,7 +646,7 @@ CONFIG_TARGET_INIT_CMD="/sbin/init"
 CONFIG_TARGET_INIT_SUPPRESS_STDERR=y
 CONFIG_VERSIONOPT=y
 CONFIG_VERSION_DIST="X-WRT"
-CONFIG_VERSION_NUMBER="24.01_b202403222222"
+CONFIG_VERSION_NUMBER="24.01_b202403260931"
 CONFIG_VERSION_CODE="Mantic"
 CONFIG_VERSION_REPO="http://downloads.openwrt.org/snapshots"
 CONFIG_VERSION_HOME_URL="https://x-wrt.com/"
