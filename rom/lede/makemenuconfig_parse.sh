@@ -737,6 +737,7 @@ for t in $targets; do
 			extra_utils=1
 		;;
 		#>8M flash <14M
+		TARGET_DEVICE_ramips_mt7621_DEVICE_asus_rt-ax53u|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_tplink_ex220-v1|\
 		TARGET_DEVICE_ath79_generic_DEVICE_comfast_cf-e5|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_tenbay_ms3000k|\
@@ -1093,6 +1094,7 @@ for t in $targets; do
 	#check usb
 	case $t in
 		#with usb3
+		TARGET_DEVICE_ramips_mt7621_DEVICE_asus_rt-ax53u|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_glinet_gl-x3000|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_glinet_gl-xe3000|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_glinet_gl-mt2500|\
