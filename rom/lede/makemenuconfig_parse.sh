@@ -393,6 +393,7 @@ for t in $targets; do
 	excludes="$excludes_basic"
 	case $t in
 		#>=32M flash
+		TARGET_DEVICE_x86_64_DEVICE_generic|\
 		TARGET_DEVICE_qualcommax_ipq807x_DEVICE_linksys_mx4200v1|\
 		TARGET_DEVICE_qualcommax_ipq807x_DEVICE_linksys_mx4200v2|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_zbtlink_zbt-z8103ax|\
@@ -509,6 +510,7 @@ for t in $targets; do
 	esac
 	case $t in
 		#>=14M flash
+		TARGET_DEVICE_x86_64_DEVICE_generic|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_glinet_gl-x3000|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_glinet_gl-xe3000|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_jdcloud_re-cp-03|\
@@ -1094,6 +1096,7 @@ for t in $targets; do
 	#check usb
 	case $t in
 		#with usb3
+		TARGET_DEVICE_x86_64_DEVICE_generic|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_asus_rt-ax53u|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_glinet_gl-x3000|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_glinet_gl-xe3000|\
@@ -1662,6 +1665,65 @@ for t in $targets; do
 		;;
 		*)
 			echo no handle usb $t
+		;;
+	esac
+
+	case $t in
+		TARGET_DEVICE_x86_64_DEVICE_generic)
+			mods="$mods \
+ath10k-board-qca9377 \
+ath10k-board-qca9887 \
+ath10k-board-qca9888 \
+ath10k-board-qca988x \
+ath10k-board-qca9984 \
+ath10k-board-qca99x0 \
+ath10k-firmware-qca6174 \
+ath10k-firmware-qca9377 \
+ath10k-firmware-qca9887 \
+ath10k-firmware-qca9888 \
+ath10k-firmware-qca988x \
+ath10k-firmware-qca9984 \
+ath10k-firmware-qca99x0 \
+brcmfmac-firmware-43602a1-pcie \
+brcmfmac-firmware-4366b1-pcie \
+brcmfmac-firmware-4366c0-pcie \
+iwl3945-firmware \
+iwl4965-firmware \
+iwlwifi-firmware-ax101 \
+iwlwifi-firmware-ax200 \
+iwlwifi-firmware-ax201 \
+iwlwifi-firmware-ax210 \
+iwlwifi-firmware-be200 \
+iwlwifi-firmware-iwl100 \
+iwlwifi-firmware-iwl1000 \
+iwlwifi-firmware-iwl105 \
+iwlwifi-firmware-iwl135 \
+iwlwifi-firmware-iwl2000 \
+iwlwifi-firmware-iwl2030 \
+iwlwifi-firmware-iwl3160 \
+iwlwifi-firmware-iwl3168 \
+iwlwifi-firmware-iwl5000 \
+iwlwifi-firmware-iwl5150 \
+iwlwifi-firmware-iwl6000g2 \
+iwlwifi-firmware-iwl6000g2a \
+iwlwifi-firmware-iwl6000g2b \
+iwlwifi-firmware-iwl6050 \
+iwlwifi-firmware-iwl7260 \
+iwlwifi-firmware-iwl7265 \
+iwlwifi-firmware-iwl7265d \
+iwlwifi-firmware-iwl8260c \
+iwlwifi-firmware-iwl8265 \
+iwlwifi-firmware-iwl9000 \
+iwlwifi-firmware-iwl9260 \
+rt73-usb-firmware \
+rtl8188eu-firmware \
+rtl8192ce-firmware \
+rtl8192de-firmware \
+rtl8192eu-firmware \
+rtl8192se-firmware \
+rtl8723au-firmware \
+rtl8723bu-firmware \
+rtl8821ae-firmware"
 		;;
 	esac
 

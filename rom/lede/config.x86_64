@@ -62,7 +62,7 @@ CONFIG_TARGET_MULTI_PROFILE=y
 # CONFIG_TARGET_ALL_PROFILES is not set
 CONFIG_TARGET_PER_DEVICE_ROOTFS=y
 CONFIG_TARGET_DEVICE_x86_64_DEVICE_generic=y
-CONFIG_TARGET_DEVICE_PACKAGES_x86_64_DEVICE_generic="ath10k-board-qca9377 ath10k-board-qca9887 ath10k-board-qca9888 ath10k-board-qca988x ath10k-board-qca9984 ath10k-board-qca99x0 ath10k-firmware-qca6174 ath10k-firmware-qca9377 ath10k-firmware-qca9887 ath10k-firmware-qca9888 ath10k-firmware-qca988x ath10k-firmware-qca9984 ath10k-firmware-qca99x0 brcmfmac-firmware-43602a1-pcie brcmfmac-firmware-4366b1-pcie brcmfmac-firmware-4366c0-pcie +++ b/rom/lede/config.x86_64 iwl3945-firmware iwl4965-firmware iwlwifi-firmware-ax101 iwlwifi-firmware-ax200 iwlwifi-firmware-ax201 iwlwifi-firmware-ax210 iwlwifi-firmware-be200 iwlwifi-firmware-iwl100 iwlwifi-firmware-iwl1000 iwlwifi-firmware-iwl105 iwlwifi-firmware-iwl135 iwlwifi-firmware-iwl2000 iwlwifi-firmware-iwl2030 iwlwifi-firmware-iwl3160 iwlwifi-firmware-iwl3168 iwlwifi-firmware-iwl5000 iwlwifi-firmware-iwl5150 iwlwifi-firmware-iwl6000g2 iwlwifi-firmware-iwl6000g2a iwlwifi-firmware-iwl6000g2b iwlwifi-firmware-iwl6050 iwlwifi-firmware-iwl7260 iwlwifi-firmware-iwl7265 iwlwifi-firmware-iwl7265d iwlwifi-firmware-iwl8260c iwlwifi-firmware-iwl8265 iwlwifi-firmware-iwl9000 iwlwifi-firmware-iwl9260 rt73-usb-firmware rtl8188eu-firmware rtl8192ce-firmware rtl8192de-firmware rtl8192eu-firmware rtl8192se-firmware rtl8723au-firmware rtl8723bu-firmware rtl8821ae-firmware"
+CONFIG_TARGET_DEVICE_PACKAGES_x86_64_DEVICE_generic="ath10k-board-qca9377 ath10k-board-qca9887 ath10k-board-qca9888 ath10k-board-qca988x ath10k-board-qca9984 ath10k-board-qca99x0 ath10k-firmware-qca6174 ath10k-firmware-qca9377 ath10k-firmware-qca9887 ath10k-firmware-qca9888 ath10k-firmware-qca988x ath10k-firmware-qca9984 ath10k-firmware-qca99x0 brcmfmac-firmware-43602a1-pcie brcmfmac-firmware-4366b1-pcie brcmfmac-firmware-4366c0-pcie iwl3945-firmware iwl4965-firmware iwlwifi-firmware-ax101 iwlwifi-firmware-ax200 iwlwifi-firmware-ax201 iwlwifi-firmware-ax210 iwlwifi-firmware-be200 iwlwifi-firmware-iwl100 iwlwifi-firmware-iwl1000 iwlwifi-firmware-iwl105 iwlwifi-firmware-iwl135 iwlwifi-firmware-iwl2000 iwlwifi-firmware-iwl2030 iwlwifi-firmware-iwl3160 iwlwifi-firmware-iwl3168 iwlwifi-firmware-iwl5000 iwlwifi-firmware-iwl5150 iwlwifi-firmware-iwl6000g2 iwlwifi-firmware-iwl6000g2a iwlwifi-firmware-iwl6000g2b iwlwifi-firmware-iwl6050 iwlwifi-firmware-iwl7260 iwlwifi-firmware-iwl7265 iwlwifi-firmware-iwl7265d iwlwifi-firmware-iwl8260c iwlwifi-firmware-iwl8265 iwlwifi-firmware-iwl9000 iwlwifi-firmware-iwl9260 libmbedtls libustream-mbedtls rt73-usb-firmware rtl8188eu-firmware rtl8192ce-firmware rtl8192de-firmware rtl8192eu-firmware rtl8192se-firmware rtl8723au-firmware rtl8723bu-firmware rtl8821ae-firmware"
 # end of Target Devices
 
 CONFIG_HAS_SUBTARGETS=y
@@ -496,7 +496,7 @@ CONFIG_TARGET_INIT_CMD="/sbin/init"
 CONFIG_TARGET_INIT_SUPPRESS_STDERR=y
 CONFIG_VERSIONOPT=y
 CONFIG_VERSION_DIST="X-WRT"
-CONFIG_VERSION_NUMBER="24.01_b202403260931"
+CONFIG_VERSION_NUMBER="24.01_b202403280853"
 CONFIG_VERSION_CODE="Mantic"
 CONFIG_VERSION_REPO="http://downloads.openwrt.org/snapshots"
 CONFIG_VERSION_HOME_URL="https://x-wrt.com/"
@@ -2597,7 +2597,7 @@ CONFIG_PACKAGE_libpthread=y
 CONFIG_PACKAGE_librt=y
 CONFIG_PACKAGE_libstdcpp=y
 CONFIG_PACKAGE_logd=y
-CONFIG_PACKAGE_mtd=m
+CONFIG_PACKAGE_mtd=y
 CONFIG_PACKAGE_netifd=y
 # CONFIG_PACKAGE_nft-qos is not set
 CONFIG_PACKAGE_openwrt-keyring=y
@@ -3707,7 +3707,7 @@ CONFIG_PACKAGE_kmod-bcma=y
 # CONFIG_PACKAGE_kmod-bluetooth-6lowpan is not set
 # CONFIG_PACKAGE_kmod-btmrvl is not set
 # CONFIG_PACKAGE_kmod-btsdio is not set
-CONFIG_PACKAGE_kmod-button-hotplug=m
+CONFIG_PACKAGE_kmod-button-hotplug=y
 # CONFIG_PACKAGE_kmod-echo is not set
 CONFIG_PACKAGE_kmod-eeprom-93cx6=y
 # CONFIG_PACKAGE_kmod-eeprom-at24 is not set
@@ -5517,7 +5517,7 @@ CONFIG_PACKAGE_libexpat=y
 # CONFIG_PACKAGE_libexslt is not set
 CONFIG_PACKAGE_libext2fs=y
 # CONFIG_PACKAGE_libextractor is not set
-CONFIG_PACKAGE_libf2fs=m
+CONFIG_PACKAGE_libf2fs=y
 # CONFIG_PACKAGE_libf2fs-selinux is not set
 # CONFIG_PACKAGE_libfaad2 is not set
 # CONFIG_PACKAGE_libfastjson is not set
@@ -6099,6 +6099,7 @@ CONFIG_PACKAGE_luci-proto-xfrm=y
 # 6. Libraries
 #
 CONFIG_PACKAGE_luci-lib-base=y
+# CONFIG_PACKAGE_luci-lib-chartjs is not set
 # CONFIG_PACKAGE_luci-lib-httpclient is not set
 # CONFIG_PACKAGE_luci-lib-httpprotoutils is not set
 CONFIG_PACKAGE_luci-lib-ip=y
@@ -8062,7 +8063,7 @@ CONFIG_PACKAGE_fuse-utils=m
 # CONFIG_PACKAGE_fuse3-utils is not set
 # CONFIG_PACKAGE_hfsfsck is not set
 # CONFIG_PACKAGE_lsattr is not set
-CONFIG_PACKAGE_mkf2fs=m
+CONFIG_PACKAGE_mkf2fs=y
 # CONFIG_PACKAGE_mkf2fs-selinux is not set
 # CONFIG_PACKAGE_mkhfs is not set
 # CONFIG_PACKAGE_ncdu is not set
