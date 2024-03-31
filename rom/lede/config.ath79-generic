@@ -128,7 +128,6 @@ CONFIG_TARGET_MULTI_PROFILE=y
 # CONFIG_TARGET_ath79_generic_DEVICE_dlink_covr-p2500-a1 is not set
 # CONFIG_TARGET_ath79_generic_DEVICE_dlink_dap-1330-a1 is not set
 # CONFIG_TARGET_ath79_generic_DEVICE_dlink_dap-1365-a1 is not set
-# CONFIG_TARGET_ath79_generic_DEVICE_dlink_dap-1720-a1 is not set
 # CONFIG_TARGET_ath79_generic_DEVICE_dlink_dap-2230-a1 is not set
 # CONFIG_TARGET_ath79_generic_DEVICE_dlink_dap-2660-a1 is not set
 # CONFIG_TARGET_ath79_generic_DEVICE_dlink_dap-2680-a1 is not set
@@ -144,9 +143,6 @@ CONFIG_TARGET_MULTI_PROFILE=y
 # CONFIG_TARGET_ath79_generic_DEVICE_dlink_dir-842-c1 is not set
 # CONFIG_TARGET_ath79_generic_DEVICE_dlink_dir-842-c2 is not set
 # CONFIG_TARGET_ath79_generic_DEVICE_dlink_dir-842-c3 is not set
-# CONFIG_TARGET_ath79_generic_DEVICE_dlink_dir-859-a1 is not set
-# CONFIG_TARGET_ath79_generic_DEVICE_dlink_dir-859-a3 is not set
-# CONFIG_TARGET_ath79_generic_DEVICE_dlink_dir-869-a1 is not set
 # CONFIG_TARGET_ath79_generic_DEVICE_elecom_wab-i1750-ps is not set
 # CONFIG_TARGET_ath79_generic_DEVICE_elecom_wab-s1167-ps is not set
 # CONFIG_TARGET_ath79_generic_DEVICE_elecom_wab-s600-ps is not set
@@ -188,6 +184,7 @@ CONFIG_TARGET_MULTI_PROFILE=y
 # CONFIG_TARGET_ath79_generic_DEVICE_hak5_packet-squirrel is not set
 # CONFIG_TARGET_ath79_generic_DEVICE_hak5_wifi-pineapple-nano is not set
 # CONFIG_TARGET_ath79_generic_DEVICE_hiwifi_hc6361 is not set
+# CONFIG_TARGET_ath79_generic_DEVICE_huawei_ap5030dn is not set
 # CONFIG_TARGET_ath79_generic_DEVICE_iodata_etg3-r is not set
 # CONFIG_TARGET_ath79_generic_DEVICE_iodata_wn-ac1167dgr is not set
 # CONFIG_TARGET_ath79_generic_DEVICE_iodata_wn-ac1600dgr is not set
@@ -512,7 +509,6 @@ CONFIG_TARGET_DEVICE_PACKAGES_ath79_generic_DEVICE_buffalo_wzr-hp-g450h="blockd 
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_dlink_covr-p2500-a1 is not set
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_dlink_dap-1330-a1 is not set
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_dlink_dap-1365-a1 is not set
-# CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_dlink_dap-1720-a1 is not set
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_dlink_dap-2230-a1 is not set
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_dlink_dap-2660-a1 is not set
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_dlink_dap-2680-a1 is not set
@@ -531,10 +527,6 @@ CONFIG_TARGET_DEVICE_PACKAGES_ath79_generic_DEVICE_dlink_dir-835-a1="blockd bloc
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_dlink_dir-842-c2 is not set
 CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_dlink_dir-842-c3=y
 CONFIG_TARGET_DEVICE_PACKAGES_ath79_generic_DEVICE_dlink_dir-842-c3="ath10k-board-qca9888 ath10k-firmware-qca9888-ct dawn kmod-ath10k-ct kmod-hwmon-core kmod-ovpn-dco-v2 libgcrypt libgpg-error liblz4 liblzo libnl-core libnl-genl libqrencode luci-app-dawn luci-app-openvpn luci-app-usteer luci-i18n-dashboard-zh-cn luci-i18n-openvpn-zh-cn luci-mod-dashboard luci-proto-relay luci-proto-wireguard openvpn-mbedtls qrencode relayd tc-tiny wireguard-tools wpad-mbedtls"
-CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_dlink_dir-859-a1=y
-CONFIG_TARGET_DEVICE_PACKAGES_ath79_generic_DEVICE_dlink_dir-859-a1="ath10k-board-qca988x ath10k-firmware-qca988x-ct blockd block-mount chat comgt comgt-ncm dawn kmod-ath10k-ct-smallbuffers kmod-crypto-des kmod-crypto-md5 kmod-crypto-sha256 kmod-dnsresolver kmod-fs-autofs4 kmod-fs-exfat kmod-fs-ext4 kmod-fs-ksmbd kmod-fs-msdos kmod-fs-nfs kmod-fs-nfs-common kmod-fs-nfs-v4 kmod-fs-ntfs3 kmod-fs-smbfs-common kmod-fs-vfat kmod-fuse kmod-hwmon-core kmod-lib-crc16 kmod-mii kmod-nls-cp437 kmod-oid-registry kmod-ovpn-dco-v2 kmod-phy-ath79-usb kmod-scsi-core kmod-usb2 kmod-usb-core kmod-usb-ehci kmod-usb-net kmod-usb-net-cdc-ether kmod-usb-net-cdc-mbim kmod-usb-net-cdc-ncm kmod-usb-net-huawei-cdc-ncm kmod-usb-net-ipheth kmod-usb-net-qmi-wwan kmod-usb-net-rndis kmod-usb-net-sierrawireless kmod-usb-ohci kmod-usb-printer kmod-usb-serial kmod-usb-serial-option kmod-usb-serial-qualcomm kmod-usb-serial-sierrawireless kmod-usb-serial-wwan kmod-usb-storage kmod-usb-storage-extras kmod-usb-storage-uas kmod-usb-wdm ksmbd-server libblkid libgcrypt libgpg-error liblz4 liblzo libnl-core libnl-genl libqrencode libusb-1.0 libwrap luci-app-dawn luci-app-ksmbd luci-app-openvpn luci-app-p910nd luci-app-usteer luci-i18n-dashboard-zh-cn luci-i18n-ksmbd-zh-cn luci-i18n-openvpn-zh-cn luci-i18n-p910nd-zh-cn luci-mod-dashboard luci-proto-3g luci-proto-mbim luci-proto-ncm luci-proto-qmi luci-proto-relay luci-proto-wireguard nfs-utils openvpn-mbedtls p910nd qrencode relayd tc-tiny umbim uqmi usb-modeswitch wireguard-tools wpad-mbedtls wsdd2 wwan"
-# CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_dlink_dir-859-a3 is not set
-# CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_dlink_dir-869-a1 is not set
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_devolo_dlan-pro-1200plus-ac is not set
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_devolo_magic-2-wifi is not set
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_devolo_dvl1200e is not set
@@ -592,6 +584,8 @@ CONFIG_TARGET_DEVICE_PACKAGES_ath79_generic_DEVICE_glinet_gl-x750="ath10k-board-
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_hak5_packet-squirrel is not set
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_hak5_wifi-pineapple-nano is not set
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_hiwifi_hc6361 is not set
+CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_huawei_ap5030dn=y
+CONFIG_TARGET_DEVICE_PACKAGES_ath79_generic_DEVICE_huawei_ap5030dn="ath10k-board-qca988x ath10k-firmware-qca988x-ct dawn kmod-ath10k-ct kmod-hwmon-core kmod-ovpn-dco-v2 libgcrypt libgpg-error liblz4 liblzo libnl-core libnl-genl libqrencode luci-app-dawn luci-app-openvpn luci-app-usteer luci-i18n-dashboard-zh-cn luci-i18n-openvpn-zh-cn luci-mod-dashboard luci-proto-relay luci-proto-wireguard openvpn-mbedtls qrencode relayd tc-tiny wireguard-tools wpad-mbedtls"
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_iodata_etg3-r is not set
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_iodata_wn-ac1167dgr is not set
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_iodata_wn-ac1600dgr is not set
@@ -887,7 +881,6 @@ CONFIG_MODULE_DEFAULT_fstools=y
 CONFIG_DEFAULT_iwinfo=y
 CONFIG_MODULE_DEFAULT_iwinfo=y
 CONFIG_MODULE_DEFAULT_kmod-ath10k-ct=y
-CONFIG_MODULE_DEFAULT_kmod-ath10k-ct-smallbuffers=y
 CONFIG_DEFAULT_kmod-ath9k=y
 CONFIG_MODULE_DEFAULT_kmod-ath9k=y
 CONFIG_DEFAULT_kmod-gpio-button-hotplug=y
