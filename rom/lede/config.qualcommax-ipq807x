@@ -125,7 +125,7 @@ CONFIG_TARGET_SUBTARGET="ipq807x"
 CONFIG_TARGET_ARCH_PACKAGES="aarch64_cortex-a53"
 CONFIG_DEFAULT_TARGET_OPTIMIZATION="-Os -pipe -mcpu=cortex-a53"
 CONFIG_CPU_TYPE="cortex-a53"
-CONFIG_LINUX_6_1=y
+CONFIG_LINUX_6_6=y
 CONFIG_MODULE_DEFAULT_ath10k-firmware-qca9887-ct=y
 CONFIG_MODULE_DEFAULT_ath10k-firmware-qca9984-ct=y
 CONFIG_DEFAULT_ath11k-firmware-ipq8074=y
@@ -229,7 +229,6 @@ CONFIG_DEFAULT_urngd=y
 CONFIG_MODULE_DEFAULT_urngd=y
 CONFIG_DEFAULT_wpad-basic-mbedtls=y
 CONFIG_MODULE_DEFAULT_wpad-basic-mbedtls=y
-CONFIG_HAS_TESTING_KERNEL=y
 CONFIG_HAS_FPU=y
 CONFIG_AUDIO_SUPPORT=y
 CONFIG_GPIO_SUPPORT=y
@@ -301,7 +300,6 @@ CONFIG_DOWNLOAD_CHECK_CERTIFICATE=y
 #
 # General build options
 #
-# CONFIG_TESTING_KERNEL is not set
 # CONFIG_DISPLAY_SUPPORT is not set
 CONFIG_BUILD_PATENTED=y
 # CONFIG_BUILD_NLS is not set
@@ -526,7 +524,7 @@ CONFIG_TARGET_INIT_CMD="/sbin/init"
 CONFIG_TARGET_INIT_SUPPRESS_STDERR=y
 CONFIG_VERSIONOPT=y
 CONFIG_VERSION_DIST="X-WRT"
-CONFIG_VERSION_NUMBER="24.01_b202403280853"
+CONFIG_VERSION_NUMBER="24.01_b202404010809"
 CONFIG_VERSION_CODE="Mantic"
 CONFIG_VERSION_REPO="http://downloads.openwrt.org/snapshots"
 CONFIG_VERSION_HOME_URL="https://x-wrt.com/"
@@ -3123,6 +3121,7 @@ CONFIG_PACKAGE_kmod-crypto-echainiv=m
 # CONFIG_PACKAGE_kmod-crypto-essiv is not set
 # CONFIG_PACKAGE_kmod-crypto-fcrypt is not set
 CONFIG_PACKAGE_kmod-crypto-gcm=y
+CONFIG_PACKAGE_kmod-crypto-geniv=y
 CONFIG_PACKAGE_kmod-crypto-gf128=y
 CONFIG_PACKAGE_kmod-crypto-ghash=y
 CONFIG_PACKAGE_kmod-crypto-hash=y
@@ -3146,7 +3145,7 @@ CONFIG_PACKAGE_kmod-crypto-rng=y
 CONFIG_PACKAGE_kmod-crypto-seqiv=y
 CONFIG_PACKAGE_kmod-crypto-sha1=y
 CONFIG_PACKAGE_kmod-crypto-sha256=m
-CONFIG_PACKAGE_kmod-crypto-sha3=m
+CONFIG_PACKAGE_kmod-crypto-sha3=y
 CONFIG_PACKAGE_kmod-crypto-sha512=y
 # CONFIG_PACKAGE_kmod-crypto-test is not set
 CONFIG_PACKAGE_kmod-crypto-user=y
@@ -3177,7 +3176,7 @@ CONFIG_PACKAGE_kmod-fs-f2fs=m
 CONFIG_PACKAGE_kmod-fs-ksmbd=m
 # CONFIG_PACKAGE_kmod-fs-minix is not set
 CONFIG_PACKAGE_kmod-fs-msdos=m
-# CONFIG_PACKAGE_kmod-fs-netfs is not set
+CONFIG_PACKAGE_kmod-fs-netfs=m
 CONFIG_PACKAGE_kmod-fs-nfs=m
 CONFIG_PACKAGE_kmod-fs-nfs-common=m
 # CONFIG_PACKAGE_kmod-fs-nfs-common-rpcsec is not set
@@ -3404,6 +3403,7 @@ CONFIG_PACKAGE_kmod-nls-iso8859-1=y
 # CONFIG_PACKAGE_kmod-nls-iso8859-6 is not set
 # CONFIG_PACKAGE_kmod-nls-iso8859-8 is not set
 # CONFIG_PACKAGE_kmod-nls-koi8r is not set
+CONFIG_PACKAGE_kmod-nls-ucs2-utils=m
 CONFIG_PACKAGE_kmod-nls-utf8=y
 # end of Native Language Support
 
