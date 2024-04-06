@@ -54,6 +54,7 @@ CONFIG_TARGET_qualcommax_ipq60xx=y
 CONFIG_TARGET_MULTI_PROFILE=y
 # CONFIG_TARGET_qualcommax_ipq60xx_DEVICE_8devices_mango-dvk is not set
 # CONFIG_TARGET_qualcommax_ipq60xx_DEVICE_netgear_wax214 is not set
+# CONFIG_TARGET_qualcommax_ipq60xx_DEVICE_yuncore_fap650 is not set
 
 #
 # Target Devices
@@ -63,6 +64,7 @@ CONFIG_TARGET_PER_DEVICE_ROOTFS=y
 # CONFIG_TARGET_DEVICE_qualcommax_ipq60xx_DEVICE_8devices_mango-dvk is not set
 CONFIG_TARGET_DEVICE_qualcommax_ipq60xx_DEVICE_netgear_wax214=y
 CONFIG_TARGET_DEVICE_PACKAGES_qualcommax_ipq60xx_DEVICE_netgear_wax214="ath11k-firmware-ipq6018 dawn ipq-wifi-netgear_wax214 iptables-mod-dhcpmac iptables-mod-dnetmap jool-tools-netfilter kmod-bonding kmod-crypto-md5 kmod-inet-diag kmod-ipt-compat-xtables kmod-ipt-dhcpmac kmod-ipt-dnetmap kmod-jool-netfilter kmod-nat46 kmod-nf-conntrack-netlink kmod-ovpn-dco-v2 libcap libgcrypt libgpg-error liblz4 liblzo libnl libnl-cli libnl-core libnl-genl libnl-nf libnl-route libopenssl libopenssl-conf libopenssl-legacy libpcre2 libqrencode libstdcpp libxml2 luci-app-dawn luci-app-openvpn luci-app-usteer luci-i18n-dashboard-zh-cn luci-i18n-openvpn-zh-cn luci-mod-dashboard luci-proto-bonding luci-proto-relay luci-proto-wireguard luci-ssl-nginx nginx-mod-luci nginx-mod-luci-ssl nginx-mod-ubus nginx-ssl nginx-ssl-util nginx-util openssl-util openvpn-openssl proto-bonding qrencode relayd tc-tiny uwsgi uwsgi-cgi-plugin uwsgi-luci-support uwsgi-syslog-plugin wireguard-tools wpad-openssl"
+# CONFIG_TARGET_DEVICE_qualcommax_ipq60xx_DEVICE_yuncore_fap650 is not set
 # end of Target Devices
 
 CONFIG_HAS_SUBTARGETS=y
@@ -443,7 +445,7 @@ CONFIG_TARGET_INIT_CMD="/sbin/init"
 CONFIG_TARGET_INIT_SUPPRESS_STDERR=y
 CONFIG_VERSIONOPT=y
 CONFIG_VERSION_DIST="X-WRT"
-CONFIG_VERSION_NUMBER="24.01_b202404010809"
+CONFIG_VERSION_NUMBER="24.01_b202404060749"
 CONFIG_VERSION_CODE="Mantic"
 CONFIG_VERSION_REPO="http://downloads.openwrt.org/snapshots"
 CONFIG_VERSION_HOME_URL="https://x-wrt.com/"
@@ -2751,6 +2753,7 @@ CONFIG_PACKAGE_ipq-wifi-netgear_wax214=m
 # CONFIG_PACKAGE_ipq-wifi-xiaomi_ax3600 is not set
 # CONFIG_PACKAGE_ipq-wifi-xiaomi_ax9000 is not set
 # CONFIG_PACKAGE_ipq-wifi-yuncore_ax880 is not set
+# CONFIG_PACKAGE_ipq-wifi-yuncore_fap650 is not set
 # CONFIG_PACKAGE_ipq-wifi-yyets_le1 is not set
 # CONFIG_PACKAGE_ipq-wifi-zte_mf269 is not set
 # CONFIG_PACKAGE_ipq-wifi-zte_mf287 is not set
@@ -6306,6 +6309,7 @@ CONFIG_PACKAGE_luci-i18n-upnp-zh-cn=y
 # CONFIG_PACKAGE_luci-i18n-usteer-pl is not set
 # CONFIG_PACKAGE_luci-i18n-usteer-pt-br is not set
 # CONFIG_PACKAGE_luci-i18n-usteer-ru is not set
+# CONFIG_PACKAGE_luci-i18n-usteer-tr is not set
 CONFIG_PACKAGE_luci-i18n-usteer-zh-cn=m
 # CONFIG_PACKAGE_luci-i18n-usteer-zh-tw is not set
 # end of LuCI
@@ -6879,6 +6883,7 @@ CONFIG_PACKAGE_tc-tiny=m
 # CONFIG_PACKAGE_udp-broadcast-relay-redux is not set
 # CONFIG_PACKAGE_vis is not set
 # CONFIG_PACKAGE_yggdrasil is not set
+# CONFIG_PACKAGE_yggdrasil-jumper is not set
 # end of Routing and Redirection
 
 #
@@ -7164,6 +7169,8 @@ CONFIG_PACKAGE_strongswan-swanctl=m
 # CONFIG_PACKAGE_uanytun-sslcrypt is not set
 # CONFIG_PACKAGE_vpnc is not set
 # CONFIG_PACKAGE_vpnc-scripts is not set
+# CONFIG_PACKAGE_wgsd-client is not set
+# CONFIG_PACKAGE_wgsd-coredns is not set
 CONFIG_PACKAGE_wireguard-tools=m
 CONFIG_PACKAGE_xl2tpd=m
 # CONFIG_PACKAGE_zerotier is not set
