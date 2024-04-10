@@ -510,6 +510,7 @@ for t in $targets; do
 	esac
 	case $t in
 		#>=14M flash
+		TARGET_DEVICE_ramips_mt7621_DEVICE_linksys_ea8100-v1|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_netcore_n60|\
 		TARGET_DEVICE_x86_64_DEVICE_generic|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_glinet_gl-x3000|\
@@ -1100,6 +1101,7 @@ for t in $targets; do
 	#check usb
 	case $t in
 		#with usb3
+		TARGET_DEVICE_ramips_mt7621_DEVICE_linksys_ea8100-v1|\
 		TARGET_DEVICE_x86_64_DEVICE_generic|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_asus_rt-ax53u|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_glinet_gl-x3000|\
