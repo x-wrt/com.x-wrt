@@ -747,8 +747,10 @@ static void rmnet_vnd_update_tx_stats(struct net_device *net,
 static struct rtnl_link_stats64 *_rmnet_vnd_get_stats64(struct net_device *net, struct rtnl_link_stats64 *stats)
 {
 	struct qmap_priv *dev = netdev_priv(net);
+#if (LINUX_VERSION_CODE <= KERNEL_VERSION(6, 1, 0))
 	unsigned int start;
 	int cpu;
+#endif
 
 	netdev_stats_to_stats64(stats, &net->stats);
 
@@ -757,6 +759,7 @@ static struct rtnl_link_stats64 *_rmnet_vnd_get_stats64(struct net_device *net, 
 		stats->rx_bytes = 0;
 	}
 
+#if (LINUX_VERSION_CODE <= KERNEL_VERSION(6, 1, 0))
 	for_each_possible_cpu(cpu) {
 		struct pcpu_sw_netstats *stats64;
 		u64 rx_packets, rx_bytes;
@@ -784,6 +787,9 @@ static struct rtnl_link_stats64 *_rmnet_vnd_get_stats64(struct net_device *net, 
 		stats->tx_packets += tx_packets;
 		stats->tx_bytes += tx_bytes;
 	}
+#else
+	dev_fetch_sw_netstats(stats, dev->stats64);
+#endif
 
 	return stats;
 }
