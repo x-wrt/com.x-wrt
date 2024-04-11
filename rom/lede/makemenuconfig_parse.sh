@@ -1734,6 +1734,7 @@ rtl8192se-firmware \
 rtl8723au-firmware \
 rtl8723bu-firmware \
 rtl8821ae-firmware"
+			excludes="$excludes libustream-mbedtls"
 		;;
 	esac
 
