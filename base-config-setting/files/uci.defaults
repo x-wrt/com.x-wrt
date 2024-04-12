@@ -34,6 +34,7 @@ test $version -lt 1 && {
 	uci commit mwan3
 
 	uci set dhcp.lan.force='1'
+	uci set dhcp.lan.preferred_lifetime='5m'
 	uci commit dhcp
 
 	[ "$(uci get firewall.@zone[0].name 2>/dev/null)" = "lan" ] && {
