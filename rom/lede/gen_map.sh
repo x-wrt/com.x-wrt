@@ -10,7 +10,7 @@ sha256sums="`find bin/targets/ -type f -name sha256sums`"
 test -n "$sha256sums" && \
 sha256sums=`cat $sha256sums`
 
-targets=$(cd feeds/x/rom/lede/ && cat $CFGS | grep TARGET_DEVICE_.*=y | sed 's/CONFIG_//;s/=y//' | sort)
+targets=$(cd feeds/x/rom/lede/ && cat $CFGS | grep TARGET_DEVICE_.*=y | grep -v x86_64 | sed 's/CONFIG_//;s/=y//' | sort)
 
 echo -n >sha256sums.txt
 echo -n >map.list
