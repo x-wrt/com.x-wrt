@@ -99,6 +99,7 @@ CONFIG_TARGET_MULTI_PROFILE=y
 # CONFIG_TARGET_ramips_mt7621_DEVICE_dlink_dir-1960-a1 is not set
 # CONFIG_TARGET_ramips_mt7621_DEVICE_dlink_dir-2640-a1 is not set
 # CONFIG_TARGET_ramips_mt7621_DEVICE_dlink_dir-2660-a1 is not set
+# CONFIG_TARGET_ramips_mt7621_DEVICE_dlink_dir-3040-a1 is not set
 # CONFIG_TARGET_ramips_mt7621_DEVICE_dlink_dir-3060-a1 is not set
 # CONFIG_TARGET_ramips_mt7621_DEVICE_dlink_dir-853-a1 is not set
 # CONFIG_TARGET_ramips_mt7621_DEVICE_dlink_dir-853-a3 is not set
@@ -371,6 +372,7 @@ CONFIG_TARGET_PER_DEVICE_ROOTFS=y
 # CONFIG_TARGET_DEVICE_ramips_mt7621_DEVICE_dlink_dir-1960-a1 is not set
 # CONFIG_TARGET_DEVICE_ramips_mt7621_DEVICE_dlink_dir-2640-a1 is not set
 # CONFIG_TARGET_DEVICE_ramips_mt7621_DEVICE_dlink_dir-2660-a1 is not set
+# CONFIG_TARGET_DEVICE_ramips_mt7621_DEVICE_dlink_dir-3040-a1 is not set
 # CONFIG_TARGET_DEVICE_ramips_mt7621_DEVICE_dlink_dir-3060-a1 is not set
 # CONFIG_TARGET_DEVICE_ramips_mt7621_DEVICE_dlink_dir-853-a1 is not set
 # CONFIG_TARGET_DEVICE_ramips_mt7621_DEVICE_dlink_dir-853-a3 is not set
@@ -979,7 +981,7 @@ CONFIG_TARGET_INIT_CMD="/sbin/init"
 CONFIG_TARGET_INIT_SUPPRESS_STDERR=y
 CONFIG_VERSIONOPT=y
 CONFIG_VERSION_DIST="X-WRT"
-CONFIG_VERSION_NUMBER="24.01_b202404110914"
+CONFIG_VERSION_NUMBER="24.01_b202404150831"
 CONFIG_VERSION_CODE="Mantic"
 CONFIG_VERSION_REPO="http://downloads.openwrt.org/snapshots"
 CONFIG_VERSION_HOME_URL="https://x-wrt.com/"
