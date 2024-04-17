@@ -35,6 +35,11 @@ test $version -lt 1 && {
 
 	uci set dhcp.lan.force='1'
 	uci set dhcp.lan.preferred_lifetime='5m'
+
+	uci set dhcp.wan6=dhcp
+	uci set dhcp.wan6.interface='wan6'
+	uci set dhcp.wan6.ignore='1'
+
 	uci commit dhcp
 
 	[ "$(uci get firewall.@zone[0].name 2>/dev/null)" = "lan" ] && {
