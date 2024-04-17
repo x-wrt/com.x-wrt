@@ -312,6 +312,8 @@ test $version -lt 12 && {
 }
 
 test $version -lt 13 && {
+	uci set network.wan6.reqaddress='try'
+	uci set network.wan6.reqprefix='auto'
 	uci set network.globals.packet_steering=1
 	uci commit network
 	version=13
