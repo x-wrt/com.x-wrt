@@ -34,6 +34,12 @@ test $version -lt 1 && {
 	uci commit mwan3
 
 	uci set dhcp.lan.force='1'
+	uci set dhcp.lan.preferred_lifetime='5m'
+
+	uci set dhcp.wan6=dhcp
+	uci set dhcp.wan6.interface='wan6'
+	uci set dhcp.wan6.ignore='1'
+
 	uci commit dhcp
 
 	[ "$(uci get firewall.@zone[0].name 2>/dev/null)" = "lan" ] && {
@@ -306,6 +312,8 @@ test $version -lt 12 && {
 }
 
 test $version -lt 13 && {
+	uci set network.wan6.reqaddress='try'
+	uci set network.wan6.reqprefix='auto'
 	uci set network.globals.packet_steering=1
 	uci commit network
 	version=13

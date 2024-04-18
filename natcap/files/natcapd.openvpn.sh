@@ -82,6 +82,7 @@ make_config()
 			}
 			index=$((index+1))
 		done
+		I=0
 		for p in tcp udp; do
 			uci delete firewall.natcapovpn_$p
 			uci set firewall.natcapovpn_$p=rule
@@ -90,6 +91,13 @@ make_config()
 			uci set firewall.natcapovpn_$p.proto="$p"
 			uci set firewall.natcapovpn_$p.dest_port='4911'
 			uci set firewall.natcapovpn_$p.name="natcapovpn_$p"
+			uci set firewall.natcapovpn_masq_$p=nat
+			uci set firewall.natcapovpn_masq_$p.name="natcapovpn_masq_$p"
+			uci set firewall.natcapovpn_masq_$p.proto='all'
+			uci set firewall.natcapovpn_masq_$p.src='lan'
+			uci set firewall.natcapovpn_masq_$p.src_ip="10.8.$((9+I)).0/24"
+			uci set firewall.natcapovpn_masq_$p.target='MASQUERADE'
+			I=$((I+1))
 		done
 		uci commit firewall
 
@@ -140,6 +148,7 @@ make_config()
 				else
 					uci set openvpn.natcapovpn_$p.proto="${p}4"
 				fi
+				uci set openvpn.natcapovpn_$p.multihome='1'
 			fi
 			uci set openvpn.natcapovpn_$p.verb='3'
 			uci set openvpn.natcapovpn_$p.cipher='AES-256-GCM'
@@ -168,6 +177,7 @@ make_config()
 
 	for p in tcp udp; do
 		uci delete firewall.natcapovpn_$p
+		uci delete firewall.natcapovpn_masq_$p
 	done
 	index=0
 	while :; do

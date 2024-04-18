@@ -142,7 +142,7 @@ return view.extend({
 		s.render = L.bind(function(view, section_id) {
 			var table = E('table', { 'class': 'table cbi-section-table', 'id': 'user_status_table' }, [
 				E('tr', { 'class': 'tr table-titles' }, [
-					E('th', { 'class': 'th col-2' }, [ _('IPv4 address') ]),
+					E('th', { 'class': 'th col-2' }, [ _('IPv4/IPv6 address') ]),
 					E('th', { 'class': 'th col-2' }, [ _('MAC address') ]),
 					E('th', { 'class': 'th col-7' }, [ _('RX') ]),
 					E('th', { 'class': 'th col-7' }, [ _('TX') ]),
