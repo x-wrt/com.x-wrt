@@ -22,10 +22,10 @@ make_config()
 
 	if [ "$mode" = "1" ]; then
 		cat ${BASE_CONFIG} | sed "s/^remote .*4911$/remote $hname.dns.x-wrt.com 4911/;s/^proto tcp$/proto $PROTO/;s/dev tun/dev tap/"
-		echo tun_mtu 1404
+		echo tun-mtu 1404
 	else
 		cat ${BASE_CONFIG} | sed "s/^remote .*4911$/remote $hname.dns.x-wrt.com 4911/;s/^proto tcp$/proto $PROTO/"
-		echo tun_mtu 1420
+		echo tun-mtu 1420
 	fi
 	echo -e '<ca>'
 	cat ${KEY_DIR}/ca.crt
