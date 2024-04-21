@@ -735,7 +735,7 @@ for t in $targets; do
 		TARGET_DEVICE_ramips_mt7621_DEVICE_netgear_r6220b|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_netgear_r6220c)
 			mods="$mods $lucibond $ipv6extra $wifiext $tc $lucidashboard $kmodext $relay"
-			mods="$mods $wgmod $openvpnmod wpad-openssl luci-ssl-nginx"
+			mods="$mods $wgmod $openvpnmod wpad-openssl luci-ssl-nginx luci-nginx"
 			mods="$mods kmod-ipt-compat-xtables kmod-ipt-dhcpmac kmod-ipt-dnetmap iptables-mod-dhcpmac iptables-mod-dnetmap"
 			excludes="$excludes wpad-basic-mbedtls wpad-basic-wolfssl"
 			flash_gt8m=1
