@@ -86,6 +86,8 @@ define Package/luci-app-simplenetwork/install
 	$(INSTALL_DATA) ./htdocs/luci-static/resources/view/system/*.js $(1)/www/luci-static/resources/view/system/
 	$(INSTALL_DIR) $(1)/www/luci-static/resources/view/p910nd
 	$(INSTALL_DATA) ./htdocs/luci-static/resources/view/p910nd/*.js $(1)/www/luci-static/resources/view/p910nd/
+	$(INSTALL_DIR) $(1)/usr/share/ucitrack
+	$(INSTALL_DATA) ./root/usr/share/ucitrack/*.json $(1)/usr/share/ucitrack/
 endef
 
 $(eval $(call BuildPackage,luci-app-simplenetwork))
