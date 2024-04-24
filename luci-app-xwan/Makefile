@@ -75,6 +75,8 @@ define Package/luci-app-xwan/install
 	$(INSTALL_DATA) ./files/root/etc/uci-defaults/40_luci-app-xwan $(1)/etc/uci-defaults/40_luci-app-xwan
 	$(INSTALL_DIR) $(1)/usr/share/rpcd/acl.d
 	$(INSTALL_DATA) ./root/usr/share/rpcd/acl.d/*.json $(1)/usr/share/rpcd/acl.d/
+	$(INSTALL_DIR) $(1)/usr/share/ucitrack
+	$(INSTALL_DATA) ./root/usr/share/ucitrack/*.json $(1)/usr/share/ucitrack/
 endef
 
 $(eval $(call BuildPackage,luci-app-xwan))
