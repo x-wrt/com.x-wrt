@@ -75,6 +75,8 @@ define Package/luci-app-proxyxwan/install
 	$(INSTALL_DATA) ./htdocs/luci-static/resources/view/proxyxwan/proxyxwan.js $(1)/www/luci-static/resources/view/proxyxwan/proxyxwan.js
 	$(INSTALL_DIR) $(1)/etc/hotplug.d/iface
 	$(INSTALL_DATA) ./files/proxyxwan.hotplug $(1)/etc/hotplug.d/iface/21-proxyxwan
+	$(INSTALL_DIR) $(1)/usr/share/ucitrack
+	$(INSTALL_DATA) ./root/usr/share/ucitrack/*.json $(1)/usr/share/ucitrack/
 endef
 
 $(eval $(call BuildPackage,luci-app-proxyxwan))
