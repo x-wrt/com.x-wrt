@@ -117,6 +117,8 @@ define Package/natcapd-mini/install
 	$(INSTALL_DIR) $(1)/etc/hotplug.d/iface
 	$(INSTALL_DATA) ./files/20-natcapd.hotplug $(1)/etc/hotplug.d/iface/20-natcapd
 	$(INSTALL_BIN) $(PKG_BUILD_DIR)/peer_ctl.sh $(1)/usr/sbin/peer_ctl
+	$(INSTALL_DIR) $(1)/usr/share/ucitrack
+	$(INSTALL_DATA) ./files/ucitrack/*.json $(1)/usr/share/ucitrack/
 endef
 
 define Package/natcapd/conffiles
