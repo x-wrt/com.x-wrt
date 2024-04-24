@@ -116,6 +116,8 @@ define Package/mwan3plus/install
 		$(1)/etc/uci-defaults/
 	$(INSTALL_DATA) ./files/etc/uci-defaults/95-mwan3 \
 		$(1)/etc/uci-defaults/
+	$(INSTALL_DIR) $(1)/usr/share/ucitrack
+	$(INSTALL_DATA) ./files/ucitrack/*.json $(1)/usr/share/ucitrack/
 endef
 
 $(eval $(call BuildPackage,mwan3plus))
