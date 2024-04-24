@@ -67,6 +67,8 @@ define Package/mentohust/install
 	$(INSTALL_BIN) $(PKG_BUILD_DIR)/src/mentohust $(1)/usr/sbin/mentohust
 	$(INSTALL_DIR) $(1)/etc/uci-defaults
 	$(INSTALL_DATA) ./files/uci.defaults $(1)/etc/uci-defaults/95-mentohust
+	$(INSTALL_DIR) $(1)/usr/share/ucitrack
+	$(INSTALL_DATA) ./files/ucitrack/*.json $(1)/usr/share/ucitrack/
 endef
 
 define Build/Configure
