@@ -24,6 +24,7 @@ CONFIG_DEFAULT_TARGET_ramips_mt76x8=y
 # CONFIG_TARGET_mxs is not set
 # CONFIG_TARGET_ixp4xx is not set
 # CONFIG_TARGET_lantiq is not set
+# CONFIG_TARGET_loongarch64 is not set
 # CONFIG_TARGET_malta is not set
 # CONFIG_TARGET_pistachio is not set
 # CONFIG_TARGET_mvebu is not set
@@ -177,20 +178,20 @@ CONFIG_TARGET_PER_DEVICE_ROOTFS=y
 # CONFIG_TARGET_DEVICE_ramips_mt76x8_DEVICE_duzun_dm06 is not set
 # CONFIG_TARGET_DEVICE_ramips_mt76x8_DEVICE_elecom_wrc-1167fs is not set
 CONFIG_TARGET_DEVICE_ramips_mt76x8_DEVICE_glinet_gl-mt300n-v2=y
-CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt76x8_DEVICE_glinet_gl-mt300n-v2="blockd block-mount chat comgt comgt-ncm dawn kmod-crypto-des kmod-crypto-md5 kmod-crypto-sha256 kmod-dnsresolver kmod-fs-autofs4 kmod-fs-exfat kmod-fs-ext4 kmod-fs-ksmbd kmod-fs-msdos kmod-fs-nfs kmod-fs-nfs-common kmod-fs-nfs-v4 kmod-fs-ntfs3 kmod-fs-smbfs-common kmod-fs-vfat kmod-fuse kmod-lib-crc16 kmod-mii kmod-nls-cp437 kmod-oid-registry kmod-ovpn-dco-v2 kmod-scsi-core kmod-usb2 kmod-usb-core kmod-usb-ehci kmod-usb-net kmod-usb-net-cdc-ether kmod-usb-net-cdc-mbim kmod-usb-net-cdc-ncm kmod-usb-net-huawei-cdc-ncm kmod-usb-net-ipheth kmod-usb-net-qmi-wwan kmod-usb-net-rndis kmod-usb-net-sierrawireless kmod-usb-ohci kmod-usb-printer kmod-usb-serial kmod-usb-serial-option kmod-usb-serial-qualcomm kmod-usb-serial-sierrawireless kmod-usb-serial-wwan kmod-usb-storage kmod-usb-storage-extras kmod-usb-storage-uas kmod-usb-wdm ksmbd-server libblkid libcap-ng libgcrypt libgpg-error liblz4 liblzo libnl-core libnl-genl libqrencode libusb-1.0 libwrap luci-app-dawn luci-app-ksmbd luci-app-openvpn luci-app-p910nd luci-app-usteer luci-i18n-dashboard-zh-cn luci-i18n-ksmbd-zh-cn luci-i18n-openvpn-zh-cn luci-i18n-p910nd-zh-cn luci-mod-dashboard luci-proto-3g luci-proto-mbim luci-proto-ncm luci-proto-qmi luci-proto-relay luci-proto-wireguard nfs-utils openvpn-mbedtls p910nd qrencode relayd tc-tiny umbim uqmi usb-modeswitch wireguard-tools wpad-mbedtls wsdd2 wwan"
+CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt76x8_DEVICE_glinet_gl-mt300n-v2="blockd block-mount chat comgt comgt-ncm dawn kmod-crypto-des kmod-crypto-md5 kmod-crypto-sha256 kmod-dnsresolver kmod-fs-autofs4 kmod-fs-exfat kmod-fs-ext4 kmod-fs-ksmbd kmod-fs-msdos kmod-fs-netfs kmod-fs-nfs kmod-fs-nfs-common kmod-fs-nfs-v4 kmod-fs-ntfs3 kmod-fs-smbfs-common kmod-fs-vfat kmod-fuse kmod-lib-crc16 kmod-mii kmod-nls-cp437 kmod-nls-ucs2-utils kmod-oid-registry kmod-ovpn-dco-v2 kmod-scsi-core kmod-usb2 kmod-usb-core kmod-usb-ehci kmod-usb-net kmod-usb-net-cdc-ether kmod-usb-net-cdc-mbim kmod-usb-net-cdc-ncm kmod-usb-net-huawei-cdc-ncm kmod-usb-net-ipheth kmod-usb-net-qmi-wwan kmod-usb-net-rndis kmod-usb-net-sierrawireless kmod-usb-ohci kmod-usb-printer kmod-usb-serial kmod-usb-serial-option kmod-usb-serial-qualcomm kmod-usb-serial-sierrawireless kmod-usb-serial-wwan kmod-usb-storage kmod-usb-storage-extras kmod-usb-storage-uas kmod-usb-wdm ksmbd-server libblkid libcap-ng libgcrypt libgpg-error liblz4 liblzo libnl-core libnl-genl libqrencode libusb-1.0 libwrap luci-app-dawn luci-app-ksmbd luci-app-openvpn luci-app-p910nd luci-app-usteer luci-i18n-dashboard-zh-cn luci-i18n-ksmbd-zh-cn luci-i18n-openvpn-zh-cn luci-i18n-p910nd-zh-cn luci-mod-dashboard luci-proto-3g luci-proto-mbim luci-proto-ncm luci-proto-qmi luci-proto-relay luci-proto-wireguard nfs-utils openvpn-mbedtls p910nd qrencode relayd tc-tiny umbim uqmi usb-modeswitch wireguard-tools wpad-mbedtls wsdd2 wwan"
 # CONFIG_TARGET_DEVICE_ramips_mt76x8_DEVICE_glinet_microuter-n300 is not set
 # CONFIG_TARGET_DEVICE_ramips_mt76x8_DEVICE_glinet_vixmini is not set
 # CONFIG_TARGET_DEVICE_ramips_mt76x8_DEVICE_hak5_wifi-pineapple-mk7 is not set
 # CONFIG_TARGET_DEVICE_ramips_mt76x8_DEVICE_hilink_hlk-7688a is not set
 # CONFIG_TARGET_DEVICE_ramips_mt76x8_DEVICE_hilink_hlk-7628n is not set
 CONFIG_TARGET_DEVICE_ramips_mt76x8_DEVICE_hiwifi_hc5611=y
-CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt76x8_DEVICE_hiwifi_hc5611="blockd block-mount chat comgt comgt-ncm dawn kmod-crypto-des kmod-crypto-md5 kmod-crypto-sha256 kmod-dnsresolver kmod-fs-autofs4 kmod-fs-exfat kmod-fs-ext4 kmod-fs-ksmbd kmod-fs-msdos kmod-fs-nfs kmod-fs-nfs-common kmod-fs-nfs-v4 kmod-fs-ntfs3 kmod-fs-smbfs-common kmod-fs-vfat kmod-fuse kmod-lib-crc16 kmod-mii kmod-nls-cp437 kmod-oid-registry kmod-ovpn-dco-v2 kmod-scsi-core kmod-usb2 kmod-usb-core kmod-usb-ehci kmod-usb-net kmod-usb-net-cdc-ether kmod-usb-net-cdc-mbim kmod-usb-net-cdc-ncm kmod-usb-net-huawei-cdc-ncm kmod-usb-net-ipheth kmod-usb-net-qmi-wwan kmod-usb-net-rndis kmod-usb-net-sierrawireless kmod-usb-ohci kmod-usb-printer kmod-usb-serial kmod-usb-serial-option kmod-usb-serial-qualcomm kmod-usb-serial-sierrawireless kmod-usb-serial-wwan kmod-usb-storage kmod-usb-storage-extras kmod-usb-storage-uas kmod-usb-wdm ksmbd-server libblkid libcap-ng libgcrypt libgpg-error liblz4 liblzo libnl-core libnl-genl libqrencode libusb-1.0 libwrap luci-app-dawn luci-app-ksmbd luci-app-openvpn luci-app-p910nd luci-app-usteer luci-i18n-dashboard-zh-cn luci-i18n-ksmbd-zh-cn luci-i18n-openvpn-zh-cn luci-i18n-p910nd-zh-cn luci-mod-dashboard luci-proto-3g luci-proto-mbim luci-proto-ncm luci-proto-qmi luci-proto-relay luci-proto-wireguard nfs-utils openvpn-mbedtls p910nd qrencode relayd tc-tiny umbim uqmi usb-modeswitch wireguard-tools wpad-mbedtls wsdd2 wwan"
+CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt76x8_DEVICE_hiwifi_hc5611="blockd block-mount chat comgt comgt-ncm dawn kmod-crypto-des kmod-crypto-md5 kmod-crypto-sha256 kmod-dnsresolver kmod-fs-autofs4 kmod-fs-exfat kmod-fs-ext4 kmod-fs-ksmbd kmod-fs-msdos kmod-fs-netfs kmod-fs-nfs kmod-fs-nfs-common kmod-fs-nfs-v4 kmod-fs-ntfs3 kmod-fs-smbfs-common kmod-fs-vfat kmod-fuse kmod-lib-crc16 kmod-mii kmod-nls-cp437 kmod-nls-ucs2-utils kmod-oid-registry kmod-ovpn-dco-v2 kmod-scsi-core kmod-usb2 kmod-usb-core kmod-usb-ehci kmod-usb-net kmod-usb-net-cdc-ether kmod-usb-net-cdc-mbim kmod-usb-net-cdc-ncm kmod-usb-net-huawei-cdc-ncm kmod-usb-net-ipheth kmod-usb-net-qmi-wwan kmod-usb-net-rndis kmod-usb-net-sierrawireless kmod-usb-ohci kmod-usb-printer kmod-usb-serial kmod-usb-serial-option kmod-usb-serial-qualcomm kmod-usb-serial-sierrawireless kmod-usb-serial-wwan kmod-usb-storage kmod-usb-storage-extras kmod-usb-storage-uas kmod-usb-wdm ksmbd-server libblkid libcap-ng libgcrypt libgpg-error liblz4 liblzo libnl-core libnl-genl libqrencode libusb-1.0 libwrap luci-app-dawn luci-app-ksmbd luci-app-openvpn luci-app-p910nd luci-app-usteer luci-i18n-dashboard-zh-cn luci-i18n-ksmbd-zh-cn luci-i18n-openvpn-zh-cn luci-i18n-p910nd-zh-cn luci-mod-dashboard luci-proto-3g luci-proto-mbim luci-proto-ncm luci-proto-qmi luci-proto-relay luci-proto-wireguard nfs-utils openvpn-mbedtls p910nd qrencode relayd tc-tiny umbim uqmi usb-modeswitch wireguard-tools wpad-mbedtls wsdd2 wwan"
 CONFIG_TARGET_DEVICE_ramips_mt76x8_DEVICE_hiwifi_hc5661a=y
-CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt76x8_DEVICE_hiwifi_hc5661a="blockd block-mount chat comgt comgt-ncm dawn kmod-crypto-des kmod-crypto-md5 kmod-crypto-sha256 kmod-dnsresolver kmod-fs-autofs4 kmod-fs-exfat kmod-fs-ext4 kmod-fs-ksmbd kmod-fs-msdos kmod-fs-nfs kmod-fs-nfs-common kmod-fs-nfs-v4 kmod-fs-ntfs3 kmod-fs-smbfs-common kmod-fs-vfat kmod-fuse kmod-lib-crc16 kmod-mii kmod-mmc kmod-nls-cp437 kmod-oid-registry kmod-ovpn-dco-v2 kmod-scsi-core kmod-sdhci-mt7620 kmod-usb2 kmod-usb-core kmod-usb-ehci kmod-usb-net kmod-usb-net-cdc-ether kmod-usb-net-cdc-mbim kmod-usb-net-cdc-ncm kmod-usb-net-huawei-cdc-ncm kmod-usb-net-ipheth kmod-usb-net-qmi-wwan kmod-usb-net-rndis kmod-usb-net-sierrawireless kmod-usb-ohci kmod-usb-printer kmod-usb-serial kmod-usb-serial-option kmod-usb-serial-qualcomm kmod-usb-serial-sierrawireless kmod-usb-serial-wwan kmod-usb-storage kmod-usb-storage-extras kmod-usb-storage-uas kmod-usb-wdm ksmbd-server libblkid libcap-ng libgcrypt libgpg-error liblz4 liblzo libnl-core libnl-genl libqrencode libusb-1.0 libwrap luci-app-dawn luci-app-ksmbd luci-app-openvpn luci-app-p910nd luci-app-usteer luci-i18n-dashboard-zh-cn luci-i18n-ksmbd-zh-cn luci-i18n-openvpn-zh-cn luci-i18n-p910nd-zh-cn luci-mod-dashboard luci-proto-3g luci-proto-mbim luci-proto-ncm luci-proto-qmi luci-proto-relay luci-proto-wireguard nfs-utils openvpn-mbedtls p910nd qrencode relayd tc-tiny umbim uqmi usb-modeswitch wireguard-tools wpad-mbedtls wsdd2 wwan"
+CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt76x8_DEVICE_hiwifi_hc5661a="blockd block-mount chat comgt comgt-ncm dawn kmod-crypto-des kmod-crypto-md5 kmod-crypto-sha256 kmod-dnsresolver kmod-fs-autofs4 kmod-fs-exfat kmod-fs-ext4 kmod-fs-ksmbd kmod-fs-msdos kmod-fs-netfs kmod-fs-nfs kmod-fs-nfs-common kmod-fs-nfs-v4 kmod-fs-ntfs3 kmod-fs-smbfs-common kmod-fs-vfat kmod-fuse kmod-lib-crc16 kmod-mii kmod-mmc kmod-nls-cp437 kmod-nls-ucs2-utils kmod-oid-registry kmod-ovpn-dco-v2 kmod-scsi-core kmod-sdhci-mt7620 kmod-usb2 kmod-usb-core kmod-usb-ehci kmod-usb-net kmod-usb-net-cdc-ether kmod-usb-net-cdc-mbim kmod-usb-net-cdc-ncm kmod-usb-net-huawei-cdc-ncm kmod-usb-net-ipheth kmod-usb-net-qmi-wwan kmod-usb-net-rndis kmod-usb-net-sierrawireless kmod-usb-ohci kmod-usb-printer kmod-usb-serial kmod-usb-serial-option kmod-usb-serial-qualcomm kmod-usb-serial-sierrawireless kmod-usb-serial-wwan kmod-usb-storage kmod-usb-storage-extras kmod-usb-storage-uas kmod-usb-wdm ksmbd-server libblkid libcap-ng libgcrypt libgpg-error liblz4 liblzo libnl-core libnl-genl libqrencode libusb-1.0 libwrap luci-app-dawn luci-app-ksmbd luci-app-openvpn luci-app-p910nd luci-app-usteer luci-i18n-dashboard-zh-cn luci-i18n-ksmbd-zh-cn luci-i18n-openvpn-zh-cn luci-i18n-p910nd-zh-cn luci-mod-dashboard luci-proto-3g luci-proto-mbim luci-proto-ncm luci-proto-qmi luci-proto-relay luci-proto-wireguard nfs-utils openvpn-mbedtls p910nd qrencode relayd tc-tiny umbim uqmi usb-modeswitch wireguard-tools wpad-mbedtls wsdd2 wwan"
 CONFIG_TARGET_DEVICE_ramips_mt76x8_DEVICE_hiwifi_hc5761a=y
-CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt76x8_DEVICE_hiwifi_hc5761a="blockd block-mount chat comgt comgt-ncm dawn kmod-crypto-des kmod-crypto-md5 kmod-crypto-sha256 kmod-dnsresolver kmod-fs-autofs4 kmod-fs-exfat kmod-fs-ext4 kmod-fs-ksmbd kmod-fs-msdos kmod-fs-nfs kmod-fs-nfs-common kmod-fs-nfs-v4 kmod-fs-ntfs3 kmod-fs-smbfs-common kmod-fs-vfat kmod-fuse kmod-lib-crc16 kmod-mii kmod-mmc kmod-mt76x02-common kmod-mt76x0-common kmod-mt76x0e kmod-nls-cp437 kmod-oid-registry kmod-ovpn-dco-v2 kmod-scsi-core kmod-sdhci-mt7620 kmod-usb2 kmod-usb-core kmod-usb-ehci kmod-usb-net kmod-usb-net-cdc-ether kmod-usb-net-cdc-mbim kmod-usb-net-cdc-ncm kmod-usb-net-huawei-cdc-ncm kmod-usb-net-ipheth kmod-usb-net-qmi-wwan kmod-usb-net-rndis kmod-usb-net-sierrawireless kmod-usb-ohci kmod-usb-printer kmod-usb-serial kmod-usb-serial-option kmod-usb-serial-qualcomm kmod-usb-serial-sierrawireless kmod-usb-serial-wwan kmod-usb-storage kmod-usb-storage-extras kmod-usb-storage-uas kmod-usb-wdm ksmbd-server libblkid libcap-ng libgcrypt libgpg-error liblz4 liblzo libnl-core libnl-genl libqrencode libusb-1.0 libwrap luci-app-dawn luci-app-ksmbd luci-app-openvpn luci-app-p910nd luci-app-usteer luci-i18n-dashboard-zh-cn luci-i18n-ksmbd-zh-cn luci-i18n-openvpn-zh-cn luci-i18n-p910nd-zh-cn luci-mod-dashboard luci-proto-3g luci-proto-mbim luci-proto-ncm luci-proto-qmi luci-proto-relay luci-proto-wireguard nfs-utils openvpn-mbedtls p910nd qrencode relayd tc-tiny umbim uqmi usb-modeswitch wireguard-tools wpad-mbedtls wsdd2 wwan"
+CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt76x8_DEVICE_hiwifi_hc5761a="blockd block-mount chat comgt comgt-ncm dawn kmod-crypto-des kmod-crypto-md5 kmod-crypto-sha256 kmod-dnsresolver kmod-fs-autofs4 kmod-fs-exfat kmod-fs-ext4 kmod-fs-ksmbd kmod-fs-msdos kmod-fs-netfs kmod-fs-nfs kmod-fs-nfs-common kmod-fs-nfs-v4 kmod-fs-ntfs3 kmod-fs-smbfs-common kmod-fs-vfat kmod-fuse kmod-lib-crc16 kmod-mii kmod-mmc kmod-mt76x02-common kmod-mt76x0-common kmod-mt76x0e kmod-nls-cp437 kmod-nls-ucs2-utils kmod-oid-registry kmod-ovpn-dco-v2 kmod-scsi-core kmod-sdhci-mt7620 kmod-usb2 kmod-usb-core kmod-usb-ehci kmod-usb-net kmod-usb-net-cdc-ether kmod-usb-net-cdc-mbim kmod-usb-net-cdc-ncm kmod-usb-net-huawei-cdc-ncm kmod-usb-net-ipheth kmod-usb-net-qmi-wwan kmod-usb-net-rndis kmod-usb-net-sierrawireless kmod-usb-ohci kmod-usb-printer kmod-usb-serial kmod-usb-serial-option kmod-usb-serial-qualcomm kmod-usb-serial-sierrawireless kmod-usb-serial-wwan kmod-usb-storage kmod-usb-storage-extras kmod-usb-storage-uas kmod-usb-wdm ksmbd-server libblkid libcap-ng libgcrypt libgpg-error liblz4 liblzo libnl-core libnl-genl libqrencode libusb-1.0 libwrap luci-app-dawn luci-app-ksmbd luci-app-openvpn luci-app-p910nd luci-app-usteer luci-i18n-dashboard-zh-cn luci-i18n-ksmbd-zh-cn luci-i18n-openvpn-zh-cn luci-i18n-p910nd-zh-cn luci-mod-dashboard luci-proto-3g luci-proto-mbim luci-proto-ncm luci-proto-qmi luci-proto-relay luci-proto-wireguard nfs-utils openvpn-mbedtls p910nd qrencode relayd tc-tiny umbim uqmi usb-modeswitch wireguard-tools wpad-mbedtls wsdd2 wwan"
 CONFIG_TARGET_DEVICE_ramips_mt76x8_DEVICE_hiwifi_hc5861b=y
-CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt76x8_DEVICE_hiwifi_hc5861b="blockd block-mount chat comgt comgt-ncm dawn kmod-crypto-des kmod-crypto-md5 kmod-crypto-sha256 kmod-dnsresolver kmod-fs-autofs4 kmod-fs-exfat kmod-fs-ext4 kmod-fs-ksmbd kmod-fs-msdos kmod-fs-nfs kmod-fs-nfs-common kmod-fs-nfs-v4 kmod-fs-ntfs3 kmod-fs-smbfs-common kmod-fs-vfat kmod-fuse kmod-lib-crc16 kmod-mii kmod-mt76x02-common kmod-mt76x2 kmod-mt76x2-common kmod-nls-cp437 kmod-oid-registry kmod-ovpn-dco-v2 kmod-scsi-core kmod-usb2 kmod-usb-core kmod-usb-ehci kmod-usb-net kmod-usb-net-cdc-ether kmod-usb-net-cdc-mbim kmod-usb-net-cdc-ncm kmod-usb-net-huawei-cdc-ncm kmod-usb-net-ipheth kmod-usb-net-qmi-wwan kmod-usb-net-rndis kmod-usb-net-sierrawireless kmod-usb-ohci kmod-usb-printer kmod-usb-serial kmod-usb-serial-option kmod-usb-serial-qualcomm kmod-usb-serial-sierrawireless kmod-usb-serial-wwan kmod-usb-storage kmod-usb-storage-extras kmod-usb-storage-uas kmod-usb-wdm ksmbd-server libblkid libcap-ng libgcrypt libgpg-error liblz4 liblzo libnl-core libnl-genl libqrencode libusb-1.0 libwrap luci-app-dawn luci-app-ksmbd luci-app-openvpn luci-app-p910nd luci-app-usteer luci-i18n-dashboard-zh-cn luci-i18n-ksmbd-zh-cn luci-i18n-openvpn-zh-cn luci-i18n-p910nd-zh-cn luci-mod-dashboard luci-proto-3g luci-proto-mbim luci-proto-ncm luci-proto-qmi luci-proto-relay luci-proto-wireguard nfs-utils openvpn-mbedtls p910nd qrencode relayd tc-tiny umbim uqmi usb-modeswitch wireguard-tools wpad-mbedtls wsdd2 wwan"
+CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt76x8_DEVICE_hiwifi_hc5861b="blockd block-mount chat comgt comgt-ncm dawn kmod-crypto-des kmod-crypto-md5 kmod-crypto-sha256 kmod-dnsresolver kmod-fs-autofs4 kmod-fs-exfat kmod-fs-ext4 kmod-fs-ksmbd kmod-fs-msdos kmod-fs-netfs kmod-fs-nfs kmod-fs-nfs-common kmod-fs-nfs-v4 kmod-fs-ntfs3 kmod-fs-smbfs-common kmod-fs-vfat kmod-fuse kmod-lib-crc16 kmod-mii kmod-mt76x02-common kmod-mt76x2 kmod-mt76x2-common kmod-nls-cp437 kmod-nls-ucs2-utils kmod-oid-registry kmod-ovpn-dco-v2 kmod-scsi-core kmod-usb2 kmod-usb-core kmod-usb-ehci kmod-usb-net kmod-usb-net-cdc-ether kmod-usb-net-cdc-mbim kmod-usb-net-cdc-ncm kmod-usb-net-huawei-cdc-ncm kmod-usb-net-ipheth kmod-usb-net-qmi-wwan kmod-usb-net-rndis kmod-usb-net-sierrawireless kmod-usb-ohci kmod-usb-printer kmod-usb-serial kmod-usb-serial-option kmod-usb-serial-qualcomm kmod-usb-serial-sierrawireless kmod-usb-serial-wwan kmod-usb-storage kmod-usb-storage-extras kmod-usb-storage-uas kmod-usb-wdm ksmbd-server libblkid libcap-ng libgcrypt libgpg-error liblz4 liblzo libnl-core libnl-genl libqrencode libusb-1.0 libwrap luci-app-dawn luci-app-ksmbd luci-app-openvpn luci-app-p910nd luci-app-usteer luci-i18n-dashboard-zh-cn luci-i18n-ksmbd-zh-cn luci-i18n-openvpn-zh-cn luci-i18n-p910nd-zh-cn luci-mod-dashboard luci-proto-3g luci-proto-mbim luci-proto-ncm luci-proto-qmi luci-proto-relay luci-proto-wireguard nfs-utils openvpn-mbedtls p910nd qrencode relayd tc-tiny umbim uqmi usb-modeswitch wireguard-tools wpad-mbedtls wsdd2 wwan"
 # CONFIG_TARGET_DEVICE_ramips_mt76x8_DEVICE_iptime_a3 is not set
 # CONFIG_TARGET_DEVICE_ramips_mt76x8_DEVICE_iptime_a604m is not set
 # CONFIG_TARGET_DEVICE_ramips_mt76x8_DEVICE_jotale_js76x8-16m is not set
@@ -209,7 +210,7 @@ CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt76x8_DEVICE_hiwifi_hc5861b="blockd block-
 # CONFIG_TARGET_DEVICE_ramips_mt76x8_DEVICE_netgear_r6020 is not set
 # CONFIG_TARGET_DEVICE_ramips_mt76x8_DEVICE_netgear_r6080 is not set
 CONFIG_TARGET_DEVICE_ramips_mt76x8_DEVICE_netgear_r6120=y
-CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt76x8_DEVICE_netgear_r6120="blockd block-mount chat comgt comgt-ncm dawn kmod-crypto-des kmod-crypto-md5 kmod-crypto-sha256 kmod-dnsresolver kmod-fs-autofs4 kmod-fs-exfat kmod-fs-ext4 kmod-fs-ksmbd kmod-fs-msdos kmod-fs-nfs kmod-fs-nfs-common kmod-fs-nfs-v4 kmod-fs-ntfs3 kmod-fs-smbfs-common kmod-fs-vfat kmod-fuse kmod-lib-crc16 kmod-mii kmod-mt76x02-common kmod-mt76x2 kmod-mt76x2-common kmod-nls-cp437 kmod-oid-registry kmod-ovpn-dco-v2 kmod-scsi-core kmod-usb2 kmod-usb-core kmod-usb-ehci kmod-usb-net kmod-usb-net-cdc-ether kmod-usb-net-cdc-mbim kmod-usb-net-cdc-ncm kmod-usb-net-huawei-cdc-ncm kmod-usb-net-ipheth kmod-usb-net-qmi-wwan kmod-usb-net-rndis kmod-usb-net-sierrawireless kmod-usb-ohci kmod-usb-printer kmod-usb-serial kmod-usb-serial-option kmod-usb-serial-qualcomm kmod-usb-serial-sierrawireless kmod-usb-serial-wwan kmod-usb-storage kmod-usb-storage-extras kmod-usb-storage-uas kmod-usb-wdm ksmbd-server libblkid libcap-ng libgcrypt libgpg-error liblz4 liblzo libnl-core libnl-genl libqrencode libusb-1.0 libwrap luci-app-dawn luci-app-ksmbd luci-app-openvpn luci-app-p910nd luci-app-usteer luci-i18n-dashboard-zh-cn luci-i18n-ksmbd-zh-cn luci-i18n-openvpn-zh-cn luci-i18n-p910nd-zh-cn luci-mod-dashboard luci-proto-3g luci-proto-mbim luci-proto-ncm luci-proto-qmi luci-proto-relay luci-proto-wireguard nfs-utils openvpn-mbedtls p910nd qrencode relayd tc-tiny umbim uqmi usb-modeswitch wireguard-tools wpad-mbedtls wsdd2 wwan"
+CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt76x8_DEVICE_netgear_r6120="blockd block-mount chat comgt comgt-ncm dawn kmod-crypto-des kmod-crypto-md5 kmod-crypto-sha256 kmod-dnsresolver kmod-fs-autofs4 kmod-fs-exfat kmod-fs-ext4 kmod-fs-ksmbd kmod-fs-msdos kmod-fs-netfs kmod-fs-nfs kmod-fs-nfs-common kmod-fs-nfs-v4 kmod-fs-ntfs3 kmod-fs-smbfs-common kmod-fs-vfat kmod-fuse kmod-lib-crc16 kmod-mii kmod-mt76x02-common kmod-mt76x2 kmod-mt76x2-common kmod-nls-cp437 kmod-nls-ucs2-utils kmod-oid-registry kmod-ovpn-dco-v2 kmod-scsi-core kmod-usb2 kmod-usb-core kmod-usb-ehci kmod-usb-net kmod-usb-net-cdc-ether kmod-usb-net-cdc-mbim kmod-usb-net-cdc-ncm kmod-usb-net-huawei-cdc-ncm kmod-usb-net-ipheth kmod-usb-net-qmi-wwan kmod-usb-net-rndis kmod-usb-net-sierrawireless kmod-usb-ohci kmod-usb-printer kmod-usb-serial kmod-usb-serial-option kmod-usb-serial-qualcomm kmod-usb-serial-sierrawireless kmod-usb-serial-wwan kmod-usb-storage kmod-usb-storage-extras kmod-usb-storage-uas kmod-usb-wdm ksmbd-server libblkid libcap-ng libgcrypt libgpg-error liblz4 liblzo libnl-core libnl-genl libqrencode libusb-1.0 libwrap luci-app-dawn luci-app-ksmbd luci-app-openvpn luci-app-p910nd luci-app-usteer luci-i18n-dashboard-zh-cn luci-i18n-ksmbd-zh-cn luci-i18n-openvpn-zh-cn luci-i18n-p910nd-zh-cn luci-mod-dashboard luci-proto-3g luci-proto-mbim luci-proto-ncm luci-proto-qmi luci-proto-relay luci-proto-wireguard nfs-utils openvpn-mbedtls p910nd qrencode relayd tc-tiny umbim uqmi usb-modeswitch wireguard-tools wpad-mbedtls wsdd2 wwan"
 # CONFIG_TARGET_DEVICE_ramips_mt76x8_DEVICE_onion_omega2 is not set
 # CONFIG_TARGET_DEVICE_ramips_mt76x8_DEVICE_onion_omega2p is not set
 # CONFIG_TARGET_DEVICE_ramips_mt76x8_DEVICE_oraybox_x1 is not set
@@ -270,7 +271,7 @@ CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt76x8_DEVICE_xiaomi_miwifi-3c="dawn kmod-o
 # CONFIG_TARGET_DEVICE_ramips_mt76x8_DEVICE_xiaomi_miwifi-nano is not set
 # CONFIG_TARGET_DEVICE_ramips_mt76x8_DEVICE_xiaomi_mi-ra75 is not set
 CONFIG_TARGET_DEVICE_ramips_mt76x8_DEVICE_xwrt_g4303k-v1=y
-CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt76x8_DEVICE_xwrt_g4303k-v1="blockd block-mount chat comgt comgt-ncm dawn kmod-crypto-des kmod-crypto-md5 kmod-crypto-sha256 kmod-dnsresolver kmod-fs-autofs4 kmod-fs-exfat kmod-fs-ext4 kmod-fs-ksmbd kmod-fs-msdos kmod-fs-nfs kmod-fs-nfs-common kmod-fs-nfs-v4 kmod-fs-ntfs3 kmod-fs-smbfs-common kmod-fs-vfat kmod-fuse kmod-lib-crc16 kmod-mii kmod-nls-cp437 kmod-oid-registry kmod-ovpn-dco-v2 kmod-scsi-core kmod-usb2 kmod-usb-core kmod-usb-ehci kmod-usb-ledtrig-usbport kmod-usb-net kmod-usb-net-cdc-ether kmod-usb-net-cdc-mbim kmod-usb-net-cdc-ncm kmod-usb-net-huawei-cdc-ncm kmod-usb-net-ipheth kmod-usb-net-qmi-wwan kmod-usb-net-rndis kmod-usb-net-sierrawireless kmod-usb-ohci kmod-usb-printer kmod-usb-serial kmod-usb-serial-option kmod-usb-serial-qualcomm kmod-usb-serial-sierrawireless kmod-usb-serial-wwan kmod-usb-storage kmod-usb-storage-extras kmod-usb-storage-uas kmod-usb-wdm ksmbd-server led-ctrl-xwrt-g4303k-v1 libblkid libcap-ng libgcrypt libgpg-error liblz4 liblzo libnl-core libnl-genl libqrencode libusb-1.0 libwrap luci-app-dawn luci-app-ksmbd luci-app-ledtrig-usbport luci-app-openvpn luci-app-p910nd luci-app-usteer luci-i18n-dashboard-zh-cn luci-i18n-ksmbd-zh-cn luci-i18n-openvpn-zh-cn luci-i18n-p910nd-zh-cn luci-mod-dashboard luci-proto-3g luci-proto-mbim luci-proto-ncm luci-proto-qmi luci-proto-relay luci-proto-wireguard nfs-utils openvpn-mbedtls p910nd qrencode relayd tc-tiny umbim uqmi usb-modeswitch wireguard-tools wpad-mbedtls wsdd2 wwan"
+CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt76x8_DEVICE_xwrt_g4303k-v1="blockd block-mount chat comgt comgt-ncm dawn kmod-crypto-des kmod-crypto-md5 kmod-crypto-sha256 kmod-dnsresolver kmod-fs-autofs4 kmod-fs-exfat kmod-fs-ext4 kmod-fs-ksmbd kmod-fs-msdos kmod-fs-netfs kmod-fs-nfs kmod-fs-nfs-common kmod-fs-nfs-v4 kmod-fs-ntfs3 kmod-fs-smbfs-common kmod-fs-vfat kmod-fuse kmod-lib-crc16 kmod-mii kmod-nls-cp437 kmod-nls-ucs2-utils kmod-oid-registry kmod-ovpn-dco-v2 kmod-scsi-core kmod-usb2 kmod-usb-core kmod-usb-ehci kmod-usb-ledtrig-usbport kmod-usb-net kmod-usb-net-cdc-ether kmod-usb-net-cdc-mbim kmod-usb-net-cdc-ncm kmod-usb-net-huawei-cdc-ncm kmod-usb-net-ipheth kmod-usb-net-qmi-wwan kmod-usb-net-rndis kmod-usb-net-sierrawireless kmod-usb-ohci kmod-usb-printer kmod-usb-serial kmod-usb-serial-option kmod-usb-serial-qualcomm kmod-usb-serial-sierrawireless kmod-usb-serial-wwan kmod-usb-storage kmod-usb-storage-extras kmod-usb-storage-uas kmod-usb-wdm ksmbd-server led-ctrl-xwrt-g4303k-v1 libblkid libcap-ng libgcrypt libgpg-error liblz4 liblzo libnl-core libnl-genl libqrencode libusb-1.0 libwrap luci-app-dawn luci-app-ksmbd luci-app-ledtrig-usbport luci-app-openvpn luci-app-p910nd luci-app-usteer luci-i18n-dashboard-zh-cn luci-i18n-ksmbd-zh-cn luci-i18n-openvpn-zh-cn luci-i18n-p910nd-zh-cn luci-mod-dashboard luci-proto-3g luci-proto-mbim luci-proto-ncm luci-proto-qmi luci-proto-relay luci-proto-wireguard nfs-utils openvpn-mbedtls p910nd qrencode relayd tc-tiny umbim uqmi usb-modeswitch wireguard-tools wpad-mbedtls wsdd2 wwan"
 # CONFIG_TARGET_DEVICE_ramips_mt76x8_DEVICE_zbtlink_zbt-we1226 is not set
 # CONFIG_TARGET_DEVICE_ramips_mt76x8_DEVICE_zyxel_keenetic-extra-ii is not set
 # end of Target Devices
@@ -282,7 +283,7 @@ CONFIG_TARGET_SUBTARGET="mt76x8"
 CONFIG_TARGET_ARCH_PACKAGES="mipsel_24kc"
 CONFIG_DEFAULT_TARGET_OPTIMIZATION="-Os -pipe -mno-branch-likely -mips32r2 -mtune=24kc"
 CONFIG_CPU_TYPE="24kc"
-CONFIG_LINUX_6_1=y
+CONFIG_LINUX_6_6=y
 CONFIG_DEFAULT_base-files=y
 CONFIG_MODULE_DEFAULT_base-files=y
 CONFIG_DEFAULT_busybox=y
@@ -349,7 +350,6 @@ CONFIG_DEFAULT_urngd=y
 CONFIG_MODULE_DEFAULT_urngd=y
 CONFIG_DEFAULT_wpad-basic-mbedtls=y
 CONFIG_MODULE_DEFAULT_wpad-basic-mbedtls=y
-CONFIG_HAS_TESTING_KERNEL=y
 CONFIG_AUDIO_SUPPORT=y
 CONFIG_GPIO_SUPPORT=y
 CONFIG_PCI_SUPPORT=y
@@ -417,7 +417,6 @@ CONFIG_DOWNLOAD_CHECK_CERTIFICATE=y
 #
 # General build options
 #
-# CONFIG_TESTING_KERNEL is not set
 # CONFIG_DISPLAY_SUPPORT is not set
 CONFIG_BUILD_PATENTED=y
 # CONFIG_BUILD_NLS is not set
@@ -629,7 +628,7 @@ CONFIG_TARGET_INIT_CMD="/sbin/init"
 CONFIG_TARGET_INIT_SUPPRESS_STDERR=y
 CONFIG_VERSIONOPT=y
 CONFIG_VERSION_DIST="X-WRT"
-CONFIG_VERSION_NUMBER="24.04_b202404300854"
+CONFIG_VERSION_NUMBER="24.04_b202405052325"
 CONFIG_VERSION_CODE="Noble"
 CONFIG_VERSION_REPO="http://downloads.openwrt.org/snapshots"
 CONFIG_VERSION_HOME_URL="https://x-wrt.com/"
@@ -3200,6 +3199,7 @@ CONFIG_PACKAGE_kmod-crypto-echainiv=m
 # CONFIG_PACKAGE_kmod-crypto-essiv is not set
 # CONFIG_PACKAGE_kmod-crypto-fcrypt is not set
 CONFIG_PACKAGE_kmod-crypto-gcm=y
+CONFIG_PACKAGE_kmod-crypto-geniv=y
 CONFIG_PACKAGE_kmod-crypto-gf128=y
 CONFIG_PACKAGE_kmod-crypto-ghash=y
 CONFIG_PACKAGE_kmod-crypto-hash=y
@@ -3223,7 +3223,7 @@ CONFIG_PACKAGE_kmod-crypto-rng=y
 CONFIG_PACKAGE_kmod-crypto-seqiv=y
 CONFIG_PACKAGE_kmod-crypto-sha1=y
 CONFIG_PACKAGE_kmod-crypto-sha256=m
-CONFIG_PACKAGE_kmod-crypto-sha3=m
+CONFIG_PACKAGE_kmod-crypto-sha3=y
 CONFIG_PACKAGE_kmod-crypto-sha512=y
 # CONFIG_PACKAGE_kmod-crypto-test is not set
 CONFIG_PACKAGE_kmod-crypto-user=y
@@ -3254,7 +3254,7 @@ CONFIG_PACKAGE_kmod-fs-ext4=m
 CONFIG_PACKAGE_kmod-fs-ksmbd=m
 # CONFIG_PACKAGE_kmod-fs-minix is not set
 CONFIG_PACKAGE_kmod-fs-msdos=m
-# CONFIG_PACKAGE_kmod-fs-netfs is not set
+CONFIG_PACKAGE_kmod-fs-netfs=m
 CONFIG_PACKAGE_kmod-fs-nfs=m
 CONFIG_PACKAGE_kmod-fs-nfs-common=m
 # CONFIG_PACKAGE_kmod-fs-nfs-common-rpcsec is not set
@@ -3483,6 +3483,7 @@ CONFIG_PACKAGE_kmod-nls-iso8859-1=y
 # CONFIG_PACKAGE_kmod-nls-iso8859-6 is not set
 # CONFIG_PACKAGE_kmod-nls-iso8859-8 is not set
 # CONFIG_PACKAGE_kmod-nls-koi8r is not set
+CONFIG_PACKAGE_kmod-nls-ucs2-utils=m
 CONFIG_PACKAGE_kmod-nls-utf8=y
 # end of Native Language Support
 
@@ -5298,7 +5299,9 @@ CONFIG_WOLFSSL_ALT_NAMES=y
 #
 # libimobiledevice
 #
+# CONFIG_PACKAGE_libideviceactivation is not set
 CONFIG_PACKAGE_libimobiledevice=m
+CONFIG_PACKAGE_libimobiledevice-glue=m
 # CONFIG_PACKAGE_libirecovery is not set
 CONFIG_PACKAGE_libplist=m
 CONFIG_PACKAGE_libusbmuxd=m
@@ -7786,6 +7789,7 @@ CONFIG_PACKAGE_rssileds=m
 # CONFIG_PACKAGE_socat is not set
 # CONFIG_PACKAGE_softflowd is not set
 # CONFIG_PACKAGE_soloscli is not set
+# CONFIG_PACKAGE_speedtest-go is not set
 # CONFIG_PACKAGE_speedtest-netperf is not set
 # CONFIG_PACKAGE_speedtestcpp is not set
 # CONFIG_PACKAGE_spoofer is not set
@@ -8169,8 +8173,11 @@ CONFIG_PACKAGE_minicom=m
 #
 # libimobiledevice
 #
+# CONFIG_PACKAGE_ideviceinstaller is not set
 # CONFIG_PACKAGE_idevicerestore is not set
+# CONFIG_PACKAGE_ifuse is not set
 # CONFIG_PACKAGE_irecovery is not set
+# CONFIG_PACKAGE_libideviceactivation-utils is not set
 CONFIG_PACKAGE_libimobiledevice-utils=m
 CONFIG_PACKAGE_libusbmuxd-utils=m
 # CONFIG_PACKAGE_plistutil is not set
