@@ -801,8 +801,7 @@ CONFIG_TARGET_DEVICE_PACKAGES_ath79_generic_DEVICE_tplink_tl-wr842n-v2="blockd b
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_ubnt_nanobeam-ac-gen2 is not set
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_ubnt_nanostation-ac is not set
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_ubnt_nanostation-ac-loco is not set
-CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_ubnt_nanostation-m-xw=y
-CONFIG_TARGET_DEVICE_PACKAGES_ath79_generic_DEVICE_ubnt_nanostation-m-xw="kmod-crypto-lib-chacha20 kmod-crypto-lib-chacha20poly1305 kmod-crypto-lib-curve25519 kmod-crypto-lib-poly1305 kmod-phy-ath79-usb kmod-udptunnel4 kmod-udptunnel6 kmod-usb2 kmod-usb-core kmod-usb-ehci kmod-wireguard luci-app-ledtrig-rssi luci-proto-wireguard rssileds wireguard-tools wpad-basic-mbedtls"
+# CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_ubnt_nanostation-m-xw is not set
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_ubnt_powerbeam-5ac-500 is not set
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_ubnt_powerbeam-5ac-gen2 is not set
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_ubnt_powerbeam-m2-xw is not set
@@ -814,10 +813,8 @@ CONFIG_TARGET_DEVICE_PACKAGES_ath79_generic_DEVICE_ubnt_nanostation-m-xw="kmod-c
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_ubnt_routerstation-pro is not set
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_ubnt_unifiac-lite is not set
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_ubnt_unifiac-lr is not set
-CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_ubnt_unifiac-mesh=y
-CONFIG_TARGET_DEVICE_PACKAGES_ath79_generic_DEVICE_ubnt_unifiac-mesh="ath10k-board-qca988x ath10k-firmware-qca988x-ct kmod-ath10k-ct kmod-crypto-lib-chacha20 kmod-crypto-lib-chacha20poly1305 kmod-crypto-lib-curve25519 kmod-crypto-lib-poly1305 kmod-hwmon-core kmod-udptunnel4 kmod-udptunnel6 kmod-wireguard luci-proto-wireguard wireguard-tools wpad-basic-mbedtls"
-CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_ubnt_unifiac-mesh-pro=y
-CONFIG_TARGET_DEVICE_PACKAGES_ath79_generic_DEVICE_ubnt_unifiac-mesh-pro="ath10k-board-qca988x ath10k-firmware-qca988x-ct kmod-ath10k-ct kmod-crypto-lib-chacha20 kmod-crypto-lib-chacha20poly1305 kmod-crypto-lib-curve25519 kmod-crypto-lib-poly1305 kmod-hwmon-core kmod-udptunnel4 kmod-udptunnel6 kmod-wireguard luci-proto-wireguard wireguard-tools wpad-basic-mbedtls"
+# CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_ubnt_unifiac-mesh is not set
+# CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_ubnt_unifiac-mesh-pro is not set
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_ubnt_unifiac-pro is not set
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_ubnt_unifi-ap is not set
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_ubnt_unifi-ap-lr is not set
@@ -838,8 +835,7 @@ CONFIG_TARGET_DEVICE_PACKAGES_ath79_generic_DEVICE_ubnt_unifiac-mesh-pro="ath10k
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_xwrt_csac2 is not set
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_xwrt_gw521-16m is not set
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_xwrt_m-ap300g is not set
-CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_xwrt_mk-v0201=y
-CONFIG_TARGET_DEVICE_PACKAGES_ath79_generic_DEVICE_xwrt_mk-v0201="blockd block-mount kmod-crypto-lib-chacha20 kmod-crypto-lib-chacha20poly1305 kmod-crypto-lib-curve25519 kmod-crypto-lib-poly1305 kmod-fs-autofs4 kmod-fs-exfat kmod-fs-ntfs3 kmod-fuse kmod-leds-gpio kmod-lib-crc16 kmod-mii kmod-nls-cp437 kmod-phy-ath79-usb kmod-udptunnel4 kmod-udptunnel6 kmod-usb2 kmod-usb-core kmod-usb-ehci kmod-usb-ledtrig-usbport kmod-usb-net kmod-usb-net-cdc-ether kmod-usb-net-rndis kmod-usb-ohci kmod-usb-storage kmod-wireguard luci-app-ledtrig-rssi luci-app-ledtrig-usbport luci-proto-wireguard rssileds wireguard-tools wpad-basic-mbedtls"
+# CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_xwrt_mk-v0201 is not set
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_xwrt_xd1202g is not set
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_yuncore_a770 is not set
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_yuncore_a782 is not set
@@ -887,7 +883,6 @@ CONFIG_MODULE_DEFAULT_kmod-ath9k=y
 CONFIG_MODULE_DEFAULT_kmod-fs-ext4=y
 CONFIG_DEFAULT_kmod-gpio-button-hotplug=y
 CONFIG_MODULE_DEFAULT_kmod-gpio-button-hotplug=y
-CONFIG_MODULE_DEFAULT_kmod-leds-gpio=y
 CONFIG_MODULE_DEFAULT_kmod-leds-reset=y
 CONFIG_MODULE_DEFAULT_kmod-ledtrig-usbdev=y
 CONFIG_MODULE_DEFAULT_kmod-nls-iso8859-1=y
