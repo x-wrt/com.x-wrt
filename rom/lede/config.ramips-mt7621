@@ -566,10 +566,8 @@ CONFIG_TARGET_DEVICE_ramips_mt7621_DEVICE_tplink_re650-v1=y
 CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt7621_DEVICE_tplink_re650-v1="kmod-cfg80211 kmod-crypto-ccm kmod-crypto-cmac kmod-crypto-ctr kmod-crypto-gcm kmod-crypto-geniv kmod-crypto-gf128 kmod-crypto-ghash kmod-crypto-seqiv kmod-hwmon-core kmod-leds-gpio kmod-mac80211 kmod-mt7615-common kmod-mt7615e kmod-mt7615-firmware kmod-mt76-connac kmod-mt76-core wireless-regdb wpad-basic-mbedtls"
 # CONFIG_TARGET_DEVICE_ramips_mt7621_DEVICE_tplink_re650-v2 is not set
 # CONFIG_TARGET_DEVICE_ramips_mt7621_DEVICE_tplink_tl-wpa8631p-v3 is not set
-CONFIG_TARGET_DEVICE_ramips_mt7621_DEVICE_ubnt_edgerouter-x-sfp=y
-CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt7621_DEVICE_ubnt_edgerouter-x-sfp="dawn iptables-mod-dhcpmac iptables-mod-dnetmap jool-tools-netfilter kmod-bonding kmod-cryptodev kmod-gpio-pca953x kmod-hwmon-core kmod-i2c-algo-pca kmod-i2c-core kmod-inet-diag kmod-ipt-compat-xtables kmod-ipt-dhcpmac kmod-ipt-dnetmap kmod-jool-netfilter kmod-leds-gpio kmod-libphy kmod-nat46 kmod-nf-conntrack-netlink kmod-ovpn-dco-v2 kmod-phylink kmod-regmap-core kmod-regmap-i2c kmod-sfp libcap-ng libgcrypt libgpg-error liblz4 liblzo libnl libnl-cli libnl-core libnl-genl libnl-nf libnl-route libopenssl libopenssl-conf libopenssl-devcrypto libopenssl-legacy libpcre2 libqrencode libstdcpp libxml2 luci-app-dawn luci-app-openvpn luci-app-usteer luci-i18n-dashboard-zh-cn luci-i18n-openvpn-zh-cn luci-mod-dashboard luci-nginx luci-proto-bonding luci-proto-relay luci-proto-wireguard nginx nginx-mod-luci nginx-mod-ubus nginx-ssl nginx-ssl-util nginx-util openvpn-openssl proto-bonding qrencode relayd tc-tiny uwsgi uwsgi-cgi-plugin uwsgi-luci-support uwsgi-syslog-plugin wireguard-tools wpad-openssl"
-CONFIG_TARGET_DEVICE_ramips_mt7621_DEVICE_ubnt_edgerouter-x=y
-CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt7621_DEVICE_ubnt_edgerouter-x="dawn iptables-mod-dhcpmac iptables-mod-dnetmap jool-tools-netfilter kmod-bonding kmod-cryptodev kmod-inet-diag kmod-ipt-compat-xtables kmod-ipt-dhcpmac kmod-ipt-dnetmap kmod-jool-netfilter kmod-leds-gpio kmod-nat46 kmod-nf-conntrack-netlink kmod-ovpn-dco-v2 libcap-ng libgcrypt libgpg-error liblz4 liblzo libnl libnl-cli libnl-core libnl-genl libnl-nf libnl-route libopenssl libopenssl-conf libopenssl-devcrypto libopenssl-legacy libpcre2 libqrencode libstdcpp libxml2 luci-app-dawn luci-app-openvpn luci-app-usteer luci-i18n-dashboard-zh-cn luci-i18n-openvpn-zh-cn luci-mod-dashboard luci-nginx luci-proto-bonding luci-proto-relay luci-proto-wireguard nginx nginx-mod-luci nginx-mod-ubus nginx-ssl nginx-ssl-util nginx-util openvpn-openssl proto-bonding qrencode relayd tc-tiny uwsgi uwsgi-cgi-plugin uwsgi-luci-support uwsgi-syslog-plugin wireguard-tools wpad-openssl"
+# CONFIG_TARGET_DEVICE_ramips_mt7621_DEVICE_ubnt_edgerouter-x-sfp is not set
+# CONFIG_TARGET_DEVICE_ramips_mt7621_DEVICE_ubnt_edgerouter-x is not set
 # CONFIG_TARGET_DEVICE_ramips_mt7621_DEVICE_ubnt_unifi-6-lite is not set
 # CONFIG_TARGET_DEVICE_ramips_mt7621_DEVICE_ubnt_unifi-flexhd is not set
 # CONFIG_TARGET_DEVICE_ramips_mt7621_DEVICE_ubnt_unifi-nanohd is not set
@@ -715,9 +713,7 @@ CONFIG_MODULE_DEFAULT_kmod-eeprom-at24=y
 CONFIG_MODULE_DEFAULT_kmod-fs-ext4=y
 CONFIG_DEFAULT_kmod-gpio-button-hotplug=y
 CONFIG_MODULE_DEFAULT_kmod-gpio-button-hotplug=y
-CONFIG_MODULE_DEFAULT_kmod-gpio-pca953x=y
 CONFIG_MODULE_DEFAULT_kmod-gsw150=y
-CONFIG_MODULE_DEFAULT_kmod-i2c-algo-pca=y
 CONFIG_MODULE_DEFAULT_kmod-i2c-core=y
 CONFIG_MODULE_DEFAULT_kmod-i2c-gpio=y
 CONFIG_DEFAULT_kmod-leds-gpio=y
@@ -729,7 +725,6 @@ CONFIG_MODULE_DEFAULT_kmod-mt7663-firmware-ap=y
 CONFIG_MODULE_DEFAULT_kmod-mt76x2=y
 CONFIG_MODULE_DEFAULT_kmod-mt7915-firmware=y
 CONFIG_MODULE_DEFAULT_kmod-sdhci-mt7620=y
-CONFIG_MODULE_DEFAULT_kmod-sfp=y
 CONFIG_MODULE_DEFAULT_kmod-usb-ledtrig-usbport=y
 CONFIG_MODULE_DEFAULT_kmod-usb2=y
 CONFIG_MODULE_DEFAULT_kmod-usb3=y
