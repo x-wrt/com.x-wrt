@@ -62,6 +62,30 @@ auto_mount_boot()
 	}
 }
 
+enable_ssh_login_if_webui_down()
+{
+	sleep 5
+
+	if lsof -ni :80 &>/dev/null || lsof -ni :443 &>/dev/null || pidof nginx &>/dev/null || pidof uhttpd &>/dev/null; then
+		return 0
+	fi
+
+	sleep 56
+
+	if lsof -ni :80 &>/dev/null || lsof -ni :443 &>/dev/null || pidof nginx &>/dev/null || pidof uhttpd &>/dev/null; then
+		:
+	else
+		uci set dropbear.@dropbear[0].PasswordAuth='on'
+		uci set dropbear.@dropbear[0].RootPasswordAuth='on'
+		/etc/init.d/dropbear restart
+		sleep 600
+		uci revert dropbear
+		/etc/init.d/dropbear restart
+	fi
+}
+
 boot() {
 	auto_mount_boot &
+
+	enable_ssh_login_if_webui_down &
 }
