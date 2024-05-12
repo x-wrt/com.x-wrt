@@ -742,6 +742,7 @@ for t in $targets; do
 			extra_utils=1
 		;;
 		#>8M flash <14M
+		TARGET_DEVICE_ramips_mt7621_DEVICE_jdcloud_re-cp-02|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_yuncore_ax835|\
 		TARGET_DEVICE_ath79_generic_DEVICE_huawei_ap5030dn|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_asus_rt-ax53u|\
@@ -1460,6 +1461,7 @@ for t in $targets; do
 			has_usb=1
 		;;
 		#no usb
+		TARGET_DEVICE_ramips_mt7621_DEVICE_jdcloud_re-cp-02|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_yuncore_ax835|\
 		TARGET_DEVICE_ath79_generic_DEVICE_huawei_ap5030dn|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_netcore_n60|\
