@@ -659,7 +659,7 @@ cn_domain_setup() {
 
 	lock /var/run/natcapd.cn_domain.lock
 	while :; do
-	ping -q -W3 -c1 8.8.8.8 || ping -q -W3 -c1 114.114.114.114 || { sleep 11 && continue; }
+	ping -q -W3 -c1 8.8.8.8 || ping -q -W3 -c1 114.114.114.114 || ping -q -W3 -c1 1.1.1.1 || { sleep 11 && continue; }
 	$WGET181 --timeout=180 --no-check-certificate -qO /tmp/cn_domain.raw.build.gz \
 		"$URL" && {
 			gzip -d /tmp/cn_domain.raw.build.gz
@@ -984,6 +984,9 @@ nslookup_check () {
 		test -n "$ipaddr" || {
 			ipaddr=$(nslookup $domain 8.8.8.8 2>/dev/null | grep "$domain" -A5 | grep Address | grep -o '\([0-9]\{1,3\}\)\.\([0-9]\{1,3\}\)\.\([0-9]\{1,3\}\)\.\([0-9]\{1,3\}\)' -m1)
 		}
+		test -n "$ipaddr" || {
+			ipaddr=$(nslookup $domain 1.1.1.1 2>/dev/null | grep "$domain" -A5 | grep Address | grep -o '\([0-9]\{1,3\}\)\.\([0-9]\{1,3\}\)\.\([0-9]\{1,3\}\)\.\([0-9]\{1,3\}\)' -m1)
+		}
 	}
 	test -n "$ipaddr" || ipaddr=`echo -n $domain | grep -o '\([0-9]\{1,3\}\)\.\([0-9]\{1,3\}\)\.\([0-9]\{1,3\}\)\.\([0-9]\{1,3\}\)'`
 	echo "$ipaddr"
@@ -997,6 +1000,9 @@ nslookup_check_local () {
 		ipaddr=$(busybox nslookup $domain 114.114.114.114 2>/dev/null | grep "$domain" -A5 | grep Address | grep -o '\([0-9]\{1,3\}\)\.\([0-9]\{1,3\}\)\.\([0-9]\{1,3\}\)\.\([0-9]\{1,3\}\)' -m1)
 		test -n "$ipaddr" || {
 			ipaddr=$(busybox nslookup $domain 8.8.8.8 2>/dev/null | grep "$domain" -A5 | grep Address | grep -o '\([0-9]\{1,3\}\)\.\([0-9]\{1,3\}\)\.\([0-9]\{1,3\}\)\.\([0-9]\{1,3\}\)' -m1)
+		}
+		test -n "$ipaddr" || {
+			ipaddr=$(busybox nslookup $domain 1.1.1.1 2>/dev/null | grep "$domain" -A5 | grep Address | grep -o '\([0-9]\{1,3\}\)\.\([0-9]\{1,3\}\)\.\([0-9]\{1,3\}\)\.\([0-9]\{1,3\}\)' -m1)
 		}
 	}
 	test -n "$ipaddr" || ipaddr=`echo -n $domain | grep -o '\([0-9]\{1,3\}\)\.\([0-9]\{1,3\}\)\.\([0-9]\{1,3\}\)\.\([0-9]\{1,3\}\)'`
@@ -1082,6 +1088,7 @@ natcapd_first_boot() {
 	while :; do
 		ping -q -W3 -c1 114.114.114.114 &>/dev/null || \
 			ping -q -W3 -c1 8.8.8.8 &>/dev/null || \
+			ping -q -W3 -c1 1.1.1.1 &>/dev/null || \
 			ping -q -W3 -c1 www.baidu.com &>/dev/null || \
 			ping -q -W3 -c1 -t1 -s1 router-sh.ptpt52.com || {
 			# restart ping after 8 secs
@@ -1232,7 +1239,7 @@ main_trigger() {
 	while :; do
 		test -f $LOCKDIR/$PID || return 0
 		test -p /tmp/trigger_natcapd_update.fifo || { sleep 1 && continue; }
-		ping -q -W3 -c1 8.8.8.8 || ping -q -W3 -c1 114.114.114.114 || { sleep 11 && continue; }
+		ping -q -W3 -c1 8.8.8.8 || ping -q -W3 -c1 114.114.114.114 || ping -q -W3 -c1 1.1.1.1 || { sleep 11 && continue; }
 		mytimeout 660 'cat /tmp/trigger_natcapd_update.fifo' >/dev/null && {
 			rm -f /tmp/xx.tmp.json
 			rm -f /tmp/nohup.out
