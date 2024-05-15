@@ -20,6 +20,7 @@ proto_qmap_init_config() {
 	proto_config_add_boolean dhcp
 	proto_config_add_boolean dhcpv6
 	proto_config_add_boolean sourcefilter
+	proto_config_add_boolean delegate
 	proto_config_add_int mtu
 	proto_config_add_defaults
 }
@@ -27,12 +28,12 @@ proto_qmap_init_config() {
 proto_qmap_setup() {
 	local interface="$1"
 	local device apn auth username password pincode delay pdptype
-	local dhcp dhcpv6 sourcefilter mtu $PROTO_DEFAULT_OPTIONS
+	local dhcp dhcpv6 sourcefilter delegate mtu $PROTO_DEFAULT_OPTIONS
 	local ip4table ip6table
 	local pid zone
 
 	json_get_vars device apn auth username password pincode delay
-	json_get_vars pdptype dhcp dhcpv6 sourcefilter ip4table
+	json_get_vars pdptype dhcp dhcpv6 sourcefilter delegate ip4table
 	json_get_vars ip6table mtu $PROTO_DEFAULT_OPTIONS
 
 	[ "$metric" = "" ] && metric="0"
@@ -124,6 +125,7 @@ proto_qmap_setup() {
 		[ -n "$ip6table" ] && json_add_string ip6table "$ip6table"
 		# RFC 7278: Extend an IPv6 /64 Prefix to LAN
 		json_add_string extendprefix 1
+		[ "$delegate" = "0" ] && json_add_boolean delegate "0"
 		[ "$sourcefilter" = "0" ] && json_add_boolean sourcefilter "0"
 		[ -n "$zone" ] && json_add_string zone "$zone"
 		json_close_object
