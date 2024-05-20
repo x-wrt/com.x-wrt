@@ -1729,15 +1729,7 @@ iwlwifi-firmware-iwl8260c \
 iwlwifi-firmware-iwl8265 \
 iwlwifi-firmware-iwl9000 \
 iwlwifi-firmware-iwl9260 \
-rt73-usb-firmware \
-rtl8188eu-firmware \
-rtl8192ce-firmware \
-rtl8192de-firmware \
-rtl8192eu-firmware \
-rtl8192se-firmware \
-rtl8723au-firmware \
-rtl8723bu-firmware \
-rtl8821ae-firmware"
+rt73-usb-firmware"
 			excludes="$excludes libustream-mbedtls"
 		;;
 	esac
