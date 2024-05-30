@@ -55,6 +55,7 @@ CONFIG_TARGET_ath79_generic=y
 # CONFIG_TARGET_ath79_tiny is not set
 CONFIG_TARGET_MULTI_PROFILE=y
 # CONFIG_TARGET_ath79_generic_DEVICE_8dev_carambola2 is not set
+# CONFIG_TARGET_ath79_generic_DEVICE_8dev_carambola3 is not set
 # CONFIG_TARGET_ath79_generic_DEVICE_8dev_lima is not set
 # CONFIG_TARGET_ath79_generic_DEVICE_adtran_bsap1800-v2 is not set
 # CONFIG_TARGET_ath79_generic_DEVICE_adtran_bsap1840 is not set
@@ -117,6 +118,7 @@ CONFIG_TARGET_MULTI_PROFILE=y
 # CONFIG_TARGET_ath79_generic_DEVICE_compex_wpj531-16m is not set
 # CONFIG_TARGET_ath79_generic_DEVICE_compex_wpj558-16m is not set
 # CONFIG_TARGET_ath79_generic_DEVICE_compex_wpj563 is not set
+# CONFIG_TARGET_ath79_generic_DEVICE_dell_apl26-0ae is not set
 # CONFIG_TARGET_ath79_generic_DEVICE_devolo_dlan-pro-1200plus-ac is not set
 # CONFIG_TARGET_ath79_generic_DEVICE_devolo_dvl1200e is not set
 # CONFIG_TARGET_ath79_generic_DEVICE_devolo_dvl1200i is not set
@@ -399,6 +401,7 @@ CONFIG_TARGET_MULTI_PROFILE=y
 # CONFIG_TARGET_ath79_generic_DEVICE_tplink_wbs510-v2 is not set
 # CONFIG_TARGET_ath79_generic_DEVICE_ubnt_aircube-ac is not set
 # CONFIG_TARGET_ath79_generic_DEVICE_ubnt_aircube-isp is not set
+# CONFIG_TARGET_ath79_generic_DEVICE_ubnt_amplifi-router-hd is not set
 # CONFIG_TARGET_ath79_generic_DEVICE_ubnt_bullet-ac is not set
 # CONFIG_TARGET_ath79_generic_DEVICE_ubnt_bullet-m-xw is not set
 # CONFIG_TARGET_ath79_generic_DEVICE_ubnt_edgeswitch-5xp is not set
@@ -439,6 +442,7 @@ CONFIG_TARGET_MULTI_PROFILE=y
 # CONFIG_TARGET_ALL_PROFILES is not set
 CONFIG_TARGET_PER_DEVICE_ROOTFS=y
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_8dev_carambola2 is not set
+# CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_8dev_carambola3 is not set
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_8dev_lima is not set
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_adtran_bsap1800-v2 is not set
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_adtran_bsap1840 is not set
@@ -452,6 +456,7 @@ CONFIG_TARGET_PER_DEVICE_ROOTFS=y
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_alfa-network_r36a is not set
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_alfa-network_tube-2hq is not set
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_allnet_all-wap02860ac is not set
+# CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_ubnt_amplifi-router-hd is not set
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_araknis_an-300-ap-i-n is not set
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_araknis_an-500-ap-i-ac is not set
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_araknis_an-700-ap-i-ac is not set
@@ -521,6 +526,7 @@ CONFIG_TARGET_DEVICE_PACKAGES_ath79_generic_DEVICE_comfast_cf-e5="blockd block-m
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_dlink_dir-842-c1 is not set
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_dlink_dir-842-c2 is not set
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_dlink_dir-842-c3 is not set
+# CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_dell_apl26-0ae is not set
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_devolo_dlan-pro-1200plus-ac is not set
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_devolo_magic-2-wifi is not set
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_devolo_dvl1200e is not set
@@ -1195,7 +1201,7 @@ CONFIG_GDB=y
 CONFIG_USE_MUSL=y
 CONFIG_BINUTILS_VERSION_2_42=y
 CONFIG_BINUTILS_VERSION="2.42"
-CONFIG_GCC_VERSION="13.2.0"
+CONFIG_GCC_VERSION="13.3.0"
 CONFIG_GCC_USE_DEFAULT_VERSION=y
 CONFIG_LIBC="musl"
 CONFIG_TARGET_SUFFIX="musl"
@@ -1221,7 +1227,7 @@ CONFIG_TARGET_INIT_CMD="/sbin/init"
 CONFIG_TARGET_INIT_SUPPRESS_STDERR=y
 CONFIG_VERSIONOPT=y
 CONFIG_VERSION_DIST="X-WRT"
-CONFIG_VERSION_NUMBER="24.04_b202405241202"
+CONFIG_VERSION_NUMBER="24.04_b202405302325"
 CONFIG_VERSION_CODE="Noble"
 CONFIG_VERSION_REPO="http://downloads.openwrt.org/snapshots"
 CONFIG_VERSION_HOME_URL="https://x-wrt.com/"
@@ -6046,6 +6052,7 @@ CONFIG_PACKAGE_libgpg-error=m
 # CONFIG_PACKAGE_libgpgmepp is not set
 # CONFIG_PACKAGE_libgphoto2 is not set
 # CONFIG_PACKAGE_libgpiod is not set
+# CONFIG_PACKAGE_libgpiodcxx is not set
 # CONFIG_PACKAGE_libgps is not set
 # CONFIG_PACKAGE_libhamlib is not set
 # CONFIG_PACKAGE_libhavege is not set
