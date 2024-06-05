@@ -80,4 +80,4 @@ msgid "IPv4/IPv6 address"
 msgstr "IPv4/IPv6 地址"
 
 msgid "URL Log"
-msgstr "URL日志"
+msgstr "URL 日志"
