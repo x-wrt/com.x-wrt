@@ -31,8 +31,30 @@ urllogger_start()
 # start:
 urllogger_start
 
+# kB
+memtotal=$(grep MemTotal /proc/meminfo | awk '{print $2}')
+logsize=$((1*1024*1024))
+if test $memtotal -ge 1048576; then
+	# > 1024M
+	logsize=$((32*1024*1024))
+elif test $memtotal -ge 524288; then
+	# <= 1024M
+	logsize=$((16*1024*1024))
+elif test $memtotal -ge 262144; then
+	# <= 512M
+	logsize=$((8*1024*1024))
+elif test $memtotal -ge 131072; then
+	# <= 256M
+	logsize=$((4*1024*1024))
+elif test $memtotal -ge 65536; then
+	# <= 128M
+	logsize=$((2*1024*1024))
+else
+	# < 64M
+	logsize=$((1*1024*1024))
+fi
+
 main_loop() {
-	local log_start=1
 	local time_count=0
 	while :; do
 		test -f $LOCKDIR/$PID || return 0
@@ -43,19 +65,13 @@ main_loop() {
 
 		LOGSIZE=$(ls -l /tmp/url.log | awk '{print $5}')
 		LOGSIZE=$((LOGSIZE+0))
-		if [ $log_start = 1 ]; then
-			#LOGSIZE over 10MB, stop log
-			if test $LOGSIZE -ge 10485760; then
-				log_start=0
-				urllogger_stop
-				logger -t urllogger[$PID] "stop log url due to log file[/tmp/url.log] over size 10MB"
-			fi
-		else
-			if test $LOGSIZE -lt 10485760; then
-				log_start=1
-				urllogger_start
-				logger -t urllogger[$PID] "restart log url due to log file[/tmp/url.log] less than size 10MB"
-			fi
+
+		#LOGSIZE over $logsize, drop 1/2 log
+		if test $LOGSIZE -ge $logsize; then
+			NRLINE=$(cat /tmp/url.log 2>/dev/null | wc -l)
+			NRLINE=$((NRLINE*6/10))
+			tail -n$NRLINE /tmp/url.log >/tmp/url.log.1
+			mv /tmp/url.log.1 /tmp/url.log
 		fi
 
 		UP=$(cat /proc/uptime | cut -d\. -f1)
