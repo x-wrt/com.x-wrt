@@ -71,6 +71,7 @@ define Package/luci-app-natflow-users/install
 	$(INSTALL_DIR) $(1)/www/luci-static/resources/view/status/include
 	$(INSTALL_DATA) ./htdocs/luci-static/resources/view/status/include/35_natflow-users.js $(1)/www/luci-static/resources/view/status/include/35_natflow-users.js
 	$(INSTALL_DATA) ./htdocs/luci-static/resources/view/status/natflow-users.js $(1)/www/luci-static/resources/view/status/natflow-users.js
+	$(INSTALL_DATA) ./htdocs/luci-static/resources/view/status/urllog.js $(1)/www/luci-static/resources/view/status/urllog.js
 	$(INSTALL_DIR) $(1)/usr/share/ucitrack
 	$(INSTALL_DATA) ./root/usr/share/ucitrack/*.json $(1)/usr/share/ucitrack/
 endef

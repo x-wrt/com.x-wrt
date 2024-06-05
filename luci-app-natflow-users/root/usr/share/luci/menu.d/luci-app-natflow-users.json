@@ -1,4 +1,12 @@
 {
+	"admin/status/urllog": {
+		"title": "URL log",
+		"order": 99,
+		"action": {
+			"type": "view",
+			"path": "status/urllog"
+		}
+	},
 	"admin/status/realtime/users": {
 		"title": "Users",
 		"order": 99,
