@@ -1,6 +1,6 @@
 {
 	"admin/status/urllog": {
-		"title": "URL log",
+		"title": "URL Log",
 		"order": 99,
 		"action": {
 			"type": "view",
