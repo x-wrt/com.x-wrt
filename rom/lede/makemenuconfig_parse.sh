@@ -505,7 +505,7 @@ for t in $targets; do
 		TARGET_DEVICE_mvebu_cortexa9_DEVICE_linksys_wrt1900acs|\
 		TARGET_DEVICE_mvebu_cortexa9_DEVICE_linksys_wrt1900ac-v2|\
 		TARGET_DEVICE_mvebu_cortexa9_DEVICE_linksys_wrt3200acm)
-			mods="$mods $extra_vpn $strongswan"
+			mods="$mods $extra_vpn $strongswan urllogger"
 		;;
 	esac
 	case $t in
@@ -735,7 +735,7 @@ for t in $targets; do
 		TARGET_DEVICE_ramips_mt7621_DEVICE_netgear_r6220a|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_netgear_r6220b|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_netgear_r6220c)
-			mods="$mods $lucibond $ipv6extra $wifiext $tc $lucidashboard $kmodext $relay"
+			mods="$mods $lucibond $ipv6extra $wifiext $tc $lucidashboard $kmodext $relay urllogger"
 			mods="$mods $wgmod $openvpnmod wpad-openssl luci-ssl-nginx luci-nginx"
 			mods="$mods kmod-ipt-compat-xtables kmod-ipt-dhcpmac kmod-ipt-dnetmap iptables-mod-dhcpmac iptables-mod-dnetmap"
 			excludes="$excludes wpad-basic-mbedtls wpad-basic-wolfssl"
@@ -949,7 +949,7 @@ for t in $targets; do
 		TARGET_DEVICE_ath79_generic_DEVICE_engenius_epg5000|\
 		TARGET_DEVICE_ath79_generic_DEVICE_tplink_archer-c7-v5|\
 		TARGET_DEVICE_ath79_generic_DEVICE_bm100_hq55)
-			mods="$mods $wgmod $openvpnmod openvpn-mbedtls wpad-mbedtls $wifiext $tc $lucidashboard $relay"
+			mods="$mods $wgmod $openvpnmod openvpn-mbedtls wpad-mbedtls $wifiext $tc $lucidashboard $relay urllogger"
 			excludes="$excludes wpad-basic-mbedtls openvpn-openssl wpad-basic-wolfssl"
 			flash_gt8m=1
 		;;
