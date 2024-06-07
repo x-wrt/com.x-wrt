@@ -26,6 +26,7 @@ endef
 define Package/urllogger/install
 	$(INSTALL_DIR) $(1)/usr/sbin
 	$(INSTALL_BIN) ./files/urllogger.sh $(1)/usr/sbin/urllogger
+	$(INSTALL_BIN) ./files/urllogger-ctl.sh $(1)/usr/sbin/urllogger-ctl
 	$(INSTALL_DIR) $(1)/etc/init.d
 	$(INSTALL_BIN) ./files/urllogger.init $(1)/etc/init.d/urllogger
 endef
