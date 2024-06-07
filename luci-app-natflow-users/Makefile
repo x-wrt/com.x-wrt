@@ -24,7 +24,7 @@ define Package/luci-app-natflow-users
 	SUBMENU:=Natflow users module support
 	TITLE:=LuCI Support for natflow users
 	PKGARCH:=all
-	DEPENDS:= +natflow-auth
+	DEPENDS:= +natflow-auth +luci-compat
 endef
 
 define Package/luci-app-natflow-users/description
