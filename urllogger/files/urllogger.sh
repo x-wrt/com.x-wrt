@@ -33,25 +33,25 @@ urllogger_start
 
 # kB
 memtotal=$(grep MemTotal /proc/meminfo | awk '{print $2}')
-logsize=$((1*1024*1024))
+logsize=$((512*1024))
 if test $memtotal -ge 1048576; then
 	# > 1024M
-	logsize=$((32*1024*1024))
+	logsize=$((16*1024*1024))
 elif test $memtotal -ge 524288; then
 	# <= 1024M
-	logsize=$((16*1024*1024))
+	logsize=$((8*1024*1024))
 elif test $memtotal -ge 262144; then
 	# <= 512M
-	logsize=$((8*1024*1024))
+	logsize=$((4*1024*1024))
 elif test $memtotal -ge 131072; then
 	# <= 256M
-	logsize=$((4*1024*1024))
+	logsize=$((2*1024*1024))
 elif test $memtotal -ge 65536; then
 	# <= 128M
-	logsize=$((2*1024*1024))
+	logsize=$((1*1024*1024))
 else
 	# < 64M
-	logsize=$((1*1024*1024))
+	logsize=$((512*1024))
 fi
 
 main_loop() {
