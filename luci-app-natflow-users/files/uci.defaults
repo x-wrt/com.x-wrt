@@ -23,4 +23,11 @@ uci -q batch <<-EOF >/dev/null
 	commit ucitrack
 EOF
 
+uci -q batch <<-EOF >/dev/null
+	delete ucitrack.@hostacl[-1]
+	add ucitrack hostacl
+	set ucitrack.@hostacl[-1].init=natflow-hostacl
+	commit ucitrack
+EOF
+
 exit 0
