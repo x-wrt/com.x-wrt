@@ -92,7 +92,7 @@ msgid "This allows administrators to control and manage the websites that users 
 msgstr "这使得管理员可以控制和管理用户在互联网上可以访问的网站。"
 
 msgid "Domains to be filtered"
-msgstr "要过滤域名"
+msgstr "要过滤的域名"
 
 msgid "Domains to be filtered, separated by commas."
 msgstr "要过滤的域名，用逗号隔开。"
