@@ -81,3 +81,42 @@ msgstr "IPv4/IPv6 地址"
 
 msgid "URL Log"
 msgstr "URL 日志"
+
+msgid "Web Filtering"
+msgstr "网站过滤"
+
+msgid "ACL rules"
+msgstr "ACL 规则"
+
+msgid "This allows administrators to control and manage the websites that users can access over the Internet."
+msgstr "这使得管理员可以控制和管理用户在互联网上可以访问的网站。"
+
+msgid "Domains to be filtered"
+msgstr "要过滤域名"
+
+msgid "Domains to be filtered, separated by commas."
+msgstr "要过滤的域名，用逗号隔开。"
+
+msgid "Action"
+msgstr "操作"
+
+msgid "Record"
+msgstr "记录"
+
+msgid "Drop"
+msgstr "丢弃"
+
+msgid "Reset"
+msgstr "重置"
+
+msgid "Redirect"
+msgstr "重定向"
+
+msgid "IPv4 addresses to be filtered"
+msgstr "要过滤的终端 IPv4 地址"
+
+msgid "IPv6 addresses to be filtered"
+msgstr "要过滤的终端 IPv6 地址"
+
+msgid "MAC addresses to be filtered"
+msgstr "要过滤的终端 MAC 地址"

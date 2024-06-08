@@ -36,5 +36,16 @@
 		"depends": {
 			"acl": [ "luci-app-natflow-users" ]
 		}
+	},
+	"admin/network/hostacl": {
+		"title": "Web Filtering",
+		"order": 990,
+		"action": {
+			"type": "view",
+			"path": "network/hostacl"
+		},
+		"depends": {
+			"acl": [ "luci-app-natflow-users" ]
+		}
 	}
 }
