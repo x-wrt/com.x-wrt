@@ -510,6 +510,10 @@ for t in $targets; do
 	esac
 	case $t in
 		#>=14M flash
+		TARGET_DEVICE_mediatek_filogic_DEVICE_asus_rt-ax59u|\
+		TARGET_DEVICE_mediatek_filogic_DEVICE_bananapi_bpi-r4-poe|\
+		TARGET_DEVICE_mediatek_filogic_DEVICE_nokia_ea0326gmp|\
+		TARGET_DEVICE_mediatek_filogic_DEVICE_ruijie_rg-x60-pro|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_openwrt_one|\
 		TARGET_DEVICE_qualcommax_ipq807x_DEVICE_zbtlink_zbt-z800ax|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_linksys_ea8100-v1|\
@@ -1104,6 +1108,7 @@ for t in $targets; do
 	#check usb
 	case $t in
 		#with usb3
+		TARGET_DEVICE_mediatek_filogic_DEVICE_bananapi_bpi-r4-poe|\
 		TARGET_DEVICE_qualcommax_ipq807x_DEVICE_zbtlink_zbt-z800ax|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_linksys_ea8100-v1|\
 		TARGET_DEVICE_x86_64_DEVICE_generic|\
@@ -1463,6 +1468,9 @@ for t in $targets; do
 			has_usb=1
 		;;
 		#no usb
+		TARGET_DEVICE_mediatek_filogic_DEVICE_asus_rt-ax59u|\
+		TARGET_DEVICE_mediatek_filogic_DEVICE_nokia_ea0326gmp|\
+		TARGET_DEVICE_mediatek_filogic_DEVICE_ruijie_rg-x60-pro|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_jdcloud_re-cp-02|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_yuncore_ax835|\
 		TARGET_DEVICE_ath79_generic_DEVICE_huawei_ap5030dn|\
