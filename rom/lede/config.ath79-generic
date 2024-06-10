@@ -299,12 +299,8 @@ CONFIG_TARGET_MULTI_PROFILE=y
 # CONFIG_TARGET_ath79_generic_DEVICE_winchannel_wb2000 is not set
 # CONFIG_TARGET_ath79_generic_DEVICE_xiaomi_aiot-ac2350 is not set
 # CONFIG_TARGET_ath79_generic_DEVICE_xiaomi_mi-router-4q is not set
-# CONFIG_TARGET_ath79_generic_DEVICE_xwrt_mk-v0201 is not set
 # CONFIG_TARGET_ath79_generic_DEVICE_xwrt_csac is not set
 # CONFIG_TARGET_ath79_generic_DEVICE_xwrt_csac2 is not set
-# CONFIG_TARGET_ath79_generic_DEVICE_xwrt_xd1202g is not set
-# CONFIG_TARGET_ath79_generic_DEVICE_xwrt_m-ap300g is not set
-# CONFIG_TARGET_ath79_generic_DEVICE_xwrt_gw521-16m is not set
 # CONFIG_TARGET_ath79_generic_DEVICE_yuncore_a770 is not set
 # CONFIG_TARGET_ath79_generic_DEVICE_yuncore_a782 is not set
 # CONFIG_TARGET_ath79_generic_DEVICE_yuncore_a930 is not set
@@ -845,10 +841,6 @@ CONFIG_TARGET_DEVICE_PACKAGES_ath79_generic_DEVICE_xiaomi_mi-router-4q="dawn kmo
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_xwrt_csac is not set
 CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_xwrt_csac2=y
 CONFIG_TARGET_DEVICE_PACKAGES_ath79_generic_DEVICE_xwrt_csac2="ath10k-board-qca9888 ath10k-firmware-qca9888-ct blockd block-mount chat comgt comgt-ncm dawn kmod-ath10k-ct kmod-crypto-des kmod-crypto-md5 kmod-crypto-sha256 kmod-dnsresolver kmod-fs-autofs4 kmod-fs-exfat kmod-fs-ext4 kmod-fs-ksmbd kmod-fs-msdos kmod-fs-nfs kmod-fs-nfs-common kmod-fs-nfs-v4 kmod-fs-ntfs3 kmod-fs-smbfs-common kmod-fs-vfat kmod-fuse kmod-hwmon-core kmod-leds-reset kmod-lib-crc16 kmod-mii kmod-nls-cp437 kmod-oid-registry kmod-ovpn-dco-v2 kmod-phy-ath79-usb kmod-scsi-core kmod-usb2 kmod-usb-core kmod-usb-ehci kmod-usb-net kmod-usb-net-cdc-ether kmod-usb-net-cdc-mbim kmod-usb-net-cdc-ncm kmod-usb-net-huawei-cdc-ncm kmod-usb-net-ipheth kmod-usb-net-qmi-wwan kmod-usb-net-rndis kmod-usb-net-sierrawireless kmod-usb-ohci kmod-usb-printer kmod-usb-serial kmod-usb-serial-option kmod-usb-serial-qualcomm kmod-usb-serial-sierrawireless kmod-usb-serial-wwan kmod-usb-storage kmod-usb-storage-extras kmod-usb-storage-uas kmod-usb-wdm ksmbd-server libblkid libcap-ng libgcrypt libgpg-error liblz4 liblzo libnl-core libnl-genl libqrencode libusb-1.0 libwrap lte-modem-xwrt-csac luci-app-dawn luci-app-ksmbd luci-app-openvpn luci-app-p910nd luci-app-usteer luci-i18n-dashboard-zh-cn luci-i18n-ksmbd-zh-cn luci-i18n-openvpn-zh-cn luci-i18n-p910nd-zh-cn luci-mod-dashboard luci-proto-3g luci-proto-mbim luci-proto-ncm luci-proto-qmi luci-proto-relay luci-proto-wireguard natflow-hostacl nfs-utils openvpn-mbedtls p910nd qrencode relayd tc-tiny umbim uqmi urllogger usb-modeswitch wireguard-tools wpad-mbedtls wsdd2 wwan"
-# CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_xwrt_gw521-16m is not set
-# CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_xwrt_m-ap300g is not set
-# CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_xwrt_mk-v0201 is not set
-# CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_xwrt_xd1202g is not set
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_yuncore_a770 is not set
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_yuncore_a782 is not set
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_yuncore_a930 is not set
