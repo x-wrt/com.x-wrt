@@ -56,6 +56,8 @@ CONFIG_TARGET_ramips_mt76x8=y
 # CONFIG_TARGET_ramips_rt305x is not set
 # CONFIG_TARGET_ramips_rt3883 is not set
 CONFIG_TARGET_MULTI_PROFILE=y
+# CONFIG_TARGET_ramips_mt76x8_DEVICE_7links_wlr-1230 is not set
+# CONFIG_TARGET_ramips_mt76x8_DEVICE_7links_wlr-1240 is not set
 # CONFIG_TARGET_ramips_mt76x8_DEVICE_alfa-network_awusfree1 is not set
 # CONFIG_TARGET_ramips_mt76x8_DEVICE_asus_rt-ac1200 is not set
 # CONFIG_TARGET_ramips_mt76x8_DEVICE_asus_rt-ac1200-v2 is not set
@@ -156,7 +158,6 @@ CONFIG_TARGET_MULTI_PROFILE=y
 # CONFIG_TARGET_ramips_mt76x8_DEVICE_xiaomi_miwifi-3c is not set
 # CONFIG_TARGET_ramips_mt76x8_DEVICE_xiaomi_miwifi-nano is not set
 # CONFIG_TARGET_ramips_mt76x8_DEVICE_xiaomi_mi-ra75 is not set
-# CONFIG_TARGET_ramips_mt76x8_DEVICE_xwrt_g4303k-v1 is not set
 # CONFIG_TARGET_ramips_mt76x8_DEVICE_zbtlink_zbt-we1226 is not set
 # CONFIG_TARGET_ramips_mt76x8_DEVICE_zyxel_keenetic-extra-ii is not set
 
@@ -165,6 +166,8 @@ CONFIG_TARGET_MULTI_PROFILE=y
 #
 # CONFIG_TARGET_ALL_PROFILES is not set
 CONFIG_TARGET_PER_DEVICE_ROOTFS=y
+# CONFIG_TARGET_DEVICE_ramips_mt76x8_DEVICE_7links_wlr-1230 is not set
+# CONFIG_TARGET_DEVICE_ramips_mt76x8_DEVICE_7links_wlr-1240 is not set
 # CONFIG_TARGET_DEVICE_ramips_mt76x8_DEVICE_alfa-network_awusfree1 is not set
 # CONFIG_TARGET_DEVICE_ramips_mt76x8_DEVICE_asus_rt-ac1200 is not set
 # CONFIG_TARGET_DEVICE_ramips_mt76x8_DEVICE_asus_rt-ac1200-v2 is not set
@@ -290,7 +293,6 @@ CONFIG_TARGET_DEVICE_ramips_mt76x8_DEVICE_xiaomi_miwifi-nano=y
 CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt76x8_DEVICE_xiaomi_miwifi-nano="luci-proto-wireguard wireguard-tools wpad-basic-mbedtls"
 CONFIG_TARGET_DEVICE_ramips_mt76x8_DEVICE_xiaomi_mi-ra75=y
 CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt76x8_DEVICE_xiaomi_mi-ra75="kmod-mt76x02-common kmod-mt76x2 kmod-mt76x2-common luci-proto-wireguard wireguard-tools wpad-basic-mbedtls"
-# CONFIG_TARGET_DEVICE_ramips_mt76x8_DEVICE_xwrt_g4303k-v1 is not set
 # CONFIG_TARGET_DEVICE_ramips_mt76x8_DEVICE_zbtlink_zbt-we1226 is not set
 # CONFIG_TARGET_DEVICE_ramips_mt76x8_DEVICE_zyxel_keenetic-extra-ii is not set
 # end of Target Devices
@@ -651,7 +653,7 @@ CONFIG_TARGET_INIT_CMD="/sbin/init"
 CONFIG_TARGET_INIT_SUPPRESS_STDERR=y
 CONFIG_VERSIONOPT=y
 CONFIG_VERSION_DIST="X-WRT"
-CONFIG_VERSION_NUMBER="24.04_b202406091550"
+CONFIG_VERSION_NUMBER="24.04_b202406111117"
 CONFIG_VERSION_CODE="Noble"
 CONFIG_VERSION_REPO="http://downloads.openwrt.org/snapshots"
 CONFIG_VERSION_HOME_URL="https://x-wrt.com/"
