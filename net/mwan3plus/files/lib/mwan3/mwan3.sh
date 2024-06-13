@@ -165,6 +165,7 @@ mwan3_get_true_iface()
 		V=4
 	elif [ "$family" = "ipv6" ]; then
 		V=6
+		ubus call "network.interface.${iface}${V}" status &>/dev/null && _true_iface="${iface}${V}"
 	fi
 	ubus call "network.interface.${iface}_${V}" status &>/dev/null && _true_iface="${iface}_${V}"
 	export "$1=$_true_iface"
