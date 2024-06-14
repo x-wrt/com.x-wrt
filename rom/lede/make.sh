@@ -80,6 +80,7 @@ for i in $IDXS; do
 		}
 		test -n "$1" || exit 255
 		$* || {
+			rm -rf build_dir/toolchain-*
 			make package/utils/util-linux/clean
 			make package/libs/wolfssl/clean
 			make package/feeds/packages/glib2/clean
