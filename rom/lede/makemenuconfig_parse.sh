@@ -1766,6 +1766,10 @@ rt73-usb-firmware"
 		TARGET_DEVICE_ramips_mt7620_DEVICE_zbtlink_zbt-we826-16m)
 			mods="$mods $modem"
 		;;
+		TARGET_DEVICE_mediatek_filogic_DEVICE_xiaomi_mi-router-ax3000t|\
+		TARGET_DEVICE_mediatek_filogic_DEVICE_xiaomi_mi-router-ax3000t-ubootmod)
+			mods="$mods xinfc"
+		;;
 	esac
 
 	#check 4g manual select
