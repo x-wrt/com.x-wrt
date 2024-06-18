@@ -1749,6 +1749,10 @@ rt73-usb-firmware"
 		TARGET_DEVICE_mediatek_filogic_DEVICE_zbtlink_zbt-z8102ax)
 			mods="$mods $usb4g $quectel $modem_info"
 		;;
+		TARGET_DEVICE_bcm27xx_bcm2709_DEVICE_rpi-2|\
+		TARGET_DEVICE_bcm27xx_bcm2710_DEVICE_rpi-3|\
+		TARGET_DEVICE_bcm27xx_bcm2711_DEVICE_rpi-4|\
+		TARGET_DEVICE_bcm27xx_bcm2712_DEVICE_rpi-5|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_cmcc_rax3000m|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_cmcc_rax3000m-emmc-ubootlayout|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_cmcc_rax3000m-nand-ubootlayout)
