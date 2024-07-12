@@ -611,7 +611,7 @@ CONFIG_TARGET_INIT_CMD="/sbin/init"
 CONFIG_TARGET_INIT_SUPPRESS_STDERR=y
 CONFIG_VERSIONOPT=y
 CONFIG_VERSION_DIST="X-WRT"
-CONFIG_VERSION_NUMBER="24.04_b202407040820"
+CONFIG_VERSION_NUMBER="24.04_b202407121922"
 CONFIG_VERSION_CODE="Noble"
 CONFIG_VERSION_REPO="http://downloads.openwrt.org/snapshots"
 CONFIG_VERSION_HOME_URL="https://x-wrt.com/"
@@ -2904,6 +2904,7 @@ CONFIG_PACKAGE_nginx-util=m
 #
 # CONFIG_PACKAGE_ipq-wifi-8devices_mango is not set
 # CONFIG_PACKAGE_ipq-wifi-arcadyan_aw1000 is not set
+CONFIG_PACKAGE_ipq-wifi-asus_rt-ax89x=m
 # CONFIG_PACKAGE_ipq-wifi-buffalo_wxr-5950ax12 is not set
 # CONFIG_PACKAGE_ipq-wifi-cmcc_rm2-6 is not set
 # CONFIG_PACKAGE_ipq-wifi-compex_wpq873 is not set
@@ -2913,6 +2914,7 @@ CONFIG_PACKAGE_nginx-util=m
 # CONFIG_PACKAGE_ipq-wifi-linksys_mx4200 is not set
 # CONFIG_PACKAGE_ipq-wifi-linksys_mx5300 is not set
 # CONFIG_PACKAGE_ipq-wifi-linksys_mx8500 is not set
+CONFIG_PACKAGE_ipq-wifi-linksys_whw03=m
 # CONFIG_PACKAGE_ipq-wifi-netgear_lbr20 is not set
 # CONFIG_PACKAGE_ipq-wifi-netgear_rax120v2 is not set
 # CONFIG_PACKAGE_ipq-wifi-netgear_sxk80 is not set
@@ -6544,6 +6546,7 @@ CONFIG_PACKAGE_luci-i18n-upnp-zh-cn=y
 # CONFIG_PACKAGE_luci-i18n-usteer-da is not set
 # CONFIG_PACKAGE_luci-i18n-usteer-de is not set
 # CONFIG_PACKAGE_luci-i18n-usteer-es is not set
+# CONFIG_PACKAGE_luci-i18n-usteer-fi is not set
 # CONFIG_PACKAGE_luci-i18n-usteer-fr is not set
 # CONFIG_PACKAGE_luci-i18n-usteer-hu is not set
 # CONFIG_PACKAGE_luci-i18n-usteer-it is not set
@@ -6625,7 +6628,8 @@ CONFIG_PACKAGE_luci-i18n-usteer-zh-cn=m
 # CONFIG_PACKAGE_minidlna is not set
 # CONFIG_PACKAGE_minisatip is not set
 # CONFIG_PACKAGE_mjpg-streamer is not set
-# CONFIG_PACKAGE_motion is not set
+# CONFIG_PACKAGE_motion-ffmpeg is not set
+# CONFIG_PACKAGE_motion-noffmpeg is not set
 # CONFIG_PACKAGE_tvheadend is not set
 # CONFIG_PACKAGE_v4l2camera is not set
 # CONFIG_PACKAGE_v4l2rtspserver is not set
