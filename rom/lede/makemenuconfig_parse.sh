@@ -400,6 +400,7 @@ for t in $targets; do
 		TARGET_DEVICE_mediatek_filogic_DEVICE_jdcloud_re-cp-03|\
 		TARGET_DEVICE_qualcommax_ipq807x_DEVICE_cmcc_rm2-6|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_abt_asr3000-ubootlayout|\
+		TARGET_DEVICE_mediatek_filogic_DEVICE_abt_asr3000|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_cmcc_a10-ubootlayout|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_imou_lc-hx3001-ubootlayout|\
 		TARGET_DEVICE_qualcommax_ipq807x_DEVICE_zte_mf269|\
@@ -531,6 +532,7 @@ for t in $targets; do
 		TARGET_DEVICE_mediatek_filogic_DEVICE_zbtlink_zbt-z8103ax|\
 		TARGET_DEVICE_qualcommax_ipq807x_DEVICE_cmcc_rm2-6|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_abt_asr3000-ubootlayout|\
+		TARGET_DEVICE_mediatek_filogic_DEVICE_abt_asr3000|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_cmcc_a10-ubootlayout|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_imou_lc-hx3001-ubootlayout|\
 		TARGET_DEVICE_qualcommax_ipq807x_DEVICE_zte_mf269|\
@@ -1487,6 +1489,7 @@ for t in $targets; do
 		TARGET_DEVICE_qualcommax_ipq807x_DEVICE_cmcc_rm2-6|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_tplink_ex220-v1|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_abt_asr3000-ubootlayout|\
+		TARGET_DEVICE_mediatek_filogic_DEVICE_abt_asr3000|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_cmcc_a10-ubootlayout|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_imou_lc-hx3001-ubootlayout|\
 		TARGET_DEVICE_qualcommax_ipq807x_DEVICE_yuncore_ax880|\
