@@ -1,4 +1,5 @@
 config.mediatek-filogic
+config.mediatek-filogic-rare
 config.mediatek-mt7622
 config.ipq40xx-generic
 config.ramips-mt7621
