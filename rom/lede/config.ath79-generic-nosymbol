@@ -188,6 +188,7 @@ CONFIG_TARGET_MULTI_PROFILE=y
 # CONFIG_TARGET_ath79_generic_DEVICE_hak5_wifi-pineapple-nano is not set
 # CONFIG_TARGET_ath79_generic_DEVICE_hiwifi_hc6361 is not set
 # CONFIG_TARGET_ath79_generic_DEVICE_huawei_ap5030dn is not set
+# CONFIG_TARGET_ath79_generic_DEVICE_huawei_ap6010dn is not set
 # CONFIG_TARGET_ath79_generic_DEVICE_iodata_etg3-r is not set
 # CONFIG_TARGET_ath79_generic_DEVICE_iodata_wn-ac1167dgr is not set
 # CONFIG_TARGET_ath79_generic_DEVICE_iodata_wn-ac1600dgr is not set
@@ -451,7 +452,6 @@ CONFIG_TARGET_PER_DEVICE_ROOTFS=y
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_alfa-network_r36a is not set
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_alfa-network_tube-2hq is not set
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_allnet_all-wap02860ac is not set
-# CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_ubnt_amplifi-router-hd is not set
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_araknis_an-300-ap-i-n is not set
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_araknis_an-500-ap-i-ac is not set
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_araknis_an-700-ap-i-ac is not set
@@ -574,6 +574,7 @@ CONFIG_TARGET_DEVICE_PACKAGES_ath79_generic_DEVICE_comfast_cf-e5="blockd block-m
 CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_hiwifi_hc6361=y
 CONFIG_TARGET_DEVICE_PACKAGES_ath79_generic_DEVICE_hiwifi_hc6361="blockd block-mount chat comgt comgt-ncm dawn e2fsprogs kmod-crypto-des kmod-crypto-lib-chacha20 kmod-crypto-lib-chacha20poly1305 kmod-crypto-lib-curve25519 kmod-crypto-lib-poly1305 kmod-crypto-md5 kmod-crypto-sha256 kmod-dnsresolver kmod-fs-autofs4 kmod-fs-exfat kmod-fs-ext4 kmod-fs-ksmbd kmod-fs-msdos kmod-fs-netfs kmod-fs-nfs kmod-fs-nfs-common kmod-fs-nfs-v4 kmod-fs-ntfs3 kmod-fs-smbfs-common kmod-fs-vfat kmod-fuse kmod-lib-crc16 kmod-mii kmod-nls-cp437 kmod-nls-ucs2-utils kmod-oid-registry kmod-phy-ath79-usb kmod-sched-core kmod-scsi-core kmod-tun kmod-udptunnel4 kmod-udptunnel6 kmod-usb2 kmod-usb-chipidea kmod-usb-chipidea2 kmod-usb-core kmod-usb-ehci kmod-usb-gadget kmod-usb-net kmod-usb-net-cdc-ether kmod-usb-net-cdc-mbim kmod-usb-net-cdc-ncm kmod-usb-net-huawei-cdc-ncm kmod-usb-net-ipheth kmod-usb-net-qmi-wwan kmod-usb-net-rndis kmod-usb-net-sierrawireless kmod-usb-ohci kmod-usb-phy-nop kmod-usb-printer kmod-usb-roles kmod-usb-serial kmod-usb-serial-option kmod-usb-serial-qualcomm kmod-usb-serial-sierrawireless kmod-usb-serial-wwan kmod-usb-storage kmod-usb-storage-extras kmod-usb-storage-uas kmod-usb-wdm kmod-wireguard ksmbd-server libatomic libblkid libcap-ng libcomerr libe2p libext2fs libgcrypt libgpg-error liblz4 liblzo libnl-core libnl-genl libqrencode libss libusb-1.0 libwrap luci-app-dawn luci-app-ksmbd luci-app-openvpn luci-app-p910nd luci-app-usteer luci-i18n-dashboard-zh-cn luci-i18n-ksmbd-zh-cn luci-i18n-openvpn-zh-cn luci-i18n-p910nd-zh-cn luci-lib-uqr luci-mod-dashboard luci-proto-3g luci-proto-mbim luci-proto-ncm luci-proto-qmi luci-proto-relay luci-proto-wireguard natflow-hostacl nfs-utils openvpn-mbedtls p910nd qrencode relayd tc-tiny umbim uqmi urllogger usb-modeswitch wireguard-tools wpad-mbedtls wsdd2 wwan"
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_huawei_ap5030dn is not set
+# CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_huawei_ap6010dn is not set
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_iodata_etg3-r is not set
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_iodata_wn-ac1167dgr is not set
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_iodata_wn-ac1600dgr is not set
@@ -788,6 +789,7 @@ CONFIG_TARGET_DEVICE_PACKAGES_ath79_generic_DEVICE_tplink_tl-wr842n-v2="blockd b
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_ubnt_aircube-ac is not set
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_ubnt_aircube-isp is not set
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_ubnt_nanostation-loco-m-xw is not set
+# CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_ubnt_amplifi-router-hd is not set
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_ubnt_bullet-ac is not set
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_ubnt_bullet-m-xw is not set
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_ubnt_edgeswitch-5xp is not set
@@ -1210,7 +1212,7 @@ CONFIG_TARGET_INIT_CMD="/sbin/init"
 CONFIG_TARGET_INIT_SUPPRESS_STDERR=y
 CONFIG_VERSIONOPT=y
 CONFIG_VERSION_DIST="X-WRT"
-CONFIG_VERSION_NUMBER="24.04_b202407151335"
+CONFIG_VERSION_NUMBER="24.04_b202407221016"
 CONFIG_VERSION_CODE="Noble"
 CONFIG_VERSION_REPO="http://downloads.openwrt.org/snapshots"
 CONFIG_VERSION_HOME_URL="https://x-wrt.com/"
@@ -3401,6 +3403,7 @@ CONFIG_ZABBIX_POSTGRESQL=y
 # CONFIG_PACKAGE_btop is not set
 # CONFIG_PACKAGE_debian-archive-keyring is not set
 # CONFIG_PACKAGE_debootstrap is not set
+# CONFIG_PACKAGE_fluent-bit is not set
 # CONFIG_PACKAGE_gkrellmd is not set
 # CONFIG_PACKAGE_htop is not set
 # CONFIG_PACKAGE_ipmitool is not set

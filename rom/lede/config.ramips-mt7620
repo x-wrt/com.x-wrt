@@ -169,6 +169,7 @@ CONFIG_TARGET_MULTI_PROFILE=y
 # CONFIG_TARGET_ramips_mt7620_DEVICE_vonets_var11n-300 is not set
 # CONFIG_TARGET_ramips_mt7620_DEVICE_wavlink_wl-wn530hg4 is not set
 # CONFIG_TARGET_ramips_mt7620_DEVICE_wavlink_wl-wn531g3 is not set
+# CONFIG_TARGET_ramips_mt7620_DEVICE_wavlink_wl-wn531g3-a2 is not set
 # CONFIG_TARGET_ramips_mt7620_DEVICE_wavlink_wl-wn535k1 is not set
 # CONFIG_TARGET_ramips_mt7620_DEVICE_wavlink_wl-wn579x3 is not set
 # CONFIG_TARGET_ramips_mt7620_DEVICE_wevo_air-duo is not set
@@ -329,6 +330,7 @@ CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt7620_DEVICE_ohyeah_oy-0001="blockd block-
 # CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_vonets_var11n-300 is not set
 # CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_wavlink_wl-wn530hg4 is not set
 # CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_wavlink_wl-wn531g3 is not set
+# CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_wavlink_wl-wn531g3-a2 is not set
 # CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_wavlink_wl-wn579x3 is not set
 # CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_wevo_air-duo is not set
 # CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_wrtnode_wrtnode is not set
@@ -714,7 +716,7 @@ CONFIG_TARGET_INIT_CMD="/sbin/init"
 CONFIG_TARGET_INIT_SUPPRESS_STDERR=y
 CONFIG_VERSIONOPT=y
 CONFIG_VERSION_DIST="X-WRT"
-CONFIG_VERSION_NUMBER="24.04_b202407151335"
+CONFIG_VERSION_NUMBER="24.04_b202407221016"
 CONFIG_VERSION_CODE="Noble"
 CONFIG_VERSION_REPO="http://downloads.openwrt.org/snapshots"
 CONFIG_VERSION_HOME_URL="https://x-wrt.com/"
@@ -2906,6 +2908,7 @@ CONFIG_ZABBIX_POSTGRESQL=y
 # CONFIG_PACKAGE_btop is not set
 # CONFIG_PACKAGE_debian-archive-keyring is not set
 # CONFIG_PACKAGE_debootstrap is not set
+# CONFIG_PACKAGE_fluent-bit is not set
 # CONFIG_PACKAGE_gkrellmd is not set
 # CONFIG_PACKAGE_htop is not set
 # CONFIG_PACKAGE_ipmitool is not set
