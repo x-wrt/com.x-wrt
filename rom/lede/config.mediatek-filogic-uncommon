@@ -113,6 +113,7 @@ CONFIG_TARGET_MULTI_PROFILE=y
 # CONFIG_TARGET_mediatek_filogic_DEVICE_tplink_tl-xdr4288 is not set
 # CONFIG_TARGET_mediatek_filogic_DEVICE_tplink_tl-xdr6086 is not set
 # CONFIG_TARGET_mediatek_filogic_DEVICE_tplink_tl-xdr6088 is not set
+# CONFIG_TARGET_mediatek_filogic_DEVICE_tplink_tl-xtr8488 is not set
 # CONFIG_TARGET_mediatek_filogic_DEVICE_ubnt_unifi-6-plus is not set
 # CONFIG_TARGET_mediatek_filogic_DEVICE_unielec_u7981-01-emmc is not set
 # CONFIG_TARGET_mediatek_filogic_DEVICE_unielec_u7981-01-nand is not set
@@ -224,6 +225,7 @@ CONFIG_TARGET_DEVICE_PACKAGES_mediatek_filogic_DEVICE_ruijie_rg-x60-pro="dawn ip
 # CONFIG_TARGET_DEVICE_mediatek_filogic_DEVICE_tplink_tl-xdr4288 is not set
 # CONFIG_TARGET_DEVICE_mediatek_filogic_DEVICE_tplink_tl-xdr6086 is not set
 # CONFIG_TARGET_DEVICE_mediatek_filogic_DEVICE_tplink_tl-xdr6088 is not set
+# CONFIG_TARGET_DEVICE_mediatek_filogic_DEVICE_tplink_tl-xtr8488 is not set
 # CONFIG_TARGET_DEVICE_mediatek_filogic_DEVICE_ubnt_unifi-6-plus is not set
 # CONFIG_TARGET_DEVICE_mediatek_filogic_DEVICE_unielec_u7981-01-emmc is not set
 # CONFIG_TARGET_DEVICE_mediatek_filogic_DEVICE_unielec_u7981-01-nand is not set
