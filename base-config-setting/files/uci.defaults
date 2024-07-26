@@ -470,7 +470,7 @@ uci -q batch <<-EOF >/dev/null
 EOF
 
 #update /etc/hosts
-grep -q services.googleapis.cn /etc/hosts || echo 142.250.204.35 services.googleapis.cn >>/etc/hosts
+grep -q services.googleapis.cn /etc/hosts || echo 172.217.165.138 services.googleapis.cn >>/etc/hosts
 grep -q google.cn /etc/hosts || echo 142.250.66.131 google.cn >>/etc/hosts
 
 #firewall4 output_ttl support
