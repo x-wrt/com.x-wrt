@@ -409,7 +409,6 @@ for t in $targets; do
 	excludes="$excludes_basic"
 	case $t in
 		#>=32M flash
-		TARGET_DEVICE_qualcommax_ipq807x_DEVICE_arcadyan_aw1000|\
 		TARGET_DEVICE_qualcommax_ipq807x_DEVICE_asus_rt-ax89x|\
 		TARGET_DEVICE_qualcommax_ipq807x_DEVICE_linksys_mx8500|\
 		TARGET_DEVICE_x86_64_DEVICE_generic|\
@@ -427,9 +426,6 @@ for t in $targets; do
 		TARGET_DEVICE_mediatek_filogic_DEVICE_zbtlink_zbt-z8102ax|\
 		TARGET_DEVICE_qualcommax_ipq807x_DEVICE_yuncore_ax880|\
 		TARGET_DEVICE_qualcommax_ipq807x_DEVICE_netgear_wax630|\
-		TARGET_DEVICE_mediatek_filogic_DEVICE_cmcc_rax3000m|\
-		TARGET_DEVICE_mediatek_filogic_DEVICE_cmcc_rax3000m-emmc-ubootlayout|\
-		TARGET_DEVICE_mediatek_filogic_DEVICE_cmcc_rax3000m-nand-ubootlayout|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_glinet_gl-mt6000|\
 		TARGET_DEVICE_qualcommax_ipq807x_DEVICE_netgear_wax620|\
 		TARGET_DEVICE_qualcommax_ipq807x_DEVICE_netgear_rax120v2|\
@@ -473,9 +469,6 @@ for t in $targets; do
 		TARGET_DEVICE_mediatek_filogic_DEVICE_xiaomi_mi-router-ax3000t|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_xiaomi_mi-router-ax3000t-ubootmod|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_acer_predator-w6|\
-		TARGET_DEVICE_mediatek_filogic_DEVICE_bananapi_bpi-r3|\
-		TARGET_DEVICE_mediatek_filogic_DEVICE_bananapi_bpi-r3-mini|\
-		TARGET_DEVICE_mediatek_filogic_DEVICE_bananapi_bpi-r4|\
 		TARGET_DEVICE_mediatek_mt7622_DEVICE_linksys_e8450-ubi|\
 		TARGET_DEVICE_mediatek_mt7622_DEVICE_linksys_e8450|\
 		TARGET_DEVICE_mediatek_mt7622_DEVICE_bananapi_bpi-r64|\
