@@ -1779,6 +1779,8 @@ rt73-usb-firmware"
 		TARGET_DEVICE_bcm27xx_bcm2711_DEVICE_rpi-4|\
 		TARGET_DEVICE_bcm27xx_bcm2712_DEVICE_rpi-5)
 			mods="$mods $mdadm $disk base-config-setting-ext4fs"
+			mods="$mods luci-app-store"
+			mods="$mods $extra_vpn urllogger natflow-hostacl"
 		;;
 	esac
 
