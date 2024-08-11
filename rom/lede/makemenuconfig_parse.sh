@@ -1780,11 +1780,12 @@ rt73-usb-firmware"
 		TARGET_DEVICE_mediatek_filogic_DEVICE_bananapi_bpi-r3|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_bananapi_bpi-r4|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_cmcc_rax3000m|\
+		TARGET_DEVICE_mediatek_filogic_DEVICE_cmcc_rax3000m-nand-ubootlayout|\
 		TARGET_DEVICE_qualcommax_ipq807x_DEVICE_arcadyan_aw1000|\
 		TARGET_DEVICE_bcm27xx_bcm2710_DEVICE_rpi-3|\
 		TARGET_DEVICE_bcm27xx_bcm2711_DEVICE_rpi-4|\
 		TARGET_DEVICE_bcm27xx_bcm2712_DEVICE_rpi-5)
-			mods="$mods $mdadm $disk"
+			mods="$mods $mdadm $disk base-config-setting-ext4fs"
 		;;
 	esac
 
