@@ -409,7 +409,6 @@ for t in $targets; do
 	excludes="$excludes_basic"
 	case $t in
 		#>=32M flash
-		TARGET_DEVICE_qualcommax_ipq807x_DEVICE_asus_rt-ax89x|\
 		TARGET_DEVICE_qualcommax_ipq807x_DEVICE_linksys_mx8500|\
 		TARGET_DEVICE_x86_64_DEVICE_generic|\
 		TARGET_DEVICE_qualcommax_ipq807x_DEVICE_linksys_mx4200v1|\
