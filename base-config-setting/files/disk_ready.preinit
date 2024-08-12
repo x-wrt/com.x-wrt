@@ -158,7 +158,17 @@ do_disk_ready() {
 			sda4_end=$(((BLKCNT-34)/SCNT*SCNT - 1))
 
 			# [_boot_|_rootfs_...1G...][cfg 1G][data...]
-			echo -ne "n\np\n\n${sda3_start}\n${sda3_end}\nn\np\n\n${sda4_start}\n${sda4_end}\nw\n" | fdisk ${ROOTDEV}
+			case "$diskpart_num1" in
+				0|1)
+					echo -ne "n\np\n\n${sda3_start}\n${sda3_end}\nn\np\n\n${sda4_start}\n${sda4_end}\nw\n" | fdisk ${ROOTDEV}
+					;;
+				2)
+					echo -ne "n\np\n\n${sda3_start}\n${sda3_end}\nn\np\n${sda4_start}\n${sda4_end}\nw\n" | fdisk ${ROOTDEV}
+					;;
+				3)
+					echo -ne "n\np\n${sda3_start}\n${sda3_end}\nw\n" | fdisk ${ROOTDEV}
+					;;
+			esac
 
 			partx -a ${ROOTDEV}
 			test -b ${ROOTPART}$((LASTNR+1)) -a -b ${ROOTPART}$((LASTNR+2))  || {
