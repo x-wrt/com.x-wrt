@@ -3,7 +3,6 @@ config.mediatek-filogic-uncommon
 config.mediatek-mt7622
 config.ipq40xx-generic
 config.ramips-mt7621
-config.ramips-mt7621-ext4fs
 config.ramips-mt7621-nosymbol
 config.ramips-mt7620
 config.ramips-mt7620-nosymbol
