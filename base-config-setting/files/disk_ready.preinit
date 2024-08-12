@@ -57,6 +57,16 @@ do_disk_ready() {
 			is_x86=0
 		fi
 		;;
+	bananapi,bpi-r3|\
+	bananapi,bpi-r4)
+		if test -b /dev/mmcblk0; then
+			ROOTDEV=/dev/mmcblk0
+			ROOTPART=/dev/mmcblk0p
+			overlay_size="$((1*1024))" #1024M
+			diskpart_num1=7
+			is_x86=0
+		fi
+		;;
 	*)
 		;;
 	esac
