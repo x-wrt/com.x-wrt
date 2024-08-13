@@ -1807,7 +1807,7 @@ rt73-usb-firmware"
 		TARGET_DEVICE_qualcommax_ipq807x_DEVICE_arcadyan_aw1000)
 			mods="$mods usbutils pciutils"
 			mods="$mods $usb4g $quectel $modem_info"
-			mods="$mods luci-app-zerotier"
+			mods="$mods luci-app-zerotier luci-app-openclash"
 		;;
 		TARGET_DEVICE_ramips_mt7621_DEVICE_dual-q_h721)
 			mods="$mods ath10k-firmware-qca988x-ct kmod-ath10k-ct kmod-ath9k kmod-mt7915-firmware kmod-mt7916-firmware kmod-mt7915e usbutils pciutils"
