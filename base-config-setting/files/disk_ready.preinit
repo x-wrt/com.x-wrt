@@ -101,6 +101,7 @@ do_disk_ready() {
 			test $disksize -le 2147483648 && return
 
 			#clean
+			echo -ne "2\nw\ny\ny\nq\n" | gdisk ${ROOTDEV}
 			echo -ne "w\ny\ny\n" | gdisk ${ROOTDEV}
 			echo -ne "d\n$((LASTNR+2))\nd\n$((LASTNR+1))\nw\ny\n" | gdisk ${ROOTDEV}
 			set $(fdisk -l ${ROOTDEV} 2>/dev/null | grep "^${ROOTPART}$((LASTNR))")
