@@ -48,7 +48,17 @@ do_disk_ready() {
 			ubidev=$(nand_find_ubi rootfs_1)
 			ubimkvol /dev/$ubidev -m -N extroot_overlay || :
 			ubivol=$(nand_find_volume $ubidev extroot_overlay)
-			mount -t ubifs /dev/$ubivol /mnt && umount /mnt
+			mount -t ubifs /dev/$ubivol /mnt && {
+				if test -e /mnt/.extroot-erase; then
+					umount /mnt
+					ubirmvol /dev/$ubidev -N extroot_overlay
+					ubimkvol /dev/$ubidev -m -N extroot_overlay || :
+					ubivol=$(nand_find_volume $ubidev extroot_overlay)
+					mount -t ubifs /dev/$ubivol /mnt && umount /mnt
+				else
+					umount /mnt
+				fi
+			}
 			return
 		fi
 		;;

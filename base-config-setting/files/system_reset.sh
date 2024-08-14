@@ -11,6 +11,12 @@ if test -f /rom/lib/preinit/79_disk_ready; then
 					reboot
 				fi
 			}
+			blkid $overlay_dev 2>/dev/null | grep -q 'TYPE="ubifs"' && {
+				touch /overlay/.extroot-erase
+				sync
+				jffs2reset $@
+				exit $?
+			}
 		}
 	fi
 fi
