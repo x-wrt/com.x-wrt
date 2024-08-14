@@ -83,6 +83,12 @@ do_disk_ready() {
 			overlay_size="$((1*1024))" #1024M
 			diskpart_num1=7
 			is_x86=0
+		elif test -b /dev/sda; then
+			ROOTDEV=/dev/sda
+			ROOTPART=/dev/sda
+			overlay_size="$((1*1024))" #1024M
+			diskpart_num1=0
+			is_x86=0
 		fi
 		;;
 	*)
