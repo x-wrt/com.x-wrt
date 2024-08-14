@@ -82,6 +82,8 @@ define Package/base-config-setting-ext4fs/install
 	$(INSTALL_BIN) ./files/ethtool.init $(1)/etc/init.d/ethtool
 	$(INSTALL_DIR) $(1)/usr/sbin
 	$(INSTALL_BIN) ./files/diskv.sh $(1)/usr/sbin/diskv
+	$(INSTALL_DIR) $(1)/etc/uci-defaults
+	$(INSTALL_DATA) ./files/disk_ready.uci.defaults $(1)/etc/uci-defaults/95-disk_ready
 endef
 
 define Package/base-config-setting/install

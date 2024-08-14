@@ -32,6 +32,24 @@ do_disk_ready() {
 	. /lib/functions/system.sh
 	case "$(board_name)" in
 	arcadyan,aw1000)
+		if test -b /dev/sda; then
+			ROOTDEV=/dev/sda
+			ROOTPART=/dev/sda
+			overlay_size="$((1*1024))" #1024M
+			diskpart_num1=0
+			is_x86=0
+		else
+			. /lib/upgrade/nand.sh
+			mtdnum=$(find_mtd_index rootfs_1)
+			ubiattach -p /dev/mtd$mtdnum --max-beb-per1024=2 || {
+				ubiformat /dev/mtd$mtdnum -y
+				ubiattach -p /dev/mtd$mtdnum --max-beb-per1024=2
+			}
+			ubidev=$(nand_find_ubi rootfs_1)
+			ubimkvol /dev/$ubidev -m -N extroot_overlay || :
+			ubivol=$(nand_find_volume $ubidev extroot_overlay)
+			return
+		fi
 		;;
 	cmcc,rax3000m)
 		if test -b /dev/mmcblk0; then

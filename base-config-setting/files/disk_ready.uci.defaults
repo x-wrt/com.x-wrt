@@ -1,0 +1,23 @@
+
+[ "$(uci get fstab.overlay.uuid 2>/dev/null)" = "f3178596-4427-2d3b-35c7-648b65e20d5e" ] || exit 0
+
+. /lib/functions/system.sh
+case "$(board_name)" in
+	arcadyan,aw1000)
+		. /lib/upgrade/nand.sh
+		ubidev=$(nand_find_ubi rootfs_1)
+		ubivol=$(nand_find_volume "$ubidev" extroot_overlay)
+		if test -n "$ubivol"; then
+			uci delete fstab.overlay.uuid
+			uci set fstab.overlay=mount
+			uci set fstab.overlay.target='/overlay'
+			uci set fstab.overlay.device='/dev/ubi1_0'
+			uci set fstab.overlay.fstype='ubifs'
+			uci set fstab.overlay.options='rw,noatime'
+			uci set fstab.overlay.enabled='1'
+			uci commit fstab
+		fi
+		;;
+	*)
+		;;
+esac
