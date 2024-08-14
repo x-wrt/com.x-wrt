@@ -46,8 +46,10 @@ do_disk_ready() {
 				ubiattach -p /dev/mtd$mtdnum --max-beb-per1024=2
 			}
 			ubidev=$(nand_find_ubi rootfs_1)
-			ubimkvol /dev/$ubidev -m -N extroot_overlay || :
-			ubivol=$(nand_find_volume $ubidev extroot_overlay)
+			if ubimkvol /dev/$ubidev -m -N extroot_overlay; then
+				ubivol=$(nand_find_volume $ubidev extroot_overlay)
+				mount -t ubifs /dev/$ubivol /mnt && umount /mnt
+			fi
 			return
 		fi
 		;;
