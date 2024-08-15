@@ -15,7 +15,9 @@ if test -f /rom/lib/preinit/79_disk_ready; then
 				touch /overlay/.extroot-erase
 				sync
 				jffs2reset $@
-				exit $?
+				if [ x"$1" = x"-r" ] || [ x"$2" = x"-r" ]; then
+					reboot
+				fi
 			}
 		}
 	fi
