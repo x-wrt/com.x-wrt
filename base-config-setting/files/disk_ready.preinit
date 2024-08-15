@@ -50,11 +50,8 @@ do_disk_ready() {
 			ubivol=$(nand_find_volume $ubidev extroot_overlay)
 			mount -t ubifs /dev/$ubivol /mnt && {
 				if test -e /mnt/.extroot-erase; then
+					rm -rf /mnt/upper /mnt/work /mnt/etc /mnt/.fs_state /mnt/.extroot-erase
 					umount /mnt
-					ubirmvol /dev/$ubidev -N extroot_overlay
-					ubimkvol /dev/$ubidev -m -N extroot_overlay || :
-					ubivol=$(nand_find_volume $ubidev extroot_overlay)
-					mount -t ubifs /dev/$ubivol /mnt && umount /mnt
 				else
 					umount /mnt
 				fi
