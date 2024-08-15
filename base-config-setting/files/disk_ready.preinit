@@ -4,6 +4,16 @@
 # Copyright (C) 2017 PTPT52
 # Copyright (C) 2020 X-WRT <dev@x-wrt.com>
 
+sda_early_fixup()
+{
+	test -e /sys/class/block/sda/uevent || return
+	test -b /dev/sda && return
+	for src in $(ls /sys/class/block/sda*/uevent); do
+		source $src
+		test -e /dev/$DEVNAME || mknod /dev/$DEVNAME b $MAJOR $MINOR
+	done
+}
+
 do_disk_ready() {
 	which fdisk && which partx && which mkfs.ext4 || return
 	local partdev
@@ -32,6 +42,7 @@ do_disk_ready() {
 	. /lib/functions/system.sh
 	case "$(board_name)" in
 	arcadyan,aw1000)
+		sda_early_fixup
 		if test -b /dev/sda; then
 			ROOTDEV=/dev/sda
 			ROOTPART=/dev/sda
@@ -60,6 +71,7 @@ do_disk_ready() {
 		fi
 		;;
 	cmcc,rax3000m)
+		sda_early_fixup
 		if test -b /dev/mmcblk0; then
 			ROOTDEV=/dev/mmcblk0
 			ROOTPART=/dev/mmcblk0p
@@ -75,6 +87,7 @@ do_disk_ready() {
 		fi
 		;;
 	cmcc,rax3000m-nand-ubootlayout)
+		sda_early_fixup
 		if test -b /dev/sda; then
 			ROOTDEV=/dev/sda
 			ROOTPART=/dev/sda
@@ -85,6 +98,7 @@ do_disk_ready() {
 		;;
 	bananapi,bpi-r3|\
 	bananapi,bpi-r4)
+		sda_early_fixup
 		if test -b /dev/mmcblk0; then
 			ROOTDEV=/dev/mmcblk0
 			ROOTPART=/dev/mmcblk0p
