@@ -239,6 +239,9 @@ do_disk_ready() {
 	#check extroot_overlay
 	if test -b ${ROOTPART}$((LASTNR-1)); then
 		uuid=$(uci get fstab.overlay.uuid 2>/dev/null || echo f3178596-4427-2d3b-35c7-648b65e20d5e)
+		if [ "$is_x86" = "0" ]; then
+			blkid ${ROOTPART}$((LASTNR-1)) | grep -q "UUID=\"$uuid\"" || return
+		fi
 		format=0
 		if [ "$(head -c5 ${ROOTPART}$((LASTNR-1)))" = "erase" ]; then
 			echo request format ${ROOTPART}$((LASTNR-1))
@@ -271,6 +274,9 @@ do_disk_ready() {
 	#check extroot_data
 	if test -b ${ROOTPART}$((LASTNR)); then
 		uuid=$(uci get fstab.data.uuid 2>/dev/null || echo db0482e8-04bd-dfbb-3935-fbc9d9a9cfb9)
+		if [ "$is_x86" = "0" ]; then
+			blkid ${ROOTPART}$((LASTNR)) | grep -q "UUID=\"$uuid\"" || return
+		fi
 		format=0
 		if [ "$(head -c5 ${ROOTPART}$((LASTNR)))" = "erase" ]; then
 			echo request format ${ROOTPART}$((LASTNR))
