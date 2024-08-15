@@ -312,6 +312,7 @@ CONFIG_KERNEL_IPV6_SEG6_LWTUNNEL=y
 # CONFIG_KERNEL_XDP_SOCKETS is not set
 # CONFIG_KERNEL_PAGE_POOL is not set
 # CONFIG_KERNEL_IP_PNP is not set
+# CONFIG_KERNEL_BTRFS_FS is not set
 
 #
 # Filesystem ACL and attr support options
@@ -447,7 +448,7 @@ CONFIG_TARGET_INIT_CMD="/sbin/init"
 CONFIG_TARGET_INIT_SUPPRESS_STDERR=y
 CONFIG_VERSIONOPT=y
 CONFIG_VERSION_DIST="X-WRT"
-CONFIG_VERSION_NUMBER="24.04_b202408131629"
+CONFIG_VERSION_NUMBER="24.04_b202408151444"
 CONFIG_VERSION_CODE="Noble"
 CONFIG_VERSION_REPO="http://downloads.openwrt.org/snapshots"
 CONFIG_VERSION_HOME_URL="https://x-wrt.com/"
@@ -2945,10 +2946,10 @@ CONFIG_PACKAGE_ath11k-firmware-ipq6018=m
 # CONFIG_PACKAGE_rtl8821ce-firmware is not set
 # CONFIG_PACKAGE_rtl8822be-firmware is not set
 # CONFIG_PACKAGE_rtl8822ce-firmware is not set
-# CONFIG_PACKAGE_rtl8851be-firmware is not set
-# CONFIG_PACKAGE_rtl8852ae-firmware is not set
-# CONFIG_PACKAGE_rtl8852be-firmware is not set
-# CONFIG_PACKAGE_rtl8852ce-firmware is not set
+CONFIG_PACKAGE_rtl8851be-firmware=m
+CONFIG_PACKAGE_rtl8852ae-firmware=m
+CONFIG_PACKAGE_rtl8852be-firmware=m
+CONFIG_PACKAGE_rtl8852ce-firmware=m
 # CONFIG_PACKAGE_ti-3410-firmware is not set
 # CONFIG_PACKAGE_ti-5052-firmware is not set
 CONFIG_PACKAGE_wil6210-firmware=m
@@ -3985,6 +3986,15 @@ CONFIG_PACKAGE_MAC80211_MESH=y
 # CONFIG_PACKAGE_kmod-rtw88-8822bu is not set
 # CONFIG_PACKAGE_kmod-rtw88-8822ce is not set
 # CONFIG_PACKAGE_kmod-rtw88-8822cu is not set
+CONFIG_PACKAGE_kmod-rtw89=m
+# CONFIG_PACKAGE_RTW89_DEBUG is not set
+# CONFIG_PACKAGE_RTW89_DEBUGFS is not set
+# CONFIG_PACKAGE_RTW89_DEBUGMSG is not set
+CONFIG_PACKAGE_kmod-rtw89-8851be=m
+CONFIG_PACKAGE_kmod-rtw89-8852ae=m
+CONFIG_PACKAGE_kmod-rtw89-8852be=m
+CONFIG_PACKAGE_kmod-rtw89-8852ce=m
+CONFIG_PACKAGE_kmod-rtw89-pci=m
 # CONFIG_PACKAGE_kmod-wil6210 is not set
 # CONFIG_PACKAGE_kmod-wl12xx is not set
 # CONFIG_PACKAGE_kmod-wl18xx is not set
@@ -4069,6 +4079,7 @@ CONFIG_PACKAGE_lua-cjson=y
 # CONFIG_PACKAGE_lua-eco-mqtt is not set
 # CONFIG_PACKAGE_lua-eco-netlink is not set
 # CONFIG_PACKAGE_lua-eco-nl80211 is not set
+# CONFIG_PACKAGE_lua-eco-packet is not set
 # CONFIG_PACKAGE_lua-eco-sha1 is not set
 # CONFIG_PACKAGE_lua-eco-socket is not set
 # CONFIG_PACKAGE_lua-eco-ssh is not set
