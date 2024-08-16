@@ -4,13 +4,13 @@
 # Copyright (C) 2017 PTPT52
 # Copyright (C) 2020 X-WRT <dev@x-wrt.com>
 
-sda_early_fixup()
+block_early_fixup()
 {
-	test -e /sys/class/block/sda/uevent || return
-	test -b /dev/sda && return
-	for src in $(ls /sys/class/block/sda*/uevent); do
-		source $src
-		test -e /dev/$DEVNAME || mknod /dev/$DEVNAME b $MAJOR $MINOR
+	for src in /sys/class/block/*/uevent; do
+		if test -e "$src"; then
+			source "$src" 2>/dev/null
+			test -e /dev/$DEVNAME || mknod /dev/$DEVNAME b $MAJOR $MINOR
+		fi
 	done
 }
 
@@ -39,6 +39,13 @@ do_disk_ready() {
 	diskpart_num1=2
 	is_x86=1
 
+	block_early_fixup
+	uuid=$(uci get fstab.overlay.uuid 2>/dev/null || echo f3178596-4427-2d3b-35c7-648b65e20d5e)
+	overlay_dev=$(blkid | grep "UUID=\"$uuid\"" -m1 | cut -d: -f1)
+
+	#XXX: overlay_dev: IF NOT exist
+	if ! test -n "$overlay_dev"; then
+
 	. /lib/functions/system.sh
 	case "$(board_name)" in
 	arcadyan,aw1000)
@@ -61,7 +68,6 @@ do_disk_ready() {
 			fi
 		}
 		# usb disk setup
-		sda_early_fixup
 		if test -b /dev/sda; then
 			ROOTDEV=/dev/sda
 			ROOTPART=/dev/sda
@@ -73,7 +79,6 @@ do_disk_ready() {
 		fi
 		;;
 	cmcc,rax3000m)
-		sda_early_fixup
 		if test -b /dev/mmcblk0; then
 			ROOTDEV=/dev/mmcblk0
 			ROOTPART=/dev/mmcblk0p
@@ -89,7 +94,6 @@ do_disk_ready() {
 		fi
 		;;
 	cmcc,rax3000m-nand-ubootlayout)
-		sda_early_fixup
 		if test -b /dev/sda; then
 			ROOTDEV=/dev/sda
 			ROOTPART=/dev/sda
@@ -100,7 +104,6 @@ do_disk_ready() {
 		;;
 	bananapi,bpi-r3|\
 	bananapi,bpi-r4)
-		sda_early_fixup
 		if test -b /dev/mmcblk0; then
 			ROOTDEV=/dev/mmcblk0
 			ROOTPART=/dev/mmcblk0p
@@ -235,6 +238,15 @@ do_disk_ready() {
 			LASTNR=$((LASTNR+2))
 		fi
 	fi
+
+	#XXX: overlay_dev: ELSE exist
+	else
+		LASTNR=$(echo "$overlay_dev" | sed -E 's/.*[^0-9]([0-9]+)$/\1/')
+		ROOTPART=${overlay_dev%*${LASTNR}}
+		LASTNR=$((LASTNR+1))
+		is_x86=0
+	fi
+	#XXX: overlay_dev: END
 
 	#check extroot_overlay
 	if test -b ${ROOTPART}$((LASTNR-1)); then
