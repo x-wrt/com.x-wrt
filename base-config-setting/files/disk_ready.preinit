@@ -19,6 +19,9 @@ do_disk_ready() {
 	local partdev
 	local ROOTDEV=/dev/sd-
 	local ROOTPART=/dev/sd-
+	local LASTNR=0
+	local is_x86=1
+	local diskpart_num1=2
 	. /lib/functions.sh
 	. /lib/upgrade/common.sh
 	if export_bootdevice && export_partdevice partdev 0; then
@@ -36,8 +39,6 @@ do_disk_ready() {
 
 	overlay_size=$(cat /proc/cmdline | grep -o "overlay_size=[0-9]*" | cut -d= -f2)
 	test -n "$overlay_size" || overlay_size=$((1*768)) #768M default
-	diskpart_num1=2
-	is_x86=1
 
 	block_early_fixup
 	uuid=$(uci get fstab.overlay.uuid 2>/dev/null || echo f3178596-4427-2d3b-35c7-648b65e20d5e)
