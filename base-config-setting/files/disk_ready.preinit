@@ -76,6 +76,16 @@ do_disk_ready() {
 			diskpart_num1=0
 			is_x86=0
 		else
+			if test -e "/dev/$ubivol"; then
+				uci delete fstab.overlay.uuid
+				uci set fstab.overlay=mount
+				uci set fstab.overlay.target='/overlay'
+				uci set fstab.overlay.device="/dev/$ubivol"
+				uci set fstab.overlay.fstype='ubifs'
+				uci set fstab.overlay.options='rw,noatime'
+				uci set fstab.overlay.enabled='1'
+				uci commit fstab
+			fi
 			return
 		fi
 		;;
