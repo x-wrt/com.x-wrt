@@ -58,6 +58,12 @@ do_disk_ready() {
 			ubiattach -p /dev/mtd$mtdnum --max-beb-per1024=2
 		}
 		ubidev=$(nand_find_ubi rootfs_1)
+		ubinfo -a /dev/$ubidev | grep -q "Name:        extroot_overlay" || {
+			ubidetach -p /dev/mtd$mtdnum
+			ubiformat /dev/mtd$mtdnum -y
+			ubiattach -p /dev/mtd$mtdnum --max-beb-per1024=2
+		}
+		ubidev=$(nand_find_ubi rootfs_1)
 		ubimkvol /dev/$ubidev -m -N extroot_overlay || :
 		ubivol=$(nand_find_volume $ubidev extroot_overlay)
 		mount -t ubifs /dev/$ubivol /mnt && {
@@ -89,6 +95,22 @@ do_disk_ready() {
 			return
 		fi
 		;;
+	bananapi,bpi-r3|\
+	bananapi,bpi-r4)
+		if test -b /dev/mmcblk0; then
+			ROOTDEV=/dev/mmcblk0
+			ROOTPART=/dev/mmcblk0p
+			overlay_size="$((1*1024))" #1024M
+			diskpart_num1=7
+			is_x86=0
+		elif test -b /dev/sda; then
+			ROOTDEV=/dev/sda
+			ROOTPART=/dev/sda
+			overlay_size="$((1*1024))" #1024M
+			diskpart_num1=0
+			is_x86=0
+		fi
+		;;
 	cmcc,rax3000m)
 		if test -b /dev/mmcblk0; then
 			ROOTDEV=/dev/mmcblk0
@@ -113,21 +135,42 @@ do_disk_ready() {
 			is_x86=0
 		fi
 		;;
-	bananapi,bpi-r3|\
-	bananapi,bpi-r4)
-		if test -b /dev/mmcblk0; then
-			ROOTDEV=/dev/mmcblk0
-			ROOTPART=/dev/mmcblk0p
-			overlay_size="$((1*1024))" #1024M
-			diskpart_num1=7
-			is_x86=0
-		elif test -b /dev/sda; then
-			ROOTDEV=/dev/sda
-			ROOTPART=/dev/sda
-			overlay_size="$((1*1024))" #1024M
-			diskpart_num1=0
-			is_x86=0
+	tenbay,wr3000k)
+		# ubifs extroot setup
+		. /lib/upgrade/nand.sh
+		mtdnum=$(find_mtd_index ubi1)
+		ubiattach -p /dev/mtd$mtdnum --max-beb-per1024=2 || {
+			ubiformat /dev/mtd$mtdnum -y
+			ubiattach -p /dev/mtd$mtdnum --max-beb-per1024=2
+		}
+		ubidev=$(nand_find_ubi ubi1)
+		ubinfo -a /dev/$ubidev | grep -q "Name:        extroot_overlay" || {
+			ubidetach -p /dev/mtd$mtdnum
+			ubiformat /dev/mtd$mtdnum -y
+			ubiattach -p /dev/mtd$mtdnum --max-beb-per1024=2
+		}
+		ubidev=$(nand_find_ubi ubi1)
+		ubimkvol /dev/$ubidev -m -N extroot_overlay 2>/dev/null || :
+		ubivol=$(nand_find_volume $ubidev extroot_overlay)
+		mount -t ubifs /dev/$ubivol /mnt && {
+			if test -e /mnt/.extroot-erase; then
+				rm -rf /mnt/upper /mnt/work /mnt/etc /mnt/.fs_state /mnt/.extroot-erase
+				umount /mnt
+			else
+				umount /mnt
+			fi
+		}
+		if test -e "/dev/$ubivol"; then
+			uci delete fstab.overlay.uuid
+			uci set fstab.overlay=mount
+			uci set fstab.overlay.target='/overlay'
+			uci set fstab.overlay.device="/dev/$ubivol"
+			uci set fstab.overlay.fstype='ubifs'
+			uci set fstab.overlay.options='rw,noatime'
+			uci set fstab.overlay.enabled='1'
+			uci commit fstab
 		fi
+		return
 		;;
 	*)
 		;;
