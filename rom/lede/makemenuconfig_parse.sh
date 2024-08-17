@@ -1782,6 +1782,7 @@ rt73-usb-firmware"
 		;;
 		TARGET_DEVICE_qualcommax_ipq807x_DEVICE_arcadyan_aw1000)
 			mods="$mods $mdadm $disk base-config-setting-ext4fs"
+			mods="$mods luci-app-store"
 			mods="$mods urllogger natflow-hostacl"
 		;;
 	esac
