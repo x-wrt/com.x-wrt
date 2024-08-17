@@ -1769,21 +1769,31 @@ rt73-usb-firmware"
 
 	#check mdadm
 	case $t in
+		TARGET_DEVICE_qualcommax_ipq807x_DEVICE_arcadyan_aw1000|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_bananapi_bpi-r3|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_bananapi_bpi-r4|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_cmcc_rax3000m|\
+		TARGET_DEVICE_mediatek_filogic_DEVICE_cmcc_rax3000m-emmc-ubootlayout|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_cmcc_rax3000m-nand-ubootlayout|\
 		TARGET_DEVICE_bcm27xx_bcm2710_DEVICE_rpi-3|\
 		TARGET_DEVICE_bcm27xx_bcm2711_DEVICE_rpi-4|\
 		TARGET_DEVICE_bcm27xx_bcm2712_DEVICE_rpi-5)
 			mods="$mods $mdadm $disk base-config-setting-ext4fs"
-			mods="$mods luci-app-store"
-			mods="$mods $extra_vpn urllogger natflow-hostacl"
-		;;
-		TARGET_DEVICE_qualcommax_ipq807x_DEVICE_arcadyan_aw1000)
-			mods="$mods $mdadm $disk base-config-setting-ext4fs"
-			mods="$mods luci-app-store"
 			mods="$mods urllogger natflow-hostacl"
+		;;
+		TARGET_DEVICE_mediatek_filogic_DEVICE_tenbay_wr3000k)
+			mods="$mods base-config-setting-ext4fs"
+		;;
+	esac
+
+	#check luci-app-docker
+	case $t in
+		TARGET_DEVICE_mediatek_filogic_DEVICE_bananapi_bpi-r3|\
+		TARGET_DEVICE_mediatek_filogic_DEVICE_bananapi_bpi-r4|\
+		TARGET_DEVICE_bcm27xx_bcm2710_DEVICE_rpi-3|\
+		TARGET_DEVICE_bcm27xx_bcm2711_DEVICE_rpi-4|\
+		TARGET_DEVICE_bcm27xx_bcm2712_DEVICE_rpi-5)
+			mods="$mods luci-app-docker"
 		;;
 	esac
 
@@ -1792,6 +1802,7 @@ rt73-usb-firmware"
 		TARGET_DEVICE_mediatek_filogic_DEVICE_zbtlink_zbt-z8102ax)
 			mods="$mods $usb4g $quectel $modem_info"
 		;;
+		TARGET_DEVICE_qualcommax_ipq807x_DEVICE_arcadyan_aw1000|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_bananapi_bpi-r3|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_bananapi_bpi-r4|\
 		TARGET_DEVICE_bcm27xx_bcm2709_DEVICE_rpi-2|\
@@ -1803,12 +1814,8 @@ rt73-usb-firmware"
 		TARGET_DEVICE_mediatek_filogic_DEVICE_cmcc_rax3000m-nand-ubootlayout)
 			mods="$mods usbutils pciutils"
 			mods="$mods $usb4g $quectel $modem_info"
-			mods="$mods luci-app-zerotier luci-app-docker luci-app-openclash"
-		;;
-		TARGET_DEVICE_qualcommax_ipq807x_DEVICE_arcadyan_aw1000)
-			mods="$mods usbutils pciutils"
-			mods="$mods $usb4g $quectel $modem_info"
 			mods="$mods luci-app-zerotier luci-app-openclash"
+			mods="$mods luci-app-store"
 		;;
 		TARGET_DEVICE_ramips_mt7621_DEVICE_dual-q_h721)
 			mods="$mods ath10k-firmware-qca988x-ct kmod-ath10k-ct kmod-ath9k kmod-mt7915-firmware kmod-mt7916-firmware kmod-mt7915e usbutils pciutils"
