@@ -409,6 +409,9 @@ for t in $targets; do
 	excludes="$excludes_basic"
 	case $t in
 		#>=32M flash
+		TARGET_DEVICE_rockchip_armv8_DEVICE_friendlyarm_nanopi-r6s|\
+		TARGET_DEVICE_rockchip_armv8_DEVICE_radxa_rock-5a|\
+		TARGET_DEVICE_rockchip_armv8_DEVICE_radxa_rock-5b|\
 		TARGET_DEVICE_qualcommax_ipq807x_DEVICE_linksys_mx8500|\
 		TARGET_DEVICE_x86_64_DEVICE_generic|\
 		TARGET_DEVICE_qualcommax_ipq807x_DEVICE_linksys_mx4200v1|\
@@ -523,6 +526,9 @@ for t in $targets; do
 	esac
 	case $t in
 		#>=14M flash
+		TARGET_DEVICE_rockchip_armv8_DEVICE_friendlyarm_nanopi-r6s|\
+		TARGET_DEVICE_rockchip_armv8_DEVICE_radxa_rock-5a|\
+		TARGET_DEVICE_rockchip_armv8_DEVICE_radxa_rock-5b|\
 		TARGET_DEVICE_qualcommax_ipq807x_DEVICE_arcadyan_aw1000|\
 		TARGET_DEVICE_qualcommax_ipq807x_DEVICE_asus_rt-ax89x|\
 		TARGET_DEVICE_qualcommax_ipq807x_DEVICE_linksys_mx8500|\
@@ -1126,6 +1132,9 @@ for t in $targets; do
 	#check usb
 	case $t in
 		#with usb3
+		TARGET_DEVICE_rockchip_armv8_DEVICE_friendlyarm_nanopi-r6s|\
+		TARGET_DEVICE_rockchip_armv8_DEVICE_radxa_rock-5a|\
+		TARGET_DEVICE_rockchip_armv8_DEVICE_radxa_rock-5b|\
 		TARGET_DEVICE_qualcommax_ipq807x_DEVICE_arcadyan_aw1000|\
 		TARGET_DEVICE_qualcommax_ipq807x_DEVICE_asus_rt-ax89x|\
 		TARGET_DEVICE_qualcommax_ipq807x_DEVICE_linksys_mx8500|\
@@ -1769,6 +1778,16 @@ rt73-usb-firmware"
 
 	#check mdadm
 	case $t in
+		TARGET_DEVICE_rockchip_armv8_DEVICE_friendlyarm_nanopi-r2c|\
+		TARGET_DEVICE_rockchip_armv8_DEVICE_friendlyarm_nanopi-r2c-plus|\
+		TARGET_DEVICE_rockchip_armv8_DEVICE_friendlyarm_nanopi-r2s|\
+		TARGET_DEVICE_rockchip_armv8_DEVICE_friendlyarm_nanopi-r4s|\
+		TARGET_DEVICE_rockchip_armv8_DEVICE_friendlyarm_nanopi-r4s-enterprise|\
+		TARGET_DEVICE_rockchip_armv8_DEVICE_friendlyarm_nanopi-r5c|\
+		TARGET_DEVICE_rockchip_armv8_DEVICE_friendlyarm_nanopi-r5s|\
+		TARGET_DEVICE_rockchip_armv8_DEVICE_friendlyarm_nanopi-r6s|\
+		TARGET_DEVICE_rockchip_armv8_DEVICE_radxa_rock-5a|\
+		TARGET_DEVICE_rockchip_armv8_DEVICE_radxa_rock-5b|\
 		TARGET_DEVICE_qualcommax_ipq807x_DEVICE_arcadyan_aw1000|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_bananapi_bpi-r3|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_bananapi_bpi-r4|\
@@ -1802,6 +1821,16 @@ rt73-usb-firmware"
 		TARGET_DEVICE_mediatek_filogic_DEVICE_zbtlink_zbt-z8102ax)
 			mods="$mods $usb4g $quectel $modem_info"
 		;;
+		TARGET_DEVICE_rockchip_armv8_DEVICE_friendlyarm_nanopi-r2c|\
+		TARGET_DEVICE_rockchip_armv8_DEVICE_friendlyarm_nanopi-r2c-plus|\
+		TARGET_DEVICE_rockchip_armv8_DEVICE_friendlyarm_nanopi-r2s|\
+		TARGET_DEVICE_rockchip_armv8_DEVICE_friendlyarm_nanopi-r4s|\
+		TARGET_DEVICE_rockchip_armv8_DEVICE_friendlyarm_nanopi-r4s-enterprise|\
+		TARGET_DEVICE_rockchip_armv8_DEVICE_friendlyarm_nanopi-r5c|\
+		TARGET_DEVICE_rockchip_armv8_DEVICE_friendlyarm_nanopi-r5s|\
+		TARGET_DEVICE_rockchip_armv8_DEVICE_friendlyarm_nanopi-r6s|\
+		TARGET_DEVICE_rockchip_armv8_DEVICE_radxa_rock-5a|\
+		TARGET_DEVICE_rockchip_armv8_DEVICE_radxa_rock-5b|\
 		TARGET_DEVICE_qualcommax_ipq807x_DEVICE_arcadyan_aw1000|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_bananapi_bpi-r3|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_bananapi_bpi-r4|\
