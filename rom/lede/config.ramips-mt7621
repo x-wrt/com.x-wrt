@@ -688,7 +688,8 @@ CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt7621_DEVICE_zbtlink_zbt-wg3526-32m="aria2
 # CONFIG_TARGET_DEVICE_ramips_mt7621_DEVICE_zyxel_nwa50ax is not set
 # CONFIG_TARGET_DEVICE_ramips_mt7621_DEVICE_zyxel_nwa55axe is not set
 # CONFIG_TARGET_DEVICE_ramips_mt7621_DEVICE_zyxel_wap6805 is not set
-# CONFIG_TARGET_DEVICE_ramips_mt7621_DEVICE_zyxel_wsm20 is not set
+CONFIG_TARGET_DEVICE_ramips_mt7621_DEVICE_zyxel_wsm20=y
+CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt7621_DEVICE_zyxel_wsm20="dawn iptables-mod-dhcpmac iptables-mod-dnetmap jool-tools-netfilter kmod-bonding kmod-cfg80211 kmod-crypto-ccm kmod-crypto-cmac kmod-crypto-ctr kmod-cryptodev kmod-crypto-gcm kmod-crypto-geniv kmod-crypto-gf128 kmod-crypto-ghash kmod-crypto-seqiv kmod-hwmon-core kmod-inet-diag kmod-ipt-compat-xtables kmod-ipt-dhcpmac kmod-ipt-dnetmap kmod-jool-netfilter kmod-leds-gpio kmod-mac80211 kmod-mt76-connac kmod-mt76-core kmod-mt7915e kmod-mt7915-firmware kmod-nat46 kmod-nf-conntrack-netlink kmod-thermal libcap-ng libgcrypt libgpg-error liblz4 liblzo libnl libnl-cli libnl-core libnl-genl libnl-nf libnl-route libopenssl libopenssl-conf libopenssl-devcrypto libopenssl-legacy libpcre2 libqrencode libstdcpp libxml2 luci-app-dawn luci-app-openvpn luci-app-usteer luci-i18n-dashboard-zh-cn luci-i18n-openvpn-zh-cn luci-lib-uqr luci-mod-dashboard luci-nginx luci-proto-bonding luci-proto-relay luci-proto-wireguard natflow-hostacl nginx nginx-mod-luci nginx-mod-ubus nginx-ssl nginx-ssl-util nginx-util openvpn-openssl proto-bonding qrencode relayd tc-tiny urllogger uwsgi uwsgi-cgi-plugin uwsgi-luci-support uwsgi-syslog-plugin wireguard-tools wireless-regdb wpad-openssl"
 # end of Target Devices
 
 CONFIG_HAS_SUBTARGETS=y
