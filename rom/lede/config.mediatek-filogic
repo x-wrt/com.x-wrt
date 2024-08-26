@@ -78,6 +78,7 @@ CONFIG_TARGET_MULTI_PROFILE=y
 # CONFIG_TARGET_mediatek_filogic_DEVICE_cmcc_rax3000m-nand-ubootlayout is not set
 # CONFIG_TARGET_mediatek_filogic_DEVICE_comfast_cf-e393ax is not set
 # CONFIG_TARGET_mediatek_filogic_DEVICE_confiabits_mt7981 is not set
+# CONFIG_TARGET_mediatek_filogic_DEVICE_cudy_ap3000outdoor-v1 is not set
 # CONFIG_TARGET_mediatek_filogic_DEVICE_cudy_m3000-v1 is not set
 # CONFIG_TARGET_mediatek_filogic_DEVICE_cudy_re3000-v1 is not set
 # CONFIG_TARGET_mediatek_filogic_DEVICE_cudy_tr3000-v1 is not set
@@ -179,6 +180,7 @@ CONFIG_TARGET_DEVICE_mediatek_filogic_DEVICE_cmcc_rax3000m-nand-ubootlayout=y
 CONFIG_TARGET_DEVICE_PACKAGES_mediatek_filogic_DEVICE_cmcc_rax3000m-nand-ubootlayout="aria2 base-config-setting-ext4fs bash blkid ca-bundle ca-certificates chat comgt comgt-ncm coreutils coreutils-nohup curl dawn e2fsprogs fdisk gdisk iptables-mod-dhcpmac iptables-mod-dnetmap jool-tools-netfilter kmod-asn1-encoder kmod-bonding kmod-crypto-cbc kmod-dax kmod-dm kmod-dnsresolver kmod-fs-exfat kmod-fs-ext4 kmod-fs-ksmbd kmod-fs-msdos kmod-fs-netfs kmod-fs-nfs kmod-fs-nfs-common kmod-fs-nfs-v4 kmod-fs-ntfs3 kmod-fs-smbfs-common kmod-fs-vfat kmod-fuse kmod-inet-diag kmod-ipt-compat-xtables kmod-ipt-dhcpmac kmod-ipt-dnetmap kmod-jool-netfilter kmod-keys-encrypted kmod-keys-trusted kmod-lib-crc16 kmod-lib-raid6 kmod-lib-xor kmod-md-mod kmod-md-multipath kmod-md-raid0 kmod-md-raid1 kmod-md-raid10 kmod-md-raid456 kmod-mii kmod-mt7981-firmware kmod-nat46 kmod-nf-conntrack-netlink kmod-nls-cp437 kmod-nls-ucs2-utils kmod-oid-registry kmod-qmi-wwan-q kmod-random-core kmod-scsi-core kmod-tpm kmod-usb2 kmod-usb3 kmod-usb-ehci kmod-usb-net kmod-usb-net-cdc-ether kmod-usb-net-cdc-mbim kmod-usb-net-cdc-ncm kmod-usb-net-huawei-cdc-ncm kmod-usb-net-ipheth kmod-usb-net-qmi-wwan kmod-usb-net-rndis kmod-usb-net-sierrawireless kmod-usb-ohci kmod-usb-printer kmod-usb-serial kmod-usb-serial-cp210x kmod-usb-serial-option kmod-usb-serial-pl2303 kmod-usb-serial-qualcomm kmod-usb-serial-sierrawireless kmod-usb-serial-wwan kmod-usb-storage kmod-usb-storage-extras kmod-usb-storage-uas kmod-usb-wdm kmod-usb-xhci-hcd kmod-usb-xhci-mtk ksmbd-server libaio libblkid libcap-bin libcap-ng libcares libcomerr libcurl libdevmapper libe2p libevdev libexpat libext2fs libfdisk libgcrypt libgmp libgpg-error libimobiledevice libimobiledevice-glue libimobiledevice-utils liblz4 liblzo libminiupnpc libnatpmp libnghttp2 libnl libnl-cli libnl-core libnl-genl libnl-nf libnl-route libopenssl libopenssl-conf libopenssl-legacy libpcre2 libplist libqrencode libreadline libruby libsmartcols libsqlite3 libss libssh2 libudev-zero libusb-1.0 libusbmuxd libwrap libxml2 libyaml luci-app-3ginfo-lite luci-app-aria2 luci-app-dawn luci-app-ksmbd luci-app-openclash luci-app-openvpn luci-app-p910nd luci-app-usteer luci-app-zerotier luci-i18n-aria2-zh-cn luci-i18n-dashboard-zh-cn luci-i18n-ksmbd-zh-cn luci-i18n-openvpn-zh-cn luci-i18n-p910nd-zh-cn luci-lib-uqr luci-mod-dashboard luci-nginx luci-proto-3g luci-proto-bonding luci-proto-mbim luci-proto-ncm luci-proto-qmap luci-proto-qmi luci-proto-relay luci-proto-wireguard lvm2 mdadm minicom mt7981-wo-firmware natflow-hostacl nfs-utils nginx nginx-mod-luci nginx-mod-ubus nginx-ssl nginx-ssl-util nginx-util openvpn-openssl p910nd partx-utils proto-bonding qrencode quectel-cm relayd ruby ruby-bigdecimal ruby-date ruby-digest ruby-enc ruby-pstore ruby-psych ruby-stringio ruby-yaml sendip sms-tool tc-tiny tune2fs umbim unzip uqmi urllogger usbids usb-modeswitch usbmuxd usbutils uwsgi uwsgi-cgi-plugin uwsgi-luci-support uwsgi-syslog-plugin webui-aria2 wget-ssl wireguard-tools wpad-openssl wsdd2 wwan zerotier"
 # CONFIG_TARGET_DEVICE_mediatek_filogic_DEVICE_comfast_cf-e393ax is not set
 # CONFIG_TARGET_DEVICE_mediatek_filogic_DEVICE_confiabits_mt7981 is not set
+# CONFIG_TARGET_DEVICE_mediatek_filogic_DEVICE_cudy_ap3000outdoor-v1 is not set
 # CONFIG_TARGET_DEVICE_mediatek_filogic_DEVICE_cudy_m3000-v1 is not set
 # CONFIG_TARGET_DEVICE_mediatek_filogic_DEVICE_cudy_re3000-v1 is not set
 # CONFIG_TARGET_DEVICE_mediatek_filogic_DEVICE_cudy_tr3000-v1 is not set
@@ -720,7 +722,7 @@ CONFIG_TARGET_INIT_CMD="/sbin/init"
 CONFIG_TARGET_INIT_SUPPRESS_STDERR=y
 CONFIG_VERSIONOPT=y
 CONFIG_VERSION_DIST="X-WRT"
-CONFIG_VERSION_NUMBER="24.04_b202408251108"
+CONFIG_VERSION_NUMBER="24.04_b202408260930"
 CONFIG_VERSION_CODE="Noble"
 CONFIG_VERSION_REPO="http://downloads.openwrt.org/snapshots"
 CONFIG_VERSION_HOME_URL="https://x-wrt.com/"
