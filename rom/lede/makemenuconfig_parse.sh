@@ -1896,6 +1896,7 @@ rt73-usb-firmware"
 		mods="$mods $usbprint $ksmbd $usb_extra"
 		if [ "x$extra_utils" = "x1" ]; then
 			mods="$mods $utils $aria2 $moreapps $iphone4g"
+			mods="$mods base-config-setting-ext4fs"
 		fi
 	else
 		mods="$mods $lucistd"
