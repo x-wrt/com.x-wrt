@@ -101,8 +101,11 @@ do_disk_ready() {
 			ROOTDEV=/dev/mmcblk0
 			ROOTPART=/dev/mmcblk0p
 			overlay_size="$((1*1024))" #1024M
-			diskpart_num1=7
+			diskpart_num1=7 # sdcard
 			is_x86=0
+			if test -b /dev/mmcblk0p128; then
+				diskpart_num1=6 # emmc
+			fi
 		elif test -b /dev/sda; then
 			ROOTDEV=/dev/sda
 			ROOTPART=/dev/sda
