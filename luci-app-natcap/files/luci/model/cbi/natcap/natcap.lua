@@ -16,6 +16,8 @@ s:tab("serverlist", translate("Server List"))
 s:tab("macfilter", translate("Mac Filter"))
 s:tab("ipfilter", translate("IP Filter"))
 s:tab("system", translate("System Settings"))
+s:tab("bypasslist", translate("Bypasslist"))
+s:tab("bypasslist_domain", translate("Bypasslist Domain"))
 
 e = s:taboption("general", Flag, "enabled", translate("Enable Natcap"))
 e.default = e.disabled
@@ -178,5 +180,13 @@ e.rmempty = false
 e = s:taboption("system", Value, "ui", translate("UI"))
 e.rmempty = true
 e.placeholder = 'none'
+
+e = s:taboption("bypasslist", DynamicList, "bypasslist", translate("Bypasslist"))
+e.datatype = "list(string)"
+e.placeholder = "1.2.3.4"
+
+e = s:taboption("bypasslist_domain", DynamicList, "bypasslist_domain", translate("Bypasslist Domain"))
+e.datatype = "list(string)"
+e.placeholder = "example.com"
 
 return m
