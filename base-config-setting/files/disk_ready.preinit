@@ -238,17 +238,8 @@ do_disk_ready() {
 			# [_boot_|_rootfs_...1G...][cfg 1G][data...]
 			echo -ne "n\n\n${sda5_start}\n${sda5_end}\n8300\nn\n\n${sda6_start}\n${sda6_end}\n8300\nw\ny\n" | gdisk ${ROOTDEV}
 
-			partx -a ${ROOTDEV}
-			test -b ${ROOTPART}$((LASTNR+1)) -a -b ${ROOTPART}$((LASTNR+2))  || {
-				MAJOR=$(printf "%d" "0x$(stat -c "%t" ${ROOTDEV})")
-				MINOR=$(printf "%d" "0x$(stat -c "%T" ${ROOTDEV})")
-				test -n "$MAJOR" && {
-					rm -f ${ROOTPART}$((LASTNR+1))
-					mknod ${ROOTPART}$((LASTNR+1)) b $MAJOR $((MINOR+LASTNR+1))
-					rm -f ${ROOTPART}$((LASTNR+2))
-					mknod ${ROOTPART}$((LASTNR+2)) b $MAJOR $((MINOR+LASTNR+2))
-				}
-			}
+			partx -u ${ROOTDEV}
+			block_early_fixup
 
 			test -b ${ROOTPART}$((LASTNR+1)) && echo erase >${ROOTPART}$((LASTNR+1))
 			LASTNR=$((LASTNR+2))
@@ -289,17 +280,8 @@ do_disk_ready() {
 					;;
 			esac
 
-			partx -a ${ROOTDEV}
-			test -b ${ROOTPART}$((LASTNR+1)) -a -b ${ROOTPART}$((LASTNR+2))  || {
-				MAJOR=$(printf "%d" "0x$(stat -c "%t" ${ROOTDEV})")
-				MINOR=$(printf "%d" "0x$(stat -c "%T" ${ROOTDEV})")
-				test -n "$MAJOR" && {
-					rm -f ${ROOTPART}$((LASTNR+1))
-					mknod ${ROOTPART}$((LASTNR+1)) b $MAJOR $((MINOR+LASTNR+1))
-					rm -f ${ROOTPART}$((LASTNR+2))
-					mknod ${ROOTPART}$((LASTNR+2)) b $MAJOR $((MINOR+LASTNR+2))
-				}
-			}
+			partx -u ${ROOTDEV}
+			block_early_fixup
 
 			test -b ${ROOTPART}$((LASTNR+1)) && echo erase >${ROOTPART}$((LASTNR+1))
 			LASTNR=$((LASTNR+2))
