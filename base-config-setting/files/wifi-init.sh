@@ -69,6 +69,7 @@ wifi_setup_radio()
 				uci set wireless.$obj.encryption='sae'
 				uci set wireless.$obj.ocv='0'
 				uci set wireless.$obj.ssid="${SSID}_6G"
+				uci delete wireless.$obj.ft_psk_generate_local
 			fi
 		fi
 	fi
