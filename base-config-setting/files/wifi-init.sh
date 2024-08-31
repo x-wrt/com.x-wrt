@@ -40,8 +40,8 @@ wifi_setup_radio()
 		EOT
 
 		if [ "$(uci get wireless.${radio}.band 2>/dev/null)" = "6g" ]; then
-			set wireless.${radio}.country='DE'
-			set wireless.${radio}.channel='21'
+			uci set wireless.${radio}.country='DE'
+			uci set wireless.${radio}.channel='21'
 		fi
 
 		obj=`uci add wireless wifi-iface`
