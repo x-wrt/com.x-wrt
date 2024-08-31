@@ -42,7 +42,8 @@ do_disk_ready() {
 
 	block_early_fixup
 	uuid=$(uci get fstab.overlay.uuid 2>/dev/null || echo f3178596-4427-2d3b-35c7-648b65e20d5e)
-	overlay_dev=$(blkid | grep "UUID=\"$uuid\"" -m1 | cut -d: -f1)
+	overlay_dev=$(blkid /dev/sda* | grep "UUID=\"$uuid\"" -m1 | cut -d: -f1)
+	test -n "$overlay_dev" || overlay_dev=$(blkid | grep "UUID=\"$uuid\"" -m1 | cut -d: -f1)
 
 	#XXX: overlay_dev: IF NOT exist
 	if ! test -n "$overlay_dev"; then
