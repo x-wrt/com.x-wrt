@@ -535,6 +535,7 @@ for t in $targets; do
 		TARGET_DEVICE_mediatek_filogic_DEVICE_asus_rt-ax59u|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_bananapi_bpi-r4-poe|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_nokia_ea0326gmp|\
+		TARGET_DEVICE_mediatek_filogic_DEVICE_ruijie_rg-x60-pro-ubootlayout|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_ruijie_rg-x60-pro|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_openwrt_one|\
 		TARGET_DEVICE_qualcommax_ipq807x_DEVICE_zbtlink_zbt-z800ax|\
@@ -1501,6 +1502,7 @@ for t in $targets; do
 		#no usb
 		TARGET_DEVICE_mediatek_filogic_DEVICE_asus_rt-ax59u|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_nokia_ea0326gmp|\
+		TARGET_DEVICE_mediatek_filogic_DEVICE_ruijie_rg-x60-pro-ubootlayout|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_ruijie_rg-x60-pro|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_jdcloud_re-cp-02|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_yuncore_ax835|\
