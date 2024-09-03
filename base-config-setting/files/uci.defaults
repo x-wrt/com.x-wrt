@@ -154,8 +154,8 @@ test $version -lt 2 && {
 			test ${sector_size} -gt 0 || sector_size=512
 			lastsec=0
 			if fdisk -l ${ROOTDEV} 2>/dev/null | grep -q "type: gpt"; then
-				lastsec=$(fdisk -l ${ROOTDEV} | grep ^${ROOTDEV} | head -n4 | tail -n1 | awk '{print $3}')
-				lastsec=$((lastsec+34))
+				lastsec=$(fdisk -l ${ROOTDEV} | grep ^${ROOTDEV} | head -n2 | tail -n1 | awk '{print $3}')
+				lastsec=$((lastsec+64))
 			else
 				lastsec=$(fdisk -l ${ROOTDEV} | grep ^${ROOTDEV} | head -n2 | tail -n1 | awk '{print $3}')
 				lastsec=$((lastsec+1))
