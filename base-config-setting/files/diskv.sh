@@ -17,10 +17,11 @@ do_disk_ready() {
 	. /lib/upgrade/common.sh
 	if export_bootdevice && export_partdevice partdev 0; then
 		overlay_dev=$(blkid /dev/${partdev}* 2>/dev/null | grep 'UUID="f3178596-4427-2d3b-35c7-648b65e20d5e"' | cut -d: -f1)
-		if echo $partdev | grep -q ^sd[a-z]; then
+		test -n "$overlay_dev" || return 1
+		if echo $partdev | grep -q "^sd[a-z]"; then
 			ROOTDEV=/dev/${partdev}
 			ROOTPART=/dev/${partdev}
-		elif echo $partdev | grep -q ^mmcblk[0-9]; then
+		elif echo $partdev | grep -q ".*[0-9]"; then
 			ROOTDEV=/dev/${partdev}
 			ROOTPART=/dev/${partdev}p
 		else
