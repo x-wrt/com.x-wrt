@@ -66,7 +66,7 @@ dd if=$ROOTDEV bs=$SECTOR_SIZE skip=$START count=$COUNT of=/tmp/pd.img conv=notr
 case "$cmd" in
 	get)
 		value=$(cat /tmp/pd.img | grep "^$key=" | sed "s/$key=//")
-		echo $key=$value
+		echo "$key=$value"
 	;;
 	set)
 		cat /tmp/pd.img | grep -v "^$key=" >/tmp/pd.img.new
