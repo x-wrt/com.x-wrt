@@ -53,6 +53,14 @@ COUNT=$((65536/SECTOR_SIZE)) #size 64k
 #echo START=$START
 #echo COUNT=$COUNT
 
+_start=$((start*SECTOR_SIZE/65536))
+_start=$((_start*65536/SECTOR_SIZE))
+if [ "$start" = "$_start" ]; then
+	START=$((START*SECTOR_SIZE/65536))
+	COUNT=1
+	SECTOR_SIZE=65536
+fi
+
 dd if=$ROOTDEV bs=$SECTOR_SIZE skip=$START count=$COUNT of=/tmp/pd.img conv=notrunc >/dev/null 2>&1
 
 case "$cmd" in
