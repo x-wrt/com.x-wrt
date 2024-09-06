@@ -409,6 +409,7 @@ for t in $targets; do
 	excludes="$excludes_basic"
 	case $t in
 		#>=32M flash
+		TARGET_DEVICE_mediatek_filogic_DEVICE_zyxel_ex5700-telenor|\
 		TARGET_DEVICE_rockchip_armv8_DEVICE_friendlyarm_nanopi-r6s|\
 		TARGET_DEVICE_rockchip_armv8_DEVICE_radxa_rock-5a|\
 		TARGET_DEVICE_rockchip_armv8_DEVICE_radxa_rock-5b|\
@@ -521,11 +522,12 @@ for t in $targets; do
 		TARGET_DEVICE_mvebu_cortexa9_DEVICE_linksys_wrt1900acs|\
 		TARGET_DEVICE_mvebu_cortexa9_DEVICE_linksys_wrt1900ac-v2|\
 		TARGET_DEVICE_mvebu_cortexa9_DEVICE_linksys_wrt3200acm)
-			mods="$mods $extra_vpn $strongswan urllogger natflow-hostacl"
+			mods="$mods $extra_vpn urllogger natflow-hostacl"
 		;;
 	esac
 	case $t in
 		#>=14M flash
+		TARGET_DEVICE_mediatek_filogic_DEVICE_zyxel_ex5700-telenor|\
 		TARGET_DEVICE_rockchip_armv8_DEVICE_friendlyarm_nanopi-r6s|\
 		TARGET_DEVICE_rockchip_armv8_DEVICE_radxa_rock-5a|\
 		TARGET_DEVICE_rockchip_armv8_DEVICE_radxa_rock-5b|\
@@ -1133,6 +1135,7 @@ for t in $targets; do
 	#check usb
 	case $t in
 		#with usb3
+		TARGET_DEVICE_mediatek_filogic_DEVICE_zyxel_ex5700-telenor|\
 		TARGET_DEVICE_rockchip_armv8_DEVICE_friendlyarm_nanopi-r6s|\
 		TARGET_DEVICE_rockchip_armv8_DEVICE_radxa_rock-5a|\
 		TARGET_DEVICE_rockchip_armv8_DEVICE_radxa_rock-5b|\
