@@ -106,6 +106,8 @@ do_disk_ready() {
 			is_x86=0
 			if test -b /dev/mmcblk0p128; then
 				diskpart_num1=6 # emmc
+			elif ! test -b /dev/mmcblk0p3; then
+				diskpart_num1=0
 			fi
 		elif test -b /dev/sda; then
 			ROOTDEV=/dev/sda
