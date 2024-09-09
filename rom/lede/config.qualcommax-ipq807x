@@ -73,6 +73,7 @@ CONFIG_TARGET_MULTI_PROFILE=y
 # CONFIG_TARGET_qualcommax_ipq807x_DEVICE_qnap_301w is not set
 # CONFIG_TARGET_qualcommax_ipq807x_DEVICE_redmi_ax6 is not set
 # CONFIG_TARGET_qualcommax_ipq807x_DEVICE_spectrum_sax1v1k is not set
+# CONFIG_TARGET_qualcommax_ipq807x_DEVICE_tplink_eap660hd-v1 is not set
 # CONFIG_TARGET_qualcommax_ipq807x_DEVICE_xiaomi_ax3600 is not set
 # CONFIG_TARGET_qualcommax_ipq807x_DEVICE_xiaomi_ax9000 is not set
 # CONFIG_TARGET_qualcommax_ipq807x_DEVICE_yuncore_ax880 is not set
@@ -119,6 +120,7 @@ CONFIG_TARGET_DEVICE_PACKAGES_qualcommax_ipq807x_DEVICE_qnap_301w="ath11k-firmwa
 CONFIG_TARGET_DEVICE_qualcommax_ipq807x_DEVICE_redmi_ax6=y
 CONFIG_TARGET_DEVICE_PACKAGES_qualcommax_ipq807x_DEVICE_redmi_ax6="ath11k-firmware-ipq8074 dawn gre ipq-wifi-redmi_ax6 iptables-mod-dhcpmac iptables-mod-dnetmap jool-tools-netfilter kmod-bonding kmod-crypto-acompress kmod-crypto-cbc kmod-crypto-deflate kmod-crypto-des kmod-crypto-echainiv kmod-crypto-md5 kmod-inet-diag kmod-ip6-vti kmod-ipsec kmod-ipsec4 kmod-ipsec6 kmod-ipt-compat-xtables kmod-ipt-dhcpmac kmod-ipt-dnetmap kmod-ip-vti kmod-jool-netfilter kmod-l2tp kmod-lib-zlib-deflate kmod-lib-zlib-inflate kmod-nat46 kmod-nf-conntrack-netlink kmod-pppol2tp kmod-xfrm-interface libcap-ng libgcrypt libgpg-error liblz4 liblzo libnl libnl-cli libnl-core libnl-genl libnl-nf libnl-route libopenssl libopenssl-conf libopenssl-legacy libpcre2 libqrencode libstdcpp libxml2 luci-app-dawn luci-app-openvpn luci-app-usteer luci-i18n-dashboard-zh-cn luci-i18n-openvpn-zh-cn luci-lib-uqr luci-mod-dashboard luci-nginx luci-proto-bonding luci-proto-gre luci-proto-relay luci-proto-vti luci-proto-wireguard luci-proto-xfrm natflow-hostacl nginx nginx-mod-luci nginx-mod-ubus nginx-ssl nginx-ssl-util nginx-util openvpn-openssl ppp-mod-pppol2tp proto-bonding qrencode relayd tc-tiny urllogger uwsgi uwsgi-cgi-plugin uwsgi-luci-support uwsgi-syslog-plugin vti wireguard-tools wpad-openssl xfrm xl2tpd"
 # CONFIG_TARGET_DEVICE_qualcommax_ipq807x_DEVICE_spectrum_sax1v1k is not set
+# CONFIG_TARGET_DEVICE_qualcommax_ipq807x_DEVICE_tplink_eap660hd-v1 is not set
 CONFIG_TARGET_DEVICE_qualcommax_ipq807x_DEVICE_xiaomi_ax3600=y
 CONFIG_TARGET_DEVICE_PACKAGES_qualcommax_ipq807x_DEVICE_xiaomi_ax3600="ath10k-board-qca9887 ath10k-firmware-qca9887-ct ath11k-firmware-ipq8074 dawn gre ipq-wifi-xiaomi_ax3600 iptables-mod-dhcpmac iptables-mod-dnetmap jool-tools-netfilter kmod-ath10k-ct-smallbuffers kmod-bonding kmod-crypto-acompress kmod-crypto-cbc kmod-crypto-deflate kmod-crypto-des kmod-crypto-echainiv kmod-crypto-md5 kmod-inet-diag kmod-ip6-vti kmod-ipsec kmod-ipsec4 kmod-ipsec6 kmod-ipt-compat-xtables kmod-ipt-dhcpmac kmod-ipt-dnetmap kmod-ip-vti kmod-jool-netfilter kmod-l2tp kmod-lib-zlib-deflate kmod-lib-zlib-inflate kmod-nat46 kmod-nf-conntrack-netlink kmod-pppol2tp kmod-xfrm-interface libcap-ng libgcrypt libgpg-error liblz4 liblzo libnl libnl-cli libnl-core libnl-genl libnl-nf libnl-route libopenssl libopenssl-conf libopenssl-legacy libpcre2 libqrencode libstdcpp libxml2 luci-app-dawn luci-app-openvpn luci-app-usteer luci-i18n-dashboard-zh-cn luci-i18n-openvpn-zh-cn luci-lib-uqr luci-mod-dashboard luci-nginx luci-proto-bonding luci-proto-gre luci-proto-relay luci-proto-vti luci-proto-wireguard luci-proto-xfrm natflow-hostacl nginx nginx-mod-luci nginx-mod-ubus nginx-ssl nginx-ssl-util nginx-util openvpn-openssl ppp-mod-pppol2tp proto-bonding qrencode relayd tc-tiny urllogger uwsgi uwsgi-cgi-plugin uwsgi-luci-support uwsgi-syslog-plugin vti wireguard-tools wpad-openssl xfrm xl2tpd"
 CONFIG_TARGET_DEVICE_qualcommax_ipq807x_DEVICE_xiaomi_ax9000=y
@@ -545,7 +547,7 @@ CONFIG_TARGET_INIT_CMD="/sbin/init"
 CONFIG_TARGET_INIT_SUPPRESS_STDERR=y
 CONFIG_VERSIONOPT=y
 CONFIG_VERSION_DIST="X-WRT"
-CONFIG_VERSION_NUMBER="24.04_b202409070905"
+CONFIG_VERSION_NUMBER="24.04_b202409100212"
 CONFIG_VERSION_CODE="Noble"
 CONFIG_VERSION_REPO="http://downloads.openwrt.org/snapshots"
 CONFIG_VERSION_HOME_URL="https://x-wrt.com/"
@@ -2858,6 +2860,7 @@ CONFIG_PACKAGE_ipq-wifi-netgear_wax630=m
 CONFIG_PACKAGE_ipq-wifi-qnap_301w=m
 CONFIG_PACKAGE_ipq-wifi-redmi_ax6=m
 # CONFIG_PACKAGE_ipq-wifi-spectrum_sax1v1k is not set
+# CONFIG_PACKAGE_ipq-wifi-tplink_eap660hd-v1 is not set
 # CONFIG_PACKAGE_ipq-wifi-wallys_dr40x9 is not set
 CONFIG_PACKAGE_ipq-wifi-xiaomi_ax3600=m
 CONFIG_PACKAGE_ipq-wifi-xiaomi_ax9000=m
