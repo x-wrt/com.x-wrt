@@ -127,6 +127,7 @@ add_wizard() {
 				uci delete wireless.@wifi-iface[$idx].ft_psk_generate_local
 				uci set wireless.${device}.country='DE'
 				uci set wireless.${device}.channel='21'
+				uci set wireless.${device}.band='6g'
 			}
 		done
 	}
