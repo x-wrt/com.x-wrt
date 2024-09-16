@@ -7781,7 +7781,6 @@ CONFIG_PACKAGE_usteer=y
 # CONFIG_PACKAGE_ustp is not set
 # CONFIG_PACKAGE_v2ray-core is not set
 # CONFIG_PACKAGE_vallumd is not set
-# CONFIG_PACKAGE_vncrepeater is not set
 # CONFIG_PACKAGE_vnstat is not set
 # CONFIG_PACKAGE_vnstat2 is not set
 CONFIG_PACKAGE_vti=m
