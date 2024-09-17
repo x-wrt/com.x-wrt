@@ -430,9 +430,9 @@ net.bridge.bridge-nf-call-iptables=0
 net.ipv4.fib_multipath_hash_policy=1
 net.core.default_qdisc=fq_codel
 net.core.default_qdisc=fq
+# net.ipv4.tcp_congestion_control=htcp
+# net.ipv4.tcp_congestion_control=cubic
 net.ipv4.tcp_congestion_control=bbr
-net.ipv4.tcp_congestion_control=htcp
-net.ipv4.tcp_congestion_control=cubic
 net.netfilter.nf_conntrack_helper=1
 net.ipv4.ip_default_ttl=128
 EOF
