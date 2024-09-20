@@ -42,6 +42,7 @@ CONFIG_TARGET_ramips=y
 # CONFIG_TARGET_realtek is not set
 # CONFIG_TARGET_rockchip is not set
 # CONFIG_TARGET_sifiveu is not set
+# CONFIG_TARGET_siflower is not set
 # CONFIG_TARGET_starfive is not set
 # CONFIG_TARGET_archs38 is not set
 # CONFIG_TARGET_omap is not set
@@ -214,6 +215,7 @@ CONFIG_TARGET_MULTI_PROFILE=y
 # CONFIG_TARGET_ramips_mt7621_DEVICE_netgear_wax202 is not set
 # CONFIG_TARGET_ramips_mt7621_DEVICE_netgear_wax214v2 is not set
 # CONFIG_TARGET_ramips_mt7621_DEVICE_netgear_wndr3700-v5 is not set
+# CONFIG_TARGET_ramips_mt7621_DEVICE_netis_n6 is not set
 # CONFIG_TARGET_ramips_mt7621_DEVICE_netis_wf2881 is not set
 # CONFIG_TARGET_ramips_mt7621_DEVICE_openfi_5pro is not set
 # CONFIG_TARGET_ramips_mt7621_DEVICE_oraybox_x3a is not set
@@ -498,6 +500,7 @@ CONFIG_TARGET_PER_DEVICE_ROOTFS=y
 # CONFIG_TARGET_DEVICE_ramips_mt7621_DEVICE_netgear_wax202 is not set
 # CONFIG_TARGET_DEVICE_ramips_mt7621_DEVICE_netgear_wax214v2 is not set
 # CONFIG_TARGET_DEVICE_ramips_mt7621_DEVICE_netgear_wndr3700-v5 is not set
+# CONFIG_TARGET_DEVICE_ramips_mt7621_DEVICE_netis_n6 is not set
 # CONFIG_TARGET_DEVICE_ramips_mt7621_DEVICE_netis_wf2881 is not set
 # CONFIG_TARGET_DEVICE_ramips_mt7621_DEVICE_raisecom_msg1500-x-00 is not set
 # CONFIG_TARGET_DEVICE_ramips_mt7621_DEVICE_openfi_5pro is not set
@@ -972,7 +975,7 @@ CONFIG_TARGET_INIT_CMD="/sbin/init"
 CONFIG_TARGET_INIT_SUPPRESS_STDERR=y
 CONFIG_VERSIONOPT=y
 CONFIG_VERSION_DIST="X-WRT"
-CONFIG_VERSION_NUMBER="24.04_b202409170123"
+CONFIG_VERSION_NUMBER="24.04_b202409200849"
 CONFIG_VERSION_CODE="Noble"
 CONFIG_VERSION_REPO="http://downloads.openwrt.org/snapshots"
 CONFIG_VERSION_HOME_URL="https://x-wrt.com/"
