@@ -122,6 +122,7 @@ CONFIG_TARGET_MULTI_PROFILE=y
 # CONFIG_TARGET_ramips_mt7620_DEVICE_lenovo_newifi-y1 is not set
 # CONFIG_TARGET_ramips_mt7620_DEVICE_lenovo_newifi-y1s is not set
 # CONFIG_TARGET_ramips_mt7620_DEVICE_linksys_e1700 is not set
+# CONFIG_TARGET_ramips_mt7620_DEVICE_mercusys_ac12g-v1-8m is not set
 # CONFIG_TARGET_ramips_mt7620_DEVICE_microduino_microwrt is not set
 # CONFIG_TARGET_ramips_mt7620_DEVICE_netcore_nw5212 is not set
 # CONFIG_TARGET_ramips_mt7620_DEVICE_netgear_ex2700 is not set
@@ -277,6 +278,8 @@ CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt7620_DEVICE_dlink_dwr-921-c1="jboot-tools
 # CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_ralink_mt7620a-mt7610e-evb is not set
 # CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_ralink_mt7620a-evb is not set
 # CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_ralink_mt7620a-v22sg-evb is not set
+CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_mercusys_ac12g-v1-8m=y
+CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt7620_DEVICE_mercusys_ac12g-v1-8m="kmod-libphy kmod-mt76-core kmod-mt76x02-common kmod-mt76x2 kmod-mt76x2-common kmod-rt2800-lib kmod-rt2800-mmio kmod-rt2800-soc kmod-rt2x00-lib kmod-rt2x00-mmio kmod-swconfig kmod-switch-rtl8366-smi kmod-switch-rtl8367b luci-lib-uqr luci-proto-wireguard wireguard-tools wpad-basic-mbedtls"
 # CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_microduino_microwrt is not set
 # CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_netcore_nw5212 is not set
 # CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_netgear_ex2700 is not set

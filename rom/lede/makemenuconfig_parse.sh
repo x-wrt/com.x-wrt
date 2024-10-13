@@ -988,6 +988,7 @@ for t in $targets; do
 		;;
 		# <= 8M
 		TARGET_DEVICE_ramips_mt7620_DEVICE_tplink_archer-c5-v4|\
+		TARGET_DEVICE_ramips_mt7620_DEVICE_mercusys_ac12g-v1-8m|\
 		TARGET_DEVICE_ramips_mt7620_DEVICE_zte_q7|\
 		TARGET_DEVICE_ath79_generic_DEVICE_tplink_tl-wdr6500-v2|\
 		TARGET_DEVICE_ramips_mt76x8_DEVICE_xwrt_xf-949|\
@@ -1508,6 +1509,7 @@ for t in $targets; do
 		;;
 		#no usb
 		TARGET_DEVICE_ramips_mt7620_DEVICE_tplink_archer-c5-v4|\
+		TARGET_DEVICE_ramips_mt7620_DEVICE_mercusys_ac12g-v1-8m|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_asus_rt-ax59u|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_nokia_ea0326gmp|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_ruijie_rg-x60-pro-ubootlayout|\
