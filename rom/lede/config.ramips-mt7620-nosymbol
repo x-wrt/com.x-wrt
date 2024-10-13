@@ -320,7 +320,8 @@ CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt7620_DEVICE_planex_mzk-750dhp="kmod-mt76-
 # CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_tplink_archer-c20-v1 is not set
 CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_tplink_archer-c20i=y
 CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt7620_DEVICE_tplink_archer-c20i="kmod-mt76-core kmod-mt76x02-common kmod-mt76x0-common kmod-mt76x0e kmod-rt2800-lib kmod-rt2800-mmio kmod-rt2800-soc kmod-rt2x00-lib kmod-rt2x00-mmio kmod-usb2 kmod-usb-core kmod-usb-ehci kmod-usb-ohci wpad-basic-mbedtls"
-# CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_tplink_archer-c5-v4 is not set
+CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_tplink_archer-c5-v4=y
+CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt7620_DEVICE_tplink_archer-c5-v4="kmod-libphy kmod-mt76-core kmod-mt76x02-common kmod-mt76x2 kmod-mt76x2-common kmod-rt2800-lib kmod-rt2800-mmio kmod-rt2800-soc kmod-rt2x00-lib kmod-rt2x00-mmio kmod-swconfig kmod-switch-rtl8366-smi kmod-switch-rtl8367b kmod-usb2 kmod-usb-core kmod-usb-ehci kmod-usb-ledtrig-usbport kmod-usb-ohci luci-app-ledtrig-usbport wpad-basic-mbedtls"
 CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_tplink_archer-c50-v1=y
 CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt7620_DEVICE_tplink_archer-c50-v1="kmod-mt76-core kmod-mt76x02-common kmod-mt76x2 kmod-mt76x2-common kmod-rt2800-lib kmod-rt2800-mmio kmod-rt2800-soc kmod-rt2x00-lib kmod-rt2x00-mmio kmod-usb2 kmod-usb-core kmod-usb-ehci kmod-usb-ohci wpad-basic-mbedtls"
 # CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_tplink_archer-mr200 is not set
@@ -392,6 +393,8 @@ CONFIG_MODULE_DEFAULT_kmod-mt76x0e=y
 CONFIG_MODULE_DEFAULT_kmod-mt76x2=y
 CONFIG_DEFAULT_kmod-rt2800-soc=y
 CONFIG_MODULE_DEFAULT_kmod-rt2800-soc=y
+CONFIG_MODULE_DEFAULT_kmod-switch-rtl8367b=y
+CONFIG_MODULE_DEFAULT_kmod-usb-ledtrig-usbport=y
 CONFIG_MODULE_DEFAULT_kmod-usb-net-qmi-wwan=y
 CONFIG_MODULE_DEFAULT_kmod-usb-ohci=y
 CONFIG_MODULE_DEFAULT_kmod-usb-serial-option=y
