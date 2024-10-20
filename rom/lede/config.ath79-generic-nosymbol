@@ -207,6 +207,9 @@ CONFIG_TARGET_MULTI_PROFILE=y
 # CONFIG_TARGET_ath79_generic_DEVICE_moxa_awk-1137c is not set
 # CONFIG_TARGET_ath79_generic_DEVICE_nec_wf1200cr is not set
 # CONFIG_TARGET_ath79_generic_DEVICE_nec_wg1200cr is not set
+# CONFIG_TARGET_ath79_generic_DEVICE_nec_wg1400hp is not set
+# CONFIG_TARGET_ath79_generic_DEVICE_nec_wg1800hp is not set
+# CONFIG_TARGET_ath79_generic_DEVICE_nec_wg1800hp2 is not set
 # CONFIG_TARGET_ath79_generic_DEVICE_nec_wg800hp is not set
 # CONFIG_TARGET_ath79_generic_DEVICE_netgear_ex7300 is not set
 # CONFIG_TARGET_ath79_generic_DEVICE_netgear_ex7300-v2 is not set
@@ -593,6 +596,9 @@ CONFIG_TARGET_DEVICE_PACKAGES_ath79_generic_DEVICE_hiwifi_hc6361="blockd block-m
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_moxa_awk-1137c is not set
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_nec_wf1200cr is not set
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_nec_wg1200cr is not set
+# CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_nec_wg1400hp is not set
+# CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_nec_wg1800hp is not set
+# CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_nec_wg1800hp2 is not set
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_nec_wg800hp is not set
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_netgear_ex7300-v2 is not set
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_netgear_ex7300 is not set
@@ -1214,7 +1220,7 @@ CONFIG_TARGET_INIT_CMD="/sbin/init"
 CONFIG_TARGET_INIT_SUPPRESS_STDERR=y
 CONFIG_VERSIONOPT=y
 CONFIG_VERSION_DIST="X-WRT"
-CONFIG_VERSION_NUMBER="24.04_b202410182034"
+CONFIG_VERSION_NUMBER="24.04_b202410201405"
 CONFIG_VERSION_CODE="Noble"
 CONFIG_VERSION_REPO="http://downloads.openwrt.org/snapshots"
 CONFIG_VERSION_HOME_URL="https://x-wrt.com/"
@@ -3666,6 +3672,7 @@ CONFIG_PACKAGE_ath10k-firmware-qca988x-ct=m
 # CONFIG_PACKAGE_rtl8192ce-firmware is not set
 # CONFIG_PACKAGE_rtl8192cu-firmware is not set
 # CONFIG_PACKAGE_rtl8192de-firmware is not set
+# CONFIG_PACKAGE_rtl8192du-firmware is not set
 # CONFIG_PACKAGE_rtl8192eu-firmware is not set
 # CONFIG_PACKAGE_rtl8192se-firmware is not set
 # CONFIG_PACKAGE_rtl8723au-firmware is not set
@@ -4206,6 +4213,8 @@ CONFIG_PACKAGE_kmod-nft-netdev=y
 # CONFIG_PACKAGE_kmod-bnx2x is not set
 # CONFIG_PACKAGE_kmod-dm9000 is not set
 # CONFIG_PACKAGE_kmod-dsa is not set
+# CONFIG_PACKAGE_kmod-dsa-b53 is not set
+# CONFIG_PACKAGE_kmod-dsa-b53-mdio is not set
 # CONFIG_PACKAGE_kmod-dsa-mv88e6xxx is not set
 # CONFIG_PACKAGE_kmod-dsa-qca8k is not set
 # CONFIG_PACKAGE_kmod-dsa-tag-dsa is not set
@@ -4283,8 +4292,6 @@ CONFIG_PACKAGE_kmod-r8168=m
 # CONFIG_PACKAGE_kmod-spi-ks8995 is not set
 CONFIG_PACKAGE_kmod-swconfig=m
 # CONFIG_PACKAGE_kmod-switch-ar8xxx is not set
-# CONFIG_PACKAGE_kmod-switch-bcm53xx is not set
-# CONFIG_PACKAGE_kmod-switch-bcm53xx-mdio is not set
 # CONFIG_PACKAGE_kmod-switch-ip17xx is not set
 # CONFIG_PACKAGE_kmod-switch-rtl8306 is not set
 CONFIG_PACKAGE_kmod-switch-rtl8366-smi=m
@@ -4715,6 +4722,7 @@ CONFIG_PACKAGE_kmod-owl-loader=m
 # CONFIG_PACKAGE_kmod-rtl8192ce is not set
 # CONFIG_PACKAGE_kmod-rtl8192cu is not set
 # CONFIG_PACKAGE_kmod-rtl8192de is not set
+# CONFIG_PACKAGE_kmod-rtl8192du is not set
 # CONFIG_PACKAGE_kmod-rtl8192se is not set
 # CONFIG_PACKAGE_kmod-rtl8723be is not set
 # CONFIG_PACKAGE_kmod-rtl8723bs is not set
