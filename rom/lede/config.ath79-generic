@@ -68,6 +68,7 @@ CONFIG_TARGET_MULTI_PROFILE=y
 # CONFIG_TARGET_ath79_generic_DEVICE_alfa-network_pi-wifi4 is not set
 # CONFIG_TARGET_ath79_generic_DEVICE_alfa-network_r36a is not set
 # CONFIG_TARGET_ath79_generic_DEVICE_alfa-network_tube-2hq is not set
+# CONFIG_TARGET_ath79_generic_DEVICE_alfa-network_wifi-camppro-nano-duo is not set
 # CONFIG_TARGET_ath79_generic_DEVICE_allnet_all-wap02860ac is not set
 # CONFIG_TARGET_ath79_generic_DEVICE_araknis_an-300-ap-i-n is not set
 # CONFIG_TARGET_ath79_generic_DEVICE_araknis_an-500-ap-i-ac is not set
@@ -105,6 +106,7 @@ CONFIG_TARGET_MULTI_PROFILE=y
 # CONFIG_TARGET_ath79_generic_DEVICE_comfast_cf-e130n-v2 is not set
 # CONFIG_TARGET_ath79_generic_DEVICE_comfast_cf-e313ac is not set
 # CONFIG_TARGET_ath79_generic_DEVICE_comfast_cf-e314n-v2 is not set
+# CONFIG_TARGET_ath79_generic_DEVICE_comfast_cf-e355ac-v2 is not set
 # CONFIG_TARGET_ath79_generic_DEVICE_comfast_cf-e375ac is not set
 # CONFIG_TARGET_ath79_generic_DEVICE_comfast_cf-e380ac-v2 is not set
 # CONFIG_TARGET_ath79_generic_DEVICE_comfast_cf-e5 is not set
@@ -455,6 +457,7 @@ CONFIG_TARGET_PER_DEVICE_ROOTFS=y
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_alfa-network_pi-wifi4 is not set
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_alfa-network_r36a is not set
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_alfa-network_tube-2hq is not set
+# CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_alfa-network_wifi-camppro-nano-duo is not set
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_allnet_all-wap02860ac is not set
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_araknis_an-300-ap-i-n is not set
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_araknis_an-500-ap-i-ac is not set
@@ -499,6 +502,7 @@ CONFIG_TARGET_DEVICE_PACKAGES_ath79_generic_DEVICE_buffalo_wzr-hp-g450h="blockd 
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_comfast_cf-e130n-v2 is not set
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_comfast_cf-e313ac is not set
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_comfast_cf-e314n-v2 is not set
+# CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_comfast_cf-e355ac-v2 is not set
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_comfast_cf-e375ac is not set
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_comfast_cf-e380ac-v2 is not set
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_comfast_cf-e5 is not set
@@ -1229,7 +1233,7 @@ CONFIG_TARGET_INIT_CMD="/sbin/init"
 CONFIG_TARGET_INIT_SUPPRESS_STDERR=y
 CONFIG_VERSIONOPT=y
 CONFIG_VERSION_DIST="X-WRT"
-CONFIG_VERSION_NUMBER="24.04_b202410201421"
+CONFIG_VERSION_NUMBER="24.04_b202410232254"
 CONFIG_VERSION_CODE="Noble"
 CONFIG_VERSION_REPO="http://downloads.openwrt.org/snapshots"
 CONFIG_VERSION_HOME_URL="https://x-wrt.com/"
@@ -3663,6 +3667,7 @@ CONFIG_PACKAGE_ath10k-firmware-qca99x0-ct=m
 # CONFIG_PACKAGE_mt7981-wo-firmware is not set
 # CONFIG_PACKAGE_mt7986-wo-firmware is not set
 # CONFIG_PACKAGE_mt7988-2p5g-phy-firmware is not set
+# CONFIG_PACKAGE_mt7988-wo-firmware is not set
 # CONFIG_PACKAGE_mwifiex-pcie-firmware is not set
 # CONFIG_PACKAGE_mwifiex-sdio-firmware is not set
 # CONFIG_PACKAGE_mwl8k-firmware is not set
@@ -8053,6 +8058,7 @@ CONFIG_PACKAGE_cgi-io=y
 # CONFIG_PACKAGE_nginx-mod-lua-resty-lrucache is not set
 CONFIG_PACKAGE_nginx-mod-luci=m
 # CONFIG_PACKAGE_nginx-mod-naxsi is not set
+# CONFIG_PACKAGE_nginx-mod-njs is not set
 # CONFIG_PACKAGE_nginx-mod-rtmp is not set
 # CONFIG_PACKAGE_nginx-mod-stream is not set
 # CONFIG_PACKAGE_nginx-mod-ts is not set
