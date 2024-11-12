@@ -284,6 +284,7 @@ CONFIG_TARGET_MULTI_PROFILE=y
 # CONFIG_TARGET_ath79_generic_DEVICE_sitecom_wlr-7100 is not set
 # CONFIG_TARGET_ath79_generic_DEVICE_sitecom_wlr-8100 is not set
 # CONFIG_TARGET_ath79_generic_DEVICE_sophos_ap15 is not set
+# CONFIG_TARGET_ath79_generic_DEVICE_sophos_ap15c is not set
 # CONFIG_TARGET_ath79_generic_DEVICE_sophos_ap55 is not set
 # CONFIG_TARGET_ath79_generic_DEVICE_sophos_ap55c is not set
 # CONFIG_TARGET_ath79_generic_DEVICE_sophos_ap100 is not set
@@ -703,6 +704,7 @@ CONFIG_TARGET_DEVICE_PACKAGES_ath79_generic_DEVICE_sitecom_wlr-8100="ath10k-boar
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_sophos_ap100 is not set
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_sophos_ap100c is not set
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_sophos_ap15 is not set
+# CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_sophos_ap15c is not set
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_sophos_ap55 is not set
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_sophos_ap55c is not set
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_telco_t1 is not set
@@ -882,8 +884,6 @@ CONFIG_MODULE_DEFAULT_ath10k-firmware-qca9984-ct=y
 CONFIG_MODULE_DEFAULT_ath10k-firmware-qca99x0-ct=y
 CONFIG_DEFAULT_base-files=y
 CONFIG_MODULE_DEFAULT_base-files=y
-CONFIG_DEFAULT_busybox=y
-CONFIG_MODULE_DEFAULT_busybox=y
 CONFIG_DEFAULT_dnsmasq=y
 CONFIG_MODULE_DEFAULT_dnsmasq=y
 CONFIG_DEFAULT_dropbear=y
@@ -933,14 +933,10 @@ CONFIG_DEFAULT_odhcp6c=y
 CONFIG_MODULE_DEFAULT_odhcp6c=y
 CONFIG_DEFAULT_odhcpd-ipv6only=y
 CONFIG_MODULE_DEFAULT_odhcpd-ipv6only=y
-CONFIG_DEFAULT_opkg=y
-CONFIG_MODULE_DEFAULT_opkg=y
 CONFIG_DEFAULT_ppp=y
 CONFIG_MODULE_DEFAULT_ppp=y
 CONFIG_DEFAULT_ppp-mod-pppoe=y
 CONFIG_MODULE_DEFAULT_ppp-mod-pppoe=y
-CONFIG_DEFAULT_procd=y
-CONFIG_MODULE_DEFAULT_procd=y
 CONFIG_DEFAULT_swconfig=y
 CONFIG_MODULE_DEFAULT_swconfig=y
 CONFIG_DEFAULT_uboot-envtools=y
@@ -1234,7 +1230,7 @@ CONFIG_TARGET_INIT_CMD="/sbin/init"
 CONFIG_TARGET_INIT_SUPPRESS_STDERR=y
 CONFIG_VERSIONOPT=y
 CONFIG_VERSION_DIST="X-WRT"
-CONFIG_VERSION_NUMBER="24.04_b202411071136"
+CONFIG_VERSION_NUMBER="24.04_b202411121107"
 CONFIG_VERSION_CODE="Noble"
 CONFIG_VERSION_REPO="http://downloads.openwrt.org/snapshots"
 CONFIG_VERSION_HOME_URL="https://x-wrt.com/"
@@ -3414,6 +3410,13 @@ CONFIG_ZABBIX_POSTGRESQL=y
 # openwisp
 #
 # CONFIG_PACKAGE_netjson-monitoring is not set
+
+#
+# netjson-monitoring Configuration
+#
+CONFIG_NETJSON_MONITORING_IWINFO=y
+# end of netjson-monitoring Configuration
+
 # CONFIG_PACKAGE_openwisp-config is not set
 # CONFIG_PACKAGE_openwisp-monitoring is not set
 # end of openwisp
@@ -8385,6 +8388,7 @@ CONFIG_MODEMMANAGER_WITH_QRTR=y
 # CONFIG_PACKAGE_nebula is not set
 # CONFIG_PACKAGE_nebula-cert is not set
 # CONFIG_PACKAGE_net-mtools is not set
+# CONFIG_PACKAGE_net-tools-netstat is not set
 # CONFIG_PACKAGE_net-tools-route is not set
 # CONFIG_PACKAGE_netavark is not set
 # CONFIG_PACKAGE_netcat is not set
