@@ -456,7 +456,7 @@ rootfs_type() {
 	/bin/mount | awk '($3 ~ /^\/$/) && ($5 !~ /rootfs/) { print $5 }'
 }
 #clean all log if new flash firmware
-mount -t pstore -o noatime pstore /sys/fs/pstore 2>/dev/null
+mount -t pstore -o nosuid,nodev,noexec,noatime pstore /sys/fs/pstore 2>/dev/null
 if ! [ "$(rootfs_type)" = "tmpfs" ]; then
 	rm -f /sys/fs/pstore/*
 else

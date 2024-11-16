@@ -4,7 +4,7 @@
 START=10
 
 boot() {
-	mount -t pstore -o noatime pstore /sys/fs/pstore 2>/dev/null;
+	mount -t pstore -o nosuid,nodev,noexec,noatime pstore /sys/fs/pstore 2>/dev/null;
 	PSTORE=$(ls -l /sys/fs/pstore/ 2>/dev/null | wc -l)
 	if test $PSTORE -gt 0; then
 		touch /tmp/pstore
