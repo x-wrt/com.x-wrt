@@ -215,25 +215,25 @@ CONFIG_TARGET_PER_DEVICE_ROOTFS=y
 # CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_asus_rt-n14u is not set
 # CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_bdcom_wap2100-sk is not set
 CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_bolt_bl100=y
-CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt7620_DEVICE_bolt_bl100="dawn kmod-mt76-core kmod-mt76x02-common kmod-mt76x2 kmod-mt76x2-common kmod-rt2800-lib kmod-rt2800-mmio kmod-rt2800-soc kmod-rt2x00-lib kmod-rt2x00-mmio kmod-usb2 kmod-usb-core kmod-usb-ehci kmod-usb-ohci libcap-ng libgcrypt libgpg-error liblz4 liblzo libnl-core libnl-genl libqrencode luci-app-dawn luci-app-openvpn luci-app-usteer luci-i18n-dashboard-zh-cn luci-i18n-openvpn-zh-cn luci-lib-uqr luci-mod-dashboard luci-proto-relay luci-proto-wireguard natflow-hostacl openvpn-mbedtls qrencode relayd tc-tiny urllogger wireguard-tools wpad-mbedtls"
+CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt7620_DEVICE_bolt_bl100="apk-mbedtls dawn kmod-mt76-core kmod-mt76x02-common kmod-mt76x2 kmod-mt76x2-common kmod-rt2800-lib kmod-rt2800-mmio kmod-rt2800-soc kmod-rt2x00-lib kmod-rt2x00-mmio kmod-usb2 kmod-usb-core kmod-usb-ehci kmod-usb-ohci libcap-ng libgcrypt libgpg-error liblz4 liblzo libnl-core libnl-genl libqrencode luci-app-dawn luci-app-openvpn luci-app-usteer luci-i18n-dashboard-zh-cn luci-i18n-openvpn-zh-cn luci-lib-uqr luci-mod-dashboard luci-proto-relay luci-proto-wireguard natflow-hostacl openvpn-mbedtls qrencode relayd tc-tiny urllogger wireguard-tools wpad-mbedtls"
 CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_bolt_bl201=y
-CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt7620_DEVICE_bolt_bl201="dawn kmod-mt76-core kmod-mt76x02-common kmod-mt76x2 kmod-mt76x2-common kmod-rt2800-lib kmod-rt2800-mmio kmod-rt2800-soc kmod-rt2x00-lib kmod-rt2x00-mmio libcap-ng libgcrypt libgpg-error liblz4 liblzo libnl-core libnl-genl libqrencode luci-app-dawn luci-app-openvpn luci-app-usteer luci-i18n-dashboard-zh-cn luci-i18n-openvpn-zh-cn luci-lib-uqr luci-mod-dashboard luci-proto-relay luci-proto-wireguard natflow-hostacl openvpn-mbedtls qrencode relayd tc-tiny urllogger wireguard-tools wpad-mbedtls"
+CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt7620_DEVICE_bolt_bl201="apk-mbedtls dawn kmod-mt76-core kmod-mt76x02-common kmod-mt76x2 kmod-mt76x2-common kmod-rt2800-lib kmod-rt2800-mmio kmod-rt2800-soc kmod-rt2x00-lib kmod-rt2x00-mmio libcap-ng libgcrypt libgpg-error liblz4 liblzo libnl-core libnl-genl libqrencode luci-app-dawn luci-app-openvpn luci-app-usteer luci-i18n-dashboard-zh-cn luci-i18n-openvpn-zh-cn luci-lib-uqr luci-mod-dashboard luci-proto-relay luci-proto-wireguard natflow-hostacl openvpn-mbedtls qrencode relayd tc-tiny urllogger wireguard-tools wpad-mbedtls"
 CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_buffalo_whr-1166d=y
-CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt7620_DEVICE_buffalo_whr-1166d="kmod-mt76-core kmod-mt76x02-common kmod-mt76x2 kmod-mt76x2-common kmod-rt2800-lib kmod-rt2800-mmio kmod-rt2800-soc kmod-rt2x00-lib kmod-rt2x00-mmio luci-lib-uqr luci-proto-wireguard wireguard-tools wpad-basic-mbedtls"
+CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt7620_DEVICE_buffalo_whr-1166d="apk-mbedtls kmod-mt76-core kmod-mt76x02-common kmod-mt76x2 kmod-mt76x2-common kmod-rt2800-lib kmod-rt2800-mmio kmod-rt2800-soc kmod-rt2x00-lib kmod-rt2x00-mmio luci-lib-uqr luci-proto-wireguard wireguard-tools wpad-basic-mbedtls"
 # CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_buffalo_whr-300hp2 is not set
 # CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_buffalo_whr-600d is not set
 # CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_buffalo_wmr-300 is not set
 # CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_comfast_cf-wr800n is not set
 # CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_dlink_dch-m225 is not set
 CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_dlink_dir-510l=y
-CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt7620_DEVICE_dlink_dir-510l="dawn jboot-tools kmod-mt76-core kmod-mt76x02-common kmod-mt76x0-common kmod-mt76x0e kmod-rt2800-lib kmod-rt2800-mmio kmod-rt2800-soc kmod-rt2x00-lib kmod-rt2x00-mmio kmod-usb2 kmod-usb-core kmod-usb-ehci kmod-usb-ohci libcap-ng libgcrypt libgpg-error liblz4 liblzo libnl-core libnl-genl libqrencode luci-app-dawn luci-app-openvpn luci-app-usteer luci-i18n-dashboard-zh-cn luci-i18n-openvpn-zh-cn luci-lib-uqr luci-mod-dashboard luci-proto-relay luci-proto-wireguard natflow-hostacl openvpn-mbedtls qrencode relayd tc-tiny urllogger wireguard-tools wpad-mbedtls"
+CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt7620_DEVICE_dlink_dir-510l="apk-mbedtls dawn jboot-tools kmod-mt76-core kmod-mt76x02-common kmod-mt76x0-common kmod-mt76x0e kmod-rt2800-lib kmod-rt2800-mmio kmod-rt2800-soc kmod-rt2x00-lib kmod-rt2x00-mmio kmod-usb2 kmod-usb-core kmod-usb-ehci kmod-usb-ohci libcap-ng libgcrypt libgpg-error liblz4 liblzo libnl-core libnl-genl libqrencode luci-app-dawn luci-app-openvpn luci-app-usteer luci-i18n-dashboard-zh-cn luci-i18n-openvpn-zh-cn luci-lib-uqr luci-mod-dashboard luci-proto-relay luci-proto-wireguard natflow-hostacl openvpn-mbedtls qrencode relayd tc-tiny urllogger wireguard-tools wpad-mbedtls"
 # CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_dlink_dir-806a-b1 is not set
 # CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_dlink_dir-810l is not set
 # CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_dlink_dwr-116-a1 is not set
 # CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_dlink_dwr-118-a1 is not set
 # CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_dlink_dwr-118-a2 is not set
 CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_dlink_dwr-921-c1=y
-CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt7620_DEVICE_dlink_dwr-921-c1="jboot-tools kmod-mii kmod-rt2800-lib kmod-rt2800-mmio kmod-rt2800-soc kmod-rt2x00-lib kmod-rt2x00-mmio kmod-usb2 kmod-usb-core kmod-usb-ehci kmod-usb-net kmod-usb-net-qmi-wwan kmod-usb-ohci kmod-usb-serial kmod-usb-serial-option kmod-usb-serial-wwan kmod-usb-wdm luci-lib-uqr luci-proto-wireguard uqmi wireguard-tools wpad-basic-mbedtls wwan"
+CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt7620_DEVICE_dlink_dwr-921-c1="apk-mbedtls jboot-tools kmod-mii kmod-rt2800-lib kmod-rt2800-mmio kmod-rt2800-soc kmod-rt2x00-lib kmod-rt2x00-mmio kmod-usb2 kmod-usb-core kmod-usb-ehci kmod-usb-net kmod-usb-net-qmi-wwan kmod-usb-ohci kmod-usb-serial kmod-usb-serial-option kmod-usb-serial-wwan kmod-usb-wdm luci-lib-uqr luci-proto-wireguard uqmi wireguard-tools wpad-basic-mbedtls wwan"
 # CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_dlink_dwr-921-c3 is not set
 # CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_dlink_dwr-922-e2 is not set
 # CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_dlink_dwr-960 is not set
@@ -279,7 +279,7 @@ CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt7620_DEVICE_dlink_dwr-921-c1="jboot-tools
 # CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_ralink_mt7620a-evb is not set
 # CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_ralink_mt7620a-v22sg-evb is not set
 CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_mercusys_ac12g-v1-8m=y
-CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt7620_DEVICE_mercusys_ac12g-v1-8m="kmod-libphy kmod-mt76-core kmod-mt76x02-common kmod-mt76x2 kmod-mt76x2-common kmod-rt2800-lib kmod-rt2800-mmio kmod-rt2800-soc kmod-rt2x00-lib kmod-rt2x00-mmio kmod-swconfig kmod-switch-rtl8366-smi kmod-switch-rtl8367b luci-lib-uqr luci-proto-wireguard wireguard-tools wpad-basic-mbedtls"
+CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt7620_DEVICE_mercusys_ac12g-v1-8m="apk-mbedtls kmod-libphy kmod-mt76-core kmod-mt76x02-common kmod-mt76x2 kmod-mt76x2-common kmod-rt2800-lib kmod-rt2800-mmio kmod-rt2800-soc kmod-rt2x00-lib kmod-rt2x00-mmio kmod-swconfig kmod-switch-rtl8366-smi kmod-switch-rtl8367b luci-lib-uqr luci-proto-wireguard wireguard-tools wpad-basic-mbedtls"
 # CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_microduino_microwrt is not set
 # CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_netcore_nw5212 is not set
 # CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_netgear_ex2700 is not set
@@ -293,22 +293,22 @@ CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt7620_DEVICE_mercusys_ac12g-v1-8m="kmod-li
 # CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_netis_wf2770 is not set
 # CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_nexx_wt3020-4m is not set
 CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_nexx_wt3020-8m=y
-CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt7620_DEVICE_nexx_wt3020-8m="blockd block-mount kmod-fs-autofs4 kmod-fs-exfat kmod-fs-ntfs3 kmod-fuse kmod-lib-crc16 kmod-mii kmod-nls-cp437 kmod-rt2800-lib kmod-rt2800-mmio kmod-rt2800-soc kmod-rt2x00-lib kmod-rt2x00-mmio kmod-usb2 kmod-usb-core kmod-usb-ehci kmod-usb-net kmod-usb-net-cdc-ether kmod-usb-net-rndis kmod-usb-ohci kmod-usb-storage luci-lib-uqr luci-proto-wireguard wireguard-tools wpad-basic-mbedtls"
+CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt7620_DEVICE_nexx_wt3020-8m="apk-mbedtls blockd block-mount kmod-fs-autofs4 kmod-fs-exfat kmod-fs-ntfs3 kmod-fuse kmod-lib-crc16 kmod-mii kmod-nls-cp437 kmod-rt2800-lib kmod-rt2800-mmio kmod-rt2800-soc kmod-rt2x00-lib kmod-rt2x00-mmio kmod-usb2 kmod-usb-core kmod-usb-ehci kmod-usb-net kmod-usb-net-cdc-ether kmod-usb-net-rndis kmod-usb-ohci kmod-usb-storage luci-lib-uqr luci-proto-wireguard wireguard-tools wpad-basic-mbedtls"
 # CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_ohyeah_oy-0001 is not set
 CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_phicomm_k2-v22.4=y
-CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt7620_DEVICE_phicomm_k2-v22.4="kmod-mt76-core kmod-mt76x02-common kmod-mt76x2 kmod-mt76x2-common kmod-rt2800-lib kmod-rt2800-mmio kmod-rt2800-soc kmod-rt2x00-lib kmod-rt2x00-mmio luci-lib-uqr luci-proto-wireguard wireguard-tools wpad-basic-mbedtls"
+CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt7620_DEVICE_phicomm_k2-v22.4="apk-mbedtls kmod-mt76-core kmod-mt76x02-common kmod-mt76x2 kmod-mt76x2-common kmod-rt2800-lib kmod-rt2800-mmio kmod-rt2800-soc kmod-rt2x00-lib kmod-rt2x00-mmio luci-lib-uqr luci-proto-wireguard wireguard-tools wpad-basic-mbedtls"
 CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_phicomm_k2-v22.5=y
-CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt7620_DEVICE_phicomm_k2-v22.5="kmod-mt76-core kmod-mt76x02-common kmod-mt76x2 kmod-mt76x2-common kmod-rt2800-lib kmod-rt2800-mmio kmod-rt2800-soc kmod-rt2x00-lib kmod-rt2x00-mmio luci-lib-uqr luci-proto-wireguard wireguard-tools wpad-basic-mbedtls"
+CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt7620_DEVICE_phicomm_k2-v22.5="apk-mbedtls kmod-mt76-core kmod-mt76x02-common kmod-mt76x2 kmod-mt76x2-common kmod-rt2800-lib kmod-rt2800-mmio kmod-rt2800-soc kmod-rt2x00-lib kmod-rt2x00-mmio luci-lib-uqr luci-proto-wireguard wireguard-tools wpad-basic-mbedtls"
 CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_phicomm_k2g=y
-CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt7620_DEVICE_phicomm_k2g="kmod-mt76-core kmod-mt76x02-common kmod-mt76x2 kmod-mt76x2-common kmod-rt2800-lib kmod-rt2800-mmio kmod-rt2800-soc kmod-rt2x00-lib kmod-rt2x00-mmio luci-lib-uqr luci-proto-wireguard wireguard-tools wpad-basic-mbedtls"
+CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt7620_DEVICE_phicomm_k2g="apk-mbedtls kmod-mt76-core kmod-mt76x02-common kmod-mt76x2 kmod-mt76x2-common kmod-rt2800-lib kmod-rt2800-mmio kmod-rt2800-soc kmod-rt2x00-lib kmod-rt2x00-mmio luci-lib-uqr luci-proto-wireguard wireguard-tools wpad-basic-mbedtls"
 CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_phicomm_psg1208=y
-CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt7620_DEVICE_phicomm_psg1208="kmod-mt76-core kmod-mt76x02-common kmod-mt76x2 kmod-mt76x2-common kmod-rt2800-lib kmod-rt2800-mmio kmod-rt2800-soc kmod-rt2x00-lib kmod-rt2x00-mmio luci-lib-uqr luci-proto-wireguard wireguard-tools wpad-basic-mbedtls"
+CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt7620_DEVICE_phicomm_psg1208="apk-mbedtls kmod-mt76-core kmod-mt76x02-common kmod-mt76x2 kmod-mt76x2-common kmod-rt2800-lib kmod-rt2800-mmio kmod-rt2800-soc kmod-rt2x00-lib kmod-rt2x00-mmio luci-lib-uqr luci-proto-wireguard wireguard-tools wpad-basic-mbedtls"
 CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_phicomm_psg1218b=y
-CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt7620_DEVICE_phicomm_psg1218b="kmod-mt76-core kmod-mt76x02-common kmod-mt76x2 kmod-mt76x2-common kmod-rt2800-lib kmod-rt2800-mmio kmod-rt2800-soc kmod-rt2x00-lib kmod-rt2x00-mmio luci-lib-uqr luci-proto-wireguard wireguard-tools wpad-basic-mbedtls"
+CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt7620_DEVICE_phicomm_psg1218b="apk-mbedtls kmod-mt76-core kmod-mt76x02-common kmod-mt76x2 kmod-mt76x2-common kmod-rt2800-lib kmod-rt2800-mmio kmod-rt2800-soc kmod-rt2x00-lib kmod-rt2x00-mmio luci-lib-uqr luci-proto-wireguard wireguard-tools wpad-basic-mbedtls"
 # CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_planex_cs-qr10 is not set
 # CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_planex_db-wrt01 is not set
 CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_planex_mzk-750dhp=y
-CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt7620_DEVICE_planex_mzk-750dhp="kmod-mt76-core kmod-mt76x02-common kmod-mt76x0-common kmod-mt76x0e kmod-rt2800-lib kmod-rt2800-mmio kmod-rt2800-soc kmod-rt2x00-lib kmod-rt2x00-mmio luci-lib-uqr luci-proto-wireguard wireguard-tools wpad-basic-mbedtls"
+CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt7620_DEVICE_planex_mzk-750dhp="apk-mbedtls kmod-mt76-core kmod-mt76x02-common kmod-mt76x0-common kmod-mt76x0e kmod-rt2800-lib kmod-rt2800-mmio kmod-rt2800-soc kmod-rt2x00-lib kmod-rt2x00-mmio luci-lib-uqr luci-proto-wireguard wireguard-tools wpad-basic-mbedtls"
 # CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_planex_mzk-ex300np is not set
 # CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_planex_mzk-ex750np is not set
 # CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_ravpower_rp-wd03 is not set
@@ -322,11 +322,11 @@ CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt7620_DEVICE_planex_mzk-750dhp="kmod-mt76-
 # CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_tplink_archer-c2-v1 is not set
 # CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_tplink_archer-c20-v1 is not set
 CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_tplink_archer-c20i=y
-CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt7620_DEVICE_tplink_archer-c20i="kmod-mt76-core kmod-mt76x02-common kmod-mt76x0-common kmod-mt76x0e kmod-rt2800-lib kmod-rt2800-mmio kmod-rt2800-soc kmod-rt2x00-lib kmod-rt2x00-mmio kmod-usb2 kmod-usb-core kmod-usb-ehci kmod-usb-ohci wpad-basic-mbedtls"
+CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt7620_DEVICE_tplink_archer-c20i="apk-mbedtls kmod-mt76-core kmod-mt76x02-common kmod-mt76x0-common kmod-mt76x0e kmod-rt2800-lib kmod-rt2800-mmio kmod-rt2800-soc kmod-rt2x00-lib kmod-rt2x00-mmio kmod-usb2 kmod-usb-core kmod-usb-ehci kmod-usb-ohci wpad-basic-mbedtls"
 CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_tplink_archer-c5-v4=y
-CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt7620_DEVICE_tplink_archer-c5-v4="kmod-libphy kmod-mt76-core kmod-mt76x02-common kmod-mt76x2 kmod-mt76x2-common kmod-rt2800-lib kmod-rt2800-mmio kmod-rt2800-soc kmod-rt2x00-lib kmod-rt2x00-mmio kmod-swconfig kmod-switch-rtl8366-smi kmod-switch-rtl8367b kmod-usb2 kmod-usb-core kmod-usb-ehci kmod-usb-ledtrig-usbport kmod-usb-ohci luci-app-ledtrig-usbport wpad-basic-mbedtls"
+CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt7620_DEVICE_tplink_archer-c5-v4="apk-mbedtls kmod-libphy kmod-mt76-core kmod-mt76x02-common kmod-mt76x2 kmod-mt76x2-common kmod-rt2800-lib kmod-rt2800-mmio kmod-rt2800-soc kmod-rt2x00-lib kmod-rt2x00-mmio kmod-swconfig kmod-switch-rtl8366-smi kmod-switch-rtl8367b kmod-usb2 kmod-usb-core kmod-usb-ehci kmod-usb-ledtrig-usbport kmod-usb-ohci luci-app-ledtrig-usbport wpad-basic-mbedtls"
 CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_tplink_archer-c50-v1=y
-CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt7620_DEVICE_tplink_archer-c50-v1="kmod-mt76-core kmod-mt76x02-common kmod-mt76x2 kmod-mt76x2-common kmod-rt2800-lib kmod-rt2800-mmio kmod-rt2800-soc kmod-rt2x00-lib kmod-rt2x00-mmio kmod-usb2 kmod-usb-core kmod-usb-ehci kmod-usb-ohci wpad-basic-mbedtls"
+CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt7620_DEVICE_tplink_archer-c50-v1="apk-mbedtls kmod-mt76-core kmod-mt76x02-common kmod-mt76x2 kmod-mt76x2-common kmod-rt2800-lib kmod-rt2800-mmio kmod-rt2800-soc kmod-rt2x00-lib kmod-rt2x00-mmio kmod-usb2 kmod-usb-core kmod-usb-ehci kmod-usb-ohci wpad-basic-mbedtls"
 # CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_tplink_archer-mr200 is not set
 # CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_tplink_ec220-g5-v2 is not set
 # CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_tplink_re200-v1 is not set
@@ -351,14 +351,14 @@ CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt7620_DEVICE_tplink_archer-c50-v1="kmod-mt
 # CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_zbtlink_zbt-we1026-5g-16m is not set
 # CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_zbtlink_zbt-we1026-h-32m is not set
 CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_zbtlink_zbt-we2026=y
-CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt7620_DEVICE_zbtlink_zbt-we2026="kmod-rt2800-lib kmod-rt2800-mmio kmod-rt2800-soc kmod-rt2x00-lib kmod-rt2x00-mmio luci-lib-uqr luci-proto-wireguard wireguard-tools wpad-basic-mbedtls"
+CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt7620_DEVICE_zbtlink_zbt-we2026="apk-mbedtls kmod-rt2800-lib kmod-rt2800-mmio kmod-rt2800-soc kmod-rt2x00-lib kmod-rt2x00-mmio luci-lib-uqr luci-proto-wireguard wireguard-tools wpad-basic-mbedtls"
 # CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_zbtlink_zbt-we826-16m is not set
 # CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_zbtlink_zbt-we826-32m is not set
 # CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_zbtlink_zbt-we826-e is not set
 CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_zbtlink_zbt-wr8305rt=y
-CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt7620_DEVICE_zbtlink_zbt-wr8305rt="kmod-rt2800-lib kmod-rt2800-mmio kmod-rt2800-soc kmod-rt2x00-lib kmod-rt2x00-mmio kmod-usb2 kmod-usb-core kmod-usb-ehci kmod-usb-ohci luci-lib-uqr luci-proto-wireguard wireguard-tools wpad-basic-mbedtls"
+CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt7620_DEVICE_zbtlink_zbt-wr8305rt="apk-mbedtls kmod-rt2800-lib kmod-rt2800-mmio kmod-rt2800-soc kmod-rt2x00-lib kmod-rt2x00-mmio kmod-usb2 kmod-usb-core kmod-usb-ehci kmod-usb-ohci luci-lib-uqr luci-proto-wireguard wireguard-tools wpad-basic-mbedtls"
 CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_zte_q7=y
-CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt7620_DEVICE_zte_q7="kmod-rt2800-lib kmod-rt2800-mmio kmod-rt2800-soc kmod-rt2x00-lib kmod-rt2x00-mmio kmod-usb2 kmod-usb-core kmod-usb-ehci kmod-usb-ohci luci-lib-uqr luci-proto-wireguard wireguard-tools wpad-basic-mbedtls"
+CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt7620_DEVICE_zte_q7="apk-mbedtls kmod-rt2800-lib kmod-rt2800-mmio kmod-rt2800-soc kmod-rt2x00-lib kmod-rt2x00-mmio kmod-usb2 kmod-usb-core kmod-usb-ehci kmod-usb-ohci luci-lib-uqr luci-proto-wireguard wireguard-tools wpad-basic-mbedtls"
 # CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_zyxel_keenetic-lite-iii-a is not set
 # CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_zyxel_keenetic-omni is not set
 # CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_zyxel_keenetic-omni-ii is not set
@@ -497,7 +497,7 @@ CONFIG_ALL_KMODS=y
 CONFIG_SIGNED_PACKAGES=y
 CONFIG_SIGNATURE_CHECK=y
 CONFIG_DOWNLOAD_CHECK_CERTIFICATE=y
-# CONFIG_USE_APK is not set
+CONFIG_USE_APK=y
 
 #
 # General build options
@@ -507,7 +507,6 @@ CONFIG_BUILD_PATENTED=y
 # CONFIG_BUILD_NLS is not set
 CONFIG_SHADOW_PASSWORDS=y
 # CONFIG_CLEAN_IPKG is not set
-# CONFIG_IPK_FILES_CHECKSUMS is not set
 # CONFIG_REPRODUCIBLE_DEBUG_INFO is not set
 # CONFIG_COLLECT_KERNEL_DEBUG is not set
 
@@ -716,7 +715,7 @@ CONFIG_TARGET_INIT_CMD="/sbin/init"
 CONFIG_TARGET_INIT_SUPPRESS_STDERR=y
 CONFIG_VERSIONOPT=y
 CONFIG_VERSION_DIST="X-WRT"
-CONFIG_VERSION_NUMBER="24.04_b202411170548"
+CONFIG_VERSION_NUMBER="24.04_b202411171052"
 CONFIG_VERSION_CODE="Noble"
 CONFIG_VERSION_REPO="http://downloads.openwrt.org/snapshots"
 CONFIG_VERSION_HOME_URL="https://x-wrt.com/"
@@ -2816,7 +2815,7 @@ CONFIG_PACKAGE_mtd=y
 CONFIG_PACKAGE_netifd=y
 # CONFIG_PACKAGE_nft-qos is not set
 CONFIG_PACKAGE_openwrt-keyring=y
-CONFIG_PACKAGE_opkg=y
+CONFIG_PACKAGE_opkg=m
 CONFIG_PACKAGE_procd=y
 
 #

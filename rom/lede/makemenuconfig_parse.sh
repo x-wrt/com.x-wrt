@@ -772,8 +772,8 @@ for t in $targets; do
 			mods="$mods $wgmod $openvpnmod wpad-openssl luci-ssl-nginx luci-nginx"
 			mods="$mods kmod-ipt-compat-xtables kmod-ipt-dhcpmac kmod-ipt-dnetmap iptables-mod-dhcpmac iptables-mod-dnetmap"
 			excludes="$excludes wpad-basic-mbedtls wpad-basic-wolfssl"
-			mods="$mods opkg"
-			excludes="$excludes apk-mbedtls apk-openssl"
+			mods="$mods apk-openssl"
+			excludes="$excludes apk-mbedtls opkg"
 			flash_gt8m=1
 			extra_utils=1
 		;;
@@ -986,8 +986,8 @@ for t in $targets; do
 		TARGET_DEVICE_ath79_generic_DEVICE_bm100_hq55)
 			mods="$mods $wgmod $openvpnmod openvpn-mbedtls wpad-mbedtls $wifiext $tc $lucidashboard $relay urllogger natflow-hostacl"
 			excludes="$excludes wpad-basic-mbedtls openvpn-openssl wpad-basic-wolfssl"
-			mods="$mods opkg"
-			excludes="$excludes apk-openssl apk-mbedtls"
+			mods="$mods apk-mbedtls"
+			excludes="$excludes apk-openssl opkg"
 			flash_gt8m=1
 		;;
 		# <= 8M
@@ -1127,8 +1127,8 @@ for t in $targets; do
 		TARGET_DEVICE_ramips_mt7620_DEVICE_phicomm_psg1218b)
 			mods="$mods wpad-basic-mbedtls wpad-basic-wolfssl"
 			excludes="$excludes wpad-openssl"
-			mods="$mods opkg"
-			excludes="$excludes apk-openssl apk-mbedtls"
+			mods="$mods apk-mbedtls"
+			excludes="$excludes apk-openssl opkg"
 			case $t in
 				*tplink*)
 					:

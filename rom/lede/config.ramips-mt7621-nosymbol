@@ -558,9 +558,9 @@ CONFIG_TARGET_PER_DEVICE_ROOTFS=y
 # CONFIG_TARGET_DEVICE_ramips_mt7621_DEVICE_tplink_re650-v2 is not set
 # CONFIG_TARGET_DEVICE_ramips_mt7621_DEVICE_tplink_tl-wpa8631p-v3 is not set
 CONFIG_TARGET_DEVICE_ramips_mt7621_DEVICE_ubnt_edgerouter-x-sfp=y
-CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt7621_DEVICE_ubnt_edgerouter-x-sfp="dawn ethtool iptables-mod-dhcpmac iptables-mod-dnetmap jool-tools-netfilter kmod-bonding kmod-cryptodev kmod-gpio-pca953x kmod-hwmon-core kmod-i2c-algo-pca kmod-i2c-core kmod-inet-diag kmod-ipt-compat-xtables kmod-ipt-dhcpmac kmod-ipt-dnetmap kmod-jool-netfilter kmod-leds-gpio kmod-libphy kmod-nat46 kmod-nf-conntrack-netlink kmod-phylink kmod-regmap-core kmod-regmap-i2c kmod-sfp libcap-ng libgcrypt libgpg-error liblz4 liblzo libnl libnl-cli libnl-core libnl-genl libnl-nf libnl-route libopenssl libopenssl-conf libopenssl-devcrypto libopenssl-legacy libpcre2 libqrencode libstdcpp libxml2 luci-app-dawn luci-app-openvpn luci-app-usteer luci-i18n-dashboard-zh-cn luci-i18n-openvpn-zh-cn luci-lib-uqr luci-mod-dashboard luci-nginx luci-proto-bonding luci-proto-relay luci-proto-wireguard natflow-hostacl nginx-mod-luci nginx-mod-ubus nginx-ssl nginx-ssl-util openvpn-openssl proto-bonding qrencode relayd tc-tiny urllogger uwsgi uwsgi-cgi-plugin uwsgi-luci-support uwsgi-syslog-plugin wireguard-tools wpad-openssl"
+CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt7621_DEVICE_ubnt_edgerouter-x-sfp="apk-openssl dawn ethtool iptables-mod-dhcpmac iptables-mod-dnetmap jool-tools-netfilter kmod-bonding kmod-cryptodev kmod-gpio-pca953x kmod-hwmon-core kmod-i2c-algo-pca kmod-i2c-core kmod-inet-diag kmod-ipt-compat-xtables kmod-ipt-dhcpmac kmod-ipt-dnetmap kmod-jool-netfilter kmod-leds-gpio kmod-libphy kmod-nat46 kmod-nf-conntrack-netlink kmod-phylink kmod-regmap-core kmod-regmap-i2c kmod-sfp libcap-ng libgcrypt libgpg-error liblz4 liblzo libnl libnl-cli libnl-core libnl-genl libnl-nf libnl-route libopenssl libopenssl-conf libopenssl-devcrypto libopenssl-legacy libpcre2 libqrencode libstdcpp libxml2 luci-app-dawn luci-app-openvpn luci-app-usteer luci-i18n-dashboard-zh-cn luci-i18n-openvpn-zh-cn luci-lib-uqr luci-mod-dashboard luci-nginx luci-proto-bonding luci-proto-relay luci-proto-wireguard natflow-hostacl nginx-mod-luci nginx-mod-ubus nginx-ssl nginx-ssl-util openvpn-openssl proto-bonding qrencode relayd tc-tiny urllogger uwsgi uwsgi-cgi-plugin uwsgi-luci-support uwsgi-syslog-plugin wireguard-tools wpad-openssl"
 CONFIG_TARGET_DEVICE_ramips_mt7621_DEVICE_ubnt_edgerouter-x=y
-CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt7621_DEVICE_ubnt_edgerouter-x="dawn ethtool iptables-mod-dhcpmac iptables-mod-dnetmap jool-tools-netfilter kmod-bonding kmod-cryptodev kmod-inet-diag kmod-ipt-compat-xtables kmod-ipt-dhcpmac kmod-ipt-dnetmap kmod-jool-netfilter kmod-leds-gpio kmod-nat46 kmod-nf-conntrack-netlink libcap-ng libgcrypt libgpg-error liblz4 liblzo libnl libnl-cli libnl-core libnl-genl libnl-nf libnl-route libopenssl libopenssl-conf libopenssl-devcrypto libopenssl-legacy libpcre2 libqrencode libstdcpp libxml2 luci-app-dawn luci-app-openvpn luci-app-usteer luci-i18n-dashboard-zh-cn luci-i18n-openvpn-zh-cn luci-lib-uqr luci-mod-dashboard luci-nginx luci-proto-bonding luci-proto-relay luci-proto-wireguard natflow-hostacl nginx-mod-luci nginx-mod-ubus nginx-ssl nginx-ssl-util openvpn-openssl proto-bonding qrencode relayd tc-tiny urllogger uwsgi uwsgi-cgi-plugin uwsgi-luci-support uwsgi-syslog-plugin wireguard-tools wpad-openssl"
+CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt7621_DEVICE_ubnt_edgerouter-x="apk-openssl dawn ethtool iptables-mod-dhcpmac iptables-mod-dnetmap jool-tools-netfilter kmod-bonding kmod-cryptodev kmod-inet-diag kmod-ipt-compat-xtables kmod-ipt-dhcpmac kmod-ipt-dnetmap kmod-jool-netfilter kmod-leds-gpio kmod-nat46 kmod-nf-conntrack-netlink libcap-ng libgcrypt libgpg-error liblz4 liblzo libnl libnl-cli libnl-core libnl-genl libnl-nf libnl-route libopenssl libopenssl-conf libopenssl-devcrypto libopenssl-legacy libpcre2 libqrencode libstdcpp libxml2 luci-app-dawn luci-app-openvpn luci-app-usteer luci-i18n-dashboard-zh-cn luci-i18n-openvpn-zh-cn luci-lib-uqr luci-mod-dashboard luci-nginx luci-proto-bonding luci-proto-relay luci-proto-wireguard natflow-hostacl nginx-mod-luci nginx-mod-ubus nginx-ssl nginx-ssl-util openvpn-openssl proto-bonding qrencode relayd tc-tiny urllogger uwsgi uwsgi-cgi-plugin uwsgi-luci-support uwsgi-syslog-plugin wireguard-tools wpad-openssl"
 # CONFIG_TARGET_DEVICE_ramips_mt7621_DEVICE_ubnt_unifi-flexhd is not set
 # CONFIG_TARGET_DEVICE_ramips_mt7621_DEVICE_ubnt_unifi-nanohd is not set
 # CONFIG_TARGET_DEVICE_ramips_mt7621_DEVICE_ubnt_usw-flex is not set
@@ -763,7 +763,7 @@ CONFIG_ALL_KMODS=y
 CONFIG_SIGNED_PACKAGES=y
 CONFIG_SIGNATURE_CHECK=y
 CONFIG_DOWNLOAD_CHECK_CERTIFICATE=y
-# CONFIG_USE_APK is not set
+CONFIG_USE_APK=y
 
 #
 # General build options
@@ -773,7 +773,6 @@ CONFIG_BUILD_PATENTED=y
 # CONFIG_BUILD_NLS is not set
 CONFIG_SHADOW_PASSWORDS=y
 # CONFIG_CLEAN_IPKG is not set
-# CONFIG_IPK_FILES_CHECKSUMS is not set
 # CONFIG_REPRODUCIBLE_DEBUG_INFO is not set
 # CONFIG_COLLECT_KERNEL_DEBUG is not set
 
@@ -982,7 +981,7 @@ CONFIG_TARGET_INIT_CMD="/sbin/init"
 CONFIG_TARGET_INIT_SUPPRESS_STDERR=y
 CONFIG_VERSIONOPT=y
 CONFIG_VERSION_DIST="X-WRT"
-CONFIG_VERSION_NUMBER="24.04_b202411170548"
+CONFIG_VERSION_NUMBER="24.04_b202411171052"
 CONFIG_VERSION_CODE="Noble"
 CONFIG_VERSION_REPO="http://downloads.openwrt.org/snapshots"
 CONFIG_VERSION_HOME_URL="https://x-wrt.com/"
@@ -3083,7 +3082,7 @@ CONFIG_PACKAGE_mtd=y
 CONFIG_PACKAGE_netifd=y
 # CONFIG_PACKAGE_nft-qos is not set
 CONFIG_PACKAGE_openwrt-keyring=y
-CONFIG_PACKAGE_opkg=y
+CONFIG_PACKAGE_opkg=m
 CONFIG_PACKAGE_procd=y
 
 #
