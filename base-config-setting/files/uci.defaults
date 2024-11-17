@@ -474,6 +474,9 @@ uci -q batch <<-EOF >/dev/null
 	commit ucitrack
 EOF
 
+#cleanup opkg
+rm -rf /etc/opkg
+
 #update /etc/hosts
 grep -q services.googleapis.cn /etc/hosts || echo 172.217.165.138 services.googleapis.cn >>/etc/hosts
 grep -q google.cn /etc/hosts || echo 142.250.66.131 google.cn >>/etc/hosts
