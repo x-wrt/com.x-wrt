@@ -475,7 +475,7 @@ uci -q batch <<-EOF >/dev/null
 EOF
 
 #cleanup opkg
-rm -rf /etc/opkg
+test -e /usr/bin/apk && rm -rf /etc/opkg
 
 #update /etc/hosts
 grep -q services.googleapis.cn /etc/hosts || echo 172.217.165.138 services.googleapis.cn >>/etc/hosts
