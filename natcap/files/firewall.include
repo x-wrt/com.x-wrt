@@ -21,7 +21,9 @@ if [ x`uci get natcapd.default.dnsproxy 2>/dev/null` = x1 ] && [ x`uci get natca
 
 	#nft
 	nft -a list chain inet fw4 mangle_prerouting | grep -o "natcap_dnsproxy.*" | while read _ _ _ handle; do nft delete rule inet fw4 mangle_prerouting handle $handle; done
-	nft insert rule inet fw4 mangle_prerouting ct state new udp dport 53 counter meta mark set mark and 0xff7fff0f xor 0x800090 comment "natcap_dnsproxy"
+	nft insert rule inet fw4 mangle_prerouting ct state new udp dport 53 counter meta mark set mark and 0xff7fffff xor 0x00800000 comment "natcap_dnsproxy"
+	nft insert rule inet fw4 mangle_prerouting ct state new udp dport 53 counter meta mark set mark and 0xffffff0f xor 0x00000090 comment "natcap_dnsproxy"
+	nft insert rule inet fw4 mangle_prerouting ct state new udp dport 53 counter meta mark set mark and 0xff7fff0f xor 0x00000000 comment "natcap_dnsproxy"
 
 	nft -a list chain inet fw4 dstnat | grep -o "natcap_dnsproxy.*" | while read _ _ _ handle; do nft delete rule inet fw4 dstnat handle $handle; done
 	lans=$(echo $(fw4 -q zone lan | sort | uniq | sed 's/\(.*\)/"\1",/g') | sed 's/,$//')
