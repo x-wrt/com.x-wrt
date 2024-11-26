@@ -60,6 +60,11 @@ if [ "${enabled}" -ne 1 ] && [ "${INTERFACE}" != "${INTERFACE%_6}" ]; then
 	INTERFACE=${INTERFACE%_6}
 	config_get_bool enabled $INTERFACE 'enabled' '0'
 	FAMILY="ipv6"
+#XXX: ifup event on wan6 but we use wan as interface
+elif [ "${enabled}" -ne 1 ] && [ "${INTERFACE}" != "${INTERFACE%6}" ]; then
+	INTERFACE=${INTERFACE%6}
+	config_get_bool enabled $INTERFACE 'enabled' '0'
+	FAMILY="ipv6"
 fi
 # XXX: ifup event on wan_4 but we use wan as interface
 if [ "${enabled}" -ne 1 ] && [ "${INTERFACE}" != "${INTERFACE%_4}" ]; then
