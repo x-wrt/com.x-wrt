@@ -84,6 +84,8 @@ for i in $IDXS; do
 			make package/utils/util-linux/clean
 			make package/libs/wolfssl/clean
 			make package/feeds/packages/glib2/clean
+			make package/feeds/packages/i2c-tools/clean
+			make package/feeds/packages/kmod/clean
 			touch ./feeds/packages/libs/libgpg-error/Makefile
 			$* || exit 255
 		}
