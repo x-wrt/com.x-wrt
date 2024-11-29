@@ -353,7 +353,7 @@ agent_sync_config()
 
 				[ "$enabled" = "1" ] && {
 					for band in $bands; do
-						wbandstr=$(uci show wireless | grep .band=\'${band}\'$ -m1)
+						for wbandstr in $(uci show wireless | grep .band=\'${band}\'$); do
 						if test -n "$wbandstr"; then
 							radio=$(echo $wbandstr | cut -d\. -f2)
 
@@ -396,6 +396,7 @@ agent_sync_config()
 
 							K=$((K+1))
 						fi
+						done
 					done
 				}
 
