@@ -382,7 +382,7 @@ agent_sync_config()
 								uci set wireless.wifinet$K.ft_over_ds='1'
 								uci set wireless.wifinet$K.ft_psk_generate_local='1'
 							fi
-							if opkg list-installed | grep -q wpad-basic || apk list | grep wpad-basic | grep -q installed; then
+							if opkg list-installed 2>/dev/null | grep -q wpad-basic || apk list 2>/dev/null | grep wpad-basic | grep -q installed; then
 								:
 							else
 								uci set wireless.wifinet$K.bss_transition='1'
