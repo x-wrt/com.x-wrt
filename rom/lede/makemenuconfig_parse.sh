@@ -1872,6 +1872,8 @@ rt73-usb-firmware"
 			mods="$mods $usb4g $quectel $modem_info"
 			has_usb=0
 		;;
+		TARGET_DEVICE_mediatek_filogic_DEVICE_nradio_c8-668gl|\
+		TARGET_DEVICE_mediatek_filogic_DEVICE_nradio_c8-660|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_xwrt_5g-cpe1801k)
 			mods="$mods $usb4g $modem_info"
 		;;
