@@ -14,7 +14,7 @@ if test -f /rom/lib/preinit/79_disk_ready; then
 			ubinfo $overlay_dev 2>/dev/null | grep -q "extroot_overlay" && {
 				touch /overlay/.extroot-erase
 				sync
-				jffs2reset $@
+				test -x /sbin/factoryreset && /sbin/factoryreset $@ || jffs2reset $@
 				if [ x"$1" = x"-r" ] || [ x"$2" = x"-r" ]; then
 					reboot
 				fi
@@ -23,7 +23,7 @@ if test -f /rom/lib/preinit/79_disk_ready; then
 	fi
 fi
 
-jffs2reset $@
+test -x /sbin/factoryreset && /sbin/factoryreset $@ || jffs2reset $@
 
 exit $?
 
