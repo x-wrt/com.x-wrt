@@ -8737,3 +8737,9 @@ CONFIG_PACKAGE_urllogger=y
 # CONFIG_PACKAGE_fontconfig is not set
 # end of Font-Utils
 # end of Xorg
+# CONFIG_PACKAGE_rtl8812a-firmware is not set
+# CONFIG_PACKAGE_rtl8821a-firmware is not set
+# CONFIG_PACKAGE_rtl8812a-firmware is not set
+# CONFIG_PACKAGE_rtl8821a-firmware is not set
+# CONFIG_PACKAGE_kmod-rtw88-8812au is not set
+# CONFIG_PACKAGE_kmod-rtw88-8821au is not set
