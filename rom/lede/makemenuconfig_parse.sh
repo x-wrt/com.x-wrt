@@ -594,6 +594,7 @@ for t in $targets; do
 		TARGET_DEVICE_qualcommax_ipq807x_DEVICE_netgear_wax218|\
 		TARGET_DEVICE_ipq806x_generic_DEVICE_netgear_xr450|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_tenbay_wr3000k-gsw-emmc-nor|\
+		TARGET_DEVICE_mediatek_filogic_DEVICE_xwrt_wr3000k-emmc-nor|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_glinet_gl-mt3000|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_asus_tuf-ax4200|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_tenbay_ac-2210e|\
@@ -1561,6 +1562,7 @@ for t in $targets; do
 		TARGET_DEVICE_mediatek_filogic_DEVICE_netgear_wax220|\
 		TARGET_DEVICE_qualcommax_ipq807x_DEVICE_netgear_wax218|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_tenbay_wr3000k-gsw-emmc-nor|\
+		TARGET_DEVICE_mediatek_filogic_DEVICE_xwrt_wr3000k-emmc-nor|\
 		TARGET_DEVICE_ramips_mt76x8_DEVICE_xiaomi_mi-ra75|\
 		TARGET_DEVICE_ramips_mt7620_DEVICE_bolt_bl201|\
 		TARGET_DEVICE_ramips_mt7620_DEVICE_bolt_bl100|\
