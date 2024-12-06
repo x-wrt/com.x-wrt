@@ -529,6 +529,7 @@ for t in $targets; do
 	esac
 	case $t in
 		#>=14M flash
+		TARGET_DEVICE_qualcommax_ipq60xx_DEVICE_qihoo_360v6|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_nradio_c8-668gl|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_nradio_c8-660|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_zyxel_ex5700-telenor|\
@@ -1334,6 +1335,7 @@ for t in $targets; do
 			has_usb=1
 		;;
 		#with usb2
+		TARGET_DEVICE_qualcommax_ipq60xx_DEVICE_qihoo_360v6|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_openwrt_one|\
 		TARGET_DEVICE_qualcommax_ipq807x_DEVICE_zte_mf269|\
 		TARGET_DEVICE_ath79_generic_DEVICE_comfast_cf-e5|\
