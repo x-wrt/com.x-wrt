@@ -1825,6 +1825,7 @@ rt73-usb-firmware"
 			mods="$mods $mdadm $disk base-config-setting-ext4fs"
 			mods="$mods urllogger natflow-hostacl"
 		;;
+		TARGET_DEVICE_mediatek_filogic_DEVICE_xwrt_wr3000k-emmc-nor|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_tenbay_wr3000k)
 			mods="$mods base-config-setting-ext4fs"
 		;;
