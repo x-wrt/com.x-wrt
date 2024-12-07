@@ -141,6 +141,18 @@ do_disk_ready() {
 			is_x86=0
 		fi
 		;;
+	xwrt,wr3000k-emmc-nor)
+		if test -b /dev/mmcblk0; then
+			ROOTDEV=/dev/mmcblk0
+			ROOTPART=/dev/mmcblk0p
+			overlay_size="$((1*1024))" #1024M
+			diskpart_num1=0
+			is_x86=0
+			if ! test -b /dev/mmcblk0p2; then
+				dd if=/dev/zero of=/dev/mmcblk0 bs=32M count=1
+			fi
+		fi
+		;;
 	tenbay,wr3000k)
 		# ubifs extroot setup
 		. /lib/upgrade/nand.sh
