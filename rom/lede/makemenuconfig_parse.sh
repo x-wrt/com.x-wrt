@@ -409,6 +409,7 @@ for t in $targets; do
 	excludes="$excludes_basic"
 	case $t in
 		#>=32M flash
+		TARGET_DEVICE_qualcommax_ipq807x_DEVICE_asus_rt-ax89x|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_nradio_c8-668gl|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_nradio_c8-660|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_zyxel_ex5700-telenor|\
@@ -529,6 +530,7 @@ for t in $targets; do
 	esac
 	case $t in
 		#>=14M flash
+		TARGET_DEVICE_qualcommax_ipq807x_DEVICE_asus_rt-ax89x|\
 		TARGET_DEVICE_qualcommax_ipq60xx_DEVICE_qihoo_360v6|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_nradio_c8-668gl|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_nradio_c8-660|\
@@ -1149,6 +1151,7 @@ for t in $targets; do
 	#check usb
 	case $t in
 		#with usb3
+		TARGET_DEVICE_qualcommax_ipq807x_DEVICE_asus_rt-ax89x|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_nradio_c8-668gl|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_nradio_c8-660|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_zyxel_ex5700-telenor|\
