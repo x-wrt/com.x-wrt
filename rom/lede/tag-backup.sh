@@ -16,7 +16,7 @@ test -n "$TAG" && release=0
 TAG=${TAG-$CONFIG_VERSION_NUMBER} &&
 test -n "$TAG" || fail no TAG
 
-for d in feeds/packages feeds/luci feeds/routing feeds/telephony; do
+for d in feeds/packages feeds/luci feeds/routing feeds/telephony feeds/video; do
 	echo CD: $d
 	cd "$d" && {
 		echo
