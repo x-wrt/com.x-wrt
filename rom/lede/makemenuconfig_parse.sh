@@ -410,7 +410,6 @@ for t in $targets; do
 	case $t in
 		#>=32M flash
 		TARGET_DEVICE_qualcommax_ipq60xx_DEVICE_linksys_mr7350|\
-		TARGET_DEVICE_qualcommax_ipq807x_DEVICE_asus_rt-ax89x|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_nradio_c8-668gl|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_nradio_c8-660|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_zyxel_ex5700-telenor|\
@@ -541,7 +540,6 @@ for t in $targets; do
 		TARGET_DEVICE_rockchip_armv8_DEVICE_radxa_rock-5a|\
 		TARGET_DEVICE_rockchip_armv8_DEVICE_radxa_rock-5b|\
 		TARGET_DEVICE_qualcommax_ipq807x_DEVICE_arcadyan_aw1000|\
-		TARGET_DEVICE_qualcommax_ipq807x_DEVICE_asus_rt-ax89x|\
 		TARGET_DEVICE_qualcommax_ipq807x_DEVICE_linksys_mx8500|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_asus_rt-ax59u|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_bananapi_bpi-r4-poe|\
@@ -1153,7 +1151,6 @@ for t in $targets; do
 	#check usb
 	case $t in
 		#with usb3
-		TARGET_DEVICE_qualcommax_ipq807x_DEVICE_asus_rt-ax89x|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_nradio_c8-668gl|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_nradio_c8-660|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_zyxel_ex5700-telenor|\
