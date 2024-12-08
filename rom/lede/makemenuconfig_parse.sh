@@ -531,7 +531,6 @@ for t in $targets; do
 	case $t in
 		#>=14M flash
 		TARGET_DEVICE_qualcommax_ipq60xx_DEVICE_linksys_mr7350|\
-		TARGET_DEVICE_qualcommax_ipq807x_DEVICE_asus_rt-ax89x|\
 		TARGET_DEVICE_qualcommax_ipq60xx_DEVICE_qihoo_360v6|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_nradio_c8-668gl|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_nradio_c8-660|\
@@ -997,6 +996,7 @@ for t in $targets; do
 			flash_gt8m=1
 		;;
 		# <= 8M
+		TARGET_DEVICE_qualcommax_ipq807x_DEVICE_asus_rt-ax89x|\
 		TARGET_DEVICE_ramips_mt7620_DEVICE_tplink_archer-c5-v4|\
 		TARGET_DEVICE_ramips_mt7620_DEVICE_mercusys_ac12g-v1-8m|\
 		TARGET_DEVICE_ramips_mt7620_DEVICE_zte_q7|\
