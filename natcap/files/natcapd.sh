@@ -1058,6 +1058,18 @@ gfwlist_update_main () {
 			esac
 		}
 
+		#update /etc/hosts
+		res=`nslookup_check services.googleapis.com`
+		if test -n "$res"; then
+			sed -i "/services.googleapis.cn/d" /etc/hosts
+			echo $res services.googleapis.cn >>/etc/hosts
+		fi
+		res=`nslookup_check google.com`
+		if test -n "$res"; then
+			sed -i "/google.cn/d" /etc/hosts
+			echo $res google.cn >>/etc/hosts
+		fi
+
 		#check and limit
 		FL=$(uci get natcapd.default.server_flow_limit 2>/dev/null || echo 0)
 		FB=$(uci get natcapd.default.server_flow_bill 2>/dev/null || echo 1)

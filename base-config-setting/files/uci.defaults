@@ -477,10 +477,6 @@ EOF
 #cleanup opkg
 test -e /usr/bin/apk && rm -rf /etc/opkg || sed -i 's,/snapshots/packages/,/releases/packages-24.10/,' /etc/opkg/distfeeds.conf
 
-#update /etc/hosts
-grep -q services.googleapis.cn /etc/hosts || echo 172.217.165.138 services.googleapis.cn >>/etc/hosts
-grep -q google.cn /etc/hosts || echo 142.250.66.131 google.cn >>/etc/hosts
-
 #firewall4 output_ttl support
 grep -q "^sh /usr/share/firewall4/output-ttl.include" /etc/firewall.include || \
 echo "sh /usr/share/firewall4/output-ttl.include" >>/etc/firewall.include
