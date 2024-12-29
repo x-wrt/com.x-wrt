@@ -85,4 +85,5 @@ for i in $(seq 30); do
 done
 
 done
+sleep 15
 lock -u /var/run/p910nd-helper.lck
