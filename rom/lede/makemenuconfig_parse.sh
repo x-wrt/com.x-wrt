@@ -530,6 +530,8 @@ for t in $targets; do
 	esac
 	case $t in
 		#>=14M flash
+		TARGET_DEVICE_ramips_mt7621_DEVICE_zyxel_nwa50ax|\
+		TARGET_DEVICE_ramips_mt7621_DEVICE_zyxel_nwa55axe|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_cudy_tr3000-v1|\
 		TARGET_DEVICE_qualcommax_ipq60xx_DEVICE_linksys_mr7350|\
 		TARGET_DEVICE_qualcommax_ipq60xx_DEVICE_qihoo_360v6|\
@@ -1524,6 +1526,8 @@ for t in $targets; do
 			has_usb=1
 		;;
 		#no usb
+		TARGET_DEVICE_ramips_mt7621_DEVICE_zyxel_nwa50ax|\
+		TARGET_DEVICE_ramips_mt7621_DEVICE_zyxel_nwa55axe|\
 		TARGET_DEVICE_qualcommax_ipq60xx_DEVICE_linksys_mr7350|\
 		TARGET_DEVICE_ramips_mt7620_DEVICE_tplink_archer-c5-v4|\
 		TARGET_DEVICE_ramips_mt7620_DEVICE_mercusys_ac12g-v1-8m|\
