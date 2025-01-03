@@ -475,7 +475,7 @@ uci -q batch <<-EOF >/dev/null
 EOF
 
 #cleanup opkg
-test -e /usr/bin/apk && rm -rf /etc/opkg || sed -i 's,/snapshots/packages/,/releases/packages-24.10/,' /etc/opkg/distfeeds.conf
+test -e /usr/bin/apk && rm -rf /etc/opkg || sed -i 's,/snapshots/packages/,/releases/packages-24.10/,;s,/snapshots/targets/,/releases/24.10.0-rc4/targets/,' /etc/opkg/distfeeds.conf
 
 #firewall4 output_ttl support
 grep -q "^sh /usr/share/firewall4/output-ttl.include" /etc/firewall.include || \
