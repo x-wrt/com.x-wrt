@@ -404,7 +404,7 @@ test $version -lt 21 && {
 
 test $version -lt 22 && {
 	#fix distfeeds.conf
-	head -n4 /etc/opkg/distfeeds.conf >/tmp/distfeeds.conf && mv /tmp/distfeeds.conf /etc/opkg/distfeeds.conf
+	head -n6 /etc/opkg/distfeeds.conf >/tmp/distfeeds.conf && mv /tmp/distfeeds.conf /etc/opkg/distfeeds.conf
 	version=22
 }
 
