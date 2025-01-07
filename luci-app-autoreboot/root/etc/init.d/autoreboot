@@ -22,7 +22,7 @@ run_reboot()
 		/etc/init.d/cron restart
 		echo "Auto REBOOT has started."
 	else
-		sed -i '/reboot/d' /etc/crontabs/root >/dev/null 2>&1
+		sed -i '/sleep 5 && touch \/etc\/banner && reboot/d' /etc/crontabs/root >/dev/null 2>&1
 		/etc/init.d/cron restart
 		echo "Auto REBOOT has canceled."
 	fi
