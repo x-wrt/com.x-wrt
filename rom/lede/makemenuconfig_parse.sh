@@ -790,6 +790,7 @@ for t in $targets; do
 			extra_utils=1
 		;;
 		#>8M flash <14M
+		TARGET_DEVICE_ramips_mt7621_DEVICE_ruijie_rg-ew1200g-pro-v1.1|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_cudy_re3000-v1|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_cudy_wr3000-v1|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_jdcloud_re-cp-02|\
@@ -1532,6 +1533,7 @@ for t in $targets; do
 			has_usb=1
 		;;
 		#no usb
+		TARGET_DEVICE_ramips_mt7621_DEVICE_ruijie_rg-ew1200g-pro-v1.1|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_cudy_ap3000outdoor-v1|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_cudy_ap3000-v1|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_cudy_m3000-v1|\
