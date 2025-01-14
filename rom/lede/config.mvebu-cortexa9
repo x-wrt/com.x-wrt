@@ -84,6 +84,7 @@ CONFIG_TARGET_MULTI_PROFILE=y
 # CONFIG_TARGET_mvebu_cortexa9_DEVICE_solidrun_clearfog-base-a1 is not set
 # CONFIG_TARGET_mvebu_cortexa9_DEVICE_solidrun_clearfog-pro-a1 is not set
 # CONFIG_TARGET_mvebu_cortexa9_DEVICE_synology_ds213j is not set
+# CONFIG_TARGET_mvebu_cortexa9_DEVICE_wd_cloud-mirror-gen2 is not set
 
 #
 # Target Devices
@@ -126,6 +127,7 @@ CONFIG_TARGET_DEVICE_PACKAGES_mvebu_cortexa9_DEVICE_linksys_wrt32x="apk-openssl 
 # CONFIG_TARGET_DEVICE_mvebu_cortexa9_DEVICE_solidrun_clearfog-base-a1 is not set
 # CONFIG_TARGET_DEVICE_mvebu_cortexa9_DEVICE_solidrun_clearfog-pro-a1 is not set
 # CONFIG_TARGET_DEVICE_mvebu_cortexa9_DEVICE_synology_ds213j is not set
+# CONFIG_TARGET_DEVICE_mvebu_cortexa9_DEVICE_wd_cloud-mirror-gen2 is not set
 # end of Target Devices
 
 CONFIG_HAS_SUBTARGETS=y
@@ -498,7 +500,7 @@ CONFIG_TARGET_INIT_CMD="/sbin/init"
 CONFIG_TARGET_INIT_SUPPRESS_STDERR=y
 CONFIG_VERSIONOPT=y
 CONFIG_VERSION_DIST="X-WRT"
-CONFIG_VERSION_NUMBER="25.01_b202501120920"
+CONFIG_VERSION_NUMBER="25.01_b202501141010"
 CONFIG_VERSION_CODE="Plucky"
 CONFIG_VERSION_REPO="http://downloads.openwrt.org/snapshots"
 CONFIG_VERSION_HOME_URL="https://x-wrt.com/"

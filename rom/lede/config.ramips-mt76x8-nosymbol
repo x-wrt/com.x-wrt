@@ -91,6 +91,7 @@ CONFIG_TARGET_MULTI_PROFILE=y
 # CONFIG_TARGET_ramips_mt76x8_DEVICE_jotale_js76x8-16m is not set
 # CONFIG_TARGET_ramips_mt76x8_DEVICE_jotale_js76x8-32m is not set
 # CONFIG_TARGET_ramips_mt76x8_DEVICE_keenetic_kn-1613 is not set
+# CONFIG_TARGET_ramips_mt76x8_DEVICE_keenetic_kn-1711 is not set
 # CONFIG_TARGET_ramips_mt76x8_DEVICE_keenetic_kn-1713 is not set
 # CONFIG_TARGET_ramips_mt76x8_DEVICE_keenetic_kn-3211 is not set
 # CONFIG_TARGET_ramips_mt76x8_DEVICE_kroks_kndrt31r16 is not set
@@ -210,6 +211,7 @@ CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt76x8_DEVICE_glinet_vixmini="luci-lib-uqr 
 # CONFIG_TARGET_DEVICE_ramips_mt76x8_DEVICE_jotale_js76x8-32m is not set
 # CONFIG_TARGET_DEVICE_ramips_mt76x8_DEVICE_jotale_js76x8-8m is not set
 # CONFIG_TARGET_DEVICE_ramips_mt76x8_DEVICE_keenetic_kn-1613 is not set
+# CONFIG_TARGET_DEVICE_ramips_mt76x8_DEVICE_keenetic_kn-1711 is not set
 # CONFIG_TARGET_DEVICE_ramips_mt76x8_DEVICE_keenetic_kn-1713 is not set
 # CONFIG_TARGET_DEVICE_ramips_mt76x8_DEVICE_keenetic_kn-3211 is not set
 # CONFIG_TARGET_DEVICE_ramips_mt76x8_DEVICE_kroks_kndrt31r16 is not set
@@ -663,7 +665,7 @@ CONFIG_TARGET_INIT_CMD="/sbin/init"
 CONFIG_TARGET_INIT_SUPPRESS_STDERR=y
 CONFIG_VERSIONOPT=y
 CONFIG_VERSION_DIST="X-WRT"
-CONFIG_VERSION_NUMBER="25.01_b202501120920"
+CONFIG_VERSION_NUMBER="25.01_b202501141010"
 CONFIG_VERSION_CODE="Plucky"
 CONFIG_VERSION_REPO="http://downloads.openwrt.org/snapshots"
 CONFIG_VERSION_HOME_URL="https://x-wrt.com/"

@@ -92,6 +92,7 @@ CONFIG_TARGET_MULTI_PROFILE=y
 # CONFIG_TARGET_mediatek_filogic_DEVICE_cudy_tr3000-v1 is not set
 # CONFIG_TARGET_mediatek_filogic_DEVICE_cudy_wr3000-v1 is not set
 # CONFIG_TARGET_mediatek_filogic_DEVICE_cudy_wr3000s-v1 is not set
+# CONFIG_TARGET_mediatek_filogic_DEVICE_cudy_wr3000h-v1 is not set
 # CONFIG_TARGET_mediatek_filogic_DEVICE_dlink_aquila-pro-ai-m30-a1 is not set
 # CONFIG_TARGET_mediatek_filogic_DEVICE_dlink_aquila-pro-ai-m60-a1 is not set
 # CONFIG_TARGET_mediatek_filogic_DEVICE_edgecore_eap111 is not set
@@ -210,6 +211,7 @@ CONFIG_TARGET_DEVICE_PACKAGES_mediatek_filogic_DEVICE_bananapi_bpi-r4-poe="apk-o
 # CONFIG_TARGET_DEVICE_mediatek_filogic_DEVICE_cudy_re3000-v1 is not set
 # CONFIG_TARGET_DEVICE_mediatek_filogic_DEVICE_cudy_tr3000-v1 is not set
 # CONFIG_TARGET_DEVICE_mediatek_filogic_DEVICE_cudy_wr3000-v1 is not set
+# CONFIG_TARGET_DEVICE_mediatek_filogic_DEVICE_cudy_wr3000h-v1 is not set
 # CONFIG_TARGET_DEVICE_mediatek_filogic_DEVICE_cudy_wr3000s-v1 is not set
 # CONFIG_TARGET_DEVICE_mediatek_filogic_DEVICE_dlink_aquila-pro-ai-m30-a1 is not set
 # CONFIG_TARGET_DEVICE_mediatek_filogic_DEVICE_dlink_aquila-pro-ai-m60-a1 is not set
@@ -722,7 +724,7 @@ CONFIG_TARGET_INIT_CMD="/sbin/init"
 CONFIG_TARGET_INIT_SUPPRESS_STDERR=y
 CONFIG_VERSIONOPT=y
 CONFIG_VERSION_DIST="X-WRT"
-CONFIG_VERSION_NUMBER="25.01_b202501120920"
+CONFIG_VERSION_NUMBER="25.01_b202501141010"
 CONFIG_VERSION_CODE="Plucky"
 CONFIG_VERSION_REPO="http://downloads.openwrt.org/snapshots"
 CONFIG_VERSION_HOME_URL="https://x-wrt.com/"
