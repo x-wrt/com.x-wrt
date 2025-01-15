@@ -408,6 +408,22 @@ test $version -lt 22 && {
 	version=22
 }
 
+test $version -lt 23 && {
+uci -q batch <<-EOT
+	delete firewall.dmz
+	set firewall.dmz=redirect
+	set firewall.dmz.dest='lan'
+	set firewall.dmz.target='DNAT'
+	set firewall.dmz.name='DMZ (Please move to last rule)'
+	set firewall.dmz.src='wan'
+	set firewall.dmz.dest_ip='192.168.15.100'
+	set firewall.dmz.family='ipv4'
+	set firewall.dmz.proto='all'
+	set firewall.dmz.enabled='0'
+	commit firewall
+EOT
+}
+
 uci set fstab.@global[0].anon_mount_bak="$(uci get fstab.@global[0].anon_mount_bak 2>/dev/null || uci get fstab.@global[0].anon_mount 2>/dev/null)"
 uci set fstab.@global[0].anon_mount='0'
 uci commit fstab
