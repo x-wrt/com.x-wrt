@@ -89,6 +89,7 @@ CONFIG_TARGET_MULTI_PROFILE=y
 # CONFIG_TARGET_ramips_mt7621_DEVICE_bolt_arion is not set
 # CONFIG_TARGET_ramips_mt7621_DEVICE_comfast_cf-e390ax is not set
 # CONFIG_TARGET_ramips_mt7621_DEVICE_comfast_cf-ew72-v2 is not set
+# CONFIG_TARGET_ramips_mt7621_DEVICE_confiabits_mt7621-v1 is not set
 # CONFIG_TARGET_ramips_mt7621_DEVICE_cudy_m1800 is not set
 # CONFIG_TARGET_ramips_mt7621_DEVICE_cudy_wr1300-v1 is not set
 # CONFIG_TARGET_ramips_mt7621_DEVICE_cudy_wr1300-v2 is not set
@@ -382,6 +383,7 @@ CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt7621_DEVICE_adslr_g7="apk-mbedtls blockd 
 # CONFIG_TARGET_DEVICE_ramips_mt7621_DEVICE_buffalo_wsr-600dhp is not set
 # CONFIG_TARGET_DEVICE_ramips_mt7621_DEVICE_comfast_cf-e390ax is not set
 # CONFIG_TARGET_DEVICE_ramips_mt7621_DEVICE_comfast_cf-ew72-v2 is not set
+# CONFIG_TARGET_DEVICE_ramips_mt7621_DEVICE_confiabits_mt7621-v1 is not set
 # CONFIG_TARGET_DEVICE_ramips_mt7621_DEVICE_xzwifi_creativebox-v1 is not set
 # CONFIG_TARGET_DEVICE_ramips_mt7621_DEVICE_cudy_m1800 is not set
 # CONFIG_TARGET_DEVICE_ramips_mt7621_DEVICE_cudy_wr1300-v1 is not set
@@ -1080,7 +1082,7 @@ CONFIG_TARGET_INIT_CMD="/sbin/init"
 CONFIG_TARGET_INIT_SUPPRESS_STDERR=y
 CONFIG_VERSIONOPT=y
 CONFIG_VERSION_DIST="X-WRT"
-CONFIG_VERSION_NUMBER="25.01_b202501141010"
+CONFIG_VERSION_NUMBER="25.01_b202501151432"
 CONFIG_VERSION_CODE="Plucky"
 CONFIG_VERSION_REPO="http://downloads.openwrt.org/snapshots"
 CONFIG_VERSION_HOME_URL="https://x-wrt.com/"
