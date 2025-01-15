@@ -422,6 +422,7 @@ uci -q batch <<-EOT
 	set firewall.dmz.enabled='0'
 	commit firewall
 EOT
+	version=23
 }
 
 uci set fstab.@global[0].anon_mount_bak="$(uci get fstab.@global[0].anon_mount_bak 2>/dev/null || uci get fstab.@global[0].anon_mount 2>/dev/null)"
