@@ -1257,6 +1257,8 @@ main_trigger() {
 			rm -f /tmp/nohup.out
 			SP=`uci get dropbear.@dropbear[0].Port 2>/dev/null`
 			HSET=`cat /usr/share/natcapd/cniplist.set /usr/share/natcapd/C_cniplist.set /usr/share/natcapd/local.set | cksum | awk '{print $1}'`
+			enabled="`uci get natcapd.default.enabled 2>/dev/null || echo 0`"
+			[ "$enabled" = "0" ] && HSET="" #do not fetch HSET if not natcap enabled
 			HKEY=`cat /etc/uhttpd.crt /etc/uhttpd.key | cksum | awk '{print $1}'`
 			IFACES=$(ip r | grep default | grep -o 'dev .*' | cut -d" " -f2 | sort | uniq)
 			LIP=""
