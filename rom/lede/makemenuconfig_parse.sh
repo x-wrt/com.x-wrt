@@ -534,6 +534,7 @@ for t in $targets; do
 		TARGET_DEVICE_mediatek_filogic_DEVICE_cudy_ap3000-v1|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_cudy_m3000-v1|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_cudy_wr3000s-v1|\
+		TARGET_DEVICE_mediatek_filogic_DEVICE_cudy_wr3000h-v1|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_zyxel_nwa50ax|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_zyxel_nwa55axe|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_cudy_tr3000-v1|\
@@ -1540,6 +1541,7 @@ for t in $targets; do
 		TARGET_DEVICE_mediatek_filogic_DEVICE_cudy_re3000-v1|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_cudy_wr3000-v1|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_cudy_wr3000s-v1|\
+		TARGET_DEVICE_mediatek_filogic_DEVICE_cudy_wr3000h-v1|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_zyxel_nwa50ax|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_zyxel_nwa55axe|\
 		TARGET_DEVICE_qualcommax_ipq60xx_DEVICE_linksys_mr7350|\
