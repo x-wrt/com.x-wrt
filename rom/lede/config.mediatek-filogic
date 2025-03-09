@@ -79,6 +79,8 @@ CONFIG_TARGET_MULTI_PROFILE=y
 # CONFIG_TARGET_mediatek_filogic_DEVICE_bananapi_bpi-r4-poe is not set
 # CONFIG_TARGET_mediatek_filogic_DEVICE_cetron_ct3003-ubootlayout is not set
 # CONFIG_TARGET_mediatek_filogic_DEVICE_cetron_ct3003 is not set
+# CONFIG_TARGET_mediatek_filogic_DEVICE_cmcc_a10-stock is not set
+# CONFIG_TARGET_mediatek_filogic_DEVICE_cmcc_a10-ubootmod is not set
 # CONFIG_TARGET_mediatek_filogic_DEVICE_cmcc_a10-ubootlayout is not set
 # CONFIG_TARGET_mediatek_filogic_DEVICE_cmcc_mr3000d-ciq-256m is not set
 # CONFIG_TARGET_mediatek_filogic_DEVICE_cmcc_rax3000m is not set
@@ -195,6 +197,10 @@ CONFIG_TARGET_DEVICE_mediatek_filogic_DEVICE_cetron_ct3003=y
 CONFIG_TARGET_DEVICE_PACKAGES_mediatek_filogic_DEVICE_cetron_ct3003="apk-openssl dawn gre iptables-mod-dhcpmac iptables-mod-dnetmap jool-tools-netfilter kmod-bonding kmod-crypto-acompress kmod-crypto-cbc kmod-crypto-deflate kmod-crypto-echainiv kmod-inet-diag kmod-ip6-vti kmod-ipsec kmod-ipsec4 kmod-ipsec6 kmod-ipt-compat-xtables kmod-ipt-dhcpmac kmod-ipt-dnetmap kmod-ip-vti kmod-jool-netfilter kmod-l2tp kmod-lib-zlib-deflate kmod-lib-zlib-inflate kmod-mt7981-firmware kmod-nat46 kmod-nf-conntrack-netlink kmod-pppol2tp kmod-xfrm-interface libcap-ng libgcrypt libgpg-error liblz4 liblzo libnl libnl-cli libnl-core libnl-genl libnl-nf libnl-route libopenssl libopenssl-conf libopenssl-legacy libpcre2 libqrencode libxml2 luci-app-dawn luci-app-openvpn luci-app-usteer luci-i18n-dashboard-zh-cn luci-i18n-openvpn-zh-cn luci-lib-uqr luci-mod-dashboard luci-nginx luci-proto-gre luci-proto-relay luci-proto-vti luci-proto-wireguard luci-proto-xfrm mt7981-wo-firmware nginx-mod-luci nginx-mod-ubus nginx-ssl nginx-ssl-util openvpn-openssl ppp-mod-pppol2tp proto-bonding qrencode relayd tc-tiny uwsgi uwsgi-cgi-plugin uwsgi-luci-support uwsgi-syslog-plugin vti wireguard-tools wpad-openssl xfrm xl2tpd"
 CONFIG_TARGET_DEVICE_mediatek_filogic_DEVICE_cetron_ct3003-ubootlayout=y
 CONFIG_TARGET_DEVICE_PACKAGES_mediatek_filogic_DEVICE_cetron_ct3003-ubootlayout="apk-openssl dawn gre iptables-mod-dhcpmac iptables-mod-dnetmap jool-tools-netfilter kmod-bonding kmod-crypto-acompress kmod-crypto-cbc kmod-crypto-deflate kmod-crypto-echainiv kmod-inet-diag kmod-ip6-vti kmod-ipsec kmod-ipsec4 kmod-ipsec6 kmod-ipt-compat-xtables kmod-ipt-dhcpmac kmod-ipt-dnetmap kmod-ip-vti kmod-jool-netfilter kmod-l2tp kmod-lib-zlib-deflate kmod-lib-zlib-inflate kmod-mt7981-firmware kmod-nat46 kmod-nf-conntrack-netlink kmod-pppol2tp kmod-xfrm-interface libcap-ng libgcrypt libgpg-error liblz4 liblzo libnl libnl-cli libnl-core libnl-genl libnl-nf libnl-route libopenssl libopenssl-conf libopenssl-legacy libpcre2 libqrencode libxml2 luci-app-dawn luci-app-openvpn luci-app-usteer luci-i18n-dashboard-zh-cn luci-i18n-openvpn-zh-cn luci-lib-uqr luci-mod-dashboard luci-nginx luci-proto-gre luci-proto-relay luci-proto-vti luci-proto-wireguard luci-proto-xfrm mt7981-wo-firmware nginx-mod-luci nginx-mod-ubus nginx-ssl nginx-ssl-util openvpn-openssl ppp-mod-pppol2tp proto-bonding qrencode relayd tc-tiny uwsgi uwsgi-cgi-plugin uwsgi-luci-support uwsgi-syslog-plugin vti wireguard-tools wpad-openssl xfrm xl2tpd"
+CONFIG_TARGET_DEVICE_mediatek_filogic_DEVICE_cmcc_a10-ubootmod=y
+CONFIG_TARGET_DEVICE_PACKAGES_mediatek_filogic_DEVICE_cmcc_a10-ubootmod="apk-openssl dawn gre iptables-mod-dhcpmac iptables-mod-dnetmap jool-tools-netfilter kmod-bonding kmod-crypto-acompress kmod-crypto-cbc kmod-crypto-deflate kmod-crypto-echainiv kmod-inet-diag kmod-ip6-vti kmod-ipsec kmod-ipsec4 kmod-ipsec6 kmod-ipt-compat-xtables kmod-ipt-dhcpmac kmod-ipt-dnetmap kmod-ip-vti kmod-jool-netfilter kmod-l2tp kmod-lib-zlib-deflate kmod-lib-zlib-inflate kmod-mt7981-firmware kmod-nat46 kmod-nf-conntrack-netlink kmod-pppol2tp kmod-xfrm-interface libcap-ng libgcrypt libgpg-error liblz4 liblzo libnl libnl-cli libnl-core libnl-genl libnl-nf libnl-route libopenssl libopenssl-conf libopenssl-legacy libpcre2 libqrencode libxml2 luci-app-dawn luci-app-openvpn luci-app-usteer luci-i18n-dashboard-zh-cn luci-i18n-openvpn-zh-cn luci-lib-uqr luci-mod-dashboard luci-nginx luci-proto-gre luci-proto-relay luci-proto-vti luci-proto-wireguard luci-proto-xfrm mt7981-wo-firmware nginx-mod-luci nginx-mod-ubus nginx-ssl nginx-ssl-util openvpn-openssl ppp-mod-pppol2tp proto-bonding qrencode relayd tc-tiny uwsgi uwsgi-cgi-plugin uwsgi-luci-support uwsgi-syslog-plugin vti wireguard-tools wpad-openssl xfrm xl2tpd"
+CONFIG_TARGET_DEVICE_mediatek_filogic_DEVICE_cmcc_a10-stock=y
+CONFIG_TARGET_DEVICE_PACKAGES_mediatek_filogic_DEVICE_cmcc_a10-stock="apk-openssl dawn gre iptables-mod-dhcpmac iptables-mod-dnetmap jool-tools-netfilter kmod-bonding kmod-crypto-acompress kmod-crypto-cbc kmod-crypto-deflate kmod-crypto-echainiv kmod-inet-diag kmod-ip6-vti kmod-ipsec kmod-ipsec4 kmod-ipsec6 kmod-ipt-compat-xtables kmod-ipt-dhcpmac kmod-ipt-dnetmap kmod-ip-vti kmod-jool-netfilter kmod-l2tp kmod-lib-zlib-deflate kmod-lib-zlib-inflate kmod-mt7981-firmware kmod-nat46 kmod-nf-conntrack-netlink kmod-pppol2tp kmod-xfrm-interface libcap-ng libgcrypt libgpg-error liblz4 liblzo libnl libnl-cli libnl-core libnl-genl libnl-nf libnl-route libopenssl libopenssl-conf libopenssl-legacy libpcre2 libqrencode libxml2 luci-app-dawn luci-app-openvpn luci-app-usteer luci-i18n-dashboard-zh-cn luci-i18n-openvpn-zh-cn luci-lib-uqr luci-mod-dashboard luci-nginx luci-proto-gre luci-proto-relay luci-proto-vti luci-proto-wireguard luci-proto-xfrm mt7981-wo-firmware nginx-mod-luci nginx-mod-ubus nginx-ssl nginx-ssl-util openvpn-openssl ppp-mod-pppol2tp proto-bonding qrencode relayd tc-tiny uwsgi uwsgi-cgi-plugin uwsgi-luci-support uwsgi-syslog-plugin vti wireguard-tools wpad-openssl xfrm xl2tpd"
 CONFIG_TARGET_DEVICE_mediatek_filogic_DEVICE_cmcc_a10-ubootlayout=y
 CONFIG_TARGET_DEVICE_PACKAGES_mediatek_filogic_DEVICE_cmcc_a10-ubootlayout="apk-openssl dawn gre iptables-mod-dhcpmac iptables-mod-dnetmap jool-tools-netfilter kmod-bonding kmod-crypto-acompress kmod-crypto-cbc kmod-crypto-deflate kmod-crypto-echainiv kmod-inet-diag kmod-ip6-vti kmod-ipsec kmod-ipsec4 kmod-ipsec6 kmod-ipt-compat-xtables kmod-ipt-dhcpmac kmod-ipt-dnetmap kmod-ip-vti kmod-jool-netfilter kmod-l2tp kmod-lib-zlib-deflate kmod-lib-zlib-inflate kmod-mt7981-firmware kmod-nat46 kmod-nf-conntrack-netlink kmod-pppol2tp kmod-xfrm-interface libcap-ng libgcrypt libgpg-error liblz4 liblzo libnl libnl-cli libnl-core libnl-genl libnl-nf libnl-route libopenssl libopenssl-conf libopenssl-legacy libpcre2 libqrencode libxml2 luci-app-dawn luci-app-openvpn luci-app-usteer luci-i18n-dashboard-zh-cn luci-i18n-openvpn-zh-cn luci-lib-uqr luci-mod-dashboard luci-nginx luci-proto-gre luci-proto-relay luci-proto-vti luci-proto-wireguard luci-proto-xfrm mt7981-wo-firmware nginx-mod-luci nginx-mod-ubus nginx-ssl nginx-ssl-util openvpn-openssl ppp-mod-pppol2tp proto-bonding qrencode relayd tc-tiny uwsgi uwsgi-cgi-plugin uwsgi-luci-support uwsgi-syslog-plugin vti wireguard-tools wpad-openssl xfrm xl2tpd"
 # CONFIG_TARGET_DEVICE_mediatek_filogic_DEVICE_cmcc_mr3000d-ciq-256m is not set
@@ -764,7 +770,7 @@ CONFIG_TARGET_INIT_CMD="/sbin/init"
 CONFIG_TARGET_INIT_SUPPRESS_STDERR=y
 CONFIG_VERSIONOPT=y
 CONFIG_VERSION_DIST="X-WRT"
-CONFIG_VERSION_NUMBER="25.01_b202502272343"
+CONFIG_VERSION_NUMBER="25.01_b202503092225"
 CONFIG_VERSION_CODE="Plucky"
 CONFIG_VERSION_REPO="http://downloads.openwrt.org/snapshots"
 CONFIG_VERSION_HOME_URL="https://x-wrt.com/"
@@ -3022,6 +3028,7 @@ CONFIG_PACKAGE_trusted-firmware-a-mt7986-spim-nand-ddr3=y
 CONFIG_PACKAGE_trusted-firmware-a-mt7986-spim-nand-ddr4=y
 CONFIG_PACKAGE_trusted-firmware-a-mt7988-ram-comb=y
 CONFIG_PACKAGE_u-boot-mt7981_abt_asr3000=y
+CONFIG_PACKAGE_u-boot-mt7981_cmcc_a10=y
 CONFIG_PACKAGE_u-boot-mt7981_cmcc_rax3000m-emmc=y
 CONFIG_PACKAGE_u-boot-mt7981_cmcc_rax3000m-nand=y
 CONFIG_PACKAGE_u-boot-mt7981_glinet_gl-x3000=y
@@ -4541,18 +4548,6 @@ CONFIG_PACKAGE_luasocket=y
 #
 # Node.js
 #
-# CONFIG_PACKAGE_node is not set
-# CONFIG_PACKAGE_node-arduino-firmata is not set
-# CONFIG_PACKAGE_node-cylon is not set
-# CONFIG_PACKAGE_node-cylon-firmata is not set
-# CONFIG_PACKAGE_node-cylon-gpio is not set
-# CONFIG_PACKAGE_node-cylon-i2c is not set
-# CONFIG_PACKAGE_node-hid is not set
-# CONFIG_PACKAGE_node-homebridge is not set
-# CONFIG_PACKAGE_node-javascript-obfuscator is not set
-# CONFIG_PACKAGE_node-npm is not set
-# CONFIG_PACKAGE_node-serialport is not set
-# CONFIG_PACKAGE_node-serialport-bindings is not set
 # end of Node.js
 
 #
@@ -8210,6 +8205,7 @@ CONFIG_PACKAGE_chat=m
 # CONFIG_PACKAGE_cni-route-override is not set
 # CONFIG_PACKAGE_coap-server is not set
 # CONFIG_PACKAGE_conserver is not set
+# CONFIG_PACKAGE_conserver-ipmi is not set
 # CONFIG_PACKAGE_crowdsec is not set
 # CONFIG_PACKAGE_crowdsec-firewall-bouncer is not set
 # CONFIG_PACKAGE_cshark is not set
@@ -8233,6 +8229,7 @@ CONFIG_PACKAGE_ethtool=y
 # CONFIG_PACKAGE_flent is not set
 # CONFIG_PACKAGE_foolsm is not set
 # CONFIG_PACKAGE_fping is not set
+# CONFIG_PACKAGE_freeipmi-tools is not set
 # CONFIG_PACKAGE_fsh is not set
 # CONFIG_PACKAGE_generate-ipv6-address is not set
 # CONFIG_PACKAGE_gensio-bin is not set
@@ -8288,6 +8285,9 @@ CONFIG_PACKAGE_jool-tools-netfilter=m
 # CONFIG_PACKAGE_krb5-libs is not set
 # CONFIG_PACKAGE_krb5-server is not set
 # CONFIG_PACKAGE_krb5-server-extras is not set
+# CONFIG_PACKAGE_libfreeipmi is not set
+# CONFIG_PACKAGE_libipmiconsole is not set
+# CONFIG_PACKAGE_libipmidetect is not set
 CONFIG_PACKAGE_libipset=y
 # CONFIG_PACKAGE_libndp is not set
 # CONFIG_PACKAGE_linknx is not set
