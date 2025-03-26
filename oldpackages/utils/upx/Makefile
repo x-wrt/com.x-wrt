@@ -1,35 +1,47 @@
 #
-# Copyright (C) 2021 X-WRT.COM
+# Copyright (C) 2011-2022 OpenWrt.org
 #
 # This is free software, licensed under the GNU General Public License v2.
 # See /LICENSE for more information.
 #
-
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=upx
-PKG_VERSION:=v3.96
-PKG_RELEASE:=5d1347a359bb63c9e67bf2a6499ed5bc1184de08
+PKG_VERSION:=4.2.4
+PKG_RELEASE:=1
 
-PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION)-$(PKG_RELEASE).tar.xz
-PKG_SOURCE_URL:=https://github.com/x-wrt/upx.git
-PKG_SOURCE_PROTO:=git
-PKG_SOURCE_VERSION:=$(PKG_RELEASE)
-PKG_SOURCE_SUBDIR:=$(PKG_NAME)-$(PKG_VERSION)
-PKG_MIRROR_HASH:=b0ed33a8bd333454f910ec1ebbc0979bb590823408d75d7507b8b0f93a37dd81
+PKG_MAINTAINER:=Xingwang Liao <kuoruan@gmail.com>
+PKG_LICENSE:=GPL-2.0-only
+PKG_LICENSE_FILES:=COPYING LICENSE
 
-PKG_MAINTAINER:=Chen Minqiang <ptpt52@gmail.com>
-PKG_LICENSE:=GPL-2.0
+PKG_SOURCE_URL:=https://github.com/upx/upx/releases/download/v$(PKG_VERSION)
+PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION)-src.tar.xz
+PKG_HASH:=5ed6561607d27fb4ef346fc19f08a93696fa8fa127081e7a7114068306b8e1c4
+PKG_BUILD_DIR:=$(BUILD_DIR)/$(PKG_NAME)-$(PKG_VERSION)-src
 
-include $(INCLUDE_DIR)/package.mk
+PKG_BUILD_PARALLEL:=1
+
+HOST_BUILD_DIR:=$(BUILD_DIR_HOST)/$(PKG_NAME)-$(PKG_VERSION)-src
+
 include $(INCLUDE_DIR)/host-build.mk
+include $(INCLUDE_DIR)/package.mk
 
-HOST_BUILD_DEPENDS:=ucl/host
+define Host/Compile
+	$(call Host/Compile/Default,build/release)
+endef
+
+define Host/Install
+	$(CP) $(HOST_BUILD_DIR)/build/release/upx $(STAGING_DIR_HOST)/bin/upx
+endef
+
+define Host/Clean
+	rm -f $(STAGING_DIR_HOST)/bin/upx
+endef
 
 define Package/upx
   SECTION:=utils
   CATEGORY:=Utilities
-  DEPENDS:=+libucl +libstdcpp +zlib
+  DEPENDS:=+libstdcpp +zlib
   TITLE:=The Ultimate Packer for eXecutables
   URL:=https://upx.github.io/
 endef
@@ -42,34 +54,13 @@ or other drawbacks for most of the formats supported, because of in-place
 decompression.
 endef
 
-MAKE_PATH := src
-MAKE_VARS += \
-	exeext=".out"
-
-HOST_MAKE_VARS += \
-	exeext=".out"
-
-#TAR_CMD:=$(HOST_TAR) -C $(PKG_BUILD_DIR) --strip-components 1 $(TAR_OPTIONS)
-#TAR_CMD=$(HOST_TAR) -C $(1) --strip-components 1 $(TAR_OPTIONS)
-
-#TARGET_CPPFLAGS += \
-#	-DUCL_NO_ASM \
-
-define Host/Compile
-	+$(HOST_CONFIGURE_VARS) $(HOST_MAKE_VARS) \
-	$(MAKE) $(HOST_JOBS) -C $(HOST_BUILD_DIR)/$(MAKE_PATH) \
-		$(HOST_MAKE_FLAGS) \
-		$(1)
-endef
-
-define Host/Install
-	$(INSTALL_DIR) $(STAGING_DIR_HOSTPKG)/bin
-	$(INSTALL_BIN) $(HOST_BUILD_DIR)/src/upx.out $(STAGING_DIR_HOSTPKG)/bin/upx
+define Build/Compile
+	$(call Build/Compile/Default,build/release)
 endef
 
 define Package/upx/install
 	$(INSTALL_DIR) $(1)/usr/bin
-	$(INSTALL_BIN) $(PKG_BUILD_DIR)/src/upx.out $(1)/usr/bin/
+	$(INSTALL_BIN) $(PKG_BUILD_DIR)/build/release/upx $(1)/usr/bin/upx
 endef
 
 $(eval $(call HostBuild))
