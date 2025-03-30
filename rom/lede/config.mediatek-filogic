@@ -73,6 +73,8 @@ CONFIG_TARGET_MULTI_PROFILE=y
 # CONFIG_TARGET_mediatek_filogic_DEVICE_asus_rt-ax59u is not set
 # CONFIG_TARGET_mediatek_filogic_DEVICE_asus_tuf-ax4200 is not set
 # CONFIG_TARGET_mediatek_filogic_DEVICE_asus_tuf-ax6000 is not set
+# CONFIG_TARGET_mediatek_filogic_DEVICE_asus_zenwifi-bt8 is not set
+# CONFIG_TARGET_mediatek_filogic_DEVICE_asus_zenwifi-bt8-ubootmod is not set
 # CONFIG_TARGET_mediatek_filogic_DEVICE_bananapi_bpi-r3 is not set
 # CONFIG_TARGET_mediatek_filogic_DEVICE_bananapi_bpi-r3-mini is not set
 # CONFIG_TARGET_mediatek_filogic_DEVICE_bananapi_bpi-r4 is not set
@@ -189,6 +191,8 @@ CONFIG_TARGET_DEVICE_PACKAGES_mediatek_filogic_DEVICE_abt_asr3000-ubootlayout="a
 # CONFIG_TARGET_DEVICE_mediatek_filogic_DEVICE_asus_rt-ax59u is not set
 # CONFIG_TARGET_DEVICE_mediatek_filogic_DEVICE_asus_tuf-ax4200 is not set
 # CONFIG_TARGET_DEVICE_mediatek_filogic_DEVICE_asus_tuf-ax6000 is not set
+# CONFIG_TARGET_DEVICE_mediatek_filogic_DEVICE_asus_zenwifi-bt8 is not set
+# CONFIG_TARGET_DEVICE_mediatek_filogic_DEVICE_asus_zenwifi-bt8-ubootmod is not set
 # CONFIG_TARGET_DEVICE_mediatek_filogic_DEVICE_bananapi_bpi-r3 is not set
 # CONFIG_TARGET_DEVICE_mediatek_filogic_DEVICE_bananapi_bpi-r3-mini is not set
 # CONFIG_TARGET_DEVICE_mediatek_filogic_DEVICE_bananapi_bpi-r4 is not set
@@ -3029,6 +3033,7 @@ CONFIG_PACKAGE_trusted-firmware-a-mt7986-ram-ddr4=y
 CONFIG_PACKAGE_trusted-firmware-a-mt7986-spim-nand-ddr3=y
 CONFIG_PACKAGE_trusted-firmware-a-mt7986-spim-nand-ddr4=y
 CONFIG_PACKAGE_trusted-firmware-a-mt7988-ram-comb=y
+CONFIG_PACKAGE_trusted-firmware-a-mt7988-ram-ddr4=y
 CONFIG_PACKAGE_u-boot-mt7981_abt_asr3000=y
 CONFIG_PACKAGE_u-boot-mt7981_cmcc_a10=y
 CONFIG_PACKAGE_u-boot-mt7981_cmcc_rax3000m-emmc=y
