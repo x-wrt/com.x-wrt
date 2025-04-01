@@ -92,6 +92,7 @@ CONFIG_TARGET_MULTI_PROFILE=y
 # CONFIG_TARGET_ramips_mt76x8_DEVICE_jotale_js76x8-8m is not set
 # CONFIG_TARGET_ramips_mt76x8_DEVICE_jotale_js76x8-16m is not set
 # CONFIG_TARGET_ramips_mt76x8_DEVICE_jotale_js76x8-32m is not set
+# CONFIG_TARGET_ramips_mt76x8_DEVICE_keenetic_kn-1221 is not set
 # CONFIG_TARGET_ramips_mt76x8_DEVICE_keenetic_kn-1613 is not set
 # CONFIG_TARGET_ramips_mt76x8_DEVICE_keenetic_kn-1711 is not set
 # CONFIG_TARGET_ramips_mt76x8_DEVICE_keenetic_kn-1713 is not set
@@ -213,6 +214,7 @@ CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt76x8_DEVICE_glinet_vixmini="luci-lib-uqr 
 # CONFIG_TARGET_DEVICE_ramips_mt76x8_DEVICE_jotale_js76x8-16m is not set
 # CONFIG_TARGET_DEVICE_ramips_mt76x8_DEVICE_jotale_js76x8-32m is not set
 # CONFIG_TARGET_DEVICE_ramips_mt76x8_DEVICE_jotale_js76x8-8m is not set
+# CONFIG_TARGET_DEVICE_ramips_mt76x8_DEVICE_keenetic_kn-1221 is not set
 # CONFIG_TARGET_DEVICE_ramips_mt76x8_DEVICE_keenetic_kn-1613 is not set
 # CONFIG_TARGET_DEVICE_ramips_mt76x8_DEVICE_keenetic_kn-1711 is not set
 # CONFIG_TARGET_DEVICE_ramips_mt76x8_DEVICE_keenetic_kn-1713 is not set
@@ -670,7 +672,7 @@ CONFIG_TARGET_INIT_CMD="/sbin/init"
 CONFIG_TARGET_INIT_SUPPRESS_STDERR=y
 CONFIG_VERSIONOPT=y
 CONFIG_VERSION_DIST="X-WRT"
-CONFIG_VERSION_NUMBER="25.01_b202503300914"
+CONFIG_VERSION_NUMBER="25.01_b202504010912"
 CONFIG_VERSION_CODE="Plucky"
 CONFIG_VERSION_REPO="http://downloads.openwrt.org/snapshots"
 CONFIG_VERSION_HOME_URL="https://x-wrt.com/"
@@ -3520,6 +3522,7 @@ CONFIG_PACKAGE_kmod-input-evdev=m
 # LED modules
 #
 # CONFIG_PACKAGE_kmod-input-leds is not set
+CONFIG_PACKAGE_kmod-led-group-multi-color=m
 CONFIG_PACKAGE_kmod-leds-gpio=y
 # CONFIG_PACKAGE_kmod-leds-ktd202x is not set
 # CONFIG_PACKAGE_kmod-leds-lp5562 is not set
@@ -7739,6 +7742,7 @@ CONFIG_PACKAGE_dawn=m
 # CONFIG_PACKAGE_reaver is not set
 # CONFIG_PACKAGE_wavemon is not set
 # CONFIG_PACKAGE_wfb-ng is not set
+# CONFIG_PACKAGE_wfb-ng-tun is not set
 # CONFIG_PACKAGE_wifischedule is not set
 # end of Wireless
 
@@ -8200,6 +8204,7 @@ CONFIG_PACKAGE_xfrm=m
 #
 # CONFIG_PACKAGE_dumpimage is not set
 # CONFIG_PACKAGE_fconfig is not set
+# CONFIG_PACKAGE_fit-check-sign is not set
 CONFIG_PACKAGE_uboot-envtools=y
 # end of Boot Loaders
 
