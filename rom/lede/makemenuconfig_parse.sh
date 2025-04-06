@@ -409,6 +409,7 @@ for t in $targets; do
 	excludes="$excludes_basic"
 	case $t in
 		#>=32M flash
+		TARGET_DEVICE_mediatek_filogic_DEVICE_huasifei_wh3000|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_asus_zenwifi-bt8|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_asus_zenwifi-bt8-ubootmod|\
 		TARGET_DEVICE_qualcommax_ipq60xx_DEVICE_linksys_mr7350|\
@@ -534,6 +535,8 @@ for t in $targets; do
 	esac
 	case $t in
 		#>=14M flash
+		TARGET_DEVICE_mediatek_filogic_DEVICE_netis_nx31|\
+		TARGET_DEVICE_mediatek_filogic_DEVICE_huasifei_wh3000|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_asus_zenwifi-bt8|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_asus_zenwifi-bt8-ubootmod|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_cudy_ap3000outdoor-v1|\
@@ -1170,6 +1173,7 @@ for t in $targets; do
 	#check usb
 	case $t in
 		#with usb3
+		TARGET_DEVICE_mediatek_filogic_DEVICE_huasifei_wh3000|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_cudy_tr3000-v1|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_nradio_c8-668gl|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_nradio_c8-660|\
@@ -1542,6 +1546,7 @@ for t in $targets; do
 			has_usb=1
 		;;
 		#no usb
+		TARGET_DEVICE_mediatek_filogic_DEVICE_netis_nx31|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_asus_zenwifi-bt8|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_asus_zenwifi-bt8-ubootmod|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_ruijie_rg-ew1200g-pro-v1.1|\
