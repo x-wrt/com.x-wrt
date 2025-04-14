@@ -7,3 +7,11 @@ cat .config | grep "CONFIG_DEFAULT.*=y" | sed 's/CONFIG_DEFAULT_//;s/=y//' | whi
 	esac
 	sed -i "s/${w}=m/${w}=y/" .config
 done
+
+
+#fixup missing apk
+if seq -q 'CONFIG_PACKAGE_opkg=y' .config; then
+	:
+else
+	sed -i "s/CONFIG_PACKAGE_apk-mbedtls=m/CONFIG_PACKAGE_apk-mbedtls=y/" .config
+fi
