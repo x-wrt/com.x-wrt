@@ -10,7 +10,7 @@ done
 
 
 #fixup missing apk
-if seq -q 'CONFIG_PACKAGE_opkg=y' .config; then
+if grep -q 'CONFIG_PACKAGE_opkg=y' .config; then
 	:
 else
 	sed -i "s/CONFIG_PACKAGE_apk-mbedtls=m/CONFIG_PACKAGE_apk-mbedtls=y/" .config
