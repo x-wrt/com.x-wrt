@@ -16,6 +16,7 @@ config.armsr-armv8
 config.ipq806x-generic
 config.qualcommax-ipq807x
 config.qualcommax-ipq60xx
+config.qualcommax-ipq50xx
 config.bcm53xx-generic
 config.mvebu-cortexa9
 config.bcm27xx-bcm2712
