@@ -8929,6 +8929,7 @@ CONFIG_PACKAGE_fritz-tffs-nand=m
 # CONFIG_PACKAGE_iwcap is not set
 CONFIG_PACKAGE_iwinfo=y
 # CONFIG_PACKAGE_jq is not set
+# CONFIG_PACKAGE_jq-full is not set
 CONFIG_PACKAGE_jshn=y
 # CONFIG_PACKAGE_kdump is not set
 # CONFIG_PACKAGE_kexec is not set
