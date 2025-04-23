@@ -41,7 +41,7 @@ wifi_setup_radio()
 
 		if [ "$(uci get wireless.${radio}.band 2>/dev/null)" = "2g" ] || [ "$(uci get wireless.${radio}.band 2>/dev/null)" = "5g" ]; then
 			htmode="$(uci get wireless.${radio}.htmode 2>/dev/null)"
-			if [ "${htmode//ETH}" != "${htmode}" ]; then
+			if [ "${htmode//EHT}" != "${htmode}" ]; then
 				if  [ "$(uci get wireless.${radio}.band 2>/dev/null)" = "2g" ]; then
 					uci set wireless.${radio}.channel="1"
 				else
