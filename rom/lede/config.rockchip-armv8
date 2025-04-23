@@ -3673,6 +3673,7 @@ CONFIG_PACKAGE_kmod-r8126-rss=m
 CONFIG_PACKAGE_kmod-r8127=m
 CONFIG_PACKAGE_kmod-r8127-rss=m
 CONFIG_PACKAGE_kmod-r8168=m
+CONFIG_PACKAGE_kmod-r8168-rss=m
 CONFIG_PACKAGE_kmod-r8169=m
 # CONFIG_PACKAGE_kmod-rmnet is not set
 # CONFIG_PACKAGE_kmod-sfc is not set
