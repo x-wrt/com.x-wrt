@@ -420,6 +420,7 @@ uci -q batch <<-EOT
 	set firewall.dmz.family='ipv4'
 	set firewall.dmz.proto='all'
 	set firewall.dmz.enabled='0'
+	set firewall.dmz.reflection='0'
 	commit firewall
 EOT
 	version=23
