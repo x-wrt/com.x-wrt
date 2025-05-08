@@ -63,6 +63,7 @@ esac
 
 test -e "$FIRMWARE" || exit 0
 
+(
 mkdir -p /var/run
 lock /var/run/p910nd-helper.lck
 
@@ -87,3 +88,4 @@ done
 done
 sleep 15
 lock -u /var/run/p910nd-helper.lck
+) &
