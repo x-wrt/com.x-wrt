@@ -472,7 +472,7 @@ CONFIG_TARGET_PER_DEVICE_ROOTFS=y
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_araknis_an-700-ap-i-ac is not set
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_arduino_yun is not set
 CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_aruba_ap-105=y
-CONFIG_TARGET_DEVICE_PACKAGES_ath79_generic_DEVICE_aruba_ap-105="dawn kmod-asn1-encoder kmod-crypto-ecdh kmod-i2c-algo-bit kmod-i2c-core kmod-i2c-gpio kmod-oid-registry kmod-tpm kmod-tpm-i2c-atmel libcap-ng libgcrypt libgpg-error liblz4 liblzo libnl-core libnl-genl libqrencode luci-app-dawn luci-app-openvpn luci-app-usteer luci-i18n-dashboard-zh-cn luci-i18n-openvpn-zh-cn luci-lib-uqr luci-mod-dashboard luci-proto-relay luci-proto-wireguard openvpn-mbedtls qrencode relayd tc-tiny wireguard-tools wpad-mbedtls"
+CONFIG_TARGET_DEVICE_PACKAGES_ath79_generic_DEVICE_aruba_ap-105="dawn kmod-crypto-ecdh kmod-i2c-algo-bit kmod-i2c-core kmod-i2c-gpio kmod-oid-registry kmod-tpm kmod-tpm-i2c-atmel libcap-ng libgcrypt libgpg-error liblz4 liblzo libnl-core libnl-genl libqrencode luci-app-dawn luci-app-openvpn luci-app-usteer luci-i18n-dashboard-zh-cn luci-i18n-openvpn-zh-cn luci-lib-uqr luci-mod-dashboard luci-proto-relay luci-proto-wireguard openvpn-mbedtls qrencode relayd tc-tiny wireguard-tools wpad-mbedtls"
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_aruba_ap-115 is not set
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_aruba_ap-175 is not set
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_asus_pl-ac56 is not set
