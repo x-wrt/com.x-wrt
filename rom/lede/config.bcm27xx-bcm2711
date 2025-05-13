@@ -65,7 +65,7 @@ CONFIG_TARGET_MULTI_PROFILE=y
 # CONFIG_TARGET_ALL_PROFILES is not set
 CONFIG_TARGET_PER_DEVICE_ROOTFS=y
 CONFIG_TARGET_DEVICE_bcm27xx_bcm2711_DEVICE_rpi-4=y
-CONFIG_TARGET_DEVICE_PACKAGES_bcm27xx_bcm2711_DEVICE_rpi-4="apk-openssl aria2 aria2-openssl brcmfmac-firmware-usb brcmfmac-nvram-43455-sdio ca-bundle chat comgt comgt-ncm cypress-firmware-43455-sdio dawn gre iptables-mod-dhcpmac iptables-mod-dnetmap jool-tools-netfilter kmod-bonding kmod-brcmfmac kmod-brcmutil kmod-crypto-acompress kmod-crypto-cbc kmod-crypto-deflate kmod-crypto-des kmod-crypto-echainiv kmod-crypto-md5 kmod-crypto-sha256 kmod-dax kmod-dm kmod-dnsresolver kmod-fs-exfat kmod-fs-ksmbd kmod-fs-msdos kmod-fs-netfs kmod-fs-nfs kmod-fs-nfs-common kmod-fs-nfs-v4 kmod-fs-ntfs3 kmod-fs-smbfs-common kmod-fuse kmod-hwmon-core kmod-i2c-core kmod-inet-diag kmod-ip6-vti kmod-ipsec kmod-ipsec4 kmod-ipsec6 kmod-ipt-compat-xtables kmod-ipt-dhcpmac kmod-ipt-dnetmap kmod-ip-vti kmod-jool-netfilter kmod-l2tp kmod-lib-raid6 kmod-lib-xor kmod-lib-zlib-deflate kmod-lib-zlib-inflate kmod-mdio-devres kmod-md-mod kmod-md-multipath kmod-md-raid0 kmod-md-raid1 kmod-md-raid10 kmod-md-raid456 kmod-mii kmod-mmc kmod-nat46 kmod-nf-conntrack-netlink kmod-nls-ucs2-utils kmod-oid-registry kmod-phy-microchip kmod-phy-realtek kmod-pppol2tp kmod-qmi-wwan-q kmod-r8169 kmod-usb2 kmod-usb3 kmod-usb-ehci kmod-usbip kmod-usbip-client kmod-usb-net kmod-usb-net-cdc-ether kmod-usb-net-cdc-mbim kmod-usb-net-cdc-ncm kmod-usb-net-huawei-cdc-ncm kmod-usb-net-ipheth kmod-usb-net-lan78xx kmod-usb-net-qmi-wwan kmod-usb-net-rndis kmod-usb-net-sierrawireless kmod-usb-ohci kmod-usb-printer kmod-usb-serial kmod-usb-serial-cp210x kmod-usb-serial-option kmod-usb-serial-pl2303 kmod-usb-serial-qualcomm kmod-usb-serial-sierrawireless kmod-usb-serial-wwan kmod-usb-storage kmod-usb-storage-extras kmod-usb-storage-uas kmod-usb-wdm kmod-usb-xhci-hcd kmod-xfrm-interface ksmbd-server libaio libcap-ng libcares libcurl libdevmapper libevdev libexpat libgcrypt libgmp libgpg-error libimobiledevice libimobiledevice-glue libimobiledevice-utils libkmod liblz4 liblzo libnghttp2 libnl libnl-cli libnl-core libnl-genl libnl-nf libnl-route libnvme libopenssl libopenssl-conf libopenssl-legacy libpci libpcre2 libplist libqrencode libreadline libsqlite3 libssh2 libtatsu libudev-zero liburing libusb-1.0 libusbmuxd libwrap libxml2 luci-app-aria2 luci-app-dawn luci-app-ksmbd luci-app-openvpn luci-app-p910nd luci-app-usteer luci-i18n-aria2-zh-cn luci-i18n-dashboard-zh-cn luci-i18n-ksmbd-zh-cn luci-i18n-openvpn-zh-cn luci-i18n-p910nd-zh-cn luci-lib-uqr luci-mod-dashboard luci-nginx luci-proto-3g luci-proto-gre luci-proto-mbim luci-proto-ncm luci-proto-qmi luci-proto-relay luci-proto-vti luci-proto-wireguard luci-proto-xfrm lvm2 mdadm minicom nfs-utils nginx-mod-luci nginx-mod-ubus nginx-ssl nginx-ssl-util openvpn-openssl p910nd pciids pciutils ppp-mod-pppol2tp proto-bonding qrencode quectel-cm r8169-firmware relayd sendip tc-tiny umbim uqmi usbids usb-modeswitch usbmuxd usbutils uwsgi uwsgi-cgi-plugin uwsgi-luci-support uwsgi-syslog-plugin vti webui-aria2 wget-ssl wireguard-tools wpad-openssl wsdd2 wwan xfrm xl2tpd"
+CONFIG_TARGET_DEVICE_PACKAGES_bcm27xx_bcm2711_DEVICE_rpi-4="apk-openssl aria2 aria2-openssl brcmfmac-firmware-usb brcmfmac-nvram-43455-sdio ca-bundle chat comgt comgt-ncm cypress-firmware-43455-sdio dawn gre iptables-mod-dhcpmac iptables-mod-dnetmap jool-tools-netfilter kmod-bonding kmod-brcmfmac kmod-brcmutil kmod-crypto-acompress kmod-crypto-cbc kmod-crypto-deflate kmod-crypto-des kmod-crypto-echainiv kmod-crypto-md5 kmod-crypto-sha256 kmod-dax kmod-dm kmod-dnsresolver kmod-fs-exfat kmod-fs-ksmbd kmod-fs-msdos kmod-fs-netfs kmod-fs-nfs kmod-fs-nfs-common kmod-fs-nfs-v4 kmod-fs-ntfs3 kmod-fs-smbfs-common kmod-fuse kmod-hwmon-core kmod-i2c-core kmod-inet-diag kmod-ip6-vti kmod-ipsec kmod-ipsec4 kmod-ipsec6 kmod-ipt-compat-xtables kmod-ipt-dhcpmac kmod-ipt-dnetmap kmod-ip-vti kmod-jool-netfilter kmod-l2tp kmod-lib-raid6 kmod-lib-xor kmod-lib-zlib-deflate kmod-lib-zlib-inflate kmod-mdio-devres kmod-md-mod kmod-md-multipath kmod-md-raid0 kmod-md-raid1 kmod-md-raid10 kmod-md-raid456 kmod-mii kmod-mmc kmod-nat46 kmod-nf-conntrack-netlink kmod-nls-ucs2-utils kmod-oid-registry kmod-phy-microchip kmod-phy-realtek kmod-pppol2tp kmod-qmi-wwan-q kmod-r8169 kmod-usb2 kmod-usb3 kmod-usb-ehci kmod-usbip kmod-usbip-client kmod-usb-net kmod-usb-net-cdc-ether kmod-usb-net-cdc-mbim kmod-usb-net-cdc-ncm kmod-usb-net-huawei-cdc-ncm kmod-usb-net-ipheth kmod-usb-net-lan78xx kmod-usb-net-qmi-wwan kmod-usb-net-rndis kmod-usb-net-sierrawireless kmod-usb-ohci kmod-usb-printer kmod-usb-serial kmod-usb-serial-cp210x kmod-usb-serial-option kmod-usb-serial-pl2303 kmod-usb-serial-qualcomm kmod-usb-serial-sierrawireless kmod-usb-serial-wwan kmod-usb-storage kmod-usb-storage-extras kmod-usb-storage-uas kmod-usb-wdm kmod-usb-xhci-hcd kmod-xfrm-interface ksmbd-server libaio libcap-ng libcares libcurl libdevmapper libevdev libexpat libgcrypt libgmp libgpg-error libimobiledevice libimobiledevice-glue libimobiledevice-utils libkmod liblz4 liblzo libnghttp2 libnl libnl-cli libnl-core libnl-genl libnl-nf libnl-route libopenssl libopenssl-conf libopenssl-legacy libpci libpcre2 libplist libqrencode libreadline libsqlite3 libssh2 libtatsu libudev-zero libusb-1.0 libusbmuxd libxml2 lsqlite3 luci-app-aria2 luci-app-dawn luci-app-ksmbd luci-app-openvpn luci-app-p910nd luci-app-usteer luci-i18n-aria2-zh-cn luci-i18n-dashboard-zh-cn luci-i18n-ksmbd-zh-cn luci-i18n-openvpn-zh-cn luci-i18n-p910nd-zh-cn luci-lib-uqr luci-mod-dashboard luci-nginx luci-proto-3g luci-proto-gre luci-proto-mbim luci-proto-ncm luci-proto-qmi luci-proto-relay luci-proto-vti luci-proto-wireguard luci-proto-xfrm lvm2 mdadm minicom nfs-utils nginx-mod-luci nginx-mod-ubus nginx-ssl nginx-ssl-util openvpn-openssl p910nd pciids pciutils ppp-mod-pppol2tp proto-bonding qrencode quectel-cm r8169-firmware relayd sendip tc-tiny umbim uqmi usbids usb-modeswitch usbmuxd usbutils uwsgi uwsgi-cgi-plugin uwsgi-luci-support uwsgi-syslog-plugin vti webui-aria2 wget-ssl wireguard-tools wpad-openssl wsdd2 wwan xfrm xl2tpd"
 # end of Target Devices
 
 CONFIG_HAS_SUBTARGETS=y
@@ -456,7 +456,7 @@ CONFIG_TARGET_INIT_CMD="/sbin/init"
 CONFIG_TARGET_INIT_SUPPRESS_STDERR=y
 CONFIG_VERSIONOPT=y
 CONFIG_VERSION_DIST="X-WRT"
-CONFIG_VERSION_NUMBER="25.04_b202505092304"
+CONFIG_VERSION_NUMBER="25.04_b202505130848"
 CONFIG_VERSION_CODE="Plucky"
 CONFIG_VERSION_REPO="http://downloads.openwrt.org/snapshots"
 CONFIG_VERSION_HOME_URL="https://x-wrt.com/"
@@ -4155,7 +4155,7 @@ CONFIG_GOLANG_BUILD_CACHE_DIR=""
 # CONFIG_PACKAGE_libiwinfo-lua is not set
 # CONFIG_PACKAGE_linotify is not set
 # CONFIG_PACKAGE_lpeg is not set
-# CONFIG_PACKAGE_lsqlite3 is not set
+CONFIG_PACKAGE_lsqlite3=m
 # CONFIG_PACKAGE_lsqlite3-lua5.3 is not set
 CONFIG_PACKAGE_lua=y
 # CONFIG_PACKAGE_lua-argparse is not set
@@ -5329,8 +5329,6 @@ CONFIG_WOLFSSL_ALT_NAMES=y
 # CONFIG_PACKAGE_libdrm-radeon is not set
 # CONFIG_PACKAGE_libdrm-tegra is not set
 # CONFIG_PACKAGE_libepoxy is not set
-# CONFIG_PACKAGE_libglapi is not set
-CONFIG_HAVE_MESA=y
 # CONFIG_PACKAGE_libglm is not set
 # CONFIG_PACKAGE_libgraphene is not set
 # CONFIG_PACKAGE_libmesa-amd is not set
@@ -5356,6 +5354,8 @@ CONFIG_HAVE_MESA=y
 # CONFIG_PACKAGE_libvulkan-lvp is not set
 # CONFIG_PACKAGE_libvulkan-panfrost is not set
 # CONFIG_PACKAGE_libvulkan-radeon is not set
+CONFIG_HAVE_MESA=y
+CONFIG_MESA_USE_LLVM=y
 # CONFIG_PACKAGE_seatd is not set
 # CONFIG_PACKAGE_vulkan-loader is not set
 # CONFIG_PACKAGE_wayland-info is not set

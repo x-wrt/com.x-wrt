@@ -62,7 +62,7 @@ CONFIG_TARGET_MULTI_PROFILE=y
 # CONFIG_TARGET_ALL_PROFILES is not set
 CONFIG_TARGET_PER_DEVICE_ROOTFS=y
 CONFIG_TARGET_DEVICE_armsr_armv8_DEVICE_generic=y
-CONFIG_TARGET_DEVICE_PACKAGES_armsr_armv8_DEVICE_generic="aria2 aria2-openssl ca-bundle iptables-mod-dhcpmac iptables-mod-dnetmap jool-tools-netfilter kmod-bonding kmod-crypto-acompress kmod-crypto-cbc kmod-crypto-deflate kmod-crypto-echainiv kmod-dnsresolver kmod-fs-msdos kmod-fs-nfs kmod-fs-nfs-common kmod-fs-nfs-v4 kmod-fuse kmod-inet-diag kmod-ip6-vti kmod-ipsec kmod-ipsec4 kmod-ipsec6 kmod-ipt-compat-xtables kmod-ipt-dhcpmac kmod-ipt-dnetmap kmod-ip-vti kmod-jool-netfilter kmod-l2tp kmod-lib-zlib-deflate kmod-lib-zlib-inflate kmod-mdio-gpio kmod-nat46 kmod-nf-conntrack-netlink kmod-phy-realtek kmod-pppol2tp kmod-renesas-net-avb kmod-usb2 kmod-usb3 kmod-usb-ehci kmod-usb-net-ipheth kmod-usb-net-rndis kmod-usb-net-sierrawireless kmod-usb-ohci kmod-usb-printer kmod-usb-serial-cp210x kmod-usb-serial-pl2303 kmod-usb-serial-qualcomm kmod-usb-serial-sierrawireless kmod-usb-storage kmod-usb-storage-extras kmod-usb-storage-uas kmod-usb-xhci-hcd kmod-xfrm-interface libcap-ng libcares libcurl libexpat libgmp libimobiledevice libimobiledevice-glue libimobiledevice-utils libkmod liblz4 liblzo libnghttp2 libnl libnl-cli libnl-nf libnl-route libopenssl-legacy libpci libplist libqrencode libsqlite3 libssh2 libtatsu libusb-1.0 libusbmuxd libwrap libxml2 luci-app-aria2 luci-app-usteer luci-i18n-aria2-zh-cn luci-proto-vti luci-proto-xfrm minicom nfs-utils openvpn-openssl pciids pciutils ppp-mod-pppol2tp proto-bonding qrencode tc-tiny usbids usb-modeswitch usbmuxd usbutils vti webui-aria2 wget-ssl wpad-openssl xfrm xl2tpd"
+CONFIG_TARGET_DEVICE_PACKAGES_armsr_armv8_DEVICE_generic="aria2 aria2-openssl ca-bundle iptables-mod-dhcpmac iptables-mod-dnetmap jool-tools-netfilter kmod-bonding kmod-crypto-acompress kmod-crypto-cbc kmod-crypto-deflate kmod-crypto-echainiv kmod-dnsresolver kmod-fs-msdos kmod-fs-nfs kmod-fs-nfs-common kmod-fs-nfs-v4 kmod-fuse kmod-inet-diag kmod-ip6-vti kmod-ipsec kmod-ipsec4 kmod-ipsec6 kmod-ipt-compat-xtables kmod-ipt-dhcpmac kmod-ipt-dnetmap kmod-ip-vti kmod-jool-netfilter kmod-l2tp kmod-lib-zlib-deflate kmod-lib-zlib-inflate kmod-mdio-gpio kmod-nat46 kmod-nf-conntrack-netlink kmod-phy-realtek kmod-pppol2tp kmod-renesas-net-avb kmod-usb2 kmod-usb3 kmod-usb-ehci kmod-usb-net-ipheth kmod-usb-net-rndis kmod-usb-net-sierrawireless kmod-usb-ohci kmod-usb-printer kmod-usb-serial-cp210x kmod-usb-serial-pl2303 kmod-usb-serial-qualcomm kmod-usb-serial-sierrawireless kmod-usb-storage kmod-usb-storage-extras kmod-usb-storage-uas kmod-usb-xhci-hcd kmod-xfrm-interface libcap-ng libcares libcurl libexpat libgmp libimobiledevice libimobiledevice-glue libimobiledevice-utils libkmod liblz4 liblzo libnghttp2 libnl libnl-cli libnl-nf libnl-route libopenssl-legacy libpci libplist libqrencode libsqlite3 libssh2 libtatsu libusb-1.0 libusbmuxd libxml2 lsqlite3 luci-app-aria2 luci-app-usteer luci-i18n-aria2-zh-cn luci-proto-vti luci-proto-xfrm minicom nfs-utils openvpn-openssl pciids pciutils ppp-mod-pppol2tp proto-bonding qrencode tc-tiny usbids usb-modeswitch usbmuxd usbutils vti webui-aria2 wget-ssl wpad-openssl xfrm xl2tpd"
 # end of Target Devices
 
 CONFIG_HAS_SUBTARGETS=y
@@ -475,7 +475,7 @@ CONFIG_TARGET_INIT_CMD="/sbin/init"
 CONFIG_TARGET_INIT_SUPPRESS_STDERR=y
 CONFIG_VERSIONOPT=y
 CONFIG_VERSION_DIST="X-WRT"
-CONFIG_VERSION_NUMBER="25.04_b202505092304"
+CONFIG_VERSION_NUMBER="25.04_b202505130848"
 CONFIG_VERSION_CODE="Plucky"
 CONFIG_VERSION_REPO="http://downloads.openwrt.org/snapshots"
 CONFIG_VERSION_HOME_URL="https://x-wrt.com/"
@@ -4172,7 +4172,7 @@ CONFIG_GOLANG_BUILD_CACHE_DIR=""
 # CONFIG_PACKAGE_libiwinfo-lua is not set
 # CONFIG_PACKAGE_linotify is not set
 # CONFIG_PACKAGE_lpeg is not set
-# CONFIG_PACKAGE_lsqlite3 is not set
+CONFIG_PACKAGE_lsqlite3=m
 # CONFIG_PACKAGE_lsqlite3-lua5.3 is not set
 CONFIG_PACKAGE_lua=y
 # CONFIG_PACKAGE_lua-argparse is not set
@@ -5346,8 +5346,6 @@ CONFIG_WOLFSSL_ALT_NAMES=y
 # CONFIG_PACKAGE_libdrm-radeon is not set
 # CONFIG_PACKAGE_libdrm-tegra is not set
 # CONFIG_PACKAGE_libepoxy is not set
-# CONFIG_PACKAGE_libglapi is not set
-CONFIG_HAVE_MESA=y
 # CONFIG_PACKAGE_libglm is not set
 # CONFIG_PACKAGE_libgraphene is not set
 # CONFIG_PACKAGE_libmesa-amd is not set
@@ -5373,6 +5371,8 @@ CONFIG_HAVE_MESA=y
 # CONFIG_PACKAGE_libvulkan-lvp is not set
 # CONFIG_PACKAGE_libvulkan-panfrost is not set
 # CONFIG_PACKAGE_libvulkan-radeon is not set
+CONFIG_HAVE_MESA=y
+CONFIG_MESA_USE_LLVM=y
 # CONFIG_PACKAGE_seatd is not set
 # CONFIG_PACKAGE_vulkan-loader is not set
 # CONFIG_PACKAGE_wayland-info is not set

@@ -7,7 +7,6 @@ proxym="luci-app-tinyproxy luci-i18n-tinyproxy-en luci-i18n-tinyproxy-zh-cn sock
 nfs="kmod-dnsresolver \
      kmod-fs-nfs \
      kmod-fs-nfs-v4 \
-     libwrap \
      nfs-utils"
 
 lucibond="luci-proto-bonding proto-bonding kmod-bonding"
