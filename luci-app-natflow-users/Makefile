@@ -24,7 +24,7 @@ define Package/luci-app-natflow-users
 	SUBMENU:=Natflow users module support
 	TITLE:=LuCI Support for natflow users
 	PKGARCH:=all
-	DEPENDS:= +natflow-auth
+	DEPENDS:= +natflow-auth +luci-compat
 endef
 
 define Package/luci-app-natflow-users/description
@@ -66,11 +66,15 @@ define Package/luci-app-natflow-users/install
 	$(INSTALL_BIN) ./root/usr/libexec/rpcd/luci.natflow $(1)/usr/libexec/rpcd/luci.natflow
 	$(INSTALL_DIR) $(1)/www/luci-static/resources/view/network
 	$(INSTALL_DATA) ./htdocs/luci-static/resources/view/network/natflow-qos.js $(1)/www/luci-static/resources/view/network/natflow-qos.js
+	$(INSTALL_DATA) ./htdocs/luci-static/resources/view/network/hostacl.js $(1)/www/luci-static/resources/view/network/hostacl.js
 	$(INSTALL_DIR) $(1)/www/luci-static/resources/view/system
 	$(INSTALL_DATA) ./htdocs/luci-static/resources/view/system/natflow-users.js $(1)/www/luci-static/resources/view/system/natflow-users.js
 	$(INSTALL_DIR) $(1)/www/luci-static/resources/view/status/include
 	$(INSTALL_DATA) ./htdocs/luci-static/resources/view/status/include/35_natflow-users.js $(1)/www/luci-static/resources/view/status/include/35_natflow-users.js
 	$(INSTALL_DATA) ./htdocs/luci-static/resources/view/status/natflow-users.js $(1)/www/luci-static/resources/view/status/natflow-users.js
+	$(INSTALL_DATA) ./htdocs/luci-static/resources/view/status/urllog.js $(1)/www/luci-static/resources/view/status/urllog.js
+	$(INSTALL_DIR) $(1)/usr/share/ucitrack
+	$(INSTALL_DATA) ./root/usr/share/ucitrack/*.json $(1)/usr/share/ucitrack/
 endef
 
 $(eval $(call BuildPackage,luci-app-natflow-users))

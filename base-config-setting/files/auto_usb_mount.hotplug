@@ -28,6 +28,9 @@ try_mount()
 
 dev=/dev/$DEVNAME
 
+blkid $dev | grep -q 'UUID="db0482e8-04bd-dfbb-3935-fbc9d9a9cfb9"' && exit 0
+blkid $dev | grep -q 'UUID="f3178596-4427-2d3b-35c7-648b65e20d5e"' && exit 0
+
 diskdev=""
 . /lib/functions.sh
 . /lib/upgrade/common.sh

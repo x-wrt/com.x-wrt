@@ -4,11 +4,24 @@
 # Copyright (C) 2017 PTPT52
 # Copyright (C) 2020 X-WRT <dev@x-wrt.com>
 
+block_early_fixup()
+{
+	for src in /sys/class/block/*/uevent; do
+		if test -e "$src"; then
+			source "$src" 2>/dev/null
+			test -e /dev/$DEVNAME || mknod /dev/$DEVNAME b $MAJOR $MINOR
+		fi
+	done
+}
+
 do_disk_ready() {
 	which fdisk && which partx && which mkfs.ext4 || return
 	local partdev
 	local ROOTDEV=/dev/sd-
 	local ROOTPART=/dev/sd-
+	local LASTNR=0
+	local is_x86=1
+	local diskpart_num1=2
 	. /lib/functions.sh
 	. /lib/upgrade/common.sh
 	if export_bootdevice && export_partdevice partdev 0; then
@@ -24,13 +37,176 @@ do_disk_ready() {
 		fi
 	fi
 
-	test -b ${ROOTDEV} && test -b ${ROOTPART}1 || return
-
 	overlay_size=$(cat /proc/cmdline | grep -o "overlay_size=[0-9]*" | cut -d= -f2)
 	test -n "$overlay_size" || overlay_size=$((1*768)) #768M default
+
+	block_early_fixup
+	uuid=$(uci get fstab.overlay.uuid 2>/dev/null || echo f3178596-4427-2d3b-35c7-648b65e20d5e)
+	overlay_dev=$(blkid /dev/sda* | grep "UUID=\"$uuid\"" -m1 | cut -d: -f1)
+	test -n "$overlay_dev" || overlay_dev=$(blkid | grep "UUID=\"$uuid\"" -m1 | cut -d: -f1)
+
+	#XXX: overlay_dev: IF NOT exist
+	if ! test -n "$overlay_dev"; then
+
+	. /lib/functions/system.sh
+	case "$(board_name)" in
+	arcadyan,aw1000)
+		# ubifs extroot setup
+		. /lib/upgrade/nand.sh
+		mtdnum=$(find_mtd_index rootfs_1)
+		ubiattach -p /dev/mtd$mtdnum --max-beb-per1024=2 || {
+			ubiformat /dev/mtd$mtdnum -y
+			ubiattach -p /dev/mtd$mtdnum --max-beb-per1024=2
+		}
+		ubidev=$(nand_find_ubi rootfs_1)
+		ubinfo -a /dev/$ubidev | grep -q "Name:        extroot_overlay" || {
+			ubidetach -p /dev/mtd$mtdnum
+			ubiformat /dev/mtd$mtdnum -y
+			ubiattach -p /dev/mtd$mtdnum --max-beb-per1024=2
+		}
+		ubidev=$(nand_find_ubi rootfs_1)
+		ubimkvol /dev/$ubidev -m -N extroot_overlay || :
+		ubivol=$(nand_find_volume $ubidev extroot_overlay)
+		mount -t ubifs /dev/$ubivol /mnt && {
+			if test -e /mnt/.extroot-erase; then
+				rm -rf /mnt/upper /mnt/work /mnt/etc /mnt/.fs_state /mnt/.extroot-erase
+				umount /mnt
+			else
+				umount /mnt
+			fi
+		}
+		# usb disk setup
+		if test -b /dev/sda; then
+			ROOTDEV=/dev/sda
+			ROOTPART=/dev/sda
+			overlay_size="$((1*1024))" #1024M
+			diskpart_num1=0
+			is_x86=0
+		else
+			if test -e "/dev/$ubivol"; then
+				uci delete fstab.overlay.uuid
+				uci set fstab.overlay=mount
+				uci set fstab.overlay.target='/overlay'
+				uci set fstab.overlay.device="/dev/$ubivol"
+				uci set fstab.overlay.fstype='ubifs'
+				uci set fstab.overlay.options='rw,noatime'
+				uci set fstab.overlay.enabled='1'
+				uci commit fstab
+			fi
+			return
+		fi
+		;;
+	bananapi,bpi-r3|\
+	bananapi,bpi-r4)
+		if test -b /dev/mmcblk0; then
+			ROOTDEV=/dev/mmcblk0
+			ROOTPART=/dev/mmcblk0p
+			overlay_size="$((1*1024))" #1024M
+			diskpart_num1=7 # sdcard
+			is_x86=0
+			if test -b /dev/mmcblk0p128; then
+				diskpart_num1=6 # emmc
+			elif ! test -b /dev/mmcblk0p3; then
+				diskpart_num1=0
+			fi
+		elif test -b /dev/sda; then
+			ROOTDEV=/dev/sda
+			ROOTPART=/dev/sda
+			overlay_size="$((1*1024))" #1024M
+			diskpart_num1=0
+			is_x86=0
+		fi
+		;;
+	cmcc,rax3000m)
+		if test -b /dev/mmcblk0; then
+			ROOTDEV=/dev/mmcblk0
+			ROOTPART=/dev/mmcblk0p
+			overlay_size="$((1*1024))" #1024M
+			diskpart_num1=6
+			is_x86=0
+		elif test -b /dev/sda; then
+			ROOTDEV=/dev/sda
+			ROOTPART=/dev/sda
+			overlay_size="$((1*1024))" #1024M
+			diskpart_num1=0
+			is_x86=0
+		fi
+		;;
+	cmcc,rax3000m-nand-ubootlayout)
+		if test -b /dev/sda; then
+			ROOTDEV=/dev/sda
+			ROOTPART=/dev/sda
+			overlay_size="$((1*1024))" #1024M
+			diskpart_num1=0
+			is_x86=0
+		fi
+		;;
+	xwrt,wr3000k-emmc-nor)
+		if test -b /dev/mmcblk0; then
+			ROOTDEV=/dev/mmcblk0
+			ROOTPART=/dev/mmcblk0p
+			overlay_size="$((1*1024))" #1024M
+			diskpart_num1=0
+			is_x86=0
+			if ! test -b /dev/mmcblk0p2; then
+				dd if=/dev/zero of=/dev/mmcblk0 bs=32M count=1
+			fi
+		fi
+		;;
+	tenbay,wr3000k)
+		# ubifs extroot setup
+		. /lib/upgrade/nand.sh
+		mtdnum=$(find_mtd_index ubi1)
+		ubiattach -p /dev/mtd$mtdnum --max-beb-per1024=2 || {
+			ubiformat /dev/mtd$mtdnum -y
+			ubiattach -p /dev/mtd$mtdnum --max-beb-per1024=2
+		}
+		ubidev=$(nand_find_ubi ubi1)
+		ubinfo -a /dev/$ubidev | grep -q "Name:        extroot_overlay" || {
+			ubidetach -p /dev/mtd$mtdnum
+			ubiformat /dev/mtd$mtdnum -y
+			ubiattach -p /dev/mtd$mtdnum --max-beb-per1024=2
+		}
+		ubidev=$(nand_find_ubi ubi1)
+		ubimkvol /dev/$ubidev -m -N extroot_overlay 2>/dev/null || :
+		ubivol=$(nand_find_volume $ubidev extroot_overlay)
+		mount -t ubifs /dev/$ubivol /mnt && {
+			if test -e /mnt/.extroot-erase; then
+				rm -rf /mnt/upper /mnt/work /mnt/etc /mnt/.fs_state /mnt/.extroot-erase
+				umount /mnt
+			else
+				umount /mnt
+			fi
+		}
+		if test -e "/dev/$ubivol"; then
+			uci delete fstab.overlay.uuid
+			uci set fstab.overlay=mount
+			uci set fstab.overlay.target='/overlay'
+			uci set fstab.overlay.device="/dev/$ubivol"
+			uci set fstab.overlay.fstype='ubifs'
+			uci set fstab.overlay.options='rw,noatime'
+			uci set fstab.overlay.enabled='1'
+			uci commit fstab
+		fi
+		return
+		;;
+	*)
+		if ! test -b ${ROOTDEV}; then
+			if test -b /dev/sda; then
+				ROOTDEV=/dev/sda
+				ROOTPART=/dev/sda
+				overlay_size="$((1*1024))" #1024M
+				diskpart_num1=0
+				is_x86=0
+			fi
+		fi
+		;;
+	esac
+
+	test -b ${ROOTDEV} || return
 	overlay_size=$((overlay_size*1024*1024))
 	disktype="dos"
-	fdisk -l ${ROOTDEV} 2>/dev/null | grep -q "type: gpt" && disktype="gpt"
+	fdisk -l ${ROOTDEV} 2>/dev/null | grep -q "type: gpt" && disktype="gpt" && [ "${is_x86}" = "1" ] && diskpart_num1=3
 	sector_size=$(fdisk -l ${ROOTDEV} | grep "^Sector size" | awk '{print $4}')
 	sector_size=$((sector_size+0))
 	test ${sector_size} -gt 0 || sector_size=512
@@ -43,24 +219,27 @@ do_disk_ready() {
 		fi
 	done | tail -n1)
 	LASTNR=$(echo $LASTDEV | grep -o "[0-9]*" | tail -n1)
+	test -z "$LASTDEV" && LASTNR=0
 	BLKCNT=$(fdisk -l ${ROOTDEV} | head -n1 | awk '{print $7}')
 	SCNT=$((4096/sector_size))
 	test $SCNT -eq 0 && SCNT=1
 
 	if [ "$disktype" = "gpt" ]; then
 		which gdisk || return
-		if [ "$diskpart" = "3" ] || [ "$diskpart" = "4" ]; then
+		if [ "$diskpart" = "${diskpart_num1}" ]; then
 			disksize="$(fdisk -l ${ROOTDEV} | grep "${ROOTDEV}:" -m1 | awk '{print $5}')"
 			test -n "$disksize" || return
 			# <= 2GiB && return
 			test $disksize -le 2147483648 && return
 
 			#clean
+			echo -ne "2\nw\ny\ny\nq\n" | gdisk ${ROOTDEV}
 			echo -ne "w\ny\ny\n" | gdisk ${ROOTDEV}
 			echo -ne "d\n$((LASTNR+2))\nd\n$((LASTNR+1))\nw\ny\n" | gdisk ${ROOTDEV}
 			set $(fdisk -l ${ROOTDEV} 2>/dev/null | grep "^${ROOTPART}$((LASTNR))")
 			sda4_start=$2
 			sda4_end=$3
+			[ "$LASTNR" = "0" ] && sda4_start=2047 && sda4_end=2047
 
 			# overlay partition +512 to align with dos part type
 			sda5_start=$((sda4_end+512+512+1))
@@ -73,23 +252,14 @@ do_disk_ready() {
 			# [_boot_|_rootfs_...1G...][cfg 1G][data...]
 			echo -ne "n\n\n${sda5_start}\n${sda5_end}\n8300\nn\n\n${sda6_start}\n${sda6_end}\n8300\nw\ny\n" | gdisk ${ROOTDEV}
 
-			partx -a ${ROOTDEV}
-			test -b ${ROOTPART}$((LASTNR+1)) -a -b ${ROOTPART}$((LASTNR+2))  || {
-				MAJOR=$(printf "%d" "0x$(stat -c "%t" ${ROOTDEV})")
-				MINOR=$(printf "%d" "0x$(stat -c "%T" ${ROOTDEV})")
-				test -n "$MAJOR" && {
-					rm -f ${ROOTPART}$((LASTNR+1))
-					mknod ${ROOTPART}$((LASTNR+1)) b $MAJOR $((MINOR+LASTNR+1))
-					rm -f ${ROOTPART}$((LASTNR+2))
-					mknod ${ROOTPART}$((LASTNR+2)) b $MAJOR $((MINOR+LASTNR+2))
-				}
-			}
+			partx -u ${ROOTDEV}
+			block_early_fixup
 
 			test -b ${ROOTPART}$((LASTNR+1)) && echo erase >${ROOTPART}$((LASTNR+1))
 			LASTNR=$((LASTNR+2))
 		fi
 	elif [ "$disktype" = "dos" ]; then
-		if [ "$diskpart" = "2" ]; then
+		if [ "$diskpart" = "${diskpart_num1}" ]; then
 			disksize="$(fdisk -l ${ROOTDEV} | grep "${ROOTDEV}:" -m1 | awk '{print $5}')"
 			test -n "$disksize" || return
 			# <= 2GiB && return
@@ -101,6 +271,7 @@ do_disk_ready() {
 			set $(fdisk -l ${ROOTDEV} 2>/dev/null | grep "^${ROOTPART}$((LASTNR))")
 			sda2_start=$2
 			sda2_end=$3
+			[ "$LASTNR" = "0" ] && sda2_start=2047 && sda2_end=2047
 
 			# overlay partition
 			sda3_start=$((sda2_end+512+1))
@@ -111,34 +282,46 @@ do_disk_ready() {
 			sda4_end=$(((BLKCNT-34)/SCNT*SCNT - 1))
 
 			# [_boot_|_rootfs_...1G...][cfg 1G][data...]
-			echo -ne "n\np\n\n${sda3_start}\n${sda3_end}\nn\np\n${sda4_start}\n${sda4_end}\nw\n" | fdisk ${ROOTDEV}
+			case "$diskpart_num1" in
+				0|1)
+					echo -ne "n\np\n\n${sda3_start}\n${sda3_end}\nn\np\n\n${sda4_start}\n${sda4_end}\nw\n" | fdisk ${ROOTDEV}
+					;;
+				2)
+					echo -ne "n\np\n\n${sda3_start}\n${sda3_end}\nn\np\n${sda4_start}\n${sda4_end}\nw\n" | fdisk ${ROOTDEV}
+					;;
+				3)
+					echo -ne "n\np\n${sda3_start}\n${sda3_end}\nw\n" | fdisk ${ROOTDEV}
+					;;
+			esac
 
-			partx -a ${ROOTDEV}
-			test -b ${ROOTPART}$((LASTNR+1)) -a -b ${ROOTPART}$((LASTNR+2))  || {
-				MAJOR=$(printf "%d" "0x$(stat -c "%t" ${ROOTDEV})")
-				MINOR=$(printf "%d" "0x$(stat -c "%T" ${ROOTDEV})")
-				test -n "$MAJOR" && {
-					rm -f ${ROOTPART}$((LASTNR+1))
-					mknod ${ROOTPART}$((LASTNR+1)) b $MAJOR $((MINOR+LASTNR+1))
-					rm -f ${ROOTPART}$((LASTNR+2))
-					mknod ${ROOTPART}$((LASTNR+2)) b $MAJOR $((MINOR+LASTNR+2))
-				}
-			}
+			partx -u ${ROOTDEV}
+			block_early_fixup
 
 			test -b ${ROOTPART}$((LASTNR+1)) && echo erase >${ROOTPART}$((LASTNR+1))
 			LASTNR=$((LASTNR+2))
 		fi
 	fi
 
-	#check rootfs_data
+	#XXX: overlay_dev: ELSE exist
+	else
+		LASTNR=$(echo "$overlay_dev" | sed -E 's/.*[^0-9]([0-9]+)$/\1/')
+		ROOTPART=${overlay_dev%*${LASTNR}}
+		LASTNR=$((LASTNR+1))
+		is_x86=0
+	fi
+	#XXX: overlay_dev: END
+
+	#check extroot_overlay
 	if test -b ${ROOTPART}$((LASTNR-1)); then
-		uuid=$(uci get fstab.overlay.uuid)
+		uuid=$(uci get fstab.overlay.uuid 2>/dev/null || echo f3178596-4427-2d3b-35c7-648b65e20d5e)
 		format=0
 		if [ "$(head -c5 ${ROOTPART}$((LASTNR-1)))" = "erase" ]; then
 			echo request format ${ROOTPART}$((LASTNR-1))
 			format=1
 		elif [ "$(head -c6 ${ROOTPART}$((LASTNR-1)))" = "format" ]; then
 			format=2
+		elif [ "$is_x86" = "0" ]; then
+			blkid ${ROOTPART}$((LASTNR-1)) | grep -q "UUID=\"$uuid\"" || return
 		fi
 		if mount -t ext4 -o rw,noatime ${ROOTPART}$((LASTNR-1)) /mnt; then
 			if [ "$format" -ne "0" ]; then
@@ -152,7 +335,7 @@ do_disk_ready() {
 			format=1
 		fi
 		[ "$format" -ne "0" ] && {
-			echo -ne 'y\n' | mkfs.ext4 -U $uuid -L rootfs_data ${ROOTPART}$((LASTNR-1))
+			echo -ne 'y\n' | mkfs.ext4 -U $uuid -L extroot_overlay ${ROOTPART}$((LASTNR-1))
 		}
 		UUID=$(blkid ${ROOTPART}$((LASTNR-1)) | grep -o "UUID=.*" | cut -d\" -f2)
 		[ "$uuid" = "$UUID" ] || {
@@ -160,11 +343,15 @@ do_disk_ready() {
 			e2fsck -f ${ROOTPART}$((LASTNR-1))
 			tune2fs -U $uuid ${ROOTPART}$((LASTNR-1))
 		}
-		blkid ${ROOTPART}$((LASTNR-1)) | grep -q 'LABEL="rootfs_data"' || tune2fs -L rootfs_data ${ROOTPART}$((LASTNR-1))
+		blkid ${ROOTPART}$((LASTNR-1)) | grep -q 'LABEL="extroot_overlay"' || tune2fs -L extroot_overlay ${ROOTPART}$((LASTNR-1))
 	fi
-	#check data
+	#check extroot_data
 	if test -b ${ROOTPART}$((LASTNR)); then
-		uuid=$(uci get fstab.data.uuid)
+		if [ "$is_x86" = "0" ]; then
+			uuid=$(uci get fstab.overlay.uuid 2>/dev/null || echo f3178596-4427-2d3b-35c7-648b65e20d5e)
+			blkid ${ROOTPART}$((LASTNR-1)) | grep -q "UUID=\"$uuid\"" || return
+		fi
+		uuid=$(uci get fstab.data.uuid 2>/dev/null || echo db0482e8-04bd-dfbb-3935-fbc9d9a9cfb9)
 		format=0
 		if [ "$(head -c5 ${ROOTPART}$((LASTNR)))" = "erase" ]; then
 			echo request format ${ROOTPART}$((LASTNR))
@@ -177,7 +364,7 @@ do_disk_ready() {
 			format=1
 		fi
 		[ "$format" = "1" ] && {
-			echo -ne 'y\n' | mkfs.ext4 -U $uuid -L data ${ROOTPART}$((LASTNR))
+			echo -ne 'y\n' | mkfs.ext4 -U $uuid -L extroot_data ${ROOTPART}$((LASTNR))
 		}
 		UUID=$(blkid ${ROOTPART}$((LASTNR)) | grep -o "UUID=.*" | cut -d\" -f2)
 		[ "$uuid" = "$UUID" ] || {
@@ -185,7 +372,7 @@ do_disk_ready() {
 			e2fsck -f ${ROOTPART}$((LASTNR))
 			tune2fs -U $uuid ${ROOTPART}$((LASTNR))
 		}
-		blkid ${ROOTPART}$((LASTNR)) | grep -q 'LABEL="data"' || tune2fs -L data ${ROOTPART}$((LASTNR))
+		blkid ${ROOTPART}$((LASTNR)) | grep -q 'LABEL="extroot_data"' || tune2fs -L extroot_data ${ROOTPART}$((LASTNR))
 	fi
 }
 

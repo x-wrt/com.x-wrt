@@ -9,10 +9,10 @@ include $(TOPDIR)/rules.mk
 include $(INCLUDE_DIR)/kernel.mk
 
 PKG_NAME:=natflow
-PKG_VERSION:=20240416
+PKG_VERSION:=20250510
 
 PKG_SOURCE_URL:=https://codeload.github.com/ptpt52/natflow/tar.gz/$(PKG_VERSION)?
-PKG_HASH:=924f5b46891aa31a64ecbbf5790781b27118a59c48970edee2b21464307d004c
+PKG_HASH:=6db4879f3a71e71132616b007d6aa2e81d870dd236faaefe06c6a1ac9c618bf6
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
 
 PKG_MAINTAINER:=Chen Minqiang <ptpt52@gmail.com>
@@ -37,6 +37,8 @@ define KernelPackage/natflow/description
 endef
 
 include $(INCLUDE_DIR)/kernel-defaults.mk
+
+EXTRA_CFLAGS += -Wno-stringop-overread
 
 EXTRA_CFLAGS += -DCONFIG_NATFLOW_PATH -DCONFIG_NATFLOW_URLLOGGER -DNATFLOW_VERSION=\\\"$(PKG_VERSION)-$(shell echo $(PKG_HASH) | head -c7)\\\"
 ifneq ($(CONFIG_TARGET_mediatek_mt7622),)
@@ -97,6 +99,25 @@ define Package/natflow-auth/install
 	$(INSTALL_DATA) ./files/20-natflow-zone.hotplug $(1)/etc/hotplug.d/iface/20-natflow-zone
 endef
 
+define Package/natflow-hostacl
+  CATEGORY:=X
+  SUBMENU:=Fast Forward Stacks
+  TITLE:=natflow hostacl init script
+  DEPENDS:= +natflow-auth +urllogger
+endef
+
+define Package/natflow-hostacl/conffiles
+/etc/config/hostacl
+endef
+
+define Package/natflow-hostacl/install
+	$(INSTALL_DIR) $(1)/etc/init.d
+	$(INSTALL_DIR) $(1)/etc/config
+	$(INSTALL_BIN) ./files/natflow-hostacl.init $(1)/etc/init.d/natflow-hostacl
+	$(INSTALL_DATA) ./files/hostacl.config $(1)/etc/config/hostacl
+endef
+
 $(eval $(call KernelPackage,natflow))
 $(eval $(call BuildPackage,natflow-boot))
 $(eval $(call BuildPackage,natflow-auth))
+$(eval $(call BuildPackage,natflow-hostacl))

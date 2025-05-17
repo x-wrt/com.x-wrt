@@ -9,10 +9,10 @@ include $(TOPDIR)/rules.mk
 include $(INCLUDE_DIR)/kernel.mk
 
 PKG_NAME:=natcap
-PKG_VERSION:=20240318
+PKG_VERSION:=20250516
 
 PKG_SOURCE_URL:=https://codeload.github.com/ptpt52/natcap/tar.gz/$(PKG_VERSION)?
-PKG_HASH:=a446b5efa332f706afb9347c11ca2f0240a3370a8db5dfa0e39ebcaa3ab6b869
+PKG_HASH:=e2216c20c40f5f26f01bc2807901cf4b57a77d001a32369a2e37b6488b24bfe4
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
 
 PKG_MAINTAINER:=Chen Minqiang <ptpt52@gmail.com>
@@ -117,6 +117,8 @@ define Package/natcapd-mini/install
 	$(INSTALL_DIR) $(1)/etc/hotplug.d/iface
 	$(INSTALL_DATA) ./files/20-natcapd.hotplug $(1)/etc/hotplug.d/iface/20-natcapd
 	$(INSTALL_BIN) $(PKG_BUILD_DIR)/peer_ctl.sh $(1)/usr/sbin/peer_ctl
+	$(INSTALL_DIR) $(1)/usr/share/ucitrack
+	$(INSTALL_DATA) ./files/ucitrack/*.json $(1)/usr/share/ucitrack/
 endef
 
 define Package/natcapd/conffiles

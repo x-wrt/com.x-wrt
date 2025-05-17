@@ -39,6 +39,21 @@ wifi_setup_radio()
 			set wireless.${radio}.cell_density='0'
 		EOT
 
+		if [ "$(uci get wireless.${radio}.band 2>/dev/null)" = "2g" ] || [ "$(uci get wireless.${radio}.band 2>/dev/null)" = "5g" ]; then
+			htmode="$(uci get wireless.${radio}.htmode 2>/dev/null)"
+			if [ "${htmode//EHT}" != "${htmode}" ]; then
+				if  [ "$(uci get wireless.${radio}.band 2>/dev/null)" = "2g" ]; then
+					uci set wireless.${radio}.channel="1"
+				else
+					uci set wireless.${radio}.channel="36"
+				fi
+			fi
+		else
+			uci set wireless.${radio}.country='DE'
+			uci set wireless.${radio}.channel='21'
+			uci set wireless.${radio}.band='6g'
+		fi
+
 		obj=`uci add wireless wifi-iface`
 		if test -n "$obj"; then
 			uci set wireless.$obj.device="${radio}"
@@ -57,6 +72,14 @@ wifi_setup_radio()
 				uci set wireless.$obj.ieee80211r='1'
 				uci set wireless.$obj.ft_over_ds='0'
 				uci set wireless.$obj.ft_psk_generate_local='1'
+			fi
+
+
+			if [ "$(uci get wireless.${radio}.band 2>/dev/null)" = "6g" ]; then
+				uci set wireless.$obj.encryption='sae'
+				uci set wireless.$obj.ocv='0'
+				uci set wireless.$obj.ssid="${SSID}_6G"
+				uci delete wireless.$obj.ft_psk_generate_local
 			fi
 		fi
 	fi

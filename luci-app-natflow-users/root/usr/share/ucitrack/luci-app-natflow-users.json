@@ -1,0 +1,9 @@
+{
+	"config": "natflow",
+	"init": "natflow-user",
+	"exec": "/etc/init.d/natflow-zone reload",
+	"affects": [
+		"natflow-qos",
+		"natflow-simple-qos"
+	]
+}

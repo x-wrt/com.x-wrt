@@ -17,10 +17,11 @@ do_disk_ready() {
 	. /lib/upgrade/common.sh
 	if export_bootdevice && export_partdevice partdev 0; then
 		overlay_dev=$(blkid /dev/${partdev}* 2>/dev/null | grep 'UUID="f3178596-4427-2d3b-35c7-648b65e20d5e"' | cut -d: -f1)
-		if echo $partdev | grep -q ^sd[a-z]; then
+		test -n "$overlay_dev" || return 1
+		if echo $partdev | grep -q "^sd[a-z]"; then
 			ROOTDEV=/dev/${partdev}
 			ROOTPART=/dev/${partdev}
-		elif echo $partdev | grep -q ^mmcblk[0-9]; then
+		elif echo $partdev | grep -q ".*[0-9]"; then
 			ROOTDEV=/dev/${partdev}
 			ROOTPART=/dev/${partdev}p
 		else
@@ -52,12 +53,20 @@ COUNT=$((65536/SECTOR_SIZE)) #size 64k
 #echo START=$START
 #echo COUNT=$COUNT
 
+_start=$((start*SECTOR_SIZE/65536))
+_start=$((_start*65536/SECTOR_SIZE))
+if [ "$start" = "$_start" ]; then
+	START=$((START*SECTOR_SIZE/65536))
+	COUNT=1
+	SECTOR_SIZE=65536
+fi
+
 dd if=$ROOTDEV bs=$SECTOR_SIZE skip=$START count=$COUNT of=/tmp/pd.img conv=notrunc >/dev/null 2>&1
 
 case "$cmd" in
 	get)
 		value=$(cat /tmp/pd.img | grep "^$key=" | sed "s/$key=//")
-		echo $key=$value
+		echo "$key=$value"
 	;;
 	set)
 		cat /tmp/pd.img | grep -v "^$key=" >/tmp/pd.img.new

@@ -76,7 +76,7 @@ boot() {
 
 	local DEV=$(test -b "$diskdev" && (echo /dev/sda1 | grep -q "$diskdev") && echo /dev/sdb1 || echo /dev/sda1)
 	mkdir /tmp/usb_reset || return 0
-	mount $DEV /tmp/usb_reset || {
+	test -b $DEV && mount $DEV /tmp/usb_reset || {
 		rmdir /tmp/usb_reset
 		return 0
 	}

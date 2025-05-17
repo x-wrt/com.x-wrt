@@ -118,6 +118,17 @@ add_wizard() {
 				uci set wireless.@wifi-iface[$idx].key="${wifi_key}"
 				uci set wireless.@wifi-iface[$idx].encryption='psk2'
 			}
+			device=$(uci get wireless.@wifi-iface[$idx].device)
+			[ "$(uci get wireless.${device}.band)" = "2g" ] || [ "$(uci get wireless.${device}.band)" = "5g" ] || {
+				uci set wireless.@wifi-iface[$idx].ocv='0'
+				uci set wireless.@wifi-iface[$idx].ssid="${wifi_ssid}_6G"
+				uci set wireless.@wifi-iface[$idx].key="${wifi_key}"
+				uci set wireless.@wifi-iface[$idx].encryption='sae'
+				uci delete wireless.@wifi-iface[$idx].ft_psk_generate_local
+				uci set wireless.${device}.country='DE'
+				uci set wireless.${device}.channel='21'
+				uci set wireless.${device}.band='6g'
+			}
 		done
 	}
 

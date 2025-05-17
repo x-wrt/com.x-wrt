@@ -659,7 +659,7 @@ cn_domain_setup() {
 
 	lock /var/run/natcapd.cn_domain.lock
 	while :; do
-	ping -q -W3 -c1 8.8.8.8 || ping -q -W3 -c1 114.114.114.114 || { sleep 11 && continue; }
+	ping -q -W3 -c1 8.8.8.8 || ping -q -W3 -c1 119.29.29.29 || ping -q -W3 -c1 1.1.1.1 || { sleep 11 && continue; }
 	$WGET181 --timeout=180 --no-check-certificate -qO /tmp/cn_domain.raw.build.gz \
 		"$URL" && {
 			gzip -d /tmp/cn_domain.raw.build.gz
@@ -980,9 +980,12 @@ nslookup_check () {
 	domain=${1-www.baidu.com}
 	ipaddr=$(nslookup $domain 2>/dev/null | grep "$domain" -A5 | grep Address | grep -o '\([0-9]\{1,3\}\)\.\([0-9]\{1,3\}\)\.\([0-9]\{1,3\}\)\.\([0-9]\{1,3\}\)' -m1)
 	test -n "$ipaddr" || {
-		ipaddr=$(nslookup $domain 114.114.114.114 2>/dev/null | grep "$domain" -A5 | grep Address | grep -o '\([0-9]\{1,3\}\)\.\([0-9]\{1,3\}\)\.\([0-9]\{1,3\}\)\.\([0-9]\{1,3\}\)' -m1)
+		ipaddr=$(nslookup $domain 119.29.29.29 2>/dev/null | grep "$domain" -A5 | grep Address | grep -o '\([0-9]\{1,3\}\)\.\([0-9]\{1,3\}\)\.\([0-9]\{1,3\}\)\.\([0-9]\{1,3\}\)' -m1)
 		test -n "$ipaddr" || {
 			ipaddr=$(nslookup $domain 8.8.8.8 2>/dev/null | grep "$domain" -A5 | grep Address | grep -o '\([0-9]\{1,3\}\)\.\([0-9]\{1,3\}\)\.\([0-9]\{1,3\}\)\.\([0-9]\{1,3\}\)' -m1)
+		}
+		test -n "$ipaddr" || {
+			ipaddr=$(nslookup $domain 1.1.1.1 2>/dev/null | grep "$domain" -A5 | grep Address | grep -o '\([0-9]\{1,3\}\)\.\([0-9]\{1,3\}\)\.\([0-9]\{1,3\}\)\.\([0-9]\{1,3\}\)' -m1)
 		}
 	}
 	test -n "$ipaddr" || ipaddr=`echo -n $domain | grep -o '\([0-9]\{1,3\}\)\.\([0-9]\{1,3\}\)\.\([0-9]\{1,3\}\)\.\([0-9]\{1,3\}\)'`
@@ -994,9 +997,12 @@ nslookup_check_local () {
 	domain=${1-www.baidu.com}
 	ipaddr=$(busybox nslookup $domain 2>/dev/null | grep "$domain" -A5 | grep Address | grep -o '\([0-9]\{1,3\}\)\.\([0-9]\{1,3\}\)\.\([0-9]\{1,3\}\)\.\([0-9]\{1,3\}\)' -m1)
 	test -n "$ipaddr" || {
-		ipaddr=$(busybox nslookup $domain 114.114.114.114 2>/dev/null | grep "$domain" -A5 | grep Address | grep -o '\([0-9]\{1,3\}\)\.\([0-9]\{1,3\}\)\.\([0-9]\{1,3\}\)\.\([0-9]\{1,3\}\)' -m1)
+		ipaddr=$(busybox nslookup $domain 119.29.29.29 2>/dev/null | grep "$domain" -A5 | grep Address | grep -o '\([0-9]\{1,3\}\)\.\([0-9]\{1,3\}\)\.\([0-9]\{1,3\}\)\.\([0-9]\{1,3\}\)' -m1)
 		test -n "$ipaddr" || {
 			ipaddr=$(busybox nslookup $domain 8.8.8.8 2>/dev/null | grep "$domain" -A5 | grep Address | grep -o '\([0-9]\{1,3\}\)\.\([0-9]\{1,3\}\)\.\([0-9]\{1,3\}\)\.\([0-9]\{1,3\}\)' -m1)
+		}
+		test -n "$ipaddr" || {
+			ipaddr=$(busybox nslookup $domain 1.1.1.1 2>/dev/null | grep "$domain" -A5 | grep Address | grep -o '\([0-9]\{1,3\}\)\.\([0-9]\{1,3\}\)\.\([0-9]\{1,3\}\)\.\([0-9]\{1,3\}\)' -m1)
 		}
 	}
 	test -n "$ipaddr" || ipaddr=`echo -n $domain | grep -o '\([0-9]\{1,3\}\)\.\([0-9]\{1,3\}\)\.\([0-9]\{1,3\}\)\.\([0-9]\{1,3\}\)'`
@@ -1052,6 +1058,18 @@ gfwlist_update_main () {
 			esac
 		}
 
+		#update /etc/hosts
+		res=`nslookup_check services.googleapis.com`
+		if test -n "$res"; then
+			sed -i "/services.googleapis.cn/d" /etc/hosts
+			echo $res services.googleapis.cn >>/etc/hosts
+		fi
+		res=`nslookup_check google.com`
+		if test -n "$res"; then
+			sed -i "/google.cn/d" /etc/hosts
+			echo $res google.cn >>/etc/hosts
+		fi
+
 		#check and limit
 		FL=$(uci get natcapd.default.server_flow_limit 2>/dev/null || echo 0)
 		FB=$(uci get natcapd.default.server_flow_bill 2>/dev/null || echo 1)
@@ -1080,8 +1098,9 @@ natcapd_first_boot() {
 	mkdir $LOCKDIR/watcher.lck &>/dev/null || return 0
 	local run=0
 	while :; do
-		ping -q -W3 -c1 114.114.114.114 &>/dev/null || \
+		ping -q -W3 -c1 119.29.29.29 &>/dev/null || \
 			ping -q -W3 -c1 8.8.8.8 &>/dev/null || \
+			ping -q -W3 -c1 1.1.1.1 &>/dev/null || \
 			ping -q -W3 -c1 www.baidu.com &>/dev/null || \
 			ping -q -W3 -c1 -t1 -s1 router-sh.ptpt52.com || {
 			# restart ping after 8 secs
@@ -1226,18 +1245,20 @@ main_trigger() {
 	local hostip
 	local built_in_server
 	local crashlog=0
-	test -e /sys/kernel/debug/crashlog && crashlog=109
-	test -e /tmp/pstore && crashlog=109
+	test -e /sys/kernel/debug/crashlog && crashlog=160
+	test -e /tmp/pstore && crashlog=160
 	cp /usr/share/natcapd/cacert.pem /tmp/cacert.pem
 	while :; do
 		test -f $LOCKDIR/$PID || return 0
 		test -p /tmp/trigger_natcapd_update.fifo || { sleep 1 && continue; }
-		ping -q -W3 -c1 8.8.8.8 || ping -q -W3 -c1 114.114.114.114 || { sleep 11 && continue; }
+		ping -q -W3 -c1 8.8.8.8 || ping -q -W3 -c1 119.29.29.29 || ping -q -W3 -c1 1.1.1.1 || { sleep 11 && continue; }
 		mytimeout 660 'cat /tmp/trigger_natcapd_update.fifo' >/dev/null && {
 			rm -f /tmp/xx.tmp.json
 			rm -f /tmp/nohup.out
 			SP=`uci get dropbear.@dropbear[0].Port 2>/dev/null`
 			HSET=`cat /usr/share/natcapd/cniplist.set /usr/share/natcapd/C_cniplist.set /usr/share/natcapd/local.set | cksum | awk '{print $1}'`
+			enabled="`uci get natcapd.default.enabled 2>/dev/null || echo 0`"
+			[ "$enabled" = "0" ] && HSET="" #do not fetch HSET if not natcap enabled
 			HKEY=`cat /etc/uhttpd.crt /etc/uhttpd.key | cksum | awk '{print $1}'`
 			IFACES=$(ip r | grep default | grep -o 'dev .*' | cut -d" " -f2 | sort | uniq)
 			LIP=""

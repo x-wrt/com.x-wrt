@@ -117,7 +117,6 @@ test $version -lt 2 && {
 			set network.usbwan6.device='@usbwan'
 			set network.usbwan6.reqaddress='try'
 			set network.usbwan6.reqprefix='auto'
-			set network.usbwan6.extendprefix='1'
 			commit network
 		EOT
 
@@ -154,8 +153,8 @@ test $version -lt 2 && {
 			test ${sector_size} -gt 0 || sector_size=512
 			lastsec=0
 			if fdisk -l ${ROOTDEV} 2>/dev/null | grep -q "type: gpt"; then
-				lastsec=$(fdisk -l ${ROOTDEV} | grep ^${ROOTDEV} | head -n4 | tail -n1 | awk '{print $3}')
-				lastsec=$((lastsec+34))
+				lastsec=$(fdisk -l ${ROOTDEV} | grep ^${ROOTDEV} | head -n2 | tail -n1 | awk '{print $3}')
+				lastsec=$((lastsec+64))
 			else
 				lastsec=$(fdisk -l ${ROOTDEV} | grep ^${ROOTDEV} | head -n2 | tail -n1 | awk '{print $3}')
 				lastsec=$((lastsec+1))
@@ -403,6 +402,30 @@ test $version -lt 21 && {
 	version=21
 }
 
+test $version -lt 22 && {
+	#fix distfeeds.conf
+	head -n6 /etc/opkg/distfeeds.conf >/tmp/distfeeds.conf && mv /tmp/distfeeds.conf /etc/opkg/distfeeds.conf
+	version=22
+}
+
+test $version -lt 23 && {
+uci -q batch <<-EOT
+	delete firewall.dmz
+	set firewall.dmz=redirect
+	set firewall.dmz.dest='lan'
+	set firewall.dmz.target='DNAT'
+	set firewall.dmz.name='DMZ (Please move to last rule)'
+	set firewall.dmz.src='wan'
+	set firewall.dmz.dest_ip='192.168.15.100'
+	set firewall.dmz.family='ipv4'
+	set firewall.dmz.proto='all'
+	set firewall.dmz.enabled='0'
+	set firewall.dmz.reflection='0'
+	commit firewall
+EOT
+	version=23
+}
+
 uci set fstab.@global[0].anon_mount_bak="$(uci get fstab.@global[0].anon_mount_bak 2>/dev/null || uci get fstab.@global[0].anon_mount 2>/dev/null)"
 uci set fstab.@global[0].anon_mount='0'
 uci commit fstab
@@ -424,9 +447,9 @@ net.bridge.bridge-nf-call-iptables=0
 net.ipv4.fib_multipath_hash_policy=1
 net.core.default_qdisc=fq_codel
 net.core.default_qdisc=fq
+# net.ipv4.tcp_congestion_control=htcp
+# net.ipv4.tcp_congestion_control=cubic
 net.ipv4.tcp_congestion_control=bbr
-net.ipv4.tcp_congestion_control=htcp
-net.ipv4.tcp_congestion_control=cubic
 net.netfilter.nf_conntrack_helper=1
 net.ipv4.ip_default_ttl=128
 EOF
@@ -451,7 +474,7 @@ rootfs_type() {
 	/bin/mount | awk '($3 ~ /^\/$/) && ($5 !~ /rootfs/) { print $5 }'
 }
 #clean all log if new flash firmware
-mount -t pstore -o noatime pstore /sys/fs/pstore 2>/dev/null
+mount -t pstore -o nosuid,nodev,noexec,noatime pstore /sys/fs/pstore 2>/dev/null
 if ! [ "$(rootfs_type)" = "tmpfs" ]; then
 	rm -f /sys/fs/pstore/*
 else
@@ -469,9 +492,8 @@ uci -q batch <<-EOF >/dev/null
 	commit ucitrack
 EOF
 
-#update /etc/hosts
-grep -q services.googleapis.cn /etc/hosts || echo 142.250.204.35 services.googleapis.cn >>/etc/hosts
-grep -q google.cn /etc/hosts || echo 142.250.66.131 google.cn >>/etc/hosts
+#cleanup opkg
+test -e /usr/bin/apk && rm -rf /etc/opkg || sed -i 's,/snapshots/packages/,/releases/packages-24.10/,;s,/snapshots/targets/,/releases/24.10.0-rc4/targets/,' /etc/opkg/distfeeds.conf
 
 #firewall4 output_ttl support
 grep -q "^sh /usr/share/firewall4/output-ttl.include" /etc/firewall.include || \

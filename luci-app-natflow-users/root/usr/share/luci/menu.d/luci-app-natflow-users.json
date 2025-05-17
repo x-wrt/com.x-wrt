@@ -1,4 +1,12 @@
 {
+	"admin/status/urllog": {
+		"title": "URL Log",
+		"order": 99,
+		"action": {
+			"type": "view",
+			"path": "status/urllog"
+		}
+	},
 	"admin/status/realtime/users": {
 		"title": "Users",
 		"order": 99,
@@ -24,6 +32,17 @@
 		"action": {
 			"type": "view",
 			"path": "network/natflow-qos"
+		},
+		"depends": {
+			"acl": [ "luci-app-natflow-users" ]
+		}
+	},
+	"admin/network/hostacl": {
+		"title": "Web Filtering",
+		"order": 990,
+		"action": {
+			"type": "view",
+			"path": "network/hostacl"
 		},
 		"depends": {
 			"acl": [ "luci-app-natflow-users" ]

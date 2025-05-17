@@ -58,7 +58,7 @@ endef
 define Package/base-config-setting-ext4fs
   $(call Package/base-config-setting/Default)
   TITLE:=base-config-setting ext4fs set
-  DEPENDS:=+base-config-setting +@TARGET_ROOTFS_EXT4FS \
+  DEPENDS:=+base-config-setting \
 	   +busybox +@BUSYBOX_CUSTOM \
 	   +@BUSYBOX_CONFIG_STAT \
 	   +kmod-fs-ext4 \
@@ -114,6 +114,8 @@ define Package/base-config-setting/install
 	$(INSTALL_DATA) ./files/15-mgr-ipaddr $(1)/etc/hotplug.d/iface/15-mgr-ipaddr
 	$(INSTALL_DIR) $(1)/usr/share/firewall4
 	$(INSTALL_DATA) ./files/output-ttl.include $(1)/usr/share/firewall4/output-ttl.include
+	$(INSTALL_DIR) $(1)/usr/share/ucitrack
+	$(INSTALL_DATA) ./files/ucitrack/*.json $(1)/usr/share/ucitrack/
 endef
 
 define Build/Configure

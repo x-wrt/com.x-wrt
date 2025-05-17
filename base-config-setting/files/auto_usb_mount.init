@@ -37,11 +37,14 @@ auto_mount_boot()
 	export_bootdevice && export_partdevice diskdev 0
 	diskdev=/dev/$diskdev
 
-	for DEV in `ls /dev/sd*[0-9]* 2>/dev/null`; do
+	for DEV in $(ls /dev/sd*[0-9]* 2>/dev/null) $(ls /dev/mmcblk[0-9]p[0-9]* 2>/dev/null); do
 		[ x$DEV = x`mount | grep "$DEV " | awk '{print $1}'` ] && continue
 
 		test -b "$diskdev" && (echo $DEV | grep -q "$diskdev") && continue
 		(echo $DEV | grep -q "/dev/ubi") && continue
+
+		blkid $DEV | grep -q 'UUID="db0482e8-04bd-dfbb-3935-fbc9d9a9cfb9"' && continue
+		blkid $DEV | grep -q 'UUID="f3178596-4427-2d3b-35c7-648b65e20d5e"' && continue
 
 		ddir=/mnt/`basename $DEV`
 		mkdir -p "$ddir" || continue
@@ -62,6 +65,30 @@ auto_mount_boot()
 	}
 }
 
+enable_ssh_login_if_webui_down()
+{
+	sleep 5
+
+	if lsof -ni :80 &>/dev/null || lsof -ni :443 &>/dev/null || pidof nginx &>/dev/null || pidof uhttpd &>/dev/null; then
+		return 0
+	fi
+
+	sleep 56
+
+	if lsof -ni :80 &>/dev/null || lsof -ni :443 &>/dev/null || pidof nginx &>/dev/null || pidof uhttpd &>/dev/null; then
+		:
+	else
+		uci set dropbear.@dropbear[0].PasswordAuth='on'
+		uci set dropbear.@dropbear[0].RootPasswordAuth='on'
+		/etc/init.d/dropbear restart
+		sleep 600
+		uci revert dropbear
+		/etc/init.d/dropbear restart
+	fi
+}
+
 boot() {
 	auto_mount_boot &
+
+	enable_ssh_login_if_webui_down &
 }

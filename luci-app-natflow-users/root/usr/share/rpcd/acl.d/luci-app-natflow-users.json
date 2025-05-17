@@ -3,9 +3,15 @@
 		"description": "Grant UCI access for luci-app-natflow-users",
 		"read": {
 			"ubus": {
-				"luci.natflow": [ "get_users", "kick_user" ]
+				"luci.natflow": [ "get_users", "kick_user" ],
+				"file": [ "stat" ]
 			},
-			"uci": [ "natflow" ]
+			"uci": [ "natflow" ],
+			"cgi-io": [ "exec" ],
+			"file": {
+				"/bin/cat": [ "stat" ],
+				"/bin/cat /tmp/url.log": [ "exec" ]
+			}
 		},
 		"write": {
 			"ubus": {
