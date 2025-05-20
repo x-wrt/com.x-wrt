@@ -454,7 +454,7 @@ CONFIG_TARGET_INIT_CMD="/sbin/init"
 CONFIG_TARGET_INIT_SUPPRESS_STDERR=y
 CONFIG_VERSIONOPT=y
 CONFIG_VERSION_DIST="X-WRT"
-CONFIG_VERSION_NUMBER="25.04_b202505170616"
+CONFIG_VERSION_NUMBER="25.04_b202505201044"
 CONFIG_VERSION_CODE="Plucky"
 CONFIG_VERSION_REPO="http://downloads.openwrt.org/snapshots"
 CONFIG_VERSION_HOME_URL="https://x-wrt.com/"
@@ -3917,6 +3917,7 @@ CONFIG_PACKAGE_kmod-usb-storage-uas=m
 # CONFIG_PACKAGE_kmod-usb-uhci is not set
 CONFIG_PACKAGE_kmod-usb-wdm=m
 CONFIG_PACKAGE_kmod-usb-xhci-hcd=m
+# CONFIG_PACKAGE_kmod-usb-xhci-pci-renesas is not set
 # CONFIG_PACKAGE_kmod-usb-yealink is not set
 CONFIG_PACKAGE_kmod-usb2=m
 # CONFIG_PACKAGE_kmod-usb2-pci is not set
@@ -7427,7 +7428,6 @@ CONFIG_PACKAGE_strongswan-charon=m
 CONFIG_PACKAGE_strongswan-charon-cmd=m
 CONFIG_PACKAGE_strongswan-default=m
 CONFIG_PACKAGE_strongswan-ipsec=m
-# CONFIG_PACKAGE_strongswan-isakmp is not set
 CONFIG_PACKAGE_strongswan-libnttfft=m
 CONFIG_PACKAGE_strongswan-libtls=m
 # CONFIG_PACKAGE_strongswan-minimal is not set
@@ -7504,7 +7504,6 @@ CONFIG_PACKAGE_strongswan-mod-socket-dynamic=m
 CONFIG_PACKAGE_strongswan-mod-sshkey=m
 CONFIG_PACKAGE_strongswan-mod-stroke=m
 CONFIG_PACKAGE_strongswan-mod-test-vectors=m
-# CONFIG_PACKAGE_strongswan-mod-uci is not set
 CONFIG_PACKAGE_strongswan-mod-unity=m
 CONFIG_PACKAGE_strongswan-mod-updown=m
 CONFIG_PACKAGE_strongswan-mod-vici=m
