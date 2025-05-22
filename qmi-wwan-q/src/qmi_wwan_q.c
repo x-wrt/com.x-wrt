@@ -1315,7 +1315,7 @@ typedef struct {
 	unsigned int dl_minimum_padding; //0x1A
 } QMAP_SETTING;
 
-int qma_setting_store(struct device *dev, QMAP_SETTING *qmap_settings, size_t size) {
+static int qma_setting_store(struct device *dev, QMAP_SETTING *qmap_settings, size_t size) {
 	struct net_device *netdev = to_net_dev(dev);
 	struct usbnet * usbnetdev = netdev_priv( netdev );
 	struct qmi_wwan_state *info = (void *)&usbnetdev->data;
@@ -1827,8 +1827,8 @@ static void ql_net_get_drvinfo(struct net_device *net, struct ethtool_drvinfo *i
 {
 	/* Inherit standard device info */
 	usbnet_get_drvinfo(net, info);
-	strlcpy(info->driver, driver_name, sizeof(info->driver));
-	strlcpy(info->version, VERSION_NUMBER, sizeof(info->version));
+	strncpy(info->driver, driver_name, sizeof(info->driver));
+	strncpy(info->version, VERSION_NUMBER, sizeof(info->version));
 }
 
 static struct ethtool_ops ql_net_ethtool_ops;
