@@ -9602,8 +9602,8 @@ CONFIG_PACKAGE_luci-app-macvlan=y
 # Mentohust
 #
 CONFIG_PACKAGE_kmod-rproxy=m
-CONFIG_PACKAGE_luci-app-mentohust=m
-CONFIG_PACKAGE_mentohust=m
+# CONFIG_PACKAGE_luci-app-mentohust is not set
+# CONFIG_PACKAGE_mentohust is not set
 # CONFIG_PACKAGE_mentohust-proxy is not set
 # end of Mentohust
 
