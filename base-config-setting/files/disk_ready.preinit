@@ -38,7 +38,7 @@ do_disk_ready() {
 	fi
 
 	overlay_size=$(cat /proc/cmdline | grep -o "overlay_size=[0-9]*" | cut -d= -f2)
-	test -n "$overlay_size" || overlay_size=$((1*768)) #768M default
+	test -n "$overlay_size" || overlay_size=$((1*512)) #512M default x86_64: 256+512+512 x86_64-docker: 256+768+512
 
 	block_early_fixup
 	uuid=$(uci get fstab.overlay.uuid 2>/dev/null || echo f3178596-4427-2d3b-35c7-648b65e20d5e)
