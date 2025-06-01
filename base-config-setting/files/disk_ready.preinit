@@ -241,8 +241,8 @@ do_disk_ready() {
 			sda4_end=$3
 			[ "$LASTNR" = "0" ] && sda4_start=${gap_mask} && sda4_end=${gap_mask}
 
-			# overlay partition +gap_size sector gap
-			sda5_start=$(((sda4_end+1+gap_mask)/gap_size*gap_size+gap_size))
+			# overlay partition +gap_size sector gap +gap_size sector pad
+			sda5_start=$(((sda4_end+1+gap_mask)/gap_size*gap_size+gap_size+gap_size))
 			sda5_end=$((sda5_start+overlay_size/sector_size - 1))
 
 			# data partition +gap_size sector gap
