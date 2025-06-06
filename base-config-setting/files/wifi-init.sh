@@ -81,7 +81,7 @@ wifi_setup_radio()
 				uci set wireless.$obj.ssid="${SSID}_6G"
 				uci delete wireless.$obj.ft_psk_generate_local
 			fi
-			if [ "$(uci get wireless.${radio}.band 2>/dev/null)" = "5g" ] && test -e /sys/kernel/debug/ieee80211/phy${radio//radio}/mt76; then
+			if [ "$(uci get wireless.${radio}.band 2>/dev/null)" = "5g" ] && test -e /sys/kernel/debug/ieee80211/phy0/mt76; then
 				obj=$(uci add wireless wifi-iface)
 				if test -n "$obj"; then
 					uci set wireless.$obj.device="${radio}"
