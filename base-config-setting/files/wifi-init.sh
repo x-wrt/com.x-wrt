@@ -48,7 +48,7 @@ wifi_setup_radio()
 					uci set wireless.${radio}.channel="36"
 				fi
 			fi
-		elif uci get wireless.${radio}.hwmode 2>/dev/null | grep -q EHT; then
+		elif uci get wireless.${radio}.htmode 2>/dev/null | grep -q EHT; then
 			uci set wireless.${radio}.country='DE'
 			uci set wireless.${radio}.channel='21'
 			uci set wireless.${radio}.band='6g'
