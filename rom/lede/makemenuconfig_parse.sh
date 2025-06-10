@@ -408,6 +408,7 @@ for t in $targets; do
 	excludes="$excludes_basic"
 	case $t in
 		#>=32M flash
+		TARGET_DEVICE_ramips_mt7621_DEVICE_openfi_5pro|\
 		TARGET_DEVICE_qualcommax_ipq60xx_DEVICE_glinet_gl-ax1800|\
 		TARGET_DEVICE_qualcommax_ipq60xx_DEVICE_glinet_gl-axt1800|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_huasifei_wh3000|\
@@ -536,6 +537,7 @@ for t in $targets; do
 	esac
 	case $t in
 		#>=14M flash
+		TARGET_DEVICE_ramips_mt7621_DEVICE_openfi_5pro|\
 		TARGET_DEVICE_qualcommax_ipq50xx_DEVICE_glinet_gl-b3000|\
 		TARGET_DEVICE_qualcommax_ipq60xx_DEVICE_glinet_gl-ax1800|\
 		TARGET_DEVICE_qualcommax_ipq60xx_DEVICE_glinet_gl-axt1800|\
@@ -1178,6 +1180,7 @@ for t in $targets; do
 	#check usb
 	case $t in
 		#with usb3
+		TARGET_DEVICE_ramips_mt7621_DEVICE_openfi_5pro|\
 		TARGET_DEVICE_qualcommax_ipq60xx_DEVICE_glinet_gl-ax1800|\
 		TARGET_DEVICE_qualcommax_ipq60xx_DEVICE_glinet_gl-axt1800|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_huasifei_wh3000|\
