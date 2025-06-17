@@ -438,6 +438,7 @@ for t in $targets; do
 		TARGET_DEVICE_qualcommax_ipq807x_DEVICE_zte_mf269|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_glinet_gl-mt2500|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_zbtlink_zbt-z8102ax|\
+		TARGET_DEVICE_mediatek_filogic_DEVICE_zbtlink_zbt-z8102ax-v2|\
 		TARGET_DEVICE_qualcommax_ipq807x_DEVICE_yuncore_ax880|\
 		TARGET_DEVICE_qualcommax_ipq807x_DEVICE_netgear_wax630|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_glinet_gl-mt6000|\
@@ -596,6 +597,7 @@ for t in $targets; do
 		TARGET_DEVICE_qualcommax_ipq807x_DEVICE_zte_mf269|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_glinet_gl-mt2500|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_zbtlink_zbt-z8102ax|\
+		TARGET_DEVICE_mediatek_filogic_DEVICE_zbtlink_zbt-z8102ax-v2|\
 		TARGET_DEVICE_qualcommax_ipq807x_DEVICE_yuncore_ax880|\
 		TARGET_DEVICE_qualcommax_ipq807x_DEVICE_netgear_wax630|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_cmcc_rax3000m|\
@@ -1206,6 +1208,7 @@ for t in $targets; do
 		TARGET_DEVICE_mediatek_filogic_DEVICE_glinet_gl-xe3000|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_glinet_gl-mt2500|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_zbtlink_zbt-z8102ax|\
+		TARGET_DEVICE_mediatek_filogic_DEVICE_zbtlink_zbt-z8102ax-v2|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_cmcc_rax3000m|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_cmcc_rax3000m-emmc-ubootlayout|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_cmcc_rax3000m-nand-ubootlayout|\
