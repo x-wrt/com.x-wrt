@@ -210,6 +210,8 @@ do_disk_ready() {
 	sector_size=$(fdisk -l ${ROOTDEV} | grep "^Sector size" | awk '{print $4}')
 	sector_size=$((sector_size+0))
 	test ${sector_size} -gt 0 || sector_size=512
+	gap_size=$((1024*1024/sector_size))
+	gap_mask=$((gap_size-1))
 	diskpart=$(fdisk -l ${ROOTDEV} | grep -c "^${ROOTPART}[0-9]")
 	O=0
 	LASTDEV=$(fdisk -l ${ROOTDEV} | grep "^${ROOTPART}[0-9]" | while read D _ E _; do
@@ -221,8 +223,6 @@ do_disk_ready() {
 	LASTNR=$(echo $LASTDEV | grep -o "[0-9]*" | tail -n1)
 	test -z "$LASTDEV" && LASTNR=0
 	BLKCNT=$(fdisk -l ${ROOTDEV} | head -n1 | awk '{print $7}')
-	SCNT=$((4096/sector_size))
-	test $SCNT -eq 0 && SCNT=1
 
 	if [ "$disktype" = "gpt" ]; then
 		which gdisk || return
@@ -239,17 +239,17 @@ do_disk_ready() {
 			set $(fdisk -l ${ROOTDEV} 2>/dev/null | grep "^${ROOTPART}$((LASTNR))")
 			sda4_start=$2
 			sda4_end=$3
-			[ "$LASTNR" = "0" ] && sda4_start=2047 && sda4_end=2047
+			[ "$LASTNR" = "0" ] && sda4_start=${gap_mask} && sda4_end=${gap_mask}
 
-			# overlay partition +512 to align with dos part type
-			sda5_start=$((sda4_end+512+512+1))
-			sda5_end=$((sda5_start+overlay_size/sector_size - 1))
+			# overlay partition +gap_size sector gap +gap_size sector pad
+			sda5_start=$(((sda4_end + 1 + gap_mask) / gap_size * gap_size + gap_size + gap_size))
+			sda5_end=$((sda5_start + overlay_size / sector_size - 1))
 
-			# data partition
-			sda6_start=$((sda5_end+512+1))
-			sda6_end=$(((BLKCNT-34)/SCNT*SCNT - 1))
+			# data partition +gap_size sector gap
+			sda6_start=$(((sda5_end + 1 + gap_mask) / gap_size * gap_size + gap_size))
+			sda6_end=$((BLKCNT / gap_size * gap_size - gap_size - 1))
 
-			# [_boot_|_rootfs_...1G...][cfg 1G][data...]
+			# [_boot_|_rootfs_][cfg][data...]
 			echo -ne "n\n\n${sda5_start}\n${sda5_end}\n8300\nn\n\n${sda6_start}\n${sda6_end}\n8300\nw\ny\n" | gdisk ${ROOTDEV}
 
 			partx -u ${ROOTDEV}
@@ -271,17 +271,17 @@ do_disk_ready() {
 			set $(fdisk -l ${ROOTDEV} 2>/dev/null | grep "^${ROOTPART}$((LASTNR))")
 			sda2_start=$2
 			sda2_end=$3
-			[ "$LASTNR" = "0" ] && sda2_start=2047 && sda2_end=2047
+			[ "$LASTNR" = "0" ] && sda2_start=${gap_mask} && sda2_end=${gap_mask}
 
-			# overlay partition
-			sda3_start=$((sda2_end+512+1))
-			sda3_end=$((sda3_start+overlay_size/sector_size - 1))
+			# overlay partition +gap_size sector gap
+			sda3_start=$(((sda2_end + 1 + gap_mask) / gap_size * gap_size + gap_size))
+			sda3_end=$((sda3_start + overlay_size / sector_size - 1))
 
-			# data partition
-			sda4_start=$((sda3_end+512+1))
-			sda4_end=$(((BLKCNT-34)/SCNT*SCNT - 1))
+			# data partition +gap_size sector gap
+			sda4_start=$(((sda3_end + 1 + gap_mask) / gap_size * gap_size + gap_size))
+			sda4_end=$((BLKCNT / gap_size * gap_size - gap_size - 1))
 
-			# [_boot_|_rootfs_...1G...][cfg 1G][data...]
+			# [_boot_|_rootfs_][cfg][data...]
 			case "$diskpart_num1" in
 				0|1)
 					echo -ne "n\np\n\n${sda3_start}\n${sda3_end}\nn\np\n\n${sda4_start}\n${sda4_end}\nw\n" | fdisk ${ROOTDEV}

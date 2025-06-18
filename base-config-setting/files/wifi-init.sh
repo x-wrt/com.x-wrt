@@ -48,13 +48,13 @@ wifi_setup_radio()
 					uci set wireless.${radio}.channel="36"
 				fi
 			fi
-		elif uci get wireless.${radio}.hwmode 2>/dev/null | grep -q EHT; then
+		elif uci get wireless.${radio}.htmode 2>/dev/null | grep -q EHT; then
 			uci set wireless.${radio}.country='DE'
 			uci set wireless.${radio}.channel='21'
 			uci set wireless.${radio}.band='6g'
 		fi
 
-		obj=`uci add wireless wifi-iface`
+		obj=$(uci add wireless wifi-iface)
 		if test -n "$obj"; then
 			uci set wireless.$obj.device="${radio}"
 			uci set wireless.$obj.network='lan'
@@ -80,6 +80,21 @@ wifi_setup_radio()
 				uci set wireless.$obj.ocv='0'
 				uci set wireless.$obj.ssid="${SSID}_6G"
 				uci delete wireless.$obj.ft_psk_generate_local
+			fi
+			if [ "$(uci get wireless.${radio}.band 2>/dev/null)" = "5g" ] && test -e /sys/kernel/debug/ieee80211/phy0/mt76; then
+				obj=$(uci add wireless wifi-iface)
+				if test -n "$obj"; then
+					uci set wireless.$obj.device="${radio}"
+					uci set wireless.$obj.network='lan'
+					uci set wireless.$obj.mode='ap'
+					uci set wireless.$obj.ssid="${SSID}_5G"
+					uci set wireless.$obj.encryption='psk2'
+					uci set wireless.$obj.key="${SSID_PASSWD}"
+					uci set wireless.$obj.ieee80211r='1'
+					uci set wireless.$obj.ft_over_ds='0'
+					uci set wireless.$obj.ft_psk_generate_local='1'
+					uci set wireless.$obj.subfix="_5G"
+				fi
 			fi
 		fi
 	fi
