@@ -163,7 +163,7 @@ agent_lost_ac()
 	logger -t fakemesh "agent_lost_ac($pid): setup temporary lan ip=$(uci get network.lan.ipaddr)"
 
 	#re-enable lan enable wifi
-	ssid=$(uci get base_config.@status[0].SSID)
+	ssid="$(uci get base_config.@status[0].SSID)@$(uci get network.lan.ipaddr)"
 	ssid_passwd=$(uci get base_config.@status[0].SSID_PASSWD)
 	K=0
 	for band in 2g 5g; do
