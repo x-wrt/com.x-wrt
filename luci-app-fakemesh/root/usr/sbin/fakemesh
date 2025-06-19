@@ -45,6 +45,10 @@ band_steer_helper_switch()
 	exit 0
 }
 
+[ "x$1" = "xsetup" ] && {
+	exit 0
+}
+
 config_load fakemesh
 
 config_get_bool enabled default 'enabled' '0'
