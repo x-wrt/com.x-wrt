@@ -3,7 +3,7 @@
 . /lib/functions.sh
 . /lib/functions/network.sh
 
-band_steer_helper=${band_steer_helper:-usteer}
+band_steer_helper=${band_steer_helper:-none}
 
 band_steer_helper_switch()
 {
