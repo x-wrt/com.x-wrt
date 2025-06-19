@@ -5,6 +5,9 @@
 		"action": {
 			"type": "view",
 			"path": "status/urllog"
+		},
+		"depends": {
+			"acl": [ "luci-app-natflow-users" ]
 		}
 	},
 	"admin/status/realtime/users": {
