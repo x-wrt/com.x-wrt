@@ -61,7 +61,7 @@ CONFIG_TARGET_MULTI_PROFILE=y
 # CONFIG_TARGET_ALL_PROFILES is not set
 CONFIG_TARGET_PER_DEVICE_ROOTFS=y
 CONFIG_TARGET_DEVICE_armsr_armv8_DEVICE_generic=y
-CONFIG_TARGET_DEVICE_PACKAGES_armsr_armv8_DEVICE_generic="aria2 aria2-openssl ca-bundle iptables-mod-dhcpmac iptables-mod-dnetmap jool-tools-netfilter kmod-bonding kmod-crypto-acompress kmod-crypto-cbc kmod-crypto-deflate kmod-crypto-echainiv kmod-dnsresolver kmod-fs-msdos kmod-fs-nfs kmod-fs-nfs-common kmod-fs-nfs-v4 kmod-fuse kmod-inet-diag kmod-ip6-vti kmod-ipsec kmod-ipsec4 kmod-ipsec6 kmod-ipt-compat-xtables kmod-ipt-dhcpmac kmod-ipt-dnetmap kmod-ip-vti kmod-jool-netfilter kmod-l2tp kmod-lib-zlib-deflate kmod-lib-zlib-inflate kmod-mdio-gpio kmod-nat46 kmod-nf-conntrack-netlink kmod-phy-realtek kmod-pppol2tp kmod-renesas-net-avb kmod-usb2 kmod-usb3 kmod-usb-ehci kmod-usb-net-ipheth kmod-usb-net-rndis kmod-usb-net-sierrawireless kmod-usb-ohci kmod-usb-printer kmod-usb-serial-cp210x kmod-usb-serial-pl2303 kmod-usb-serial-qualcomm kmod-usb-serial-sierrawireless kmod-usb-storage kmod-usb-storage-extras kmod-usb-storage-uas kmod-usb-xhci-hcd kmod-xfrm-interface libcap-ng libcares libcurl libexpat libgmp libimobiledevice libimobiledevice-glue libimobiledevice-utils libkmod liblz4 liblzo libnghttp2 libnl libnl-cli libnl-nf libnl-route libopenssl-legacy libpci libplist libqrencode libsqlite3 libssh2 libtatsu libusb-1.0 libusbmuxd libxml2 lsqlite3 luci-app-aria2 luci-app-usteer luci-i18n-aria2-zh-cn luci-proto-vti luci-proto-xfrm minicom nfs-utils openvpn-openssl pciids pciutils ppp-mod-pppol2tp proto-bonding qrencode tc-tiny usbids usb-modeswitch usbmuxd usbutils vti webui-aria2 wget-ssl wpad-openssl xfrm xl2tpd"
+CONFIG_TARGET_DEVICE_PACKAGES_armsr_armv8_DEVICE_generic="aria2 aria2-openssl ca-bundle curl iptables-mod-dhcpmac iptables-mod-dnetmap jool-tools-netfilter kmod-bonding kmod-crypto-acompress kmod-crypto-cbc kmod-crypto-deflate kmod-crypto-echainiv kmod-dnsresolver kmod-fs-msdos kmod-fs-nfs kmod-fs-nfs-common kmod-fs-nfs-v4 kmod-fuse kmod-inet-diag kmod-ip6-vti kmod-ipsec kmod-ipsec4 kmod-ipsec6 kmod-ipt-compat-xtables kmod-ipt-dhcpmac kmod-ipt-dnetmap kmod-ip-vti kmod-jool-netfilter kmod-l2tp kmod-lib-zlib-deflate kmod-lib-zlib-inflate kmod-mdio-gpio kmod-nat46 kmod-nf-conntrack-netlink kmod-phy-realtek kmod-pppol2tp kmod-renesas-net-avb kmod-usb2 kmod-usb3 kmod-usb-ehci kmod-usb-net-ipheth kmod-usb-net-rndis kmod-usb-net-sierrawireless kmod-usb-ohci kmod-usb-printer kmod-usb-serial-cp210x kmod-usb-serial-pl2303 kmod-usb-serial-qualcomm kmod-usb-serial-sierrawireless kmod-usb-storage kmod-usb-storage-extras kmod-usb-storage-uas kmod-usb-xhci-hcd kmod-xfrm-interface libcap-ng libcares libcurl libexpat libgmp libimobiledevice libimobiledevice-glue libimobiledevice-utils libkmod liblz4 liblzo libnghttp2 libnl libnl-cli libnl-nf libnl-route libopenssl-legacy libpci libplist libqrencode libsqlite3 libssh2 libtatsu libusb-1.0 libusbmuxd libxml2 lsqlite3 luci-app-aria2 luci-app-usteer luci-i18n-aria2-zh-cn luci-proto-vti luci-proto-xfrm luci-theme-argon minicom nfs-utils openvpn-openssl pciids pciutils ppp-mod-pppol2tp proto-bonding qrencode tc-tiny usbids usb-modeswitch usbmuxd usbutils vti webui-aria2 wget-ssl wpad-openssl xfrm xl2tpd"
 # end of Target Devices
 
 CONFIG_HAS_SUBTARGETS=y
@@ -477,7 +477,7 @@ CONFIG_TARGET_INIT_CMD="/sbin/init"
 CONFIG_TARGET_INIT_SUPPRESS_STDERR=y
 CONFIG_VERSIONOPT=y
 CONFIG_VERSION_DIST="X-WRT"
-CONFIG_VERSION_NUMBER="25.04_b202506221119"
+CONFIG_VERSION_NUMBER="25.04_b202506222232"
 CONFIG_VERSION_CODE="Plucky"
 CONFIG_VERSION_REPO="http://downloads.openwrt.org/snapshots"
 CONFIG_VERSION_HOME_URL="https://x-wrt.com/"
@@ -6126,6 +6126,7 @@ CONFIG_PACKAGE_luci-app-usteer=m
 #
 # 4. Themes
 #
+CONFIG_PACKAGE_luci-theme-argon=m
 CONFIG_PACKAGE_luci-theme-bootstrap=y
 # CONFIG_PACKAGE_luci-theme-material is not set
 # CONFIG_PACKAGE_luci-theme-openwrt is not set
@@ -6831,7 +6832,7 @@ CONFIG_PACKAGE_aria2-openssl=m
 # CONFIG_PACKAGE_atftp is not set
 # CONFIG_PACKAGE_atftpd is not set
 # CONFIG_PACKAGE_croc is not set
-# CONFIG_PACKAGE_curl is not set
+CONFIG_PACKAGE_curl=m
 # CONFIG_PACKAGE_lftp is not set
 # CONFIG_PACKAGE_onionshare-cli is not set
 # CONFIG_PACKAGE_rclone is not set

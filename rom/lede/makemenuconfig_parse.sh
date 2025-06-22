@@ -535,6 +535,7 @@ for t in $targets; do
 		TARGET_DEVICE_mvebu_cortexa9_DEVICE_linksys_wrt1900ac-v2|\
 		TARGET_DEVICE_mvebu_cortexa9_DEVICE_linksys_wrt3200acm)
 			mods="$mods $extra_vpn urllogger natflow-hostacl"
+			mods="$mods luci-theme-argon"
 		;;
 	esac
 	case $t in
@@ -1884,6 +1885,7 @@ rt73-usb-firmware"
 		TARGET_DEVICE_bcm27xx_bcm2712_DEVICE_rpi-5)
 			mods="$mods $mdadm $disk base-config-setting-ext4fs"
 			mods="$mods urllogger natflow-hostacl"
+			mods="$mods luci-theme-argon"
 		;;
 		TARGET_DEVICE_mediatek_filogic_DEVICE_xwrt_wr3000k-emmc-nor|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_tenbay_wr3000k)
