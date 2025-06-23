@@ -556,6 +556,7 @@ for t in $targets; do
 		TARGET_DEVICE_mediatek_filogic_DEVICE_cudy_wr3000h-v1|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_zyxel_nwa50ax|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_zyxel_nwa55axe|\
+		TARGET_DEVICE_mediatek_filogic_DEVICE_cudy_tr3000-256mb-v1|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_cudy_tr3000-v1|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_cudy_tr3000-v1-ubootmod|\
 		TARGET_DEVICE_qualcommax_ipq60xx_DEVICE_linksys_mr7350|\
@@ -1189,6 +1190,7 @@ for t in $targets; do
 		TARGET_DEVICE_qualcommax_ipq60xx_DEVICE_glinet_gl-ax1800|\
 		TARGET_DEVICE_qualcommax_ipq60xx_DEVICE_glinet_gl-axt1800|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_huasifei_wh3000|\
+		TARGET_DEVICE_mediatek_filogic_DEVICE_cudy_tr3000-256mb-v1|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_cudy_tr3000-v1|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_cudy_tr3000-v1-ubootmod|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_nradio_c8-668gl|\
