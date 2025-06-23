@@ -94,6 +94,7 @@ CONFIG_TARGET_MULTI_PROFILE=y
 # CONFIG_TARGET_mediatek_filogic_DEVICE_cudy_ap3000-v1 is not set
 # CONFIG_TARGET_mediatek_filogic_DEVICE_cudy_m3000-v1 is not set
 # CONFIG_TARGET_mediatek_filogic_DEVICE_cudy_re3000-v1 is not set
+# CONFIG_TARGET_mediatek_filogic_DEVICE_cudy_tr3000-256mb-v1 is not set
 # CONFIG_TARGET_mediatek_filogic_DEVICE_cudy_tr3000-v1 is not set
 # CONFIG_TARGET_mediatek_filogic_DEVICE_cudy_tr3000-v1-ubootmod is not set
 # CONFIG_TARGET_mediatek_filogic_DEVICE_cudy_wr3000-v1 is not set
@@ -234,6 +235,7 @@ CONFIG_TARGET_DEVICE_PACKAGES_mediatek_filogic_DEVICE_bananapi_bpi-r4-poe="apk-o
 # CONFIG_TARGET_DEVICE_mediatek_filogic_DEVICE_cudy_ap3000-v1 is not set
 # CONFIG_TARGET_DEVICE_mediatek_filogic_DEVICE_cudy_m3000-v1 is not set
 # CONFIG_TARGET_DEVICE_mediatek_filogic_DEVICE_cudy_re3000-v1 is not set
+# CONFIG_TARGET_DEVICE_mediatek_filogic_DEVICE_cudy_tr3000-256mb-v1 is not set
 # CONFIG_TARGET_DEVICE_mediatek_filogic_DEVICE_cudy_tr3000-v1 is not set
 # CONFIG_TARGET_DEVICE_mediatek_filogic_DEVICE_cudy_tr3000-v1-ubootmod is not set
 # CONFIG_TARGET_DEVICE_mediatek_filogic_DEVICE_cudy_wr3000-v1 is not set
@@ -769,7 +771,7 @@ CONFIG_TARGET_INIT_CMD="/sbin/init"
 CONFIG_TARGET_INIT_SUPPRESS_STDERR=y
 CONFIG_VERSIONOPT=y
 CONFIG_VERSION_DIST="X-WRT"
-CONFIG_VERSION_NUMBER="25.04_b202506222232"
+CONFIG_VERSION_NUMBER="25.04_b202506231258"
 CONFIG_VERSION_CODE="Plucky"
 CONFIG_VERSION_REPO="http://downloads.openwrt.org/snapshots"
 CONFIG_VERSION_HOME_URL="https://x-wrt.com/"
