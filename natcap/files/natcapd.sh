@@ -613,10 +613,12 @@ test -c /dev/natcap_peer_ctl && {
 	peer_max_pmtu=`uci get natcapd.default.peer_max_pmtu 2>/dev/null || echo 1440`
 	peer_sni_ban=`uci get natcapd.default.peer_sni_ban 2>/dev/null || echo 0`
 	peer_subtype=`uci get natcapd.default.peer_subtype 2>/dev/null || echo 0`
+	peer_dns_server=`uci get natcapd.default.peer_dns_server 2>/dev/null || echo 0`
 	echo peer_mode=${peer_mode} >/dev/natcap_peer_ctl
 	echo peer_max_pmtu=${peer_max_pmtu} >/dev/natcap_peer_ctl
 	echo peer_sni_ban=${peer_sni_ban} >/dev/natcap_peer_ctl
 	echo peer_subtype=${peer_subtype} >/dev/natcap_peer_ctl
+	echo peer_dns_server=${peer_dns_server} >/dev/natcap_peer_ctl
 }
 
 dns_proxy_server_reload () {
