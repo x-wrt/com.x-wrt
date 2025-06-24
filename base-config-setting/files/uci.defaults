@@ -432,6 +432,8 @@ test $version -lt 24 && {
 		uci set luci.main.mediaurlbase='/luci-static/argon'
 		uci commit luci
 	fi
+	uci set luci.main.lang='en'
+	uci commit luci
 
 	version=24
 }
