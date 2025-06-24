@@ -426,6 +426,16 @@ EOT
 	version=23
 }
 
+test $version -lt 24 && {
+	#default theme use argon
+	if test -e /www/luci-static/argon; then
+		uci set luci.main.mediaurlbase='/luci-static/argon'
+		uci commit luci
+	fi
+
+	version=24
+}
+
 uci set fstab.@global[0].anon_mount_bak="$(uci get fstab.@global[0].anon_mount_bak 2>/dev/null || uci get fstab.@global[0].anon_mount 2>/dev/null)"
 uci set fstab.@global[0].anon_mount='0'
 uci commit fstab
