@@ -1816,18 +1816,11 @@ for t in $targets; do
 		TARGET_DEVICE_x86_64_DEVICE_generic)
 			mods="$mods \
 ath10k-board-qca9377 \
-ath10k-board-qca9887 \
-ath10k-board-qca9888 \
-ath10k-board-qca988x \
-ath10k-board-qca9984 \
-ath10k-board-qca99x0 \
-ath10k-firmware-qca6174 \
 ath10k-firmware-qca9377 \
-ath10k-firmware-qca9887 \
-ath10k-firmware-qca9888 \
-ath10k-firmware-qca988x \
-ath10k-firmware-qca9984 \
-ath10k-firmware-qca99x0 \
+ath10k-firmware-qca6174 \
+ath11k-firmware-qca2066 \
+ath11k-firmware-qcn9074 \
+ath12k-firmware-qcn9274 \
 brcmfmac-firmware-43602a1-pcie \
 brcmfmac-firmware-4366b1-pcie \
 brcmfmac-firmware-4366c0-pcie \
