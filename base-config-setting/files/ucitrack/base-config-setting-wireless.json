@@ -1,4 +1,0 @@
-{
-	"config": "wireless",
-	"exec": "/etc/init.d/sta_disable reload"
-}
