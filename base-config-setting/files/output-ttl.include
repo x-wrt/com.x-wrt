@@ -24,14 +24,16 @@ while uci get network.@interface[$idx] &>/dev/null; do
 		if [ "$mangle_ttl_init" = "0" ]; then
 			mangle_ttl_init=1
 			iptables -t mangle -F mangle_ttl 2>/dev/null || iptables -t mangle -N mangle_ttl
-			iptables -t mangle -C POSTROUTING -j mangle_ttl 2>/dev/null || iptables -t mangle -I POSTROUTING -j mangle_ttl
+			iptables -t mangle -C POSTROUTING -p udp -j mangle_ttl 2>/dev/null || iptables -t mangle -I POSTROUTING -p udp -j mangle_ttl
+			iptables -t mangle -C POSTROUTING -p tcp -j mangle_ttl 2>/dev/null || iptables -t mangle -I POSTROUTING -p tcp -j mangle_ttl
+			iptables -t mangle -C POSTROUTING -p icmp -j mangle_ttl 2>/dev/null || iptables -t mangle -I POSTROUTING -p icmp -j mangle_ttl
 
 			# VRRP (112)
-			iptables -t mangle -A mangle_ttl -p 112 -j RETURN
+			#iptables -t mangle -A mangle_ttl -p 112 -j RETURN
 			# OSPF (89)
-			iptables -t mangle -A mangle_ttl -p 89 -j RETURN
+			#iptables -t mangle -A mangle_ttl -p 89 -j RETURN
 			# IGMP (2)
-			iptables -t mangle -A mangle_ttl -p 2 -j RETURN
+			#iptables -t mangle -A mangle_ttl -p 2 -j RETURN
 			# RIP (UDP 520)
 			iptables -t mangle -A mangle_ttl -p udp --dport 520 -j RETURN
 			# DHCP (UDP 67/68)
@@ -49,7 +51,9 @@ while uci get network.@interface[$idx] &>/dev/null; do
 		if [ "$mangle_hotlimit_init" = "0" ]; then
 			mangle_hotlimit_init=1
 			ip6tables -t mangle -F mangle_hotlimit 2>/dev/null || ip6tables -t mangle -N mangle_hotlimit
-			ip6tables -t mangle -C POSTROUTING -j mangle_hotlimit 2>/dev/null || ip6tables -t mangle -I POSTROUTING -j mangle_hotlimit
+			ip6tables -t mangle -C POSTROUTING -p udp -j mangle_hotlimit 2>/dev/null || ip6tables -t mangle -I POSTROUTING -p udp -j mangle_hotlimit
+			ip6tables -t mangle -C POSTROUTING -p tcp -j mangle_hotlimit 2>/dev/null || ip6tables -t mangle -I POSTROUTING -p tcp -j mangle_hotlimit
+			ip6tables -t mangle -C POSTROUTING -p ipv6-icmp -j mangle_hotlimit 2>/dev/null || ip6tables -t mangle -I POSTROUTING -p ipv6-icmp -j mangle_hotlimit
 
 			# DHCPv6
 			ip6tables -t mangle -A mangle_hotlimit -p udp --sport 546 -j RETURN
