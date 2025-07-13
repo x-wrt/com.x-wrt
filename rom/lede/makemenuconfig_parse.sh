@@ -414,6 +414,7 @@ for t in $targets; do
 		TARGET_DEVICE_qualcommax_ipq60xx_DEVICE_glinet_gl-ax1800|\
 		TARGET_DEVICE_qualcommax_ipq60xx_DEVICE_glinet_gl-axt1800|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_huasifei_wh3000|\
+		TARGET_DEVICE_mediatek_filogic_DEVICE_huasifei_wh3000-pro|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_asus_zenwifi-bt8|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_asus_zenwifi-bt8-ubootmod|\
 		TARGET_DEVICE_qualcommax_ipq60xx_DEVICE_linksys_mr7350|\
@@ -549,6 +550,7 @@ for t in $targets; do
 		TARGET_DEVICE_qualcommax_ipq60xx_DEVICE_glinet_gl-axt1800|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_netis_nx31|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_huasifei_wh3000|\
+		TARGET_DEVICE_mediatek_filogic_DEVICE_huasifei_wh3000-pro|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_asus_zenwifi-bt8|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_asus_zenwifi-bt8-ubootmod|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_cudy_ap3000outdoor-v1|\
@@ -1192,6 +1194,7 @@ for t in $targets; do
 		TARGET_DEVICE_qualcommax_ipq60xx_DEVICE_glinet_gl-ax1800|\
 		TARGET_DEVICE_qualcommax_ipq60xx_DEVICE_glinet_gl-axt1800|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_huasifei_wh3000|\
+		TARGET_DEVICE_mediatek_filogic_DEVICE_huasifei_wh3000-pro|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_cudy_tr3000-256mb-v1|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_cudy_tr3000-v1|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_cudy_tr3000-v1-ubootmod|\

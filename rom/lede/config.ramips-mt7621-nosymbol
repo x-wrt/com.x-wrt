@@ -266,6 +266,7 @@ CONFIG_TARGET_MULTI_PROFILE=y
 # CONFIG_TARGET_ramips_mt7621_DEVICE_tplink_ec330-g5u-v1 is not set
 # CONFIG_TARGET_ramips_mt7621_DEVICE_tplink_er605-v2 is not set
 # CONFIG_TARGET_ramips_mt7621_DEVICE_tplink_ex220-v1 is not set
+# CONFIG_TARGET_ramips_mt7621_DEVICE_tplink_ex220-v2 is not set
 # CONFIG_TARGET_ramips_mt7621_DEVICE_tplink_mr600-v2-eu is not set
 # CONFIG_TARGET_ramips_mt7621_DEVICE_tplink_re350-v1 is not set
 # CONFIG_TARGET_ramips_mt7621_DEVICE_tplink_re500-v1 is not set
@@ -582,6 +583,7 @@ CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt7621_DEVICE_tplink_archer-c6u-v1="apk-mbe
 # CONFIG_TARGET_DEVICE_ramips_mt7621_DEVICE_tplink_er605-v2 is not set
 CONFIG_TARGET_DEVICE_ramips_mt7621_DEVICE_tplink_ex220-v1=y
 CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt7621_DEVICE_tplink_ex220-v1="apk-mbedtls dawn kmod-cfg80211 kmod-crypto-ccm kmod-crypto-cmac kmod-crypto-ctr kmod-cryptodev kmod-crypto-gcm kmod-crypto-geniv kmod-crypto-gf128 kmod-crypto-ghash kmod-crypto-seqiv kmod-hwmon-core kmod-i2c-core kmod-leds-gpio kmod-mac80211 kmod-mt76-connac kmod-mt76-core kmod-mt7915e kmod-mt7915-firmware kmod-thermal libcap-ng libgcrypt libgpg-error liblz4 liblzo libnl-core libnl-genl libopenssl libopenssl-conf libopenssl-devcrypto libqrencode luci-app-dawn luci-app-openvpn luci-app-usteer luci-i18n-dashboard-zh-cn luci-i18n-openvpn-zh-cn luci-lib-uqr luci-mod-dashboard luci-proto-relay luci-proto-wireguard openvpn-mbedtls qrencode relayd tc-tiny wireguard-tools wireless-regdb wpad-mbedtls"
+# CONFIG_TARGET_DEVICE_ramips_mt7621_DEVICE_tplink_ex220-v2 is not set
 # CONFIG_TARGET_DEVICE_ramips_mt7621_DEVICE_tplink_mr600-v2-eu is not set
 # CONFIG_TARGET_DEVICE_ramips_mt7621_DEVICE_tplink_re350-v1 is not set
 CONFIG_TARGET_DEVICE_ramips_mt7621_DEVICE_tplink_re500-v1=y
@@ -1031,7 +1033,7 @@ CONFIG_TARGET_INIT_CMD="/sbin/init"
 CONFIG_TARGET_INIT_SUPPRESS_STDERR=y
 CONFIG_VERSIONOPT=y
 CONFIG_VERSION_DIST="X-WRT"
-CONFIG_VERSION_NUMBER="25.04_b202507121539"
+CONFIG_VERSION_NUMBER="25.04_b202507140450"
 CONFIG_VERSION_CODE="Plucky"
 CONFIG_VERSION_REPO="http://downloads.openwrt.org/snapshots"
 CONFIG_VERSION_HOME_URL="https://x-wrt.com/"
@@ -4437,6 +4439,7 @@ CONFIG_PACKAGE_kmod-random-core=m
 # CONFIG_PACKAGE_kmod-reed-solomon is not set
 CONFIG_PACKAGE_kmod-regmap-core=m
 CONFIG_PACKAGE_kmod-regmap-i2c=m
+CONFIG_PACKAGE_kmod-regulator-userspace-consumer=m
 # CONFIG_PACKAGE_kmod-sdhci is not set
 CONFIG_PACKAGE_kmod-sdhci-mt7620=m
 # CONFIG_PACKAGE_kmod-serial-8250 is not set
@@ -8697,6 +8700,7 @@ CONFIG_PACKAGE_xfrm=m
 # CONFIG_PACKAGE_mpd-full is not set
 # CONFIG_PACKAGE_mpd-mini is not set
 # CONFIG_PACKAGE_mpg123 is not set
+# CONFIG_PACKAGE_openal-soft is not set
 # CONFIG_PACKAGE_opus-tools is not set
 # CONFIG_PACKAGE_owntone is not set
 # CONFIG_PACKAGE_pianod is not set

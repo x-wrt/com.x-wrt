@@ -123,6 +123,7 @@ CONFIG_TARGET_MULTI_PROFILE=y
 # CONFIG_TARGET_ath79_generic_DEVICE_compex_wpj558-16m is not set
 # CONFIG_TARGET_ath79_generic_DEVICE_compex_wpj563 is not set
 # CONFIG_TARGET_ath79_generic_DEVICE_dell_apl26-0ae is not set
+# CONFIG_TARGET_ath79_generic_DEVICE_dell_apl27-0b1 is not set
 # CONFIG_TARGET_ath79_generic_DEVICE_devolo_dlan-pro-1200plus-ac is not set
 # CONFIG_TARGET_ath79_generic_DEVICE_devolo_dvl1200e is not set
 # CONFIG_TARGET_ath79_generic_DEVICE_devolo_dvl1200i is not set
@@ -538,6 +539,7 @@ CONFIG_TARGET_DEVICE_PACKAGES_ath79_generic_DEVICE_comfast_cf-e5="blockd block-m
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_dlink_dir-842-c2 is not set
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_dlink_dir-842-c3 is not set
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_dell_apl26-0ae is not set
+# CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_dell_apl27-0b1 is not set
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_devolo_dlan-pro-1200plus-ac is not set
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_devolo_magic-2-wifi is not set
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_devolo_dvl1200e is not set
@@ -1242,7 +1244,7 @@ CONFIG_TARGET_INIT_CMD="/sbin/init"
 CONFIG_TARGET_INIT_SUPPRESS_STDERR=y
 CONFIG_VERSIONOPT=y
 CONFIG_VERSION_DIST="X-WRT"
-CONFIG_VERSION_NUMBER="25.04_b202507121539"
+CONFIG_VERSION_NUMBER="25.04_b202507140450"
 CONFIG_VERSION_CODE="Plucky"
 CONFIG_VERSION_REPO="http://downloads.openwrt.org/snapshots"
 CONFIG_VERSION_HOME_URL="https://x-wrt.com/"
@@ -4707,6 +4709,7 @@ CONFIG_PACKAGE_kmod-mtd-rw=m
 CONFIG_PACKAGE_kmod-random-core=y
 # CONFIG_PACKAGE_kmod-reed-solomon is not set
 CONFIG_PACKAGE_kmod-regmap-core=m
+CONFIG_PACKAGE_kmod-regulator-userspace-consumer=m
 # CONFIG_PACKAGE_kmod-sdhci is not set
 # CONFIG_PACKAGE_kmod-serial-8250 is not set
 # CONFIG_PACKAGE_kmod-serial-8250-exar is not set
@@ -6238,7 +6241,6 @@ CONFIG_WOLFSSL_ALT_NAMES=y
 #
 # Video
 #
-# CONFIG_PACKAGE_edid-decode is not set
 # CONFIG_PACKAGE_fribidi is not set
 # CONFIG_PACKAGE_harfbuzz is not set
 # CONFIG_PACKAGE_libassimp is not set
@@ -8931,6 +8933,7 @@ CONFIG_PACKAGE_xfrm=m
 # CONFIG_PACKAGE_mpd-full is not set
 # CONFIG_PACKAGE_mpd-mini is not set
 # CONFIG_PACKAGE_mpg123 is not set
+# CONFIG_PACKAGE_openal-soft is not set
 # CONFIG_PACKAGE_opus-tools is not set
 # CONFIG_PACKAGE_owntone is not set
 # CONFIG_PACKAGE_pianod is not set
@@ -9489,6 +9492,7 @@ CONFIG_PACKAGE_dbus=m
 # CONFIG_PACKAGE_dump1090 is not set
 # CONFIG_PACKAGE_dysk is not set
 # CONFIG_PACKAGE_ecdsautils is not set
+# CONFIG_PACKAGE_edid-decode is not set
 # CONFIG_PACKAGE_elektra-kdb is not set
 # CONFIG_PACKAGE_enterprise-numbers is not set
 # CONFIG_PACKAGE_evtest is not set
