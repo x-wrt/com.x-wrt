@@ -66,7 +66,7 @@ return view.extend({
 		o.datatype = 'ip4addr';
 		o.rmempty = false;
 
-		o = s.option(form.Value, 'netmask', _('IPv4 netmask'));
+		o = s.option(form.Value, 'netmask', _('Management netmask'));
 		o.datatype = 'ip4addr';
 		o.value('255.255.255.0');
 		o.value('255.255.0.0');

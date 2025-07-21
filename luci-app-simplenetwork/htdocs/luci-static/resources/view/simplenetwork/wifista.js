@@ -99,7 +99,7 @@ return view.extend({
 			status_gateway.innerHTML = '-';
 			status_dns.innerHTML = '-';
 
-			if (uci.get('wireless', 'wifinet1', 'disabled', 0) == 1) {
+			if (uci.get('wireless', 'wifinet2', 'disabled', 0) == 1) {
 				wwan_status_cnt = 3;
 			}
 			if (wwan_status_cnt == 0) {
@@ -125,7 +125,7 @@ return view.extend({
 			_('Configure the WiFi STA'));
 		m.chain('network');
 
-		s = m.section(form.NamedSection, 'wifinet1', 'wifi-iface');
+		s = m.section(form.NamedSection, 'wifinet2', 'wifi-iface');
 		s.addremove = false;
 
 		o = s.option(form.Flag, 'disabled', _('Enable'));
@@ -134,9 +134,9 @@ return view.extend({
 		o.default = o.enabled;
 		o.onchange = function(ev, section, value) {
 			if (value == 1) {
-				uci.set('wireless', 'wifinet1', 'disabled', value);
+				uci.set('wireless', 'wifinet2', 'disabled', value);
 			} else {
-				uci.unset('wireless', 'wifinet1', 'disabled');
+				uci.unset('wireless', 'wifinet2', 'disabled');
 			}
 			return this.map.save();
 		}
@@ -146,7 +146,7 @@ return view.extend({
 		_this.ssidOpt = o;
 
 		o.render = function(option_index, section_id, in_table) {
-			var current_ssid = uci.get('wireless', 'wifinet1', 'ssid');
+			var current_ssid = uci.get('wireless', 'wifinet2', 'ssid');
 			if (_this.startScan == false) {
 				if (current_ssid != undefined) {
 					this.value(current_ssid);

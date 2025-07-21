@@ -69,7 +69,7 @@ return view.extend({
 			}
 		} catch(err) {
 			status_ipaddr.innerHTML = '-';
-			if (uci.get('wireless', 'wifinet1', 'disabled', 0) == 1) {
+			if (uci.get('wireless', 'wifinet2', 'disabled', 0) == 1) {
 				wwan_status_cnt = 3;
 			}
 			if (wwan_status_cnt == 0) {
@@ -140,37 +140,35 @@ return view.extend({
 		o.value('12');
 		o.value('13');
 
-		o = s.taboption('wifiap', form.Value, 'lanap_ipaddr', _('IPv4 address'));
-		o.uciconfig = 'network';
-		o.ucisection = 'lanap';
-		o.ucioption = 'ipaddr';
-		o.datatype = 'ip4addr';
-		o.rmempty = false;
-
-
-		o = s.taboption('wifista', form.Flag, 'wifinet1_disabled', _('Enable'));
-		o.ucisection = 'wifinet1';
+		o = s.taboption('wifista', form.Flag, 'wifinet2_disabled', _('Enable'));
+		o.ucisection = 'wifinet2';
 		o.ucioption = 'disabled';
 		o.enabled = '0';
 		o.disabled = '1';
 		o.default = o.enabled;
 		o.onchange = function(ev, section, value) {
 			if (value == 1) {
-				uci.set('wireless', 'wifinet1', 'disabled', value);
+				uci.set('wireless', 'wifinet2', 'disabled', value);
 			} else {
-				uci.unset('wireless', 'wifinet1', 'disabled');
+				uci.unset('wireless', 'wifinet2', 'disabled');
 			}
 			return this.map.save();
 		}
 
-		o = s.taboption('wifista', form.Value, 'wifinet1_ssid', _('<abbr title="Extended Service Set Identifier">ESSID</abbr>'));
+		o = s.taboption('wifista', form.Button, '_scan');
+		o.title = '&#160;';
+		o.inputtitle = _('SCAN WiFi');
+		o.inputstyle = 'apply';
+		o.onclick = L.bind(this.handleScan, this, m);
+
+		o = s.taboption('wifista', form.Value, 'wifinet2_ssid', _('<abbr title="Extended Service Set Identifier">ESSID</abbr>'));
 		o.datatype = 'maxlength(32)';
-		o.ucisection = 'wifinet1';
+		o.ucisection = 'wifinet2';
 		o.ucioption = 'ssid';
 		_this.ssidOpt = o;
 
 		o.render = function(option_index, section_id, in_table) {
-			var current_ssid = uci.get('wireless', 'wifinet1', 'ssid');
+			var current_ssid = uci.get('wireless', 'wifinet2', 'ssid');
 			if (_this.startScan == false) {
 				if (current_ssid != undefined) {
 					this.value(current_ssid);
@@ -217,22 +215,16 @@ return view.extend({
 			}, this));
 		}
 
-		o = s.taboption('wifista', form.Button, '_scan');
-		o.title = '&#160;';
-		o.inputtitle = _('SCAN WiFi');
-		o.inputstyle = 'apply';
-		o.onclick = L.bind(this.handleScan, this, m);
-
-		o = s.taboption('wifista', form.ListValue, 'wifinet1_encryption', _('Encryption'));
+		o = s.taboption('wifista', form.ListValue, 'wifinet2_encryption', _('Encryption'));
 		o.value('none', _('No Encryption'));
 		o.value('psk', _('WPA-PSK'));
 		o.value('psk2', _('WPA2-PSK'));
 		o.value('psk-mixed', _('WPA-PSK/WPA2-PSK Mixed Mode'));
-		o.ucisection = 'wifinet1';
+		o.ucisection = 'wifinet2';
 		o.ucioption = 'encryption';
 
 		o.validate = function(section, value) {
-			var _ssid = this.map.lookupOption('wifinet1_ssid', section),
+			var _ssid = this.map.lookupOption('wifinet2_ssid', section),
 				ssid = _ssid ? _ssid[0].formvalue(section) : null;
 			if (!ssid) return true;
 			for (var i = 0; i < scanRes.length; i++) {
@@ -247,12 +239,12 @@ return view.extend({
 			//return _('Invalid') + ' ' + _('Encryption');
 		}
 
-		o = s.taboption('wifista', form.Value, 'wifinet1_key', _('Key'));
-		o.depends('wifinet1_encryption', 'psk');
-		o.depends('wifinet1_encryption', 'psk2');
-		o.depends('wifinet1_encryption', 'psk-mixed');
+		o = s.taboption('wifista', form.Value, 'wifinet2_key', _('Key'));
+		o.depends('wifinet2_encryption', 'psk');
+		o.depends('wifinet2_encryption', 'psk2');
+		o.depends('wifinet2_encryption', 'psk-mixed');
 		o.rmempty = false;
-		o.ucisection = 'wifinet1';
+		o.ucisection = 'wifinet2';
 		o.ucioption = 'key';
 		o.datatype = 'wpakey';
 
