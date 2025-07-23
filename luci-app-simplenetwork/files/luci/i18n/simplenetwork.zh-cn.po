@@ -43,8 +43,17 @@ msgstr "这里设置有线网口的网络参数"
 msgid "WiFi AP"
 msgstr "无线AP"
 
-msgid "Wireless AP"
-msgstr "无线AP"
+msgid "Wireless AP (Management)"
+msgstr "无线AP（管理）"
+
+msgid "Wireless AP (User)"
+msgstr "无线AP（用户）"
+
+msgid "This wireless AP is used to extend the Ethernet port to connect to the upstream network."
+msgstr "这个无线AP用来扩展有线连接的上游网络。"
+
+msgid "This wireless AP is used to access the management interface."
+msgstr "这个无线AP时用来访问管理界面。"
 
 msgid "Configure the WiFi AP"
 msgstr "这里设置无线AP的参数"
