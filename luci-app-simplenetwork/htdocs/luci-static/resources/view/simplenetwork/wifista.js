@@ -28,6 +28,15 @@ var ssidValid = function(ssid) {
 	return null;
 }
 
+var findEncryptionBySsid = function(scanRes, ssid) {
+    for (var i = 0; i < scanRes.length; i++) {
+        if (scanRes[i].ssid == ssid) {
+            return ssidValid(network.formatWifiEncryption(scanRes[i].encryption));
+        }
+    }
+    return '';
+}
+
 var wwan_status_cnt = 0;
 return view.extend({
 	handleSaveApply: function(ev, mode) {
@@ -144,7 +153,17 @@ return view.extend({
 		o = s.option(form.Value, 'ssid', _('<abbr title="Extended Service Set Identifier">ESSID</abbr>'));
 		o.datatype = 'maxlength(32)';
 		_this.ssidOpt = o;
-
+		o.onchange = function(ev, section_id, value) {
+			var enc = findEncryptionBySsid(scanRes, value);
+			if (enc) {
+				uci.set('wireless', 'wifinet2', 'encryption', enc);
+				uci.set('wireless', 'wifinet2', 'ssid', value);
+				if (_this.encOpt)
+					_this.encOpt.default = enc;
+				this.map.render();
+			}
+			return true;
+		};
 		o.render = function(option_index, section_id, in_table) {
 			var current_ssid = uci.get('wireless', 'wifinet2', 'ssid');
 			if (_this.startScan == false) {
@@ -199,34 +218,26 @@ return view.extend({
 		o.inputstyle = 'apply';
 		o.onclick = L.bind(this.handleScan, this, m);
 
-		o = s.option(form.ListValue, 'encryption', _('Encryption'));
-		o.value('none', _('No Encryption'));
-		o.value('psk', _('WPA-PSK'));
-		o.value('psk2', _('WPA2-PSK'));
-		o.value('psk-mixed', _('WPA-PSK/WPA2-PSK Mixed Mode'));
-
-		o.validate = function(section, value) {
-			var _ssid = this.map.lookupOption('ssid', section),
-				ssid = _ssid ? _ssid[0].formvalue(section) : null;
-			if (!ssid) return true;
-			for (var i = 0; i < scanRes.length; i++) {
-				if (scanRes[i].ssid == ssid) {
-					if (value == ssidValid(network.formatWifiEncryption(scanRes[i].encryption))) {
-						return true;
-					}
-					return _('Encryption') + ": " + network.formatWifiEncryption(scanRes[i].encryption);
+		o = s.option(form.Value, 'key', _('Key'));
+		o.rmempty = true;
+		o.datatype = 'wpakey';
+		o.validate = function(section_id, value) {
+			// Find the selected SSID
+			var _ssid = this.map.lookupOption('ssid', section_id);
+			var ssid = _ssid ? _ssid[0].formvalue(section_id) : null;
+			var enc = '';
+			if (scanRes && ssid) {
+				enc = findEncryptionBySsid(scanRes, ssid);
+			}
+			// If encryption type is not 'none', key must be 8-63 chars and non-empty
+			if (enc && enc !== 'none') {
+				if (!value || value.length < 8 || value.length > 63) {
+					return _('key between 8 and 63 characters');
 				}
 			}
+			// If encryption is 'none', allow empty key
 			return true;
-			//return _('Invalid') + ' ' + _('Encryption');
-		}
-
-		o = s.option(form.Value, 'key', _('Key'));
-		o.depends('encryption', 'psk');
-		o.depends('encryption', 'psk2');
-		o.depends('encryption', 'psk-mixed');
-		o.rmempty = false;
-		o.datatype = 'wpakey';
+		};
 
 		o = s.option(form.DummyValue, '_wwan_status', _('Status'));
 		o.modalonly = false;
