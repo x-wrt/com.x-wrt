@@ -44,7 +44,7 @@ while uci get network.@interface[$idx] &>/dev/null; do
 			# ICMP Router Advertisement (ICMP type 9)
 			iptables -t mangle -A mangle_ttl -p icmp --icmp-type 9 -j RETURN
 		fi
-		iptables -t mangle -A mangle_ttl -o "$ifd" -j TTL --ttl-set $ttl
+		iptables -t mangle -A mangle_ttl -m ttl --ttl-gt 1 -o "$ifd" -j TTL --ttl-set $ttl
 	fi
 	hl=$(uci get network.@interface[$idx].output_hotlimit 2>/dev/null)
 	if test -n "$hl" && test -n "$ifd"; then
@@ -70,7 +70,7 @@ while uci get network.@interface[$idx] &>/dev/null; do
 			ip6tables -t mangle -A mangle_hotlimit -p ipv6-icmp -m icmp6 --icmpv6-type 136 -j RETURN
 			ip6tables -t mangle -A mangle_hotlimit -p ipv6-icmp -m icmp6 --icmpv6-type 137 -j RETURN
 		fi
-		ip6tables -t mangle -A mangle_hotlimit -o "$ifd" -j HL --hl-set $hl
+		ip6tables -t mangle -A mangle_hotlimit -m hl --hl-gt 1 -o "$ifd" -j HL --hl-set $hl
 	fi
 	idx=$((idx+1))
 done
