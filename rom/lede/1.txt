@@ -1,0 +1,4 @@
+# CONFIG_PACKAGE_kmod-i2c-mux-pinctrl is not set
+# CONFIG_PACKAGE_kmod-input-mouse-ps2 is not set
+# CONFIG_PACKAGE_kmod-input-serio is not set
+# CONFIG_PACKAGE_kmod-input-serio-libps2 is not set
