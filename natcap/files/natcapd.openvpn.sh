@@ -121,7 +121,7 @@ make_config()
 			uci set openvpn.natcapovpn_$p.key='/usr/share/natcapd/openvpn/server.key'
 			uci set openvpn.natcapovpn_$p.dh='/usr/share/natcapd/openvpn/dh2048.pem'
 			uci set openvpn.natcapovpn_$p.server="10.8.$((9+I)).0 255.255.255.0"
-			uci set openvpn.natcapovpn_$p.keepalive='10 120'
+			uci set openvpn.natcapovpn_$p.keepalive='10 60'
 			uci set openvpn.natcapovpn_$p.persist_key='1'
 			uci set openvpn.natcapovpn_$p.persist_tun='1'
 			uci set openvpn.natcapovpn_$p.user='nobody'
@@ -154,6 +154,7 @@ make_config()
 			uci set openvpn.natcapovpn_$p.cipher='AES-256-GCM'
 			uci set openvpn.natcapovpn_$p.auth='SHA256'
 			uci set openvpn.natcapovpn_$p.topology='subnet'
+			uci set openvpn.natcapovpn_$p.client_to_client='1'
 			I=$((I+1))
 		done
 		uci commit openvpn
