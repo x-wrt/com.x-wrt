@@ -426,16 +426,6 @@ EOT
 	version=23
 }
 
-test $version -lt 24 && {
-	#default theme use argon
-	if test -e /www/luci-static/argon; then
-		uci set luci.main.mediaurlbase='/luci-static/argon'
-		uci commit luci
-	fi
-
-	version=24
-}
-
 test $version -lt 25 && {
 	#default theme use bootstrap again.
 	uci set luci.main.mediaurlbase='/luci-static/bootstrap'
