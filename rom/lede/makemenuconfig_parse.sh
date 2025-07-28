@@ -408,6 +408,7 @@ for t in $targets; do
 	excludes="$excludes_basic"
 	case $t in
 		#>=32M flash
+		TARGET_DEVICE_qualcommax_ipq50xx_DEVICE_yuncore_ax830|\
 		TARGET_DEVICE_qualcommax_ipq807x_DEVICE_aliyun_ap8220|\
 		TARGET_DEVICE_qualcommax_ipq50xx_DEVICE_xiaomi_ax6000|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_openfi_5pro|\
@@ -542,6 +543,7 @@ for t in $targets; do
 	esac
 	case $t in
 		#>=14M flash
+		TARGET_DEVICE_qualcommax_ipq50xx_DEVICE_yuncore_ax830|\
 		TARGET_DEVICE_qualcommax_ipq807x_DEVICE_aliyun_ap8220|\
 		TARGET_DEVICE_qualcommax_ipq50xx_DEVICE_xiaomi_ax6000|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_openfi_5pro|\
@@ -1571,6 +1573,7 @@ for t in $targets; do
 			has_usb=1
 		;;
 		#no usb
+		TARGET_DEVICE_qualcommax_ipq50xx_DEVICE_yuncore_ax830|\
 		TARGET_DEVICE_qualcommax_ipq50xx_DEVICE_xiaomi_ax6000|\
 		TARGET_DEVICE_qualcommax_ipq50xx_DEVICE_glinet_gl-b3000|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_netis_nx31|\

@@ -79,7 +79,8 @@ CONFIG_TARGET_DEVICE_PACKAGES_qualcommax_ipq50xx_DEVICE_glinet_gl-b3000="apk-ope
 # CONFIG_TARGET_DEVICE_qualcommax_ipq50xx_DEVICE_linksys_spnmx56 is not set
 CONFIG_TARGET_DEVICE_qualcommax_ipq50xx_DEVICE_xiaomi_ax6000=y
 CONFIG_TARGET_DEVICE_PACKAGES_qualcommax_ipq50xx_DEVICE_xiaomi_ax6000="apk-openssl ath10k-board-qca9887 ath10k-firmware-qca9887-ct ath11k-firmware-ipq5018 ath11k-firmware-qcn9074 ca-bundle curl dawn ethtool gre ipq-wifi-xiaomi_ax6000 iptables-mod-dhcpmac iptables-mod-dnetmap jool-tools-netfilter kmod-ath10k-ct-smallbuffers kmod-ath11k-pci kmod-bonding kmod-crypto-acompress kmod-crypto-cbc kmod-crypto-deflate kmod-crypto-des kmod-crypto-echainiv kmod-crypto-md5 kmod-inet-diag kmod-ip6-vti kmod-ipsec kmod-ipsec4 kmod-ipsec6 kmod-ipt-compat-xtables kmod-ipt-dhcpmac kmod-ipt-dnetmap kmod-ip-vti kmod-jool-netfilter kmod-l2tp kmod-lib-zlib-deflate kmod-lib-zlib-inflate kmod-mhi-bus kmod-nat46 kmod-nf-conntrack-netlink kmod-pppol2tp kmod-qrtr-mhi kmod-xfrm-interface libcap-ng libcurl libgcrypt libgpg-error liblz4 liblzo libnghttp2 libnl libnl-cli libnl-core libnl-genl libnl-nf libnl-route libopenssl libopenssl-conf libopenssl-legacy libpcre2 libqrencode libssh2 libstdcpp libxml2 luci-app-dawn luci-app-openvpn luci-app-usteer luci-i18n-dashboard-zh-cn luci-i18n-openvpn-zh-cn luci-lib-uqr luci-mod-dashboard luci-nginx luci-proto-gre luci-proto-relay luci-proto-vti luci-proto-wireguard luci-proto-xfrm luci-theme-argon nginx-mod-luci nginx-mod-ubus nginx-ssl nginx-ssl-util openvpn-openssl ppp-mod-pppol2tp proto-bonding qrencode relayd tc-tiny uwsgi uwsgi-cgi-plugin uwsgi-luci-support uwsgi-syslog-plugin vti wireguard-tools wpad-openssl xfrm xl2tpd"
-# CONFIG_TARGET_DEVICE_qualcommax_ipq50xx_DEVICE_yuncore_ax830 is not set
+CONFIG_TARGET_DEVICE_qualcommax_ipq50xx_DEVICE_yuncore_ax830=y
+CONFIG_TARGET_DEVICE_PACKAGES_qualcommax_ipq50xx_DEVICE_yuncore_ax830="apk-openssl ath11k-firmware-ipq5018 ath11k-firmware-qcn6122 ca-bundle curl dawn ethtool gre ipq-wifi-yuncore_ax830 iptables-mod-dhcpmac iptables-mod-dnetmap jool-tools-netfilter kmod-bonding kmod-crypto-acompress kmod-crypto-cbc kmod-crypto-deflate kmod-crypto-des kmod-crypto-echainiv kmod-crypto-md5 kmod-inet-diag kmod-ip6-vti kmod-ipsec kmod-ipsec4 kmod-ipsec6 kmod-ipt-compat-xtables kmod-ipt-dhcpmac kmod-ipt-dnetmap kmod-ip-vti kmod-jool-netfilter kmod-l2tp kmod-lib-zlib-deflate kmod-lib-zlib-inflate kmod-nat46 kmod-nf-conntrack-netlink kmod-pppol2tp kmod-xfrm-interface libcap-ng libcurl libgcrypt libgpg-error liblz4 liblzo libnghttp2 libnl libnl-cli libnl-core libnl-genl libnl-nf libnl-route libopenssl libopenssl-conf libopenssl-legacy libpcre2 libqrencode libssh2 libstdcpp libxml2 luci-app-dawn luci-app-openvpn luci-app-usteer luci-i18n-dashboard-zh-cn luci-i18n-openvpn-zh-cn luci-lib-uqr luci-mod-dashboard luci-nginx luci-proto-gre luci-proto-relay luci-proto-vti luci-proto-wireguard luci-proto-xfrm luci-theme-argon nginx-mod-luci nginx-mod-ubus nginx-ssl nginx-ssl-util openvpn-openssl ppp-mod-pppol2tp proto-bonding qrencode relayd tc-tiny uwsgi uwsgi-cgi-plugin uwsgi-luci-support uwsgi-syslog-plugin vti wireguard-tools wpad-openssl xfrm xl2tpd"
 # end of Target Devices
 
 CONFIG_HAS_SUBTARGETS=y
@@ -110,6 +111,7 @@ CONFIG_DEFAULT_fstools=y
 CONFIG_MODULE_DEFAULT_fstools=y
 CONFIG_MODULE_DEFAULT_ipq-wifi-glinet_gl-b3000=y
 CONFIG_MODULE_DEFAULT_ipq-wifi-xiaomi_ax6000=y
+CONFIG_MODULE_DEFAULT_ipq-wifi-yuncore_ax830=y
 CONFIG_DEFAULT_iwinfo=y
 CONFIG_MODULE_DEFAULT_iwinfo=y
 CONFIG_MODULE_DEFAULT_kmod-ath10k-ct-smallbuffers=y
@@ -2934,7 +2936,7 @@ CONFIG_PACKAGE_ipq-wifi-glinet_gl-b3000=m
 # CONFIG_PACKAGE_ipq-wifi-xiaomi_ax3600 is not set
 CONFIG_PACKAGE_ipq-wifi-xiaomi_ax6000=m
 # CONFIG_PACKAGE_ipq-wifi-xiaomi_ax9000 is not set
-# CONFIG_PACKAGE_ipq-wifi-yuncore_ax830 is not set
+CONFIG_PACKAGE_ipq-wifi-yuncore_ax830=m
 # CONFIG_PACKAGE_ipq-wifi-yuncore_ax880 is not set
 # CONFIG_PACKAGE_ipq-wifi-yuncore_fap650 is not set
 # CONFIG_PACKAGE_ipq-wifi-yyets_le1 is not set
@@ -7979,6 +7981,7 @@ CONFIG_PACKAGE_gre=m
 # CONFIG_PACKAGE_gsocket is not set
 # CONFIG_PACKAGE_hev-socks5-server is not set
 # CONFIG_PACKAGE_hev-socks5-tproxy is not set
+# CONFIG_PACKAGE_hev-socks5-tunnel is not set
 # CONFIG_PACKAGE_hping3 is not set
 # CONFIG_PACKAGE_httping is not set
 # CONFIG_PACKAGE_httping-nossl is not set
@@ -9342,7 +9345,6 @@ CONFIG_PACKAGE_hmac-sha1-util=y
 # CONFIG_PACKAGE_mbed-hmac-sha1 is not set
 # end of mbed tools
 
-# CONFIG_PACKAGE_hev-socks5-tunnel is not set
 # CONFIG_PACKAGE_initramfs-upgrade-fw is not set
 CONFIG_PACKAGE_kmod-qmi-wwan-q=m
 # CONFIG_PACKAGE_kmod-rtw8852cu is not set
