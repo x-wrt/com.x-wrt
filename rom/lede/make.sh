@@ -1,5 +1,7 @@
 #!/bin/bash
 
+test -e ./feeds/x/fixup/1.sh && sh ./feeds/x/fixup/1.sh
+
 CONFDIR=`dirname $0`
 test -n "$CFGS" || CFGS="`cat $CONFDIR/cfg.list`"
 . $CONFDIR/buildinfo.conf
