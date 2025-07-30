@@ -6,6 +6,7 @@ CONFIG_MODULES=y
 CONFIG_HAVE_DOT_CONFIG=y
 CONFIG_HOST_OS_LINUX=y
 # CONFIG_HOST_OS_MACOS is not set
+CONFIG_DEFAULT_TARGET_x86_64=y
 # CONFIG_TARGET_airoha is not set
 # CONFIG_TARGET_d1 is not set
 # CONFIG_TARGET_sunxi is not set
@@ -53,56 +54,90 @@ CONFIG_TARGET_x86=y
 # CONFIG_TARGET_x86_legacy is not set
 # CONFIG_TARGET_x86_geode is not set
 CONFIG_TARGET_x86_64=y
-# CONFIG_TARGET_MULTI_PROFILE is not set
-CONFIG_TARGET_x86_64_DEVICE_generic=y
+CONFIG_TARGET_MULTI_PROFILE=y
+# CONFIG_TARGET_x86_64_DEVICE_generic is not set
+
+#
+# Target Devices
+#
+# CONFIG_TARGET_ALL_PROFILES is not set
+CONFIG_TARGET_PER_DEVICE_ROOTFS=y
+CONFIG_TARGET_DEVICE_x86_64_DEVICE_generic=y
+CONFIG_TARGET_DEVICE_PACKAGES_x86_64_DEVICE_generic="i915-firmware-dmc kmod-acpi-video kmod-backlight kmod-dma-buf kmod-drm kmod-drm-buddy kmod-drm-display-helper kmod-drm-exec kmod-drm-i915 kmod-drm-kms-helper kmod-drm-suballoc-helper kmod-drm-ttm kmod-drm-ttm-helper kmod-fb kmod-fb-cfb-copyarea kmod-fb-cfb-fillrect kmod-fb-cfb-imgblt kmod-fb-sys-fops kmod-fb-sys-ram"
+# end of Target Devices
+
 CONFIG_HAS_SUBTARGETS=y
 CONFIG_HAS_DEVICES=y
 CONFIG_TARGET_BOARD="x86"
 CONFIG_TARGET_SUBTARGET="64"
-CONFIG_TARGET_PROFILE="DEVICE_generic"
 CONFIG_TARGET_ARCH_PACKAGES="x86_64"
 CONFIG_DEFAULT_TARGET_OPTIMIZATION="-Os -pipe"
 CONFIG_CPU_TYPE=" "
 CONFIG_LINUX_6_12=y
 CONFIG_DEFAULT_base-files=y
+CONFIG_MODULE_DEFAULT_base-files=y
 CONFIG_DEFAULT_dnsmasq=y
+CONFIG_MODULE_DEFAULT_dnsmasq=y
 CONFIG_DEFAULT_dropbear=y
+CONFIG_MODULE_DEFAULT_dropbear=y
 CONFIG_DEFAULT_e2fsprogs=y
+CONFIG_MODULE_DEFAULT_e2fsprogs=y
 CONFIG_DEFAULT_firewall4=y
+CONFIG_MODULE_DEFAULT_firewall4=y
 CONFIG_DEFAULT_fstools=y
+CONFIG_MODULE_DEFAULT_fstools=y
 CONFIG_DEFAULT_grub2-bios-setup=y
-CONFIG_DEFAULT_kmod-amazon-ena=y
-CONFIG_DEFAULT_kmod-amd-xgbe=y
-CONFIG_DEFAULT_kmod-bnx2=y
+CONFIG_MODULE_DEFAULT_grub2-bios-setup=y
+CONFIG_MODULE_DEFAULT_kmod-amazon-ena=y
+CONFIG_MODULE_DEFAULT_kmod-amd-xgbe=y
+CONFIG_MODULE_DEFAULT_kmod-bnx2=y
 CONFIG_DEFAULT_kmod-button-hotplug=y
-CONFIG_DEFAULT_kmod-drm-i915=y
-CONFIG_DEFAULT_kmod-dwmac-intel=y
-CONFIG_DEFAULT_kmod-e1000=y
-CONFIG_DEFAULT_kmod-e1000e=y
-CONFIG_DEFAULT_kmod-forcedeth=y
-CONFIG_DEFAULT_kmod-fs-vfat=y
-CONFIG_DEFAULT_kmod-igb=y
-CONFIG_DEFAULT_kmod-igc=y
-CONFIG_DEFAULT_kmod-ixgbe=y
-CONFIG_DEFAULT_kmod-r8169=y
-CONFIG_DEFAULT_kmod-tg3=y
+CONFIG_MODULE_DEFAULT_kmod-button-hotplug=y
+CONFIG_MODULE_DEFAULT_kmod-drm-i915=y
+CONFIG_MODULE_DEFAULT_kmod-dwmac-intel=y
+CONFIG_MODULE_DEFAULT_kmod-e1000=y
+CONFIG_MODULE_DEFAULT_kmod-e1000e=y
+CONFIG_MODULE_DEFAULT_kmod-forcedeth=y
+CONFIG_MODULE_DEFAULT_kmod-fs-vfat=y
+CONFIG_MODULE_DEFAULT_kmod-igb=y
+CONFIG_MODULE_DEFAULT_kmod-igc=y
+CONFIG_MODULE_DEFAULT_kmod-ixgbe=y
+CONFIG_MODULE_DEFAULT_kmod-r8169=y
+CONFIG_MODULE_DEFAULT_kmod-tg3=y
 CONFIG_DEFAULT_libc=y
+CONFIG_MODULE_DEFAULT_libc=y
 CONFIG_DEFAULT_libgcc=y
+CONFIG_MODULE_DEFAULT_libgcc=y
 CONFIG_DEFAULT_libustream-mbedtls=y
+CONFIG_MODULE_DEFAULT_libustream-mbedtls=y
 CONFIG_DEFAULT_logd=y
+CONFIG_MODULE_DEFAULT_logd=y
 CONFIG_DEFAULT_mkf2fs=y
+CONFIG_MODULE_DEFAULT_mkf2fs=y
 CONFIG_DEFAULT_mtd=y
+CONFIG_MODULE_DEFAULT_mtd=y
 CONFIG_DEFAULT_netifd=y
+CONFIG_MODULE_DEFAULT_netifd=y
 CONFIG_DEFAULT_nftables=y
+CONFIG_MODULE_DEFAULT_nftables=y
 CONFIG_DEFAULT_odhcp6c=y
+CONFIG_MODULE_DEFAULT_odhcp6c=y
 CONFIG_DEFAULT_odhcpd-ipv6only=y
+CONFIG_MODULE_DEFAULT_odhcpd-ipv6only=y
 CONFIG_DEFAULT_partx-utils=y
+CONFIG_MODULE_DEFAULT_partx-utils=y
 CONFIG_DEFAULT_ppp=y
+CONFIG_MODULE_DEFAULT_ppp=y
 CONFIG_DEFAULT_ppp-mod-pppoe=y
+CONFIG_MODULE_DEFAULT_ppp-mod-pppoe=y
 CONFIG_DEFAULT_uci=y
+CONFIG_MODULE_DEFAULT_uci=y
 CONFIG_DEFAULT_uclient-fetch=y
+CONFIG_MODULE_DEFAULT_uclient-fetch=y
 CONFIG_DEFAULT_urandom-seed=y
+CONFIG_MODULE_DEFAULT_urandom-seed=y
 CONFIG_DEFAULT_urngd=y
+CONFIG_MODULE_DEFAULT_urngd=y
 CONFIG_HAS_FPU=y
 CONFIG_AUDIO_SUPPORT=y
 CONFIG_GPIO_SUPPORT=y
@@ -2529,7 +2564,7 @@ CONFIG_BUSYBOX_CONFIG_LOGGER=y
 # CONFIG_PACKAGE_busybox-selinux is not set
 CONFIG_PACKAGE_ca-bundle=y
 CONFIG_PACKAGE_ca-certificates=y
-# CONFIG_PACKAGE_dnsmasq is not set
+CONFIG_PACKAGE_dnsmasq=m
 # CONFIG_PACKAGE_dnsmasq-dhcpv6 is not set
 CONFIG_PACKAGE_dnsmasq-full=y
 CONFIG_PACKAGE_dnsmasq_full_dhcp=y
@@ -2991,7 +3026,7 @@ CONFIG_PACKAGE_brcmfmac-firmware-usb=y
 # CONFIG_PACKAGE_edgeport-firmware is not set
 # CONFIG_PACKAGE_eip197-mini-firmware is not set
 # CONFIG_PACKAGE_i915-firmware is not set
-# CONFIG_PACKAGE_i915-firmware-dmc is not set
+CONFIG_PACKAGE_i915-firmware-dmc=m
 # CONFIG_PACKAGE_i915-firmware-gsc is not set
 # CONFIG_PACKAGE_i915-firmware-guc is not set
 # CONFIG_PACKAGE_i915-firmware-huc is not set
@@ -3889,6 +3924,7 @@ CONFIG_PACKAGE_kmod-xfrm-interface=y
 # CONFIG_PACKAGE_kmod-6lowpan is not set
 CONFIG_PACKAGE_kmod-bcma=y
 CONFIG_PACKAGE_kmod-button-hotplug=y
+CONFIG_PACKAGE_kmod-dma-buf=m
 # CONFIG_PACKAGE_kmod-echo is not set
 CONFIG_PACKAGE_kmod-eeprom-93cx6=y
 # CONFIG_PACKAGE_kmod-eeprom-at24 is not set
@@ -4080,20 +4116,28 @@ CONFIG_PACKAGE_kmod-usbip-client=y
 #
 # Video Support
 #
+CONFIG_PACKAGE_kmod-acpi-video=m
+CONFIG_PACKAGE_kmod-backlight=m
+CONFIG_PACKAGE_kmod-drm=m
 # CONFIG_PACKAGE_kmod-drm-amdgpu is not set
-# CONFIG_PACKAGE_kmod-drm-i915 is not set
+CONFIG_PACKAGE_kmod-drm-buddy=m
+CONFIG_PACKAGE_kmod-drm-display-helper=m
+CONFIG_PACKAGE_kmod-drm-exec=m
+CONFIG_PACKAGE_kmod-drm-i915=m
 # CONFIG_PACKAGE_kmod-drm-ivpu is not set
-# CONFIG_PACKAGE_kmod-drm-kms-helper is not set
+CONFIG_PACKAGE_kmod-drm-kms-helper=m
 # CONFIG_PACKAGE_kmod-drm-panel-mipi-dbi is not set
 # CONFIG_PACKAGE_kmod-drm-panel-tc358762 is not set
 # CONFIG_PACKAGE_kmod-drm-radeon is not set
-# CONFIG_PACKAGE_kmod-drm-ttm is not set
-# CONFIG_PACKAGE_kmod-fb is not set
-# CONFIG_PACKAGE_kmod-fb-cfb-copyarea is not set
-# CONFIG_PACKAGE_kmod-fb-cfb-fillrect is not set
-# CONFIG_PACKAGE_kmod-fb-cfb-imgblt is not set
-# CONFIG_PACKAGE_kmod-fb-sys-fops is not set
-# CONFIG_PACKAGE_kmod-fb-sys-ram is not set
+CONFIG_PACKAGE_kmod-drm-suballoc-helper=m
+CONFIG_PACKAGE_kmod-drm-ttm=m
+CONFIG_PACKAGE_kmod-drm-ttm-helper=m
+CONFIG_PACKAGE_kmod-fb=m
+CONFIG_PACKAGE_kmod-fb-cfb-copyarea=m
+CONFIG_PACKAGE_kmod-fb-cfb-fillrect=m
+CONFIG_PACKAGE_kmod-fb-cfb-imgblt=m
+CONFIG_PACKAGE_kmod-fb-sys-fops=m
+CONFIG_PACKAGE_kmod-fb-sys-ram=m
 # CONFIG_PACKAGE_kmod-fb-tft is not set
 # CONFIG_PACKAGE_kmod-fb-tft-ili9486 is not set
 # CONFIG_PACKAGE_kmod-media-controller is not set
@@ -5333,7 +5377,81 @@ CONFIG_PACKAGE_libunbound_libpthread=y
 #
 # CONFIG_PACKAGE_libgnutls is not set
 # CONFIG_PACKAGE_libgnutls-dane is not set
-# CONFIG_PACKAGE_libmbedtls is not set
+CONFIG_PACKAGE_libmbedtls=m
+
+#
+# Option details in source code: include/mbedtls/mbedtls_config.h
+#
+
+#
+# Ciphers - unselect old or less-used ciphers to reduce binary size
+#
+CONFIG_MBEDTLS_AES_C=y
+# CONFIG_MBEDTLS_ARIA_C is not set
+# CONFIG_MBEDTLS_CAMELLIA_C is not set
+# CONFIG_MBEDTLS_CCM_C is not set
+CONFIG_MBEDTLS_CMAC_C=y
+CONFIG_MBEDTLS_DES_C=y
+CONFIG_MBEDTLS_GCM_C=y
+CONFIG_MBEDTLS_NIST_KW_C=y
+# CONFIG_MBEDTLS_RIPEMD160_C is not set
+CONFIG_MBEDTLS_RSA_NO_CRT=y
+CONFIG_MBEDTLS_KEY_EXCHANGE_PSK_ENABLED=y
+# CONFIG_MBEDTLS_KEY_EXCHANGE_DHE_PSK_ENABLED is not set
+CONFIG_MBEDTLS_KEY_EXCHANGE_ECDHE_PSK_ENABLED=y
+# CONFIG_MBEDTLS_KEY_EXCHANGE_RSA_PSK_ENABLED is not set
+# CONFIG_MBEDTLS_KEY_EXCHANGE_RSA_ENABLED is not set
+# CONFIG_MBEDTLS_KEY_EXCHANGE_DHE_RSA_ENABLED is not set
+CONFIG_MBEDTLS_KEY_EXCHANGE_ECDHE_RSA_ENABLED=y
+CONFIG_MBEDTLS_KEY_EXCHANGE_ECDHE_ECDSA_ENABLED=y
+# CONFIG_MBEDTLS_KEY_EXCHANGE_ECDH_ECDSA_ENABLED is not set
+# CONFIG_MBEDTLS_KEY_EXCHANGE_ECDH_RSA_ENABLED is not set
+# CONFIG_MBEDTLS_KEY_EXCHANGE_ECJPAKE_ENABLED is not set
+
+#
+# Curves - unselect old or less-used curves to reduce binary size
+#
+# CONFIG_MBEDTLS_ECP_DP_SECP192R1_ENABLED is not set
+# CONFIG_MBEDTLS_ECP_DP_SECP224R1_ENABLED is not set
+CONFIG_MBEDTLS_ECP_DP_SECP256R1_ENABLED=y
+CONFIG_MBEDTLS_ECP_DP_SECP384R1_ENABLED=y
+CONFIG_MBEDTLS_ECP_DP_SECP521R1_ENABLED=y
+# CONFIG_MBEDTLS_ECP_DP_SECP192K1_ENABLED is not set
+# CONFIG_MBEDTLS_ECP_DP_SECP224K1_ENABLED is not set
+CONFIG_MBEDTLS_ECP_DP_SECP256K1_ENABLED=y
+# CONFIG_MBEDTLS_ECP_DP_BP256R1_ENABLED is not set
+# CONFIG_MBEDTLS_ECP_DP_BP384R1_ENABLED is not set
+# CONFIG_MBEDTLS_ECP_DP_BP512R1_ENABLED is not set
+CONFIG_MBEDTLS_ECP_DP_CURVE25519_ENABLED=y
+# CONFIG_MBEDTLS_ECP_DP_CURVE448_ENABLED is not set
+
+#
+# Build Options - unselect features to reduce binary size
+#
+# CONFIG_MBEDTLS_CIPHER_MODE_OFB is not set
+# CONFIG_MBEDTLS_CIPHER_MODE_XTS is not set
+# CONFIG_MBEDTLS_DEBUG_C is not set
+CONFIG_MBEDTLS_HKDF_C=y
+# CONFIG_MBEDTLS_PLATFORM_C is not set
+# CONFIG_MBEDTLS_SELF_TEST is not set
+CONFIG_MBEDTLS_THREADING_C=y
+CONFIG_MBEDTLS_THREADING_PTHREAD=y
+# CONFIG_MBEDTLS_VERSION_C is not set
+# CONFIG_MBEDTLS_VERSION_FEATURES is not set
+CONFIG_MBEDTLS_PSA_CRYPTO_CLIENT=y
+# CONFIG_MBEDTLS_DEPRECATED_WARNING is not set
+CONFIG_MBEDTLS_SSL_PROTO_TLS1_2=y
+CONFIG_MBEDTLS_SSL_PROTO_TLS1_3=y
+CONFIG_MBEDTLS_SSL_TLS1_3_COMPATIBILITY_MODE=y
+CONFIG_MBEDTLS_SSL_TLS1_3_KEY_EXCHANGE_MODE_PSK_ENABLED=y
+CONFIG_MBEDTLS_SSL_TLS1_3_KEY_EXCHANGE_MODE_EPHEMERAL_ENABLED=y
+CONFIG_MBEDTLS_SSL_TLS1_3_KEY_EXCHANGE_MODE_PSK_EPHEMERAL_ENABLED=y
+
+#
+# Build Options
+#
+CONFIG_MBEDTLS_ENTROPY_FORCE_SHA256=y
+# CONFIG_MBEDTLS_SSL_RENEGOTIATION is not set
 # CONFIG_PACKAGE_libnss is not set
 CONFIG_PACKAGE_libopenssl=y
 
@@ -5818,7 +5936,7 @@ CONFIG_PACKAGE_libmbim=y
 # CONFIG_PACKAGE_libmicrohttpd-no-ssl is not set
 # CONFIG_PACKAGE_libmicrohttpd-ssl is not set
 # CONFIG_PACKAGE_libmilter-sendmail is not set
-# CONFIG_PACKAGE_libminiupnpc is not set
+CONFIG_PACKAGE_libminiupnpc=m
 # CONFIG_PACKAGE_libmms is not set
 CONFIG_PACKAGE_libmnl=y
 # CONFIG_PACKAGE_libmodbus is not set
@@ -5832,7 +5950,7 @@ CONFIG_PACKAGE_libmount=y
 # CONFIG_PACKAGE_libmpfr is not set
 # CONFIG_PACKAGE_libmpg123 is not set
 # CONFIG_PACKAGE_libmspack is not set
-# CONFIG_PACKAGE_libnatpmp is not set
+CONFIG_PACKAGE_libnatpmp=m
 CONFIG_PACKAGE_libncurses=y
 # CONFIG_PACKAGE_libndpi is not set
 # CONFIG_PACKAGE_libneon is not set
@@ -6009,7 +6127,7 @@ CONFIG_PACKAGE_libudev-zero=y
 # CONFIG_PACKAGE_liburing is not set
 CONFIG_PACKAGE_libusb-1.0=y
 # CONFIG_PACKAGE_libusb-compat is not set
-# CONFIG_PACKAGE_libustream-mbedtls is not set
+CONFIG_PACKAGE_libustream-mbedtls=m
 CONFIG_PACKAGE_libustream-openssl=y
 # CONFIG_PACKAGE_libustream-wolfssl is not set
 # CONFIG_PACKAGE_libutp is not set
@@ -7618,7 +7736,7 @@ CONFIG_PACKAGE_pptpd=y
 # CONFIG_PACKAGE_softethervpn5-server is not set
 # CONFIG_PACKAGE_sstp-client is not set
 # CONFIG_PACKAGE_strongswan is not set
-# CONFIG_PACKAGE_tailscale is not set
+CONFIG_PACKAGE_tailscale=m
 # CONFIG_PACKAGE_tinc is not set
 # CONFIG_PACKAGE_uanytun is not set
 # CONFIG_PACKAGE_uanytun-nettle is not set
@@ -7630,7 +7748,14 @@ CONFIG_PACKAGE_pptpd=y
 # CONFIG_PACKAGE_wgsd-coredns is not set
 CONFIG_PACKAGE_wireguard-tools=y
 CONFIG_PACKAGE_xl2tpd=y
-# CONFIG_PACKAGE_zerotier is not set
+CONFIG_PACKAGE_zerotier=m
+
+#
+# Configuration
+#
+# CONFIG_ZEROTIER_ENABLE_DEBUG is not set
+# CONFIG_ZEROTIER_ENABLE_SELFTEST is not set
+# end of Configuration
 # end of VPN
 
 #
@@ -7919,6 +8044,7 @@ CONFIG_PACKAGE_gre=y
 # CONFIG_PACKAGE_gsocket is not set
 # CONFIG_PACKAGE_hev-socks5-server is not set
 # CONFIG_PACKAGE_hev-socks5-tproxy is not set
+# CONFIG_PACKAGE_hev-socks5-tunnel is not set
 # CONFIG_PACKAGE_hping3 is not set
 # CONFIG_PACKAGE_httping is not set
 # CONFIG_PACKAGE_httping-nossl is not set
@@ -9346,7 +9472,6 @@ CONFIG_PACKAGE_hmac-sha1-util=y
 # CONFIG_PACKAGE_mbed-hmac-sha1 is not set
 # end of mbed tools
 
-# CONFIG_PACKAGE_hev-socks5-tunnel is not set
 # CONFIG_PACKAGE_initramfs-upgrade-fw is not set
 CONFIG_PACKAGE_kmod-qmi-wwan-q=m
 # CONFIG_PACKAGE_kmod-rtw8852cu is not set
