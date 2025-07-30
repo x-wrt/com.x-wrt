@@ -106,7 +106,7 @@ return view.extend({
 
 		s = m.section(form.NamedSection, 'wifinet0', 'wifi-iface');
 		s.addremove = false;
-		s.tab('wifiap', _('Wireless AP'));
+		s.tab('wifiap', _('Wireless AP (Management)'));
 		s.tab('wifista', _('Wireless STA'));
 
 		o = s.taboption('wifiap', form.Flag, 'disabled', _('Enable'));
