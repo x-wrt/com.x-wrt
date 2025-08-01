@@ -403,6 +403,7 @@ for t in $targets; do
 	echo $t=`get_modules $us`
 	mods="$us"
 	flash_gt8m=0
+	flash_gt16m=0
 	has_usb=0
 	extra_utils=0
 	excludes="$excludes_basic"
@@ -539,6 +540,8 @@ for t in $targets; do
 		TARGET_DEVICE_mvebu_cortexa9_DEVICE_linksys_wrt3200acm)
 			mods="$mods $extra_vpn urllogger natflow-hostacl"
 			mods="$mods luci-theme-argon"
+			flash_gt16m=1
+			flash_gt8m=1
 		;;
 	esac
 	case $t in
@@ -817,6 +820,7 @@ for t in $targets; do
 			excludes="$excludes wpad-basic-mbedtls wpad-basic-wolfssl"
 			mods="$mods apk-openssl"
 			excludes="$excludes apk-mbedtls opkg"
+			flash_gt16m=1
 			flash_gt8m=1
 			extra_utils=1
 		;;
@@ -1979,8 +1983,9 @@ rt73-usb-firmware"
 		;;
 	esac
 
-	if [ "x$flash_gt8m" = "x1" ]; then
+	if [ "x$flash_gt16m" = "x1" ]; then
 		case $t in
+		TARGET_DEVICE_mediatek_filogic_*|\
 		TARGET_DEVICE_ramips_mt7621_*)
 			mods="$mods libopenssl-devcrypto kmod-cryptodev"
 			;;
