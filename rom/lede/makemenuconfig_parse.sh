@@ -413,6 +413,7 @@ for t in $targets; do
 		TARGET_DEVICE_qualcommax_ipq807x_DEVICE_aliyun_ap8220|\
 		TARGET_DEVICE_qualcommax_ipq50xx_DEVICE_xiaomi_ax6000|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_openfi_5pro|\
+		TARGET_DEVICE_mediatek_filogic_DEVICE_openfi_6c|\
 		TARGET_DEVICE_qualcommax_ipq60xx_DEVICE_glinet_gl-ax1800|\
 		TARGET_DEVICE_qualcommax_ipq60xx_DEVICE_glinet_gl-axt1800|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_huasifei_wh3000|\
@@ -441,6 +442,7 @@ for t in $targets; do
 		TARGET_DEVICE_mediatek_filogic_DEVICE_imou_lc-hx3001-ubootlayout|\
 		TARGET_DEVICE_qualcommax_ipq807x_DEVICE_zte_mf269|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_glinet_gl-mt2500|\
+		TARGET_DEVICE_mediatek_filogic_DEVICE_glinet_gl-mt2500-airoha|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_zbtlink_zbt-z8102ax|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_zbtlink_zbt-z8102ax-v2|\
 		TARGET_DEVICE_qualcommax_ipq807x_DEVICE_yuncore_ax880|\
@@ -550,6 +552,7 @@ for t in $targets; do
 		TARGET_DEVICE_qualcommax_ipq807x_DEVICE_aliyun_ap8220|\
 		TARGET_DEVICE_qualcommax_ipq50xx_DEVICE_xiaomi_ax6000|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_openfi_5pro|\
+		TARGET_DEVICE_mediatek_filogic_DEVICE_openfi_6c|\
 		TARGET_DEVICE_qualcommax_ipq50xx_DEVICE_glinet_gl-b3000|\
 		TARGET_DEVICE_qualcommax_ipq60xx_DEVICE_glinet_gl-ax1800|\
 		TARGET_DEVICE_qualcommax_ipq60xx_DEVICE_glinet_gl-axt1800|\
@@ -607,6 +610,7 @@ for t in $targets; do
 		TARGET_DEVICE_mediatek_filogic_DEVICE_imou_lc-hx3001-ubootlayout|\
 		TARGET_DEVICE_qualcommax_ipq807x_DEVICE_zte_mf269|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_glinet_gl-mt2500|\
+		TARGET_DEVICE_mediatek_filogic_DEVICE_glinet_gl-mt2500-airoha|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_zbtlink_zbt-z8102ax|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_zbtlink_zbt-z8102ax-v2|\
 		TARGET_DEVICE_qualcommax_ipq807x_DEVICE_yuncore_ax880|\
@@ -1197,6 +1201,7 @@ for t in $targets; do
 	case $t in
 		#with usb3
 		TARGET_DEVICE_ramips_mt7621_DEVICE_openfi_5pro|\
+		TARGET_DEVICE_mediatek_filogic_DEVICE_openfi_6c|\
 		TARGET_DEVICE_qualcommax_ipq60xx_DEVICE_glinet_gl-ax1800|\
 		TARGET_DEVICE_qualcommax_ipq60xx_DEVICE_glinet_gl-axt1800|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_huasifei_wh3000|\
@@ -1221,6 +1226,7 @@ for t in $targets; do
 		TARGET_DEVICE_mediatek_filogic_DEVICE_glinet_gl-x3000|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_glinet_gl-xe3000|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_glinet_gl-mt2500|\
+		TARGET_DEVICE_mediatek_filogic_DEVICE_glinet_gl-mt2500-airoha|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_zbtlink_zbt-z8102ax|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_zbtlink_zbt-z8102ax-v2|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_cmcc_rax3000m|\
