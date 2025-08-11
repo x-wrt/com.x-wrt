@@ -117,3 +117,6 @@ msgstr "未连接，可能找不到上级 Wi-Fi 信号，或者密码不正确�
 
 msgid "LAN Port Setting"
 msgstr "有线网口设置"
+
+msgid "USB printer not detected. Please make sure it is properly connected."
+msgstr "未检测到打印机，请检查 USB 打印机是否已正确连接。"

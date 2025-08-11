@@ -6,11 +6,33 @@
 'require rpc';
 'require form';
 
+var callUsbInfo = rpc.declare({
+        object: 'luci.usb',
+        method: 'info'
+});
+
 return view.extend({
 	load: function() {
 		return Promise.all([
-			uci.load('p910nd')
+			uci.load('p910nd'),
+			L.resolveDefault(callUsbInfo(), [])
 		]);
+	},
+
+	poll_status: function(map, data) {
+		var usb_status = map.querySelector('[data-name="_usb_status"]').querySelector('.cbi-value-field');
+
+		//console.log(data);
+		try {
+			var info = data[0]['info'];
+			if (data.length == 1 && info) {
+				usb_status.innerHTML = '<p style="color:green;"><b>' + _('Connected') + ': ' + info + '</b></p>';
+			} else {
+				usb_status.innerHTML = '<p style="color:red;"><b>' + _('Printer not detected. Please check if the USB printer is properly connected.') + '</b></p>';
+			}
+		} catch(err) {
+			usb_status.innerHTML = '<p style="color:red;"><b>' + _('Printer not detected. Please check if the USB printer is properly connected.') + '</b></p>';
+		}
 	},
 
 	render: function(data) {
@@ -40,6 +62,18 @@ return view.extend({
 
 		o = s.option(form.Flag, 'bidirectional', _('Bidirectional mode'));
 
-		return m.render();
+		o = s.option(form.DummyValue, '_usb_status', _('Status'));
+		o.modalonly = false;
+		o.default = _('Loading..');
+
+		return m.render().then(L.bind(function(m, nodes) {
+			//this.poll_status(nodes, data[3]);
+			poll.add(L.bind(function() {
+				return Promise.all([
+					L.resolveDefault(callUsbInfo(), [])
+				]).then(L.bind(this.poll_status, this, nodes));
+			}, this), 5);
+			return nodes;
+		}, this, m));
 	}
 });
