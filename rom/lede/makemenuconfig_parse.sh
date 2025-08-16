@@ -2011,6 +2011,11 @@ rt73-usb-firmware"
 	if [ "x$flash_gt8m" = "x0" ] && [ "x$has_usb" = "x1" ]; then
 		excludes="$excludes $exclude_for_tiny"
 	fi
+
+	if [ "x$flash_gt8m" = "x1" ]; then
+		mods="$mods ip-bridge"
+	fi
+
 	tname=`echo $t | sed 's/TARGET_DEVICE_/CONFIG_TARGET_DEVICE_PACKAGES_/'`
 	mods="$mods `get_target_mods $t`"
 	mods=`get_modules $mods`
