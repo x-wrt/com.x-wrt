@@ -4,6 +4,7 @@
 		"order": 10,
 		"action": {
 			"type": "firstchild",
+			"preferred": "status",
 			"recurse": true
 		},
 		"auth": {
@@ -15,11 +16,13 @@
 	"admin/status": {
 		"title": "Device Status",
 		"order": 10,
-		"action": {
-			"type": "firstchild",
-			"preferred": "overview",
-			"recurse": true
-		}
+                "action": {
+                        "type": "template",
+                        "path": "admin_status/index"
+                },
+                "depends": {
+                        "acl": [ "luci-mod-status-index" ]
+                }
 	},
 
 	"admin/system": {
