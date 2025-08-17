@@ -49,7 +49,7 @@
 
 	"admin/wifiwizard": {
 		"title": "WiFi Wizard",
-		"order": 990,
+		"order": 12,
 		"action": {
 			"type": "view",
 			"path": "simplenetwork/wifiwizard_start"
