@@ -68,12 +68,37 @@ return view.extend({
 	poll_status: function(map, data) {
 		var wwan_status = map.querySelector('[data-name="_wwan_status"]').querySelector('.cbi-value-field');
 		var status_ipaddr = map.querySelector('[data-name="_status_ipaddr"]').querySelector('.cbi-value-field');
+		var status_netmask = map.querySelector('[data-name="_status_netmask"]').querySelector('.cbi-value-field');
+		var status_gateway = map.querySelector('[data-name="_status_gateway"]').querySelector('.cbi-value-field');
+		var status_dns = map.querySelector('[data-name="_status_dns"]').querySelector('.cbi-value-field');
 
 		//console.log(data);
 		try {
 			if (data.length == 1) {
 				var ipaddr = data[0]['ipv4-address'][0]['address'];
+				var netmask = network.prefixToMask(+data[0]['ipv4-address'][0]['mask']);
+				var gateway = '0.0.0.0';
+				var dns = data[0]['dns-server'];
+				var routes = data[0]['route'];
+
+				for (var x = 0; x < routes.length; x++) {
+					if (routes[x].target == '0.0.0.0' && routes[x].mask == 0) {
+						gateway = routes[x].nexthop;
+						break;
+					}
+				}
+
 				status_ipaddr.innerHTML = ipaddr;
+				status_netmask.innerHTML = netmask;
+				status_gateway.innerHTML = gateway;
+				if (dns.length > 0) {
+					status_dns.innerHTML = dns[0];
+					for (var x = 1; x < dns.length; x++) {
+						status_dns.innerHTML = status_dns.innerHTML + " " + dns[x];
+					}
+				} else {
+					status_dns.innerHTML = '-';
+				}
 				wwan_status.innerHTML = '<p style="color:green;"><b>' + _('Connected') + '</b></p>';
 			}
 		} catch(err) {
@@ -261,7 +286,67 @@ return view.extend({
 		o.modalonly = false;
 		o.default = _('Loading..');
 
+		o = s.taboption('wifista', form.ListValue, 'proto', _('Protocol'));
+		o.uciconfig = 'network';
+		o.ucisection = 'wwan';
+		o.rmempty = false;
+		o.value('dhcp', _('DHCP client'));
+		o.value('static', _('Static address'));
+
+		o = s.taboption('wifista', form.Value, 'ipaddr', _('IPv4 address'));
+		o.uciconfig = 'network';
+		o.ucisection = 'wwan';
+		o.depends('proto', 'static');
+		o.datatype = 'ip4addr';
+		o.rmempty = false;
+
+		o = s.taboption('wifista', form.Value, 'netmask', _('IPv4 netmask'));
+		o.uciconfig = 'network';
+		o.ucisection = 'wwan';
+		o.depends('proto', 'static');
+		o.datatype = 'ip4addr';
+		o.value('255.255.255.0');
+		o.value('255.255.0.0');
+		o.value('255.0.0.0');
+		o.rmempty = false;
+
+		o = s.taboption('wifista', form.Value, 'gateway', _('IPv4 gateway'));
+		o.uciconfig = 'network';
+		o.ucisection = 'wwan';
+		o.depends('proto', 'static');
+		o.datatype = 'ip4addr';
+
+		o = s.taboption('wifista', form.DynamicList, 'dns', _('Use custom DNS servers'));
+		o.uciconfig = 'network';
+		o.ucisection = 'wwan';
+		o.datatype = 'ip4addr';
+		o.cast = 'string';
+
 		o = s.taboption('wifista', form.DummyValue, '_status_ipaddr', _('IPv4 address'));
+		o.uciconfig = 'network';
+		o.ucisection = 'wwan';
+		o.depends('proto', 'dhcp');
+		o.modalonly = false;
+		o.default = '-';
+
+		o = s.taboption('wifista', form.DummyValue, '_status_netmask', _('IPv4 netmask'));
+		o.uciconfig = 'network';
+		o.ucisection = 'wwan';
+		o.depends('proto', 'dhcp');
+		o.modalonly = false;
+		o.default = '-';
+
+		o = s.taboption('wifista', form.DummyValue, '_status_gateway', _('IPv4 gateway'));
+		o.uciconfig = 'network';
+		o.ucisection = 'wwan';
+		o.depends('proto', 'dhcp');
+		o.modalonly = false;
+		o.default = '-';
+
+		o = s.taboption('wifista', form.DummyValue, '_status_dns', _('DNS'));
+		o.uciconfig = 'network';
+		o.ucisection = 'wwan';
+		o.depends('proto', 'dhcp');
 		o.modalonly = false;
 		o.default = '-';
 
