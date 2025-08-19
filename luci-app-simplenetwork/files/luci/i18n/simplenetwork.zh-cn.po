@@ -62,13 +62,13 @@ msgid "Configure the WiFi AP"
 msgstr "这里设置无线AP的参数"
 
 msgid "WiFi STA"
-msgstr "无线客户端"
+msgstr "无线中继"
 
 msgid "Wireless STA"
-msgstr "无线客户端"
+msgstr "无线中继"
 
 msgid "Configure the WiFi STA"
-msgstr "这里设置无线客户端的参数"
+msgstr "这里设置无线中继的参数"
 
 msgid "AP Network"
 msgstr "AP网络参数"
@@ -101,7 +101,7 @@ msgid "USB Info"
 msgstr "USB信息"
 
 msgid "Configure the WiFi AP and STA"
-msgstr "设置无线的 AP 和客户端参数"
+msgstr "设置无线AP和无线中继参数"
 
 msgid "WiFi Wizard"
 msgstr "无线设置向导"
