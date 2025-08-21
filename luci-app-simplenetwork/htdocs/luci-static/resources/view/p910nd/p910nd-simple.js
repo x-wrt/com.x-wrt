@@ -49,7 +49,7 @@ return view.extend({
 		//console.log(data);
 		try {
 			var info = data[0]['info'];
-			if (data.length == 1 && info) {
+			if (info) {
 				usb_status.innerHTML = '<p style="color:green;"><b>' + _('Connected') + ': ' + info + '</b></p>';
 			} else {
 				usb_status.innerHTML = '<p style="color:red;"><b>' + _('Printer not detected. Please check if the USB printer is properly connected.') + '</b></p>';
