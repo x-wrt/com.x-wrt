@@ -1223,10 +1223,10 @@ ping_cli() {
 		fi
 		# about every 160 secs do peer_check
 		PEER_CHECK=$(uci get natcapd.default.peer_check 2>/dev/null || echo 0)
-		if test $((idx%10)) -eq 0 && [ "x$PEER_CHECK" = "x1" ]; then
+		if test $((idx%10)) -eq 2 && [ "x$PEER_CHECK" = "x1" ]; then
 			peer_check &
 		fi
-		if test $((idx%15)) -eq 0; then
+		if test $((idx%15)) -eq 7; then
 			peer_upstream_check &
 		fi
 		idx=$((idx+1))
