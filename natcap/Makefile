@@ -116,6 +116,9 @@ define Package/natcapd-mini/install
 	$(INSTALL_DATA) ./files/natcapd.defaults $(1)/etc/uci-defaults/95-natcapd
 	$(INSTALL_DIR) $(1)/etc/hotplug.d/iface
 	$(INSTALL_DATA) ./files/20-natcapd.hotplug $(1)/etc/hotplug.d/iface/20-natcapd
+	$(INSTALL_DIR) $(1)/etc/hotplug.d/net
+	$(INSTALL_DATA) ./files/21-natcapd.ec2ns.hotplug $(1)/etc/hotplug.d/iface/21-natcapd.ec2ns
+	$(INSTALL_DATA) ./files/21-natcapd.ec2ns.hotplug $(1)/etc/hotplug.d/net/21-natcapd.ec2ns
 	$(INSTALL_BIN) $(PKG_BUILD_DIR)/peer_ctl.sh $(1)/usr/sbin/peer_ctl
 	$(INSTALL_DIR) $(1)/usr/share/ucitrack
 	$(INSTALL_DATA) ./files/ucitrack/*.json $(1)/usr/share/ucitrack/
