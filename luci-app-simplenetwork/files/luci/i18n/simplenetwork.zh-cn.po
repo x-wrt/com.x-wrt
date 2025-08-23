@@ -34,6 +34,15 @@ msgstr "网络设置"
 msgid "RAW Printer server"
 msgstr "RAW打印服务"
 
+msgid "Printer Settings"
+msgstr "打印设置"
+
+msgid "USB Print Service (RAW)"
+msgstr "USB打印服务（RAW）"
+
+msgid "Enable Print Service"
+msgstr "打印服务开关"
+
 msgid "LAN Port"
 msgstr "有线网口"
 
@@ -105,6 +114,18 @@ msgstr "设置无线AP和无线中继参数"
 
 msgid "WiFi Wizard"
 msgstr "无线设置向导"
+
+msgid "Network Setup Wizard"
+msgstr "联网向导"
+
+msgid "Configure Network for Print Box"
+msgstr "设置打印盒子的联网方式"
+
+msgid "Auto Connect"
+msgstr "自动连接"
+
+msgid "Connect To"
+msgstr "连接到"
 
 msgid "Management IP"
 msgstr "管理口 IP 地址"

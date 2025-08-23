@@ -1,6 +1,6 @@
 {
 	"admin/raw-printer": {
-		"title": "RAW Printer server",
+		"title": "Printer Settings",
 		"order": 60,
 		"action": {
 			"type": "view",

@@ -82,13 +82,13 @@ return view.extend({
 
 		var m, s, o;
 
-		m = new form.Map('p910nd', [_('RAW Printer server')]);
+		m = new form.Map('p910nd', [_('USB Print Service (RAW)')]);
 
 		s = m.section(form.TypedSection, 'p910nd', "USB1");
 		s.addremove = false;
 		s.anonymous = true
 
-		o = s.option(form.Flag, 'enabled', _('TCP/IP RAW'));
+		o = s.option(form.Flag, 'enabled', _('Enable Print Service'));
 
 		o = s.option(form.ListValue, 'port', _('Port'));
 		o.rmempty = true;

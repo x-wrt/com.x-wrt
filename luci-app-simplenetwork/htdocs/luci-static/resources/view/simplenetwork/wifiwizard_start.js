@@ -125,56 +125,57 @@ return view.extend({
 		var _this = this;
 		var scanRes = {};
 
-		m = new form.Map('wireless', [_('WiFi Wizard')],
-			_('Configure the WiFi AP and STA'));
+		m = new form.Map('wireless', [_('Network Setup Wizard')],
+			_('Configure Network for Print Box'));
 		m.chain('network');
 
 		s = m.section(form.NamedSection, 'wifinet0', 'wifi-iface');
 		s.addremove = false;
-		s.tab('wifiap', _('Wireless AP (Management)'));
+		s.tab('wifiap', _('LAN Port Setting') + "(" + _('auto') + ")");
 		s.tab('wifista', _('Wireless STA'));
 
-		o = s.taboption('wifiap', form.Flag, 'disabled', _('Enable'));
-		o.enabled = '0';
-		o.disabled = '1';
-		o.default = o.enabled;
-
-		o = s.taboption('wifiap', form.Value, 'ssid', _('<abbr title="Extended Service Set Identifier">ESSID</abbr>'));
-		o.datatype = 'maxlength(32)';
-
-		o = s.taboption('wifiap', form.ListValue, 'encryption', _('Encryption'));
-		o.value('none', _('No Encryption'));
-		o.value('psk', _('WPA-PSK'));
-		o.value('psk2', _('WPA2-PSK'));
-		o.value('psk-mixed', _('WPA-PSK/WPA2-PSK Mixed Mode'));
-
-		o = s.taboption('wifiap', form.Value, 'key', _('Key'));
-		o.depends('encryption', 'psk');
-		o.depends('encryption', 'psk2');
-		o.depends('encryption', 'psk-mixed');
+		o = s.taboption('wifiap', form.ListValue, 'wan_proto', _('Protocol'));
 		o.rmempty = false;
-		o.password = true;
-		o.datatype = 'wpakey';
+		o.value('dhcp', _('DHCP client'));
+		o.value('static', _('Static address'));
+		o.ucioption = 'proto';
+		o.uciconfig = 'network';
+		o.ucisection = 'wan';
 
-		o = s.taboption('wifiap', form.ListValue, 'radio0_channel', _('Channel'));
-		o.ucisection = 'radio0';
-		o.ucioption = 'channel';
-		o.value('auto', _('auto'));
-		o.value('1');
-		o.value('2');
-		o.value('3');
-		o.value('4');
-		o.value('5');
-		o.value('6');
-		o.value('7');
-		o.value('8');
-		o.value('9');
-		o.value('10');
-		o.value('11');
-		o.value('12');
-		o.value('13');
+		o = s.taboption('wifiap', form.Value, 'wan_ipaddr', _('IPv4 address'));
+		o.depends('wan_proto', 'static');
+		o.datatype = 'ip4addr';
+		o.rmempty = false;
+		o.ucioption = 'ipaddr';
+		o.uciconfig = 'network';
+		o.ucisection = 'wan';
 
-		o = s.taboption('wifista', form.Flag, 'wifinet2_disabled', _('Enable'));
+		o = s.taboption('wifiap', form.Value, 'wan_netmask', _('IPv4 netmask'));
+		o.depends('wan_proto', 'static');
+		o.datatype = 'ip4addr';
+		o.value('255.255.255.0');
+		o.value('255.255.0.0');
+		o.value('255.0.0.0');
+		o.rmempty = false;
+		o.ucioption = 'netmask';
+		o.uciconfig = 'network';
+		o.ucisection = 'wan';
+
+		o = s.taboption('wifiap', form.Value, 'wan_gateway', _('IPv4 gateway'));
+		o.depends('wan_proto', 'static');
+		o.datatype = 'ip4addr';
+		o.ucioption = 'gateway';
+		o.uciconfig = 'network';
+		o.ucisection = 'wan';
+
+		o = s.taboption('wifiap', form.DynamicList, 'wan_dns', _('Use custom DNS servers'));
+		o.datatype = 'ip4addr';
+		o.cast = 'string';
+		o.ucioption = 'dns';
+		o.uciconfig = 'network';
+		o.ucisection = 'wan';
+
+		o = s.taboption('wifista', form.Flag, 'wifinet2_disabled', _('Auto Connect'));
 		o.ucisection = 'wifinet2';
 		o.ucioption = 'disabled';
 		o.enabled = '0';
@@ -189,7 +190,7 @@ return view.extend({
 			return this.map.save();
 		}
 
-		o = s.taboption('wifista', form.Value, 'wifinet2_ssid', _('<abbr title="Extended Service Set Identifier">ESSID</abbr>'));
+		o = s.taboption('wifista', form.Value, 'wifinet2_ssid', _('Connect To'));
 		o.datatype = 'maxlength(32)';
 		o.ucisection = 'wifinet2';
 		o.ucioption = 'ssid';

@@ -48,7 +48,7 @@
 	},
 
 	"admin/wifiwizard": {
-		"title": "WiFi Wizard",
+		"title": "Network Setup Wizard",
 		"order": 12,
 		"action": {
 			"type": "view",
