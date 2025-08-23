@@ -37,9 +37,8 @@ mytimeout() {
 	fi
 	shift
 	if which timeout &>/dev/null; then
-		opt=$(timeout -t1 pwd &>/dev/null && echo "-t")
 		while test -f $LOCKDIR/$PID; do
-			if timeout $opt $I $@ 2>/dev/null; then
+			if $TO $I $@ 2>/dev/null; then
 				return 0
 			else
 				T=$((T+I))
@@ -84,10 +83,10 @@ natcapd_stop()
 	echo debug=$debug >>$DEV
 	echo udp_seq_lock=$udp_seq_lock >>$DEV
 
-	rm -f /tmp/dnsmasq.d/accelerated-domains.gfwlist.dnsmasq.conf \
-	/tmp/dnsmasq.d/accelerated-domains.cnlist.dnsmasq.conf \
-	/tmp/dnsmasq.d/custom-domains.gfwlist.dnsmasq.conf \
-	/tmp/dnsmasq.d/custom-domains.bypasslist.dnsmasq.conf
+	rm -f /tmp/dnsmasq*.d/accelerated-domains.gfwlist.dnsmasq.conf \
+	/tmp/dnsmasq*.d/accelerated-domains.cnlist.dnsmasq.conf \
+	/tmp/dnsmasq*.d/custom-domains.gfwlist.dnsmasq.conf \
+	/tmp/dnsmasq*.d/custom-domains.bypasslist.dnsmasq.conf
 	/etc/init.d/dnsmasq restart
 
 	rm -f /tmp/natcapd.running
@@ -757,7 +756,7 @@ elif test -c $DEV; then
 	if [ x$access_to_cn = x1 ]; then
 		cnipwhitelist_mode=1
 		cniplist_set=/usr/share/natcapd/C_cniplist.set
-		rm /tmp/dnsmasq.d/accelerated-domains.gfwlist.dnsmasq.conf 2>/dev/null && \
+		rm /tmp/dnsmasq*.d/accelerated-domains.gfwlist.dnsmasq.conf 2>/dev/null && \
 		/etc/init.d/dnsmasq restart
 		rm -f $LOCKDIR/gfwlist
 	fi
@@ -910,7 +909,7 @@ elif test -c $DEV; then
 		add_app_list $a
 	done
 
-	rm -f /tmp/dnsmasq.d/custom-domains.bypasslist.dnsmasq.conf
+	rm -f /tmp/dnsmasq*.d/custom-domains.bypasslist.dnsmasq.conf
 	mkdir -p /tmp/dnsmasq.d
 	touch /tmp/dnsmasq.d/custom-domains.bypasslist.dnsmasq.conf
 	cat "$bypasslist_domain_file" 2>/dev/null | while read d; do
@@ -920,7 +919,7 @@ elif test -c $DEV; then
 		echo ipset=/$d/bypasslist >>/tmp/dnsmasq.d/custom-domains.bypasslist.dnsmasq.conf
 	done
 
-	rm -f /tmp/dnsmasq.d/custom-domains.gfwlist.dnsmasq.conf
+	rm -f /tmp/dnsmasq*.d/custom-domains.gfwlist.dnsmasq.conf
 	mkdir -p /tmp/dnsmasq.d
 	touch /tmp/dnsmasq.d/custom-domains.gfwlist.dnsmasq.conf
 	for d in $gfwlist_domain; do
@@ -1030,21 +1029,13 @@ dns_proxy_check () {
 	}
 }
 
-dns_proxy_check_loop () {
-	while :; do
-		test -f $LOCKDIR/$PID || return 0
-		sleep 16
-		dns_proxy_check
-	done
-}
-
 gfwlist_update_main () {
 	local cmd
 	test -f /tmp/natcapd.running && sh /usr/share/natcapd/gfwlist_update.sh
 	while :; do
 		test -f $LOCKDIR/$PID || return 0
 		test -p /tmp/trigger_gfwlist_update.fifo || { sleep 1 && continue; }
-		cmd="$($TO 86340 cat /tmp/trigger_gfwlist_update.fifo)"
+		cmd="$(mytimeout 86340 cat /tmp/trigger_gfwlist_update.fifo)"
 		test -f /tmp/natcapd.running && {
 			case "$cmd" in
 				"gfwlist")
@@ -1188,6 +1179,7 @@ ping_cli() {
 	which timeout &>/dev/null && PING="$TO 30 $PING"
 	while :; do
 		test -f $LOCKDIR/$PID || return 0
+		dns_proxy_check &
 		PINGH=$(uci get natcapd.default.peer_host 2>/dev/null)
 		PINGM=$(uci get natcapd.default.peer_mark 2>/dev/null)
 		PINGM=$((PINGM))
@@ -1207,9 +1199,9 @@ ping_cli() {
 			done
 		done
 		if test -n "${LIP6}"; then
-			ping6 -I ${LIP6} -t1 -s1 -w1 -q 3f99:AABB:CCDD:EEFF:: &
+			ping6 -I ${LIP6} -t1 -s1 -w1 -q 3f99:AABB:CCDD:EEFF::
 		else
-			ping6 -t1 -s1 -w1 -q 3f99:AABB:CCDD:EEFF:: &
+			ping6 -t1 -s1 -w1 -q 3f99:AABB:CCDD:EEFF::
 		fi
 
 		if [ "$(echo $PINGH | wc -w)" = "1" ]; then
@@ -1406,8 +1398,6 @@ if mkdir $LOCKDIR &>/dev/null; then
 	gfwlist_update_main &
 	main_trigger &
 	natcapd_first_boot &
-
-	dns_proxy_check_loop &
 
 	ping_cli
 else
