@@ -228,7 +228,7 @@ CONFIG_TARGET_SUBTARGET="generic"
 CONFIG_TARGET_ARCH_PACKAGES="arm_cortex-a7_neon-vfpv4"
 CONFIG_DEFAULT_TARGET_OPTIMIZATION="-Os -pipe"
 CONFIG_CPU_TYPE="cortex-a7+neon-vfpv4"
-CONFIG_LINUX_6_6=y
+CONFIG_LINUX_6_12=y
 CONFIG_DEFAULT_ath10k-board-qca4019=y
 CONFIG_MODULE_DEFAULT_ath10k-board-qca4019=y
 CONFIG_MODULE_DEFAULT_ath10k-firmware-qca4019=y
@@ -313,7 +313,6 @@ CONFIG_DEFAULT_urngd=y
 CONFIG_MODULE_DEFAULT_urngd=y
 CONFIG_DEFAULT_wpad-basic-mbedtls=y
 CONFIG_MODULE_DEFAULT_wpad-basic-mbedtls=y
-CONFIG_HAS_TESTING_KERNEL=y
 CONFIG_HAS_FPU=y
 CONFIG_AUDIO_SUPPORT=y
 CONFIG_GPIO_SUPPORT=y
@@ -389,7 +388,6 @@ CONFIG_USE_APK=y
 #
 # General build options
 #
-# CONFIG_TESTING_KERNEL is not set
 # CONFIG_DISPLAY_SUPPORT is not set
 CONFIG_BUILD_PATENTED=y
 # CONFIG_BUILD_NLS is not set
@@ -625,7 +623,7 @@ CONFIG_TARGET_INIT_CMD="/sbin/init"
 CONFIG_TARGET_INIT_SUPPRESS_STDERR=y
 CONFIG_VERSIONOPT=y
 CONFIG_VERSION_DIST="X-WRT"
-CONFIG_VERSION_NUMBER="25.04_b202508162121"
+CONFIG_VERSION_NUMBER="25.04_b202508240400"
 CONFIG_VERSION_CODE="Plucky"
 CONFIG_VERSION_REPO="http://downloads.openwrt.org/snapshots"
 CONFIG_VERSION_HOME_URL="https://x-wrt.com/"
@@ -2710,11 +2708,9 @@ CONFIG_DROPBEAR_DEBUG_TRACE=0
 #
 # CONFIG_DROPBEAR_DO_HOST_LOOKUP is not set
 CONFIG_DROPBEAR_SVR_PUBKEY_OPTIONS=y
-# CONFIG_DROPBEAR_LASTLOG is not set
-# CONFIG_DROPBEAR_WTMP is not set
 
 #
-# * note: utmp is unavailable with musl libc
+# * note: lastlog/login()/utmp/wtmp are unavailable with musl libc
 #
 
 #
@@ -3476,6 +3472,7 @@ CONFIG_PACKAGE_kmod-cryptodev=y
 # CONFIG_PACKAGE_kmod-fs-afs is not set
 CONFIG_PACKAGE_kmod-fs-autofs4=m
 # CONFIG_PACKAGE_kmod-fs-btrfs is not set
+CONFIG_PACKAGE_kmod-fs-cachefiles=m
 # CONFIG_PACKAGE_kmod-fs-cifs is not set
 # CONFIG_PACKAGE_kmod-fs-configfs is not set
 # CONFIG_PACKAGE_kmod-fs-cramfs is not set
@@ -3483,7 +3480,6 @@ CONFIG_PACKAGE_kmod-fs-exfat=m
 # CONFIG_PACKAGE_kmod-fs-exportfs is not set
 CONFIG_PACKAGE_kmod-fs-ext4=m
 CONFIG_PACKAGE_kmod-fs-f2fs=m
-# CONFIG_PACKAGE_kmod-fs-fscache is not set
 # CONFIG_PACKAGE_kmod-fs-hfs is not set
 # CONFIG_PACKAGE_kmod-fs-hfsplus is not set
 # CONFIG_PACKAGE_kmod-fs-isofs is not set
@@ -3498,7 +3494,6 @@ CONFIG_PACKAGE_kmod-fs-nfs-common=m
 # CONFIG_PACKAGE_kmod-fs-nfs-v3 is not set
 CONFIG_PACKAGE_kmod-fs-nfs-v4=m
 # CONFIG_PACKAGE_kmod-fs-nfsd is not set
-# CONFIG_PACKAGE_kmod-fs-ntfs is not set
 CONFIG_PACKAGE_kmod-fs-ntfs3=m
 # CONFIG_PACKAGE_kmod-fs-reiserfs is not set
 CONFIG_PACKAGE_kmod-fs-smbfs-common=m
@@ -3555,7 +3550,6 @@ CONFIG_PACKAGE_kmod-hwmon-core=y
 # CONFIG_PACKAGE_kmod-hwmon-lm92 is not set
 # CONFIG_PACKAGE_kmod-hwmon-lm95241 is not set
 # CONFIG_PACKAGE_kmod-hwmon-ltc4151 is not set
-# CONFIG_PACKAGE_kmod-hwmon-max6642 is not set
 # CONFIG_PACKAGE_kmod-hwmon-max6697 is not set
 # CONFIG_PACKAGE_kmod-hwmon-mcp3021 is not set
 # CONFIG_PACKAGE_kmod-hwmon-nct7802 is not set
@@ -3579,7 +3573,7 @@ CONFIG_PACKAGE_kmod-hwmon-core=y
 # CONFIG_PACKAGE_kmod-i2c-algo-bit is not set
 # CONFIG_PACKAGE_kmod-i2c-algo-pca is not set
 # CONFIG_PACKAGE_kmod-i2c-algo-pcf is not set
-CONFIG_PACKAGE_kmod-i2c-core=m
+CONFIG_PACKAGE_kmod-i2c-core=y
 # CONFIG_PACKAGE_kmod-i2c-designware-pci is not set
 # CONFIG_PACKAGE_kmod-i2c-designware-platform is not set
 # CONFIG_PACKAGE_kmod-i2c-gpio is not set
@@ -3671,7 +3665,6 @@ CONFIG_PACKAGE_kmod-leds-st1202=m
 # CONFIG_PACKAGE_kmod-leds-tlc591xx is not set
 # CONFIG_PACKAGE_kmod-leds-uleds is not set
 # CONFIG_PACKAGE_kmod-ledtrig-activity is not set
-# CONFIG_PACKAGE_kmod-ledtrig-audio is not set
 # CONFIG_PACKAGE_kmod-ledtrig-gpio is not set
 # CONFIG_PACKAGE_kmod-ledtrig-oneshot is not set
 CONFIG_PACKAGE_kmod-ledtrig-pattern=m
@@ -4034,7 +4027,6 @@ CONFIG_PACKAGE_kmod-pptp=y
 # CONFIG_PACKAGE_kmod-qrtr-mhi is not set
 # CONFIG_PACKAGE_kmod-qrtr-tun is not set
 # CONFIG_PACKAGE_kmod-sched is not set
-# CONFIG_PACKAGE_kmod-sched-act-ipt is not set
 # CONFIG_PACKAGE_kmod-sched-act-police is not set
 # CONFIG_PACKAGE_kmod-sched-act-sample is not set
 # CONFIG_PACKAGE_kmod-sched-act-vlan is not set

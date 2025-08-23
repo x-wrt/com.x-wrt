@@ -1036,7 +1036,7 @@ CONFIG_TARGET_INIT_CMD="/sbin/init"
 CONFIG_TARGET_INIT_SUPPRESS_STDERR=y
 CONFIG_VERSIONOPT=y
 CONFIG_VERSION_DIST="X-WRT"
-CONFIG_VERSION_NUMBER="25.04_b202508162121"
+CONFIG_VERSION_NUMBER="25.04_b202508240400"
 CONFIG_VERSION_CODE="Plucky"
 CONFIG_VERSION_REPO="http://downloads.openwrt.org/snapshots"
 CONFIG_VERSION_HOME_URL="https://x-wrt.com/"
@@ -3121,11 +3121,9 @@ CONFIG_DROPBEAR_DEBUG_TRACE=0
 #
 # CONFIG_DROPBEAR_DO_HOST_LOOKUP is not set
 CONFIG_DROPBEAR_SVR_PUBKEY_OPTIONS=y
-# CONFIG_DROPBEAR_LASTLOG is not set
-# CONFIG_DROPBEAR_WTMP is not set
 
 #
-# * note: utmp is unavailable with musl libc
+# * note: lastlog/login()/utmp/wtmp are unavailable with musl libc
 #
 
 #
