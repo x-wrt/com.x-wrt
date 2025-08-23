@@ -141,3 +141,9 @@ msgstr "有线网口设置"
 
 msgid "Printer not detected. Please check if the USB printer is properly connected."
 msgstr "未检测到打印机，请检查 USB 打印机是否已正确连接。"
+
+msgid "Printer IP (Wi-Fi)"
+msgstr "打印机无线IP"
+
+msgid "Printer IP (LAN)"
+msgstr "打印机有线IP"

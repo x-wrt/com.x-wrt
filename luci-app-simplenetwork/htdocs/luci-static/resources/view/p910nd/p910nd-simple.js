@@ -23,12 +23,6 @@ var callWanStatus = rpc.declare({
 	expect: { }
 });
 
-var callLanStatus = rpc.declare({
-	object: 'network.interface.lan',
-	method: 'status',
-	expect: { }
-});
-
 return view.extend({
 	load: function() {
 		return Promise.all([
@@ -40,11 +34,9 @@ return view.extend({
 	poll_status: function(map, data) {
 		var wwan = data[1];
 		var wan = data[2];
-		var lan = data[3];
 		var usb_status = map.querySelector('[data-name="_usb_status"]').querySelector('.cbi-value-field');
 		var wwan_status = map.querySelector('[data-name="_usb_wwan_ip"]').querySelector('.cbi-value-field');
 		var wan_status = map.querySelector('[data-name="_usb_wan_ip"]').querySelector('.cbi-value-field');
-		var lan_status = map.querySelector('[data-name="_usb_lan_ip"]').querySelector('.cbi-value-field');
 
 		//console.log(data);
 		try {
@@ -68,14 +60,8 @@ return view.extend({
 		else
 			wan = "-";
 
-		if (lan['ipv4-address'] && lan['ipv4-address'][0] && lan['ipv4-address'][0]['address'])
-			lan = lan['ipv4-address'][0]['address'];
-		else
-			lan = "-";
-
 		wwan_status.innerHTML = wwan;
 		wan_status.innerHTML = wan;
-		lan_status.innerHTML = lan;
 	},
 
 	render: function(data) {
@@ -109,15 +95,11 @@ return view.extend({
 		o.modalonly = false;
 		o.default = _('Loading..');
 
-		o = s.option(form.DummyValue, '_usb_wwan_ip', _('WiFi STA'));
+		o = s.option(form.DummyValue, '_usb_wwan_ip', _('Printer IP (Wi-Fi)'));
 		o.modalonly = false;
 		o.default = '-';
 
-		o = s.option(form.DummyValue, '_usb_wan_ip', _('LAN Port') + "(" + _('auto') + ")");
-		o.modalonly = false;
-		o.default = '-';
-
-		o = s.option(form.DummyValue, '_usb_lan_ip', _('Management IP'));
+		o = s.option(form.DummyValue, '_usb_wan_ip', _('Printer IP (LAN)'));
 		o.modalonly = false;
 		o.default = '-';
 
@@ -127,8 +109,7 @@ return view.extend({
 				return Promise.all([
 					L.resolveDefault(callUsbInfo(), {}),
 					L.resolveDefault(callWwanStatus(), {}),
-					L.resolveDefault(callWanStatus(), {}),
-					L.resolveDefault(callLanStatus(), {})
+					L.resolveDefault(callWanStatus(), {})
 				]).then(L.bind(this.poll_status, this, nodes));
 			}, this), 5);
 			return nodes;
