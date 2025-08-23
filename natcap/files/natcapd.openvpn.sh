@@ -16,7 +16,8 @@ make_config()
 	KEY_DIR=/usr/share/natcapd/openvpn
 	BASE_CONFIG=/usr/share/natcapd/openvpn/client.conf
 	mode="$(uci get natcapd.default.natcapovpn_tap 2>/dev/null || echo 0)"
-	hname=`cat /dev/natcap_ctl  | grep default_mac_addr | grep -o '[0-9a-f][0-9a-f]:[0-9a-f][0-9a-f]:[0-9a-f][0-9a-f]:[0-9a-f][0-9a-f]:[0-9a-f][0-9a-f]:[0-9a-f][0-9a-f]' | sed 's/://g'`
+	hname=$(awk -F= '/default_mac_addr/ { gsub(":", "", $2); print $2 }' /dev/natcap_ctl)
+
 	TA_KEY=${KEY_DIR}/ta.key
 	test -f /etc/openvpn/natcap-ta.key && TA_KEY=/etc/openvpn/natcap-ta.key
 
