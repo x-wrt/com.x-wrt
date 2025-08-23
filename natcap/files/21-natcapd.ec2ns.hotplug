@@ -14,7 +14,7 @@ case "$ACTION" in
 				[ "${lanip}" = "${old_lanip}" ] && [ "${hname}" = "${old_hname}" ] || {
 					uci set dhcp.ec2ns=domain
 					uci set dhcp.ec2ns.name="$hname.dns.x-wrt.com"
-					uci set dhcp.ip="$lanip"
+					uci set dhcp.ec2ns.ip="$lanip"
 					uci commit dhcp
 					/etc/init.d/dnsmasq reload
 				}
@@ -34,7 +34,7 @@ case "$ACTION" in
 				[ "${lanip}" = "${old_lanip}" ] && [ "${hname}" = "${old_hname}" ] || {
 					uci set dhcp.ec2ns=domain
 					uci set dhcp.ec2ns.name="$hname.dns.x-wrt.com"
-					uci set dhcp.ip="$lanip"
+					uci set dhcp.ec2ns.ip="$lanip"
 					uci commit dhcp
 					/etc/init.d/dnsmasq reload
 				}
