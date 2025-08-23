@@ -12,16 +12,6 @@
 		}
 	},
 
-	"admin/status": {
-		"title": "Device Status",
-		"order": 10,
-		"action": {
-			"type": "firstchild",
-			"preferred": "overview",
-			"recurse": true
-		}
-	},
-
 	"admin/system": {
 		"title": "System Settings",
 		"order": 200,

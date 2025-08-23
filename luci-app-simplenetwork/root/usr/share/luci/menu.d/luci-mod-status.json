@@ -1,6 +1,6 @@
 {
-	"admin/status/overview": {
-		"title": "Overview",
+	"admin/status": {
+		"title": "Device Status",
 		"order": 1,
 		"action": {
 			"type": "template",
