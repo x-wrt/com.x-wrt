@@ -1,29 +1,7 @@
 {
-	"admin/networksetup": {
-		"title": "Network Settings",
-		"order": 70,
-		"action": {
-			"type": "firstchild",
-			"recurse": true
-		}
-	},
-
-	"admin/networksetup/lansetup": {
-		"title": "LAN Port",
-		"order": 10,
-		"action": {
-			"type": "view",
-			"path": "simplenetwork/lansetup"
-		},
-		"depends": {
-			"acl": [ "luci-app-simplenetwork" ],
-			"uci": { "network": true }
-		}
-	},
-
-	"admin/networksetup/wifiap": {
-		"title": "WiFi AP",
-		"order": 20,
+	"admin/networksetup_wifiap": {
+		"title": "Wi-Fi Settings",
+		"order": 69,
 		"action": {
 			"type": "view",
 			"path": "simplenetwork/wifiap"
@@ -34,16 +12,16 @@
 		}
 	},
 
-	"admin/networksetup/wifista": {
-		"title": "WiFi STA",
-		"order": 30,
+	"admin/networksetup": {
+		"title": "LAN Network Settings",
+		"order": 70,
 		"action": {
 			"type": "view",
-			"path": "simplenetwork/wifista"
+			"path": "simplenetwork/lansetup"
 		},
 		"depends": {
 			"acl": [ "luci-app-simplenetwork" ],
-			"uci": { "network": true, "wireless": true, "dhcp": true }
+			"uci": { "network": true }
 		}
 	},
 

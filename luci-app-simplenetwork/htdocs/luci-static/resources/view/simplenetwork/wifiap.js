@@ -25,7 +25,7 @@ return view.extend({
 		var m, s, ss, sss, o;
 
 		m = new form.Map('wireless', [_('Wireless AP')],
-			_('Configure the WiFi AP'));
+			_('Configure the Wi-Fi Settings'));
 
 		s = m.section(form.NamedSection, 'wifinet0', 'wifi-iface');
 		s.addremove = false;

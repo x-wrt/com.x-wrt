@@ -52,6 +52,9 @@ msgstr "这里设置有线网口的网络参数"
 msgid "WiFi AP"
 msgstr "无线AP"
 
+msgid "Wi-Fi Settings"
+msgstr "无线设置"
+
 msgid "Wireless AP"
 msgstr "无线AP"
 
@@ -116,7 +119,7 @@ msgid "WiFi Wizard"
 msgstr "无线设置向导"
 
 msgid "Network Setup Wizard"
-msgstr "联网向导"
+msgstr "联网设置"
 
 msgid "Configure Network for Print Box"
 msgstr "设置打印盒子的联网方式"
@@ -147,3 +150,6 @@ msgstr "打印机无线IP"
 
 msgid "Printer IP (LAN)"
 msgstr "打印机有线IP"
+
+msgid "LAN Network Settings"
+msgstr "本机网络设置"
