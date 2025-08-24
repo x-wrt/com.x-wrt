@@ -153,3 +153,6 @@ msgstr "打印机有线IP"
 
 msgid "LAN Network Settings"
 msgstr "本机网络设置"
+
+msgid "Configure the Wi-Fi Settings"
+msgstr "设置无线的参数"
