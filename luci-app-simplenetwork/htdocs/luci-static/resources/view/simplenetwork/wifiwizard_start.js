@@ -144,7 +144,7 @@ return view.extend({
 		}
 
 		m = new form.Map('wireless', [_('Network Setup Wizard')],
-			_('Configure Network for Print Box') + "<br />LAN MAC: " + lan_mac + "<br />Wi-Fi MAC: " + wifi_mac);
+			_('Configure Network for Print Box') + "<br />" + _('LAN MAC:') + lan_mac + "<br />" + _('Wi-Fi MAC:') + wifi_mac);
 		m.chain('network');
 
 		s = m.section(form.NamedSection, 'wifinet0', 'wifi-iface');

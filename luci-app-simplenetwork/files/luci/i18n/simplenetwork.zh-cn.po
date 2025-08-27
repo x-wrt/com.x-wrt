@@ -156,3 +156,9 @@ msgstr "本机网络设置"
 
 msgid "Configure the Wi-Fi Settings"
 msgstr "设置无线的参数"
+
+msgid "Wi-Fi MAC:"
+msgstr "无线MAC地址："
+
+msgid "LAN MAC:"
+msgstr "有线MAC地址："
