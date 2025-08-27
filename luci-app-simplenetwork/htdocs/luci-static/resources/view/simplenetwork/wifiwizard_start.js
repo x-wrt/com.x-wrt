@@ -8,6 +8,12 @@
 'require form';
 'require network';
 
+var callLuciNetworkDevices = rpc.declare({
+        object: 'luci-rpc',
+        method: 'getNetworkDevices',
+        expect: { '': {} }
+});
+
 var callWwanStatus = rpc.declare({
     object: 'network.interface.wwan',
     method: 'status',
@@ -49,7 +55,8 @@ return view.extend({
 			uci.changes(),
 			uci.load('network'),
 			uci.load('wireless'),
-			L.resolveDefault(callWwanStatus(), [])
+			L.resolveDefault(callWwanStatus(), []),
+			L.resolveDefault(callLuciNetworkDevices(), [])
 		]);
 	},
 
@@ -124,9 +131,20 @@ return view.extend({
 		var m, s, ss, o;
 		var _this = this;
 		var scanRes = {};
+		var lan_mac = "";
+		var wifi_mac = "";
+
+		if (data[4] && data[4]["eth0.1"] && data[4]["eth0.1"].mac) {
+			lan_mac = data[4]["eth0.1"].mac;
+			var parts = lan_mac.split(":");
+			var last = parseInt(parts[parts.length - 1], 16);
+			last = (last + 1) & 0xFF;
+			parts[parts.length - 1] = last.toString(16).toUpperCase().padStart(2, "0");
+			wifi_mac = parts.join(":");
+		}
 
 		m = new form.Map('wireless', [_('Network Setup Wizard')],
-			_('Configure Network for Print Box'));
+			_('Configure Network for Print Box') + "<br />LAN MAC: " + lan_mac + "<br />Wi-Fi MAC: " + wifi_mac);
 		m.chain('network');
 
 		s = m.section(form.NamedSection, 'wifinet0', 'wifi-iface');
