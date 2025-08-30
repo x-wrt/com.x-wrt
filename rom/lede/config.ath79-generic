@@ -862,7 +862,7 @@ CONFIG_TARGET_DEVICE_PACKAGES_ath79_generic_DEVICE_wd_mynet-n750="blockd block-m
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_wd_mynet-wifi-rangeextender is not set
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_winchannel_wb2000 is not set
 CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_xiaomi_aiot-ac2350=y
-CONFIG_TARGET_DEVICE_PACKAGES_ath79_generic_DEVICE_xiaomi_aiot-ac2350="ath10k-board-qca9984 ath10k-firmware-qca9984-ct dawn ip-bridge kmod-ath10k-ct kmod-hwmon-core kmod-i2c-core libcap-ng libgcrypt libgpg-error liblz4 liblzo libnl-core libnl-genl libqrencode luci-app-dawn luci-app-openvpn luci-app-usteer luci-i18n-dashboard-zh-cn luci-i18n-openvpn-zh-cn luci-lib-uqr luci-mod-dashboard luci-proto-relay luci-proto-wireguard openvpn-mbedtls qrencode relayd tc-tiny wireguard-tools wpad-mbedtls"
+CONFIG_TARGET_DEVICE_PACKAGES_ath79_generic_DEVICE_xiaomi_aiot-ac2350="ath10k-board-qca9984 ath10k-firmware-qca9984-ct dawn ip-bridge ipq-wifi-xiaomi_aiot-ac2350 kmod-ath10k-ct kmod-hwmon-core kmod-i2c-core libcap-ng libgcrypt libgpg-error liblz4 liblzo libnl-core libnl-genl libqrencode luci-app-dawn luci-app-openvpn luci-app-usteer luci-i18n-dashboard-zh-cn luci-i18n-openvpn-zh-cn luci-lib-uqr luci-mod-dashboard luci-proto-relay luci-proto-wireguard openvpn-mbedtls qrencode relayd tc-tiny wireguard-tools wpad-mbedtls"
 CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_xiaomi_mi-router-4q=y
 CONFIG_TARGET_DEVICE_PACKAGES_ath79_generic_DEVICE_xiaomi_mi-router-4q="dawn ip-bridge libcap-ng libgcrypt libgpg-error liblz4 liblzo libnl-core libnl-genl libqrencode luci-app-dawn luci-app-openvpn luci-app-usteer luci-i18n-dashboard-zh-cn luci-i18n-openvpn-zh-cn luci-lib-uqr luci-mod-dashboard luci-proto-relay luci-proto-wireguard openvpn-mbedtls qrencode relayd tc-tiny wireguard-tools wpad-mbedtls"
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_xwrt_csac is not set
@@ -905,6 +905,7 @@ CONFIG_DEFAULT_firewall4=y
 CONFIG_MODULE_DEFAULT_firewall4=y
 CONFIG_DEFAULT_fstools=y
 CONFIG_MODULE_DEFAULT_fstools=y
+CONFIG_MODULE_DEFAULT_ipq-wifi-xiaomi_aiot-ac2350=y
 CONFIG_DEFAULT_iwinfo=y
 CONFIG_MODULE_DEFAULT_iwinfo=y
 CONFIG_MODULE_DEFAULT_kmod-ath10k-ct=y
@@ -1252,7 +1253,7 @@ CONFIG_TARGET_INIT_CMD="/sbin/init"
 CONFIG_TARGET_INIT_SUPPRESS_STDERR=y
 CONFIG_VERSIONOPT=y
 CONFIG_VERSION_DIST="X-WRT"
-CONFIG_VERSION_NUMBER="25.04_b202508240429"
+CONFIG_VERSION_NUMBER="25.04_b202508302212"
 CONFIG_VERSION_CODE="Plucky"
 CONFIG_VERSION_REPO="http://downloads.openwrt.org/snapshots"
 CONFIG_VERSION_HOME_URL="https://x-wrt.com/"
@@ -3704,6 +3705,7 @@ CONFIG_PACKAGE_ipq-wifi-tplink_eap623od-hd-v1=m
 # CONFIG_PACKAGE_ipq-wifi-tplink_eap625-outdoor-hd-v1 is not set
 # CONFIG_PACKAGE_ipq-wifi-tplink_eap660hd-v1 is not set
 # CONFIG_PACKAGE_ipq-wifi-wallys_dr40x9 is not set
+CONFIG_PACKAGE_ipq-wifi-xiaomi_aiot-ac2350=m
 # CONFIG_PACKAGE_ipq-wifi-xiaomi_ax3600 is not set
 # CONFIG_PACKAGE_ipq-wifi-xiaomi_ax6000 is not set
 # CONFIG_PACKAGE_ipq-wifi-xiaomi_ax9000 is not set
@@ -4112,6 +4114,7 @@ CONFIG_PACKAGE_kmod-fs-nfs-common=m
 # CONFIG_PACKAGE_kmod-fs-nfs-v3 is not set
 CONFIG_PACKAGE_kmod-fs-nfs-v4=m
 # CONFIG_PACKAGE_kmod-fs-nfsd is not set
+CONFIG_PACKAGE_kmod-fs-nilfs2=m
 CONFIG_PACKAGE_kmod-fs-ntfs3=m
 # CONFIG_PACKAGE_kmod-fs-reiserfs is not set
 CONFIG_PACKAGE_kmod-fs-smbfs-common=m
@@ -6404,7 +6407,7 @@ CONFIG_LIBCURL_NO_SMB="!"
 # CONFIG_LIBCURL_SMTP is not set
 # CONFIG_LIBCURL_TELNET is not set
 # CONFIG_LIBCURL_TFTP is not set
-CONFIG_LIBCURL_NGHTTP2=y
+CONFIG_LIBCURL_HTTP2=y
 
 #
 # Miscellaneous
@@ -6573,6 +6576,8 @@ CONFIG_PACKAGE_libnftnl=y
 CONFIG_PACKAGE_libnghttp2=m
 # CONFIG_PACKAGE_libnghttp3 is not set
 # CONFIG_PACKAGE_libngtcp2 is not set
+# CONFIG_PACKAGE_libnilfs is not set
+# CONFIG_PACKAGE_libnilfsgc is not set
 CONFIG_PACKAGE_libnl=m
 CONFIG_PACKAGE_libnl-cli=m
 CONFIG_PACKAGE_libnl-core=m
@@ -9203,6 +9208,12 @@ CONFIG_PACKAGE_fuse-utils=m
 # CONFIG_PACKAGE_ncdu is not set
 CONFIG_PACKAGE_nfs-utils=m
 # CONFIG_PACKAGE_nfs-utils-libs is not set
+# CONFIG_PACKAGE_nilfs-checkpoint is not set
+# CONFIG_PACKAGE_nilfs-dumpseg is not set
+# CONFIG_PACKAGE_nilfs-lssu is not set
+# CONFIG_PACKAGE_nilfs-mkfs is not set
+# CONFIG_PACKAGE_nilfs-resize is not set
+# CONFIG_PACKAGE_nilfs-tune is not set
 # CONFIG_PACKAGE_ntfs-3g is not set
 # CONFIG_PACKAGE_ntfs-3g-low is not set
 # CONFIG_PACKAGE_ntfs-3g-utils is not set

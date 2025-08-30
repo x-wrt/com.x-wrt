@@ -504,7 +504,7 @@ CONFIG_TARGET_INIT_CMD="/sbin/init"
 CONFIG_TARGET_INIT_SUPPRESS_STDERR=y
 CONFIG_VERSIONOPT=y
 CONFIG_VERSION_DIST="X-WRT-docker"
-CONFIG_VERSION_NUMBER="25.04_b202508240429"
+CONFIG_VERSION_NUMBER="25.04_b202508302212"
 CONFIG_VERSION_CODE="Plucky"
 CONFIG_VERSION_REPO="http://downloads.openwrt.org/snapshots"
 CONFIG_VERSION_HOME_URL="https://x-wrt.com/"
@@ -3322,6 +3322,7 @@ CONFIG_PACKAGE_kmod-fs-nfs-common-rpcsec=y
 CONFIG_PACKAGE_kmod-fs-nfs-v3=y
 CONFIG_PACKAGE_kmod-fs-nfs-v4=y
 CONFIG_PACKAGE_kmod-fs-nfsd=y
+# CONFIG_PACKAGE_kmod-fs-nilfs2 is not set
 CONFIG_PACKAGE_kmod-fs-ntfs3=y
 # CONFIG_PACKAGE_kmod-fs-reiserfs is not set
 CONFIG_PACKAGE_kmod-fs-smbfs-common=y
@@ -5689,7 +5690,6 @@ CONFIG_PACKAGE_boost-regex=y
 # CONFIG_PACKAGE_boost-serialization is not set
 # CONFIG_PACKAGE_boost-wserialization is not set
 # CONFIG_PACKAGE_boost-stacktrace is not set
-CONFIG_PACKAGE_boost-system=y
 # CONFIG_PACKAGE_boost-thread is not set
 # CONFIG_PACKAGE_boost-timer is not set
 # CONFIG_PACKAGE_boost-type_erasure is not set
@@ -5800,9 +5800,8 @@ CONFIG_LIBCURL_NO_SMB="!"
 # CONFIG_LIBCURL_SMTP is not set
 # CONFIG_LIBCURL_TELNET is not set
 # CONFIG_LIBCURL_TFTP is not set
-# CONFIG_LIBCURL_NGHTTP2 is not set
-# CONFIG_LIBCURL_NGHTTP3 is not set
-# CONFIG_LIBCURL_NGTCP2 is not set
+CONFIG_LIBCURL_HTTP2=y
+# CONFIG_LIBCURL_HTTP3 is not set
 
 #
 # Miscellaneous
@@ -5971,9 +5970,12 @@ CONFIG_PACKAGE_libncurses=y
 # CONFIG_PACKAGE_libnewt is not set
 # CONFIG_PACKAGE_libnfnetlink is not set
 CONFIG_PACKAGE_libnftnl=y
-# CONFIG_PACKAGE_libnghttp2 is not set
+CONFIG_PACKAGE_libnghttp2=y
 # CONFIG_PACKAGE_libnghttp3 is not set
 # CONFIG_PACKAGE_libngtcp2 is not set
+# CONFIG_PACKAGE_libnilfs is not set
+# CONFIG_PACKAGE_libnilfscleaner is not set
+# CONFIG_PACKAGE_libnilfsgc is not set
 CONFIG_PACKAGE_libnl=y
 CONFIG_PACKAGE_libnl-cli=y
 CONFIG_PACKAGE_libnl-core=y
@@ -8528,6 +8530,15 @@ CONFIG_PACKAGE_mkf2fs=y
 # CONFIG_PACKAGE_ncdu is not set
 CONFIG_PACKAGE_nfs-utils=y
 CONFIG_PACKAGE_nfs-utils-libs=y
+# CONFIG_PACKAGE_nilfs-checkpoint is not set
+# CONFIG_PACKAGE_nilfs-clean is not set
+# CONFIG_PACKAGE_nilfs-cleanerd is not set
+# CONFIG_PACKAGE_nilfs-dumpseg is not set
+# CONFIG_PACKAGE_nilfs-lssu is not set
+# CONFIG_PACKAGE_nilfs-mkfs is not set
+# CONFIG_PACKAGE_nilfs-mount is not set
+# CONFIG_PACKAGE_nilfs-resize is not set
+# CONFIG_PACKAGE_nilfs-tune is not set
 # CONFIG_PACKAGE_ntfs-3g is not set
 # CONFIG_PACKAGE_ntfs-3g-low is not set
 # CONFIG_PACKAGE_ntfs-3g-utils is not set
