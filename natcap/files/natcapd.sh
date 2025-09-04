@@ -1,24 +1,23 @@
 #!/bin/sh
 
 TO="timeout"
-which timeout &>/dev/null && timeout -t1 pwd &>/dev/null && TO="timeout -t"
+command -v timeout &>/dev/null && timeout -t1 pwd &>/dev/null && TO="timeout -t"
 
 WGET=/usr/bin/wget
 test -x $WGET || WGET=/bin/wget
 if readlink $WGET | grep -q busybox; then
 	WGET=/bin/uclient-fetch
 fi
-WGET61=$WGET
-WGET181=$WGET
-which timeout &>/dev/null && WGET61="$TO 61 $WGET"
-which timeout &>/dev/null && WGET181="$TO 181 $WGET"
+
+WGET61="$TO 61 $WGET"
+WGET181="$TO 181 $WGET"
 
 PID=$$
 DEV=/dev/natcap_ctl
 LOCKDIR=/tmp/natcapd.lck
 
 natcapd_lock() {
-	while ! lock -n /var/run/natcapd.lock 2>/dev/null; do sleep 1; done
+	lock /var/run/natcapd.lock
 	#LOG debug "$1 $2 (lock)"
 }
 
@@ -36,7 +35,7 @@ mytimeout() {
 		I=$to
 	fi
 	shift
-	if which timeout &>/dev/null; then
+	if command -v timeout &>/dev/null; then
 		while test -f $LOCKDIR/$PID; do
 			if $TO $I $@ 2>/dev/null; then
 				return 0
@@ -58,11 +57,9 @@ natcapd_trigger()
 {
 	local path=$1
 	local cmd=$2
-	local opt
 
-	if which timeout &>/dev/null; then
-		opt=$(timeout -t1 pwd &>/dev/null && echo "-t")
-		timeout $opt 5 sh -c "echo $cmd >$path" 2>/dev/null
+	if command -v timeout &>/dev/null; then
+		$TO 5 sh -c "echo $cmd >$path" 2>/dev/null
 	else
 		sh -c "echo $cmd >$path"
 	fi
@@ -94,56 +91,75 @@ natcapd_stop()
 }
 
 b64encode() {
-	cat - | base64 | sed -e ':a' -e 'N' -e '$!ba' -e 's/\n/ /g' | sed 's/ //g;s/=/_/g'
+	base64 | tr -d '\n' | tr '=' '_'
 }
 
 txrx_vals_dump() {
-	test -f /tmp/natcapd.txrx || echo "0 0" >/tmp/natcapd.txrx
-	cat /tmp/natcapd.txrx | while read tx1 rx1; do
-		echo `awk -F= '/flow_total_/ { print $2 }' $DEV` | while read tx2 rx2; do
-			tx1=$((tx1+0))
-			rx1=$((rx1+0))
-			tx2=$((tx2+0))
-			rx2=$((rx2+0))
-			tx=$((tx2-tx1))
-			rx=$((rx2-rx1))
-			if test $tx2 -lt $tx1 || test $rx2 -lt $rx1; then
-				tx=0
-				rx=0
-			fi
-			echo $tx $rx
-			return 0
-		done
-	done
+	local tx1 rx1 tx2 rx2 tx rx
+
+	[ -f /tmp/natcapd.txrx ] || echo "0 0" >/tmp/natcapd.txrx
+
+	read tx1 rx1 < /tmp/natcapd.txrx
+
+	set -- $(awk -F= '/flow_total_/ { print $2 }' "$DEV")
+	tx2=$1
+	rx2=$2
+
+	tx1=$((tx1+0))
+	rx1=$((rx1+0))
+	tx2=$((tx2+0))
+	rx2=$((rx2+0))
+
+	tx=$((tx2 - tx1))
+	rx=$((rx2 - rx1))
+
+	if [ $tx2 -lt $tx1 ] || [ $rx2 -lt $rx1 ]; then
+		tx=0
+		rx=0
+	fi
+
+	echo "$tx $rx"
 }
 
 test -c $DEV || exit 1
 
 natcapd_boot() {
-	board_mac_addr=$(lua /usr/share/natcapd/board_mac.lua)
-	if test -n "$board_mac_addr"; then
-		echo default_mac_addr=$board_mac_addr >$DEV
+	board_mac_addr=$(lua /usr/share/natcapd/board_mac.lua 2>/dev/null)
+	if [ -n "$board_mac_addr" ]; then
+		echo "default_mac_addr=$board_mac_addr" >"$DEV"
 	fi
 
 	client_mac=$board_mac_addr
-	test -n "$client_mac" || {
+
+	if [ -z "$client_mac" ]; then
 		client_mac=$(awk -F= '/default_mac_addr/ { print $2 }' "$DEV")
-		if [ "x$client_mac" = "x00:00:00:00:00:00" ]; then
+
+		if [ "$client_mac" = "00:00:00:00:00:00" ] || [ -z "$client_mac" ]; then
 			client_mac=$(uci get natcapd.default.default_mac_addr 2>/dev/null)
-			test -n "$client_mac" || client_mac=$(cat /sys/class/net/eth0/address | tr a-f A-F)
-			test -n "$client_mac" || client_mac=$(cat /sys/class/net/eth1/address | tr a-f A-F)
-			test -n "$client_mac" || client_mac=$(head -c6 /dev/urandom | hexdump -e '/1 "%02X:"' | head -c17)
-			test -n "$client_mac" || client_mac=$(head -c6 /dev/random | hexdump -e '/1 "%02X:"' | head -c17)
-			uci set natcapd.default.default_mac_addr="$client_mac"
-			uci commit natcapd
-			echo default_mac_addr=$client_mac >$DEV
+
+			for iface in eth0 eth1; do
+				[ -z "$client_mac" ] && read client_mac <"/sys/class/net/$iface/address" 2>/dev/null
+			done
+
+			if [ -z "$client_mac" ]; then
+				client_mac=$(head -c6 /dev/urandom | hexdump -e '/1 "%02X:"' | head -c17)
+			fi
+
+			if [ -n "$client_mac" ]; then
+				uci set natcapd.default.default_mac_addr="$client_mac"
+				uci commit natcapd
+				echo "default_mac_addr=$client_mac" >"$DEV"
+			fi
 		fi
-		eth_mac=$(cat /sys/class/net/eth0/address | tr a-f A-F)
-		test -n "$eth_mac" && [ "x$client_mac" != "x$eth_mac" ] && {
-			client_mac=$eth_mac
-			echo default_mac_addr=$client_mac >$DEV
-		}
-	}
+
+		if read eth_mac < /sys/class/net/eth0/address 2>/dev/null; then
+			eth_mac=$(echo "$eth_mac" | tr a-f A-F)
+			if [ "$client_mac" != "$eth_mac" ]; then
+				client_mac=$eth_mac
+				echo "default_mac_addr=$client_mac" >"$DEV"
+			fi
+		fi
+	fi
 }
 
 [ x$1 = xboot ] && {
@@ -282,22 +298,22 @@ natcap_setup_firewall()
 	fi
 }
 
-cone_wan_ip()
-{
-	full_cone_nat="$(uci get natcapd.default.full_cone_nat 2>/dev/null || echo 0)"
-	if [ "x$full_cone_nat" = "x0" ]; then
-		ipset destroy cone_wan_ip &>/dev/null
-	else
-		ipset create cone_wan_ip iphash hashsize 32 maxelem 256 &>/dev/null
-		ipset flush cone_wan_ip
-		devs=$(ip r | grep default | grep -o "dev ".* | awk '{print $2}')
-		for dev in $devs; do
-			ips=$(ip addr list dev $dev | awk '/inet .*/ {print $2}' | cut -d/ -f1)
-			for ip in $ips; do
-				ipset add cone_wan_ip $ip &>/dev/null
-			done
-		done
+cone_wan_ip() {
+	full_cone_nat=$(uci get natcapd.default.full_cone_nat 2>/dev/null || echo 0)
+
+	if [ "$full_cone_nat" = "0" ]; then
+		ipset destroy cone_wan_ip 2>/dev/null
+		return
 	fi
+
+	ipset create cone_wan_ip hash:ip hashsize 32 maxelem 256 -exist
+	ipset flush cone_wan_ip
+
+	for dev in $(ip route show default | sed -n 's/.* dev \([[:alnum:]:.-]\+\).*/\1/p'); do
+		for ip in $(ip -4 addr show dev "$dev" | awk '/inet /{print $2}' | cut -d/ -f1); do
+			ipset add cone_wan_ip "$ip" -exist
+		done
+	done
 }
 
 [ x$1 = xcone_wan_ip ] && {
@@ -343,13 +359,13 @@ add_server () {
 	local enc_mode=$3
 
 	if echo $server | grep -q '\([0-9]\{1,3\}\)\.\([0-9]\{1,3\}\)\.\([0-9]\{1,3\}\)\.\([0-9]\{1,3\}\)$'; then
-		echo server 0 $server:0-$opt-$enc_mode >>$DEV
+		echo server 0 $server:0-$opt-$enc_mode >$DEV
 	elif echo $server | grep -q '\([0-9]\{1,3\}\)\.\([0-9]\{1,3\}\)\.\([0-9]\{1,3\}\)\.\([0-9]\{1,3\}\):[0-9]\{1,5\}$'; then
 		echo server 0 $server-$opt-$enc_mode >$DEV
 	elif echo $server | grep -q '\([0-9]\{1,3\}\)\.\([0-9]\{1,3\}\)\.\([0-9]\{1,3\}\)\.\([0-9]\{1,3\}\):[0-9]\{1,5\}-[eo]$'; then
-		echo server 0 $server-$enc_mode >>$DEV
+		echo server 0 $server-$enc_mode >$DEV
 	elif echo $server | grep -q '\([0-9]\{1,3\}\)\.\([0-9]\{1,3\}\)\.\([0-9]\{1,3\}\)\.\([0-9]\{1,3\}\):[0-9]\{1,5\}-[eo]-[TU]-[UT]$'; then
-		echo server 0 $server >>$DEV
+		echo server 0 $server >$DEV
 	fi
 }
 
@@ -359,13 +375,13 @@ add_server1 () {
 	local enc_mode=$3
 
 	if echo $server | grep -q '\([0-9]\{1,3\}\)\.\([0-9]\{1,3\}\)\.\([0-9]\{1,3\}\)\.\([0-9]\{1,3\}\)$'; then
-		echo server 1 $server:0-$opt-$enc_mode >>$DEV
+		echo server 1 $server:0-$opt-$enc_mode >$DEV
 	elif echo $server | grep -q '\([0-9]\{1,3\}\)\.\([0-9]\{1,3\}\)\.\([0-9]\{1,3\}\)\.\([0-9]\{1,3\}\):[0-9]\{1,5\}$'; then
 		echo server 1 $server-$opt-$enc_mode >$DEV
 	elif echo $server | grep -q '\([0-9]\{1,3\}\)\.\([0-9]\{1,3\}\)\.\([0-9]\{1,3\}\)\.\([0-9]\{1,3\}\):[0-9]\{1,5\}-[eo]$'; then
-		echo server 1 $server-$enc_mode >>$DEV
+		echo server 1 $server-$enc_mode >$DEV
 	elif echo $server | grep -q '\([0-9]\{1,3\}\)\.\([0-9]\{1,3\}\)\.\([0-9]\{1,3\}\)\.\([0-9]\{1,3\}\):[0-9]\{1,5\}-[eo]-[TU]-[UT]$'; then
-		echo server 1 $server >>$DEV
+		echo server 1 $server >$DEV
 	fi
 }
 
@@ -426,38 +442,37 @@ add_gfwlist1_domain () {
 }
 
 _reload_natcapd() {
-	NATCAPD_BIN=natcapd-server
-	if which $NATCAPD_BIN &>/dev/null; then
-		natcap_redirect_port=$(uci get natcapd.default.natcap_redirect_port 2>/dev/null || echo 0)
-		sleep 1 && killall $NATCAPD_BIN &>/dev/null && sleep 2
-		test $natcap_redirect_port -gt 0 && test $natcap_redirect_port -lt 65535 && {
-			echo natcap_redirect_port=$natcap_redirect_port >$DEV
-			(
-			$NATCAPD_BIN -I -l$natcap_redirect_port -t 900 &>/dev/null
-			echo natcap_redirect_port=0 >$DEV
-			) &
-		}
-	fi
+	_restart_natcapd() {
+		local bin=$1
+		local uci_key=$2
+		local dev_key=$3
 
-	NATCAPD_BIN=natcapd-client
-	if which $NATCAPD_BIN &>/dev/null; then
-		natcap_client_redirect_port=$(uci get natcapd.default.natcap_client_redirect_port 2>/dev/null || echo 0)
-		sleep 1 && killall $NATCAPD_BIN &>/dev/null && sleep 2
-		test $natcap_client_redirect_port -gt 0 && test $natcap_client_redirect_port -lt 65535 && {
-			echo natcap_client_redirect_port=$natcap_client_redirect_port >$DEV
-			(
-			$NATCAPD_BIN -l$natcap_client_redirect_port -t 900 &>/dev/null
-			echo natcap_client_redirect_port=0 >$DEV
-			) &
-		}
-	fi
+		if command -v "$bin" &>/dev/null; then
+			local port
+			port=$(uci get "natcapd.default.${uci_key}" 2>/dev/null || echo 0)
+
+			killall "$bin" &>/dev/null
+			sleep 2
+
+			if [ "$port" -gt 0 ] && [ "$port" -lt 65535 ]; then
+				echo "${dev_key}=$port" >"$DEV"
+				(
+					"$bin" -I -l"$port" -t 900 &>/dev/null
+					echo "${dev_key}=0" >"$DEV"
+				) &
+			fi
+		fi
+	}
+
+	_restart_natcapd natcapd-server natcap_redirect_port natcap_redirect_port
+	_restart_natcapd natcapd-client natcap_client_redirect_port natcap_client_redirect_port
 }
 
 # maps the 1st parameter so it only uses the bits allowed by the bitmask (2nd parameter)
 # which means spreading the bits of the 1st parameter to only use the bits that are set to 1 in the 2nd parameter
 # 0 0 0 0 0 1 0 1 (0x05) 1st parameter
 # 1 0 1 0 1 0 1 0 (0xAA) 2nd parameter
-#     1   0   1          result
+#	 1   0   1		  result
 natcap_id2mask() {
 	local bit_msk bit_val result
 	bit_val=0
@@ -1118,25 +1133,33 @@ natcapd_first_boot() {
 }
 
 txrx_vals() {
-	test -f /tmp/natcapd.txrx || echo "0 0" >/tmp/natcapd.txrx
-	cat /tmp/natcapd.txrx | while read tx1 rx1; do
-		echo $(cat "$DEV"  | grep flow_total_ | cut -d= -f2) | while read tx2 rx2; do
-			tx1=$((tx1+0))
-			rx1=$((rx1+0))
-			tx2=$((tx2+0))
-			rx2=$((rx2+0))
-			tx=$((tx2-tx1))
-			rx=$((rx2-rx1))
-			if test $tx2 -lt $tx1 || test $rx2 -lt $rx1; then
-				tx=0
-				rx=0
-			fi
-			echo $tx $rx
-			cp /tmp/natcapd.txrx /tmp/natcapd.txrx.old
-			echo $tx2 $rx2 >/tmp/natcapd.txrx
-			return 0
-		done
-	done
+	local tx1 rx1 tx2 rx2 tx rx
+
+	[ -f /tmp/natcapd.txrx ] || echo "0 0" > /tmp/natcapd.txrx
+
+	read tx1 rx1 < /tmp/natcapd.txrx
+
+	set -- $(awk -F= '/flow_total_/ { print $2 }' "$DEV")
+	tx2=$1
+	rx2=$2
+
+	tx1=$((tx1+0))
+	rx1=$((rx1+0))
+	tx2=$((tx2+0))
+	rx2=$((rx2+0))
+
+	tx=$((tx2 - tx1))
+	rx=$((rx2 - rx1))
+
+	if [ "$tx2" -lt "$tx1" ] || [ "$rx2" -lt "$rx1" ]; then
+		tx=0
+		rx=0
+	fi
+
+	echo "$tx $rx"
+
+	cp /tmp/natcapd.txrx /tmp/natcapd.txrx.old
+	echo "$tx2 $rx2" > /tmp/natcapd.txrx
 }
 
 peer_check() {
@@ -1175,8 +1198,7 @@ peer_upstream_check() {
 ping_cli() {
 	local idx=0
 	local peer_mark_connected=1
-	PING="ping"
-	which timeout &>/dev/null && PING="$TO 30 $PING"
+	PING="$TO 30 ping"
 	while :; do
 		test -f $LOCKDIR/$PID || return 0
 		dns_proxy_check &
@@ -1348,22 +1370,22 @@ main_trigger() {
 				local TX=$(echo $TXRX | sed 's/_/=/g' | base64 -d | awk '{print $1}')
 				local RX=$(echo $TXRX | sed 's/_/=/g' | base64 -d | awk '{print $2}')
 				local _D="{
-    \"cmd\": \"report\",
-    \"cli\": \"$CLI\",
-    \"ver\": \"$JVER\",
-    \"cv\": $CV,
-    \"up\": $UP,
-    \"tar\": \"$TAR\",
-    \"mod\": \"$MOD\",
-    \"seq\": $SEQ,
-    \"acc\": \"$ACC\",
-    \"tx\": $TX,
-    \"rx\": $RX,
-    \"lip\": \"$LIP\",
-    \"lip6\": \"$LIP6\",
-    \"srv\": \"$JSRV\",
-    \"hkey\": $HKEY,
-    \"hset\": $HSET
+	\"cmd\": \"report\",
+	\"cli\": \"$CLI\",
+	\"ver\": \"$JVER\",
+	\"cv\": $CV,
+	\"up\": $UP,
+	\"tar\": \"$TAR\",
+	\"mod\": \"$MOD\",
+	\"seq\": $SEQ,
+	\"acc\": \"$ACC\",
+	\"tx\": $TX,
+	\"rx\": $RX,
+	\"lip\": \"$LIP\",
+	\"lip6\": \"$LIP6\",
+	\"srv\": \"$JSRV\",
+	\"hkey\": $HKEY,
+	\"hset\": $HSET
 }"
 				echo -n "$_D" >/tmp/yy.json.post
 				if $WGET61 --timeout=60 --ca-certificate=/tmp/cacert.pem -qO /tmp/yy.tmp.json \
