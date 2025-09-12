@@ -9,10 +9,10 @@ include $(TOPDIR)/rules.mk
 include $(INCLUDE_DIR)/kernel.mk
 
 PKG_NAME:=natcap
-PKG_VERSION:=20250909
+PKG_VERSION:=20250913
 
 PKG_SOURCE_URL:=https://codeload.github.com/ptpt52/natcap/tar.gz/$(PKG_VERSION)?
-PKG_HASH:=1ac3b2c8b7626ae70bef19994e0c2150de7fe8832c12cdce388bc8c31e04f892
+PKG_HASH:=5b751157717d2a4c05210f2e1e0e41a64c5951ab2ec50d7c52fb99d96ec0878e
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
 
 PKG_MAINTAINER:=Chen Minqiang <ptpt52@gmail.com>
