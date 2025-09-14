@@ -163,7 +163,7 @@ define KernelPackage/natcap
   FILES:=$(PKG_BUILD_DIR)/natcap.ko
   KCONFIG:= \
 	    CONFIG_NF_CONNTRACK_MARK=y
-  AUTOLOAD:=$(call AutoLoad,96,natcap)
+  AUTOLOAD:=$(call AutoLoad,97,natcap)
   DEPENDS:= +kmod-ipt-conntrack +kmod-ipt-nat +kmod-ipt-ipset
 endef
 
