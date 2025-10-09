@@ -113,7 +113,7 @@ return view.extend({
 		o.uciconfig = 'luci';
 		o.ucisection = 'main';
 		o.ucioption = 'lang';
-		o.value('auto');
+		o.value('auto', 'Auto');
 
 		var k = Object.keys(uci.get('luci', 'languages') || {}).sort();
 		for (var i = 0; i < k.length; i++)

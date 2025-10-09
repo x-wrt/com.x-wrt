@@ -1,5 +1,5 @@
 config simplenetwork 'default'
-	option lan_ipaddr '192.168.15.1'
+	option lan_ipaddr '192.168.16.1'
 	option lan_netmask '255.255.255.0'
 	option wan_proto 'dhcp'
 	option wan_ipaddr ''
