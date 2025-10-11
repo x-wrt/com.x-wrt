@@ -64,6 +64,7 @@ CONFIG_TARGET_MULTI_PROFILE=y
 # CONFIG_TARGET_qualcommax_ipq50xx_DEVICE_linksys_spnmx56 is not set
 # CONFIG_TARGET_qualcommax_ipq50xx_DEVICE_xiaomi_ax6000 is not set
 # CONFIG_TARGET_qualcommax_ipq50xx_DEVICE_yuncore_ax830 is not set
+# CONFIG_TARGET_qualcommax_ipq50xx_DEVICE_yuncore_ax850 is not set
 
 #
 # Target Devices
@@ -82,6 +83,7 @@ CONFIG_TARGET_DEVICE_qualcommax_ipq50xx_DEVICE_xiaomi_ax6000=y
 CONFIG_TARGET_DEVICE_PACKAGES_qualcommax_ipq50xx_DEVICE_xiaomi_ax6000="apk-openssl ath10k-board-qca9887 ath10k-firmware-qca9887-ct ath11k-firmware-ipq5018 ath11k-firmware-qcn9074 ca-bundle curl dawn ethtool gre ip-bridge ipq-wifi-xiaomi_ax6000 iptables-mod-dhcpmac iptables-mod-dnetmap jool-tools-netfilter kmod-ath10k-ct-smallbuffers kmod-ath11k-pci kmod-bonding kmod-crypto-acompress kmod-crypto-cbc kmod-crypto-deflate kmod-crypto-des kmod-crypto-echainiv kmod-crypto-md5 kmod-inet-diag kmod-ip6-vti kmod-ipsec kmod-ipsec4 kmod-ipsec6 kmod-ipt-compat-xtables kmod-ipt-dhcpmac kmod-ipt-dnetmap kmod-ip-vti kmod-jool-netfilter kmod-l2tp kmod-lib-zlib-deflate kmod-lib-zlib-inflate kmod-mhi-bus kmod-nat46 kmod-pppol2tp kmod-qrtr-mhi kmod-xfrm-interface libcap-ng libcurl libgcrypt libgpg-error liblz4 liblzo libnghttp2 libnl libnl-cli libnl-core libnl-genl libnl-nf libnl-route libopenssl libopenssl-conf libopenssl-legacy libpcre2 libqrencode libssh2 libstdcpp libxml2 luci-app-dawn luci-app-openvpn luci-app-usteer luci-i18n-dashboard-zh-cn luci-i18n-openvpn-zh-cn luci-lib-uqr luci-mod-dashboard luci-nginx luci-proto-gre luci-proto-relay luci-proto-vti luci-proto-wireguard luci-proto-xfrm luci-theme-argon nginx-mod-luci nginx-mod-ubus nginx-ssl nginx-ssl-util openvpn-openssl ppp-mod-pppol2tp proto-bonding qrencode relayd tc-tiny uwsgi uwsgi-cgi-plugin uwsgi-luci-support uwsgi-syslog-plugin vti wireguard-tools wpad-openssl xfrm xl2tpd"
 CONFIG_TARGET_DEVICE_qualcommax_ipq50xx_DEVICE_yuncore_ax830=y
 CONFIG_TARGET_DEVICE_PACKAGES_qualcommax_ipq50xx_DEVICE_yuncore_ax830="apk-openssl ath11k-firmware-ipq5018 ath11k-firmware-qcn6122 ca-bundle curl dawn ethtool gre ip-bridge ipq-wifi-yuncore_ax830 iptables-mod-dhcpmac iptables-mod-dnetmap jool-tools-netfilter kmod-bonding kmod-crypto-acompress kmod-crypto-cbc kmod-crypto-deflate kmod-crypto-des kmod-crypto-echainiv kmod-crypto-md5 kmod-inet-diag kmod-ip6-vti kmod-ipsec kmod-ipsec4 kmod-ipsec6 kmod-ipt-compat-xtables kmod-ipt-dhcpmac kmod-ipt-dnetmap kmod-ip-vti kmod-jool-netfilter kmod-l2tp kmod-lib-zlib-deflate kmod-lib-zlib-inflate kmod-nat46 kmod-pppol2tp kmod-xfrm-interface libcap-ng libcurl libgcrypt libgpg-error liblz4 liblzo libnghttp2 libnl libnl-cli libnl-core libnl-genl libnl-nf libnl-route libopenssl libopenssl-conf libopenssl-legacy libpcre2 libqrencode libssh2 libstdcpp libxml2 luci-app-dawn luci-app-openvpn luci-app-usteer luci-i18n-dashboard-zh-cn luci-i18n-openvpn-zh-cn luci-lib-uqr luci-mod-dashboard luci-nginx luci-proto-gre luci-proto-relay luci-proto-vti luci-proto-wireguard luci-proto-xfrm luci-theme-argon nginx-mod-luci nginx-mod-ubus nginx-ssl nginx-ssl-util openvpn-openssl ppp-mod-pppol2tp proto-bonding qrencode relayd tc-tiny uwsgi uwsgi-cgi-plugin uwsgi-luci-support uwsgi-syslog-plugin vti wireguard-tools wpad-openssl xfrm xl2tpd"
+# CONFIG_TARGET_DEVICE_qualcommax_ipq50xx_DEVICE_yuncore_ax850 is not set
 # end of Target Devices
 
 CONFIG_HAS_SUBTARGETS=y
@@ -475,7 +477,7 @@ CONFIG_TARGET_INIT_CMD="/sbin/init"
 CONFIG_TARGET_INIT_SUPPRESS_STDERR=y
 CONFIG_VERSIONOPT=y
 CONFIG_VERSION_DIST="X-WRT"
-CONFIG_VERSION_NUMBER="25.04_b202510020554"
+CONFIG_VERSION_NUMBER="25.04_b202510112221"
 CONFIG_VERSION_CODE="Plucky"
 CONFIG_VERSION_REPO="http://downloads.openwrt.org/snapshots"
 CONFIG_VERSION_HOME_URL="https://x-wrt.com/"
@@ -2841,7 +2843,6 @@ CONFIG_PACKAGE_nload=m
 # CONFIG_PACKAGE_gcc is not set
 # CONFIG_PACKAGE_gdb is not set
 # CONFIG_PACKAGE_gdbserver is not set
-# CONFIG_PACKAGE_gitlab-runner is not set
 # CONFIG_PACKAGE_gperf is not set
 # CONFIG_PACKAGE_ledhwbmon is not set
 # CONFIG_PACKAGE_ledumon is not set
@@ -5559,8 +5560,7 @@ CONFIG_PACKAGE_glib2=m
 # CONFIG_PACKAGE_glslang is not set
 # CONFIG_PACKAGE_gnulib-l10n is not set
 # CONFIG_PACKAGE_google-authenticator-libpam is not set
-# CONFIG_PACKAGE_gperftools-headers is not set
-# CONFIG_PACKAGE_gperftools-runtime is not set
+# CONFIG_PACKAGE_gperftools is not set
 # CONFIG_PACKAGE_hidapi is not set
 # CONFIG_PACKAGE_ibrcommon is not set
 # CONFIG_PACKAGE_ibrdtn is not set
@@ -6039,8 +6039,7 @@ CONFIG_PACKAGE_terminfo=y
 # CONFIG_PACKAGE_tinycdb is not set
 # CONFIG_PACKAGE_totem-pl-parser is not set
 # CONFIG_PACKAGE_uw-imap is not set
-# CONFIG_PACKAGE_vectorscan-headers is not set
-# CONFIG_PACKAGE_vectorscan-runtime is not set
+# CONFIG_PACKAGE_vectorscan is not set
 # CONFIG_PACKAGE_wpebackend-fdo is not set
 # CONFIG_PACKAGE_wpewebkit-driver is not set
 # CONFIG_PACKAGE_wpewebkit-minibrowser is not set
@@ -6428,6 +6427,8 @@ CONFIG_PACKAGE_luci-i18n-base-zh-cn=y
 # CONFIG_PACKAGE_luci-i18n-dashboard-vi is not set
 CONFIG_PACKAGE_luci-i18n-dashboard-zh-cn=m
 # CONFIG_PACKAGE_luci-i18n-dashboard-zh-tw is not set
+# CONFIG_PACKAGE_luci-i18n-dawn-es is not set
+# CONFIG_PACKAGE_luci-i18n-dawn-pl is not set
 # CONFIG_PACKAGE_luci-i18n-ddns-ar is not set
 # CONFIG_PACKAGE_luci-i18n-ddns-bg is not set
 # CONFIG_PACKAGE_luci-i18n-ddns-bn is not set
@@ -7174,6 +7175,7 @@ CONFIG_PACKAGE_ddns-scripts=y
 # CONFIG_PACKAGE_ddns-scripts-ns1 is not set
 # CONFIG_PACKAGE_ddns-scripts-nsupdate is not set
 # CONFIG_PACKAGE_ddns-scripts-one is not set
+# CONFIG_PACKAGE_ddns-scripts-ovh is not set
 # CONFIG_PACKAGE_ddns-scripts-pdns is not set
 # CONFIG_PACKAGE_ddns-scripts-porkbun is not set
 # CONFIG_PACKAGE_ddns-scripts-route53 is not set
