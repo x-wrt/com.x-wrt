@@ -722,8 +722,10 @@ CONFIG_TARGET_DEVICE_PACKAGES_ath79_generic_DEVICE_tplink_archer-c59-v2="ath10k-
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_tplink_archer-c6-v2 is not set
 CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_tplink_archer-c60-v1=y
 CONFIG_TARGET_DEVICE_PACKAGES_ath79_generic_DEVICE_tplink_archer-c60-v1="ath10k-board-qca9888 ath10k-firmware-qca9888-ct ipq-wifi-tplink_archer-c60-v1 kmod-ath10k-ct-smallbuffers kmod-hwmon-core kmod-i2c-core wpad-basic-mbedtls"
-# CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_tplink_archer-c60-v2 is not set
-# CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_tplink_archer-c60-v3 is not set
+CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_tplink_archer-c60-v2=y
+CONFIG_TARGET_DEVICE_PACKAGES_ath79_generic_DEVICE_tplink_archer-c60-v2="ath10k-board-qca9888 ath10k-firmware-qca9888-ct ipq-wifi-tplink_archer-c60-v2 kmod-ath10k-ct-smallbuffers kmod-hwmon-core kmod-i2c-core wpad-basic-mbedtls"
+CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_tplink_archer-c60-v3=y
+CONFIG_TARGET_DEVICE_PACKAGES_ath79_generic_DEVICE_tplink_archer-c60-v3="ath10k-board-qca9888 ath10k-firmware-qca9888-ct kmod-ath10k-ct-smallbuffers kmod-hwmon-core kmod-i2c-core wpad-basic-mbedtls"
 CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_tplink_archer-c7-v1=y
 CONFIG_TARGET_DEVICE_PACKAGES_ath79_generic_DEVICE_tplink_archer-c7-v1="blockd block-mount kmod-fs-autofs4 kmod-fs-exfat kmod-fs-ntfs3 kmod-fuse kmod-lib-crc16 kmod-mii kmod-nls-cp437 kmod-phy-ath79-usb kmod-usb2 kmod-usb-common kmod-usb-core kmod-usb-ehci kmod-usb-ledtrig-usbport kmod-usb-net kmod-usb-net-cdc-ether kmod-usb-net-rndis kmod-usb-ohci kmod-usb-storage luci-app-ledtrig-usbport wpad-basic-mbedtls"
 CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_tplink_archer-c7-v2=y
@@ -898,6 +900,7 @@ CONFIG_DEFAULT_fstools=y
 CONFIG_MODULE_DEFAULT_fstools=y
 CONFIG_MODULE_DEFAULT_ipq-wifi-tplink_archer-c59-v1=y
 CONFIG_MODULE_DEFAULT_ipq-wifi-tplink_archer-c60-v1=y
+CONFIG_MODULE_DEFAULT_ipq-wifi-tplink_archer-c60-v2=y
 CONFIG_MODULE_DEFAULT_kmod-ath10k-ct=y
 CONFIG_MODULE_DEFAULT_kmod-ath10k-ct-smallbuffers=y
 CONFIG_DEFAULT_kmod-ath9k=y
@@ -3691,7 +3694,7 @@ CONFIG_PACKAGE_libiwinfo-data=y
 CONFIG_PACKAGE_ipq-wifi-tplink_archer-c59-v1=m
 # CONFIG_PACKAGE_ipq-wifi-tplink_archer-c6-v2 is not set
 CONFIG_PACKAGE_ipq-wifi-tplink_archer-c60-v1=m
-# CONFIG_PACKAGE_ipq-wifi-tplink_archer-c60-v2 is not set
+CONFIG_PACKAGE_ipq-wifi-tplink_archer-c60-v2=m
 # CONFIG_PACKAGE_ipq-wifi-tplink_deco-x80-5g is not set
 # CONFIG_PACKAGE_ipq-wifi-tplink_eap610-outdoor is not set
 # CONFIG_PACKAGE_ipq-wifi-tplink_eap620hd-v1 is not set

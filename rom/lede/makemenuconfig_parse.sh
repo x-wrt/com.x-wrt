@@ -1080,7 +1080,6 @@ for t in $targets; do
 		TARGET_DEVICE_ath79_generic_DEVICE_tplink_tl-wr810n-v2|\
 		TARGET_DEVICE_ath79_generic_DEVICE_tplink_tl-wr842n-v1|\
 		TARGET_DEVICE_ramips_mt7620_DEVICE_nexx_wt3020-8m|\
-		TARGET_DEVICE_ath79_generic_DEVICE_tplink_archer-c60-v3|\
 		TARGET_DEVICE_ath79_generic_DEVICE_netgear_wnr2200-8m|\
 		TARGET_DEVICE_ath79_generic_DEVICE_pisen_ts-d084|\
 		TARGET_DEVICE_ramips_mt76x8_DEVICE_cudy_wr1000|\
@@ -1159,6 +1158,7 @@ for t in $targets; do
 		TARGET_DEVICE_ath79_generic_DEVICE_tplink_cpe510-v3|\
 		TARGET_DEVICE_ath79_generic_DEVICE_tplink_archer-c60-v1|\
 		TARGET_DEVICE_ath79_generic_DEVICE_tplink_archer-c60-v2|\
+		TARGET_DEVICE_ath79_generic_DEVICE_tplink_archer-c60-v3|\
 		TARGET_DEVICE_ramips_mt7620_DEVICE_zbtlink_zbt-we2026|\
 		TARGET_DEVICE_ramips_mt76x8_DEVICE_tplink_tl-wr841n-v13|\
 		TARGET_DEVICE_ramips_mt76x8_DEVICE_tplink_tl-wr840n-v4|\
@@ -1725,7 +1725,6 @@ for t in $targets; do
 		TARGET_DEVICE_ramips_mt7621_DEVICE_xiaomi_redmi-router-ac2100|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_xiaomi_mi-router-ac2100|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_xwrt_x-sdwan-1200|\
-		TARGET_DEVICE_ath79_generic_DEVICE_tplink_archer-c60-v3|\
 		TARGET_DEVICE_ath79_generic_DEVICE_devolo_magic-2-wifi|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_xiaomi_mi-router-3g-v2|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_xiaomi_mi-router-4a-gigabit|\
@@ -1811,6 +1810,7 @@ for t in $targets; do
 		TARGET_DEVICE_ath79_generic_DEVICE_tplink_cpe510-v3|\
 		TARGET_DEVICE_ath79_generic_DEVICE_tplink_archer-c60-v1|\
 		TARGET_DEVICE_ath79_generic_DEVICE_tplink_archer-c60-v2|\
+		TARGET_DEVICE_ath79_generic_DEVICE_tplink_archer-c60-v3|\
 		TARGET_DEVICE_ramips_mt7620_DEVICE_zbtlink_zbt-we2026|\
 		TARGET_DEVICE_ramips_mt76x8_DEVICE_tplink_tl-wr841n-v13|\
 		TARGET_DEVICE_ramips_mt76x8_DEVICE_tplink_tl-wr840n-v4|\
