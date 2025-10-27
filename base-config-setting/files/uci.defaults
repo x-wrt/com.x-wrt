@@ -459,6 +459,7 @@ net.core.default_qdisc=fq
 net.ipv4.tcp_congestion_control=bbr
 net.netfilter.nf_conntrack_helper=1
 net.ipv4.ip_default_ttl=128
+net.netfilter.nf_conntrack_tcp_be_liberal=1
 EOF
 
 /etc/init.d/swanctl disable &>/dev/null
