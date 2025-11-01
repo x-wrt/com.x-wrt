@@ -61,7 +61,8 @@ CONFIG_TARGET_MULTI_PROFILE=y
 # CONFIG_TARGET_mediatek_filogic_DEVICE_acelink_ew-7886cax is not set
 # CONFIG_TARGET_mediatek_filogic_DEVICE_acer_predator-w6 is not set
 # CONFIG_TARGET_mediatek_filogic_DEVICE_acer_predator-w6d is not set
-# CONFIG_TARGET_mediatek_filogic_DEVICE_acer_predator-w6x is not set
+# CONFIG_TARGET_mediatek_filogic_DEVICE_acer_predator-w6x-stock is not set
+# CONFIG_TARGET_mediatek_filogic_DEVICE_acer_predator-w6x-ubootmod is not set
 # CONFIG_TARGET_mediatek_filogic_DEVICE_acer_vero-w6m is not set
 # CONFIG_TARGET_mediatek_filogic_DEVICE_asiarf_ap7986-003 is not set
 # CONFIG_TARGET_mediatek_filogic_DEVICE_smartrg_sdg-8612 is not set
@@ -214,7 +215,8 @@ CONFIG_TARGET_DEVICE_PACKAGES_mediatek_filogic_DEVICE_abt_asr3000-ubootlayout="a
 CONFIG_TARGET_DEVICE_mediatek_filogic_DEVICE_acer_predator-w6=y
 CONFIG_TARGET_DEVICE_PACKAGES_mediatek_filogic_DEVICE_acer_predator-w6="apk-openssl ca-bundle curl dawn e2fsprogs f2fsck gre ip-bridge iptables-mod-dhcpmac iptables-mod-dnetmap jool-tools-netfilter kmod-bonding kmod-crypto-acompress kmod-crypto-cbc kmod-crypto-deflate kmod-crypto-echainiv kmod-inet-diag kmod-ip6-vti kmod-ipsec kmod-ipsec4 kmod-ipsec6 kmod-ipt-compat-xtables kmod-ipt-dhcpmac kmod-ipt-dnetmap kmod-ip-vti kmod-jool-netfilter kmod-l2tp kmod-lib-zlib-deflate kmod-lib-zlib-inflate kmod-mt7916-firmware kmod-mt7986-firmware kmod-nat46 kmod-pppol2tp kmod-usb3 kmod-usb-xhci-hcd kmod-usb-xhci-mtk kmod-xfrm-interface libblkid libcap-ng libcomerr libcurl libe2p libext2fs libf2fs libgcrypt libgpg-error liblz4 liblzo libnghttp2 libnl libnl-cli libnl-core libnl-genl libnl-nf libnl-route libopenssl libopenssl-conf libopenssl-devcrypto libopenssl-legacy libpcre2 libqrencode libss libssh2 libxml2 luci-app-dawn luci-app-openvpn luci-app-usteer luci-i18n-dashboard-zh-cn luci-i18n-openvpn-zh-cn luci-lib-uqr luci-mod-dashboard luci-nginx luci-proto-gre luci-proto-relay luci-proto-vti luci-proto-wireguard luci-proto-xfrm luci-theme-argon mkf2fs mt7986-wo-firmware nginx-mod-luci nginx-mod-ubus nginx-ssl nginx-ssl-util openvpn-openssl ppp-mod-pppol2tp proto-bonding qrencode relayd tc-tiny uwsgi uwsgi-cgi-plugin uwsgi-luci-support uwsgi-syslog-plugin vti wireguard-tools wpad-openssl xfrm xl2tpd"
 # CONFIG_TARGET_DEVICE_mediatek_filogic_DEVICE_acer_predator-w6d is not set
-# CONFIG_TARGET_DEVICE_mediatek_filogic_DEVICE_acer_predator-w6x is not set
+# CONFIG_TARGET_DEVICE_mediatek_filogic_DEVICE_acer_predator-w6x-ubootmod is not set
+# CONFIG_TARGET_DEVICE_mediatek_filogic_DEVICE_acer_predator-w6x-stock is not set
 # CONFIG_TARGET_DEVICE_mediatek_filogic_DEVICE_smartrg_sdg-8612 is not set
 # CONFIG_TARGET_DEVICE_mediatek_filogic_DEVICE_smartrg_sdg-8614 is not set
 # CONFIG_TARGET_DEVICE_mediatek_filogic_DEVICE_smartrg_sdg-8622 is not set
@@ -826,6 +828,7 @@ CONFIG_KERNEL_STACKPROTECTOR=y
 # CONFIG_PKG_FORTIFY_SOURCE_NONE is not set
 CONFIG_PKG_FORTIFY_SOURCE_1=y
 # CONFIG_PKG_FORTIFY_SOURCE_2 is not set
+# CONFIG_PKG_FORTIFY_SOURCE_3 is not set
 # CONFIG_PKG_RELRO_NONE is not set
 # CONFIG_PKG_RELRO_PARTIAL is not set
 CONFIG_PKG_RELRO_FULL=y
@@ -885,7 +888,7 @@ CONFIG_TARGET_INIT_CMD="/sbin/init"
 CONFIG_TARGET_INIT_SUPPRESS_STDERR=y
 CONFIG_VERSIONOPT=y
 CONFIG_VERSION_DIST="X-WRT"
-CONFIG_VERSION_NUMBER="25.04_b202510240128"
+CONFIG_VERSION_NUMBER="25.04_b202511011047"
 CONFIG_VERSION_CODE="Plucky"
 CONFIG_VERSION_REPO="http://downloads.openwrt.org/snapshots"
 CONFIG_VERSION_HOME_URL="https://x-wrt.com/"
@@ -4740,6 +4743,8 @@ CONFIG_GOLANG_BUILD_CACHE_DIR=""
 # Lua
 #
 # CONFIG_PACKAGE_cqueues is not set
+# CONFIG_PACKAGE_cqueues-lua5.3 is not set
+# CONFIG_PACKAGE_cqueues-lua5.4 is not set
 # CONFIG_PACKAGE_dkjson is not set
 # CONFIG_PACKAGE_json4lua is not set
 # CONFIG_PACKAGE_ldbus is not set
@@ -4816,6 +4821,8 @@ CONFIG_HAS_LUAJIT_ARCH=y
 # CONFIG_PACKAGE_luajit2 is not set
 # CONFIG_PACKAGE_lualanes is not set
 # CONFIG_PACKAGE_luaossl is not set
+# CONFIG_PACKAGE_luaossl-lua5.3 is not set
+# CONFIG_PACKAGE_luaossl-lua5.4 is not set
 # CONFIG_PACKAGE_luaposix is not set
 # CONFIG_PACKAGE_luarocks is not set
 # CONFIG_PACKAGE_luasec is not set
@@ -6090,6 +6097,7 @@ CONFIG_PACKAGE_glib2=m
 # CONFIG_PACKAGE_icu-data-tools is not set
 # CONFIG_PACKAGE_icu-full-data is not set
 # CONFIG_PACKAGE_iniparser is not set
+# CONFIG_PACKAGE_ivykis is not set
 CONFIG_PACKAGE_jansson=y
 # CONFIG_PACKAGE_json-glib is not set
 # CONFIG_PACKAGE_jsoncpp is not set
