@@ -25,11 +25,11 @@ return view.extend({
 		var m, s, ss, sss, o;
 
 		m = new form.Map('wireless', [_('Wireless AP')],
-			_('Configure the Wi-Fi Settings'));
+			_('Configure the Wi-Fi Parameters'));
 
 		s = m.section(form.NamedSection, 'wifinet0', 'wifi-iface');
 		s.addremove = false;
-		s.tab('wifiap', _('Wireless AP (Management)'), _('This wireless AP is used to access the management interface.'));
+		s.tab('wifiap', _('Wireless AP (Management)'), _('This Wi-Fi AP is used to access the management interface.'));
 
 		o = s.taboption('wifiap', form.Flag, 'disabled', _('Enable'));
 		o.enabled = '0';

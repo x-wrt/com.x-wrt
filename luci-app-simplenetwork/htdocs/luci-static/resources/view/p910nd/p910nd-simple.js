@@ -68,7 +68,7 @@ return view.extend({
 
 		var m, s, o;
 
-		m = new form.Map('p910nd', [_('USB Print Service (RAW)')]);
+		m = new form.Map('p910nd', [_('USB Printing Service (RAW)')]);
 
 		s = m.section(form.TypedSection, 'p910nd', "USB1");
 		s.addremove = false;

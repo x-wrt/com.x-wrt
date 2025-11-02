@@ -23,7 +23,7 @@ return view.extend({
 		var m, s, o;
 
 		m = new form.Map('network', [_('LAN Port')],
-			_('Configure the lan port network'));
+			_('Configure network parameters for the LAN port'));
 
 		s = m.section(form.NamedSection, 'lan', 'interface');
 		s.addremove = false;

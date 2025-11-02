@@ -37,7 +37,7 @@ msgstr "RAW打印服务"
 msgid "Print Settings"
 msgstr "打印设置"
 
-msgid "USB Print Service (RAW)"
+msgid "USB Printing Service (RAW)"
 msgstr "USB打印服务（RAW）"
 
 msgid "Enable Print Service"
@@ -46,7 +46,7 @@ msgstr "打印服务开关"
 msgid "LAN Port"
 msgstr "有线网口"
 
-msgid "Configure the lan port network"
+msgid "Configure network parameters for the LAN port"
 msgstr "这里设置有线网口的网络参数"
 
 msgid "Wi-Fi AP"
@@ -64,10 +64,10 @@ msgstr "无线AP（管理）"
 msgid "Wireless AP (User)"
 msgstr "无线AP（用户）"
 
-msgid "This wireless AP is used to extend the Ethernet port to connect to the upstream network."
+msgid "This Wi-Fi AP is used to extend the Ethernet port to connect to the upstream network."
 msgstr "这个无线AP用来扩展有线连接的上游网络。"
 
-msgid "This wireless AP is used to access the management interface."
+msgid "This Wi-Fi AP is used to access the management interface."
 msgstr "这个无线AP用来访问管理界面。"
 
 msgid "Configure the Wi-Fi AP"
@@ -154,7 +154,7 @@ msgstr "打印机有线IP"
 msgid "Local Network Settings"
 msgstr "本机网络设置"
 
-msgid "Configure the Wi-Fi Settings"
+msgid "Configure the Wi-Fi Parameters"
 msgstr "设置无线的参数"
 
 msgid "Wi-Fi MAC:"
