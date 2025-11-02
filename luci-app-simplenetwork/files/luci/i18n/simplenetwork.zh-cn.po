@@ -49,7 +49,7 @@ msgstr "有线网口"
 msgid "Configure the lan port network"
 msgstr "这里设置有线网口的网络参数"
 
-msgid "WiFi AP"
+msgid "Wi-Fi AP"
 msgstr "无线AP"
 
 msgid "Wi-Fi Settings"
@@ -70,16 +70,16 @@ msgstr "这个无线AP用来扩展有线连接的上游网络。"
 msgid "This wireless AP is used to access the management interface."
 msgstr "这个无线AP用来访问管理界面。"
 
-msgid "Configure the WiFi AP"
+msgid "Configure the Wi-Fi AP"
 msgstr "这里设置无线AP的参数"
 
-msgid "WiFi STA"
+msgid "Wi-Fi Bridge"
 msgstr "无线中继"
 
 msgid "Wireless STA"
 msgstr "无线中继"
 
-msgid "Configure the WiFi STA"
+msgid "Configure the Wi-Fi Bridge"
 msgstr "这里设置无线中继的参数"
 
 msgid "AP Network"
@@ -88,7 +88,7 @@ msgstr "AP网络参数"
 msgid "STA Network"
 msgstr "STA网络参数"
 
-msgid "SCAN WiFi"
+msgid "SCAN Wi-Fi"
 msgstr "扫描无线"
 
 msgid "System Settings"
@@ -112,10 +112,10 @@ msgstr "打印机信息"
 msgid "USB Info"
 msgstr "USB信息"
 
-msgid "Configure the WiFi AP and STA"
+msgid "Configure the Wi-Fi AP and Wi-Fi STA"
 msgstr "设置无线AP和无线中继参数"
 
-msgid "WiFi Wizard"
+msgid "Wi-Fi Wizard"
 msgstr "无线设置向导"
 
 msgid "Network Connection Settings"

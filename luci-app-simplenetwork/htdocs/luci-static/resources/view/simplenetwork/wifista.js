@@ -131,7 +131,7 @@ return view.extend({
 		var scanRes = {};
 
 		m = new form.Map('wireless', [_('Wireless STA')],
-			_('Configure the WiFi STA'));
+			_('Configure the Wi-Fi Bridge'));
 		m.chain('network');
 
 		s = m.section(form.NamedSection, 'wifinet2', 'wifi-iface');
@@ -214,7 +214,7 @@ return view.extend({
 
 		o = s.option(form.Button, '_scan');
 		o.title = '&#160;';
-		o.inputtitle = _('SCAN WiFi');
+		o.inputtitle = _('SCAN Wi-Fi');
 		o.inputstyle = 'apply';
 		o.onclick = L.bind(this.handleScan, this, m);
 

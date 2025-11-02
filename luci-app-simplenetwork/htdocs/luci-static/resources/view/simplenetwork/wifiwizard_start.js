@@ -274,7 +274,7 @@ return view.extend({
 
 		o = s.taboption('wifista', form.Button, '_scan');
 		o.title = '&#160;';
-		o.inputtitle = _('SCAN WiFi');
+		o.inputtitle = _('SCAN Wi-Fi');
 		o.inputstyle = 'apply';
 		o.onclick = L.bind(this.handleScan, this, m);
 
