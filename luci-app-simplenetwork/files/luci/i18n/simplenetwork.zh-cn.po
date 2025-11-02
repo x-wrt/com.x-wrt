@@ -76,7 +76,7 @@ msgstr "这里设置无线AP的参数"
 msgid "Wi-Fi Bridge"
 msgstr "无线中继"
 
-msgid "Wireless STA"
+msgid "Wi-Fi Bridge"
 msgstr "无线中继"
 
 msgid "Configure the Wi-Fi Bridge"
@@ -121,13 +121,13 @@ msgstr "无线设置向导"
 msgid "Network Connection Settings"
 msgstr "联网设置"
 
-msgid "Configure Network for Print Box"
+msgid "Configure the network connection method for the print box"
 msgstr "设置打印盒子的联网方式"
 
 msgid "Auto Connect"
 msgstr "自动连接"
 
-msgid "Connect To"
+msgid "Connect to"
 msgstr "连接到"
 
 msgid "Management IP"
@@ -165,3 +165,16 @@ msgstr "有线MAC地址："
 
 msgid "System Logs"
 msgstr "系统日志"
+
+msgid "Connected Stations"
+msgstr "已连接站点"
+
+msgid "Rate"
+msgstr "速率"
+
+msgid "Connected Duration"
+msgstr "已连接"
+
+msgid "IPv4 subnet mask"
+msgstr "IPv4 子网掩码"
+

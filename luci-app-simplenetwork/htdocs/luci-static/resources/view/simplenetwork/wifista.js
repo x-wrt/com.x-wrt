@@ -130,7 +130,7 @@ return view.extend({
 		var _this = this;
 		var scanRes = {};
 
-		m = new form.Map('wireless', [_('Wireless STA')],
+		m = new form.Map('wireless', [_('Wi-Fi Bridge')],
 			_('Configure the Wi-Fi Bridge'));
 		m.chain('network');
 
@@ -262,7 +262,7 @@ return view.extend({
 		o.datatype = 'ip4addr';
 		o.rmempty = false;
 
-		o = ss.option(form.Value, 'netmask', _('IPv4 netmask'));
+		o = ss.option(form.Value, 'netmask', _('IPv4 subnet mask'));
 		o.depends('proto', 'static');
 		o.datatype = 'ip4addr';
 		o.value('255.255.255.0');
@@ -283,7 +283,7 @@ return view.extend({
 		o.modalonly = false;
 		o.default = '-';
 
-		o = ss.option(form.DummyValue, '_status_netmask', _('IPv4 netmask'));
+		o = ss.option(form.DummyValue, '_status_netmask', _('IPv4 subnet mask'));
 		o.depends('proto', 'dhcp');
 		o.modalonly = false;
 		o.default = '-';

@@ -144,13 +144,13 @@ return view.extend({
 		}
 
 		m = new form.Map('wireless', [_('Network Connection Settings')],
-			_('Configure Network for Print Box') + "<br />" + _('LAN MAC:') + lan_mac + "<br />" + _('Wi-Fi MAC:') + wifi_mac);
+			_('Configure the network connection method for the print box') + "<br />" + _('LAN MAC:') + lan_mac + "<br />" + _('Wi-Fi MAC:') + wifi_mac);
 		m.chain('network');
 
 		s = m.section(form.NamedSection, 'wifinet0', 'wifi-iface');
 		s.addremove = false;
 		s.tab('wifiap', _('LAN Port Setting') + "(" + _('auto') + ")");
-		s.tab('wifista', _('Wireless STA'));
+		s.tab('wifista', _('Wi-Fi Bridge'));
 
 		o = s.taboption('wifiap', form.ListValue, 'wan_proto', _('Protocol'));
 		o.rmempty = false;
@@ -168,7 +168,7 @@ return view.extend({
 		o.uciconfig = 'network';
 		o.ucisection = 'wan';
 
-		o = s.taboption('wifiap', form.Value, 'wan_netmask', _('IPv4 netmask'));
+		o = s.taboption('wifiap', form.Value, 'wan_netmask', _('IPv4 subnet mask'));
 		o.depends('wan_proto', 'static');
 		o.datatype = 'ip4addr';
 		o.value('255.255.255.0');
@@ -208,7 +208,7 @@ return view.extend({
 			return this.map.save();
 		}
 
-		o = s.taboption('wifista', form.Value, 'wifinet2_ssid', _('Connect To'));
+		o = s.taboption('wifista', form.Value, 'wifinet2_ssid', _('Connect to'));
 		o.datatype = 'maxlength(32)';
 		o.ucisection = 'wifinet2';
 		o.ucioption = 'ssid';
@@ -319,7 +319,7 @@ return view.extend({
 		o.datatype = 'ip4addr';
 		o.rmempty = false;
 
-		o = s.taboption('wifista', form.Value, 'netmask', _('IPv4 netmask'));
+		o = s.taboption('wifista', form.Value, 'netmask', _('IPv4 subnet mask'));
 		o.uciconfig = 'network';
 		o.ucisection = 'wwan';
 		o.depends('proto', 'static');
@@ -348,7 +348,7 @@ return view.extend({
 		o.modalonly = false;
 		o.default = '-';
 
-		o = s.taboption('wifista', form.DummyValue, '_status_netmask', _('IPv4 netmask'));
+		o = s.taboption('wifista', form.DummyValue, '_status_netmask', _('IPv4 subnet mask'));
 		o.uciconfig = 'network';
 		o.ucisection = 'wwan';
 		o.depends('proto', 'dhcp');
