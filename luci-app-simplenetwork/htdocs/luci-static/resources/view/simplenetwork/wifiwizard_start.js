@@ -143,7 +143,7 @@ return view.extend({
 			wifi_mac = parts.join(":");
 		}
 
-		m = new form.Map('wireless', [_('Network Setup Wizard')],
+		m = new form.Map('wireless', [_('Network Connection Settings')],
 			_('Configure Network for Print Box') + "<br />" + _('LAN MAC:') + lan_mac + "<br />" + _('Wi-Fi MAC:') + wifi_mac);
 		m.chain('network');
 

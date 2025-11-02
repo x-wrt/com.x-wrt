@@ -47,6 +47,20 @@ callTimezone = rpc.declare({
 	expect: { '': {} }
 });
 
+function formatTime(epoch) {
+	var date = new Date(epoch * 1000),
+	    zn = uci.get('system', '@system[0]', 'zonename')?.replaceAll(' ', '_') || 'UTC',
+	    ts = uci.get('system', '@system[0]', 'clock_timestyle'),
+	    hc = uci.get('system', '@system[0]', 'clock_hourcycle');
+
+	return new Intl.DateTimeFormat(undefined, {
+		dateStyle: 'medium',
+		timeStyle: (ts == 0) ? 'long' : 'full',
+		hourCycle: hc,
+		timeZone: zn
+	}).format(date);
+}
+
 CBILocalTime = form.DummyValue.extend({
 	renderWidget: function(section_id, option_id, cfgvalue) {
 		return E([], [
@@ -54,7 +68,7 @@ CBILocalTime = form.DummyValue.extend({
 				'id': 'localtime',
 				'type': 'text',
 				'readonly': true,
-				'value': new Date(cfgvalue * 1000).toLocaleString()
+				'value': formatTime(cfgvalue)
 			}),
 			E('br'),
 			E('span', { 'class': 'control-group' }, [
@@ -191,7 +205,7 @@ return view.extend({
 		return m.render().then(function(mapEl) {
 			poll.add(function() {
 				return callGetLocaltime().then(function(t) {
-					mapEl.querySelector('#localtime').value = new Date(t * 1000).toLocaleString();
+					mapEl.querySelector('#localtime').value = formatTime(t);
 				});
 			});
 

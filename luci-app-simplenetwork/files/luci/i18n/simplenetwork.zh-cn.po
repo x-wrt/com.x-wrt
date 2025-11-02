@@ -25,8 +25,8 @@ msgstr "设置路由器的无线名字和密码，更多高级设置请进入 �
 msgid "Lan Settings"
 msgstr "内网设置"
 
-msgid "Ugreen Network@2020-2026 All rights reserved"
-msgstr "绿联网络@2020-2026版权所有"
+msgid "Ugreen Network@2025-2030 All rights reserved"
+msgstr "绿联网络@2025-2030版权所有"
 
 msgid "Network Settings"
 msgstr "网络设置"
@@ -118,7 +118,7 @@ msgstr "设置无线AP和无线中继参数"
 msgid "WiFi Wizard"
 msgstr "无线设置向导"
 
-msgid "Network Setup Wizard"
+msgid "Network Connection Settings"
 msgstr "联网设置"
 
 msgid "Configure Network for Print Box"
