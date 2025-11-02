@@ -228,3 +228,6 @@ msgstr "从这里上传一个 sysupgrade 兼容镜像以更新正在运行的固
 
 msgid "Flash Firmware..."
 msgstr "刷写固件..."
+
+msgid "Reboot the system on your device"
+msgstr "重启您设备上的系统"
