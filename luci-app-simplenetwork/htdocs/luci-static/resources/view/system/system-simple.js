@@ -78,7 +78,7 @@ CBILocalTime = form.DummyValue.extend({
 						return callSetLocaltime(Math.floor(Date.now() / 1000));
 					}),
 					'disabled': (this.readonly != null) ? this.readonly : this.map.readonly
-				}, _('Sync with browser')),
+				}, _('Sync with Browser Time')),
 				' ',
 				this.ntpd_support ? E('button', {
 					'class': 'cbi-button cbi-button-apply',
@@ -86,7 +86,7 @@ CBILocalTime = form.DummyValue.extend({
 						return callInitAction('sysntpd', 'restart');
 					}),
 					'disabled': (this.readonly != null) ? this.readonly : this.map.readonly
-				}, _('Sync with NTP-Server')) : ''
+				}, _('Sync with NTP Server')) : ''
 			])
 		]);
 	},
@@ -111,7 +111,7 @@ return view.extend({
 
 		m = new form.Map('system',
 			_('System'),
-			_('Here you can configure the basic aspects of your device like its hostname or the timezone.'));
+			_('Basic device information (e.g., hostname or time zone) can be configured here.'));
 
 		m.chain('luci');
 
@@ -146,7 +146,7 @@ return view.extend({
 		o.cfgvalue = function() { return localtime };
 		o.ntpd_support = ntpd_enabled;
 
-		o = s.option(form.ListValue, 'zonename', _('Timezone'));
+		o = s.option(form.ListValue, 'zonename', _('Time Zone'));
 		o.value('UTC');
 
 		var zones = Object.keys(timezones || {}).sort();
@@ -194,7 +194,7 @@ return view.extend({
 				        uci.get('system', 'ntp', 'enabled') != 0) ? '1' : '0';
 			};
 
-			o = s.option(form.DynamicList, 'server', _('NTP server candidates'));
+			o = s.option(form.DynamicList, 'server', _('Candidate NTP Servers'));
 			o.datatype = 'host(0)';
 			o.ucisection = 'ntp';
 			o.load = function(section_id) {

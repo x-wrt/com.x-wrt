@@ -133,7 +133,7 @@ msgstr "连接到"
 msgid "Management IP"
 msgstr "管理口 IP 地址"
 
-msgid "Management netmask"
+msgid "Management Subnet Mask"
 msgstr "管理口子网掩码"
 
 msgid "Not connected, Please check your settings"
@@ -177,4 +177,20 @@ msgstr "已连接"
 
 msgid "IPv4 subnet mask"
 msgstr "IPv4 子网掩码"
+
+msgid "Basic device information (e.g., hostname or time zone) can be configured here."
+msgstr "此处配置设备的基础信息，如主机名称或时区。"
+
+msgid "Sync with Browser Time"
+msgstr "同步浏览器时间"
+
+msgid "Sync with NTP Server"
+msgstr "与 NTP 服务器同步"
+
+msgid "Time Zone"
+msgstr "时区"
+
+msgid "Candidate NTP Servers"
+msgstr "候选 NTP 服务器"
+
 
