@@ -18,7 +18,7 @@ return view.extend({
 		var m, s, o;
 
 		m = new form.Map('autoreboot', [_('Scheduled Reboot')],
-			_('Scheduled reboot Setting'));
+			_('Scheduled Reboot Settings'));
 
 		s = m.section(form.TypedSection, 'main');
 		s.addremove = false;
@@ -28,7 +28,7 @@ return view.extend({
 		o.rmempty = false;
 		o.default = 0;
 
-		o = s.option(form.ListValue, "week", _("Week Day"));
+		o = s.option(form.ListValue, "week", _("Day of Week"));
 		o.value(7, _("Everyday"));
 		o.value(1, _("Monday"));
 		o.value(2, _("Tuesday"));

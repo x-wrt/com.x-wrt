@@ -4,10 +4,10 @@ msgstr "Content-Type: text/plain; charset=UTF-8\n"
 msgid "Scheduled Reboot"
 msgstr "定时重启"
 
-msgid "Scheduled reboot Setting"
+msgid "Scheduled Reboot Settings"
 msgstr "定时重启设置"
 
-msgid "Week Day"
+msgid "Day of Week"
 msgstr "星期"
 
 msgid "Everyday"
