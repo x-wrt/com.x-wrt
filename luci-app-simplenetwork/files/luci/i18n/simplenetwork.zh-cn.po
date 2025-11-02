@@ -34,7 +34,7 @@ msgstr "网络设置"
 msgid "RAW Printer server"
 msgstr "RAW打印服务"
 
-msgid "Printer Settings"
+msgid "Print Settings"
 msgstr "打印设置"
 
 msgid "USB Print Service (RAW)"

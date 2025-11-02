@@ -1,6 +1,6 @@
 {
 	"admin/raw-printer": {
-		"title": "Printer Settings",
+		"title": "Print Settings",
 		"order": 60,
 		"action": {
 			"type": "view",
