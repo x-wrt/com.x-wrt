@@ -193,4 +193,8 @@ msgstr "时区"
 msgid "Candidate NTP Servers"
 msgstr "候选 NTP 服务器"
 
+msgid "Change the administrator password to access the device"
+msgstr "更改访问设备的管理员密码"
 
+msgid "Confirm Password"
+msgstr "确认密码"
