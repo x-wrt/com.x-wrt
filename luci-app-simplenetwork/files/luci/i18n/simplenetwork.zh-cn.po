@@ -198,3 +198,33 @@ msgstr "更改访问设备的管理员密码"
 
 msgid "Confirm Password"
 msgstr "确认密码"
+
+msgid "Click \"Generate Backup\" to download a tar archive of the current configuration file."
+msgstr "点击“生成备份”下载当前配置文件的 tar 存档。"
+
+msgid "Generate Backup"
+msgstr "生成备份"
+
+msgid "Upload a backup archive to restore configurations. To reset the firmware to its initial state, click \"Perform reset\" (only valid for firmware in squashfs format)."
+msgstr "上传备份存档以恢复配置。要将固件恢复到初始状态，请单击“执行重置”（仅 squashfs 格式的固件有效）。"
+
+msgid "Restore to Factory Settings"
+msgstr "恢复到出厂设置"
+
+msgid "Restore Configuration"
+msgstr "恢复配置"
+
+msgid "Upload Backup..."
+msgstr "上传备份..."
+
+msgid "Custom files (certificates, scripts) will be retained on the system. To remove them, perform a factory reset first."
+msgstr "自定义文件（证书、脚本）会保留在系统上。若无需保留，请先执行恢复出厂设置。"
+
+msgid "Flash New Firmware"
+msgstr "刷写新的固件"
+
+msgid "Upload a sysupgrade-compatible image here to update the running firmware."
+msgstr "从这里上传一个 sysupgrade 兼容镜像以更新正在运行的固件。"
+
+msgid "Flash Firmware..."
+msgstr "刷写固件..."

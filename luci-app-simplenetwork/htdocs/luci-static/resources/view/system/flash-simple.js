@@ -360,33 +360,33 @@ return view.extend({
 		s = m.section(form.NamedSection, 'actions', _('Actions'));
 
 
-		o = s.option(form.SectionValue, 'actions', form.NamedSection, 'actions', 'actions', _('Backup'), _('Click "Generate archive" to download a tar archive of the current configuration files.'));
+		o = s.option(form.SectionValue, 'actions', form.NamedSection, 'actions', 'actions', _('Backup'), _('Click "Generate Backup" to download a tar archive of the current configuration file.'));
 		ss = o.subsection;
 
 		o = ss.option(form.Button, 'dl_backup', _('Download backup'));
 		o.inputstyle = 'action important';
-		o.inputtitle = _('Generate archive');
+		o.inputtitle = _('Generate Backup');
 		o.onclick = this.handleBackup;
 
 
-		o = s.option(form.SectionValue, 'actions', form.NamedSection, 'actions', 'actions', _('Restore'), _('To restore configuration files, you can upload a previously generated backup archive here. To reset the firmware to its initial state, click "Perform reset" (only possible with squashfs images).'));
+		o = s.option(form.SectionValue, 'actions', form.NamedSection, 'actions', 'actions', _('Restore'), _('Upload a backup archive to restore configurations. To reset the firmware to its initial state, click "Perform reset" (only valid for firmware in squashfs format).'));
 		ss = o.subsection;
 
 		if (has_rootfs_data) {
-			o = ss.option(form.Button, 'reset', _('Reset to defaults'));
+			o = ss.option(form.Button, 'reset', _('Restore to Factory Settings'));
 			o.inputstyle = 'negative important';
 			o.inputtitle = _('Perform reset');
 			o.onclick = this.handleFirstboot;
 		}
 
-		o = ss.option(form.Button, 'restore', _('Restore backup'), _('Custom files (certificates, scripts) may remain on the system. To prevent this, perform a factory-reset first.'));
+		o = ss.option(form.Button, 'restore', _('Restore Configuration'), _('Custom files (certificates, scripts) will be retained on the system. To remove them, perform a factory reset first.'));
 		o.inputstyle = 'action important';
-		o.inputtitle = _('Upload archive...');
+		o.inputtitle = _('Upload Backup...');
 		o.onclick = L.bind(this.handleRestore, this);
 
-		o = s.option(form.SectionValue, 'actions', form.NamedSection, 'actions', 'actions', _('Flash new firmware image'),
+		o = s.option(form.SectionValue, 'actions', form.NamedSection, 'actions', 'actions', _('Flash New Firmware'),
 			has_sysupgrade
-				? _('Upload a sysupgrade-compatible image here to replace the running firmware.')
+				? _('Upload a sysupgrade-compatible image here to update the running firmware.')
 				: _('Sorry, there is no sysupgrade support present; a new firmware image must be flashed manually. Please refer to the wiki for device specific install instructions.'));
 
 		ss = o.subsection;
@@ -394,7 +394,7 @@ return view.extend({
 		if (has_sysupgrade) {
 			o = ss.option(form.Button, 'sysupgrade', _('Image'));
 			o.inputstyle = 'action important';
-			o.inputtitle = _('Flash image...');
+			o.inputtitle = _('Flash Firmware...');
 			o.onclick = L.bind(this.handleSysupgrade, this, storage_size);
 		}
 
