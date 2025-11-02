@@ -162,3 +162,6 @@ msgstr "无线MAC地址："
 
 msgid "LAN MAC:"
 msgstr "有线MAC地址："
+
+msgid "System Logs"
+msgstr "系统日志"

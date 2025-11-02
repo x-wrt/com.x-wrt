@@ -36,7 +36,7 @@
 	},
 
 	"admin/syslog": {
-		"title": "System Log",
+		"title": "System Logs",
 		"order": 201,
 		"action": {
 			"type": "view",
