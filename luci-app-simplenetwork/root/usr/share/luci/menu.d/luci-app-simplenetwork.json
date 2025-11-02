@@ -13,7 +13,7 @@
 	},
 
 	"admin/networksetup": {
-		"title": "LAN Network Settings",
+		"title": "Local Network Settings",
 		"order": 70,
 		"action": {
 			"type": "view",
