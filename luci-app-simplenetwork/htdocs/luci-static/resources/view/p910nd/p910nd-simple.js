@@ -74,7 +74,7 @@ return view.extend({
 		s.addremove = false;
 		s.anonymous = true
 
-		o = s.option(form.Flag, 'enabled', _('Enable Print Service'));
+		o = s.option(form.Flag, 'enabled', _('Enable Printing Service'));
 
 		o = s.option(form.ListValue, 'port', _('Port'));
 		o.rmempty = true;

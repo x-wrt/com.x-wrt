@@ -40,7 +40,7 @@ msgstr "打印设置"
 msgid "USB Printing Service (RAW)"
 msgstr "USB打印服务（RAW）"
 
-msgid "Enable Print Service"
+msgid "Enable Printing Service"
 msgstr "打印服务开关"
 
 msgid "LAN Port"
@@ -55,13 +55,13 @@ msgstr "无线AP"
 msgid "Wi-Fi Settings"
 msgstr "无线设置"
 
-msgid "Wireless AP"
+msgid "Wi-Fi AP"
 msgstr "无线AP"
 
-msgid "Wireless AP (Management)"
+msgid "Wi-Fi AP (Management)"
 msgstr "无线AP（管理）"
 
-msgid "Wireless AP (User)"
+msgid "Wi-Fi AP (User)"
 msgstr "无线AP（用户）"
 
 msgid "This Wi-Fi AP is used to extend the Ethernet port to connect to the upstream network."
