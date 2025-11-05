@@ -676,6 +676,7 @@ for t in $targets; do
 		TARGET_DEVICE_mediatek_filogic_DEVICE_bananapi_bpi-r3|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_bananapi_bpi-r3-mini|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_bananapi_bpi-r4|\
+		TARGET_DEVICE_mediatek_filogic_DEVICE_bananapi_bpi-r4-lite|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_yuncore_ax820|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_h3c_tx1806|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_planex_vr500|\
@@ -1258,6 +1259,7 @@ for t in $targets; do
 		TARGET_DEVICE_mediatek_filogic_DEVICE_bananapi_bpi-r3|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_bananapi_bpi-r3-mini|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_bananapi_bpi-r4|\
+		TARGET_DEVICE_mediatek_filogic_DEVICE_bananapi_bpi-r4-lite|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_zbtlink_zbt-wg1608-16m|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_zbtlink_zbt-wg1608-32m|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_mikrotik_routerboard-750gr3|\
@@ -1891,6 +1893,7 @@ rt73-usb-firmware"
 		TARGET_DEVICE_qualcommax_ipq807x_DEVICE_arcadyan_aw1000|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_bananapi_bpi-r3|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_bananapi_bpi-r4|\
+		TARGET_DEVICE_mediatek_filogic_DEVICE_bananapi_bpi-r4-lite|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_cmcc_rax3000m|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_cmcc_rax3000m-emmc-ubootlayout|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_cmcc_rax3000m-nand-ubootlayout|\
@@ -1911,6 +1914,7 @@ rt73-usb-firmware"
 	case $t in
 		TARGET_DEVICE_mediatek_filogic_DEVICE_bananapi_bpi-r3|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_bananapi_bpi-r4|\
+		TARGET_DEVICE_mediatek_filogic_DEVICE_bananapi_bpi-r4-lite|\
 		TARGET_DEVICE_bcm27xx_bcm2710_DEVICE_rpi-3|\
 		TARGET_DEVICE_bcm27xx_bcm2711_DEVICE_rpi-4|\
 		TARGET_DEVICE_bcm27xx_bcm2712_DEVICE_rpi-5)
@@ -1936,6 +1940,7 @@ rt73-usb-firmware"
 		TARGET_DEVICE_qualcommax_ipq807x_DEVICE_arcadyan_aw1000|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_bananapi_bpi-r3|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_bananapi_bpi-r4|\
+		TARGET_DEVICE_mediatek_filogic_DEVICE_bananapi_bpi-r4-lite|\
 		TARGET_DEVICE_bcm27xx_bcm2709_DEVICE_rpi-2|\
 		TARGET_DEVICE_bcm27xx_bcm2710_DEVICE_rpi-3|\
 		TARGET_DEVICE_bcm27xx_bcm2711_DEVICE_rpi-4|\
