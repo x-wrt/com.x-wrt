@@ -236,7 +236,7 @@ mwan3_init()
 
 	# mwan3's MARKing mask (at least 3 bits should be set)
 	if [ -e "${MWAN3_STATUS_DIR}/mmx_mask" ]; then
-		MMX_MASK=$(cat "${MWAN3_STATUS_DIR}/mmx_mask")
+		readfile MMX_MASK "${MWAN3_STATUS_DIR}/mmx_mask"
 		MWAN3_INTERFACE_MAX=$(uci_get_state mwan3 globals iface_max)
 	else
 		config_load mwan3
@@ -1368,7 +1368,7 @@ mwan3_report_iface_status()
 	if [ "$result" = "offline" ]; then
 		:
 	elif [ $error -eq 0 ]; then
-		online=$(get_online_time "$1" "$family")
+		get_online_time online "$1" "$family"
 		network_get_uptime uptime "$1"
 		online="$(printf '%02dh:%02dm:%02ds\n' $((online/3600)) $((online%3600/60)) $((online%60)))"
 		uptime="$(printf '%02dh:%02dm:%02ds\n' $((uptime/3600)) $((uptime%3600/60)) $((uptime%60)))"
@@ -1489,7 +1489,7 @@ mwan3_delay_hotplug_call()
 	now_time=$(date +%s)
 	if test "$((now_time-last_time))" -gt 9; then
 		mv $MWAN3_STATUS_DIR/iface_hotplug.cmd $MWAN3_STATUS_DIR/iface_hotplug.cmd.tmp && {
-			NR=$(cat $MWAN3_STATUS_DIR/iface_hotplug.cmd.tmp | wc -l)
+			NR=$(wc -l $MWAN3_STATUS_DIR/iface_hotplug.cmd.tmp)
 			if test $NR -ge 8; then
 				rm -f $MWAN3_STATUS_DIR/iface_hotplug.cmd*
 				/etc/init.d/mwan3 restart

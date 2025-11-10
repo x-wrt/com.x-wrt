@@ -67,7 +67,9 @@ validate_track_method() {
 }
 
 disconnected() {
-	local status="$(cat ${MWAN3TRACK_STATUS_DIR}/${INTERFACE}.$FAMILY/STATUS)"
+	local status
+
+	readfile status "${MWAN3TRACK_STATUS_DIR}/${INTERFACE}.$FAMILY/STATUS" || status="notracking"
 
 	echo "offline" > $MWAN3TRACK_STATUS_DIR/$INTERFACE.$FAMILY/STATUS
 	get_uptime > $MWAN3TRACK_STATUS_DIR/$INTERFACE.$FAMILY/OFFLINE

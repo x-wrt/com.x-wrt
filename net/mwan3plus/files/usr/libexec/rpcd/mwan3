@@ -77,20 +77,16 @@ get_mwan3_status() {
 			running="1"
 		fi
 
-		age=$(get_age "$iface" "$family")
-		online=$(get_online_time "$iface" "$family")
-		offline=$(get_offline_time "$iface" "$family")
+		get_age age "$iface" "$family"
+		get_online_time online "$iface" "$family"
+		get_offline_time offline "$iface" "$family"
 
 		config_get enabled "$iface" enabled 0
 
 		if [ -d "${MWAN3_STATUS_DIR}" ]; then
 			network_get_uptime uptime "$iface"
-			network_is_up "$iface" && up="1"
-			if [ -f "$MWAN3TRACK_STATUS_DIR/${iface}.$family/STATUS" ]; then
-				status="$(cat "$MWAN3TRACK_STATUS_DIR/${iface}.$family/STATUS")"
-			else
-				status="notracking"
-			fi
+			[ -n "$uptime" ] && up=1 || up=0
+			readfile status "$MWAN3TRACK_STATUS_DIR/${iface}.$family/STATUS" || status="notracking"
 		else
 			uptime=0
 			up=0
@@ -101,9 +97,12 @@ get_mwan3_status() {
 		json_add_int online "${online}"
 		json_add_int offline "${offline}"
 		json_add_int uptime "${uptime}"
-		json_add_int "score" "$(cat "$MWAN3TRACK_STATUS_DIR/${iface}.$family/SCORE")"
-		json_add_int "lost" "$(cat "$MWAN3TRACK_STATUS_DIR/${iface}.$family/LOST")"
-		json_add_int "turn" "$(cat "$MWAN3TRACK_STATUS_DIR/${iface}.$family/TURN")"
+		readfile score "$MWAN3TRACK_STATUS_DIR/${iface}.$family/SCORE"
+		readfile lost "$MWAN3TRACK_STATUS_DIR/${iface}.$family/LOST"
+		readfile turn "$MWAN3TRACK_STATUS_DIR/${iface}.$family/TURN"
+		json_add_int "score" "$score"
+		json_add_int "lost" "$lost"
+		json_add_int "turn" "$turn"
 		json_add_string "status" "${status}"
 		json_add_boolean "enabled" "${enabled}"
 		json_add_boolean "running" "${running}"
@@ -113,9 +112,12 @@ get_mwan3_status() {
 			track="${file#*/TRACK_}"
 			json_add_object
 			json_add_string ip "${track}"
-			json_add_string status "$(cat "${file}")"
-			json_add_int latency "$(cat "$MWAN3TRACK_STATUS_DIR/${iface}.$family/LATENCY_${track}" 2>/dev/null)"
-			json_add_int packetloss "$(cat "$MWAN3TRACK_STATUS_DIR/${iface}.$family/LOSS_${track}" 2>/dev/null)"
+			readfile track_status "${file}"
+			readfile latency "$MWAN3TRACK_STATUS_DIR/${iface}.$family/LATENCY_${track}"
+			readfile packetloss "$MWAN3TRACK_STATUS_DIR/${iface}.$family/LOSS_${track}"
+			json_add_string status "${track_status}"
+			json_add_int latency "$latency"
+			json_add_int packetloss "$packetloss"
 			json_close_object
 		done
 		json_close_array

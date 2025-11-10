@@ -107,7 +107,7 @@ for family in $FAMILY; do
 trackpid=$(pgrep -f "mwan3track $family $INTERFACE ")
 
 if [ "$initial_state" = "offline" ]; then
-	status=$(cat $MWAN3TRACK_STATUS_DIR/$INTERFACE.$family/STATUS 2>/dev/null || echo unknown)
+	readfile status $MWAN3TRACK_STATUS_DIR/$INTERFACE.$family/STATUS 2>/dev/null || status=unknown
 else
 	status=online
 fi
