@@ -72,7 +72,7 @@ mwan3_ipv6_masq_help()
 	[ "$family" = "ipv6" ] || [ "$family" = "any" ] || return
 
 	ip6tables -t nat -S POSTROUTING 2>/dev/null | grep "masq-help-${INTERFACE}-dev" | sed 's/^-A //' | while read line; do
-		`echo ip6tables -t nat -D $line | sed 's/"//g'`
+		$(echo ip6tables -t nat -D $line | sed 's/"//g')
 		$IPS destroy mwan3_${INTERFACE}_ipv6_src_from &>/dev/null
 	done
 
@@ -98,7 +98,7 @@ mwan3_ipv6_masq_help()
 mwan3_ipv6_masq_cleanup()
 {
 	ip6tables -t nat -S POSTROUTING 2>/dev/null | grep masq-help-.*-dev | sed 's/^-A //' | while read line; do
-		`echo ip6tables -t nat -D $line | sed 's/"//g'`
+		$(echo ip6tables -t nat -D $line | sed 's/"//g')
 	done
 	$IPS list -n | grep "mwan3_.*_ipv6_src_from" | while read line; do
 		$IPS destroy $line &>/dev/null
