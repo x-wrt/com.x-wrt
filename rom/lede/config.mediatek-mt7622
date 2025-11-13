@@ -524,7 +524,7 @@ CONFIG_TARGET_INIT_CMD="/sbin/init"
 CONFIG_TARGET_INIT_SUPPRESS_STDERR=y
 CONFIG_VERSIONOPT=y
 CONFIG_VERSION_DIST="X-WRT"
-CONFIG_VERSION_NUMBER="25.04_b202511100634"
+CONFIG_VERSION_NUMBER="25.04_b202511132244"
 CONFIG_VERSION_CODE="Plucky"
 CONFIG_VERSION_REPO="http://downloads.openwrt.org/snapshots"
 CONFIG_VERSION_HOME_URL="https://x-wrt.com/"
@@ -3087,6 +3087,7 @@ CONFIG_PACKAGE_mt7622bt-firmware=m
 # CONFIG_PACKAGE_mt7925bt-firmware is not set
 # CONFIG_PACKAGE_mt7981-wo-firmware is not set
 # CONFIG_PACKAGE_mt7986-wo-firmware is not set
+# CONFIG_PACKAGE_mt7987-2p5g-phy-firmware is not set
 # CONFIG_PACKAGE_mt7988-2p5g-phy-firmware is not set
 # CONFIG_PACKAGE_mt7988-wo-firmware is not set
 # CONFIG_PACKAGE_murata-firmware-43430-sdio is not set
@@ -6180,7 +6181,6 @@ CONFIG_PACKAGE_luci-app-mwan3=y
 # CONFIG_PACKAGE_luci-app-olsr is not set
 # CONFIG_PACKAGE_luci-app-olsr-services is not set
 # CONFIG_PACKAGE_luci-app-olsr-viz is not set
-# CONFIG_PACKAGE_luci-app-olsrd2 is not set
 # CONFIG_PACKAGE_luci-app-omcproxy is not set
 # CONFIG_PACKAGE_luci-app-openclash is not set
 CONFIG_PACKAGE_luci-app-openlist=m
@@ -7318,15 +7318,6 @@ CONFIG_PACKAGE_wsdd2=m
 # end of NTRIP
 
 #
-# OLSR.org network framework
-#
-# CONFIG_PACKAGE_oonf-dlep-proxy is not set
-# CONFIG_PACKAGE_oonf-dlep-radio is not set
-# CONFIG_PACKAGE_oonf-init-scripts is not set
-# CONFIG_PACKAGE_oonf-olsrd2 is not set
-# end of OLSR.org network framework
-
-#
 # Open vSwitch
 #
 # CONFIG_PACKAGE_openvswitch is not set
@@ -7964,7 +7955,6 @@ CONFIG_PACKAGE_chat=m
 # CONFIG_PACKAGE_conserver-ipmi is not set
 # CONFIG_PACKAGE_crowdsec is not set
 # CONFIG_PACKAGE_crowdsec-firewall-bouncer is not set
-# CONFIG_PACKAGE_cshark is not set
 # CONFIG_PACKAGE_darkstat is not set
 # CONFIG_PACKAGE_dhcpcd is not set
 # CONFIG_PACKAGE_dmapd is not set
@@ -8056,7 +8046,6 @@ CONFIG_PACKAGE_libipset=y
 # CONFIG_PACKAGE_mini_snmpd is not set
 # CONFIG_PACKAGE_mini_snmpd-16 is not set
 # CONFIG_PACKAGE_mini_snmpd-52 is not set
-# CONFIG_PACKAGE_minimalist-pcproxy is not set
 # CONFIG_PACKAGE_modemband is not set
 CONFIG_PACKAGE_modemmanager=m
 
@@ -8107,13 +8096,6 @@ CONFIG_PACKAGE_odhcp6c=y
 CONFIG_PACKAGE_odhcp6c_ext_cer_id=0
 # CONFIG_PACKAGE_odhcpd is not set
 CONFIG_PACKAGE_odhcpd-ipv6only=y
-
-#
-# Configuration
-#
-CONFIG_PACKAGE_odhcpd_ipv6only_ext_cer_id=0
-# end of Configuration
-
 # CONFIG_PACKAGE_ola is not set
 # CONFIG_PACKAGE_omcproxy is not set
 # CONFIG_PACKAGE_oor is not set
