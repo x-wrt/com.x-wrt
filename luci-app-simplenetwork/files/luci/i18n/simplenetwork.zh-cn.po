@@ -231,3 +231,6 @@ msgstr "刷写固件..."
 
 msgid "Reboot the system on your device"
 msgstr "重启您设备上的系统"
+
+msgid "Channel Bandwidth"
+msgstr "信道频宽"

@@ -71,6 +71,20 @@ return view.extend({
 		o.value('12');
 		o.value('13');
 
+		o = s.taboption('wifiap', form.ListValue, 'radio0_htmode', _('Channel Bandwidth'));
+		o.ucisection = 'radio0';
+		o.ucioption = 'htmode';
+		o.value('HT20', '20MHz');
+		o.value('HT40', '40MHz');
+		o.onchange = function(ev, section_id, value) {
+			if (value == 'HT20') {
+				uci.set('wireless', 'radio0', 'noscan', 0);
+			} else {
+				uci.set('wireless', 'radio0', 'noscan', 1);
+			}
+			return true;
+		};
+
 		return m.render();
 	}
 });
