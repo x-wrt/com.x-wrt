@@ -409,6 +409,7 @@ for t in $targets; do
 	excludes="$excludes_basic"
 	case $t in
 		#>=32M flash
+		TARGET_DEVICE_mediatek_filogic_DEVICE_glinet_gl-mt3600be|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_tplink_be450|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_bananapi_bpi-r4-lite|\
 		TARGET_DEVICE_qualcommax_ipq50xx_DEVICE_yuncore_ax830|\
@@ -550,6 +551,7 @@ for t in $targets; do
 	esac
 	case $t in
 		#>=14M flash
+		TARGET_DEVICE_mediatek_filogic_DEVICE_glinet_gl-mt3600be|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_tplink_be450|\
 		TARGET_DEVICE_qualcommax_ipq50xx_DEVICE_yuncore_ax830|\
 		TARGET_DEVICE_qualcommax_ipq807x_DEVICE_aliyun_ap8220|\
@@ -1204,6 +1206,7 @@ for t in $targets; do
 	#check usb
 	case $t in
 		#with usb3
+		TARGET_DEVICE_mediatek_filogic_DEVICE_glinet_gl-mt3600be|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_tplink_be450|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_openfi_5pro|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_openfi_6c|\
