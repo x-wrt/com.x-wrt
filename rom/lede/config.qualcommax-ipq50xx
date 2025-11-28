@@ -75,16 +75,16 @@ CONFIG_TARGET_PER_DEVICE_ROOTFS=y
 # CONFIG_TARGET_DEVICE_qualcommax_ipq50xx_DEVICE_cmcc_pz-l8 is not set
 # CONFIG_TARGET_DEVICE_qualcommax_ipq50xx_DEVICE_elecom_wrc-x3000gs2 is not set
 CONFIG_TARGET_DEVICE_qualcommax_ipq50xx_DEVICE_glinet_gl-b3000=y
-CONFIG_TARGET_DEVICE_PACKAGES_qualcommax_ipq50xx_DEVICE_glinet_gl-b3000="apk-openssl ath11k-firmware-ipq5018 ath11k-firmware-qcn6122 dawn dumpimage ethtool ip-bridge ipq-wifi-glinet_gl-b3000 iptables-mod-dhcpmac iptables-mod-dnetmap jool-tools-netfilter kmod-bonding kmod-crypto-md5 kmod-inet-diag kmod-ipt-compat-xtables kmod-ipt-dhcpmac kmod-ipt-dnetmap kmod-jool-netfilter kmod-nat46 libcap-ng libgcrypt libgpg-error liblz4 liblzo libnl libnl-cli libnl-core libnl-genl libnl-nf libnl-route libopenssl libopenssl-conf libopenssl-legacy libpcre2 libqrencode libstdcpp libxml2 luci-app-dawn luci-app-openvpn luci-app-usteer luci-i18n-dashboard-zh-cn luci-i18n-openvpn-zh-cn luci-lib-uqr luci-mod-dashboard luci-nginx luci-proto-relay luci-proto-wireguard nginx-mod-luci nginx-mod-ubus nginx-ssl nginx-ssl-util openvpn-openssl proto-bonding qrencode relayd tc-tiny uwsgi uwsgi-cgi-plugin uwsgi-luci-support uwsgi-syslog-plugin wireguard-tools wpad-openssl"
+CONFIG_TARGET_DEVICE_PACKAGES_qualcommax_ipq50xx_DEVICE_glinet_gl-b3000="apk-openssl ath11k-firmware-ipq5018-qcn6122 dawn dumpimage ethtool ip-bridge ipq-wifi-glinet_gl-b3000 iptables-mod-dhcpmac iptables-mod-dnetmap jool-tools-netfilter kmod-bonding kmod-crypto-md5 kmod-inet-diag kmod-ipt-compat-xtables kmod-ipt-dhcpmac kmod-ipt-dnetmap kmod-jool-netfilter kmod-nat46 libcap-ng libgcrypt libgpg-error liblz4 liblzo libnl libnl-cli libnl-core libnl-genl libnl-nf libnl-route libopenssl libopenssl-conf libopenssl-legacy libpcre2 libqrencode libstdcpp libxml2 luci-app-dawn luci-app-openvpn luci-app-usteer luci-i18n-dashboard-zh-cn luci-i18n-openvpn-zh-cn luci-mod-dashboard luci-nginx luci-proto-relay luci-proto-wireguard nginx-mod-luci nginx-mod-ubus nginx-ssl nginx-ssl-util openvpn-openssl proto-bonding qrencode relayd tc-tiny uwsgi uwsgi-cgi-plugin uwsgi-luci-support uwsgi-syslog-plugin wireguard-tools wpad-openssl"
 # CONFIG_TARGET_DEVICE_qualcommax_ipq50xx_DEVICE_iodata_wn-dax3000gr is not set
 # CONFIG_TARGET_DEVICE_qualcommax_ipq50xx_DEVICE_linksys_mr5500 is not set
 # CONFIG_TARGET_DEVICE_qualcommax_ipq50xx_DEVICE_linksys_mx2000 is not set
 # CONFIG_TARGET_DEVICE_qualcommax_ipq50xx_DEVICE_linksys_mx5500 is not set
 # CONFIG_TARGET_DEVICE_qualcommax_ipq50xx_DEVICE_linksys_spnmx56 is not set
 CONFIG_TARGET_DEVICE_qualcommax_ipq50xx_DEVICE_xiaomi_ax6000=y
-CONFIG_TARGET_DEVICE_PACKAGES_qualcommax_ipq50xx_DEVICE_xiaomi_ax6000="apk-openssl ath10k-board-qca9887 ath10k-firmware-qca9887-ct ath11k-firmware-ipq5018 ath11k-firmware-qcn9074 ca-bundle curl dawn ethtool gre ip-bridge ipq-wifi-xiaomi_ax6000 iptables-mod-dhcpmac iptables-mod-dnetmap jool-tools-netfilter kmod-ath10k-ct-smallbuffers kmod-ath11k-pci kmod-bonding kmod-crypto-acompress kmod-crypto-cbc kmod-crypto-deflate kmod-crypto-des kmod-crypto-echainiv kmod-crypto-md5 kmod-inet-diag kmod-ip6-vti kmod-ipsec kmod-ipsec4 kmod-ipsec6 kmod-ipt-compat-xtables kmod-ipt-dhcpmac kmod-ipt-dnetmap kmod-ip-vti kmod-jool-netfilter kmod-l2tp kmod-lib-zlib-deflate kmod-lib-zlib-inflate kmod-mhi-bus kmod-nat46 kmod-pppol2tp kmod-qrtr-mhi kmod-xfrm-interface libcap-ng libcurl libgcrypt libgpg-error liblz4 liblzo libnghttp2 libnl libnl-cli libnl-core libnl-genl libnl-nf libnl-route libopenssl libopenssl-conf libopenssl-legacy libpcre2 libqrencode libssh2 libstdcpp libxml2 luci-app-dawn luci-app-openvpn luci-app-usteer luci-i18n-dashboard-zh-cn luci-i18n-openvpn-zh-cn luci-lib-uqr luci-mod-dashboard luci-nginx luci-proto-gre luci-proto-relay luci-proto-vti luci-proto-wireguard luci-proto-xfrm luci-theme-argon nginx-mod-luci nginx-mod-ubus nginx-ssl nginx-ssl-util openvpn-openssl ppp-mod-pppol2tp proto-bonding qrencode relayd tc-tiny uwsgi uwsgi-cgi-plugin uwsgi-luci-support uwsgi-syslog-plugin vti wireguard-tools wpad-openssl xfrm xl2tpd"
+CONFIG_TARGET_DEVICE_PACKAGES_qualcommax_ipq50xx_DEVICE_xiaomi_ax6000="apk-openssl ath10k-board-qca9887 ath10k-firmware-qca9887-ct ath11k-firmware-ipq5018 ath11k-firmware-qcn9074 ca-bundle curl dawn ethtool gre ip-bridge ipq-wifi-xiaomi_ax6000 iptables-mod-dhcpmac iptables-mod-dnetmap jool-tools-netfilter kmod-ath10k-ct-smallbuffers kmod-ath11k-pci kmod-bonding kmod-crypto-acompress kmod-crypto-cbc kmod-crypto-deflate kmod-crypto-des kmod-crypto-echainiv kmod-crypto-md5 kmod-inet-diag kmod-ip6-vti kmod-ipsec kmod-ipsec4 kmod-ipsec6 kmod-ipt-compat-xtables kmod-ipt-dhcpmac kmod-ipt-dnetmap kmod-ip-vti kmod-jool-netfilter kmod-l2tp kmod-lib-zlib-deflate kmod-lib-zlib-inflate kmod-mhi-bus kmod-nat46 kmod-pppol2tp kmod-qrtr-mhi kmod-xfrm-interface libcap-ng libcurl libgcrypt libgpg-error liblz4 liblzo libnghttp2 libnl libnl-cli libnl-core libnl-genl libnl-nf libnl-route libopenssl libopenssl-conf libopenssl-legacy libpcre2 libqrencode libssh2 libstdcpp libxml2 luci-app-dawn luci-app-openvpn luci-app-usteer luci-i18n-dashboard-zh-cn luci-i18n-openvpn-zh-cn luci-mod-dashboard luci-nginx luci-proto-gre luci-proto-relay luci-proto-vti luci-proto-wireguard luci-proto-xfrm luci-theme-argon nginx-mod-luci nginx-mod-ubus nginx-ssl nginx-ssl-util openvpn-openssl ppp-mod-pppol2tp proto-bonding qrencode relayd tc-tiny uwsgi uwsgi-cgi-plugin uwsgi-luci-support uwsgi-syslog-plugin vti wireguard-tools wpad-openssl xfrm xl2tpd"
 CONFIG_TARGET_DEVICE_qualcommax_ipq50xx_DEVICE_yuncore_ax830=y
-CONFIG_TARGET_DEVICE_PACKAGES_qualcommax_ipq50xx_DEVICE_yuncore_ax830="apk-openssl ath11k-firmware-ipq5018 ath11k-firmware-qcn6122 ca-bundle curl dawn ethtool gre ip-bridge ipq-wifi-yuncore_ax830 iptables-mod-dhcpmac iptables-mod-dnetmap jool-tools-netfilter kmod-bonding kmod-crypto-acompress kmod-crypto-cbc kmod-crypto-deflate kmod-crypto-des kmod-crypto-echainiv kmod-crypto-md5 kmod-inet-diag kmod-ip6-vti kmod-ipsec kmod-ipsec4 kmod-ipsec6 kmod-ipt-compat-xtables kmod-ipt-dhcpmac kmod-ipt-dnetmap kmod-ip-vti kmod-jool-netfilter kmod-l2tp kmod-lib-zlib-deflate kmod-lib-zlib-inflate kmod-nat46 kmod-pppol2tp kmod-xfrm-interface libcap-ng libcurl libgcrypt libgpg-error liblz4 liblzo libnghttp2 libnl libnl-cli libnl-core libnl-genl libnl-nf libnl-route libopenssl libopenssl-conf libopenssl-legacy libpcre2 libqrencode libssh2 libstdcpp libxml2 luci-app-dawn luci-app-openvpn luci-app-usteer luci-i18n-dashboard-zh-cn luci-i18n-openvpn-zh-cn luci-lib-uqr luci-mod-dashboard luci-nginx luci-proto-gre luci-proto-relay luci-proto-vti luci-proto-wireguard luci-proto-xfrm luci-theme-argon nginx-mod-luci nginx-mod-ubus nginx-ssl nginx-ssl-util openvpn-openssl ppp-mod-pppol2tp proto-bonding qrencode relayd tc-tiny uwsgi uwsgi-cgi-plugin uwsgi-luci-support uwsgi-syslog-plugin vti wireguard-tools wpad-openssl xfrm xl2tpd"
+CONFIG_TARGET_DEVICE_PACKAGES_qualcommax_ipq50xx_DEVICE_yuncore_ax830="apk-openssl ath11k-firmware-ipq5018-qcn6122 ca-bundle curl dawn ethtool gre ip-bridge ipq-wifi-yuncore_ax830 iptables-mod-dhcpmac iptables-mod-dnetmap jool-tools-netfilter kmod-bonding kmod-crypto-acompress kmod-crypto-cbc kmod-crypto-deflate kmod-crypto-des kmod-crypto-echainiv kmod-crypto-md5 kmod-inet-diag kmod-ip6-vti kmod-ipsec kmod-ipsec4 kmod-ipsec6 kmod-ipt-compat-xtables kmod-ipt-dhcpmac kmod-ipt-dnetmap kmod-ip-vti kmod-jool-netfilter kmod-l2tp kmod-lib-zlib-deflate kmod-lib-zlib-inflate kmod-nat46 kmod-pppol2tp kmod-xfrm-interface libcap-ng libcurl libgcrypt libgpg-error liblz4 liblzo libnghttp2 libnl libnl-cli libnl-core libnl-genl libnl-nf libnl-route libopenssl libopenssl-conf libopenssl-legacy libpcre2 libqrencode libssh2 libstdcpp libxml2 luci-app-dawn luci-app-openvpn luci-app-usteer luci-i18n-dashboard-zh-cn luci-i18n-openvpn-zh-cn luci-mod-dashboard luci-nginx luci-proto-gre luci-proto-relay luci-proto-vti luci-proto-wireguard luci-proto-xfrm luci-theme-argon nginx-mod-luci nginx-mod-ubus nginx-ssl nginx-ssl-util openvpn-openssl ppp-mod-pppol2tp proto-bonding qrencode relayd tc-tiny uwsgi uwsgi-cgi-plugin uwsgi-luci-support uwsgi-syslog-plugin vti wireguard-tools wpad-openssl xfrm xl2tpd"
 # CONFIG_TARGET_DEVICE_qualcommax_ipq50xx_DEVICE_yuncore_ax850 is not set
 # end of Target Devices
 
@@ -97,9 +97,8 @@ CONFIG_DEFAULT_TARGET_OPTIMIZATION="-Os -pipe -mcpu=cortex-a53"
 CONFIG_CPU_TYPE="cortex-a53"
 CONFIG_LINUX_6_12=y
 CONFIG_MODULE_DEFAULT_ath10k-firmware-qca9887-ct=y
-CONFIG_DEFAULT_ath11k-firmware-ipq5018=y
 CONFIG_MODULE_DEFAULT_ath11k-firmware-ipq5018=y
-CONFIG_MODULE_DEFAULT_ath11k-firmware-qcn6122=y
+CONFIG_MODULE_DEFAULT_ath11k-firmware-ipq5018-qcn6122=y
 CONFIG_MODULE_DEFAULT_ath11k-firmware-qcn9074=y
 CONFIG_DEFAULT_base-files=y
 CONFIG_MODULE_DEFAULT_base-files=y
@@ -253,7 +252,6 @@ CONFIG_USE_APK=y
 CONFIG_BUILD_PATENTED=y
 # CONFIG_BUILD_NLS is not set
 CONFIG_SHADOW_PASSWORDS=y
-# CONFIG_CLEAN_IPKG is not set
 # CONFIG_REPRODUCIBLE_DEBUG_INFO is not set
 # CONFIG_COLLECT_KERNEL_DEBUG is not set
 
@@ -405,6 +403,7 @@ CONFIG_STRIP_ARGS="--strip-all"
 #
 # Hardening build options
 #
+# CONFIG_PKG_FANALYZER is not set
 CONFIG_PKG_CHECK_FORMAT_SECURITY=y
 # CONFIG_PKG_ASLR_PIE_NONE is not set
 CONFIG_PKG_ASLR_PIE_REGULAR=y
@@ -481,7 +480,7 @@ CONFIG_TARGET_INIT_CMD="/sbin/init"
 CONFIG_TARGET_INIT_SUPPRESS_STDERR=y
 CONFIG_VERSIONOPT=y
 CONFIG_VERSION_DIST="X-WRT"
-CONFIG_VERSION_NUMBER="25.04_b202511200721"
+CONFIG_VERSION_NUMBER="25.04_b202511282311"
 CONFIG_VERSION_CODE="Plucky"
 CONFIG_VERSION_REPO="http://downloads.openwrt.org/snapshots"
 CONFIG_VERSION_HOME_URL="https://x-wrt.com/"
@@ -2991,11 +2990,11 @@ CONFIG_PACKAGE_ath10k-firmware-qca9887-ct=m
 # CONFIG_PACKAGE_ath10k-firmware-qca99x0-ct-full-htt is not set
 # CONFIG_PACKAGE_ath10k-firmware-qca99x0-ct-htt is not set
 CONFIG_PACKAGE_ath11k-firmware-ipq5018=m
+CONFIG_PACKAGE_ath11k-firmware-ipq5018-qcn6122=m
 # CONFIG_PACKAGE_ath11k-firmware-ipq6018 is not set
 # CONFIG_PACKAGE_ath11k-firmware-ipq8074 is not set
 # CONFIG_PACKAGE_ath11k-firmware-qca2066 is not set
 # CONFIG_PACKAGE_ath11k-firmware-qca6390 is not set
-CONFIG_PACKAGE_ath11k-firmware-qcn6122=m
 CONFIG_PACKAGE_ath11k-firmware-qcn9074=m
 # CONFIG_PACKAGE_ath11k-firmware-wcn6750 is not set
 # CONFIG_PACKAGE_ath11k-firmware-wcn6855 is not set
@@ -5718,7 +5717,6 @@ CONFIG_PACKAGE_libffi=m
 # CONFIG_PACKAGE_libfreetype is not set
 # CONFIG_PACKAGE_libfstrm is not set
 # CONFIG_PACKAGE_libftdi1 is not set
-# CONFIG_PACKAGE_libgabe is not set
 CONFIG_PACKAGE_libgcrypt=m
 # CONFIG_PACKAGE_libgd is not set
 # CONFIG_PACKAGE_libgd-full is not set
@@ -6010,7 +6008,6 @@ CONFIG_PACKAGE_libxml2=m
 # CONFIG_PACKAGE_libyaml-cpp is not set
 # CONFIG_PACKAGE_libyang is not set
 # CONFIG_PACKAGE_libyder is not set
-# CONFIG_PACKAGE_libyubikey is not set
 # CONFIG_PACKAGE_libzmq-curve is not set
 # CONFIG_PACKAGE_libzmq-nc is not set
 # CONFIG_PACKAGE_libzmusic is not set
@@ -6060,7 +6057,6 @@ CONFIG_PACKAGE_terminfo=y
 # CONFIG_PACKAGE_xmlrpc-c-server is not set
 # CONFIG_PACKAGE_xmlrpc-c-server-abyss is not set
 # CONFIG_PACKAGE_yajl is not set
-# CONFIG_PACKAGE_yubico-pam is not set
 CONFIG_PACKAGE_zlib=y
 
 #
@@ -6318,7 +6314,7 @@ CONFIG_PACKAGE_luci-lib-ip=y
 CONFIG_PACKAGE_luci-lib-jsonc=y
 CONFIG_PACKAGE_luci-lib-nixio=y
 # CONFIG_PACKAGE_luci-lib-px5g is not set
-CONFIG_PACKAGE_luci-lib-uqr=m
+CONFIG_PACKAGE_luci-lib-uqr=y
 # end of 6. Libraries
 
 # CONFIG_PACKAGE_luci-i18n-aria2-ar is not set
@@ -7997,7 +7993,6 @@ CONFIG_PACKAGE_chat=m
 # CONFIG_PACKAGE_dnstap is not set
 # CONFIG_PACKAGE_dnstop is not set
 CONFIG_PACKAGE_ds-lite=y
-# CONFIG_PACKAGE_esniper is not set
 # CONFIG_PACKAGE_esp2net is not set
 # CONFIG_PACKAGE_etherwake is not set
 # CONFIG_PACKAGE_etherwake-nfqueue is not set
@@ -8104,6 +8099,7 @@ CONFIG_MODEMMANAGER_WITH_QRTR=y
 # CONFIG_PACKAGE_mptcpize is not set
 # CONFIG_PACKAGE_mtr-json is not set
 # CONFIG_PACKAGE_mtr-nojson is not set
+# CONFIG_PACKAGE_nanomq is not set
 # CONFIG_PACKAGE_natmap is not set
 # CONFIG_PACKAGE_nbd is not set
 # CONFIG_PACKAGE_nbd-server is not set
@@ -9165,7 +9161,6 @@ CONFIG_PACKAGE_usbutils=m
 # CONFIG_PACKAGE_yanglint is not set
 # CONFIG_PACKAGE_yara is not set
 # CONFIG_PACKAGE_ykclient is not set
-# CONFIG_PACKAGE_ykpers is not set
 # CONFIG_PACKAGE_yq is not set
 # CONFIG_PACKAGE_zyxel-reset is not set
 # end of Utilities
