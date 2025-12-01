@@ -153,6 +153,7 @@ openvpnmod="luci-app-openvpn \
 excludes_basic="dnsmasq \
 		  kmod-ipt-offload \
 		  kmod-nf-flow \
+		  uboot-envtools \
 		  ip-tiny"
 
 strongswan="\
