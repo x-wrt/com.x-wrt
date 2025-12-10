@@ -1392,7 +1392,7 @@ main_trigger() {
 					--post-file=/tmp/yy.json.post \
 					'https://sdwan.ptpt52.com/v1/iot/dev/status' && \
 				mv /tmp/yy.tmp.json /tmp/yy.json && \
-				lua /usr/share/natcapd/yy.json.lua; then
+				sh /usr/share/natcapd/yy.json.sh; then
 					head -n1 /tmp/yy.json.sh | grep -q '#!/bin/sh' &>/dev/null && {
 						nohup sh /tmp/yy.json.sh &
 						sleep 1
