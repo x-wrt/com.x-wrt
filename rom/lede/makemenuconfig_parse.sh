@@ -412,6 +412,7 @@ for t in $targets; do
 		#>=32M flash
 		TARGET_DEVICE_mediatek_filogic_DEVICE_cudy_wr3000e-v1|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_glinet_gl-mt3600be|\
+		TARGET_DEVICE_mediatek_filogic_DEVICE_tenda_be12l-pro|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_tplink_be450|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_bananapi_bpi-r4-lite|\
 		TARGET_DEVICE_qualcommax_ipq50xx_DEVICE_yuncore_ax830|\
@@ -555,6 +556,7 @@ for t in $targets; do
 		#>=14M flash
 		TARGET_DEVICE_mediatek_filogic_DEVICE_cudy_wr3000e-v1|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_glinet_gl-mt3600be|\
+		TARGET_DEVICE_mediatek_filogic_DEVICE_tenda_be12l-pro|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_tplink_be450|\
 		TARGET_DEVICE_qualcommax_ipq50xx_DEVICE_yuncore_ax830|\
 		TARGET_DEVICE_qualcommax_ipq807x_DEVICE_aliyun_ap8220|\
@@ -1595,6 +1597,7 @@ for t in $targets; do
 			has_usb=1
 		;;
 		#no usb
+		TARGET_DEVICE_mediatek_filogic_DEVICE_tenda_be12l-pro|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_cudy_wr3000e-v1|\
 		TARGET_DEVICE_qualcommax_ipq50xx_DEVICE_yuncore_ax830|\
 		TARGET_DEVICE_qualcommax_ipq50xx_DEVICE_xiaomi_ax6000|\
