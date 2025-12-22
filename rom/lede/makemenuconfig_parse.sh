@@ -840,6 +840,9 @@ for t in $targets; do
 			extra_utils=1
 		;;
 		#>8M flash <14M
+		TARGET_DEVICE_bcm53xx_generic_DEVICE_asus_rt-ac3100|\
+		TARGET_DEVICE_bcm53xx_generic_DEVICE_asus_rt-ac3200|\
+		TARGET_DEVICE_bcm53xx_generic_DEVICE_asus_rt-ac5300|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_tenda_ax12l-pro|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_ruijie_rg-ew1200g-pro-v1.1|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_cudy_re3000-v1|\
@@ -1598,6 +1601,9 @@ for t in $targets; do
 			has_usb=1
 		;;
 		#no usb
+		TARGET_DEVICE_bcm53xx_generic_DEVICE_asus_rt-ac3100|\
+		TARGET_DEVICE_bcm53xx_generic_DEVICE_asus_rt-ac3200|\
+		TARGET_DEVICE_bcm53xx_generic_DEVICE_asus_rt-ac5300|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_tenda_ax12l-pro|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_tenda_be12l-pro|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_cudy_wr3000e-v1|\
