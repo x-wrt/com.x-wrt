@@ -413,7 +413,7 @@ for t in $targets; do
 		TARGET_DEVICE_mediatek_filogic_DEVICE_cudy_wr3000p-v1|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_cudy_wr3000e-v1|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_glinet_gl-mt3600be|\
-		TARGET_DEVICE_mediatek_filogic_DEVICE_tenda_be12l-pro|\
+		TARGET_DEVICE_mediatek_filogic_DEVICE_tenda_be12-pro|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_tplink_be450|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_bananapi_bpi-r4-lite|\
 		TARGET_DEVICE_qualcommax_ipq50xx_DEVICE_yuncore_ax830|\
@@ -558,7 +558,7 @@ for t in $targets; do
 		TARGET_DEVICE_mediatek_filogic_DEVICE_cudy_wr3000p-v1|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_cudy_wr3000e-v1|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_glinet_gl-mt3600be|\
-		TARGET_DEVICE_mediatek_filogic_DEVICE_tenda_be12l-pro|\
+		TARGET_DEVICE_mediatek_filogic_DEVICE_tenda_be12-pro|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_tplink_be450|\
 		TARGET_DEVICE_qualcommax_ipq50xx_DEVICE_yuncore_ax830|\
 		TARGET_DEVICE_qualcommax_ipq807x_DEVICE_aliyun_ap8220|\
@@ -1608,7 +1608,7 @@ for t in $targets; do
 		TARGET_DEVICE_bcm53xx_generic_DEVICE_asus_rt-ac3200|\
 		TARGET_DEVICE_bcm53xx_generic_DEVICE_asus_rt-ac5300|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_tenda_ax12l-pro|\
-		TARGET_DEVICE_mediatek_filogic_DEVICE_tenda_be12l-pro|\
+		TARGET_DEVICE_mediatek_filogic_DEVICE_tenda_be12-pro|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_cudy_wr3000e-v1|\
 		TARGET_DEVICE_qualcommax_ipq50xx_DEVICE_yuncore_ax830|\
 		TARGET_DEVICE_qualcommax_ipq50xx_DEVICE_xiaomi_ax6000|\
