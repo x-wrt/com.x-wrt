@@ -410,6 +410,7 @@ for t in $targets; do
 	excludes="$excludes_basic"
 	case $t in
 		#>=32M flash
+		TARGET_DEVICE_qualcommax_ipq50xx_DEVICE_cmcc_pz-l8|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_cudy_wr3000p-v1|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_cudy_wr3000e-v1|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_glinet_gl-mt3600be|\
@@ -555,6 +556,7 @@ for t in $targets; do
 	esac
 	case $t in
 		#>=14M flash
+		TARGET_DEVICE_qualcommax_ipq50xx_DEVICE_cmcc_pz-l8|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_cudy_wr3000p-v1|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_cudy_wr3000e-v1|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_glinet_gl-mt3600be|\
@@ -1604,6 +1606,7 @@ for t in $targets; do
 			has_usb=1
 		;;
 		#no usb
+		TARGET_DEVICE_qualcommax_ipq50xx_DEVICE_cmcc_pz-l8|\
 		TARGET_DEVICE_bcm53xx_generic_DEVICE_asus_rt-ac3100|\
 		TARGET_DEVICE_bcm53xx_generic_DEVICE_asus_rt-ac3200|\
 		TARGET_DEVICE_bcm53xx_generic_DEVICE_asus_rt-ac5300|\

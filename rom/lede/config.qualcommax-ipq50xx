@@ -75,7 +75,8 @@ CONFIG_TARGET_MULTI_PROFILE=y
 #
 # CONFIG_TARGET_ALL_PROFILES is not set
 CONFIG_TARGET_PER_DEVICE_ROOTFS=y
-# CONFIG_TARGET_DEVICE_qualcommax_ipq50xx_DEVICE_cmcc_pz-l8 is not set
+CONFIG_TARGET_DEVICE_qualcommax_ipq50xx_DEVICE_cmcc_pz-l8=y
+CONFIG_TARGET_DEVICE_PACKAGES_qualcommax_ipq50xx_DEVICE_cmcc_pz-l8="apk-openssl ath11k-firmware-ipq5018-qcn6122 ca-bundle curl dawn ethtool gre ip-bridge ipq-wifi-cmcc_pz-l8 iptables-mod-dhcpmac iptables-mod-dnetmap jool-tools-netfilter kmod-ath11k-ahb-smallbuffers kmod-ath11k-smallbuffers kmod-bonding kmod-crypto-acompress kmod-crypto-cbc kmod-crypto-deflate kmod-crypto-des kmod-crypto-echainiv kmod-crypto-md5 kmod-inet-diag kmod-ip6-vti kmod-ipsec kmod-ipsec4 kmod-ipsec6 kmod-ipt-compat-xtables kmod-ipt-dhcpmac kmod-ipt-dnetmap kmod-ip-vti kmod-jool-netfilter kmod-l2tp kmod-lib-zlib-deflate kmod-lib-zlib-inflate kmod-nat46 kmod-pppol2tp kmod-xfrm-interface libcap-ng libcurl libgcrypt libgpg-error liblz4 liblzo libnghttp2 libnl libnl-cli libnl-core libnl-genl libnl-nf libnl-route libopenssl libopenssl-conf libopenssl-legacy libpcre2 libqrencode libssh2 libstdcpp libxml2 luci-app-dawn luci-app-openvpn luci-app-usteer luci-i18n-dashboard-zh-cn luci-i18n-openvpn-zh-cn luci-mod-dashboard luci-nginx luci-proto-gre luci-proto-relay luci-proto-vti luci-proto-wireguard luci-proto-xfrm luci-theme-argon nginx-mod-luci nginx-mod-ubus nginx-ssl nginx-ssl-util openvpn-openssl ppp-mod-pppol2tp proto-bonding qrencode relayd tc-tiny uwsgi uwsgi-cgi-plugin uwsgi-luci-support uwsgi-syslog-plugin vti wireguard-tools wpad-openssl xfrm xl2tpd"
 # CONFIG_TARGET_DEVICE_qualcommax_ipq50xx_DEVICE_elecom_wrc-x3000gs2 is not set
 CONFIG_TARGET_DEVICE_qualcommax_ipq50xx_DEVICE_glinet_gl-b3000=y
 CONFIG_TARGET_DEVICE_PACKAGES_qualcommax_ipq50xx_DEVICE_glinet_gl-b3000="apk-openssl ath11k-firmware-ipq5018-qcn6122 dawn dumpimage ethtool ip-bridge ipq-wifi-glinet_gl-b3000 iptables-mod-dhcpmac iptables-mod-dnetmap jool-tools-netfilter kmod-bonding kmod-crypto-md5 kmod-inet-diag kmod-ipt-compat-xtables kmod-ipt-dhcpmac kmod-ipt-dnetmap kmod-jool-netfilter kmod-nat46 libcap-ng libgcrypt libgpg-error liblz4 liblzo libnl libnl-cli libnl-core libnl-genl libnl-nf libnl-route libopenssl libopenssl-conf libopenssl-legacy libpcre2 libqrencode libstdcpp libxml2 luci-app-dawn luci-app-openvpn luci-app-usteer luci-i18n-dashboard-zh-cn luci-i18n-openvpn-zh-cn luci-mod-dashboard luci-nginx luci-proto-relay luci-proto-wireguard nginx-mod-luci nginx-mod-ubus nginx-ssl nginx-ssl-util openvpn-openssl proto-bonding qrencode relayd tc-tiny uwsgi uwsgi-cgi-plugin uwsgi-luci-support uwsgi-syslog-plugin wireguard-tools wpad-openssl"
@@ -118,12 +119,14 @@ CONFIG_DEFAULT_firewall4=y
 CONFIG_MODULE_DEFAULT_firewall4=y
 CONFIG_DEFAULT_fstools=y
 CONFIG_MODULE_DEFAULT_fstools=y
+CONFIG_MODULE_DEFAULT_ipq-wifi-cmcc_pz-l8=y
 CONFIG_MODULE_DEFAULT_ipq-wifi-glinet_gl-b3000=y
 CONFIG_MODULE_DEFAULT_ipq-wifi-xiaomi_ax6000=y
 CONFIG_MODULE_DEFAULT_ipq-wifi-yuncore_ax830=y
 CONFIG_MODULE_DEFAULT_kmod-ath10k-ct-smallbuffers=y
 CONFIG_DEFAULT_kmod-ath11k-ahb=y
 CONFIG_MODULE_DEFAULT_kmod-ath11k-ahb=y
+CONFIG_MODULE_DEFAULT_kmod-ath11k-ahb-smallbuffers=y
 CONFIG_MODULE_DEFAULT_kmod-ath11k-pci=y
 CONFIG_DEFAULT_kmod-fs-ext4=y
 CONFIG_MODULE_DEFAULT_kmod-fs-ext4=y
@@ -2889,6 +2892,7 @@ CONFIG_PACKAGE_libiwinfo-data=y
 # CONFIG_PACKAGE_ipq-wifi-asus_rt-ax89x is not set
 # CONFIG_PACKAGE_ipq-wifi-buffalo_wxr-5950ax12 is not set
 # CONFIG_PACKAGE_ipq-wifi-cambiumnetworks_xe34 is not set
+CONFIG_PACKAGE_ipq-wifi-cmcc_pz-l8=m
 # CONFIG_PACKAGE_ipq-wifi-cmcc_rm2-6 is not set
 # CONFIG_PACKAGE_ipq-wifi-compex_wpq873 is not set
 # CONFIG_PACKAGE_ipq-wifi-dynalink_dl-wrx36 is not set
@@ -3799,6 +3803,7 @@ CONFIG_PACKAGE_kmod-phy-bcm7xxx=m
 # CONFIG_PACKAGE_kmod-phy-maxlinear is not set
 # CONFIG_PACKAGE_kmod-phy-micrel is not set
 # CONFIG_PACKAGE_kmod-phy-microchip is not set
+CONFIG_PACKAGE_kmod-phy-motorcomm=m
 # CONFIG_PACKAGE_kmod-phy-qca83xx is not set
 # CONFIG_PACKAGE_kmod-phy-realtek is not set
 # CONFIG_PACKAGE_kmod-phy-rtl8261n is not set
@@ -4191,7 +4196,9 @@ CONFIG_PACKAGE_kmod-ath10k-ct-smallbuffers=m
 CONFIG_PACKAGE_kmod-ath11k=y
 CONFIG_ATH11K_THERMAL=y
 CONFIG_PACKAGE_kmod-ath11k-ahb=y
+CONFIG_PACKAGE_kmod-ath11k-ahb-smallbuffers=m
 CONFIG_PACKAGE_kmod-ath11k-pci=m
+CONFIG_PACKAGE_kmod-ath11k-smallbuffers=m
 # CONFIG_PACKAGE_kmod-ath12k is not set
 # CONFIG_PACKAGE_kmod-ath5k is not set
 # CONFIG_PACKAGE_kmod-ath6kl-sdio is not set
@@ -4458,8 +4465,6 @@ CONFIG_HAS_LUAJIT_ARCH=y
 # PHP8
 #
 # CONFIG_PACKAGE_php8 is not set
-# CONFIG_PHP8_LIBXML is not set
-# CONFIG_PHP8_GETTEXT is not set
 # end of PHP8
 
 #
