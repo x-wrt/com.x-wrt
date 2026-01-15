@@ -126,8 +126,8 @@ CONFIG_MODULE_DEFAULT_ipq-wifi-yuncore_ax830=y
 CONFIG_MODULE_DEFAULT_kmod-ath10k-ct-smallbuffers=y
 CONFIG_DEFAULT_kmod-ath11k-ahb=y
 CONFIG_MODULE_DEFAULT_kmod-ath11k-ahb=y
-CONFIG_MODULE_DEFAULT_kmod-ath11k-ahb-smallbuffers=y
 CONFIG_MODULE_DEFAULT_kmod-ath11k-pci=y
+CONFIG_MODULE_DEFAULT_kmod-ath11k-smallbuffers=y
 CONFIG_DEFAULT_kmod-fs-ext4=y
 CONFIG_MODULE_DEFAULT_kmod-fs-ext4=y
 CONFIG_DEFAULT_kmod-gpio-button-hotplug=y
@@ -491,7 +491,7 @@ CONFIG_TARGET_INIT_CMD="/sbin/init"
 CONFIG_TARGET_INIT_SUPPRESS_STDERR=y
 CONFIG_VERSIONOPT=y
 CONFIG_VERSION_DIST="X-WRT"
-CONFIG_VERSION_NUMBER="26.04_b202601120303"
+CONFIG_VERSION_NUMBER="26.04_b202601160022"
 CONFIG_VERSION_CODE="Resolute"
 CONFIG_VERSION_REPO="http://downloads.openwrt.org/snapshots"
 CONFIG_VERSION_HOME_URL="https://x-wrt.com/"
@@ -3407,6 +3407,7 @@ CONFIG_PACKAGE_kmod-gpio-pwm=m
 # CONFIG_PACKAGE_kmod-hwmon-ad7418 is not set
 # CONFIG_PACKAGE_kmod-hwmon-adcxx is not set
 # CONFIG_PACKAGE_kmod-hwmon-adt7410 is not set
+# CONFIG_PACKAGE_kmod-hwmon-adt7470 is not set
 # CONFIG_PACKAGE_kmod-hwmon-adt7475 is not set
 CONFIG_PACKAGE_kmod-hwmon-core=y
 # CONFIG_PACKAGE_kmod-hwmon-dme1737 is not set
@@ -3803,7 +3804,7 @@ CONFIG_PACKAGE_kmod-phy-bcm7xxx=m
 # CONFIG_PACKAGE_kmod-phy-maxlinear is not set
 # CONFIG_PACKAGE_kmod-phy-micrel is not set
 # CONFIG_PACKAGE_kmod-phy-microchip is not set
-CONFIG_PACKAGE_kmod-phy-motorcomm=m
+# CONFIG_PACKAGE_kmod-phy-motorcomm is not set
 # CONFIG_PACKAGE_kmod-phy-qca83xx is not set
 # CONFIG_PACKAGE_kmod-phy-realtek is not set
 # CONFIG_PACKAGE_kmod-phy-rtl8261n is not set
@@ -4196,7 +4197,6 @@ CONFIG_PACKAGE_kmod-ath10k-ct-smallbuffers=m
 CONFIG_PACKAGE_kmod-ath11k=y
 CONFIG_ATH11K_THERMAL=y
 CONFIG_PACKAGE_kmod-ath11k-ahb=y
-CONFIG_PACKAGE_kmod-ath11k-ahb-smallbuffers=m
 CONFIG_PACKAGE_kmod-ath11k-pci=m
 CONFIG_PACKAGE_kmod-ath11k-smallbuffers=m
 # CONFIG_PACKAGE_kmod-ath12k is not set
