@@ -410,6 +410,12 @@ for t in $targets; do
 	excludes="$excludes_basic"
 	case $t in
 		#>=32M flash
+		TARGET_DEVICE_qualcommax_ipq60xx_DEVICE_jdcloud_re-cs-02|\
+		TARGET_DEVICE_qualcommax_ipq60xx_DEVICE_jdcloud_re-cs-07|\
+		TARGET_DEVICE_qualcommax_ipq60xx_DEVICE_jdcloud_re-ss-01|\
+		TARGET_DEVICE_rockchip_armv8_DEVICE_hinlink_h28k|\
+		TARGET_DEVICE_rockchip_armv8_DEVICE_hinlink_h66k|\
+		TARGET_DEVICE_rockchip_armv8_DEVICE_hinlink_h68k|\
 		TARGET_DEVICE_qualcommax_ipq50xx_DEVICE_cmcc_pz-l8|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_cudy_wr3000p-v1|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_cudy_wr3000e-v1|\
@@ -556,6 +562,12 @@ for t in $targets; do
 	esac
 	case $t in
 		#>=14M flash
+		TARGET_DEVICE_qualcommax_ipq60xx_DEVICE_jdcloud_re-cs-02|\
+		TARGET_DEVICE_qualcommax_ipq60xx_DEVICE_jdcloud_re-cs-07|\
+		TARGET_DEVICE_qualcommax_ipq60xx_DEVICE_jdcloud_re-ss-01|\
+		TARGET_DEVICE_rockchip_armv8_DEVICE_hinlink_h28k|\
+		TARGET_DEVICE_rockchip_armv8_DEVICE_hinlink_h66k|\
+		TARGET_DEVICE_rockchip_armv8_DEVICE_hinlink_h68k|\
 		TARGET_DEVICE_qualcommax_ipq50xx_DEVICE_cmcc_pz-l8|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_cudy_wr3000p-v1|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_cudy_wr3000e-v1|\
@@ -1219,6 +1231,12 @@ for t in $targets; do
 	#check usb
 	case $t in
 		#with usb3
+		TARGET_DEVICE_qualcommax_ipq60xx_DEVICE_jdcloud_re-cs-02|\
+		TARGET_DEVICE_qualcommax_ipq60xx_DEVICE_jdcloud_re-cs-07|\
+		TARGET_DEVICE_qualcommax_ipq60xx_DEVICE_jdcloud_re-ss-01|\
+		TARGET_DEVICE_rockchip_armv8_DEVICE_hinlink_h28k|\
+		TARGET_DEVICE_rockchip_armv8_DEVICE_hinlink_h66k|\
+		TARGET_DEVICE_rockchip_armv8_DEVICE_hinlink_h68k|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_cudy_wr3000p-v1|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_glinet_gl-mt3600be|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_tplink_be450|\
