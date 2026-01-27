@@ -2009,6 +2009,7 @@ rt73-usb-firmware"
 		TARGET_DEVICE_ramips_mt7621_DEVICE_xwrt_5g-cpe1801k)
 			mods="$mods $usb4g $modem_info"
 		;;
+		TARGET_DEVICE_ramips_mt7620_DEVICE_zbtlink_zbt-we826-32m|\
 		TARGET_DEVICE_ramips_mt7620_DEVICE_zbtlink_zbt-we826-16m)
 			mods="$mods $modem"
 		;;
