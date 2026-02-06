@@ -547,7 +547,7 @@ CONFIG_TARGET_INIT_CMD="/sbin/init"
 CONFIG_TARGET_INIT_SUPPRESS_STDERR=y
 CONFIG_VERSIONOPT=y
 CONFIG_VERSION_DIST="X-WRT"
-CONFIG_VERSION_NUMBER="26.04_b202602061727"
+CONFIG_VERSION_NUMBER="26.04_b202602070112"
 CONFIG_VERSION_CODE="Resolute"
 CONFIG_VERSION_REPO="http://downloads.openwrt.org/snapshots"
 CONFIG_VERSION_HOME_URL="https://x-wrt.com/"
@@ -2806,16 +2806,17 @@ CONFIG_PACKAGE_wireless-tools=y
 #
 # Zabbix
 #
-# CONFIG_PACKAGE_zabbix-agentd is not set
 # CONFIG_PACKAGE_zabbix-agentd-gnutls is not set
+# CONFIG_PACKAGE_zabbix-agentd-nossl is not set
 # CONFIG_PACKAGE_zabbix-agentd-openssl is not set
 # CONFIG_PACKAGE_zabbix-extra-mac80211 is not set
 # CONFIG_PACKAGE_zabbix-extra-network is not set
 # CONFIG_PACKAGE_zabbix-extra-wifi is not set
-# CONFIG_PACKAGE_zabbix-get is not set
 # CONFIG_PACKAGE_zabbix-get-gnutls is not set
+# CONFIG_PACKAGE_zabbix-get-nossl is not set
 # CONFIG_PACKAGE_zabbix-get-openssl is not set
-# CONFIG_PACKAGE_zabbix-proxy is not set
+# CONFIG_PACKAGE_zabbix-proxy-gnutls is not set
+# CONFIG_PACKAGE_zabbix-proxy-nossl is not set
 
 #
 # Database Software
@@ -2823,13 +2824,12 @@ CONFIG_PACKAGE_wireless-tools=y
 # CONFIG_ZABBIX_MYSQL is not set
 CONFIG_ZABBIX_POSTGRESQL=y
 # CONFIG_ZABBIX_SQLITE is not set
-# CONFIG_PACKAGE_zabbix-proxy-gnutls is not set
 # CONFIG_PACKAGE_zabbix-proxy-openssl is not set
-# CONFIG_PACKAGE_zabbix-sender is not set
 # CONFIG_PACKAGE_zabbix-sender-gnutls is not set
+# CONFIG_PACKAGE_zabbix-sender-nossl is not set
 # CONFIG_PACKAGE_zabbix-sender-openssl is not set
-# CONFIG_PACKAGE_zabbix-server is not set
 # CONFIG_PACKAGE_zabbix-server-gnutls is not set
+# CONFIG_PACKAGE_zabbix-server-nossl is not set
 # CONFIG_PACKAGE_zabbix-server-openssl is not set
 # end of Zabbix
 
@@ -2925,15 +2925,6 @@ CONFIG_PACKAGE_perf=m
 #
 # Extra packages
 #
-
-#
-# Configuration
-#
-CONFIG_GOLANG_EXTERNAL_BOOTSTRAP_ROOT=""
-CONFIG_GOLANG_BUILD_CACHE_DIR=""
-# CONFIG_GOLANG_MOD_CACHE_WORLD_READABLE is not set
-# end of Configuration
-
 # CONFIG_PACKAGE_jose is not set
 CONFIG_PACKAGE_libiwinfo-data=y
 # CONFIG_PACKAGE_libjose is not set
@@ -4385,18 +4376,25 @@ CONFIG_PACKAGE_kmod-usb-common=y
 #
 # Go
 #
-# CONFIG_PACKAGE_golang-github-jedisct1-dnscrypt-proxy2-dev is not set
-# CONFIG_PACKAGE_golang-github-nextdns-nextdns-dev is not set
-# CONFIG_PACKAGE_golang-gitlab-yawning-obfs4-dev is not set
-# CONFIG_PACKAGE_golang1.25 is not set
+# CONFIG_PACKAGE_golang-bootstrap is not set
 
 #
 # Configuration
 #
+CONFIG_GOLANG_EXTERNAL_BOOTSTRAP_ROOT=""
+CONFIG_GOLANG_BUILD_BOOTSTRAP=y
+CONFIG_GOLANG_BUILD_CACHE_DIR=""
+# CONFIG_GOLANG_MOD_CACHE_WORLD_READABLE is not set
 # end of Configuration
 
+# CONFIG_PACKAGE_golang-github-jedisct1-dnscrypt-proxy2-dev is not set
+# CONFIG_PACKAGE_golang-github-nextdns-nextdns-dev is not set
+# CONFIG_PACKAGE_golang-gitlab-yawning-obfs4-dev is not set
+# CONFIG_PACKAGE_golang1.25 is not set
 # CONFIG_PACKAGE_golang1.25-doc is not set
+# CONFIG_PACKAGE_golang1.25-misc is not set
 # CONFIG_PACKAGE_golang1.25-src is not set
+# CONFIG_PACKAGE_golang1.25-tests is not set
 # end of Go
 
 #
@@ -6131,7 +6129,6 @@ CONFIG_PACKAGE_zlib=y
 # 1. Collections
 #
 # CONFIG_PACKAGE_luci is not set
-# CONFIG_PACKAGE_luci-lib-docker is not set
 CONFIG_PACKAGE_luci-light=y
 CONFIG_PACKAGE_luci-nginx=m
 CONFIG_PACKAGE_luci-ssl=y
@@ -6496,6 +6493,7 @@ CONFIG_PACKAGE_luci-i18n-dashboard-zh-cn=m
 # CONFIG_PACKAGE_luci-i18n-dawn-pl is not set
 # CONFIG_PACKAGE_luci-i18n-dawn-ru is not set
 # CONFIG_PACKAGE_luci-i18n-dawn-sv is not set
+# CONFIG_PACKAGE_luci-i18n-dawn-zh-tw is not set
 # CONFIG_PACKAGE_luci-i18n-ddns-ar is not set
 # CONFIG_PACKAGE_luci-i18n-ddns-bg is not set
 # CONFIG_PACKAGE_luci-i18n-ddns-bn is not set
@@ -7238,6 +7236,7 @@ CONFIG_PACKAGE_ddns-scripts=y
 # CONFIG_PACKAGE_ddns-scripts-gandi is not set
 # CONFIG_PACKAGE_ddns-scripts-gcp is not set
 # CONFIG_PACKAGE_ddns-scripts-godaddy is not set
+# CONFIG_PACKAGE_ddns-scripts-hetzner-cloud is not set
 # CONFIG_PACKAGE_ddns-scripts-huaweicloud is not set
 # CONFIG_PACKAGE_ddns-scripts-luadns is not set
 # CONFIG_PACKAGE_ddns-scripts-namesilo is not set
