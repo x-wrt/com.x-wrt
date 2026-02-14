@@ -145,6 +145,7 @@ CONFIG_TARGET_MULTI_PROFILE=y
 # CONFIG_TARGET_mediatek_filogic_DEVICE_jcg_q30-pro is not set
 # CONFIG_TARGET_mediatek_filogic_DEVICE_jdcloud_re-cp-03 is not set
 # CONFIG_TARGET_mediatek_filogic_DEVICE_kebidumei_ax3000-u22 is not set
+# CONFIG_TARGET_mediatek_filogic_DEVICE_keenetic_kap-630 is not set
 # CONFIG_TARGET_mediatek_filogic_DEVICE_keenetic_kn-1812 is not set
 # CONFIG_TARGET_mediatek_filogic_DEVICE_keenetic_kn-3711 is not set
 # CONFIG_TARGET_mediatek_filogic_DEVICE_keenetic_kn-3811 is not set
@@ -163,11 +164,13 @@ CONFIG_TARGET_MULTI_PROFILE=y
 # CONFIG_TARGET_mediatek_filogic_DEVICE_mercusys_mr90x-v1-ubi is not set
 # CONFIG_TARGET_mediatek_filogic_DEVICE_netcore_n60 is not set
 # CONFIG_TARGET_mediatek_filogic_DEVICE_netcore_n60-pro is not set
+# CONFIG_TARGET_mediatek_filogic_DEVICE_netcraze_nap-630 is not set
 # CONFIG_TARGET_mediatek_filogic_DEVICE_netcraze_nc-1812 is not set
 # CONFIG_TARGET_mediatek_filogic_DEVICE_netgear_eax17 is not set
 # CONFIG_TARGET_mediatek_filogic_DEVICE_netgear_wax220 is not set
 # CONFIG_TARGET_mediatek_filogic_DEVICE_netis_nx30v2 is not set
 # CONFIG_TARGET_mediatek_filogic_DEVICE_netis_nx31 is not set
+# CONFIG_TARGET_mediatek_filogic_DEVICE_netis_nx32u is not set
 # CONFIG_TARGET_mediatek_filogic_DEVICE_nokia_ea0326gmp is not set
 # CONFIG_TARGET_mediatek_filogic_DEVICE_nradio_c8-660 is not set
 # CONFIG_TARGET_mediatek_filogic_DEVICE_nradio_c8-668gl is not set
@@ -333,6 +336,7 @@ CONFIG_TARGET_DEVICE_PACKAGES_mediatek_filogic_DEVICE_jcg_q30-pro-nmbm="apk-open
 CONFIG_TARGET_DEVICE_mediatek_filogic_DEVICE_jdcloud_re-cp-03=y
 CONFIG_TARGET_DEVICE_PACKAGES_mediatek_filogic_DEVICE_jdcloud_re-cp-03="apk-openssl ca-bundle curl dawn e2fsprogs f2fsck gre ip-bridge iptables-mod-dhcpmac iptables-mod-dnetmap jool-tools-netfilter kmod-bonding kmod-crypto-acompress kmod-crypto-cbc kmod-crypto-chacha20poly1305 kmod-crypto-deflate kmod-crypto-echainiv kmod-inet-diag kmod-ip6-vti kmod-ipsec kmod-ipsec4 kmod-ipsec6 kmod-ipt-compat-xtables kmod-ipt-dhcpmac kmod-ipt-dnetmap kmod-ip-vti kmod-jool-netfilter kmod-l2tp kmod-lib-zlib-deflate kmod-lib-zlib-inflate kmod-mt7986-firmware kmod-nat46 kmod-ovpn-dco-v2 kmod-pppol2tp kmod-xfrm-interface libblkid libcap-ng libcomerr libcurl libe2p libext2fs libf2fs libgcrypt libgpg-error liblz4 liblzo libnghttp2 libnl libnl-cli libnl-core libnl-genl libnl-nf libnl-route libopenssl libopenssl-conf libopenssl-devcrypto libopenssl-legacy libpcre2 libqrencode libss libssh2 libxml2 luci-app-dawn luci-app-openvpn luci-app-usteer luci-i18n-dashboard-zh-cn luci-i18n-openvpn-zh-cn luci-mod-dashboard luci-nginx luci-proto-gre luci-proto-relay luci-proto-vti luci-proto-wireguard luci-proto-xfrm luci-theme-argon mkf2fs mt7986-wo-firmware nginx-mod-luci nginx-mod-ubus nginx-ssl nginx-ssl-util openvpn-openssl ppp-mod-pppol2tp proto-bonding qrencode relayd tc-tiny uwsgi uwsgi-cgi-plugin uwsgi-luci-support uwsgi-syslog-plugin vti wireguard-tools wpad-openssl xfrm xl2tpd"
 # CONFIG_TARGET_DEVICE_mediatek_filogic_DEVICE_kebidumei_ax3000-u22 is not set
+# CONFIG_TARGET_DEVICE_mediatek_filogic_DEVICE_keenetic_kap-630 is not set
 # CONFIG_TARGET_DEVICE_mediatek_filogic_DEVICE_keenetic_kn-1812 is not set
 # CONFIG_TARGET_DEVICE_mediatek_filogic_DEVICE_keenetic_kn-3711 is not set
 # CONFIG_TARGET_DEVICE_mediatek_filogic_DEVICE_keenetic_kn-3811 is not set
@@ -350,12 +354,14 @@ CONFIG_TARGET_DEVICE_PACKAGES_mediatek_filogic_DEVICE_mercusys_mr90x-v1="apk-ope
 CONFIG_TARGET_DEVICE_mediatek_filogic_DEVICE_netcore_n60=y
 CONFIG_TARGET_DEVICE_PACKAGES_mediatek_filogic_DEVICE_netcore_n60="apk-openssl dawn ip-bridge iptables-mod-dhcpmac iptables-mod-dnetmap jool-tools-netfilter kmod-bonding kmod-crypto-chacha20poly1305 kmod-inet-diag kmod-ipt-compat-xtables kmod-ipt-dhcpmac kmod-ipt-dnetmap kmod-jool-netfilter kmod-mt7986-firmware kmod-nat46 kmod-ovpn-dco-v2 libcap-ng libgcrypt libgpg-error liblz4 liblzo libnl libnl-cli libnl-core libnl-genl libnl-nf libnl-route libopenssl libopenssl-conf libopenssl-devcrypto libopenssl-legacy libpcre2 libqrencode libxml2 luci-app-dawn luci-app-openvpn luci-app-usteer luci-i18n-dashboard-zh-cn luci-i18n-openvpn-zh-cn luci-mod-dashboard luci-nginx luci-proto-relay luci-proto-wireguard mt7986-wo-firmware nginx-mod-luci nginx-mod-ubus nginx-ssl nginx-ssl-util openvpn-openssl proto-bonding qrencode relayd tc-tiny uwsgi uwsgi-cgi-plugin uwsgi-luci-support uwsgi-syslog-plugin wireguard-tools wpad-openssl"
 # CONFIG_TARGET_DEVICE_mediatek_filogic_DEVICE_netcore_n60-pro is not set
+# CONFIG_TARGET_DEVICE_mediatek_filogic_DEVICE_netcraze_nap-630 is not set
 # CONFIG_TARGET_DEVICE_mediatek_filogic_DEVICE_netcraze_nc-1812 is not set
 # CONFIG_TARGET_DEVICE_mediatek_filogic_DEVICE_netgear_eax17 is not set
 CONFIG_TARGET_DEVICE_mediatek_filogic_DEVICE_netgear_wax220=y
 CONFIG_TARGET_DEVICE_PACKAGES_mediatek_filogic_DEVICE_netgear_wax220="apk-openssl dawn ip-bridge iptables-mod-dhcpmac iptables-mod-dnetmap jool-tools-netfilter kmod-bonding kmod-crypto-chacha20poly1305 kmod-inet-diag kmod-ipt-compat-xtables kmod-ipt-dhcpmac kmod-ipt-dnetmap kmod-jool-netfilter kmod-mt7986-firmware kmod-nat46 kmod-ovpn-dco-v2 libcap-ng libgcrypt libgpg-error liblz4 liblzo libnl libnl-cli libnl-core libnl-genl libnl-nf libnl-route libopenssl libopenssl-conf libopenssl-devcrypto libopenssl-legacy libpcre2 libqrencode libxml2 luci-app-dawn luci-app-openvpn luci-app-usteer luci-i18n-dashboard-zh-cn luci-i18n-openvpn-zh-cn luci-mod-dashboard luci-nginx luci-proto-relay luci-proto-wireguard mt7986-wo-firmware nginx-mod-luci nginx-mod-ubus nginx-ssl nginx-ssl-util openvpn-openssl proto-bonding qrencode relayd tc-tiny uwsgi uwsgi-cgi-plugin uwsgi-luci-support uwsgi-syslog-plugin wireguard-tools wpad-openssl"
 CONFIG_TARGET_DEVICE_mediatek_filogic_DEVICE_netis_nx31=y
 CONFIG_TARGET_DEVICE_PACKAGES_mediatek_filogic_DEVICE_netis_nx31="apk-openssl dawn ip-bridge iptables-mod-dhcpmac iptables-mod-dnetmap jool-tools-netfilter kmod-bonding kmod-crypto-chacha20poly1305 kmod-inet-diag kmod-ipt-compat-xtables kmod-ipt-dhcpmac kmod-ipt-dnetmap kmod-jool-netfilter kmod-mt7981-firmware kmod-nat46 kmod-ovpn-dco-v2 libcap-ng libgcrypt libgpg-error liblz4 liblzo libnl libnl-cli libnl-core libnl-genl libnl-nf libnl-route libopenssl libopenssl-conf libopenssl-devcrypto libopenssl-legacy libpcre2 libqrencode libxml2 luci-app-dawn luci-app-openvpn luci-app-usteer luci-i18n-dashboard-zh-cn luci-i18n-openvpn-zh-cn luci-mod-dashboard luci-nginx luci-proto-relay luci-proto-wireguard mt7981-wo-firmware nginx-mod-luci nginx-mod-ubus nginx-ssl nginx-ssl-util openvpn-openssl proto-bonding qrencode relayd tc-tiny uwsgi uwsgi-cgi-plugin uwsgi-luci-support uwsgi-syslog-plugin wireguard-tools wpad-openssl"
+# CONFIG_TARGET_DEVICE_mediatek_filogic_DEVICE_netis_nx32u is not set
 CONFIG_TARGET_DEVICE_mediatek_filogic_DEVICE_nokia_ea0326gmp=y
 CONFIG_TARGET_DEVICE_PACKAGES_mediatek_filogic_DEVICE_nokia_ea0326gmp="apk-openssl dawn ip-bridge iptables-mod-dhcpmac iptables-mod-dnetmap jool-tools-netfilter kmod-bonding kmod-crypto-chacha20poly1305 kmod-inet-diag kmod-ipt-compat-xtables kmod-ipt-dhcpmac kmod-ipt-dnetmap kmod-jool-netfilter kmod-mt7981-firmware kmod-nat46 kmod-ovpn-dco-v2 libcap-ng libgcrypt libgpg-error liblz4 liblzo libnl libnl-cli libnl-core libnl-genl libnl-nf libnl-route libopenssl libopenssl-conf libopenssl-devcrypto libopenssl-legacy libpcre2 libqrencode libxml2 luci-app-dawn luci-app-openvpn luci-app-usteer luci-i18n-dashboard-zh-cn luci-i18n-openvpn-zh-cn luci-mod-dashboard luci-nginx luci-proto-relay luci-proto-wireguard mt7981-wo-firmware nginx-mod-luci nginx-mod-ubus nginx-ssl nginx-ssl-util openvpn-openssl proto-bonding qrencode relayd tc-tiny uwsgi uwsgi-cgi-plugin uwsgi-luci-support uwsgi-syslog-plugin wireguard-tools wpad-openssl"
 CONFIG_TARGET_DEVICE_mediatek_filogic_DEVICE_nradio_c8-660=y
@@ -912,7 +918,7 @@ CONFIG_TARGET_INIT_CMD="/sbin/init"
 CONFIG_TARGET_INIT_SUPPRESS_STDERR=y
 CONFIG_VERSIONOPT=y
 CONFIG_VERSION_DIST="X-WRT"
-CONFIG_VERSION_NUMBER="26.04_b202602130718"
+CONFIG_VERSION_NUMBER="26.04_b202602141623"
 CONFIG_VERSION_CODE="Resolute"
 CONFIG_VERSION_REPO="http://downloads.openwrt.org/snapshots"
 CONFIG_VERSION_HOME_URL="https://x-wrt.com/"
