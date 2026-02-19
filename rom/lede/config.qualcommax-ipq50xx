@@ -56,6 +56,7 @@ CONFIG_TARGET_qualcommax=y
 # CONFIG_TARGET_qualcommax_ipq60xx is not set
 CONFIG_TARGET_qualcommax_ipq50xx=y
 CONFIG_TARGET_MULTI_PROFILE=y
+# CONFIG_TARGET_qualcommax_ipq50xx_DEVICE_cmcc_mr3000d-ci is not set
 # CONFIG_TARGET_qualcommax_ipq50xx_DEVICE_cmcc_pz-l8 is not set
 # CONFIG_TARGET_qualcommax_ipq50xx_DEVICE_elecom_wrc-x3000gs2 is not set
 # CONFIG_TARGET_qualcommax_ipq50xx_DEVICE_glinet_gl-b3000 is not set
@@ -75,6 +76,7 @@ CONFIG_TARGET_MULTI_PROFILE=y
 #
 # CONFIG_TARGET_ALL_PROFILES is not set
 CONFIG_TARGET_PER_DEVICE_ROOTFS=y
+# CONFIG_TARGET_DEVICE_qualcommax_ipq50xx_DEVICE_cmcc_mr3000d-ci is not set
 CONFIG_TARGET_DEVICE_qualcommax_ipq50xx_DEVICE_cmcc_pz-l8=y
 CONFIG_TARGET_DEVICE_PACKAGES_qualcommax_ipq50xx_DEVICE_cmcc_pz-l8="apk-openssl ath11k-firmware-ipq5018-qcn6122 ca-bundle curl dawn ethtool gre ip-bridge ipq-wifi-cmcc_pz-l8 iptables-mod-dhcpmac iptables-mod-dnetmap jool-tools-netfilter kmod-ath kmod-ath11k kmod-ath11k-ahb kmod-ath11k-smallbuffers kmod-bonding kmod-cfg80211 kmod-crypto-acompress kmod-crypto-cbc kmod-crypto-chacha20poly1305 kmod-crypto-deflate kmod-crypto-des kmod-crypto-echainiv kmod-crypto-md5 kmod-inet-diag kmod-ip6-vti kmod-ipsec kmod-ipsec4 kmod-ipsec6 kmod-ipt-compat-xtables kmod-ipt-dhcpmac kmod-ipt-dnetmap kmod-ip-vti kmod-jool-netfilter kmod-l2tp kmod-lib-zlib-deflate kmod-lib-zlib-inflate kmod-mac80211 kmod-nat46 kmod-ovpn-dco-v2 kmod-pppol2tp kmod-qcom-qmi-helpers kmod-thermal kmod-xfrm-interface libcap-ng libcurl libgcrypt libgpg-error liblz4 liblzo libnghttp2 libnl libnl-cli libnl-core libnl-genl libnl-nf libnl-route libopenssl libopenssl-conf libopenssl-legacy libpcre2 libqrencode libssh2 libstdcpp libxml2 luci-app-dawn luci-app-openvpn luci-app-usteer luci-i18n-dashboard-zh-cn luci-i18n-openvpn-zh-cn luci-mod-dashboard luci-nginx luci-proto-gre luci-proto-relay luci-proto-vti luci-proto-wireguard luci-proto-xfrm luci-theme-argon nginx-mod-luci nginx-mod-ubus nginx-ssl nginx-ssl-util openvpn-openssl ppp-mod-pppol2tp proto-bonding qrencode relayd tc-tiny uwsgi uwsgi-cgi-plugin uwsgi-luci-support uwsgi-syslog-plugin vti wireguard-tools wpad-openssl xfrm xl2tpd"
 # CONFIG_TARGET_DEVICE_qualcommax_ipq50xx_DEVICE_elecom_wrc-x3000gs2 is not set
@@ -495,7 +497,7 @@ CONFIG_TARGET_INIT_CMD="/sbin/init"
 CONFIG_TARGET_INIT_SUPPRESS_STDERR=y
 CONFIG_VERSIONOPT=y
 CONFIG_VERSION_DIST="X-WRT"
-CONFIG_VERSION_NUMBER="26.04_b202602160201"
+CONFIG_VERSION_NUMBER="26.04_b202602200154"
 CONFIG_VERSION_CODE="Resolute"
 CONFIG_VERSION_REPO="http://downloads.openwrt.org/snapshots"
 CONFIG_VERSION_HOME_URL="https://x-wrt.com/"
@@ -2895,6 +2897,7 @@ CONFIG_PACKAGE_libiwinfo-data=y
 # CONFIG_PACKAGE_ipq-wifi-asus_rt-ax89x is not set
 # CONFIG_PACKAGE_ipq-wifi-buffalo_wxr-5950ax12 is not set
 # CONFIG_PACKAGE_ipq-wifi-cambiumnetworks_xe34 is not set
+# CONFIG_PACKAGE_ipq-wifi-cmcc_mr3000d-ci is not set
 CONFIG_PACKAGE_ipq-wifi-cmcc_pz-l8=m
 # CONFIG_PACKAGE_ipq-wifi-cmcc_rm2-6 is not set
 # CONFIG_PACKAGE_ipq-wifi-compex_wpq873 is not set
@@ -7242,7 +7245,6 @@ CONFIG_PACKAGE_ddns-scripts_aliyun=y
 # CONFIG_PACKAGE_hostip is not set
 # CONFIG_PACKAGE_idn is not set
 # CONFIG_PACKAGE_idn2 is not set
-# CONFIG_PACKAGE_inadyn is not set
 # CONFIG_PACKAGE_isc-dhcp-client-ipv4 is not set
 # CONFIG_PACKAGE_isc-dhcp-client-ipv6 is not set
 # CONFIG_PACKAGE_isc-dhcp-omshell-ipv4 is not set
@@ -7822,13 +7824,6 @@ CONFIG_PACKAGE_cgi-io=y
 # CONFIG_PACKAGE_nginx-mod-lua is not set
 # CONFIG_PACKAGE_nginx-mod-lua-resty-core is not set
 # CONFIG_PACKAGE_nginx-mod-lua-resty-lrucache is not set
-CONFIG_PACKAGE_nginx-mod-luci=m
-# CONFIG_PACKAGE_nginx-mod-naxsi is not set
-# CONFIG_PACKAGE_nginx-mod-njs is not set
-# CONFIG_PACKAGE_nginx-mod-rtmp is not set
-# CONFIG_PACKAGE_nginx-mod-stream is not set
-# CONFIG_PACKAGE_nginx-mod-ts is not set
-CONFIG_PACKAGE_nginx-mod-ubus=m
 CONFIG_PACKAGE_nginx-ssl=m
 
 #
@@ -7874,6 +7869,13 @@ CONFIG_NGINX_PCRE=y
 # CONFIG_NGINX_STREAM_REAL_IP is not set
 # end of Configuration
 
+CONFIG_PACKAGE_nginx-mod-luci=m
+# CONFIG_PACKAGE_nginx-mod-naxsi is not set
+# CONFIG_PACKAGE_nginx-mod-njs is not set
+# CONFIG_PACKAGE_nginx-mod-rtmp is not set
+# CONFIG_PACKAGE_nginx-mod-stream is not set
+# CONFIG_PACKAGE_nginx-mod-ts is not set
+CONFIG_PACKAGE_nginx-mod-ubus=m
 CONFIG_PACKAGE_nginx-ssl-util=m
 # CONFIG_PACKAGE_nginx-ssl-util-nopcre is not set
 # CONFIG_PACKAGE_privoxy is not set
