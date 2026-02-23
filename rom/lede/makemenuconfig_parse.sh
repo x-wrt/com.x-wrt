@@ -145,7 +145,7 @@ ipv6extra="kmod-jool-netfilter \
 	   kmod-nat46 \
 	   jool-tools-netfilter"
 
-openvpnmod="luci-app-openvpn \
+openvpnmod="luci-app-openvpn luci-proto-openvpn \
 			luci-i18n-openvpn-en \
 			luci-i18n-openvpn-zh-cn \
 			openvpn-openssl kmod-ovpn-dco-v2"
