@@ -488,6 +488,7 @@ rootfs_type() {
 mount -t pstore -o nosuid,nodev,noexec,noatime pstore /sys/fs/pstore 2>/dev/null
 if ! [ "$(rootfs_type)" = "tmpfs" ]; then
 	rm -f /sys/fs/pstore/*
+	rm -f /data/crashdump/dmesg-*
 else
 	mkdir -p /tmp/pstore
 	mv /sys/fs/pstore/* /tmp/pstore/
