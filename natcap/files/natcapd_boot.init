@@ -9,6 +9,10 @@ boot() {
 	if test $PSTORE -gt 0; then
 		touch /tmp/pstore
 	fi
+	PSTORE=$(ls -l /data/crashdump/ 2>/dev/null | wc -l)
+	if test $PSTORE -gt 0 ; then
+		touch /tmp/pstore
+	fi
 	test -f /etc/config/natcap_server.sh && sh /etc/config/natcap_server.sh
 	/usr/sbin/natcapd boot
 }
