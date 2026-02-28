@@ -12,7 +12,7 @@ s.anonymous = true
 
 s:tab("system", translate("System Settings"))
 
-if nixio.fs.access("/etc/init.d/openvpn") then
+if nixio.fs.access("/usr/sbin/openvpn") then
 	e = s:taboption("system", Flag, "natcapovpn", translate("Enable OpenVPN Server"), translate("Allows you connect to router via VPN, the router need to have a public IP."))
 	e.default = e.disabled
 	e.rmempty = false

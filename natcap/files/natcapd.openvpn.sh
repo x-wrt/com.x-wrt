@@ -1,6 +1,6 @@
 #!/bin/sh
 
-test -x /etc/init.d/openvpn || exit 0
+test -x /usr/sbin/openvpn || exit 0
 
 # gen natcap-ta.key if not exist.
 test -f /etc/openvpn/natcap-ta.key || {
@@ -59,10 +59,17 @@ make_config()
 	exit 0
 }
 
+openvpn=openvpn
+openvpn_if=openvpn
+ovpnproto=proto
+test -e /lib/netifd/proto/openvpn.sh && openvpn=network
+test -e /lib/netifd/proto/openvpn.sh && openvpn_if=interface
+test -e /lib/netifd/proto/openvpn.sh && ovpnproto=ovpnproto
+
 [ "x`uci get natcapd.default.natcapovpn 2>/dev/null`" = x1 ] && {
 	mode="$(uci get natcapd.default.natcapovpn_tap 2>/dev/null || echo 0)"
 	ip6="$(uci get natcapd.default.natcapovpn_ip6 2>/dev/null || echo 0)"
-	oldhash=$(uci get openvpn.natcapovpn_tcp.oldhash)
+	oldhash=$(uci get $openvpn.natcapovpn_tcp.oldhash)
 	newhash="1${mode}${ip6}1"
 	[ "$oldhash" != "$newhash" ] && {
 		/etc/init.d/openvpn stop
@@ -104,75 +111,78 @@ make_config()
 
 		I=0
 		for p in tcp udp; do
-			uci delete openvpn.natcapovpn_$p
-			uci set openvpn.natcapovpn_$p=openvpn
-			uci set openvpn.natcapovpn_$p.oldhash="$newhash"
-			uci set openvpn.natcapovpn_$p.enabled='1'
-			uci set openvpn.natcapovpn_$p.port='4911'
-			uci set openvpn.natcapovpn_$p.dev="natcap$p"
+			uci delete $openvpn.natcapovpn_$p
+			uci set $openvpn.natcapovpn_$p=$openvpn_if
+			test -e /lib/netifd/proto/openvpn.sh && uci set $openvpn.natcapovpn_$p.proto='openvpn'
+			test -e /lib/netifd/proto/openvpn.sh && uci set $openvpn.natcapovpn_$p.mtu_disc='no'
+			test -e /lib/netifd/proto/openvpn.sh && uci set $openvpn.natcapovpn_$p.multipath='off'
+			uci set $openvpn.natcapovpn_$p.oldhash="$newhash"
+			uci set $openvpn.natcapovpn_$p.enabled='1'
+			uci set $openvpn.natcapovpn_$p.port='4911'
+			uci set $openvpn.natcapovpn_$p.dev="natcap$p"
 			if [ "$mode" = "1" ]; then
-				uci set openvpn.natcapovpn_$p.dev_type='tap'
-				uci set openvpn.natcapovpn_$p.tun_mtu='1404'
+				uci set $openvpn.natcapovpn_$p.dev_type='tap'
+				uci set $openvpn.natcapovpn_$p.tun_mtu='1404'
 			else
-				uci set openvpn.natcapovpn_$p.dev_type='tun'
-				uci set openvpn.natcapovpn_$p.tun_mtu='1420'
+				uci set $openvpn.natcapovpn_$p.dev_type='tun'
+				uci set $openvpn.natcapovpn_$p.tun_mtu='1420'
 			fi
-			uci set openvpn.natcapovpn_$p.ca='/usr/share/natcapd/openvpn/ca.crt'
-			uci set openvpn.natcapovpn_$p.cert='/usr/share/natcapd/openvpn/server.crt'
-			uci set openvpn.natcapovpn_$p.key='/usr/share/natcapd/openvpn/server.key'
-			uci set openvpn.natcapovpn_$p.dh='/usr/share/natcapd/openvpn/dh2048.pem'
-			uci set openvpn.natcapovpn_$p.server="10.8.$((9+I)).0 255.255.255.0"
-			uci set openvpn.natcapovpn_$p.keepalive='10 60'
-			uci set openvpn.natcapovpn_$p.persist_key='1'
-			uci set openvpn.natcapovpn_$p.persist_tun='1'
-			uci set openvpn.natcapovpn_$p.user='nobody'
-			uci set openvpn.natcapovpn_$p.duplicate_cn='1'
-			uci set openvpn.natcapovpn_$p.status='/tmp/natcapovpn-status.log'
-			uci set openvpn.natcapovpn_$p.mode='server'
-			uci set openvpn.natcapovpn_$p.tls_server='1'
-			uci set openvpn.natcapovpn_$p.tls_auth='/usr/share/natcapd/openvpn/ta.key 0'
-			test -f /etc/openvpn/natcap-ta.key && uci set openvpn.natcapovpn_$p.tls_auth='/etc/openvpn/natcap-ta.key 0'
-			uci add_list openvpn.natcapovpn_$p.push='persist-key'
-			uci add_list openvpn.natcapovpn_$p.push='persist-tun'
-			uci add_list openvpn.natcapovpn_$p.push='dhcp-option DNS 8.8.8.8'
+			uci set $openvpn.natcapovpn_$p.ca='/usr/share/natcapd/openvpn/ca.crt'
+			uci set $openvpn.natcapovpn_$p.cert='/usr/share/natcapd/openvpn/server.crt'
+			uci set $openvpn.natcapovpn_$p.key='/usr/share/natcapd/openvpn/server.key'
+			uci set $openvpn.natcapovpn_$p.dh='/usr/share/natcapd/openvpn/dh2048.pem'
+			uci set $openvpn.natcapovpn_$p.server="10.8.$((9+I)).0 255.255.255.0"
+			uci set $openvpn.natcapovpn_$p.keepalive='10 60'
+			uci set $openvpn.natcapovpn_$p.persist_key='1'
+			uci set $openvpn.natcapovpn_$p.persist_tun='1'
+			uci set $openvpn.natcapovpn_$p.user='nobody'
+			uci set $openvpn.natcapovpn_$p.duplicate_cn='1'
+			uci set $openvpn.natcapovpn_$p.status='/tmp/natcapovpn-status.log'
+			uci set $openvpn.natcapovpn_$p.mode='server'
+			uci set $openvpn.natcapovpn_$p.tls_server='1'
+			uci set $openvpn.natcapovpn_$p.tls_auth='/usr/share/natcapd/openvpn/ta.key 0'
+			test -f /etc/openvpn/natcap-ta.key && uci set $openvpn.natcapovpn_$p.tls_auth='/etc/openvpn/natcap-ta.key 0'
+			uci add_list $openvpn.natcapovpn_$p.push='persist-key'
+			uci add_list $openvpn.natcapovpn_$p.push='persist-tun'
+			uci add_list $openvpn.natcapovpn_$p.push='dhcp-option DNS 8.8.8.8'
 			if [ "$p" = "tcp" ]; then
 				if [ "$ip6" = "1" ]; then
 					#ipv4 ipv6 dual support
-					uci set openvpn.natcapovpn_$p.proto="${p}6-server"
+					uci set $openvpn.natcapovpn_$p.$ovpnproto="${p}6-server"
 				else
-					uci set openvpn.natcapovpn_$p.proto="${p}4-server"
+					uci set $openvpn.natcapovpn_$p.$ovpnproto="${p}4-server"
 				fi
 			else
 				if [ "$ip6" = "1" ]; then
 					#ipv4 ipv6 dual support
-					uci set openvpn.natcapovpn_$p.proto="${p}6"
+					uci set $openvpn.natcapovpn_$p.$ovpnproto="${p}6"
 				else
-					uci set openvpn.natcapovpn_$p.proto="${p}4"
+					uci set $openvpn.natcapovpn_$p.$ovpnproto="${p}4"
 				fi
-				uci set openvpn.natcapovpn_$p.multihome='1'
+				uci set $openvpn.natcapovpn_$p.multihome='1'
 			fi
-			uci set openvpn.natcapovpn_$p.verb='3'
-			uci set openvpn.natcapovpn_$p.cipher='AES-256-GCM'
-			uci set openvpn.natcapovpn_$p.auth='SHA256'
-			uci set openvpn.natcapovpn_$p.topology='subnet'
-			uci set openvpn.natcapovpn_$p.client_to_client='1'
+			uci set $openvpn.natcapovpn_$p.verb='3'
+			uci set $openvpn.natcapovpn_$p.cipher='AES-256-GCM'
+			uci set $openvpn.natcapovpn_$p.auth='SHA256'
+			uci set $openvpn.natcapovpn_$p.topology='subnet'
+			uci set $openvpn.natcapovpn_$p.client_to_client='1'
 			I=$((I+1))
 		done
-		uci commit openvpn
+		uci commit $openvpn
 
-		/etc/init.d/openvpn start
+		test -x /etc/init.d/openvpn && /etc/init.d/openvpn start
 		/etc/init.d/network reload
 		/etc/init.d/firewall reload
 	}
 	exit 0
 }
 
-[ "x`uci get natcapd.default.natcapovpn 2>/dev/null`" != x1 ] && [ "x`uci get openvpn.natcapovpn_tcp.enabled 2>/dev/null`" = x1 ] && {
+[ "x`uci get natcapd.default.natcapovpn 2>/dev/null`" != x1 ] && [ "x`uci get $openvpn.natcapovpn_tcp.enabled 2>/dev/null`" = x1 ] && {
 	/etc/init.d/openvpn stop
 	for p in tcp udp tcp4 udp4 tcp6 udp6; do
-		uci delete openvpn.natcapovpn_$p
+		uci delete $openvpn.natcapovpn_$p
 	done
-	uci commit openvpn
+	uci commit $openvpn
 
 	uci delete network.natcapovpn 2>/dev/null
 	uci commit network
