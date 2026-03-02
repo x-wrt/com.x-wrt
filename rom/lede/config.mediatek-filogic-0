@@ -228,6 +228,7 @@ CONFIG_TARGET_MULTI_PROFILE=y
 # CONFIG_TARGET_mediatek_filogic_DEVICE_zyxel_ex5601-t0-ubootmod is not set
 # CONFIG_TARGET_mediatek_filogic_DEVICE_zyxel_ex5700-telenor is not set
 # CONFIG_TARGET_mediatek_filogic_DEVICE_zyxel_nwa50ax-pro is not set
+# CONFIG_TARGET_mediatek_filogic_DEVICE_zyxel_wx5600-t0-ubootmod is not set
 # CONFIG_TARGET_mediatek_filogic_DEVICE_tenbay_wr3000k-gsw-emmc-nor is not set
 # CONFIG_TARGET_mediatek_filogic_DEVICE_tenbay_ms3000k is not set
 # CONFIG_TARGET_mediatek_filogic_DEVICE_xwrt_wr3000k-emmc-nor is not set
@@ -458,6 +459,7 @@ CONFIG_TARGET_DEVICE_PACKAGES_mediatek_filogic_DEVICE_zbtlink_zbt-z8103ax="apk-o
 CONFIG_TARGET_DEVICE_mediatek_filogic_DEVICE_zyxel_ex5700-telenor=y
 CONFIG_TARGET_DEVICE_PACKAGES_mediatek_filogic_DEVICE_zyxel_ex5700-telenor="apk-openssl aria2 aria2-openssl base-config-setting-ext4fs blkid ca-bundle chat comgt comgt-ncm curl dawn e2fsprogs fdisk gdisk gre ip-bridge iptables-mod-dhcpmac iptables-mod-dnetmap jool-tools-netfilter kmod-bonding kmod-crypto-acompress kmod-crypto-cbc kmod-crypto-chacha20poly1305 kmod-crypto-deflate kmod-crypto-echainiv kmod-dnsresolver kmod-fs-exfat kmod-fs-ext4 kmod-fs-ksmbd kmod-fs-msdos kmod-fs-netfs kmod-fs-nfs kmod-fs-nfs-common kmod-fs-nfs-v4 kmod-fs-ntfs3 kmod-fs-smbfs-common kmod-fs-vfat kmod-fuse kmod-inet-diag kmod-ip6-vti kmod-ipsec kmod-ipsec4 kmod-ipsec6 kmod-ipt-compat-xtables kmod-ipt-dhcpmac kmod-ipt-dnetmap kmod-ip-vti kmod-jool-netfilter kmod-l2tp kmod-lib-crc16 kmod-lib-zlib-deflate kmod-lib-zlib-inflate kmod-mii kmod-mt7916-firmware kmod-mt7986-firmware kmod-nat46 kmod-nls-cp437 kmod-nls-ucs2-utils kmod-oid-registry kmod-ovpn-dco-v2 kmod-pppol2tp kmod-scsi-core kmod-ubootenv-nvram kmod-usb2 kmod-usb3 kmod-usb-ehci kmod-usb-net kmod-usb-net-cdc-ether kmod-usb-net-cdc-mbim kmod-usb-net-cdc-ncm kmod-usb-net-huawei-cdc-ncm kmod-usb-net-ipheth kmod-usb-net-qmi-wwan kmod-usb-net-rndis kmod-usb-net-sierrawireless kmod-usb-ohci kmod-usb-printer kmod-usb-serial kmod-usb-serial-cp210x kmod-usb-serial-option kmod-usb-serial-pl2303 kmod-usb-serial-qualcomm kmod-usb-serial-sierrawireless kmod-usb-serial-wwan kmod-usb-storage kmod-usb-storage-extras kmod-usb-storage-uas kmod-usb-wdm kmod-usb-xhci-hcd kmod-usb-xhci-mtk kmod-xfrm-interface ksmbd-server libblkid libcap-ng libcares libcomerr libcurl libe2p libevdev libexpat libext2fs libfdisk libgcrypt libgmp libgpg-error libimobiledevice libimobiledevice-glue libimobiledevice-utils libkmod liblz4 liblzo libnghttp2 libnl libnl-cli libnl-core libnl-genl libnl-nf libnl-route libopenssl libopenssl-conf libopenssl-devcrypto libopenssl-legacy libpci libpcre2 libplist libqrencode libsmartcols libsqlite3 libss libssh2 libtatsu libudev-zero libusb-1.0 libusbmuxd libxml2 luci-app-aria2 luci-app-dawn luci-app-ksmbd luci-app-p910nd luci-app-usteer luci-i18n-aria2-zh-cn luci-i18n-dashboard-zh-cn luci-i18n-ksmbd-zh-cn luci-i18n-p910nd-zh-cn luci-mod-dashboard luci-nginx luci-proto-3g luci-proto-gre luci-proto-mbim luci-proto-ncm luci-proto-openvpn luci-proto-qmi luci-proto-relay luci-proto-vti luci-proto-wireguard luci-proto-xfrm luci-theme-argon minicom mt7986-wo-firmware nfs-utils nginx-mod-luci nginx-mod-ubus nginx-ssl nginx-ssl-util openvpn-openssl p910nd partx-utils pciids pciutils ppp-mod-pppol2tp proto-bonding qrencode relayd sendip tc-tiny tune2fs umbim uqmi usbids usb-modeswitch usbmuxd usbutils uwsgi uwsgi-cgi-plugin uwsgi-luci-support uwsgi-syslog-plugin vti webui-aria2 wget-ssl wireguard-tools wpad-openssl wsdd2 wwan xfrm xl2tpd"
 # CONFIG_TARGET_DEVICE_mediatek_filogic_DEVICE_zyxel_nwa50ax-pro is not set
+# CONFIG_TARGET_DEVICE_mediatek_filogic_DEVICE_zyxel_wx5600-t0-ubootmod is not set
 # end of Target Devices
 
 CONFIG_HAS_SUBTARGETS=y
@@ -580,6 +582,7 @@ CONFIG_EMMC_SUPPORT=y
 CONFIG_NAND_SUPPORT=y
 CONFIG_ARCH_64BIT=y
 CONFIG_USES_ROOTFS_PART=y
+CONFIG_REGULATOR_SUPPORT=y
 CONFIG_aarch64=y
 CONFIG_ARCH="aarch64"
 
@@ -639,6 +642,7 @@ CONFIG_SIGNED_PACKAGES=y
 CONFIG_SIGNATURE_CHECK=y
 CONFIG_DOWNLOAD_CHECK_CERTIFICATE=y
 CONFIG_USE_APK=y
+CONFIG_SIGN_EACH_PACKAGE=y
 
 #
 # General build options
@@ -918,7 +922,7 @@ CONFIG_TARGET_INIT_CMD="/sbin/init"
 CONFIG_TARGET_INIT_SUPPRESS_STDERR=y
 CONFIG_VERSIONOPT=y
 CONFIG_VERSION_DIST="X-WRT"
-CONFIG_VERSION_NUMBER="26.04_b202602280042"
+CONFIG_VERSION_NUMBER="26.04_b202603022236"
 CONFIG_VERSION_CODE="Resolute"
 CONFIG_VERSION_REPO="http://downloads.openwrt.org/snapshots"
 CONFIG_VERSION_HOME_URL="https://x-wrt.com/"
@@ -3962,6 +3966,11 @@ CONFIG_PACKAGE_kmod-oid-registry=m
 # end of Libraries
 
 #
+# MultiFunction Device (MFD) Support
+#
+# end of MultiFunction Device (MFD) Support
+
+#
 # Multiplexer Support
 #
 # CONFIG_PACKAGE_kmod-mux-core is not set
@@ -4393,6 +4402,12 @@ CONFIG_PACKAGE_kmod-ubootenv-nvram=m
 # end of PCMCIA support
 
 #
+# PSE-PD / PoE support
+#
+# CONFIG_PACKAGE_kmod-pse-pd is not set
+# end of PSE-PD / PoE support
+
+#
 # RTC Real-Time Clock Support
 #
 # CONFIG_PACKAGE_kmod-rtc-bq32k is not set
@@ -4534,6 +4549,7 @@ CONFIG_PACKAGE_kmod-usbip-client=m
 #
 # CONFIG_PACKAGE_kmod-vhost is not set
 # CONFIG_PACKAGE_kmod-vhost-net is not set
+# CONFIG_PACKAGE_kmod-vsock is not set
 # end of Virtualization
 
 #
@@ -7259,6 +7275,8 @@ CONFIG_PACKAGE_luci-i18n-package-manager-zh-cn=y
 CONFIG_PACKAGE_luci-i18n-sqm-zh-cn=m
 # CONFIG_PACKAGE_luci-i18n-sqm-zh-tw is not set
 # CONFIG_PACKAGE_luci-i18n-strongswan-swanctl-es is not set
+# CONFIG_PACKAGE_luci-i18n-strongswan-swanctl-pl is not set
+# CONFIG_PACKAGE_luci-i18n-strongswan-swanctl-zh-tw is not set
 # CONFIG_PACKAGE_luci-i18n-upnp-ar is not set
 # CONFIG_PACKAGE_luci-i18n-upnp-bg is not set
 # CONFIG_PACKAGE_luci-i18n-upnp-bn is not set
@@ -7673,6 +7691,7 @@ CONFIG_PACKAGE_ddns-scripts=y
 # CONFIG_PACKAGE_ddns-scripts-porkbun is not set
 # CONFIG_PACKAGE_ddns-scripts-route53 is not set
 # CONFIG_PACKAGE_ddns-scripts-scaleway is not set
+# CONFIG_PACKAGE_ddns-scripts-servercow is not set
 CONFIG_PACKAGE_ddns-scripts-services=y
 # CONFIG_PACKAGE_ddns-scripts-transip is not set
 # CONFIG_PACKAGE_ddns-scripts-utils is not set
@@ -8463,6 +8482,13 @@ CONFIG_PACKAGE_6to4=y
 # CONFIG_PACKAGE_bpfcountd is not set
 # CONFIG_PACKAGE_bpftool-full is not set
 # CONFIG_PACKAGE_bpftool-minimal is not set
+# CONFIG_PACKAGE_bsbf-bonding is not set
+# CONFIG_PACKAGE_bsbf-mptcp is not set
+# CONFIG_PACKAGE_bsbf-netspeed is not set
+# CONFIG_PACKAGE_bsbf-quectel-usbnet is not set
+# CONFIG_PACKAGE_bsbf-route is not set
+# CONFIG_PACKAGE_bsbf-tcp-in-udp is not set
+# CONFIG_PACKAGE_bsbf-usb-netdev-autodhcp is not set
 # CONFIG_PACKAGE_bwm-ng is not set
 # CONFIG_PACKAGE_bwping is not set
 CONFIG_PACKAGE_chat=m
@@ -8693,6 +8719,7 @@ CONFIG_PACKAGE_rssileds=m
 # CONFIG_PACKAGE_tac_plus is not set
 # CONFIG_PACKAGE_tac_plus-pam is not set
 # CONFIG_PACKAGE_tayga is not set
+# CONFIG_PACKAGE_tcp-in-udp is not set
 CONFIG_PACKAGE_tcpdump=y
 # CONFIG_PACKAGE_tcpdump-mini is not set
 # CONFIG_PACKAGE_teamd is not set
