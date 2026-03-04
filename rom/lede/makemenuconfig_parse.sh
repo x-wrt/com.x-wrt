@@ -862,8 +862,6 @@ for t in $targets; do
 		TARGET_DEVICE_mediatek_filogic_DEVICE_tenda_ax12-pro-v2|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_tenda_ax12l-pro|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_ruijie_rg-ew1200g-pro-v1.1|\
-		TARGET_DEVICE_mediatek_filogic_DEVICE_cudy_re3000-v1|\
-		TARGET_DEVICE_mediatek_filogic_DEVICE_cudy_wr3000-v1|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_jdcloud_re-cp-02|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_yuncore_ax835|\
 		TARGET_DEVICE_ath79_generic_DEVICE_huawei_ap5030dn|\
@@ -1077,6 +1075,8 @@ for t in $targets; do
 			flash_gt8m=1
 		;;
 		# <= 8M
+		TARGET_DEVICE_mediatek_filogic_DEVICE_cudy_re3000-v1|\
+		TARGET_DEVICE_mediatek_filogic_DEVICE_cudy_wr3000-v1|\
 		TARGET_DEVICE_qualcommax_ipq807x_DEVICE_asus_rt-ax89x|\
 		TARGET_DEVICE_ramips_mt7620_DEVICE_tplink_archer-c5-v4|\
 		TARGET_DEVICE_ramips_mt7620_DEVICE_mercusys_ac12g-v1-8m|\
