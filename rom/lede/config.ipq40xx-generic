@@ -72,6 +72,7 @@ CONFIG_TARGET_MULTI_PROFILE=y
 # CONFIG_TARGET_ipq40xx_generic_DEVICE_avm_fritzrepeater-3000 is not set
 # CONFIG_TARGET_ipq40xx_generic_DEVICE_buffalo_wtr-m2133hp is not set
 # CONFIG_TARGET_ipq40xx_generic_DEVICE_cellc_rtl30vw is not set
+# CONFIG_TARGET_ipq40xx_generic_DEVICE_cilab_meshpoint-one is not set
 # CONFIG_TARGET_ipq40xx_generic_DEVICE_compex_wpj428 is not set
 # CONFIG_TARGET_ipq40xx_generic_DEVICE_devolo_magic-2-wifi-next is not set
 # CONFIG_TARGET_ipq40xx_generic_DEVICE_dlink_dap-2610 is not set
@@ -85,6 +86,7 @@ CONFIG_TARGET_MULTI_PROFILE=y
 # CONFIG_TARGET_ipq40xx_generic_DEVICE_glinet_gl-b1300 is not set
 # CONFIG_TARGET_ipq40xx_generic_DEVICE_glinet_gl-b2200 is not set
 # CONFIG_TARGET_ipq40xx_generic_DEVICE_glinet_gl-s1300 is not set
+# CONFIG_TARGET_ipq40xx_generic_DEVICE_huawei_ap4050dn is not set
 # CONFIG_TARGET_ipq40xx_generic_DEVICE_linksys_ea6350v3 is not set
 # CONFIG_TARGET_ipq40xx_generic_DEVICE_linksys_ea8300 is not set
 # CONFIG_TARGET_ipq40xx_generic_DEVICE_linksys_mr6350 is not set
@@ -168,6 +170,7 @@ CONFIG_TARGET_DEVICE_PACKAGES_ipq40xx_generic_DEVICE_asus_rt-ac58u="apk-openssl 
 # CONFIG_TARGET_DEVICE_ipq40xx_generic_DEVICE_meraki_mr74 is not set
 # CONFIG_TARGET_DEVICE_ipq40xx_generic_DEVICE_meraki_z3 is not set
 # CONFIG_TARGET_DEVICE_ipq40xx_generic_DEVICE_compex_wpj428 is not set
+# CONFIG_TARGET_DEVICE_ipq40xx_generic_DEVICE_cilab_meshpoint-one is not set
 # CONFIG_TARGET_DEVICE_ipq40xx_generic_DEVICE_dlink_dap-2610 is not set
 # CONFIG_TARGET_DEVICE_ipq40xx_generic_DEVICE_devolo_magic-2-wifi-next is not set
 # CONFIG_TARGET_DEVICE_ipq40xx_generic_DEVICE_edgecore_ecw5211 is not set
@@ -184,6 +187,7 @@ CONFIG_TARGET_DEVICE_PACKAGES_ipq40xx_generic_DEVICE_glinet_gl-b1300="apk-openss
 CONFIG_TARGET_DEVICE_ipq40xx_generic_DEVICE_glinet_gl-b2200=y
 CONFIG_TARGET_DEVICE_PACKAGES_ipq40xx_generic_DEVICE_glinet_gl-b2200="apk-openssl aria2 aria2-openssl ath10k-board-qca4019 ath10k-board-qca9888 ath10k-firmware-qca4019-ct ath10k-firmware-qca9888-ct base-config-setting-ext4fs blkid blockd block-mount ca-bundle chat comgt comgt-ncm dawn e2fsprogs ethtool fdisk gdisk ip-bridge iptables-mod-dhcpmac iptables-mod-dnetmap jool-tools-netfilter kmod-ath kmod-ath10k-ct kmod-bonding kmod-crypto-chacha20poly1305 kmod-crypto-crc32 kmod-crypto-des kmod-crypto-md5 kmod-crypto-sha256 kmod-dnsresolver kmod-fs-autofs4 kmod-fs-exfat kmod-fs-ext4 kmod-fs-f2fs kmod-fs-ksmbd kmod-fs-msdos kmod-fs-netfs kmod-fs-nfs kmod-fs-nfs-common kmod-fs-nfs-v4 kmod-fs-ntfs3 kmod-fs-smbfs-common kmod-fs-vfat kmod-fuse kmod-inet-diag kmod-ipt-compat-xtables kmod-ipt-dhcpmac kmod-ipt-dnetmap kmod-jool-netfilter kmod-lib-crc16 kmod-mii kmod-mmc kmod-nat46 kmod-nls-cp437 kmod-nls-ucs2-utils kmod-oid-registry kmod-ovpn-dco-v2 kmod-spi-dev kmod-usb2 kmod-usb3 kmod-usb-ehci kmod-usb-net kmod-usb-net-cdc-ether kmod-usb-net-cdc-mbim kmod-usb-net-cdc-ncm kmod-usb-net-huawei-cdc-ncm kmod-usb-net-ipheth kmod-usb-net-qmi-wwan kmod-usb-net-rndis kmod-usb-net-sierrawireless kmod-usb-ohci kmod-usb-printer kmod-usb-serial kmod-usb-serial-cp210x kmod-usb-serial-option kmod-usb-serial-pl2303 kmod-usb-serial-qualcomm kmod-usb-serial-sierrawireless kmod-usb-serial-wwan kmod-usb-storage kmod-usb-storage-extras kmod-usb-storage-uas kmod-usb-wdm kmod-usb-xhci-hcd ksmbd-server libblkid libcap-ng libcares libcomerr libcurl libe2p libevdev libexpat libext2fs libf2fs libfdisk libgcrypt libgmp libgpg-error libimobiledevice libimobiledevice-glue libimobiledevice-utils libkmod liblz4 liblzo libnghttp2 libnl libnl-cli libnl-core libnl-genl libnl-nf libnl-route libopenssl libopenssl-conf libopenssl-legacy libpci libpcre2 libplist libqrencode libsmartcols libsqlite3 libss libssh2 libstdcpp libtatsu libudev-zero libusb-1.0 libusbmuxd libxml2 luci-app-aria2 luci-app-dawn luci-app-ksmbd luci-app-p910nd luci-app-usteer luci-i18n-aria2-zh-cn luci-i18n-dashboard-zh-cn luci-i18n-ksmbd-zh-cn luci-i18n-p910nd-zh-cn luci-mod-dashboard luci-nginx luci-proto-3g luci-proto-mbim luci-proto-ncm luci-proto-openvpn luci-proto-qmi luci-proto-relay luci-proto-wireguard minicom mkf2fs nfs-utils nginx-mod-luci nginx-mod-ubus nginx-ssl nginx-ssl-util openvpn-openssl p910nd partx-utils pciids pciutils proto-bonding qrencode relayd sendip tc-tiny tune2fs umbim uqmi usbids usb-modeswitch usbmuxd usbutils uwsgi uwsgi-cgi-plugin uwsgi-luci-support uwsgi-syslog-plugin webui-aria2 wget-ssl wireguard-tools wpad-openssl wsdd2 wwan"
 # CONFIG_TARGET_DEVICE_ipq40xx_generic_DEVICE_glinet_gl-s1300 is not set
+# CONFIG_TARGET_DEVICE_ipq40xx_generic_DEVICE_huawei_ap4050dn is not set
 CONFIG_TARGET_DEVICE_ipq40xx_generic_DEVICE_linksys_ea6350v3=y
 CONFIG_TARGET_DEVICE_PACKAGES_ipq40xx_generic_DEVICE_linksys_ea6350v3="apk-openssl aria2 aria2-openssl ath10k-board-qca4019 ath10k-firmware-qca4019-ct base-config-setting-ext4fs blkid blockd block-mount ca-bundle chat comgt comgt-ncm dawn e2fsprogs ethtool fdisk gdisk ip-bridge iptables-mod-dhcpmac iptables-mod-dnetmap jool-tools-netfilter kmod-ath kmod-ath10k-ct kmod-bonding kmod-crypto-chacha20poly1305 kmod-crypto-des kmod-crypto-md5 kmod-crypto-sha256 kmod-dnsresolver kmod-fs-autofs4 kmod-fs-exfat kmod-fs-ext4 kmod-fs-ksmbd kmod-fs-msdos kmod-fs-netfs kmod-fs-nfs kmod-fs-nfs-common kmod-fs-nfs-v4 kmod-fs-ntfs3 kmod-fs-smbfs-common kmod-fs-vfat kmod-fuse kmod-inet-diag kmod-ipt-compat-xtables kmod-ipt-dhcpmac kmod-ipt-dnetmap kmod-jool-netfilter kmod-lib-crc16 kmod-mii kmod-nat46 kmod-nls-cp437 kmod-nls-ucs2-utils kmod-oid-registry kmod-ovpn-dco-v2 kmod-usb2 kmod-usb3 kmod-usb-ehci kmod-usb-net kmod-usb-net-cdc-ether kmod-usb-net-cdc-mbim kmod-usb-net-cdc-ncm kmod-usb-net-huawei-cdc-ncm kmod-usb-net-ipheth kmod-usb-net-qmi-wwan kmod-usb-net-rndis kmod-usb-net-sierrawireless kmod-usb-ohci kmod-usb-printer kmod-usb-serial kmod-usb-serial-cp210x kmod-usb-serial-option kmod-usb-serial-pl2303 kmod-usb-serial-qualcomm kmod-usb-serial-sierrawireless kmod-usb-serial-wwan kmod-usb-storage kmod-usb-storage-extras kmod-usb-storage-uas kmod-usb-wdm kmod-usb-xhci-hcd ksmbd-server libblkid libcap-ng libcares libcomerr libcurl libe2p libevdev libexpat libext2fs libfdisk libgcrypt libgmp libgpg-error libimobiledevice libimobiledevice-glue libimobiledevice-utils libkmod liblz4 liblzo libnghttp2 libnl libnl-cli libnl-core libnl-genl libnl-nf libnl-route libopenssl libopenssl-conf libopenssl-legacy libpci libpcre2 libplist libqrencode libsmartcols libsqlite3 libss libssh2 libstdcpp libtatsu libudev-zero libusb-1.0 libusbmuxd libxml2 luci-app-aria2 luci-app-dawn luci-app-ksmbd luci-app-p910nd luci-app-usteer luci-i18n-aria2-zh-cn luci-i18n-dashboard-zh-cn luci-i18n-ksmbd-zh-cn luci-i18n-p910nd-zh-cn luci-mod-dashboard luci-nginx luci-proto-3g luci-proto-mbim luci-proto-ncm luci-proto-openvpn luci-proto-qmi luci-proto-relay luci-proto-wireguard minicom nfs-utils nginx-mod-luci nginx-mod-ubus nginx-ssl nginx-ssl-util openvpn-openssl p910nd partx-utils pciids pciutils proto-bonding qrencode relayd sendip tc-tiny tune2fs umbim uqmi usbids usb-modeswitch usbmuxd usbutils uwsgi uwsgi-cgi-plugin uwsgi-luci-support uwsgi-syslog-plugin webui-aria2 wget-ssl wireguard-tools wpad-openssl wsdd2 wwan"
 CONFIG_TARGET_DEVICE_ipq40xx_generic_DEVICE_linksys_ea8300=y
@@ -650,7 +654,7 @@ CONFIG_TARGET_INIT_CMD="/sbin/init"
 CONFIG_TARGET_INIT_SUPPRESS_STDERR=y
 CONFIG_VERSIONOPT=y
 CONFIG_VERSION_DIST="X-WRT"
-CONFIG_VERSION_NUMBER="26.04_b202603030014"
+CONFIG_VERSION_NUMBER="26.04_b202603081354"
 CONFIG_VERSION_CODE="Resolute"
 CONFIG_VERSION_REPO="http://downloads.openwrt.org/snapshots"
 CONFIG_VERSION_HOME_URL="https://x-wrt.com/"
@@ -680,7 +684,6 @@ CONFIG_PACKAGE_apk-openssl=m
 CONFIG_PACKAGE_base-files=y
 CONFIG_PACKAGE_block-mount=m
 CONFIG_PACKAGE_blockd=m
-CONFIG_PACKAGE_bridge=y
 # CONFIG_PACKAGE_bridger is not set
 CONFIG_PACKAGE_busybox=y
 CONFIG_BUSYBOX_CUSTOM=y
@@ -2909,31 +2912,26 @@ CONFIG_PACKAGE_wireless-tools=y
 #
 # Zabbix
 #
-# CONFIG_PACKAGE_zabbix-agentd-gnutls is not set
-# CONFIG_PACKAGE_zabbix-agentd-nossl is not set
-# CONFIG_PACKAGE_zabbix-agentd-openssl is not set
-# CONFIG_PACKAGE_zabbix-extra-mac80211 is not set
-# CONFIG_PACKAGE_zabbix-extra-network is not set
-# CONFIG_PACKAGE_zabbix-extra-wifi is not set
-# CONFIG_PACKAGE_zabbix-get-gnutls is not set
-# CONFIG_PACKAGE_zabbix-get-nossl is not set
-# CONFIG_PACKAGE_zabbix-get-openssl is not set
-# CONFIG_PACKAGE_zabbix-proxy-gnutls is not set
-# CONFIG_PACKAGE_zabbix-proxy-nossl is not set
+# CONFIG_PACKAGE_zabbix-agentd is not set
+# CONFIG_ZABBIX_GNUTLS is not set
+# CONFIG_ZABBIX_NOSSL is not set
+CONFIG_ZABBIX_OPENSSL=y
 
 #
-# Database Software
+# Modify features for non-core variants
 #
+CONFIG_ZABBIX_CURL=y
+CONFIG_ZABBIX_LDAP=y
+CONFIG_ZABBIX_NETSNMP=y
+# end of Modify features for non-core variants
+
+# CONFIG_PACKAGE_zabbix-agentd-basic is not set
+# CONFIG_PACKAGE_zabbix-proxy is not set
 # CONFIG_ZABBIX_MYSQL is not set
 CONFIG_ZABBIX_POSTGRESQL=y
 # CONFIG_ZABBIX_SQLITE is not set
-# CONFIG_PACKAGE_zabbix-proxy-openssl is not set
-# CONFIG_PACKAGE_zabbix-sender-gnutls is not set
-# CONFIG_PACKAGE_zabbix-sender-nossl is not set
-# CONFIG_PACKAGE_zabbix-sender-openssl is not set
-# CONFIG_PACKAGE_zabbix-server-gnutls is not set
-# CONFIG_PACKAGE_zabbix-server-nossl is not set
-# CONFIG_PACKAGE_zabbix-server-openssl is not set
+# CONFIG_PACKAGE_zabbix-proxy-basic-sqlite is not set
+# CONFIG_PACKAGE_zabbix-server is not set
 # end of Zabbix
 
 #
@@ -2989,6 +2987,7 @@ CONFIG_PACKAGE_nload=m
 # CONFIG_PACKAGE_u-boot-fritz4040 is not set
 # CONFIG_PACKAGE_u-boot-fritz7520 is not set
 # CONFIG_PACKAGE_u-boot-fritz7530 is not set
+# CONFIG_PACKAGE_u-boot-huawei_ap4050dn is not set
 # end of Boot Loaders
 
 #
@@ -3065,6 +3064,7 @@ CONFIG_PACKAGE_libiwinfo-data=y
 # CONFIG_PACKAGE_ipq-wifi-glinet_gl-ax1800 is not set
 # CONFIG_PACKAGE_ipq-wifi-glinet_gl-axt1800 is not set
 # CONFIG_PACKAGE_ipq-wifi-glinet_gl-b3000 is not set
+# CONFIG_PACKAGE_ipq-wifi-huawei_ap4050dn is not set
 # CONFIG_PACKAGE_ipq-wifi-ignitenet_ss-w2-ac2600 is not set
 # CONFIG_PACKAGE_ipq-wifi-iodata_wn-dax3000gr is not set
 # CONFIG_PACKAGE_ipq-wifi-jdcloud_re-cs-02 is not set
@@ -3141,6 +3141,8 @@ CONFIG_PACKAGE_ipq-wifi-zte_mf287plus=m
 
 # CONFIG_PACKAGE_aeonsemi-as21xxx-firmware is not set
 # CONFIG_PACKAGE_aircard-pcmcia-firmware is not set
+# CONFIG_PACKAGE_airoha-an7583-npu-firmware is not set
+# CONFIG_PACKAGE_airoha-en7581-mt7996-npu-firmware is not set
 # CONFIG_PACKAGE_airoha-en7581-npu-firmware is not set
 CONFIG_PACKAGE_airoha-en8811h-firmware=m
 # CONFIG_PACKAGE_amd64-microcode is not set
@@ -3563,7 +3565,7 @@ CONFIG_PACKAGE_kmod-fuse=m
 #
 CONFIG_PACKAGE_kmod-gpio-beeper=m
 CONFIG_PACKAGE_kmod-gpio-button-hotplug=y
-# CONFIG_PACKAGE_kmod-gpio-cascade is not set
+# CONFIG_PACKAGE_kmod-gpio-line-mux is not set
 # CONFIG_PACKAGE_kmod-gpio-nxp-74hc164 is not set
 # CONFIG_PACKAGE_kmod-gpio-pca953x is not set
 # CONFIG_PACKAGE_kmod-gpio-pcf857x is not set
@@ -3666,6 +3668,7 @@ CONFIG_PACKAGE_kmod-i2c-core=y
 # CONFIG_PACKAGE_kmod-iio-lsm6dsx-i2c is not set
 # CONFIG_PACKAGE_kmod-iio-lsm6dsx-spi is not set
 # CONFIG_PACKAGE_kmod-iio-mcp3422 is not set
+# CONFIG_PACKAGE_kmod-iio-richtek-rtq6056 is not set
 # CONFIG_PACKAGE_kmod-iio-si7020 is not set
 # CONFIG_PACKAGE_kmod-iio-sps30 is not set
 # CONFIG_PACKAGE_kmod-iio-st_accel is not set
@@ -3909,9 +3912,6 @@ CONFIG_PACKAGE_kmod-nft-tproxy=y
 # CONFIG_PACKAGE_kmod-dsa-b53 is not set
 # CONFIG_PACKAGE_kmod-dsa-b53-mdio is not set
 # CONFIG_PACKAGE_kmod-dsa-ks8995 is not set
-# CONFIG_PACKAGE_kmod-dsa-ksz9477 is not set
-# CONFIG_PACKAGE_kmod-dsa-ksz9477-i2c is not set
-# CONFIG_PACKAGE_kmod-dsa-ksz9477-spi is not set
 # CONFIG_PACKAGE_kmod-dsa-mv88e6060 is not set
 # CONFIG_PACKAGE_kmod-dsa-mv88e6xxx is not set
 # CONFIG_PACKAGE_kmod-dsa-notag is not set
@@ -6262,6 +6262,7 @@ CONFIG_PACKAGE_zlib=y
 # 1. Collections
 #
 # CONFIG_PACKAGE_luci is not set
+# CONFIG_PACKAGE_luci-layer2 is not set
 CONFIG_PACKAGE_luci-light=y
 CONFIG_PACKAGE_luci-nginx=m
 CONFIG_PACKAGE_luci-ssl=y
@@ -6932,8 +6933,11 @@ CONFIG_PACKAGE_luci-i18n-package-manager-zh-cn=y
 # CONFIG_PACKAGE_luci-i18n-sqm-vi is not set
 CONFIG_PACKAGE_luci-i18n-sqm-zh-cn=m
 # CONFIG_PACKAGE_luci-i18n-sqm-zh-tw is not set
+# CONFIG_PACKAGE_luci-i18n-strongswan-swanctl-cs is not set
 # CONFIG_PACKAGE_luci-i18n-strongswan-swanctl-es is not set
+# CONFIG_PACKAGE_luci-i18n-strongswan-swanctl-ko is not set
 # CONFIG_PACKAGE_luci-i18n-strongswan-swanctl-pl is not set
+CONFIG_PACKAGE_luci-i18n-strongswan-swanctl-zh-cn=m
 # CONFIG_PACKAGE_luci-i18n-strongswan-swanctl-zh-tw is not set
 # CONFIG_PACKAGE_luci-i18n-tinyproxy-ar is not set
 # CONFIG_PACKAGE_luci-i18n-tinyproxy-bg is not set
@@ -8175,13 +8179,14 @@ CONFIG_PACKAGE_6to4=y
 # CONFIG_PACKAGE_bpfcountd is not set
 # CONFIG_PACKAGE_bpftool-full is not set
 # CONFIG_PACKAGE_bpftool-minimal is not set
+# CONFIG_PACKAGE_bsbf-autoconf-cellular is not set
+# CONFIG_PACKAGE_bsbf-autoconf-dhcp is not set
 # CONFIG_PACKAGE_bsbf-bonding is not set
 # CONFIG_PACKAGE_bsbf-mptcp is not set
 # CONFIG_PACKAGE_bsbf-netspeed is not set
 # CONFIG_PACKAGE_bsbf-quectel-usbnet is not set
 # CONFIG_PACKAGE_bsbf-route is not set
 # CONFIG_PACKAGE_bsbf-tcp-in-udp is not set
-# CONFIG_PACKAGE_bsbf-usb-netdev-autodhcp is not set
 # CONFIG_PACKAGE_bwm-ng is not set
 # CONFIG_PACKAGE_bwping is not set
 CONFIG_PACKAGE_chat=m
@@ -8487,7 +8492,6 @@ CONFIG_PACKAGE_xfrm=m
 # CONFIG_PACKAGE_libwavpack is not set
 # CONFIG_PACKAGE_libxmp is not set
 # CONFIG_PACKAGE_madplay is not set
-# CONFIG_PACKAGE_moc is not set
 # CONFIG_PACKAGE_mpc is not set
 # CONFIG_PACKAGE_mpd-avahi-service is not set
 # CONFIG_PACKAGE_mpd-full is not set
@@ -8512,7 +8516,6 @@ CONFIG_PACKAGE_xfrm=m
 # CONFIG_PACKAGE_squeezelite-custom is not set
 # CONFIG_PACKAGE_squeezelite-dynamic is not set
 # CONFIG_PACKAGE_squeezelite-full is not set
-# CONFIG_PACKAGE_svox is not set
 # CONFIG_PACKAGE_ttymidi-sysex is not set
 # CONFIG_PACKAGE_upmpdcli is not set
 # end of Sound
@@ -9190,7 +9193,6 @@ CONFIG_PACKAGE_lsof=y
 # CONFIG_PACKAGE_oci-runtime-tool is not set
 # CONFIG_PACKAGE_omnia-mcutool is not set
 # CONFIG_PACKAGE_open-plc-utils is not set
-# CONFIG_PACKAGE_open2300 is not set
 # CONFIG_PACKAGE_opendoas is not set
 # CONFIG_PACKAGE_openobex is not set
 # CONFIG_PACKAGE_openobex-apps is not set
