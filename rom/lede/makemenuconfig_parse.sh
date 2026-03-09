@@ -856,6 +856,8 @@ for t in $targets; do
 			extra_utils=1
 		;;
 		#>8M flash <14M
+		TARGET_DEVICE_mediatek_filogic_DEVICE_cudy_re3000-v1|\
+		TARGET_DEVICE_mediatek_filogic_DEVICE_cudy_wr3000-v1|\
 		TARGET_DEVICE_bcm53xx_generic_DEVICE_asus_rt-ac3100|\
 		TARGET_DEVICE_bcm53xx_generic_DEVICE_asus_rt-ac3200|\
 		TARGET_DEVICE_bcm53xx_generic_DEVICE_asus_rt-ac5300|\
@@ -1069,14 +1071,12 @@ for t in $targets; do
 		TARGET_DEVICE_ath79_generic_DEVICE_tplink_archer-c7-v5|\
 		TARGET_DEVICE_ath79_generic_DEVICE_bm100_hq55)
 			mods="$mods $wgmod $openvpnmod openvpn-mbedtls wpad-mbedtls $wifiext $tc $lucidashboard $relay urllogger natflow-hostacl"
-			excludes="$excludes wpad-basic-mbedtls openvpn-openssl wpad-basic-wolfssl"
+			excludes="$excludes wpad-basic-mbedtls openvpn-openssl libopenssl openssl wpad-basic-wolfssl"
 			mods="$mods apk-mbedtls"
 			excludes="$excludes apk-openssl opkg"
 			flash_gt8m=1
 		;;
 		# <= 8M
-		TARGET_DEVICE_mediatek_filogic_DEVICE_cudy_re3000-v1|\
-		TARGET_DEVICE_mediatek_filogic_DEVICE_cudy_wr3000-v1|\
 		TARGET_DEVICE_qualcommax_ipq807x_DEVICE_asus_rt-ax89x|\
 		TARGET_DEVICE_ramips_mt7620_DEVICE_tplink_archer-c5-v4|\
 		TARGET_DEVICE_ramips_mt7620_DEVICE_mercusys_ac12g-v1-8m|\
