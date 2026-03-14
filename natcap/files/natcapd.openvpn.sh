@@ -81,11 +81,19 @@ test -e /lib/netifd/proto/openvpn.sh && ovpnproto=ovpnproto
 			zone="`uci get firewall.@zone[$index].name 2>/dev/null`"
 			test -n "$zone" || break
 			[ "x$zone" = "xlan" ] && {
-				lans="`uci get firewall.@zone[$index].device`"
-				uci delete firewall.@zone[$index].device
-				for x in natcap+ $lans; do echo $x; done | sort | uniq | while read w; do
-					uci add_list firewall.@zone[$index].device="$w"
-				done
+				if [ "$openvpn" = "openvpn" ]; then
+					lans="`uci get firewall.@zone[$index].device`"
+					uci delete firewall.@zone[$index].device
+					for x in natcap+ $lans; do echo $x; done | sort | uniq | while read w; do
+						uci add_list firewall.@zone[$index].device="$w"
+					done
+				else
+					nets="`uci get firewall.@zone[$index].network`"
+					uci delete firewall.@zone[$index].network
+					for x in natcapovpn_tcp natcapovpn_udp $nets; do echo $x; done | sort | uniq | while read w; do
+						uci add_list firewall.@zone[$index].network="$w"
+					done
+				fi
 				break
 			}
 			index=$((index+1))
@@ -201,6 +209,13 @@ test -e /lib/netifd/proto/openvpn.sh && ovpnproto=ovpnproto
 			for w in $lans; do
 				[ "x$w" = "xnatcap+" ] && continue
 				uci add_list firewall.@zone[$index].device="$w"
+			done
+			nets="`uci get firewall.@zone[$index].network`"
+			uci delete firewall.@zone[$index].network
+			for w in $nets; do
+				[ "x$w" = "xnatcapovpn_tcp" ] && continue
+				[ "x$w" = "xnatcapovpn_udp" ] && continue
+				uci add_list firewall.@zone[$index].network="$w"
 			done
 			break
 		}
