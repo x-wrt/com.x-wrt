@@ -109,6 +109,7 @@ CONFIG_TARGET_MULTI_PROFILE=y
 # CONFIG_TARGET_mediatek_filogic_DEVICE_cudy_ap3000wall-v1 is not set
 # CONFIG_TARGET_mediatek_filogic_DEVICE_cudy_ap3000-v1 is not set
 # CONFIG_TARGET_mediatek_filogic_DEVICE_cudy_m3000-v1 is not set
+# CONFIG_TARGET_mediatek_filogic_DEVICE_cudy_m3000-v2-yt8821 is not set
 # CONFIG_TARGET_mediatek_filogic_DEVICE_cudy_re3000-v1 is not set
 # CONFIG_TARGET_mediatek_filogic_DEVICE_cudy_tr3000-256mb-v1 is not set
 # CONFIG_TARGET_mediatek_filogic_DEVICE_cudy_tr3000-v1 is not set
@@ -317,6 +318,8 @@ CONFIG_TARGET_DEVICE_PACKAGES_mediatek_filogic_DEVICE_cudy_ap3000-v1="apk-openss
 # CONFIG_TARGET_DEVICE_mediatek_filogic_DEVICE_cudy_ap3000wall-v1 is not set
 CONFIG_TARGET_DEVICE_mediatek_filogic_DEVICE_cudy_m3000-v1=y
 CONFIG_TARGET_DEVICE_PACKAGES_mediatek_filogic_DEVICE_cudy_m3000-v1="apk-openssl dawn ip-bridge iptables-mod-dhcpmac iptables-mod-dnetmap jool-tools-netfilter kmod-bonding kmod-crypto-chacha20poly1305 kmod-inet-diag kmod-ipt-compat-xtables kmod-ipt-dhcpmac kmod-ipt-dnetmap kmod-jool-netfilter kmod-mt7981-firmware kmod-nat46 kmod-ovpn-dco-v2 libcap-ng libgcrypt libgpg-error liblz4 liblzo libnl libnl-cli libnl-core libnl-genl libnl-nf libnl-route libopenssl libopenssl-conf libopenssl-devcrypto libopenssl-legacy libpcre2 libqrencode libxml2 luci-app-dawn luci-app-usteer luci-i18n-dashboard-zh-cn luci-mod-dashboard luci-nginx luci-proto-openvpn luci-proto-relay luci-proto-wireguard mt7981-wo-firmware nginx-mod-luci nginx-mod-ubus nginx-ssl nginx-ssl-util openvpn-openssl proto-bonding qrencode relayd tc-tiny uwsgi uwsgi-cgi-plugin uwsgi-luci-support uwsgi-syslog-plugin wireguard-tools wpad-openssl"
+CONFIG_TARGET_DEVICE_mediatek_filogic_DEVICE_cudy_m3000-v2-yt8821=y
+CONFIG_TARGET_DEVICE_PACKAGES_mediatek_filogic_DEVICE_cudy_m3000-v2-yt8821="apk-openssl dawn ip-bridge iptables-mod-dhcpmac iptables-mod-dnetmap jool-tools-netfilter kmod-bonding kmod-crypto-chacha20poly1305 kmod-inet-diag kmod-ipt-compat-xtables kmod-ipt-dhcpmac kmod-ipt-dnetmap kmod-jool-netfilter kmod-libphy kmod-mt7981-firmware kmod-nat46 kmod-ovpn-dco-v2 kmod-phy-motorcomm libcap-ng libgcrypt libgpg-error liblz4 liblzo libnl libnl-cli libnl-core libnl-genl libnl-nf libnl-route libopenssl libopenssl-conf libopenssl-devcrypto libopenssl-legacy libpcre2 libqrencode libxml2 luci-app-dawn luci-app-usteer luci-i18n-dashboard-zh-cn luci-mod-dashboard luci-nginx luci-proto-openvpn luci-proto-relay luci-proto-wireguard mt7981-wo-firmware nginx-mod-luci nginx-mod-ubus nginx-ssl nginx-ssl-util openvpn-openssl proto-bonding qrencode relayd tc-tiny uwsgi uwsgi-cgi-plugin uwsgi-luci-support uwsgi-syslog-plugin wireguard-tools wpad-openssl"
 CONFIG_TARGET_DEVICE_mediatek_filogic_DEVICE_cudy_re3000-v1=y
 CONFIG_TARGET_DEVICE_PACKAGES_mediatek_filogic_DEVICE_cudy_re3000-v1="apk-mbedtls dawn ip-bridge kmod-crypto-chacha20poly1305 kmod-mt7981-firmware kmod-ovpn-dco-v2 libcap-ng libgcrypt libgpg-error liblz4 liblzo libnl-core libnl-genl libqrencode luci-app-dawn luci-app-usteer luci-i18n-dashboard-zh-cn luci-mod-dashboard luci-proto-openvpn luci-proto-relay luci-proto-wireguard mt7981-wo-firmware openvpn-mbedtls qrencode relayd tc-tiny wireguard-tools wpad-mbedtls"
 CONFIG_TARGET_DEVICE_mediatek_filogic_DEVICE_cudy_tr3000-256mb-v1=y
@@ -923,7 +926,7 @@ CONFIG_TARGET_INIT_CMD="/sbin/init"
 CONFIG_TARGET_INIT_SUPPRESS_STDERR=y
 CONFIG_VERSIONOPT=y
 CONFIG_VERSION_DIST="X-WRT"
-CONFIG_VERSION_NUMBER="26.04_b202603081924"
+CONFIG_VERSION_NUMBER="26.04_b202603142027"
 CONFIG_VERSION_CODE="Resolute"
 CONFIG_VERSION_REPO="http://downloads.openwrt.org/snapshots"
 CONFIG_VERSION_HOME_URL="https://x-wrt.com/"
@@ -7469,7 +7472,6 @@ CONFIG_PACKAGE_luci-i18n-usteer-zh-cn=m
 #
 # CONFIG_PACKAGE_apfree-wifidog is not set
 # CONFIG_PACKAGE_coova-chilli is not set
-# CONFIG_PACKAGE_mesh11sd is not set
 # CONFIG_PACKAGE_nodogsplash is not set
 # CONFIG_PACKAGE_opennds is not set
 # CONFIG_PACKAGE_simple-captive-portal is not set
@@ -7859,6 +7861,12 @@ CONFIG_PACKAGE_wsdd2=m
 # CONFIG_PACKAGE_libloragw-tests is not set
 # CONFIG_PACKAGE_libloragw-utils is not set
 # end of LoRaWAN
+
+#
+# Mesh
+#
+# CONFIG_PACKAGE_mesh11sd is not set
+# end of Mesh
 
 #
 # NMAP Suite
@@ -8516,6 +8524,7 @@ CONFIG_PACKAGE_6to4=y
 # CONFIG_PACKAGE_bsbf-bonding is not set
 # CONFIG_PACKAGE_bsbf-mptcp is not set
 # CONFIG_PACKAGE_bsbf-netspeed is not set
+# CONFIG_PACKAGE_bsbf-plpmtu is not set
 # CONFIG_PACKAGE_bsbf-quectel-usbnet is not set
 # CONFIG_PACKAGE_bsbf-route is not set
 # CONFIG_PACKAGE_bsbf-tcp-in-udp is not set
@@ -8681,6 +8690,7 @@ CONFIG_PACKAGE_openlist=m
 # CONFIG_PACKAGE_phytool is not set
 # CONFIG_PACKAGE_pimbd is not set
 # CONFIG_PACKAGE_pingcheck is not set
+# CONFIG_PACKAGE_plp-mtu-discovery is not set
 CONFIG_PACKAGE_ppp=y
 # CONFIG_PACKAGE_ppp-mod-passwordfd is not set
 # CONFIG_PACKAGE_ppp-mod-pppoa is not set
