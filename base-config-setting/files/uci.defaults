@@ -433,6 +433,15 @@ test $version -lt 25 && {
 	version=25
 }
 
+test $version -lt 26 && {
+	uci set network.wan.metric='150'
+	uci set network.wan6.metric='150'
+	uci set network.usbwan.metric='800'
+	uci set network.usbwan6.metric='800'
+	uci commit network
+	version=26
+}
+
 rm -f /lib/modules/$(uname -r)/crypto_safexcel.ko
 rmmod crypto_safexcel &>/dev/null
 
