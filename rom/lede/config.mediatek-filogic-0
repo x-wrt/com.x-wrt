@@ -932,7 +932,7 @@ CONFIG_TARGET_INIT_CMD="/sbin/init"
 CONFIG_TARGET_INIT_SUPPRESS_STDERR=y
 CONFIG_VERSIONOPT=y
 CONFIG_VERSION_DIST="X-WRT"
-CONFIG_VERSION_NUMBER="26.04_b202604020006"
+CONFIG_VERSION_NUMBER="26.04_b202604050040"
 CONFIG_VERSION_CODE="Resolute"
 CONFIG_VERSION_REPO="http://downloads.openwrt.org/snapshots"
 CONFIG_VERSION_HOME_URL="https://x-wrt.com/"
@@ -4931,7 +4931,6 @@ CONFIG_HAS_LUAJIT_ARCH=y
 # CONFIG_PACKAGE_python3-docutils is not set
 # CONFIG_PACKAGE_python3-dotenv is not set
 # CONFIG_PACKAGE_python3-drf-nested-routers is not set
-# CONFIG_PACKAGE_python3-email is not set
 # CONFIG_PACKAGE_python3-engineio is not set
 # CONFIG_PACKAGE_python3-et_xmlfile is not set
 # CONFIG_PACKAGE_python3-evdev is not set
@@ -6792,7 +6791,7 @@ CONFIG_PACKAGE_luci-theme-openwrt-2020=y
 # end of 5. Plugins
 
 #
-# 5. Protocols
+# 6. Protocols
 #
 CONFIG_PACKAGE_luci-proto-3g=m
 # CONFIG_PACKAGE_luci-proto-autoip is not set
@@ -6811,6 +6810,7 @@ CONFIG_PACKAGE_luci-proto-ncm=m
 CONFIG_PACKAGE_luci-proto-openvpn=m
 CONFIG_PACKAGE_luci-proto-ppp=y
 # CONFIG_PACKAGE_luci-proto-pppossh is not set
+CONFIG_PACKAGE_luci-proto-qmap=m
 CONFIG_PACKAGE_luci-proto-qmi=m
 CONFIG_PACKAGE_luci-proto-relay=m
 # CONFIG_PACKAGE_luci-proto-sstp is not set
@@ -6821,10 +6821,10 @@ CONFIG_PACKAGE_luci-proto-vti=m
 CONFIG_PACKAGE_luci-proto-wireguard=m
 CONFIG_PACKAGE_luci-proto-xfrm=m
 # CONFIG_PACKAGE_luci-proto-yggdrasil is not set
-# end of 5. Protocols
+# end of 6. Protocols
 
 #
-# 6. Libraries
+# 7. Libraries
 #
 CONFIG_PACKAGE_luci-lib-base=y
 # CONFIG_PACKAGE_luci-lib-chartjs is not set
@@ -6838,13 +6838,7 @@ CONFIG_PACKAGE_luci-lib-jsonc=y
 CONFIG_PACKAGE_luci-lib-nixio=y
 # CONFIG_PACKAGE_luci-lib-px5g is not set
 CONFIG_PACKAGE_luci-lib-uqr=y
-# end of 6. Libraries
-
-#
-# 6. Protocols
-#
-CONFIG_PACKAGE_luci-proto-qmap=m
-# end of 6. Protocols
+# end of 7. Libraries
 
 # CONFIG_PACKAGE_luci-i18n-3ginfo-lite-de is not set
 # CONFIG_PACKAGE_luci-i18n-3ginfo-lite-it is not set
