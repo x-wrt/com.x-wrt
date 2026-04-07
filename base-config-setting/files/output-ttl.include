@@ -1,14 +1,21 @@
 #!/bin/sh
 # handle option output_ttl in network.@interface[*]
 
-#cleanup
-iptables -t mangle -D POSTROUTING -j mangle_ttl 2>/dev/null
-iptables -t mangle -F mangle_ttl 2>/dev/null
-iptables -t mangle -X mangle_ttl 2>/dev/null
-#cleanup
-ip6tables -t mangle -D POSTROUTING -j mangle_hotlimit 2>/dev/null
-ip6tables -t mangle -F mangle_hotlimit 2>/dev/null
-ip6tables -t mangle -X mangle_hotlimit 2>/dev/null
+#init
+iptables -t mangle -F mangle_ttl 2>/dev/null || \
+iptables -t mangle -N mangle_ttl
+iptables -t mangle -C POSTROUTING -j mangle_ttl 2>/dev/null || \
+iptables -t mangle -A POSTROUTING -j mangle_ttl
+iptables -t mangle -F mangle_ttl_post 2>/dev/null
+iptables -t mangle -X mangle_ttl_post 2>/dev/null
+
+#init ipv6
+ip6tables -t mangle -F mangle_hotlimit 2>/dev/null || \
+ip6tables -t mangle -N mangle_hotlimit
+ip6tables -t mangle -C POSTROUTING -j mangle_hotlimit 2>/dev/null || \
+ip6tables -t mangle -A POSTROUTING -j mangle_hotlimit
+ip6tables -t mangle -F mangle_hotlimit_post 2>/dev/null
+ip6tables -t mangle -X mangle_hotlimit_post 2>/dev/null
 
 idx=0
 mangle_ttl_init=0
@@ -23,58 +30,27 @@ while uci get network.@interface[$idx] &>/dev/null; do
 	if test -n "$ttl" && test -n "$ifd"; then
 		if [ "$mangle_ttl_init" = "0" ]; then
 			mangle_ttl_init=1
-			iptables -t mangle -F mangle_ttl 2>/dev/null || iptables -t mangle -N mangle_ttl
-			iptables -t mangle -C POSTROUTING -p udp -j mangle_ttl 2>/dev/null || iptables -t mangle -I POSTROUTING -p udp -j mangle_ttl
-			iptables -t mangle -C POSTROUTING -p tcp -j mangle_ttl 2>/dev/null || iptables -t mangle -I POSTROUTING -p tcp -j mangle_ttl
-			iptables -t mangle -C POSTROUTING -p icmp -j mangle_ttl 2>/dev/null || iptables -t mangle -I POSTROUTING -p icmp -j mangle_ttl
-
-			# VRRP (112)
-			#iptables -t mangle -A mangle_ttl -p 112 -j RETURN
-			# OSPF (89)
-			#iptables -t mangle -A mangle_ttl -p 89 -j RETURN
-			# IGMP (2)
-			#iptables -t mangle -A mangle_ttl -p 2 -j RETURN
-			# RIP (UDP 520)
-			#iptables -t mangle -A mangle_ttl -p udp --dport 520 -j RETURN
-			# DHCP (UDP 67/68)
-			#iptables -t mangle -A mangle_ttl -p udp --dport 67 -j RETURN
-			#iptables -t mangle -A mangle_ttl -p udp --dport 68 -j RETURN
-			# HSRP (UDP 1985)
-			#iptables -t mangle -A mangle_ttl -p udp --dport 1985 -j RETURN
-			# ICMP Router Advertisement (ICMP type 9)
-			#iptables -t mangle -A mangle_ttl -p icmp --icmp-type 9 -j RETURN
-			iptables -t mangle -A mangle_ttl -m ttl --ttl-eq 1 -j RETURN
-			iptables -t mangle -A mangle_ttl -m ttl --ttl-eq 255 -j RETURN
+			iptables -t mangle -N mangle_ttl_post
+			iptables -t mangle -A mangle_ttl_post -m ttl --ttl-eq 1 -j RETURN
+			iptables -t mangle -A mangle_ttl_post -m ttl --ttl-eq 255 -j RETURN
+			iptables -t mangle -A mangle_ttl_post -p udp -m ttl --ttl-gt 1 -j TTL --ttl-set $ttl
+			iptables -t mangle -A mangle_ttl_post -p tcp -m ttl --ttl-gt 1 -j TTL --ttl-set $ttl
+			iptables -t mangle -A mangle_ttl_post -p icmp -m ttl --ttl-gt 1 -j TTL --ttl-set $ttl
 		fi
-		iptables -t mangle -A mangle_ttl -m ttl --ttl-gt 1 -o "$ifd" -j TTL --ttl-set $ttl
+		iptables -t mangle -A mangle_ttl -o "$ifd" -j mangle_ttl_post
 	fi
 	hl=$(uci get network.@interface[$idx].output_hotlimit 2>/dev/null)
 	if test -n "$hl" && test -n "$ifd"; then
 		if [ "$mangle_hotlimit_init" = "0" ]; then
 			mangle_hotlimit_init=1
-			ip6tables -t mangle -F mangle_hotlimit 2>/dev/null || ip6tables -t mangle -N mangle_hotlimit
-			ip6tables -t mangle -C POSTROUTING -p udp -j mangle_hotlimit 2>/dev/null || ip6tables -t mangle -I POSTROUTING -p udp -j mangle_hotlimit
-			ip6tables -t mangle -C POSTROUTING -p tcp -j mangle_hotlimit 2>/dev/null || ip6tables -t mangle -I POSTROUTING -p tcp -j mangle_hotlimit
-			ip6tables -t mangle -C POSTROUTING -p ipv6-icmp -j mangle_hotlimit 2>/dev/null || ip6tables -t mangle -I POSTROUTING -p ipv6-icmp -j mangle_hotlimit
-
-			# DHCPv6
-			#ip6tables -t mangle -A mangle_hotlimit -p udp --sport 546 -j RETURN
-			#ip6tables -t mangle -A mangle_hotlimit -p udp --dport 547 -j RETURN
-			# MLD
-			#ip6tables -t mangle -A mangle_hotlimit -p ipv6-icmp -m icmp6 --icmpv6-type 130 -j RETURN
-			#ip6tables -t mangle -A mangle_hotlimit -p ipv6-icmp -m icmp6 --icmpv6-type 131 -j RETURN
-			#ip6tables -t mangle -A mangle_hotlimit -p ipv6-icmp -m icmp6 --icmpv6-type 132 -j RETURN
-			#ip6tables -t mangle -A mangle_hotlimit -p ipv6-icmp -m icmp6 --icmpv6-type 143 -j RETURN
-			# NS/NA/RS/RA/RD
-			#ip6tables -t mangle -A mangle_hotlimit -p ipv6-icmp -m icmp6 --icmpv6-type 133 -j RETURN
-			#ip6tables -t mangle -A mangle_hotlimit -p ipv6-icmp -m icmp6 --icmpv6-type 134 -j RETURN
-			#ip6tables -t mangle -A mangle_hotlimit -p ipv6-icmp -m icmp6 --icmpv6-type 135 -j RETURN
-			#ip6tables -t mangle -A mangle_hotlimit -p ipv6-icmp -m icmp6 --icmpv6-type 136 -j RETURN
-			#ip6tables -t mangle -A mangle_hotlimit -p ipv6-icmp -m icmp6 --icmpv6-type 137 -j RETURN
-			ip6tables -t mangle -A mangle_hotlimit -m hl --hl-eq 1 -j RETURN
-			ip6tables -t mangle -A mangle_hotlimit -m hl --hl-eq 255 -j RETURN
+			ip6tables -t mangle -N mangle_hotlimit_post
+			ip6tables -t mangle -A mangle_hotlimit_post -m hl --hl-eq 1 -j RETURN
+			ip6tables -t mangle -A mangle_hotlimit_post -m hl --hl-eq 255 -j RETURN
+			ip6tables -t mangle -A mangle_hotlimit_post -p udp -m hl --hl-gt 1 -j HL --hl-set $hl
+			ip6tables -t mangle -A mangle_hotlimit_post -p tcp -m hl --hl-gt 1 -j HL --hl-set $hl
+			ip6tables -t mangle -A mangle_hotlimit_post -p ipv6-icmp -m hl --hl-gt 1 -j HL --hl-set $hl
 		fi
-		ip6tables -t mangle -A mangle_hotlimit -m hl --hl-gt 1 -o "$ifd" -j HL --hl-set $hl
+		ip6tables -t mangle -A mangle_hotlimit -o "$ifd" -j mangle_hotlimit_post
 	fi
 	idx=$((idx+1))
 done
