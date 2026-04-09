@@ -78,6 +78,7 @@ usb2="kmod-usb2 \
 	  kmod-fs-vfat \
 	  block-mount \
 	  blockd \
+	  kmod-fs-ntfs \
 	  kmod-fs-ntfs3-oot \
 	  kmod-fs-ntfs3"
 
@@ -99,6 +100,7 @@ usb3="kmod-usb3 \
 	  kmod-fs-vfat \
 	  block-mount \
 	  blockd \
+	  kmod-fs-ntfs \
 	  kmod-fs-ntfs3"
 
 usb_extra="kmod-usb-storage-extras"
