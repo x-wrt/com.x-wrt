@@ -150,6 +150,7 @@ ipv6extra="kmod-jool-netfilter \
 openvpnmod="luci-app-openvpn luci-proto-openvpn \
 			luci-i18n-openvpn-en \
 			luci-i18n-openvpn-zh-cn \
+			kmod-ovpn-backports \
 			openvpn-openssl kmod-ovpn-dco-v2"
 
 excludes_basic="dnsmasq \
