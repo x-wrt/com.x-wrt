@@ -189,6 +189,7 @@ CONFIG_TARGET_MULTI_PROFILE=y
 # CONFIG_TARGET_mediatek_filogic_DEVICE_routerich_ax3000-ubootmod is not set
 # CONFIG_TARGET_mediatek_filogic_DEVICE_routerich_ax3000-v1 is not set
 # CONFIG_TARGET_mediatek_filogic_DEVICE_routerich_be7200 is not set
+# CONFIG_TARGET_mediatek_filogic_DEVICE_ruijie_rg-x60 is not set
 # CONFIG_TARGET_mediatek_filogic_DEVICE_ruijie_rg-x60-pro is not set
 # CONFIG_TARGET_mediatek_filogic_DEVICE_snr_snr-cpe-ax2 is not set
 # CONFIG_TARGET_mediatek_filogic_DEVICE_teltonika_rutc50 is not set
@@ -394,6 +395,8 @@ CONFIG_TARGET_DEVICE_PACKAGES_mediatek_filogic_DEVICE_qihoo_360t7-ubootlayout="a
 # CONFIG_TARGET_DEVICE_mediatek_filogic_DEVICE_routerich_ax3000-ubootmod is not set
 # CONFIG_TARGET_DEVICE_mediatek_filogic_DEVICE_routerich_ax3000-v1 is not set
 # CONFIG_TARGET_DEVICE_mediatek_filogic_DEVICE_routerich_be7200 is not set
+CONFIG_TARGET_DEVICE_mediatek_filogic_DEVICE_ruijie_rg-x60=y
+CONFIG_TARGET_DEVICE_PACKAGES_mediatek_filogic_DEVICE_ruijie_rg-x60="airoha-en8811h-firmware apk-openssl dawn ip-bridge iptables-mod-dhcpmac iptables-mod-dnetmap jool-tools-netfilter kmod-bonding kmod-crypto-chacha20poly1305 kmod-inet-diag kmod-ipt-compat-xtables kmod-ipt-dhcpmac kmod-ipt-dnetmap kmod-jool-netfilter kmod-mt7986-firmware kmod-nat46 kmod-ovpn-backports kmod-phy-airoha-en8811h libcap-ng libgcrypt libgpg-error liblz4 liblzo libnl libnl-cli libnl-core libnl-genl libnl-nf libnl-route libopenssl libopenssl-conf libopenssl-devcrypto libopenssl-legacy libpcre2 libqrencode libxml2 luci-app-dawn luci-app-usteer luci-i18n-dashboard-zh-cn luci-mod-dashboard luci-nginx luci-proto-openvpn luci-proto-relay luci-proto-wireguard mt7986-wo-firmware nginx-mod-luci nginx-mod-ubus nginx-ssl nginx-ssl-util openvpn-openssl proto-bonding qrencode relayd tc-tiny uwsgi uwsgi-cgi-plugin uwsgi-luci-support uwsgi-syslog-plugin wireguard-tools wpad-openssl"
 CONFIG_TARGET_DEVICE_mediatek_filogic_DEVICE_ruijie_rg-x60-pro=y
 CONFIG_TARGET_DEVICE_PACKAGES_mediatek_filogic_DEVICE_ruijie_rg-x60-pro="apk-openssl dawn ip-bridge iptables-mod-dhcpmac iptables-mod-dnetmap jool-tools-netfilter kmod-bonding kmod-crypto-chacha20poly1305 kmod-inet-diag kmod-ipt-compat-xtables kmod-ipt-dhcpmac kmod-ipt-dnetmap kmod-jool-netfilter kmod-mt7986-firmware kmod-nat46 kmod-ovpn-backports libcap-ng libgcrypt libgpg-error liblz4 liblzo libnl libnl-cli libnl-core libnl-genl libnl-nf libnl-route libopenssl libopenssl-conf libopenssl-devcrypto libopenssl-legacy libpcre2 libqrencode libxml2 luci-app-dawn luci-app-usteer luci-i18n-dashboard-zh-cn luci-mod-dashboard luci-nginx luci-proto-openvpn luci-proto-relay luci-proto-wireguard mt7986-wo-firmware nginx-mod-luci nginx-mod-ubus nginx-ssl nginx-ssl-util openvpn-openssl proto-bonding qrencode relayd tc-tiny uwsgi uwsgi-cgi-plugin uwsgi-luci-support uwsgi-syslog-plugin wireguard-tools wpad-openssl"
 CONFIG_TARGET_DEVICE_mediatek_filogic_DEVICE_ruijie_rg-x60-pro-ubootlayout=y

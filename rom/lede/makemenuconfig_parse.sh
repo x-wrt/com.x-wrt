@@ -618,6 +618,7 @@ for t in $targets; do
 		TARGET_DEVICE_mediatek_filogic_DEVICE_asus_rt-ax59u|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_bananapi_bpi-r4-poe|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_nokia_ea0326gmp|\
+		TARGET_DEVICE_mediatek_filogic_DEVICE_ruijie_rg-x60|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_ruijie_rg-x60-pro-ubootlayout|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_ruijie_rg-x60-pro|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_openwrt_one|\
@@ -1665,6 +1666,7 @@ for t in $targets; do
 		TARGET_DEVICE_ramips_mt7620_DEVICE_mercusys_ac12g-v1-8m|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_asus_rt-ax59u|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_nokia_ea0326gmp|\
+		TARGET_DEVICE_mediatek_filogic_DEVICE_ruijie_rg-x60|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_ruijie_rg-x60-pro-ubootlayout|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_ruijie_rg-x60-pro|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_jdcloud_re-cp-02|\
