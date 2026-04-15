@@ -624,6 +624,8 @@ for t in $targets; do
 		TARGET_DEVICE_mediatek_filogic_DEVICE_openwrt_one|\
 		TARGET_DEVICE_qualcommax_ipq807x_DEVICE_zbtlink_zbt-z800ax|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_linksys_ea8100-v1|\
+		TARGET_DEVICE_mediatek_filogic_DEVICE_netis_nx30v2|\
+		TARGET_DEVICE_mediatek_filogic_DEVICE_netcore_n60-pro|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_netcore_n60|\
 		TARGET_DEVICE_x86_64_DEVICE_generic|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_glinet_gl-x3000|\
@@ -1241,6 +1243,7 @@ for t in $targets; do
 	#check usb
 	case $t in
 		#with usb3
+		TARGET_DEVICE_mediatek_filogic_DEVICE_netcore_n60-pro|\
 		TARGET_DEVICE_qualcommax_ipq60xx_DEVICE_jdcloud_re-cs-02|\
 		TARGET_DEVICE_qualcommax_ipq60xx_DEVICE_jdcloud_re-cs-07|\
 		TARGET_DEVICE_qualcommax_ipq60xx_DEVICE_jdcloud_re-ss-01|\
@@ -1672,6 +1675,7 @@ for t in $targets; do
 		TARGET_DEVICE_ramips_mt7621_DEVICE_jdcloud_re-cp-02|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_yuncore_ax835|\
 		TARGET_DEVICE_ath79_generic_DEVICE_huawei_ap5030dn|\
+		TARGET_DEVICE_mediatek_filogic_DEVICE_netis_nx30v2|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_netcore_n60|\
 		TARGET_DEVICE_ramips_mt76x8_DEVICE_tplink_tl-wr902ac-v4|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_jdcloud_re-cp-03|\
