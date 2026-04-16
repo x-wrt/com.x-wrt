@@ -4210,7 +4210,7 @@ CONFIG_PACKAGE_kmod-usb-net-qmi-wwan=m
 CONFIG_PACKAGE_kmod-usb-net-rndis=m
 # CONFIG_PACKAGE_kmod-usb-net-rtl8150 is not set
 # CONFIG_PACKAGE_kmod-usb-net-rtl8152 is not set
-CONFIG_PACKAGE_kmod-usb-net-sierrawireless=m
+# CONFIG_PACKAGE_kmod-usb-net-sierrawireless is not set
 # CONFIG_PACKAGE_kmod-usb-net-smsc75xx is not set
 # CONFIG_PACKAGE_kmod-usb-net-smsc95xx is not set
 # CONFIG_PACKAGE_kmod-usb-net-sr9700 is not set
@@ -4237,7 +4237,7 @@ CONFIG_PACKAGE_kmod-usb-serial-option=m
 # CONFIG_PACKAGE_kmod-usb-serial-oti6858 is not set
 CONFIG_PACKAGE_kmod-usb-serial-pl2303=m
 CONFIG_PACKAGE_kmod-usb-serial-qualcomm=m
-CONFIG_PACKAGE_kmod-usb-serial-sierrawireless=m
+# CONFIG_PACKAGE_kmod-usb-serial-sierrawireless is not set
 # CONFIG_PACKAGE_kmod-usb-serial-simple is not set
 # CONFIG_PACKAGE_kmod-usb-serial-ti-usb is not set
 # CONFIG_PACKAGE_kmod-usb-serial-visor is not set
