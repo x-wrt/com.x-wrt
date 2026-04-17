@@ -209,7 +209,7 @@ CONFIG_TARGET_PER_DEVICE_ROOTFS=y
 # CONFIG_TARGET_DEVICE_ramips_mt76x8_DEVICE_asus_rt-n11p-b1 is not set
 # CONFIG_TARGET_DEVICE_ramips_mt76x8_DEVICE_asus_rt-n12-vp-b1 is not set
 CONFIG_TARGET_DEVICE_ramips_mt76x8_DEVICE_buffalo_wcr-1166ds=y
-CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt76x8_DEVICE_buffalo_wcr-1166ds="kmod-mt76x02-common kmod-mt76x2 kmod-mt76x2-common luci-proto-wireguard wireguard-tools wpad-basic-mbedtls"
+CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt76x8_DEVICE_buffalo_wcr-1166ds="kmod-leds-gpio kmod-mt76x02-common kmod-mt76x2 kmod-mt76x2-common luci-proto-wireguard wireguard-tools wpad-basic-mbedtls"
 # CONFIG_TARGET_DEVICE_ramips_mt76x8_DEVICE_comfast_cf-wr617ac is not set
 # CONFIG_TARGET_DEVICE_ramips_mt76x8_DEVICE_comfast_cf-wr758ac-v1 is not set
 # CONFIG_TARGET_DEVICE_ramips_mt76x8_DEVICE_comfast_cf-wr758ac-v2 is not set
@@ -220,14 +220,14 @@ CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt76x8_DEVICE_buffalo_wcr-1166ds="kmod-mt76
 # CONFIG_TARGET_DEVICE_ramips_mt76x8_DEVICE_cudy_re1200-outdoor-v1 is not set
 # CONFIG_TARGET_DEVICE_ramips_mt76x8_DEVICE_cudy_tr1200-v1 is not set
 CONFIG_TARGET_DEVICE_ramips_mt76x8_DEVICE_cudy_wr1000=y
-CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt76x8_DEVICE_cudy_wr1000="kmod-mt76x02-common kmod-mt76x2 kmod-mt76x2-common luci-proto-wireguard wireguard-tools wpad-basic-mbedtls"
+CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt76x8_DEVICE_cudy_wr1000="kmod-leds-gpio kmod-mt76x02-common kmod-mt76x2 kmod-mt76x2-common luci-proto-wireguard wireguard-tools wpad-basic-mbedtls"
 # CONFIG_TARGET_DEVICE_ramips_mt76x8_DEVICE_dlink_dap-1325-a1 is not set
 # CONFIG_TARGET_DEVICE_ramips_mt76x8_DEVICE_duzun_dm06 is not set
 # CONFIG_TARGET_DEVICE_ramips_mt76x8_DEVICE_elecom_wrc-1167fs is not set
 # CONFIG_TARGET_DEVICE_ramips_mt76x8_DEVICE_glinet_gl-mt300n-v2 is not set
 # CONFIG_TARGET_DEVICE_ramips_mt76x8_DEVICE_glinet_microuter-n300 is not set
 CONFIG_TARGET_DEVICE_ramips_mt76x8_DEVICE_glinet_vixmini=y
-CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt76x8_DEVICE_glinet_vixmini="luci-proto-wireguard wireguard-tools wpad-basic-mbedtls"
+CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt76x8_DEVICE_glinet_vixmini="kmod-leds-gpio luci-proto-wireguard wireguard-tools wpad-basic-mbedtls"
 # CONFIG_TARGET_DEVICE_ramips_mt76x8_DEVICE_hak5_wifi-pineapple-mk7 is not set
 # CONFIG_TARGET_DEVICE_ramips_mt76x8_DEVICE_hilink_hlk-7688a is not set
 # CONFIG_TARGET_DEVICE_ramips_mt76x8_DEVICE_hilink_hlk-7628n is not set
@@ -256,9 +256,9 @@ CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt76x8_DEVICE_glinet_vixmini="luci-proto-wi
 # CONFIG_TARGET_DEVICE_ramips_mt76x8_DEVICE_wavlink_wl-wn577a2 is not set
 # CONFIG_TARGET_DEVICE_ramips_mt76x8_DEVICE_mediatek_linkit-smart-7688 is not set
 CONFIG_TARGET_DEVICE_ramips_mt76x8_DEVICE_mediatek_mt7628an-eval-board=y
-CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt76x8_DEVICE_mediatek_mt7628an-eval-board="blockd block-mount kmod-fs-autofs4 kmod-fs-exfat kmod-fs-ntfs kmod-fuse kmod-lib-crc16 kmod-mii kmod-nls-cp437 kmod-usb2 kmod-usb-common kmod-usb-core kmod-usb-ehci kmod-usb-ledtrig-usbport kmod-usb-net kmod-usb-net-cdc-ether kmod-usb-net-rndis kmod-usb-ohci kmod-usb-storage luci-app-ledtrig-usbport luci-proto-wireguard wireguard-tools wpad-basic-mbedtls"
+CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt76x8_DEVICE_mediatek_mt7628an-eval-board="blockd block-mount kmod-fs-autofs4 kmod-fs-exfat kmod-fs-ntfs kmod-fuse kmod-leds-gpio kmod-lib-crc16 kmod-mii kmod-nls-cp437 kmod-usb2 kmod-usb-common kmod-usb-core kmod-usb-ehci kmod-usb-ledtrig-usbport kmod-usb-net kmod-usb-net-cdc-ether kmod-usb-net-rndis kmod-usb-ohci kmod-usb-storage luci-app-ledtrig-usbport luci-proto-wireguard wireguard-tools wpad-basic-mbedtls"
 CONFIG_TARGET_DEVICE_ramips_mt76x8_DEVICE_mercury_mac1200r-v2=y
-CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt76x8_DEVICE_mercury_mac1200r-v2="kmod-mt76x02-common kmod-mt76x2 kmod-mt76x2-common luci-proto-wireguard wireguard-tools wpad-basic-mbedtls"
+CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt76x8_DEVICE_mercury_mac1200r-v2="kmod-leds-gpio kmod-mt76x02-common kmod-mt76x2 kmod-mt76x2-common luci-proto-wireguard wireguard-tools wpad-basic-mbedtls"
 # CONFIG_TARGET_DEVICE_ramips_mt76x8_DEVICE_mercusys_mb130-4g-v1 is not set
 # CONFIG_TARGET_DEVICE_ramips_mt76x8_DEVICE_minew_g1-c is not set
 # CONFIG_TARGET_DEVICE_ramips_mt76x8_DEVICE_motorola_mwr03 is not set
@@ -284,13 +284,13 @@ CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt76x8_DEVICE_mercury_mac1200r-v2="kmod-mt7
 # CONFIG_TARGET_DEVICE_ramips_mt76x8_DEVICE_totolink_a3 is not set
 # CONFIG_TARGET_DEVICE_ramips_mt76x8_DEVICE_totolink_lr1200 is not set
 CONFIG_TARGET_DEVICE_ramips_mt76x8_DEVICE_tplink_archer-c20-v4=y
-CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt76x8_DEVICE_tplink_archer-c20-v4="kmod-mt76x02-common kmod-mt76x0-common kmod-mt76x0e wpad-basic-mbedtls"
+CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt76x8_DEVICE_tplink_archer-c20-v4="kmod-leds-gpio kmod-mt76x02-common kmod-mt76x0-common kmod-mt76x0e wpad-basic-mbedtls"
 CONFIG_TARGET_DEVICE_ramips_mt76x8_DEVICE_tplink_archer-c20-v5=y
-CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt76x8_DEVICE_tplink_archer-c20-v5="kmod-mt76x02-common kmod-mt76x0-common kmod-mt76x0e wpad-basic-mbedtls"
+CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt76x8_DEVICE_tplink_archer-c20-v5="kmod-leds-gpio kmod-mt76x02-common kmod-mt76x0-common kmod-mt76x0e wpad-basic-mbedtls"
 CONFIG_TARGET_DEVICE_ramips_mt76x8_DEVICE_tplink_archer-c50-v3=y
-CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt76x8_DEVICE_tplink_archer-c50-v3="kmod-mt76x02-common kmod-mt76x2 kmod-mt76x2-common wpad-basic-mbedtls"
+CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt76x8_DEVICE_tplink_archer-c50-v3="kmod-leds-gpio kmod-mt76x02-common kmod-mt76x2 kmod-mt76x2-common wpad-basic-mbedtls"
 CONFIG_TARGET_DEVICE_ramips_mt76x8_DEVICE_tplink_archer-c50-v4=y
-CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt76x8_DEVICE_tplink_archer-c50-v4="kmod-mt76x02-common kmod-mt76x2 kmod-mt76x2-common wpad-basic-mbedtls"
+CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt76x8_DEVICE_tplink_archer-c50-v4="kmod-leds-gpio kmod-mt76x02-common kmod-mt76x2 kmod-mt76x2-common wpad-basic-mbedtls"
 # CONFIG_TARGET_DEVICE_ramips_mt76x8_DEVICE_tplink_archer-mr200-v5 is not set
 # CONFIG_TARGET_DEVICE_ramips_mt76x8_DEVICE_tplink_archer-mr200-v6 is not set
 # CONFIG_TARGET_DEVICE_ramips_mt76x8_DEVICE_tplink_re200-v2 is not set
@@ -302,36 +302,36 @@ CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt76x8_DEVICE_tplink_archer-c50-v4="kmod-mt
 # CONFIG_TARGET_DEVICE_ramips_mt76x8_DEVICE_tplink_re305-v3 is not set
 # CONFIG_TARGET_DEVICE_ramips_mt76x8_DEVICE_tplink_re365-v1 is not set
 CONFIG_TARGET_DEVICE_ramips_mt76x8_DEVICE_tplink_tl-mr3020-v3=y
-CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt76x8_DEVICE_tplink_tl-mr3020-v3="kmod-usb2 kmod-usb-common kmod-usb-core kmod-usb-ehci kmod-usb-ledtrig-usbport kmod-usb-ohci luci-app-ledtrig-usbport wpad-basic-mbedtls"
+CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt76x8_DEVICE_tplink_tl-mr3020-v3="kmod-leds-gpio kmod-usb2 kmod-usb-common kmod-usb-core kmod-usb-ehci kmod-usb-ledtrig-usbport kmod-usb-ohci luci-app-ledtrig-usbport wpad-basic-mbedtls"
 CONFIG_TARGET_DEVICE_ramips_mt76x8_DEVICE_tplink_tl-mr3420-v5=y
-CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt76x8_DEVICE_tplink_tl-mr3420-v5="blockd block-mount kmod-fs-autofs4 kmod-fs-exfat kmod-fs-ntfs kmod-fuse kmod-lib-crc16 kmod-mii kmod-nls-cp437 kmod-usb2 kmod-usb-common kmod-usb-core kmod-usb-ehci kmod-usb-ledtrig-usbport kmod-usb-net kmod-usb-net-cdc-ether kmod-usb-net-rndis kmod-usb-ohci kmod-usb-storage luci-app-ledtrig-usbport wpad-basic-mbedtls"
+CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt76x8_DEVICE_tplink_tl-mr3420-v5="blockd block-mount kmod-fs-autofs4 kmod-fs-exfat kmod-fs-ntfs kmod-fuse kmod-leds-gpio kmod-lib-crc16 kmod-mii kmod-nls-cp437 kmod-usb2 kmod-usb-common kmod-usb-core kmod-usb-ehci kmod-usb-ledtrig-usbport kmod-usb-net kmod-usb-net-cdc-ether kmod-usb-net-rndis kmod-usb-ohci kmod-usb-storage luci-app-ledtrig-usbport wpad-basic-mbedtls"
 CONFIG_TARGET_DEVICE_ramips_mt76x8_DEVICE_tplink_tl-mr6400-v4=y
-CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt76x8_DEVICE_tplink_tl-mr6400-v4="kmod-mii kmod-usb2 kmod-usb-common kmod-usb-core kmod-usb-ehci kmod-usb-ledtrig-usbport kmod-usb-net kmod-usb-net-qmi-wwan kmod-usb-ohci kmod-usb-serial kmod-usb-serial-option kmod-usb-serial-wwan kmod-usb-wdm luci-app-ledtrig-usbport uqmi wpad-basic-mbedtls wwan"
+CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt76x8_DEVICE_tplink_tl-mr6400-v4="kmod-leds-gpio kmod-mii kmod-usb2 kmod-usb-common kmod-usb-core kmod-usb-ehci kmod-usb-ledtrig-usbport kmod-usb-net kmod-usb-net-qmi-wwan kmod-usb-ohci kmod-usb-serial kmod-usb-serial-option kmod-usb-serial-wwan kmod-usb-wdm luci-app-ledtrig-usbport uqmi wpad-basic-mbedtls wwan"
 CONFIG_TARGET_DEVICE_ramips_mt76x8_DEVICE_tplink_tl-mr6400-v5=y
-CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt76x8_DEVICE_tplink_tl-mr6400-v5="kmod-mii kmod-usb2 kmod-usb-common kmod-usb-core kmod-usb-ehci kmod-usb-ledtrig-usbport kmod-usb-net kmod-usb-net-qmi-wwan kmod-usb-ohci kmod-usb-serial kmod-usb-serial-option kmod-usb-serial-wwan kmod-usb-wdm luci-app-ledtrig-usbport uqmi wpad-basic-mbedtls wwan"
+CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt76x8_DEVICE_tplink_tl-mr6400-v5="kmod-leds-gpio kmod-mii kmod-usb2 kmod-usb-common kmod-usb-core kmod-usb-ehci kmod-usb-ledtrig-usbport kmod-usb-net kmod-usb-net-qmi-wwan kmod-usb-ohci kmod-usb-serial kmod-usb-serial-option kmod-usb-serial-wwan kmod-usb-wdm luci-app-ledtrig-usbport uqmi wpad-basic-mbedtls wwan"
 # CONFIG_TARGET_DEVICE_ramips_mt76x8_DEVICE_tplink_tl-mr6400-v7 is not set
 CONFIG_TARGET_DEVICE_ramips_mt76x8_DEVICE_tplink_tl-wa801nd-v5=y
-CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt76x8_DEVICE_tplink_tl-wa801nd-v5="wpad-basic-mbedtls"
+CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt76x8_DEVICE_tplink_tl-wa801nd-v5="kmod-leds-gpio wpad-basic-mbedtls"
 CONFIG_TARGET_DEVICE_ramips_mt76x8_DEVICE_tplink_tl-wr802n-v4=y
-CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt76x8_DEVICE_tplink_tl-wr802n-v4="wpad-basic-mbedtls"
+CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt76x8_DEVICE_tplink_tl-wr802n-v4="kmod-leds-gpio wpad-basic-mbedtls"
 CONFIG_TARGET_DEVICE_ramips_mt76x8_DEVICE_tplink_tl-wr840n-v4=y
-CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt76x8_DEVICE_tplink_tl-wr840n-v4="wpad-basic-mbedtls"
+CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt76x8_DEVICE_tplink_tl-wr840n-v4="kmod-leds-gpio wpad-basic-mbedtls"
 # CONFIG_TARGET_DEVICE_ramips_mt76x8_DEVICE_tplink_tl-wr840n-v5 is not set
 CONFIG_TARGET_DEVICE_ramips_mt76x8_DEVICE_tplink_tl-wr841n-v13=y
-CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt76x8_DEVICE_tplink_tl-wr841n-v13="wpad-basic-mbedtls"
+CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt76x8_DEVICE_tplink_tl-wr841n-v13="kmod-leds-gpio wpad-basic-mbedtls"
 # CONFIG_TARGET_DEVICE_ramips_mt76x8_DEVICE_tplink_tl-wr841n-v14 is not set
 CONFIG_TARGET_DEVICE_ramips_mt76x8_DEVICE_tplink_tl-wr842n-v5=y
-CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt76x8_DEVICE_tplink_tl-wr842n-v5="blockd block-mount kmod-fs-autofs4 kmod-fs-exfat kmod-fs-ntfs kmod-fuse kmod-lib-crc16 kmod-mii kmod-nls-cp437 kmod-usb2 kmod-usb-common kmod-usb-core kmod-usb-ehci kmod-usb-ledtrig-usbport kmod-usb-net kmod-usb-net-cdc-ether kmod-usb-net-rndis kmod-usb-ohci kmod-usb-storage luci-app-ledtrig-usbport wpad-basic-mbedtls"
+CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt76x8_DEVICE_tplink_tl-wr842n-v5="blockd block-mount kmod-fs-autofs4 kmod-fs-exfat kmod-fs-ntfs kmod-fuse kmod-leds-gpio kmod-lib-crc16 kmod-mii kmod-nls-cp437 kmod-usb2 kmod-usb-common kmod-usb-core kmod-usb-ehci kmod-usb-ledtrig-usbport kmod-usb-net kmod-usb-net-cdc-ether kmod-usb-net-rndis kmod-usb-ohci kmod-usb-storage luci-app-ledtrig-usbport wpad-basic-mbedtls"
 # CONFIG_TARGET_DEVICE_ramips_mt76x8_DEVICE_tplink_tl-wr850n-v2 is not set
 # CONFIG_TARGET_DEVICE_ramips_mt76x8_DEVICE_tplink_tl-wr902ac-v3 is not set
 # CONFIG_TARGET_DEVICE_ramips_mt76x8_DEVICE_tplink_tl-wr902ac-v4 is not set
 # CONFIG_TARGET_DEVICE_ramips_mt76x8_DEVICE_unielec_u7628-01-16m is not set
 # CONFIG_TARGET_DEVICE_ramips_mt76x8_DEVICE_vocore_vocore2 is not set
 CONFIG_TARGET_DEVICE_ramips_mt76x8_DEVICE_vocore_vocore2-lite=y
-CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt76x8_DEVICE_vocore_vocore2-lite="blockd block-mount kmod-fs-autofs4 kmod-fs-exfat kmod-fs-ntfs kmod-fuse kmod-lib-crc16 kmod-mii kmod-mmc kmod-mmc-mtk kmod-nls-cp437 kmod-usb2 kmod-usb-common kmod-usb-core kmod-usb-ehci kmod-usb-ledtrig-usbport kmod-usb-net kmod-usb-net-cdc-ether kmod-usb-net-rndis kmod-usb-ohci kmod-usb-storage luci-app-ledtrig-usbport luci-proto-wireguard wireguard-tools wpad-basic-mbedtls"
+CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt76x8_DEVICE_vocore_vocore2-lite="blockd block-mount kmod-fs-autofs4 kmod-fs-exfat kmod-fs-ntfs kmod-fuse kmod-leds-gpio kmod-lib-crc16 kmod-mii kmod-mmc kmod-mmc-mtk kmod-nls-cp437 kmod-usb2 kmod-usb-common kmod-usb-core kmod-usb-ehci kmod-usb-ledtrig-usbport kmod-usb-net kmod-usb-net-cdc-ether kmod-usb-net-rndis kmod-usb-ohci kmod-usb-storage luci-app-ledtrig-usbport luci-proto-wireguard wireguard-tools wpad-basic-mbedtls"
 # CONFIG_TARGET_DEVICE_ramips_mt76x8_DEVICE_wavlink_wl-wn531a3 is not set
 CONFIG_TARGET_DEVICE_ramips_mt76x8_DEVICE_wavlink_wl-wn570ha1=y
-CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt76x8_DEVICE_wavlink_wl-wn570ha1="kmod-mt76x02-common kmod-mt76x0-common kmod-mt76x0e luci-proto-wireguard wireguard-tools wpad-basic-mbedtls"
+CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt76x8_DEVICE_wavlink_wl-wn570ha1="kmod-leds-gpio kmod-mt76x02-common kmod-mt76x0-common kmod-mt76x0e luci-proto-wireguard wireguard-tools wpad-basic-mbedtls"
 # CONFIG_TARGET_DEVICE_ramips_mt76x8_DEVICE_wavlink_wl-wn570ha2 is not set
 # CONFIG_TARGET_DEVICE_ramips_mt76x8_DEVICE_wavlink_wl-wn575a3 is not set
 # CONFIG_TARGET_DEVICE_ramips_mt76x8_DEVICE_widora_neo-16m is not set
@@ -344,13 +344,13 @@ CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt76x8_DEVICE_wavlink_wl-wn570ha1="kmod-mt7
 # CONFIG_TARGET_DEVICE_ramips_mt76x8_DEVICE_xiaomi_mi-router-4a-100m-intl is not set
 # CONFIG_TARGET_DEVICE_ramips_mt76x8_DEVICE_xiaomi_mi-router-4a-100m-intl-v2 is not set
 CONFIG_TARGET_DEVICE_ramips_mt76x8_DEVICE_xiaomi_mi-router-4c=y
-CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt76x8_DEVICE_xiaomi_mi-router-4c="luci-proto-wireguard wireguard-tools wpad-basic-mbedtls"
+CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt76x8_DEVICE_xiaomi_mi-router-4c="kmod-leds-gpio luci-proto-wireguard wireguard-tools wpad-basic-mbedtls"
 # CONFIG_TARGET_DEVICE_ramips_mt76x8_DEVICE_xiaomi_miwifi-3a is not set
 # CONFIG_TARGET_DEVICE_ramips_mt76x8_DEVICE_xiaomi_miwifi-3c is not set
 CONFIG_TARGET_DEVICE_ramips_mt76x8_DEVICE_xiaomi_miwifi-nano=y
-CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt76x8_DEVICE_xiaomi_miwifi-nano="luci-proto-wireguard wireguard-tools wpad-basic-mbedtls"
+CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt76x8_DEVICE_xiaomi_miwifi-nano="kmod-leds-gpio luci-proto-wireguard wireguard-tools wpad-basic-mbedtls"
 CONFIG_TARGET_DEVICE_ramips_mt76x8_DEVICE_xiaomi_mi-ra75=y
-CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt76x8_DEVICE_xiaomi_mi-ra75="kmod-mt76x02-common kmod-mt76x2 kmod-mt76x2-common luci-proto-wireguard wireguard-tools wpad-basic-mbedtls"
+CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt76x8_DEVICE_xiaomi_mi-ra75="kmod-leds-gpio kmod-mt76x02-common kmod-mt76x2 kmod-mt76x2-common luci-proto-wireguard wireguard-tools wpad-basic-mbedtls"
 # CONFIG_TARGET_DEVICE_ramips_mt76x8_DEVICE_yuncore_cpe200 is not set
 # CONFIG_TARGET_DEVICE_ramips_mt76x8_DEVICE_yuncore_m300 is not set
 # CONFIG_TARGET_DEVICE_ramips_mt76x8_DEVICE_zbtlink_zbt-we1226 is not set
@@ -724,7 +724,7 @@ CONFIG_TARGET_INIT_CMD="/sbin/init"
 CONFIG_TARGET_INIT_SUPPRESS_STDERR=y
 CONFIG_VERSIONOPT=y
 CONFIG_VERSION_DIST="X-WRT"
-CONFIG_VERSION_NUMBER="26.04_b202604160901"
+CONFIG_VERSION_NUMBER="26.04_b202604180747"
 CONFIG_VERSION_CODE="Resolute"
 CONFIG_VERSION_REPO="http://downloads.openwrt.org/snapshots"
 CONFIG_VERSION_HOME_URL="https://x-wrt.com/"
@@ -3657,15 +3657,15 @@ CONFIG_PACKAGE_kmod-input-evdev=m
 # LED modules
 #
 # CONFIG_PACKAGE_kmod-input-leds is not set
-CONFIG_PACKAGE_kmod-leds-gpio=y
-CONFIG_PACKAGE_kmod-leds-group-multicolor=m
+CONFIG_PACKAGE_kmod-leds-gpio=m
+# CONFIG_PACKAGE_kmod-leds-group-multicolor is not set
 # CONFIG_PACKAGE_kmod-leds-ktd202x is not set
 # CONFIG_PACKAGE_kmod-leds-lp5523 is not set
 # CONFIG_PACKAGE_kmod-leds-lp5562 is not set
 # CONFIG_PACKAGE_kmod-leds-lp55xx-common is not set
 # CONFIG_PACKAGE_kmod-leds-pca955x is not set
 # CONFIG_PACKAGE_kmod-leds-pca963x is not set
-CONFIG_PACKAGE_kmod-leds-st1202=m
+# CONFIG_PACKAGE_kmod-leds-st1202 is not set
 # CONFIG_PACKAGE_kmod-leds-tlc591xx is not set
 # CONFIG_PACKAGE_kmod-leds-uleds is not set
 # CONFIG_PACKAGE_kmod-ledtrig-activity is not set
@@ -4782,6 +4782,7 @@ CONFIG_HAS_LUAJIT_ARCH=y
 # CONFIG_PACKAGE_python3-pytest-xdist is not set
 # CONFIG_PACKAGE_python3-pytz is not set
 # CONFIG_PACKAGE_python3-pyudev is not set
+# CONFIG_PACKAGE_python3-pyusb is not set
 # CONFIG_PACKAGE_python3-readline is not set
 # CONFIG_PACKAGE_python3-referencing is not set
 # CONFIG_PACKAGE_python3-requests is not set
