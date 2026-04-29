@@ -1262,7 +1262,7 @@ CONFIG_TARGET_INIT_CMD="/sbin/init"
 CONFIG_TARGET_INIT_SUPPRESS_STDERR=y
 CONFIG_VERSIONOPT=y
 CONFIG_VERSION_DIST="X-WRT"
-CONFIG_VERSION_NUMBER="26.04_b202604250947"
+CONFIG_VERSION_NUMBER="26.04_b202604290954"
 CONFIG_VERSION_CODE="Resolute"
 CONFIG_VERSION_REPO="http://downloads.openwrt.org/snapshots"
 CONFIG_VERSION_HOME_URL="https://x-wrt.com/"
@@ -7224,6 +7224,7 @@ CONFIG_PACKAGE_luci-i18n-dashboard-zh-cn=m
 # CONFIG_PACKAGE_luci-i18n-dawn-ro is not set
 # CONFIG_PACKAGE_luci-i18n-dawn-ru is not set
 # CONFIG_PACKAGE_luci-i18n-dawn-sv is not set
+# CONFIG_PACKAGE_luci-i18n-dawn-ta is not set
 # CONFIG_PACKAGE_luci-i18n-dawn-uk is not set
 CONFIG_PACKAGE_luci-i18n-dawn-zh-cn=m
 # CONFIG_PACKAGE_luci-i18n-dawn-zh-tw is not set
@@ -7538,8 +7539,10 @@ CONFIG_PACKAGE_luci-i18n-sqm-zh-cn=m
 # CONFIG_PACKAGE_luci-i18n-strongswan-swanctl-ko is not set
 # CONFIG_PACKAGE_luci-i18n-strongswan-swanctl-lt is not set
 # CONFIG_PACKAGE_luci-i18n-strongswan-swanctl-pl is not set
+# CONFIG_PACKAGE_luci-i18n-strongswan-swanctl-pt-br is not set
 # CONFIG_PACKAGE_luci-i18n-strongswan-swanctl-ro is not set
 # CONFIG_PACKAGE_luci-i18n-strongswan-swanctl-ru is not set
+# CONFIG_PACKAGE_luci-i18n-strongswan-swanctl-ta is not set
 # CONFIG_PACKAGE_luci-i18n-strongswan-swanctl-uk is not set
 CONFIG_PACKAGE_luci-i18n-strongswan-swanctl-zh-cn=m
 # CONFIG_PACKAGE_luci-i18n-strongswan-swanctl-zh-tw is not set
@@ -9500,7 +9503,6 @@ CONFIG_PACKAGE_usbmuxd=m
 # CONFIG_PACKAGE_colrm is not set
 # CONFIG_PACKAGE_column is not set
 # CONFIG_PACKAGE_conmon is not set
-# CONFIG_PACKAGE_containerd is not set
 # CONFIG_PACKAGE_coremark is not set
 # CONFIG_PACKAGE_coreutils is not set
 # CONFIG_PACKAGE_coreutils-b2sum is not set
@@ -9622,8 +9624,6 @@ CONFIG_PACKAGE_dbus=m
 # CONFIG_PACKAGE_digitemp is not set
 # CONFIG_PACKAGE_digitemp-usb is not set
 # CONFIG_PACKAGE_dmesg is not set
-# CONFIG_PACKAGE_docker is not set
-# CONFIG_PACKAGE_docker-compose is not set
 # CONFIG_PACKAGE_domoticz is not set
 # CONFIG_PACKAGE_dos2unix is not set
 # CONFIG_PACKAGE_dropbearconvert is not set
@@ -9840,7 +9840,6 @@ CONFIG_PACKAGE_qrencode=m
 # CONFIG_PACKAGE_rtl-sdr is not set
 # CONFIG_PACKAGE_rtl_433 is not set
 # CONFIG_PACKAGE_rtl_433-ssl is not set
-# CONFIG_PACKAGE_runc is not set
 # CONFIG_PACKAGE_sane-backends is not set
 # CONFIG_PACKAGE_sane-daemon is not set
 # CONFIG_PACKAGE_sane-frontends is not set
