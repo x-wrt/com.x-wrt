@@ -872,11 +872,8 @@ for t in $targets; do
 		TARGET_DEVICE_bcm53xx_generic_DEVICE_asus_rt-ac3100|\
 		TARGET_DEVICE_bcm53xx_generic_DEVICE_asus_rt-ac3200|\
 		TARGET_DEVICE_bcm53xx_generic_DEVICE_asus_rt-ac5300|\
-		TARGET_DEVICE_mediatek_filogic_DEVICE_tenda_ax12-pro-v2|\
-		TARGET_DEVICE_mediatek_filogic_DEVICE_tenda_ax12l-pro|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_ruijie_rg-ew1200g-pro-v1.1|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_jdcloud_re-cp-02|\
-		TARGET_DEVICE_mediatek_filogic_DEVICE_yuncore_ax835|\
 		TARGET_DEVICE_ath79_generic_DEVICE_huawei_ap5030dn|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_asus_rt-ax53u|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_tplink_ex220-v1|\
@@ -1087,7 +1084,16 @@ for t in $targets; do
 			excludes="$excludes apk-openssl opkg"
 			flash_gt8m=1
 		;;
+		# > 8M <= 12M
+		TARGET_DEVICE_mediatek_filogic_DEVICE_tenda_ax12-pro-v2|\
+		TARGET_DEVICE_mediatek_filogic_DEVICE_tenda_ax12l-pro)
+			mods="$mods wpad-basic-mbedtls wpad-basic-wolfssl $openvpnmod openvpn-mbedtls urllogger natflow-hostacl $tc"
+			excludes="$excludes wpad-openssl wpad-mbedtls openvpn-openssl libopenssl openssl"
+			mods="$mods apk-mbedtls"
+			excludes="$excludes apk-openssl opkg"
+		;;
 		# <= 8M
+		TARGET_DEVICE_mediatek_filogic_DEVICE_yuncore_ax835|\
 		TARGET_DEVICE_qualcommax_ipq807x_DEVICE_asus_rt-ax89x|\
 		TARGET_DEVICE_ramips_mt7620_DEVICE_tplink_archer-c5-v4|\
 		TARGET_DEVICE_ramips_mt7620_DEVICE_mercusys_ac12g-v1-8m|\

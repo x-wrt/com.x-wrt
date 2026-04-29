@@ -5725,9 +5725,8 @@ CONFIG_PACKAGE_libblkid=m
 CONFIG_PACKAGE_libblobmsg-json=y
 # CONFIG_PACKAGE_libbpf is not set
 # CONFIG_PACKAGE_libbsd is not set
-CONFIG_PACKAGE_libcap=y
-# CONFIG_PACKAGE_libcap-bin is not set
-CONFIG_PACKAGE_libcap-ng=m
+# CONFIG_PACKAGE_libcap is not set
+CONFIG_PACKAGE_libcap-ng=y
 # CONFIG_PACKAGE_libcap-ng-bin is not set
 CONFIG_PACKAGE_libcares=m
 # CONFIG_PACKAGE_libcbor is not set
