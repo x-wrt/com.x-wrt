@@ -9,10 +9,10 @@ include $(TOPDIR)/rules.mk
 include $(INCLUDE_DIR)/kernel.mk
 
 PKG_NAME:=natcap
-PKG_VERSION:=20211228
+PKG_VERSION:=20260430
 
 PKG_SOURCE_URL:=https://codeload.github.com/ptpt52/natcap/tar.gz/$(PKG_VERSION)?
-PKG_HASH:=4b3738f5635a81d2731549cdad10540fd85f5fd8b8454a20e7a55020e24ec535
+PKG_HASH:=edc2537b8603c7adc2ecd590e7655c192ce18cac8d05177978d7836b8b2a9c35
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
 
 PKG_MAINTAINER:=Chen Minqiang <ptpt52@gmail.com>
@@ -95,11 +95,10 @@ define Package/natcapd-mini/install
 	$(INSTALL_DATA) ./files/natcapd.config $(1)/etc/config/natcapd
 	$(INSTALL_DIR) $(1)/usr/share/natcapd
 	$(INSTALL_DATA) ./files/firewall.include $(1)/usr/share/natcapd/firewall.include
-	$(INSTALL_DATA) ./files/accelerated-domains.gfwlist.dnsmasq.conf $(1)/usr/share/natcapd/accelerated-domains.gfwlist.dnsmasq.conf
 	$(INSTALL_DATA) ./files/gfwlist_update.sh $(1)/usr/share/natcapd/gfwlist_update.sh
 	$(INSTALL_DATA) ./files/cnlist_update.sh $(1)/usr/share/natcapd/cnlist_update.sh
 	$(INSTALL_DATA) ./files/board_mac.lua $(1)/usr/share/natcapd/board_mac.lua
-	$(INSTALL_DATA) ./files/yy.json.lua $(1)/usr/share/natcapd/yy.json.lua
+	$(INSTALL_DATA) ./files/yy.json.sh $(1)/usr/share/natcapd/yy.json.sh
 	$(INSTALL_DATA) ./files/yy.sn.json.lua $(1)/usr/share/natcapd/yy.sn.json.lua
 	$(INSTALL_DATA) $(PKG_BUILD_DIR)/cniplist.set $(1)/usr/share/natcapd/cniplist.set
 	$(INSTALL_DATA) $(PKG_BUILD_DIR)/C_cniplist.set $(1)/usr/share/natcapd/C_cniplist.set
@@ -117,7 +116,12 @@ define Package/natcapd-mini/install
 	$(INSTALL_DATA) ./files/natcapd.defaults $(1)/etc/uci-defaults/95-natcapd
 	$(INSTALL_DIR) $(1)/etc/hotplug.d/iface
 	$(INSTALL_DATA) ./files/20-natcapd.hotplug $(1)/etc/hotplug.d/iface/20-natcapd
+	$(INSTALL_DIR) $(1)/etc/hotplug.d/net
+	$(INSTALL_DATA) ./files/21-natcapd.ec2ns.hotplug $(1)/etc/hotplug.d/iface/21-natcapd.ec2ns
+	$(INSTALL_DATA) ./files/21-natcapd.ec2ns.hotplug $(1)/etc/hotplug.d/net/21-natcapd.ec2ns
 	$(INSTALL_BIN) $(PKG_BUILD_DIR)/peer_ctl.sh $(1)/usr/sbin/peer_ctl
+	$(INSTALL_DIR) $(1)/usr/share/ucitrack
+	$(INSTALL_DATA) ./files/ucitrack/*.json $(1)/usr/share/ucitrack/
 endef
 
 define Package/natcapd/conffiles
@@ -157,8 +161,9 @@ define KernelPackage/natcap
   SUBMENU:=Natcap Support
   TITLE:=Natcap kernel driver
   FILES:=$(PKG_BUILD_DIR)/natcap.ko
-  KCONFIG:=
-  AUTOLOAD:=$(call AutoLoad,96,natcap)
+  KCONFIG:= \
+	    CONFIG_NF_CONNTRACK_MARK=y
+  AUTOLOAD:=$(call AutoLoad,97,natcap)
   DEPENDS:= +kmod-ipt-conntrack +kmod-ipt-nat +kmod-ipt-ipset
 endef
 
@@ -168,10 +173,14 @@ endef
 
 include $(INCLUDE_DIR)/kernel-defaults.mk
 
+EXTRA_CFLAGS += -DNATCAP_VERSION=\\\"$(PKG_VERSION)-$(shell echo $(PKG_HASH) | head -c7)\\\"
+
 define Build/Compile/natcap
 	+$(MAKE) $(PKG_JOBS) -C "$(LINUX_DIR)" \
+		EXTRA_CFLAGS="$(EXTRA_CFLAGS)" \
 		$(KERNEL_MAKE_FLAGS) \
 		M="$(PKG_BUILD_DIR)" \
+		$(if $(CONFIG_KERNEL_DEBUG_INFO),,NO_DEBUG=1) \
 		modules
 endef
 
