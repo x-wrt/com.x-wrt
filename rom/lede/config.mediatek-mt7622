@@ -120,7 +120,7 @@ CONFIG_TARGET_DEVICE_PACKAGES_mediatek_mt7622_DEVICE_totolink_a8000ru="apk-opens
 # CONFIG_TARGET_DEVICE_mediatek_mt7622_DEVICE_ubnt_unifi-6-lr-v3 is not set
 # CONFIG_TARGET_DEVICE_mediatek_mt7622_DEVICE_ubnt_unifi-6-lr-v3-ubootmod is not set
 CONFIG_TARGET_DEVICE_mediatek_mt7622_DEVICE_xiaomi_redmi-router-ax6s=y
-CONFIG_TARGET_DEVICE_PACKAGES_mediatek_mt7622_DEVICE_xiaomi_redmi-router-ax6s="apk-openssl ca-bundle curl dawn gre ip-bridge iptables-mod-dhcpmac iptables-mod-dnetmap jool-tools-netfilter kmod-bonding kmod-crypto-acompress kmod-crypto-cbc kmod-crypto-chacha20poly1305 kmod-crypto-deflate kmod-crypto-des kmod-crypto-echainiv kmod-crypto-md5 kmod-inet-diag kmod-ip6-vti kmod-ipsec kmod-ipsec4 kmod-ipsec6 kmod-ipt-dhcpmac kmod-ipt-dnetmap kmod-ip-vti kmod-jool-netfilter kmod-l2tp kmod-leds-gpio kmod-lib-zlib-deflate kmod-lib-zlib-inflate kmod-mt7915e kmod-mt7915-firmware kmod-nat46 kmod-ovpn-backports kmod-pppol2tp kmod-thermal kmod-xfrm-interfacelibcurl libgcrypt libgpg-error liblz4 liblzo libnghttp2 libnl libnl-cli libnl-core libnl-genl libnl-nf libnl-route libopenssl libopenssl-conf libopenssl-legacy libpcre2 libqrencode libssh2 libxml2 luci-app-dawn luci-app-usteer luci-i18n-dashboard-zh-cn luci-mod-dashboard luci-nginx luci-proto-gre luci-proto-openvpn luci-proto-relay luci-proto-vti luci-proto-wireguard luci-proto-xfrm luci-theme-argon nginx-mod-luci nginx-mod-ubus nginx-ssl nginx-ssl-util openvpn-openssl ppp-mod-pppol2tp proto-bonding qrencode relayd tc-tiny uwsgi uwsgi-cgi-plugin uwsgi-luci-support uwsgi-syslog-plugin vti wireguard-tools wpad-openssl xfrm xl2tpd"
+CONFIG_TARGET_DEVICE_PACKAGES_mediatek_mt7622_DEVICE_xiaomi_redmi-router-ax6s="apk-openssl ca-bundle curl dawn gre ip-bridge iptables-mod-dhcpmac iptables-mod-dnetmap jool-tools-netfilter kmod-bonding kmod-crypto-acompress kmod-crypto-cbc kmod-crypto-chacha20poly1305 kmod-crypto-deflate kmod-crypto-des kmod-crypto-echainiv kmod-crypto-md5 kmod-inet-diag kmod-ip6-vti kmod-ipsec kmod-ipsec4 kmod-ipsec6 kmod-ipt-dhcpmac kmod-ipt-dnetmap kmod-ip-vti kmod-jool-netfilter kmod-l2tp kmod-leds-gpio kmod-lib-zlib-deflate kmod-lib-zlib-inflate kmod-mt7915e kmod-mt7915-firmware kmod-nat46 kmod-ovpn-backports kmod-pppol2tp kmod-thermal kmod-xfrm-interface libcurl libgcrypt libgpg-error liblz4 liblzo libnghttp2 libnl libnl-cli libnl-core libnl-genl libnl-nf libnl-route libopenssl libopenssl-conf libopenssl-legacy libpcre2 libqrencode libssh2 libxml2 luci-app-dawn luci-app-usteer luci-i18n-dashboard-zh-cn luci-mod-dashboard luci-nginx luci-proto-gre luci-proto-openvpn luci-proto-relay luci-proto-vti luci-proto-wireguard luci-proto-xfrm luci-theme-argon nginx-mod-luci nginx-mod-ubus nginx-ssl nginx-ssl-util openvpn-openssl ppp-mod-pppol2tp proto-bonding qrencode relayd tc-tiny uwsgi uwsgi-cgi-plugin uwsgi-luci-support uwsgi-syslog-plugin vti wireguard-tools wpad-openssl xfrm xl2tpd"
 # end of Target Devices
 
 CONFIG_HAS_SUBTARGETS=y
@@ -304,6 +304,7 @@ CONFIG_KERNEL_PERF_EVENTS=y
 CONFIG_KERNEL_KALLSYMS=y
 # CONFIG_KERNEL_FTRACE is not set
 # CONFIG_KERNEL_DEBUG_INFO is not set
+# CONFIG_KERNEL_DEBUG_INFO_NONE is not set
 CONFIG_KERNEL_FRAME_WARN=2048
 # CONFIG_KERNEL_DEBUG_VIRTUAL is not set
 # CONFIG_KERNEL_DYNAMIC_DEBUG is not set
@@ -537,7 +538,7 @@ CONFIG_TARGET_INIT_CMD="/sbin/init"
 CONFIG_TARGET_INIT_SUPPRESS_STDERR=y
 CONFIG_VERSIONOPT=y
 CONFIG_VERSION_DIST="X-WRT"
-CONFIG_VERSION_NUMBER="26.04_b202604290954"
+CONFIG_VERSION_NUMBER="26.04_b202604301529"
 CONFIG_VERSION_CODE="Resolute"
 CONFIG_VERSION_REPO="http://downloads.openwrt.org/snapshots"
 CONFIG_VERSION_HOME_URL="https://x-wrt.com/"
