@@ -144,12 +144,12 @@ return view.extend({
 		}
 
 		m = new form.Map('wireless', [_('Network Connection Settings')],
-			_('Configure the network connection method for the print box') + "<br />" + _('LAN MAC:') + lan_mac + "<br />" + _('Wi-Fi MAC:') + wifi_mac);
+			_('Configure the network connection method for the print server') + "<br />" + _('LAN MAC:') + lan_mac + "<br />" + _('Wi-Fi MAC:') + wifi_mac);
 		m.chain('network');
 
 		s = m.section(form.NamedSection, 'wifinet0', 'wifi-iface');
 		s.addremove = false;
-		s.tab('wifiap', _('LAN Port Setting') + "(" + _('auto') + ")");
+		s.tab('wifiap', _('LAN Port'));
 		s.tab('wifista', _('Wi-Fi Bridge'));
 
 		o = s.taboption('wifiap', form.ListValue, 'wan_proto', _('Protocol'));

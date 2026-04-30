@@ -353,7 +353,7 @@ return view.extend({
 		    storage_size = findStorageSize(procmtd, procpart),
 		    m, s, o, ss;
 
-		m = new form.JSONMap(mapdata, _('Flash operations'));
+		m = new form.JSONMap(mapdata, _('Backup/Upgrade'));
 		m.tabbed = true;
 		m.readonly = isReadonlyView;
 
@@ -384,7 +384,7 @@ return view.extend({
 		o.inputtitle = _('Upload Backup...');
 		o.onclick = L.bind(this.handleRestore, this);
 
-		o = s.option(form.SectionValue, 'actions', form.NamedSection, 'actions', 'actions', _('Flash New Firmware'),
+		o = s.option(form.SectionValue, 'actions', form.NamedSection, 'actions', 'actions', _('Update Firmware'),
 			has_sysupgrade
 				? _('Upload a sysupgrade-compatible image here to update the running firmware.')
 				: _('Sorry, there is no sysupgrade support present; a new firmware image must be flashed manually. Please refer to the wiki for device specific install instructions.'));

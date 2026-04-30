@@ -47,7 +47,7 @@ msgid "LAN Port"
 msgstr "有线网口"
 
 msgid "Configure network parameters for the LAN port"
-msgstr "这里设置有线网口的网络参数"
+msgstr "设置有线的参数"
 
 msgid "Wi-Fi AP"
 msgstr "无线AP"
@@ -121,8 +121,8 @@ msgstr "无线设置向导"
 msgid "Network Connection Settings"
 msgstr "联网设置"
 
-msgid "Configure the network connection method for the print box"
-msgstr "设置打印盒子的联网方式"
+msgid "Configure the network connection method for the print server"
+msgstr "设置打印机共享器的联网方式"
 
 msgid "Auto Connect"
 msgstr "自动连接"
@@ -146,10 +146,10 @@ msgid "Printer not detected. Please check if the USB printer is properly connect
 msgstr "未检测到打印机，请检查 USB 打印机是否已正确连接。"
 
 msgid "Printer IP (Wi-Fi)"
-msgstr "打印机无线IP"
+msgstr "打印机共享器无线IP"
 
 msgid "Printer IP (LAN)"
-msgstr "打印机有线IP"
+msgstr "打印机共享器有线IP"
 
 msgid "Local Network Settings"
 msgstr "本机网络设置"
@@ -163,6 +163,9 @@ msgstr "无线MAC地址："
 msgid "LAN MAC:"
 msgstr "有线MAC地址："
 
+msgid "MAC Address"
+msgstr "MAC 地址"
+
 msgid "System Logs"
 msgstr "系统日志"
 
@@ -174,6 +177,9 @@ msgstr "速率"
 
 msgid "Connected Duration"
 msgstr "已连接"
+
+msgid "Uptime"
+msgstr "运行时间"
 
 msgid "IPv4 subnet mask"
 msgstr "IPv4 子网掩码"
@@ -206,7 +212,7 @@ msgid "Generate Backup"
 msgstr "生成备份"
 
 msgid "Upload a backup archive to restore configurations. To reset the firmware to its initial state, click \"Perform reset\" (only valid for firmware in squashfs format)."
-msgstr "上传备份存档以恢复配置。要将固件恢复到初始状态，请单击“执行重置”（仅 squashfs 格式的固件有效）。"
+msgstr "上传备份存档以恢复配置。要将固件恢复到初始状态，请点击“执行重置”（仅 squashfs 格式的固件有效）。"
 
 msgid "Restore to Factory Settings"
 msgstr "恢复到出厂设置"
@@ -220,7 +226,7 @@ msgstr "上传备份..."
 msgid "Custom files (certificates, scripts) will be retained on the system. To remove them, perform a factory reset first."
 msgstr "自定义文件（证书、脚本）会保留在系统上。若无需保留，请先执行恢复出厂设置。"
 
-msgid "Flash New Firmware"
+msgid "Update Firmware"
 msgstr "刷写新的固件"
 
 msgid "Upload a sysupgrade-compatible image here to update the running firmware."
@@ -234,3 +240,9 @@ msgstr "重启您设备上的系统"
 
 msgid "Channel Bandwidth"
 msgstr "信道频宽"
+
+msgid "Enable NTP Client"
+msgstr "启用 NTP 客户端"
+
+msgid "Backup/Upgrade"
+msgstr "备份/更新"

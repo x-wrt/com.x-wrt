@@ -56,7 +56,7 @@ return view.extend({
 		o = s.taboption('wifiap', form.ListValue, 'radio0_channel', _('Channel'));
 		o.ucisection = 'radio0';
 		o.ucioption = 'channel';
-		o.value('auto', _('auto'));
+		o.value('auto', _('Auto'));
 		o.value('1');
 		o.value('2');
 		o.value('3');

@@ -169,7 +169,7 @@ return view.extend({
 				'2.openwrt.pool.ntp.org', '3.openwrt.pool.ntp.org'
 			];
 
-			o = s.option(form.Flag, 'enabled', _('Enable NTP client'));
+			o = s.option(form.Flag, 'enabled', _('Enable NTP Client'));
 			o.rmempty = false;
 			o.ucisection = 'ntp';
 			o.default = o.disabled;
