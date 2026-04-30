@@ -227,7 +227,7 @@ msgid "Custom files (certificates, scripts) will be retained on the system. To r
 msgstr "自定义文件（证书、脚本）会保留在系统上。若无需保留，请先执行恢复出厂设置。"
 
 msgid "Update Firmware"
-msgstr "刷写新的固件"
+msgstr "更新固件"
 
 msgid "Update Firmware..."
 msgstr "更新固件..."
@@ -248,4 +248,4 @@ msgid "Enable NTP Client"
 msgstr "启用 NTP 客户端"
 
 msgid "Backup/Upgrade"
-msgstr "备份/更新"
+msgstr "备份/升级"
