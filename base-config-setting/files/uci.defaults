@@ -442,6 +442,13 @@ test $version -lt 26 && {
 	version=26
 }
 
+test $version -lt 27 && {
+	#switch to theme openwrt2020
+	uci set luci.main.mediaurlbase='/luci-static/openwrt2020'
+	uci commit luci
+	version=27
+}
+
 rm -f /lib/modules/$(uname -r)/crypto_safexcel.ko
 rmmod crypto_safexcel &>/dev/null
 
