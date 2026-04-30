@@ -394,7 +394,7 @@ return view.extend({
 		if (has_sysupgrade) {
 			o = ss.option(form.Button, 'sysupgrade', _('Image'));
 			o.inputstyle = 'action important';
-			o.inputtitle = _('Flash Firmware...');
+			o.inputtitle = _('Update Firmware...');
 			o.onclick = L.bind(this.handleSysupgrade, this, storage_size);
 		}
 
