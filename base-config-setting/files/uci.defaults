@@ -444,8 +444,10 @@ test $version -lt 26 && {
 
 test $version -lt 27 && {
 	#switch to theme openwrt2020
-	uci set luci.main.mediaurlbase='/luci-static/openwrt2020'
-	uci commit luci
+	test -e /www/luci-static/openwrt2020 && {
+		uci set luci.main.mediaurlbase='/luci-static/openwrt2020'
+		uci commit luci
+	}
 	version=27
 }
 
