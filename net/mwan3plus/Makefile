@@ -63,8 +63,14 @@ fi
 exit 0
 endef
 
+ifneq ($(CONFIG_TARGET_ramips)$(CONFIG_TARGET_ath79)$(CONFIG_TARGET_bcm53xx),)
+EXTRA_CFLAGS += -DMAX_FDS=1024
+else
+EXTRA_CFLAGS += -DMAX_FDS=8192
+endif
+
 define Build/Compile
-	$(TARGET_CC) $(CFLAGS) $(LDFLAGS) $(FPIC) \
+	$(TARGET_CC) $(CFLAGS) $(EXTRA_CFLAGS) $(LDFLAGS) $(FPIC) \
 		-shared \
 		-o $(PKG_BUILD_DIR)/libwrap_mwan3_sockopt.so.1.0 \
 		$(if $(CONFIG_IPV6),-DCONFIG_IPV6) \
