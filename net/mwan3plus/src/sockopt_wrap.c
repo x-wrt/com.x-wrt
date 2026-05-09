@@ -34,8 +34,10 @@
 #define SENDMMSG_FLAGS_TYPE int
 #endif
 
+#ifndef MAX_FDS
 // 现代 Linux 默认的合理上限，占用约 256KB 内存，非常安全
 #define MAX_FDS 65536
+#endif
 
 // 使用 __sync_bool_compare_and_swap 等原子操作，无需加锁
 struct socket_state {
