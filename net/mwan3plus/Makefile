@@ -66,7 +66,7 @@ endef
 ifneq ($(CONFIG_TARGET_ramips)$(CONFIG_TARGET_ath79)$(CONFIG_TARGET_bcm53xx),)
 EXTRA_CFLAGS += -DMAX_FDS=1024
 else
-EXTRA_CFLAGS += -DMAX_FDS=8192
+EXTRA_CFLAGS += -DMAX_FDS=1024
 endif
 
 define Build/Compile
