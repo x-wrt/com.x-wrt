@@ -8,10 +8,10 @@ msgid "TX"
 msgstr "发送"
 
 msgid "Traffic (RX)"
-msgstr "接收"
+msgstr "流量（接收）"
 
 msgid "Traffic (TX)"
-msgstr "发送"
+msgstr "流量（发送）"
 
 msgid "Traffic (RX/TX)"
 msgstr "流量（接收/发送）"
