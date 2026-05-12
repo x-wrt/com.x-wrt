@@ -448,6 +448,14 @@ test $version -lt 28 && {
 		uci set luci.main.mediaurlbase='/luci-static/x-wrt'
 		uci commit luci
 	}
+	test -e /www/luci-static/openwrt2020 || {
+		uci -q delete luci.themes.OpenWrt2020
+		uci commit luci
+	}
+	test -e /www/luci-static/argon || {
+		uci -q delete luci.themes.Argon
+		uci commit luci
+	}
 	version=28
 }
 
