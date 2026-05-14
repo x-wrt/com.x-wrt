@@ -516,7 +516,7 @@ CONFIG_TARGET_INIT_CMD="/sbin/init"
 CONFIG_TARGET_INIT_SUPPRESS_STDERR=y
 CONFIG_VERSIONOPT=y
 CONFIG_VERSION_DIST="X-WRT-docker"
-CONFIG_VERSION_NUMBER="26.04_b202605112009"
+CONFIG_VERSION_NUMBER="26.04_b202605141841"
 CONFIG_VERSION_CODE="Resolute"
 CONFIG_VERSION_REPO="http://downloads.openwrt.org/snapshots"
 CONFIG_VERSION_HOME_URL="https://x-wrt.com/"
@@ -4250,7 +4250,6 @@ CONFIG_PACKAGE_kmod-mt7601u=y
 CONFIG_PACKAGE_kmod-mt7615-common=y
 # CONFIG_PACKAGE_kmod-mt7615-firmware is not set
 # CONFIG_PACKAGE_kmod-mt7615e is not set
-# CONFIG_PACKAGE_kmod-mt7622-firmware is not set
 # CONFIG_PACKAGE_kmod-mt7663-firmware-ap is not set
 # CONFIG_PACKAGE_kmod-mt7663-firmware-sta is not set
 CONFIG_PACKAGE_kmod-mt7663-usb-sdio=y
@@ -4543,6 +4542,8 @@ CONFIG_HAS_LUAJIT_ARCH=y
 # CONFIG_PACKAGE_python3 is not set
 # CONFIG_PACKAGE_python3-aio-mqtt-mod is not set
 # CONFIG_PACKAGE_python3-aiosignal is not set
+# CONFIG_PACKAGE_python3-ajsonrpc is not set
+# CONFIG_PACKAGE_python3-anyio is not set
 # CONFIG_PACKAGE_python3-apipkg is not set
 # CONFIG_PACKAGE_python3-apparmor is not set
 # CONFIG_PACKAGE_python3-appdirs is not set
@@ -4657,6 +4658,7 @@ CONFIG_HAS_LUAJIT_ARCH=y
 # CONFIG_PACKAGE_python3-lzma is not set
 # CONFIG_PACKAGE_python3-markdown is not set
 # CONFIG_PACKAGE_python3-markupsafe is not set
+# CONFIG_PACKAGE_python3-marshmallow is not set
 # CONFIG_PACKAGE_python3-maxminddb is not set
 # CONFIG_PACKAGE_python3-msgpack is not set
 # CONFIG_PACKAGE_python3-multiprocessing is not set
@@ -4684,8 +4686,10 @@ CONFIG_HAS_LUAJIT_ARCH=y
 # CONFIG_PACKAGE_python3-pillow is not set
 # CONFIG_PACKAGE_python3-pip is not set
 # CONFIG_PACKAGE_python3-platformdirs is not set
+# CONFIG_PACKAGE_python3-platformio is not set
 # CONFIG_PACKAGE_python3-pluggy is not set
 # CONFIG_PACKAGE_python3-ply is not set
+# CONFIG_PACKAGE_python3-protobuf is not set
 # CONFIG_PACKAGE_python3-psutil is not set
 # CONFIG_PACKAGE_python3-psycopg2 is not set
 # CONFIG_PACKAGE_python3-py is not set
@@ -4729,6 +4733,7 @@ CONFIG_HAS_LUAJIT_ARCH=y
 # CONFIG_PACKAGE_python3-schema is not set
 # CONFIG_PACKAGE_python3-selinux is not set
 # CONFIG_PACKAGE_python3-semanage is not set
+# CONFIG_PACKAGE_python3-semantic-version is not set
 # CONFIG_PACKAGE_python3-sentry-sdk is not set
 # CONFIG_PACKAGE_python3-seobject is not set
 # CONFIG_PACKAGE_python3-sepolgen is not set
@@ -4746,6 +4751,7 @@ CONFIG_HAS_LUAJIT_ARCH=y
 # CONFIG_PACKAGE_python3-sqlalchemy is not set
 # CONFIG_PACKAGE_python3-sqlite3 is not set
 # CONFIG_PACKAGE_python3-sqlparse is not set
+# CONFIG_PACKAGE_python3-starlette is not set
 # CONFIG_PACKAGE_python3-stem is not set
 # CONFIG_PACKAGE_python3-tabulate is not set
 # CONFIG_PACKAGE_python3-text-unidecode is not set
@@ -4763,6 +4769,7 @@ CONFIG_HAS_LUAJIT_ARCH=y
 # CONFIG_PACKAGE_python3-urllib3 is not set
 # CONFIG_PACKAGE_python3-userpath is not set
 # CONFIG_PACKAGE_python3-uuid is not set
+# CONFIG_PACKAGE_python3-uvicorn is not set
 # CONFIG_PACKAGE_python3-venv is not set
 # CONFIG_PACKAGE_python3-vobject is not set
 # CONFIG_PACKAGE_python3-websocket-client is not set
@@ -5880,7 +5887,6 @@ CONFIG_PACKAGE_libgcrypt=y
 # CONFIG_PACKAGE_libgmp is not set
 CONFIG_PACKAGE_libgpg-error=y
 # CONFIG_PACKAGE_libgpgme is not set
-# CONFIG_PACKAGE_libgpgmepp is not set
 # CONFIG_PACKAGE_libgphoto2 is not set
 # CONFIG_PACKAGE_libgpiod is not set
 # CONFIG_PACKAGE_libgpiodcxx is not set
@@ -6184,6 +6190,8 @@ CONFIG_PACKAGE_libxml2=y
 # CONFIG_PACKAGE_poco is not set
 # CONFIG_PACKAGE_poco-all is not set
 # CONFIG_PACKAGE_protobuf is not set
+# CONFIG_PACKAGE_protobuf-compat is not set
+# CONFIG_PACKAGE_protobuf-compat-lite is not set
 # CONFIG_PACKAGE_protobuf-lite is not set
 # CONFIG_PACKAGE_pthsem is not set
 # CONFIG_PACKAGE_re2 is not set
