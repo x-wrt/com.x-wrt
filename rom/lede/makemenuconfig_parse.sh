@@ -575,12 +575,14 @@ for t in $targets; do
 		TARGET_DEVICE_rockchip_armv8_DEVICE_hinlink_h66k|\
 		TARGET_DEVICE_rockchip_armv8_DEVICE_hinlink_h68k|\
 		TARGET_DEVICE_qualcommax_ipq50xx_DEVICE_cmcc_pz-l8|\
+		TARGET_DEVICE_qualcommax_ipq50xx_DEVICE_cmcc_mr3000d-ci|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_cudy_wr3000p-v1|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_cudy_wr3000e-v1|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_glinet_gl-mt3600be|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_tenda_be12-pro|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_tplink_be450|\
 		TARGET_DEVICE_qualcommax_ipq50xx_DEVICE_yuncore_ax830|\
+		TARGET_DEVICE_qualcommax_ipq50xx_DEVICE_xiaomi_redmi-ax5400|\
 		TARGET_DEVICE_qualcommax_ipq807x_DEVICE_aliyun_ap8220|\
 		TARGET_DEVICE_qualcommax_ipq50xx_DEVICE_xiaomi_ax6000|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_openfi_5pro|\
@@ -1648,6 +1650,7 @@ for t in $targets; do
 		;;
 		#no usb
 		TARGET_DEVICE_qualcommax_ipq50xx_DEVICE_cmcc_pz-l8|\
+		TARGET_DEVICE_qualcommax_ipq50xx_DEVICE_cmcc_mr3000d-ci|\
 		TARGET_DEVICE_bcm53xx_generic_DEVICE_asus_rt-ac3100|\
 		TARGET_DEVICE_bcm53xx_generic_DEVICE_asus_rt-ac3200|\
 		TARGET_DEVICE_bcm53xx_generic_DEVICE_asus_rt-ac5300|\
@@ -1656,6 +1659,7 @@ for t in $targets; do
 		TARGET_DEVICE_mediatek_filogic_DEVICE_tenda_be12-pro|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_cudy_wr3000e-v1|\
 		TARGET_DEVICE_qualcommax_ipq50xx_DEVICE_yuncore_ax830|\
+		TARGET_DEVICE_qualcommax_ipq50xx_DEVICE_xiaomi_redmi-ax5400|\
 		TARGET_DEVICE_qualcommax_ipq50xx_DEVICE_xiaomi_ax6000|\
 		TARGET_DEVICE_qualcommax_ipq50xx_DEVICE_glinet_gl-b3000|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_netis_nx31|\
@@ -1952,6 +1956,62 @@ rt73-usb-firmware"
 		;;
 	esac
 
+	#check luci-app-tailscale-community
+	case $t in
+		TARGET_DEVICE_mediatek_filogic_DEVICE_tplink_tl-xdr6086|\
+		TARGET_DEVICE_mediatek_filogic_DEVICE_tplink_tl-xdr6088|\
+		TARGET_DEVICE_mediatek_filogic_DEVICE_tplink_tl-xdr4288|\
+		TARGET_DEVICE_mediatek_filogic_DEVICE_tplink_tl-xtr8488|\
+		TARGET_DEVICE_mediatek_filogic_DEVICE_glinet_gl-mt2500|\
+		TARGET_DEVICE_mediatek_filogic_DEVICE_glinet_gl-mt2500-airoha|\
+		TARGET_DEVICE_mediatek_filogic_DEVICE_glinet_gl-mt3000|\
+		TARGET_DEVICE_mediatek_filogic_DEVICE_glinet_gl-mt6000|\
+		TARGET_DEVICE_mediatek_filogic_DEVICE_glinet_gl-mt3600be|\
+		TARGET_DEVICE_mediatek_filogic_DEVICE_tenda_be12-pro|\
+		TARGET_DEVICE_mediatek_filogic_DEVICE_cetron_ct3003|\
+		TARGET_DEVICE_mediatek_filogic_DEVICE_cetron_ct3003-ubootlayout|\
+		TARGET_DEVICE_mediatek_filogic_DEVICE_cudy_tr3000-256mb-v1|\
+		TARGET_DEVICE_mediatek_filogic_DEVICE_cudy_tr3000-v1|\
+		TARGET_DEVICE_mediatek_filogic_DEVICE_cudy_tr3000-v1-ubootmod|\
+		TARGET_DEVICE_mediatek_filogic_DEVICE_qihoo_360t7-ubootlayout|\
+		TARGET_DEVICE_mediatek_filogic_DEVICE_qihoo_360t7|\
+		TARGET_DEVICE_mediatek_filogic_DEVICE_qihoo_360t7-ubi|\
+		TARGET_DEVICE_mediatek_filogic_DEVICE_jcg_q30-pro|\
+		TARGET_DEVICE_mediatek_filogic_DEVICE_jcg_q30-pro-nmbm|\
+		TARGET_DEVICE_mediatek_filogic_DEVICE_xiaomi_mi-router-wr30u-112m-nmbm|\
+		TARGET_DEVICE_mediatek_filogic_DEVICE_xiaomi_mi-router-wr30u-stock|\
+		TARGET_DEVICE_mediatek_filogic_DEVICE_xiaomi_mi-router-wr30u-ubootmod|\
+		TARGET_DEVICE_mediatek_filogic_DEVICE_tenbay_wr3000k|\
+		TARGET_DEVICE_mediatek_filogic_DEVICE_xiaomi_mi-router-ax3000t|\
+		TARGET_DEVICE_mediatek_filogic_DEVICE_xiaomi_mi-router-ax3000t-ubootmod|\
+		TARGET_DEVICE_mediatek_filogic_DEVICE_xiaomi_redmi-router-ax6000|\
+		TARGET_DEVICE_mediatek_filogic_DEVICE_xiaomi_redmi-router-ax6000-ubootmod|\
+		TARGET_DEVICE_mediatek_filogic_DEVICE_xiaomi_redmi-router-ax6000-stock|\
+		TARGET_DEVICE_mediatek_filogic_DEVICE_xiaomi_redmi-router-ax6000-ubootlayout|\
+		TARGET_DEVICE_rockchip_armv8_DEVICE_friendlyarm_nanopi-r2c|\
+		TARGET_DEVICE_rockchip_armv8_DEVICE_friendlyarm_nanopi-r2c-plus|\
+		TARGET_DEVICE_rockchip_armv8_DEVICE_friendlyarm_nanopi-r2s|\
+		TARGET_DEVICE_rockchip_armv8_DEVICE_friendlyarm_nanopi-r4s|\
+		TARGET_DEVICE_rockchip_armv8_DEVICE_friendlyarm_nanopi-r4s-enterprise|\
+		TARGET_DEVICE_rockchip_armv8_DEVICE_friendlyarm_nanopi-r5c|\
+		TARGET_DEVICE_rockchip_armv8_DEVICE_friendlyarm_nanopi-r5s|\
+		TARGET_DEVICE_rockchip_armv8_DEVICE_friendlyarm_nanopi-r6s|\
+		TARGET_DEVICE_rockchip_armv8_DEVICE_radxa_rock-5a|\
+		TARGET_DEVICE_rockchip_armv8_DEVICE_radxa_rock-5b|\
+		TARGET_DEVICE_qualcommax_ipq807x_DEVICE_arcadyan_aw1000|\
+		TARGET_DEVICE_mediatek_filogic_DEVICE_bananapi_bpi-r3|\
+		TARGET_DEVICE_mediatek_filogic_DEVICE_bananapi_bpi-r4|\
+		TARGET_DEVICE_mediatek_filogic_DEVICE_bananapi_bpi-r4-lite|\
+		TARGET_DEVICE_mediatek_filogic_DEVICE_cmcc_rax3000m|\
+		TARGET_DEVICE_mediatek_filogic_DEVICE_cmcc_rax3000m-emmc-ubootlayout|\
+		TARGET_DEVICE_mediatek_filogic_DEVICE_cmcc_rax3000m-nand-ubootlayout|\
+		TARGET_DEVICE_bcm27xx_bcm2710_DEVICE_rpi-3|\
+		TARGET_DEVICE_bcm27xx_bcm2711_DEVICE_rpi-4|\
+		TARGET_DEVICE_bcm27xx_bcm2712_DEVICE_rpi-5)
+			mods="$mods luci-app-tailscale-community tailscale"
+		;;
+	esac
+
 	#check mdadm
 	case $t in
 		TARGET_DEVICE_rockchip_armv8_DEVICE_friendlyarm_nanopi-r2c|\
@@ -2016,10 +2076,7 @@ rt73-usb-firmware"
 		TARGET_DEVICE_bcm27xx_bcm2709_DEVICE_rpi-2|\
 		TARGET_DEVICE_bcm27xx_bcm2710_DEVICE_rpi-3|\
 		TARGET_DEVICE_bcm27xx_bcm2711_DEVICE_rpi-4|\
-		TARGET_DEVICE_bcm27xx_bcm2712_DEVICE_rpi-5|\
-		TARGET_DEVICE_mediatek_filogic_DEVICE_cmcc_rax3000m|\
-		TARGET_DEVICE_mediatek_filogic_DEVICE_cmcc_rax3000m-emmc-ubootlayout|\
-		TARGET_DEVICE_mediatek_filogic_DEVICE_cmcc_rax3000m-nand-ubootlayout)
+		TARGET_DEVICE_bcm27xx_bcm2712_DEVICE_rpi-5)
 			mods="$mods usbutils pciutils"
 			mods="$mods $usb4g $quectel $modem_info"
 			mods="$mods luci-app-zerotier luci-app-openclash"
