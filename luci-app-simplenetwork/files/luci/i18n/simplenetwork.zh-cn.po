@@ -44,7 +44,7 @@ msgid "Enable Printing Service"
 msgstr "打印服务开关"
 
 msgid "LAN Port"
-msgstr "有线网口"
+msgstr "有线网口设置"
 
 msgid "Configure network parameters for the LAN port"
 msgstr "设置有线的参数"
@@ -74,10 +74,7 @@ msgid "Configure the Wi-Fi AP"
 msgstr "这里设置无线AP的参数"
 
 msgid "Wi-Fi Bridge"
-msgstr "无线中继"
-
-msgid "Wi-Fi Bridge"
-msgstr "无线中继"
+msgstr "无线中继设置"
 
 msgid "Configure the Wi-Fi Bridge"
 msgstr "这里设置无线中继的参数"
