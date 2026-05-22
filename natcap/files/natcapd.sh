@@ -1228,17 +1228,17 @@ ping_cli() {
 
 		if [ "$(echo $PINGH | wc -w)" = "1" ]; then
 			PINGIP=$(nslookup_check_local $PINGH)
-			recv1=$($PING ${PINGM:+-m $PINGM} -t1 -s16 -c16 -W1 $PINGH | grep "packets received" | awk '{print $4}')
-			recv2=$(test -n "$PINGIP" && $PING ${PINGM:+-m $PINGM} -t1 -s16 -c16 -W1 $PINGIP | grep "packets received" | awk '{print $4}')
+			recv1=$($PING ${PINGM:+-m $PINGM} -t1 -s25 -c25 -W1 $PINGH | grep "packets received" | awk '{print $4}')
+			recv2=$(test -n "$PINGIP" && $PING ${PINGM:+-m $PINGM} -t1 -s25 -c25 -W1 $PINGIP | grep "packets received" | awk '{print $4}')
 			test -n "$PINGM" && test $((recv1+recv2)) -ge 1 && peer_mark_connected=1
 			sleep 1
 		else
 			for hh in $PINGH; do
 				(
 				hhip=$(nslookup_check_local $hh)
-				$PING ${PINGM:+-m $PINGM} -t1 -s16 -c16 -W1 -q "$hh"
+				$PING ${PINGM:+-m $PINGM} -t1 -s25 -c25 -W1 -q "$hh"
 				test -n "$hhip" && \
-				$PING ${PINGM:+-m $PINGM} -t1 -s16 -c16 -W1 -q "$hhip"
+				$PING ${PINGM:+-m $PINGM} -t1 -s25 -c25 -W1 -q "$hhip"
 				) &
 			done
 			sleep 34
@@ -1261,8 +1261,8 @@ main_trigger() {
 	local hostip
 	local built_in_server
 	local crashlog=0
-	test -e /sys/kernel/debug/crashlog && crashlog=193
-	test -e /tmp/pstore && crashlog=193
+	test -e /sys/kernel/debug/crashlog && crashlog=194
+	test -e /tmp/pstore && crashlog=194
 	cp /usr/share/natcapd/cacert.pem /tmp/cacert.pem
 	while :; do
 		test -f $LOCKDIR/$PID || return 0
