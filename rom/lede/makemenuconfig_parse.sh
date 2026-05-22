@@ -863,7 +863,7 @@ for t in $targets; do
 			mods="$mods $lucibond $ipv6extra $wifiext $tc $lucidashboard $kmodext $relay urllogger natflow-hostacl"
 			mods="$mods $wgmod $openvpnmod wpad-openssl luci-ssl-nginx luci-nginx"
 			mods="$mods kmod-ipt-compat-xtables kmod-ipt-dhcpmac kmod-ipt-dnetmap iptables-mod-dhcpmac iptables-mod-dnetmap"
-			excludes="$excludes wpad-basic-mbedtls wpad-basic-wolfssl"
+			excludes="$excludes wpad-basic-mbedtls wpad-basic-wolfssl openvpn-mbedtls"
 			mods="$mods apk-openssl"
 			excludes="$excludes apk-mbedtls opkg"
 			flash_gt16m=1
@@ -1095,6 +1095,7 @@ for t in $targets; do
 			excludes="$excludes wpad-openssl wpad-mbedtls openvpn-openssl libopenssl openssl"
 			mods="$mods apk-mbedtls"
 			excludes="$excludes apk-openssl opkg"
+			flash_gt8m=1
 		;;
 		# <= 8M
 		TARGET_DEVICE_mediatek_filogic_DEVICE_yuncore_ax835|\
@@ -1958,6 +1959,8 @@ rt73-usb-firmware"
 
 	#check luci-app-tailscale-community
 	case $t in
+		TARGET_DEVICE_ramips_mt7621_DEVICE_ubnt_edgerouter-x|\
+		TARGET_DEVICE_ramips_mt7621_DEVICE_ubnt_edgerouter-x-sfp|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_tplink_tl-xdr6086|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_tplink_tl-xdr6088|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_tplink_tl-xdr4288|\
@@ -2126,7 +2129,14 @@ rt73-usb-firmware"
 
 	if [ "x$flash_gt16m" = "x1" ]; then
 		case $t in
-		TARGET_DEVICE_mediatek_filogic_*|\
+		TARGET_DEVICE_mvebu_*|\
+		TARGET_DEVICE_qualcommax_*|\
+		TARGET_DEVICE_ipq806x_*|\
+		TARGET_DEVICE_armsr_*|\
+		TARGET_DEVICE_rockchip_*|\
+		TARGET_DEVICE_bcm27xx_*|\
+		TARGET_DEVICE_ipq40xx_*|\
+		TARGET_DEVICE_mediatek_*|\
 		TARGET_DEVICE_ramips_mt7621_*)
 			mods="$mods libopenssl-devcrypto kmod-cryptodev"
 			;;
