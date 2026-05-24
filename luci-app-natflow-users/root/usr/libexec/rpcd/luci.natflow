@@ -44,10 +44,9 @@ local methods = {
 	kick_user = {
 		args = { token = "token" },
 		call = function(args)
-			local util = require "luci.util"
 			local ip = args and args.token
 
-			if ip then
+			if ip and ip:match("^%d+%.%d+%.%d+%.%d+$") then
 				local cmd = [[echo kick %s >/dev/userinfo_ctl]]
                                 sys.call(string.format(cmd, ip))
 				return { result = "OK" }
@@ -59,10 +58,9 @@ local methods = {
 	block_user = {
 		args = { token = "token" },
 		call = function(args)
-			local util = require "luci.util"
 			local ip = args and args.token
 
-			if ip then
+			if ip and ip:match("^%d+%.%d+%.%d+%.%d+$") then
 				local cmd = [[echo set-status %s 6 >/dev/userinfo_ctl]]
                                 sys.call(string.format(cmd, ip))
 				return { result = "OK" }
@@ -74,10 +72,9 @@ local methods = {
 	allow_user = {
 		args = { token = "token" },
 		call = function(args)
-			local util = require "luci.util"
 			local ip = args and args.token
 
-			if ip then
+			if ip and ip:match("^%d+%.%d+%.%d+%.%d+$") then
 				local cmd = [[echo set-status %s 1 >/dev/userinfo_ctl]]
                                 sys.call(string.format(cmd, ip))
 				return { result = "OK" }
