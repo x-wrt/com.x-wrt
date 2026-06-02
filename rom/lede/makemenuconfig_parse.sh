@@ -871,6 +871,7 @@ for t in $targets; do
 			extra_utils=1
 		;;
 		#>8M flash <14M
+		TARGET_DEVICE_econet_en751221_DEVICE_chinamobile_gs3101|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_cudy_re3000-v1|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_cudy_wr3000-v1|\
 		TARGET_DEVICE_bcm53xx_generic_DEVICE_asus_rt-ac3100|\
@@ -1464,6 +1465,7 @@ for t in $targets; do
 			has_usb=1
 		;;
 		#with usb2
+		TARGET_DEVICE_econet_en751221_DEVICE_chinamobile_gs3101|\
 		TARGET_DEVICE_qualcommax_ipq807x_DEVICE_aliyun_ap8220|\
 		TARGET_DEVICE_qualcommax_ipq60xx_DEVICE_qihoo_360v6|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_openwrt_one|\
