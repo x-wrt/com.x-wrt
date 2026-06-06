@@ -65,7 +65,7 @@ CONFIG_TARGET_MULTI_PROFILE=y
 # CONFIG_TARGET_ALL_PROFILES is not set
 CONFIG_TARGET_PER_DEVICE_ROOTFS=y
 CONFIG_TARGET_DEVICE_x86_64_DEVICE_generic=y
-CONFIG_TARGET_DEVICE_PACKAGES_x86_64_DEVICE_generic="ath10k-board-qca9377 ath10k-firmware-qca6174 ath10k-firmware-qca9377 ath11k-firmware-qca2066 ath11k-firmware-qcn9074 ath12k-firmware-qcn9274 brcmfmac-firmware-43602a1-pcie brcmfmac-firmware-4366b1-pcie brcmfmac-firmware-4366c0-pcie i915-firmware-dmc ip-bridge iwl3945-firmware iwl4965-firmware iwlwifi-firmware-ax101 iwlwifi-firmware-ax200 iwlwifi-firmware-ax201 iwlwifi-firmware-ax210 iwlwifi-firmware-be200 iwlwifi-firmware-iwl100 iwlwifi-firmware-iwl1000 iwlwifi-firmware-iwl105 iwlwifi-firmware-iwl135 iwlwifi-firmware-iwl2000 iwlwifi-firmware-iwl2030 iwlwifi-firmware-iwl3160 iwlwifi-firmware-iwl3168 iwlwifi-firmware-iwl5000 iwlwifi-firmware-iwl5150 iwlwifi-firmware-iwl6000g2 iwlwifi-firmware-iwl6000g2a iwlwifi-firmware-iwl6000g2b iwlwifi-firmware-iwl6050 iwlwifi-firmware-iwl7260 iwlwifi-firmware-iwl7265 iwlwifi-firmware-iwl7265d iwlwifi-firmware-iwl8260c iwlwifi-firmware-iwl8265 iwlwifi-firmware-iwl9000 iwlwifi-firmware-iwl9260 kmod-acpi-video kmod-backlight kmod-cec-core kmod-dma-buf kmod-drm kmod-drm-buddy kmod-drm-display-helper kmod-drm-exec kmod-drm-i915 kmod-drm-kms-helper kmod-drm-suballoc-helper kmod-drm-ttm kmod-drm-ttm-helper kmod-fb kmod-fb-cfb-copyarea kmod-fb-cfb-fillrect kmod-fb-cfb-imgblt kmod-fb-sys-fops kmod-fb-sys-ram"
+CONFIG_TARGET_DEVICE_PACKAGES_x86_64_DEVICE_generic="ath10k-board-qca9377 ath10k-firmware-qca6174 ath10k-firmware-qca9377 ath11k-firmware-qca2066 ath11k-firmware-qcn9074 ath12k-firmware-qcn9274 brcmfmac-firmware-43602a1-pcie brcmfmac-firmware-4366b1-pcie brcmfmac-firmware-4366c0-pcie i915-firmware-dmc ip-bridge iwl3945-firmware iwl4965-firmware iwlwifi-firmware-ax101 iwlwifi-firmware-ax200 iwlwifi-firmware-ax201 iwlwifi-firmware-ax210 iwlwifi-firmware-be200 iwlwifi-firmware-iwl100 iwlwifi-firmware-iwl1000 iwlwifi-firmware-iwl105 iwlwifi-firmware-iwl135 iwlwifi-firmware-iwl2000 iwlwifi-firmware-iwl2030 iwlwifi-firmware-iwl3160 iwlwifi-firmware-iwl3168 iwlwifi-firmware-iwl5000 iwlwifi-firmware-iwl5150 iwlwifi-firmware-iwl6000g2 iwlwifi-firmware-iwl6000g2a iwlwifi-firmware-iwl6000g2b iwlwifi-firmware-iwl6050 iwlwifi-firmware-iwl7260 iwlwifi-firmware-iwl7265 iwlwifi-firmware-iwl7265d iwlwifi-firmware-iwl8260c iwlwifi-firmware-iwl8265 iwlwifi-firmware-iwl9000 iwlwifi-firmware-iwl9260 kmod-acpi-video kmod-backlight kmod-cec-core kmod-dma-buf kmod-drm kmod-drm-buddy kmod-drm-display-helper kmod-drm-exec kmod-drm-i915 kmod-drm-kms-helper kmod-drm-suballoc-helper kmod-drm-ttm kmod-drm-ttm-helper kmod-fb kmod-fb-cfb-copyarea kmod-fb-cfb-fillrect kmod-fb-cfb-imgblt kmod-fb-sys-fops kmod-fb-sys-ram kmod-qmi-wwan-q libminiupnpc libnatpmp luci-app-openlist luci-app-tailscale-community luci-app-zerotier openlist quectel-cm tailscale zerotier"
 # end of Target Devices
 
 CONFIG_HAS_SUBTARGETS=y
@@ -517,7 +517,7 @@ CONFIG_TARGET_INIT_CMD="/sbin/init"
 CONFIG_TARGET_INIT_SUPPRESS_STDERR=y
 CONFIG_VERSIONOPT=y
 CONFIG_VERSION_DIST="X-WRT"
-CONFIG_VERSION_NUMBER="26.04_b202605310048"
+CONFIG_VERSION_NUMBER="26.04_b202606062349"
 CONFIG_VERSION_CODE="Resolute"
 CONFIG_VERSION_REPO="http://downloads.openwrt.org/snapshots"
 CONFIG_VERSION_HOME_URL="https://x-wrt.com/"
@@ -576,6 +576,7 @@ CONFIG_BUSYBOX_DEFAULT_PID_FILE_PATH="/var/run"
 # CONFIG_BUSYBOX_DEFAULT_BUSYBOX is not set
 # CONFIG_BUSYBOX_DEFAULT_FEATURE_SHOW_SCRIPT is not set
 # CONFIG_BUSYBOX_DEFAULT_FEATURE_INSTALLER is not set
+# CONFIG_BUSYBOX_DEFAULT_FEATURE_VERSION is not set
 # CONFIG_BUSYBOX_DEFAULT_INSTALL_NO_USR is not set
 # CONFIG_BUSYBOX_DEFAULT_FEATURE_SUID is not set
 # CONFIG_BUSYBOX_DEFAULT_FEATURE_SUID_CONFIG is not set
@@ -722,6 +723,7 @@ CONFIG_BUSYBOX_DEFAULT_FEATURE_TAR_GNU_EXTENSIONS=y
 # CONFIG_BUSYBOX_DEFAULT_FEATURE_UNZIP_LZMA is not set
 # CONFIG_BUSYBOX_DEFAULT_FEATURE_UNZIP_XZ is not set
 # CONFIG_BUSYBOX_DEFAULT_FEATURE_LZMA_FAST is not set
+# CONFIG_BUSYBOX_DEFAULT_FEATURE_PATH_TRAVERSAL_PROTECTION is not set
 # CONFIG_BUSYBOX_DEFAULT_FEATURE_VERBOSE is not set
 # CONFIG_BUSYBOX_DEFAULT_FEATURE_TIMEZONE is not set
 CONFIG_BUSYBOX_DEFAULT_FEATURE_PRESERVE_HARDLINKS=y
@@ -793,6 +795,7 @@ CONFIG_BUSYBOX_DEFAULT_FEATURE_LS_COLOR_IS_DEFAULT=y
 CONFIG_BUSYBOX_DEFAULT_MD5SUM=y
 # CONFIG_BUSYBOX_DEFAULT_SHA1SUM is not set
 CONFIG_BUSYBOX_DEFAULT_SHA256SUM=y
+# CONFIG_BUSYBOX_DEFAULT_SHA384SUM is not set
 # CONFIG_BUSYBOX_DEFAULT_SHA512SUM is not set
 # CONFIG_BUSYBOX_DEFAULT_SHA3SUM is not set
 CONFIG_BUSYBOX_DEFAULT_FEATURE_MD5_SHA1_SUM_CHECK=y
@@ -1003,6 +1006,7 @@ CONFIG_BUSYBOX_DEFAULT_FEATURE_SHADOWPASSWDS=y
 # CONFIG_BUSYBOX_DEFAULT_USE_BB_SHADOW is not set
 # CONFIG_BUSYBOX_DEFAULT_USE_BB_CRYPT is not set
 CONFIG_BUSYBOX_DEFAULT_USE_BB_CRYPT_SHA=y
+# CONFIG_BUSYBOX_DEFAULT_USE_BB_CRYPT_YES is not set
 # CONFIG_BUSYBOX_DEFAULT_ADD_SHELL is not set
 # CONFIG_BUSYBOX_DEFAULT_REMOVE_SHELL is not set
 # CONFIG_BUSYBOX_DEFAULT_ADDGROUP is not set
@@ -1080,6 +1084,7 @@ CONFIG_BUSYBOX_DEFAULT_FEATURE_DMESG_PRETTY=y
 # CONFIG_BUSYBOX_DEFAULT_FDFORMAT is not set
 # CONFIG_BUSYBOX_DEFAULT_FDISK is not set
 # CONFIG_BUSYBOX_DEFAULT_FDISK_SUPPORT_LARGE_DISKS is not set
+# CONFIG_BUSYBOX_DEFAULT_FEATURE_FDISK_BLKSIZE is not set
 # CONFIG_BUSYBOX_DEFAULT_FEATURE_FDISK_WRITABLE is not set
 # CONFIG_BUSYBOX_DEFAULT_FEATURE_AIX_LABEL is not set
 # CONFIG_BUSYBOX_DEFAULT_FEATURE_SGI_LABEL is not set
@@ -1107,6 +1112,7 @@ CONFIG_BUSYBOX_DEFAULT_HWCLOCK=y
 # CONFIG_BUSYBOX_DEFAULT_LAST is not set
 # CONFIG_BUSYBOX_DEFAULT_FEATURE_LAST_FANCY is not set
 # CONFIG_BUSYBOX_DEFAULT_LOSETUP is not set
+# CONFIG_BUSYBOX_DEFAULT_LSBLK is not set
 # CONFIG_BUSYBOX_DEFAULT_LSPCI is not set
 # CONFIG_BUSYBOX_DEFAULT_LSUSB is not set
 # CONFIG_BUSYBOX_DEFAULT_MDEV is not set
@@ -1172,6 +1178,7 @@ CONFIG_BUSYBOX_DEFAULT_FEATURE_TASKSET_CPULIST=y
 CONFIG_BUSYBOX_DEFAULT_UMOUNT=y
 CONFIG_BUSYBOX_DEFAULT_FEATURE_UMOUNT_ALL=y
 # CONFIG_BUSYBOX_DEFAULT_UNSHARE is not set
+# CONFIG_BUSYBOX_DEFAULT_UUIDGEN is not set
 # CONFIG_BUSYBOX_DEFAULT_WALL is not set
 CONFIG_BUSYBOX_DEFAULT_FEATURE_MOUNT_LOOP=y
 # CONFIG_BUSYBOX_DEFAULT_FEATURE_MOUNT_LOOP_CREATE is not set
@@ -1415,6 +1422,7 @@ CONFIG_BUSYBOX_DEFAULT_FEATURE_FANCY_PING=y
 CONFIG_BUSYBOX_DEFAULT_ROUTE=y
 # CONFIG_BUSYBOX_DEFAULT_SLATTACH is not set
 # CONFIG_BUSYBOX_DEFAULT_SSL_CLIENT is not set
+# CONFIG_BUSYBOX_DEFAULT_SSL_SERVER is not set
 # CONFIG_BUSYBOX_DEFAULT_TC is not set
 # CONFIG_BUSYBOX_DEFAULT_FEATURE_TC_INGRESS is not set
 # CONFIG_BUSYBOX_DEFAULT_TCPSVD is not set
@@ -1424,6 +1432,7 @@ CONFIG_BUSYBOX_DEFAULT_ROUTE=y
 # CONFIG_BUSYBOX_DEFAULT_FEATURE_TELNET_AUTOLOGIN is not set
 # CONFIG_BUSYBOX_DEFAULT_FEATURE_TELNET_WIDTH is not set
 # CONFIG_BUSYBOX_DEFAULT_TELNETD is not set
+# CONFIG_BUSYBOX_DEFAULT_FEATURE_TELNETD_SELFTEST_DEBUG is not set
 # CONFIG_BUSYBOX_DEFAULT_FEATURE_TELNETD_STANDALONE is not set
 CONFIG_BUSYBOX_DEFAULT_FEATURE_TELNETD_PORT_DEFAULT=23
 # CONFIG_BUSYBOX_DEFAULT_FEATURE_TELNETD_INETD_WAIT is not set
@@ -1526,6 +1535,7 @@ CONFIG_BUSYBOX_DEFAULT_FEATURE_TOP_CPU_GLOBAL_PERCENTS=y
 # CONFIG_BUSYBOX_DEFAULT_FEATURE_TOPMEM is not set
 CONFIG_BUSYBOX_DEFAULT_UPTIME=y
 # CONFIG_BUSYBOX_DEFAULT_FEATURE_UPTIME_UTMP_SUPPORT is not set
+# CONFIG_BUSYBOX_DEFAULT_VMSTAT is not set
 # CONFIG_BUSYBOX_DEFAULT_WATCH is not set
 # CONFIG_BUSYBOX_DEFAULT_CHPST is not set
 # CONFIG_BUSYBOX_DEFAULT_SETUIDGID is not set
@@ -1581,6 +1591,7 @@ CONFIG_BUSYBOX_DEFAULT_ASH_CMDCMD=y
 # CONFIG_BUSYBOX_DEFAULT_CTTYHACK is not set
 # CONFIG_BUSYBOX_DEFAULT_HUSH is not set
 # CONFIG_BUSYBOX_DEFAULT_SHELL_HUSH is not set
+# CONFIG_BUSYBOX_DEFAULT_HUSH_NEED_FOR_SPEED is not set
 # CONFIG_BUSYBOX_DEFAULT_HUSH_BASH_COMPAT is not set
 # CONFIG_BUSYBOX_DEFAULT_HUSH_BRACE_EXPANSION is not set
 # CONFIG_BUSYBOX_DEFAULT_HUSH_BASH_SOURCE_CURDIR is not set
@@ -1592,7 +1603,9 @@ CONFIG_BUSYBOX_DEFAULT_ASH_CMDCMD=y
 # CONFIG_BUSYBOX_DEFAULT_HUSH_IF is not set
 # CONFIG_BUSYBOX_DEFAULT_HUSH_LOOPS is not set
 # CONFIG_BUSYBOX_DEFAULT_HUSH_CASE is not set
+# CONFIG_BUSYBOX_DEFAULT_HUSH_ALIAS is not set
 # CONFIG_BUSYBOX_DEFAULT_HUSH_FUNCTIONS is not set
+# CONFIG_BUSYBOX_DEFAULT_HUSH_FUNCTION_KEYWORD is not set
 # CONFIG_BUSYBOX_DEFAULT_HUSH_LOCAL is not set
 # CONFIG_BUSYBOX_DEFAULT_HUSH_RANDOM_SUPPORT is not set
 # CONFIG_BUSYBOX_DEFAULT_HUSH_MODE_X is not set
@@ -1796,6 +1809,7 @@ CONFIG_BUSYBOX_CONFIG_FEATURE_TAR_GNU_EXTENSIONS=y
 # CONFIG_BUSYBOX_CONFIG_FEATURE_TAR_UNAME_GNAME is not set
 # CONFIG_BUSYBOX_CONFIG_FEATURE_TAR_NOPRESERVE_TIME is not set
 # CONFIG_BUSYBOX_CONFIG_UNZIP is not set
+# CONFIG_BUSYBOX_CONFIG_FEATURE_PATH_TRAVERSAL_PROTECTION is not set
 # end of Archival Utilities
 
 #
@@ -1882,11 +1896,12 @@ CONFIG_BUSYBOX_CONFIG_FEATURE_LS_COLOR_IS_DEFAULT=y
 CONFIG_BUSYBOX_CONFIG_MD5SUM=y
 # CONFIG_BUSYBOX_CONFIG_SHA1SUM is not set
 CONFIG_BUSYBOX_CONFIG_SHA256SUM=y
+# CONFIG_BUSYBOX_CONFIG_SHA384SUM is not set
 CONFIG_BUSYBOX_CONFIG_SHA512SUM=y
 CONFIG_BUSYBOX_CONFIG_SHA3SUM=y
 
 #
-# Common options for md5sum, sha1sum, sha256sum, sha512sum, sha3sum
+# Common options for md5sum, sha1sum, sha256sum, ..., sha3sum
 #
 CONFIG_BUSYBOX_CONFIG_FEATURE_MD5_SHA1_SUM_CHECK=y
 CONFIG_BUSYBOX_CONFIG_MKDIR=y
@@ -2184,6 +2199,7 @@ CONFIG_BUSYBOX_CONFIG_HWCLOCK=y
 # CONFIG_BUSYBOX_CONFIG_IPCRM is not set
 # CONFIG_BUSYBOX_CONFIG_IPCS is not set
 # CONFIG_BUSYBOX_CONFIG_LOSETUP is not set
+# CONFIG_BUSYBOX_CONFIG_LSBLK is not set
 # CONFIG_BUSYBOX_CONFIG_LSPCI is not set
 # CONFIG_BUSYBOX_CONFIG_LSUSB is not set
 # CONFIG_BUSYBOX_CONFIG_MDEV is not set
@@ -2236,6 +2252,7 @@ CONFIG_BUSYBOX_CONFIG_FEATURE_TASKSET_CPULIST=y
 CONFIG_BUSYBOX_CONFIG_UMOUNT=y
 CONFIG_BUSYBOX_CONFIG_FEATURE_UMOUNT_ALL=y
 # CONFIG_BUSYBOX_CONFIG_UNSHARE is not set
+# CONFIG_BUSYBOX_CONFIG_UUIDGEN is not set
 
 #
 # Common options for mount/umount
@@ -2400,6 +2417,7 @@ CONFIG_BUSYBOX_CONFIG_FEATURE_FANCY_PING=y
 CONFIG_BUSYBOX_CONFIG_ROUTE=y
 # CONFIG_BUSYBOX_CONFIG_SLATTACH is not set
 # CONFIG_BUSYBOX_CONFIG_SSL_CLIENT is not set
+# CONFIG_BUSYBOX_CONFIG_SSL_SERVER is not set
 # CONFIG_BUSYBOX_CONFIG_TC is not set
 # CONFIG_BUSYBOX_CONFIG_TCPSVD is not set
 # CONFIG_BUSYBOX_CONFIG_UDPSVD is not set
@@ -2408,6 +2426,7 @@ CONFIG_BUSYBOX_CONFIG_FEATURE_TELNET_TTYPE=y
 CONFIG_BUSYBOX_CONFIG_FEATURE_TELNET_AUTOLOGIN=y
 # CONFIG_BUSYBOX_CONFIG_FEATURE_TELNET_WIDTH is not set
 CONFIG_BUSYBOX_CONFIG_TELNETD=y
+# CONFIG_BUSYBOX_CONFIG_FEATURE_TELNETD_SELFTEST_DEBUG is not set
 CONFIG_BUSYBOX_CONFIG_FEATURE_TELNETD_STANDALONE=y
 CONFIG_BUSYBOX_CONFIG_FEATURE_TELNETD_PORT_DEFAULT=23
 CONFIG_BUSYBOX_CONFIG_FEATURE_TELNETD_INETD_WAIT=y
@@ -2506,6 +2525,7 @@ CONFIG_BUSYBOX_CONFIG_FEATURE_TOP_CPU_GLOBAL_PERCENTS=y
 # CONFIG_BUSYBOX_CONFIG_FEATURE_TOP_SMP_PROCESS is not set
 # CONFIG_BUSYBOX_CONFIG_FEATURE_TOPMEM is not set
 CONFIG_BUSYBOX_CONFIG_UPTIME=y
+# CONFIG_BUSYBOX_CONFIG_VMSTAT is not set
 # CONFIG_BUSYBOX_CONFIG_WATCH is not set
 # end of Process Utilities
 
@@ -3511,6 +3531,7 @@ CONFIG_PACKAGE_kmod-input-evdev=y
 # CONFIG_PACKAGE_kmod-leds-uleds is not set
 # CONFIG_PACKAGE_kmod-ledtrig-activity is not set
 # CONFIG_PACKAGE_kmod-ledtrig-gpio is not set
+# CONFIG_PACKAGE_kmod-ledtrig-network is not set
 # CONFIG_PACKAGE_kmod-ledtrig-oneshot is not set
 # CONFIG_PACKAGE_kmod-ledtrig-pattern is not set
 # CONFIG_PACKAGE_kmod-ledtrig-transient is not set
@@ -4014,6 +4035,7 @@ CONFIG_PACKAGE_kmod-thermal=y
 # CONFIG_PACKAGE_kmod-rtc-pcf8563 is not set
 # CONFIG_PACKAGE_kmod-rtc-r7301 is not set
 # CONFIG_PACKAGE_kmod-rtc-rs5c372a is not set
+# CONFIG_PACKAGE_kmod-rtc-rv3028 is not set
 # CONFIG_PACKAGE_kmod-rtc-rx8025 is not set
 # CONFIG_PACKAGE_kmod-rtc-s35390a is not set
 # CONFIG_PACKAGE_kmod-rtc-x1205 is not set
@@ -4201,6 +4223,11 @@ CONFIG_PACKAGE_kmod-vhost-net=y
 # CONFIG_PACKAGE_kmod-mac802154 is not set
 # CONFIG_PACKAGE_kmod-mrf24j40 is not set
 # end of WPAN 802.15.4 Support
+
+#
+# Watchdog Timer Support
+#
+# end of Watchdog Timer Support
 
 #
 # Wireless Drivers
@@ -4552,7 +4579,6 @@ CONFIG_PACKAGE_luasocket=y
 # CONFIG_PACKAGE_pipx is not set
 # CONFIG_PACKAGE_python3 is not set
 # CONFIG_PACKAGE_python3-aio-mqtt-mod is not set
-# CONFIG_PACKAGE_python3-aiosignal is not set
 # CONFIG_PACKAGE_python3-ajsonrpc is not set
 # CONFIG_PACKAGE_python3-anyio is not set
 # CONFIG_PACKAGE_python3-apipkg is not set
@@ -4791,7 +4817,6 @@ CONFIG_PACKAGE_luasocket=y
 # CONFIG_PACKAGE_python3-xmltodict is not set
 # CONFIG_PACKAGE_python3-yaml is not set
 # CONFIG_PACKAGE_python3-zeroconf is not set
-# CONFIG_PACKAGE_python3-zipp is not set
 # CONFIG_PACKAGE_python3-zope-event is not set
 # CONFIG_PACKAGE_python3-zope-interface is not set
 # end of Python
@@ -6431,6 +6456,7 @@ CONFIG_PACKAGE_luci-app-usteer=y
 # CONFIG_PACKAGE_luci-app-wol is not set
 # CONFIG_PACKAGE_luci-app-xfrpc is not set
 # CONFIG_PACKAGE_luci-app-xinetd is not set
+CONFIG_PACKAGE_luci-app-zerotier=m
 # end of 3. Applications
 
 #
@@ -7024,6 +7050,10 @@ CONFIG_PACKAGE_luci-i18n-upnp-zh-cn=y
 # CONFIG_PACKAGE_luci-i18n-usteer-vi is not set
 CONFIG_PACKAGE_luci-i18n-usteer-zh-cn=y
 # CONFIG_PACKAGE_luci-i18n-usteer-zh-tw is not set
+CONFIG_PACKAGE_luci-i18n-zerotier-zh-cn=m
+# CONFIG_PACKAGE_luci-i18n-zerotier-zh-tw is not set
+CONFIG_PACKAGE_luci-i18n-zerotier-zh-cn=m
+# CONFIG_PACKAGE_luci-i18n-zerotier-zh-tw is not set
 # end of LuCI
 
 #
@@ -7517,6 +7547,14 @@ CONFIG_PACKAGE_wsdd2=y
 #
 # CONFIG_PACKAGE_mesh11sd is not set
 # end of Mesh
+
+#
+# Meshtastic
+#
+# CONFIG_PACKAGE_meshtasticd-avahi-service is not set
+# CONFIG_PACKAGE_meshtasticd-full is not set
+# CONFIG_PACKAGE_meshtasticd-web is not set
+# end of Meshtastic
 
 #
 # NMAP Suite
@@ -8704,10 +8742,12 @@ CONFIG_PACKAGE_zoneinfo-simple=y
 # Video
 #
 # CONFIG_PACKAGE_kmscube is not set
+# CONFIG_PACKAGE_libdrm-tests is not set
 # CONFIG_PACKAGE_libgtk-demos is not set
 # CONFIG_PACKAGE_libgtk-utils is not set
 # CONFIG_PACKAGE_libsdl2-tests is not set
 # CONFIG_PACKAGE_vkmark is not set
+# CONFIG_PACKAGE_vulkaninfo is not set
 # end of Video
 
 #

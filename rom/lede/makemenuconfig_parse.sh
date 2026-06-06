@@ -1961,6 +1961,7 @@ rt73-usb-firmware"
 
 	#check luci-app-tailscale-community
 	case $t in
+		TARGET_DEVICE_x86_64_DEVICE_generic|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_ubnt_edgerouter-x|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_ubnt_edgerouter-x-sfp|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_tplink_tl-xdr6086|\
@@ -2065,6 +2066,7 @@ rt73-usb-firmware"
 		TARGET_DEVICE_mediatek_filogic_DEVICE_zbtlink_zbt-z8102ax)
 			mods="$mods $usb4g $quectel $modem_info"
 		;;
+		TARGET_DEVICE_x86_64_DEVICE_generic|\
 		TARGET_DEVICE_rockchip_armv8_DEVICE_friendlyarm_nanopi-r2c|\
 		TARGET_DEVICE_rockchip_armv8_DEVICE_friendlyarm_nanopi-r2c-plus|\
 		TARGET_DEVICE_rockchip_armv8_DEVICE_friendlyarm_nanopi-r2s|\
