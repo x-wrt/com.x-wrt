@@ -65,7 +65,7 @@ CONFIG_TARGET_MULTI_PROFILE=y
 # CONFIG_TARGET_ALL_PROFILES is not set
 CONFIG_TARGET_PER_DEVICE_ROOTFS=y
 CONFIG_TARGET_DEVICE_x86_64_DEVICE_generic=y
-CONFIG_TARGET_DEVICE_PACKAGES_x86_64_DEVICE_generic="i915-firmware-dmc ip-bridge kmod-acpi-video kmod-backlight kmod-cec-core kmod-dma-buf kmod-drm kmod-drm-buddy kmod-drm-display-helper kmod-drm-exec kmod-drm-i915 kmod-drm-kms-helper kmod-drm-suballoc-helper kmod-drm-ttm kmod-drm-ttm-helper kmod-fb kmod-fb-cfb-copyarea kmod-fb-cfb-fillrect kmod-fb-cfb-imgblt kmod-fb-sys-fops kmod-fb-sys-ram"
+CONFIG_TARGET_DEVICE_PACKAGES_x86_64_DEVICE_generic="i915-firmware-dmc ip-bridge kmod-acpi-video kmod-backlight kmod-cec-core kmod-dma-buf kmod-drm kmod-drm-buddy kmod-drm-display-helper kmod-drm-exec kmod-drm-i915 kmod-drm-kms-helper kmod-drm-suballoc-helper kmod-drm-ttm kmod-drm-ttm-helper kmod-fb kmod-fb-cfb-copyarea kmod-fb-cfb-fillrect kmod-fb-cfb-imgblt kmod-fb-sys-fops kmod-fb-sys-ram kmod-qmi-wwan-q libminiupnpc libnatpmp luci-app-openlist luci-app-tailscale-community luci-app-zerotier openlist quectel-cm tailscale zerotier"
 # end of Target Devices
 
 CONFIG_HAS_SUBTARGETS=y
