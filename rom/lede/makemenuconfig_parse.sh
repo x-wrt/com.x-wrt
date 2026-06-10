@@ -2015,6 +2015,7 @@ rt73-usb-firmware"
 		TARGET_DEVICE_bcm27xx_bcm2711_DEVICE_rpi-4|\
 		TARGET_DEVICE_bcm27xx_bcm2712_DEVICE_rpi-5)
 			mods="$mods luci-app-tailscale-community tailscale"
+			mods="$mods luci-app-zerotier luci-app-openclash"
 		;;
 	esac
 
@@ -2067,6 +2068,9 @@ rt73-usb-firmware"
 			mods="$mods $usb4g $quectel $modem_info"
 		;;
 		TARGET_DEVICE_x86_64_DEVICE_generic|\
+		TARGET_DEVICE_mediatek_filogic_DEVICE_cmcc_rax3000m|\
+		TARGET_DEVICE_mediatek_filogic_DEVICE_cmcc_rax3000m-emmc-ubootlayout|\
+		TARGET_DEVICE_mediatek_filogic_DEVICE_cmcc_rax3000m-nand-ubootlayout|\
 		TARGET_DEVICE_rockchip_armv8_DEVICE_friendlyarm_nanopi-r2c|\
 		TARGET_DEVICE_rockchip_armv8_DEVICE_friendlyarm_nanopi-r2c-plus|\
 		TARGET_DEVICE_rockchip_armv8_DEVICE_friendlyarm_nanopi-r2s|\
