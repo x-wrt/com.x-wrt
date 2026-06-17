@@ -503,9 +503,8 @@ fi
 #for mem <= 256M
 if ! test $memtotal -ge 262144; then
 	#use uhttpd instead of nginx
-	test -x /etc/init.d/nginx && test -x /etc/init.d/uhttpd && {
+	test -x /etc/init.d/nginx && test -x /etc/init.d/uhttpd && /etc/init.d/uhttpd enable && {
 		/etc/init.d/nginx disable
-		/etc/init.d/uhttpd enable
 		/etc/init.d/nginx stop
 		/etc/init.d/uhttpd restart
 	}
