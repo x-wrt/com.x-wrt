@@ -506,6 +506,8 @@ if ! test $memtotal -ge 262144; then
 	test -x /etc/init.d/nginx && test -x /etc/init.d/uhttpd && {
 		/etc/init.d/nginx disable
 		/etc/init.d/uhttpd enable
+		/etc/init.d/nginx stop
+		/etc/init.d/uhttpd start
 	}
 fi
 
