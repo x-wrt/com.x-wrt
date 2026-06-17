@@ -35,6 +35,8 @@ return view.extend({
 		}
 		s.tab('lansetup', _('Lan Settings'));
 
+		s.tab('service', _('Services Switch'), _('If these features or services are not needed, you can disable them to save memory.'));
+
 		o = s.taboption('wansetup', form.ListValue, 'wan_proto', _('Protocol'));
 		o.rmempty = false;
 		o.default = 'dhcp';
@@ -85,6 +87,30 @@ return view.extend({
 		o.value('255.255.255.0');
 		o.value('255.255.0.0');
 		o.value('255.0.0.0');
+
+		o = s.taboption('service', form.Flag, "urllogger", _("Status") + ' -> ' + _('URL Log'));
+		o.default = 0;
+		o.rmempty = false;
+
+		o = s.taboption('service', form.Flag, "qos", _("Network") + ' -> ' + _('QoS'));
+		o.default = 0;
+		o.rmempty = false;
+
+		o = s.taboption('service', form.Flag, "miniupnpd", _("Services") + ' -> ' + _('UPnP IGD & PCP'));
+		o.default = 0;
+		o.rmempty = false;
+
+		o = s.taboption('service', form.Flag, "ipv6", _('IPv6'));
+		o.default = 0;
+		o.rmempty = false;
+
+		o = s.taboption('service', form.Flag, "umdns", _('umdns'));
+		o.default = 0;
+		o.rmempty = false;
+
+		o = s.taboption('service', form.Flag, "switch_ports_status", 'switch_ports_status');
+		o.default = 0;
+		o.rmempty = false;
 
 		return m.render();
 	}
