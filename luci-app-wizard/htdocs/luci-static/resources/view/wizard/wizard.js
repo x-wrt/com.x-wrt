@@ -24,18 +24,18 @@ return view.extend({
 			has_wifi = true;
 		}
 
-		m = new form.Map('wizard', [_('Inital Router Setup')],
+		m = new form.Map('wizard', [_('Initial Router Setup')],
 			_('If you are using this router for the first time, please configure it here.'));
 
 		s = m.section(form.NamedSection, 'default', 'wizard');
 		s.addremove = false;
-		s.tab('wansetup', _('Wan Settings'), _('Three different ways to access the Internet, please choose according to your own situation.'));
+		s.tab('wansetup', _('WAN Settings'), _('There are three ways to access the Internet. Please choose the appropriate one based on your network environment.'));
 		if (has_wifi) {
 			s.tab('wifisetup', _('Wireless Settings'), _('Set the router\'s wireless name and password. For more advanced settings, please go to the Network-Wireless page.'));
 		}
-		s.tab('lansetup', _('Lan Settings'));
+		s.tab('lansetup', _('LAN Settings'));
 
-		s.tab('service', _('Services Switch'), _('If these functions or services are not required, they may be disabled to conserve memory.'));
+		s.tab('service', _('Service Switches'), _('If these functions or services are not required, they may be disabled to conserve memory.'));
 
 		o = s.taboption('wansetup', form.ListValue, 'wan_proto', _('Protocol'));
 		o.rmempty = false;
