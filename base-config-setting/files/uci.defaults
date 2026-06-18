@@ -459,6 +459,27 @@ test $version -lt 28 && {
 	version=28
 }
 
+test $version -lt 29 && {
+	uci set wizard.default.urllogger='1'
+	uci set wizard.default.qos='1'
+	uci set wizard.default.miniupnpd='1'
+	uci set wizard.default.ipv6='1'
+	uci set wizard.default.umdns='1'
+	uci set wizard.default.switch_ports_status='1'
+
+	#for mem <= 256M
+	if ! test $memtotal -ge 262144; then
+		uci set wizard.default.urllogger='0'
+		uci set wizard.default.qos='0'
+		uci set wizard.default.miniupnpd='0'
+		uci set wizard.default.ipv6='1'
+		uci set wizard.default.umdns='1'
+		uci set wizard.default.switch_ports_status='0'
+	fi
+	uci commit wizard
+	version=29
+}
+
 rm -f /lib/modules/$(uname -r)/crypto_safexcel.ko
 rmmod crypto_safexcel &>/dev/null
 
