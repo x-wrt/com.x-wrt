@@ -1,20 +1,38 @@
 msgid ""
 msgstr "Content-Type: text/plain; charset=UTF-8\n"
 
-msgid "Xwan"
-msgstr "多拨"
+msgid "Multi-WAN Dialing"
+msgstr "单线多拨"
 
-msgid "Xwan Settings"
-msgstr "多拨设置"
+msgid "Multi-WAN Dialing Settings"
+msgstr "单线多拨设置"
 
-msgid "Enable xwan"
-msgstr "开启多拨"
+msgid "Enable multi-WAN dialing"
+msgstr "启用多拨"
 
-msgid "multiwan on single interface"
-msgstr "单网口多拨号"
+msgid "Create multiple WAN connections on a single physical interface."
+msgstr "在同一个物理接口上创建多个 WAN 连接。"
 
-msgid "Number of xwan"
-msgstr "多少拨"
+msgid "Number of WAN instances"
+msgstr "多拨数量"
 
-msgid "Auto balanced setup"
-msgstr "自动负载均衡和叠加"
+msgid "Configure load balancing automatically"
+msgstr "自动配置负载均衡"
+
+msgid "Health check hostnames or IP addresses"
+msgstr "健康检查主机名或 IP 地址"
+
+msgid "Ping these hosts to determine whether each WAN link is up. Leave empty to treat the links as always online."
+msgstr "通过 ping 这些主机判断每条 WAN 链路是否在线。留空则视为链路始终在线。"
+
+msgid "IP family"
+msgstr "IP 协议族"
+
+msgid "IPv4 and IPv6"
+msgstr "IPv4 和 IPv6"
+
+msgid "IPv4"
+msgstr "IPv4"
+
+msgid "IPv6"
+msgstr "IPv6"
