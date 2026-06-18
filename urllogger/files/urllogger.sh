@@ -7,16 +7,13 @@ urllogger_stop()
 {
 	echo 0 >/proc/sys/urllogger_store/enable
 	echo clear >/dev/urllogger_queue
+	rm -rf $LOCKDIR
 	return 0
 }
 
 test -c /dev/urllogger_queue || exit 1
 
 [ x$1 = xstop ] && urllogger_stop && exit 0
-[ x$1 = xkill ] && urllogger_stop && {
-	rm -rf $LOCKDIR
-	exit 0
-}
 
 [ x$1 = xstart ] || {
 	echo "usage: $0 start|stop"
