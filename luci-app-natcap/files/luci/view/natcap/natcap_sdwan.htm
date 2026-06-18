@@ -19,7 +19,7 @@
 		{
 			output.innerHTML =
 				'<img src="<%=resource%>/icons/loading.gif" alt="<%:Loading%>" style="vertical-align:middle" /> ' +
-				'<%:Waiting for command to complete...%>'
+				'<%:Waiting for activation to complete...%>'
 			;
 
 			legend.parentNode.style.display = 'block';
@@ -36,7 +36,7 @@
 					else
 					{
 						legend.style.display = 'none';
-						output.innerHTML = '<span class="error"><%:Bad address specified!%></span>';
+						output.innerHTML = '<span class="error"><%:Invalid top-up code!%></span>';
 					}
 				}
 			);
@@ -46,16 +46,16 @@
 
 <form method="post" action="<%=url('admin/natcap_sdwan/activation')%>">
 	<div class="cbi-map">
-		<h2 name="content"><%:TOP UP%></h2>
+		<h2 name="content"><%:Top Up%></h2>
 
 		<div class="cbi-section">
-			<legend><%:Enter top-up code%></legend>
+			<legend><%:Enter Top-up Code%></legend>
 
 			<div class="table">
 				<div class="tr">
 					<div class="td left">
 						<input style="margin: 5px 0" type="text" value="" name="sdwan_code" /><br />
-						<input type="button" value="<%:Active%>" class="btn cbi-button cbi-button-apply" onclick="update_status(this.form.sdwan_code)" />
+						<input type="button" value="<%:Activate%>" class="btn cbi-button cbi-button-apply" onclick="update_status(this.form.sdwan_code)" />
 					</div>
 				</div>
 			</div>

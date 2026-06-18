@@ -2,7 +2,7 @@
 
 local nt = require "luci.sys".net
 
-local m = Map("natcapd", translate("One Key VPN"))
+local m = Map("natcapd", translate("One-click VPN"))
 
 m:section(SimpleSection).template  = "natcap/natcapd"
 
@@ -13,20 +13,20 @@ s.anonymous = true
 s:tab("system", translate("System Settings"))
 
 if nixio.fs.access("/usr/sbin/openvpn") then
-	e = s:taboption("system", Flag, "natcapovpn", translate("Enable OpenVPN Server"), translate("Allows you connect to router via VPN, the router need to have a public IP."))
+	e = s:taboption("system", Flag, "natcapovpn", translate("Enable OpenVPN Server"), translate("Allow VPN connections to this router. The router must have a public IP address."))
 	e.default = e.disabled
 	e.rmempty = false
 
-	e = s:taboption("system", Flag, "natcapovpn_tap", translate("OpenVPN TAP Mode"), translate("Use tap mode."))
+	e = s:taboption("system", Flag, "natcapovpn_tap", translate("OpenVPN TAP Mode"), translate("Use OpenVPN TAP mode."))
 	e.default = e.disabled
 	e.rmempty = false
 
-	e = s:taboption("system", Flag, "natcapovpn_ip6", translate("OpenVPN IPv6 Server"), translate("Enable IPv6 Server."))
+	e = s:taboption("system", Flag, "natcapovpn_ip6", translate("Enable OpenVPN IPv6 Server"), translate("Enable the IPv6 OpenVPN server."))
 	e.default = e.disabled
 	e.rmempty = false
 end
 
-e = s:taboption("system", Flag, "pptpd", translate("Enable The PPTP Server"), translate("Allows you connect to router via VPN, the router need to have a public IP."))
+e = s:taboption("system", Flag, "pptpd", translate("Enable PPTP Server"), translate("Allow VPN connections to this router. The router must have a public IP address."))
 e.default = e.disabled
 e.rmempty = false
 

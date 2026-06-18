@@ -75,13 +75,13 @@ XHR.poll(7, '<%=luci.dispatcher.build_url("admin/services/natcap/status")%>', nu
 	<table width="100%" cellspacing="10">
 		<tr><td width="33%"><strong><%:Current Server%></strong></td><td><span id="current_server">-</span>&nbsp;&nbsp;<input type="button" class="btn cbi-button cbi-button-reload" style="width:80px" onclick="natcap_server_change()" title="<%:Change Server%>" value="<%:Change%>" /></td></tr>
 		<tr><td width="33%"><strong><%:User ID%></strong></td><td id="natcap_uid">-</td></tr>
-		<tr><td width="33%"><strong><%:Remote Mgr Addr%></strong></td><td id="natcap_mgr">-</td></tr>
-		<tr><td width="33%"><strong><%:This Month%></strong>&nbsp;(<span id="natcap_month0">-</span>)</td><td><%:Recv%>:&nbsp;<span id="natcap_recv0">-</span>&nbsp;&nbsp;<%:Send%>:&nbsp;<span id="natcap_send0">-</span>
-		&nbsp;&nbsp;|&nbsp;&nbsp;<a href="<%=luci.dispatcher.build_url("admin/services/natcap/get_natcap_flows0")%>"><%:Download details%></a>
+		<tr><td width="33%"><strong><%:Remote Manager URL%></strong></td><td id="natcap_mgr">-</td></tr>
+		<tr><td width="33%"><strong><%:This Month%></strong>&nbsp;(<span id="natcap_month0">-</span>)</td><td><%:Received%>:&nbsp;<span id="natcap_recv0">-</span>&nbsp;&nbsp;<%:Sent%>:&nbsp;<span id="natcap_send0">-</span>
+		&nbsp;&nbsp;|&nbsp;&nbsp;<a href="<%=luci.dispatcher.build_url("admin/services/natcap/get_natcap_flows0")%>"><%:Download Details%></a>
 		</td></tr>
-		<tr><td width="33%"><strong><%:Last Month%></strong>&nbsp;(<span id="natcap_month1">-</span>)</td><td><%:Recv%>:&nbsp;<span id="natcap_recv1">-</span>&nbsp;&nbsp;<%:Send%>:&nbsp;<span id="natcap_send1">-</span>
-		&nbsp;&nbsp;|&nbsp;&nbsp;<a href="<%=luci.dispatcher.build_url("admin/services/natcap/get_natcap_flows1")%>"><%:Download details%></a>
+		<tr><td width="33%"><strong><%:Last Month%></strong>&nbsp;(<span id="natcap_month1">-</span>)</td><td><%:Received%>:&nbsp;<span id="natcap_recv1">-</span>&nbsp;&nbsp;<%:Sent%>:&nbsp;<span id="natcap_send1">-</span>
+		&nbsp;&nbsp;|&nbsp;&nbsp;<a href="<%=luci.dispatcher.build_url("admin/services/natcap/get_natcap_flows1")%>"><%:Download Details%></a>
 		</td></tr>
-		<tr><td width="33%"><strong><%:Expire Date%></strong></td><td id="natcap_exp">-</td></tr>
+		<tr><td width="33%"><strong><%:Expiration Date%></strong></td><td id="natcap_exp">-</td></tr>
 	</table>
 </fieldset>

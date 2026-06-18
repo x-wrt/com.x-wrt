@@ -1,8 +1,58 @@
 msgid ""
-msgstr "Content-Type: text/plain; charset=UTF-8\n"
+msgstr ""
+"Project-Id-Version: luci-app-natcap\n"
+"PO-Revision-Date: 2026-06-19\n"
+"Last-Translator: X-WRT\n"
+"Language-Team: Chinese (Simplified)\n"
+"Language: zh_CN\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+msgid "NATCAP"
+msgstr "NATCAP"
+
+msgid "NATCAP Service"
+msgstr "NATCAP 服务"
+
+msgid "NATCAP accelerates selected network traffic through proxy servers."
+msgstr "NATCAP 通过代理服务器加速指定的网络流量。"
+
+msgid "SD-WAN"
+msgstr "SD-WAN"
+
+msgid "SD-WAN Service"
+msgstr "SD-WAN 服务"
+
+msgid "Basic Settings"
+msgstr "基本设置"
+
+msgid "General Settings"
+msgstr "常规设置"
+
+msgid "Advanced Settings"
+msgstr "高级设置"
+
+msgid "Server List"
+msgstr "服务器列表"
+
+msgid "MAC Filter"
+msgstr "MAC 过滤"
+
+msgid "IP Filter"
+msgstr "IP 过滤"
+
+msgid "System Settings"
+msgstr "系统设置"
+
+msgid "Bypass List"
+msgstr "绕过列表"
+
+msgid "Bypass Domain List"
+msgstr "绕过域名列表"
 
 msgid "Status"
-msgstr "运行状态"
+msgstr "状态"
 
 msgid "Current Server"
 msgstr "当前服务器"
@@ -14,12 +64,12 @@ msgid "Change"
 msgstr "切换"
 
 msgid "User ID"
-msgstr "用户标识"
+msgstr "用户 ID"
 
-msgid "Remote Mgr Addr"
+msgid "Remote Manager URL"
 msgstr "远程管理地址"
 
-msgid "Disable Remote Mgr"
+msgid "Disable Remote Manager"
 msgstr "禁用远程管理"
 
 msgid "This Month"
@@ -28,248 +78,251 @@ msgstr "本月"
 msgid "Last Month"
 msgstr "上月"
 
-msgid "Recv"
+msgid "Received"
 msgstr "接收"
 
-msgid "Send"
+msgid "Sent"
 msgstr "发送"
 
-msgid "VPN Domain"
-msgstr "VPN动态域名"
+msgid "Download Details"
+msgstr "下载明细"
 
-msgid "Download details"
-msgstr "下载详细信息"
+msgid "Expiration Date"
+msgstr "到期时间"
 
-msgid "Download OpenVPN Client Config"
-msgstr "下载OpenVPN客户端配置"
-
-msgid "Download OpenVPN Client Config (UDP)"
-msgstr "下载OpenVPN客户端配置（UDP）"
-
-msgid "Download OpenVPN IPv6 Client Config"
-msgstr "下载OpenVPN IPv6客户端配置"
-
-msgid "Download OpenVPN IPv6 Client Config (UDP)"
-msgstr "下载OpenVPN IPv6客户端配置（UDP）"
-
-msgid "Natcap Service"
-msgstr "Natcap 服务"
-
-msgid "Natcap to avoid censorship/filtering/logging"
-msgstr "加速访问国际服务"
-
-msgid "General Settings"
-msgstr "一般配置"
-
-msgid "Advanced Settings"
-msgstr "高级配置"
-
-msgid "Mac Filter"
-msgstr "Mac过滤"
-
-msgid "IP Filter"
-msgstr "IP过滤"
-
-msgid "System Settings"
-msgstr "系统配置"
-
-msgid "Enable Natcap"
-msgstr "开启Natcap"
+msgid "Enable NATCAP"
+msgstr "启用 NATCAP"
 
 msgid "You need an authorization code to enable international network acceleration."
-msgstr "你需要授权码来开启国际网络加速，没有授权请不要开启，否则无法访问国外网站。"
+msgstr "需要授权码才能启用国际网络加速。"
 
-msgid "Natcap Account"
-msgstr "帐号"
+msgid "NATCAP Account"
+msgstr "NATCAP 账号"
 
-msgid "Natcap Servers"
-msgstr "服务器列表"
+msgid "NATCAP Servers"
+msgstr "NATCAP 服务器"
 
-msgid "Please fill in the server by format (ip:port)"
-msgstr "请按照格式填写服务器（ip:port）"
+msgid "Enter the server in ip:port format."
+msgstr "请按 ip:port 格式填写服务器。"
 
-msgid "Network traffic strategy"
-msgstr "网络流量策略"
+msgid "Traffic Proxy Mode"
+msgstr "流量代理模式"
 
-msgid "Smart auto proxy"
-msgstr "智能自动代理"
+msgid "Smart Proxy"
+msgstr "智能代理"
 
-msgid "All International traffic proxy"
-msgstr "全部国际流量走代理"
+msgid "Proxy All International Traffic"
+msgstr "代理全部国际流量"
 
-msgid "Customization proxy"
-msgstr "后台自定义(不要选)"
+msgid "Custom Proxy Rules"
+msgstr "自定义代理规则"
 
-msgid "Full Proxy"
-msgstr "全局完全代理"
+msgid "Server Switch Interval (s)"
+msgstr "服务器切换间隔（秒）"
 
-msgid "All traffic goes to proxy."
-msgstr "全部流量走代理。"
+msgid "Interval for automatic server switching."
+msgstr "自动切换服务器的间隔时间。"
 
-msgid "Full Cone Nat"
-msgstr "全锥形NAT"
+msgid "Lock Current Server"
+msgstr "锁定当前服务器"
 
-msgid "Generally do not need to be enabled unless used to play games."
-msgstr "一般不需要启用，除非用来打游戏。"
-
-msgid "DNS Server"
-msgstr "DNS服务器"
+msgid "Do not switch servers automatically based on link detection."
+msgstr "不要根据链路检测结果自动切换服务器。"
 
 msgid "Enable Encryption"
 msgstr "启用加密"
 
-msgid "Server Switching Interval (s)"
-msgstr "服务器切换时间（秒）"
-
-msgid "How long to switch the server."
-msgstr "多久切换一次服务器。"
-
-msgid "Lock on server"
-msgstr "锁定服务器"
-
-msgid "do not switch servers by automatic detection"
-msgstr "不根据自动线路检测切换服务器"
-
-msgid "Local Server TCP Listening Port"
-msgstr "本地服务端TCP监听端口"
-
-msgid "Local Client TCP Listening Port"
-msgstr "本地客户端TCP监听端口"
-
-msgid "0 Disabled，Otherwise Enabled"
-msgstr "0 禁用，其它启用"
-
-msgid "Force TCP encode as UDP"
-msgstr "强制TCP编码成UDP"
-
-msgid "Force UDP encode as TCP"
-msgstr "强制UDP编码成TCP"
-
-msgid "Do not enable unless the normal mode is not working."
-msgstr "一般不要启用，除非正常模式不通。"
-
 msgid "TCP Proxy Acceleration"
-msgstr "TCP代理加速"
+msgstr "TCP 代理加速"
 
-msgid "Recommended to use the server's TCP proxy and Google BBR algorithm to accelerate."
-msgstr "推荐使用，利用服务器的TCP代理和谷歌BBR算法加速。"
+msgid "Use the server TCP proxy and BBR congestion control for acceleration."
+msgstr "使用服务器端 TCP 代理和 BBR 拥塞控制进行加速。"
 
-msgid "BLOCK IPv6 DNS"
-msgstr "屏蔽IPv6的DNS"
+msgid "Block IPv6 DNS"
+msgstr "拦截 IPv6 DNS"
 
-msgid "Block IPv6 DNS to prevent poisoning"
-msgstr "屏蔽IPv6的DNS，防止DNS污染"
+msgid "Block IPv6 DNS requests to prevent DNS poisoning."
+msgstr "拦截 IPv6 DNS 请求以防止 DNS 污染。"
+
+msgid "DNS Server"
+msgstr "DNS 服务器"
+
+msgid "Force TCP Encapsulation over UDP"
+msgstr "强制将 TCP 封装为 UDP"
+
+msgid "Force UDP Encapsulation over TCP"
+msgstr "强制将 UDP 封装为 TCP"
+
+msgid "Enable only if normal mode does not work."
+msgstr "仅在普通模式不可用时启用。"
+
+msgid "Local Server TCP Listen Port"
+msgstr "本地服务端 TCP 监听端口"
+
+msgid "Local Client TCP Listen Port"
+msgstr "本地客户端 TCP 监听端口"
+
+msgid "0 disables this option; any other value enables it."
+msgstr "0 表示禁用，其他值表示启用。"
 
 msgid "HTTP Obfuscation"
-msgstr "启用HTTP混淆"
+msgstr "HTTP 混淆"
 
 msgid "Disguise the traffic into HTTP."
-msgstr "把流量伪装成HTTP。"
+msgstr "将流量伪装为 HTTP。"
 
 msgid "Obfuscation Host"
-msgstr "混淆Host"
+msgstr "混淆 Host"
+
+msgid "MAC Address Filter"
+msgstr "MAC 地址过滤"
+
+msgid "Disabled"
+msgstr "禁用"
+
+msgid "Allowlist (clients allowed to use NATCAP)"
+msgstr "允许列表（列表内客户端可使用 NATCAP）"
+
+msgid "Blocklist (clients denied NATCAP)"
+msgstr "阻止列表（列表内客户端禁止使用 NATCAP）"
+
+msgid "MAC List"
+msgstr "MAC 列表"
+
+msgid "IP Address Filter"
+msgstr "IP 地址过滤"
+
+msgid "IP List"
+msgstr "IP 列表"
+
+msgid "Access China from Overseas"
+msgstr "从海外访问中国"
+
+msgid "Config Version"
+msgstr "配置版本"
+
+msgid "Proxy All Traffic"
+msgstr "代理全部流量"
+
+msgid "Send all traffic through the proxy."
+msgstr "全部流量都通过代理发送。"
+
+msgid "Download Rate Limit"
+msgstr "下载速率限制"
+
+msgid "Upload Rate Limit"
+msgstr "上传速率限制"
+
+msgid "Unit: <code>Kbps</code> <code>Mbps</code> <code>Gbps</code>. Example: 10Mbps, or 0 for no limit."
+msgstr "单位：<code>Kbps</code> <code>Mbps</code> <code>Gbps</code>。例如：10Mbps，或填 0 表示不限速。"
+
+msgid "Invalid rate limit"
+msgstr "速率限制格式无效"
+
+msgid "Peer Mode"
+msgstr "Peer 模式"
+
+msgid "UI Mode"
+msgstr "界面模式"
+
+msgid "Enable SD-WAN"
+msgstr "启用 SD-WAN"
+
+msgid "One-click VPN"
+msgstr "一键 VPN"
+
+msgid "VPN Domain"
+msgstr "VPN 域名"
+
+msgid "Download OpenVPN Client Config"
+msgstr "下载 OpenVPN 客户端配置"
+
+msgid "Download OpenVPN Client Config (UDP)"
+msgstr "下载 OpenVPN 客户端配置（UDP）"
+
+msgid "Download OpenVPN IPv6 Client Config"
+msgstr "下载 OpenVPN IPv6 客户端配置"
+
+msgid "Download OpenVPN IPv6 Client Config (UDP)"
+msgstr "下载 OpenVPN IPv6 客户端配置（UDP）"
 
 msgid "Enable OpenVPN Server"
-msgstr "开启OpenVPN服务"
+msgstr "启用 OpenVPN 服务器"
 
-msgid "Enable The PPTP Server"
-msgstr "启用PPTP服务器"
+msgid "Allow VPN connections to this router. The router must have a public IP address."
+msgstr "允许通过 VPN 连接到此路由器。路由器必须具有公网 IP 地址。"
 
-msgid "Allows you connect to router via VPN, the router need to have a public IP."
-msgstr "允许你用VPN连接自己的路由器，路由器需要有公网IP。"
+msgid "OpenVPN TAP Mode"
+msgstr "OpenVPN TAP 模式"
+
+msgid "Use OpenVPN TAP mode."
+msgstr "使用 OpenVPN TAP 模式。"
+
+msgid "Enable OpenVPN IPv6 Server"
+msgstr "启用 OpenVPN IPv6 服务器"
+
+msgid "Enable the IPv6 OpenVPN server."
+msgstr "启用 IPv6 OpenVPN 服务器。"
+
+msgid "Enable PPTP Server"
+msgstr "启用 PPTP 服务器"
 
 msgid "PPTP Username"
-msgstr "PPTP用户"
+msgstr "PPTP 用户名"
 
 msgid "Password"
 msgstr "密码"
 
-msgid "Mac Address Filter"
-msgstr "Mac地址过滤"
-
-msgid "Disabled"
-msgstr "不使用"
-
-msgid "whitelist (Allow to use Natcap)"
-msgstr "白名单（允许列表使用Natcap）"
-
-msgid "blacklist (Forbid to use Natcap)"
-msgstr "黑名单（禁止列表使用Natcap）"
-
-msgid "Mac List"
-msgstr "Mac列表"
-
-msgid "IP Address Filter"
-msgstr "IP地址过滤"
-
-msgid "IP List"
-msgstr "IP列表"
-
-msgid "Access to China from abroad"
-msgstr "从海外访问中国"
-
-msgid "Enable Fast NAT Offload"
-msgstr "启用快速转发(offload)"
-
-msgid "Enable Fast Forwarding"
-msgstr "启用转发加速(natflow)"
-
-msgid "Enable Fast Forwarding Hardware Offload"
-msgstr "启用硬件转发加速"
-
-msgid "Enable Fast Forwarding Hardware Offload WED"
-msgstr "启用WED硬件转发加速"
-
-msgid "One Key VPN"
-msgstr "一键VPN服务"
-
-msgid "The basic system settings && services"
-msgstr "基础系统配置和服务"
-
-msgid "Route Setup"
-msgstr "线路设置"
-
-msgid "select route gateway for each lan"
-msgstr "为每一组内网用户分配出口网关"
-
-msgid "From Client(s)"
-msgstr "内网用户"
-
-msgid "To Destination"
-msgstr "访问的目标"
-
-msgid "Target Gateway"
-msgstr "出口网关"
-
 msgid "Advanced Options"
 msgstr "高级选项"
 
+msgid "Full-cone NAT"
+msgstr "全锥形 NAT"
+
+msgid "Usually only needed for gaming or peer-to-peer applications."
+msgstr "通常仅在游戏或点对点应用需要时启用。"
+
+msgid "Enable NATflow Fast Forwarding"
+msgstr "启用 NATflow 快速转发"
+
+msgid "Enable Hardware Flow Offload"
+msgstr "启用硬件流量卸载"
+
+msgid "Enable WED Hardware Offload"
+msgstr "启用 WED 硬件卸载"
+
+msgid "Route Settings"
+msgstr "路由设置"
+
+msgid "Select an outbound gateway for LAN clients."
+msgstr "为 LAN 客户端选择出口网关。"
+
+msgid "Source Client(s)"
+msgstr "源客户端"
+
+msgid "Destination"
+msgstr "目标地址"
+
+msgid "Outbound Gateway"
+msgstr "出口网关"
+
 msgid "Please select..."
-msgstr "请选择……"
+msgstr "请选择..."
 
-msgid "Server List"
-msgstr "服务器列表"
+msgid "Loading"
+msgstr "正在加载"
 
-msgid "Download rate limit"
-msgstr "下行速度限制"
+msgid "Waiting for activation to complete..."
+msgstr "正在等待激活完成..."
 
-msgid "Upload rate limit"
-msgstr "上行速度限制"
+msgid "Invalid top-up code!"
+msgstr "充值码无效！"
 
-msgid "Unit: <code>Kbps</code> <code>Mbps</code> <code>Gbps</code> Example: 10Mbps or 0 = no limit"
-msgstr "单位: <code>Kbps</code> <code>Mbps</code> <code>Gbps</code> 例如: 10Mbps 或者 0 = 无限制"
-
-msgid "Invalid rate limit"
-msgstr "速度限制错误"
-
-msgid "SD-WAN Service"
-msgstr "SD-WAN 服务"
-
-msgid "TOP UP"
+msgid "Top Up"
 msgstr "充值"
 
-msgid "Enter top-up code"
+msgid "Enter Top-up Code"
 msgstr "输入充值码"
 
-msgid "Expire Date"
-msgstr "过期时间"
+msgid "Activate"
+msgstr "激活"

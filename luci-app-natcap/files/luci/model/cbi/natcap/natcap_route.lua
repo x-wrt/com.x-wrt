@@ -2,7 +2,7 @@
 
 local nt = require "luci.sys".net
 
-local m = Map("natcapd", translate("Route Setup"), translate("select route gateway for each lan"))
+local m = Map("natcapd", translate("Route Settings"), translate("Select an outbound gateway for LAN clients."))
 
 m:section(SimpleSection).template  = "natcap/natcap"
 
@@ -16,17 +16,17 @@ u.addremove = true
 u.anonymous = true
 u.template = "cbi/tblsection"
 
-e = u:option(Value, "src", translate("From Client(s)"))
+e = u:option(Value, "src", translate("Source Client(s)"))
 e.datatype = "string"
 e.rmempty  = false
 e.placeholder = "192.168.1.100 or AA:00:11:23:44:55"
 
-e = u:option(Value, "dst", translate("To Destination"))
+e = u:option(Value, "dst", translate("Destination"))
 e.datatype = "string"
 e.rmempty  = false
 e.placeholder = "ipset name"
 
-e = u:option(ListValue, "target", translate("Target Gateway"))
+e = u:option(ListValue, "target", translate("Outbound Gateway"))
 e:value("", translate("Please select..."))
 local ut = require "luci.util"
 local sys  = require "luci.sys"
@@ -41,12 +41,12 @@ u.addremove = true
 u.anonymous = true
 u.template = "cbi/tblsection"
 
-e = u:option(Value, "src", translate("From Client(s)"))
+e = u:option(Value, "src", translate("Source Client(s)"))
 e.datatype = "string"
 e.rmempty  = false
 e.placeholder = "192.168.1.100 or AA:00:11:23:44:55"
 
-e = u:option(ListValue, "target", translate("Target Gateway"))
+e = u:option(ListValue, "target", translate("Outbound Gateway"))
 e:value("", translate("Please select..."))
 local ut = require "luci.util"
 local sys  = require "luci.sys"
