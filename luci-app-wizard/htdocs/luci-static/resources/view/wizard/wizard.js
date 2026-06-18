@@ -88,15 +88,15 @@ return view.extend({
 		o.value('255.255.0.0');
 		o.value('255.0.0.0');
 
-		o = s.taboption('service', form.Flag, "urllogger", _('URL logging'));
+		o = s.taboption('service', form.Flag, "urllogger", _("Status") + ' -> ' + _('URL logging'));
 		o.default = 0;
 		o.rmempty = false;
 
-		o = s.taboption('service', form.Flag, "qos", _('QoS'));
+		o = s.taboption('service', form.Flag, "qos", _("Network") + ' -> ' + _('QoS'));
 		o.default = 0;
 		o.rmempty = false;
 
-		o = s.taboption('service', form.Flag, "miniupnpd", _('UPnP IGD & PCP'));
+		o = s.taboption('service', form.Flag, "miniupnpd", _("Services") + ' -> ' + _('UPnP IGD & PCP'));
 		o.default = 0;
 		o.rmempty = false;
 
