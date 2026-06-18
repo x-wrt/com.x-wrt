@@ -32,11 +32,15 @@ switch_onoff()
 	test -e /etc/init.d/$service || return 0
 
 	if [ "$opt" = "1" ]; then
-		/etc/init.d/$service running || /etc/init.d/$service start &>/dev/null
-		/etc/init.d/$service disabled && /etc/init.d/$service enable 2>/dev/null
+		/etc/init.d/$service enabled || {
+			/etc/init.d/$service enable 2>/dev/null
+			/etc/init.d/$service start &>/dev/null
+		}
 	else
-		/etc/init.d/$service disabled || /etc/init.d/$service disable 2>/dev/null
-		/etc/init.d/$service running && /etc/init.d/$service stop &>/dev/null
+		/etc/init.d/$service enabled && {
+			/etc/init.d/$service disable 2>/dev/null
+			/etc/init.d/$service stop &>/dev/null
+		}
 	fi
 }
 
