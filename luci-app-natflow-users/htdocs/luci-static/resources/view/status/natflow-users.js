@@ -56,12 +56,12 @@ return view.extend({
 			rows.push([
 				u.ip,
 				name ? "%s<br />(%s)".format(mac, name) : mac,
-				'%1024.2mB (%d %s)<br />%s'.format(u.rx_bytes, u.rx_pkts, _('Pkts.'), rate(u.rx_speed_bytes)),
-				'%1024.2mB (%d %s)<br />%s'.format(u.tx_bytes, u.tx_pkts, _('Pkts.'), rate(u.tx_speed_bytes)),
+				'%1024.2mB (%d %s)<br />%s'.format(u.rx_bytes, u.rx_pkts, _('packets'), rate(u.rx_speed_bytes)),
+				'%1024.2mB (%d %s)<br />%s'.format(u.tx_bytes, u.tx_pkts, _('packets'), rate(u.tx_speed_bytes)),
 				E('button', {
 					'class': 'btn cbi-button-remove',
 					'click': L.bind(handleKickUser, this, u.ip)
-				}, [ _('Delete') ])
+				}, [ _('Disconnect') ])
 			]);
 		}
 
@@ -84,7 +84,7 @@ return view.extend({
 	render: function(data) {
 		var table = E('table', { 'class': 'table', 'id': 'users' }, [
 			E('tr', { 'class': 'tr table-titles' }, [
-				E('th', { 'class': 'th col-2' }, [ _('IPv4/IPv6 address') ]),
+				E('th', { 'class': 'th col-2' }, [ _('IP address') ]),
 				E('th', { 'class': 'th col-2' }, [ _('MAC address') ]),
 				E('th', { 'class': 'th col-7' }, [ _('RX') ]),
 				E('th', { 'class': 'th col-7' }, [ _('TX') ]),
@@ -92,7 +92,7 @@ return view.extend({
 			]),
 			E('tr', { 'class': 'tr placeholder' }, [
 				E('td', { 'class': 'td' }, [
-					E('em', {}, [ _('Collecting data...') ])
+					E('em', {}, [ _('Loading data...') ])
 				])
 			])
 		]);

@@ -1,131 +1,155 @@
 msgid ""
 msgstr "Content-Type: text/plain; charset=UTF-8\n"
 
+msgid "URL Log"
+msgstr "URL 日志"
+
+msgid "Active Users"
+msgstr "活动用户"
+
+msgid "User Access"
+msgstr "用户访问"
+
+msgid "User Access Control"
+msgstr "用户访问控制"
+
+msgid "Traffic Shaping"
+msgstr "流量整形"
+
+msgid "Web Access Control"
+msgstr "网站访问控制"
+
 msgid "RX"
 msgstr "接收"
 
 msgid "TX"
 msgstr "发送"
 
-msgid "Traffic (RX)"
-msgstr "流量（接收）"
+msgid "IP address"
+msgstr "IP 地址"
 
-msgid "Traffic (TX)"
-msgstr "流量（发送）"
+msgid "MAC address"
+msgstr "MAC 地址"
 
-msgid "Traffic (RX/TX)"
-msgstr "流量（接收/发送）"
+msgid "packets"
+msgstr "数据包"
 
-msgid "Users"
-msgstr "用户"
-
-msgid "Delete"
-msgstr "删除"
-
-msgid "Active Users"
-msgstr "活动的用户"
-
-msgid "User rules"
-msgstr "用户规则"
-
-msgid "IPs in this range are treated as users"
-msgstr "此范围内的 IP 被视为用户"
-
-msgid "IP range"
-msgstr "IP范围"
-
-msgid "User Authentication"
-msgstr "用户认证"
-
-msgid "Can be a single or multiple ipaddr(s)(/cidr) or iprange, split with comma (e.g. \"192.168.100.0/24,1.2.3.4,172.16.0.100-172.16.0.111\") without quotes"
-msgstr "可以是单个或者多个IP地址、IP网段、IP范围，逗号隔开，比如 \"192.168.100.0/24,1.2.3.4,172.16.0.100-172.16.0.111\""
+msgid "Disconnect"
+msgstr "断开连接"
 
 msgid "No information available"
 msgstr "无可用信息"
 
-msgid "Unit: <code>Kbps</code> <code>Mbps</code> <code>Gbps</code> Example: 10Mbps or 0 = no limit"
-msgstr "单位: <code>Kbps</code> <code>Mbps</code> <code>Gbps</code> 例如: 10Mbps 或者 0 = 无限制"
+msgid "Loading data..."
+msgstr "正在加载数据..."
 
-msgid "QoS traffic shaping"
-msgstr "流量整形"
+msgid "Allow access"
+msgstr "允许访问"
 
-msgid "QoS rules"
-msgstr "流控规则"
+msgid "Block access"
+msgstr "阻止访问"
 
-msgid "Simple QoS rules"
-msgstr "简单流控规则"
+msgid "User IP ranges"
+msgstr "用户 IP 范围"
 
-msgid "Set traffic control for traffic groups that meet the conditions, and share a bandwidth limitation rule within the same group. Multiple rules can be added and matched in order of priority until a match is successful."
-msgstr "对符合条件的流量组设置流量控制，并在同一组内共享带宽限制规则。可以添加多组规则，按照优先级顺序匹配，直到匹配成功为止。"
+msgid "Clients in these IP ranges are managed as users."
+msgstr "这些 IP 范围内的客户端将作为用户进行管理。"
 
-msgid "User IP"
-msgstr "用户IP"
+msgid "Client IP ranges"
+msgstr "客户端 IP 范围"
 
-msgid "User Port"
-msgstr "用户端口"
+msgid "Enter one or more IPv4 addresses, CIDR ranges, or IP ranges, separated by commas. Example: 192.168.100.0/24,1.2.3.4,172.16.0.100-172.16.0.111"
+msgstr "输入一个或多个 IPv4 地址、CIDR 网段或 IP 范围，用逗号分隔。例如：192.168.100.0/24,1.2.3.4,172.16.0.100-172.16.0.111"
+
+msgid "Protocol"
+msgstr "协议"
+
+msgid "TCP and UDP"
+msgstr "TCP 和 UDP"
+
+msgid "Grouped traffic shaping rules"
+msgstr "分组流量整形规则"
+
+msgid "Match traffic by protocol, client, remote address, or port. Traffic matching the same rule shares that rule's bandwidth limits. Rules are checked in priority order until one matches."
+msgstr "按协议、客户端、远端地址或端口匹配流量。匹配同一规则的流量共享该规则的带宽限制。规则按优先级顺序检查，直到匹配成功。"
+
+msgid "Client IP"
+msgstr "客户端 IP"
+
+msgid "Client port"
+msgstr "客户端端口"
 
 msgid "Remote IP"
-msgstr "远端IP"
+msgstr "远端 IP"
 
-msgid "Remote Port"
+msgid "Remote port"
 msgstr "远端端口"
 
-msgid "Download rate limit"
-msgstr "下行速度限制"
+msgid "Download limit"
+msgstr "下载限制"
 
-msgid "Upload rate limit"
-msgstr "上行速度限制"
+msgid "Upload limit"
+msgstr "上传限制"
 
-msgid "Set traffic control rules for specific IP users, where multiple rules can be added. Each matched IP user is subject to traffic control based on the bandwidth limits set in the rules."
-msgstr "对指定的每一个IP用户设置流量控制规则，可以添加多条规则。匹配的每一个IP用户按照规则设置的带宽限制进行流量控制。"
+msgid "Units: <code>Kbps</code>, <code>Mbps</code>, or <code>Gbps</code>. Example: 10Mbps. Use 0 for no limit."
+msgstr "单位：<code>Kbps</code>、<code>Mbps</code> 或 <code>Gbps</code>。例如：10Mbps。填 0 表示不限制。"
 
-msgid "Block"
-msgstr "禁网"
+msgid "Enabled"
+msgstr "启用"
 
-msgid "Allow"
-msgstr "允许上网"
+msgid "Per-client traffic shaping rules"
+msgstr "按客户端流量整形规则"
 
-msgid "IPv4/IPv6 address"
-msgstr "IPv4/IPv6 地址"
+msgid "Set bandwidth limits for specific client IP addresses or ranges. Each matching client is limited by the rule that matches it."
+msgstr "为指定客户端 IP 地址或范围设置带宽限制。每个匹配的客户端按对应规则进行限速。"
 
-msgid "URL Log"
-msgstr "URL 日志"
+msgid "Control which websites selected clients can access."
+msgstr "控制指定客户端可以访问的网站。"
 
-msgid "Web Filtering"
-msgstr "网站过滤"
+msgid "Access control rules"
+msgstr "访问控制规则"
 
-msgid "ACL rules"
-msgstr "ACL 规则"
+msgid "Domains"
+msgstr "域名"
 
-msgid "This allows administrators to control and manage the websites that users can access over the Internet."
-msgstr "这使得管理员可以控制和管理用户在互联网上可以访问的网站。"
-
-msgid "Domains to be filtered"
-msgstr "要过滤的域名"
-
-msgid "Domains to be filtered, separated by commas."
-msgstr "要过滤的域名，用逗号隔开。"
+msgid "Domain names to match, separated by commas."
+msgstr "要匹配的域名，用逗号分隔。"
 
 msgid "Action"
-msgstr "操作"
+msgstr "动作"
 
-msgid "Record"
-msgstr "记录"
+msgid "Log only"
+msgstr "仅记录"
 
 msgid "Drop"
 msgstr "丢弃"
 
-msgid "Reset"
-msgstr "重置"
+msgid "Reset connection"
+msgstr "重置连接"
 
 msgid "Redirect"
 msgstr "重定向"
 
-msgid "IPv4 addresses to be filtered"
-msgstr "要过滤的终端 IPv4 地址"
+msgid "Client IPv4 addresses"
+msgstr "客户端 IPv4 地址"
 
-msgid "IPv6 addresses to be filtered"
-msgstr "要过滤的终端 IPv6 地址"
+msgid "Client IPv6 addresses"
+msgstr "客户端 IPv6 地址"
 
-msgid "MAC addresses to be filtered"
-msgstr "要过滤的终端 MAC 地址"
+msgid "Client MAC addresses"
+msgstr "客户端 MAC 地址"
+
+msgid "Enter a valid MAC address. Wildcards are allowed."
+msgstr "请输入有效的 MAC 地址，允许使用通配符。"
+
+msgid "Invalid MAC: %s"
+msgstr "无效的 MAC：%s"
+
+msgid "Unable to load log data: %s"
+msgstr "无法加载日志数据：%s"
+
+msgid "Scroll to bottom"
+msgstr "滚动到底部"
+
+msgid "Scroll to top"
+msgstr "滚动到顶部"

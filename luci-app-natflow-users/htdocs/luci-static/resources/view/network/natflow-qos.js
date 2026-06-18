@@ -69,10 +69,10 @@ return view.extend({
 	render: function(data) {
 		var m, s, o;
 
-		m = new form.Map('natflow', [_('QoS traffic shaping')]);
+		m = new form.Map('natflow', [_('Traffic Shaping')]);
 
-		s = m.section(form.GridSection, 'qos', _('QoS rules'),
-				_('Set traffic control for traffic groups that meet the conditions, and share a bandwidth limitation rule within the same group. Multiple rules can be added and matched in order of priority until a match is successful.'));
+		s = m.section(form.GridSection, 'qos', _('Grouped traffic shaping rules'),
+				_('Match traffic by protocol, client, remote address, or port. Traffic matching the same rule shares that rule\'s bandwidth limits. Rules are checked in priority order until one matches.'));
 		s.addremove = true;
 		s.anonymous = false;
 		s.nodescriptions = true;
@@ -81,12 +81,12 @@ return view.extend({
 		o = s.option(form.Value, 'proto', _('Protocol'))
 		o.default = '';
 		o.rmempty = true;
-		o.value('', 'TCP and UDP');
+		o.value('', _('TCP and UDP'));
 		o.value('tcp', 'TCP');
 		o.value('udp', 'UDP');
 
-		o = s.option(form.Value, 'user', _('User IP'),
-			_('Can be a single or multiple ipaddr(s)(/cidr) or iprange, split with comma (e.g. "192.168.100.0/24,1.2.3.4,172.16.0.100-172.16.0.111") without quotes'));
+		o = s.option(form.Value, 'user', _('Client IP'),
+			_('Enter one or more IPv4 addresses, CIDR ranges, or IP ranges, separated by commas. Example: 192.168.100.0/24,1.2.3.4,172.16.0.100-172.16.0.111'));
 		o.default = '';
 		o.rmempty = true;
 		o.placeholder = '192.168.15.2-192.168.15.254'
@@ -94,7 +94,7 @@ return view.extend({
 			return value == '' || nets_validate(value);
 		}
 
-		o = s.option(form.Value, 'user_port', _('User Port'));
+		o = s.option(form.Value, 'user_port', _('Client port'));
 		o.default = '';
 		o.rmempty = true;
 		o.placeholder = '80,443,10000-20000'
@@ -110,7 +110,7 @@ return view.extend({
 			return value == '' || nets_validate(value);
 		}
 
-		o = s.option(form.Value, 'remote_port', _('Remote Port'));
+		o = s.option(form.Value, 'remote_port', _('Remote port'));
 		o.default = '';
 		o.rmempty = true;
 		o.placeholder = '80,443,10000-20000'
@@ -118,7 +118,7 @@ return view.extend({
 			return value == '' || ports_validate(value);
 		}
 
-		o = s.option(form.Value, 'rx_rate', _('Download rate limit'), _('Unit: <code>Kbps</code> <code>Mbps</code> <code>Gbps</code> Example: 10Mbps or 0 = no limit'));
+		o = s.option(form.Value, 'rx_rate', _('Download limit'), _('Units: <code>Kbps</code>, <code>Mbps</code>, or <code>Gbps</code>. Example: 10Mbps. Use 0 for no limit.'));
 		o.default = '0Mbps';
 		o.rmempty = true;
 		o.placeholder = '0Mbps'
@@ -126,7 +126,7 @@ return view.extend({
 			return value == '' || value == "0" || speed_validate(value);
 		}
 
-		o = s.option(form.Value, 'tx_rate', _('Upload rate limit'), _('Unit: <code>Kbps</code> <code>Mbps</code> <code>Gbps</code> Example: 10Mbps or 0 = no limit'));
+		o = s.option(form.Value, 'tx_rate', _('Upload limit'), _('Units: <code>Kbps</code>, <code>Mbps</code>, or <code>Gbps</code>. Example: 10Mbps. Use 0 for no limit.'));
 		o.default = '0Mbps';
 		o.rmempty = true;
 		o.placeholder = '0Mbps'
@@ -134,20 +134,20 @@ return view.extend({
 			return value == '' || value == "0" || speed_validate(value);
 		}
 
-		o = s.option(form.Flag, 'disabled', _('Enable'));
+		o = s.option(form.Flag, 'disabled', _('Enabled'));
 		o.enabled = '0';
 		o.disabled = '1';
 		o.default = o.enabled;
 
-		s = m.section(form.GridSection, 'qos_simple', _('Simple QoS rules'),
-				_('Set traffic control rules for specific IP users, where multiple rules can be added. Each matched IP user is subject to traffic control based on the bandwidth limits set in the rules.'));
+		s = m.section(form.GridSection, 'qos_simple', _('Per-client traffic shaping rules'),
+				_('Set bandwidth limits for specific client IP addresses or ranges. Each matching client is limited by the rule that matches it.'));
 		s.addremove = true;
 		s.anonymous = false;
 		s.nodescriptions = true;
 		s.sortable = true;
 
-		o = s.option(form.Value, 'user', _('User IP'),
-			_('Can be a single or multiple ipaddr(s)(/cidr) or iprange, split with comma (e.g. "192.168.100.0/24,1.2.3.4,172.16.0.100-172.16.0.111") without quotes'));
+		o = s.option(form.Value, 'user', _('Client IP'),
+			_('Enter one or more IPv4 addresses, CIDR ranges, or IP ranges, separated by commas. Example: 192.168.100.0/24,1.2.3.4,172.16.0.100-172.16.0.111'));
 		o.default = '';
 		o.rmempty = true;
 		o.placeholder = '192.168.15.2-192.168.15.254'
@@ -155,7 +155,7 @@ return view.extend({
 			return value == '' || nets_validate(value);
 		}
 
-		o = s.option(form.Value, 'rx_rate', _('Download rate limit'), _('Unit: <code>Kbps</code> <code>Mbps</code> <code>Gbps</code> Example: 10Mbps or 0 = no limit'));
+		o = s.option(form.Value, 'rx_rate', _('Download limit'), _('Units: <code>Kbps</code>, <code>Mbps</code>, or <code>Gbps</code>. Example: 10Mbps. Use 0 for no limit.'));
 		o.default = '0Mbps';
 		o.rmempty = true;
 		o.placeholder = '0Mbps'
@@ -163,7 +163,7 @@ return view.extend({
 			return value == '' || value == "0" || speed_validate(value);
 		}
 
-		o = s.option(form.Value, 'tx_rate', _('Upload rate limit'), _('Unit: <code>Kbps</code> <code>Mbps</code> <code>Gbps</code> Example: 10Mbps or 0 = no limit'));
+		o = s.option(form.Value, 'tx_rate', _('Upload limit'), _('Units: <code>Kbps</code>, <code>Mbps</code>, or <code>Gbps</code>. Example: 10Mbps. Use 0 for no limit.'));
 		o.default = '0Mbps';
 		o.rmempty = true;
 		o.placeholder = '0Mbps'
@@ -171,7 +171,7 @@ return view.extend({
 			return value == '' || value == "0" || speed_validate(value);
 		}
 
-		o = s.option(form.Flag, 'disabled', _('Enable'));
+		o = s.option(form.Flag, 'disabled', _('Enabled'));
 		o.enabled = '0';
 		o.disabled = '1';
 		o.default = o.enabled;

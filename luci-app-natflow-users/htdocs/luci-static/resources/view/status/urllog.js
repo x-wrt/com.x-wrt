@@ -15,7 +15,7 @@ return view.extend({
 				const loglines = logdata.trim().split(/\n/);
 				return { value: loglines.join('\n'), rows: loglines.length + 1 };
 			}).catch(function(err) {
-				ui.addNotification(null, E('p', {}, _('Unable to load log data: ' + err.message)));
+				ui.addNotification(null, E('p', {}, _('Unable to load log data: %s').format(err.message)));
 				return '';
 			});
 		});
@@ -39,7 +39,7 @@ return view.extend({
 		var scrollDownButton = E('button', {
 				'id': 'scrollDownButton',
 				'class': 'cbi-button cbi-button-neutral'
-			}, _('Scroll to tail', 'scroll to bottom (the tail) of the log file')
+			}, _('Scroll to bottom', 'scroll to bottom (the tail) of the log file')
 		);
 		scrollDownButton.addEventListener('click', function() {
 			scrollUpButton.focus();
@@ -48,7 +48,7 @@ return view.extend({
 		var scrollUpButton = E('button', {
 				'id' : 'scrollUpButton',
 				'class': 'cbi-button cbi-button-neutral'
-			}, _('Scroll to head', 'scroll to top (the head) of the log file')
+			}, _('Scroll to top', 'scroll to top (the head) of the log file')
 		);
 		scrollUpButton.addEventListener('click', function() {
 			scrollDownButton.focus();

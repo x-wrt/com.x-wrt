@@ -11,7 +11,7 @@
 		}
 	},
 	"admin/status/realtime/users": {
-		"title": "Users",
+		"title": "Active Users",
 		"order": 99,
 		"action": {
 			"type": "view",
@@ -19,7 +19,7 @@
 		}
 	},
 	"admin/system/users": {
-		"title": "Users",
+		"title": "User Access",
 		"order": 990,
 		"action": {
 			"type": "view",
@@ -30,7 +30,7 @@
 		}
 	},
 	"admin/network/qos": {
-		"title": "QoS",
+		"title": "Traffic Shaping",
 		"order": 990,
 		"action": {
 			"type": "view",
@@ -41,7 +41,7 @@
 		}
 	},
 	"admin/network/hostacl": {
-		"title": "Web Filtering",
+		"title": "Web Access Control",
 		"order": 990,
 		"action": {
 			"type": "view",

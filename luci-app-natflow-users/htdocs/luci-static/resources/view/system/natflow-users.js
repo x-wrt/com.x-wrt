@@ -113,17 +113,17 @@ return view.extend({
 			return [
 				u.ip,
 				name ? "%s<br />(%s)".format(mac, name) : mac,
-				'%1024.2mB (%d %s)<br />%s'.format(u.rx_bytes, u.rx_pkts, _('Pkts.'), rate(u.rx_speed_bytes)),
-				'%1024.2mB (%d %s)<br />%s'.format(u.tx_bytes, u.tx_pkts, _('Pkts.'), rate(u.tx_speed_bytes)),
+				'%1024.2mB (%d %s)<br />%s'.format(u.rx_bytes, u.rx_pkts, _('packets'), rate(u.rx_speed_bytes)),
+				'%1024.2mB (%d %s)<br />%s'.format(u.tx_bytes, u.tx_pkts, _('packets'), rate(u.tx_speed_bytes)),
 				u.status == 6 ?
 				E('button', {
 					'class': 'btn cbi-button-remove',
 					'click': L.bind(handleAllowUser, this, u.ip)
-				}, [ _('Allow') ]) :
+				}, [ _('Allow access') ]) :
 				E('button', {
 					'class': 'btn cbi-button-remove',
 					'click': L.bind(handleBlockUser, this, u.ip)
-				}, [ _('Block') ])
+				}, [ _('Block access') ])
 			];
 		});
 
@@ -135,14 +135,14 @@ return view.extend({
 	render: function(data) {
 		var m, s, o;
 
-		m = new form.Map('natflow', [_('User Authentication')]);
+		m = new form.Map('natflow', [_('User Access Control')]);
 
 		s = m.section(form.GridSection, '_active_users');
 
 		s.render = L.bind(function(view, section_id) {
 			var table = E('table', { 'class': 'table cbi-section-table', 'id': 'user_status_table' }, [
 				E('tr', { 'class': 'tr table-titles' }, [
-					E('th', { 'class': 'th col-2' }, [ _('IPv4/IPv6 address') ]),
+					E('th', { 'class': 'th col-2' }, [ _('IP address') ]),
 					E('th', { 'class': 'th col-2' }, [ _('MAC address') ]),
 					E('th', { 'class': 'th col-7' }, [ _('RX') ]),
 					E('th', { 'class': 'th col-7' }, [ _('TX') ]),
@@ -150,7 +150,7 @@ return view.extend({
 				]),
 				E('tr', { 'class': 'tr placeholder' }, [
 					E('td', { 'class': 'td' }, [
-						E('em', {}, [ _('Collecting data...') ])
+						E('em', {}, [ _('Loading data...') ])
 					])
 				])
 			]);
@@ -169,17 +169,17 @@ return view.extend({
 				return [
 					u.ip,
 					name ? "%s<br />(%s)".format(mac, name) : mac,
-					'%1024.2mB (%d %s)<br />%s'.format(u.rx_bytes, u.rx_pkts, _('Pkts.'), rate(u.rx_speed_bytes)),
-					'%1024.2mB (%d %s)<br />%s'.format(u.tx_bytes, u.tx_pkts, _('Pkts.'), rate(u.tx_speed_bytes)),
+					'%1024.2mB (%d %s)<br />%s'.format(u.rx_bytes, u.rx_pkts, _('packets'), rate(u.rx_speed_bytes)),
+					'%1024.2mB (%d %s)<br />%s'.format(u.tx_bytes, u.tx_pkts, _('packets'), rate(u.tx_speed_bytes)),
 					u.status == 6 ?
 					E('button', {
 						'class': 'btn cbi-button-remove',
 						'click': L.bind(handleAllowUser, this, u.ip)
-					}, [ _('Allow') ]) :
+					}, [ _('Allow access') ]) :
 					E('button', {
 						'class': 'btn cbi-button-remove',
 						'click': L.bind(handleBlockUser, this, u.ip)
-					}, [ _('Block') ])
+					}, [ _('Block access') ])
 				];
 			});
 
@@ -188,14 +188,14 @@ return view.extend({
 			return E('div', { 'class': 'cbi-section cbi-tblsection' }, [ E('h3', _('Active Users')), table ]);
 		}, o, this);
 
-		s = m.section(form.GridSection, 'auth', _('User rules'), _('IPs in this range are treated as users'));
+		s = m.section(form.GridSection, 'auth', _('User IP ranges'), _('Clients in these IP ranges are managed as users.'));
 		s.addremove = false;
 		s.anonymous = true;
 		s.nodescriptions = true;
 		s.sortable = false;
 
-		o = s.option(form.Value, 'sipgrp', _('IP range'),
-			_('Can be a single or multiple ipaddr(s)(/cidr) or iprange, split with comma (e.g. "192.168.100.0/24,1.2.3.4,172.16.0.100-172.16.0.111") without quotes'));
+		o = s.option(form.Value, 'sipgrp', _('Client IP ranges'),
+			_('Enter one or more IPv4 addresses, CIDR ranges, or IP ranges, separated by commas. Example: 192.168.100.0/24,1.2.3.4,172.16.0.100-172.16.0.111'));
 		o.rmempty = false;
 		o.placeholder = '192.168.15.2-192.168.15.254'
 		o.validate = function(section_id, value) {

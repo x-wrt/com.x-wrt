@@ -68,7 +68,7 @@ function isValidMAC(sid, s) {
 
 	for (var i = 0; i < macaddrs.length; i++)
 		if (!macaddrs[i].match(/^(([0-9a-f]{1,2}|\*)[:-]){5}([0-9a-f]{1,2}|\*)$/i))
-			return _('Expecting a valid MAC address, optionally including wildcards') + _('; invalid MAC: ') + macaddrs[i];
+			return _('Enter a valid MAC address. Wildcards are allowed.') + ' ' + _('Invalid MAC: %s').format(macaddrs[i]);
 
 	return true;
 }
@@ -100,25 +100,25 @@ return view.extend({
 		var hosts = data[0];
 		var m, s, o;
 
-		m = new form.Map('hostacl', [_('Web Filtering')],
-				_('This allows administrators to control and manage the websites that users can access over the Internet.'));
+		m = new form.Map('hostacl', [_('Web Access Control')],
+				_('Control which websites selected clients can access.'));
 
 		s = m.section(form.NamedSection, '@main[0]', 'main');
 		s.addremove = false;
 
-		o = s.option(form.Flag, 'enabled', _('Enable'));
+		o = s.option(form.Flag, 'enabled', _('Enabled'));
 		o.enabled = '1';
 		o.disabled = '0';
 		o.default = o.disabled;
 
-		s = m.section(form.GridSection, 'rule', _('ACL rules'));
+		s = m.section(form.GridSection, 'rule', _('Access control rules'));
 		s.addremove = true;
 		s.anonymous = true;
 		s.nodescriptions = true;
 		s.sortable = true;
 		s.max_cols = 3;
 
-		o = s.option(form.TextValue, 'host', _('Domains to be filtered'), _('Domains to be filtered, separated by commas.'));
+		o = s.option(form.TextValue, 'host', _('Domains'), _('Domain names to match, separated by commas.'));
 		o.rmempty = false;
 		o.placeholder = "baidu.com,qq.com"
 		o.default = '';
@@ -126,18 +126,18 @@ return view.extend({
 		o = s.option(form.ListValue, 'action', _('Action'));
 		o.rmempty = false;
 		o.default = 'reset';
-		o.value('record', _('Record'));
+		o.value('record', _('Log only'));
 		o.value('drop', _('Drop'));
-		o.value('reset', _('Reset'));
+		o.value('reset', _('Reset connection'));
 		o.value('redirect', _('Redirect'));
 
-		o = s.option(form.Flag, 'disabled', _('Enable'));
+		o = s.option(form.Flag, 'disabled', _('Enabled'));
 		o.enabled = '0';
 		o.disabled = '1';
 		o.default = o.enabled;
 
-		o = s.option(form.TextValue, 'ip', _('IPv4 addresses to be filtered'),
-			_('Can be a single or multiple ipaddr(s)(/cidr) or iprange, split with comma (e.g. "192.168.100.0/24,1.2.3.4,172.16.0.100-172.16.0.111") without quotes'));
+		o = s.option(form.TextValue, 'ip', _('Client IPv4 addresses'),
+			_('Enter one or more IPv4 addresses, CIDR ranges, or IP ranges, separated by commas. Example: 192.168.100.0/24,1.2.3.4,172.16.0.100-172.16.0.111'));
 		o.default = '';
 		o.rmempty = true;
 		o.placeholder = '192.168.15.2-192.168.15.254'
@@ -145,11 +145,11 @@ return view.extend({
 			return value == '' || nets_validate(value);
 		}
 
-		o = s.option(form.TextValue, 'ipv6', _('IPv6 addresses to be filtered'));
+		o = s.option(form.TextValue, 'ipv6', _('Client IPv6 addresses'));
 		o.default = '';
 		o.rmempty = true;
 
-		o = s.option(form.DynamicList, 'mac', _('MAC addresses to be filtered'));
+		o = s.option(form.DynamicList, 'mac', _('Client MAC addresses'));
 		o.rmempty = true;
 		o.cfgvalue = function(section) {
 			var macs = L.toArray(uci.get('hostacl', section, 'mac'));
