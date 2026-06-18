@@ -35,7 +35,7 @@ return view.extend({
 		}
 		s.tab('lansetup', _('Lan Settings'));
 
-		s.tab('service', _('Services Switch'), _('If these features or services are not needed, you can disable them to save memory.'));
+		s.tab('service', _('Services Switch'), _('If these functions or services are not required, they may be disabled to conserve memory.'));
 
 		o = s.taboption('wansetup', form.ListValue, 'wan_proto', _('Protocol'));
 		o.rmempty = false;
