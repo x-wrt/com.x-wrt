@@ -24,30 +24,30 @@ return view.extend({
 			has_wifi = true;
 		}
 
-		m = new form.Map('wizard', [_('Initial Router Setup')],
-			_('If you are using this router for the first time, please configure it here.'));
+		m = new form.Map('wizard', [_('Router Setup Wizard')],
+			_('Configure the basic Internet, Wi-Fi, local network, and optional service settings for this router.'));
 
 		s = m.section(form.NamedSection, 'default', 'wizard');
 		s.addremove = false;
-		s.tab('wansetup', _('WAN Settings'), _('There are three ways to access the Internet. Please choose the appropriate one based on your network environment.'));
+		s.tab('wansetup', _('Internet Settings'), _('Choose how this router connects to the Internet.'));
 		if (has_wifi) {
-			s.tab('wifisetup', _('Wireless Settings'), _('Set the router\'s wireless name and password. For more advanced settings, please go to the Network-Wireless page.'));
+			s.tab('wifisetup', _('Wi-Fi Settings'), _('Set the Wi-Fi network name and password. For advanced options, go to Network > Wireless.'));
 		}
-		s.tab('lansetup', _('LAN Settings'));
+		s.tab('lansetup', _('Local Network'));
 
-		s.tab('service', _('Service Switches'), _('If these functions or services are not required, they may be disabled to conserve memory.'));
+		s.tab('service', _('Optional Services'), _('Turn off unused services to reduce memory usage.'));
 
-		o = s.taboption('wansetup', form.ListValue, 'wan_proto', _('Protocol'));
+		o = s.taboption('wansetup', form.ListValue, 'wan_proto', _('Connection type'));
 		o.rmempty = false;
 		o.default = 'dhcp';
-		o.value('dhcp', _('DHCP client'));
-		o.value('static', _('Static address'));
+		o.value('dhcp', _('Automatic (DHCP)'));
+		o.value('static', _('Static IP address'));
 		o.value('pppoe', _('PPPoE'));
 
-		o = s.taboption('wansetup', form.Value, 'wan_pppoe_user', _('PAP/CHAP username'));
+		o = s.taboption('wansetup', form.Value, 'wan_pppoe_user', _('PPPoE username'));
 		o.depends('wan_proto', 'pppoe');
 
-		o = s.taboption('wansetup', form.Value, 'wan_pppoe_pass', _('PAP/CHAP password'));
+		o = s.taboption('wansetup', form.Value, 'wan_pppoe_pass', _('PPPoE password'));
 		o.depends('wan_proto', 'pppoe');
 		o.password = true;
 
@@ -55,7 +55,7 @@ return view.extend({
 		o.depends('wan_proto', 'static');
 		o.datatype = 'ip4addr';
 
-		o = s.taboption('wansetup', form.Value, 'wan_netmask', _('IPv4 netmask'));
+		o = s.taboption('wansetup', form.Value, 'wan_netmask', _('IPv4 subnet mask'));
 		o.depends('wan_proto', 'static');
 		o.datatype = 'ip4addr';
 		o.value('255.255.255.0');
@@ -66,15 +66,15 @@ return view.extend({
 		o.depends('wan_proto', 'static');
 		o.datatype = 'ip4addr';
 
-		o = s.taboption('wansetup', form.DynamicList, 'wan_dns', _('Use custom DNS servers'));
+		o = s.taboption('wansetup', form.DynamicList, 'wan_dns', _('Custom DNS servers'));
 		o.datatype = 'ip4addr';
 		o.cast = 'string';
 
 		if (has_wifi) {
-			o = s.taboption('wifisetup', form.Value, 'wifi_ssid', _('<abbr title=\"Extended Service Set Identifier\">ESSID</abbr>'));
+			o = s.taboption('wifisetup', form.Value, 'wifi_ssid', _('Wi-Fi network name'));
 			o.datatype = 'maxlength(32)';
 
-			o = s.taboption("wifisetup", form.Value, "wifi_key", _("Key"));
+			o = s.taboption("wifisetup", form.Value, "wifi_key", _("Wi-Fi password"));
 			o.datatype = 'wpakey';
 			o.password = true;
 		}
@@ -82,21 +82,21 @@ return view.extend({
 		o = s.taboption('lansetup', form.Value, 'lan_ipaddr', _('IPv4 address'));
 		o.datatype = 'ip4addr';
 
-		o = s.taboption('lansetup', form.Value, 'lan_netmask', _('IPv4 netmask'));
+		o = s.taboption('lansetup', form.Value, 'lan_netmask', _('IPv4 subnet mask'));
 		o.datatype = 'ip4addr';
 		o.value('255.255.255.0');
 		o.value('255.255.0.0');
 		o.value('255.0.0.0');
 
-		o = s.taboption('service', form.Flag, "urllogger", _("Status") + ' -> ' + _('URL Log'));
+		o = s.taboption('service', form.Flag, "urllogger", _('URL logging'));
 		o.default = 0;
 		o.rmempty = false;
 
-		o = s.taboption('service', form.Flag, "qos", _("Network") + ' -> ' + _('QoS'));
+		o = s.taboption('service', form.Flag, "qos", _('QoS'));
 		o.default = 0;
 		o.rmempty = false;
 
-		o = s.taboption('service', form.Flag, "miniupnpd", _("Services") + ' -> ' + _('UPnP IGD & PCP'));
+		o = s.taboption('service', form.Flag, "miniupnpd", _('UPnP IGD & PCP'));
 		o.default = 0;
 		o.rmempty = false;
 
@@ -104,11 +104,11 @@ return view.extend({
 		o.default = 0;
 		o.rmempty = false;
 
-		o = s.taboption('service', form.Flag, "umdns", _('umdns'));
+		o = s.taboption('service', form.Flag, "umdns", _('mDNS'));
 		o.default = 0;
 		o.rmempty = false;
 
-		o = s.taboption('service', form.Flag, "switch_ports_status", 'switch_ports_status');
+		o = s.taboption('service', form.Flag, "switch_ports_status", _('Switch Port Status'));
 		o.default = 0;
 		o.rmempty = false;
 

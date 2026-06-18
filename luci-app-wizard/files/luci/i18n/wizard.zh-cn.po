@@ -4,29 +4,83 @@ msgstr "Content-Type: text/plain; charset=UTF-8\n"
 msgid "Wizard"
 msgstr "设置向导"
 
-msgid "Initial Router Setup"
-msgstr "路由器初始设置"
+msgid "Router Setup Wizard"
+msgstr "路由器设置向导"
 
-msgid "WAN Settings"
+msgid "Configure the basic Internet, Wi-Fi, local network, and optional service settings for this router."
+msgstr "配置此路由器的上网、Wi-Fi、本地网络和可选服务等基础设置。"
+
+msgid "Internet Settings"
 msgstr "上网设置"
 
-msgid "Wireless Settings"
-msgstr "无线设置"
+msgid "Choose how this router connects to the Internet."
+msgstr "选择此路由器连接互联网的方式。"
 
-msgid "If you are using this router for the first time, please configure it here."
-msgstr "如果您是首次使用本路由器，请在此完成基本设置。"
+msgid "Wi-Fi Settings"
+msgstr "Wi-Fi 设置"
 
-msgid "There are three ways to access the Internet. Please choose the appropriate one based on your network environment."
-msgstr "提供三种上网方式，请根据您的网络环境选择合适的方式。"
+msgid "Set the Wi-Fi network name and password. For advanced options, go to Network > Wireless."
+msgstr "设置 Wi-Fi 网络名称和密码。如需高级选项，请前往「网络 > 无线」。"
 
-msgid "Set the router's Wi-Fi name and password. For more advanced settings, please go to the Network > Wireless page."
-msgstr "设置路由器的 Wi-Fi 名称和密码。如需更多高级设置，请进入「网络 > 无线」页面。"
+msgid "Local Network"
+msgstr "本地网络"
 
-msgid "LAN Settings"
-msgstr "内网设置"
+msgid "Optional Services"
+msgstr "可选服务"
 
-msgid "If these functions or services are not required, they may be disabled to conserve memory."
-msgstr "如果不需要这些功能或服务，可以将其关闭以减少内存占用。"
+msgid "Turn off unused services to reduce memory usage."
+msgstr "关闭未使用的服务以减少内存占用。"
 
-msgid "Service Switches"
-msgstr "服务开关"
+msgid "Connection type"
+msgstr "连接方式"
+
+msgid "Automatic (DHCP)"
+msgstr "自动获取（DHCP）"
+
+msgid "Static IP address"
+msgstr "静态 IP 地址"
+
+msgid "PPPoE"
+msgstr "PPPoE"
+
+msgid "PPPoE username"
+msgstr "PPPoE 用户名"
+
+msgid "PPPoE password"
+msgstr "PPPoE 密码"
+
+msgid "IPv4 address"
+msgstr "IPv4 地址"
+
+msgid "IPv4 subnet mask"
+msgstr "IPv4 子网掩码"
+
+msgid "IPv4 gateway"
+msgstr "IPv4 网关"
+
+msgid "Custom DNS servers"
+msgstr "自定义 DNS 服务器"
+
+msgid "Wi-Fi network name"
+msgstr "Wi-Fi 网络名称"
+
+msgid "Wi-Fi password"
+msgstr "Wi-Fi 密码"
+
+msgid "URL logging"
+msgstr "URL 日志"
+
+msgid "QoS"
+msgstr "QoS"
+
+msgid "UPnP IGD & PCP"
+msgstr "UPnP IGD 和 PCP"
+
+msgid "IPv6"
+msgstr "IPv6"
+
+msgid "mDNS"
+msgstr "多播 DNS"
+
+msgid "Switch Port Status"
+msgstr "交换机端口状态"
