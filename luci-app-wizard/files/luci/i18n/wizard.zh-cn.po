@@ -84,3 +84,9 @@ msgstr "多播 DNS"
 
 msgid "Switch Port Status"
 msgstr "交换机端口状态"
+
+msgid "Enable"
+msgstr "启用"
+
+msgid "Disable"
+msgstr "禁用"

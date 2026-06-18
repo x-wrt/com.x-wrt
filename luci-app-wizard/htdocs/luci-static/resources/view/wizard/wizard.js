@@ -19,6 +19,15 @@ return view.extend({
 
 		var m, s, o;
 		var has_wifi = false;
+		var serviceOption = function(name, title, defaultValue) {
+			var opt = s.taboption('service', form.ListValue, name, title);
+			opt.default = defaultValue || '0';
+			opt.rmempty = false;
+			opt.widget = 'radio';
+			opt.value('1', _('Enable'));
+			opt.value('0', _('Disable'));
+			return opt;
+		};
 
 		if (uci.sections('wireless', 'wifi-device').length > 0) {
 			has_wifi = true;
@@ -88,29 +97,12 @@ return view.extend({
 		o.value('255.255.0.0');
 		o.value('255.0.0.0');
 
-		o = s.taboption('service', form.Flag, "urllogger", _("Status") + ' -> ' + _('URL logging'));
-		o.default = 0;
-		o.rmempty = false;
-
-		o = s.taboption('service', form.Flag, "qos", _("Network") + ' -> ' + _('QoS'));
-		o.default = 0;
-		o.rmempty = false;
-
-		o = s.taboption('service', form.Flag, "miniupnpd", _("Services") + ' -> ' + _('UPnP IGD & PCP'));
-		o.default = 0;
-		o.rmempty = false;
-
-		o = s.taboption('service', form.Flag, "ipv6", _('IPv6'));
-		o.default = 0;
-		o.rmempty = false;
-
-		o = s.taboption('service', form.Flag, "umdns", _('mDNS'));
-		o.default = 0;
-		o.rmempty = false;
-
-		o = s.taboption('service', form.Flag, "switch_ports_status", _('Switch Port Status'));
-		o.default = 0;
-		o.rmempty = false;
+		serviceOption('urllogger', _("Status") + ' -> ' + _('URL logging'));
+		serviceOption('qos', _("Network") + ' -> ' + _('QoS'));
+		serviceOption('miniupnpd', _("Services") + ' -> ' + _('UPnP IGD & PCP'));
+		serviceOption('ipv6', _('IPv6'), '1');
+		serviceOption('umdns', _('mDNS'), '1');
+		serviceOption('switch_ports_status', _('Switch Port Status'));
 
 		return m.render();
 	}
