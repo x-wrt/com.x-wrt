@@ -147,9 +147,3 @@ msgstr "无效的 MAC：%s"
 
 msgid "Unable to load log data: %s"
 msgstr "无法加载日志数据：%s"
-
-msgid "Scroll to bottom"
-msgstr "滚动到底部"
-
-msgid "Scroll to top"
-msgstr "滚动到顶部"
