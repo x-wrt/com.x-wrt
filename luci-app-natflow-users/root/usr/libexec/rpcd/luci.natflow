@@ -46,9 +46,10 @@ local methods = {
 		call = function(args)
 			local ip = args and args.token
 
-			if ip and ip:match("^%d+%.%d+%.%d+%.%d+$") then
+			-- 💡 允许 IPv4 (含点) 和 IPv6 (含冒号和 a-f 字母)
+			if ip and ip:match("^[a-fA-F0-9:%.]+$") then
 				local cmd = [[echo kick %s >/dev/userinfo_ctl]]
-                                sys.call(string.format(cmd, ip))
+				sys.call(string.format(cmd, ip))
 				return { result = "OK" }
 			end
 
@@ -60,9 +61,10 @@ local methods = {
 		call = function(args)
 			local ip = args and args.token
 
-			if ip and ip:match("^%d+%.%d+%.%d+%.%d+$") then
+			-- 💡 允许 IPv4 和 IPv6
+			if ip and ip:match("^[a-fA-F0-9:%.]+$") then
 				local cmd = [[echo set-status %s 6 >/dev/userinfo_ctl]]
-                                sys.call(string.format(cmd, ip))
+				sys.call(string.format(cmd, ip))
 				return { result = "OK" }
 			end
 
@@ -74,9 +76,10 @@ local methods = {
 		call = function(args)
 			local ip = args and args.token
 
-			if ip and ip:match("^%d+%.%d+%.%d+%.%d+$") then
+			-- 💡 允许 IPv4 和 IPv6
+			if ip and ip:match("^[a-fA-F0-9:%.]+$") then
 				local cmd = [[echo set-status %s 1 >/dev/userinfo_ctl]]
-                                sys.call(string.format(cmd, ip))
+				sys.call(string.format(cmd, ip))
 				return { result = "OK" }
 			end
 
@@ -144,4 +147,5 @@ elseif arg[1] == "call" then
 	local result, code = method.call(args)
 	print((json.stringify(result):gsub("^%[%]$", "{}")))
 	os.exit(code or 0)
+
 end
