@@ -5,6 +5,9 @@ local UCI = require "luci.model.uci"
 local fs   = require "nixio.fs"
 local sys  = require "luci.sys"
 
+-- 💡 安全引入 OpenWrt 原生的 luci.ip 库（专用于 IP 各种格式化与计算）
+local has_ip, luci_ip = pcall(require, "luci.ip")
+
 local methods = {
 	get_users = {
 		call = function()
@@ -21,6 +24,15 @@ local methods = {
 					line:match("^(%S+),(%S+),(%S+),(%S+),%S+,%S+,(%d+):(%d+),(%d+):(%d+),(%d+):(%d+),(%d+):(%d+)$")
 
 				if ip and mac and auth_type ~= "0x0" then
+
+					-- ✨ 核心修改点：检测到包含冒号即为 IPv6，利用 luci.ip 将其转换为压缩格式
+					if has_ip and ip:find(":") then
+						local ip_obj = luci_ip.new(ip)
+						if ip_obj then
+							ip = ip_obj:string() -- 自动输出最简压缩形态
+						end
+					end
+
 					local entry = {
 						ip = ip,
 						mac = mac,
@@ -46,7 +58,7 @@ local methods = {
 		call = function(args)
 			local ip = args and args.token
 
-			-- 💡 允许 IPv4 (含点) 和 IPv6 (含冒号和 a-f 字母)
+			-- 允许 IPv4 (含点) 和 IPv6 (含冒号和 a-f 字母)
 			if ip and ip:match("^[a-fA-F0-9:%.]+$") then
 				local cmd = [[echo kick %s >/dev/userinfo_ctl]]
 				sys.call(string.format(cmd, ip))
@@ -61,7 +73,7 @@ local methods = {
 		call = function(args)
 			local ip = args and args.token
 
-			-- 💡 允许 IPv4 和 IPv6
+			-- 允许 IPv4 和 IPv6
 			if ip and ip:match("^[a-fA-F0-9:%.]+$") then
 				local cmd = [[echo set-status %s 6 >/dev/userinfo_ctl]]
 				sys.call(string.format(cmd, ip))
@@ -76,7 +88,7 @@ local methods = {
 		call = function(args)
 			local ip = args and args.token
 
-			-- 💡 允许 IPv4 和 IPv6
+			-- 允许 IPv4 和 IPv6
 			if ip and ip:match("^[a-fA-F0-9:%.]+$") then
 				local cmd = [[echo set-status %s 1 >/dev/userinfo_ctl]]
 				sys.call(string.format(cmd, ip))
