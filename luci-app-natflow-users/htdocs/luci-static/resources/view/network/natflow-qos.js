@@ -167,6 +167,11 @@ return view.extend({
 		s.nodescriptions = true;
 		s.sortable = true;
 
+		o = s.option(form.Flag, 'disabled', _('Enabled'));
+		o.enabled = '0';
+		o.disabled = '1';
+		o.default = o.enabled;
+
 		o = s.option(form.Value, 'proto', _('Protocol'))
 		o.default = '';
 		o.rmempty = true;
@@ -224,17 +229,17 @@ return view.extend({
 			return value == '' || value == "0" || speed_validate(value);
 		}
 
-		o = s.option(form.Flag, 'disabled', _('Enabled'));
-		o.enabled = '0';
-		o.disabled = '1';
-		o.default = o.enabled;
-
 		s = m.section(form.GridSection, 'qos_simple', _('Per-client traffic shaping rules'),
 				_('Set bandwidth limits for specific client IP addresses or ranges. Each matching client is limited by the rule that matches it.'));
 		s.addremove = true;
 		s.anonymous = false;
 		s.nodescriptions = true;
 		s.sortable = true;
+
+		o = s.option(form.Flag, 'disabled', _('Enabled'));
+		o.enabled = '0';
+		o.disabled = '1';
+		o.default = o.enabled;
 
 		o = s.option(form.TextValue, 'user', _('Client IP'),
 			_('Enter one or more IPv4 or IPv6 addresses, CIDR ranges, or IPv4 address ranges, separated by commas. Example: 192.168.100.0/24,2001:db8::/64,1.2.3.4,172.16.0.100-172.16.0.111'));
@@ -260,11 +265,6 @@ return view.extend({
 		o.validate = function(section_id, value) {
 			return value == '' || value == "0" || speed_validate(value);
 		}
-
-		o = s.option(form.Flag, 'disabled', _('Enabled'));
-		o.enabled = '0';
-		o.disabled = '1';
-		o.default = o.enabled;
 
 		return m.render();
 	}
