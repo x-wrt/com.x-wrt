@@ -480,6 +480,12 @@ test $version -lt 29 && {
 	version=29
 }
 
+test $version -lt 30 && {
+	uci set natflow.@auth[0].sipgrp="$(uci get natflow.@auth[0].sipgrp),fc00::/7,2000::/3"
+	uci commit natflow
+	version=30
+}
+
 rm -f /lib/modules/$(uname -r)/crypto_safexcel.ko
 rmmod crypto_safexcel &>/dev/null
 
