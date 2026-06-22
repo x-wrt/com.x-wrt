@@ -58,8 +58,8 @@ msgstr "这些 IP 范围内的客户端将作为用户进行管理。"
 msgid "Client IP ranges"
 msgstr "客户端 IP 范围"
 
-msgid "Enter one or more IPv4 addresses, CIDR ranges, or IP ranges, separated by commas. Example: 192.168.100.0/24,1.2.3.4,172.16.0.100-172.16.0.111"
-msgstr "输入一个或多个 IPv4 地址、CIDR 网段或 IP 范围，用逗号分隔。例如：192.168.100.0/24,1.2.3.4,172.16.0.100-172.16.0.111"
+msgid "Enter one or more IPv4 or IPv6 addresses, CIDR ranges, or IPv4 address ranges, separated by commas. Example: 192.168.100.0/24,2001:db8::/64,1.2.3.4,172.16.0.100-172.16.0.111"
+msgstr "输入一个或多个 IPv4 或 IPv6 地址、CIDR 网段或 IPv4 地址范围，用逗号分隔。例如：192.168.100.0/24,2001:db8::/64,1.2.3.4,172.16.0.100-172.16.0.111"
 
 msgid "Protocol"
 msgstr "协议"
@@ -130,8 +130,8 @@ msgstr "重置连接"
 msgid "Redirect"
 msgstr "重定向"
 
-msgid "Client IPv4 addresses"
-msgstr "客户端 IPv4 地址"
+msgid "Client IP addresses"
+msgstr "客户端 IP 地址"
 
 msgid "Client IPv6 addresses"
 msgstr "客户端 IPv6 地址"

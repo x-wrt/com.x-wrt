@@ -23,16 +23,105 @@ function ip_range_validate(range)
 	var d = dot.split('.');
 	return (((((((+d[0])*256)+(+d[1]))*256)+(+d[2]))*256)+(+d[3])) <= (((((((+d[4])*256)+(+d[5]))*256)+(+d[6]))*256)+(+d[7]));
 }
+
+function ipv4_validate(addr)
+{
+	var re_ip = /^(25[0-5]|2[0-4][0-9]|1[0-9][0-9]|[1-9]?[0-9])\.(25[0-5]|2[0-4][0-9]|1[0-9][0-9]|[1-9]?[0-9])\.(25[0-5]|2[0-4][0-9]|1[0-9][0-9]|[1-9]?[0-9])\.(25[0-5]|2[0-4][0-9]|1[0-9][0-9]|[1-9]?[0-9])$/;
+
+	return re_ip.test(addr);
+}
+
+function ipv6_validate(addr)
+{
+	var parts, left, right, count;
+
+	if (!addr || addr.indexOf(':::') >= 0)
+		return false;
+
+	if (addr.indexOf('::') != addr.lastIndexOf('::'))
+		return false;
+
+	function count_groups(part) {
+		var groups, n = 0;
+
+		if (part == '')
+			return 0;
+
+		groups = part.split(':');
+
+		for (var i = 0; i < groups.length; i++) {
+			if (groups[i] == '')
+				return -1;
+
+			if (groups[i].indexOf('.') >= 0) {
+				if (i != groups.length - 1 || !ipv4_validate(groups[i]))
+					return -1;
+				n += 2;
+			}
+			else if (!/^[0-9a-fA-F]{1,4}$/.test(groups[i])) {
+				return -1;
+			}
+			else {
+				n++;
+			}
+		}
+
+		return n;
+	}
+
+	parts = addr.split('::');
+
+	if (parts.length == 1)
+		return count_groups(addr) == 8;
+
+	left = count_groups(parts[0]);
+	right = count_groups(parts[1]);
+	count = left + right;
+
+	return left >= 0 && right >= 0 && count < 8;
+}
+
+function ip_token_validate(token)
+{
+	var parts, addr, prefix, re_ip_range;
+
+	token = token.trim();
+
+	if (token == '')
+		return false;
+
+	parts = token.split('/');
+
+	if (parts.length > 2 || parts[0] == '')
+		return false;
+
+	addr = parts[0];
+
+	if (parts.length == 2) {
+		prefix = +parts[1];
+
+		if (!/^\d+$/.test(parts[1]))
+			return false;
+
+		if (ipv4_validate(addr))
+			return prefix >= 0 && prefix <= 32;
+
+		if (ipv6_validate(addr))
+			return prefix >= 0 && prefix <= 128;
+
+		return false;
+	}
+
+	re_ip_range = /^(25[0-5]|2[0-4][0-9]|1[0-9][0-9]|[1-9]?[0-9])\.(25[0-5]|2[0-4][0-9]|1[0-9][0-9]|[1-9]?[0-9])\.(25[0-5]|2[0-4][0-9]|1[0-9][0-9]|[1-9]?[0-9])\.(25[0-5]|2[0-4][0-9]|1[0-9][0-9]|[1-9]?[0-9])-(25[0-5]|2[0-4][0-9]|1[0-9][0-9]|[1-9]?[0-9])\.(25[0-5]|2[0-4][0-9]|1[0-9][0-9]|[1-9]?[0-9])\.(25[0-5]|2[0-4][0-9]|1[0-9][0-9]|[1-9]?[0-9])\.(25[0-5]|2[0-4][0-9]|1[0-9][0-9]|[1-9]?[0-9])$/;
+
+	return ipv4_validate(addr) || ipv6_validate(addr) || (re_ip_range.test(addr) && ip_range_validate(addr));
+}
+
 function nets_validate(nets)
 {
-	var re_ip = /^(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$/
-	var re_ip_cidr = /^(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\/([0-9]|1[0-9]|2[0-9]|3[012])$/
-	var re_ip_range = /^(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)-(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$/
 	var net = nets.split(',');
 	for (var i = 0; i < net.length; i++) {
-		if (net[i].match(re_ip)) continue;
-		if (net[i].match(re_ip_cidr)) continue;
-		if (net[i].match(re_ip_range) && ip_range_validate(net[i])) continue;
+		if (ip_token_validate(net[i])) continue;
 		return false;
 	}
 	return true
@@ -136,11 +225,11 @@ return view.extend({
 		o.disabled = '1';
 		o.default = o.enabled;
 
-		o = s.option(form.TextValue, 'ip', _('Client IPv4 addresses'),
-			_('Enter one or more IPv4 addresses, CIDR ranges, or IP ranges, separated by commas. Example: 192.168.100.0/24,1.2.3.4,172.16.0.100-172.16.0.111'));
+		o = s.option(form.TextValue, 'ip', _('Client IP addresses'),
+			_('Enter one or more IPv4 or IPv6 addresses, CIDR ranges, or IPv4 address ranges, separated by commas. Example: 192.168.100.0/24,2001:db8::/64,1.2.3.4,172.16.0.100-172.16.0.111'));
 		o.default = '';
 		o.rmempty = true;
-		o.placeholder = '192.168.15.2-192.168.15.254'
+		o.placeholder = '192.168.15.2-192.168.15.254,2001:db8::/64'
 		o.validate = function(section_id, value) {
 			return value == '' || nets_validate(value);
 		}
