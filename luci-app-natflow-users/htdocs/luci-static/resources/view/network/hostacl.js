@@ -226,6 +226,11 @@ return view.extend({
 		s.sortable = true;
 		s.max_cols = 3;
 
+		o = s.option(form.Flag, 'disabled', _('Enabled'));
+		o.enabled = '0';
+		o.disabled = '1';
+		o.default = o.enabled;
+
 		o = s.option(form.TextValue, 'host', _('Domains'), _('Domain names to match, separated by commas.'));
 		o.rmempty = false;
 		o.placeholder = "baidu.com,qq.com"
@@ -238,11 +243,6 @@ return view.extend({
 		o.value('drop', _('Drop'));
 		o.value('reset', _('Reset connection'));
 		o.value('redirect', _('Redirect'));
-
-		o = s.option(form.Flag, 'disabled', _('Enabled'));
-		o.enabled = '0';
-		o.disabled = '1';
-		o.default = o.enabled;
 
 		o = s.option(form.TextValue, 'ip', _('Client IPv4 addresses'),
 			_('Enter one or more IPv4 addresses, IPv4 CIDR ranges, or IPv4 address ranges, separated by commas. Example: 192.168.100.0/24,1.2.3.4,172.16.0.100-172.16.0.111'));
