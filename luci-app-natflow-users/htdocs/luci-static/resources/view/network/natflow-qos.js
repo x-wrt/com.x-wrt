@@ -174,7 +174,7 @@ return view.extend({
 		o.value('tcp', 'TCP');
 		o.value('udp', 'UDP');
 
-		o = s.option(form.Value, 'user', _('Client IP'),
+		o = s.option(form.TextValue, 'user', _('Client IP'),
 			_('Enter one or more IPv4 or IPv6 addresses, CIDR ranges, or IPv4 address ranges, separated by commas. Example: 192.168.100.0/24,2001:db8::/64,1.2.3.4,172.16.0.100-172.16.0.111'));
 		o.default = '';
 		o.rmempty = true;
@@ -191,7 +191,7 @@ return view.extend({
 			return value == '' || ports_validate(value);
 		}
 
-		o = s.option(form.Value, 'remote', _('Remote IP'));
+		o = s.option(form.TextValue, 'remote', _('Remote IP'));
 		o.default = '';
 		o.rmempty = true;
 		o.placeholder = '123.123.1.3/29,2001:db8:1::/64'
@@ -235,7 +235,7 @@ return view.extend({
 		s.nodescriptions = true;
 		s.sortable = true;
 
-		o = s.option(form.Value, 'user', _('Client IP'),
+		o = s.option(form.TextValue, 'user', _('Client IP'),
 			_('Enter one or more IPv4 or IPv6 addresses, CIDR ranges, or IPv4 address ranges, separated by commas. Example: 192.168.100.0/24,2001:db8::/64,1.2.3.4,172.16.0.100-172.16.0.111'));
 		o.default = '';
 		o.rmempty = true;

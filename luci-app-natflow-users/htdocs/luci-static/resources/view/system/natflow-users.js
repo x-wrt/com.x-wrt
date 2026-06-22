@@ -283,7 +283,7 @@ return view.extend({
 		s.nodescriptions = true;
 		s.sortable = false;
 
-		o = s.option(form.Value, 'sipgrp', _('Client IP ranges'),
+		o = s.option(form.TextValue, 'sipgrp', _('Client IP ranges'),
 			_('Enter one or more IPv4 or IPv6 addresses, CIDR ranges, or IPv4 address ranges, separated by commas. Example: 192.168.100.0/24,2001:db8::/64,1.2.3.4,172.16.0.100-172.16.0.111'));
 		o.rmempty = false;
 		o.placeholder = '192.168.15.2-192.168.15.254,2001:db8::/64'
