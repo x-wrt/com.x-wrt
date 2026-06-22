@@ -81,7 +81,7 @@ function ipv6_validate(addr)
 	return left >= 0 && right >= 0 && count < 8;
 }
 
-function ip_token_validate(token)
+function ipv4_token_validate(token)
 {
 	var parts, addr, prefix, re_ip_range;
 
@@ -106,22 +106,41 @@ function ip_token_validate(token)
 		if (ipv4_validate(addr))
 			return prefix >= 0 && prefix <= 32;
 
-		if (ipv6_validate(addr))
-			return prefix >= 0 && prefix <= 128;
-
 		return false;
 	}
 
 	re_ip_range = /^(25[0-5]|2[0-4][0-9]|1[0-9][0-9]|[1-9]?[0-9])\.(25[0-5]|2[0-4][0-9]|1[0-9][0-9]|[1-9]?[0-9])\.(25[0-5]|2[0-4][0-9]|1[0-9][0-9]|[1-9]?[0-9])\.(25[0-5]|2[0-4][0-9]|1[0-9][0-9]|[1-9]?[0-9])-(25[0-5]|2[0-4][0-9]|1[0-9][0-9]|[1-9]?[0-9])\.(25[0-5]|2[0-4][0-9]|1[0-9][0-9]|[1-9]?[0-9])\.(25[0-5]|2[0-4][0-9]|1[0-9][0-9]|[1-9]?[0-9])\.(25[0-5]|2[0-4][0-9]|1[0-9][0-9]|[1-9]?[0-9])$/;
 
-	return ipv4_validate(addr) || ipv6_validate(addr) || (re_ip_range.test(addr) && ip_range_validate(addr));
+	return ipv4_validate(addr) || (re_ip_range.test(addr) && ip_range_validate(addr));
 }
 
-function nets_validate(nets)
+function ipv6_cidr_token_validate(token)
+{
+	var parts, prefix;
+
+	token = token.trim();
+
+	if (token == '')
+		return false;
+
+	parts = token.split('/');
+
+	if (parts.length != 2 || parts[0] == '' || parts[1] == '')
+		return false;
+
+	if (!ipv6_validate(parts[0]) || !/^\d+$/.test(parts[1]))
+		return false;
+
+	prefix = +parts[1];
+
+	return prefix >= 0 && prefix <= 128;
+}
+
+function nets_validate(nets, token_validate)
 {
 	var net = nets.split(',');
 	for (var i = 0; i < net.length; i++) {
-		if (ip_token_validate(net[i])) continue;
+		if (token_validate(net[i])) continue;
 		return false;
 	}
 	return true
@@ -225,18 +244,25 @@ return view.extend({
 		o.disabled = '1';
 		o.default = o.enabled;
 
-		o = s.option(form.TextValue, 'ip', _('Client IP addresses'),
-			_('Enter one or more IPv4 or IPv6 addresses, CIDR ranges, or IPv4 address ranges, separated by commas. Example: 192.168.100.0/24,2001:db8::/64,1.2.3.4,172.16.0.100-172.16.0.111'));
+		o = s.option(form.TextValue, 'ip', _('Client IPv4 addresses'),
+			_('Enter one or more IPv4 addresses, IPv4 CIDR ranges, or IPv4 address ranges, separated by commas. Example: 192.168.100.0/24,1.2.3.4,172.16.0.100-172.16.0.111'));
 		o.default = '';
 		o.rmempty = true;
-		o.placeholder = '192.168.15.2-192.168.15.254,2001:db8::/64'
+		o.placeholder = '192.168.100.0/24,1.2.3.4,172.16.0.100-172.16.0.111'
 		o.validate = function(section_id, value) {
-			return value == '' || nets_validate(value);
+			return value == '' || nets_validate(value, ipv4_token_validate) ||
+				_('Enter valid IPv4 addresses, IPv4 CIDR ranges, or IPv4 address ranges separated by commas.');
 		}
 
-		o = s.option(form.TextValue, 'ipv6', _('Client IPv6 addresses'));
+		o = s.option(form.TextValue, 'ipv6', _('Client IPv6 CIDR ranges'),
+			_('Enter one or more IPv6 CIDR ranges separated by commas. Example: 2001:db8::/64,fd00::/8'));
 		o.default = '';
 		o.rmempty = true;
+		o.placeholder = '2001:db8::/64,fd00::/8'
+		o.validate = function(section_id, value) {
+			return value == '' || nets_validate(value, ipv6_cidr_token_validate) ||
+				_('Enter valid IPv6 CIDR ranges separated by commas.');
+		}
 
 		o = s.option(form.DynamicList, 'mac', _('Client MAC addresses'));
 		o.rmempty = true;

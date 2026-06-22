@@ -130,11 +130,23 @@ msgstr "重置连接"
 msgid "Redirect"
 msgstr "重定向"
 
-msgid "Client IP addresses"
-msgstr "客户端 IP 地址"
+msgid "Client IPv4 addresses"
+msgstr "客户端 IPv4 地址"
 
-msgid "Client IPv6 addresses"
-msgstr "客户端 IPv6 地址"
+msgid "Enter one or more IPv4 addresses, IPv4 CIDR ranges, or IPv4 address ranges, separated by commas. Example: 192.168.100.0/24,1.2.3.4,172.16.0.100-172.16.0.111"
+msgstr "输入一个或多个 IPv4 地址、IPv4 CIDR 网段或 IPv4 地址范围，用逗号分隔。例如：192.168.100.0/24,1.2.3.4,172.16.0.100-172.16.0.111"
+
+msgid "Enter valid IPv4 addresses, IPv4 CIDR ranges, or IPv4 address ranges separated by commas."
+msgstr "请输入有效的 IPv4 地址、IPv4 CIDR 网段或 IPv4 地址范围，并用逗号分隔。"
+
+msgid "Client IPv6 CIDR ranges"
+msgstr "客户端 IPv6 CIDR 网段"
+
+msgid "Enter one or more IPv6 CIDR ranges separated by commas. Example: 2001:db8::/64,fd00::/8"
+msgstr "输入一个或多个 IPv6 CIDR 网段，用逗号分隔。例如：2001:db8::/64,fd00::/8"
+
+msgid "Enter valid IPv6 CIDR ranges separated by commas."
+msgstr "请输入有效的 IPv6 CIDR 网段，并用逗号分隔。"
 
 msgid "Client MAC addresses"
 msgstr "客户端 MAC 地址"
