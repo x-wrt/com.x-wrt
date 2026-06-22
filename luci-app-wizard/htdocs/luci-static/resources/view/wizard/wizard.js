@@ -19,6 +19,31 @@ return view.extend({
 
 		var m, s, o;
 		var has_wifi = false;
+		var splitIPv4CIDR = function(value) {
+			var parts, prefix, octets, bits, i;
+
+			if (typeof(value) != 'string' || value.indexOf('/') < 0)
+				return null;
+
+			parts = value.split('/');
+			if (parts.length != 2 || !parts[0] || !parts[1])
+				return null;
+
+			prefix = +parts[1];
+			if (prefix < 0 || prefix > 32 || prefix != Math.floor(prefix))
+				return null;
+
+			octets = [];
+			for (i = 0; i < 4; i++) {
+				bits = Math.max(Math.min(prefix - (i * 8), 8), 0);
+				octets.push(bits ? 256 - Math.pow(2, 8 - bits) : 0);
+			}
+
+			return {
+				addr: parts[0],
+				netmask: octets.join('.')
+			};
+		};
 		var serviceOption = function(name, title, defaultValue) {
 			var opt = s.taboption('service', form.ListValue, name, title);
 			opt.default = defaultValue || '0';
@@ -90,12 +115,23 @@ return view.extend({
 
 		o = s.taboption('lansetup', form.Value, 'lan_ipaddr', _('IPv4 address'));
 		o.datatype = 'ip4addr';
+		o.cfgvalue = function(section_id) {
+			var value = uci.get('wizard', section_id, 'lan_ipaddr');
+			var cidr = splitIPv4CIDR(value);
+
+			return cidr ? cidr.addr : value;
+		};
 
 		o = s.taboption('lansetup', form.Value, 'lan_netmask', _('IPv4 subnet mask'));
 		o.datatype = 'ip4addr';
 		o.value('255.255.255.0');
 		o.value('255.255.0.0');
 		o.value('255.0.0.0');
+		o.cfgvalue = function(section_id) {
+			var cidr = splitIPv4CIDR(uci.get('wizard', section_id, 'lan_ipaddr'));
+
+			return cidr ? cidr.netmask : uci.get('wizard', section_id, 'lan_netmask');
+		};
 
 		serviceOption('urllogger', _("Status") + ' -> ' + _('URL logging'));
 		serviceOption('qos', _("Network") + ' -> ' + _('QoS'));
