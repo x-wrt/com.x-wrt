@@ -191,7 +191,8 @@ return view.extend({
 			return value == '' || ports_validate(value);
 		}
 
-		o = s.option(form.TextValue, 'remote', _('Remote IP'));
+		o = s.option(form.TextValue, 'remote', _('Remote IP'),
+			_('Enter one or more remote IPv4 or IPv6 addresses, CIDR ranges, or IPv4 address ranges, separated by commas. Example: 123.123.1.3/29,2001:db8:1::/64'));
 		o.default = '';
 		o.rmempty = true;
 		o.placeholder = '123.123.1.3/29,2001:db8:1::/64'
