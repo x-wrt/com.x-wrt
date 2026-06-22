@@ -6,6 +6,9 @@ START=95
 IPOPS="lua /usr/lib/lua/ipops.lua"
 test -e /usr/share/natflow/ipops.lua && IPOPS="lua /usr/share/natflow/ipops.lua"
 
+QOS_SIMPLE_SET_PREFIX="qos_simple_user"
+QOS_SIMPLE_CACHE_PREFIX="/tmp/natflow-simple-qos.user"
+
 get_rate_data()
 {
 	local rate num int frac frac_value digit scale mul div
@@ -79,6 +82,95 @@ get_rate_data()
 	esac
 }
 
+qos_simple_rebuild_ipv6_set()
+{
+	local idx=$1
+	local user=$2
+	local set="${QOS_SIMPLE_SET_PREFIX}${idx}_v6"
+	local cache="${QOS_SIMPLE_CACHE_PREFIX}${idx}.v6"
+	local net n
+
+	ipset create "$set" hash:net family inet6 2>/dev/null
+	ipset flush "$set" 2>/dev/null
+
+	for net in $(echo "$user" | tr ',' ' '); do
+		case "$net" in
+			*:*)
+				[ "$net" = "::/0" ] && net="::/1 8000::/1"
+				for n in $net; do
+					ipset add "$set" "$n" 2>/dev/null
+				done
+			;;
+		esac
+	done
+
+	echo "$user" >"$cache"
+}
+
+qos_simple_user_match()
+{
+	local idx=$1
+	local user=$2
+	local ip=$3
+	local set="${QOS_SIMPLE_SET_PREFIX}${idx}_v6"
+	local cache="${QOS_SIMPLE_CACHE_PREFIX}${idx}.v6"
+
+	test -z "$user" && return 0
+
+	case "$ip" in
+		*:*)
+			[ "$(cat "$cache" 2>/dev/null)" = "$user" ] || qos_simple_rebuild_ipv6_set "$idx" "$user"
+			ipset test "$set" "$ip" >/dev/null 2>&1
+		;;
+		*)
+			$IPOPS netStrings_test_netStrings "$user" "$ip"
+		;;
+	esac
+}
+
+qos_simple_apply_ip()
+{
+	local ip=$1
+	local verbose=$2
+	local idx=0
+	local disabled user rx_rate tx_rate
+
+	while uci get natflow.@qos_simple[$idx] &>/dev/null; do
+		disabled=$(uci get natflow.@qos_simple[$idx].disabled 2>/dev/null || echo 0)
+		if [ "$disabled" = "0" ]; then
+			user=$(uci get natflow.@qos_simple[$idx].user 2>/dev/null)
+			if qos_simple_user_match "$idx" "$user" "$ip"; then
+				rx_rate=$(uci get natflow.@qos_simple[$idx].rx_rate 2>/dev/null)
+				tx_rate=$(uci get natflow.@qos_simple[$idx].tx_rate 2>/dev/null)
+				rx_rate=$(get_rate_data "$rx_rate")
+				tx_rate=$(get_rate_data "$tx_rate")
+				[ "$verbose" = "1" ] && echo set-token-ctrl $ip $rx_rate $tx_rate
+				echo set-token-ctrl $ip $rx_rate $tx_rate >/dev/userinfo_ctl
+				return 0
+			fi
+		fi
+		idx=$((idx+1))
+	done
+
+	return 1
+}
+
+qos_simple_refresh_ipv6_neighbor()
+{
+	local line=$1
+	local ip=$2
+	local mac iface
+
+	case "$ip" in
+		*:*)
+			mac=$(echo $line | cut -d, -f2)
+			for iface in $(ip -6 neigh show $ip | grep -o "dev .*" | awk '{print $2}'); do
+				[ "$(fw3 -q device $iface 2>/dev/null)" = "lan" ] && ip -6 neigh replace $ip lladdr $mac dev $iface nud reachable
+			done
+		;;
+	esac
+}
+
 dispatch_userinfo_event_fifo()
 {
 	pgrep -f "sh -c echo .*>/tmp/userinfo_event_fifo" >/dev/null && {
@@ -96,61 +188,16 @@ qos_simple_watch()
 	cat /dev/userinfo_event_ctl 2>/dev/null | while read line; do
 		dispatch_userinfo_event_fifo "$line"
 		ip=${line//,*}
-		idx=0
-		if test -n "${ip//*:*}"; then
-		while uci get natflow.@qos_simple[$idx] &>/dev/null; do
-			disabled=$(uci get natflow.@qos_simple[$idx].disabled 2>/dev/null || echo 0)
-			if [ "$disabled" = "0" ]; then
-				user=$(uci get natflow.@qos_simple[$idx].user 2>/dev/null)
-				if test -z "$user" || $IPOPS netStrings_test_netStrings "$user" "$ip"; then
-					rx_rate=$(uci get natflow.@qos_simple[$idx].rx_rate 2>/dev/null)
-					tx_rate=$(uci get natflow.@qos_simple[$idx].tx_rate 2>/dev/null)
-					rx_rate=$(get_rate_data "$rx_rate")
-					tx_rate=$(get_rate_data "$tx_rate")
-					echo set-token-ctrl $ip $rx_rate $tx_rate >/dev/userinfo_ctl
-					break
-				fi
-			fi
-			idx=$((idx+1))
-		done
-		fi
-		test -z "${ip//*:*}" && {
-			mac=$(echo $line | cut -d, -f2)
-			for iface in $(ip -6 neigh show $ip | grep -o "dev .*" | awk '{print $2}'); do
-				[ "$(fw3 -q device $iface 2>/dev/null)" = "lan" ] && ip -6 neigh replace $ip lladdr $mac dev $iface nud reachable
-			done
-		}
+		qos_simple_apply_ip "$ip"
+		qos_simple_refresh_ipv6_neighbor "$line" "$ip"
 	done
 }
 
 start() {
 	cat /dev/userinfo_ctl | while read line; do
 		ip=${line//,*}
-		idx=0
-		if test -n "${ip//*:*}"; then
-		while uci get natflow.@qos_simple[$idx] &>/dev/null; do
-			disabled=$(uci get natflow.@qos_simple[$idx].disabled 2>/dev/null || echo 0)
-			if [ "$disabled" = "0" ]; then
-				user=$(uci get natflow.@qos_simple[$idx].user 2>/dev/null)
-				if test -z "$user" || $IPOPS netStrings_test_netStrings "$user" "$ip"; then
-					rx_rate=$(uci get natflow.@qos_simple[$idx].rx_rate 2>/dev/null)
-					tx_rate=$(uci get natflow.@qos_simple[$idx].tx_rate 2>/dev/null)
-					rx_rate=$(get_rate_data "$rx_rate")
-					tx_rate=$(get_rate_data "$tx_rate")
-					echo set-token-ctrl $ip $rx_rate $tx_rate
-					echo set-token-ctrl $ip $rx_rate $tx_rate >/dev/userinfo_ctl
-					break
-				fi
-			fi
-			idx=$((idx+1))
-		done
-		fi
-		test -z "${ip//*:*}" && {
-			mac=$(echo $line | cut -d, -f2)
-			for iface in $(ip -6 neigh show $ip | grep -o "dev .*" | awk '{print $2}'); do
-				[ "$(fw3 -q device $iface 2>/dev/null)" = "lan" ] && ip -6 neigh replace $ip lladdr $mac dev $iface nud reachable
-			done
-		}
+		qos_simple_apply_ip "$ip" 1
+		qos_simple_refresh_ipv6_neighbor "$line" "$ip"
 	done
 
 	test -e /tmp/userinfo_event_fifo || mkfifo /tmp/userinfo_event_fifo
@@ -164,6 +211,10 @@ stop() {
 		ip=${line//,*}
 		echo set-token-ctrl $ip 0 0 >/dev/userinfo_ctl
 	done
+	ipset list -n 2>/dev/null | grep "^${QOS_SIMPLE_SET_PREFIX}[0-9].*_v6$" | while read setname; do
+		ipset destroy "$setname" 2>/dev/null
+	done
+	rm -f ${QOS_SIMPLE_CACHE_PREFIX}*.v6
 }
 
 restart() {
