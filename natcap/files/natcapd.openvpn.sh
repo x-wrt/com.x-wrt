@@ -22,10 +22,10 @@ make_config()
 	test -f /etc/openvpn/natcap-ta.key && TA_KEY=/etc/openvpn/natcap-ta.key
 
 	if [ "$mode" = "1" ]; then
-		cat ${BASE_CONFIG} | sed "s/^remote .*4911$/remote $hname.dns.x-wrt.com 4911/;s/^proto tcp$/proto $PROTO/;s/dev tun/dev tap/"
+		sed "s/^remote .*4911$/remote $hname.dns.x-wrt.com 4911/;s/^proto tcp$/proto $PROTO/;s/dev tun/dev tap/" ${BASE_CONFIG}
 		echo tun-mtu 1404
 	else
-		cat ${BASE_CONFIG} | sed "s/^remote .*4911$/remote $hname.dns.x-wrt.com 4911/;s/^proto tcp$/proto $PROTO/"
+		sed "s/^remote .*4911$/remote $hname.dns.x-wrt.com 4911/;s/^proto tcp$/proto $PROTO/" ${BASE_CONFIG}
 		echo tun-mtu 1420
 	fi
 	echo -e '<ca>'
@@ -66,36 +66,38 @@ test -e /lib/netifd/proto/openvpn.sh && openvpn=network
 test -e /lib/netifd/proto/openvpn.sh && openvpn_if=interface
 test -e /lib/netifd/proto/openvpn.sh && ovpnproto=ovpnproto
 
-[ "x`uci get natcapd.default.natcapovpn 2>/dev/null`" = x1 ] && {
+ovpn="$(uci get natcapd.default.natcapovpn 2>/dev/null || echo 0)"
+ip6="$(uci get natcapd.default.natcapovpn_ip6 2>/dev/null || echo 0)"
+
+if [ "$ovpn" = "1" ] || [ "$ip6" = "1" ]; then
 	mode="$(uci get natcapd.default.natcapovpn_tap 2>/dev/null || echo 0)"
-	ip6="$(uci get natcapd.default.natcapovpn_ip6 2>/dev/null || echo 0)"
 	oldhash=$(uci get $openvpn.natcapovpn_tcp.oldhash)
 	newhash="1${mode}${ip6}1"
-	[ "$oldhash" != "$newhash" ] && {
+	if [ "$oldhash" != "$newhash" ]; then
 		/etc/init.d/openvpn stop
 		uci delete network.natcapovpn 2>/dev/null
 		uci commit network
 
 		index=0
 		while :; do
-			zone="`uci get firewall.@zone[$index].name 2>/dev/null`"
+			zone="$(uci get firewall.@zone[$index].name 2>/dev/null)"
 			test -n "$zone" || break
-			[ "x$zone" = "xlan" ] && {
+			if [ "$zone" = "lan" ]; then
 				if [ "$openvpn" = "openvpn" ]; then
-					lans="`uci get firewall.@zone[$index].device`"
+					lans="$(uci get firewall.@zone[$index].device)"
 					uci delete firewall.@zone[$index].device
 					for x in natcap+ $lans; do echo $x; done | sort | uniq | while read w; do
 						uci add_list firewall.@zone[$index].device="$w"
 					done
 				else
-					nets="`uci get firewall.@zone[$index].network`"
+					nets="$(uci get firewall.@zone[$index].network)"
 					uci delete firewall.@zone[$index].network
 					for x in natcapovpn_tcp natcapovpn_udp $nets; do echo $x; done | sort | uniq | while read w; do
 						uci add_list firewall.@zone[$index].network="$w"
 					done
 				fi
 				break
-			}
+			fi
 			index=$((index+1))
 		done
 		I=0
@@ -181,11 +183,11 @@ test -e /lib/netifd/proto/openvpn.sh && ovpnproto=ovpnproto
 		test -x /etc/init.d/openvpn && /etc/init.d/openvpn start
 		/etc/init.d/network reload
 		/etc/init.d/firewall reload
-	}
+	fi
 	exit 0
-}
+fi
 
-[ "x`uci get natcapd.default.natcapovpn 2>/dev/null`" != x1 ] && [ "x`uci get $openvpn.natcapovpn_tcp.enabled 2>/dev/null`" = x1 ] && {
+if [ "$(uci get $openvpn.natcapovpn_tcp.enabled 2>/dev/null)" = "1" ]; then
 	/etc/init.d/openvpn stop
 	for p in tcp udp tcp4 udp4 tcp6 udp6; do
 		uci delete $openvpn.natcapovpn_$p
@@ -201,24 +203,24 @@ test -e /lib/netifd/proto/openvpn.sh && ovpnproto=ovpnproto
 	done
 	index=0
 	while :; do
-		zone="`uci get firewall.@zone[$index].name 2>/dev/null`"
+		zone="$(uci get firewall.@zone[$index].name 2>/dev/null)"
 		test -n "$zone" || break
-		[ "x$zone" = "xlan" ] && {
-			lans="`uci get firewall.@zone[$index].device`"
+		if [ "$zone" = "lan" ]; then
+			lans="$(uci get firewall.@zone[$index].device)"
 			uci delete firewall.@zone[$index].device
 			for w in $lans; do
-				[ "x$w" = "xnatcap+" ] && continue
+				[ "$w" = "natcap+" ] && continue
 				uci add_list firewall.@zone[$index].device="$w"
 			done
-			nets="`uci get firewall.@zone[$index].network`"
+			nets="$(uci get firewall.@zone[$index].network)"
 			uci delete firewall.@zone[$index].network
 			for w in $nets; do
-				[ "x$w" = "xnatcapovpn_tcp" ] && continue
-				[ "x$w" = "xnatcapovpn_udp" ] && continue
+				[ "$w" = "natcapovpn_tcp" ] && continue
+				[ "$w" = "natcapovpn_udp" ] && continue
 				uci add_list firewall.@zone[$index].network="$w"
 			done
 			break
-		}
+		fi
 		index=$((index+1))
 	done
 	uci commit firewall
@@ -227,4 +229,4 @@ test -e /lib/netifd/proto/openvpn.sh && ovpnproto=ovpnproto
 	/etc/init.d/network reload
 	/etc/init.d/firewall reload
 	exit 0
-}
+fi
