@@ -134,7 +134,7 @@ return view.extend({
 		};
 
 		serviceOption('urllogger', _("Status") + ' -> ' + _('URL logging'));
-		serviceOption('qos', _("Network") + ' -> ' + _('QoS'));
+		serviceOption('qos', _("Network") + ' -> ' + _('Traffic Shaping'));
 		serviceOption('miniupnpd', _("Services") + ' -> ' + _('UPnP IGD & PCP'));
 		serviceOption('ipv6', _('IPv6'), '1');
 		serviceOption('umdns', _('mDNS'), '1');

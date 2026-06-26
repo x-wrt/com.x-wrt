@@ -70,8 +70,8 @@ msgstr "Wi-Fi 密码"
 msgid "URL logging"
 msgstr "URL 日志"
 
-msgid "QoS"
-msgstr "QoS"
+msgid "Traffic Shaping"
+msgstr "流量整形"
 
 msgid "UPnP IGD & PCP"
 msgstr "UPnP IGD 和 PCP"
