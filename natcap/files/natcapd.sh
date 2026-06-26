@@ -663,7 +663,7 @@ test -c $DEV && {
 }
 
 cn_domain_setup() {
-	local memtotal=$(grep MemTotal /proc/meminfo | awk '{print $2}')
+	local memtotal=$(awk '/MemTotal/ {print $2}' /proc/meminfo)
 	local retry=2
 	#local URL=https://github.com/ptpt52/natcap/raw/master/accelerated-domains.china.raw.build.gz
 	local URL=https://downloads.x-wrt.com/rom/cn_domain/v1/accelerated-domains.china.raw.build.gz
@@ -881,7 +881,7 @@ elif test -c $DEV; then
 	[ "x$enable_encryption" = x1 ] && opt='e'
 	for server in $servers; do
 		add_server $server $opt $encode_mode-$udp_encode_mode
-		g=$(echo $server | sed 's/:/ /' | awk '{print $1}')
+		g="${server%%:*}"
 		add_knocklist $g
 	done
 
@@ -891,7 +891,7 @@ elif test -c $DEV; then
 
 	for server in $servers1; do
 		add_server1 $server $opt $encode_mode-$udp_encode_mode
-		g=$(echo $server | sed 's/:/ /' | awk '{print $1}')
+		g="${server%%:*}"
 		add_knocklist $g
 	done
 
@@ -1212,7 +1212,7 @@ ping_cli() {
 		peer_mark_connected=0
 		test -n "$PINGH" || PINGH=ec2ns.ptpt52.com
 
-		IFACE6S=$(ip -6 r | grep default | grep -o 'dev .*' | cut -d" " -f2 | sort | uniq)
+		IFACE6S=$(ip -6 r | awk '/default/ {for(i=1;i<=NF;i++) if($i=="dev") print $(i+1)}' | sort -u)
 		LIP6=""
 		for IFACE6 in $IFACE6S; do
 			for lip in $(ip -6 addr list dev $IFACE6 | awk '/inet6.*scope.*global/ {print $2}'); do
@@ -1276,7 +1276,7 @@ main_trigger() {
 			enabled="$(uci get natcapd.default.enabled 2>/dev/null || echo 0)"
 			[ "$enabled" = "0" ] && HSET="" #do not fetch HSET if not natcap enabled
 			HKEY=$(cat /etc/uhttpd.crt /etc/uhttpd.key | cksum | awk '{print $1}')
-			IFACES=$(ip r | grep default | grep -o 'dev .*' | cut -d" " -f2 | sort | uniq)
+			IFACES=$(ip r | awk '/default/ {for(i=1;i<=NF;i++) if($i=="dev") print $(i+1)}' | sort -u)
 			LIP=""
 			for IFACE in $IFACES; do
 				for lip in $(ip -4 addr list dev $IFACE | awk '/inet.*scope.*global/ {print $2}'); do
@@ -1285,7 +1285,7 @@ main_trigger() {
 			done
 			LIP=${LIP#,}
 
-			IFACE6S=$(ip -6 r | grep default | grep -o 'dev .*' | cut -d" " -f2 | sort | uniq)
+			IFACE6S=$(ip -6 r | awk '/default/ {for(i=1;i<=NF;i++) if($i=="dev") print $(i+1)}' | sort -u)
 			LIP6=""
 			for IFACE6 in $IFACE6S; do
 				for lip in $(ip -6 addr list dev $IFACE6 | awk '/inet6.*scope.*global/ {print $2}'); do
@@ -1326,7 +1326,7 @@ main_trigger() {
 							#lost connections, log:
 							track_ip=$(ip r | awk '/^default/ {print $3}' | grep -m1 -o '\([0-9]\{1,3\}\)\.\([0-9]\{1,3\}\)\.\([0-9]\{1,3\}\)\.\([0-9]\{1,3\}\)')
 							space=$(df | awk '/\/overlay$/ {print $4}')
-							memtotal=$(grep MemTotal /proc/meminfo | awk '{print $2}')
+							memtotal=$(awk '/MemTotal/ {print $2}' /proc/meminfo)
 							if $memtotal -gt 65536 && test $log -le 8 && test -n "$track_ip" && test -n "$space"; then
 								if ! ping -c1 -W1 $track_ip &>/dev/null; then
 									local log_cnt=0
