@@ -490,7 +490,7 @@ natcap_id2mask() {
 
 natcap_target2idx() {
 	local idx=1
-	(cat "$DEV" | grep "^server 0 " | while read line; do
+	(grep "^server 0 " "$DEV" | while read line; do
 		if echo $line | grep -q "server 0 $1$"; then
 			echo $idx
 			return
@@ -615,7 +615,7 @@ test -c /dev/natflow_ctl && {
 	fi
 	echo debug=3 >/dev/natflow_ctl
 	echo disabled=$((!enable_natflow)) >/dev/natflow_ctl
-	cat /dev/natflow_ctl | grep -q hwnat= && {
+	grep -q hwnat= /dev/natflow_ctl && {
 		echo hwnat=$((enable_natflow_hw)) >/dev/natflow_ctl
 		echo hwnat_wed_disabled=$((!enable_natflow_hw_wed)) >/dev/natflow_ctl
 	}
@@ -1027,7 +1027,7 @@ nslookup_check_local () {
 
 dns_proxy_check () {
 	test -c $DEV || return
-	cat "$DEV" | grep -q "dns_proxy_server=[1-9]" || return
+	grep -q "dns_proxy_server=[1-9]" "$DEV" || return
 	#check dns
 	$TO 10 nslookup $(date +%s).dev.x-wrt.com | grep ".dev.x-wrt.com" -A5 | grep Address || \
 	$TO 8 nslookup $(date +%s).dev.x-wrt.com | grep ".dev.x-wrt.com" -A5 | grep Address || \
@@ -1171,14 +1171,14 @@ peer_check() {
 	test -n "$res" || res=$(nslookup_check_local $PINGH)
 	test -n "$res" && PINGH=$res
 
-	up1=$(ping -W2 -c2 -q www.baidu.com 2>&1 | grep "packets received" | awk '{print $4}')
+	up1=$(ping -W2 -c2 -q www.baidu.com 2>&1 | awk '/packets received/ {print $4}')
 	up1=$((up1+0))
 	if test $up1 -eq 2; then
-		up2=$(ping -W5 -c5 -s1 -t1 -q $PINGH 2>&1 | grep "packets received" | awk '{print $4}')
+		up2=$(ping -W5 -c5 -s1 -t1 -q $PINGH 2>&1 | awk '/packets received/ {print $4}')
 		up2=$((up2+0))
 		if test $up2 -lt 2; then
 			# peer offline change mode
-			peer_mode=$(cat /dev/natcap_peer_ctl  | grep peer_mode= | cut -d= -f2)
+			peer_mode=$(grep peer_mode= /dev/natcap_peer_ctl | cut -d= -f2)
 			test -n "$peer_mode" && {
 				echo peer_mode=$((!peer_mode)) >/dev/natcap_peer_ctl
 			}
@@ -1228,8 +1228,8 @@ ping_cli() {
 
 		if [ "$(echo $PINGH | wc -w)" = "1" ]; then
 			PINGIP=$(nslookup_check_local $PINGH)
-			recv1=$($PING ${PINGM:+-m $PINGM} -t1 -s25 -c25 -W1 $PINGH | grep "packets received" | awk '{print $4}')
-			recv2=$(test -n "$PINGIP" && $PING ${PINGM:+-m $PINGM} -t1 -s25 -c25 -W1 $PINGIP | grep "packets received" | awk '{print $4}')
+			recv1=$($PING ${PINGM:+-m $PINGM} -t1 -s25 -c25 -W1 $PINGH | awk '/packets received/ {print $4}')
+			recv2=$(test -n "$PINGIP" && $PING ${PINGM:+-m $PINGM} -t1 -s25 -c25 -W1 $PINGIP | awk '/packets received/ {print $4}')
 			test -n "$PINGM" && test $((recv1+recv2)) -ge 1 && peer_mark_connected=1
 			sleep 1
 		else
@@ -1294,11 +1294,11 @@ main_trigger() {
 			done
 			LIP6=${LIP6#,}
 
-			SFS=$(cat "$DEV" | grep server_flow_stop | cut -d= -f2)
+			SFS=$(grep server_flow_stop "$DEV" | cut -d= -f2)
 			#checking extra run status
 			UP=$(cat /proc/uptime | cut -d"." -f1)
 
-			SRV="$(cat /dev/natcap_ctl | grep current_server | grep -o '\([0-9]\{1,3\}\)\.\([0-9]\{1,3\}\)\.\([0-9]\{1,3\}\)\.\([0-9]\{1,3\}\)')"
+			SRV="$(grep current_server /dev/natcap_ctl | grep -o '\([0-9]\{1,3\}\)\.\([0-9]\{1,3\}\)\.\([0-9]\{1,3\}\)\.\([0-9]\{1,3\}\)')"
 			SRV=$(echo $SRV)
 			SRV=$(echo $SRV | sed 's/ /%20/g')
 			TXRX=$(txrx_vals | b64encode)
@@ -1324,8 +1324,8 @@ main_trigger() {
 							ipset test knocklist $hostip &>/dev/null && ipset del knocklist $hostip 2>/dev/null || ipset add knocklist $hostip 2>/dev/null
 							cp /tmp/natcapd.txrx.old /tmp/natcapd.txrx
 							#lost connections, log:
-							track_ip=$(ip r | grep -m1 default | awk '{print $3}' | grep '[0-9]*\.[0-9]*\.[0-9]*\.[0-9]*')
-							space=$(df | grep "/overlay$" | awk '{print $4}')
+							track_ip=$(ip r | awk '/^default/ {print $3}' | grep -m1 -o '\([0-9]\{1,3\}\)\.\([0-9]\{1,3\}\)\.\([0-9]\{1,3\}\)\.\([0-9]\{1,3\}\)')
+							space=$(df | awk '/\/overlay$/ {print $4}')
 							memtotal=$(grep MemTotal /proc/meminfo | awk '{print $2}')
 							if $memtotal -gt 65536 && test $log -le 8 && test -n "$track_ip" && test -n "$space"; then
 								if ! ping -c1 -W1 $track_ip &>/dev/null; then
@@ -1341,7 +1341,7 @@ main_trigger() {
 									done
 									if test $space -le 512; then
 										rm -rf /root/log.*
-										space=$(df | grep "/overlay$" | awk '{print $4}')
+										space=$(df | awk '/\/overlay$/ {print $4}')
 									fi
 									if test $space -gt 384; then
 										dir=log.$(date +%Y%m%d%H%M%S)
