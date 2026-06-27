@@ -12,7 +12,7 @@
 			[ "x$zone" = "xlan" ] && {
 				lans="`uci get firewall.@zone[$index].device`"
 				uci delete firewall.@zone[$index].device
-				for x in pcap+ $lans; do echo $x; done | sort | uniq | while read w; do
+				for w in $(echo pcap+ $lans | tr ' ' '\n' | sort -u); do
 					uci add_list firewall.@zone[$index].device="$w"
 				done
 				break
@@ -79,7 +79,7 @@
 		uci commit pptpd
 	}
 
-	cat /etc/ppp/options.pptpd | sed 's/^#ms-dns.*/ms-dns 10.8.8.1/g' >/tmp/options.pptpd
+	sed 's/^#ms-dns.*/ms-dns 10.8.8.1/g' /etc/ppp/options.pptpd >/tmp/options.pptpd
 	diff -q /tmp/options.pptpd /etc/ppp/options.pptpd >/dev/null || cp /tmp/options.pptpd /etc/ppp/options.pptpd
 	rm -f /tmp/options.pptpd
 

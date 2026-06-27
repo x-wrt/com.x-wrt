@@ -47,7 +47,7 @@ init_cone_nat_unused()
 		ipset add cone_nat_unused_port $port >/dev/null 2>&1
 	done
 	# load ports from /tmp/run/miniupnpd.leases
-	cat /tmp/run/miniupnpd.leases 2>/dev/null | grep ^UDP | cut -d: -f2,3,4 | sed 's/:/ /g' | while read eport iaddr iport; do
+	awk -F: '/^UDP/ {print $2, $3, $4}' /tmp/run/miniupnpd.leases 2>/dev/null | while read eport iaddr iport; do
 		ipset add cone_nat_unused_port $eport >/dev/null 2>&1
 		ipset add cone_nat_unused_dst $iaddr,udp:$iport >/dev/null 2>&1
 		lock /var/run/natcapd.lock

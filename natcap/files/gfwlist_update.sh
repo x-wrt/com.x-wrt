@@ -1,6 +1,6 @@
 #!/bin/sh
 
-memtotal=`grep MemTotal /proc/meminfo | awk '{print $2}'`
+memtotal=$(awk '/MemTotal/ {print $2}' /proc/meminfo)
 
 #mem less than 64M
 if test $memtotal -le 65536; then
@@ -33,13 +33,12 @@ exclude_domains="google appspot \
 
 exclude_out()
 {
-	cat "$1" >/tmp/gfwlist.$$.exclude_out.1
-	for d in $exclude_domains; do
-		cat /tmp/gfwlist.$$.exclude_out.1 | grep -v "$d" >/tmp/gfwlist.$$.exclude_out.2
-		mv /tmp/gfwlist.$$.exclude_out.2 /tmp/gfwlist.$$.exclude_out.1
-	done
-	cat /tmp/gfwlist.$$.exclude_out.1 >"$1"
-	rm -f /tmp/gfwlist.$$.exclude_out.1
+	local file="$1"
+	if [ -n "$exclude_domains" ]; then
+		local awk_pattern=$(echo "$exclude_domains" | sed 's/ /|/g')
+		awk -v pat="($awk_pattern)" '!($0 ~ pat)' "$file" > "$file.tmp"
+		mv "$file.tmp" "$file"
+	fi
 }
 
 gfw0_dns_magic_server=`uci get natcapd.default.gfw0_dns_magic_server 2>/dev/null || echo 8.8.8.8`
@@ -66,13 +65,13 @@ EX_DOMAIN="google.com \
 		   amazonaws.com"
 
 $WGET --timeout=60 --no-check-certificate -qO /tmp/gfwlist.$$.txt "https://downloads.x-wrt.com/gfwlist.txt?t=`date '+%s'`" && {
-	for w in `echo $EX_DOMAIN` `cat /tmp/gfwlist.$$.txt | base64 -d | grep -v ^! | grep -v ^@@ | grep -o '[a-zA-Z0-9][-a-zA-Z0-9]*[.][-a-zA-Z0-9.]*[a-zA-Z]$'`; do
-		echo $w
-	done | sort | uniq | while read line; do
-		echo $line | grep -q github.com && continue
-		echo server=/$line/$gfw0_dns_magic_server >>/tmp/accelerated-domains.gfwlist.dnsmasq.$$.conf
-		echo ipset=/$line/gfwlist0 >>/tmp/accelerated-domains.gfwlist.dnsmasq.$$.conf
-	done
+	{
+		for w in $EX_DOMAIN; do echo "$w"; done
+		base64 -d /tmp/gfwlist.$$.txt | grep -v '^!' | grep -v '^@@' | grep -o '[a-zA-Z0-9][-a-zA-Z0-9]*[.][-a-zA-Z0-9.]*[a-zA-Z]$'
+	} | sort -u | awk -v srv="$gfw0_dns_magic_server" '
+		/github\.com/ { next }
+		{ print "server=/"$1"/"srv"\nipset=/"$1"/gfwlist0" }
+	' > /tmp/accelerated-domains.gfwlist.dnsmasq.$$.conf
 	rm -f /tmp/gfwlist.$$.txt
 	mkdir -p /tmp/dnsmasq.d && \
 	mv /tmp/accelerated-domains.gfwlist.dnsmasq.$$.conf /tmp/dnsmasq.d/accelerated-domains.gfwlist.dnsmasq.conf && \
@@ -87,7 +86,7 @@ rm -f /tmp/gfwlist.$$.txt
 test -f /tmp/dnsmasq.d/accelerated-domains.gfwlist.dnsmasq.conf && exit 0
 
 mkdir -p /tmp/dnsmasq.d && \
-cat /usr/share/natcapd/accelerated-domains.gfwlist.dnsmasq.conf | sed "s,/8.8.8.8,/$gfw0_dns_magic_server,g" >/tmp/dnsmasq.d/accelerated-domains.gfwlist.dnsmasq.conf
+sed "s,/8.8.8.8,/$gfw0_dns_magic_server,g" /usr/share/natcapd/accelerated-domains.gfwlist.dnsmasq.conf >/tmp/dnsmasq.d/accelerated-domains.gfwlist.dnsmasq.conf
 exclude_out /tmp/dnsmasq.d/accelerated-domains.gfwlist.dnsmasq.conf
 
 /etc/init.d/dnsmasq restart

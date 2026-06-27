@@ -412,7 +412,7 @@ add_list_commit () {
 		ipset flush ${2} &>/dev/null
 		ipset restore -f /tmp/add_${2}.${PID}.set.tmp
 	else
-		if test $(cat /tmp/add_${2}.${PID}.set.tmp | grep "^add " 2>/dev/null | wc -l) -ge 1; then
+		if grep -q "^add " /tmp/add_${2}.${PID}.set.tmp 2>/dev/null; then
 			ipset flush ${2} &>/dev/null
 			ipset restore -f /tmp/add_${2}.${PID}.set.tmp
 		else
@@ -489,19 +489,22 @@ natcap_id2mask() {
 }
 
 natcap_target2idx() {
-	local idx=1
-	(grep "^server 0 " "$DEV" | while read line; do
-		if echo $line | grep -q "server 0 $1$"; then
-			echo $idx
-			return
-		fi
-		idx=$((idx+1))
-	done
-	echo 0) | head -n1
+	awk -v target="server 0 $1" '
+	/^server 0 / {
+		idx++
+		if ($0 == target) {
+			print idx
+			found = 1
+			exit
+		}
+	}
+	END {
+		if (!found) print 0
+	}' "$DEV"
 }
 
 _clean_natcap_rules() {
-	iptables-save | grep "comment natcap-rule" | sed 's/^-A//' | while read line; do
+	iptables-save -t mangle | awk '/comment natcap-rule/ && sub(/^-A /, "") { print }' | while read line; do
 		iptables -t mangle -D $line
 	done
 }
@@ -927,9 +930,9 @@ elif test -c $DEV; then
 	rm -f /tmp/dnsmasq*.d/custom-domains.bypasslist.dnsmasq.conf
 	mkdir -p /tmp/dnsmasq.d
 	touch /tmp/dnsmasq.d/custom-domains.bypasslist.dnsmasq.conf
-	cat "$bypasslist_domain_file" 2>/dev/null | while read d; do
-		echo ipset=/$d/bypasslist >>/tmp/dnsmasq.d/custom-domains.bypasslist.dnsmasq.conf
-	done
+	if [ -f "$bypasslist_domain_file" ]; then
+		awk '{print "ipset=/"$1"/bypasslist"}' "$bypasslist_domain_file" >>/tmp/dnsmasq.d/custom-domains.bypasslist.dnsmasq.conf
+	fi
 	for d in $bypasslist_domain; do
 		echo ipset=/$d/bypasslist >>/tmp/dnsmasq.d/custom-domains.bypasslist.dnsmasq.conf
 	done
@@ -941,18 +944,18 @@ elif test -c $DEV; then
 		add_gfwlist_domain $d
 	done
 	for h in $gfwlist_host; do
-		cat "$h" | while read d; do
-			add_gfwlist_domain $d
-		done
+		if [ -f "$h" ]; then
+			awk -v srv="$gfw0_dns_magic_server" '{print "server=/"$1"/"srv"\nipset=/"$1"/gfwlist0"}' "$h" >>/tmp/dnsmasq.d/custom-domains.gfwlist.dnsmasq.conf
+		fi
 	done
 
 	for d in $gfwlist1_domain; do
 		add_gfwlist1_domain $d
 	done
 	for h in $gfwlist1_host; do
-		cat "$h" | while read d; do
-			add_gfwlist1_domain $d
-		done
+		if [ -f "$h" ]; then
+			awk -v srv="$gfw1_dns_magic_server" '{print "server=/"$1"/"srv"\nipset=/"$1"/gfwlist1"}' "$h" >>/tmp/dnsmasq.d/custom-domains.gfwlist.dnsmasq.conf
+		fi
 	done
 
 	#reload dnsmasq
@@ -1085,7 +1088,7 @@ gfwlist_update_main () {
 			natcapd_get_flows_last_bill $FB | tail -n1 | while read line; do
 				# 2020-11-22 23:11:05,217729,721049,193223582003
 				logger -t "natcapd" "FLOWS: $line"
-				flows=$(echo "$line" | cut -d, -f4)
+				flows=${line##*,}
 				flows=$((flows+0))
 				natcapd_lock
 				if test $flows -ge $FL; then
@@ -1296,7 +1299,7 @@ main_trigger() {
 
 			SFS=$(grep server_flow_stop "$DEV" | cut -d= -f2)
 			#checking extra run status
-			UP=$(cat /proc/uptime | cut -d"." -f1)
+			UP=$(awk -F. '{print $1}' /proc/uptime)
 
 			SRV="$(grep current_server /dev/natcap_ctl | grep -o '\([0-9]\{1,3\}\)\.\([0-9]\{1,3\}\)\.\([0-9]\{1,3\}\)\.\([0-9]\{1,3\}\)')"
 			SRV=$(echo $SRV)

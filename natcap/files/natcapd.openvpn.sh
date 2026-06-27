@@ -86,13 +86,13 @@ if [ "$ovpn" = "1" ] || [ "$ip6" = "1" ]; then
 				if [ "$openvpn" = "openvpn" ]; then
 					lans="$(uci get firewall.@zone[$index].device)"
 					uci delete firewall.@zone[$index].device
-					for x in natcap+ $lans; do echo $x; done | sort | uniq | while read w; do
+					for w in $(echo natcap+ $lans | tr ' ' '\n' | sort -u); do
 						uci add_list firewall.@zone[$index].device="$w"
 					done
 				else
 					nets="$(uci get firewall.@zone[$index].network)"
 					uci delete firewall.@zone[$index].network
-					for x in natcapovpn_tcp natcapovpn_udp $nets; do echo $x; done | sort | uniq | while read w; do
+					for w in $(echo natcapovpn_tcp natcapovpn_udp $nets | tr ' ' '\n' | sort -u); do
 						uci add_list firewall.@zone[$index].network="$w"
 					done
 				fi
