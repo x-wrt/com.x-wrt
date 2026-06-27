@@ -581,8 +581,8 @@ rm -rf /tmp/fakemesh_lck*
 MACADDR=""
 test -e /usr/share/natcapd/board_mac.lua && MACADDR=$(lua /usr/share/natcapd/board_mac.lua)
 test -n "$MACADDR" || MACADDR=$(. /lib/functions/system.sh; get_mac_label | tr a-f A-F)
-test -n "$MACADDR" || MACADDR=$(jsonfilter -i /etc/board.json -e "$['network']['wan']['macaddr']" 2>/dev/null | tr a-f A-F)
-test -n "$MACADDR" || MACADDR=$(jsonfilter -i /etc/board.json -e "$['network']['lan']['macaddr']" 2>/dev/null | tr a-f A-F)
+test -n "$MACADDR" || MACADDR=$(jsonfilter -i /etc/board.json -e '$["network"]["wan"]["macaddr"]' 2>/dev/null | tr a-f A-F)
+test -n "$MACADDR" || MACADDR=$(jsonfilter -i /etc/board.json -e '$["network"]["lan"]["macaddr"]' 2>/dev/null | tr a-f A-F)
 test -n "$MACADDR" || MACADDR=$(cat /sys/class/net/eth0/address 2>/dev/null | tr a-f A-F)
 test -n "$MACADDR" || MACADDR=$(cat /sys/class/net/eth1/address 2>/dev/null | tr a-f A-F)
 test -n "$MACADDR" || MACADDR=$(head -c6 /dev/urandom | hexdump -e '/1 "%02X:"' | head -c17)
