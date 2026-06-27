@@ -21,10 +21,11 @@ has_ap_on()
 }
 
 sta_need_disable=1
-for sta in $(ls /var/run/wpa_supplicant-*.conf); do
-	ssid="$(cat $sta | grep ssid=\" | cut -d\" -f2)"
-	iface=`echo $sta | sed 's,^/var/run/wpa_supplicant-,,;s,.conf$,,'`
-	if [ $(iwinfo $iface info | grep -c 'ESSID: unknown') -ge 1 ]; then
+for sta in /var/run/wpa_supplicant-*.conf; do
+	[ -e "$sta" ] || continue
+	ssid="$(grep ssid=\" "$sta" | cut -d\" -f2)"
+	iface=$(echo "$sta" | sed 's,^/var/run/wpa_supplicant-,,;s,.conf$,,')
+	if [ "$(iwinfo "$iface" info | grep -c 'ESSID: unknown')" -ge 1 ]; then
 		logger -t wifi "Fail to connect \"$ssid\""
 	else
 		sta_need_disable=0
@@ -38,14 +39,15 @@ $*"
 }
 wl_need_commit=0
 if [ $sta_need_disable -eq 1 ]; then
-	for sta in $(ls /var/run/wpa_supplicant-*.conf); do
-		ssid="$(cat $sta | grep ssid=\" | cut -d\" -f2)"
+	for sta in /var/run/wpa_supplicant-*.conf; do
+		[ -e "$sta" ] || continue
+		ssid="$(grep ssid=\" "$sta" | cut -d\" -f2)"
 		idx=0
 		while uci get wireless.@wifi-iface[$idx] >/dev/null 2>&1; do
 			idx=$((idx+1))
 			[ "x$(uci get wireless.@wifi-iface[$((idx-1))].mode 2>/dev/null)" = "xsta" ] || continue
 			[ "x$(uci get wireless.@wifi-iface[$((idx-1))].ssid 2>/dev/null)" = "x$ssid" ] || continue
-			radio=`uci get wireless.@wifi-iface[$((idx-1))].device`
+			radio=$(uci get wireless.@wifi-iface[$((idx-1))].device)
 			has_ap_on $radio && [ "x$(uci get wireless.@wifi-iface[$((idx-1))].disabled 2>/dev/null)" != "x1" ] && {
 				uci set wireless.@wifi-iface[$((idx-1))].disabled=1
 				push_revert_cmds "uci delete wireless.@wifi-iface[$((idx-1))].disabled"
@@ -58,7 +60,7 @@ if [ $sta_need_disable -eq 1 ]; then
 		uci commit wireless
 		/etc/init.d/network reload
 		sleep 5
-		echo "$var_revert_cmds" | while read line; do
+		echo "$var_revert_cmds" | while read -r line; do
 			$line
 		done
 		uci commit wireless

@@ -28,7 +28,7 @@ do_disk_ready() {
 			ROOTDEV=/dev/${partdev}
 			ROOTPART=/dev/${partdev}
 		fi
-		SECTOR_SIZE=`fdisk -l ${ROOTDEV} | grep "^Sector size" | awk '{print $4}'`
+		SECTOR_SIZE=$(fdisk -l "${ROOTDEV}" | grep "^Sector size" | awk '{print $4}')
 		return 0
 	fi
 	return 1
@@ -65,15 +65,15 @@ dd if=$ROOTDEV bs=$SECTOR_SIZE skip=$START count=$COUNT of=/tmp/pd.img conv=notr
 
 case "$cmd" in
 	get)
-		value=$(cat /tmp/pd.img | grep "^$key=" | sed "s/$key=//")
+		value=$(grep "^$key=" /tmp/pd.img | sed "s/$key=//")
 		echo "$key=$value"
 	;;
 	set)
-		cat /tmp/pd.img | grep -v "^$key=" >/tmp/pd.img.new
+		grep -v "^$key=" /tmp/pd.img >/tmp/pd.img.new
 		test -n "$value" && echo "$key=$value" >>/tmp/pd.img.new
-		cat /tmp/pd.img.new | grep = >/tmp/pd.img
+		grep "=" /tmp/pd.img.new >/tmp/pd.img
 		rm -f /tmp/pd.img.new
-		ds=$(cat /tmp/pd.img | wc -c)
+		ds=$(wc -c < /tmp/pd.img)
 		if test $ds -gt 65536; then
 			echo error, no space
 			rm -f /tmp/pd.img
@@ -87,7 +87,7 @@ case "$cmd" in
 		dd if=/dev/zero of=$ROOTDEV bs=$SECTOR_SIZE seek=$START count=$COUNT conv=notrunc >/dev/null 2>&1
 	;;
 	show)
-		cat /tmp/pd.img | grep "="
+		grep "=" /tmp/pd.img
 	;;
 	*)
 		echo "usage:"

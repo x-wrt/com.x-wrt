@@ -9,7 +9,7 @@ vmroot=/tmp/block
 mkdir -p $vmroot
 mount /dev/${BDEV}1 $vmroot || exit 0
 cp $vmroot/x-wrt.img.gz /tmp/x-wrt.img.gz && {
-	cd /
+	cd / || exit
 	umount $vmroot
 	sync
 	(zcat /tmp/x-wrt.img.gz;

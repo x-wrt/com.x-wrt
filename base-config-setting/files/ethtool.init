@@ -5,7 +5,7 @@
 START=55
 
 boot() {
-	for IFACE in `cat /proc/net/dev | grep eth | awk -F: '{print $1}'`; do
+	for IFACE in $(grep eth /proc/net/dev | awk -F: '{print $1}'); do
 		ethtool -K $IFACE gro off >/dev/null 2>&1
 	done
 }

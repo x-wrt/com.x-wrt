@@ -27,7 +27,7 @@ try_mount()
 
 auto_mount_boot()
 {
-	for i in `seq 1 300`; do
+	for _ in $(seq 1 300); do
 		mount | grep overlayfs | grep 'workdir=/overlay/work' >/dev/null  2>&1
 		test $? -eq 0 && break
 		sleep 2
@@ -39,8 +39,9 @@ auto_mount_boot()
 	export_bootdevice && export_partdevice diskdev 0
 	diskdev=/dev/$diskdev
 
-	for DEV in $(ls /dev/sd*[0-9]* 2>/dev/null) $(ls /dev/mmcblk[0-9]p[0-9]* 2>/dev/null); do
-		[ x$DEV = x`mount | grep "$DEV " | awk '{print $1}'` ] && continue
+	for DEV in /dev/sd*[0-9]* /dev/mmcblk[0-9]p[0-9]*; do
+		[ -e "$DEV" ] || continue
+		[ x"$DEV" = x"$(mount | grep "$DEV " | awk '{print $1}')" ] && continue
 
 		test -b "$diskdev" && (echo $DEV | grep -q "$diskdev") && continue
 		(echo $DEV | grep -q "/dev/ubi") && continue
@@ -48,7 +49,7 @@ auto_mount_boot()
 		blkid $DEV | grep -q 'UUID="db0482e8-04bd-dfbb-3935-fbc9d9a9cfb9"' && continue
 		blkid $DEV | grep -q 'UUID="f3178596-4427-2d3b-35c7-648b65e20d5e"' && continue
 
-		ddir=/mnt/`basename $DEV`
+		ddir=/mnt/$(basename "$DEV")
 		mkdir -p "$ddir" || continue
 		if try_mount "$DEV" "$ddir"; then
 			logger -t "auto_usb_mount" "boot auto mount $DEV to $ddir success!"
@@ -61,7 +62,7 @@ auto_mount_boot()
 		ln -sf /usr/share/base-config-setting/auto_usb_mount.hotplug /etc/hotplug.d/block/20-auto_usb_mount
 	}
 	uci get fstab.@global[0].anon_mount_bak 2>/dev/null && {
-		uci set fstab.@global[0].anon_mount="`uci get fstab.@global[0].anon_mount_bak`"
+		uci set fstab.@global[0].anon_mount="$(uci get fstab.@global[0].anon_mount_bak)"
 		uci delete fstab.@global[0].anon_mount_bak
 		uci commit fstab
 	}
