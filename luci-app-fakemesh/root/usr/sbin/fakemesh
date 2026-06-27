@@ -93,7 +93,7 @@ test $enabled -eq 0 && {
 	lan_ports="$(uci get network.@device[$lan_idx].ports 2>/dev/null)"
 	wan_port="$(uci get network.wan.device 2>/dev/null)"
 	newlan_ports=$(for lp in $lan_ports; do [ "$lp" = "$wan_port" ] || echo "$lp"; done | sort | uniq)
-	newlan_ports="$newlan_ports"
+	newlan_ports=$(printf "%s\n" "$newlan_ports" | awk '{ for (i = 1; i <= NF; i++) out = out (out ? " " : "") $i } END { print out }')
 	[ "$lan_ports" != "$newlan_ports" ] && {
 		uci delete network.@device[$lan_idx].ports >/dev/null 2>&1
 		for lp in $newlan_ports; do
@@ -106,7 +106,7 @@ test $enabled -eq 0 && {
 	while uci get firewall.@zone[$lan_idx] >/dev/null 2>&1 && [ "$(uci get firewall.@zone[$lan_idx].name)" != "lan" ]; do lan_idx=$((lan_idx+1)); done
 	lan_net="$(uci get firewall.@zone[$lan_idx].network 2>/dev/null)"
 	newlan_net=$(for ln in $lan_net; do [ "$ln" = "meshx0" ] || [ "$ln" = "meshx0_6" ] || echo "$ln"; done | sort | uniq)
-	newlan_net="$newlan_net"
+	newlan_net=$(printf "%s\n" "$newlan_net" | awk '{ for (i = 1; i <= NF; i++) out = out (out ? " " : "") $i } END { print out }')
 	[ "$lan_net" != "$newlan_net" ] && {
 		uci delete firewall.@zone[$lan_idx].network >/dev/null 2>&1
 		for ln in $newlan_net; do
@@ -655,7 +655,7 @@ if [ "$role" = "controller" ]; then
 	lan_ports="$(uci get network.@device[$lan_idx].ports 2>/dev/null)"
 	wan_port="$(uci get network.wan.device 2>/dev/null)"
 	newlan_ports=$(for lp in $lan_ports; do [ "$lp" = "$wan_port" ] || echo "$lp"; done | sort | uniq)
-	newlan_ports="$newlan_ports"
+	newlan_ports=$(printf "%s\n" "$newlan_ports" | awk '{ for (i = 1; i <= NF; i++) out = out (out ? " " : "") $i } END { print out }')
 	[ "$lan_ports" != "$newlan_ports" ] && {
 		uci delete network.@device[$lan_idx].ports >/dev/null 2>&1
 		for lp in $newlan_ports; do
@@ -668,7 +668,7 @@ if [ "$role" = "controller" ]; then
 	while uci get firewall.@zone[$lan_idx] >/dev/null 2>&1 && [ "$(uci get firewall.@zone[$lan_idx].name)" != "lan" ]; do lan_idx=$((lan_idx+1)); done
 	lan_net="$(uci get firewall.@zone[$lan_idx].network 2>/dev/null)"
 	newlan_net=$(for ln in $lan_net; do [ "$ln" = "meshx0" ] || [ "$ln" = "meshx0_6" ] || echo "$ln"; done | sort | uniq)
-	newlan_net="$newlan_net"
+	newlan_net=$(printf "%s\n" "$newlan_net" | awk '{ for (i = 1; i <= NF; i++) out = out (out ? " " : "") $i } END { print out }')
 	[ "$lan_net" != "$newlan_net" ] && {
 		uci delete firewall.@zone[$lan_idx].network >/dev/null 2>&1
 		for ln in $newlan_net; do
@@ -819,7 +819,7 @@ else
 	while uci get firewall.@zone[$lan_idx] >/dev/null 2>&1 && [ "$(uci get firewall.@zone[$lan_idx].name)" != "lan" ]; do lan_idx=$((lan_idx+1)); done
 	lan_net="$(uci get firewall.@zone[$lan_idx].network 2>/dev/null)"
 	newlan_net=$(for ln in $lan_net meshx0 meshx0_6; do echo "$ln"; done | sort | uniq)
-	newlan_net="$newlan_net"
+	newlan_net=$(printf "%s\n" "$newlan_net" | awk '{ for (i = 1; i <= NF; i++) out = out (out ? " " : "") $i } END { print out }')
 	[ "$lan_net" != "$newlan_net" ] && {
 		uci delete firewall.@zone[$lan_idx].network >/dev/null 2>&1
 		for ln in $newlan_net; do
@@ -837,7 +837,7 @@ else
 	lan_ports="$(uci get network.@device[$lan_idx].ports 2>/dev/null)"
 	wan_port="$(uci get network.wan.device 2>/dev/null)"
 	newlan_ports=$(for lp in $lan_ports $wan_port; do echo "$lp"; done | sort | uniq)
-	newlan_ports="$newlan_ports"
+	newlan_ports=$(printf "%s\n" "$newlan_ports" | awk '{ for (i = 1; i <= NF; i++) out = out (out ? " " : "") $i } END { print out }')
 	[ "$lan_ports" != "$newlan_ports" ] && {
 		uci delete network.@device[$lan_idx].ports >/dev/null 2>&1
 		for lp in $newlan_ports; do

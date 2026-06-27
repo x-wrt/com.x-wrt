@@ -310,8 +310,8 @@ stop()
 			echo "*mangle";
 			[ -z "${table##*PREROUTING -j mwan3_hook*}" ] && echo "-D PREROUTING -j mwan3_hook"
 			[ -z "${table##*OUTPUT -j mwan3_hook*}" ] && echo "-D OUTPUT -j mwan3_hook"
-			echo "$table" | awk '/mwan3/ {print "-F "$2}' | sort -u
-			echo "$table" | awk '/mwan3/ {print "-X "$2}' | sort -u
+			echo "$table" | awk '$2 ~ /mwan3/ {print "-F "$2}' | sort -u
+			echo "$table" | awk '$2 ~ /mwan3/ {print "-X "$2}' | sort -u
 			echo "COMMIT"
 		} | $IPTR
 	done

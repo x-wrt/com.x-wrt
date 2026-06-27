@@ -1423,7 +1423,7 @@ mwan3_report_policies_v4()
 {
 	local policy
 
-	for policy in $($IPT4 -S 2>/dev/null | awk '/mwan3_policy_/ {print $2}' | sort -u); do
+	for policy in $($IPT4 -S 2>/dev/null | awk '$2 ~ /^mwan3_policy_/ {print $2}' | sort -u); do
 		echo "$policy:" | sed 's/mwan3_policy_//'
 		mwan3_report_policies "$IPT4" "$policy"
 	done
@@ -1433,7 +1433,7 @@ mwan3_report_policies_v6()
 {
 	local policy
 
-	for policy in $($IPT6 -S 2>/dev/null | awk '/mwan3_policy_/ {print $2}' | sort -u); do
+	for policy in $($IPT6 -S 2>/dev/null | awk '$2 ~ /^mwan3_policy_/ {print $2}' | sort -u); do
 		echo "$policy:" | sed 's/mwan3_policy_//'
 		mwan3_report_policies "$IPT6" "$policy"
 	done

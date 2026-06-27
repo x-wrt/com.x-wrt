@@ -30,7 +30,7 @@ report_policies() {
 report_policies_v4() {
 	local policy
 
-	for policy in $($IPT4 -S | awk '/mwan3_policy_/ {print $2}' | sort -u); do
+	for policy in $($IPT4 -S | awk '$2 ~ /^mwan3_policy_/ {print $2}' | sort -u); do
 		json_add_array "${policy##*mwan3_policy_}"
 		report_policies "$IPT4" "$policy"
 		json_close_array
@@ -40,7 +40,7 @@ report_policies_v4() {
 report_policies_v6() {
 	local policy
 
-	for policy in $($IPT6 -S | awk '/mwan3_policy_/ {print $2}' | sort -u); do
+	for policy in $($IPT6 -S | awk '$2 ~ /^mwan3_policy_/ {print $2}' | sort -u); do
 		json_add_array "${policy##*mwan3_policy_}"
 		report_policies "$IPT6" "$policy"
 		json_close_array

@@ -35,7 +35,8 @@ exclude_out()
 {
 	local file="$1"
 	if [ -n "$exclude_domains" ]; then
-		local awk_pattern=$(echo "$exclude_domains" | sed 's/ /|/g')
+		local awk_pattern
+		awk_pattern=$(printf "%s\n" "$exclude_domains" | awk '{ for (i = 1; i <= NF; i++) out = out (out ? "|" : "") $i } END { print out }')
 		awk -v pat="($awk_pattern)" '!($0 ~ pat)' "$file" > "$file.tmp"
 		mv "$file.tmp" "$file"
 	fi
