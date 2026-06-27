@@ -43,17 +43,25 @@ x_wrt_base_setup() {
 	uci commit dropbear
 }
 
+has_file() {
+	local file
+	for file in "$@"; do
+		test -f "$file" && return 0
+	done
+	return 1
+}
+
 x_wrt_flash() {
 	test -f /tmp/usb_reset/x-wrt-shell.sh && sh /tmp/usb_reset/x-wrt-shell.sh
 	sleep 90
-	test -f /tmp/usb_reset/x-wrt-sysupgrade-force* && \
+	has_file /tmp/usb_reset/x-wrt-sysupgrade-force* && \
 	cp /tmp/usb_reset/x-wrt-sysupgrade-force* /tmp/ && \
 	rm -f /tmp/usb_reset/x-wrt-sysupgrade-force* && \
 	sysupgrade -n -F /tmp/x-wrt-sysupgrade-force*
 
 	rm -f /tmp/x-wrt-sysupgrade-force*
 
-	test -f /tmp/usb_reset/x-wrt-sysupgrade* && \
+	has_file /tmp/usb_reset/x-wrt-sysupgrade* && \
 	cp /tmp/usb_reset/x-wrt-sysupgrade* /tmp/ && \
 	rm -f /tmp/usb_reset/x-wrt-sysupgrade* && \
 	sysupgrade -n /tmp/x-wrt-sysupgrade*
@@ -93,7 +101,7 @@ boot() {
 	fi
 
 	#check and do sysupgrade
-	if test -f /tmp/usb_reset/x-wrt-sysupgrade*; then
+	if has_file /tmp/usb_reset/x-wrt-sysupgrade*; then
 		x_wrt_flash &
 		return 0
 	fi

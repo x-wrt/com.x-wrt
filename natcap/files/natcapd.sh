@@ -1330,12 +1330,12 @@ main_trigger() {
 							track_ip=$(ip r | awk '/^default/ {print $3}' | grep -m1 -o '\([0-9]\{1,3\}\)\.\([0-9]\{1,3\}\)\.\([0-9]\{1,3\}\)\.\([0-9]\{1,3\}\)')
 							space=$(df | awk '/\/overlay$/ {print $4}')
 							memtotal=$(awk '/MemTotal/ {print $2}' /proc/meminfo)
-							if $memtotal -gt 65536 && test $log -le 8 && test -n "$track_ip" && test -n "$space"; then
+							if test "$memtotal" -gt 65536 && test "$log" -le 8 && test -n "$track_ip" && test -n "$space"; then
 								if ! ping -c1 -W1 $track_ip &>/dev/null; then
 									local log_cnt=0
 									for dir in /root/log.*; do
 										test -d $dir && log_cnt=$((log_cnt+1))
-										if $log_cnt -ge 8; then
+										if test "$log_cnt" -ge 8; then
 											for dird in /root/log.*; do
 												test -d $dird && rm -rf $dird
 												break

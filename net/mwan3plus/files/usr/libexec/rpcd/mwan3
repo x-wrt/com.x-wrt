@@ -108,7 +108,8 @@ get_mwan3_status() {
 		json_add_boolean "running" "${running}"
 		json_add_boolean "up" "${up}"
 		json_add_array "track_ip"
-		for file in $(ls $MWAN3TRACK_STATUS_DIR/${iface}.$family/TRACK_*); do
+		for file in "$MWAN3TRACK_STATUS_DIR/${iface}.$family"/TRACK_*; do
+			[ -e "$file" ] || continue
 			track="${file#*/TRACK_}"
 			json_add_object
 			json_add_string ip "${track}"

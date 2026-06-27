@@ -59,7 +59,7 @@
 	done
 	newmd5=`echo -n $pptpusers | md5sum | awk '{print $1}'`
 	oldmd5=`uci get pptpd.pptpd.pptpuser_md5 2>/dev/null`
-	[ "x${newmd5}" = "x${oldmd}" ] || {
+	[ "x${newmd5}" = "x${oldmd5}" ] || {
 		while uci delete pptpd.@login[0] 2>/dev/null; do :; done
 		index=0
 		while :; do
