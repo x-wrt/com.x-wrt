@@ -1,11 +1,12 @@
+#!/bin/sh
 [ "x$ACTION" = "xremove" ] && {
-	umount /mnt/$DEVNAME
+	umount "/mnt/$DEVNAME"
 	exit 0
 }
 
 [ "x$ACTION" = "xadd" ] || exit 0
 [ "x$DEVTYPE" = "xpartition" ] || exit 0
-test -b /dev/$DEVNAME || exit 0
+test -b "/dev/$DEVNAME" || exit 0
 
 ntfs3=ntfs3
 modinfo ntfs3 &>/dev/null || ntfs3=ntfs
@@ -28,18 +29,18 @@ try_mount()
 	return 1
 }
 
-dev=/dev/$DEVNAME
+dev="/dev/$DEVNAME"
 
-blkid $dev | grep -q 'UUID="db0482e8-04bd-dfbb-3935-fbc9d9a9cfb9"' && exit 0
-blkid $dev | grep -q 'UUID="f3178596-4427-2d3b-35c7-648b65e20d5e"' && exit 0
+blkid "$dev" | grep -q 'UUID="db0482e8-04bd-dfbb-3935-fbc9d9a9cfb9"' && exit 0
+blkid "$dev" | grep -q 'UUID="f3178596-4427-2d3b-35c7-648b65e20d5e"' && exit 0
 
 diskdev=""
 . /lib/functions.sh
 . /lib/upgrade/common.sh
 export_bootdevice && export_partdevice diskdev 0
 diskdev=/dev/$diskdev
-test -b "$diskdev" && (echo $dev | grep -q "$diskdev") && exit 0
-(echo $dev | grep -q "/dev/ubi") && exit 0
+test -b "$diskdev" && echo "$dev" | grep -q "$diskdev" && exit 0
+echo "$dev" | grep -q "/dev/ubi" && exit 0
 
 edev=$(mount | grep "$dev " | awk '{print $1}')
 [ "x$dev" = "x$edev" ] && exit 0

@@ -9,7 +9,7 @@ block_early_fixup()
 	for src in /sys/class/block/*/uevent; do
 		if test -e "$src"; then
 			source "$src" 2>/dev/null
-			test -e /dev/$DEVNAME || mknod /dev/$DEVNAME b $MAJOR $MINOR
+			test -e "/dev/$DEVNAME" || mknod "/dev/$DEVNAME" b $MAJOR $MINOR
 		fi
 	done
 }
@@ -37,7 +37,7 @@ do_disk_ready() {
 		fi
 	fi
 
-	overlay_size=$(cat /proc/cmdline | grep -o "overlay_size=[0-9]*" | cut -d= -f2)
+	overlay_size=$(grep -o < /proc/cmdline "overlay_size=[0-9]*" | cut -d= -f2)
 	test -n "$overlay_size" || overlay_size=$((1*512)) #512M default x86_64: 256+512+512 x86_64-docker: 256+768+512
 
 	block_early_fixup
@@ -191,7 +191,7 @@ do_disk_ready() {
 		return
 		;;
 	*)
-		if ! test -b ${ROOTDEV}; then
+		if ! test -b "${ROOTDEV}"; then
 			if test -b /dev/sda; then
 				ROOTDEV=/dev/sda
 				ROOTPART=/dev/sda
@@ -203,40 +203,41 @@ do_disk_ready() {
 		;;
 	esac
 
-	test -b ${ROOTDEV} || return
+	test -b "${ROOTDEV}" || return
 	overlay_size=$((overlay_size*1024*1024))
 	disktype="dos"
-	fdisk -l ${ROOTDEV} 2>/dev/null | grep -q "type: gpt" && disktype="gpt" && [ "${is_x86}" = "1" ] && diskpart_num1=3
-	sector_size=$(fdisk -l ${ROOTDEV} | grep "^Sector size" | awk '{print $4}')
+	fdisk -l "${ROOTDEV}" 2>/dev/null | grep -q "type: gpt" && disktype="gpt" && [ "${is_x86}" = "1" ] && diskpart_num1=3
+	sector_size=$(fdisk -l "${ROOTDEV}" | grep "^Sector size" | awk '{print $4}')
 	sector_size=$((sector_size+0))
 	test ${sector_size} -gt 0 || sector_size=512
 	gap_size=$((1024*1024/sector_size))
 	gap_mask=$((gap_size-1))
-	diskpart=$(fdisk -l ${ROOTDEV} | grep -c "^${ROOTPART}[0-9]")
+	diskpart=$(fdisk -l "${ROOTDEV}" | grep -c "^${ROOTPART}[0-9]")
 	O=0
-	LASTDEV=$(fdisk -l ${ROOTDEV} | grep "^${ROOTPART}[0-9]" | while read D _ E _; do
-		if test $E -gt $O; then
-			echo $D
-			O=$E
+	LASTDEV=$(fdisk -l "${ROOTDEV}" | grep "^${ROOTPART}[0-9]" | while read -r D _ E _; do
+		if test "$E" -gt "$O"; then
+			echo "$D"
+			O="$E"
 		fi
 	done | tail -n1)
-	LASTNR=$(echo $LASTDEV | grep -o "[0-9]*" | tail -n1)
+	LASTNR=$(echo "$LASTDEV" | grep -o "[0-9]*" | tail -n1)
 	test -z "$LASTDEV" && LASTNR=0
-	BLKCNT=$(fdisk -l ${ROOTDEV} | head -n1 | awk '{print $7}')
+	BLKCNT=$(fdisk -l "${ROOTDEV}" | head -n1 | awk '{print $7}')
 
 	if [ "$disktype" = "gpt" ]; then
 		which gdisk || return
 		if [ "$diskpart" = "${diskpart_num1}" ]; then
-			disksize="$(fdisk -l ${ROOTDEV} | grep "${ROOTDEV}:" -m1 | awk '{print $5}')"
+			disksize="$(fdisk -l "${ROOTDEV}" | grep "${ROOTDEV}:" -m1 | awk '{print $5}')"
 			test -n "$disksize" || return
 			# <= 2GiB && return
-			test $disksize -le 2147483648 && return
+			test "$disksize" -le 2147483648 && return
 
 			#clean
-			echo -ne "2\nw\ny\ny\nq\n" | gdisk ${ROOTDEV}
-			echo -ne "w\ny\ny\n" | gdisk ${ROOTDEV}
-			echo -ne "d\n$((LASTNR+2))\nd\n$((LASTNR+1))\nw\ny\n" | gdisk ${ROOTDEV}
-			set $(fdisk -l ${ROOTDEV} 2>/dev/null | grep "^${ROOTPART}$((LASTNR))")
+			echo -ne "2\nw\ny\ny\nq\n" | gdisk "${ROOTDEV}"
+			echo -ne "w\ny\ny\n" | gdisk "${ROOTDEV}"
+			echo -ne "d\n$((LASTNR+2))\nd\n$((LASTNR+1))\nw\ny\n" | gdisk "${ROOTDEV}"
+			# shellcheck disable=SC2046
+			set $(fdisk -l "${ROOTDEV}" 2>/dev/null | grep "^${ROOTPART}$((LASTNR))")
 			sda4_start=$2
 			sda4_end=$3
 			[ "$LASTNR" = "0" ] && sda4_start=${gap_mask} && sda4_end=${gap_mask}
@@ -250,9 +251,9 @@ do_disk_ready() {
 			sda6_end=$((BLKCNT / gap_size * gap_size - gap_size - 1))
 
 			# [_boot_|_rootfs_][cfg][data...]
-			echo -ne "n\n\n${sda5_start}\n${sda5_end}\n8300\nn\n\n${sda6_start}\n${sda6_end}\n8300\nw\ny\n" | gdisk ${ROOTDEV}
+			echo -ne "n\n\n${sda5_start}\n${sda5_end}\n8300\nn\n\n${sda6_start}\n${sda6_end}\n8300\nw\ny\n" | gdisk "${ROOTDEV}"
 
-			partx -u ${ROOTDEV}
+			partx -u "${ROOTDEV}"
 			block_early_fixup
 
 			test -b ${ROOTPART}$((LASTNR+1)) && echo erase >${ROOTPART}$((LASTNR+1))
@@ -260,15 +261,16 @@ do_disk_ready() {
 		fi
 	elif [ "$disktype" = "dos" ]; then
 		if [ "$diskpart" = "${diskpart_num1}" ]; then
-			disksize="$(fdisk -l ${ROOTDEV} | grep "${ROOTDEV}:" -m1 | awk '{print $5}')"
+			disksize="$(fdisk -l "${ROOTDEV}" | grep "${ROOTDEV}:" -m1 | awk '{print $5}')"
 			test -n "$disksize" || return
 			# <= 2GiB && return
-			test $disksize -le 2147483648 && return
+			test "$disksize" -le 2147483648 && return
 
 			#clean
-			echo -ne "w\ny\ny\n" | fdisk ${ROOTDEV}
-			echo -ne "d\n$((LASTNR+2))\nd\n$((LASTNR+1))\nw\ny\n" | fdisk ${ROOTDEV}
-			set $(fdisk -l ${ROOTDEV} 2>/dev/null | grep "^${ROOTPART}$((LASTNR))")
+			echo -ne "w\ny\ny\n" | fdisk "${ROOTDEV}"
+			echo -ne "d\n$((LASTNR+2))\nd\n$((LASTNR+1))\nw\ny\n" | fdisk "${ROOTDEV}"
+			# shellcheck disable=SC2046
+			set $(fdisk -l "${ROOTDEV}" 2>/dev/null | grep "^${ROOTPART}$((LASTNR))")
 			sda2_start=$2
 			sda2_end=$3
 			[ "$LASTNR" = "0" ] && sda2_start=${gap_mask} && sda2_end=${gap_mask}
@@ -284,17 +286,17 @@ do_disk_ready() {
 			# [_boot_|_rootfs_][cfg][data...]
 			case "$diskpart_num1" in
 				0|1)
-					echo -ne "n\np\n\n${sda3_start}\n${sda3_end}\nn\np\n\n${sda4_start}\n${sda4_end}\nw\n" | fdisk ${ROOTDEV}
+					echo -ne "n\np\n\n${sda3_start}\n${sda3_end}\nn\np\n\n${sda4_start}\n${sda4_end}\nw\n" | fdisk "${ROOTDEV}"
 					;;
 				2)
-					echo -ne "n\np\n\n${sda3_start}\n${sda3_end}\nn\np\n${sda4_start}\n${sda4_end}\nw\n" | fdisk ${ROOTDEV}
+					echo -ne "n\np\n\n${sda3_start}\n${sda3_end}\nn\np\n${sda4_start}\n${sda4_end}\nw\n" | fdisk "${ROOTDEV}"
 					;;
 				3)
-					echo -ne "n\np\n${sda3_start}\n${sda3_end}\nw\n" | fdisk ${ROOTDEV}
+					echo -ne "n\np\n${sda3_start}\n${sda3_end}\nw\n" | fdisk "${ROOTDEV}"
 					;;
 			esac
 
-			partx -u ${ROOTDEV}
+			partx -u "${ROOTDEV}"
 			block_early_fixup
 
 			test -b ${ROOTPART}$((LASTNR+1)) && echo erase >${ROOTPART}$((LASTNR+1))
@@ -312,22 +314,22 @@ do_disk_ready() {
 	#XXX: overlay_dev: END
 
 	#check extroot_overlay
-	if test -b ${ROOTPART}$((LASTNR-1)); then
+	if test -b "${ROOTPART}$((LASTNR-1))"; then
 		uuid=$(uci get fstab.overlay.uuid 2>/dev/null || echo f3178596-4427-2d3b-35c7-648b65e20d5e)
 		format=0
-		if [ "$(head -c5 ${ROOTPART}$((LASTNR-1)))" = "erase" ]; then
-			echo request format ${ROOTPART}$((LASTNR-1))
+		if [ "$(head -c5 "${ROOTPART}$((LASTNR-1))")" = "erase" ]; then
+			echo request format "${ROOTPART}$((LASTNR-1))"
 			format=1
-		elif [ "$(head -c6 ${ROOTPART}$((LASTNR-1)))" = "format" ]; then
+		elif [ "$(head -c6 "${ROOTPART}$((LASTNR-1))")" = "format" ]; then
 			format=2
 		elif [ "$is_x86" = "0" ]; then
-			blkid ${ROOTPART}$((LASTNR-1)) | grep -q "UUID=\"$uuid\"" || return
+			blkid "${ROOTPART}$((LASTNR-1))" | grep -q "UUID=\"$uuid\"" || return
 		fi
-		if mount -t ext4 -o rw,noatime ${ROOTPART}$((LASTNR-1)) /mnt; then
+		if mount -t ext4 -o rw,noatime "${ROOTPART}$((LASTNR-1))" /mnt; then
 			if [ "$format" -ne "0" ]; then
 				format=$((format-1))
 				rm -rf /mnt/upper /mnt/work /mnt/etc /mnt/.fs_state
-				dd if=/dev/zero of=${ROOTPART}$((LASTNR-1)) bs=1 count=8
+				dd if=/dev/zero of="${ROOTPART}$((LASTNR-1))" bs=1 count=8
 				sync
 			fi
 			umount /mnt
@@ -335,44 +337,44 @@ do_disk_ready() {
 			format=1
 		fi
 		[ "$format" -ne "0" ] && {
-			echo -ne 'y\n' | mkfs.ext4 -U $uuid -L extroot_overlay ${ROOTPART}$((LASTNR-1))
+			echo -ne 'y\n' | mkfs.ext4 -U "$uuid" -L extroot_overlay "${ROOTPART}$((LASTNR-1))"
 		}
-		UUID=$(blkid ${ROOTPART}$((LASTNR-1)) | grep -o "UUID=.*" | cut -d\" -f2)
+		UUID=$(blkid "${ROOTPART}$((LASTNR-1))" | grep -o "UUID=.*" | cut -d\" -f2)
 		[ "$uuid" = "$UUID" ] || {
-			echo ${ROOTPART}$((LASTNR-1)) change uuid to $uuid
-			e2fsck -f ${ROOTPART}$((LASTNR-1))
-			tune2fs -U $uuid ${ROOTPART}$((LASTNR-1))
+			echo "${ROOTPART}$((LASTNR-1))" change uuid to "$uuid"
+			e2fsck -f "${ROOTPART}$((LASTNR-1))"
+			tune2fs -U "$uuid" "${ROOTPART}$((LASTNR-1))"
 		}
-		blkid ${ROOTPART}$((LASTNR-1)) | grep -q 'LABEL="extroot_overlay"' || tune2fs -L extroot_overlay ${ROOTPART}$((LASTNR-1))
+		blkid "${ROOTPART}$((LASTNR-1))" | grep -q 'LABEL="extroot_overlay"' || tune2fs -L extroot_overlay "${ROOTPART}$((LASTNR-1))"
 	fi
 	#check extroot_data
-	if test -b ${ROOTPART}$((LASTNR)); then
+	if test -b "${ROOTPART}$((LASTNR))"; then
 		if [ "$is_x86" = "0" ]; then
 			uuid=$(uci get fstab.overlay.uuid 2>/dev/null || echo f3178596-4427-2d3b-35c7-648b65e20d5e)
-			blkid ${ROOTPART}$((LASTNR-1)) | grep -q "UUID=\"$uuid\"" || return
+			blkid "${ROOTPART}$((LASTNR-1))" | grep -q "UUID=\"$uuid\"" || return
 		fi
 		uuid=$(uci get fstab.data.uuid 2>/dev/null || echo db0482e8-04bd-dfbb-3935-fbc9d9a9cfb9)
 		format=0
-		if [ "$(head -c5 ${ROOTPART}$((LASTNR)))" = "erase" ]; then
-			echo request format ${ROOTPART}$((LASTNR))
+		if [ "$(head -c5 "${ROOTPART}$((LASTNR))")" = "erase" ]; then
+			echo request format "${ROOTPART}$((LASTNR))"
 			format=1
 		fi
-		if mount -t ext4 -o rw,noatime ${ROOTPART}$((LASTNR)) /mnt; then
-			echo ${ROOTPART}$((LASTNR)) has valid filesystem, no need to format
+		if mount -t ext4 -o rw,noatime "${ROOTPART}$((LASTNR))" /mnt; then
+			echo "${ROOTPART}$((LASTNR))" has valid filesystem, no need to format
 			umount /mnt
 		else
 			format=1
 		fi
 		[ "$format" = "1" ] && {
-			echo -ne 'y\n' | mkfs.ext4 -U $uuid -L extroot_data ${ROOTPART}$((LASTNR))
+			echo -ne 'y\n' | mkfs.ext4 -U "$uuid" -L extroot_data "${ROOTPART}$((LASTNR))"
 		}
-		UUID=$(blkid ${ROOTPART}$((LASTNR)) | grep -o "UUID=.*" | cut -d\" -f2)
+		UUID=$(blkid "${ROOTPART}$((LASTNR))" | grep -o "UUID=.*" | cut -d\" -f2)
 		[ "$uuid" = "$UUID" ] || {
-			echo ${ROOTPART}$((LASTNR)) change uuid to $uuid
-			e2fsck -f ${ROOTPART}$((LASTNR))
-			tune2fs -U $uuid ${ROOTPART}$((LASTNR))
+			echo "${ROOTPART}$((LASTNR))" change uuid to "$uuid"
+			e2fsck -f "${ROOTPART}$((LASTNR))"
+			tune2fs -U "$uuid" "${ROOTPART}$((LASTNR))"
 		}
-		blkid ${ROOTPART}$((LASTNR)) | grep -q 'LABEL="extroot_data"' || tune2fs -L extroot_data ${ROOTPART}$((LASTNR))
+		blkid "${ROOTPART}$((LASTNR))" | grep -q 'LABEL="extroot_data"' || tune2fs -L extroot_data "${ROOTPART}$((LASTNR))"
 	fi
 }
 

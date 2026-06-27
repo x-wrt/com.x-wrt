@@ -1,3 +1,4 @@
+#!/bin/sh
 
 touch /etc/config/base_config
 uci get base_config.@status[0] >/dev/null 2>&1 || uci add base_config status >/dev/null 2>&1
@@ -6,15 +7,15 @@ version=$((version+0))
 
 . /etc/openwrt_release
 test -n "${DISTRIB_ID}" || DISTRIB_ID=X-WRT
-DISTRIB_ID=$(echo -n $DISTRIB_ID | tr a-z A-Z)
+DISTRIB_ID=$(printf "%s" "$DISTRIB_ID" | tr a-z A-Z)
 
 MACADDR=""
 test -e /usr/share/natcapd/board_mac.lua && MACADDR=$(lua /usr/share/natcapd/board_mac.lua)
 test -n "$MACADDR" || MACADDR=$(. /lib/functions/system.sh; get_mac_label | tr a-f A-F)
-test -n "$MACADDR" || MACADDR=$(cat /etc/board.json | jsonfilter -e '$["network"]["wan"]["macaddr"]' | tr a-f A-F)
-test -n "$MACADDR" || MACADDR=$(cat /etc/board.json | jsonfilter -e '$["network"]["lan"]["macaddr"]' | tr a-f A-F)
-test -n "$MACADDR" || MACADDR=$(cat /sys/class/net/eth0/address | tr a-f A-F)
-test -n "$MACADDR" || MACADDR=$(cat /sys/class/net/eth1/address | tr a-f A-F)
+test -n "$MACADDR" || MACADDR=$(jsonfilter -e '$["network"]["wan"]["macaddr"]' < /etc/board.json | tr a-f A-F)
+test -n "$MACADDR" || MACADDR=$(jsonfilter -e '$["network"]["lan"]["macaddr"]' < /etc/board.json | tr a-f A-F)
+test -n "$MACADDR" || MACADDR=$(tr a-f A-F < /sys/class/net/eth0/address)
+test -n "$MACADDR" || MACADDR=$(tr a-f A-F < /sys/class/net/eth1/address)
 test -n "$MACADDR" || MACADDR=$(head -c6 /dev/urandom | hexdump -e '/1 "%02X:"' | head -c17)
 test -n "$MACADDR" || MACADDR=$(head -c6 /dev/random | hexdump -e '/1 "%02X:"' | head -c17)
 
@@ -68,18 +69,18 @@ test $version -lt 1 && {
 
 	cp /usr/share/base-config-setting/etc/shadow /etc/shadow && chmod 600 /etc/shadow
 
-	SUBFIX=$(echo -n $MACADDR | sed 's/://g' | tr a-z A-Z | tail -c4)
+	SUBFIX=$(printf "%s" "$MACADDR" | sed 's/://g' | tr a-z A-Z | tail -c4)
 	SSID=${DISTRIB_ID}_${SUBFIX}
 	SSID_PASSWD=88888888
 
-	uci set base_config.@status[0].SSID=${SSID}
+	uci set base_config.@status[0].SSID="${SSID}"
 	uci set base_config.@status[0].SSID_PASSWD=${SSID_PASSWD}
 
 	version=1
 }
 
 test $version -lt 2 && {
-	MACmd5=$(echo -n $MACADDR | md5sum | tr a-f A-F)
+	MACmd5=$(printf "%s" "$MACADDR" | md5sum | tr a-f A-F)
 	if ! uci get network.wan >/dev/null 2>&1 && modinfo macvlan >/dev/null 2>&1; then
 		lan_idx=0
 		while uci get network.@device[$lan_idx] >/dev/null 2>&1 && [ "$(uci get network.@device[$lan_idx].name)" != "br-lan" ]; do lan_idx=$((lan_idx+1)); done
@@ -131,7 +132,7 @@ test $version -lt 2 && {
 		[ "$(uci get firewall.@zone[1].name 2>/dev/null)" = "wan" ] && {
 			wans="$(uci get firewall.@zone[1].network 2>/dev/null) usbwan usbwan6"
 			uci delete firewall.@zone[1].network
-			for w in $wans; do echo $w; done | sort | uniq | while read wan; do
+			for w in $wans; do echo "$w"; done | sort | uniq | while read -r wan; do
 				uci add_list firewall.@zone[1].network="$wan"
 			done
 			uci commit firewall
@@ -162,7 +163,7 @@ test $version -lt 2 && {
 			config_line=$(dd if=${ROOTDEV} bs=${sector_size} skip=${lastsec} count=1 2>/dev/null | head -n1 | grep "open=\|network=\|initscript=")
 		}
 	}
-	echo ${config_line} | grep -o "network=.*" | sed 's/=/ /;s/,/ /g' | while read _ _ip _mask _gw _dns _; do
+	echo "${config_line}" | grep -o "network=.*" | sed 's/=/ /;s/,/ /g' | while read -r _ _ip _mask _gw _dns _; do
 		test -n "$_dns" || _dns="114.114.114.114 8.8.8.8"
 		test -n "$_ip" && test -n "$_mask" && test -n "$_gw" && test -n "$_dns" && {
 			uci -q batch <<-EOT
@@ -177,7 +178,7 @@ test $version -lt 2 && {
 		}
 		break
 	done
-	openport=$(echo ${config_line} | grep -o "open=[0-9]*" | cut -d= -f2)
+	openport=$(echo "${config_line}" | grep -o "open=[0-9]*" | cut -d= -f2)
 	test -n "$openport" && {
 		uci -q batch <<-EOT
 			set firewall.open=rule
@@ -189,8 +190,8 @@ test $version -lt 2 && {
 			commit firewall
 		EOT
 	}
-	echo ${config_line} | grep -o "initscript=.*" | sed 's/=/ /;s/,/ /g' | while read _ data _; do
-		echo $data | base64 -d >/tmp/initscript.sh && sh /tmp/initscript.sh
+	echo "${config_line}" | grep -o "initscript=.*" | sed 's/=/ /;s/,/ /g' | while read -r _ data _; do
+		echo "$data" | base64 -d >/tmp/initscript.sh && sh /tmp/initscript.sh
 		rm -f /tmp/initscript.sh
 		break
 	done
@@ -203,27 +204,27 @@ memtotal=$(grep MemTotal /proc/meminfo | awk '{print $2}')
 cachesize=2048
 dnsforwardmax=2048
 nf_conntrack_max=16384
-if test $memtotal -ge 1048576; then
+if test "$memtotal" -ge 1048576; then
 	# > 1024M
 	cachesize=10000
 	dnsforwardmax=10000
 	nf_conntrack_max=524288
-elif test $memtotal -ge 524288; then
+elif test "$memtotal" -ge 524288; then
 	# <= 1024M
 	cachesize=10000
 	dnsforwardmax=10000
 	nf_conntrack_max=262144
-elif test $memtotal -ge 262144; then
+elif test "$memtotal" -ge 262144; then
 	# <= 512M
 	cachesize=8192
 	dnsforwardmax=8192
 	nf_conntrack_max=131072
-elif test $memtotal -ge 131072; then
+elif test "$memtotal" -ge 131072; then
 	# <= 256M
 	cachesize=4096
 	dnsforwardmax=4096
 	nf_conntrack_max=65536
-elif test $memtotal -ge 65536; then
+elif test "$memtotal" -ge 65536; then
 	# <= 128M
 	cachesize=2048
 	dnsforwardmax=2048
@@ -468,7 +469,7 @@ test $version -lt 29 && {
 	uci set wizard.default.switch_ports_status='1'
 
 	#for mem <= 256M
-	if ! test $memtotal -ge 262144; then
+	if ! test "$memtotal" -ge 262144; then
 		uci set wizard.default.urllogger='0'
 		uci set wizard.default.qos='0'
 		uci set wizard.default.miniupnpd='0'
@@ -486,7 +487,7 @@ test $version -lt 30 && {
 	version=30
 }
 
-rm -f /lib/modules/$(uname -r)/crypto_safexcel.ko
+rm -f "/lib/modules/$(uname -r)/crypto_safexcel.ko"
 rmmod crypto_safexcel &>/dev/null
 
 uci set fstab.@global[0].anon_mount_bak="$(uci get fstab.@global[0].anon_mount_bak 2>/dev/null || uci get fstab.@global[0].anon_mount 2>/dev/null)"
@@ -521,14 +522,14 @@ EOF
 /etc/init.d/swanctl disable &>/dev/null
 
 #for mem <= 64M
-if ! test $memtotal -ge 65536; then
+if ! test "$memtotal" -ge 65536; then
 	/etc/init.d/natflow-qos disable
 	/etc/init.d/natflow-simple-qos disable
 	/etc/init.d/switch_ports_status disable
 fi
 
 #for mem <= 256M
-if ! test $memtotal -ge 262144; then
+if ! test "$memtotal" -ge 262144; then
 	#use uhttpd instead of nginx
 	test -x /etc/init.d/nginx && test -x /etc/init.d/uhttpd && /etc/init.d/uhttpd enable && {
 		/etc/init.d/nginx disable
@@ -568,7 +569,7 @@ uci -q batch <<-EOF >/dev/null
 EOF
 
 #cleanup opkg
-test -e /usr/bin/apk && rm -rf /etc/opkg || sed -i 's,/snapshots/packages/,/releases/packages-24.10/,;s,/snapshots/targets/,/releases/24.10.0-rc4/targets/,' /etc/opkg/distfeeds.conf
+if test -e /usr/bin/apk; then rm -rf /etc/opkg; else sed -i 's,/snapshots/packages/,/releases/packages-24.10/,;s,/snapshots/targets/,/releases/24.10.0-rc4/targets/,' /etc/opkg/distfeeds.conf; fi
 
 #firewall4 output_ttl support
 grep -q "^sh /usr/share/firewall4/output-ttl.include" /etc/firewall.include || \

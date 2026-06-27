@@ -5,7 +5,8 @@
 START=11
 
 x_wrt_install_vps() {
-	local DEVS=$(fdisk -l | grep -o "^/dev.*" | awk '{print $1}')
+	local DEVS
+	DEVS=$(fdisk -l | grep -o "^/dev.*" | awk '{print $1}')
 	DEVS="$DEVS /dev/sda1 /dev/vda1 /dev/xvda1"
 	DEVS=$(for dev in $DEVS; do echo $dev; done | sort | uniq)
 	for dev in $DEVS; do
@@ -74,7 +75,8 @@ boot() {
 	export_bootdevice && export_partdevice diskdev 0
 	diskdev=/dev/$diskdev
 
-	local DEV=$(test -b "$diskdev" && (echo /dev/sda1 | grep -q "$diskdev") && echo /dev/sdb1 || echo /dev/sda1)
+	local DEV
+	DEV=$(test -b "$diskdev" && (echo /dev/sda1 | grep -q "$diskdev") && echo /dev/sdb1 || echo /dev/sda1)
 	mkdir /tmp/usb_reset || return 0
 	if test -b "$DEV" && mount "$DEV" /tmp/usb_reset; then
 		:

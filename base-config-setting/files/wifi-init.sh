@@ -115,12 +115,18 @@ wifi_first_init()
 	local widx=0
 	local change=0
 	while uci rename wireless.@wifi-iface[$widx]=wifinet$widx >/dev/null 2>&1; do widx=$((widx+1)); done
-	uci changes wireless | tr ".='" "   " | while read _ a b; do
+	change=0
+	while read -r _ a b; do
 		if [ "x$a" != "x$b" ]; then
-			uci commit wireless
 			change=1
 			break
 		fi
-	done
-	[ "x$change" = "x0" ] && uci revert wireless
+	done <<EOT
+$(uci changes wireless | tr ".='" "   ")
+EOT
+	if [ "x$change" = "x1" ]; then
+		uci commit wireless
+	else
+		uci revert wireless
+	fi
 }
