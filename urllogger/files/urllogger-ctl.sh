@@ -1,35 +1,36 @@
 #!/bin/sh
 
+[ -c "/dev/urllogger_queue" ] || exit 1
 
-test -c /dev/urllogger_queue || exit 1
-
-urllogger_stop()
-{
-	echo "0" >/proc/sys/urllogger_store/enable
-	echo clear >/dev/urllogger_queue
-	return 0
+urllogger_stop() {
+	echo "0" > /proc/sys/urllogger_store/enable
+	echo "clear" > /dev/urllogger_queue
 }
 
-urllogger_start()
-{
-	echo "1" >/proc/sys/urllogger_store/enable
+urllogger_start() {
+	echo "1" > /proc/sys/urllogger_store/enable
 }
 
-urllogger_read()
-{
-	UP=$(cat /proc/uptime | cut -d\. -f1)
-	UP=$((UP&0xffffffff))
+urllogger_read() {
+	read -r UP _ < /proc/uptime
+	UP=${UP%%.*}
+	UP=$((UP & 0xffffffff))
 	NOW=$(date +%s)
-	cat /dev/urllogger_queue | sed 's/,/ /' | while read time data; do
-		T=$((NOW+time-UP))
-		T=$(date "+%Y-%m-%d %H:%M:%S" -d @$T)
-		echo $T,$data
-	done
+
+	while IFS=, read -r time data; do
+		T=$((NOW + time - UP))
+		T=$(date "+%Y-%m-%d %H:%M:%S" -d "@$T")
+		echo "$T,$data"
+	done < /dev/urllogger_queue
 }
 
-[ "$1" = "stop" ] && urllogger_stop && exit 0
-[ "$1" = "start" ] && urllogger_start && exit 0
-[ "$1" = "read" ] && urllogger_read && exit 0
-
-echo "usage: $0 start|stop|read"
+case "$1" in
+	stop) urllogger_stop ;;
+	start) urllogger_start ;;
+	read) urllogger_read ;;
+	*)
+		echo "usage: $0 start|stop|read"
+		exit 1
+		;;
+esac
 exit 0
