@@ -67,11 +67,14 @@ main_loop() {
 		UP=$((UP & 0xffffffff))
 		NOW=$(date +%s)
 
-		while IFS=, read -r time data; do
+		# Note: Do not use `done < /dev/urllogger_queue`. Shell built-in `read` reads 1 byte at a time
+		# which causes natflow_urllogger kernel module to return -EINVAL because the
+		# buffer size (1) is smaller than the log entry size. Using `cat` bypasses this.
+		cat /dev/urllogger_queue | while IFS=, read -r time data; do
 			T=$((NOW + time - UP))
 			T=$(date "+%Y-%m-%d %H:%M:%S" -d "@$T")
 			echo "$T,$data" >> /tmp/url.log
-		done < /dev/urllogger_queue
+		done
 	done
 }
 
