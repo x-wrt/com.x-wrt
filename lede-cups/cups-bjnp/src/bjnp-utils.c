@@ -99,7 +99,7 @@ void get_address_info(const http_addr_t *addr, char *addr_string, int *port,
         inet_ntop(AF_INET, &(addr -> ipv4.sin_addr.s_addr), addr_string,
                   BJNP_HOST_MAX);
         *port = ntohs(addr->ipv4.sin_port);
-        strcpy(family, BJNP_FAMILY_IPV4);
+        snprintf(family, BJNP_FAMILY_MAX, "%s", BJNP_FAMILY_IPV4);
     }
 
 #ifdef ENABLE_IPV6
@@ -108,22 +108,22 @@ void get_address_info(const http_addr_t *addr, char *addr_string, int *port,
                   sizeof(tmp_addr));
 
         if (IN6_IS_ADDR_LINKLOCAL(&(addr->ipv6.sin6_addr))) {
-            sprintf(addr_string, "[%s%%%d]", tmp_addr,
-                    addr->ipv6.sin6_scope_id);
+            snprintf(addr_string, BJNP_HOST_MAX, "[%s%%%d]", tmp_addr,
+                     addr->ipv6.sin6_scope_id);
         } else {
-            sprintf(addr_string, "[%s]", tmp_addr);
+            snprintf(addr_string, BJNP_HOST_MAX, "[%s]", tmp_addr);
         }
 
         *port = ntohs(addr->ipv6.sin6_port);
-        strcpy(family, BJNP_FAMILY_IPV6);
+        snprintf(family, BJNP_FAMILY_MAX, "%s", BJNP_FAMILY_IPV6);
     }
 
 #endif
     else {
         /* unknown address family, should not occur */
-        strcpy(addr_string, "Unknown address family");
+        snprintf(addr_string, BJNP_HOST_MAX, "%s", "Unknown address family");
         *port = 0;
-        strcpy(family, BJNP_FAMILY_UNKNOWN);
+        snprintf(family, BJNP_FAMILY_MAX, "%s", BJNP_FAMILY_UNKNOWN);
     }
 }
 
@@ -145,6 +145,7 @@ parse_IEEE1284_to_model(char *printer_id, char *model)
 
     char s[BJNP_IEEE1284_MAX];
     char *tok;
+    char *saveptr;
     int len;
 
     model[0] = '\0';
@@ -155,19 +156,19 @@ parse_IEEE1284_to_model(char *printer_id, char *model)
                    len);
     }
 
-    strcpy(s, printer_id);
+    snprintf(s, BJNP_IEEE1284_MAX, "%s", printer_id);
 
-    tok = strtok(s, ";");
+    tok = strtok_r(s, ";", &saveptr);
 
     while (tok != NULL) {
         /* DES contains make and model */
 
         if (strncmp(tok, DES_TOKEN, strlen(DES_TOKEN)) == 0) {
-            strcpy(model, tok + strlen(DES_TOKEN));
+            snprintf(model, BJNP_MODEL_MAX, "%s", tok + strlen(DES_TOKEN));
             return 1;
         }
 
-        tok = strtok(NULL, ";");
+        tok = strtok_r(NULL, ";", &saveptr);
     }
 
     return 0;
@@ -285,7 +286,7 @@ get_printer_host(const http_addr_t printer_addr, char *name, int *port,
         != 0) {
         bjnp_debug(LOG_DEBUG, "Name for %s not found : %s\n",
                    ip_address, gai_strerror(error));
-        strcpy(name, ip_address);
+        snprintf(name, BJNP_HOST_MAX, "%s", ip_address);
         return level;
     }
 
@@ -293,7 +294,7 @@ get_printer_host(const http_addr_t printer_addr, char *name, int *port,
     /* some buggy routers return rubbish if reverse lookup fails, so
      * we do a forward lookup to see if the result matches the ip-address */
 
-    sprintf(service, "%d", *port);
+    snprintf(service, sizeof(service), "%d", *port);
 
     if (getaddrinfo(name, service, NULL, &results) == 0) {
 
@@ -324,13 +325,13 @@ get_printer_host(const http_addr_t printer_addr, char *name, int *port,
             bjnp_debug(LOG_DEBUG,
                        "Reverse lookup for %s succeeded, forward lookup failed, using IP-address %s instead\n",
                        name, ip_address);
-            strcpy(name, ip_address);
+            snprintf(name, BJNP_HOST_MAX, "%s", ip_address);
         }
     } else {
         /* lookup failed, use ip-address */
         bjnp_debug(LOG_DEBUG, "Reverse lookup of %s failed, using IP-address %s\n",
                    name, ip_address);
-        strcpy(name, ip_address);
+        snprintf(name, BJNP_HOST_MAX, "%s", ip_address);
     }
 
     return level;
