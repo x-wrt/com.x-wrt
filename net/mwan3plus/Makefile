@@ -30,7 +30,6 @@ define Package/mwan3plus
      +jshn
    TITLE:=Multiwan hotplug script with connection tracking support
    MAINTAINER:=Minqiang Chen <ptpt52@gmail.com>
-   PKGARCH:=all
 endef
 
 define Package/mwan3plus/description

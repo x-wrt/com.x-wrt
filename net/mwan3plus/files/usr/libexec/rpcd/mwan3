@@ -15,10 +15,12 @@ report_policies() {
 
 	local percent total_weight weight iface
 
-	total_weight=$($ipt -S $policy | awk -F'"' '!/--comment "out / && NF>1 {split($2, a, " "); print a[3]; exit}')
+	total_weight=$($ipt -S "$policy" 2>/dev/null | awk -F'"' '!/--comment "out / && NF>1 {split($2, a, " "); print a[3]; exit}')
 
-	for iface in $($ipt -S $policy | awk -F'"' '!/--comment "out / && NF>1 {split($2, a, " "); print a[1]}'); do
-		weight=$($ipt -S $policy | awk -F'"' -v i="$iface" '!/--comment "out / && NF>1 {split($2, a, " "); if(a[1]==i) print a[2]}')
+	[ -n "$total_weight" ] || return
+
+	for iface in $($ipt -S "$policy" 2>/dev/null | awk -F'"' '!/--comment "out / && NF>1 {split($2, a, " "); print a[1]}'); do
+		weight=$($ipt -S "$policy" 2>/dev/null | awk -F'"' -v i="$iface" '!/--comment "out / && NF>1 {split($2, a, " "); if(a[1]==i) print a[2]}')
 		percent=$(($weight*100/$total_weight))
 		json_add_object
 		json_add_string interface "$iface"

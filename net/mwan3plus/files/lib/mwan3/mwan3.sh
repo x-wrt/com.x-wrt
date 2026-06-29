@@ -1475,8 +1475,8 @@ mwan3_flush_conntrack()
 
 mwan3_track_clean()
 {
-	rm -rf "${MWAN3_STATUS_DIR:?}/${1}.${2}" &> /dev/null
-	rmdir "$MWAN3_STATUS_DIR" 2>/dev/null
+	rm -rf "${MWAN3TRACK_STATUS_DIR:?}/${1}.${2}" &> /dev/null
+	rmdir "$MWAN3TRACK_STATUS_DIR" 2>/dev/null
 }
 
 mwan3_delay_hotplug_call()
@@ -1489,8 +1489,8 @@ mwan3_delay_hotplug_call()
 	now_time=$(date +%s)
 	if test "$((now_time-last_time))" -gt 9; then
 		mv $MWAN3_STATUS_DIR/iface_hotplug.cmd $MWAN3_STATUS_DIR/iface_hotplug.cmd.tmp && {
-			NR=$(wc -l $MWAN3_STATUS_DIR/iface_hotplug.cmd.tmp)
-			if test $NR -ge 8; then
+			NR=$(wc -l < $MWAN3_STATUS_DIR/iface_hotplug.cmd.tmp)
+			if test "$NR" -ge 8; then
 				rm -f $MWAN3_STATUS_DIR/iface_hotplug.cmd*
 				/etc/init.d/mwan3 restart
 			else
