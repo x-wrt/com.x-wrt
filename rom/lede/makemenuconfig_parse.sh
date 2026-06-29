@@ -26,7 +26,7 @@ usbprint="kmod-usb-printer \
 
 iphone4g="usbutils usbmuxd libimobiledevice-utils libimobiledevice"
 
-wifiext="luci-app-dawn dawn luci-app-usteer"
+wifiext="luci-app-dawn luci-i18n-dawn-zh-cn dawn luci-app-usteer luci-i18n-usteer-zh-cn"
 
 sqm="luci-app-sqm luci-i18n-sqm-zh-cn sqm-scripts tc-tiny"
 tc="tc-tiny"
@@ -266,68 +266,72 @@ excludes=""
 get_modules()
 {
 	local m
-	m=`for i in $@; do
-		echo $i
+	m=$(for i in "$@"; do
+		echo "$i"
 		[ "$i" = "rssileds" ] && echo luci-app-ledtrig-rssi
 		[ "$i" = "kmod-usb-ledtrig-usbport" ] && echo luci-app-ledtrig-usbport
-	done | sort | uniq`
-	m=`echo $m`
+	done | sort -u)
 	echo $m
 }
 
 get_modules_only()
 {
-	local m
-	m=`for i in $@; do grep -q "CONFIG_PACKAGE_$i=m" .config && echo $i; done`
-	m=`echo $m`
-	echo $m
+	echo $(awk -v mods="$*" '
+	BEGIN {
+		n = split(mods, a, " ")
+		for (i = 1; i <= n; i++) req[a[i]] = 1
+	}
+	/^CONFIG_PACKAGE_.*=m$/ {
+		m = $0
+		sub(/^CONFIG_PACKAGE_/, "", m)
+		sub(/=m$/, "", m)
+		if (req[m]) print m
+	}' .config | sort)
 }
 
 exclude_modules()
 {
 	local m
-	m=`for i in $@ $excludes $excludes; do echo $i; done | sort | uniq -c | grep ' 1' | awk '{print $2}' | sort`
-
+	m=$(echo "$@" | awk -v ex="$excludes" '
+	BEGIN {
+		n = split(ex, a, " ")
+		for (i = 1; i <= n; i++) exclude[a[i]] = 1
+	}
+	{
+		for (i = 1; i <= NF; i++) {
+			if (!exclude[$i]) print $i
+		}
+	}' | sort -u | grep -v "^$")
 	# filter_conflict()
-	m=`echo "$m" | grep -q "^kmod-ath10k-ct-smallbuffers$" && echo "$m" | grep -q "^kmod-ath10k-ct$" && echo "$m" | grep -v "^kmod-ath10k-ct$" || echo "$m"`
-
-	m=`echo $m`
+	if echo "$m" | grep -q "^kmod-ath10k-ct-smallbuffers$" && echo "$m" | grep -q "^kmod-ath10k-ct$"; then
+		m=$(echo "$m" | grep -v "^kmod-ath10k-ct$")
+	fi
 	echo $m
 }
 
 rm -rf /tmp/config_lede
 mkdir /tmp/config_lede
 cat .config | grep TARGET_DEVICE_.*=y | sed 's/CONFIG_//;s/=y//' | while read target; do
-	cat tmp/.config-target.in | sed -n "/menuconfig $target$/,/menuconfig .*/p" | while read line; do
-		test -n "$line" || break
-		echo $line | grep -q 'select MODULE_DEFAULT' && {
-			echo $line | awk '{print $2}' | sed 's/MODULE_DEFAULT_//'
-		}
-	done | sort >/tmp/config_lede/$target
+	awk -v target="$target" '
+	$0 ~ ("menuconfig " target "$") { in_menu = 1; next }
+	/^menuconfig / && in_menu { exit }
+	in_menu && /select MODULE_DEFAULT_/ {
+		m = $2
+		sub(/^MODULE_DEFAULT_/, "", m)
+		print m
+	}' tmp/.config-target.in | sort >/tmp/config_lede/$target
 done
 
 targets=`cd /tmp/config_lede && ls`
-alls=`cat /tmp/config_lede/* 2>/dev/null | sort | uniq`
+alls=`cat /tmp/config_lede/* 2>/dev/null | sort -u`
 #echo $alls
 
-is_in_set()
-{
-	_i=$1
-	_s=$2
-	for l in `cat $_s`; do
-		[ x$l = x$_i ] && return 0
-	done
-	return 1
-}
-
-uniqs=$(for p in $alls; do
-	for t in $targets; do
-		is_in_set $p /tmp/config_lede/$t || {
-			echo $p
-			break
-		}
-	done
-done | sort | uniq)
+uniqs=$(
+	num_targets=$(ls -1 /tmp/config_lede | wc -l)
+	if [ "$num_targets" -gt 0 ]; then
+		cat /tmp/config_lede/* 2>/dev/null | sort | uniq -c | awk -v nt="$num_targets" '$1 < nt {print $2}'
+	fi
+)
 
 echo uniqs=$uniqs
 
@@ -340,70 +344,96 @@ echo modules=$modules
 
 get_target_mods()
 {
-	local addms_tmp
-	local addms
-	addms_tmp=$(cat tmp/.config-feeds.in tmp/.config-target.in tmp/.config-package.in | sed -n "/menuconfig $1$/,/menuconfig .*/p" | while read line; do
-		test -n "$line" || break
-		echo $line | grep "select MODULE_DEFAULT_" | awk '{print $2}' | grep MODULE_DEFAULT_ | sed 's/MODULE_DEFAULT_//'
-	done)
-	addms=""
-	for m in $addms_tmp; do
-		for i in $modules; do
-			[ x$m = x$i ] && addms="$addms $m"
-		done
-	done
-	echo $addms
+	echo $(awk -v target="$1" -v mods="$modules" '
+	BEGIN {
+		n = split(mods, a, " ")
+		for(i=1; i<=n; i++) valid_mod[a[i]] = 1
+		in_menu = 0
+	}
+	$0 ~ ("menuconfig " target "$") {
+		in_menu = 1
+		next
+	}
+	/^menuconfig / && in_menu {
+		in_menu = 0
+		exit
+	}
+	in_menu && /select MODULE_DEFAULT_/ {
+		m = $2
+		sub(/^MODULE_DEFAULT_/, "", m)
+		if (valid_mod[m]) print m
+	}' tmp/.config-feeds.in tmp/.config-target.in tmp/.config-package.in | sort -u)
 }
 
 get_deps()
 {
-	local addms_tmp
 	local addms
-	local addm
-	xid=$(echo -n $1 | base64 | tr = _)
+	xid=$(echo -n "$1" | base64 | tr -d '\n' | tr = _)
 	addms=$(eval "echo \${DEPS_cache_$xid}")
-	test -n "$addms" && {
-		#echo DEPS_cache_$1=$addms 1>&2
-		echo $addms
-		return 0
-	}
-	addms_tmp=$(cat tmp/.config-feeds.in tmp/.config-target.in tmp/.config-package.in | sed -n "/config PACKAGE_$1$/,/config PACKAGE_.*/p" | while read line; do
-		test -n "$line" || break
-		echo $line | grep "select PACKAGE_" | awk '{print $2}' | grep PACKAGE_ | sed 's/PACKAGE_//'
-		echo $line | grep "depends on PACKAGE_" | awk '{print $3}' | grep PACKAGE_ | sed 's/PACKAGE_//'
-	done)
-	addms=""
-	for m in $addms_tmp; do
-		for i in $modules; do
-			[ x$m = x$i ] && addms="$addms $m"
-		done
-	done
-	for m in $addms; do
-		addm=`get_deps $m`
-		test -n "$addm" && addms="$addms $addm"
-	done
-	addms_tmp="$addms"
-	addms=""
-	for m in $addms_tmp; do
-		for i in $modules; do
-			[ x$m = x$i ] && addms="$addms $m"
-		done
-	done
-	echo $addms
+	echo "$addms"
 }
 
-for x in $modules; do
-       xid=$(echo -n $x | base64 | tr = _)
-       export DEPS_cache_$xid="$(get_deps $x)"
-done
+eval "$(awk -v mods="$modules" '
+BEGIN {
+	n = split(mods, a, " ")
+	for(i=1; i<=n; i++) valid_mod[a[i]] = 1
+}
+/^[ \t]*(menu)?config PACKAGE_/ {
+	pkg = $2
+	sub(/^PACKAGE_/, "", pkg)
+	next
+}
+/^[ \t]*config / {
+	pkg = ""
+	next
+}
+/^[ \t]*select PACKAGE_/ {
+	if (pkg != "") {
+		dep = $2
+		sub(/^PACKAGE_/, "", dep)
+		if (valid_mod[dep]) {
+			deps[pkg, dep] = 1
+		}
+	}
+}
+/^[ \t]*depends on PACKAGE_/ {
+	if (pkg != "") {
+		dep = $3
+		sub(/^PACKAGE_/, "", dep)
+		if (valid_mod[dep]) {
+			deps[pkg, dep] = 1
+		}
+	}
+}
+END {
+	for (p in valid_mod) {
+		for (v in visited) delete visited[v]
+		stack[1] = p
+		top = 1
+		visited[p] = 1
+		result_str = ""
+		while (top > 0) {
+			curr = stack[top--]
+			for (d in valid_mod) {
+				if (deps[curr, d] && !visited[d]) {
+					visited[d] = 1
+					stack[++top] = d
+					result_str = result_str d " "
+				}
+			}
+		}
+		print p " " result_str
+	}
+}' tmp/.config-feeds.in tmp/.config-target.in tmp/.config-package.in | while read -r p deps; do
+	xid=$(echo -n "$p" | base64 | tr -d '\n' | tr = _)
+	echo "export DEPS_cache_$xid=\"$deps\""
+done)"
 
 for t in $targets; do
 	touch /tmp/config_lede/$t.run
 	(
 	echo running /tmp/config_lede/$t.run
-	us=$(for u in $uniqs; do
-		is_in_set $u /tmp/config_lede/$t && echo $u
-	done)
+	us=$(awk -v uniqs="$uniqs" 'BEGIN{n=split(uniqs,a," "); for(i=1;i<=n;i++) req[a[i]]=1} req[$1] {print $1}' "/tmp/config_lede/$t")
 	echo $t=`get_modules $us`
 	mods="$us"
 	flash_gt8m=0
@@ -1092,7 +1122,7 @@ for t in $targets; do
 		# > 8M <= 12M
 		TARGET_DEVICE_mediatek_filogic_DEVICE_tenda_ax12-pro-v2|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_tenda_ax12l-pro)
-			mods="$mods wpad-basic-mbedtls wpad-basic-wolfssl $openvpnmod openvpn-mbedtls urllogger natflow-hostacl $tc"
+			mods="$mods wpad-basic-mbedtls wpad-basic-wolfssl $openvpnmod openvpn-mbedtls $lucidashboard urllogger natflow-hostacl $tc"
 			excludes="$excludes wpad-openssl wpad-mbedtls openvpn-openssl libopenssl openssl"
 			mods="$mods apk-mbedtls"
 			excludes="$excludes apk-openssl opkg"
@@ -2014,8 +2044,8 @@ rt73-usb-firmware"
 		TARGET_DEVICE_bcm27xx_bcm2710_DEVICE_rpi-3|\
 		TARGET_DEVICE_bcm27xx_bcm2711_DEVICE_rpi-4|\
 		TARGET_DEVICE_bcm27xx_bcm2712_DEVICE_rpi-5)
-			mods="$mods luci-app-tailscale-community tailscale"
-			mods="$mods luci-app-zerotier luci-app-openclash"
+			mods="$mods luci-app-tailscale-community luci-i18n-tailscale-community-zh-cn tailscale"
+			mods="$mods luci-app-zerotier luci-i18n-zerotier-zh-cn luci-app-openclash"
 		;;
 	esac
 
@@ -2090,7 +2120,7 @@ rt73-usb-firmware"
 		TARGET_DEVICE_bcm27xx_bcm2712_DEVICE_rpi-5)
 			mods="$mods usbutils pciutils"
 			mods="$mods $usb4g $quectel $modem_info"
-			mods="$mods luci-app-zerotier luci-app-openclash"
+			mods="$mods luci-app-zerotier luci-i18n-zerotier-zh-cn luci-app-openclash"
 			mods="$mods luci-app-store"
 			mods="$mods kmod-usbip-client kmod-usbip"
 			mods="$mods luci-app-openlist"
