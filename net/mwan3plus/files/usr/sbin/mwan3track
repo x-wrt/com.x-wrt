@@ -207,12 +207,14 @@ main() {
 				case "$track_method" in
 					ping)
 						if [ $check_quality -eq 0 ]; then
-							WRAP $PING -n -c $count -W $timeout -s $size -t $max_ttl -q $track_ip &> /dev/null
+							WRAP $PING -n -c $count -W $timeout -s $size -t $max_ttl -q $track_ip &> /dev/null &
+							wait $!
 							result=$?
 						else
-							ping_result_raw="$(WRAP $PING -n -c $count -W $timeout -s $size -t $max_ttl -q $track_ip 2>/dev/null)"
+							WRAP $PING -n -c $count -W $timeout -s $size -t $max_ttl -q $track_ip 2>/dev/null > $TRACK_OUTPUT &
+							wait $!
 							ping_status=$?
-							ping_result=$(echo "$ping_result_raw" | tail -n2)
+							ping_result=$(tail -n2 $TRACK_OUTPUT)
 							loss="$(echo "$ping_result" | sed -ne 's/.*[^0-9]\([0-9]\+\)% packet loss.*/\1/p')"
 							if [ "$ping_status" -ne 0 ] || [ "$loss" -eq 100 ]; then
 								latency=999999
@@ -223,28 +225,38 @@ main() {
 						fi
 					;;
 					arping)
-						WRAP arping -I $DEVICE -c $count -w $timeout -q $track_ip &> /dev/null
+						WRAP arping -I $DEVICE -c $count -w $timeout -q $track_ip &> /dev/null &
+						wait $!
 						result=$?
 					;;
 					httping)
 						if [ "$httping_ssl" -eq 1 ]; then
-							WRAP httping -c $count -t $timeout -q "https://$track_ip" &> /dev/null
+							WRAP httping -c $count -t $timeout -q "https://$track_ip" &> /dev/null &
 						else
-							WRAP httping -c $count -t $timeout -q "http://$track_ip" &> /dev/null
+							WRAP httping -c $count -t $timeout -q "http://$track_ip" &> /dev/null &
 						fi
+						wait $!
 						result=$?
 					;;
 					nping-tcp)
-						result=$(WRAP nping -c $count $track_ip --tcp | grep Lost | awk '{print $12}')
+						WRAP nping -c $count $track_ip --tcp > $TRACK_OUTPUT &
+						wait $!
+						result=$(grep Lost $TRACK_OUTPUT | awk '{print $12}')
 					;;
 					nping-udp)
-						result=$(WRAP nping -c $count $track_ip --udp | grep Lost | awk '{print $12}')
+						WRAP nping -c $count $track_ip --udp > $TRACK_OUTPUT &
+						wait $!
+						result=$(grep Lost $TRACK_OUTPUT | awk '{print $12}')
 					;;
 					nping-icmp)
-						result=$(WRAP nping -c $count $track_ip --icmp | grep Lost | awk '{print $12}')
+						WRAP nping -c $count $track_ip --icmp > $TRACK_OUTPUT &
+						wait $!
+						result=$(grep Lost $TRACK_OUTPUT | awk '{print $12}')
 					;;
 					nping-arp)
-						result=$(WRAP nping -c $count $track_ip --arp | grep Lost | awk '{print $12}')
+						WRAP nping -c $count $track_ip --arp > $TRACK_OUTPUT &
+						wait $!
+						result=$(grep Lost $TRACK_OUTPUT | awk '{print $12}')
 					;;
 				esac
 				if [ $check_quality -eq 0 ]; then
@@ -335,7 +347,7 @@ main() {
 
 		host_up_count=0
 		sleep "${sleep_time}" &
-		wait
+		wait $!
 
 		if [ "${IFDOWN_EVENT}" -eq 1 ]; then
 			LOG info "Register ifdown event on interface ${INTERFACE}($family) (${DEVICE})"
