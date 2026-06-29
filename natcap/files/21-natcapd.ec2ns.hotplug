@@ -9,7 +9,7 @@ case "$ACTION" in
 
 				test -n "$lanip" && test -n "$hname" || return 0
 
-				old_lanip=$(uci get dhcp.ec2ns.name)
+				old_lanip=$(uci get dhcp.ec2ns.ip)
 				old_hname=$(uci get dhcp.ec2ns.name)
 				[ "${lanip}" = "${old_lanip}" ] && [ "${hname}" = "${old_hname}" ] || {
 					uci set dhcp.ec2ns=domain
@@ -29,7 +29,7 @@ case "$ACTION" in
 
 				test -n "$lanip" && test -n "$hname" || return 0
 
-				old_lanip=$(uci get dhcp.ec2ns.name)
+				old_lanip=$(uci get dhcp.ec2ns.ip)
 				old_hname=$(uci get dhcp.ec2ns.name)
 				[ "${lanip}" = "${old_lanip}" ] && [ "${hname}" = "${old_hname}" ] || {
 					uci set dhcp.ec2ns=domain
