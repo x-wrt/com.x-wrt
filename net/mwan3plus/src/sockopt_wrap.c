@@ -237,6 +237,16 @@ int bind(int sockfd, const struct sockaddr *addr, socklen_t addrlen) {
 
 	if (sockfd >= 0 && sockfd < MAX_FDS && fd_info[sockfd].is_socket) {
 		struct sockaddr_storage tmp_addr;
+
+		if (!addr) {
+			return orig_bind(sockfd, addr, addrlen);
+		}
+
+		if (addrlen > sizeof(tmp_addr)) {
+			errno = EINVAL;
+			return -1;
+		}
+
 		memcpy(&tmp_addr, addr, addrlen);
 
 		if (addr->sa_family == AF_INET && has_source4) {
