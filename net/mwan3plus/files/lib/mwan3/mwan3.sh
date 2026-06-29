@@ -587,24 +587,28 @@ mwan3_create_iface_iptables()
 
 mwan3_delete_iface_iptables()
 {
-	local IPT family
+	local IPTR family update error
 	config_get family "$1" family "any"
 	[ "$family" = "any" ] && family="$2"
 	[ "$family" = "$2" ] || return
 
 	if [ "$family" = "ipv4" ] && [ $NEED_IPV4 -ne 0 ]; then
-		IPT="$IPT4"
+		IPTR="$IPT4R"
 	elif [ "$family" = "ipv6" ] && [ $NEED_IPV6 -ne 0 ]; then
-		IPT="$IPT6"
+		IPTR="$IPT6R"
 	else
 		return
 	fi
 
-	$IPT -D mwan3_ifaces_in \
-	     -m mark --mark 0x0/$MMX_MASK \
-	     -j "mwan3_iface_in_$1" &> /dev/null
-	$IPT -F "mwan3_iface_in_$1" &> /dev/null
-	$IPT -X "mwan3_iface_in_$1" &> /dev/null
+	update="*mangle"
+	mwan3_push_update -D mwan3_ifaces_in \
+		-m mark --mark 0x0/$MMX_MASK \
+		-j "mwan3_iface_in_$1"
+	mwan3_push_update -F "mwan3_iface_in_$1"
+	mwan3_push_update -X "mwan3_iface_in_$1"
+	mwan3_push_update COMMIT
+	mwan3_push_update ""
+	error=$(echo "$update" | $IPTR 2>&1) || LOG error "delete_iface_iptables: $error"
 }
 
 mwan3_create_iface_route()
@@ -760,7 +764,7 @@ mwan3_delete_iface_route()
 
 mwan3_create_iface_rules()
 {
-	local id family IP
+	local id family IP rule_id
 
 	config_get family "$1" family "any"
 	mwan3_get_iface_id id "$1"
@@ -777,12 +781,8 @@ mwan3_create_iface_rules()
 		return 0
 	fi
 
-	while [ -n "$($IP rule list | awk '$1 == "'$((id+1000)):'"')" ]; do
-		$IP rule del pref $((id+1000))
-	done
-
-	while [ -n "$($IP rule list | awk '$1 == "'$((id+2000)):'"')" ]; do
-		$IP rule del pref $((id+2000))
+	for rule_id in $($IP rule list | awk -F : -v id="$id" '$1 == id + 1000 || $1 == id + 2000 {print $1}'); do
+		$IP rule del pref "$rule_id"
 	done
 
 	$IP rule add pref $((id+1000)) iif "$2" lookup "$id"
@@ -791,7 +791,7 @@ mwan3_create_iface_rules()
 
 mwan3_delete_iface_rules()
 {
-	local id family IP
+	local id family IP rule_id
 
 	config_get family "$1" family "any"
 	mwan3_get_iface_id id "$1"
@@ -808,12 +808,8 @@ mwan3_delete_iface_rules()
 		return 0
 	fi
 
-	while [ -n "$($IP rule list | awk '$1 == "'$((id+1000)):'"')" ]; do
-		$IP rule del pref $((id+1000))
-	done
-
-	while [ -n "$($IP rule list | awk '$1 == "'$((id+2000)):'"')" ]; do
-		$IP rule del pref $((id+2000))
+	for rule_id in $($IP rule list | awk -F : -v id="$id" '$1 == id + 1000 || $1 == id + 2000 {print $1}'); do
+		$IP rule del pref "$rule_id"
 	done
 }
 
@@ -1239,7 +1235,8 @@ mwan3_set_user_iface_rules()
 	else
 		continue
 	fi
-	$IPT -S 2>/dev/null | grep -q "^-A mwan3_rules.*-i $device" && return
+	current="$($IPT -S 2>/dev/null)"
+	[ -z "${current##*-A mwan3_rules*-i $device*}" ] && return
 
 	is_src_iface=0
 
@@ -1302,8 +1299,10 @@ mwan3_set_iface_hotplug_state() {
 }
 
 mwan3_state_is_changed() {
-	local old_state_sum=$( cat "$MWAN3_STATUS_DIR/iface_state.sum" 2>/dev/null )
-	local new_state_sum=$( ( ls /var/run/mwan3/iface_state/; cat /var/run/mwan3/iface_state/* 2>/dev/null ) | md5sum | head -c32 )
+	local old_state_sum new_state_sum
+
+	readfile old_state_sum "$MWAN3_STATUS_DIR/iface_state.sum" 2>/dev/null
+	new_state_sum=$( ( ls /var/run/mwan3/iface_state/; cat /var/run/mwan3/iface_state/* 2>/dev/null ) | md5sum | head -c32 )
 	if [ "$old_state_sum" = "$new_state_sum" ]; then
 		return 1
 	fi
@@ -1315,7 +1314,13 @@ mwan3_get_iface_hotplug_state() {
 	local iface=$1
 	local family=$2
 
-	cat "$MWAN3_STATUS_DIR/iface_state/$iface.$family" 2>/dev/null || echo "offline"
+	local state
+
+	if readfile state "$MWAN3_STATUS_DIR/iface_state/$iface.$family" 2>/dev/null; then
+		echo "$state"
+		return
+	fi
+	echo "offline"
 }
 
 mwan3_report_iface_status()
@@ -1494,9 +1499,9 @@ mwan3_delay_hotplug_call()
 				rm -f $MWAN3_STATUS_DIR/iface_hotplug.cmd*
 				/etc/init.d/mwan3 restart
 			else
-				cat $MWAN3_STATUS_DIR/iface_hotplug.cmd.tmp | while read cmd; do
+				while read -r cmd; do
 					env -i $cmd
-				done
+				done < "$MWAN3_STATUS_DIR/iface_hotplug.cmd.tmp"
 				rm -f $MWAN3_STATUS_DIR/iface_hotplug.cmd.tmp
 			fi
 		}

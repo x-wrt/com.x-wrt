@@ -7,8 +7,7 @@
 
 mwan3_rtmon_route_handle()
 {
-	config_load mwan3
-	local section action route_line family tbl device metric tos dst line tid id
+	local section action route_line family tbl device metric tos dst line tid id nat_postrouting
 	route_line=${1##"Deleted "}
 	route_family=$2
 
@@ -28,8 +27,9 @@ mwan3_rtmon_route_handle()
 
 	[ "$route_family" = "ipv6" ] &&
 	if [ -z "${route_line##default from*}" ] || [ -z "${route_line##::/0 from*}" ]; then
+		nat_postrouting="$(ip6tables -t nat -S POSTROUTING 2>/dev/null)"
 		echo "$route_line" | awk '{ for(i=1;i<=NF;i++) { if($i=="from") f=$(i+1); if($i=="dev") d=$(i+1); } print f, d }' | while read from dev; do
-			interface=$(ip6tables -t nat -S POSTROUTING 2>/dev/null | awk -v dev="$dev" '/masq-help-.*-dev/ && $0 ~ "-o " dev " " { sub(/.*mwan3_/, ""); sub(/_ipv6_src_from.*/, ""); print }')
+			interface=$(echo "$nat_postrouting" | awk -v dev="$dev" '/masq-help-.*-dev/ && $0 ~ "-o " dev " " { sub(/.*mwan3_/, ""); sub(/_ipv6_src_from.*/, ""); print }')
 			[ -n "$interface" ] && {
 				INTERFACE=$interface DEVICE=$dev ACTION=ifup mwan3_ipv6_masq_help
 				LOG debug "call INTERFACE=$interface DEVICE=$dev ACTION=ifup mwan3_ipv6_masq_help by($action $route_line)"
