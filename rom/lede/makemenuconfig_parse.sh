@@ -267,32 +267,32 @@ get_modules()
 {
 	local m
 	m=$(for i in "$@"; do
-		echo "$i"
-		[ "$i" = "rssileds" ] && echo luci-app-ledtrig-rssi
-		[ "$i" = "kmod-usb-ledtrig-usbport" ] && echo luci-app-ledtrig-usbport
+		printf '%s\n' "$i"
+		[ "$i" = "rssileds" ] && printf '%s\n' luci-app-ledtrig-rssi
+		[ "$i" = "kmod-usb-ledtrig-usbport" ] && printf '%s\n' luci-app-ledtrig-usbport
 	done | sort -u)
 	echo $m
 }
 
 get_modules_only()
 {
-	echo $(awk -v mods="$*" '
-	BEGIN {
-		n = split(mods, a, " ")
-		for (i = 1; i <= n; i++) req[a[i]] = 1
-	}
-	/^CONFIG_PACKAGE_.*=m$/ {
-		m = $0
-		sub(/^CONFIG_PACKAGE_/, "", m)
-		sub(/=m$/, "", m)
-		if (req[m]) print m
-	}' .config | sort)
+	local m
+	m=$(printf '%s\n' "$@" | awk '
+		NR == FNR {
+			valid[$1] = 1
+			next
+		}
+		valid[$1] {
+			print $1
+		}
+	' /tmp/config_lede/modules - | sort -u)
+	echo $m
 }
 
 exclude_modules()
 {
 	local m
-	m=$(echo "$@" | awk -v ex="$excludes" '
+	m=$(printf '%s\n' "$@" | awk -v ex="$excludes" '
 	BEGIN {
 		n = split(ex, a, " ")
 		for (i = 1; i <= n; i++) exclude[a[i]] = 1
@@ -310,70 +310,126 @@ exclude_modules()
 }
 
 rm -rf /tmp/config_lede
-mkdir /tmp/config_lede
-cat .config | grep TARGET_DEVICE_.*=y | sed 's/CONFIG_//;s/=y//' | while read target; do
-	awk -v target="$target" '
-	$0 ~ ("menuconfig " target "$") { in_menu = 1; next }
-	/^menuconfig / && in_menu { exit }
-	in_menu && /select MODULE_DEFAULT_/ {
-		m = $2
-		sub(/^MODULE_DEFAULT_/, "", m)
-		print m
-	}' tmp/.config-target.in | sort >/tmp/config_lede/$target
+mkdir -p /tmp/config_lede/target-defaults /tmp/config_lede/target-mods /tmp/config_lede/results
+awk '/^CONFIG_TARGET_DEVICE_.*=y$/ {
+	sub(/^CONFIG_/, "")
+	sub(/=y$/, "")
+	print
+}' .config > /tmp/config_lede/targets
+awk '/^CONFIG_PACKAGE_.*=m$/ {
+	sub(/^CONFIG_PACKAGE_/, "")
+	sub(/=m$/, "")
+	print
+}' .config | sort -u > /tmp/config_lede/modules
+
+targets=$(awk '{ print }' /tmp/config_lede/targets)
+modules=$(awk '{ print }' /tmp/config_lede/modules)
+
+for target in $targets; do
+	: > "/tmp/config_lede/target-defaults/$target"
+	: > "/tmp/config_lede/target-mods/$target"
 done
 
-targets=`cd /tmp/config_lede && ls`
-alls=`cat /tmp/config_lede/* 2>/dev/null | sort -u`
-#echo $alls
+awk -v targets="$targets" -v outdir="/tmp/config_lede/target-defaults" '
+BEGIN {
+	n = split(targets, a, " ")
+	for (i = 1; i <= n; i++) want[a[i]] = 1
+}
+FNR == 1 {
+	in_menu = 0
+}
+/^menuconfig / {
+	target = $2
+	in_menu = (target in want)
+	next
+}
+in_menu && /select MODULE_DEFAULT_/ {
+	m = $2
+	sub(/^MODULE_DEFAULT_/, "", m)
+	path = outdir "/" target
+	print m >> path
+	close(path)
+}
+' tmp/.config-target.in
+
+for target in $targets; do
+	sort -u -o "/tmp/config_lede/target-defaults/$target" "/tmp/config_lede/target-defaults/$target"
+done
 
 uniqs=$(
-	num_targets=$(ls -1 /tmp/config_lede | wc -l)
+	num_targets=$(wc -l < /tmp/config_lede/targets)
 	if [ "$num_targets" -gt 0 ]; then
-		cat /tmp/config_lede/* 2>/dev/null | sort | uniq -c | awk -v nt="$num_targets" '$1 < nt {print $2}'
+		cat /tmp/config_lede/target-defaults/* 2>/dev/null | sort | uniq -c | awk -v nt="$num_targets" '$1 < nt {print $2}'
 	fi
 )
 
 echo uniqs=$uniqs
 
-ms="`cat .config | grep =m$ | sed 's/CONFIG_PACKAGE_//;s/=m//g'`"
-modules=$(for i in $ms; do
-	echo $i
-done)
 #echo "$uniqs" | grep -q $i$ || echo $i
 echo modules=$modules
 
+awk -v targets="$targets" -v mods="$modules" -v outdir="/tmp/config_lede/target-mods" '
+BEGIN {
+	n = split(targets, a, " ")
+	for (i = 1; i <= n; i++) want[a[i]] = 1
+	n = split(mods, a, " ")
+	for (i = 1; i <= n; i++) valid_mod[a[i]] = 1
+}
+FNR == 1 {
+	if (in_menu)
+		done[target] = 1
+	in_menu = 0
+}
+/^menuconfig / {
+	if (in_menu)
+		done[target] = 1
+	target = $2
+	in_menu = ((target in want) && !(target in done))
+	next
+}
+in_menu && /select MODULE_DEFAULT_/ {
+	m = $2
+	sub(/^MODULE_DEFAULT_/, "", m)
+	if (valid_mod[m]) {
+		path = outdir "/" target
+		print m >> path
+		close(path)
+	}
+}
+END {
+	if (in_menu)
+		done[target] = 1
+}
+' tmp/.config-feeds.in tmp/.config-target.in tmp/.config-package.in
+
+for target in $targets; do
+	sort -u -o "/tmp/config_lede/target-mods/$target" "/tmp/config_lede/target-mods/$target"
+done
+
 get_target_mods()
 {
-	echo $(awk -v target="$1" -v mods="$modules" '
-	BEGIN {
-		n = split(mods, a, " ")
-		for(i=1; i<=n; i++) valid_mod[a[i]] = 1
-		in_menu = 0
-	}
-	$0 ~ ("menuconfig " target "$") {
-		in_menu = 1
-		next
-	}
-	/^menuconfig / && in_menu {
-		in_menu = 0
-		exit
-	}
-	in_menu && /select MODULE_DEFAULT_/ {
-		m = $2
-		sub(/^MODULE_DEFAULT_/, "", m)
-		if (valid_mod[m]) print m
-	}' tmp/.config-feeds.in tmp/.config-target.in tmp/.config-package.in | sort -u)
+	echo $(cat "/tmp/config_lede/target-mods/$1" 2>/dev/null)
 }
 
-get_deps()
+get_deps_for_modules()
 {
-	local addms
-	xid=$(echo -n "$1" | base64 | tr -d '\n' | tr = _)
-	addms=$(eval "echo \${DEPS_cache_$xid}")
-	echo "$addms"
+	printf '%s\n' "$@" | awk '
+		NR == FNR {
+			pkg = $1
+			sub(/^[^ ]*[ ]*/, "")
+			deps[pkg] = $0
+			next
+		}
+		{
+			for (i = 1; i <= NF; i++) {
+				if (($i in deps) && deps[$i] != "")
+					print deps[$i]
+			}
+		}
+	' /tmp/config_lede/deps.map -
 }
 
-eval "$(awk -v mods="$modules" '
+awk -v mods="$modules" '
 BEGIN {
 	n = split(mods, a, " ")
 	for(i=1; i<=n; i++) valid_mod[a[i]] = 1
@@ -424,16 +480,13 @@ END {
 		}
 		print p " " result_str
 	}
-}' tmp/.config-feeds.in tmp/.config-target.in tmp/.config-package.in | while read -r p deps; do
-	xid=$(echo -n "$p" | base64 | tr -d '\n' | tr = _)
-	echo "export DEPS_cache_$xid=\"$deps\""
-done)"
+}' tmp/.config-feeds.in tmp/.config-target.in tmp/.config-package.in > /tmp/config_lede/deps.map
 
 for t in $targets; do
 	touch /tmp/config_lede/$t.run
 	(
 	echo running /tmp/config_lede/$t.run
-	us=$(awk -v uniqs="$uniqs" 'BEGIN{n=split(uniqs,a," "); for(i=1;i<=n;i++) req[a[i]]=1} req[$1] {print $1}' "/tmp/config_lede/$t")
+	us=$(awk -v uniqs="$uniqs" 'BEGIN{n=split(uniqs,a," "); for(i=1;i<=n;i++) req[a[i]]=1} req[$1] {print $1}' "/tmp/config_lede/target-defaults/$t")
 	echo $t=`get_modules $us`
 	mods="$us"
 	flash_gt8m=0
@@ -2199,22 +2252,18 @@ rt73-usb-firmware"
 		mods="$mods ip-bridge"
 	fi
 
-	tname=`echo $t | sed 's/TARGET_DEVICE_/CONFIG_TARGET_DEVICE_PACKAGES_/'`
+	tname="CONFIG_TARGET_DEVICE_PACKAGES_${t#TARGET_DEVICE_}"
 	mods="$mods `get_target_mods $t`"
 	mods=`get_modules $mods`
 	mods=`get_modules_only $mods`
 	mods=`exclude_modules $mods`
-	dep_mods=$(for x in $mods; do
-			get_deps $x
-			done)
+	dep_mods=$(get_deps_for_modules $mods)
 	dep_mods=`get_modules $dep_mods`
 	mods=`get_modules $mods $dep_mods`
 	mods=`get_modules_only $mods`
 	mods=`exclude_modules $mods`
 	#echo $tname=$mods
-	while ! mkdir /tmp/config_lede/lck 2>/dev/null; do sleep 1; done
-	sed -i "s/$tname=\".*\"/$tname=\"$mods\"/" ./.config
-	rmdir /tmp/config_lede/lck
+	printf '%s="%s"\n' "$tname" "$mods" > "/tmp/config_lede/results/$tname"
 	rm -f /tmp/config_lede/$t.run
 	echo exit /tmp/config_lede/$t.run
 	) &
@@ -2228,6 +2277,25 @@ while :; do
 	ls /tmp/config_lede/*.run &>/dev/null || break
 	sleep 2
 done
+
+cat /tmp/config_lede/results/* > /tmp/config_lede/results.map
+awk '
+	NR == FNR {
+		line = $0
+		name = line
+		sub(/=.*/, "", name)
+		repl[name] = line
+		next
+	}
+	{
+		name = $0
+		sub(/=.*/, "", name)
+		if (name in repl)
+			print repl[name]
+		else
+			print
+	}
+' /tmp/config_lede/results.map ./.config > /tmp/config_lede/.config.new && mv /tmp/config_lede/.config.new ./.config
 
 rm -rf /tmp/config_lede
 
