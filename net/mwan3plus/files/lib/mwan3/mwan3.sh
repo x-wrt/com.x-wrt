@@ -71,7 +71,8 @@ mwan3_ipv6_masq_help()
 	[ "$enabled" = "1" ] || return
 	[ "$family" = "ipv6" ] || [ "$family" = "any" ] || return
 
-	ip6tables -t nat -S POSTROUTING 2>/dev/null | grep "masq-help-${INTERFACE}-dev" | sed 's/^-A //' | while read line; do
+	ip6tables -t nat -S POSTROUTING 2>/dev/null | awk -v tag="masq-help-${INTERFACE}-dev" \
+		'$0 ~ tag { sub(/^-A /, ""); print }' | while read line; do
 		$(echo ip6tables -t nat -D $line | sed 's/"//g')
 		$IPS destroy mwan3_${INTERFACE}_ipv6_src_from &>/dev/null
 	done
@@ -81,7 +82,18 @@ mwan3_ipv6_masq_help()
 	[ "$ACTION" = "ifup" ] || return
 
 	$IPS destroy mwan3_${INTERFACE}_ipv6_src_from &>/dev/null
-	$IP6 route list table main | grep "\(^default\|^::/0\) from.*dev ${DEVICE} " | sed 's/.* from \([^ ]*\) .*dev \([^ ]*\) .*/\1 \2/' | while read from dev; do
+	$IP6 route list dev "$DEVICE" table main | awk -v device="$DEVICE" '
+		($1 == "default" || $1 == "::/0") {
+			from = ""
+			for (i = 1; i <= NF; i++) {
+				if ($i == "from") {
+					from = $(i + 1)
+					break
+				}
+			}
+			if (from != "") print from, device
+		}
+	' | while read from dev; do
 		$IPS list -n mwan3_${INTERFACE}_ipv6_src_from &>/dev/null || $IPS create mwan3_${INTERFACE}_ipv6_src_from hash:net hashsize 128 family inet6
 		$IPS add mwan3_${INTERFACE}_ipv6_src_from $from
 	done
@@ -97,10 +109,10 @@ mwan3_ipv6_masq_help()
 
 mwan3_ipv6_masq_cleanup()
 {
-	ip6tables -t nat -S POSTROUTING 2>/dev/null | grep masq-help-.*-dev | sed 's/^-A //' | while read line; do
+	ip6tables -t nat -S POSTROUTING 2>/dev/null | awk '/masq-help-.*-dev/ { sub(/^-A /, ""); print }' | while read line; do
 		$(echo ip6tables -t nat -D $line | sed 's/"//g')
 	done
-	$IPS list -n | grep "mwan3_.*_ipv6_src_from" | while read line; do
+	$IPS list -n | awk '/mwan3_.*_ipv6_src_from/' | while read line; do
 		$IPS destroy $line &>/dev/null
 	done
 }
@@ -1374,7 +1386,7 @@ mwan3_report_iface_status()
 {
 	local device result track_ips tracking IP IPT family family_list
 	local track_ips_v4 track_ips_v6
-	local error
+	local error rules
 
 	mwan3_get_iface_id id "$1"
 	network_get_device device "$1"
@@ -1416,8 +1428,12 @@ mwan3_report_iface_status()
 		result="offline"
 	else
 		error=0
-		[ -n "$($IP rule | awk '$1 == "'$((id+1000)):'"')" ] || error=$((error+1))
-		[ -n "$($IP rule | awk '$1 == "'$((id+2000)):'"')" ] || error=$((error+2))
+		rules="
+$($IP rule)"
+		[ -z "${rules##*
+$((id+1000)):*}" ] || error=$((error+1))
+		[ -z "${rules##*
+$((id+2000)):*}" ] || error=$((error+2))
 		[ -n "$($IPT -S mwan3_iface_in_$1 2> /dev/null)" ] || error=$((error+4))
 		[ -n "$($IP route list table $id default dev $device 2> /dev/null)" ] || error=$((error+8))
 	fi

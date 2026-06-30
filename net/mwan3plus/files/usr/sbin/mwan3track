@@ -145,6 +145,32 @@ update_status() {
 	echo "$4" > $MWAN3TRACK_STATUS_DIR/$INTERFACE.$FAMILY/LOSS_${track_ip}
 }
 
+get_default_gateway() {
+	local _var family device route gateway word last_word
+
+	_var="$1"
+	family="$2"
+	device="$3"
+	last_word=
+	if [ "$family" = "ipv4" ]; then
+		route="$(ip -4 route show default dev "$device" 2>/dev/null)"
+		gateway=255.255.255.255
+	else
+		route="$(ip -6 route show default dev "$device" 2>/dev/null)"
+		gateway=ffff::
+	fi
+
+	for word in $route; do
+		if [ "$last_word" = "via" ]; then
+			gateway="$word"
+			break
+		fi
+		last_word="$word"
+	done
+
+	export "$_var=$gateway"
+}
+
 main() {
 	local reliability count timeout interval failure_interval
 	local recovery_interval down up size
@@ -189,6 +215,7 @@ main() {
 	local lost=0
 	local turn=0
 	local sleep_time result ping_status ping_quality loss latency
+	local current_track_ips gateway_ip gateway_resolved
 	local SRC_IP TRACK_OUTPUT
 	shift 4
 	local track_ips="$*"
@@ -215,16 +242,22 @@ main() {
 
 		sleep_time=$interval
 
+		current_track_ips=
+		gateway_ip=
+		gateway_resolved=0
 		for track_ip in $track_ips; do
-			if [ "x$track_ip" = "xgateway" ]; then
-				if [ "$family" = "ipv4" ]; then
-					track_ip=$(ip -4 route show default dev "$DEVICE" 2>/dev/null | awk '{ for (i=1; i<NF; i++) if ($i == "via") { print $(i+1); exit } }')
-					test -n "$track_ip" || track_ip=255.255.255.255
-				else
-					track_ip=$(ip -6 route show default dev "$DEVICE" 2>/dev/null | awk '{ for (i=1; i<NF; i++) if ($i == "via") { print $(i+1); exit } }')
-					test -n "$track_ip" || track_ip=ffff::
+			if [ "$track_ip" = "gateway" ]; then
+				if [ "$gateway_resolved" -eq 0 ]; then
+					get_default_gateway gateway_ip "$family" "$DEVICE"
+					gateway_resolved=1
 				fi
+				current_track_ips="$current_track_ips $gateway_ip"
+			else
+				current_track_ips="$current_track_ips $track_ip"
 			fi
+		done
+
+		for track_ip in $current_track_ips; do
 			if [ $host_up_count -lt $reliability ]; then
 				case "$track_method" in
 					ping)
@@ -294,14 +327,14 @@ main() {
 				esac
 				if [ $check_quality -eq 0 ]; then
 					if [ $result -eq 0 ]; then
-						let host_up_count++
+						host_up_count=$((host_up_count+1))
 						update_status "$track_ip" "up"
 
 						if [ $score -le $up ]; then
 							LOG info "Check ($track_method) success for target \"$track_ip\" on interface $INTERFACE($family) ($DEVICE). Current score: $score"
 						fi
 					else
-						let lost++
+						lost=$((lost+1))
 						update_status "$track_ip" "down"
 
 						if [ $score -gt $up ]; then
@@ -310,14 +343,14 @@ main() {
 					fi
 				else
 					if [ "$loss" -ge "$failure_loss" ] || [ "$latency" -ge "$failure_latency" ]; then
-						let lost++
+						lost=$((lost+1))
 						update_status "$track_ip" "down" $latency $loss
 
 						if [ $score -gt $up ]; then
 							LOG info "Check (${track_method}: latency=${latency}ms loss=${loss}%) failed for target \"$track_ip\" on interface $INTERFACE($family) ($DEVICE). Current score: $score"
 						fi
 					elif [ "$loss" -le "$recovery_loss" ] && [ "$latency" -le "$recovery_latency" ]; then
-						let host_up_count++
+						host_up_count=$((host_up_count+1))
 						update_status "$track_ip" "up" $latency $loss
 
 						if [ $score -le $up ]; then
@@ -333,7 +366,7 @@ main() {
 		done
 
 		if [ $host_up_count -lt $reliability ]; then
-			let score--
+			score=$((score-1))
 
 			if [ $score -lt $up ]; then
 				score=0
@@ -355,7 +388,7 @@ main() {
 				LOG info "Lost $((lost*count)) ping(s) on interface $INTERFACE($family) ($DEVICE). Current score: $score"
 			fi
 
-			let score++
+			score=$((score+1))
 			lost=0
 
 			if [ $score -gt $up ]; then
@@ -371,7 +404,7 @@ main() {
 			fi
 		fi
 
-		let turn++
+		turn=$((turn+1))
 		mkdir -p "$MWAN3TRACK_STATUS_DIR/$INTERFACE.$family"
 		echo "${lost}" > $MWAN3TRACK_STATUS_DIR/$INTERFACE.$family/LOST
 		echo "${score}" > $MWAN3TRACK_STATUS_DIR/$INTERFACE.$family/SCORE
