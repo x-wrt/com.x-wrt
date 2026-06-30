@@ -85,16 +85,25 @@ if [ "$familys" != "ipv4" ] && [ "$familys" != "ipv6" ]; then
 	[ "$familys" = "any" ] && familys="ipv4 ipv6"
 fi
 
-if [ -z "$DELAY_HOTPLUG" ] && [ "$MWAN3_STARTUP" != 1 ] && [ "$(uci show mwan3 | grep =interface | wc -l)" -ge 10 ]; then
-	mwan3_unlock "$ACTION" "$INTERFACE"
-	if [ "$ACTION" = "ifup" ] || [ "$ACTION" = "ifdown" ]; then
-		for family in $familys; do
-			trackpid=$(pgrep -f "mwan3track $family $INTERFACE ")
-			kill -TERM $trackpid > /dev/null 2>&1
-		done
+if [ -z "$DELAY_HOTPLUG" ] && [ "$MWAN3_STARTUP" != 1 ]; then
+	count_interface() {
+		interface_count=$((interface_count+1))
+	}
+
+	interface_count=0
+	config_foreach count_interface interface
+
+	if [ "$interface_count" -ge 10 ]; then
+		mwan3_unlock "$ACTION" "$INTERFACE"
+		if [ "$ACTION" = "ifup" ] || [ "$ACTION" = "ifdown" ]; then
+			for family in $familys; do
+				trackpid=$(pgrep -f "mwan3track $family $INTERFACE ")
+				kill -TERM $trackpid > /dev/null 2>&1
+			done
+		fi
+		DELAY_HOTPLUG=1 MWAN3_STARTUP=2 ACTION=$ACTION INTERFACE=$INTERFACE DEVICE=$DEVICE FAMILY=$FAMILY mwan3_delay_hotplug_call
+		exit 0
 	fi
-	DELAY_HOTPLUG=1 MWAN3_STARTUP=2 ACTION=$ACTION INTERFACE=$INTERFACE DEVICE=$DEVICE FAMILY=$FAMILY mwan3_delay_hotplug_call
-	exit 0
 fi
 
 [ "$MWAN3_STARTUP" != 1 ] && [ "$ACTION" = "ifup" ] && {

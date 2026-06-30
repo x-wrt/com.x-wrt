@@ -127,13 +127,13 @@ mwan3_update_dev_to_table()
 		local family family_list curr_table device enabled
 		let _tid++
 		config_get family_list "$1" family "any"
+		network_get_device device "$1"
+		[ -z "$device" ] && return
+		config_get enabled "$1" enabled
+		[ "$enabled" -eq 0 ] && return
 		[ "$family_list" = "any" ] && family_list="ipv4 ipv6"
 		for family in $family_list; do
 
-		network_get_device device "$1"
-		[ -z "$device" ] && continue
-		config_get enabled "$1" enabled
-		[ "$enabled" -eq 0 ] && continue
 		curr_table=$(eval "echo	 \"\$mwan3_dev_tbl_${family}\"")
 		export "mwan3_dev_tbl_$family=${curr_table}${device}=$_tid "
 
@@ -175,10 +175,17 @@ mwan3_route_line_dev()
 {
 	# must have mwan3 config already loaded
 	# arg 1 is route device
-	local _tid route_line route_device route_family entry curr_table
+	local _tid route_line route_device route_family entry curr_table word last_word
 	route_line=$2
 	route_family=$3
-	route_device=$(echo "$route_line" | sed -ne "s/.*dev \([^ ]*\).*/\1/p")
+	route_device=
+	last_word=
+	for word in $route_line; do
+		if [ "$last_word" = "dev" ]; then
+			route_device=$word
+		fi
+		last_word=$word
+	done
 	unset "$1"
 	[ -z "$route_device" ] && return
 
@@ -216,13 +223,15 @@ mwan3_id2mask()
 	local bit_msk bit_val result
 	bit_val=0
 	result=0
-	for bit_msk in $(seq 0 31); do
+	bit_msk=0
+	while [ "$bit_msk" -le 31 ]; do
 		if [ $((($2>>bit_msk)&1)) = "1" ]; then
 			if [ $((($1>>bit_val)&1)) = "1" ]; then
 				result=$((result|(1<<bit_msk)))
 			fi
 			bit_val=$((bit_val+1))
 		fi
+		bit_msk=$((bit_msk+1))
 	done
 	printf "0x%x" $result
 }
@@ -338,10 +347,7 @@ mwan3_set_local_ipv6()
 	$IPS create mwan3_local_v6_temp hash:net family inet6 ||
 		LOG notice "failed to create ipset mwan3_local_v6_temp"
 
-	$IP6 route list table local | awk '{print $2}' | grep : | while read local_network_v6; do
-		$IPS -! add mwan3_local_v6_temp $local_network_v6 2>/dev/null
-	done
-	$IP6 route list table local | awk '{print $1}' | grep : | while read local_network_v6; do
+	$IP6 route list table local | awk '$2 ~ /:/ {print $2} $1 ~ /:/ {print $1}' | while read local_network_v6; do
 		$IPS -! add mwan3_local_v6_temp $local_network_v6 2>/dev/null
 	done
 
@@ -438,18 +444,22 @@ mwan3_set_connected_ipset()
 
 mwan3_set_general_rules()
 {
-	local IP
+	local IP rules
 
 	for IP in "$IP4" "$IP6"; do
 		[ "$IP" = "$IP4" ] && [ $NEED_IPV4 -eq 0 ] && continue
 		[ "$IP" = "$IP6" ] && [ $NEED_IPV6 -eq 0 ] && continue
+		rules="
+$($IP rule list)"
 		RULE_NO=$((MM_BLACKHOLE+2000))
-		if [ -z "$($IP rule list | awk -v var="$RULE_NO:" '$1 == var')" ]; then
+		if [ -n "${rules##*
+$RULE_NO:*}" ]; then
 			$IP rule add pref $RULE_NO fwmark $MMX_BLACKHOLE/$MMX_MASK blackhole
 		fi
 
 		RULE_NO=$((MM_UNREACHABLE+2000))
-		if [ -z "$($IP rule list | awk -v var="$RULE_NO:" '$1 == var')" ]; then
+		if [ -n "${rules##*
+$RULE_NO:*}" ]; then
 			$IP rule add pref $RULE_NO fwmark $MMX_UNREACHABLE/$MMX_MASK unreachable
 		fi
 	done
@@ -845,16 +855,17 @@ mwan3_delete_iface_rules()
 
 mwan3_delete_iface_ipset_entries()
 {
-	local id setname entry V
+	local id setname entry V mark
 
 	mwan3_get_iface_id id "$1"
 
 	[ -n "$id" ] || return 0
 	V="v4"
 	[ "$2" = "ipv6" ] && V="v6"
+	mark=$(mwan3_id2mask id MMX_MASK | awk '{ printf "0x%08x", $1; }')
 
 	for setname in $(ipset -n list | grep ^mwan3_sticky_${V}_); do
-		for entry in $(ipset list "$setname" | grep "$(mwan3_id2mask id MMX_MASK | awk '{ printf "0x%08x", $1; }')" | cut -d ' ' -f 1); do
+		for entry in $(ipset list "$setname" | grep "$mark" | cut -d ' ' -f 1); do
 			$IPS del "$setname" $entry
 		done
 	done
@@ -880,14 +891,19 @@ mwan3_track()
 
 	mwan3_list_track_ips()
 	{
-		if echo $1 | grep -q ":"; then
-			track_ips_v6="$track_ips_v6 $1"
-		elif echo $1 | grep -qE "$IPv4_REGEX"; then
-			track_ips_v4="$track_ips_v4 $1"
-		else
-			track_ips_v6="$track_ips_v6 $1"
-			track_ips_v4="$track_ips_v4 $1"
-		fi
+		case "$1" in
+			*:*)
+				track_ips_v6="$track_ips_v6 $1"
+			;;
+			*)
+				if echo $1 | grep -qE "$IPv4_REGEX"; then
+					track_ips_v4="$track_ips_v4 $1"
+				else
+					track_ips_v6="$track_ips_v6 $1"
+					track_ips_v4="$track_ips_v4 $1"
+				fi
+			;;
+		esac
 	}
 	config_list_foreach "$1" track_ip mwan3_list_track_ips
 	track_ips="$track_ips_v4"
@@ -1014,7 +1030,7 @@ mwan3_create_policies_iptables()
 
 	config_get last_resort "$1" last_resort unreachable
 
-	if [ "$1" != "$(echo "$1" | cut -c1-15)" ]; then
+	if [ ${#1} -gt 15 ]; then
 		LOG warn "Policy $1 exceeds max of 15 chars. Not setting policy" && return 0
 	fi
 
@@ -1075,7 +1091,7 @@ mwan3_set_policies_iptables()
 mwan3_set_sticky_iptables()
 {
 	local id iface
-	for iface in $(echo "$current" | grep "^-A $policy" | cut -s -d'"' -f2 | awk '{print $1}'); do
+	for iface in $(printf '%s\n' "$current" | awk -F'"' -v policy="$policy" '$0 ~ "^-A " policy && NF > 1 {split($2, a, " "); print a[1]}'); do
 		if [ "$iface" = "$1" ]; then
 
 			mwan3_get_iface_id id "$1"
@@ -1145,7 +1161,7 @@ mwan3_set_user_iptables_rule()
 		unset dest_port
 	fi
 
-	if [ "$1" != "$(echo "$1" | cut -c1-15)" ]; then
+	if [ ${#1} -gt 15 ]; then
 		LOG warn "Rule $1 exceeds max of 15 chars. Not setting rule" && return 0
 	fi
 
@@ -1332,7 +1348,8 @@ mwan3_state_is_changed() {
 	local old_state_sum new_state_sum
 
 	readfile old_state_sum "$MWAN3_STATUS_DIR/iface_state.sum" 2>/dev/null
-	new_state_sum=$( ( ls /var/run/mwan3/iface_state/; cat /var/run/mwan3/iface_state/* 2>/dev/null ) | md5sum | head -c32 )
+	new_state_sum=$( ( ls "$MWAN3_STATUS_DIR/iface_state/"; cat "$MWAN3_STATUS_DIR"/iface_state/* 2>/dev/null ) | md5sum )
+	new_state_sum=${new_state_sum%% *}
 	if [ "$old_state_sum" = "$new_state_sum" ]; then
 		return 1
 	fi
@@ -1366,14 +1383,19 @@ mwan3_report_iface_status()
 
 	mwan3_list_track_ips()
 	{
-		if echo $1 | grep -q ":"; then
-			track_ips_v6="$track_ips_v6 $1"
-		elif echo $1 | grep -qE "$IPv4_REGEX"; then
-			track_ips_v4="$track_ips_v4 $1"
-		else
-			track_ips_v6="$track_ips_v6 $1"
-			track_ips_v4="$track_ips_v4 $1"
-		fi
+		case "$1" in
+			*:*)
+				track_ips_v6="$track_ips_v6 $1"
+			;;
+			*)
+				if echo $1 | grep -qE "$IPv4_REGEX"; then
+					track_ips_v4="$track_ips_v4 $1"
+				else
+					track_ips_v6="$track_ips_v6 $1"
+					track_ips_v4="$track_ips_v4 $1"
+				fi
+			;;
+		esac
 	}
 	config_list_foreach "$1" track_ip mwan3_list_track_ips
 
@@ -1439,18 +1461,16 @@ mwan3_report_policies()
 	local ipt="$1"
 	local policy="$2"
 
-	local percent total_weight weight iface
+	local rules total_weight
 
-	total_weight=$($ipt -S "$policy" 2>/dev/null | awk -F'"' '!/--comment "out / && NF>1 {split($2, a, " "); print a[3]; exit}')
+	rules="$($ipt -S "$policy" 2>/dev/null)"
+	total_weight=$(printf '%s\n' "$rules" | awk -F'"' '!/--comment "out / && NF>1 {split($2, a, " "); print a[3]; exit}')
 
 	if [ -n "$total_weight" ]; then
-		for iface in $($ipt -S "$policy" 2>/dev/null | awk -F'"' '!/--comment "out / && NF>1 {split($2, a, " "); print a[1]}'); do
-			weight=$($ipt -S "$policy" 2>/dev/null | awk -F'"' -v i="$iface" '!/--comment "out / && NF>1 {split($2, a, " "); if(a[1]==i) print a[2]}')
-			percent=$((weight*100/total_weight))
-			echo " $iface ($percent%)"
-		done
+		printf '%s\n' "$rules" | awk -F'"' -v total_weight="$total_weight" \
+			'!/--comment "out / && NF>1 {split($2, a, " "); printf " %s (%d%%)\n", a[1], a[2] * 100 / total_weight}'
 	else
-		echo " $($ipt -S "$policy" 2>/dev/null | awk -F'"' '!/--comment "out / && NF>1 {split($2, a, " "); print a[1]; exit}')"
+		printf ' %s\n' "$(printf '%s\n' "$rules" | awk -F'"' '!/--comment "out / && NF>1 {split($2, a, " "); print a[1]; exit}')"
 	fi
 }
 
@@ -1459,7 +1479,7 @@ mwan3_report_policies_v4()
 	local policy
 
 	for policy in $($IPT4 -S 2>/dev/null | awk '$2 ~ /^mwan3_policy_/ {print $2}' | sort -u); do
-		echo "$policy:" | sed 's/mwan3_policy_//'
+		echo "${policy#mwan3_policy_}:"
 		mwan3_report_policies "$IPT4" "$policy"
 	done
 }
@@ -1469,7 +1489,7 @@ mwan3_report_policies_v6()
 	local policy
 
 	for policy in $($IPT6 -S 2>/dev/null | awk '$2 ~ /^mwan3_policy_/ {print $2}' | sort -u); do
-		echo "$policy:" | sed 's/mwan3_policy_//'
+		echo "${policy#mwan3_policy_}:"
 		mwan3_report_policies "$IPT6" "$policy"
 	done
 }
@@ -1477,14 +1497,14 @@ mwan3_report_policies_v6()
 mwan3_report_rules_v4()
 {
 	if [ -n "$($IPT4 -S mwan3_rules 2> /dev/null)" ]; then
-		$IPT4 -L mwan3_rules -n -v 2> /dev/null | tail -n+3 | sed 's/mark.*//' | sed 's/mwan3_policy_/- /' | sed 's/mwan3_rule_/S /'
+		$IPT4 -L mwan3_rules -n -v 2> /dev/null | awk 'NR>2 {sub(/mark.*/, ""); sub(/mwan3_policy_/, "- "); sub(/mwan3_rule_/, "S "); print}'
 	fi
 }
 
 mwan3_report_rules_v6()
 {
 	if [ -n "$($IPT6 -S mwan3_rules 2> /dev/null)" ]; then
-		$IPT6 -L mwan3_rules -n -v 2> /dev/null | tail -n+3 | sed 's/mark.*//' | sed 's/mwan3_policy_/- /' | sed 's/mwan3_rule_/S /'
+		$IPT6 -L mwan3_rules -n -v 2> /dev/null | awk 'NR>2 {sub(/mark.*/, ""); sub(/mwan3_policy_/, "- "); sub(/mwan3_rule_/, "S "); print}'
 	fi
 }
 

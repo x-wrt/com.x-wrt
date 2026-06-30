@@ -185,12 +185,13 @@ main() {
 	config_get recovery_loss $INTERFACE recovery_loss 10
 
 	local score=$((down+up))
-	local track_ips=$(echo $* | cut -d ' ' -f 5-99)
 	local host_up_count=0
 	local lost=0
 	local turn=0
-	local sleep_time result ping_status loss latency
+	local sleep_time result ping_status ping_quality loss latency
 	local SRC_IP TRACK_OUTPUT
+	shift 4
+	local track_ips="$*"
 
 	if [ "$family" = "ipv6" ]; then
 		mwan3_get_src_ip6 SRC_IP "$INTERFACE"
@@ -235,42 +236,38 @@ main() {
 							WRAP $PING -n -c $count -W $timeout -s $size -t $max_ttl -q $track_ip 2>/dev/null > "$TRACK_OUTPUT" &
 							wait $!
 							ping_status=$?
-							loss="$(awk '
+							ping_quality="$(awk '
 								{ line[NR % 2] = $0; n = NR }
 								END {
+									loss = ""
+									latency = ""
 									start = n > 1 ? n - 1 : n
 									for (i = start; i <= n; i++) {
 										s = line[i % 2]
 										if (s ~ /% packet loss/) {
 											sub(/% packet loss.*$/, "", s)
 											sub(/^.*[^0-9]/, "", s)
-											print s
-											exit
+											loss = s
+										}
+										s = line[i % 2]
+										if (s ~ /(rtt|round-trip).* = /) {
+											sub(/^.*(rtt|round-trip).* = [^\/]*\//, "", s)
+											sub(/[^0-9].*$/, "", s)
+											latency = s
 										}
 									}
+									if (loss == "") loss = 100
+									if (latency == "") latency = 999999
+									print loss " " latency
 								}
 							' "$TRACK_OUTPUT")"
+							loss=${ping_quality%% *}
+							latency=${ping_quality#* }
 							[ -n "$loss" ] || loss=100
+							[ -n "$latency" ] || latency=999999
 							if [ "$ping_status" -ne 0 ] || [ "$loss" -eq 100 ]; then
 								latency=999999
 								loss=100
-							else
-								latency="$(awk '
-									{ line[NR % 2] = $0; n = NR }
-									END {
-										start = n > 1 ? n - 1 : n
-										for (i = start; i <= n; i++) {
-											s = line[i % 2]
-											if (s ~ /(rtt|round-trip).* = /) {
-												sub(/^.*(rtt|round-trip).* = [^\/]*\//, "", s)
-												sub(/[^0-9].*$/, "", s)
-												print s
-												exit
-											}
-										}
-									}
-								' "$TRACK_OUTPUT")"
-								[ -n "$latency" ] || latency=999999
 							fi
 						fi
 					;;
