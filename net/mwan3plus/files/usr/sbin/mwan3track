@@ -12,15 +12,24 @@ FAMILY="any"
 
 IFDOWN_EVENT=0
 
+stop_subprocs() {
+	local killpids
+
+	killpids="$(jobs -p)"
+	[ -n "$killpids" ] && kill $killpids 2>/dev/null
+}
+
 clean_up() {
 	LOG notice "Stopping mwan3track for interface \"${INTERFACE}\""
 	IFDOWN_EVENT=2
+	stop_subprocs
 	return 0
 }
 
 if_down() {
 	LOG info "Detect ifdown event on interface ${INTERFACE} (${DEVICE})"
 	IFDOWN_EVENT=1
+	stop_subprocs
 }
 
 validate_track_method() {
@@ -42,6 +51,10 @@ validate_track_method() {
 			return 1
 			;;
 		arping)
+			[ "$family" = "ipv6" ] && {
+				LOG warn "arping does not support IPv6. Please use another track method."
+				return 1
+			}
 			command -v arping 1>/dev/null 2>&1 || {
 				LOG warn "Missing arping. Please install iputils-arping package."
 				return 1
@@ -64,6 +77,12 @@ validate_track_method() {
 			return 2
 			;;
 	esac
+}
+
+validate_wrap() {
+	[ -x /lib/mwan3/libwrap_mwan3_sockopt.so.1.0 ] && return 0
+	LOG error "Missing libwrap_mwan3_sockopt. Please reinstall mwan3plus."
+	return 1
 }
 
 disconnected() {
@@ -182,6 +201,7 @@ main() {
 		LOG err "track method($track_method) src_ip($SRC_IP) invalid"
 		return 1
 	}
+	validate_wrap || return 1
 
 	WRAP() {
 		# shellcheck disable=SC2048

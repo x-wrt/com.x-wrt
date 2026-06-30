@@ -349,11 +349,11 @@ restart() {
 use() {
 	local interface device src_ip family ipv
 
-	[ -z "$*" ] && echo "no interface specified for mwan3 use" && return
+	[ "$#" -eq 0 ] && echo "no interface specified for mwan3 use" && return
 	interface=$1; shift
-	[ -z "$*" ] && echo "no family specified for mwan3 use" && return
+	[ "$#" -eq 0 ] && echo "no family specified for mwan3 use" && return
 	ipv=$1; shift
-	[ -z "$*" ] && echo "no command specified for mwan3 use" && return
+	[ "$#" -eq 0 ] && echo "no command specified for mwan3 use" && return
 	network_get_device device $interface
 	[ -z "$device" ] && echo "could not find device for $interface" && return
 
@@ -367,16 +367,17 @@ use() {
 		mwan3_get_src_ip src_ip $interface
 	fi
 
-	echo FAMILY=$family DEVICE=$device SRCIP=$src_ip FWMARK=$MMX_MASK LD_PRELOAD=/lib/mwan3/libwrap_mwan3_sockopt.so.1.0 $*
-	FAMILY=$family DEVICE=$device SRCIP=$src_ip FWMARK=$MMX_MASK LD_PRELOAD=/lib/mwan3/libwrap_mwan3_sockopt.so.1.0 $*
+	echo "Running '$*' with FAMILY=$family DEVICE=$device SRCIP=$src_ip FWMARK=$MMX_MASK"
+	FAMILY=$family DEVICE=$device SRCIP=$src_ip FWMARK=$MMX_MASK LD_PRELOAD=/lib/mwan3/libwrap_mwan3_sockopt.so.1.0 "$@"
 }
 
 case "$1" in
 	ifup|ifdown|interfaces|policies|rules|status|start|stop|restart|use|internal)
 		config_load mwan3
 		mwan3_init
-		# shellcheck disable=SC2048
-		$*
+		"$@"
+		ret=$?
+		[ "$1" = "use" ] && exit "$ret"
 	;;
 	*)
 		help

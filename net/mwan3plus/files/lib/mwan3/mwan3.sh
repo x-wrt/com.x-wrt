@@ -367,14 +367,34 @@ mwan3_set_local_ipset()
 
 mwan3_set_connected_ipv4()
 {
-	local error connected_network_v4
+	local connected_network_v4 candidate_list cidr_list
 	$IPS -! create mwan3_connected_v4 hash:net
 	$IPS create mwan3_connected_v4_temp hash:net ||
 		LOG notice "failed to create ipset mwan3_connected_v4_temp"
 
-	$IP4 route list table main | awk '{print $1}' | grep -E "$IPv4_REGEX" | while read connected_network_v4; do
-		$IPS -! add mwan3_connected_v4_temp $connected_network_v4 2>/dev/null
+	route_lists()
+	{
+		$IP4 route list table main | awk '{print $1}'
+		$IP4 route list table all | awk '{print $2}'
+	}
+
+	candidate_list=""
+	cidr_list=""
+	for connected_network_v4 in $(route_lists | grep -E "$IPv4_REGEX"); do
+		if [ -z "${connected_network_v4##*/*}" ]; then
+			cidr_list="$cidr_list $connected_network_v4"
+		else
+			candidate_list="$candidate_list $connected_network_v4"
+		fi
 	done
+
+	for connected_network_v4 in $cidr_list; do
+		$IPS -! add mwan3_connected_v4_temp "$connected_network_v4" 2>/dev/null
+	done
+	for connected_network_v4 in $candidate_list; do
+		$IPS -! add mwan3_connected_v4_temp "$connected_network_v4" 2>/dev/null
+	done
+	$IPS -! add mwan3_connected_v4_temp 224.0.0.0/3 2>/dev/null
 
 	$IPS swap mwan3_connected_v4_temp mwan3_connected_v4 ||
 		LOG notice "failed to swap mwan3_connected_v4_temp and mwan3_connected_v4"
@@ -384,12 +404,15 @@ mwan3_set_connected_ipv4()
 
 mwan3_set_connected_ipv6()
 {
-	local error connected_network_v6
+	local connected_network_v6
 	$IPS -! create mwan3_connected_v6 hash:net family inet6
 	$IPS create mwan3_connected_v6_temp hash:net family inet6 ||
 		LOG notice "failed to create ipset mwan3_connected_v6_temp"
 
-	$IP6 route list table main | awk '{print $1}' | grep -E "$IPv6_REGEX" | while read connected_network_v6; do
+	{
+		$IP6 route list table main | awk '{print $1}'
+		$IP6 route list table all | awk '{print $2}'
+	} | grep -E "$IPv6_REGEX" | while read connected_network_v6; do
 		$IPS -! add mwan3_connected_v6_temp $connected_network_v6 2>/dev/null
 	done
 
