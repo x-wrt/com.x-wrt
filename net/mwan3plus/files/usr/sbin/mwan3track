@@ -11,6 +11,7 @@ PING="/bin/ping"
 FAMILY="any"
 
 IFDOWN_EVENT=0
+TRACK_DIR=""
 
 stop_subprocs() {
 	local killpids
@@ -88,11 +89,11 @@ validate_wrap() {
 disconnected() {
 	local status
 
-	readfile status "${MWAN3TRACK_STATUS_DIR}/${INTERFACE}.$FAMILY/STATUS" || status="notracking"
+	readfile status "$TRACK_DIR/STATUS" || status="notracking"
 
-	echo "offline" > $MWAN3TRACK_STATUS_DIR/$INTERFACE.$FAMILY/STATUS
-	get_uptime > $MWAN3TRACK_STATUS_DIR/$INTERFACE.$FAMILY/OFFLINE
-	echo "0" > $MWAN3TRACK_STATUS_DIR/$INTERFACE.$FAMILY/ONLINE
+	echo "offline" > "$TRACK_DIR/STATUS"
+	get_uptime > "$TRACK_DIR/OFFLINE"
+	echo "0" > "$TRACK_DIR/ONLINE"
 	score=0
 	[ "$1" = 1 ] && return
 
@@ -106,9 +107,9 @@ disconnected() {
 }
 
 connected() {
-	echo "online" > $MWAN3TRACK_STATUS_DIR/$INTERFACE.$FAMILY/STATUS
-	echo "0" > $MWAN3TRACK_STATUS_DIR/$INTERFACE.$FAMILY/OFFLINE
-	get_uptime > $MWAN3TRACK_STATUS_DIR/$INTERFACE.$FAMILY/ONLINE
+	echo "online" > "$TRACK_DIR/STATUS"
+	echo "0" > "$TRACK_DIR/OFFLINE"
+	get_uptime > "$TRACK_DIR/ONLINE"
 	host_up_count=0
 	lost=0
 	turn=0
@@ -119,12 +120,12 @@ connected() {
 }
 
 disconnecting() {
-	echo "disconnecting" > $MWAN3TRACK_STATUS_DIR/$INTERFACE.$FAMILY/STATUS
+	echo "disconnecting" > "$TRACK_DIR/STATUS"
 	LOG notice "Interface $INTERFACE($FAMILY) ($DEVICE) is disconnecting"
 }
 
 connecting() {
-	echo "connecting" > $MWAN3TRACK_STATUS_DIR/$INTERFACE.$FAMILY/STATUS
+	echo "connecting" > "$TRACK_DIR/STATUS"
 	LOG notice "Interface $INTERFACE($FAMILY) ($DEVICE) is connecting"
 }
 
@@ -139,19 +140,18 @@ firstconnect() {
 update_status() {
 	local track_ip=$1
 
-	echo "$1" > $MWAN3TRACK_STATUS_DIR/$INTERFACE.$FAMILY/TRACK_${track_ip}
+	echo "$1" > "$TRACK_DIR/TRACK_${track_ip}"
 	[ -z "$3" ] && return
-	echo "$3" > $MWAN3TRACK_STATUS_DIR/$INTERFACE.$FAMILY/LATENCY_${track_ip}
-	echo "$4" > $MWAN3TRACK_STATUS_DIR/$INTERFACE.$FAMILY/LOSS_${track_ip}
+	echo "$3" > "$TRACK_DIR/LATENCY_${track_ip}"
+	echo "$4" > "$TRACK_DIR/LOSS_${track_ip}"
 }
 
 get_default_gateway() {
-	local _var family device route gateway word last_word
+	local _var family device route gateway
 
 	_var="$1"
 	family="$2"
 	device="$3"
-	last_word=
 	if [ "$family" = "ipv4" ]; then
 		route="$(ip -4 route show default dev "$device" 2>/dev/null)"
 		gateway=255.255.255.255
@@ -160,13 +160,12 @@ get_default_gateway() {
 		gateway=ffff::
 	fi
 
-	for word in $route; do
-		if [ "$last_word" = "via" ]; then
-			gateway="$word"
-			break
-		fi
-		last_word="$word"
-	done
+	case " $route " in
+		*" via "*)
+			route=${route#* via }
+			gateway=${route%% *}
+		;;
+	esac
 
 	export "$_var=$gateway"
 }
@@ -185,7 +184,8 @@ main() {
 	DEVICE=$3
 	STATUS=$4
 	FAMILY=$family
-	mkdir -p $MWAN3TRACK_STATUS_DIR/$INTERFACE.$family
+	TRACK_DIR="$MWAN3TRACK_STATUS_DIR/$INTERFACE.$family"
+	mkdir -p "$TRACK_DIR"
 	trap clean_up TERM
 	trap if_down USR1
 
@@ -236,7 +236,7 @@ main() {
 		DEVICE=$DEVICE SRCIP=$SRC_IP FWMARK=$MMX_MASK LD_PRELOAD=/lib/mwan3/libwrap_mwan3_sockopt.so.1.0 $*
 	}
 
-	TRACK_OUTPUT="$MWAN3TRACK_STATUS_DIR/$INTERFACE.$family/TRACK_OUTPUT"
+	TRACK_OUTPUT="$TRACK_DIR/TRACK_OUTPUT"
 	firstconnect
 	while true; do
 
@@ -357,11 +357,11 @@ main() {
 							LOG info "Check (${track_method}: latency=${latency}ms loss=${loss}%) success for target \"$track_ip\" on interface $INTERFACE($family) ($DEVICE). Current score: $score"
 						fi
 					else
-						echo "skipped" > $MWAN3TRACK_STATUS_DIR/$INTERFACE.$family/TRACK_${track_ip}
+						echo "skipped" > "$TRACK_DIR/TRACK_${track_ip}"
 					fi
 				fi
 			else
-				echo "skipped" > $MWAN3TRACK_STATUS_DIR/$INTERFACE.$family/TRACK_${track_ip}
+				echo "skipped" > "$TRACK_DIR/TRACK_${track_ip}"
 			fi
 		done
 
@@ -392,7 +392,7 @@ main() {
 			lost=0
 
 			if [ $score -gt $up ]; then
-				echo "online" > $MWAN3TRACK_STATUS_DIR/$INTERFACE.$family/STATUS
+				echo "online" > "$TRACK_DIR/STATUS"
 				score=$((down+up))
 			elif [ $score -le $up ]; then
 				connecting
@@ -405,11 +405,11 @@ main() {
 		fi
 
 		turn=$((turn+1))
-		mkdir -p "$MWAN3TRACK_STATUS_DIR/$INTERFACE.$family"
-		echo "${lost}" > $MWAN3TRACK_STATUS_DIR/$INTERFACE.$family/LOST
-		echo "${score}" > $MWAN3TRACK_STATUS_DIR/$INTERFACE.$family/SCORE
-		echo "${turn}" > $MWAN3TRACK_STATUS_DIR/$INTERFACE.$family/TURN
-		get_uptime > $MWAN3TRACK_STATUS_DIR/$INTERFACE.$family/TIME
+		[ -d "$TRACK_DIR" ] || mkdir -p "$TRACK_DIR"
+		echo "${lost}" > "$TRACK_DIR/LOST"
+		echo "${score}" > "$TRACK_DIR/SCORE"
+		echo "${turn}" > "$TRACK_DIR/TURN"
+		get_uptime > "$TRACK_DIR/TIME"
 
 		host_up_count=0
 		sleep "${sleep_time}" &

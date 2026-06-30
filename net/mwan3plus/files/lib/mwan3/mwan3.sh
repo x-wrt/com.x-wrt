@@ -62,6 +62,22 @@ mwan3_init_post()
 }
 
 # help ipv6 masq when network interface ifup/ifdown
+mwan3_ip6tables_nat_delete_rule()
+{
+	local line quote stripped
+
+	line=$1
+	quote='"'
+	stripped=
+	while [ "$line" != "${line#*$quote}" ]; do
+		stripped="${stripped}${line%%$quote*}"
+		line=${line#*$quote}
+	done
+	stripped="${stripped}${line}"
+
+	ip6tables -t nat -D $stripped
+}
+
 mwan3_ipv6_masq_help()
 {
 	local family enabled
@@ -73,7 +89,7 @@ mwan3_ipv6_masq_help()
 
 	ip6tables -t nat -S POSTROUTING 2>/dev/null | awk -v tag="masq-help-${INTERFACE}-dev" \
 		'$0 ~ tag { sub(/^-A /, ""); print }' | while read line; do
-		$(echo ip6tables -t nat -D $line | sed 's/"//g')
+		mwan3_ip6tables_nat_delete_rule "$line"
 		$IPS destroy mwan3_${INTERFACE}_ipv6_src_from &>/dev/null
 	done
 
@@ -110,7 +126,7 @@ mwan3_ipv6_masq_help()
 mwan3_ipv6_masq_cleanup()
 {
 	ip6tables -t nat -S POSTROUTING 2>/dev/null | awk '/masq-help-.*-dev/ { sub(/^-A /, ""); print }' | while read line; do
-		$(echo ip6tables -t nat -D $line | sed 's/"//g')
+		mwan3_ip6tables_nat_delete_rule "$line"
 	done
 	$IPS list -n | awk '/mwan3_.*_ipv6_src_from/' | while read line; do
 		$IPS destroy $line &>/dev/null
@@ -876,8 +892,8 @@ mwan3_delete_iface_ipset_entries()
 	[ "$2" = "ipv6" ] && V="v6"
 	mark=$(mwan3_id2mask id MMX_MASK | awk '{ printf "0x%08x", $1; }')
 
-	for setname in $(ipset -n list | grep ^mwan3_sticky_${V}_); do
-		for entry in $(ipset list "$setname" | grep "$mark" | cut -d ' ' -f 1); do
+	for setname in $(ipset -n list | awk -v prefix="mwan3_sticky_${V}_" 'index($0, prefix) == 1'); do
+		for entry in $(ipset list "$setname" | awk -v mark="$mark" 'index($0, mark) {print $1}'); do
 			$IPS del "$setname" $entry
 		done
 	done
@@ -966,7 +982,6 @@ mwan3_set_policy()
 	else
 		continue
 	fi
-	current="$($IPT -S 2>/dev/null)"$'\n'
 	update="*mangle"
 
 	if [ "$family" = "ipv4" ] && [ $NEED_IPV4 -ne 0 ] && [ $is_offline -eq 0 ]; then
@@ -1020,7 +1035,8 @@ mwan3_set_policy()
 				  -m comment --comment \"$iface $weight $total_weight\" \
 				  -j MARK --set-xmark "$(mwan3_id2mask id MMX_MASK)/$MMX_MASK"
 	elif [ -n "$device" ]; then
-		echo "$current" | grep -q "^-A mwan3_policy_$policy.*--comment .* [0-9]* [0-9]*" ||
+		current="$($IPT -S 2>/dev/null)"$'\n'
+		printf '%s\n' "$current" | grep -q "^-A mwan3_policy_$policy.*--comment .* [0-9]* [0-9]*" ||
 			mwan3_push_update -I "mwan3_policy_$policy" \
 					  -o "$device" \
 					  -m mark --mark 0x0/$MMX_MASK \

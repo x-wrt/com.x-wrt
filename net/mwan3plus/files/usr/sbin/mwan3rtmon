@@ -27,7 +27,6 @@ mwan3_rtmon_route_handle()
 
 	[ "$route_family" = "ipv6" ] &&
 	if [ -z "${route_line##default from*}" ] || [ -z "${route_line##::/0 from*}" ]; then
-		nat_postrouting="$(ip6tables -t nat -S POSTROUTING 2>/dev/null)"
 		from=
 		dev=
 		last_word=
@@ -39,7 +38,8 @@ mwan3_rtmon_route_handle()
 			last_word=$word
 		done
 		if [ -n "$from" ] && [ -n "$dev" ]; then
-			interface=$(echo "$nat_postrouting" | awk -v dev="$dev" '/masq-help-.*-dev/ && $0 ~ "-o " dev " " { sub(/.*mwan3_/, ""); sub(/_ipv6_src_from.*/, ""); print }')
+			nat_postrouting="$(ip6tables -t nat -S POSTROUTING 2>/dev/null)"
+			interface=$(printf '%s\n' "$nat_postrouting" | awk -v dev="$dev" '/masq-help-.*-dev/ && $0 ~ "-o " dev " " { sub(/.*mwan3_/, ""); sub(/_ipv6_src_from.*/, ""); print }')
 			[ -n "$interface" ] && {
 				INTERFACE=$interface DEVICE=$dev ACTION=ifup mwan3_ipv6_masq_help
 				LOG debug "call INTERFACE=$interface DEVICE=$dev ACTION=ifup mwan3_ipv6_masq_help by($action $route_line)"
@@ -59,7 +59,13 @@ mwan3_rtmon_route_handle()
 	handle_route() {
 		tbl=$($IP route list table $id 2>/dev/null)
 		if [ $action = "add" ]; then
-			echo "$tbl" | grep -q "^default\|^::/0" || return
+			case "
+$tbl" in
+				*"
+default"*|*"
+::/0"*) ;;
+				*) return ;;
+			esac
 		else
 			[ -z "$tbl" ] && return
 		fi

@@ -263,7 +263,20 @@ start()
 
 stop()
 {
-	local ipset rule IP IPTR IPT kill_pid family table tid
+	local ipset ipsets rule IP IPTR IPT kill_pid family table tid
+
+	mwan3_kill_processes()
+	{
+		local sig pids pattern
+
+		sig=$1
+		pids="$(
+			for pattern in "ip -4 monitor route" "ip -6 monitor route" "mwan3rtmon" "mwan3track"; do
+				pgrep -f "$pattern" 2>/dev/null
+			done
+		)"
+		[ -n "$pids" ] && kill -"$sig" $pids 2>/dev/null
+	}
 
 	#Priority to get the lock
 	touch /var/run/mwan3.init
@@ -272,17 +285,9 @@ stop()
 	rm -f /var/run/mwan3.init
 
 	{
-		for pid in $(pgrep -f "ip -4 monitor route" 2>/dev/null); do kill -TERM "$pid" 2>/dev/null; done
-		for pid in $(pgrep -f "ip -6 monitor route" 2>/dev/null); do kill -TERM "$pid" 2>/dev/null; done
-		for pid in $(pgrep -f "mwan3rtmon" 2>/dev/null); do kill -TERM "$pid" 2>/dev/null; done
-		for pid in $(pgrep -f "mwan3track" 2>/dev/null); do kill -TERM "$pid" 2>/dev/null; done
-
+		mwan3_kill_processes TERM
 		sleep 1
-
-		for pid in $(pgrep -f "ip -4 monitor route" 2>/dev/null); do kill -KILL "$pid" 2>/dev/null; done
-		for pid in $(pgrep -f "ip -6 monitor route" 2>/dev/null); do kill -KILL "$pid" 2>/dev/null; done
-		for pid in $(pgrep -f "mwan3rtmon" 2>/dev/null); do kill -KILL "$pid" 2>/dev/null; done
-		for pid in $(pgrep -f "mwan3track" 2>/dev/null); do kill -KILL "$pid" 2>/dev/null; done
+		mwan3_kill_processes KILL
 	} &
 	kill_pid=$!
 	config_foreach mwan3_track_clean interface
@@ -299,7 +304,7 @@ stop()
 			IP="$IP6"
 		fi
 
-		for tid in $($IP route list table all | sed -ne 's/.*table \([0-9]\+\).*/\1/p' | sort -u); do
+		for tid in $($IP route list table all | awk '{ for (i = 1; i < NF; i++) if ($i == "table" && $(i + 1) ~ /^[0-9]+$/) seen[$(i + 1)] = 1 } END { for (tid in seen) print tid }'); do
 			[ "$tid" -gt "$MWAN3_INTERFACE_MAX" ] && continue
 			$IP route flush table $tid &> /dev/null
 		done
@@ -312,17 +317,23 @@ stop()
 			echo "*mangle";
 			[ -z "${table##*PREROUTING -j mwan3_hook*}" ] && echo "-D PREROUTING -j mwan3_hook"
 			[ -z "${table##*OUTPUT -j mwan3_hook*}" ] && echo "-D OUTPUT -j mwan3_hook"
-			echo "$table" | awk '$2 ~ /mwan3/ {print "-F "$2}' | sort -u
-			echo "$table" | awk '$2 ~ /mwan3/ {print "-X "$2}' | sort -u
+			printf '%s\n' "$table" | awk '
+				$2 ~ /mwan3/ && !seen[$2]++ { chains[++n] = $2 }
+				END {
+					for (i = 1; i <= n; i++) print "-F " chains[i]
+					for (i = 1; i <= n; i++) print "-X " chains[i]
+				}
+			'
 			echo "COMMIT"
 		} | $IPTR
 	done
 
-	for ipset in $($IPS -n list | grep mwan3_); do
+	ipsets="$($IPS -n list)"
+	for ipset in $(printf '%s\n' "$ipsets" | awk '/mwan3_/'); do
 		$IPS -q destroy $ipset
 	done
 
-	for ipset in $($IPS -n list | grep mwan3 | grep -E '_v4|_v6'); do
+	for ipset in $(printf '%s\n' "$ipsets" | awk '/mwan3/ && /_v4|_v6/'); do
 		$IPS -q destroy $ipset
 	done
 
