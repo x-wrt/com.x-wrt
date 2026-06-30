@@ -20,11 +20,13 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
+#include <strings.h>
 #include <arpa/inet.h>
 #include <net/if.h>
 #include <errno.h>
 #include <unistd.h>
 #include <sys/socket.h>
+#include <sched.h>
 
 #ifndef __GLIBC__
 // 非 glibc 环境 (如 musl)
@@ -46,15 +48,23 @@ struct socket_state {
 	int domain;             // AF_INET 或 AF_INET6
 };
 
+enum {
+	BOUND_NO = 0,
+	BOUND_YES = 1,
+	BOUND_IN_PROGRESS = 2,
+};
+
 // 全局状态数组 (存放在 BSS 段，自动初始化为 0)
 static struct socket_state fd_info[MAX_FDS];
 
 // 全局配置 (在初始化中一次性设置，只读，线程安全)
 static struct sockaddr_in  source4 = {0};
 static int has_source4 = 0;
+static int source4_invalid = 0;
 #ifdef CONFIG_IPV6
 static struct sockaddr_in6 source6 = {0};
 static int has_source6 = 0;
+static int source6_invalid = 0;
 #endif
 
 static char dev_name[IFNAMSIZ] = {0};
@@ -69,6 +79,7 @@ static int (*orig_socket)(int, int, int);
 static int (*orig_bind)(int, const struct sockaddr*, socklen_t);
 static int (*orig_setsockopt)(int, int, int, const void*, socklen_t);
 static int (*orig_close)(int);
+static int (*orig_getsockname)(int, struct sockaddr*, socklen_t*);
 static int (*orig_connect)(int, const struct sockaddr*, socklen_t);
 static ssize_t (*orig_send)(int, const void*, size_t, int);
 static ssize_t (*orig_sendto)(int, const void*, size_t, int, const struct sockaddr*, socklen_t);
@@ -80,15 +91,18 @@ static int (*orig_dup3)(int, int, int);        // FIX #9: 可选 (glibc 2.9+)
 static int (*orig_accept)(int, struct sockaddr*, socklen_t*);
 static int (*orig_accept4)(int, struct sockaddr*, socklen_t*, int); // FIX #9: 可选 (glibc 2.10+)
 
-// 原子初始化标志，用于 lazy 初始化
-static volatile int is_initialized = 0;
+// 原子初始化状态: 0=未初始化, 1=初始化中, 2=完成
+static volatile int init_state = 0;
 
 // ==========================================
 // 初始化阶段
 // ==========================================
 static void init_lib(void) {
 	// 使用原子操作确保多线程下只初始化一次
-	if (!__sync_bool_compare_and_swap(&is_initialized, 0, 1)) {
+	if (!__sync_bool_compare_and_swap(&init_state, 0, 1)) {
+		while (__builtin_expect(init_state != 2, 0)) {
+			sched_yield();
+		}
 		return;
 	}
 
@@ -97,6 +111,7 @@ static void init_lib(void) {
 	orig_bind = dlsym(RTLD_NEXT, "bind");
 	orig_setsockopt = dlsym(RTLD_NEXT, "setsockopt");
 	orig_close = dlsym(RTLD_NEXT, "close");
+	orig_getsockname = dlsym(RTLD_NEXT, "getsockname");
 	orig_connect = dlsym(RTLD_NEXT, "connect");
 	orig_send = dlsym(RTLD_NEXT, "send");
 	orig_sendto = dlsym(RTLD_NEXT, "sendto");
@@ -113,35 +128,48 @@ static void init_lib(void) {
 	// FIX #1: 验证所有核心函数指针
 	if (!orig_socket || !orig_bind || !orig_close || !orig_connect ||
 	        !orig_send || !orig_sendto || !orig_sendmsg || !orig_dup ||
-	        !orig_dup2 || !orig_accept || !orig_setsockopt) {
+	        !orig_dup2 || !orig_accept || !orig_setsockopt || !orig_getsockname) {
 		fprintf(stderr, "sockwrap: Fatal error, dlsym failed for core functions.\n");
 		exit(EXIT_FAILURE);
 	}
 
 	// 解析环境变量 (一次性解析，消除运行时的 getenv 开销)
 	const char *env_dev = getenv("DEVICE");
-	if (env_dev && strlen(env_dev) > 0 && strlen(env_dev) < IFNAMSIZ) {
-		strncpy(dev_name, env_dev, IFNAMSIZ - 1);
+	if (env_dev && strlen(env_dev) > 0) {
+		size_t dev_len = strnlen(env_dev, IFNAMSIZ);
+		if (dev_len >= IFNAMSIZ) {
+			fprintf(stderr, "sockwrap: interface name too long\n");
+			exit(EXIT_FAILURE);
+		}
+		memcpy(dev_name, env_dev, dev_len + 1);
 		has_dev = 1;
 	}
 
 	const char *env_mark = getenv("FWMARK");
 	if (env_mark) {
 		fwmark_val = (int)strtol(env_mark, NULL, 0);
-		has_fwmark = 1;
+		has_fwmark = fwmark_val > 0;
 	}
 
 	const char *env_ip4 = getenv("SRCIP4") ? getenv("SRCIP4") : getenv("SRCIP");
-	if (env_ip4 && inet_pton(AF_INET, env_ip4, &source4.sin_addr) > 0) {
-		source4.sin_family = AF_INET;
-		has_source4 = 1;
+	if (env_ip4 && strlen(env_ip4) > 0) {
+		if (inet_pton(AF_INET, env_ip4, &source4.sin_addr) > 0) {
+			source4.sin_family = AF_INET;
+			has_source4 = 1;
+		} else {
+			source4_invalid = 1;
+		}
 	}
 
 #ifdef CONFIG_IPV6
 	const char *env_ip6 = getenv("SRCIP6") ? getenv("SRCIP6") : getenv("SRCIP");
-	if (env_ip6 && inet_pton(AF_INET6, env_ip6, &source6.sin6_addr) > 0) {
-		source6.sin6_family = AF_INET6;
-		has_source6 = 1;
+	if (env_ip6 && strlen(env_ip6) > 0) {
+		if (inet_pton(AF_INET6, env_ip6, &source6.sin6_addr) > 0) {
+			source6.sin6_family = AF_INET6;
+			has_source6 = 1;
+		} else {
+			source6_invalid = 1;
+		}
 	}
 #endif
 
@@ -150,6 +178,9 @@ static void init_lib(void) {
 		if (strcasecmp(env_family, "ipv4") == 0) reject_ipv6 = 1;
 		if (strcasecmp(env_family, "ipv6") == 0) reject_ipv4 = 1;
 	}
+
+	__sync_synchronize();
+	init_state = 2;
 }
 
 // 标准 constructor 初始化入口
@@ -160,41 +191,127 @@ __attribute__((constructor)) static void constructor_init(void) {
 // FIX #6: 懒加载宏。__builtin_expect 告诉编译器 is_initialized 通常为 1，
 // 这样在汇编层面几乎没有性能损耗（零开销分支预测）。
 #define ENSURE_INIT() do { \
-    if (__builtin_expect(!is_initialized, 0)) init_lib(); \
+    if (__builtin_expect(init_state != 2, 0)) init_lib(); \
 } while(0)
 
 // ==========================================
 // 核心逻辑
 // ==========================================
-static void dobind(int sockfd) {
-	if (sockfd < 0 || sockfd >= MAX_FDS || !fd_info[sockfd].is_socket) return;
-
-	if (__sync_bool_compare_and_swap(&fd_info[sockfd].bound, 0, 1)) {
-		struct sockaddr *addr = NULL;
-		socklen_t len = 0;
-
-		if (fd_info[sockfd].domain == AF_INET && has_source4) {
-			addr = (struct sockaddr *)&source4;
-			len = sizeof(source4);
-		}
+static int get_source_addr(int domain, const struct sockaddr **addr, socklen_t *len) {
+	if (domain == AF_INET && source4_invalid) {
+		errno = EINVAL;
+		return -1;
+	}
+	if (domain == AF_INET && has_source4) {
+		*addr = (const struct sockaddr *)&source4;
+		*len = sizeof(source4);
+		return 1;
+	}
 #ifdef CONFIG_IPV6
-		else if (fd_info[sockfd].domain == AF_INET6 && has_source6) {
-			addr = (struct sockaddr *)&source6;
-			len = sizeof(source6);
-		}
+	if (domain == AF_INET6 && source6_invalid) {
+		errno = EINVAL;
+		return -1;
+	}
+	if (domain == AF_INET6 && has_source6) {
+		*addr = (const struct sockaddr *)&source6;
+		*len = sizeof(source6);
+		return 1;
+	}
 #endif
+	return 0;
+}
 
-		if (addr) {
-			// FIX #5: 保存 errno，防止 orig_bind 污染全局错误码
-			int saved_errno = errno;
-			if (orig_bind(sockfd, addr, len) < 0) {
-				if (errno != EADDRINUSE) {
-					perror("sockwrap: auto-bind warning");
-				}
-			}
-			errno = saved_errno; // 完美无痕恢复 errno
+static int bind_source_addr(int sockfd, int domain) {
+	const struct sockaddr *addr = NULL;
+	socklen_t len = 0;
+
+	int source_status = get_source_addr(domain, &addr, &len);
+	if (source_status < 0) {
+		return -1;
+	}
+	if (!source_status) {
+		return 0;
+	}
+
+	return orig_bind(sockfd, addr, len);
+}
+
+static int sockaddr_needs_source_bind(const struct sockaddr *addr) {
+	if (addr->sa_family == AF_INET) {
+		const struct sockaddr_in *addr4 = (const struct sockaddr_in *)addr;
+		return addr4->sin_port == 0 && addr4->sin_addr.s_addr == htonl(INADDR_ANY);
+	}
+#ifdef CONFIG_IPV6
+	if (addr->sa_family == AF_INET6) {
+		const struct sockaddr_in6 *addr6 = (const struct sockaddr_in6 *)addr;
+		return addr6->sin6_port == 0 && IN6_IS_ADDR_UNSPECIFIED(&addr6->sin6_addr);
+	}
+#endif
+	return 0;
+}
+
+static int dobind_untracked(int sockfd) {
+	struct sockaddr_storage local_addr;
+	socklen_t len = sizeof(local_addr);
+
+	if (!has_source4
+#ifdef CONFIG_IPV6
+	    && !has_source6
+#endif
+	    ) {
+		return 0;
+	}
+
+	if (orig_getsockname(sockfd, (struct sockaddr *)&local_addr, &len) < 0) {
+		return 0;
+	}
+
+	if (!sockaddr_needs_source_bind((struct sockaddr *)&local_addr)) {
+		return 0;
+	}
+
+	return bind_source_addr(sockfd, local_addr.ss_family);
+}
+
+static int dobind(int sockfd) {
+	if (sockfd < 0) return 0;
+
+	if (sockfd >= MAX_FDS || !fd_info[sockfd].is_socket) {
+		return dobind_untracked(sockfd);
+	}
+
+	for (;;) {
+		int state = fd_info[sockfd].bound;
+
+		if (state == BOUND_YES) return 0;
+
+		if (state == BOUND_IN_PROGRESS) {
+			sched_yield();
+			continue;
+		}
+
+		if (__sync_bool_compare_and_swap(&fd_info[sockfd].bound, BOUND_NO, BOUND_IN_PROGRESS)) {
+			int ret = bind_source_addr(sockfd, fd_info[sockfd].domain);
+			fd_info[sockfd].bound = ret == 0 ? BOUND_YES : BOUND_NO;
+			__sync_synchronize();
+			return ret;
 		}
 	}
+}
+
+static int apply_socket_options(int fd) {
+	int saved_errno = errno;
+
+	if (has_dev && orig_setsockopt(fd, SOL_SOCKET, SO_BINDTODEVICE, dev_name, strlen(dev_name) + 1) < 0) {
+		return -1;
+	}
+
+	if (has_fwmark && orig_setsockopt(fd, SOL_SOCKET, SO_MARK, &fwmark_val, sizeof(fwmark_val)) < 0) {
+		return -1;
+	}
+
+	errno = saved_errno;
+	return 0;
 }
 
 // ==========================================
@@ -208,25 +325,30 @@ int socket(int domain, int type, int protocol) {
 		errno = EAFNOSUPPORT;
 		return -1;
 	}
+	if ((domain == AF_INET && source4_invalid)
+#ifdef CONFIG_IPV6
+	    || (domain == AF_INET6 && source6_invalid)
+#endif
+	    ) {
+		errno = EINVAL;
+		return -1;
+	}
 
 	int fd = orig_socket(domain, type, protocol);
-	if (fd >= 0 && fd < MAX_FDS && (domain == AF_INET || domain == AF_INET6)) {
-		// FIX #4: 初始化顺序与内存屏障确保其他线程看到一致的状态
-		fd_info[fd].domain = domain;
-		fd_info[fd].bound = 0;
-		__sync_synchronize();  // 完整内存屏障
-		fd_info[fd].is_socket = 1;
-
-		// FIX #5: 保存 errno
-		if (has_dev) {
+	if (fd >= 0 && (domain == AF_INET || domain == AF_INET6)) {
+		if (apply_socket_options(fd) < 0) {
 			int saved_errno = errno;
-			orig_setsockopt(fd, SOL_SOCKET, SO_BINDTODEVICE, dev_name, strlen(dev_name) + 1);
+			orig_close(fd);
 			errno = saved_errno;
+			return -1;
 		}
-		if (has_fwmark) {
-			int saved_errno = errno;
-			orig_setsockopt(fd, SOL_SOCKET, SO_MARK, &fwmark_val, sizeof(fwmark_val));
-			errno = saved_errno;
+
+		if (fd < MAX_FDS) {
+			// FIX #4: 初始化顺序与内存屏障确保其他线程看到一致的状态
+			fd_info[fd].domain = domain;
+			fd_info[fd].bound = BOUND_NO;
+			__sync_synchronize();  // 完整内存屏障
+			fd_info[fd].is_socket = 1;
 		}
 	}
 	return fd;
@@ -235,31 +357,38 @@ int socket(int domain, int type, int protocol) {
 int bind(int sockfd, const struct sockaddr *addr, socklen_t addrlen) {
 	ENSURE_INIT();
 
-	if (sockfd >= 0 && sockfd < MAX_FDS && fd_info[sockfd].is_socket) {
+	if (addr) {
 		struct sockaddr_storage tmp_addr;
+		const struct sockaddr *bind_addr = addr;
 
-		if (!addr) {
-			return orig_bind(sockfd, addr, addrlen);
-		}
-
-		if (addrlen > sizeof(tmp_addr)) {
-			errno = EINVAL;
-			return -1;
-		}
-
-		memcpy(&tmp_addr, addr, addrlen);
-
-		if (addr->sa_family == AF_INET && has_source4) {
-			((struct sockaddr_in*)&tmp_addr)->sin_addr = source4.sin_addr;
-		}
+		if ((addr->sa_family == AF_INET && has_source4)
 #ifdef CONFIG_IPV6
-		else if (addr->sa_family == AF_INET6 && has_source6) {
-			((struct sockaddr_in6*)&tmp_addr)->sin6_addr = source6.sin6_addr;
-		}
+		    || (addr->sa_family == AF_INET6 && has_source6)
 #endif
+		    ) {
+			if (addrlen > sizeof(tmp_addr)) {
+				errno = EINVAL;
+				return -1;
+			}
 
-		__sync_bool_compare_and_swap(&fd_info[sockfd].bound, 0, 1);
-		return orig_bind(sockfd, (struct sockaddr *)&tmp_addr, addrlen);
+			memcpy(&tmp_addr, addr, addrlen);
+
+			if (addr->sa_family == AF_INET) {
+				((struct sockaddr_in*)&tmp_addr)->sin_addr = source4.sin_addr;
+			}
+#ifdef CONFIG_IPV6
+			else if (addr->sa_family == AF_INET6) {
+				((struct sockaddr_in6*)&tmp_addr)->sin6_addr = source6.sin6_addr;
+			}
+#endif
+			bind_addr = (struct sockaddr *)&tmp_addr;
+		}
+
+		int ret = orig_bind(sockfd, bind_addr, addrlen);
+		if (ret == 0 && sockfd >= 0 && sockfd < MAX_FDS && fd_info[sockfd].is_socket) {
+			fd_info[sockfd].bound = BOUND_YES;
+		}
+		return ret;
 	}
 	return orig_bind(sockfd, addr, addrlen);
 }
@@ -279,25 +408,25 @@ int setsockopt(int sockfd, int level, int optname, const void *optval, socklen_t
 // ------------------------------------------
 int connect(int sockfd, const struct sockaddr *addr, socklen_t addrlen) {
 	ENSURE_INIT();
-	dobind(sockfd);
+	if (dobind(sockfd) < 0) return -1;
 	return orig_connect(sockfd, addr, addrlen);
 }
 
 ssize_t send(int sockfd, const void *buf, size_t len, int flags) {
 	ENSURE_INIT();
-	dobind(sockfd);
+	if (dobind(sockfd) < 0) return -1;
 	return orig_send(sockfd, buf, len, flags);
 }
 
 ssize_t sendto(int sockfd, const void *buf, size_t len, int flags, const struct sockaddr *dest_addr, socklen_t addrlen) {
 	ENSURE_INIT();
-	dobind(sockfd);
+	if (dobind(sockfd) < 0) return -1;
 	return orig_sendto(sockfd, buf, len, flags, dest_addr, addrlen);
 }
 
 ssize_t sendmsg(int sockfd, const struct msghdr *msg, int flags) {
 	ENSURE_INIT();
-	dobind(sockfd);
+	if (dobind(sockfd) < 0) return -1;
 	return orig_sendmsg(sockfd, msg, flags);
 }
 
@@ -311,7 +440,7 @@ int sendmmsg(int sockfd, struct mmsghdr *msgvec, unsigned int vlen, SENDMMSG_FLA
 		return -1;
 	}
 
-	dobind(sockfd);
+	if (dobind(sockfd) < 0) return -1;
 	return orig_sendmmsg(sockfd, msgvec, vlen, flags);
 }
 
@@ -322,7 +451,7 @@ static void sync_fd_state(int oldfd, int newfd) {
 	if (oldfd < 0 || oldfd >= MAX_FDS || newfd < 0 || newfd >= MAX_FDS) return;
 
 	fd_info[newfd].domain = fd_info[oldfd].domain;
-	fd_info[newfd].bound = fd_info[oldfd].bound;
+	fd_info[newfd].bound = fd_info[oldfd].bound == BOUND_IN_PROGRESS ? BOUND_NO : fd_info[oldfd].bound;
 	__sync_synchronize();
 	fd_info[newfd].is_socket = fd_info[oldfd].is_socket;
 }
@@ -377,7 +506,7 @@ static void handle_accept(int sockfd, int newfd) {
 
 	// Accept 产生的是已经连接的 Socket，标记为 bound=1 防止误操作
 	fd_info[newfd].domain = fd_info[sockfd].domain;
-	fd_info[newfd].bound = 1;
+	fd_info[newfd].bound = BOUND_YES;
 	__sync_synchronize();
 	fd_info[newfd].is_socket = 1;
 }
@@ -416,7 +545,7 @@ int close(int sockfd) {
 		__sync_synchronize();  // 全局屏障，确保所有线程都看到 is_socket = 0
 
 		// 然后清理其他状态 (此时不会有新操作进入)
-		fd_info[sockfd].bound = 0;
+		fd_info[sockfd].bound = BOUND_NO;
 		fd_info[sockfd].domain = 0;
 	}
 	return orig_close(sockfd);

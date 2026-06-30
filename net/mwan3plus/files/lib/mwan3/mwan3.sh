@@ -587,25 +587,32 @@ mwan3_create_iface_iptables()
 
 mwan3_delete_iface_iptables()
 {
-	local IPTR family update error
+	local IPT IPTR family current update error
 	config_get family "$1" family "any"
 	[ "$family" = "any" ] && family="$2"
 	[ "$family" = "$2" ] || return
 
 	if [ "$family" = "ipv4" ] && [ $NEED_IPV4 -ne 0 ]; then
+		IPT="$IPT4"
 		IPTR="$IPT4R"
 	elif [ "$family" = "ipv6" ] && [ $NEED_IPV6 -ne 0 ]; then
+		IPT="$IPT6"
 		IPTR="$IPT6R"
 	else
 		return
 	fi
 
+	current="$($IPT -S 2>/dev/null)"$'\n'
 	update="*mangle"
-	mwan3_push_update -D mwan3_ifaces_in \
-		-m mark --mark 0x0/$MMX_MASK \
-		-j "mwan3_iface_in_$1"
-	mwan3_push_update -F "mwan3_iface_in_$1"
-	mwan3_push_update -X "mwan3_iface_in_$1"
+	if [ -z "${current##*-A mwan3_ifaces_in *-j mwan3_iface_in_$1$'\n'*}" ]; then
+		mwan3_push_update -D mwan3_ifaces_in \
+			-m mark --mark 0x0/$MMX_MASK \
+			-j "mwan3_iface_in_$1"
+	fi
+	if [ -z "${current##*-N mwan3_iface_in_$1$'\n'*}" ]; then
+		mwan3_push_update -F "mwan3_iface_in_$1"
+		mwan3_push_update -X "mwan3_iface_in_$1"
+	fi
 	mwan3_push_update COMMIT
 	mwan3_push_update ""
 	error=$(echo "$update" | $IPTR 2>&1) || LOG error "delete_iface_iptables: $error"

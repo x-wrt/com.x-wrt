@@ -171,7 +171,7 @@ main() {
 	local lost=0
 	local turn=0
 	local sleep_time result ping_status loss latency
-	local SRC_IP
+	local SRC_IP TRACK_OUTPUT
 
 	if [ "$family" = "ipv6" ]; then
 		mwan3_get_src_ip6 SRC_IP "$INTERFACE"
@@ -188,6 +188,7 @@ main() {
 		DEVICE=$DEVICE SRCIP=$SRC_IP FWMARK=$MMX_MASK LD_PRELOAD=/lib/mwan3/libwrap_mwan3_sockopt.so.1.0 $*
 	}
 
+	TRACK_OUTPUT="$MWAN3TRACK_STATUS_DIR/$INTERFACE.$family/TRACK_OUTPUT"
 	firstconnect
 	while true; do
 
@@ -196,10 +197,10 @@ main() {
 		for track_ip in $track_ips; do
 			if [ "x$track_ip" = "xgateway" ]; then
 				if [ "$family" = "ipv4" ]; then
-					track_ip=$(ip -4 route show default dev "$DEVICE" 2>/dev/null | awk '/via/ {print $3; exit}')
+					track_ip=$(ip -4 route show default dev "$DEVICE" 2>/dev/null | awk '{ for (i=1; i<NF; i++) if ($i == "via") { print $(i+1); exit } }')
 					test -n "$track_ip" || track_ip=255.255.255.255
 				else
-					track_ip=$(ip -6 route show default dev "$DEVICE" 2>/dev/null | awk '/via/ {print $3; exit}')
+					track_ip=$(ip -6 route show default dev "$DEVICE" 2>/dev/null | awk '{ for (i=1; i<NF; i++) if ($i == "via") { print $(i+1); exit } }')
 					test -n "$track_ip" || track_ip=ffff::
 				fi
 			fi
@@ -211,7 +212,7 @@ main() {
 							wait $!
 							result=$?
 						else
-							WRAP $PING -n -c $count -W $timeout -s $size -t $max_ttl -q $track_ip 2>/dev/null > $TRACK_OUTPUT &
+							WRAP $PING -n -c $count -W $timeout -s $size -t $max_ttl -q $track_ip 2>/dev/null > "$TRACK_OUTPUT" &
 							wait $!
 							ping_status=$?
 							loss="$(awk '
@@ -229,6 +230,7 @@ main() {
 									}
 								}
 							' "$TRACK_OUTPUT")"
+							[ -n "$loss" ] || loss=100
 							if [ "$ping_status" -ne 0 ] || [ "$loss" -eq 100 ]; then
 								latency=999999
 								loss=100
@@ -248,6 +250,7 @@ main() {
 										}
 									}
 								' "$TRACK_OUTPUT")"
+								[ -n "$latency" ] || latency=999999
 							fi
 						fi
 					;;
@@ -266,9 +269,10 @@ main() {
 						result=$?
 					;;
 					nping-*)
-						WRAP nping -c $count $track_ip --${track_method#nping-} > $TRACK_OUTPUT &
+						WRAP nping -c $count $track_ip --${track_method#nping-} > "$TRACK_OUTPUT" &
 						wait $!
-						result=$(awk '/Lost/ {print $12; exit}' $TRACK_OUTPUT)
+						result=$(awk '/Lost/ {print $12; exit}' "$TRACK_OUTPUT")
+						result=${result:-1}
 					;;
 				esac
 				if [ $check_quality -eq 0 ]; then
@@ -372,6 +376,7 @@ main() {
 			break
 		fi
 	done
+	rm -f "$TRACK_OUTPUT"
 }
 
 main "$@"
