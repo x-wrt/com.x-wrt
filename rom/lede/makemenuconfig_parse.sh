@@ -2234,6 +2234,10 @@ rt73-usb-firmware"
 		esac
 	fi
 
+	if [ "x$flash_gt16m" = "x1" ] && [ "x$has_usb" = "x1" ]; then
+		mods="$mods kmod-usb-net-asix-ax88179 kmod-usb-net-rtl8152"
+	fi
+
 	if [ "x$flash_gt8m" = "x1" ] && [ "x$has_usb" = "x1" ]; then
 		mods="$mods $usb4g $nfs"
 		mods="$mods $usbprint $ksmbd $usb_extra"
