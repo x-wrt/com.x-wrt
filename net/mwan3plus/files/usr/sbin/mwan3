@@ -83,6 +83,10 @@ ifup()
 	[ "$family_list" = "any" ] && family_list="ipv4 ipv6"
 	for family in $family_list; do
 
+	up=0
+	l3_device=
+	status=
+	true_iface=
 	mwan3_get_true_iface true_iface $interface $family
 	status=$(ubus -S call network.interface.$true_iface status)
 

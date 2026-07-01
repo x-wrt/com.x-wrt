@@ -970,6 +970,8 @@ mwan3_set_policy()
 	[ "$family_list" = "any" ] && family_list="ipv4 ipv6"
 	for family in $family_list; do
 
+	is_lowest=0
+	total_weight=0
 	[ "$(mwan3_get_iface_hotplug_state "$iface" $family)" = "online" ]
 	is_offline=$?
 
@@ -1430,6 +1432,10 @@ mwan3_report_iface_status()
 	[ "$family_list" = "any" ] && family_list="ipv4 ipv6"
 	for family in $family_list; do
 
+	result=
+	tracking=
+	error=0
+	rules=
 	if [ "$family" = "ipv4" ]; then
 		IP="$IP4"
 		IPT="$IPT4"

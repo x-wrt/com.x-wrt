@@ -229,6 +229,10 @@ main() {
 		LOG err "track method($track_method) src_ip($SRC_IP) invalid"
 		return 1
 	}
+	if [ "$track_method" != "ping" ] && [ "$check_quality" -eq 1 ]; then
+		LOG warn "check_quality is only supported with ping. Disabling quality checks for $track_method on interface $INTERFACE($family)."
+		check_quality=0
+	fi
 	validate_wrap || return 1
 
 	WRAP() {

@@ -82,7 +82,8 @@ get_mwan3_status() {
 	local age=0
 	local online=0
 	local offline=0
-	local enabled pid device time_p time_n time_u time_d status up uptime
+	local enabled=0 pid device='' time_p time_n time_u time_d status="unknown" up=0 uptime=0
+	local score=0 lost=0 turn=0 track track_status latency packetloss
 
 	network_get_device device $1
 
@@ -102,6 +103,7 @@ get_mwan3_status() {
 			network_get_uptime uptime "$iface"
 			[ -n "$uptime" ] && up=1 || up=0
 			readfile status "$MWAN3TRACK_STATUS_DIR/${iface}.$family/STATUS" || status="notracking"
+			[ -n "$status" ] || status="notracking"
 		else
 			uptime=0
 			up=0
@@ -112,9 +114,12 @@ get_mwan3_status() {
 		json_add_int online "${online}"
 		json_add_int offline "${offline}"
 		json_add_int uptime "${uptime}"
-		readfile score "$MWAN3TRACK_STATUS_DIR/${iface}.$family/SCORE"
-		readfile lost "$MWAN3TRACK_STATUS_DIR/${iface}.$family/LOST"
-		readfile turn "$MWAN3TRACK_STATUS_DIR/${iface}.$family/TURN"
+		readfile score "$MWAN3TRACK_STATUS_DIR/${iface}.$family/SCORE" || score=0
+		readfile lost "$MWAN3TRACK_STATUS_DIR/${iface}.$family/LOST" || lost=0
+		readfile turn "$MWAN3TRACK_STATUS_DIR/${iface}.$family/TURN" || turn=0
+		[ -n "$score" ] || score=0
+		[ -n "$lost" ] || lost=0
+		[ -n "$turn" ] || turn=0
 		json_add_int "score" "$score"
 		json_add_int "lost" "$lost"
 		json_add_int "turn" "$turn"
@@ -126,11 +131,17 @@ get_mwan3_status() {
 		for file in "$MWAN3TRACK_STATUS_DIR/${iface}.$family"/TRACK_*; do
 			[ -e "$file" ] || continue
 			track="${file#*/TRACK_}"
+			track_status="unknown"
+			latency=0
+			packetloss=0
 			json_add_object
 			json_add_string ip "${track}"
-			readfile track_status "${file}"
-			readfile latency "$MWAN3TRACK_STATUS_DIR/${iface}.$family/LATENCY_${track}"
-			readfile packetloss "$MWAN3TRACK_STATUS_DIR/${iface}.$family/LOSS_${track}"
+			readfile track_status "${file}" || track_status="unknown"
+			readfile latency "$MWAN3TRACK_STATUS_DIR/${iface}.$family/LATENCY_${track}" || latency=0
+			readfile packetloss "$MWAN3TRACK_STATUS_DIR/${iface}.$family/LOSS_${track}" || packetloss=0
+			[ -n "$track_status" ] || track_status="unknown"
+			[ -n "$latency" ] || latency=0
+			[ -n "$packetloss" ] || packetloss=0
 			json_add_string status "${track_status}"
 			json_add_int latency "$latency"
 			json_add_int packetloss "$packetloss"
