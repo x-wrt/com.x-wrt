@@ -19,6 +19,7 @@
 #include <dlfcn.h>
 #include <stdlib.h>
 #include <stdio.h>
+#include <stdint.h>
 #include <string.h>
 #include <strings.h>
 #include <arpa/inet.h>
@@ -69,7 +70,7 @@ static int source6_invalid = 0;
 
 static char dev_name[IFNAMSIZ] = {0};
 static int has_dev = 0;
-static int fwmark_val = 0;
+static uint32_t fwmark_val = 0;
 static int has_fwmark = 0;
 static int reject_ipv4 = 0;
 static int reject_ipv6 = 0;
@@ -146,12 +147,18 @@ static void init_lib(void) {
 	}
 
 	const char *env_mark = getenv("FWMARK");
-	if (env_mark) {
-		fwmark_val = (int)strtol(env_mark, NULL, 0);
-		has_fwmark = fwmark_val > 0;
+	if (env_mark && strlen(env_mark) > 0) {
+		char *end = NULL;
+		unsigned long mark = strtoul(env_mark, &end, 0);
+
+		if (end != env_mark && *end == '\0' && mark <= UINT32_MAX) {
+			fwmark_val = (uint32_t)mark;
+			has_fwmark = 1;
+		}
 	}
 
-	const char *env_ip4 = getenv("SRCIP4") ? getenv("SRCIP4") : getenv("SRCIP");
+	const char *env_srcip = getenv("SRCIP");
+	const char *env_ip4 = getenv("SRCIP4");
 	if (env_ip4 && strlen(env_ip4) > 0) {
 		if (inet_pton(AF_INET, env_ip4, &source4.sin_addr) > 0) {
 			source4.sin_family = AF_INET;
@@ -159,10 +166,14 @@ static void init_lib(void) {
 		} else {
 			source4_invalid = 1;
 		}
+	} else if (env_srcip && strlen(env_srcip) > 0 &&
+	           inet_pton(AF_INET, env_srcip, &source4.sin_addr) > 0) {
+		source4.sin_family = AF_INET;
+		has_source4 = 1;
 	}
 
 #ifdef CONFIG_IPV6
-	const char *env_ip6 = getenv("SRCIP6") ? getenv("SRCIP6") : getenv("SRCIP");
+	const char *env_ip6 = getenv("SRCIP6");
 	if (env_ip6 && strlen(env_ip6) > 0) {
 		if (inet_pton(AF_INET6, env_ip6, &source6.sin6_addr) > 0) {
 			source6.sin6_family = AF_INET6;
@@ -170,6 +181,10 @@ static void init_lib(void) {
 		} else {
 			source6_invalid = 1;
 		}
+	} else if (env_srcip && strlen(env_srcip) > 0 &&
+	           inet_pton(AF_INET6, env_srcip, &source6.sin6_addr) > 0) {
+		source6.sin6_family = AF_INET6;
+		has_source6 = 1;
 	}
 #endif
 
@@ -299,19 +314,23 @@ static int dobind(int sockfd) {
 	}
 }
 
-static int apply_socket_options(int fd) {
+static void apply_socket_options(int fd) {
 	int saved_errno = errno;
 
+	/*
+	 * 这里保持 best-effort：wrapper 也用于 mwan3 use、探测命令等场景，
+	 * 不能因为接口瞬时消失、权限受限，或内核拒绝 SO_MARK/SO_BINDTODEVICE，
+	 * 就让目标程序 socket() 创建失败。
+	 */
 	if (has_dev && orig_setsockopt(fd, SOL_SOCKET, SO_BINDTODEVICE, dev_name, strlen(dev_name) + 1) < 0) {
-		return -1;
+		errno = saved_errno;
 	}
 
 	if (has_fwmark && orig_setsockopt(fd, SOL_SOCKET, SO_MARK, &fwmark_val, sizeof(fwmark_val)) < 0) {
-		return -1;
+		errno = saved_errno;
 	}
 
 	errno = saved_errno;
-	return 0;
 }
 
 // ==========================================
@@ -336,12 +355,7 @@ int socket(int domain, int type, int protocol) {
 
 	int fd = orig_socket(domain, type, protocol);
 	if (fd >= 0 && (domain == AF_INET || domain == AF_INET6)) {
-		if (apply_socket_options(fd) < 0) {
-			int saved_errno = errno;
-			orig_close(fd);
-			errno = saved_errno;
-			return -1;
-		}
+		apply_socket_options(fd);
 
 		if (fd < MAX_FDS) {
 			// FIX #4: 初始化顺序与内存屏障确保其他线程看到一致的状态
