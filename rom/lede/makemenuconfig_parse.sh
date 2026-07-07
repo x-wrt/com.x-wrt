@@ -496,6 +496,7 @@ for t in $targets; do
 	excludes="$excludes_basic"
 	case $t in
 		#>=32M flash
+		TARGET_DEVICE_mediatek_filogic_DEVICE_imou_hx21|\
 		TARGET_DEVICE_qualcommax_ipq60xx_DEVICE_jdcloud_re-cs-02|\
 		TARGET_DEVICE_qualcommax_ipq60xx_DEVICE_jdcloud_re-cs-07|\
 		TARGET_DEVICE_qualcommax_ipq60xx_DEVICE_jdcloud_re-ss-01|\
@@ -651,6 +652,7 @@ for t in $targets; do
 	esac
 	case $t in
 		#>=14M flash
+		TARGET_DEVICE_mediatek_filogic_DEVICE_imou_hx21|\
 		TARGET_DEVICE_airoha_an7563_DEVICE_xiaomi_be5000|\
 		TARGET_DEVICE_qualcommax_ipq60xx_DEVICE_jdcloud_re-cs-02|\
 		TARGET_DEVICE_qualcommax_ipq60xx_DEVICE_jdcloud_re-cs-07|\
@@ -1736,6 +1738,7 @@ for t in $targets; do
 			has_usb=1
 		;;
 		#no usb
+		TARGET_DEVICE_mediatek_filogic_DEVICE_imou_hx21|\
 		TARGET_DEVICE_airoha_an7563_DEVICE_xiaomi_be5000|\
 		TARGET_DEVICE_qualcommax_ipq50xx_DEVICE_cmcc_pz-l8|\
 		TARGET_DEVICE_qualcommax_ipq50xx_DEVICE_cmcc_mr3000d-ci|\
