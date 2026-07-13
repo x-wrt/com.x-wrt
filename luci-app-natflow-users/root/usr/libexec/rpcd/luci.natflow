@@ -1,42 +1,139 @@
 #!/usr/bin/env lua
 
 local json = require "luci.jsonc"
-local UCI = require "luci.model.uci"
-local fs   = require "nixio.fs"
-local sys  = require "luci.sys"
+local nixio = require "nixio"
 
--- 💡 安全引入 OpenWrt 原生的 luci.ip 库（专用于 IP 各种格式化与计算）
 local has_ip, luci_ip = pcall(require, "luci.ip")
+
+local USERINFO_CTL = "/dev/userinfo_ctl"
+local USERINFO_READ_SIZE = 4096
+local USERINFO_READ_RETRIES = 16
+
+local function parse_hex(value)
+	local hex = tostring(value or ""):match("^0[xX]([0-9a-fA-F]+)$")
+
+	if hex then
+		return tonumber(hex, 16) or 0
+	end
+
+	return tonumber(value) or 0
+end
+
+local function normalize_user_ip(ip)
+	ip = tostring(ip or "")
+
+	if #ip == 0 or #ip > 45 or ip:find("[^0-9A-Fa-f:.]") then
+		return nil
+	end
+
+	if has_ip then
+		local ip_obj = luci_ip.new(ip)
+
+		if not ip_obj then
+			return nil
+		end
+
+		return ip_obj:string()
+	end
+
+	return ip
+end
+
+local function read_userinfo_lines()
+	local fd = nixio.open(USERINFO_CTL, nixio.open_flags("rdonly"))
+	if not fd then
+		return nil
+	end
+
+	local lines = {}
+	local pending = ""
+	local retries = 0
+
+	while retries < USERINFO_READ_RETRIES do
+		local data = fd:read(USERINFO_READ_SIZE)
+
+		if data == nil then
+			retries = retries + 1
+		elseif #data == 0 then
+			break
+		else
+			pending = pending .. data
+			retries = 0
+
+			while true do
+				local line, rest = pending:match("^([^\n]*)\n(.*)$")
+
+				if not line then
+					break
+				end
+
+				lines[#lines + 1] = line
+				pending = rest
+			end
+		end
+	end
+
+	if pending ~= "" then
+		lines[#lines + 1] = pending
+	end
+
+	fd:close()
+	return lines
+end
+
+local function write_userinfo_cmd(command)
+	local fd = nixio.open(USERINFO_CTL, nixio.open_flags("wronly"))
+	if not fd then
+		return false
+	end
+
+	local ok = fd:writeall(command .. "\n")
+	fd:close()
+
+	return ok ~= nil and ok ~= false
+end
+
+local function set_user_status(ip, status)
+	ip = normalize_user_ip(ip)
+	if not ip then
+		return { result = "Bad request" }
+	end
+
+	if write_userinfo_cmd(string.format("set-status %s %u", ip, status)) then
+		return { result = "OK" }
+	end
+
+	return { result = "Failed" }, 1
+end
 
 local methods = {
 	get_users = {
 		call = function()
-			local ok, userinfo = pcall(io.lines, "/dev/userinfo_ctl")
-			if not ok or not userinfo then
+			local userinfo = read_userinfo_lines()
+			if not userinfo then
 				return nil
 			end
 			local users = { }
 
-			local line = nil
-			for line in userinfo do
-				--192.168.16.101,74:8f:3c:bb:be:cf,0x0,0x0,255,294,180537:185944989,120694:140495365,11:958,7:1215
-				local ip, mac, auth_type, auth_status, rx_pkts, rx_bytes, tx_pkts, tx_bytes, rx_speed_pkts, rx_speed_bytes, tx_speed_pkts, tx_speed_bytes =
-					line:match("^(%S+),(%S+),(%S+),(%S+),%S+,%S+,(%d+):(%d+),(%d+):(%d+),(%d+):(%d+),(%d+):(%d+)$")
+			for _, line in ipairs(userinfo) do
+				local ip, mac, auth_type, auth_status, rule_id, idle_time, rx_pkts, rx_bytes, tx_pkts, tx_bytes, rx_speed_pkts, rx_speed_bytes, tx_speed_pkts, tx_speed_bytes =
+					line:match("^([^,]+),([^,]+),([^,]+),([^,]+),(%d+),(%d+),(%d+):(%d+),(%d+):(%d+),(%d+):(%d+),(%d+):(%d+)$")
 
-				if ip and mac and auth_type ~= "0x0" then
-
-					-- ✨ 核心修改点：检测到包含冒号即为 IPv6，利用 luci.ip 将其转换为压缩格式
+				if ip and mac and parse_hex(auth_type) ~= 0 then
 					if has_ip and ip:find(":") then
 						local ip_obj = luci_ip.new(ip)
 						if ip_obj then
-							ip = ip_obj:string() -- 自动输出最简压缩形态
+							ip = ip_obj:string()
 						end
 					end
 
 					local entry = {
 						ip = ip,
 						mac = mac,
-						status = tonumber(auth_status) or 0,
+						auth_type = parse_hex(auth_type),
+						status = parse_hex(auth_status),
+						rule_id = tonumber(rule_id) or 0,
+						idle_time = tonumber(idle_time) or 0,
 						rx_pkts = tonumber(rx_pkts) or 0,
 						rx_bytes = tonumber(rx_bytes) or 0,
 						tx_pkts = tonumber(tx_pkts) or 0,
@@ -46,7 +143,7 @@ local methods = {
 						tx_speed_pkts = tonumber(tx_speed_pkts) or 0,
 						tx_speed_bytes = tonumber(tx_speed_bytes) or 0
 					}
-					users[#users+1] = entry
+					users[#users + 1] = entry
 				end
 			end
 
@@ -56,46 +153,28 @@ local methods = {
 	kick_user = {
 		args = { token = "token" },
 		call = function(args)
-			local ip = args and args.token
+			local ip = normalize_user_ip(args and args.token)
+			if not ip then
+				return { result = "Bad request" }
+			end
 
-			-- 允许 IPv4 (含点) 和 IPv6 (含冒号和 a-f 字母)
-			if ip and ip:match("^[a-fA-F0-9:%.]+$") then
-				local cmd = [[echo kick %s >/dev/userinfo_ctl]]
-				sys.call(string.format(cmd, ip))
+			if write_userinfo_cmd(string.format("kick %s", ip)) then
 				return { result = "OK" }
 			end
 
-			return { result = "Bad request" }
+			return { result = "Failed" }, 1
 		end
 	},
 	block_user = {
 		args = { token = "token" },
 		call = function(args)
-			local ip = args and args.token
-
-			-- 允许 IPv4 和 IPv6
-			if ip and ip:match("^[a-fA-F0-9:%.]+$") then
-				local cmd = [[echo set-status %s 6 >/dev/userinfo_ctl]]
-				sys.call(string.format(cmd, ip))
-				return { result = "OK" }
-			end
-
-			return { result = "Bad request" }
+			return set_user_status(args and args.token, 6)
 		end
 	},
 	allow_user = {
 		args = { token = "token" },
 		call = function(args)
-			local ip = args and args.token
-
-			-- 允许 IPv4 和 IPv6
-			if ip and ip:match("^[a-fA-F0-9:%.]+$") then
-				local cmd = [[echo set-status %s 1 >/dev/userinfo_ctl]]
-				sys.call(string.format(cmd, ip))
-				return { result = "OK" }
-			end
-
-			return { result = "Bad request" }
+			return set_user_status(args and args.token, 1)
 		end
 	}
 }
