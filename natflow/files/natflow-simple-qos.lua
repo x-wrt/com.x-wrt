@@ -571,14 +571,46 @@ local function ensure_fifo()
 	fs_mkfifo(EVENT_FIFO)
 end
 
+local function fd_write_all(fd, data)
+	if type(fd.writeall) == "function" then
+		local ok = fd:writeall(data)
+		return ok ~= nil and ok ~= false
+	end
+
+	if type(fd.write) ~= "function" then
+		return false
+	end
+
+	local offset = 1
+
+	while offset <= #data do
+		local len = fd:write(data:sub(offset))
+
+		if len == nil or len == false then
+			return false
+		end
+
+		if len == true then
+			return true
+		end
+
+		if type(len) ~= "number" or len <= 0 then
+			return false
+		end
+
+		offset = offset + len
+	end
+
+	return true
+end
+
 local function open_event_queue()
 	local fd = nixio.open(DEV_EVENT, nixio.open_flags("rdwr"))
 	if not fd then
 		return nil
 	end
 
-	local ok = fd:writeall(string.format("cache=%u\n", EVENT_CACHE_LIMIT))
-	if ok == nil or ok == false then
+	if not fd_write_all(fd, string.format("cache=%u\n", EVENT_CACHE_LIMIT)) then
 		fd:close()
 		return nil
 	end
@@ -640,7 +672,7 @@ local function dispatch_event(line)
 		return
 	end
 
-	fd:writeall(tostring(line or "") .. "\n")
+	fd_write_all(fd, tostring(line or "") .. "\n")
 	fd:close()
 end
 

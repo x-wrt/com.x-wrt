@@ -81,16 +81,49 @@ local function read_userinfo_lines()
 	return lines
 end
 
+local function fd_write_all(fd, data)
+	if type(fd.writeall) == "function" then
+		local ok = fd:writeall(data)
+		return ok ~= nil and ok ~= false
+	end
+
+	if type(fd.write) ~= "function" then
+		return false
+	end
+
+	local offset = 1
+
+	while offset <= #data do
+		local len = fd:write(data:sub(offset))
+
+		if len == nil or len == false then
+			return false
+		end
+
+		if len == true then
+			return true
+		end
+
+		if type(len) ~= "number" or len <= 0 then
+			return false
+		end
+
+		offset = offset + len
+	end
+
+	return true
+end
+
 local function write_userinfo_cmd(command)
 	local fd = nixio.open(USERINFO_CTL, nixio.open_flags("wronly"))
 	if not fd then
 		return false
 	end
 
-	local ok = fd:writeall(command .. "\n")
+	local ok = fd_write_all(fd, command .. "\n")
 	fd:close()
 
-	return ok ~= nil and ok ~= false
+	return ok
 end
 
 local function set_user_status(ip, status)
