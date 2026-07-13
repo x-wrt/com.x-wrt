@@ -2,13 +2,16 @@
 
 LOCKDIR="/tmp/urllogger.lck"
 PID="$$"
+QUEUE="/dev/natflow_urllogger_queue"
+READER="/usr/sbin/urllogger-reader"
 
-[ -c "/dev/urllogger_queue" ] || exit 1
+[ -c "$QUEUE" ] || exit 1
+[ -x "$READER" ] || exit 1
 
 urllogger_stop() {
 	echo "0" > /proc/sys/urllogger_store/enable
-	echo "clear" > /dev/urllogger_queue
 	rm -rf "$LOCKDIR"
+	"$READER" --clear >/dev/null 2>&1
 }
 
 case "$1" in
@@ -43,38 +46,22 @@ else
 	logsize=$((512 * 1024))
 fi
 
+rotate_log() {
+	[ -f /tmp/url.log ] || return 0
+	LOGSIZE=$(wc -c < /tmp/url.log)
+	if [ "$LOGSIZE" -ge "$logsize" ]; then
+		NRLINE=$(wc -l < /tmp/url.log)
+		NRLINE=$((NRLINE * 6 / 10))
+		tail -n "$NRLINE" /tmp/url.log > /tmp/url.log.1
+		mv /tmp/url.log.1 /tmp/url.log
+	fi
+}
+
 main_loop() {
-	local time_count=0
-	while :; do
-		[ -f "$LOCKDIR/$PID" ] || return 0
-		sleep 5
-		time_count=$((time_count + 1))
-		[ "$time_count" -ne 12 ] && continue
-		time_count=0
-
-		if [ -f /tmp/url.log ]; then
-			LOGSIZE=$(wc -c < /tmp/url.log)
-			if [ "$LOGSIZE" -ge "$logsize" ]; then
-				NRLINE=$(wc -l < /tmp/url.log)
-				NRLINE=$((NRLINE * 6 / 10))
-				tail -n "$NRLINE" /tmp/url.log > /tmp/url.log.1
-				mv /tmp/url.log.1 /tmp/url.log
-			fi
-		fi
-
-		read -r UP _ < /proc/uptime
-		UP=${UP%%.*}
-		UP=$((UP & 0xffffffff))
-		NOW=$(date +%s)
-
-		# Note: Do not use `done < /dev/urllogger_queue`. Shell built-in `read` reads 1 byte at a time
-		# which causes natflow_urllogger kernel module to return -EINVAL because the
-		# buffer size (1) is smaller than the log entry size. Using `cat` bypasses this.
-		cat /dev/urllogger_queue | while IFS=, read -r time data; do
-			T=$((NOW + time - UP))
-			T=$(date "+%Y-%m-%d %H:%M:%S" -d "@$T")
-			echo "$T,$data" >> /tmp/url.log
-		done
+	"$READER" --lock "$LOCKDIR/$PID" | while IFS= read -r line; do
+		[ -f "$LOCKDIR/$PID" ] || break
+		rotate_log
+		echo "$line" >> /tmp/url.log
 	done
 }
 

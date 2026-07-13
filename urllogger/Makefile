@@ -25,6 +25,7 @@ endef
 
 define Package/urllogger/install
 	$(INSTALL_DIR) $(1)/usr/sbin
+	$(INSTALL_BIN) $(PKG_BUILD_DIR)/urllogger-reader $(1)/usr/sbin/urllogger-reader
 	$(INSTALL_BIN) ./files/urllogger.sh $(1)/usr/sbin/urllogger
 	$(INSTALL_BIN) ./files/urllogger-ctl.sh $(1)/usr/sbin/urllogger-ctl
 	$(INSTALL_DIR) $(1)/etc/init.d
@@ -32,11 +33,15 @@ define Package/urllogger/install
 endef
 
 define Build/Prepare
-	true
+	mkdir -p $(PKG_BUILD_DIR)
+	$(CP) ./src/* $(PKG_BUILD_DIR)/
 endef
 
 define Build/Compile
-	true
+	$(TARGET_CC) $(TARGET_CFLAGS) $(TARGET_CPPFLAGS) $(TARGET_LDFLAGS) \
+		-Wall -Wextra \
+		-o $(PKG_BUILD_DIR)/urllogger-reader \
+		$(PKG_BUILD_DIR)/urllogger-reader.c
 endef
 
 $(eval $(call BuildPackage,urllogger))
