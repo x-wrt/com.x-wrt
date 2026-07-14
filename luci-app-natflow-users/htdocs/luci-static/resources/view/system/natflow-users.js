@@ -218,11 +218,11 @@ return view.extend({
 				tx_str,
 				u.status == 6 ?
 				E('button', {
-					'class': 'btn cbi-button-positive',
+					'class': 'btn cbi-button-negative',
 					'click': L.bind(handleAllowUser, this, u.ip)
 				}, [ _('Disconnected') ]) :
 				E('button', {
-					'class': 'btn cbi-button-negative',
+					'class': 'btn cbi-button-positive',
 					'click': L.bind(handleBlockUser, this, u.ip)
 				}, [ _('Allowed') ])
 			];
@@ -286,11 +286,11 @@ return view.extend({
 					tx_str,
 					u.status == 6 ?
 					E('button', {
-						'class': 'btn cbi-button-positive',
+						'class': 'btn cbi-button-negative',
 						'click': L.bind(handleAllowUser, this, u.ip)
 					}, [ _('Disconnected') ]) :
 					E('button', {
-						'class': 'btn cbi-button-negative',
+						'class': 'btn cbi-button-positive',
 						'click': L.bind(handleBlockUser, this, u.ip)
 					}, [ _('Allowed') ])
 				];
