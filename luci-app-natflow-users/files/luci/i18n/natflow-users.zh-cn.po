@@ -162,3 +162,6 @@ msgstr "无效的 MAC：%s"
 
 msgid "Unable to load log data: %s"
 msgstr "无法加载日志数据：%s"
+
+msgid "Internet"
+msgstr "互联网"

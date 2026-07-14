@@ -247,7 +247,7 @@ return view.extend({
 					E('th', { 'class': 'th col-2' }, [ _('MAC address') ]),
 					E('th', { 'class': 'th col-7' }, [ _('RX') ]),
 					E('th', { 'class': 'th col-7' }, [ _('TX') ]),
-					E('th', { 'class': 'th cbi-section-actions' }, '')
+					E('th', { 'class': 'th cbi-section-actions' }, [ _('Internet') ])
 				]),
 				E('tr', { 'class': 'tr placeholder' }, [
 					E('td', { 'class': 'td' }, [
