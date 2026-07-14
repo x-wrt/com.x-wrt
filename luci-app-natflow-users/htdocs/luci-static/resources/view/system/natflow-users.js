@@ -220,11 +220,11 @@ return view.extend({
 				E('button', {
 					'class': 'btn cbi-button-positive',
 					'click': L.bind(handleAllowUser, this, u.ip)
-				}, [ _('Allow') ]) :
+				}, [ _('Disconnected') ]) :
 				E('button', {
 					'class': 'btn cbi-button-negative',
 					'click': L.bind(handleBlockUser, this, u.ip)
-				}, [ _('Block') ])
+				}, [ _('Allowed') ])
 			];
 		});
 
@@ -288,11 +288,11 @@ return view.extend({
 					E('button', {
 						'class': 'btn cbi-button-positive',
 						'click': L.bind(handleAllowUser, this, u.ip)
-					}, [ _('Allow') ]) :
+					}, [ _('Disconnected') ]) :
 					E('button', {
 						'class': 'btn cbi-button-negative',
 						'click': L.bind(handleBlockUser, this, u.ip)
-					}, [ _('Block') ])
+					}, [ _('Allowed') ])
 				];
 			});
 

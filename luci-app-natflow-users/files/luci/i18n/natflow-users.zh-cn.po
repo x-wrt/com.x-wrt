@@ -43,11 +43,11 @@ msgstr "无可用信息"
 msgid "Loading data..."
 msgstr "正在加载数据..."
 
-msgid "Allow"
-msgstr "放通"
+msgid "Disconnected"
+msgstr "已断网"
 
-msgid "Block"
-msgstr "阻断"
+msgid "Allowed"
+msgstr "已放通"
 
 msgid "User IP ranges"
 msgstr "用户 IP 范围"
