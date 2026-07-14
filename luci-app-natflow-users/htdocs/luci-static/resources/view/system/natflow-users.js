@@ -199,20 +199,32 @@ return view.extend({
 			var mac = u.mac.toUpperCase();
 			var name = hosts.getHostnameByMACAddr(mac);
 
+			var ip_str = u.ip;
+			var mac_str = name ? "%s<br />(%s)".format(mac, name) : mac;
+			var rx_str = '%1024.2mB (%d %s)<br />%s'.format(u.rx_bytes, u.rx_pkts, _('packets'), rate(u.rx_speed_bytes));
+			var tx_str = '%1024.2mB (%d %s)<br />%s'.format(u.tx_bytes, u.tx_pkts, _('packets'), rate(u.tx_speed_bytes));
+
+			if (u.status == 6) {
+				ip_str = '<span style="color:red">' + ip_str + '</span>';
+				mac_str = '<span style="color:red">' + mac_str + '</span>';
+				rx_str = '<span style="color:red">' + rx_str + '</span>';
+				tx_str = '<span style="color:red">' + tx_str + '</span>';
+			}
+
 			return [
-				u.ip,
-				name ? "%s<br />(%s)".format(mac, name) : mac,
-				'%1024.2mB (%d %s)<br />%s'.format(u.rx_bytes, u.rx_pkts, _('packets'), rate(u.rx_speed_bytes)),
-				'%1024.2mB (%d %s)<br />%s'.format(u.tx_bytes, u.tx_pkts, _('packets'), rate(u.tx_speed_bytes)),
+				ip_str,
+				mac_str,
+				rx_str,
+				tx_str,
 				u.status == 6 ?
 				E('button', {
-					'class': 'btn cbi-button-remove',
+					'class': 'btn cbi-button-positive',
 					'click': L.bind(handleAllowUser, this, u.ip)
-				}, [ _('Allow access') ]) :
+				}, [ _('Allow') ]) :
 				E('button', {
-					'class': 'btn cbi-button-remove',
+					'class': 'btn cbi-button-negative',
 					'click': L.bind(handleBlockUser, this, u.ip)
-				}, [ _('Block access') ])
+				}, [ _('Block') ])
 			];
 		});
 
@@ -255,20 +267,32 @@ return view.extend({
 				var mac = u.mac.toUpperCase();
 				var name = hosts.getHostnameByMACAddr(mac);
 
+				var ip_str = u.ip;
+				var mac_str = name ? "%s<br />(%s)".format(mac, name) : mac;
+				var rx_str = '%1024.2mB (%d %s)<br />%s'.format(u.rx_bytes, u.rx_pkts, _('packets'), rate(u.rx_speed_bytes));
+				var tx_str = '%1024.2mB (%d %s)<br />%s'.format(u.tx_bytes, u.tx_pkts, _('packets'), rate(u.tx_speed_bytes));
+
+				if (u.status == 6) {
+					ip_str = '<span style="color:red">' + ip_str + '</span>';
+					mac_str = '<span style="color:red">' + mac_str + '</span>';
+					rx_str = '<span style="color:red">' + rx_str + '</span>';
+					tx_str = '<span style="color:red">' + tx_str + '</span>';
+				}
+
 				return [
-					u.ip,
-					name ? "%s<br />(%s)".format(mac, name) : mac,
-					'%1024.2mB (%d %s)<br />%s'.format(u.rx_bytes, u.rx_pkts, _('packets'), rate(u.rx_speed_bytes)),
-					'%1024.2mB (%d %s)<br />%s'.format(u.tx_bytes, u.tx_pkts, _('packets'), rate(u.tx_speed_bytes)),
+					ip_str,
+					mac_str,
+					rx_str,
+					tx_str,
 					u.status == 6 ?
 					E('button', {
-						'class': 'btn cbi-button-remove',
+						'class': 'btn cbi-button-positive',
 						'click': L.bind(handleAllowUser, this, u.ip)
-					}, [ _('Allow access') ]) :
+					}, [ _('Allow') ]) :
 					E('button', {
-						'class': 'btn cbi-button-remove',
+						'class': 'btn cbi-button-negative',
 						'click': L.bind(handleBlockUser, this, u.ip)
-					}, [ _('Block access') ])
+					}, [ _('Block') ])
 				];
 			});
 
