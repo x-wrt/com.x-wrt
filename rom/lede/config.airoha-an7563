@@ -101,7 +101,6 @@ CONFIG_DEFAULT_libustream-mbedtls=y
 CONFIG_MODULE_DEFAULT_libustream-mbedtls=y
 CONFIG_DEFAULT_logd=y
 CONFIG_MODULE_DEFAULT_logd=y
-CONFIG_MODULE_DEFAULT_luci=y
 CONFIG_DEFAULT_mtd=y
 CONFIG_MODULE_DEFAULT_mtd=y
 CONFIG_DEFAULT_netifd=y
@@ -120,7 +119,6 @@ CONFIG_DEFAULT_uci=y
 CONFIG_MODULE_DEFAULT_uci=y
 CONFIG_DEFAULT_uclient-fetch=y
 CONFIG_MODULE_DEFAULT_uclient-fetch=y
-CONFIG_MODULE_DEFAULT_uhttpd=y
 CONFIG_DEFAULT_urandom-seed=y
 CONFIG_MODULE_DEFAULT_urandom-seed=y
 CONFIG_DEFAULT_urngd=y
@@ -1170,7 +1168,7 @@ CONFIG_BUSYBOX_DEFAULT_CRONTAB=y
 # CONFIG_BUSYBOX_DEFAULT_DEVFSD_FG_NP is not set
 # CONFIG_BUSYBOX_DEFAULT_DEVFSD_VERBOSE is not set
 # CONFIG_BUSYBOX_DEFAULT_FEATURE_DEVFS is not set
-CONFIG_BUSYBOX_DEFAULT_DEVMEM=y
+# CONFIG_BUSYBOX_DEFAULT_DEVMEM is not set
 # CONFIG_BUSYBOX_DEFAULT_FBSPLASH is not set
 # CONFIG_BUSYBOX_DEFAULT_FLASH_ERASEALL is not set
 # CONFIG_BUSYBOX_DEFAULT_FLASH_LOCK is not set
@@ -1185,11 +1183,11 @@ CONFIG_BUSYBOX_DEFAULT_DEVMEM=y
 # CONFIG_BUSYBOX_DEFAULT_FEATURE_HDPARM_HDIO_TRISTATE_HWIF is not set
 # CONFIG_BUSYBOX_DEFAULT_FEATURE_HDPARM_HDIO_GETSET_DMA is not set
 # CONFIG_BUSYBOX_DEFAULT_HEXEDIT is not set
-CONFIG_BUSYBOX_DEFAULT_I2CGET=y
-CONFIG_BUSYBOX_DEFAULT_I2CSET=y
-CONFIG_BUSYBOX_DEFAULT_I2CDUMP=y
-CONFIG_BUSYBOX_DEFAULT_I2CDETECT=y
-CONFIG_BUSYBOX_DEFAULT_I2CTRANSFER=y
+# CONFIG_BUSYBOX_DEFAULT_I2CGET is not set
+# CONFIG_BUSYBOX_DEFAULT_I2CSET is not set
+# CONFIG_BUSYBOX_DEFAULT_I2CDUMP is not set
+# CONFIG_BUSYBOX_DEFAULT_I2CDETECT is not set
+# CONFIG_BUSYBOX_DEFAULT_I2CTRANSFER is not set
 # CONFIG_BUSYBOX_DEFAULT_INOTIFYD is not set
 CONFIG_BUSYBOX_DEFAULT_LESS=y
 CONFIG_BUSYBOX_DEFAULT_FEATURE_LESS_MAXLINES=9999999
@@ -2730,7 +2728,26 @@ CONFIG_PACKAGE_wireless-tools=y
 #
 # Zabbix
 #
-# CONFIG_ZABBIX_ENABLE_ZABBIX is not set
+# CONFIG_PACKAGE_zabbix-agentd is not set
+
+#
+# Modify features for non-core variants
+#
+CONFIG_ZABBIX_CURL=y
+CONFIG_ZABBIX_LDAP=y
+CONFIG_ZABBIX_NETSNMP=y
+# end of Modify features for non-core variants
+
+# CONFIG_ZABBIX_GNUTLS is not set
+# CONFIG_ZABBIX_NOSSL is not set
+CONFIG_ZABBIX_OPENSSL=y
+# CONFIG_PACKAGE_zabbix-agentd-basic is not set
+# CONFIG_PACKAGE_zabbix-proxy is not set
+# CONFIG_ZABBIX_MYSQL is not set
+CONFIG_ZABBIX_POSTGRESQL=y
+# CONFIG_ZABBIX_SQLITE is not set
+# CONFIG_PACKAGE_zabbix-proxy-basic-sqlite is not set
+# CONFIG_PACKAGE_zabbix-server is not set
 # end of Zabbix
 
 #
@@ -2782,7 +2799,7 @@ CONFIG_PACKAGE_nload=m
 # Boot Loaders
 #
 # CONFIG_PACKAGE_u-boot-an7563_rfb is not set
-# CONFIG_PACKAGE_u-boot-an7563_xiaomi_be5000 is not set
+CONFIG_PACKAGE_u-boot-an7563_xiaomi_be5000=y
 # end of Boot Loaders
 
 #
@@ -3327,7 +3344,7 @@ CONFIG_PACKAGE_kmod-hwmon-core=y
 # CONFIG_PACKAGE_kmod-i2c-algo-bit is not set
 # CONFIG_PACKAGE_kmod-i2c-algo-pca is not set
 # CONFIG_PACKAGE_kmod-i2c-algo-pcf is not set
-# CONFIG_PACKAGE_kmod-i2c-an7581 is not set
+CONFIG_PACKAGE_kmod-i2c-an7581=m
 CONFIG_PACKAGE_kmod-i2c-core=y
 # CONFIG_PACKAGE_kmod-i2c-designware-pci is not set
 # CONFIG_PACKAGE_kmod-i2c-designware-platform is not set
@@ -3462,7 +3479,9 @@ CONFIG_PACKAGE_kmod-oid-registry=m
 #
 # Multiplexer Support
 #
-# CONFIG_PACKAGE_kmod-mux-core is not set
+CONFIG_PACKAGE_kmod-mux-core=m
+CONFIG_PACKAGE_kmod-mux-gpio=m
+CONFIG_PACKAGE_kmod-mux-mmio=m
 # end of Multiplexer Support
 
 #
@@ -3866,6 +3885,8 @@ CONFIG_PACKAGE_kmod-mtd-rw=m
 # CONFIG_PACKAGE_kmod-ramoops is not set
 CONFIG_PACKAGE_kmod-random-core=m
 # CONFIG_PACKAGE_kmod-reed-solomon is not set
+CONFIG_PACKAGE_kmod-regmap-core=m
+CONFIG_PACKAGE_kmod-regmap-mmio=m
 # CONFIG_PACKAGE_kmod-regulator-userspace-consumer is not set
 # CONFIG_PACKAGE_kmod-sdhci is not set
 # CONFIG_PACKAGE_kmod-serial-8250 is not set
@@ -5647,7 +5668,6 @@ CONFIG_PACKAGE_libiperf3=y
 # CONFIG_PACKAGE_libiw is not set
 CONFIG_PACKAGE_libiwinfo=y
 # CONFIG_PACKAGE_libjaylink is not set
-# CONFIG_PACKAGE_libjcat is not set
 # CONFIG_PACKAGE_libjemalloc is not set
 # CONFIG_PACKAGE_libjpeg-turbo is not set
 CONFIG_PACKAGE_libjson-c=y
@@ -6357,6 +6377,7 @@ CONFIG_PACKAGE_luci-i18n-dashboard-zh-cn=m
 # CONFIG_PACKAGE_luci-i18n-dawn-lo is not set
 # CONFIG_PACKAGE_luci-i18n-dawn-lt is not set
 # CONFIG_PACKAGE_luci-i18n-dawn-pl is not set
+# CONFIG_PACKAGE_luci-i18n-dawn-pt is not set
 # CONFIG_PACKAGE_luci-i18n-dawn-pt-br is not set
 # CONFIG_PACKAGE_luci-i18n-dawn-ro is not set
 # CONFIG_PACKAGE_luci-i18n-dawn-ru is not set
@@ -6686,6 +6707,7 @@ CONFIG_PACKAGE_luci-i18n-sqm-zh-cn=m
 # CONFIG_PACKAGE_luci-i18n-strongswan-swanctl-lo is not set
 # CONFIG_PACKAGE_luci-i18n-strongswan-swanctl-lt is not set
 # CONFIG_PACKAGE_luci-i18n-strongswan-swanctl-pl is not set
+# CONFIG_PACKAGE_luci-i18n-strongswan-swanctl-pt is not set
 # CONFIG_PACKAGE_luci-i18n-strongswan-swanctl-pt-br is not set
 # CONFIG_PACKAGE_luci-i18n-strongswan-swanctl-ro is not set
 # CONFIG_PACKAGE_luci-i18n-strongswan-swanctl-ru is not set
@@ -8065,6 +8087,7 @@ CONFIG_MODEMMANAGER_WITH_MBIM=y
 CONFIG_MODEMMANAGER_WITH_QMI=y
 CONFIG_MODEMMANAGER_WITH_QRTR=y
 # CONFIG_MODEMMANAGER_WITH_AT_COMMAND_VIA_DBUS is not set
+CONFIG_MODEMMANAGER_WITH_BUILTIN_PLUGINS=y
 # end of Configuration
 
 # CONFIG_PACKAGE_modemmanager-rpcd is not set
@@ -8860,10 +8883,11 @@ CONFIG_PACKAGE_dbus=m
 # CONFIG_FWUPD_FIRMWARE_PACKAGER is not set
 # CONFIG_FWUPD_HSI is not set
 CONFIG_FWUPD_LVFS=y
-# CONFIG_FWUPD_CBOR is not set
+# CONFIG_FWUPD_GNUTLS is not set
+CONFIG_FWUPD_OPENSSL=y
 # CONFIG_FWUPD_LIBDRM is not set
+CONFIG_FWUPD_PLUGIN_DEVLINK=y
 CONFIG_FWUPD_PLUGIN_MODEMMANAGER=y
-CONFIG_FWUPD_PLUGIN_FLASHROM=y
 # end of Select fwupd options
 
 # CONFIG_PACKAGE_fwupd-tools is not set
@@ -9093,6 +9117,30 @@ CONFIG_STRACE_NONE=y
 # CONFIG_STRACE_LIBUNWIND is not set
 # CONFIG_PACKAGE_strelaysrv is not set
 # CONFIG_PACKAGE_stress-ng is not set
+
+#
+# Configuration
+#
+
+#
+# Stressors that need an external library
+#
+# CONFIG_STRESS_NG_LIB_ACL is not set
+CONFIG_STRESS_NG_LIB_AIO=y
+# CONFIG_STRESS_NG_LIB_APPARMOR is not set
+CONFIG_STRESS_NG_LIB_BSD=y
+CONFIG_STRESS_NG_LIB_CRYPT=y
+# CONFIG_STRESS_NG_LIB_GMP is not set
+CONFIG_STRESS_NG_LIB_JPEG=y
+CONFIG_STRESS_NG_LIB_KMOD=y
+# CONFIG_STRESS_NG_LIB_LZMA is not set
+# CONFIG_STRESS_NG_LIB_MD is not set
+# CONFIG_STRESS_NG_LIB_MPFR is not set
+CONFIG_STRESS_NG_LIB_SCTP=y
+# CONFIG_STRESS_NG_LIB_XXHASH is not set
+CONFIG_STRESS_NG_LIB_Z=y
+# end of Configuration
+
 # CONFIG_PACKAGE_sumo is not set
 CONFIG_PACKAGE_swanmon=m
 # CONFIG_PACKAGE_syncthing is not set
