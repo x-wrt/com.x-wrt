@@ -19,6 +19,8 @@ PKG_MAINTAINER:=Chen Minqiang <ptpt52@gmail.com>
 PKG_LICENSE:=GPL-2.0
 PKG_LICENSE_FILES:=COPYING
 
+PKG_BUILD_FLAGS:=no-mips16 no-lto
+
 include $(INCLUDE_DIR)/package.mk
 
 TAR_OPTIONS+= --strip-components 1
