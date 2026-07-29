@@ -222,25 +222,25 @@ CONFIG_TARGET_PER_DEVICE_ROOTFS=y
 # CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_asus_rt-n14u is not set
 # CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_bdcom_wap2100-sk is not set
 CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_bolt_bl100=y
-CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt7620_DEVICE_bolt_bl100="dawn ip-bridge kmod-crypto-chacha20poly1305 kmod-leds-gpio kmod-mt76-core kmod-mt76x02-common kmod-mt76x2 kmod-mt76x2-common kmod-ovpn-backports kmod-rt2800-lib kmod-rt2800-mmio kmod-rt2800-soc kmod-rt2x00-lib kmod-rt2x00-mmio kmod-usb2 kmod-usb-common kmod-usb-core kmod-usb-ehci kmod-usb-ohci libgcrypt libgpg-error liblz4 liblzo libnl-core libnl-genl libqrencode luci-app-dawn luci-app-usteer luci-i18n-dashboard-zh-cn luci-i18n-dawn-zh-cn luci-i18n-usteer-zh-cn luci-mod-dashboard luci-proto-openvpn luci-proto-relay luci-proto-wireguard openvpn-mbedtls qrencode relayd tc-tiny wireguard-tools wpad-mbedtls"
+CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt7620_DEVICE_bolt_bl100="dawn ip-bridge kmod-crypto-chacha20poly1305 kmod-gpio-button-hotplug kmod-leds-gpio kmod-mt76-core kmod-mt76x02-common kmod-mt76x2 kmod-mt76x2-common kmod-ovpn-backports kmod-rt2800-lib kmod-rt2800-mmio kmod-rt2800-soc kmod-rt2x00-lib kmod-rt2x00-mmio kmod-usb2 kmod-usb-common kmod-usb-core kmod-usb-ehci kmod-usb-ohci libgcrypt libgpg-error liblz4 liblzo libnl-core libnl-genl libqrencode luci-app-dawn luci-app-usteer luci-i18n-dashboard-zh-cn luci-i18n-dawn-zh-cn luci-i18n-usteer-zh-cn luci-mod-dashboard luci-proto-openvpn luci-proto-relay luci-proto-wireguard openvpn-mbedtls qrencode relayd tc-tiny wireguard-tools wpad-mbedtls"
 CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_bolt_bl201=y
-CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt7620_DEVICE_bolt_bl201="dawn ip-bridge kmod-crypto-chacha20poly1305 kmod-leds-gpio kmod-mt76-core kmod-mt76x02-common kmod-mt76x2 kmod-mt76x2-common kmod-ovpn-backports kmod-rt2800-lib kmod-rt2800-mmio kmod-rt2800-soc kmod-rt2x00-lib kmod-rt2x00-mmio libgcrypt libgpg-error liblz4 liblzo libnl-core libnl-genl libqrencode luci-app-dawn luci-app-usteer luci-i18n-dashboard-zh-cn luci-i18n-dawn-zh-cn luci-i18n-usteer-zh-cn luci-mod-dashboard luci-proto-openvpn luci-proto-relay luci-proto-wireguard openvpn-mbedtls qrencode relayd tc-tiny wireguard-tools wpad-mbedtls"
+CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt7620_DEVICE_bolt_bl201="dawn ip-bridge kmod-crypto-chacha20poly1305 kmod-gpio-button-hotplug kmod-leds-gpio kmod-mt76-core kmod-mt76x02-common kmod-mt76x2 kmod-mt76x2-common kmod-ovpn-backports kmod-rt2800-lib kmod-rt2800-mmio kmod-rt2800-soc kmod-rt2x00-lib kmod-rt2x00-mmio libgcrypt libgpg-error liblz4 liblzo libnl-core libnl-genl libqrencode luci-app-dawn luci-app-usteer luci-i18n-dashboard-zh-cn luci-i18n-dawn-zh-cn luci-i18n-usteer-zh-cn luci-mod-dashboard luci-proto-openvpn luci-proto-relay luci-proto-wireguard openvpn-mbedtls qrencode relayd tc-tiny wireguard-tools wpad-mbedtls"
 CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_buffalo_whr-1166d=y
-CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt7620_DEVICE_buffalo_whr-1166d="kmod-leds-gpio kmod-mt76-core kmod-mt76x02-common kmod-mt76x2 kmod-mt76x2-common kmod-rt2800-lib kmod-rt2800-mmio kmod-rt2800-soc kmod-rt2x00-lib kmod-rt2x00-mmio luci-proto-wireguard wireguard-tools wpad-basic-mbedtls"
+CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt7620_DEVICE_buffalo_whr-1166d="kmod-gpio-button-hotplug kmod-leds-gpio kmod-mt76-core kmod-mt76x02-common kmod-mt76x2 kmod-mt76x2-common kmod-rt2800-lib kmod-rt2800-mmio kmod-rt2800-soc kmod-rt2x00-lib kmod-rt2x00-mmio luci-proto-wireguard wireguard-tools wpad-basic-mbedtls"
 # CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_buffalo_whr-300hp2 is not set
 # CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_buffalo_whr-600d is not set
 # CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_buffalo_wmr-300 is not set
 # CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_comfast_cf-wr800n is not set
 # CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_dlink_dch-m225 is not set
 CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_dlink_dir-510l=y
-CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt7620_DEVICE_dlink_dir-510l="dawn ip-bridge jboot-tools kmod-crypto-chacha20poly1305 kmod-leds-gpio kmod-mt76-core kmod-mt76x02-common kmod-mt76x0-common kmod-mt76x0e kmod-ovpn-backports kmod-rt2800-lib kmod-rt2800-mmio kmod-rt2800-soc kmod-rt2x00-lib kmod-rt2x00-mmio kmod-usb2 kmod-usb-common kmod-usb-core kmod-usb-ehci kmod-usb-ohci libgcrypt libgpg-error liblz4 liblzo libnl-core libnl-genl libqrencode luci-app-dawn luci-app-usteer luci-i18n-dashboard-zh-cn luci-i18n-dawn-zh-cn luci-i18n-usteer-zh-cn luci-mod-dashboard luci-proto-openvpn luci-proto-relay luci-proto-wireguard openvpn-mbedtls qrencode relayd tc-tiny wireguard-tools wpad-mbedtls"
+CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt7620_DEVICE_dlink_dir-510l="dawn ip-bridge jboot-tools kmod-crypto-chacha20poly1305 kmod-gpio-button-hotplug kmod-leds-gpio kmod-mt76-core kmod-mt76x02-common kmod-mt76x0-common kmod-mt76x0e kmod-ovpn-backports kmod-rt2800-lib kmod-rt2800-mmio kmod-rt2800-soc kmod-rt2x00-lib kmod-rt2x00-mmio kmod-usb2 kmod-usb-common kmod-usb-core kmod-usb-ehci kmod-usb-ohci libgcrypt libgpg-error liblz4 liblzo libnl-core libnl-genl libqrencode luci-app-dawn luci-app-usteer luci-i18n-dashboard-zh-cn luci-i18n-dawn-zh-cn luci-i18n-usteer-zh-cn luci-mod-dashboard luci-proto-openvpn luci-proto-relay luci-proto-wireguard openvpn-mbedtls qrencode relayd tc-tiny wireguard-tools wpad-mbedtls"
 # CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_dlink_dir-806a-b1 is not set
 # CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_dlink_dir-810l is not set
 # CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_dlink_dwr-116-a1 is not set
 # CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_dlink_dwr-118-a1 is not set
 # CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_dlink_dwr-118-a2 is not set
 CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_dlink_dwr-921-c1=y
-CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt7620_DEVICE_dlink_dwr-921-c1="jboot-tools kmod-leds-gpio kmod-mii kmod-rt2800-lib kmod-rt2800-mmio kmod-rt2800-soc kmod-rt2x00-lib kmod-rt2x00-mmio kmod-usb2 kmod-usb-common kmod-usb-core kmod-usb-ehci kmod-usb-net kmod-usb-net-qmi-wwan kmod-usb-ohci kmod-usb-serial kmod-usb-serial-option kmod-usb-serial-wwan kmod-usb-wdm luci-proto-wireguard uqmi wireguard-tools wpad-basic-mbedtls wwan"
+CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt7620_DEVICE_dlink_dwr-921-c1="jboot-tools kmod-gpio-button-hotplug kmod-leds-gpio kmod-mii kmod-rt2800-lib kmod-rt2800-mmio kmod-rt2800-soc kmod-rt2x00-lib kmod-rt2x00-mmio kmod-usb2 kmod-usb-common kmod-usb-core kmod-usb-ehci kmod-usb-net kmod-usb-net-qmi-wwan kmod-usb-ohci kmod-usb-serial kmod-usb-serial-option kmod-usb-serial-wwan kmod-usb-wdm luci-proto-wireguard uqmi wireguard-tools wpad-basic-mbedtls wwan"
 # CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_dlink_dwr-921-c3 is not set
 # CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_dlink_dwr-922-e2 is not set
 # CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_dlink_dwr-960 is not set
@@ -288,9 +288,9 @@ CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt7620_DEVICE_dlink_dwr-921-c1="jboot-tools
 # CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_ralink_mt7620a-evb is not set
 # CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_ralink_mt7620a-v22sg-evb is not set
 CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_mercusys_ac12g-v1-8m=y
-CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt7620_DEVICE_mercusys_ac12g-v1-8m="kmod-leds-gpio kmod-libphy kmod-mt76-core kmod-mt76x02-common kmod-mt76x2 kmod-mt76x2-common kmod-rt2800-lib kmod-rt2800-mmio kmod-rt2800-soc kmod-rt2x00-lib kmod-rt2x00-mmio kmod-swconfig kmod-switch-rtl8366-smi kmod-switch-rtl8367b luci-proto-wireguard wireguard-tools wpad-basic-mbedtls"
+CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt7620_DEVICE_mercusys_ac12g-v1-8m="kmod-gpio-button-hotplug kmod-leds-gpio kmod-libphy kmod-mt76-core kmod-mt76x02-common kmod-mt76x2 kmod-mt76x2-common kmod-rt2800-lib kmod-rt2800-mmio kmod-rt2800-soc kmod-rt2x00-lib kmod-rt2x00-mmio kmod-swconfig kmod-switch-rtl8366-smi kmod-switch-rtl8367b luci-proto-wireguard wireguard-tools wpad-basic-mbedtls"
 CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_mercusys_ac12g-v1-8m-dsa=y
-CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt7620_DEVICE_mercusys_ac12g-v1-8m-dsa="kmod-dsa kmod-dsa-realtek kmod-dsa-rtl8365mb kmod-fixed-phy kmod-hwmon-core kmod-i2c-core kmod-leds-gpio kmod-ledtrig-network kmod-libphy kmod-mdio-devres kmod-mt76-core kmod-mt76x02-common kmod-mt76x2 kmod-mt76x2-common kmod-net-selftests kmod-phylink kmod-phy-realtek kmod-regmap-core kmod-rt2800-lib kmod-rt2800-mmio kmod-rt2800-soc kmod-rt2x00-lib kmod-rt2x00-mmio wpad-basic-mbedtls"
+CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt7620_DEVICE_mercusys_ac12g-v1-8m-dsa="kmod-dsa kmod-dsa-realtek kmod-dsa-rtl8365mb kmod-fixed-phy kmod-gpio-button-hotplug kmod-hwmon-core kmod-i2c-core kmod-leds-gpio kmod-ledtrig-network kmod-libphy kmod-mdio-devres kmod-mt76-core kmod-mt76x02-common kmod-mt76x2 kmod-mt76x2-common kmod-net-selftests kmod-phylink kmod-phy-realtek kmod-regmap-core kmod-rt2800-lib kmod-rt2800-mmio kmod-rt2800-soc kmod-rt2x00-lib kmod-rt2x00-mmio wpad-basic-mbedtls"
 # CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_microduino_microwrt is not set
 # CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_netcore_nw5212 is not set
 # CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_netgear_ex2700 is not set
@@ -306,19 +306,19 @@ CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt7620_DEVICE_mercusys_ac12g-v1-8m-dsa="kmo
 # CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_nexx_wt3020-8m is not set
 # CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_ohyeah_oy-0001 is not set
 CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_phicomm_k2-v22.4=y
-CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt7620_DEVICE_phicomm_k2-v22.4="kmod-leds-gpio kmod-mt76-core kmod-mt76x02-common kmod-mt76x2 kmod-mt76x2-common kmod-rt2800-lib kmod-rt2800-mmio kmod-rt2800-soc kmod-rt2x00-lib kmod-rt2x00-mmio luci-proto-wireguard wireguard-tools wpad-basic-mbedtls"
+CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt7620_DEVICE_phicomm_k2-v22.4="kmod-gpio-button-hotplug kmod-leds-gpio kmod-mt76-core kmod-mt76x02-common kmod-mt76x2 kmod-mt76x2-common kmod-rt2800-lib kmod-rt2800-mmio kmod-rt2800-soc kmod-rt2x00-lib kmod-rt2x00-mmio luci-proto-wireguard wireguard-tools wpad-basic-mbedtls"
 CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_phicomm_k2-v22.5=y
-CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt7620_DEVICE_phicomm_k2-v22.5="kmod-leds-gpio kmod-mt76-core kmod-mt76x02-common kmod-mt76x2 kmod-mt76x2-common kmod-rt2800-lib kmod-rt2800-mmio kmod-rt2800-soc kmod-rt2x00-lib kmod-rt2x00-mmio luci-proto-wireguard wireguard-tools wpad-basic-mbedtls"
+CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt7620_DEVICE_phicomm_k2-v22.5="kmod-gpio-button-hotplug kmod-leds-gpio kmod-mt76-core kmod-mt76x02-common kmod-mt76x2 kmod-mt76x2-common kmod-rt2800-lib kmod-rt2800-mmio kmod-rt2800-soc kmod-rt2x00-lib kmod-rt2x00-mmio luci-proto-wireguard wireguard-tools wpad-basic-mbedtls"
 CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_phicomm_k2g=y
-CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt7620_DEVICE_phicomm_k2g="kmod-leds-gpio kmod-mt76-core kmod-mt76x02-common kmod-mt76x2 kmod-mt76x2-common kmod-rt2800-lib kmod-rt2800-mmio kmod-rt2800-soc kmod-rt2x00-lib kmod-rt2x00-mmio luci-proto-wireguard wireguard-tools wpad-basic-mbedtls"
+CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt7620_DEVICE_phicomm_k2g="kmod-gpio-button-hotplug kmod-leds-gpio kmod-mt76-core kmod-mt76x02-common kmod-mt76x2 kmod-mt76x2-common kmod-rt2800-lib kmod-rt2800-mmio kmod-rt2800-soc kmod-rt2x00-lib kmod-rt2x00-mmio luci-proto-wireguard wireguard-tools wpad-basic-mbedtls"
 CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_phicomm_psg1208=y
-CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt7620_DEVICE_phicomm_psg1208="kmod-leds-gpio kmod-mt76-core kmod-mt76x02-common kmod-mt76x2 kmod-mt76x2-common kmod-rt2800-lib kmod-rt2800-mmio kmod-rt2800-soc kmod-rt2x00-lib kmod-rt2x00-mmio luci-proto-wireguard wireguard-tools wpad-basic-mbedtls"
+CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt7620_DEVICE_phicomm_psg1208="kmod-gpio-button-hotplug kmod-leds-gpio kmod-mt76-core kmod-mt76x02-common kmod-mt76x2 kmod-mt76x2-common kmod-rt2800-lib kmod-rt2800-mmio kmod-rt2800-soc kmod-rt2x00-lib kmod-rt2x00-mmio luci-proto-wireguard wireguard-tools wpad-basic-mbedtls"
 CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_phicomm_psg1218b=y
-CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt7620_DEVICE_phicomm_psg1218b="kmod-leds-gpio kmod-mt76-core kmod-mt76x02-common kmod-mt76x2 kmod-mt76x2-common kmod-rt2800-lib kmod-rt2800-mmio kmod-rt2800-soc kmod-rt2x00-lib kmod-rt2x00-mmio luci-proto-wireguard wireguard-tools wpad-basic-mbedtls"
+CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt7620_DEVICE_phicomm_psg1218b="kmod-gpio-button-hotplug kmod-leds-gpio kmod-mt76-core kmod-mt76x02-common kmod-mt76x2 kmod-mt76x2-common kmod-rt2800-lib kmod-rt2800-mmio kmod-rt2800-soc kmod-rt2x00-lib kmod-rt2x00-mmio luci-proto-wireguard wireguard-tools wpad-basic-mbedtls"
 # CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_planex_cs-qr10 is not set
 # CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_planex_db-wrt01 is not set
 CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_planex_mzk-750dhp=y
-CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt7620_DEVICE_planex_mzk-750dhp="kmod-leds-gpio kmod-mt76-core kmod-mt76x02-common kmod-mt76x0-common kmod-mt76x0e kmod-rt2800-lib kmod-rt2800-mmio kmod-rt2800-soc kmod-rt2x00-lib kmod-rt2x00-mmio luci-proto-wireguard wireguard-tools wpad-basic-mbedtls"
+CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt7620_DEVICE_planex_mzk-750dhp="kmod-gpio-button-hotplug kmod-leds-gpio kmod-mt76-core kmod-mt76x02-common kmod-mt76x0-common kmod-mt76x0e kmod-rt2800-lib kmod-rt2800-mmio kmod-rt2800-soc kmod-rt2x00-lib kmod-rt2x00-mmio luci-proto-wireguard wireguard-tools wpad-basic-mbedtls"
 # CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_planex_mzk-ex300np is not set
 # CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_planex_mzk-ex750np is not set
 # CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_ravpower_rp-wd03 is not set
@@ -332,11 +332,11 @@ CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt7620_DEVICE_planex_mzk-750dhp="kmod-leds-
 # CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_tplink_archer-c2-v1 is not set
 # CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_tplink_archer-c20-v1 is not set
 CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_tplink_archer-c20i=y
-CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt7620_DEVICE_tplink_archer-c20i="kmod-leds-gpio kmod-mt76-core kmod-mt76x02-common kmod-mt76x0-common kmod-mt76x0e kmod-rt2800-lib kmod-rt2800-mmio kmod-rt2800-soc kmod-rt2x00-lib kmod-rt2x00-mmio kmod-usb2 kmod-usb-common kmod-usb-core kmod-usb-ehci kmod-usb-ohci wpad-basic-mbedtls"
+CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt7620_DEVICE_tplink_archer-c20i="kmod-gpio-button-hotplug kmod-leds-gpio kmod-mt76-core kmod-mt76x02-common kmod-mt76x0-common kmod-mt76x0e kmod-rt2800-lib kmod-rt2800-mmio kmod-rt2800-soc kmod-rt2x00-lib kmod-rt2x00-mmio kmod-usb2 kmod-usb-common kmod-usb-core kmod-usb-ehci kmod-usb-ohci wpad-basic-mbedtls"
 CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_tplink_archer-c5-v4=y
-CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt7620_DEVICE_tplink_archer-c5-v4="kmod-leds-gpio kmod-libphy kmod-mt76-core kmod-mt76x02-common kmod-mt76x2 kmod-mt76x2-common kmod-rt2800-lib kmod-rt2800-mmio kmod-rt2800-soc kmod-rt2x00-lib kmod-rt2x00-mmio kmod-swconfig kmod-switch-rtl8366-smi kmod-switch-rtl8367b kmod-usb2 kmod-usb-common kmod-usb-core kmod-usb-ehci kmod-usb-ledtrig-usbport kmod-usb-ohci luci-app-ledtrig-usbport wpad-basic-mbedtls"
+CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt7620_DEVICE_tplink_archer-c5-v4="kmod-gpio-button-hotplug kmod-leds-gpio kmod-libphy kmod-mt76-core kmod-mt76x02-common kmod-mt76x2 kmod-mt76x2-common kmod-rt2800-lib kmod-rt2800-mmio kmod-rt2800-soc kmod-rt2x00-lib kmod-rt2x00-mmio kmod-swconfig kmod-switch-rtl8366-smi kmod-switch-rtl8367b kmod-usb2 kmod-usb-common kmod-usb-core kmod-usb-ehci kmod-usb-ledtrig-usbport kmod-usb-ohci luci-app-ledtrig-usbport wpad-basic-mbedtls"
 CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_tplink_archer-c50-v1=y
-CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt7620_DEVICE_tplink_archer-c50-v1="kmod-leds-gpio kmod-mt76-core kmod-mt76x02-common kmod-mt76x2 kmod-mt76x2-common kmod-rt2800-lib kmod-rt2800-mmio kmod-rt2800-soc kmod-rt2x00-lib kmod-rt2x00-mmio kmod-usb2 kmod-usb-common kmod-usb-core kmod-usb-ehci kmod-usb-ohci wpad-basic-mbedtls"
+CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt7620_DEVICE_tplink_archer-c50-v1="kmod-gpio-button-hotplug kmod-leds-gpio kmod-mt76-core kmod-mt76x02-common kmod-mt76x2 kmod-mt76x2-common kmod-rt2800-lib kmod-rt2800-mmio kmod-rt2800-soc kmod-rt2x00-lib kmod-rt2x00-mmio kmod-usb2 kmod-usb-common kmod-usb-core kmod-usb-ehci kmod-usb-ohci wpad-basic-mbedtls"
 # CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_tplink_archer-mr200 is not set
 # CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_tplink_ec220-g5-v2 is not set
 # CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_tplink_re200-v1 is not set
@@ -362,14 +362,14 @@ CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt7620_DEVICE_tplink_archer-c50-v1="kmod-le
 # CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_zbtlink_zbt-we1026-5g-16m is not set
 # CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_zbtlink_zbt-we1026-h-32m is not set
 CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_zbtlink_zbt-we2026=y
-CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt7620_DEVICE_zbtlink_zbt-we2026="kmod-leds-gpio kmod-rt2800-lib kmod-rt2800-mmio kmod-rt2800-soc kmod-rt2x00-lib kmod-rt2x00-mmio luci-proto-wireguard wireguard-tools wpad-basic-mbedtls"
+CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt7620_DEVICE_zbtlink_zbt-we2026="kmod-gpio-button-hotplug kmod-leds-gpio kmod-rt2800-lib kmod-rt2800-mmio kmod-rt2800-soc kmod-rt2x00-lib kmod-rt2x00-mmio luci-proto-wireguard wireguard-tools wpad-basic-mbedtls"
 # CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_zbtlink_zbt-we826-16m is not set
 # CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_zbtlink_zbt-we826-32m is not set
 # CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_zbtlink_zbt-we826-e is not set
 CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_zbtlink_zbt-wr8305rt=y
-CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt7620_DEVICE_zbtlink_zbt-wr8305rt="kmod-leds-gpio kmod-rt2800-lib kmod-rt2800-mmio kmod-rt2800-soc kmod-rt2x00-lib kmod-rt2x00-mmio kmod-usb2 kmod-usb-common kmod-usb-core kmod-usb-ehci kmod-usb-ohci luci-proto-wireguard wireguard-tools wpad-basic-mbedtls"
+CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt7620_DEVICE_zbtlink_zbt-wr8305rt="kmod-gpio-button-hotplug kmod-leds-gpio kmod-rt2800-lib kmod-rt2800-mmio kmod-rt2800-soc kmod-rt2x00-lib kmod-rt2x00-mmio kmod-usb2 kmod-usb-common kmod-usb-core kmod-usb-ehci kmod-usb-ohci luci-proto-wireguard wireguard-tools wpad-basic-mbedtls"
 CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_zte_q7=y
-CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt7620_DEVICE_zte_q7="kmod-leds-gpio kmod-rt2800-lib kmod-rt2800-mmio kmod-rt2800-soc kmod-rt2x00-lib kmod-rt2x00-mmio kmod-usb2 kmod-usb-common kmod-usb-core kmod-usb-ehci kmod-usb-ohci luci-proto-wireguard wireguard-tools wpad-basic-mbedtls"
+CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt7620_DEVICE_zte_q7="kmod-gpio-button-hotplug kmod-leds-gpio kmod-rt2800-lib kmod-rt2800-mmio kmod-rt2800-soc kmod-rt2x00-lib kmod-rt2x00-mmio kmod-usb2 kmod-usb-common kmod-usb-core kmod-usb-ehci kmod-usb-ohci luci-proto-wireguard wireguard-tools wpad-basic-mbedtls"
 # CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_zyxel_keenetic-lite-iii-a is not set
 # CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_zyxel_keenetic-omni is not set
 # CONFIG_TARGET_DEVICE_ramips_mt7620_DEVICE_zyxel_keenetic-omni-ii is not set
@@ -745,7 +745,7 @@ CONFIG_TARGET_INIT_CMD="/sbin/init"
 CONFIG_TARGET_INIT_SUPPRESS_STDERR=y
 CONFIG_VERSIONOPT=y
 CONFIG_VERSION_DIST="X-WRT"
-CONFIG_VERSION_NUMBER="26.04_b202607290014"
+CONFIG_VERSION_NUMBER="26.04_b202607290936"
 CONFIG_VERSION_CODE="Resolute"
 CONFIG_VERSION_REPO="http://downloads.openwrt.org/snapshots"
 CONFIG_VERSION_HOME_URL="https://x-wrt.com/"
@@ -3430,7 +3430,7 @@ CONFIG_PACKAGE_wireless-regdb=y
 # CONFIG_PACKAGE_kmod-aoe is not set
 # CONFIG_PACKAGE_kmod-ata-ahci is not set
 # CONFIG_PACKAGE_kmod-ata-artop is not set
-CONFIG_PACKAGE_kmod-ata-core=m
+# CONFIG_PACKAGE_kmod-ata-core is not set
 # CONFIG_PACKAGE_kmod-ata-nvidia-sata is not set
 # CONFIG_PACKAGE_kmod-ata-pdc202xx-old is not set
 # CONFIG_PACKAGE_kmod-ata-piix is not set
@@ -3457,13 +3457,12 @@ CONFIG_PACKAGE_kmod-scsi-core=m
 # Bluetooth Support
 #
 # CONFIG_PACKAGE_kmod-ath3k is not set
-CONFIG_PACKAGE_kmod-bluetooth=m
+# CONFIG_PACKAGE_kmod-bluetooth is not set
 # CONFIG_PACKAGE_kmod-bluetooth-6lowpan is not set
 # CONFIG_PACKAGE_kmod-btmrvl is not set
-CONFIG_PACKAGE_kmod-btmtk=m
 # CONFIG_PACKAGE_kmod-btsdio is not set
-CONFIG_PACKAGE_kmod-btusb=m
-CONFIG_PACKAGE_kmod-hci-uart=m
+# CONFIG_PACKAGE_kmod-btusb is not set
+# CONFIG_PACKAGE_kmod-hci-uart is not set
 # end of Bluetooth Support
 
 #
@@ -3477,20 +3476,20 @@ CONFIG_PACKAGE_kmod-hci-uart=m
 #
 CONFIG_PACKAGE_kmod-crypto-acompress=m
 CONFIG_PACKAGE_kmod-crypto-aead=y
-CONFIG_PACKAGE_kmod-crypto-arc4=y
+# CONFIG_PACKAGE_kmod-crypto-arc4 is not set
 CONFIG_PACKAGE_kmod-crypto-authenc=m
 # CONFIG_PACKAGE_kmod-crypto-blake2b is not set
 CONFIG_PACKAGE_kmod-crypto-cbc=m
 CONFIG_PACKAGE_kmod-crypto-ccm=y
 CONFIG_PACKAGE_kmod-crypto-chacha20poly1305=m
 CONFIG_PACKAGE_kmod-crypto-cmac=y
-CONFIG_PACKAGE_kmod-crypto-crc32c=y
+CONFIG_PACKAGE_kmod-crypto-crc32c=m
 CONFIG_PACKAGE_kmod-crypto-ctr=y
-CONFIG_PACKAGE_kmod-crypto-cts=m
+# CONFIG_PACKAGE_kmod-crypto-cts is not set
 CONFIG_PACKAGE_kmod-crypto-deflate=m
 CONFIG_PACKAGE_kmod-crypto-des=m
-CONFIG_PACKAGE_kmod-crypto-ecb=y
-CONFIG_PACKAGE_kmod-crypto-ecdh=m
+CONFIG_PACKAGE_kmod-crypto-ecb=m
+# CONFIG_PACKAGE_kmod-crypto-ecdh is not set
 CONFIG_PACKAGE_kmod-crypto-echainiv=m
 # CONFIG_PACKAGE_kmod-crypto-essiv is not set
 # CONFIG_PACKAGE_kmod-crypto-fcrypt is not set
@@ -3500,7 +3499,7 @@ CONFIG_PACKAGE_kmod-crypto-gf128=y
 CONFIG_PACKAGE_kmod-crypto-ghash=y
 CONFIG_PACKAGE_kmod-crypto-hash=y
 CONFIG_PACKAGE_kmod-crypto-hmac=y
-CONFIG_PACKAGE_kmod-crypto-hw-atmel=m
+# CONFIG_PACKAGE_kmod-crypto-hw-atmel is not set
 # CONFIG_PACKAGE_kmod-crypto-hw-hifn-795x is not set
 # CONFIG_PACKAGE_kmod-crypto-hw-padlock is not set
 CONFIG_PACKAGE_kmod-crypto-kpp=y
@@ -3509,7 +3508,7 @@ CONFIG_PACKAGE_kmod-crypto-lib-chacha20poly1305=y
 CONFIG_PACKAGE_kmod-crypto-lib-curve25519=y
 CONFIG_PACKAGE_kmod-crypto-lib-poly1305=y
 CONFIG_PACKAGE_kmod-crypto-manager=y
-CONFIG_PACKAGE_kmod-crypto-md4=m
+# CONFIG_PACKAGE_kmod-crypto-md4 is not set
 CONFIG_PACKAGE_kmod-crypto-md5=m
 # CONFIG_PACKAGE_kmod-crypto-michael-mic is not set
 CONFIG_PACKAGE_kmod-crypto-null=y
@@ -3522,7 +3521,7 @@ CONFIG_PACKAGE_kmod-crypto-sha256=m
 CONFIG_PACKAGE_kmod-crypto-sha3=y
 CONFIG_PACKAGE_kmod-crypto-sha512=y
 # CONFIG_PACKAGE_kmod-crypto-test is not set
-CONFIG_PACKAGE_kmod-crypto-user=y
+# CONFIG_PACKAGE_kmod-crypto-user is not set
 # CONFIG_PACKAGE_kmod-crypto-xcbc is not set
 # CONFIG_PACKAGE_kmod-crypto-xts is not set
 # CONFIG_PACKAGE_kmod-crypto-xxhash is not set
@@ -3536,7 +3535,7 @@ CONFIG_PACKAGE_kmod-cryptodev=m
 # CONFIG_PACKAGE_kmod-fs-afs is not set
 CONFIG_PACKAGE_kmod-fs-autofs4=m
 # CONFIG_PACKAGE_kmod-fs-btrfs is not set
-CONFIG_PACKAGE_kmod-fs-cachefiles=m
+# CONFIG_PACKAGE_kmod-fs-cachefiles is not set
 # CONFIG_PACKAGE_kmod-fs-cifs is not set
 # CONFIG_PACKAGE_kmod-fs-configfs is not set
 # CONFIG_PACKAGE_kmod-fs-cramfs is not set
@@ -3552,13 +3551,13 @@ CONFIG_PACKAGE_kmod-fs-ksmbd=m
 # CONFIG_PACKAGE_kmod-fs-minix is not set
 CONFIG_PACKAGE_kmod-fs-msdos=m
 CONFIG_PACKAGE_kmod-fs-netfs=m
-CONFIG_PACKAGE_kmod-fs-nfs=m
-CONFIG_PACKAGE_kmod-fs-nfs-common=m
+# CONFIG_PACKAGE_kmod-fs-nfs is not set
+# CONFIG_PACKAGE_kmod-fs-nfs-common is not set
 # CONFIG_PACKAGE_kmod-fs-nfs-common-rpcsec is not set
 # CONFIG_PACKAGE_kmod-fs-nfs-v3 is not set
-CONFIG_PACKAGE_kmod-fs-nfs-v4=m
+# CONFIG_PACKAGE_kmod-fs-nfs-v4 is not set
 # CONFIG_PACKAGE_kmod-fs-nfsd is not set
-CONFIG_PACKAGE_kmod-fs-nilfs2=m
+# CONFIG_PACKAGE_kmod-fs-nilfs2 is not set
 CONFIG_PACKAGE_kmod-fs-ntfs=m
 # CONFIG_PACKAGE_kmod-fs-ntfs3 is not set
 # CONFIG_PACKAGE_kmod-fs-reiserfs is not set
@@ -3582,7 +3581,7 @@ CONFIG_PACKAGE_kmod-fuse=m
 # GPIO support
 #
 # CONFIG_PACKAGE_kmod-gpio-beeper is not set
-CONFIG_PACKAGE_kmod-gpio-button-hotplug=y
+CONFIG_PACKAGE_kmod-gpio-button-hotplug=m
 # CONFIG_PACKAGE_kmod-gpio-line-mux is not set
 # CONFIG_PACKAGE_kmod-gpio-nxp-74hc164 is not set
 # CONFIG_PACKAGE_kmod-gpio-pca953x is not set
@@ -3705,12 +3704,12 @@ CONFIG_PACKAGE_kmod-i2c-core=m
 #
 # Input modules
 #
-CONFIG_PACKAGE_kmod-hid=m
-CONFIG_PACKAGE_kmod-hid-alps=m
+# CONFIG_PACKAGE_kmod-hid is not set
+# CONFIG_PACKAGE_kmod-hid-alps is not set
 # CONFIG_PACKAGE_kmod-hid-generic is not set
 # CONFIG_PACKAGE_kmod-input-adc-keys is not set
-CONFIG_PACKAGE_kmod-input-core=m
-CONFIG_PACKAGE_kmod-input-evdev=m
+# CONFIG_PACKAGE_kmod-input-core is not set
+# CONFIG_PACKAGE_kmod-input-evdev is not set
 # CONFIG_PACKAGE_kmod-input-gpio-encoder is not set
 # CONFIG_PACKAGE_kmod-input-gpio-keys is not set
 # CONFIG_PACKAGE_kmod-input-gpio-keys-polled is not set
@@ -3744,7 +3743,7 @@ CONFIG_PACKAGE_kmod-leds-gpio=m
 # CONFIG_PACKAGE_kmod-ledtrig-gpio is not set
 CONFIG_PACKAGE_kmod-ledtrig-network=m
 # CONFIG_PACKAGE_kmod-ledtrig-oneshot is not set
-CONFIG_PACKAGE_kmod-ledtrig-pattern=m
+# CONFIG_PACKAGE_kmod-ledtrig-pattern is not set
 # CONFIG_PACKAGE_kmod-ledtrig-transient is not set
 # CONFIG_PACKAGE_kmod-ledtrig-tty is not set
 # end of LED modules
@@ -3877,7 +3876,6 @@ CONFIG_PACKAGE_kmod-iptables=y
 CONFIG_PACKAGE_kmod-nf-conncount=y
 CONFIG_PACKAGE_kmod-nf-conntrack=y
 # CONFIG_PACKAGE_kmod-nf-conntrack-netlink is not set
-CONFIG_PACKAGE_kmod-nf-dup-inet=m
 # CONFIG_PACKAGE_kmod-nf-flow is not set
 CONFIG_PACKAGE_kmod-nf-ipt=y
 CONFIG_PACKAGE_kmod-nf-ipt6=y
@@ -3912,7 +3910,7 @@ CONFIG_PACKAGE_kmod-nft-bridge=y
 CONFIG_PACKAGE_kmod-nft-compat=y
 # CONFIG_PACKAGE_kmod-nft-connlimit is not set
 CONFIG_PACKAGE_kmod-nft-core=y
-CONFIG_PACKAGE_kmod-nft-dup-inet=m
+# CONFIG_PACKAGE_kmod-nft-dup-inet is not set
 CONFIG_PACKAGE_kmod-nft-fib=y
 CONFIG_PACKAGE_kmod-nft-nat=y
 CONFIG_PACKAGE_kmod-nft-netdev=y
@@ -4065,13 +4063,13 @@ CONFIG_PACKAGE_kmod-switch-rtl8367b=m
 # CONFIG_PACKAGE_kmod-batman-adv is not set
 CONFIG_PACKAGE_kmod-bonding=m
 # CONFIG_PACKAGE_kmod-bpf-test is not set
-CONFIG_PACKAGE_kmod-dnsresolver=m
+# CONFIG_PACKAGE_kmod-dnsresolver is not set
 # CONFIG_PACKAGE_kmod-fou is not set
 # CONFIG_PACKAGE_kmod-fou6 is not set
 # CONFIG_PACKAGE_kmod-geneve is not set
 CONFIG_PACKAGE_kmod-gre=y
 CONFIG_PACKAGE_kmod-gre6=y
-CONFIG_PACKAGE_kmod-inet-diag=m
+# CONFIG_PACKAGE_kmod-inet-diag is not set
 CONFIG_PACKAGE_kmod-ip-vti=m
 CONFIG_PACKAGE_kmod-ip6-tunnel=y
 CONFIG_PACKAGE_kmod-ip6-vti=m
@@ -4116,7 +4114,7 @@ CONFIG_PACKAGE_kmod-pptp=y
 # CONFIG_PACKAGE_kmod-sched-act-sample is not set
 # CONFIG_PACKAGE_kmod-sched-act-vlan is not set
 # CONFIG_PACKAGE_kmod-sched-bpf is not set
-CONFIG_PACKAGE_kmod-sched-cake=y
+CONFIG_PACKAGE_kmod-sched-cake=m
 # CONFIG_PACKAGE_kmod-sched-connmark is not set
 CONFIG_PACKAGE_kmod-sched-core=y
 # CONFIG_PACKAGE_kmod-sched-ctinfo is not set
@@ -4128,17 +4126,17 @@ CONFIG_PACKAGE_kmod-sched-core=y
 # CONFIG_PACKAGE_kmod-sched-pie is not set
 # CONFIG_PACKAGE_kmod-sched-prio is not set
 # CONFIG_PACKAGE_kmod-sched-red is not set
-CONFIG_PACKAGE_kmod-sched-skbprio=m
+# CONFIG_PACKAGE_kmod-sched-skbprio is not set
 # CONFIG_PACKAGE_kmod-sctp is not set
 # CONFIG_PACKAGE_kmod-sctp-diag is not set
 CONFIG_PACKAGE_kmod-sit=m
 CONFIG_PACKAGE_kmod-slhc=y
 # CONFIG_PACKAGE_kmod-slip is not set
-CONFIG_PACKAGE_kmod-tcp-bbr=y
+# CONFIG_PACKAGE_kmod-tcp-bbr is not set
 # CONFIG_PACKAGE_kmod-tcp-hybla is not set
-CONFIG_PACKAGE_kmod-tcp-scalable=y
+# CONFIG_PACKAGE_kmod-tcp-scalable is not set
 # CONFIG_PACKAGE_kmod-team is not set
-CONFIG_PACKAGE_kmod-tls=m
+# CONFIG_PACKAGE_kmod-tls is not set
 # CONFIG_PACKAGE_kmod-trelay is not set
 CONFIG_PACKAGE_kmod-tun=y
 CONFIG_PACKAGE_kmod-udptunnel4=y
@@ -4168,9 +4166,9 @@ CONFIG_PACKAGE_kmod-eeprom-93cx6=m
 # CONFIG_PACKAGE_kmod-lp is not set
 # CONFIG_PACKAGE_kmod-mhi-bus is not set
 # CONFIG_PACKAGE_kmod-mhi-pci-generic is not set
-CONFIG_PACKAGE_kmod-mmc=m
-CONFIG_PACKAGE_kmod-mmc-mtk=m
-CONFIG_PACKAGE_kmod-mtd-rw=m
+# CONFIG_PACKAGE_kmod-mmc is not set
+# CONFIG_PACKAGE_kmod-mmc-mtk is not set
+# CONFIG_PACKAGE_kmod-mtd-rw is not set
 # CONFIG_PACKAGE_kmod-mtdoops is not set
 # CONFIG_PACKAGE_kmod-mtdram is not set
 # CONFIG_PACKAGE_kmod-mtdtests is not set
@@ -4185,10 +4183,10 @@ CONFIG_PACKAGE_kmod-mtd-rw=m
 # CONFIG_PACKAGE_kmod-pps-ldisc is not set
 # CONFIG_PACKAGE_kmod-ptp is not set
 # CONFIG_PACKAGE_kmod-ramoops is not set
-CONFIG_PACKAGE_kmod-random-core=m
+# CONFIG_PACKAGE_kmod-random-core is not set
 # CONFIG_PACKAGE_kmod-reed-solomon is not set
 CONFIG_PACKAGE_kmod-regmap-core=m
-CONFIG_PACKAGE_kmod-regulator-userspace-consumer=m
+# CONFIG_PACKAGE_kmod-regulator-userspace-consumer is not set
 # CONFIG_PACKAGE_kmod-sdhci is not set
 # CONFIG_PACKAGE_kmod-sdhci-mt7620 is not set
 # CONFIG_PACKAGE_kmod-serial-8250 is not set
@@ -4200,7 +4198,7 @@ CONFIG_PACKAGE_kmod-regulator-userspace-consumer=m
 # CONFIG_PACKAGE_kmod-tpm-ftpm-tee is not set
 # CONFIG_PACKAGE_kmod-tpm-i2c-atmel is not set
 # CONFIG_PACKAGE_kmod-tpm-i2c-infineon is not set
-CONFIG_PACKAGE_kmod-ubootenv-nvram=m
+# CONFIG_PACKAGE_kmod-ubootenv-nvram is not set
 # CONFIG_PACKAGE_kmod-zram is not set
 # end of Other modules
 
