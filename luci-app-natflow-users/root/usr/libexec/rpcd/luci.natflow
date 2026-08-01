@@ -149,8 +149,14 @@ local methods = {
 			local users = { }
 
 			for _, line in ipairs(userinfo) do
-				local ip, mac, auth_type, auth_status, rule_id, idle_time, rx_pkts, rx_bytes, tx_pkts, tx_bytes, rx_speed_pkts, rx_speed_bytes, tx_speed_pkts, tx_speed_bytes =
-					line:match("^([^,]+),([^,]+),([^,]+),([^,]+),(%d+),(%d+),(%d+):(%d+),(%d+):(%d+),(%d+):(%d+),(%d+):(%d+)$")
+				local ip, mac, auth_type, auth_status, rule_id, idle_time, rx_pkts, rx_bytes, tx_pkts, tx_bytes, rx_speed_pkts, rx_speed_bytes, tx_speed_pkts, tx_speed_bytes, ifname =
+					line:match("^([^,]+),([^,]+),([^,]+),([^,]+),(%d+),(%d+),(%d+):(%d+),(%d+):(%d+),(%d+):(%d+),(%d+):(%d+),([^,]*)$")
+
+				if not ip then
+					ip, mac, auth_type, auth_status, rule_id, idle_time, rx_pkts, rx_bytes, tx_pkts, tx_bytes, rx_speed_pkts, rx_speed_bytes, tx_speed_pkts, tx_speed_bytes =
+						line:match("^([^,]+),([^,]+),([^,]+),([^,]+),(%d+),(%d+),(%d+):(%d+),(%d+):(%d+),(%d+):(%d+),(%d+):(%d+)$")
+					ifname = ""
+				end
 
 				if ip and mac and parse_hex(auth_type) ~= 0 then
 					if has_ip and ip:find(":") then
@@ -174,7 +180,8 @@ local methods = {
 						rx_speed_pkts = tonumber(rx_speed_pkts) or 0,
 						rx_speed_bytes = tonumber(rx_speed_bytes) or 0,
 						tx_speed_pkts = tonumber(tx_speed_pkts) or 0,
-						tx_speed_bytes = tonumber(tx_speed_bytes) or 0
+						tx_speed_bytes = tonumber(tx_speed_bytes) or 0,
+						ifname = ifname or ""
 					}
 					users[#users + 1] = entry
 				end
