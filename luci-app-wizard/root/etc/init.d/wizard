@@ -44,6 +44,37 @@ switch_onoff()
 	fi
 }
 
+process_kmod_group()
+{
+	local opt=$1
+	shift
+	local mod_patterns="$*"
+	local ver="$(uname -r 2>/dev/null)"
+	local lib_dir="/lib/modules/$ver"
+	local rom_dir="/rom/lib/modules/$ver"
+
+	[ -d "$rom_dir" ] || rom_dir="/rom/lib/modules"
+	[ -d "$lib_dir" ] || lib_dir="/lib/modules"
+
+	for pattern in $mod_patterns; do
+		if [ "$opt" = "0" ]; then
+			find "$lib_dir" -name "${pattern}*" -exec rm -f {} + 2>/dev/null
+		else
+			if [ -d "$rom_dir" ]; then
+				find "$rom_dir" -name "${pattern}*" 2>/dev/null | while read -r rom_file; do
+					[ -f "$rom_file" ] || continue
+					local rel_path="${rom_file#$rom_dir/}"
+					local target_file="$lib_dir/$rel_path"
+					local target_dir="$(dirname "$target_file")"
+					mkdir -p "$target_dir"
+					rm -f "$target_file" 2>/dev/null
+					cp -f "$rom_file" "$target_file" 2>/dev/null
+				done
+			fi
+		fi
+	done
+}
+
 add_wizard() {
 	local cfg="$1"
 	local opt
@@ -64,6 +95,33 @@ add_wizard() {
 
 	config_get opt "$cfg" switch_ports_status '0'
 	switch_onoff switch_ports_status $opt
+
+	config_get opt "$cfg" kmod_wireguard '1'
+	process_kmod_group $opt wireguard.ko
+
+	config_get opt "$cfg" kmod_openvpn_tun '1'
+	process_kmod_group $opt ovpn.ko tun.ko
+
+	config_get opt "$cfg" kmod_gre_sit '1'
+	process_kmod_group $opt ip_gre.ko ip6_gre.ko sit.ko
+
+	config_get opt "$cfg" kmod_vlan '1'
+	process_kmod_group $opt ipvlan.ko macvlan.ko
+
+	config_get opt "$cfg" kmod_qos '1'
+	process_kmod_group $opt sch_cake.ko sch_htb.ko sch_hfsc.ko sch_tbf.ko sch_ingress.ko cls_u32.ko cls_fw.ko cls_flower.ko cls_basic.ko cls_matchall.ko cls_flow.ko cls_route.ko act_mirred.ko act_skbedit.ko act_gact.ko
+
+	config_get opt "$cfg" kmod_alg '1'
+	process_kmod_group $opt nf_nat_sip.ko nf_conntrack_sip.ko nf_nat_h323.ko nf_conntrack_h323.ko nf_nat_pptp.ko nf_conntrack_pptp.ko nf_nat_ftp.ko nf_conntrack_ftp.ko nf_nat_amanda.ko nf_conntrack_amanda.ko nf_nat_irc.ko nf_conntrack_irc.ko nf_nat_tftp.ko nf_conntrack_tftp.ko nf_nat_snmp_basic.ko nf_conntrack_snmp.ko nf_nat_rtsp.ko nf_conntrack_rtsp.ko
+
+	config_get opt "$cfg" kmod_crypto '1'
+	process_kmod_group $opt cryptodev.ko algif_hash.ko algif_skcipher.ko algif_aead.ko algif_rng.ko crypto_user.ko
+
+	config_get opt "$cfg" kmod_usb '1'
+	process_kmod_group $opt usbcore.ko usb-common.ko usb-storage.ko usbnet.ko usbserial.ko
+
+	config_get opt "$cfg" kmod_ppp '1'
+	process_kmod_group $opt pppoe.ko pptp.ko ppp_generic.ko pppox.ko ppp_async.ko ppp_mppe.ko
 
 	[ "x$XBOOT" = "x1" ] && return 0
 	local wan_proto wan_ipaddr wan_netmask wan_gateway wan_dns wan_pppoe_user wan_pppoe_pass

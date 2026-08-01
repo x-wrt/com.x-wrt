@@ -100,4 +100,70 @@ msgstr "一般可以禁用这个服务。如果禁用，将不会响应交换机
 msgid "If disabled, IPv6 services will not be provided on the local network."
 msgstr "如果禁用，内网将不提供 IPv6 服务。"
 
+msgid "Kernel Modules"
+msgstr "内核模块"
+
+msgid "Select kernel modules to enable or disable to optimize memory usage. Disabled modules will be removed from the filesystem, while enabled ones will be restored from /rom/. Note: Modifying these options requires restarting the device to take effect."
+msgstr "选择启用或禁用内核模块集以优化内存占用。被禁用的模块将从文件系统中删除，选择加载的模块将从 /rom/ 恢复。提示：修改这些选项需要重启设备生效。"
+
+msgid "Load (Keep in filesystem)"
+msgstr "加载 (保存在文件系统中)"
+
+msgid "Do not load (Delete from filesystem)"
+msgstr "不加载 (从文件系统中删除)"
+
+msgid "WireGuard (wireguard)"
+msgstr "WireGuard (wireguard)"
+
+msgid "WireGuard VPN encrypted tunnel driver. If you do not use WireGuard, disable it to save memory."
+msgstr "WireGuard VPN 密钥路由加密隧道驱动。如果不使用 WireGuard，关闭可精简内存。"
+
+msgid "OpenVPN & TUN (ovpn, tun)"
+msgstr "OpenVPN & TUN (ovpn, tun)"
+
+msgid "OpenVPN kernel acceleration module (ovpn) and TUN/TAP virtual network device driver."
+msgstr "OpenVPN 数据包内核加速模块 (ovpn) 与 TUN/TAP 虚拟网卡驱动。"
+
+msgid "GRE & SIT Tunnels (ip_gre, ip6_gre, sit)"
+msgstr "GRE & SIT 协议隧道 (ip_gre, ip6_gre, sit)"
+
+msgid "GRE cross-network packet encapsulation and IPv6-in-IPv4 (SIT) protocol tunnel drivers."
+msgstr "GRE 跨网段通用路由封装与 IPv6-in-IPv4 (SIT) 协议隧道驱动。"
+
+msgid "IPVLAN & MACVLAN (ipvlan, macvlan)"
+msgstr "IPVLAN & MACVLAN (ipvlan, macvlan)"
+
+msgid "IPVLAN and MACVLAN virtual network interface drivers, commonly used for multi-WAN or container networking."
+msgstr "IPVLAN 与 MACVLAN 虚拟网卡驱动（常见于多拨或容器网络）。"
+
+msgid "QoS & Traffic Control (sch_cake, sch_htb, cls_*)"
+msgstr "QoS 与流控调度 (sch_cake, sch_htb, cls_*)"
+
+msgid "CAKE / HTB traffic shaping queue disciplines and TC packet classifiers. Can be disabled if traffic shaping is not needed."
+msgstr "CAKE / HTB 流量整形队列与 TC 数据包流控分类器。无限速/SQM 需求时可禁用。"
+
+msgid "NAT Helpers / ALG (sip, h323, pptp, ftp, etc.)"
+msgstr "应用层网关 NAT 助手 (sip, h323, pptp, ftp 等)"
+
+msgid "Application Layer Gateway (ALG) NAT helpers for legacy protocols such as SIP, H.323, PPTP, FTP, TFTP."
+msgstr "传统 SIP、H.323、PPTP、FTP 等特定协议的应用层网关 (ALG) NAT 穿透助手。"
+
+msgid "Cryptodev & AF_ALG (cryptodev, algif_*)"
+msgstr "Cryptodev 与 AF_ALG (cryptodev, algif_*)"
+
+msgid "User-space hardware crypto engine (/dev/crypto) and AF_ALG socket crypto interfaces."
+msgstr "用户态进程调用内核硬件/加密引擎的 /dev/crypto 设备接口与 AF_ALG 加密接口。"
+
+msgid "USB Core Driver (usbcore, usb-common)"
+msgstr "USB 核心驱动栈 (usbcore, usb-common)"
+
+msgid "USB core bus driver stack. Can be disabled if the router has no USB ports or no USB devices."
+msgstr "USB 核心总线驱动栈。若板卡没有 USB 接口或无需外接 USB 设备可禁用。"
+
+msgid "PPPoE & PPTP Dialers (pppoe, pptp, ppp_generic)"
+msgstr "PPPoE & PPTP 拨号驱动 (pppoe, pptp, ppp_generic)"
+
+msgid "PPPoE broadband dialer and PPTP protocol drivers. Can be disabled if using static IP or DHCP WAN."
+msgstr "PPPoE 宽带拨号与 PPTP 协议驱动（使用静态 IP 或 DHCP 上网时可禁用）。"
+
 
