@@ -6,7 +6,7 @@
 				"luci.natflow": [ "get_users", "kick_user" ],
 				"file": [ "stat" ]
 			},
-			"uci": [ "natflow" ],
+			"uci": [ "natflow", "hostacl" ],
 			"cgi-io": [ "exec" ],
 			"file": {
 				"/bin/cat": [ "stat" ],
@@ -17,7 +17,7 @@
 			"ubus": {
 				"luci.natflow": [ "kick_user", "block_user", "allow_user" ]
 			},
-			"uci": [ "natflow" ]
+			"uci": [ "natflow", "hostacl" ]
 		}
 	}
 }
