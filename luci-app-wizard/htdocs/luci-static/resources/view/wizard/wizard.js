@@ -44,8 +44,8 @@ return view.extend({
 				netmask: octets.join('.')
 			};
 		};
-		var serviceOption = function(name, title, defaultValue) {
-			var opt = s.taboption('service', form.ListValue, name, title);
+		var serviceOption = function(name, title, defaultValue, alt) {
+			var opt = s.taboption('service', form.ListValue, name, title, alt);
 			opt.default = defaultValue || '0';
 			opt.rmempty = false;
 			opt.widget = 'radio';
@@ -133,12 +133,12 @@ return view.extend({
 			return cidr ? cidr.netmask : uci.get('wizard', section_id, 'lan_netmask');
 		};
 
-		serviceOption('urllogger', _("Status") + ' -> ' + _('URL logging'));
-		serviceOption('qos', _("Network") + ' -> ' + _('Traffic Shaping'));
-		serviceOption('miniupnpd', _("Services") + ' -> ' + _('UPnP IGD & PCP'));
+		serviceOption('urllogger', _("Status") + ' -> ' + _('URL logging'), '0');
+		serviceOption('qos', _("Network") + ' -> ' + _('Traffic Shaping'), '0');
+		serviceOption('miniupnpd', _("Services") + ' -> ' + _('UPnP IGD & PCP'), '0');
 		serviceOption('ipv6', _('IPv6'), '1');
-		serviceOption('umdns', _('mDNS'), '1');
-		serviceOption('switch_ports_status', _('Switch Port Status'));
+		serviceOption('umdns', _('mDNS'), '1', _('It is recommended not to disable this service if using FakeMesh.'));
+		serviceOption('switch_ports_status', _('Switch Port Status'), '0', _('This service can usually be disabled; it handles switch port hotplug events.'));
 
 		return m.render();
 	}
