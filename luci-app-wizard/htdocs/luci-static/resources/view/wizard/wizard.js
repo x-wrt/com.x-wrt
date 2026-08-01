@@ -138,7 +138,7 @@ return view.extend({
 		serviceOption('miniupnpd', _("Services") + ' -> ' + _('UPnP IGD & PCP'), '0');
 		serviceOption('ipv6', _('IPv6'), '1', _('If disabled, IPv6 services will not be provided on the local network.'));
 		serviceOption('umdns', _('mDNS'), '1', _('It is recommended not to disable this service if using FakeMesh.'));
-		serviceOption('switch_ports_status', _('Switch Port Status'), '0', _('This service can usually be disabled; it handles switch port hotplug events.'));
+		serviceOption('switch_ports_status', _('Switch Port Status'), '0', _('This service can usually be disabled. If disabled, it will not respond to switch port hotplug events.'));
 
 		return m.render();
 	}

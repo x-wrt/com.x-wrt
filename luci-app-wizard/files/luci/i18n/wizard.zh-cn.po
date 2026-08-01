@@ -94,8 +94,8 @@ msgstr "禁用"
 msgid "It is recommended not to disable this service if using FakeMesh."
 msgstr "建议不要禁用这个服务，如果使用 FakeMesh 功能。"
 
-msgid "This service can usually be disabled; it handles switch port hotplug events."
-msgstr "一般可以关闭这个服务，对交换机网口热插拔响应。"
+msgid "This service can usually be disabled. If disabled, it will not respond to switch port hotplug events."
+msgstr "一般可以禁用这个服务。如果禁用，将不会响应交换机网口热插拔。"
 
 msgid "If disabled, IPv6 services will not be provided on the local network."
 msgstr "如果禁用，内网将不提供 IPv6 服务。"
