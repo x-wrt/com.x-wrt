@@ -7,8 +7,8 @@ msgstr "设置向导"
 msgid "Router Setup Wizard"
 msgstr "路由器设置向导"
 
-msgid "Configure the basic Internet, Wi-Fi, local network, and optional service settings for this router."
-msgstr "配置此路由器的上网、Wi-Fi、本地网络和可选服务等基础设置。"
+msgid "Configure the basic Internet, Wi-Fi, local network, optional service, and kernel module settings for this router."
+msgstr "配置此路由器的上网、Wi-Fi、本地网络、可选服务及内核模块等基础设置。"
 
 msgid "Internet Settings"
 msgstr "上网设置"
