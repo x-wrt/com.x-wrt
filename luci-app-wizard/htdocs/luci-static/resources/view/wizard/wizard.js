@@ -136,7 +136,7 @@ return view.extend({
 		serviceOption('urllogger', _("Status") + ' -> ' + _('URL logging'), '0');
 		serviceOption('qos', _("Network") + ' -> ' + _('Traffic Shaping'), '0');
 		serviceOption('miniupnpd', _("Services") + ' -> ' + _('UPnP IGD & PCP'), '0');
-		serviceOption('ipv6', _('IPv6'), '1');
+		serviceOption('ipv6', _('IPv6'), '1', _('If disabled, IPv6 services will not be provided on the local network.'));
 		serviceOption('umdns', _('mDNS'), '1', _('It is recommended not to disable this service if using FakeMesh.'));
 		serviceOption('switch_ports_status', _('Switch Port Status'), '0', _('This service can usually be disabled; it handles switch port hotplug events.'));
 
