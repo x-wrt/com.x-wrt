@@ -197,7 +197,7 @@ return view.extend({
 
 		var rows = users.map(function(u) {
 			var mac = u.mac.toUpperCase();
-			var name = hosts.getHostnameByMACAddr(mac);
+			var name = hosts.getHostnameByMACAddr(mac) || u.hostname;
 
 			var ip_str = u.ip;
 			var mac_str = name ? "%s<br />(%s)".format(mac, name) : mac;
@@ -265,7 +265,7 @@ return view.extend({
 
 			var rows = users.map(function(u) {
 				var mac = u.mac.toUpperCase();
-				var name = hosts.getHostnameByMACAddr(mac);
+				var name = hosts.getHostnameByMACAddr(mac) || u.hostname;
 
 				var ip_str = u.ip;
 				var mac_str = name ? "%s<br />(%s)".format(mac, name) : mac;

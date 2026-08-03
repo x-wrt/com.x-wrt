@@ -70,7 +70,7 @@ return baseclass.extend({
 
 		var rows = users.map(function(u) {
 			var mac = u.mac.toUpperCase();
-			var name = hosts.getHostnameByMACAddr(mac);
+			var name = hosts.getHostnameByMACAddr(mac) || u.hostname;
 
 			return [
 				u.ip,

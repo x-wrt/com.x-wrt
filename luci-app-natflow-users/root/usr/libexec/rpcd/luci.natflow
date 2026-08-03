@@ -139,6 +139,126 @@ local function set_user_status(ip, status)
 	return { result = "Failed" }, 1
 end
 
+local function get_host_hints()
+	local mac_to_host = {}
+	local ip_to_host = {}
+
+	local lease_files = { "/tmp/dhcp.leases", "/var/dhcp.leases" }
+	for _, file in ipairs(lease_files) do
+		local f = io.open(file, "r")
+		if f then
+			for line in f:lines() do
+				local ts, mac, ip, name = line:match("^%s*%d+%s+([%a%d:]+)%s+([%d%.%a:]+)%s+([^%s]+)")
+				if mac and name and name ~= "*" then
+					mac = mac:upper()
+					mac_to_host[mac] = name
+					if ip then
+						ip_to_host[ip] = name
+					end
+				end
+			end
+			f:close()
+		end
+	end
+
+	local host_files = { "/etc/hosts", "/tmp/hosts/dhcp" }
+	local nixio_has, nixio = pcall(require, "nixio")
+	if nixio_has and nixio.fs and nixio.fs.dir then
+		local entries = nixio.fs.dir("/tmp/hosts")
+		if entries then
+			for entry in entries do
+				if entry ~= "." and entry ~= ".." then
+					table.insert(host_files, "/tmp/hosts/" .. entry)
+				end
+			end
+		end
+	end
+
+	for _, file in ipairs(host_files) do
+		local f = io.open(file, "r")
+		if f then
+			for line in f:lines() do
+				line = line:gsub("#.*$", "")
+				local ip, name = line:match("^%s*([%d%.%a:]+)%s+([^%s]+)")
+				if ip and name and name ~= "*" and name ~= "localhost" and not ip_to_host[ip] then
+					ip_to_host[ip] = name
+				end
+			end
+			f:close()
+		end
+	end
+
+	-- Query umdns browse output via io.popen to handle duplicate JSON keys ("ipv4", "txt") without losing entries
+	local p = io.popen("ubus call umdns browse 2>/dev/null")
+	if p then
+		local cur_item_name = nil
+		local cur_host = nil
+		local cur_ips = {}
+		local cur_macs = {}
+
+		local function flush_cur()
+			local name = (cur_item_name and cur_item_name ~= "") and cur_item_name or cur_host
+			if name and name ~= "" and name ~= "*" then
+				for _, ip in ipairs(cur_ips) do
+					if not ip_to_host[ip] then
+						ip_to_host[ip] = name
+					end
+				end
+				for _, mac in ipairs(cur_macs) do
+					if not mac_to_host[mac] then
+						mac_to_host[mac] = name
+					end
+				end
+			end
+			cur_item_name = nil
+			cur_host = nil
+			cur_ips = {}
+			cur_macs = {}
+		end
+
+		for line in p:lines() do
+			local item_key = line:match('^%s*"([^"]+)":%s*{%s*$')
+			if item_key then
+				if not item_key:find("^_[^%s]+%._[%s%a%d%-]+") and not item_key:find("^_") then
+					flush_cur()
+					local clean_name = item_key:gsub("^.-@", "")
+					cur_item_name = clean_name
+				end
+			else
+				local host_val = line:match('"host":%s*"([^"]+)"')
+				if host_val then
+					cur_host = host_val:gsub("%.local%.?$", "")
+				end
+
+				local ip_val = line:match('"ipv4":%s*"([^"]+)"')
+				if ip_val then
+					table.insert(cur_ips, ip_val)
+				end
+				local ip6_val = line:match('"ipv6":%s*"([^"]+)"')
+				if ip6_val then
+					table.insert(cur_ips, ip6_val)
+				end
+
+				local txt_val = line:match('"txt":%s*"([^"]+)"')
+				if txt_val then
+					local mac = txt_val:match("deviceid=([%a%d:]+)") or txt_val:match("rpBA=([%a%d:]+)")
+					if mac then
+						table.insert(cur_macs, mac:upper())
+					end
+				end
+
+				if line:match("^%s*},?%s*$") then
+					flush_cur()
+				end
+			end
+		end
+		flush_cur()
+		p:close()
+	end
+
+	return mac_to_host, ip_to_host
+end
+
 local methods = {
 	get_users = {
 		call = function()
@@ -146,6 +266,7 @@ local methods = {
 			if not userinfo then
 				return nil
 			end
+			local mac_to_host, ip_to_host = get_host_hints()
 			local users = { }
 
 			for _, line in ipairs(userinfo) do
@@ -166,9 +287,13 @@ local methods = {
 						end
 					end
 
+					local mac_upper = mac:upper()
+					local hostname = mac_to_host[mac_upper] or ip_to_host[ip] or ""
+
 					local entry = {
 						ip = ip,
 						mac = mac,
+						hostname = hostname,
 						auth_type = parse_hex(auth_type),
 						status = parse_hex(auth_status),
 						rule_id = tonumber(rule_id) or 0,

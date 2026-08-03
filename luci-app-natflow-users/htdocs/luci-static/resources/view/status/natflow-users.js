@@ -51,7 +51,7 @@ return view.extend({
 		{
 			var u  = users[i];
 			var mac = u.mac.toUpperCase();
-			var name = hosts.getHostnameByMACAddr(mac);
+			var name = hosts.getHostnameByMACAddr(mac) || u.hostname;
 
 			rows.push([
 				u.ip,
