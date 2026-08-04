@@ -165,3 +165,10 @@ msgstr "无法加载日志数据：%s"
 
 msgid "Internet"
 msgstr "互联网"
+
+msgid "Active now"
+msgstr "刚刚活跃"
+
+msgid "%s ago"
+msgstr "%s前"
+
