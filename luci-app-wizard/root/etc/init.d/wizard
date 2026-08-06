@@ -52,9 +52,11 @@ process_kmod_group()
 	local ver="$(uname -r 2>/dev/null)"
 	local lib_dir="/lib/modules/$ver"
 	local rom_dir="/rom/lib/modules/$ver"
+	local upper_dir="/overlay/upper/lib/modules/$ver"
 
 	[ -d "$rom_dir" ] || rom_dir="/rom/lib/modules"
 	[ -d "$lib_dir" ] || lib_dir="/lib/modules"
+	[ -d "$upper_dir" ] || upper_dir="/overlay/upper/lib/modules"
 
 	for pattern in $mod_patterns; do
 		if [ "$opt" = "0" ]; then
@@ -64,11 +66,16 @@ process_kmod_group()
 				find "$rom_dir" -name "${pattern}*" 2>/dev/null | while read -r rom_file; do
 					[ -f "$rom_file" ] || continue
 					local rel_path="${rom_file#$rom_dir/}"
+					local upper_file="$upper_dir/$rel_path"
 					local target_file="$lib_dir/$rel_path"
-					local target_dir="$(dirname "$target_file")"
-					mkdir -p "$target_dir"
-					rm -f "$target_file" 2>/dev/null
-					cp -f "$rom_file" "$target_file" 2>/dev/null
+					if [ -d "$upper_dir" ]; then
+						rm -f "$upper_file" 2>/dev/null
+					fi
+					if [ ! -e "$target_file" ]; then
+						local target_dir="$(dirname "$target_file")"
+						mkdir -p "$target_dir"
+						cp -f "$rom_file" "$target_file" 2>/dev/null
+					fi
 				done
 			fi
 		fi
