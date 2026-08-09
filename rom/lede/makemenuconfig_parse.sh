@@ -496,6 +496,8 @@ for t in $targets; do
 	excludes="$excludes_basic"
 	case $t in
 		#>=32M flash
+		TARGET_DEVICE_ramips_mt7621_DEVICE_z-router_zr-2660|\
+		TARGET_DEVICE_ramips_mt7621_DEVICE_z-router_zr-2662|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_imou_hx21|\
 		TARGET_DEVICE_qualcommax_ipq60xx_DEVICE_jdcloud_re-cs-02|\
 		TARGET_DEVICE_qualcommax_ipq60xx_DEVICE_jdcloud_re-cs-07|\
@@ -652,6 +654,8 @@ for t in $targets; do
 	esac
 	case $t in
 		#>=14M flash
+		TARGET_DEVICE_ramips_mt7621_DEVICE_z-router_zr-2660|\
+		TARGET_DEVICE_ramips_mt7621_DEVICE_z-router_zr-2662|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_imou_hx21|\
 		TARGET_DEVICE_airoha_an7563_DEVICE_xiaomi_be5000|\
 		TARGET_DEVICE_qualcommax_ipq60xx_DEVICE_jdcloud_re-cs-02|\
@@ -1551,6 +1555,8 @@ for t in $targets; do
 			has_usb=1
 		;;
 		#with usb2
+		TARGET_DEVICE_ramips_mt7621_DEVICE_z-router_zr-2660|\
+		TARGET_DEVICE_ramips_mt7621_DEVICE_z-router_zr-2662|\
 		TARGET_DEVICE_econet_en751221_DEVICE_chinamobile_gs3101|\
 		TARGET_DEVICE_qualcommax_ipq807x_DEVICE_aliyun_ap8220|\
 		TARGET_DEVICE_qualcommax_ipq60xx_DEVICE_qihoo_360v6|\
