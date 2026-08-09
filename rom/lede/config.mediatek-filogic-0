@@ -220,6 +220,7 @@ CONFIG_TARGET_MULTI_PROFILE=y
 # CONFIG_TARGET_mediatek_filogic_DEVICE_tenda_ax12-pro-v2 is not set
 # CONFIG_TARGET_mediatek_filogic_DEVICE_tenda_ax12l-pro is not set
 # CONFIG_TARGET_mediatek_filogic_DEVICE_tenda_be12-pro is not set
+# CONFIG_TARGET_mediatek_filogic_DEVICE_teralink_tl3020-256mb is not set
 # CONFIG_TARGET_mediatek_filogic_DEVICE_totolink_x6000r is not set
 # CONFIG_TARGET_mediatek_filogic_DEVICE_tplink_archer-ax80-v1 is not set
 # CONFIG_TARGET_mediatek_filogic_DEVICE_tplink_archer-ax80-v1-eu is not set
@@ -473,6 +474,7 @@ CONFIG_TARGET_DEVICE_mediatek_filogic_DEVICE_tenda_ax12l-pro=y
 CONFIG_TARGET_DEVICE_PACKAGES_mediatek_filogic_DEVICE_tenda_ax12l-pro="apk-mbedtls ip-bridge kmod-crypto-chacha20poly1305 kmod-leds-gpio kmod-mt7981-firmware kmod-ovpn-backports liblz4 liblzo libnl-core libnl-genl luci-i18n-dashboard-zh-cn luci-mod-dashboard luci-proto-openvpn mt7981-wo-firmware openvpn-mbedtls tc-tiny wpad-basic-mbedtls"
 CONFIG_TARGET_DEVICE_mediatek_filogic_DEVICE_tenda_be12-pro=y
 CONFIG_TARGET_DEVICE_PACKAGES_mediatek_filogic_DEVICE_tenda_be12-pro="airoha-en8811h-firmware apk-openssl bash ca-bundle curl dawn gre ip-bridge iptables-mod-dhcpmac iptables-mod-dnetmap jool-tools-netfilter kmod-bonding kmod-crypto-acompress kmod-crypto-cbc kmod-crypto-chacha20poly1305 kmod-crypto-deflate kmod-crypto-echainiv kmod-inet-diag kmod-ip6-vti kmod-ipsec kmod-ipsec4 kmod-ipsec6 kmod-ipt-dhcpmac kmod-ipt-dnetmap kmod-ip-vti kmod-jool-netfilter kmod-l2tp kmod-leds-gpio kmod-lib-zlib-deflate kmod-lib-zlib-inflate kmod-mt7992-firmware kmod-mt7996e kmod-nat46 kmod-ovpn-backports kmod-phy-airoha-en8811h kmod-phy-mediatek-2p5g kmod-pppol2tp kmod-xfrm-interface libcurl libgcrypt libgmp libgpg-error liblz4 liblzo libminiupnpc libnatpmp libnghttp2 libnl libnl-cli libnl-core libnl-genl libnl-nf libnl-route libopenssl libopenssl-conf libopenssl-devcrypto libopenssl-legacy libpcre2 libqrencode libreadline libruby libssh2 libxml2 libyaml luci-app-dawn luci-app-openclash luci-app-tailscale-community luci-app-usteer luci-app-zerotier luci-i18n-dashboard-zh-cn luci-i18n-dawn-zh-cn luci-i18n-tailscale-community-zh-cn luci-i18n-usteer-zh-cn luci-i18n-zerotier-zh-cn luci-mod-dashboard luci-nginx luci-proto-gre luci-proto-openvpn luci-proto-relay luci-proto-vti luci-proto-wireguard luci-proto-xfrm luci-theme-argon mt7987-2p5g-phy-firmware nginx-mod-luci nginx-mod-ubus nginx-ssl nginx-ssl-util openvpn-openssl ppp-mod-pppol2tp proto-bonding qrencode relayd ruby ruby-bigdecimal ruby-date ruby-digest ruby-enc ruby-pstore ruby-psych ruby-stringio ruby-yaml tailscale tc-tiny unzip uwsgi uwsgi-cgi-plugin uwsgi-luci-support uwsgi-syslog-plugin vti wireguard-tools wpad-openssl xfrm xl2tpd zerotier"
+# CONFIG_TARGET_DEVICE_mediatek_filogic_DEVICE_teralink_tl3020-256mb is not set
 # CONFIG_TARGET_DEVICE_mediatek_filogic_DEVICE_totolink_x6000r is not set
 # CONFIG_TARGET_DEVICE_mediatek_filogic_DEVICE_tplink_archer-ax80-v1 is not set
 # CONFIG_TARGET_DEVICE_mediatek_filogic_DEVICE_tplink_archer-ax80-v1-eu is not set
@@ -1004,7 +1006,7 @@ CONFIG_TARGET_INIT_CMD="/sbin/init"
 CONFIG_TARGET_INIT_SUPPRESS_STDERR=y
 CONFIG_VERSIONOPT=y
 CONFIG_VERSION_DIST="X-WRT"
-CONFIG_VERSION_NUMBER="26.04_b202608061331"
+CONFIG_VERSION_NUMBER="26.04_b202608100143"
 CONFIG_VERSION_CODE="Resolute"
 CONFIG_VERSION_REPO="http://downloads.openwrt.org/snapshots"
 CONFIG_VERSION_HOME_URL="https://x-wrt.com/"
@@ -6825,7 +6827,6 @@ CONFIG_PACKAGE_luci-mod-admin-full=y
 CONFIG_PACKAGE_luci-mod-dashboard=m
 # CONFIG_PACKAGE_luci-mod-dsl is not set
 CONFIG_PACKAGE_luci-mod-network=y
-# CONFIG_PACKAGE_luci-mod-rpc is not set
 CONFIG_PACKAGE_luci-mod-status=y
 CONFIG_PACKAGE_luci-mod-system=y
 # end of 2. Modules
@@ -7010,7 +7011,6 @@ CONFIG_PACKAGE_luci-lib-ip=y
 # CONFIG_PACKAGE_luci-lib-json is not set
 CONFIG_PACKAGE_luci-lib-jsonc=y
 CONFIG_PACKAGE_luci-lib-nixio=y
-# CONFIG_PACKAGE_luci-lib-px5g is not set
 CONFIG_PACKAGE_luci-lib-uqr=y
 # end of 7. Libraries
 
@@ -9465,7 +9465,6 @@ CONFIG_PACKAGE_usbmuxd=m
 # CONFIG_PACKAGE_catatonit is not set
 # CONFIG_PACKAGE_cgroup-tools is not set
 # CONFIG_PACKAGE_checkpolicy is not set
-# CONFIG_PACKAGE_checksec is not set
 # CONFIG_PACKAGE_chkcon is not set
 # CONFIG_PACKAGE_cli is not set
 # CONFIG_PACKAGE_cligen is not set
