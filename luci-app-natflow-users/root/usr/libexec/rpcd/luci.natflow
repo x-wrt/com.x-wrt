@@ -271,6 +271,40 @@ local function get_host_hints()
 	return mac_to_host, ip_to_host
 end
 
+local WIRELESS_IFNAME_PREFIXES = {
+	"wlan", "wl", "phy", "ra", "rai", "rae", "apcli", "apclii", "apclie", "ath", "ap", "mon", "wds", "mesh", "sta", "bat"
+}
+
+local function is_wireless_ifname(ifname)
+	if not ifname or ifname == "" then
+		return false
+	end
+	local name = ifname:lower()
+	for _, p in ipairs(WIRELESS_IFNAME_PREFIXES) do
+		if name:sub(1, #p) == p then
+			return true
+		end
+	end
+	return false
+end
+
+local function is_mesh_ifname(ifname)
+	if not ifname or ifname == "" then
+		return false
+	end
+	return ifname:lower():sub(1, 4) == "mesh"
+end
+
+local function get_access_type(ifname)
+	if is_mesh_ifname(ifname) then
+		return "wireless_mesh"
+	elseif is_wireless_ifname(ifname) then
+		return "wireless"
+	else
+		return "wired"
+	end
+end
+
 local function parse_user_line(line, mac_to_host, ip_to_host)
 	local ip, mac, auth_type, auth_status, rule_id, idle_time, rx_pkts, rx_bytes, tx_pkts, tx_bytes, rx_speed_pkts, rx_speed_bytes, tx_speed_pkts, tx_speed_bytes, ifname =
 		line:match("^([^,]+),([^,]+),([^,]+),([^,]+),(%d+),(%d+),(%d+):(%d+),(%d+):(%d+),(%d+):(%d+),(%d+):(%d+),?(.*)$")
@@ -422,8 +456,10 @@ local methods = {
 						entry.rx_speed_bytes = entry.rx_speed_bytes + rx_speed_bytes
 						entry.tx_speed_pkts = entry.tx_speed_pkts + tx_speed_pkts
 						entry.tx_speed_bytes = entry.tx_speed_bytes + tx_speed_bytes
-						if entry.ifname == "" and ifname ~= "" then
-							entry.ifname = ifname
+						if ifname ~= "" then
+							if entry.ifname == "" or (not is_wireless_ifname(entry.ifname) and is_wireless_ifname(ifname)) then
+								entry.ifname = ifname
+							end
 						end
 					end
 
@@ -439,6 +475,10 @@ local methods = {
 						table.insert(target_ips, ip)
 					end
 				end
+			end
+
+			for _, entry in ipairs(users) do
+				entry.access_type = get_access_type(entry.ifname)
 			end
 
 			return { result = users }
