@@ -349,6 +349,64 @@ local function parse_user_line(line, mac_to_host, ip_to_host)
 	}
 end
 
+local function get_wifi_clients_map()
+	local wifi_map = {}
+	local ubus_has, ubus = pcall(require, "ubus")
+	if not ubus_has then
+		return wifi_map
+	end
+
+	local conn = ubus.connect()
+	if not conn then
+		return wifi_map
+	end
+
+	local objs = conn:objects()
+	if objs then
+		for _, obj in ipairs(objs) do
+			local ifname = obj:match("^hostapd%.(.*)$")
+			if ifname then
+				local status = conn:call(obj, "get_status", {})
+				local clients = conn:call(obj, "get_clients", {})
+				local ssid = status and status.ssid or ""
+				local freq = (status and status.freq) or (clients and clients.freq) or 0
+				local band = ""
+				if freq >= 2400 and freq < 3000 then
+					band = "2.4G"
+				elseif freq >= 5000 and freq < 6000 then
+					band = "5.8G"
+				elseif freq >= 6000 and freq < 7000 then
+					band = "6G"
+				end
+
+				if clients and clients.clients then
+					for mac, info in pairs(clients.clients) do
+						local mac_upper = mac:upper()
+						local signal = info.signal or 0
+						local noise = info.noise or -95
+						local default_ceil = -30
+						local quality = 0
+						if signal ~= 0 then
+							quality = math.floor(math.max(0, math.min(100, 100 * ((signal - noise) / (default_ceil - noise)))))
+						end
+						wifi_map[mac_upper] = {
+							ssid = ssid,
+							band = band,
+							signal = signal,
+							noise = noise,
+							quality = quality,
+							ifname = ifname
+						}
+					end
+				end
+			end
+		end
+	end
+
+	conn:close()
+	return wifi_map
+end
+
 local methods = {
 	get_users = {
 		call = function()
@@ -477,7 +535,28 @@ local methods = {
 				end
 			end
 
+			local wifi_map = get_wifi_clients_map()
+
 			for _, entry in ipairs(users) do
+				local mac_upper = entry.mac:upper()
+				local winfo = wifi_map[mac_upper]
+				if winfo then
+					if entry.ifname == "" or not is_wireless_ifname(entry.ifname) then
+						entry.ifname = winfo.ifname
+					end
+					entry.ssid = winfo.ssid
+					entry.band = winfo.band
+					entry.signal = winfo.signal
+					entry.noise = winfo.noise
+					entry.quality = winfo.quality
+					entry.wireless = {
+						ssid = winfo.ssid,
+						band = winfo.band,
+						signal = winfo.signal,
+						noise = winfo.noise,
+						quality = winfo.quality
+					}
+				end
 				entry.access_type = get_access_type(entry.ifname)
 			end
 
