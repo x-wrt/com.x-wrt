@@ -10,12 +10,6 @@ local USERINFO_READ_SIZE = 4096
 local USERINFO_READ_RETRIES = 16
 
 local function parse_hex(value)
-	local hex = tostring(value or ""):match("^0[xX]([0-9a-fA-F]+)$")
-
-	if hex then
-		return tonumber(hex, 16) or 0
-	end
-
 	return tonumber(value) or 0
 end
 
@@ -194,7 +188,9 @@ local function get_host_hints()
 		local f = io.open(file, "r")
 		if f then
 			for line in f:lines() do
-				line = line:gsub("#.*$", "")
+				if line:find("#") then
+					line = line:gsub("#.*$", "")
+				end
 				local ip, name = line:match("^%s*([%d%.%a:]+)%s+([^%s]+)")
 				if ip and name and name ~= "*" and name ~= "localhost" and not ip_to_host[ip] then
 					ip_to_host[ip] = name
@@ -277,15 +273,10 @@ end
 
 local function parse_user_line(line, mac_to_host, ip_to_host)
 	local ip, mac, auth_type, auth_status, rule_id, idle_time, rx_pkts, rx_bytes, tx_pkts, tx_bytes, rx_speed_pkts, rx_speed_bytes, tx_speed_pkts, tx_speed_bytes, ifname =
-		line:match("^([^,]+),([^,]+),([^,]+),([^,]+),(%d+),(%d+),(%d+):(%d+),(%d+):(%d+),(%d+):(%d+),(%d+):(%d+),([^,]*)$")
+		line:match("^([^,]+),([^,]+),([^,]+),([^,]+),(%d+),(%d+),(%d+):(%d+),(%d+):(%d+),(%d+):(%d+),(%d+):(%d+),?(.*)$")
 
-	if not ip then
-		ip, mac, auth_type, auth_status, rule_id, idle_time, rx_pkts, rx_bytes, tx_pkts, tx_bytes, rx_speed_pkts, rx_speed_bytes, tx_speed_pkts, tx_speed_bytes =
-			line:match("^([^,]+),([^,]+),([^,]+),([^,]+),(%d+),(%d+),(%d+):(%d+),(%d+):(%d+),(%d+):(%d+),(%d+):(%d+)$")
-		ifname = ""
-	end
-
-	if not (ip and mac and parse_hex(auth_type) ~= 0) then
+	auth_type = parse_hex(auth_type)
+	if not (ip and mac and auth_type ~= 0) then
 		return nil
 	end
 
@@ -308,7 +299,7 @@ local function parse_user_line(line, mac_to_host, ip_to_host)
 		is_ipv6 = is_ipv6,
 		mac = mac,
 		hostname = hostname,
-		auth_type = parse_hex(auth_type),
+		auth_type = auth_type,
 		status = parse_hex(auth_status),
 		rule_id = tonumber(rule_id) or 0,
 		idle_time = tonumber(idle_time) or 0,
@@ -356,63 +347,96 @@ local methods = {
 			local users = { }
 
 			for _, line in ipairs(userinfo) do
-				local item = parse_user_line(line, mac_to_host, ip_to_host)
-				if item then
-					local mac = item.mac
+				local ip, mac, auth_type, auth_status, rule_id, idle_time, rx_pkts, rx_bytes, tx_pkts, tx_bytes, rx_speed_pkts, rx_speed_bytes, tx_speed_pkts, tx_speed_bytes, ifname =
+					line:match("^([^,]+),([^,]+),([^,]+),([^,]+),(%d+),(%d+),(%d+):(%d+),(%d+):(%d+),(%d+):(%d+),(%d+):(%d+),?(.*)$")
+
+				auth_type = parse_hex(auth_type)
+				if ip and mac and auth_type ~= 0 then
+					auth_status = parse_hex(auth_status)
+					rule_id = tonumber(rule_id) or 0
+					idle_time = tonumber(idle_time) or 0
+					rx_pkts = tonumber(rx_pkts) or 0
+					rx_bytes = tonumber(rx_bytes) or 0
+					tx_pkts = tonumber(tx_pkts) or 0
+					tx_bytes = tonumber(tx_bytes) or 0
+					rx_speed_pkts = tonumber(rx_speed_pkts) or 0
+					rx_speed_bytes = tonumber(rx_speed_bytes) or 0
+					tx_speed_pkts = tonumber(tx_speed_pkts) or 0
+					tx_speed_bytes = tonumber(tx_speed_bytes) or 0
+					ifname = ifname or ""
+
+					local is_ipv6 = false
+					if ip:find(":") then
+						is_ipv6 = true
+						if has_ip then
+							local ip_obj = luci_ip.new(ip)
+							if ip_obj then
+								ip = ip_obj:string()
+							end
+						end
+					end
+
 					local entry = users_map[mac]
 					if not entry then
+						local mac_upper = mac:upper()
+						local hostname = mac_to_host[mac_upper] or ip_to_host[ip] or ""
+
 						entry = {
 							mac = mac,
 							ip = { },
 							ip6 = { },
-							hostname = item.hostname,
-							auth_type = item.auth_type,
-							status = item.status,
-							rule_id = item.rule_id,
-							idle_time = item.idle_time,
-							rx_pkts = item.rx_pkts,
-							rx_bytes = item.rx_bytes,
-							tx_pkts = item.tx_pkts,
-							tx_bytes = item.tx_bytes,
-							rx_speed_pkts = item.rx_speed_pkts,
-							rx_speed_bytes = item.rx_speed_bytes,
-							tx_speed_pkts = item.tx_speed_pkts,
-							tx_speed_bytes = item.tx_speed_bytes,
-							ifname = item.ifname
+							hostname = hostname,
+							auth_type = auth_type,
+							status = auth_status,
+							rule_id = rule_id,
+							idle_time = idle_time,
+							rx_pkts = rx_pkts,
+							rx_bytes = rx_bytes,
+							tx_pkts = tx_pkts,
+							tx_bytes = tx_bytes,
+							rx_speed_pkts = rx_speed_pkts,
+							rx_speed_bytes = rx_speed_bytes,
+							tx_speed_pkts = tx_speed_pkts,
+							tx_speed_bytes = tx_speed_bytes,
+							ifname = ifname
 						}
 						users_map[mac] = entry
 						users[#users + 1] = entry
 					else
-						if (not entry.hostname or entry.hostname == "") and item.hostname ~= "" then
-							entry.hostname = item.hostname
+						if entry.hostname == "" then
+							local mac_upper = mac:upper()
+							local hostname = mac_to_host[mac_upper] or ip_to_host[ip] or ""
+							if hostname ~= "" then
+								entry.hostname = hostname
+							end
 						end
-						entry.auth_type = math.max(entry.auth_type, item.auth_type)
-						entry.status = math.max(entry.status, item.status)
-						entry.rule_id = math.max(entry.rule_id, item.rule_id)
-						entry.idle_time = math.min(entry.idle_time, item.idle_time)
-						entry.rx_pkts = entry.rx_pkts + item.rx_pkts
-						entry.rx_bytes = entry.rx_bytes + item.rx_bytes
-						entry.tx_pkts = entry.tx_pkts + item.tx_pkts
-						entry.tx_bytes = entry.tx_bytes + item.tx_bytes
-						entry.rx_speed_pkts = entry.rx_speed_pkts + item.rx_speed_pkts
-						entry.rx_speed_bytes = entry.rx_speed_bytes + item.rx_speed_bytes
-						entry.tx_speed_pkts = entry.tx_speed_pkts + item.tx_speed_pkts
-						entry.tx_speed_bytes = entry.tx_speed_bytes + item.tx_speed_bytes
-						if (not entry.ifname or entry.ifname == "") and item.ifname ~= "" then
-							entry.ifname = item.ifname
+						if auth_type > entry.auth_type then entry.auth_type = auth_type end
+						if auth_status > entry.status then entry.status = auth_status end
+						if rule_id > entry.rule_id then entry.rule_id = rule_id end
+						if idle_time < entry.idle_time then entry.idle_time = idle_time end
+						entry.rx_pkts = entry.rx_pkts + rx_pkts
+						entry.rx_bytes = entry.rx_bytes + rx_bytes
+						entry.tx_pkts = entry.tx_pkts + tx_pkts
+						entry.tx_bytes = entry.tx_bytes + tx_bytes
+						entry.rx_speed_pkts = entry.rx_speed_pkts + rx_speed_pkts
+						entry.rx_speed_bytes = entry.rx_speed_bytes + rx_speed_bytes
+						entry.tx_speed_pkts = entry.tx_speed_pkts + tx_speed_pkts
+						entry.tx_speed_bytes = entry.tx_speed_bytes + tx_speed_bytes
+						if entry.ifname == "" and ifname ~= "" then
+							entry.ifname = ifname
 						end
 					end
 
-					local target_ips = item.is_ipv6 and entry.ip6 or entry.ip
+					local target_ips = is_ipv6 and entry.ip6 or entry.ip
 					local exists = false
 					for _, existing_ip in ipairs(target_ips) do
-						if existing_ip == item.ip then
+						if existing_ip == ip then
 							exists = true
 							break
 						end
 					end
 					if not exists then
-						table.insert(target_ips, item.ip)
+						table.insert(target_ips, ip)
 					end
 				end
 			end
