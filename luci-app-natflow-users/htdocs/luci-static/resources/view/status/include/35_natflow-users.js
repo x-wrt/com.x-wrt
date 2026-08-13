@@ -4,6 +4,7 @@
 'require rpc';
 'require uci';
 'require network';
+'require ui';
 
 var callLuciGetUsers = rpc.declare({
 	object: 'luci.natflow',
@@ -19,11 +20,28 @@ var callKickUser = rpc.declare({
 });
 
 var handleKickUser = function(num, ev) {
-        dom.parent(ev.currentTarget, '.tr').style.opacity = 0.5;
-        ev.currentTarget.classList.add('spinning');
-        ev.currentTarget.disabled = true;
-        ev.currentTarget.blur();
-        callKickUser(num);
+        var btn = ev.currentTarget;
+        var tr = dom.parent(btn, '.tr');
+        if (tr) tr.style.opacity = 0.5;
+        btn.classList.add('spinning');
+        btn.disabled = true;
+        btn.blur();
+
+        callKickUser(num)
+                .then(function(res) {
+                        if (!res || res !== 'OK') {
+                                ui.addNotification(null, E('p', _('Failed to kick user.')), 'error');
+                                if (tr) tr.style.opacity = 1;
+                                btn.classList.remove('spinning');
+                                btn.disabled = false;
+                        }
+                })
+                .catch(function(err) {
+                        ui.addNotification(null, E('p', _('Failed to kick user: %s').format(err.message || err)), 'error');
+                        if (tr) tr.style.opacity = 1;
+                        btn.classList.remove('spinning');
+                        btn.disabled = false;
+                });
 };
 
 var pollInterval = 3;

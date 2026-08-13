@@ -7,6 +7,7 @@
 'require network';
 'require uci';
 'require form';
+'require ui';
 
 var callLuciGetUsers = rpc.declare({
 	object: 'luci.natflow',
@@ -35,28 +36,43 @@ var callAllowUser = rpc.declare({
         expect: { result : "OK" },
 });
 
+var handleRPCAction = function(callFn, token, ev, actionName) {
+        var btn = ev.currentTarget;
+        var tr = dom.parent(btn, '.tr');
+        if (tr) tr.style.opacity = 0.5;
+        btn.classList.add('spinning');
+        btn.disabled = true;
+        btn.blur();
+
+        var tokens = Array.isArray(token) ? token : [token];
+        return Promise.all(tokens.map(function(t) { return callFn(t); }))
+                .then(function(results) {
+                        var failed = results.some(function(res) { return !res || res !== 'OK'; });
+                        if (failed) {
+                                ui.addNotification(null, E('p', _('Failed to %s user.').format(actionName)), 'error');
+                                if (tr) tr.style.opacity = 1;
+                                btn.classList.remove('spinning');
+                                btn.disabled = false;
+                        }
+                })
+                .catch(function(err) {
+                        ui.addNotification(null, E('p', _('Failed to %s user: %s').format(actionName, err.message || err)), 'error');
+                        if (tr) tr.style.opacity = 1;
+                        btn.classList.remove('spinning');
+                        btn.disabled = false;
+                });
+};
+
 var handleKickUser = function(num, ev) {
-        dom.parent(ev.currentTarget, '.tr').style.opacity = 0.5;
-        ev.currentTarget.classList.add('spinning');
-        ev.currentTarget.disabled = true;
-        ev.currentTarget.blur();
-        callKickUser(num);
+        handleRPCAction(callKickUser, num, ev, 'kick');
 };
 
 var handleBlockUser = function(num, ev) {
-        dom.parent(ev.currentTarget, '.tr').style.opacity = 0.5;
-        ev.currentTarget.classList.add('spinning');
-        ev.currentTarget.disabled = true;
-        ev.currentTarget.blur();
-        callBlockUser(num);
+        handleRPCAction(callBlockUser, num, ev, 'block');
 };
 
 var handleAllowUser = function(num, ev) {
-        dom.parent(ev.currentTarget, '.tr').style.opacity = 0.5;
-        ev.currentTarget.classList.add('spinning');
-        ev.currentTarget.disabled = true;
-        ev.currentTarget.blur();
-        callAllowUser(num);
+        handleRPCAction(callAllowUser, num, ev, 'allow');
 };
 
 var pollInterval = 5;
