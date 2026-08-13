@@ -544,11 +544,6 @@ local methods = {
 					if entry.ifname == "" or not is_wireless_ifname(entry.ifname) then
 						entry.ifname = winfo.ifname
 					end
-					entry.ssid = winfo.ssid
-					entry.band = winfo.band
-					entry.signal = winfo.signal
-					entry.noise = winfo.noise
-					entry.quality = winfo.quality
 					entry.wireless = {
 						ssid = winfo.ssid,
 						band = winfo.band,
