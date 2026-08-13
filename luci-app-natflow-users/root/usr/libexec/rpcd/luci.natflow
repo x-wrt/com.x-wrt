@@ -352,14 +352,15 @@ end
 local function get_wifi_clients_map()
 	local wifi_by_ifname_mac = {}
 	local wifi_by_mac = {}
+	local wifi_aps_by_ifname = {}
 	local ubus_has, ubus = pcall(require, "ubus")
 	if not ubus_has then
-		return wifi_by_ifname_mac, wifi_by_mac
+		return wifi_by_ifname_mac, wifi_by_mac, wifi_aps_by_ifname
 	end
 
 	local conn = ubus.connect()
 	if not conn then
-		return wifi_by_ifname_mac, wifi_by_mac
+		return wifi_by_ifname_mac, wifi_by_mac, wifi_aps_by_ifname
 	end
 
 	local objs = conn:objects()
@@ -378,6 +379,13 @@ local function get_wifi_clients_map()
 					band = "5.8G"
 				elseif freq >= 6000 and freq < 7000 then
 					band = "6G"
+				end
+
+				if ssid ~= "" or band ~= "" then
+					wifi_aps_by_ifname[ifname] = {
+						ssid = ssid,
+						band = band
+					}
 				end
 
 				if clients and clients.clients then
@@ -409,7 +417,7 @@ local function get_wifi_clients_map()
 	end
 
 	conn:close()
-	return wifi_by_ifname_mac, wifi_by_mac
+	return wifi_by_ifname_mac, wifi_by_mac, wifi_aps_by_ifname
 end
 
 local methods = {
@@ -542,7 +550,7 @@ local methods = {
 				end
 			end
 
-			local wifi_by_ifname_mac, wifi_by_mac = get_wifi_clients_map()
+			local wifi_by_ifname_mac, wifi_by_mac, wifi_aps_by_ifname = get_wifi_clients_map()
 
 			for _, entry in ipairs(users) do
 				local mac_upper = entry.mac:upper()
@@ -565,6 +573,14 @@ local methods = {
 						noise = winfo.noise,
 						quality = winfo.quality
 					}
+				elseif is_wireless_ifname(entry.ifname) then
+					local ap_info = wifi_aps_by_ifname[entry.ifname]
+					if ap_info and ap_info.ssid ~= "" then
+						entry.wireless = {
+							ssid = ap_info.ssid,
+							band = ap_info.band ~= "" and ap_info.band or nil
+						}
+					end
 				end
 				entry.access_type = get_access_type(entry.ifname)
 			end
