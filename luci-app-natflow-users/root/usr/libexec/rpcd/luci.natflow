@@ -505,7 +505,14 @@ local methods = {
 						if auth_type > entry.auth_type then entry.auth_type = auth_type end
 						if auth_status > entry.status then entry.status = auth_status end
 						if rule_id > entry.rule_id then entry.rule_id = rule_id end
-						if idle_time < entry.idle_time then entry.idle_time = idle_time end
+						if idle_time < entry.idle_time then
+							entry.idle_time = idle_time
+							if ifname ~= "" then
+								entry.ifname = ifname
+							end
+						elseif entry.ifname == "" and ifname ~= "" then
+							entry.ifname = ifname
+						end
 						entry.rx_pkts = entry.rx_pkts + rx_pkts
 						entry.rx_bytes = entry.rx_bytes + rx_bytes
 						entry.tx_pkts = entry.tx_pkts + tx_pkts
@@ -514,11 +521,6 @@ local methods = {
 						entry.rx_speed_bytes = entry.rx_speed_bytes + rx_speed_bytes
 						entry.tx_speed_pkts = entry.tx_speed_pkts + tx_speed_pkts
 						entry.tx_speed_bytes = entry.tx_speed_bytes + tx_speed_bytes
-						if ifname ~= "" then
-							if entry.ifname == "" or (not is_wireless_ifname(entry.ifname) and is_wireless_ifname(ifname)) then
-								entry.ifname = ifname
-							end
-						end
 					end
 
 					local target_ips = is_ipv6 and entry.ip6 or entry.ip
