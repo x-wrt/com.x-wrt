@@ -10,6 +10,12 @@ LOCKDIR="/tmp/urllogger.lck"
 urllogger_stop() {
 	echo "0" > /proc/sys/urllogger_store/enable
 	rm -rf "$LOCKDIR"
+	killall urllogger-reader 2>/dev/null
+	local i=0
+	while pidof urllogger-reader >/dev/null 2>&1 && [ "$i" -lt 20 ]; do
+		sleep 0.1 2>/dev/null || sleep 1
+		i=$((i + 1))
+	done
 	"$READER" --clear >/dev/null 2>&1
 }
 

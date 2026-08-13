@@ -254,13 +254,30 @@ static int process_buffer(FILE *out, uint8_t *buf, size_t *pending)
 	return 0;
 }
 
+static int open_queue_with_retry(void)
+{
+	int fd = -1;
+	int retries;
+
+	for (retries = 0; retries < 20; retries++) {
+		fd = open(URLLOGGER_QUEUE, O_RDWR | O_CLOEXEC);
+		if (fd >= 0)
+			return fd;
+		if (errno != EBUSY)
+			return -1;
+		usleep(100000);
+	}
+
+	return -1;
+}
+
 static int read_loop(const char *lock_path)
 {
 	uint8_t buf[READ_BUF_LEN];
 	size_t pending = 0;
 	int fd;
 
-	fd = open(URLLOGGER_QUEUE, O_RDWR | O_CLOEXEC);
+	fd = open_queue_with_retry();
 	if (fd < 0)
 		return 1;
 	if (set_cache_limit(fd, CACHE_LIMIT) != 0) {
@@ -303,7 +320,7 @@ static int read_loop(const char *lock_path)
 
 static int clear_queue(void)
 {
-	int fd = open(URLLOGGER_QUEUE, O_RDWR | O_CLOEXEC);
+	int fd = open_queue_with_retry();
 	int ret;
 
 	if (fd < 0)
