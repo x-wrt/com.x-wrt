@@ -515,16 +515,19 @@ local methods = {
 								entry.hostname = hostname
 							end
 						end
-						if auth_type > entry.auth_type then entry.auth_type = auth_type end
-						if auth_status > entry.status then entry.status = auth_status end
-						if rule_id > entry.rule_id then entry.rule_id = rule_id end
 						if idle_time < entry.idle_time then
 							entry.idle_time = idle_time
+							entry.auth_type = auth_type
+							entry.status = auth_status
+							entry.rule_id = rule_id
 							if ifname ~= "" then
 								entry.ifname = ifname
 							end
 						elseif entry.ifname == "" and ifname ~= "" then
 							entry.ifname = ifname
+						end
+						if auth_status == 6 then
+							entry.status = 6
 						end
 						entry.rx_pkts = entry.rx_pkts + rx_pkts
 						entry.rx_bytes = entry.rx_bytes + rx_bytes
