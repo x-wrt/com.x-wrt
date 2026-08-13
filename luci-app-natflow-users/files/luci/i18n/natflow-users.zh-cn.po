@@ -171,3 +171,30 @@ msgstr "刚刚活跃"
 
 msgid "%s ago"
 msgstr "%s前"
+
+msgid "Log data is unavailable"
+msgstr "日志数据不可用"
+
+msgid "Failed to kick user."
+msgstr "断开用户失败。"
+
+msgid "Failed to kick user: %s"
+msgstr "断开用户失败：%s"
+
+msgid "Failed to block user."
+msgstr "封禁用户失败。"
+
+msgid "Failed to block user: %s"
+msgstr "封禁用户失败：%s"
+
+msgid "Failed to allow user."
+msgstr "放通用户失败。"
+
+msgid "Failed to allow user: %s"
+msgstr "放通用户失败：%s"
+
+msgid "Failed to %s user."
+msgstr "操作失败：%s用户。"
+
+msgid "Failed to %s user: %s"
+msgstr "操作失败：%s用户：%s"
