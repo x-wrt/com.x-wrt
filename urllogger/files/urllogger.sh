@@ -1,185 +1,126 @@
 #!/bin/sh
 
-LOCKDIR="/tmp/urllogger.lck"
-PID="$$"
 QUEUE="/dev/natflow_urllogger_queue"
 READER="/usr/sbin/urllogger-reader"
+ENABLE="/proc/sys/urllogger_store/enable"
+LOGFILE="/tmp/url.log"
+LOCKFILE="/var/run/urllogger.lock"
 
-[ -c "$QUEUE" ] || exit 1
-[ -x "$READER" ] || exit 1
+reader_pid=""
+runtime_dir=""
+fifo=""
 
-wait_pid_exit() {
-	local pid=$1
-	local timeout=${2:-5}
-	[ -n "$pid" ] || return 0
-
-	local i=0
-	while kill -0 "$pid" 2>/dev/null; do
-		if [ "$i" -ge "$timeout" ]; then
-			kill -KILL "$pid" 2>/dev/null
-			sleep 1
-			if kill -0 "$pid" 2>/dev/null; then
-				return 1
-			fi
-			return 0
-		fi
-		sleep 1
-		i=$((i + 1))
-	done
-	return 0
+set_enabled() {
+	printf '%s\n' "$1" > "$ENABLE"
 }
 
-urllogger_stop() {
-	echo "0" > /proc/sys/urllogger_store/enable
+stop_reader() {
+	local status
 
-	local rpid=""
-	local spid=""
-	[ -f /var/run/urllogger-reader.pid ] && rpid=$(cat /var/run/urllogger-reader.pid)
-	[ -f /var/run/urllogger.pid ] && spid=$(cat /var/run/urllogger.pid)
+	[ -n "$reader_pid" ] || return 0
 
-	local ok=0
-
-	if [ -n "$rpid" ]; then
-		kill -TERM "$rpid" 2>/dev/null
-		if ! wait_pid_exit "$rpid" 3; then
-			ok=1
-		fi
-	fi
-
-	if [ -n "$spid" ] && [ "$spid" -ne "$PID" ]; then
-		kill -TERM "$spid" 2>/dev/null
-		if ! wait_pid_exit "$spid" 3; then
-			ok=1
-		fi
-	fi
-
-	rm -f /var/run/urllogger-reader.pid /var/run/urllogger.pid
-	[ -n "$spid" ] && rm -f "$LOCKDIR/$spid"
-	rmdir "$LOCKDIR" 2>/dev/null
-
-	if ! "$READER" --clear >/dev/null 2>&1; then
-		ok=1
-	fi
-
-	return $ok
-}
-
-case "$1" in
-	stop)
-		urllogger_stop
-		exit $?
-		;;
-	start)
-		;;
-	*)
-		echo "usage: $0 start|stop"
-		exit 1
-		;;
-esac
-
-echo "1" > /proc/sys/urllogger_store/enable
-
-memtotal=$(awk '/MemTotal/ {print $2; exit}' /proc/meminfo)
-memtotal=${memtotal:-0}
-
-if [ "$memtotal" -ge 1048576 ]; then
-	logsize=$((16 * 1024 * 1024))
-elif [ "$memtotal" -ge 524288 ]; then
-	logsize=$((8 * 1024 * 1024))
-elif [ "$memtotal" -ge 262144 ]; then
-	logsize=$((4 * 1024 * 1024))
-elif [ "$memtotal" -ge 131072 ]; then
-	logsize=$((2 * 1024 * 1024))
-elif [ "$memtotal" -ge 65536 ]; then
-	logsize=$((1 * 1024 * 1024))
-else
-	logsize=$((512 * 1024))
-fi
-
-rotate_log() {
-	[ -f /tmp/url.log ] || return 0
-	LOGSIZE=$(wc -c < /tmp/url.log)
-	if [ "$LOGSIZE" -ge "$logsize" ]; then
-		NRLINE=$(wc -l < /tmp/url.log)
-		NRLINE=$((NRLINE * 6 / 10))
-		tail -n "$NRLINE" /tmp/url.log > /tmp/url.log.1
-		mv /tmp/url.log.1 /tmp/url.log
-	fi
-}
-
-main_loop() {
-	local count=0
-	rotate_log
-
-	local fifo="/tmp/urllogger.fifo"
-	rm -f "$fifo"
-	mkfifo "$fifo" || return 1
-
-	"$READER" --lock "$LOCKDIR/$PID" > "$fifo" 2>/dev/null &
-	local rpid=$!
-	echo "$rpid" > /var/run/urllogger-reader.pid
-
-	while IFS= read -r line; do
-		[ -f "$LOCKDIR/$PID" ] || break
-		count=$((count + 1))
-		if [ "$count" -ge 500 ]; then
-			count=0
-			rotate_log
-		fi
-		echo "$line" >> /tmp/url.log
-	done < "$fifo"
-
-	kill -TERM "$rpid" 2>/dev/null
-	wait_pid_exit "$rpid"
-	rm -f "$fifo" /var/run/urllogger-reader.pid
+	kill -TERM "$reader_pid" 2>/dev/null
+	wait "$reader_pid" 2>/dev/null
+	status=$?
+	reader_pid=""
+	return "$status"
 }
 
 cleanup() {
-	rm -f "$LOCKDIR/$PID"
-	rm -f /var/run/urllogger-reader.pid /var/run/urllogger.pid /tmp/urllogger.fifo
-	rmdir "$LOCKDIR" 2>/dev/null
-	echo "Finished"
+	local status=$?
+	trap - EXIT INT TERM HUP
+
+	stop_reader || status=1
+	[ -n "$fifo" ] && rm -f "$fifo"
+	[ -n "$runtime_dir" ] && rmdir "$runtime_dir" 2>/dev/null
+	set_enabled 0 2>/dev/null || status=1
+	"$READER" --clear >/dev/null 2>&1 || status=1
+	exit "$status"
 }
 
-acquire_lock() {
-	if mkdir "$LOCKDIR" >/dev/null 2>&1; then
-		return 0
-	fi
-
-	local has_alive=0
-	local pfile
-	for pfile in "$LOCKDIR"/*; do
-		[ -f "$pfile" ] || continue
-		local lpid="${pfile##*/}"
-		case "$lpid" in
-			''|*[!0-9]*)
-				rm -f "$pfile"
-				;;
-			*)
-				if kill -0 "$lpid" 2>/dev/null; then
-					has_alive=1
-				else
-					rm -f "$pfile"
-				fi
-				;;
-		esac
-	done
-
-	if [ "$has_alive" -eq 1 ]; then
-		return 1
-	fi
-
-	rmdir "$LOCKDIR" 2>/dev/null
-	mkdir -p "$LOCKDIR" >/dev/null 2>&1
-	return 0
-}
-
-if acquire_lock; then
-	trap cleanup EXIT
-	echo "$PID" > /var/run/urllogger.pid
-	echo "Acquired lock, running"
-	touch "$LOCKDIR/$PID"
-	main_loop
-else
+handle_signal() {
 	exit 0
-fi
+}
+
+rotate_log() {
+	[ -f "$LOGFILE" ] || return 0
+
+	local size
+	local lines
+	size=$(wc -c < "$LOGFILE") || return 1
+	if [ "$size" -ge "$logsize" ]; then
+		lines=$(wc -l < "$LOGFILE") || return 1
+		lines=$((lines * 6 / 10))
+		tail -n "$lines" "$LOGFILE" > "$LOGFILE.1" || return 1
+		mv "$LOGFILE.1" "$LOGFILE"
+	fi
+}
+
+run_logger() {
+	[ -c "$QUEUE" ] || return 1
+	[ -x "$READER" ] || return 1
+	[ -w "$ENABLE" ] || return 1
+	command -v flock >/dev/null 2>&1 || return 1
+
+	exec 9> "$LOCKFILE" || return 1
+	flock -xn 9 || return 1
+
+	local memtotal
+	local count=0
+	local reader_status
+	memtotal=$(awk '/MemTotal/ {print $2; exit}' /proc/meminfo)
+	memtotal=${memtotal:-0}
+
+	if [ "$memtotal" -ge 1048576 ]; then
+		logsize=$((16 * 1024 * 1024))
+	elif [ "$memtotal" -ge 524288 ]; then
+		logsize=$((8 * 1024 * 1024))
+	elif [ "$memtotal" -ge 262144 ]; then
+		logsize=$((4 * 1024 * 1024))
+	elif [ "$memtotal" -ge 131072 ]; then
+		logsize=$((2 * 1024 * 1024))
+	elif [ "$memtotal" -ge 65536 ]; then
+		logsize=$((1 * 1024 * 1024))
+	else
+		logsize=$((512 * 1024))
+	fi
+
+	trap cleanup EXIT
+	trap handle_signal INT TERM HUP
+	set_enabled 1 || return 1
+
+	runtime_dir=$(mktemp -d /tmp/urllogger.XXXXXX) || return 1
+	fifo="$runtime_dir/events"
+	mkfifo "$fifo" || return 1
+	rotate_log || return 1
+
+	"$READER" --parent-pid "$$" > "$fifo" 2>/dev/null 9>&- &
+	reader_pid=$!
+
+	while IFS= read -r line; do
+		count=$((count + 1))
+		if [ "$count" -ge 500 ]; then
+			count=0
+			rotate_log || return 1
+		fi
+		printf '%s\n' "$line" >> "$LOGFILE" || return 1
+	done < "$fifo"
+
+	wait "$reader_pid"
+	reader_status=$?
+	reader_pid=""
+	return "$reader_status"
+}
+
+case "$1" in
+	run)
+		run_logger
+		;;
+	start|stop|restart)
+		exec /etc/init.d/urllogger "$1"
+		;;
+	*)
+		echo "usage: $0 run|start|stop|restart"
+		exit 1
+		;;
+esac

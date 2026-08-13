@@ -13,6 +13,8 @@
 #include <string.h>
 #include <sys/stat.h>
 #include <sys/sysinfo.h>
+#include <sys/prctl.h>
+#include <sys/types.h>
 #include <time.h>
 #include <unistd.h>
 
@@ -53,10 +55,38 @@ struct natflow_urllogger_event_hdr {
 
 static volatile sig_atomic_t exiting;
 
+static int arm_parent_death_signal(pid_t expected_parent)
+{
+	if (expected_parent <= 1)
+		return 0;
+	if (prctl(PR_SET_PDEATHSIG, SIGTERM) != 0)
+		return -1;
+	if (getppid() != expected_parent)
+		return -1;
+
+	return 0;
+}
+
 static void on_signal(int signo)
 {
 	(void)signo;
 	exiting = 1;
+}
+
+static int install_signal_handlers(void)
+{
+	struct sigaction action;
+
+	memset(&action, 0, sizeof(action));
+	action.sa_handler = on_signal;
+	if (sigemptyset(&action.sa_mask) != 0)
+		return -1;
+	if (sigaction(SIGINT, &action, NULL) != 0)
+		return -1;
+	if (sigaction(SIGTERM, &action, NULL) != 0)
+		return -1;
+
+	return 0;
 }
 
 static const char *method_name(uint8_t method)
@@ -299,9 +329,10 @@ static int read_loop(const char *lock_path)
 				pending = 0;
 			len = read(fd, buf + pending, sizeof(buf) - pending);
 			if (len < 0) {
-				if (errno == EINTR)
+				if (errno == EINTR && !exiting)
 					continue;
-				exiting = 1;
+				if (errno != EINTR)
+					exiting = 1;
 				break;
 			}
 			if (len == 0)
@@ -332,12 +363,13 @@ static int clear_queue(void)
 
 static void usage(const char *prog)
 {
-	fprintf(stderr, "usage: %s [--clear] [--lock PATH]\n", prog);
+	fprintf(stderr, "usage: %s [--clear] [--lock PATH] [--parent-pid PID]\n", prog);
 }
 
 int main(int argc, char **argv)
 {
 	const char *lock_path = NULL;
+	pid_t parent_pid = 0;
 	int clear = 0;
 	int i;
 
@@ -346,6 +378,18 @@ int main(int argc, char **argv)
 			clear = 1;
 		} else if (strcmp(argv[i], "--lock") == 0 && i + 1 < argc) {
 			lock_path = argv[++i];
+		} else if (strcmp(argv[i], "--parent-pid") == 0 && i + 1 < argc) {
+			char *end = NULL;
+			long value;
+
+			errno = 0;
+			value = strtol(argv[++i], &end, 10);
+			if (errno == ERANGE || end == argv[i] || *end != '\0' || value <= 1 ||
+			    (long)(pid_t)value != value) {
+				usage(argv[0]);
+				return 1;
+			}
+			parent_pid = (pid_t)value;
 		} else {
 			usage(argv[0]);
 			return 1;
@@ -355,7 +399,9 @@ int main(int argc, char **argv)
 	if (clear)
 		return clear_queue();
 
-	signal(SIGINT, on_signal);
-	signal(SIGTERM, on_signal);
+	if (install_signal_handlers() != 0)
+		return 1;
+	if (arm_parent_death_signal(parent_pid) != 0)
+		return 1;
 	return read_loop(lock_path);
 }
