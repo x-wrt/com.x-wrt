@@ -7,6 +7,7 @@
 'require network';
 'require uci';
 'require form';
+'require validation';
 
 function ip_range_validate(range)
 {
@@ -17,59 +18,12 @@ function ip_range_validate(range)
 
 function ipv4_validate(addr)
 {
-	var re_ip = /^(25[0-5]|2[0-4][0-9]|1[0-9][0-9]|[1-9]?[0-9])\.(25[0-5]|2[0-4][0-9]|1[0-9][0-9]|[1-9]?[0-9])\.(25[0-5]|2[0-4][0-9]|1[0-9][0-9]|[1-9]?[0-9])\.(25[0-5]|2[0-4][0-9]|1[0-9][0-9]|[1-9]?[0-9])$/;
-
-	return re_ip.test(addr);
+	return validation.parseIPv4(addr) !== null;
 }
 
 function ipv6_validate(addr)
 {
-	var parts, left, right, count;
-
-	if (!addr || addr.indexOf(':::') >= 0)
-		return false;
-
-	if (addr.indexOf('::') != addr.lastIndexOf('::'))
-		return false;
-
-	function count_groups(part) {
-		var groups, n = 0;
-
-		if (part == '')
-			return 0;
-
-		groups = part.split(':');
-
-		for (var i = 0; i < groups.length; i++) {
-			if (groups[i] == '')
-				return -1;
-
-			if (groups[i].indexOf('.') >= 0) {
-				if (i != groups.length - 1 || !ipv4_validate(groups[i]))
-					return -1;
-				n += 2;
-			}
-			else if (!/^[0-9a-fA-F]{1,4}$/.test(groups[i])) {
-				return -1;
-			}
-			else {
-				n++;
-			}
-		}
-
-		return n;
-	}
-
-	parts = addr.split('::');
-
-	if (parts.length == 1)
-		return count_groups(addr) == 8;
-
-	left = count_groups(parts[0]);
-	right = count_groups(parts[1]);
-	count = left + right;
-
-	return left >= 0 && right >= 0 && count < 8;
+	return validation.parseIPv6(addr) !== null;
 }
 
 function ip_token_validate(token)
