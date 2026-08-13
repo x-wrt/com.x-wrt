@@ -151,7 +151,7 @@ local function get_host_hints()
 		local f = io.open(file, "r")
 		if f then
 			for line in f:lines() do
-				local ts, mac, ip, name = line:match("^%s*%d+%s+([%a%d:]+)%s+([%d%.%a:]+)%s+([^%s]+)")
+				local mac, ip, name = line:match("^%s*%d+%s+([%a%d:]+)%s+([%d%.%a:]+)%s+([^%s]+)")
 				if mac and name and name ~= "*" then
 					mac = mac:upper()
 					mac_to_host[mac] = name
