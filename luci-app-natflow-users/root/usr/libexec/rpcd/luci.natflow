@@ -493,6 +493,7 @@ local methods = {
 							hostname = hostname,
 							auth_type = auth_type,
 							status = auth_status,
+							has_blocked = (auth_status == 6),
 							rule_id = rule_id,
 							idle_time = idle_time,
 							rx_pkts = rx_pkts,
@@ -527,7 +528,7 @@ local methods = {
 							entry.ifname = ifname
 						end
 						if auth_status == 6 then
-							entry.status = 6
+							entry.has_blocked = true
 						end
 						entry.rx_pkts = entry.rx_pkts + rx_pkts
 						entry.rx_bytes = entry.rx_bytes + rx_bytes
@@ -556,6 +557,11 @@ local methods = {
 			local wifi_by_ifname_mac, wifi_by_mac, wifi_aps_by_ifname = get_wifi_clients_map()
 
 			for _, entry in ipairs(users) do
+				if entry.has_blocked then
+					entry.status = 6
+				end
+				entry.has_blocked = nil
+
 				local mac_upper = entry.mac:upper()
 				local winfo = nil
 				if entry.ifname ~= "" then
