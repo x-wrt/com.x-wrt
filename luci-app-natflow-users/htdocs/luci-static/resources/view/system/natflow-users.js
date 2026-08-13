@@ -20,21 +20,24 @@ var callKickUser = rpc.declare({
         object: 'luci.natflow',
         method: 'kick_user',
         params: [ 'token' ],
-        expect: { result : "OK" },
+        expect: { result : '' },
+        reject: true
 });
 
 var callBlockUser = rpc.declare({
         object: 'luci.natflow',
         method: 'block_user',
         params: [ 'token' ],
-        expect: { result : "OK" },
+        expect: { result : '' },
+        reject: true
 });
 
 var callAllowUser = rpc.declare({
         object: 'luci.natflow',
         method: 'allow_user',
         params: [ 'token' ],
-        expect: { result : "OK" },
+        expect: { result : '' },
+        reject: true
 });
 
 var handleRPCAction = function(callFn, token, ev, actionName) {
