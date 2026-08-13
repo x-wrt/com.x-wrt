@@ -52,8 +52,11 @@ local function read_userinfo_lines()
 	while retries < USERINFO_READ_RETRIES do
 		local data = fd:read(USERINFO_READ_SIZE)
 
-		if data == nil then
+		if not data then
 			retries = retries + 1
+			if nixio.nanosleep then
+				nixio.nanosleep(0, 10000000)
+			end
 		elseif #data == 0 then
 			break
 		else
