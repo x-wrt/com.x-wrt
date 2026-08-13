@@ -9,6 +9,10 @@ start() {
 }
 
 stop() {
-	/usr/sbin/urllogger stop
-	echo "stop ok"
+	if /usr/sbin/urllogger stop; then
+		echo "stop ok"
+	else
+		echo "stop failed"
+		return 1
+	fi
 }
