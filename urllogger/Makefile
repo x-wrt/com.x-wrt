@@ -8,8 +8,8 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=urllogger
-PKG_VERSION:=0.0.1
-PKG_RELEASE:=6
+PKG_VERSION:=0.0.2
+PKG_RELEASE:=1
 
 PKG_SOURCE_VERSION:=$(PKG_VERSION)-$(PKG_RELEASE)
 PKG_MAINTAINER:=Chen Minqiang <ptpt52@gmail.com>

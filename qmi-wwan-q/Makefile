@@ -8,6 +8,7 @@ include $(INCLUDE_DIR)/kernel.mk
 
 PKG_NAME:=qmi-wwan-q
 PKG_VERSION:=20230915
+PKG_RELEASE:=1
 
 PKG_MAINTAINER:=Chen Minqiang <ptpt52@gmail.com>
 PKG_LICENSE:=GPL-2.0-only
