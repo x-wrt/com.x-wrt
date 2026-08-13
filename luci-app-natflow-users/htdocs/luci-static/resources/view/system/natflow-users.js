@@ -40,7 +40,7 @@ var callAllowUser = rpc.declare({
         reject: true
 });
 
-var handleRPCAction = function(callFn, token, ev, actionName) {
+var handleRPCAction = function(callFn, token, ev, errMsg, errDetailMsg) {
         var btn = ev.currentTarget;
         var tr = dom.parent(btn, '.tr');
         if (tr) tr.style.opacity = 0.5;
@@ -51,16 +51,16 @@ var handleRPCAction = function(callFn, token, ev, actionName) {
         var tokens = Array.isArray(token) ? token : [token];
         return Promise.all(tokens.map(function(t) { return callFn(t); }))
                 .then(function(results) {
-                        var failed = results.some(function(res) { return !res || res !== 'OK'; });
+                        var failed = results.some(function(res) { return res !== 'OK'; });
                         if (failed) {
-                                ui.addNotification(null, E('p', _('Failed to %s user.').format(actionName)), 'error');
+                                ui.addNotification(null, E('p', errMsg), 'error');
                                 if (tr) tr.style.opacity = 1;
                                 btn.classList.remove('spinning');
                                 btn.disabled = false;
                         }
                 })
                 .catch(function(err) {
-                        ui.addNotification(null, E('p', _('Failed to %s user: %s').format(actionName, err.message || err)), 'error');
+                        ui.addNotification(null, E('p', errDetailMsg.format(err.message || err)), 'error');
                         if (tr) tr.style.opacity = 1;
                         btn.classList.remove('spinning');
                         btn.disabled = false;
@@ -68,15 +68,15 @@ var handleRPCAction = function(callFn, token, ev, actionName) {
 };
 
 var handleKickUser = function(num, ev) {
-        handleRPCAction(callKickUser, num, ev, 'kick');
+        handleRPCAction(callKickUser, num, ev, _('Failed to kick user.'), _('Failed to kick user: %s'));
 };
 
 var handleBlockUser = function(num, ev) {
-        handleRPCAction(callBlockUser, num, ev, 'block');
+        handleRPCAction(callBlockUser, num, ev, _('Failed to block user.'), _('Failed to block user: %s'));
 };
 
 var handleAllowUser = function(num, ev) {
-        handleRPCAction(callAllowUser, num, ev, 'allow');
+        handleRPCAction(callAllowUser, num, ev, _('Failed to allow user.'), _('Failed to allow user: %s'));
 };
 
 var pollInterval = 5;
