@@ -163,17 +163,20 @@ msgstr "无效的 MAC：%s"
 msgid "Unable to load log data: %s"
 msgstr "无法加载日志数据：%s"
 
-msgid "Internet"
-msgstr "互联网"
-
-msgid "Active now"
-msgstr "刚刚活跃"
-
-msgid "%s ago"
-msgstr "%s前"
-
 msgid "Log data is unavailable"
 msgstr "日志数据不可用"
+
+msgid "Scroll to head"
+msgstr "滚动到顶部"
+
+msgid "Scroll to tail"
+msgstr "滚动到底部"
+
+msgid "Grant UCI access for luci-app-natflow-users"
+msgstr "授予 luci-app-natflow-users 的 UCI 访问权限"
+
+msgid "Internet"
+msgstr "互联网"
 
 msgid "Failed to kick user."
 msgstr "断开用户失败。"
@@ -192,9 +195,3 @@ msgstr "放通用户失败。"
 
 msgid "Failed to allow user: %s"
 msgstr "放通用户失败：%s"
-
-msgid "Failed to %s user."
-msgstr "操作失败：%s用户。"
-
-msgid "Failed to %s user: %s"
-msgstr "操作失败：%s用户：%s"
