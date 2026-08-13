@@ -74,23 +74,30 @@ function nets_validate(nets)
 
 function port_range_validate(range)
 {
-        var d = range.split('-');
-	if ((+d[1]) >= (+d[0]) && (+d[0]) >= 0 && (+d[1]) <= 65535) {
-		return true;
-	}
-	return false;
+	var m = range.match(/^(\d{1,5})-(\d{1,5})$/);
+	if (!m) return false;
+	var p1 = +m[1];
+	var p2 = +m[2];
+	return p1 >= 0 && p1 <= 65535 && p2 >= 0 && p2 <= 65535 && p1 <= p2;
 }
 
 function ports_validate(nets)
 {
-	var re_port_range = /^([0-9]{1,5})-([0-9]{1,5})$/;
-	var net = nets.split(',');
-	for (var i = 0; i < net.length; i++) {
-		if (net[i].match(re_port_range) && port_range_validate(net[i])) continue;
-		if (net[i] >= 0 && net[i] <= 65535) continue;
+	if (typeof nets !== 'string') return false;
+	var tokens = nets.split(',');
+	if (tokens.length === 0) return false;
+	for (var i = 0; i < tokens.length; i++) {
+		var token = tokens[i].trim();
+		if (token === '') return false;
+		if (/^\d{1,5}$/.test(token)) {
+			var p = +token;
+			if (p >= 0 && p <= 65535) continue;
+		} else if (port_range_validate(token)) {
+			continue;
+		}
 		return false;
 	}
-	return true
+	return true;
 }
 
 function speed_validate(v)
