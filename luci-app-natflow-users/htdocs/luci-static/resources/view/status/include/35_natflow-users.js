@@ -74,9 +74,17 @@ return baseclass.extend({
 
 			return [
 				u.ip,
-				name ? "%s<br />(%s)".format(mac, name) : mac,
-				'%1024.2mB (%d %s)<br />%s'.format(u.rx_bytes, u.rx_pkts, _('packets'), rate(u.rx_speed_bytes)),
-				'%1024.2mB (%d %s)<br />%s'.format(u.tx_bytes, u.tx_pkts, _('packets'), rate(u.tx_speed_bytes)),
+				name ? E('span', {}, [ mac, E('br'), '(', name, ')' ]) : mac,
+				E('span', {}, [
+					'%1024.2mB (%d %s)'.format(u.rx_bytes, u.rx_pkts, _('packets')),
+					E('br'),
+					rate(u.rx_speed_bytes)
+				]),
+				E('span', {}, [
+					'%1024.2mB (%d %s)'.format(u.tx_bytes, u.tx_pkts, _('packets')),
+					E('br'),
+					rate(u.tx_speed_bytes)
+				]),
 				E('button', {
 					'class': 'btn cbi-button-remove',
 					'click': L.bind(handleKickUser, this, u.ip)

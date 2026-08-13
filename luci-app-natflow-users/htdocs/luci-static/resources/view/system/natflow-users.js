@@ -195,27 +195,39 @@ return view.extend({
 			return b.rx_bytes - a.rx_bytes;
 		});
 
-		var rows = users.map(function(u) {
+		var render_user_row = function(u) {
 			var mac = u.mac.toUpperCase();
 			var name = hosts.getHostnameByMACAddr(mac) || u.hostname;
 
-			var ip_str = u.ip;
-			var mac_str = name ? "%s<br />(%s)".format(mac, name) : mac;
-			var rx_str = '%1024.2mB (%d %s)<br />%s'.format(u.rx_bytes, u.rx_pkts, _('packets'), rate(u.rx_speed_bytes));
-			var tx_str = '%1024.2mB (%d %s)<br />%s'.format(u.tx_bytes, u.tx_pkts, _('packets'), rate(u.tx_speed_bytes));
+			var mac_elm = name ? E('span', {}, [ mac, E('br'), '(', name, ')' ]) : mac;
+			var rx_elm = E('span', {}, [
+				'%1024.2mB (%d %s)'.format(u.rx_bytes, u.rx_pkts, _('packets')),
+				E('br'),
+				rate(u.rx_speed_bytes)
+			]);
+			var tx_elm = E('span', {}, [
+				'%1024.2mB (%d %s)'.format(u.tx_bytes, u.tx_pkts, _('packets')),
+				E('br'),
+				rate(u.tx_speed_bytes)
+			]);
+
+			var ip_cell = u.ip;
+			var mac_cell = mac_elm;
+			var rx_cell = rx_elm;
+			var tx_cell = tx_elm;
 
 			if (u.status == 6) {
-				ip_str = '<span style="color:red">' + ip_str + '</span>';
-				mac_str = '<span style="color:red">' + mac_str + '</span>';
-				rx_str = '<span style="color:red">' + rx_str + '</span>';
-				tx_str = '<span style="color:red">' + tx_str + '</span>';
+				ip_cell = E('span', { 'style': 'color:red' }, [ ip_cell ]);
+				mac_cell = E('span', { 'style': 'color:red' }, [ mac_cell ]);
+				rx_cell = E('span', { 'style': 'color:red' }, [ rx_cell ]);
+				tx_cell = E('span', { 'style': 'color:red' }, [ tx_cell ]);
 			}
 
 			return [
-				ip_str,
-				mac_str,
-				rx_str,
-				tx_str,
+				ip_cell,
+				mac_cell,
+				rx_cell,
+				tx_cell,
 				u.status == 6 ?
 				E('button', {
 					'class': 'btn cbi-button-negative',
@@ -226,7 +238,9 @@ return view.extend({
 					'click': L.bind(handleBlockUser, this, u.ip)
 				}, [ _('Allowed') ])
 			];
-		});
+		};
+
+		var rows = users.map(render_user_row);
 
 		cbi_update_table(nodes.querySelector('#user_status_table'), rows, E('em', _('No information available')));
 
@@ -263,27 +277,39 @@ return view.extend({
 				return b.rx_bytes - a.rx_bytes;
 			});
 
-			var rows = users.map(function(u) {
+			var render_user_row = function(u) {
 				var mac = u.mac.toUpperCase();
 				var name = hosts.getHostnameByMACAddr(mac) || u.hostname;
 
-				var ip_str = u.ip;
-				var mac_str = name ? "%s<br />(%s)".format(mac, name) : mac;
-				var rx_str = '%1024.2mB (%d %s)<br />%s'.format(u.rx_bytes, u.rx_pkts, _('packets'), rate(u.rx_speed_bytes));
-				var tx_str = '%1024.2mB (%d %s)<br />%s'.format(u.tx_bytes, u.tx_pkts, _('packets'), rate(u.tx_speed_bytes));
+				var mac_elm = name ? E('span', {}, [ mac, E('br'), '(', name, ')' ]) : mac;
+				var rx_elm = E('span', {}, [
+					'%1024.2mB (%d %s)'.format(u.rx_bytes, u.rx_pkts, _('packets')),
+					E('br'),
+					rate(u.rx_speed_bytes)
+				]);
+				var tx_elm = E('span', {}, [
+					'%1024.2mB (%d %s)'.format(u.tx_bytes, u.tx_pkts, _('packets')),
+					E('br'),
+					rate(u.tx_speed_bytes)
+				]);
+
+				var ip_cell = u.ip;
+				var mac_cell = mac_elm;
+				var rx_cell = rx_elm;
+				var tx_cell = tx_elm;
 
 				if (u.status == 6) {
-					ip_str = '<span style="color:red">' + ip_str + '</span>';
-					mac_str = '<span style="color:red">' + mac_str + '</span>';
-					rx_str = '<span style="color:red">' + rx_str + '</span>';
-					tx_str = '<span style="color:red">' + tx_str + '</span>';
+					ip_cell = E('span', { 'style': 'color:red' }, [ ip_cell ]);
+					mac_cell = E('span', { 'style': 'color:red' }, [ mac_cell ]);
+					rx_cell = E('span', { 'style': 'color:red' }, [ rx_cell ]);
+					tx_cell = E('span', { 'style': 'color:red' }, [ tx_cell ]);
 				}
 
 				return [
-					ip_str,
-					mac_str,
-					rx_str,
-					tx_str,
+					ip_cell,
+					mac_cell,
+					rx_cell,
+					tx_cell,
 					u.status == 6 ?
 					E('button', {
 						'class': 'btn cbi-button-negative',
@@ -294,7 +320,9 @@ return view.extend({
 						'click': L.bind(handleBlockUser, this, u.ip)
 					}, [ _('Allowed') ])
 				];
-			});
+			};
+
+			var rows = users.map(render_user_row);
 
 			cbi_update_table(table, rows, E('em', _('No information available')));
 
