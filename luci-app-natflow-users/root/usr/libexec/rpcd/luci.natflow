@@ -350,15 +350,16 @@ local function parse_user_line(line, mac_to_host, ip_to_host)
 end
 
 local function get_wifi_clients_map()
-	local wifi_map = {}
+	local wifi_by_ifname_mac = {}
+	local wifi_by_mac = {}
 	local ubus_has, ubus = pcall(require, "ubus")
 	if not ubus_has then
-		return wifi_map
+		return wifi_by_ifname_mac, wifi_by_mac
 	end
 
 	local conn = ubus.connect()
 	if not conn then
-		return wifi_map
+		return wifi_by_ifname_mac, wifi_by_mac
 	end
 
 	local objs = conn:objects()
@@ -389,7 +390,7 @@ local function get_wifi_clients_map()
 						if signal ~= 0 then
 							quality = math.floor(math.max(0, math.min(100, 100 * ((signal - noise) / (default_ceil - noise)))))
 						end
-						wifi_map[mac_upper] = {
+						local winfo = {
 							ssid = ssid,
 							band = band,
 							signal = signal,
@@ -397,6 +398,10 @@ local function get_wifi_clients_map()
 							quality = quality,
 							ifname = ifname
 						}
+						wifi_by_ifname_mac[ifname .. ":" .. mac_upper] = winfo
+						if not wifi_by_mac[mac_upper] then
+							wifi_by_mac[mac_upper] = winfo
+						end
 					end
 				end
 			end
@@ -404,7 +409,7 @@ local function get_wifi_clients_map()
 	end
 
 	conn:close()
-	return wifi_map
+	return wifi_by_ifname_mac, wifi_by_mac
 end
 
 local methods = {
@@ -537,11 +542,18 @@ local methods = {
 				end
 			end
 
-			local wifi_map = get_wifi_clients_map()
+			local wifi_by_ifname_mac, wifi_by_mac = get_wifi_clients_map()
 
 			for _, entry in ipairs(users) do
 				local mac_upper = entry.mac:upper()
-				local winfo = wifi_map[mac_upper]
+				local winfo = nil
+				if entry.ifname ~= "" then
+					winfo = wifi_by_ifname_mac[entry.ifname .. ":" .. mac_upper]
+				end
+				if not winfo then
+					winfo = wifi_by_mac[mac_upper]
+				end
+
 				if winfo then
 					if entry.ifname == "" or not is_wireless_ifname(entry.ifname) then
 						entry.ifname = winfo.ifname
