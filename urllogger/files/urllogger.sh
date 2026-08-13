@@ -58,9 +58,15 @@ rotate_log() {
 }
 
 main_loop() {
+	local count=0
+	rotate_log
 	"$READER" --lock "$LOCKDIR/$PID" | while IFS= read -r line; do
 		[ -f "$LOCKDIR/$PID" ] || break
-		rotate_log
+		count=$((count + 1))
+		if [ "$count" -ge 500 ]; then
+			count=0
+			rotate_log
+		fi
 		echo "$line" >> /tmp/url.log
 	done
 }
