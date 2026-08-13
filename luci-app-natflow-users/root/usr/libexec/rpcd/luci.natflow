@@ -48,16 +48,24 @@ local function read_userinfo_lines()
 	local lines = {}
 	local pending = ""
 	local retries = 0
+	local success = false
 
 	while retries < USERINFO_READ_RETRIES do
-		local data = fd:read(USERINFO_READ_SIZE)
+		local data, code = fd:read(USERINFO_READ_SIZE)
 
 		if not data then
-			retries = retries + 1
-			if nixio.nanosleep then
-				nixio.nanosleep(0, 10000000)
+			local is_eagain = nixio.const and (code == nixio.const.EAGAIN or code == nixio.const.EWOULDBLOCK)
+			if is_eagain or code == 11 then
+				retries = retries + 1
+				if nixio.nanosleep then
+					nixio.nanosleep(0, 10000000)
+				end
+			else
+				fd:close()
+				return nil
 			end
 		elseif #data == 0 then
+			success = true
 			break
 		else
 			pending = pending .. data
@@ -76,11 +84,16 @@ local function read_userinfo_lines()
 		end
 	end
 
+	fd:close()
+
+	if not success then
+		return nil
+	end
+
 	if pending ~= "" then
 		lines[#lines + 1] = pending
 	end
 
-	fd:close()
 	return lines
 end
 
