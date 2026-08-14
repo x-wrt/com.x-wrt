@@ -1264,10 +1264,8 @@ main_trigger() {
 	local hostip
 	local built_in_server
 	local crashlog=205
-	local crashlog_ver
-
-	crashlog_ver=$(awk '/^# Version:/ {split($3, a, "-"); print a[1]; exit}' "$DEV")
-	test -n "$crashlog_ver" && crashlog="$crashlog_ver-$crashlog"
+	crashlog="$(awk '/^# Version:/ {split($3, a, "-"); print a[1]; exit}' "$DEV")-$crashlog"
+	crashlog="${crashlog#-}"
 	test -e /sys/kernel/debug/crashlog || test -e /tmp/pstore || crashlog=0
 	cp /usr/share/natcapd/cacert.pem /tmp/cacert.pem
 	while :; do
