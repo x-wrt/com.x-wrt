@@ -25,6 +25,13 @@ return baseclass.extend({
 		var users = data[1];
 		var users_ui = data[2];
 
-		return users_ui.renderUserTable(hosts, users);
+		if (!this.table) {
+			var wrapper = users_ui.renderUserTable(hosts, users);
+			this.table = wrapper.querySelector('#natflow-users');
+			return wrapper;
+		}
+
+		users_ui.updateUserTable(this.table, hosts, users);
+		return null;
 	}
 });
