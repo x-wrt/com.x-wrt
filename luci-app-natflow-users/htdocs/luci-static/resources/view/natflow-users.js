@@ -231,7 +231,7 @@ function buildTable() {
 			E('th', { 'class': 'th' }, [ _('Device Info') ]),
 			E('th', { 'class': 'th' }, [ _('Connection') ]),
 			E('th', { 'class': 'th' }, [ _('Traffic (RX / TX)') ]),
-			E('th', { 'class': 'th cbi-section-actions' }, [ _('Action') ])
+			E('th', { 'class': 'th cbi-section-actions' }, [ _('Internet') ])
 		]),
 		E('tr', { 'class': 'tr placeholder' }, [
 			E('td', { 'class': 'td' }, [
