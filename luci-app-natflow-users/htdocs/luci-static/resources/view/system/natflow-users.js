@@ -82,7 +82,7 @@ return view.extend({
 	load: function() {
 		return Promise.all([
 			network.getHostHints(),
-			callLuciGetUsers(),
+			L.resolveDefault(callLuciGetUsers(), []),
 			uci.load('natflow'),
 			L.require('view.natflow-users')
 		]);

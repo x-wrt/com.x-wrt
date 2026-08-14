@@ -131,10 +131,12 @@ function renderConnection(u) {
 		var quality = w.quality;
 
 		if (quality === undefined || quality === null) {
-			if (signal !== undefined && signal !== null)
-				quality = Math.max(0, Math.min(100, 100 * ((signal - noise) / (-30 - noise))));
-			else
+			if (signal !== undefined && signal !== null) {
+				var snr = -30 - noise;
+				quality = snr !== 0 ? Math.max(0, Math.min(100, 100 * ((signal - noise) / snr))) : 0;
+			} else {
 				quality = 0;
+			}
 		}
 
 		var qColor = (quality < 25) ? '#dc3545' : ((quality < 50) ? '#ffc107' : '#198754');
