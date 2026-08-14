@@ -108,12 +108,12 @@ return view.extend({
 
 		s = m.section(form.GridSection, '_active_users');
 
-		s.render = L.bind(function(view, section_id) {
+		s.render = L.bind(function() {
 			return E('div', { 'class': 'cbi-section cbi-tblsection' }, [
 				E('h3', _('Active Users')),
 				users_ui.renderUserTable(hosts, users)
 			]);
-		}, o, this);
+		}, this);
 
 		s = m.section(form.GridSection, 'auth', _('User IP ranges'), _('Clients in these IP ranges are managed as users.'));
 		s.addremove = false;

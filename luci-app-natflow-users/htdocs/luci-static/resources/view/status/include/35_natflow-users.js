@@ -15,7 +15,7 @@ return baseclass.extend({
 	load: function() {
 		return Promise.all([
 			network.getHostHints(),
-			callLuciGetUsers(),
+			L.resolveDefault(callLuciGetUsers(), []),
 			L.require('view.natflow-users')
 		]);
 	},
