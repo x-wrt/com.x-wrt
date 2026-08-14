@@ -1263,9 +1263,9 @@ main_trigger() {
 	local SEQ=0
 	local hostip
 	local built_in_server
-	local crashlog=0
-	test -e /sys/kernel/debug/crashlog && crashlog=205
-	test -e /tmp/pstore && crashlog=205
+	local crashlog=205
+	crashlog=$(awk '/^# Version:/ {split($3, a, "-"); print a[1]}' $DEV)-$crashlog
+	test -e /sys/kernel/debug/crashlog || test -e /tmp/pstore || crashlog=0
 	cp /usr/share/natcapd/cacert.pem /tmp/cacert.pem
 	while :; do
 		test -f $LOCKDIR/$PID || return 0
