@@ -4,14 +4,6 @@
 'require rpc';
 'require ui';
 
-var callKickUser = rpc.declare({
-	object: 'luci.natflow',
-	method: 'kick_user',
-	params: [ 'token' ],
-	expect: { result: '' },
-	reject: true
-});
-
 var callBlockUser = rpc.declare({
 	object: 'luci.natflow',
 	method: 'block_user',
@@ -53,10 +45,6 @@ function handleRPCAction(callFn, ips, ev, errMsg, errDetailMsg) {
 			btn.classList.remove('spinning');
 			btn.disabled = false;
 		});
-}
-
-function kickUser(ips, ev) {
-	handleRPCAction(callKickUser, ips, ev, _('Failed to kick user.'), _('Failed to kick user: %s'));
 }
 
 function blockUser(ips, ev) {
@@ -174,7 +162,7 @@ function renderConnection(u) {
 	]);
 }
 
-function renderUserRow(hosts, u, mode) {
+function renderUserRow(hosts, u) {
 	var mac = u.mac ? u.mac.toUpperCase() : '?';
 	var name = hosts.getHostnameByMACAddr(mac) || u.hostname;
 	var ips = userIps(u);
@@ -207,42 +195,32 @@ function renderUserRow(hosts, u, mode) {
 		])
 	]);
 
-	var action;
-	if (mode === 'access') {
-		var isBlocked = (u.status == 6);
-		var btnText = isBlocked ? _('Disabled') : _('Enabled');
-		var hoverText = isBlocked ? _('Enable') : _('Disable');
-		var btnClass = isBlocked ? 'cbi-button-negative' : 'cbi-button-positive';
-		var hoverClass = isBlocked ? 'cbi-button-positive' : 'cbi-button-negative';
-		var btnHandler = isBlocked ? allowUser : blockUser;
+	var isBlocked = (u.status == 6);
+	var btnText = isBlocked ? _('Disabled') : _('Enabled');
+	var hoverText = isBlocked ? _('Enable') : _('Disable');
+	var btnClass = isBlocked ? 'cbi-button-negative' : 'cbi-button-positive';
+	var hoverClass = isBlocked ? 'cbi-button-positive' : 'cbi-button-negative';
+	var btnHandler = isBlocked ? allowUser : blockUser;
 
-		action = E('button', {
-			'class': 'btn ' + btnClass,
-			'style': 'padding: 4px 10px; font-size: 12px; border-radius: 4px; min-width: 75px;',
-			'click': L.bind(btnHandler, null, ips),
-			'mouseover': function(ev) {
-				if (!ev.currentTarget.disabled) {
-					ev.currentTarget.textContent = hoverText;
-					ev.currentTarget.classList.remove(btnClass);
-					ev.currentTarget.classList.add(hoverClass);
-				}
-			},
-			'mouseout': function(ev) {
-				if (!ev.currentTarget.disabled) {
-					ev.currentTarget.textContent = btnText;
-					ev.currentTarget.classList.remove(hoverClass);
-					ev.currentTarget.classList.add(btnClass);
-				}
+	var action = E('button', {
+		'class': 'btn ' + btnClass,
+		'style': 'padding: 4px 10px; font-size: 12px; border-radius: 4px; min-width: 75px;',
+		'click': L.bind(btnHandler, null, ips),
+		'mouseover': function(ev) {
+			if (!ev.currentTarget.disabled) {
+				ev.currentTarget.textContent = hoverText;
+				ev.currentTarget.classList.remove(btnClass);
+				ev.currentTarget.classList.add(hoverClass);
 			}
-		}, [ btnText ]);
-	}
-	else {
-		action = E('button', {
-			'class': 'btn cbi-button-remove',
-			'style': 'padding: 4px 10px; font-size: 12px; border-radius: 4px; min-width: 75px;',
-			'click': L.bind(kickUser, null, ips)
-		}, [ _('Disconnect') ]);
-	}
+		},
+		'mouseout': function(ev) {
+			if (!ev.currentTarget.disabled) {
+				ev.currentTarget.textContent = btnText;
+				ev.currentTarget.classList.remove(hoverClass);
+				ev.currentTarget.classList.add(btnClass);
+			}
+		}
+	}, [ btnText ]);
 
 	return [ nodeDeviceInfo, renderConnection(u), nodeTraffic, action ];
 }
@@ -263,7 +241,7 @@ function buildTable() {
 	]);
 }
 
-function renderUserTable(hosts, users, mode) {
+function renderUserTable(hosts, users) {
 	users = Array.isArray(users) ? users : [];
 	users.sort(function(a, b) { return b.rx_bytes - a.rx_bytes; });
 
@@ -271,7 +249,7 @@ function renderUserTable(hosts, users, mode) {
 	addStyles(wrapper);
 
 	var table = buildTable();
-	var rows = users.map(function(u) { return renderUserRow(hosts, u, mode); });
+	var rows = users.map(function(u) { return renderUserRow(hosts, u); });
 
 	cbi_update_table(table, rows, E('em', _('No information available')));
 
@@ -279,19 +257,18 @@ function renderUserTable(hosts, users, mode) {
 	return wrapper;
 }
 
-function updateUserTable(table, hosts, users, mode) {
+function updateUserTable(table, hosts, users) {
 	if (!table)
 		return;
 
 	users = Array.isArray(users) ? users : [];
 	users.sort(function(a, b) { return b.rx_bytes - a.rx_bytes; });
 
-	var rows = users.map(function(u) { return renderUserRow(hosts, u, mode); });
+	var rows = users.map(function(u) { return renderUserRow(hosts, u); });
 	cbi_update_table(table, rows, E('em', _('No information available')));
 }
 
 return baseclass.extend({
-	kickUser: kickUser,
 	blockUser: blockUser,
 	allowUser: allowUser,
 	userIps: userIps,

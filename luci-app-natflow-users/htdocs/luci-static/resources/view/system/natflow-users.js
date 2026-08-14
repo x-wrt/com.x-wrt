@@ -94,7 +94,7 @@ return view.extend({
 		var users_ui = data[2];
 		var table = nodes.querySelector('#natflow-users');
 
-		users_ui.updateUserTable(table, hosts, users, 'access');
+		users_ui.updateUserTable(table, hosts, users);
 	},
 
 	render: function(data) {
@@ -111,7 +111,7 @@ return view.extend({
 		s.render = L.bind(function(view, section_id) {
 			return E('div', { 'class': 'cbi-section cbi-tblsection' }, [
 				E('h3', _('Active Users')),
-				users_ui.renderUserTable(hosts, users, 'access')
+				users_ui.renderUserTable(hosts, users)
 			]);
 		}, o, this);
 

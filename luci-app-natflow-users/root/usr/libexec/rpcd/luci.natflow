@@ -597,21 +597,6 @@ local methods = {
 			return { result = users }
 		end
 	},
-	kick_user = {
-		args = { token = "token" },
-		call = function(args)
-			local ip = normalize_user_ip(args and args.token)
-			if not ip then
-				return { result = "Bad request" }
-			end
-
-			if write_userinfo_cmd(string.format("kick %s", ip)) then
-				return { result = "OK" }
-			end
-
-			return { result = "Failed" }, 1
-		end
-	},
 	block_user = {
 		args = { token = "token" },
 		call = function(args)

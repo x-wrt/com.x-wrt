@@ -34,17 +34,11 @@ msgstr "MAC 地址"
 msgid "packets"
 msgstr "数据包"
 
-msgid "Disconnect"
-msgstr "断开连接"
-
 msgid "No information available"
 msgstr "无可用信息"
 
 msgid "Loading data..."
 msgstr "正在加载数据..."
-
-msgid "Disconnected"
-msgstr "已断网"
 
 msgid "Allowed"
 msgstr "已放通"
@@ -213,12 +207,6 @@ msgstr "授予 luci-app-natflow-users 的 UCI 访问权限"
 
 msgid "Internet"
 msgstr "互联网"
-
-msgid "Failed to kick user."
-msgstr "断开用户失败。"
-
-msgid "Failed to kick user: %s"
-msgstr "断开用户失败：%s"
 
 msgid "Failed to block user."
 msgstr "封禁用户失败。"

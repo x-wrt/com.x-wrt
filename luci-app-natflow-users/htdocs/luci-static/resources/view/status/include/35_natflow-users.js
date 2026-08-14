@@ -25,6 +25,6 @@ return baseclass.extend({
 		var users = data[1];
 		var users_ui = data[2];
 
-		return users_ui.renderUserTable(hosts, users, 'kick');
+		return users_ui.renderUserTable(hosts, users);
 	}
 });

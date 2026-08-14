@@ -23,7 +23,7 @@ return view.extend({
 
 	updateUsers: function(hosts, users, users_ui) {
 		var table = document.getElementById('natflow-users');
-		users_ui.updateUserTable(table, hosts, users, 'kick');
+		users_ui.updateUserTable(table, hosts, users);
 	},
 
 	pollData: function(hosts, users, users_ui) {
@@ -48,7 +48,7 @@ return view.extend({
 
 		return E([], [
 			E('div', { 'class': 'cbi-section-node' }, [
-				users_ui.renderUserTable(hosts, users, 'kick')
+				users_ui.renderUserTable(hosts, users)
 			])
 		]);
 	},

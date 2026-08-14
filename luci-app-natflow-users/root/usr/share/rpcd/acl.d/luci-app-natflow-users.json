@@ -15,7 +15,7 @@
 		},
 		"write": {
 			"ubus": {
-				"luci.natflow": [ "kick_user", "block_user", "allow_user" ]
+				"luci.natflow": [ "block_user", "allow_user" ]
 			},
 			"uci": [ "natflow", "hostacl" ]
 		}
