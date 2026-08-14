@@ -99,7 +99,7 @@ function addStyles(wrapper) {
 		.natflow-users-table .th:nth-child(1), .natflow-users-table .td:nth-child(1) { flex: 1 1 30%; }
 		.natflow-users-table .th:nth-child(2), .natflow-users-table .td:nth-child(2) { flex: 1 1 25%; }
 		.natflow-users-table .th:nth-child(3), .natflow-users-table .td:nth-child(3) { flex: 1 1 35%; }
-		.natflow-users-table .th:nth-child(4), .natflow-users-table .td:nth-child(4) { flex: 0 0 80px; text-align: right; }
+		.natflow-users-table .th:nth-child(4), .natflow-users-table .td:nth-child(4) { flex: 0 0 72px; text-align: right; }
 
 		@media screen and (max-width: 800px) {
 			.natflow-users-table .table-titles { display: none !important; }
@@ -204,7 +204,7 @@ function renderUserRow(hosts, u) {
 
 	var action = E('button', {
 		'class': 'btn ' + btnClass,
-		'style': 'padding: 4px 10px; font-size: 12px; border-radius: 4px; min-width: 75px;',
+		'style': 'padding: 2px 8px; font-size: 11px; border-radius: 4px; min-width: 64px;',
 		'click': L.bind(btnHandler, null, ips),
 		'mouseover': function(ev) {
 			if (!ev.currentTarget.disabled) {
