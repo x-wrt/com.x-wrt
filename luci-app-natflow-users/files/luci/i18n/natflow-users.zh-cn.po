@@ -121,6 +121,42 @@ msgstr "要匹配的域名，用逗号分隔。"
 msgid "Action"
 msgstr "动作"
 
+msgid "Device Info"
+msgstr "设备信息"
+
+msgid "Connection"
+msgstr "连接"
+
+msgid "Traffic (RX / TX)"
+msgstr "流量（接收 / 发送）"
+
+msgid "Disabled"
+msgstr "已禁用"
+
+msgid "Enable"
+msgstr "启用"
+
+msgid "Disable"
+msgstr "禁用"
+
+msgid "Wireless Mesh"
+msgstr "无线 Mesh"
+
+msgid "Wireless"
+msgstr "无线"
+
+msgid "Wired"
+msgstr "有线"
+
+msgid "Active now"
+msgstr "当前活跃"
+
+msgid "%s ago"
+msgstr "%s 前"
+
+msgid "Collecting data..."
+msgstr "正在采集数据..."
+
 msgid "Log only"
 msgstr "仅记录"
 

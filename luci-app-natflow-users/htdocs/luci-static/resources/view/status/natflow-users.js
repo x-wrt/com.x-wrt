@@ -1,134 +1,54 @@
 'use strict';
 'require view';
-'require dom';
 'require poll';
-'require request';
 'require rpc';
 'require network';
-'require ui';
 
 var callLuciGetUsers = rpc.declare({
 	object: 'luci.natflow',
-	method: 'get_users',
+	method: 'get_mac_users',
 	expect: { result: [] }
 });
 
-var callKickUser = rpc.declare({
-        object: 'luci.natflow',
-        method: 'kick_user',
-        params: [ 'token' ],
-        expect: { result : '' },
-        reject: true
-});
-
-var handleKickUser = function(num, ev) {
-        var btn = ev.currentTarget;
-        var tr = dom.parent(btn, '.tr');
-        if (tr) tr.style.opacity = 0.5;
-        btn.classList.add('spinning');
-        btn.disabled = true;
-        btn.blur();
-
-        callKickUser(num)
-                .then(function(res) {
-                        if (!res || res !== 'OK') {
-                                ui.addNotification(null, E('p', _('Failed to kick user.')), 'error');
-                                if (tr) tr.style.opacity = 1;
-                                btn.classList.remove('spinning');
-                                btn.disabled = false;
-                        }
-                })
-                .catch(function(err) {
-                        ui.addNotification(null, E('p', _('Failed to kick user: %s').format(err.message || err)), 'error');
-                        if (tr) tr.style.opacity = 1;
-                        btn.classList.remove('spinning');
-                        btn.disabled = false;
-                });
-};
-
 var pollInterval = 3;
 
-Math.log2 = Math.log2 || function(x) { return Math.log(x) * Math.LOG2E; };
-
-function rate(n, br) {
-	n = (n || 0).toFixed(2);
-	return '%1024.2mbit/s (%1024.2mB/s)'.format(n * 8, n)
-}
-
 return view.extend({
-	updateUsers: function(data) {
-		var lookup_queue = [ ];
-		var rows = [];
-		var hosts = data[0];
-		var users = data[1];
-
-		users.sort(function(a, b) {
-			return b.rx_bytes - a.rx_bytes;
-		});
-
-		for (var i = 0; i < users.length; i++)
-		{
-			var u  = users[i];
-			var mac = u.mac.toUpperCase();
-			var name = hosts.getHostnameByMACAddr(mac) || u.hostname;
-
-			rows.push([
-				u.ip,
-				name ? E('span', {}, [ mac, E('br'), '(', name, ')' ]) : mac,
-				E('span', {}, [
-					'%1024.2mB (%d %s)'.format(u.rx_bytes, u.rx_pkts, _('packets')),
-					E('br'),
-					rate(u.rx_speed_bytes)
-				]),
-				E('span', {}, [
-					'%1024.2mB (%d %s)'.format(u.tx_bytes, u.tx_pkts, _('packets')),
-					E('br'),
-					rate(u.tx_speed_bytes)
-				]),
-				E('button', {
-					'class': 'btn cbi-button-remove',
-					'click': L.bind(handleKickUser, this, u.ip)
-				}, [ _('Disconnect') ])
-			]);
-		}
-
-		cbi_update_table('#users', rows, E('em', _('No information available')));
+	load: function() {
+		return Promise.all([
+			network.getHostHints(),
+			L.resolveDefault(callLuciGetUsers(), []),
+			L.require('view.natflow-users')
+		]);
 	},
 
-	pollData: function() {
-		poll.add(L.bind(function() {
-			var tasks = [
+	updateUsers: function(hosts, users, users_ui) {
+		var table = document.getElementById('natflow-users');
+		users_ui.updateUserTable(table, hosts, users, 'kick');
+	},
+
+	pollData: function(hosts, users, users_ui) {
+		var self = this;
+
+		poll.add(function() {
+			return Promise.all([
 				network.getHostHints(),
 				L.resolveDefault(callLuciGetUsers(), [])
-			];
-
-			return Promise.all(tasks).then(L.bind(function(datasets) {
-				this.updateUsers(datasets);
-			}, this));
-		}, this), pollInterval);
+			]).then(function(data) {
+				self.updateUsers(data[0], data[1], users_ui);
+			});
+		}, pollInterval);
 	},
 
 	render: function(data) {
-		var table = E('table', { 'class': 'table', 'id': 'users' }, [
-			E('tr', { 'class': 'tr table-titles' }, [
-				E('th', { 'class': 'th col-2' }, [ _('IP address') ]),
-				E('th', { 'class': 'th col-2' }, [ _('MAC address') ]),
-				E('th', { 'class': 'th col-7' }, [ _('RX') ]),
-				E('th', { 'class': 'th col-7' }, [ _('TX') ]),
-				E('th', { 'class': 'th cbi-section-actions' }, '')
-			]),
-			E('tr', { 'class': 'tr placeholder' }, [
-				E('td', { 'class': 'td' }, [
-					E('em', {}, [ _('Loading data...') ])
-				])
-			])
-		]);
+		var hosts = data[0];
+		var users = data[1];
+		var users_ui = data[2];
 
-		this.pollData();
+		this.pollData(hosts, users, users_ui);
 
 		return E([], [
 			E('div', { 'class': 'cbi-section-node' }, [
-				table
+				users_ui.renderUserTable(hosts, users, 'kick')
 			])
 		]);
 	},
