@@ -496,6 +496,7 @@ for t in $targets; do
 	excludes="$excludes_basic"
 	case $t in
 		#>=32M flash
+		CONFIG_TARGET_DEVICE_mediatek_filogic_DEVICE_glinet_gl-be10000|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_z-router_zr-2660|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_z-router_zr-2662|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_imou_hx21|\
@@ -654,6 +655,7 @@ for t in $targets; do
 	esac
 	case $t in
 		#>=14M flash
+		CONFIG_TARGET_DEVICE_mediatek_filogic_DEVICE_glinet_gl-be10000|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_z-router_zr-2660|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_z-router_zr-2662|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_imou_hx21|\
@@ -1744,6 +1746,7 @@ for t in $targets; do
 			has_usb=1
 		;;
 		#no usb
+		CONFIG_TARGET_DEVICE_mediatek_filogic_DEVICE_glinet_gl-be10000|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_imou_hx21|\
 		TARGET_DEVICE_airoha_an7563_DEVICE_xiaomi_be5000|\
 		TARGET_DEVICE_qualcommax_ipq50xx_DEVICE_cmcc_pz-l8|\
