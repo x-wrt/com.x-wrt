@@ -1184,7 +1184,7 @@ for t in $targets; do
 		# > 8M <= 12M
 		TARGET_DEVICE_mediatek_filogic_DEVICE_tenda_ax12-pro-v2|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_tenda_ax12l-pro)
-			mods="$mods wpad-basic-mbedtls wpad-basic-wolfssl $openvpnmod openvpn-mbedtls $lucidashboard urllogger natflow-hostacl $tc"
+			mods="$mods $wgmod wpad-basic-mbedtls wpad-basic-wolfssl $openvpnmod openvpn-mbedtls $lucidashboard urllogger natflow-hostacl $tc"
 			excludes="$excludes wpad-openssl wpad-mbedtls openvpn-openssl libopenssl openssl"
 			mods="$mods apk-mbedtls"
 			excludes="$excludes apk-openssl opkg"
