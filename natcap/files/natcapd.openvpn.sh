@@ -69,10 +69,19 @@ test -e /lib/netifd/proto/openvpn.sh && ovpnproto=ovpnproto
 ovpn="$(uci get natcapd.default.natcapovpn 2>/dev/null || echo 0)"
 ip6="$(uci get natcapd.default.natcapovpn_ip6 2>/dev/null || echo 0)"
 
+# Read user-configured base subnet (e.g. 10.8.9.0/24), default to 10.8.9.0/24
+ovpn_subnet="$(uci get natcapd.default.natcapovpn_subnet 2>/dev/null || echo '10.8.9.0/24')"
+# Strip prefix length, keep network address
+ovpn_base="${ovpn_subnet%%/*}"
+# Extract the first three octets and the third octet value
+ovpn_base3="${ovpn_base%.*}"        # e.g. 10.8.9
+ovpn_oct3="${ovpn_base3##*.}"       # e.g. 9  (third octet)
+ovpn_prefix="${ovpn_base3%.*}"      # e.g. 10.8
+
 if [ "$ovpn" = "1" ] || [ "$ip6" = "1" ]; then
 	mode="$(uci get natcapd.default.natcapovpn_tap 2>/dev/null || echo 0)"
 	oldhash=$(uci get $openvpn.natcapovpn_tcp.oldhash)
-	newhash="1${mode}${ip6}1"
+	newhash="1${mode}${ip6}${ovpn_subnet}1"
 	if [ "$oldhash" != "$newhash" ]; then
 		/etc/init.d/openvpn stop
 		uci delete network.natcapovpn 2>/dev/null
@@ -113,7 +122,7 @@ if [ "$ovpn" = "1" ] || [ "$ip6" = "1" ]; then
 			uci set firewall.natcapovpn_masq_$p.name="natcapovpn_masq_$p"
 			uci set firewall.natcapovpn_masq_$p.proto='all'
 			uci set firewall.natcapovpn_masq_$p.src='lan'
-			uci set firewall.natcapovpn_masq_$p.src_ip="10.8.$((9+I)).0/24"
+			uci set firewall.natcapovpn_masq_$p.src_ip="${ovpn_prefix}.$((ovpn_oct3+I)).0/24"
 			uci set firewall.natcapovpn_masq_$p.target='MASQUERADE'
 			I=$((I+1))
 		done
@@ -141,7 +150,7 @@ if [ "$ovpn" = "1" ] || [ "$ip6" = "1" ]; then
 			uci set $openvpn.natcapovpn_$p.cert='/usr/share/natcapd/openvpn/server.crt'
 			uci set $openvpn.natcapovpn_$p.key='/usr/share/natcapd/openvpn/server.key'
 			uci set $openvpn.natcapovpn_$p.dh='/usr/share/natcapd/openvpn/dh2048.pem'
-			uci set $openvpn.natcapovpn_$p.server="10.8.$((9+I)).0 255.255.255.0"
+			uci set $openvpn.natcapovpn_$p.server="${ovpn_prefix}.$((ovpn_oct3+I)).0 255.255.255.0"
 			uci set $openvpn.natcapovpn_$p.keepalive='10 60'
 			uci set $openvpn.natcapovpn_$p.persist_key='1'
 			uci set $openvpn.natcapovpn_$p.persist_tun='1'

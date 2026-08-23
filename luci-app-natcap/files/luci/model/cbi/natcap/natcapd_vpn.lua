@@ -17,6 +17,11 @@ if nixio.fs.access("/usr/sbin/openvpn") then
 	e.default = e.disabled
 	e.rmempty = false
 
+	e = s:taboption("system", Value, "natcapovpn_subnet", translate("OpenVPN Server Subnet"), translate("The base /24 subnet for the OpenVPN TCP server (e.g. 10.8.9.0/24). The UDP server will use the next /24 subnet automatically."))
+	e.default = "10.8.9.0/24"
+	e.datatype = "cidr4"
+	e.rmempty = true
+
 	e = s:taboption("system", Flag, "natcapovpn_tap", translate("OpenVPN TAP Mode"), translate("Use OpenVPN TAP mode."))
 	e.default = e.disabled
 	e.rmempty = false

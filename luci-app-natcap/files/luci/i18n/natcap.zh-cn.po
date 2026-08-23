@@ -252,6 +252,12 @@ msgstr "启用 OpenVPN 服务器"
 msgid "Allow VPN connections to this router. The router must have a public IP address."
 msgstr "允许通过 VPN 连接到此路由器。路由器必须具有公网 IP 地址。"
 
+msgid "OpenVPN Server Subnet"
+msgstr "OpenVPN 服务器 IP 网段"
+
+msgid "The base /24 subnet for the OpenVPN TCP server (e.g. 10.8.9.0/24). The UDP server will use the next /24 subnet automatically."
+msgstr "OpenVPN TCP 服务器使用的基础 /24 网段（例如 10.8.9.0/24）。UDP 服务器将自动使用下一个 /24 网段。"
+
 msgid "OpenVPN TAP Mode"
 msgstr "OpenVPN TAP 模式"
 
