@@ -4,12 +4,11 @@
 		"read": {
 			"ubus": {
 				"luci.natflow": [ "get_users", "get_mac_users" ],
-				"file": [ "stat" ]
+				"file": [ "stat", "read" ]
 			},
 			"uci": [ "natflow", "hostacl" ],
 			"cgi-io": [ "exec" ],
 			"file": {
-				"/bin/cat": [ "stat" ],
 				"/bin/cat /tmp/url.log": [ "exec" ]
 			}
 		},

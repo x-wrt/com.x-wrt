@@ -8,22 +8,16 @@ var hasNotifiedLogErr = false;
 
 return view.extend({
 	retrieveLog: async function() {
-		return Promise.all([
-			L.resolveDefault(fs.stat('/bin/cat'), null)
-		]).then(function(stat) {
-			var logger = stat[0] ? stat[0].path : null;
-
-			return fs.exec_direct(logger, [ '/tmp/url.log' ]).then(logdata => {
-				hasNotifiedLogErr = false;
-				const loglines = logdata.trim().split(/\n/);
-				return { value: loglines.join('\n'), rows: loglines.length + 1 };
-			}).catch(function(err) {
-				if (!hasNotifiedLogErr) {
-					hasNotifiedLogErr = true;
-					ui.addNotification(null, E('p', {}, _('Unable to load log data: %s').format(err.message || err)));
-				}
-				return { value: _('Log data is unavailable'), rows: 10 };
-			});
+		return fs.exec_direct('/bin/cat', [ '/tmp/url.log' ]).then(function(logdata) {
+			hasNotifiedLogErr = false;
+			const loglines = (logdata || '').trim().split(/\n/);
+			return { value: loglines.join('\n'), rows: loglines.length + 1 };
+		}).catch(function(err) {
+			if (!hasNotifiedLogErr) {
+				hasNotifiedLogErr = true;
+				ui.addNotification(null, E('p', {}, _('Unable to load log data: %s').format(err.message || err)));
+			}
+			return { value: _('Log data is unavailable'), rows: 10 };
 		});
 	},
 
