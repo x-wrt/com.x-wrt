@@ -42,6 +42,9 @@ msgstr "MAC 过滤"
 msgid "IP Filter"
 msgstr "IP 过滤"
 
+msgid "Client Full Proxy"
+msgstr "客户端全代理"
+
 msgid "System Settings"
 msgstr "系统设置"
 
@@ -194,6 +197,12 @@ msgstr "IP 地址过滤"
 
 msgid "IP List"
 msgstr "IP 列表"
+
+msgid "Full Proxy Client List"
+msgstr "全代理客户端列表"
+
+msgid "Send traffic from these client IP addresses through the proxy, while local destinations continue to use the normal routing policy."
+msgstr "这些客户端 IP 的流量通过代理发送，本地目标地址仍使用原有路由策略。"
 
 msgid "Access China from Overseas"
 msgstr "从海外访问中国"

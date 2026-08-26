@@ -75,6 +75,9 @@ natcapd_stop()
 	echo cn_domain_clean >>$DEV
 	echo server1_use_peer=0 >$DEV
 
+	ipset destroy natcap_proxy_iplist >/dev/null 2>&1
+	ipset destroy localiplist >/dev/null 2>&1
+
 	debug=$(uci get natcapd.default.debug 2>/dev/null || echo 3)
 	udp_seq_lock=$(uci get natcapd.default.udp_seq_lock 2>/dev/null || echo 0)
 	echo debug=$debug >>$DEV
@@ -323,9 +326,10 @@ cone_wan_ip() {
 
 natcap_connected()
 {
-	ipset list -n cniplist &>/dev/null || return 0
+	local set_name="${1:-cniplist}"
+	ipset list -n "$set_name" &>/dev/null || return 0
 	for connected_network_v4 in $(ip route | awk '{print $1}' | egrep '[0-9]{1,3}(\.[0-9]{1,3}){3}'); do
-		ipset -! add cniplist $connected_network_v4 &>/dev/null
+		ipset -! add "$set_name" "$connected_network_v4" &>/dev/null
 	done
 }
 
@@ -769,6 +773,7 @@ elif test -c $DEV; then
 	maclist=$(uci get natcapd.default.maclist 2>/dev/null)
 	ipfilter=$(uci get natcapd.default.ipfilter 2>/dev/null)
 	iplist=$(uci get natcapd.default.iplist 2>/dev/null)
+	proxy_iplist=$(uci get natcapd.default.proxy_iplist 2>/dev/null)
 
 	cniplist_set=/usr/share/natcapd/cniplist.set
 	if [ x$access_to_cn = x1 ]; then
@@ -818,6 +823,24 @@ elif test -c $DEV; then
 	for d in $bypasslist; do
 		ipset -! add bypasslist $d
 	done
+
+	ipset destroy natcap_proxy_iplist >/dev/null 2>&1
+	ipset destroy localiplist >/dev/null 2>&1
+	if test -n "$proxy_iplist"; then
+		ipset -! create natcap_proxy_iplist nethash hashsize 64 maxelem 1024
+		for n in $proxy_iplist; do
+			ipset -! add natcap_proxy_iplist "$n"
+		done
+	fi
+
+	if ipset -n list natcap_proxy_iplist >/dev/null 2>&1; then
+		echo 'create localiplist hash:net family inet hashsize 4096 maxelem 65536' >/tmp/localiplist.set
+		(ip route | grep -o '\([0-9]\{1,3\}\)\.\([0-9]\{1,3\}\)\.\([0-9]\{1,3\}\)\.\([0-9]\{1,3\}\)/[0-9]\{1,2\}'; \
+		cat /usr/share/natcapd/local.set) | sort | uniq | sed 's/^/add localiplist /' >>/tmp/localiplist.set
+		ipset restore -f /tmp/localiplist.set
+		rm -f /tmp/localiplist.set
+		natcap_connected localiplist
+	fi
 
 	ipset destroy cniplist &>/dev/null
 	echo 'create cniplist hash:net family inet hashsize 4096 maxelem 65536' >/tmp/cniplist.set

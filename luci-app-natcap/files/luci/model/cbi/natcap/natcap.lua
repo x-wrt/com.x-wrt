@@ -15,6 +15,7 @@ s:tab("advanced", translate("Advanced Settings"))
 s:tab("serverlist", translate("Server List"))
 s:tab("macfilter", translate("MAC Filter"))
 s:tab("ipfilter", translate("IP Filter"))
+s:tab("proxyiplist", translate("Client Full Proxy"))
 s:tab("system", translate("System Settings"))
 s:tab("bypasslist", translate("Bypass List"))
 s:tab("bypasslist_domain", translate("Bypass Domain List"))
@@ -106,6 +107,10 @@ e:value("deny", translate("Blocklist (clients denied NATCAP)"))
 e = s:taboption("ipfilter", DynamicList, "iplist", translate("IP List"))
 e.datatype = "ipaddr"
 e.placeholder = '192.168.1.0/24'
+
+e = s:taboption("proxyiplist", DynamicList, "proxy_iplist", translate("Full Proxy Client List"), translate("Send traffic from these client IP addresses through the proxy, while local destinations continue to use the normal routing policy."))
+e.datatype = "ipaddr"
+e.placeholder = '192.168.1.100'
 
 e = s:taboption("system", Flag, "access_to_cn", translate("Access China from Overseas"))
 e.default = e.disabled
