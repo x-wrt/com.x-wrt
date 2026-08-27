@@ -11,6 +11,7 @@ s.addremove = false
 s.anonymous = true
 
 s:tab("general", translate("General Settings"))
+s:tab("proxyiplist", translate("Client Full Proxy"))
 
 e = s:taboption("general", Flag, "peer_sni_ban", translate("Disable Remote Manager"))
 e.default = e.disabled
@@ -42,5 +43,9 @@ e.rmempty = false
 e = s:taboption("general", Value, "ui", translate("UI Mode"))
 e.rmempty = true
 e.placeholder = 'none'
+
+e = s:taboption("proxyiplist", DynamicList, "proxy_iplist", translate("Full Proxy Client List"), translate("Send traffic from these client IP addresses through the proxy, while local destinations continue to use the normal routing policy."))
+e.datatype = "ipaddr"
+e.placeholder = '192.168.15.100'
 
 return m

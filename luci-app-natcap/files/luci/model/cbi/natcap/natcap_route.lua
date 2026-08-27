@@ -19,7 +19,7 @@ u.template = "cbi/tblsection"
 e = u:option(Value, "src", translate("Source Client(s)"))
 e.datatype = "string"
 e.rmempty  = false
-e.placeholder = "192.168.1.100 or AA:00:11:23:44:55"
+e.placeholder = "192.168.15.100 or AA:00:11:23:44:55"
 
 e = u:option(Value, "dst", translate("Destination"))
 e.datatype = "string"
@@ -44,7 +44,7 @@ u.template = "cbi/tblsection"
 e = u:option(Value, "src", translate("Source Client(s)"))
 e.datatype = "string"
 e.rmempty  = false
-e.placeholder = "192.168.1.100 or AA:00:11:23:44:55"
+e.placeholder = "192.168.15.100 or AA:00:11:23:44:55"
 
 e = u:option(ListValue, "target", translate("Outbound Gateway"))
 e:value("", translate("Please select..."))

@@ -106,11 +106,11 @@ e:value("deny", translate("Blocklist (clients denied NATCAP)"))
 
 e = s:taboption("ipfilter", DynamicList, "iplist", translate("IP List"))
 e.datatype = "ipaddr"
-e.placeholder = '192.168.1.0/24'
+e.placeholder = '192.168.15.0/24'
 
 e = s:taboption("proxyiplist", DynamicList, "proxy_iplist", translate("Full Proxy Client List"), translate("Send traffic from these client IP addresses through the proxy, while local destinations continue to use the normal routing policy."))
 e.datatype = "ipaddr"
-e.placeholder = '192.168.1.100'
+e.placeholder = '192.168.15.100'
 
 e = s:taboption("system", Flag, "access_to_cn", translate("Access China from Overseas"))
 e.default = e.disabled
