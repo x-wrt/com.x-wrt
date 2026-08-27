@@ -2,10 +2,22 @@
 	"luci-app-natcap": {
 		"description": "Grant UCI access for luci-app-natcap",
 		"read": {
-			"uci": [ "natcapd" ]
+			"uci": [ "natcapd" ],
+			"file": {
+				"/dev/natcap_ctl": [ "read" ],
+				"/dev/natflow_ctl": [ "read" ],
+				"/tmp/natcapd.txrx": [ "read" ],
+				"/tmp/xx.json": [ "read" ],
+				"/tmp/yy.json": [ "read" ],
+				"/usr/sbin/natcapd": [ "exec" ],
+				"/usr/share/natcapd/natcapd.openvpn.sh": [ "exec" ]
+			}
 		},
 		"write": {
-			"uci": [ "natcapd" ]
+			"uci": [ "natcapd" ],
+			"file": {
+				"/dev/natcap_ctl": [ "write" ]
+			}
 		}
 	}
 }

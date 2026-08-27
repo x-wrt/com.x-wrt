@@ -20,7 +20,7 @@ s:tab("system", translate("System Settings"))
 s:tab("bypasslist", translate("Bypass List"))
 s:tab("bypasslist_domain", translate("Bypass Domain List"))
 
-e = s:taboption("general", Flag, "enabled", translate("Enable NATCAP"))
+local e = s:taboption("general", Flag, "enabled", translate("Enable NATCAP"))
 e.default = e.disabled
 e.rmempty = false
 
@@ -128,37 +128,18 @@ local speed_validate = function(self, value)
 		return value
 	end
 
-	local i, j
-	local v
-
-	i, j = value:find("Kbps$") or value:find("kbps$")
-	if i then
-		v = tonumber(value:sub(0, i - 1))
-		if not v then
-			return nil, translate("Invalid rate limit")
+	local units = {"Kbps", "kbps", "Mbps", "mbps", "Gbps", "gbps"}
+	for _, unit in ipairs(units) do
+		local i, j = value:find(unit .. "$")
+		if i then
+			local v = tonumber(value:sub(0, i - 1))
+			if not v then
+				return nil, translate("Invalid rate limit")
+			end
+			-- Normalize unit case (Kbps, Mbps, Gbps)
+			local norm_unit = unit:gsub("^%l", string.upper)
+			return v .. norm_unit
 		end
-		value = v .. "Kbps"
-		return value
-	end
-
-	i, j = value:find("Mbps$") or value:find("mbps$")
-	if i then
-		v = tonumber(value:sub(0, i - 1))
-		if not v then
-			return nil, translate("Invalid rate limit")
-		end
-		value = v .. "Mbps"
-		return value
-	end
-
-	i, j = value:find("Gbps$") or value:find("gbps$")
-	if i then
-		v = tonumber(value:sub(0, i - 1))
-		if not v then
-			return nil, translate("Invalid rate limit")
-		end
-		value = v .. "Gbps"
-		return value
 	end
 
 	return nil, translate("Invalid rate limit")

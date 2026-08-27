@@ -32,7 +32,7 @@ define Package/luci-app-natcap/description
 endef
 
 define Build/Prepare
-	$(foreach po,$(wildcard ${CURDIR}/files/luci/i18n/*.po), \
+	$(foreach po,$(wildcard ${CURDIR}/po/zh-cn/*.po), \
 		po2lmo $(po) $(PKG_BUILD_DIR)/$(patsubst %.po,%.lmo,$(notdir $(po)));)
 endef
 
@@ -54,11 +54,11 @@ define Package/luci-app-natcap/install
 	$(INSTALL_DIR) $(1)/usr/lib/lua/luci/i18n
 	$(INSTALL_DATA) $(PKG_BUILD_DIR)/natcap.*.lmo $(1)/usr/lib/lua/luci/i18n/
 	$(INSTALL_DIR) $(1)/usr/lib/lua/luci/controller
-	$(INSTALL_DATA) ./files/luci/controller/*.lua $(1)/usr/lib/lua/luci/controller/
+	$(INSTALL_DATA) ./luasrc/controller/*.lua $(1)/usr/lib/lua/luci/controller/
 	$(INSTALL_DIR) $(1)/usr/lib/lua/luci/model/cbi/natcap
-	$(INSTALL_DATA) ./files/luci/model/cbi/natcap/*.lua $(1)/usr/lib/lua/luci/model/cbi/natcap/
+	$(INSTALL_DATA) ./luasrc/model/cbi/natcap/*.lua $(1)/usr/lib/lua/luci/model/cbi/natcap/
 	$(INSTALL_DIR) $(1)/usr/lib/lua/luci/view/natcap
-	$(INSTALL_DATA) ./files/luci/view/natcap/*.htm $(1)/usr/lib/lua/luci/view/natcap/
+	$(INSTALL_DATA) ./luasrc/view/natcap/*.htm $(1)/usr/lib/lua/luci/view/natcap/
 	$(INSTALL_DIR) $(1)/usr/share/rpcd/acl.d
 	$(INSTALL_DATA) ./root/usr/share/rpcd/acl.d/*.json $(1)/usr/share/rpcd/acl.d/
 endef

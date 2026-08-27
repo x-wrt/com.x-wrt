@@ -20,16 +20,19 @@ e = s:taboption("system", Flag, "enable_natflow", translate("Enable NATflow Fast
 e.default = e.disabled
 e.rmempty = false
 
-local has_hwnat = ut.trim(sys.exec("cat /dev/natflow_ctl | grep hwnat= 2>/dev/null"))
-if has_hwnat and string.len(has_hwnat) > 0 then
+local nixio = require "nixio"
+local natflow_ctl_text = nixio.fs.readfile("/dev/natflow_ctl") or ""
+
+local has_hwnat = string.find(natflow_ctl_text, "hwnat=")
+if has_hwnat then
 	e = s:taboption("system", Flag, "enable_natflow_hw", translate("Enable Hardware Flow Offload"))
 	e.default = e.disabled
 	e.rmempty = false
 	e:depends("enable_natflow","1")
 end
 
-local has_hwnat_wed = ut.trim(sys.exec("cat /dev/natflow_ctl | grep hwnat_wed_disabled= 2>/dev/null"))
-if has_hwnat_wed and string.len(has_hwnat_wed) > 0 then
+local has_hwnat_wed = string.find(natflow_ctl_text, "hwnat_wed_disabled=")
+if has_hwnat_wed then
 	e = s:taboption("system", Flag, "enable_natflow_hw_wed", translate("Enable WED Hardware Offload"))
 	e.default = e.disabled
 	e.rmempty = false
