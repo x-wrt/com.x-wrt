@@ -12,6 +12,10 @@ s.anonymous = true
 
 s:tab("general", translate("General Settings"))
 s:tab("proxyiplist", translate("Client Full Proxy"))
+s:tab("macfilter", translate("MAC Filter"))
+s:tab("ipfilter", translate("IP Filter"))
+s:tab("bypasslist", translate("Bypass List"))
+s:tab("bypasslist_domain", translate("Bypass Domain List"))
 
 e = s:taboption("general", Flag, "peer_sni_ban", translate("Disable Remote Manager"))
 e.default = e.disabled
@@ -47,5 +51,31 @@ e.placeholder = 'none'
 e = s:taboption("proxyiplist", DynamicList, "proxy_iplist", translate("Full Proxy Client List"), translate("Send traffic from these client IP addresses through the proxy, while local destinations continue to use the normal routing policy."))
 e.datatype = "ipaddr"
 e.placeholder = '192.168.15.100'
+
+e = s:taboption("macfilter", ListValue, "macfilter", translate("MAC Address Filter"))
+e:value("", translate("Disabled"))
+e:value("allow", translate("Allowlist (clients allowed to use NATCAP)"))
+e:value("deny", translate("Blocklist (clients denied NATCAP)"))
+
+e = s:taboption("macfilter", DynamicList, "maclist", translate("MAC List"))
+e.datatype = "macaddr"
+nt.mac_hints(function(mac, name) e:value(mac, "%s (%s)" %{ mac, name }) end)
+
+e = s:taboption("ipfilter", ListValue, "ipfilter", translate("IP Address Filter"))
+e:value("", translate("Disabled"))
+e:value("allow", translate("Allowlist (clients allowed to use NATCAP)"))
+e:value("deny", translate("Blocklist (clients denied NATCAP)"))
+
+e = s:taboption("ipfilter", DynamicList, "iplist", translate("IP List"))
+e.datatype = "ipaddr"
+e.placeholder = '192.168.15.0/24'
+
+e = s:taboption("bypasslist", DynamicList, "bypasslist", translate("Bypass List"))
+e.datatype = "list(string)"
+e.placeholder = "1.2.3.4"
+
+e = s:taboption("bypasslist_domain", DynamicList, "bypasslist_domain", translate("Bypass Domain List"))
+e.datatype = "list(string)"
+e.placeholder = "example.com"
 
 return m
