@@ -295,11 +295,30 @@ local function is_mesh_ifname(ifname)
 	return ifname:lower():sub(1, 4) == "mesh"
 end
 
+local VPN_IFNAME_PREFIXES = {
+	"tun", "tap", "wg", "pptp", "ppp", "tailscale", "zerotier", "zt", "natcap"
+}
+
+local function is_vpn_ifname(ifname)
+	if not ifname or ifname == "" then
+		return false
+	end
+	local name = ifname:lower()
+	for _, p in ipairs(VPN_IFNAME_PREFIXES) do
+		if name:sub(1, #p) == p then
+			return true
+		end
+	end
+	return false
+end
+
 local function get_access_type(ifname)
 	if is_mesh_ifname(ifname) then
 		return "wireless_mesh"
 	elseif is_wireless_ifname(ifname) then
 		return "wireless"
+	elseif is_vpn_ifname(ifname) then
+		return "vpn"
 	else
 		return "wired"
 	end

@@ -81,6 +81,8 @@ function accessLabel(u) {
 		return _('Wireless Mesh');
 	else if (u.access_type === 'wireless')
 		return _('Wireless');
+	else if (u.access_type === 'vpn')
+		return _('VPN');
 	else
 		return _('Wired');
 }
@@ -148,6 +150,13 @@ function renderConnection(u) {
 				E('span', { 'style': 'display: inline-block; width: 8px; height: 8px; border-radius: 50%; background-color: %s; margin-right: 5px;'.format(qColor) }),
 				'%d dBm (%d%%)'.format(signal || 0, parseInt(quality))
 			])
+		]);
+	}
+
+	if (u.access_type === 'vpn' && u.ifname) {
+		return E('div', {}, [
+			E('div', { 'style': 'display: inline-block; padding: 2px 6px; font-size: 11px; font-weight: bold; border-radius: 4px; background: rgba(111, 66, 193, 0.1); color: #6f42c1; margin-bottom: 4px;' }, label),
+			E('div', { 'style': 'font-size: 13px; font-weight: 600;' }, u.ifname)
 		]);
 	}
 
