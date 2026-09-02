@@ -3,8 +3,7 @@
 		"description": "Grant UCI access for luci-app-natflow-users",
 		"read": {
 			"ubus": {
-				"luci.natflow": [ "get_users", "get_mac_users" ],
-				"file": [ "stat", "read" ]
+				"luci.natflow": [ "get_users", "get_mac_users" ]
 			},
 			"uci": [ "natflow", "hostacl" ],
 			"cgi-io": [ "exec" ],

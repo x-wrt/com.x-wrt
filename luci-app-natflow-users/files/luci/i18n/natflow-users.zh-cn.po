@@ -139,6 +139,9 @@ msgstr "无线 Mesh"
 msgid "Wireless"
 msgstr "无线"
 
+msgid "VPN"
+msgstr "VPN"
+
 msgid "Wired"
 msgstr "有线"
 
