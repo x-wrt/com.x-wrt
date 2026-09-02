@@ -13,6 +13,40 @@ band_steer_helper_switch()
 	if [ "$band_steer_helper" = "usteer" ]; then
 		uci delete usteer.@usteer[0].event_log_types 2>/dev/null
 		uci delete usteer.@usteer[0].ssid_list 2>/dev/null
+
+		# Auto-detect dual-band SSID topology
+		ssid_2g=""
+		ssid_5g=""
+		for ifc in $(uci show wireless 2>/dev/null | grep -E "=wifi-iface$" | cut -d= -f1 | cut -d. -f2); do
+			[ "$(uci -q get wireless.$ifc.mode)" = "ap" ] || continue
+			dev=$(uci -q get wireless.$ifc.device)
+			band=$(uci -q get wireless.$dev.band)
+			ssid=$(uci -q get wireless.$ifc.ssid)
+			[ -z "$ssid" ] && continue
+			case "$band" in
+				2g|2.4g|2.4G) ssid_2g="$ssid_2g $ssid" ;;
+				5g|5G|6g|6G)   ssid_5g="$ssid_5g $ssid" ;;
+			esac
+		done
+
+		has_unified_ssid=0
+		for s2 in $ssid_2g; do
+			for s5 in $ssid_5g; do
+				if [ "$s2" = "$s5" ]; then
+					has_unified_ssid=1
+					break 2
+				fi
+			done
+		done
+
+		if [ "$has_unified_ssid" = "1" ]; then
+			uci -q set usteer.@usteer[0].band_steering_min_snr='-72'
+			uci -q set usteer.@usteer[0].band_steering_interval='30000'
+		else
+			uci -q set usteer.@usteer[0].band_steering_min_snr='0'
+			uci -q set usteer.@usteer[0].band_steering_interval='0'
+		fi
+
 		uci commit usteer
 		test -x /etc/init.d/dawn && {
 			/etc/init.d/dawn enabled && /etc/init.d/dawn disable
