@@ -369,6 +369,9 @@ agent_sync_config()
 				enabled=$(uci get fakemeshac.@wifim[$J].enabled || echo 1)
 
 				[ "$bands" = "2g5g" ] && bands="2g 5g"
+				[ "$bands" = "2g5g6g" ] && bands="2g 5g 6g"
+				[ "$bands" = "5g6g" ] && bands="5g 6g"
+				[ "$bands" = "2g6g" ] && bands="2g 6g" 
 
 				[ "$enabled" = "1" ] && {
 					for band in $bands; do
