@@ -375,9 +375,13 @@ agent_sync_config()
 
 				[ "$enabled" = "1" ] && {
 					for band in $bands; do
-						for wbandstr in $(uci show wireless | grep .band=\'${band}\'$); do
+						# Probe physical hardware presence for requested band (Graceful Fallback)
+						uci show wireless | grep -q "\.band='${band}'$" || continue
+
+						for wbandstr in $(uci show wireless | grep "\.band='${band}'$"); do
 						if test -n "$wbandstr"; then
 							radio=$(echo "$wbandstr" | cut -d. -f2)
+							uci get wireless.${radio} >/dev/null 2>&1 || continue
 
 							uci set wireless.wifinet$K=wifi-iface
 							uci set wireless.wifinet$K.device="${radio}"
