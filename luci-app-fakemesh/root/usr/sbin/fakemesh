@@ -369,12 +369,19 @@ agent_sync_config()
 				enabled=$(uci get fakemeshac.@wifim[$J].enabled || echo 1)
 
 				[ "$bands" = "2g5g" ] && bands="2g 5g"
+				[ "$bands" = "2g5g6g" ] && bands="2g 5g 6g"
+				[ "$bands" = "5g6g" ] && bands="5g 6g"
+				[ "$bands" = "2g6g" ] && bands="2g 6g" 
 
 				[ "$enabled" = "1" ] && {
 					for band in $bands; do
-						for wbandstr in $(uci show wireless | grep .band=\'${band}\'$); do
+						# Probe physical hardware presence for requested band (Graceful Fallback)
+						uci show wireless | grep -q "\.band='${band}'$" || continue
+
+						for wbandstr in $(uci show wireless | grep "\.band='${band}'$"); do
 						if test -n "$wbandstr"; then
 							radio=$(echo "$wbandstr" | cut -d. -f2)
+							uci get wireless.${radio} >/dev/null 2>&1 || continue
 
 							uci set wireless.wifinet$K=wifi-iface
 							uci set wireless.wifinet$K.device="${radio}"
@@ -388,10 +395,35 @@ agent_sync_config()
 							uci set wireless.wifinet$K.wpa_group_rekey='601'
 							uci set wireless.wifinet$K.max_inactivity='301'
 							if [ "${encryption}" != "none" ]; then
-								uci set wireless.wifinet$K.encryption="${encryption}"
+								if [ "$band" = "6g" ]; then
+									case "${encryption}" in
+										sae|sae-mixed|owe)
+											uci set wireless.wifinet$K.encryption="${encryption}"
+											;;
+										*)
+											uci set wireless.wifinet$K.encryption="sae"
+											;;
+									esac
+									uci set wireless.wifinet$K.ieee80211w='2'
+								else
+									uci set wireless.wifinet$K.encryption="${encryption}"
+									case "${encryption}" in
+										sae)
+											uci set wireless.wifinet$K.ieee80211w='2'
+											;;
+										sae-mixed)
+											uci set wireless.wifinet$K.ieee80211w='1'
+											;;
+									esac
+								fi
 								uci set wireless.wifinet$K.key="${key}"
 							else
-								uci set wireless.wifinet$K.encryption='none'
+								if [ "$band" = "6g" ]; then
+									uci set wireless.wifinet$K.encryption='owe'
+									uci set wireless.wifinet$K.ieee80211w='2'
+								else
+									uci set wireless.wifinet$K.encryption='none'
+								fi
 							fi
 							if uci get wireless.${radio}.path | grep -q bcma || iwinfo wlan${radio:5} info | grep -qi Cypress; then
 								WLAN_IDX=${radio:5}
