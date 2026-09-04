@@ -660,10 +660,20 @@ if [ "$role" = "controller" ]; then
 		uci set wireless.meshx0.wpa_group_rekey='601'
 		uci set wireless.meshx0.max_inactivity='301'
 		if test -n "${Xkey}"; then
-			uci set wireless.meshx0.encryption='psk2'
+			if [ "$band" = "6g" ]; then
+				uci set wireless.meshx0.encryption='sae'
+				uci set wireless.meshx0.ieee80211w='2'
+			else
+				uci set wireless.meshx0.encryption='psk2'
+			fi
 			uci set wireless.meshx0.key="${Xkey}"
 		else
-			uci set wireless.meshx0.encryption='none'
+			if [ "$band" = "6g" ]; then
+				uci set wireless.meshx0.encryption='owe'
+				uci set wireless.meshx0.ieee80211w='2'
+			else
+				uci set wireless.meshx0.encryption='none'
+			fi
 		fi
 		if [ "$fronthaul_disabled" = "1" ]; then
 			uci set wireless.meshx0.disabled='1'
@@ -796,10 +806,20 @@ else
 		uci set wireless.meshx0.wpa_group_rekey='601'
 		uci set wireless.meshx0.max_inactivity='301'
 		if test -n "${Xkey}"; then
-			uci set wireless.meshx0.encryption='psk2'
+			if [ "$band" = "6g" ]; then
+				uci set wireless.meshx0.encryption='sae'
+				uci set wireless.meshx0.ieee80211w='2'
+			else
+				uci set wireless.meshx0.encryption='psk2'
+			fi
 			uci set wireless.meshx0.key="${Xkey}"
 		else
-			uci set wireless.meshx0.encryption='none'
+			if [ "$band" = "6g" ]; then
+				uci set wireless.meshx0.encryption='owe'
+				uci set wireless.meshx0.ieee80211w='2'
+			else
+				uci set wireless.meshx0.encryption='none'
+			fi
 		fi
 		if [ "$fronthaul_disabled" = "1" ]; then
 			uci set wireless.meshx0.disabled='1'
@@ -816,10 +836,20 @@ else
 		uci set wireless.meshx1.wds='1'
 		uci set wireless.meshx1.ssid="${Xid}"
 		if test -n "${Xkey}"; then
-			uci set wireless.meshx1.encryption='psk2'
+			if [ "$band" = "6g" ]; then
+				uci set wireless.meshx1.encryption='sae'
+				uci set wireless.meshx1.ieee80211w='2'
+			else
+				uci set wireless.meshx1.encryption='psk2'
+			fi
 			uci set wireless.meshx1.key="${Xkey}"
 		else
-			uci set wireless.meshx1.encryption='none'
+			if [ "$band" = "6g" ]; then
+				uci set wireless.meshx1.encryption='owe'
+				uci set wireless.meshx1.ieee80211w='2'
+			else
+				uci set wireless.meshx1.encryption='none'
+			fi
 		fi
 		if [ "$role" = "wap" ]; then
 			uci set wireless.meshx1.disabled='1'
