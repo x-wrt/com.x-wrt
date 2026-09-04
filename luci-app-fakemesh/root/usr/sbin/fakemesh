@@ -391,10 +391,35 @@ agent_sync_config()
 							uci set wireless.wifinet$K.wpa_group_rekey='601'
 							uci set wireless.wifinet$K.max_inactivity='301'
 							if [ "${encryption}" != "none" ]; then
-								uci set wireless.wifinet$K.encryption="${encryption}"
+								if [ "$band" = "6g" ]; then
+									case "${encryption}" in
+										sae|sae-mixed|owe)
+											uci set wireless.wifinet$K.encryption="${encryption}"
+											;;
+										*)
+											uci set wireless.wifinet$K.encryption="sae"
+											;;
+									esac
+									uci set wireless.wifinet$K.ieee80211w='2'
+								else
+									uci set wireless.wifinet$K.encryption="${encryption}"
+									case "${encryption}" in
+										sae)
+											uci set wireless.wifinet$K.ieee80211w='2'
+											;;
+										sae-mixed)
+											uci set wireless.wifinet$K.ieee80211w='1'
+											;;
+									esac
+								fi
 								uci set wireless.wifinet$K.key="${key}"
 							else
-								uci set wireless.wifinet$K.encryption='none'
+								if [ "$band" = "6g" ]; then
+									uci set wireless.wifinet$K.encryption='owe'
+									uci set wireless.wifinet$K.ieee80211w='2'
+								else
+									uci set wireless.wifinet$K.encryption='none'
+								fi
 							fi
 							if uci get wireless.${radio}.path | grep -q bcma || iwinfo wlan${radio:5} info | grep -qi Cypress; then
 								WLAN_IDX=${radio:5}
