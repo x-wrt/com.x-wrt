@@ -114,7 +114,7 @@ CONFIG_TARGET_DEVICE_PACKAGES_mediatek_mt7622_DEVICE_reyee_ax3200-e5="apk-openss
 CONFIG_TARGET_DEVICE_mediatek_mt7622_DEVICE_ruijie_rg-ew3200gx-pro=y
 CONFIG_TARGET_DEVICE_PACKAGES_mediatek_mt7622_DEVICE_ruijie_rg-ew3200gx-pro="apk-openssl dawn ip-bridge iptables-mod-dhcpmac iptables-mod-dnetmap jool-tools-netfilter kmod-bonding kmod-crypto-chacha20poly1305 kmod-crypto-md5 kmod-inet-diag kmod-ipt-dhcpmac kmod-ipt-dnetmap kmod-jool-netfilter kmod-leds-gpio kmod-mt7915e kmod-mt7915-firmware kmod-nat46 kmod-ovpn-backports kmod-thermal libgcrypt libgpg-error liblz4 liblzo libnl libnl-cli libnl-core libnl-genl libnl-nf libnl-route libopenssl libopenssl-conf libopenssl-devcrypto libopenssl-legacy libpcre2 libqrencode libxml2 luci-app-dawn luci-app-usteer luci-i18n-dashboard-zh-cn luci-i18n-dawn-zh-cn luci-i18n-usteer-zh-cn luci-mod-dashboard luci-nginx luci-proto-openvpn luci-proto-relay luci-proto-wireguard nginx-mod-luci nginx-mod-ubus nginx-ssl nginx-ssl-util openvpn-openssl proto-bonding qrencode relayd tc-tiny uwsgi uwsgi-cgi-plugin uwsgi-luci-support uwsgi-syslog-plugin wireguard-tools wpad-openssl"
 CONFIG_TARGET_DEVICE_mediatek_mt7622_DEVICE_totolink_a8000ru=y
-CONFIG_TARGET_DEVICE_PACKAGES_mediatek_mt7622_DEVICE_totolink_a8000ru="apk-openssl aria2 aria2-openssl base-config-setting-ext4fs blkid ca-bundle chat comgt comgt-ncm dawn e2fsprogs fdisk gdisk ip-bridge iptables-mod-dhcpmac iptables-mod-dnetmap jool-tools-netfilter kmod-bonding kmod-crypto-chacha20poly1305 kmod-crypto-des kmod-crypto-md5 kmod-crypto-sha256 kmod-dnsresolver kmod-fs-exfat kmod-fs-ext4 kmod-fs-ksmbd kmod-fs-msdos kmod-fs-netfs kmod-fs-nfs kmod-fs-nfs-common kmod-fs-nfs-v4 kmod-fs-ntfs kmod-fs-smbfs-common kmod-fs-vfat kmod-fuse kmod-inet-diag kmod-ipt-dhcpmac kmod-ipt-dnetmap kmod-jool-netfilter kmod-leds-gpio kmod-lib-crc16 kmod-libphy kmod-mii kmod-nat46 kmod-nls-cp437 kmod-nls-ucs2-utils kmod-oid-registry kmod-ovpn-backports kmod-phy-mtk-tphy kmod-scsi-core kmod-usb2 kmod-usb3 kmod-usb-ehci kmod-usb-net kmod-usb-net-asix-ax88179 kmod-usb-net-cdc-ether kmod-usb-net-cdc-mbim kmod-usb-net-cdc-ncm kmod-usb-net-huawei-cdc-ncm kmod-usb-net-ipheth kmod-usb-net-qmi-wwan kmod-usb-net-rndis kmod-usb-net-rtl8152 kmod-usb-ohci kmod-usb-printer kmod-usb-serial kmod-usb-serial-cp210x kmod-usb-serial-option kmod-usb-serial-pl2303 kmod-usb-serial-qualcomm kmod-usb-serial-wwan kmod-usb-storage kmod-usb-storage-extras kmod-usb-storage-uas kmod-usb-wdm kmod-usb-xhci-hcd kmod-usb-xhci-mtk ksmbd-server libblkid libcares libcomerr libcurl libe2p libevdev libexpat libext2fs libfdisk libgcrypt libgmp libgpg-error libimobiledevice libimobiledevice-glue libimobiledevice-utils libkmod liblz4 liblzo libnghttp2 libnl libnl-cli libnl-core libnl-genl libnl-nf libnl-route libopenssl libopenssl-conf libopenssl-devcrypto libopenssl-legacy libpci libpcre2 libplist libqrencode libsmartcols libsqlite3 libss libssh2 libtatsu libudev-zero libusb-1.0 libusbmuxd libxml2 luci-app-aria2 luci-app-dawn luci-app-ksmbd luci-app-p910nd luci-app-usteer luci-i18n-aria2-zh-cn luci-i18n-dashboard-zh-cn luci-i18n-dawn-zh-cn luci-i18n-ksmbd-zh-cn luci-i18n-p910nd-zh-cn luci-i18n-usteer-zh-cn luci-mod-dashboard luci-nginx luci-proto-3g luci-proto-mbim luci-proto-ncm luci-proto-openvpn luci-proto-qmi luci-proto-relay luci-proto-wireguard minicom nfs-utils nginx-mod-luci nginx-mod-ubus nginx-ssl nginx-ssl-util openvpn-openssl p910nd partx-utils pciids pciutils proto-bonding qrencode r8152-firmware relayd sendip tc-tiny tune2fs umbim uqmi usbids usb-modeswitch usbmuxd usbutils uwsgi uwsgi-cgi-plugin uwsgi-luci-support uwsgi-syslog-plugin webui-aria2 wget-ssl wireguard-tools wpad-openssl wsdd2 wwan"
+CONFIG_TARGET_DEVICE_PACKAGES_mediatek_mt7622_DEVICE_totolink_a8000ru="apk-openssl aria2 aria2-openssl base-config-setting-ext4fs blkid ca-bundle chat comgt comgt-ncm dawn e2fsprogs fdisk gdisk ip-bridge iptables-mod-dhcpmac iptables-mod-dnetmap jool-tools-netfilter kmod-bonding kmod-crypto-chacha20poly1305 kmod-crypto-des kmod-crypto-md5 kmod-crypto-sha256 kmod-dnsresolver kmod-dsa kmod-dsa-realtek kmod-dsa-rtl8365mb kmod-fs-exfat kmod-fs-ext4 kmod-fs-ksmbd kmod-fs-msdos kmod-fs-netfs kmod-fs-nfs kmod-fs-nfs-common kmod-fs-nfs-v4 kmod-fs-ntfs kmod-fs-smbfs-common kmod-fs-vfat kmod-fuse kmod-inet-diag kmod-ipt-dhcpmac kmod-ipt-dnetmap kmod-jool-netfilter kmod-leds-gpio kmod-lib-crc16 kmod-libphy kmod-mdio-devres kmod-mii kmod-nat46 kmod-net-selftests kmod-nls-cp437 kmod-nls-ucs2-utils kmod-oid-registry kmod-ovpn-backports kmod-phylink kmod-phy-mtk-tphy kmod-phy-realtek kmod-regmap-core kmod-scsi-core kmod-usb2 kmod-usb3 kmod-usb-ehci kmod-usb-net kmod-usb-net-asix-ax88179 kmod-usb-net-cdc-ether kmod-usb-net-cdc-mbim kmod-usb-net-cdc-ncm kmod-usb-net-huawei-cdc-ncm kmod-usb-net-ipheth kmod-usb-net-qmi-wwan kmod-usb-net-rndis kmod-usb-net-rtl8152 kmod-usb-ohci kmod-usb-printer kmod-usb-serial kmod-usb-serial-cp210x kmod-usb-serial-option kmod-usb-serial-pl2303 kmod-usb-serial-qualcomm kmod-usb-serial-wwan kmod-usb-storage kmod-usb-storage-extras kmod-usb-storage-uas kmod-usb-wdm kmod-usb-xhci-hcd kmod-usb-xhci-mtk ksmbd-server libblkid libcares libcomerr libcurl libe2p libevdev libexpat libext2fs libfdisk libgcrypt libgmp libgpg-error libimobiledevice libimobiledevice-glue libimobiledevice-utils libkmod liblz4 liblzo libnghttp2 libnl libnl-cli libnl-core libnl-genl libnl-nf libnl-route libopenssl libopenssl-conf libopenssl-devcrypto libopenssl-legacy libpci libpcre2 libplist libqrencode libsmartcols libsqlite3 libss libssh2 libtatsu libudev-zero libusb-1.0 libusbmuxd libxml2 luci-app-aria2 luci-app-dawn luci-app-ksmbd luci-app-p910nd luci-app-usteer luci-i18n-aria2-zh-cn luci-i18n-dashboard-zh-cn luci-i18n-dawn-zh-cn luci-i18n-ksmbd-zh-cn luci-i18n-p910nd-zh-cn luci-i18n-usteer-zh-cn luci-mod-dashboard luci-nginx luci-proto-3g luci-proto-mbim luci-proto-ncm luci-proto-openvpn luci-proto-qmi luci-proto-relay luci-proto-wireguard minicom nfs-utils nginx-mod-luci nginx-mod-ubus nginx-ssl nginx-ssl-util openvpn-openssl p910nd partx-utils pciids pciutils proto-bonding qrencode r8152-firmware relayd sendip tc-tiny tune2fs umbim uqmi usbids usb-modeswitch usbmuxd usbutils uwsgi uwsgi-cgi-plugin uwsgi-luci-support uwsgi-syslog-plugin webui-aria2 wget-ssl wireguard-tools wpad-openssl wsdd2 wwan"
 # CONFIG_TARGET_DEVICE_mediatek_mt7622_DEVICE_ubnt_unifi-6-lr-v1 is not set
 # CONFIG_TARGET_DEVICE_mediatek_mt7622_DEVICE_ubnt_unifi-6-lr-v1-ubootmod is not set
 # CONFIG_TARGET_DEVICE_mediatek_mt7622_DEVICE_ubnt_unifi-6-lr-v2 is not set
@@ -149,6 +149,7 @@ CONFIG_DEFAULT_fstools=y
 CONFIG_MODULE_DEFAULT_fstools=y
 CONFIG_MODULE_DEFAULT_kmod-ata-ahci-mtk=y
 CONFIG_MODULE_DEFAULT_kmod-btmtkuart=y
+CONFIG_MODULE_DEFAULT_kmod-dsa-rtl8365mb=y
 CONFIG_DEFAULT_kmod-gpio-button-hotplug=y
 CONFIG_MODULE_DEFAULT_kmod-gpio-button-hotplug=y
 CONFIG_DEFAULT_kmod-leds-gpio=y
@@ -181,7 +182,6 @@ CONFIG_DEFAULT_ppp=y
 CONFIG_MODULE_DEFAULT_ppp=y
 CONFIG_DEFAULT_ppp-mod-pppoe=y
 CONFIG_MODULE_DEFAULT_ppp-mod-pppoe=y
-CONFIG_MODULE_DEFAULT_swconfig=y
 CONFIG_DEFAULT_uboot-envtools=y
 CONFIG_MODULE_DEFAULT_uboot-envtools=y
 CONFIG_DEFAULT_uci=y
@@ -542,7 +542,7 @@ CONFIG_TARGET_INIT_CMD="/sbin/init"
 CONFIG_TARGET_INIT_SUPPRESS_STDERR=y
 CONFIG_VERSIONOPT=y
 CONFIG_VERSION_DIST="X-WRT"
-CONFIG_VERSION_NUMBER="26.04_b202608290953"
+CONFIG_VERSION_NUMBER="26.04_b202609050853"
 CONFIG_VERSION_CODE="Resolute"
 CONFIG_VERSION_REPO="http://downloads.openwrt.org/snapshots"
 CONFIG_VERSION_HOME_URL="https://x-wrt.com/"
@@ -3435,6 +3435,7 @@ CONFIG_PACKAGE_kmod-hwmon-core=y
 # CONFIG_PACKAGE_kmod-hwmon-lm92 is not set
 # CONFIG_PACKAGE_kmod-hwmon-lm95241 is not set
 # CONFIG_PACKAGE_kmod-hwmon-ltc4151 is not set
+# CONFIG_PACKAGE_kmod-hwmon-max6650 is not set
 # CONFIG_PACKAGE_kmod-hwmon-max6697 is not set
 # CONFIG_PACKAGE_kmod-hwmon-mcp3021 is not set
 # CONFIG_PACKAGE_kmod-hwmon-nct7802 is not set
@@ -3763,7 +3764,7 @@ CONFIG_PACKAGE_kmod-nft-tproxy=y
 # CONFIG_PACKAGE_kmod-bnx2x is not set
 # CONFIG_PACKAGE_kmod-bnxt-en is not set
 # CONFIG_PACKAGE_kmod-dm9000 is not set
-# CONFIG_PACKAGE_kmod-dsa is not set
+CONFIG_PACKAGE_kmod-dsa=m
 # CONFIG_PACKAGE_kmod-dsa-b53 is not set
 # CONFIG_PACKAGE_kmod-dsa-b53-mdio is not set
 # CONFIG_PACKAGE_kmod-dsa-ks8995 is not set
@@ -3772,8 +3773,8 @@ CONFIG_PACKAGE_kmod-nft-tproxy=y
 # CONFIG_PACKAGE_kmod-dsa-mxl862xx is not set
 # CONFIG_PACKAGE_kmod-dsa-notag is not set
 # CONFIG_PACKAGE_kmod-dsa-qca8k is not set
-# CONFIG_PACKAGE_kmod-dsa-realtek is not set
-# CONFIG_PACKAGE_kmod-dsa-rtl8365mb is not set
+CONFIG_PACKAGE_kmod-dsa-realtek=m
+CONFIG_PACKAGE_kmod-dsa-rtl8365mb=m
 # CONFIG_PACKAGE_kmod-dsa-rtl8366rb is not set
 # CONFIG_PACKAGE_kmod-dsa-vsc73xx is not set
 # CONFIG_PACKAGE_kmod-dsa-vsc73xx-platform is not set
@@ -3801,6 +3802,7 @@ CONFIG_PACKAGE_kmod-ipvlan=y
 # CONFIG_PACKAGE_kmod-lan743x is not set
 CONFIG_PACKAGE_kmod-libphy=m
 CONFIG_PACKAGE_kmod-macvlan=y
+CONFIG_PACKAGE_kmod-mdio-devres=m
 # CONFIG_PACKAGE_kmod-mdio-gpio is not set
 # CONFIG_PACKAGE_kmod-mhi-net is not set
 # CONFIG_PACKAGE_kmod-mhi-wwan-ctrl is not set
@@ -3812,7 +3814,7 @@ CONFIG_PACKAGE_kmod-mii=m
 # CONFIG_PACKAGE_kmod-mtk-t7xx is not set
 # CONFIG_PACKAGE_kmod-natsemi is not set
 # CONFIG_PACKAGE_kmod-ne2k-pci is not set
-# CONFIG_PACKAGE_kmod-net-selftests is not set
+CONFIG_PACKAGE_kmod-net-selftests=m
 # CONFIG_PACKAGE_kmod-niu is not set
 # CONFIG_PACKAGE_kmod-of-mdio is not set
 # CONFIG_PACKAGE_kmod-pcnet32 is not set
@@ -3833,10 +3835,10 @@ CONFIG_PACKAGE_kmod-mii=m
 # CONFIG_PACKAGE_kmod-phy-microchip is not set
 # CONFIG_PACKAGE_kmod-phy-motorcomm is not set
 # CONFIG_PACKAGE_kmod-phy-qca83xx is not set
-# CONFIG_PACKAGE_kmod-phy-realtek is not set
+CONFIG_PACKAGE_kmod-phy-realtek=m
 # CONFIG_PACKAGE_kmod-phy-smsc is not set
 # CONFIG_PACKAGE_kmod-phy-vitesse is not set
-# CONFIG_PACKAGE_kmod-phylink is not set
+CONFIG_PACKAGE_kmod-phylink=m
 # CONFIG_PACKAGE_kmod-qlcnic is not set
 # CONFIG_PACKAGE_kmod-r6040 is not set
 CONFIG_PACKAGE_kmod-r8101=m
@@ -6162,6 +6164,7 @@ CONFIG_PACKAGE_luci-base=y
 # CONFIG_LUCI_SRCDIET is not set
 CONFIG_LUCI_JSMIN=y
 CONFIG_LUCI_CSSTIDY=y
+CONFIG_LUCI_UTMIN=y
 
 #
 # Translations
@@ -6544,6 +6547,7 @@ CONFIG_PACKAGE_luci-i18n-dashboard-zh-cn=m
 # CONFIG_PACKAGE_luci-i18n-dawn-ru is not set
 # CONFIG_PACKAGE_luci-i18n-dawn-sv is not set
 # CONFIG_PACKAGE_luci-i18n-dawn-ta is not set
+# CONFIG_PACKAGE_luci-i18n-dawn-tr is not set
 # CONFIG_PACKAGE_luci-i18n-dawn-uk is not set
 CONFIG_PACKAGE_luci-i18n-dawn-zh-cn=m
 # CONFIG_PACKAGE_luci-i18n-dawn-zh-tw is not set
@@ -6669,27 +6673,42 @@ CONFIG_PACKAGE_luci-i18n-ksmbd-zh-cn=m
 # CONFIG_PACKAGE_luci-i18n-ledtrig-rssi-cs is not set
 # CONFIG_PACKAGE_luci-i18n-ledtrig-rssi-es is not set
 # CONFIG_PACKAGE_luci-i18n-ledtrig-rssi-ga is not set
+# CONFIG_PACKAGE_luci-i18n-ledtrig-rssi-ko is not set
 # CONFIG_PACKAGE_luci-i18n-ledtrig-rssi-lo is not set
 # CONFIG_PACKAGE_luci-i18n-ledtrig-rssi-lt is not set
 # CONFIG_PACKAGE_luci-i18n-ledtrig-rssi-pl is not set
 # CONFIG_PACKAGE_luci-i18n-ledtrig-rssi-ru is not set
+# CONFIG_PACKAGE_luci-i18n-ledtrig-rssi-sv is not set
+# CONFIG_PACKAGE_luci-i18n-ledtrig-rssi-tr is not set
+# CONFIG_PACKAGE_luci-i18n-ledtrig-rssi-uk is not set
 CONFIG_PACKAGE_luci-i18n-ledtrig-rssi-zh-cn=m
+# CONFIG_PACKAGE_luci-i18n-ledtrig-rssi-zh-tw is not set
 # CONFIG_PACKAGE_luci-i18n-ledtrig-switch-cs is not set
 # CONFIG_PACKAGE_luci-i18n-ledtrig-switch-es is not set
 # CONFIG_PACKAGE_luci-i18n-ledtrig-switch-ga is not set
+# CONFIG_PACKAGE_luci-i18n-ledtrig-switch-ko is not set
 # CONFIG_PACKAGE_luci-i18n-ledtrig-switch-lo is not set
 # CONFIG_PACKAGE_luci-i18n-ledtrig-switch-lt is not set
 # CONFIG_PACKAGE_luci-i18n-ledtrig-switch-pl is not set
 # CONFIG_PACKAGE_luci-i18n-ledtrig-switch-ru is not set
+# CONFIG_PACKAGE_luci-i18n-ledtrig-switch-sv is not set
+# CONFIG_PACKAGE_luci-i18n-ledtrig-switch-tr is not set
+# CONFIG_PACKAGE_luci-i18n-ledtrig-switch-uk is not set
 CONFIG_PACKAGE_luci-i18n-ledtrig-switch-zh-cn=y
+# CONFIG_PACKAGE_luci-i18n-ledtrig-switch-zh-tw is not set
 # CONFIG_PACKAGE_luci-i18n-ledtrig-usbport-cs is not set
 # CONFIG_PACKAGE_luci-i18n-ledtrig-usbport-es is not set
 # CONFIG_PACKAGE_luci-i18n-ledtrig-usbport-ga is not set
+# CONFIG_PACKAGE_luci-i18n-ledtrig-usbport-ko is not set
 # CONFIG_PACKAGE_luci-i18n-ledtrig-usbport-lo is not set
 # CONFIG_PACKAGE_luci-i18n-ledtrig-usbport-lt is not set
 # CONFIG_PACKAGE_luci-i18n-ledtrig-usbport-pl is not set
 # CONFIG_PACKAGE_luci-i18n-ledtrig-usbport-ru is not set
+# CONFIG_PACKAGE_luci-i18n-ledtrig-usbport-sv is not set
+# CONFIG_PACKAGE_luci-i18n-ledtrig-usbport-tr is not set
+# CONFIG_PACKAGE_luci-i18n-ledtrig-usbport-uk is not set
 CONFIG_PACKAGE_luci-i18n-ledtrig-usbport-zh-cn=m
+# CONFIG_PACKAGE_luci-i18n-ledtrig-usbport-zh-tw is not set
 # CONFIG_PACKAGE_luci-i18n-mwan3-ar is not set
 # CONFIG_PACKAGE_luci-i18n-mwan3-bg is not set
 # CONFIG_PACKAGE_luci-i18n-mwan3-bn is not set
@@ -6893,17 +6912,23 @@ CONFIG_PACKAGE_luci-i18n-sqm-zh-cn=m
 # CONFIG_PACKAGE_luci-i18n-strongswan-swanctl-pt-br is not set
 # CONFIG_PACKAGE_luci-i18n-strongswan-swanctl-ro is not set
 # CONFIG_PACKAGE_luci-i18n-strongswan-swanctl-ru is not set
+# CONFIG_PACKAGE_luci-i18n-strongswan-swanctl-sv is not set
 # CONFIG_PACKAGE_luci-i18n-strongswan-swanctl-ta is not set
+# CONFIG_PACKAGE_luci-i18n-strongswan-swanctl-tr is not set
 # CONFIG_PACKAGE_luci-i18n-strongswan-swanctl-uk is not set
 CONFIG_PACKAGE_luci-i18n-strongswan-swanctl-zh-cn=m
 # CONFIG_PACKAGE_luci-i18n-strongswan-swanctl-zh-tw is not set
 # CONFIG_PACKAGE_luci-i18n-tailscale-community-cs is not set
 # CONFIG_PACKAGE_luci-i18n-tailscale-community-es is not set
 # CONFIG_PACKAGE_luci-i18n-tailscale-community-ga is not set
+# CONFIG_PACKAGE_luci-i18n-tailscale-community-ko is not set
 # CONFIG_PACKAGE_luci-i18n-tailscale-community-lo is not set
 # CONFIG_PACKAGE_luci-i18n-tailscale-community-lt is not set
 # CONFIG_PACKAGE_luci-i18n-tailscale-community-pl is not set
 # CONFIG_PACKAGE_luci-i18n-tailscale-community-ru is not set
+# CONFIG_PACKAGE_luci-i18n-tailscale-community-sv is not set
+# CONFIG_PACKAGE_luci-i18n-tailscale-community-tr is not set
+# CONFIG_PACKAGE_luci-i18n-tailscale-community-uk is not set
 CONFIG_PACKAGE_luci-i18n-tailscale-community-zh-cn=m
 # CONFIG_PACKAGE_luci-i18n-tailscale-community-zh-tw is not set
 # CONFIG_PACKAGE_luci-i18n-upnp-ar is not set
@@ -7311,6 +7336,7 @@ CONFIG_PACKAGE_ddns-scripts=y
 # CONFIG_PACKAGE_ddns-scripts-dnspod-v3 is not set
 # CONFIG_PACKAGE_ddns-scripts-freedns is not set
 # CONFIG_PACKAGE_ddns-scripts-gandi is not set
+# CONFIG_PACKAGE_ddns-scripts-gandi-v2 is not set
 # CONFIG_PACKAGE_ddns-scripts-gcp is not set
 # CONFIG_PACKAGE_ddns-scripts-godaddy is not set
 # CONFIG_PACKAGE_ddns-scripts-hetzner-cloud is not set
@@ -8388,6 +8414,7 @@ CONFIG_PACKAGE_uclient-fetch=y
 # CONFIG_PACKAGE_udpxy is not set
 # CONFIG_PACKAGE_ulogd is not set
 CONFIG_PACKAGE_umdns=y
+# CONFIG_PACKAGE_uneighbord is not set
 # CONFIG_PACKAGE_unet-cli is not set
 # CONFIG_PACKAGE_unetd is not set
 # CONFIG_PACKAGE_uradvd is not set
@@ -9108,6 +9135,7 @@ CONFIG_PACKAGE_jshn=y
 CONFIG_PACKAGE_libjson-script=y
 # CONFIG_PACKAGE_librespeed-cli is not set
 # CONFIG_PACKAGE_librespeed-cli-rust is not set
+# CONFIG_PACKAGE_librespeed-common is not set
 # CONFIG_PACKAGE_libxml2-utils is not set
 # CONFIG_PACKAGE_lm-sensors is not set
 # CONFIG_PACKAGE_lm-sensors-detect is not set
