@@ -280,7 +280,7 @@ CONFIG_KERNEL_KALLSYMS=y
 # CONFIG_KERNEL_FTRACE is not set
 CONFIG_KERNEL_DEBUG_KERNEL=y
 CONFIG_KERNEL_DEBUG_INFO=y
-# CONFIG_KERNEL_DEBUG_INFO_NONE is not set
+CONFIG_KERNEL_DEBUG_INFO_DWARF_TOOLCHAIN_DEFAULT=y
 CONFIG_KERNEL_DEBUG_INFO_REDUCED=y
 CONFIG_KERNEL_FRAME_WARN=2048
 # CONFIG_KERNEL_DEBUG_VIRTUAL is not set
@@ -494,7 +494,7 @@ CONFIG_TARGET_INIT_CMD="/sbin/init"
 CONFIG_TARGET_INIT_SUPPRESS_STDERR=y
 CONFIG_VERSIONOPT=y
 CONFIG_VERSION_DIST="X-WRT"
-CONFIG_VERSION_NUMBER="26.04_b202609082301"
+CONFIG_VERSION_NUMBER="26.04_b202609120425"
 CONFIG_VERSION_CODE="Resolute"
 CONFIG_VERSION_REPO="http://downloads.openwrt.org/snapshots"
 CONFIG_VERSION_HOME_URL="https://x-wrt.com/"
@@ -6269,6 +6269,7 @@ CONFIG_PACKAGE_luci-app-ksmbd=y
 CONFIG_PACKAGE_luci-app-ledtrig-rssi=m
 CONFIG_PACKAGE_luci-app-ledtrig-switch=y
 CONFIG_PACKAGE_luci-app-ledtrig-usbport=y
+# CONFIG_PACKAGE_luci-app-librespeed is not set
 # CONFIG_PACKAGE_luci-app-libreswan is not set
 # CONFIG_PACKAGE_luci-app-lldpd is not set
 # CONFIG_PACKAGE_luci-app-lorawan-basicstation is not set
@@ -7593,6 +7594,7 @@ CONFIG_PACKAGE_relayd=y
 # CONFIG_PACKAGE_tc-bpf is not set
 # CONFIG_PACKAGE_tc-full is not set
 CONFIG_PACKAGE_tc-tiny=m
+# CONFIG_PACKAGE_tcfilter is not set
 # CONFIG_PACKAGE_tcpproxy is not set
 # CONFIG_PACKAGE_vis is not set
 # CONFIG_PACKAGE_yggdrasil is not set

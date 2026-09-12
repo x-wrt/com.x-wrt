@@ -461,7 +461,7 @@ CONFIG_TARGET_DEVICE_ramips_mt7621_DEVICE_d-team_newifi-d2=y
 CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt7621_DEVICE_d-team_newifi-d2="apk-mbedtls blockd block-mount chat comgt comgt-ncm dawn ip-bridge kmod-cfg80211 kmod-crypto-ccm kmod-crypto-chacha20poly1305 kmod-crypto-cmac kmod-crypto-crc32c kmod-crypto-ctr kmod-crypto-ecb kmod-crypto-gcm kmod-crypto-geniv kmod-crypto-gf128 kmod-crypto-ghash kmod-crypto-seqiv kmod-fs-autofs4 kmod-fs-exfat kmod-fs-ext4 kmod-fs-ksmbd kmod-fs-msdos kmod-fs-netfs kmod-fs-ntfs kmod-fs-smbfs-common kmod-fs-vfat kmod-fuse kmod-gpio-button-hotplug kmod-leds-gpio kmod-lib-crc16 kmod-libphy kmod-mac80211 kmod-mii kmod-mt7603 kmod-mt76-core kmod-mt76x02-common kmod-mt76x2 kmod-mt76x2-common kmod-nls-cp437 kmod-nls-ucs2-utils kmod-oid-registry kmod-ovpn-backports kmod-phy-mtk-tphy kmod-scsi-core kmod-usb2 kmod-usb3 kmod-usb-common kmod-usb-core kmod-usb-ehci kmod-usb-ledtrig-usbport kmod-usb-net kmod-usb-net-cdc-ether kmod-usb-net-cdc-mbim kmod-usb-net-cdc-ncm kmod-usb-net-huawei-cdc-ncm kmod-usb-net-ipheth kmod-usb-net-qmi-wwan kmod-usb-net-rndis kmod-usb-net-rtl8152 kmod-usb-ohci kmod-usb-printer kmod-usb-serial kmod-usb-serial-option kmod-usb-serial-qualcomm kmod-usb-serial-wwan kmod-usb-storage kmod-usb-storage-extras kmod-usb-storage-uas kmod-usb-wdm kmod-usb-xhci-hcd kmod-usb-xhci-mtk ksmbd-server libgcrypt libgpg-error liblz4 liblzo libnl-core libnl-genl libqrencode libusb-1.0 luci-app-dawn luci-app-ksmbd luci-app-ledtrig-usbport luci-app-p910nd luci-app-usteer luci-i18n-dashboard-zh-cn luci-i18n-dawn-zh-cn luci-i18n-ksmbd-zh-cn luci-i18n-p910nd-zh-cn luci-i18n-usteer-zh-cn luci-mod-dashboard luci-proto-3g luci-proto-mbim luci-proto-ncm luci-proto-openvpn luci-proto-qmi luci-proto-relay luci-proto-wireguard nfs-utils openvpn-mbedtls p910nd qrencode r8152-firmware relayd tc-tiny umbim uqmi usb-modeswitch wireguard-tools wireless-regdb wpad-mbedtls wsdd2 wwan"
 # CONFIG_TARGET_DEVICE_ramips_mt7621_DEVICE_dna_valokuitu-plus-ex400 is not set
 CONFIG_TARGET_DEVICE_ramips_mt7621_DEVICE_dual-q_h721=y
-CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt7621_DEVICE_dual-q_h721="apk-mbedtls ath10k-board-qca988x ath10k-firmware-qca988x-ct blockd block-mount chat comgt comgt-ncm dawn ip-bridge kmod-ata-ahci kmod-ata-core kmod-ath kmod-ath10k-ct kmod-ath9k kmod-ath9k-common kmod-cfg80211 kmod-crypto-ccm kmod-crypto-chacha20poly1305 kmod-crypto-cmac kmod-crypto-crc32c kmod-crypto-ctr kmod-crypto-gcm kmod-crypto-geniv kmod-crypto-gf128 kmod-crypto-ghash kmod-crypto-seqiv kmod-fs-autofs4 kmod-fs-exfat kmod-fs-ext4 kmod-fs-msdos kmod-fs-ntfs kmod-fs-vfat kmod-fuse kmod-gpio-button-hotplug kmod-hwmon-core kmod-i2c-core kmod-leds-gpio kmod-lib-crc16 kmod-libphy kmod-mac80211 kmod-mii kmod-mmc kmod-mt76-connac kmod-mt76-core kmod-mt7915e kmod-mt7915-firmware kmod-mt7916-firmware kmod-nls-cp437 kmod-ovpn-backports kmod-phy-mtk-tphy kmod-qmi-wwan-q kmod-random-core kmod-scsi-core kmod-sdhci-mt7620 kmod-thermal kmod-usb2 kmod-usb3 kmod-usb-common kmod-usb-core kmod-usb-ehci kmod-usb-net kmod-usb-net-cdc-ether kmod-usb-net-cdc-mbim kmod-usb-net-cdc-ncm kmod-usb-net-huawei-cdc-ncm kmod-usb-net-ipheth kmod-usb-net-qmi-wwan kmod-usb-net-rndis kmod-usb-net-rtl8152 kmod-usb-ohci kmod-usb-serial kmod-usb-serial-option kmod-usb-serial-qualcomm kmod-usb-serial-wwan kmod-usb-storage kmod-usb-storage-uas kmod-usb-wdm kmod-usb-xhci-hcd kmod-usb-xhci-mtk libevdev libgcrypt libgpg-error libkmod liblz4 liblzo libnl-core libnl-genl libpci libqrencode libudev-zero libusb-1.0 lte-modem-dual-q-h721 luci-app-3ginfo-lite luci-app-dawn luci-app-usteer luci-i18n-dashboard-zh-cn luci-i18n-dawn-zh-cn luci-i18n-usteer-zh-cn luci-mod-dashboard luci-proto-3g luci-proto-mbim luci-proto-ncm luci-proto-openvpn luci-proto-qmap luci-proto-qmi luci-proto-relay luci-proto-wireguard openvpn-mbedtls pciids pciutils qrencode quectel-cm r8152-firmware relayd sms-tool tc-tiny umbim uqmi usbids usb-modeswitch usbutils wireguard-tools wireless-regdb wpad-mbedtls wwan"
+CONFIG_TARGET_DEVICE_PACKAGES_ramips_mt7621_DEVICE_dual-q_h721="apk-mbedtls ath10k-board-qca988x ath10k-firmware-qca988x-ct blockd block-mount chat comgt comgt-ncm dawn ip-bridge kmod-ata-ahci kmod-ata-core kmod-ath kmod-ath10k-ct kmod-ath9k kmod-ath9k-common kmod-cfg80211 kmod-crypto-ccm kmod-crypto-chacha20poly1305 kmod-crypto-cmac kmod-crypto-crc32c kmod-crypto-ctr kmod-crypto-gcm kmod-crypto-geniv kmod-crypto-gf128 kmod-crypto-ghash kmod-crypto-seqiv kmod-fs-autofs4 kmod-fs-exfat kmod-fs-ext4 kmod-fs-msdos kmod-fs-ntfs kmod-fs-vfat kmod-fuse kmod-gpio-button-hotplug kmod-hwmon-core kmod-i2c-core kmod-leds-gpio kmod-lib-crc16 kmod-libphy kmod-mac80211 kmod-mii kmod-mmc kmod-mt76-connac kmod-mt76-core kmod-mt7915e kmod-mt7915-firmware kmod-mt7916-firmware kmod-nls-cp437 kmod-ovpn-backports kmod-phy-mtk-tphy kmod-qmi-wwan-q kmod-random-core kmod-scsi-core kmod-sdhci-mt7620 kmod-thermal kmod-usb2 kmod-usb3 kmod-usb-common kmod-usb-core kmod-usb-ehci kmod-usb-net kmod-usb-net-cdc-ether kmod-usb-net-cdc-mbim kmod-usb-net-cdc-ncm kmod-usb-net-huawei-cdc-ncm kmod-usb-net-ipheth kmod-usb-net-qmi-wwan kmod-usb-net-rndis kmod-usb-net-rtl8152 kmod-usb-ohci kmod-usb-serial kmod-usb-serial-option kmod-usb-serial-qualcomm kmod-usb-serial-wwan kmod-usb-storage kmod-usb-storage-uas kmod-usb-wdm kmod-usb-xhci-hcd kmod-usb-xhci-mtk libevdev libgcrypt libgpg-error libkmod liblz4 liblzo libnl-core libnl-genl libpci libqrencode libudev-zero libusb-1.0 luci-app-3ginfo-lite luci-app-dawn luci-app-usteer luci-i18n-dashboard-zh-cn luci-i18n-dawn-zh-cn luci-i18n-usteer-zh-cn luci-mod-dashboard luci-proto-3g luci-proto-mbim luci-proto-ncm luci-proto-openvpn luci-proto-qmap luci-proto-qmi luci-proto-relay luci-proto-wireguard openvpn-mbedtls pciids pciutils qrencode quectel-cm r8152-firmware relayd sms-tool tc-tiny umbim uqmi usbids usb-modeswitch usbutils wireguard-tools wireless-regdb wpad-mbedtls wwan"
 # CONFIG_TARGET_DEVICE_ramips_mt7621_DEVICE_edimax_rg21s is not set
 # CONFIG_TARGET_DEVICE_ramips_mt7621_DEVICE_edimax_ra21s is not set
 # CONFIG_TARGET_DEVICE_ramips_mt7621_DEVICE_edimax_re23s is not set
@@ -831,7 +831,6 @@ CONFIG_DEFAULT_libustream-mbedtls=y
 CONFIG_MODULE_DEFAULT_libustream-mbedtls=y
 CONFIG_DEFAULT_logd=y
 CONFIG_MODULE_DEFAULT_logd=y
-CONFIG_MODULE_DEFAULT_lte-modem-dual-q-h721=y
 CONFIG_MODULE_DEFAULT_lte-modem-xwrt-5g-cpe1801k=y
 CONFIG_MODULE_DEFAULT_mkf2fs=y
 CONFIG_DEFAULT_mtd=y
@@ -968,6 +967,7 @@ CONFIG_KERNEL_PERF_EVENTS=y
 CONFIG_KERNEL_KALLSYMS=y
 # CONFIG_KERNEL_FTRACE is not set
 # CONFIG_KERNEL_DEBUG_INFO is not set
+# CONFIG_KERNEL_DEBUG_INFO_DWARF_TOOLCHAIN_DEFAULT is not set
 # CONFIG_KERNEL_DEBUG_INFO_NONE is not set
 CONFIG_KERNEL_FRAME_WARN=1024
 # CONFIG_KERNEL_DEBUG_VIRTUAL is not set
@@ -1168,7 +1168,7 @@ CONFIG_TARGET_INIT_CMD="/sbin/init"
 CONFIG_TARGET_INIT_SUPPRESS_STDERR=y
 CONFIG_VERSIONOPT=y
 CONFIG_VERSION_DIST="X-WRT"
-CONFIG_VERSION_NUMBER="26.04_b202609082301"
+CONFIG_VERSION_NUMBER="26.04_b202609120425"
 CONFIG_VERSION_CODE="Resolute"
 CONFIG_VERSION_REPO="http://downloads.openwrt.org/snapshots"
 CONFIG_VERSION_HOME_URL="https://x-wrt.com/"
@@ -3844,7 +3844,6 @@ CONFIG_PACKAGE_wireless-regdb=m
 CONFIG_PACKAGE_base-settings-xwrt-t-cpe1200k-v01=m
 CONFIG_PACKAGE_base-settings-xwrt-t-cpe1201k-v01=m
 CONFIG_PACKAGE_base-settings-xwrt-x-sdwan-1200=m
-CONFIG_PACKAGE_lte-modem-dual-q-h721=m
 CONFIG_PACKAGE_lte-modem-xwrt-5g-cpe1801k=m
 CONFIG_PACKAGE_poe-controller=m
 CONFIG_PACKAGE_xs2184=m
@@ -6877,6 +6876,7 @@ CONFIG_PACKAGE_luci-app-ksmbd=m
 CONFIG_PACKAGE_luci-app-ledtrig-rssi=m
 CONFIG_PACKAGE_luci-app-ledtrig-switch=y
 CONFIG_PACKAGE_luci-app-ledtrig-usbport=m
+# CONFIG_PACKAGE_luci-app-librespeed is not set
 # CONFIG_PACKAGE_luci-app-libreswan is not set
 # CONFIG_PACKAGE_luci-app-lldpd is not set
 # CONFIG_PACKAGE_luci-app-lorawan-basicstation is not set
@@ -8244,6 +8244,7 @@ CONFIG_PACKAGE_relayd=m
 # CONFIG_PACKAGE_tc-bpf is not set
 # CONFIG_PACKAGE_tc-full is not set
 CONFIG_PACKAGE_tc-tiny=m
+# CONFIG_PACKAGE_tcfilter is not set
 # CONFIG_PACKAGE_tcpproxy is not set
 # CONFIG_PACKAGE_vis is not set
 # CONFIG_PACKAGE_yggdrasil is not set
