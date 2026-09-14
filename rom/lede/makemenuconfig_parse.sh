@@ -975,7 +975,6 @@ for t in $targets; do
 		TARGET_DEVICE_ramips_mt7621_DEVICE_asus_rt-ax53u|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_tplink_ex220-v1|\
 		TARGET_DEVICE_ath79_generic_DEVICE_comfast_cf-e5|\
-		TARGET_DEVICE_mediatek_filogic_DEVICE_tenbay_ms3000k|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_asus_rt-ac57u-v1|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_dual-q_h721|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_jdcloud_re-sp-01b|\
@@ -1191,6 +1190,7 @@ for t in $targets; do
 			flash_gt8m=1
 		;;
 		# <= 8M
+		TARGET_DEVICE_mediatek_filogic_DEVICE_tenbay_ms3000k|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_yuncore_ax835|\
 		TARGET_DEVICE_qualcommax_ipq807x_DEVICE_asus_rt-ax89x|\
 		TARGET_DEVICE_ramips_mt7620_DEVICE_tplink_archer-c5-v4|\
