@@ -1093,15 +1093,17 @@ gfwlist_update_main () {
 		}
 
 		#update /etc/hosts
+		output=/etc/hosts
+		test -d /tmp/hosts && output=/tmp/hosts/natcapd
 		res=$(nslookup_check services.googleapis.com)
 		if test -n "$res"; then
-			sed -i "/services.googleapis.cn/d" /etc/hosts
-			echo $res services.googleapis.cn >>/etc/hosts
+			sed -i "/services.googleapis.cn/d" $output
+			echo $res services.googleapis.cn >>$output
 		fi
 		res=$(nslookup_check google.com)
 		if test -n "$res"; then
-			sed -i "/google.cn/d" /etc/hosts
-			echo $res google.cn >>/etc/hosts
+			sed -i "/google.cn/d" $output
+			echo $res google.cn >>$output
 		fi
 
 		#check and limit
