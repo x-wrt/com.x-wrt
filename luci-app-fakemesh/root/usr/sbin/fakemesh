@@ -552,7 +552,14 @@ wireless_config_md5()
 	local digest
 	digest=$({
 		printf 'role=%s\n' "$1"
-		uci show fakemeshac | grep '^fakemeshac.@wifim'
+		uci show fakemeshac | awk '
+			/^fakemeshac\.[^.]+=/ {
+				section = $0
+				sub(/=.*/, "", section)
+				wireless = ($0 == section "=wifim")
+			}
+			wireless { print }
+		'
 	} | md5sum)
 	printf '%s' "${digest%% *}"
 }
