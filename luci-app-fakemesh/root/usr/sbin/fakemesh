@@ -119,6 +119,21 @@ valid_ipv4()
 	done
 )
 
+valid_wireless_key()
+{
+	# hostapd's UCI key accepts a passphrase, or a raw PSK for WPA/WPA2.
+	case "$1" in
+		*'
+'*|*"$(printf '\r')"*) return 1 ;;
+	esac
+	if [ "${#1}" -eq 64 ]; then
+		case "$2" in psk|psk2|psk-mixed) ;; *) return 1 ;; esac
+		case "$1" in *[!0-9a-fA-F]*) return 1 ;; esac
+		return 0
+	fi
+	[ "${#1}" -ge 8 ] && [ "${#1}" -le 63 ]
+}
+
 select_backhaul_radio()
 {
 	local radio_band
@@ -137,6 +152,7 @@ find_backhaul_radio()
 
 validate_enabled_config()
 {
+	local key_mode=psk2
 	[ -n "$Xid" ] || configuration_error 'Mesh ID is required' || return 1
 	[ "${#Xid}" -le 32 ] || configuration_error 'Mesh ID exceeds 32 bytes' || return 1
 	case "$role" in
@@ -147,6 +163,11 @@ validate_enabled_config()
 		2g|5g|6g) ;;
 		*) configuration_error "unsupported backhaul band: $band"; return 1 ;;
 	esac
+	[ "$band" != 6g ] || key_mode=sae
+	if [ -n "$Xkey" ] && ! valid_wireless_key "$Xkey" "$key_mode"; then
+		configuration_error 'invalid backhaul key for the selected band'
+		return 1
+	fi
 	case "$sync_ac" in
 		0|1) ;;
 		*) configuration_error 'Sync Configuration must be 0 or 1'; return 1 ;;
@@ -584,7 +605,8 @@ validate_ac_config()
 	for section in $sections; do
 		ssid=$(ac_get "$section.ssid")
 		[ -n "$ssid" ] && [ "${#ssid}" -le 32 ] || exit 1
-		case "$(ac_get "$section.band")" in
+		bands=$(ac_get "$section.band")
+		case "$bands" in
 			2g|5g|6g|2g5g|2g6g|5g6g|2g5g6g) ;;
 			*) exit 1 ;;
 		esac
@@ -592,11 +614,14 @@ validate_ac_config()
 			0|1) ;;
 			*) exit 1 ;;
 		esac
-		case "$(ac_get "$section.encryption")" in
+		encryption=$(ac_get "$section.encryption")
+		case "$encryption" in
 			none|owe) ;;
 			psk|psk2|psk-mixed|sae|sae-mixed)
 				key=$(ac_get "$section.key")
-				[ -n "$key" ] || exit 1
+				# WPA/WPA2 settings are converted to SAE on 6 GHz.
+				case "$bands" in *6g*) encryption=sae ;; esac
+				valid_wireless_key "$key" "$encryption" || exit 1
 				;;
 			*) exit 1 ;;
 		esac
@@ -687,14 +712,9 @@ agent_sync_config()
 
 		worker_current || return 0
 		if { [ "$validated_config" != 1 ] || ! cmp -s "$sync_tmp" /tmp/fakemesh.ac.config; } && ! validate_ac_config "$sync_tmp"; then
-			lost_ac=$((lost_ac+1))
-			logger -t fakemesh "agent_sync_config($pid): invalid controller config ($lost_ac), keeping current config"
+			logger -t fakemesh "agent_sync_config($pid): invalid controller config, keeping current config"
 			rm -f "$sync_tmp"
-			if [ "$role" != "controller" ] && test "$lost_ac" -ge "$LOST_AC_CNT"; then
-				worker_unlock
-				lost_ac=$lost_ac exec /usr/sbin/fakemesh agent_lost_ac &
-				return 0
-			fi
+			# A reachable controller with bad settings is not a lost controller.
 			sleep 30
 			test -f /tmp/fakemesh_lck3/$pid || return 0
 			continue
