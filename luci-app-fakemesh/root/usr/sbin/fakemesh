@@ -655,7 +655,7 @@ agent_sync_config()
 
 		if ( \
 		[ "$role" = "controller" ] && cp /etc/config/fakemesh "$sync_tmp" || \
-		wget -4 -q -T 10 -t 1 -O "$sync_tmp" http://$achost/fakemesh.$hash 2>/dev/null ); then
+		wget -4 -q -T 10 -O "$sync_tmp" http://$achost/fakemesh.$hash 2>/dev/null ); then
 			:
 		else
 			lost_ac=$((lost_ac+1))
@@ -667,9 +667,9 @@ agent_sync_config()
 				/etc/init.d/network reload
 				sleep 5
 			fi
-			if test -n "$acip" && [ "$role" != "controller" ] && wget -4 -q -T 5 -t 1 -O "$sync_tmp" http://$acip/fakemesh.$hash 2>/dev/null; then
+			if test -n "$acip" && [ "$role" != "controller" ] && wget -4 -q -T 5 -O "$sync_tmp" http://$acip/fakemesh.$hash 2>/dev/null; then
 				logger -t fakemesh "agent_sync_config($pid): fetch config from gateway($acip) ok(lost_ac=$lost_ac)"
-			elif test -n "$achost" && [ "$role" != "controller" ] && wget -4 -q -T 5 -t 1 -O "$sync_tmp" http://$achost/fakemesh.$hash 2>/dev/null; then
+			elif test -n "$achost" && [ "$role" != "controller" ] && wget -4 -q -T 5 -O "$sync_tmp" http://$achost/fakemesh.$hash 2>/dev/null; then
 				logger -t fakemesh "agent_sync_config($pid): fetch config from achost($achost) ok(lost_ac=$lost_ac)"
 			else
 				if test $lost_ac -ge $LOST_AC_CNT; then
