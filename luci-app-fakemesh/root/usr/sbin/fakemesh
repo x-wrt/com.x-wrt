@@ -396,8 +396,6 @@ test $enabled -eq 0 && {
 		uci commit firewall
 	}
 
-	uci changes
-
 	uci commit fakemesh
 	uci commit wireless
 	uci commit dhcp
@@ -1202,8 +1200,6 @@ EOT
 
 	/usr/sbin/fakemesh gen_config
 
-	uci changes
-
 	test "$(uci changes 2>/dev/null | grep -c -v "='dhcp'\|='interface'\|='wifi-iface'")" -le 0 && {
 		uci revert wireless
 		uci revert dhcp
@@ -1354,8 +1350,6 @@ EOT
 	grep -q "^sh /usr/share/fakemesh/firewall.include" /etc/firewall.include || echo "sh /usr/share/fakemesh/firewall.include" >>/etc/firewall.include
 
 	/etc/init.d/firewall reload >/dev/null 2>&1
-
-	uci changes
 
 	test "$(uci changes 2>/dev/null | grep -c -v "='dhcp'\|='interface'\|='wifi-iface'")" -le 0 && {
 		uci revert wireless
