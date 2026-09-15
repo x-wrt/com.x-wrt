@@ -646,7 +646,7 @@ agent_sync_config()
 	sync_tmp="/tmp/fakemesh.ac.config.tmp.$pid"
 
 	logger -t fakemesh "agent_sync_config($pid): started!"
-	hash=$(echo -n ${Xid}${Xkey} | md5sum)
+	hash=$(printf '%s' "$Xid$Xkey" | md5sum)
 	hash=${hash%% *}
 	validated_config=0
 
@@ -1061,7 +1061,7 @@ agent_reload()
 		uci -q set fakemesh.default.load_kick_enabled="$load_kick"
 		uci commit fakemesh
 
-		hash=$(echo -n ${Xid}${Xkey} | md5sum | head -c32)
+		hash=$(printf '%s' "$Xid$Xkey" | md5sum | head -c32)
 		ln -s /etc/config/fakemesh /www/fakemesh.$hash 2>/dev/null
 		for f in /www/fakemesh.*; do
 			[ "$f" != "/www/fakemesh.$hash" ] && rm -f "$f"
