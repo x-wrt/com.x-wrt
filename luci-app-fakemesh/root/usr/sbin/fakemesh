@@ -956,6 +956,8 @@ agent_keep_alive()
 				worker_unlock
 				exec /usr/sbin/fakemesh agent_fix_channel &
 				return 0
+			else
+				sta_lost=0
 			fi
 		fi
 		sleep 30
