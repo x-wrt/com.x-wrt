@@ -9,7 +9,7 @@
 worker_current()
 {
 	local current_generation
-	read -r current_generation < /tmp/fakemesh.generation 2>/dev/null || return 1
+	read -r current_generation 2>/dev/null < /tmp/fakemesh.generation || return 1
 	[ "$FAKEMESH_GENERATION" = "$current_generation" ]
 }
 
@@ -213,12 +213,18 @@ configure_mesh_security()
 
 case "$1" in
 	setup) exit 0 ;;
+	stop)
+		setup_lock || exit 1
+		rm -f /tmp/fakemesh.generation || exit 1
+		stop_workers
+		exit 0
+		;;
 	'')
 		setup_lock || exit 1
 		;;
 	*)
 		if [ -z "$FAKEMESH_GENERATION" ]; then
-			read -r FAKEMESH_GENERATION < /tmp/fakemesh.generation 2>/dev/null || exit 0
+			read -r FAKEMESH_GENERATION 2>/dev/null < /tmp/fakemesh.generation || exit 0
 		fi
 		export FAKEMESH_GENERATION
 		worker_current || exit 0
