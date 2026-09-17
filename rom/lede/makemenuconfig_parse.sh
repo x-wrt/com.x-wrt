@@ -511,6 +511,7 @@ for t in $targets; do
 		TARGET_DEVICE_mediatek_filogic_DEVICE_cudy_wr3000e-v1|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_glinet_gl-mt3600be|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_tenda_be12-pro|\
+		TARGET_DEVICE_airoha_an7563_DEVICE_tenda_be6l-pro|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_tplink_be450|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_bananapi_bpi-r4-lite|\
 		TARGET_DEVICE_qualcommax_ipq50xx_DEVICE_yuncore_ax830|\
@@ -672,6 +673,7 @@ for t in $targets; do
 		TARGET_DEVICE_mediatek_filogic_DEVICE_cudy_wr3000e-v1|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_glinet_gl-mt3600be|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_tenda_be12-pro|\
+		TARGET_DEVICE_airoha_an7563_DEVICE_tenda_be6l-pro|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_tplink_be450|\
 		TARGET_DEVICE_qualcommax_ipq50xx_DEVICE_yuncore_ax830|\
 		TARGET_DEVICE_qualcommax_ipq50xx_DEVICE_xiaomi_redmi-ax5400|\
@@ -1757,6 +1759,7 @@ for t in $targets; do
 		TARGET_DEVICE_mediatek_filogic_DEVICE_tenda_ax12-pro-v2|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_tenda_ax12l-pro|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_tenda_be12-pro|\
+		TARGET_DEVICE_airoha_an7563_DEVICE_tenda_be6l-pro|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_cudy_wr3000e-v1|\
 		TARGET_DEVICE_qualcommax_ipq50xx_DEVICE_yuncore_ax830|\
 		TARGET_DEVICE_qualcommax_ipq50xx_DEVICE_xiaomi_redmi-ax5400|\
@@ -2071,6 +2074,7 @@ rt73-usb-firmware"
 		TARGET_DEVICE_mediatek_filogic_DEVICE_glinet_gl-mt6000|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_glinet_gl-mt3600be|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_tenda_be12-pro|\
+		TARGET_DEVICE_airoha_an7563_DEVICE_tenda_be6l-pro|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_cetron_ct3003|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_cetron_ct3003-ubootlayout|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_cudy_tr3000-256mb-v1|\
