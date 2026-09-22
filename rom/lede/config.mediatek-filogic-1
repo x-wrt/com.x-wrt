@@ -139,6 +139,7 @@ CONFIG_TARGET_MULTI_PROFILE=y
 # CONFIG_TARGET_mediatek_filogic_DEVICE_cudy_wr3000u-v1 is not set
 # CONFIG_TARGET_mediatek_filogic_DEVICE_cudy_wbr3000uax-v1 is not set
 # CONFIG_TARGET_mediatek_filogic_DEVICE_cudy_wbr3000uax-v1-ubootmod is not set
+# CONFIG_TARGET_mediatek_filogic_DEVICE_cudy_p2-v1 is not set
 # CONFIG_TARGET_mediatek_filogic_DEVICE_dlink_aquila-pro-ai-e30-a1 is not set
 # CONFIG_TARGET_mediatek_filogic_DEVICE_dlink_aquila-pro-ai-m30-a1 is not set
 # CONFIG_TARGET_mediatek_filogic_DEVICE_dlink_aquila-pro-ai-m60-a1 is not set
@@ -177,9 +178,11 @@ CONFIG_TARGET_MULTI_PROFILE=y
 # CONFIG_TARGET_mediatek_filogic_DEVICE_kebidumei_ax3000-u22 is not set
 # CONFIG_TARGET_mediatek_filogic_DEVICE_keenetic_kap-630 is not set
 # CONFIG_TARGET_mediatek_filogic_DEVICE_keenetic_kn-1812 is not set
+# CONFIG_TARGET_mediatek_filogic_DEVICE_keenetic_kn-3411 is not set
 # CONFIG_TARGET_mediatek_filogic_DEVICE_keenetic_kn-3711 is not set
 # CONFIG_TARGET_mediatek_filogic_DEVICE_keenetic_kn-3811 is not set
 # CONFIG_TARGET_mediatek_filogic_DEVICE_keenetic_kn-3911 is not set
+# CONFIG_TARGET_mediatek_filogic_DEVICE_keenetic_kn-4410 is not set
 # CONFIG_TARGET_mediatek_filogic_DEVICE_konka_komi-a31 is not set
 # CONFIG_TARGET_mediatek_filogic_DEVICE_livinet_li320 is not set
 # CONFIG_TARGET_mediatek_filogic_DEVICE_ltc_vl7m19k is not set
@@ -198,6 +201,8 @@ CONFIG_TARGET_MULTI_PROFILE=y
 # CONFIG_TARGET_mediatek_filogic_DEVICE_netcore_n60-pro is not set
 # CONFIG_TARGET_mediatek_filogic_DEVICE_netcraze_nap-630 is not set
 # CONFIG_TARGET_mediatek_filogic_DEVICE_netcraze_nc-1812 is not set
+# CONFIG_TARGET_mediatek_filogic_DEVICE_netcraze_nc-3411 is not set
+# CONFIG_TARGET_mediatek_filogic_DEVICE_netcraze_nc-4410 is not set
 # CONFIG_TARGET_mediatek_filogic_DEVICE_netgear_eax17 is not set
 # CONFIG_TARGET_mediatek_filogic_DEVICE_netgear_wax220 is not set
 # CONFIG_TARGET_mediatek_filogic_DEVICE_netis_eap930-v1 is not set
@@ -378,6 +383,7 @@ CONFIG_TARGET_DEVICE_PACKAGES_mediatek_filogic_DEVICE_cudy_m3000-v1="apk-openssl
 CONFIG_TARGET_DEVICE_mediatek_filogic_DEVICE_cudy_m3000-v2-yt8821=y
 CONFIG_TARGET_DEVICE_PACKAGES_mediatek_filogic_DEVICE_cudy_m3000-v2-yt8821="apk-openssl dawn ip-bridge iptables-mod-dhcpmac iptables-mod-dnetmap jool-tools-netfilter kmod-bonding kmod-crypto-chacha20poly1305 kmod-inet-diag kmod-ipt-dhcpmac kmod-ipt-dnetmap kmod-jool-netfilter kmod-leds-gpio kmod-libphy kmod-mt7981-firmware kmod-nat46 kmod-ovpn-backports kmod-phy-motorcomm kmod-phy-package libgcrypt libgpg-error liblz4 liblzo libnl libnl-cli libnl-core libnl-genl libnl-nf libnl-route libopenssl libopenssl-conf libopenssl-devcrypto libopenssl-legacy libpcre2 libqrencode libxml2 luci-app-dawn luci-app-usteer luci-i18n-dashboard-zh-cn luci-i18n-dawn-zh-cn luci-i18n-usteer-zh-cn luci-mod-dashboard luci-nginx luci-proto-openvpn luci-proto-relay luci-proto-wireguard mt7981-wo-firmware nginx-mod-luci nginx-mod-ubus nginx-ssl nginx-ssl-util openvpn-openssl proto-bonding qrencode relayd tc-tiny uwsgi uwsgi-cgi-plugin uwsgi-luci-support uwsgi-syslog-plugin wireguard-tools wpad-openssl"
 # CONFIG_TARGET_DEVICE_mediatek_filogic_DEVICE_cudy_m3000-v2-yt8821-ubootmod is not set
+# CONFIG_TARGET_DEVICE_mediatek_filogic_DEVICE_cudy_p2-v1 is not set
 CONFIG_TARGET_DEVICE_mediatek_filogic_DEVICE_cudy_re3000-v1=y
 CONFIG_TARGET_DEVICE_PACKAGES_mediatek_filogic_DEVICE_cudy_re3000-v1="apk-mbedtls dawn ip-bridge kmod-crypto-chacha20poly1305 kmod-leds-gpio kmod-mt7981-firmware kmod-ovpn-backports libgcrypt libgpg-error liblz4 liblzo libnl-core libnl-genl libqrencode luci-app-dawn luci-app-usteer luci-i18n-dashboard-zh-cn luci-i18n-dawn-zh-cn luci-i18n-usteer-zh-cn luci-mod-dashboard luci-proto-openvpn luci-proto-relay luci-proto-wireguard mt7981-wo-firmware openvpn-mbedtls qrencode relayd tc-tiny wireguard-tools wpad-mbedtls"
 CONFIG_TARGET_DEVICE_mediatek_filogic_DEVICE_cudy_tr3000-256mb-v1=y
@@ -455,6 +461,8 @@ CONFIG_TARGET_DEVICE_PACKAGES_mediatek_filogic_DEVICE_huasifei_wh3000-pro-nand="
 # CONFIG_TARGET_DEVICE_mediatek_filogic_DEVICE_jiorouter_ax6000-jidu6101 is not set
 # CONFIG_TARGET_DEVICE_mediatek_filogic_DEVICE_jiorouter_ax6000-jidu6j01 is not set
 # CONFIG_TARGET_DEVICE_mediatek_filogic_DEVICE_kebidumei_ax3000-u22 is not set
+# CONFIG_TARGET_DEVICE_mediatek_filogic_DEVICE_keenetic_kn-3411 is not set
+# CONFIG_TARGET_DEVICE_mediatek_filogic_DEVICE_keenetic_kn-4410 is not set
 # CONFIG_TARGET_DEVICE_mediatek_filogic_DEVICE_keenetic_kap-630 is not set
 # CONFIG_TARGET_DEVICE_mediatek_filogic_DEVICE_keenetic_kn-1812 is not set
 # CONFIG_TARGET_DEVICE_mediatek_filogic_DEVICE_keenetic_kn-3711 is not set
@@ -474,6 +482,8 @@ CONFIG_TARGET_DEVICE_PACKAGES_mediatek_filogic_DEVICE_huasifei_wh3000-pro-nand="
 # CONFIG_TARGET_DEVICE_mediatek_filogic_DEVICE_mercusys_mr90x-v1-ubi is not set
 # CONFIG_TARGET_DEVICE_mediatek_filogic_DEVICE_netcore_n60 is not set
 # CONFIG_TARGET_DEVICE_mediatek_filogic_DEVICE_netcore_n60-pro is not set
+# CONFIG_TARGET_DEVICE_mediatek_filogic_DEVICE_netcraze_nc-3411 is not set
+# CONFIG_TARGET_DEVICE_mediatek_filogic_DEVICE_netcraze_nc-4410 is not set
 # CONFIG_TARGET_DEVICE_mediatek_filogic_DEVICE_netcraze_nap-630 is not set
 # CONFIG_TARGET_DEVICE_mediatek_filogic_DEVICE_netcraze_nc-1812 is not set
 # CONFIG_TARGET_DEVICE_mediatek_filogic_DEVICE_netgear_eax17 is not set
@@ -848,6 +858,7 @@ CONFIG_KERNEL_IPC_NS=y
 CONFIG_KERNEL_USER_NS=y
 CONFIG_KERNEL_PID_NS=y
 CONFIG_KERNEL_NET_NS=y
+CONFIG_KERNEL_TIME_NS=y
 CONFIG_KERNEL_POSIX_MQUEUE=y
 # CONFIG_KERNEL_SECCOMP_FILTER is not set
 # CONFIG_KERNEL_SECCOMP is not set
@@ -1020,7 +1031,7 @@ CONFIG_TARGET_INIT_CMD="/sbin/init"
 CONFIG_TARGET_INIT_SUPPRESS_STDERR=y
 CONFIG_VERSIONOPT=y
 CONFIG_VERSION_DIST="X-WRT"
-CONFIG_VERSION_NUMBER="26.04_b202609180103"
+CONFIG_VERSION_NUMBER="26.04_b202609222031"
 CONFIG_VERSION_CODE="Resolute"
 CONFIG_VERSION_REPO="http://downloads.openwrt.org/snapshots"
 CONFIG_VERSION_HOME_URL="https://x-wrt.com/"

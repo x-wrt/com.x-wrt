@@ -738,7 +738,7 @@ CONFIG_TARGET_DEVICE_PACKAGES_ath79_generic_DEVICE_tplink_archer-a7-v5="ath10k-b
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_tplink_archer-c2-v3 is not set
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_tplink_archer-c25-v1 is not set
 CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_tplink_archer-c5-v1=y
-CONFIG_TARGET_DEVICE_PACKAGES_ath79_generic_DEVICE_tplink_archer-c5-v1="ath10k-board-qca988x ath10k-firmware-qca988x-ct dawn ip-bridge kmod-ath10k-ct kmod-crypto-chacha20poly1305 kmod-gpio-button-hotplug kmod-hwmon-core kmod-i2c-core kmod-ovpn-backports kmod-phy-ath79-usb kmod-usb2 kmod-usb-common kmod-usb-core kmod-usb-ehci kmod-usb-ledtrig-usbport libgcrypt libgpg-error liblz4 liblzo libnl-core libnl-genl libqrencode luci-app-dawn luci-app-ledtrig-usbport luci-app-usteer luci-i18n-dashboard-zh-cn luci-i18n-dawn-zh-cn luci-i18n-usteer-zh-cn luci-mod-dashboard luci-proto-openvpn luci-proto-relay luci-proto-wireguard openvpn-mbedtls qrencode relayd tc-tiny wireguard-tools wpad-mbedtls"
+CONFIG_TARGET_DEVICE_PACKAGES_ath79_generic_DEVICE_tplink_archer-c5-v1="ath10k-board-qca988x ath10k-firmware-qca988x-ct dawn ip-bridge kmod-ath10k-ct kmod-crypto-chacha20poly1305 kmod-dsa kmod-dsa-qca8k kmod-gpio-button-hotplug kmod-hwmon-core kmod-i2c-core kmod-libphy kmod-mdio-devres kmod-net-selftests kmod-ovpn-backports kmod-phy-ath79-usb kmod-phylib-qcom kmod-phylink kmod-phy-qca83xx kmod-regmap-core kmod-usb2 kmod-usb-common kmod-usb-core kmod-usb-ehci kmod-usb-ledtrig-usbport libgcrypt libgpg-error liblz4 liblzo libnl-core libnl-genl libqrencode luci-app-dawn luci-app-ledtrig-usbport luci-app-usteer luci-i18n-dashboard-zh-cn luci-i18n-dawn-zh-cn luci-i18n-usteer-zh-cn luci-mod-dashboard luci-proto-openvpn luci-proto-relay luci-proto-wireguard openvpn-mbedtls qrencode relayd tc-tiny wireguard-tools wpad-mbedtls"
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_tplink_archer-c58-v1 is not set
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_tplink_archer-c59-v1 is not set
 # CONFIG_TARGET_DEVICE_ath79_generic_DEVICE_tplink_archer-c59-v2 is not set
@@ -913,6 +913,7 @@ CONFIG_MODULE_DEFAULT_ipq-wifi-xiaomi_aiot-ac2350=y
 CONFIG_MODULE_DEFAULT_kmod-ath10k-ct=y
 CONFIG_DEFAULT_kmod-ath9k=y
 CONFIG_MODULE_DEFAULT_kmod-ath9k=y
+CONFIG_MODULE_DEFAULT_kmod-dsa-qca8k=y
 CONFIG_DEFAULT_kmod-gpio-button-hotplug=y
 CONFIG_MODULE_DEFAULT_kmod-gpio-button-hotplug=y
 CONFIG_MODULE_DEFAULT_kmod-gpio-line-mux=y
@@ -921,6 +922,7 @@ CONFIG_MODULE_DEFAULT_kmod-leds-gpio=y
 CONFIG_MODULE_DEFAULT_kmod-leds-reset=y
 CONFIG_MODULE_DEFAULT_kmod-mux-gpio=y
 CONFIG_MODULE_DEFAULT_kmod-owl-loader=y
+CONFIG_MODULE_DEFAULT_kmod-phy-qca83xx=y
 CONFIG_MODULE_DEFAULT_kmod-switch-rtl8366rb=y
 CONFIG_MODULE_DEFAULT_kmod-switch-rtl8366s=y
 CONFIG_MODULE_DEFAULT_kmod-tpm-i2c-atmel=y
@@ -1266,7 +1268,7 @@ CONFIG_TARGET_INIT_CMD="/sbin/init"
 CONFIG_TARGET_INIT_SUPPRESS_STDERR=y
 CONFIG_VERSIONOPT=y
 CONFIG_VERSION_DIST="X-WRT"
-CONFIG_VERSION_NUMBER="26.04_b202609180103"
+CONFIG_VERSION_NUMBER="26.04_b202609222031"
 CONFIG_VERSION_CODE="Resolute"
 CONFIG_VERSION_REPO="http://downloads.openwrt.org/snapshots"
 CONFIG_VERSION_HOME_URL="https://x-wrt.com/"
@@ -4653,7 +4655,7 @@ CONFIG_PACKAGE_kmod-dsa=m
 # CONFIG_PACKAGE_kmod-dsa-mv88e6xxx is not set
 # CONFIG_PACKAGE_kmod-dsa-mxl862xx is not set
 # CONFIG_PACKAGE_kmod-dsa-notag is not set
-# CONFIG_PACKAGE_kmod-dsa-qca8k is not set
+CONFIG_PACKAGE_kmod-dsa-qca8k=m
 # CONFIG_PACKAGE_kmod-dsa-realtek is not set
 # CONFIG_PACKAGE_kmod-dsa-rtl8365mb is not set
 # CONFIG_PACKAGE_kmod-dsa-rtl8366rb is not set
@@ -4716,10 +4718,11 @@ CONFIG_PACKAGE_kmod-net-selftests=m
 # CONFIG_PACKAGE_kmod-phy-microchip is not set
 CONFIG_PACKAGE_kmod-phy-motorcomm=m
 CONFIG_PACKAGE_kmod-phy-package=m
-# CONFIG_PACKAGE_kmod-phy-qca83xx is not set
+CONFIG_PACKAGE_kmod-phy-qca83xx=m
 # CONFIG_PACKAGE_kmod-phy-realtek is not set
 # CONFIG_PACKAGE_kmod-phy-smsc is not set
 # CONFIG_PACKAGE_kmod-phy-vitesse is not set
+CONFIG_PACKAGE_kmod-phylib-qcom=m
 CONFIG_PACKAGE_kmod-phylink=m
 # CONFIG_PACKAGE_kmod-qlcnic is not set
 # CONFIG_PACKAGE_kmod-r6040 is not set
@@ -4891,6 +4894,7 @@ CONFIG_PACKAGE_kmod-dma-buf=m
 # CONFIG_PACKAGE_kmod-ramoops is not set
 CONFIG_PACKAGE_kmod-random-core=y
 # CONFIG_PACKAGE_kmod-reed-solomon is not set
+CONFIG_PACKAGE_kmod-regmap-core=m
 # CONFIG_PACKAGE_kmod-regulator-userspace-consumer is not set
 # CONFIG_PACKAGE_kmod-sdhci is not set
 # CONFIG_PACKAGE_kmod-serial-8250 is not set

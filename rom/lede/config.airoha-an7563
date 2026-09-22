@@ -68,7 +68,7 @@ CONFIG_TARGET_MULTI_PROFILE=y
 CONFIG_TARGET_PER_DEVICE_ROOTFS=y
 # CONFIG_TARGET_DEVICE_airoha_an7563_DEVICE_airoha_an7563-evb is not set
 CONFIG_TARGET_DEVICE_airoha_an7563_DEVICE_tenda_be6l-pro=y
-CONFIG_TARGET_DEVICE_PACKAGES_airoha_an7563_DEVICE_tenda_be6l-pro="airoha-en8811h-firmware apk-openssl ca-bundle curl dawn ethtool gre ip-bridge iptables-mod-dhcpmac iptables-mod-dnetmap jool-tools-netfilter kmod-bonding kmod-cfg80211 kmod-crypto-acompress kmod-crypto-cbc kmod-crypto-chacha20poly1305 kmod-crypto-deflate kmod-crypto-des kmod-crypto-echainiv kmod-crypto-md5 kmod-hwmon-core kmod-inet-diag kmod-ip-vti kmod-ip6-vti kmod-ipsec kmod-ipsec4 kmod-ipsec6 kmod-ipt-dhcpmac kmod-ipt-dnetmap kmod-jool-netfilter kmod-l2tp kmod-leds-gpio kmod-lib-zlib-deflate kmod-lib-zlib-inflate kmod-libphy kmod-mac80211 kmod-mt76-connac kmod-mt76-core kmod-mt7992-23-firmware kmod-mt7996e kmod-nat46 kmod-ovpn-backports kmod-phy-airoha-en8811h kmod-pppol2tp kmod-xfrm-interface libcurl libgcrypt libgpg-error liblz4 liblzo libminiupnpc libnatpmp libnghttp2 libnl libnl-cli libnl-core libnl-genl libnl-nf libnl-route libopenssl libopenssl-conf libopenssl-legacy libpcre2 libqrencode libssh2 libstdcpp libxml2 luci luci-app-dawn luci-app-tailscale-community luci-app-usteer luci-app-zerotier luci-i18n-dashboard-zh-cn luci-i18n-dawn-zh-cn luci-i18n-tailscale-community-zh-cn luci-i18n-usteer-zh-cn luci-i18n-zerotier-zh-cn luci-mod-dashboard luci-nginx luci-proto-gre luci-proto-openvpn luci-proto-relay luci-proto-vti luci-proto-wireguard luci-proto-xfrm luci-theme-argon nginx-mod-luci nginx-mod-ubus nginx-ssl nginx-ssl-util openvpn-openssl ppp-mod-pppol2tp proto-bonding qrencode relayd tailscale tc-tiny uwsgi uwsgi-cgi-plugin uwsgi-luci-support uwsgi-syslog-plugin vti wireguard-tools wpad-openssl xfrm xl2tpd zerotier"
+CONFIG_TARGET_DEVICE_PACKAGES_airoha_an7563_DEVICE_tenda_be6l-pro="airoha-en8811h-firmware apk-openssl ca-bundle curl dawn ethtool gre ip-bridge iptables-mod-dhcpmac iptables-mod-dnetmap jool-tools-netfilter kmod-bonding kmod-cfg80211 kmod-crypto-acompress kmod-crypto-cbc kmod-crypto-chacha20poly1305 kmod-crypto-deflate kmod-crypto-des kmod-crypto-echainiv kmod-crypto-md5 kmod-hwmon-core kmod-inet-diag kmod-ip6-vti kmod-ipsec kmod-ipsec4 kmod-ipsec6 kmod-ipt-dhcpmac kmod-ipt-dnetmap kmod-ip-vti kmod-jool-netfilter kmod-l2tp kmod-leds-gpio kmod-libphy kmod-lib-zlib-deflate kmod-lib-zlib-inflate kmod-mac80211 kmod-mt76-connac kmod-mt76-core kmod-mt7992-23-firmware kmod-mt7996e kmod-nat46 kmod-ovpn-backports kmod-phy-airoha-en8811h kmod-pppol2tp kmod-xfrm-interface libcurl libgcrypt libgpg-error liblz4 liblzo libminiupnpc libnatpmp libnghttp2 libnl libnl-cli libnl-core libnl-genl libnl-nf libnl-route libopenssl libopenssl-conf libopenssl-legacy libpcre2 libqrencode libssh2 libstdcpp libxml2 luci luci-app-dawn luci-app-tailscale-community luci-app-usteer luci-app-zerotier luci-i18n-dashboard-zh-cn luci-i18n-dawn-zh-cn luci-i18n-tailscale-community-zh-cn luci-i18n-usteer-zh-cn luci-i18n-zerotier-zh-cn luci-mod-dashboard luci-nginx luci-proto-gre luci-proto-openvpn luci-proto-relay luci-proto-vti luci-proto-wireguard luci-proto-xfrm luci-theme-argon nginx-mod-luci nginx-mod-ubus nginx-ssl nginx-ssl-util openvpn-openssl ppp-mod-pppol2tp proto-bonding qrencode relayd tailscale tc-tiny uwsgi uwsgi-cgi-plugin uwsgi-luci-support uwsgi-syslog-plugin vti wireguard-tools wpad-openssl xfrm xl2tpd zerotier"
 CONFIG_TARGET_DEVICE_airoha_an7563_DEVICE_xiaomi_be5000=y
 CONFIG_TARGET_DEVICE_PACKAGES_airoha_an7563_DEVICE_xiaomi_be5000="apk-openssl dawn ethtool ip-bridge iptables-mod-dhcpmac iptables-mod-dnetmap jool-tools-netfilter kmod-bonding kmod-crypto-chacha20poly1305 kmod-crypto-md5 kmod-inet-diag kmod-ipt-dhcpmac kmod-ipt-dnetmap kmod-jool-netfilter kmod-leds-gpio kmod-nat46 kmod-ovpn-backports libgcrypt libgpg-error liblz4 liblzo libnl libnl-cli libnl-core libnl-genl libnl-nf libnl-route libopenssl libopenssl-conf libopenssl-legacy libpcre2 libqrencode libstdcpp libxml2 luci luci-app-dawn luci-app-usteer luci-i18n-dashboard-zh-cn luci-i18n-dawn-zh-cn luci-i18n-usteer-zh-cn luci-mod-dashboard luci-nginx luci-proto-openvpn luci-proto-relay luci-proto-wireguard nginx-mod-luci nginx-mod-ubus nginx-ssl nginx-ssl-util openvpn-openssl proto-bonding qrencode relayd tc-tiny uwsgi uwsgi-cgi-plugin uwsgi-luci-support uwsgi-syslog-plugin wireguard-tools wpad-openssl"
 # end of Target Devices
@@ -282,6 +282,7 @@ CONFIG_KERNEL_IPC_NS=y
 # CONFIG_KERNEL_USER_NS is not set
 CONFIG_KERNEL_PID_NS=y
 # CONFIG_KERNEL_NET_NS is not set
+CONFIG_KERNEL_TIME_NS=y
 # CONFIG_KERNEL_POSIX_MQUEUE is not set
 # CONFIG_KERNEL_SECCOMP_FILTER is not set
 # CONFIG_KERNEL_SECCOMP is not set
@@ -452,7 +453,7 @@ CONFIG_TARGET_INIT_CMD="/sbin/init"
 CONFIG_TARGET_INIT_SUPPRESS_STDERR=y
 CONFIG_VERSIONOPT=y
 CONFIG_VERSION_DIST="X-WRT"
-CONFIG_VERSION_NUMBER="26.04_b202609180103"
+CONFIG_VERSION_NUMBER="26.04_b202609222031"
 CONFIG_VERSION_CODE="Resolute"
 CONFIG_VERSION_REPO="http://downloads.openwrt.org/snapshots"
 CONFIG_VERSION_HOME_URL="https://x-wrt.com/"
