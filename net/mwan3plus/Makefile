@@ -10,7 +10,7 @@ include $(TOPDIR)/rules.mk
 
 PKG_NAME:=mwan3plus
 PKG_VERSION:=3.0.3
-PKG_RELEASE:=2
+PKG_RELEASE:=5
 PKG_MAINTAINER:=Minqiang Chen <ptpt52@gmail.com>
 PKG_LICENSE:=GPL-2.0
 

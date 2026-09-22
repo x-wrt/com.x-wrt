@@ -12,6 +12,7 @@ FAMILY="any"
 
 IFDOWN_EVENT=0
 TRACK_DIR=""
+DNS_QUERY_FILES=""
 
 stop_subprocs() {
 	local killpids
@@ -20,10 +21,20 @@ stop_subprocs() {
 	[ -n "$killpids" ] && kill $killpids 2>/dev/null
 }
 
+cleanup_dns_query_files() {
+	local output_file
+
+	for output_file in $DNS_QUERY_FILES; do
+		rm -f "$output_file"
+	done
+	DNS_QUERY_FILES=""
+}
+
 clean_up() {
 	LOG notice "Stopping mwan3track for interface \"${INTERFACE}\""
 	IFDOWN_EVENT=2
 	stop_subprocs
+	cleanup_dns_query_files
 	return 0
 }
 
@@ -31,6 +42,7 @@ if_down() {
 	LOG info "Detect ifdown event on interface ${INTERFACE} (${DEVICE})"
 	IFDOWN_EVENT=1
 	stop_subprocs
+	cleanup_dns_query_files
 }
 
 validate_track_method() {
@@ -140,7 +152,7 @@ firstconnect() {
 update_status() {
 	local track_ip=$1
 
-	echo "$1" > "$TRACK_DIR/TRACK_${track_ip}"
+	echo "$2" > "$TRACK_DIR/TRACK_${track_ip}"
 	[ -z "$3" ] && return
 	echo "$3" > "$TRACK_DIR/LATENCY_${track_ip}"
 	echo "$4" > "$TRACK_DIR/LOSS_${track_ip}"
@@ -186,6 +198,9 @@ main() {
 	FAMILY=$family
 	TRACK_DIR="$MWAN3TRACK_STATUS_DIR/$INTERFACE.$family"
 	mkdir -p "$TRACK_DIR"
+	# DNS files are diagnostic state owned by this tracker process. Never reuse
+	# files left by a previous process or an interrupted DNS query.
+	rm -f "$TRACK_DIR"/DNS_CACHE_* "$TRACK_DIR"/DNS_OUTPUT.*
 	trap clean_up TERM
 	trap if_down USR1
 
@@ -215,8 +230,16 @@ main() {
 	local lost=0
 	local turn=0
 	local sleep_time result ping_status ping_quality loss latency
-	local current_track_ips gateway_ip gateway_resolved
+	local current_track_ips gateway_ip gateway_resolved probe_targets probe_target
 	local SRC_IP TRACK_OUTPUT
+	local DNS_CACHE_TTL=120
+	local DNS_RESOLVE_TIMEOUT=2
+	local DNS_CACHE_RECORDS=""
+	local DNS_UPSTREAMS=""
+	local DNS_RESOLV_FILES=""
+	local DNS_UPSTREAMS_AT=0
+	local DNS_UPSTREAMS_VALID=0
+	local DNS_QUERY_IPS=""
 	shift 4
 	local track_ips="$*"
 
@@ -236,8 +259,288 @@ main() {
 	validate_wrap || return 1
 
 	WRAP() {
-		# shellcheck disable=SC2048
-		DEVICE=$DEVICE SRCIP=$SRC_IP FWMARK=$MMX_MASK LD_PRELOAD=/lib/mwan3/libwrap_mwan3_sockopt.so.1.0 $*
+		DEVICE=$DEVICE SRCIP=$SRC_IP FWMARK=$MMX_MASK \
+			LD_PRELOAD=/lib/mwan3/libwrap_mwan3_sockopt.so.1.0 "$@"
+	}
+
+	add_dns_upstream() {
+		local server
+		server="$1"
+
+		case "$server" in
+			""|0.0.0.0|127.*|::|::1) return ;;
+			*[!0-9A-Fa-f:.%]*) return ;;
+		esac
+		case "$server" in
+			*.*|*:*) ;;
+			*) return ;;
+		esac
+		case " $DNS_UPSTREAMS " in
+			*" $server "*) ;;
+			*) DNS_UPSTREAMS="${DNS_UPSTREAMS:+$DNS_UPSTREAMS }$server" ;;
+		esac
+	}
+
+	add_dns_resolv_file() {
+		local resolv_file
+		resolv_file="$1"
+		[ -n "$resolv_file" ] || return
+		case " $DNS_RESOLV_FILES " in
+			*" $resolv_file "*) ;;
+			*) DNS_RESOLV_FILES="${DNS_RESOLV_FILES:+$DNS_RESOLV_FILES }$resolv_file" ;;
+		esac
+	}
+
+	add_dnsmasq_server() {
+		local value host port
+		value="$1"
+
+		# dnsmasq accepts /domain/server, server#port and server@interface.
+		# BusyBox nslookup can query only numeric port-53 endpoints.
+		value=${value##*/}
+		[ -n "$value" ] || return
+		value=${value%%@*}
+		case "$value" in
+			\[*\]#*)
+				host=${value#\[}
+				host=${host%%\]*}
+				port=${value##*#}
+			;;
+			*#*)
+				host=${value%#*}
+				port=${value##*#}
+			;;
+			\[*\])
+				host=${value#\[}
+				host=${host%\]}
+				port=53
+			;;
+			*)
+				host=$value
+				port=53
+			;;
+		esac
+		[ "$port" = 53 ] || return
+		add_dns_upstream "$host"
+	}
+
+	refresh_dns_upstreams() {
+		local now age dns_servers server config_file line
+		local resolv_file directive value remainder
+		now="$1"
+
+		if [ "$DNS_UPSTREAMS_VALID" -eq 1 ]; then
+			age=$((now-DNS_UPSTREAMS_AT))
+			[ "$age" -ge 0 ] && [ "$age" -lt "$DNS_CACHE_TTL" ] && return 0
+		fi
+
+		DNS_UPSTREAMS=""
+		DNS_RESOLV_FILES=""
+		network_get_dnsserver dns_servers "$INTERFACE"
+		for server in $dns_servers; do
+			add_dns_upstream "$server"
+		done
+
+		add_dns_resolv_file /tmp/resolv.conf.d/resolv.conf.auto
+		resolv_file="$(uci -q get dhcp.@dnsmasq[0].resolvfile 2>/dev/null)"
+		add_dns_resolv_file "$resolv_file"
+
+		for config_file in /var/etc/dnsmasq.conf.*; do
+			[ -r "$config_file" ] || continue
+			while IFS= read -r line || [ -n "$line" ]; do
+				case "$line" in
+					resolv-file=*) add_dns_resolv_file "${line#resolv-file=}" ;;
+					server=*) add_dnsmasq_server "${line#server=}" ;;
+				esac
+			done < "$config_file"
+		done
+
+		for resolv_file in $DNS_RESOLV_FILES; do
+			[ -r "$resolv_file" ] || continue
+			while read -r directive value remainder; do
+				[ "$directive" = nameserver ] && add_dns_upstream "$value"
+			done < "$resolv_file"
+		done
+
+		DNS_UPSTREAMS_AT=$now
+		if [ -n "$DNS_UPSTREAMS" ]; then
+			DNS_UPSTREAMS_VALID=1
+		else
+			# Do not cache an empty upstream set. The next actual domain probe
+			# must rescan dnsmasq inputs so newly available DNS is used at once.
+			DNS_UPSTREAMS_VALID=0
+		fi
+	}
+
+	add_dns_query_ip() {
+		local address
+		address="$1"
+		case " $DNS_QUERY_IPS " in
+			*" $address "*) ;;
+			*) DNS_QUERY_IPS="${DNS_QUERY_IPS:+$DNS_QUERY_IPS }$address" ;;
+		esac
+	}
+
+	parse_dns_output() {
+		local output_file label ordinal address remainder
+		output_file="$1"
+		[ -r "$output_file" ] || return
+
+		while read -r label ordinal address remainder; do
+			[ "$label" = Address ] || continue
+			ordinal=${ordinal%:}
+			case "$ordinal" in ""|*[!0-9]*) continue ;; esac
+			address=${address%%#*}
+			case "$family:$address" in
+				ipv4:*[!0-9.]*|ipv4:) continue ;;
+				ipv4:*) add_dns_query_ip "$address" ;;
+				ipv6:*:*) add_dns_query_ip "$address" ;;
+			esac
+		done < "$output_file"
+	}
+
+	query_dns_upstreams() {
+		local domain now output_prefix pids server output_file
+		local query_pid timer_pid index
+		domain="$1"
+		now="$2"
+		output_prefix="$TRACK_DIR/DNS_OUTPUT.$$"
+		pids=""
+		DNS_QUERY_FILES=""
+		DNS_QUERY_IPS=""
+		index=0
+
+		refresh_dns_upstreams "$now"
+		for server in $DNS_UPSTREAMS; do
+			index=$((index+1))
+			output_file="$output_prefix.$index"
+			DNS_QUERY_FILES="${DNS_QUERY_FILES:+$DNS_QUERY_FILES }$output_file"
+			WRAP nslookup "$domain" "$server" > "$output_file" 2>/dev/null &
+			query_pid=$!
+			pids="${pids:+$pids }$query_pid"
+		done
+		[ -n "$pids" ] || return 1
+
+		(
+			sleep "$DNS_RESOLVE_TIMEOUT"
+			kill $pids 2>/dev/null
+		) &
+		timer_pid=$!
+		for query_pid in $pids; do
+			wait "$query_pid" 2>/dev/null || :
+		done
+		kill "$timer_pid" 2>/dev/null
+		wait "$timer_pid" 2>/dev/null || :
+
+		for output_file in $DNS_QUERY_FILES; do
+			parse_dns_output "$output_file"
+		done
+		cleanup_dns_query_files
+		[ -n "$DNS_QUERY_IPS" ]
+	}
+
+	dns_cache_get() {
+		local _var target now old_ifs record record_target remainder
+		local cached_at cached_ips age
+		_var="$1"
+		target="$2"
+		now="$3"
+		old_ifs=$IFS
+		IFS='
+'
+		for record in $DNS_CACHE_RECORDS; do
+			record_target=${record%%|*}
+			[ "$record_target" = "$target" ] || continue
+			remainder=${record#*|}
+			cached_at=${remainder%%|*}
+			cached_ips=${remainder#*|}
+			age=$((now-cached_at))
+			if [ -n "$cached_ips" ] && [ "$age" -ge 0 ] && [ "$age" -lt "$DNS_CACHE_TTL" ]; then
+				IFS=$old_ifs
+				export "$_var=$cached_ips"
+				return 0
+			fi
+			break
+		done
+		IFS=$old_ifs
+		export "$_var="
+		return 1
+	}
+
+	dns_cache_store() {
+		local target cached_at cached_ips old_ifs record record_target new_records
+		target="$1"
+		cached_at="$2"
+		cached_ips="$3"
+		new_records=""
+		old_ifs=$IFS
+		IFS='
+'
+		for record in $DNS_CACHE_RECORDS; do
+			record_target=${record%%|*}
+			[ "$record_target" = "$target" ] && continue
+			new_records="${new_records}${new_records:+
+}${record}"
+		done
+		IFS=$old_ifs
+		if [ -n "$cached_ips" ]; then
+			new_records="${new_records}${new_records:+
+}${target}|${cached_at}|${cached_ips}"
+		fi
+		DNS_CACHE_RECORDS=$new_records
+	}
+
+	write_dns_cache_file() {
+		local target cached_at cached_ips cache_key cache_file cache_tmp
+		target="$1"
+		cached_at="$2"
+		cached_ips="$3"
+		cache_key=$(printf '%s' "$target" | tr -c 'A-Za-z0-9._-' '_')
+		cache_file="$TRACK_DIR/DNS_CACHE_${cache_key}"
+		cache_tmp="${cache_file}.tmp.$$"
+		{
+			printf '%s\n' "$cached_at"
+			[ -n "$cached_ips" ] && printf '%s\n' $cached_ips
+		} > "$cache_tmp"
+		mv -f "$cache_tmp" "$cache_file"
+	}
+
+	reset_dns_caches() {
+		DNS_CACHE_RECORDS=""
+		DNS_UPSTREAMS=""
+		DNS_UPSTREAMS_AT=0
+		DNS_UPSTREAMS_VALID=0
+		DNS_QUERY_IPS=""
+		cleanup_dns_query_files
+		rm -f "$TRACK_DIR"/DNS_CACHE_* "$TRACK_DIR"/DNS_OUTPUT.*
+	}
+
+	resolve_ping_target() {
+		local _var target now new_ips
+		_var="$1"
+		target="$2"
+
+		case "$family:$target" in
+			ipv4:*[!0-9.]*) ;;
+			ipv4:*) export "$_var=$target"; return 0 ;;
+			ipv6:*:*) export "$_var=$target"; return 0 ;;
+			ipv6:*) ;;
+			*) export "$_var=$target"; return 0 ;;
+		esac
+
+		get_uptime now
+		if dns_cache_get "$_var" "$target" "$now"; then
+			return 0
+		fi
+
+		new_ips=""
+		if query_dns_upstreams "$target" "$now"; then
+			new_ips=$DNS_QUERY_IPS
+		fi
+		dns_cache_store "$target" "$now" "$new_ips"
+		write_dns_cache_file "$target" "$now" "$new_ips"
+		export "$_var=$new_ips"
+		[ -n "$new_ips" ]
 	}
 
 	TRACK_OUTPUT="$TRACK_DIR/TRACK_OUTPUT"
@@ -265,14 +568,21 @@ main() {
 			if [ $host_up_count -lt $reliability ]; then
 				case "$track_method" in
 					ping)
-						if [ $check_quality -eq 0 ]; then
-							WRAP $PING -n -c $count -W $timeout -s $size -t $max_ttl -q $track_ip &> /dev/null &
-							wait $!
-							result=$?
-						else
-							WRAP $PING -n -c $count -W $timeout -s $size -t $max_ttl -q $track_ip 2>/dev/null > "$TRACK_OUTPUT" &
-							wait $!
-							ping_status=$?
+						probe_targets="$track_ip"
+						resolve_ping_target probe_targets "$track_ip" || :
+						result=1
+						loss=100
+						latency=999999
+						for probe_target in $probe_targets; do
+							if [ $check_quality -eq 0 ]; then
+								WRAP $PING -n -c $count -W $timeout -s $size -t $max_ttl -q "$probe_target" &> /dev/null &
+								wait $!
+								result=$?
+								[ "$result" -eq 0 ] && break
+							else
+								WRAP $PING -n -c $count -W $timeout -s $size -t $max_ttl -q "$probe_target" 2>/dev/null > "$TRACK_OUTPUT" &
+								wait $!
+								ping_status=$?
 							ping_quality="$(awk '
 								{ line[NR % 2] = $0; n = NR }
 								END {
@@ -302,11 +612,14 @@ main() {
 							latency=${ping_quality#* }
 							[ -n "$loss" ] || loss=100
 							[ -n "$latency" ] || latency=999999
-							if [ "$ping_status" -ne 0 ] || [ "$loss" -eq 100 ]; then
-								latency=999999
-								loss=100
+								if [ "$ping_status" -ne 0 ] || [ "$loss" -eq 100 ]; then
+									latency=999999
+									loss=100
+								else
+									break
+								fi
 							fi
-						fi
+							done
 					;;
 					arping)
 						WRAP arping -I $DEVICE -c $count -w $timeout -q $track_ip &> /dev/null &
@@ -421,6 +734,7 @@ main() {
 
 		if [ "${IFDOWN_EVENT}" -eq 1 ]; then
 			LOG info "Register ifdown event on interface ${INTERFACE}($family) (${DEVICE})"
+			reset_dns_caches
 			disconnected 1
 			IFDOWN_EVENT=0
 		elif [ "${IFDOWN_EVENT}" -eq 2 ]; then
@@ -430,6 +744,7 @@ main() {
 			break
 		fi
 	done
+	reset_dns_caches
 	rm -f "$TRACK_OUTPUT"
 }
 
