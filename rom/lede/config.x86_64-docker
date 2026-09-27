@@ -525,7 +525,7 @@ CONFIG_TARGET_INIT_CMD="/sbin/init"
 CONFIG_TARGET_INIT_SUPPRESS_STDERR=y
 CONFIG_VERSIONOPT=y
 CONFIG_VERSION_DIST="X-WRT-docker"
-CONFIG_VERSION_NUMBER="26.04_b202609260308"
+CONFIG_VERSION_NUMBER="26.04_b202609280613"
 CONFIG_VERSION_CODE="Resolute"
 CONFIG_VERSION_REPO="http://downloads.openwrt.org/snapshots"
 CONFIG_VERSION_HOME_URL="https://x-wrt.com/"
@@ -6357,6 +6357,7 @@ CONFIG_PACKAGE_libtirpc=y
 # CONFIG_PACKAGE_libtraceevent is not set
 # CONFIG_PACKAGE_libtraceevent-extra is not set
 # CONFIG_PACKAGE_libtracefs is not set
+# CONFIG_PACKAGE_libtsm is not set
 CONFIG_PACKAGE_libubox=y
 # CONFIG_PACKAGE_libubox-lua is not set
 CONFIG_PACKAGE_libubus=y
@@ -7003,6 +7004,7 @@ CONFIG_PACKAGE_luci-i18n-firewall-zh-cn=y
 CONFIG_PACKAGE_luci-i18n-ksmbd-zh-cn=y
 # CONFIG_PACKAGE_luci-i18n-ksmbd-zh-tw is not set
 # CONFIG_PACKAGE_luci-i18n-ledtrig-rssi-cs is not set
+# CONFIG_PACKAGE_luci-i18n-ledtrig-rssi-de is not set
 # CONFIG_PACKAGE_luci-i18n-ledtrig-rssi-es is not set
 # CONFIG_PACKAGE_luci-i18n-ledtrig-rssi-ga is not set
 # CONFIG_PACKAGE_luci-i18n-ledtrig-rssi-ko is not set
@@ -7016,6 +7018,7 @@ CONFIG_PACKAGE_luci-i18n-ksmbd-zh-cn=y
 CONFIG_PACKAGE_luci-i18n-ledtrig-rssi-zh-cn=y
 # CONFIG_PACKAGE_luci-i18n-ledtrig-rssi-zh-tw is not set
 # CONFIG_PACKAGE_luci-i18n-ledtrig-switch-cs is not set
+# CONFIG_PACKAGE_luci-i18n-ledtrig-switch-de is not set
 # CONFIG_PACKAGE_luci-i18n-ledtrig-switch-es is not set
 # CONFIG_PACKAGE_luci-i18n-ledtrig-switch-ga is not set
 # CONFIG_PACKAGE_luci-i18n-ledtrig-switch-ko is not set
@@ -7029,6 +7032,7 @@ CONFIG_PACKAGE_luci-i18n-ledtrig-rssi-zh-cn=y
 CONFIG_PACKAGE_luci-i18n-ledtrig-switch-zh-cn=y
 # CONFIG_PACKAGE_luci-i18n-ledtrig-switch-zh-tw is not set
 # CONFIG_PACKAGE_luci-i18n-ledtrig-usbport-cs is not set
+# CONFIG_PACKAGE_luci-i18n-ledtrig-usbport-de is not set
 # CONFIG_PACKAGE_luci-i18n-ledtrig-usbport-es is not set
 # CONFIG_PACKAGE_luci-i18n-ledtrig-usbport-ga is not set
 # CONFIG_PACKAGE_luci-i18n-ledtrig-usbport-ko is not set
@@ -7196,6 +7200,7 @@ CONFIG_PACKAGE_luci-i18n-p910nd-zh-cn=y
 CONFIG_PACKAGE_luci-i18n-package-manager-zh-cn=y
 # CONFIG_PACKAGE_luci-i18n-package-manager-zh-tw is not set
 # CONFIG_PACKAGE_luci-i18n-tailscale-community-cs is not set
+# CONFIG_PACKAGE_luci-i18n-tailscale-community-de is not set
 # CONFIG_PACKAGE_luci-i18n-tailscale-community-es is not set
 # CONFIG_PACKAGE_luci-i18n-tailscale-community-ga is not set
 # CONFIG_PACKAGE_luci-i18n-tailscale-community-ko is not set
@@ -9405,6 +9410,7 @@ CONFIG_KEXEC_LZMA=y
 
 CONFIG_PACKAGE_kexec-tools=y
 # CONFIG_PACKAGE_kmod is not set
+# CONFIG_PACKAGE_kmscon is not set
 # CONFIG_PACKAGE_last is not set
 # CONFIG_PACKAGE_lcd4linux-custom is not set
 # CONFIG_PACKAGE_lcdproc-clients is not set
@@ -9497,6 +9503,9 @@ CONFIG_PACKAGE_pciutils=y
 # CONFIG_PACKAGE_pcsc-tools is not set
 # CONFIG_PACKAGE_pcscd is not set
 # CONFIG_PACKAGE_pkgen is not set
+# CONFIG_PACKAGE_plymouth is not set
+# CONFIG_PACKAGE_plymouth-plugin-ucode is not set
+# CONFIG_PACKAGE_plymouth-theme-openwrt-demo is not set
 # CONFIG_PACKAGE_pnpids is not set
 # CONFIG_PACKAGE_podman is not set
 
