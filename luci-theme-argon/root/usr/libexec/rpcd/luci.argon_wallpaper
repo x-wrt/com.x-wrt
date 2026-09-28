@@ -1,0 +1,137 @@
+#!/bin/sh
+# author jjm2473
+
+. /lib/functions.sh
+. /usr/share/libubox/jshn.sh
+
+# the script will be excuted when `argon.@global[0].bing_background == '1'`
+# defaults to 'bing' to be compatible with old config
+WEB_PIC_SRC="$(uci -q get argon.@global[0].online_wallpaper || echo 'bing')"
+
+# API_KEY is used by Unsplash and Wallhaven when configured.
+# EXACT_RESO is used for exact resolution by default, if not use 'atleast' instead of 'resolutions'
+API_KEY="$(uci -q get argon.@global[0].use_api_key)"
+EXACT_RESO="$(uci -q get argon.@global[0].use_exact_resolution || echo '1')"
+
+CACHE="/var/run/argon_${WEB_PIC_SRC}.url"
+WRLOCK="/var/lock/argon_${WEB_PIC_SRC}.lock"
+
+fetch_pic_url() {
+	case "$WEB_PIC_SRC" in
+	bing)
+		local picpath="$(wget -T3 -qO- \
+			"https://www.bing.com/HPImageArchive.aspx?format=js&n=1" |
+			jsonfilter -qe '@.images[0].url' |
+			sed 's/1920x1080/UHD/g')"
+		[ -n "${picpath}" ] && echo "https://www.bing.com${picpath}"
+		;;
+	unsplash)
+		if [ -n "$API_KEY" ]; then
+			wget -T3 -qO- "https://api.unsplash.com/photos/random?client_id=${API_KEY}" |
+				jsonfilter -qe '@["urls"]["regular"]'
+		fi
+		;;
+	unsplash_*)
+		local collection_id="${WEB_PIC_SRC#unsplash_}"
+		if [ -n "$API_KEY" ]; then
+			wget -T3 -qO- \
+				"https://api.unsplash.com/photos/random?client_id=${API_KEY}&collections=${collection_id}" |
+				jsonfilter -qe '@["urls"]["regular"]'
+		fi
+		;;
+	wallhaven)
+		wget -T3 -qO- \
+			"https://wallhaven.cc/api/v1/search?resolutions=1920x1080&sorting=random" |
+			jsonfilter -qe "@.data[0].path"
+		;;
+	wallhaven_*)
+		local tag_id="${WEB_PIC_SRC#wallhaven_}"
+		local use_reso="resolutions"
+		[ "$EXACT_RESO" -eq "1" ] || use_reso="atleast"
+		[ -z "$API_KEY" ] || API_KEY="apikey=$API_KEY&"
+		wget -T3 -qO- \
+			"https://wallhaven.cc/api/v1/search?${API_KEY}q=id%3A${tag_id}&${use_reso}=1920x1080&sorting=random" |
+			jsonfilter -qe '@.data[0].path'
+		;;
+	esac
+}
+
+try_update() {
+	local lock="$WRLOCK"
+	exec 200>"$lock"
+
+	if flock -n 200 >"/dev/null" 2>&1; then
+		local picurl="$(fetch_pic_url)"
+		if [ -n "$picurl" ]; then
+
+			# below is quirk fix for all browsers
+			# for some weird reason on first load, wallhaven images needs to be
+			# download or browsed first before it can be shown as a background image
+			# if not, browser only displays a blank image
+			# NOTE: only happens to Wallhaven.cc source images
+			case "$WEB_PIC_SRC" in
+			wallhaven*) wget -T3 -qO- "${picurl}" > /dev/null ;;
+			esac
+
+			echo "$picurl" | tee "$CACHE"
+		else
+			# An expired URL may no longer load. Mark a short failure window
+			# and let the login page select a local background instead.
+			: > "$CACHE"
+		fi
+		flock -u 200 >"/dev/null" 2>&1
+	elif [ -s "$CACHE" ]; then
+		cat "$CACHE"
+	fi
+}
+
+case "$1" in
+"list")
+	json_init
+	json_add_object "get_url"
+	json_close_object
+	json_dump
+	json_cleanup
+	;;
+"call")
+	case "$2" in
+	"get_url")
+		read -r input
+		case "$WEB_PIC_SRC" in
+		unsplash|unsplash_*)
+			if [ -z "$API_KEY" ]; then
+				json_init
+				json_add_string "url" ""
+				json_dump
+				json_cleanup
+				exit 0
+			fi
+			;;
+		esac
+		if [ -f "$CACHE" ]; then
+			idle_t="$(($(date '+%s') - $(date -r "$CACHE" '+%s' 2>/dev/null || echo '0')))"
+			if [ -s "$CACHE" ]; then
+				if [ "$idle_t" -le "43200" ]; then
+					json_init
+					json_add_string "url" "$(cat "$CACHE")"
+					json_dump
+					json_cleanup
+					exit 0
+				fi
+			else
+				if [ "$idle_t" -le 120 ]; then
+					echo '{ "url": "" }'
+					exit 0
+				fi
+			fi
+		fi
+
+		json_init
+		json_add_string "url" "$(try_update)"
+		json_dump
+		json_cleanup
+		exit 0
+		;;
+	esac
+	;;
+esac
