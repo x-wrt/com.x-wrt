@@ -202,8 +202,6 @@ CONFIG_TARGET_SQUASHFS_BLOCK_READERS=4
 CONFIG_TARGET_SQUASHFS_SMALL_READERS=4
 CONFIG_TARGET_UBIFS_FREE_SPACE_FIXUP=y
 CONFIG_TARGET_UBIFS_JOURNAL_SIZE=""
-CONFIG_TARGET_IMAGES_GZIP=y
-CONFIG_TARGET_IMAGES_PIGZ=y
 
 #
 # Image Options
@@ -477,7 +475,7 @@ CONFIG_TARGET_INIT_CMD="/sbin/init"
 CONFIG_TARGET_INIT_SUPPRESS_STDERR=y
 CONFIG_VERSIONOPT=y
 CONFIG_VERSION_DIST="X-WRT"
-CONFIG_VERSION_NUMBER="26.10_b202610061506"
+CONFIG_VERSION_NUMBER="26.10_b202610070935"
 CONFIG_VERSION_CODE="Stonking"
 CONFIG_VERSION_REPO="http://downloads.openwrt.org/snapshots"
 CONFIG_VERSION_HOME_URL="https://x-wrt.com/"
@@ -3525,6 +3523,7 @@ CONFIG_PACKAGE_kmod-input-evdev=m
 # CONFIG_PACKAGE_kmod-input-serio-libps2 is not set
 # CONFIG_PACKAGE_kmod-input-touchscreen-ads7846 is not set
 # CONFIG_PACKAGE_kmod-input-touchscreen-edt-ft5x06 is not set
+# CONFIG_PACKAGE_kmod-input-touchscreen-hynitron-cst816x is not set
 # CONFIG_PACKAGE_kmod-input-uinput is not set
 # CONFIG_PACKAGE_kmod-rc-core is not set
 # CONFIG_PACKAGE_kmod-uhid is not set
@@ -4250,7 +4249,6 @@ CONFIG_PACKAGE_kmod-usbip-client=m
 CONFIG_PACKAGE_kmod-cec-core=m
 # CONFIG_PACKAGE_kmod-codec-bcm2835 is not set
 CONFIG_PACKAGE_kmod-drm=m
-# CONFIG_PACKAGE_kmod-drm-client-lib is not set
 CONFIG_PACKAGE_kmod-drm-display-helper=m
 CONFIG_PACKAGE_kmod-drm-dma-helper=m
 CONFIG_PACKAGE_kmod-drm-exec=m
@@ -4274,15 +4272,15 @@ CONFIG_PACKAGE_kmod-fb-sys-fops=m
 CONFIG_PACKAGE_kmod-fb-sys-ram=m
 # CONFIG_PACKAGE_kmod-fb-tft is not set
 # CONFIG_PACKAGE_kmod-fb-tft-ili9486 is not set
-# CONFIG_PACKAGE_kmod-isp-bcm2835 is not set
 CONFIG_PACKAGE_kmod-media-controller=m
+CONFIG_PACKAGE_kmod-video-core=m
+# CONFIG_PACKAGE_kmod-isp-bcm2835 is not set
 # CONFIG_PACKAGE_kmod-rp1-cfe is not set
 CONFIG_PACKAGE_kmod-rp1-cfe-downstream=m
 CONFIG_PACKAGE_kmod-rp1-hevc-dec=m
 # CONFIG_PACKAGE_kmod-rpi-panel-7inch-touchscreen is not set
 # CONFIG_PACKAGE_kmod-rpi-panel-attiny-regulator is not set
 # CONFIG_PACKAGE_kmod-v4l2loopback is not set
-CONFIG_PACKAGE_kmod-video-core=m
 # CONFIG_PACKAGE_kmod-vc-sm-cma is not set
 # CONFIG_PACKAGE_kmod-vchiq-mmal-bcm2835 is not set
 CONFIG_PACKAGE_kmod-video-async=m
@@ -9285,7 +9283,6 @@ CONFIG_PACKAGE_dbus=m
 # CONFIG_PACKAGE_evtest is not set
 # CONFIG_PACKAGE_extract is not set
 # CONFIG_PACKAGE_eza is not set
-# CONFIG_PACKAGE_fbtest is not set
 # CONFIG_PACKAGE_fdt-utils is not set
 # CONFIG_PACKAGE_file is not set
 # CONFIG_PACKAGE_findutils is not set
