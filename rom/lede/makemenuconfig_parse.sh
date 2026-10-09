@@ -512,6 +512,7 @@ for t in $targets; do
 		TARGET_DEVICE_mediatek_filogic_DEVICE_glinet_gl-mt3600be|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_tenda_be12-pro|\
 		TARGET_DEVICE_airoha_an7563_DEVICE_tenda_be6l-pro|\
+		TARGET_DEVICE_mediatek_filogic_DEVICE_tenda_tr9|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_tplink_be450|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_bananapi_bpi-r4-lite|\
 		TARGET_DEVICE_qualcommax_ipq50xx_DEVICE_yuncore_ax830|\
@@ -674,6 +675,7 @@ for t in $targets; do
 		TARGET_DEVICE_mediatek_filogic_DEVICE_glinet_gl-mt3600be|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_tenda_be12-pro|\
 		TARGET_DEVICE_airoha_an7563_DEVICE_tenda_be6l-pro|\
+		TARGET_DEVICE_mediatek_filogic_DEVICE_tenda_tr9|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_tplink_be450|\
 		TARGET_DEVICE_qualcommax_ipq50xx_DEVICE_yuncore_ax830|\
 		TARGET_DEVICE_qualcommax_ipq50xx_DEVICE_xiaomi_redmi-ax5400|\
@@ -1349,6 +1351,7 @@ for t in $targets; do
 	#check usb
 	case $t in
 		#with usb3
+		TARGET_DEVICE_mediatek_filogic_DEVICE_tenda_tr9|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_netcore_n60-pro|\
 		TARGET_DEVICE_qualcommax_ipq60xx_DEVICE_jdcloud_re-cs-02|\
 		TARGET_DEVICE_qualcommax_ipq60xx_DEVICE_jdcloud_re-cs-07|\
