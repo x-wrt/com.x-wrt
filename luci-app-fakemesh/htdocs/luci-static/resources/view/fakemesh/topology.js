@@ -220,7 +220,7 @@ return view.extend({
 	},
 
 	showNodeModal: function(node) {
-		var isController = (node.role === 'controller') || (node.id === 'ac');
+		var isController = (node.role === 'controller') || (!node.role && node.id === 'ac');
 		var uplinkText = _('Root Gateway');
 		if (node.uplink && node.uplink.type === 'wireless') {
 			uplinkText = (node.uplink.band || '5G') + ' Mesh (' + (node.uplink.signal || 0) + ' dBm, ' + (node.uplink.rx_bitrate || 0) + ' Mbps)';
@@ -420,7 +420,7 @@ return view.extend({
 
 	renderNodeCard: function(node, isRoot, nodeClients) {
 		var self = this;
-		var isController = (node.role === 'controller') || (node.id === 'ac');
+		var isController = (node.role === 'controller') || (!node.role && node.id === 'ac');
 		var isWired = node.uplink && node.uplink.type === 'wired';
 		var roleBadge = isController ? _('Controller (AC)') : (isWired ? _('Wired AP') : _('Agent Node'));
 
@@ -484,7 +484,7 @@ return view.extend({
 
 	renderNodeBranch: function(node, depth, clientsByNode) {
 		var self = this;
-		var isRoot = (depth === 0) || (node.role === 'controller') || (node.id === 'ac');
+		var isRoot = (depth === 0) || (node.role === 'controller') || (!node.role && node.id === 'ac');
 		var nodeClients = clientsByNode[node.id] || [];
 		var children = node.children || [];
 
@@ -523,7 +523,7 @@ return view.extend({
 
 	renderMinimapNodeChip: function(node, isRoot, nodeClients, hasChildren) {
 		var self = this;
-		var isController = (node.role === 'controller') || (node.id === 'ac');
+		var isController = (node.role === 'controller') || (!node.role && node.id === 'ac');
 		var isWired = node.uplink && node.uplink.type === 'wired';
 		var isSelected = (node.id === self.selectedNodeId);
 		var roleBadge = isController ? _('Controller (AC)') : (isWired ? _('Wired AP') : _('Agent Node'));
@@ -580,7 +580,7 @@ return view.extend({
 
 	renderMinimapBranch: function(node, depth, clientsByNode) {
 		var self = this;
-		var isRoot = (depth === 0) || (node.role === 'controller') || (node.id === 'ac');
+		var isRoot = (depth === 0) || (node.role === 'controller') || (!node.role && node.id === 'ac');
 		var nodeClients = clientsByNode[node.id] || [];
 		var children = node.children || [];
 		var hasChildren = children.length > 0;
@@ -636,7 +636,7 @@ return view.extend({
 		}
 		if (!selectedNode) return E([]);
 
-		var isController = (selectedNode.role === 'controller') || (selectedNode.id === 'ac');
+		var isController = (selectedNode.role === 'controller') || (!selectedNode.role && selectedNode.id === 'ac');
 		var isWired = selectedNode.uplink && selectedNode.uplink.type === 'wired';
 		var roleBadge = isController ? _('Controller (AC)') : (isWired ? _('Wired AP') : _('Agent Node'));
 		var allNodeClients = clientsByNode[selectedNode.id] || [];
@@ -788,7 +788,7 @@ return view.extend({
 		nodes.forEach(function(n) {
 			if (n.parent_id && nodeMap[n.parent_id]) {
 				nodeMap[n.parent_id].children.push(n);
-			} else if (n.role === 'controller' || n.id === 'ac') {
+			} else if (n.role === 'controller' || (!n.role && n.id === 'ac')) {
 				root = n;
 			}
 		});
@@ -1570,6 +1570,9 @@ return view.extend({
 	render: function(topoData) {
 		this.injectStyles();
 		this.data = topoData || {};
+		if (this.data.current_node_id) {
+			this.selectedNodeId = this.data.current_node_id;
+		}
 		this.pollData();
 
 		var summaryBar = E('div', { 'id': 'fm-topology-summary' }, [
