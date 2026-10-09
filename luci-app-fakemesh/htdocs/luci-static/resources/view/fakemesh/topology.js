@@ -490,7 +490,8 @@ return view.extend({
 
 		var uplinkElem = !isRoot ? E('div', { 'class': 'fm-uplink-connector-wrap' }, [
 			E('div', { 'class': 'fm-connector-line' }),
-			self.renderUplinkBadge(node.uplink)
+			self.renderUplinkBadge(node.uplink),
+			E('div', { 'class': 'fm-connector-line' })
 		]) : E([]);
 
 		var nodeCard = self.renderNodeCard(node, isRoot, nodeClients);
@@ -515,11 +516,12 @@ return view.extend({
 		return E('div', { 'class': 'fm-node-branch depth-' + depth }, [
 			uplinkElem,
 			nodeCard,
+			children.length > 0 ? E('div', { 'class': 'fm-connector-line' }) : E([]),
 			childrenElem
 		]);
 	},
 
-	renderMinimapNodeChip: function(node, isRoot, nodeClients) {
+	renderMinimapNodeChip: function(node, isRoot, nodeClients, hasChildren) {
 		var self = this;
 		var isController = (node.role === 'controller') || (node.id === 'ac');
 		var isWired = node.uplink && node.uplink.type === 'wired';
@@ -530,13 +532,18 @@ return view.extend({
 			E('div', { 'class': 'fm-mini-icon ' + (isController ? 'icon-ac' : 'icon-agent'), 'innerHTML': getIconSvg(isController ? 'router' : (isWired ? 'router' : 'ap')) }),
 			E('div', { 'class': 'fm-mini-titles' }, [
 				E('div', { 'class': 'fm-mini-name', 'title': node.hostname || node.ip }, node.hostname || node.ip),
-				E('div', { 'class': 'fm-mini-sub-badge' }, [
-					E('span', { 'class': 'badge ' + (isController ? 'badge-controller' : (isWired ? 'badge-wired' : 'badge-agent')) }, roleBadge),
-					(node.hop_count && node.hop_count > 0) ? E('span', { 'class': 'badge badge-hop' }, 'Hop ' + node.hop_count) : E([]),
-					isSelected ? E('span', { 'class': 'badge badge-selected' }, _('Currently Selected')) : E([]),
-					E('span', { 'class': 'fm-status-dot ' + (node.online ? 'online' : 'offline') })
+				E('div', { 'class': 'fm-mini-ip-row' }, [
+					E('span', { 'class': 'fm-ip-badge' }, node.ip || '-'),
+					node.model ? E('span', { 'class': 'fm-mini-model', 'title': node.model }, node.model) : E([])
 				])
 			])
+		]);
+
+		var subBadges = E('div', { 'class': 'fm-mini-sub-badge' }, [
+			E('span', { 'class': 'badge ' + (isController ? 'badge-controller' : (isWired ? 'badge-wired' : 'badge-agent')) }, roleBadge),
+			(node.hop_count && node.hop_count > 0) ? E('span', { 'class': 'badge badge-hop' }, 'Hop ' + node.hop_count) : E([]),
+			isSelected ? E('span', { 'class': 'badge badge-selected' }, _('Currently Selected')) : E([]),
+			E('span', { 'class': 'fm-status-dot ' + (node.online ? 'online' : 'offline') })
 		]);
 
 		var upstreamText = isRoot ? (node.parent_name || _('Internet Gateway')) : (node.parent_name || node.parent_hostname || 'X-WRT');
@@ -550,8 +557,14 @@ return view.extend({
 			E('span', { 'class': 'fm-mini-click-hint' }, _('Click to Inspect') + ' 🔍')
 		]);
 
+		var chipClasses = ['fm-minimap-node'];
+		if (isSelected) chipClasses.push('selected');
+		if (isController) chipClasses.push('controller-chip');
+		else chipClasses.push('agent-chip');
+		if (hasChildren) chipClasses.push('has-children');
+
 		return E('div', {
-			'class': 'fm-minimap-node ' + (isSelected ? 'selected' : '') + (isController ? ' controller-chip' : ' agent-chip'),
+			'class': chipClasses.join(' '),
 			'click': function(ev) {
 				ev.stopPropagation();
 				self.selectedNodeId = node.id;
@@ -559,6 +572,7 @@ return view.extend({
 			}
 		}, [
 			header,
+			subBadges,
 			upstreamLine,
 			footer
 		]);
@@ -569,33 +583,44 @@ return view.extend({
 		var isRoot = (depth === 0) || (node.role === 'controller') || (node.id === 'ac');
 		var nodeClients = clientsByNode[node.id] || [];
 		var children = node.children || [];
+		var hasChildren = children.length > 0;
 
-		var uplinkElem = !isRoot ? E('div', { 'class': 'fm-uplink-connector-wrap' }, [
-			E('div', { 'class': 'fm-connector-line' }),
-			self.renderUplinkBadge(node.uplink)
-		]) : E([]);
-
-		var nodeChip = self.renderMinimapNodeChip(node, isRoot, nodeClients);
+		var nodeChip = self.renderMinimapNodeChip(node, isRoot, nodeClients, hasChildren);
 
 		var childrenElem = E([]);
-		if (children.length > 0) {
-			var childrenGrid = E('div', { 'class': 'fm-children-grid minimap-grid' });
-			children.forEach(function(child) {
-				childrenGrid.appendChild(self.renderMinimapBranch(child, depth + 1, clientsByNode));
-			});
+		if (hasChildren) {
+			var stemDown = E('div', { 'class': 'fm-tree-stem-v stem-parent-down' });
 
-			childrenElem = E('div', { 'class': 'fm-cascade-container minimap-cascade' }, [
-				E('div', { 'class': 'fm-cascade-header text-muted' }, [
-					E('span', { 'class': 'badge badge-info' }, (depth + 1) + ' ' + _('Hop Cascade Nodes')),
-					' ',
-					E('small', {}, '(' + children.length + ' ' + _('Sub-nodes') + ')')
-				]),
-				childrenGrid
-			]);
+			if (children.length === 1) {
+				var child = children[0];
+				var singleBranch = E('div', { 'class': 'fm-tree-single-branch' }, [
+					self.renderUplinkBadge(child.uplink),
+					E('div', { 'class': 'fm-tree-stem-v stem-child-in' }),
+					self.renderMinimapBranch(child, depth + 1, clientsByNode)
+				]);
+				childrenElem = E('div', { 'class': 'fm-tree-children-container single-child' }, [
+					stemDown,
+					singleBranch
+				]);
+			} else {
+				var forkCols = children.map(function(child) {
+					return E('div', { 'class': 'fm-tree-fork-col' }, [
+						E('div', { 'class': 'fm-tree-stem-v stem-fork-drop' }),
+						self.renderUplinkBadge(child.uplink),
+						E('div', { 'class': 'fm-tree-stem-v stem-child-in' }),
+						self.renderMinimapBranch(child, depth + 1, clientsByNode)
+					]);
+				});
+
+				var forkBar = E('div', { 'class': 'fm-tree-children-fork' }, forkCols);
+				childrenElem = E('div', { 'class': 'fm-tree-children-container multi-child' }, [
+					stemDown,
+					forkBar
+				]);
+			}
 		}
 
-		return E('div', { 'class': 'fm-node-branch minimap-branch depth-' + depth }, [
-			uplinkElem,
+		return E('div', { 'class': 'fm-tree-node-wrapper depth-' + depth }, [
 			nodeChip,
 			childrenElem
 		]);
@@ -926,33 +951,44 @@ return view.extend({
 			}
 			.fm-tree-link-v {
 				width: 2px;
-				height: 24px;
-				background: #007bff;
-				margin: 2px 0;
+				height: 22px;
+				background: #0284c7;
+				margin: 0 auto;
+				flex-shrink: 0;
 			}
 			.fm-uplink-connector-wrap {
 				display: flex;
 				flex-direction: column;
 				align-items: center;
-				margin-bottom: 8px;
+				margin: 0;
 				width: 100%;
 			}
 			.fm-connector-line {
 				width: 2px;
-				height: 18px;
-				background: #007bff;
+				height: 16px;
+				background: #0284c7;
+				margin: 0 auto;
+				flex-shrink: 0;
 			}
 			.fm-uplink-badge {
 				display: inline-flex;
 				align-items: center;
 				gap: 6px;
-				padding: 4px 12px;
-				border-radius: 14px;
+				padding: 4px 14px;
+				border-radius: 16px;
 				font-size: 11px;
-				font-weight: 500;
-				box-shadow: 0 1px 4px rgba(0,0,0,0.06);
-				margin-top: -2px;
+				font-weight: 600;
+				background: #fff;
+				border: 1.5px solid #0284c7;
+				box-shadow: 0 2px 8px rgba(0,0,0,0.06);
 				z-index: 2;
+				flex-shrink: 0;
+				margin: 0;
+				transition: all 0.2s ease;
+			}
+			.fm-uplink-badge:hover {
+				transform: scale(1.04);
+				box-shadow: 0 4px 12px rgba(2,132,199,0.18);
 			}
 			.link-good {
 				background: #e8f5e9;
@@ -1232,11 +1268,12 @@ return view.extend({
 				display: flex;
 				flex-direction: column;
 				align-items: center;
-				padding: 20px 16px;
+				padding: 24px 16px;
 				background: var(--card-bg, #fff);
 				border: 1px solid var(--border-color, rgba(0,0,0,0.08));
 				border-radius: 12px;
 				box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+				overflow-x: auto;
 			}
 			.fm-minimap-hint {
 				font-size: 13px;
@@ -1250,37 +1287,141 @@ return view.extend({
 				border-radius: 20px;
 				border: 1px solid #e2e8f0;
 			}
-			.minimap-grid {
-				grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)) !important;
-				gap: 16px !important;
+
+			/* Connected Tree Structure */
+			.fm-tree-node-wrapper {
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+				position: relative;
 			}
-			.minimap-cascade {
-				padding: 12px !important;
+			.fm-tree-stem-v {
+				width: 2px;
+				background: #0284c7;
+				margin: 0 auto;
+				flex-shrink: 0;
 			}
+			.stem-parent-down {
+				height: 20px;
+			}
+			.stem-fork-drop {
+				height: 16px;
+			}
+			.stem-child-in {
+				height: 16px;
+			}
+
+			.fm-tree-children-container {
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+				width: 100%;
+			}
+			.fm-tree-children-container.single-child {
+				width: auto;
+			}
+			.fm-tree-single-branch {
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+			}
+
+			.fm-tree-children-fork {
+				display: flex;
+				justify-content: center;
+				align-items: flex-start;
+				position: relative;
+				width: auto;
+				margin: 0 auto;
+			}
+			.fm-tree-fork-col {
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+				position: relative;
+				padding: 0 16px;
+				box-sizing: border-box;
+			}
+			.fm-tree-fork-col::before {
+				content: '';
+				position: absolute;
+				top: 0;
+				left: 0;
+				width: 50%;
+				height: 2px;
+				background: #0284c7;
+			}
+			.fm-tree-fork-col::after {
+				content: '';
+				position: absolute;
+				top: 0;
+				right: 0;
+				width: 50%;
+				height: 2px;
+				background: #0284c7;
+			}
+			.fm-tree-fork-col:first-child::before {
+				display: none;
+			}
+			.fm-tree-fork-col:last-child::after {
+				display: none;
+			}
+
+			/* Minimap Node Chip */
 			.fm-minimap-node {
+				position: relative;
 				background: var(--card-bg, #fff);
 				border: 2px solid var(--border-color, rgba(0,0,0,0.12));
-				border-radius: 10px;
+				border-radius: 12px;
 				padding: 12px 14px;
 				cursor: pointer;
 				transition: all 0.2s ease;
-				box-shadow: 0 2px 6px rgba(0,0,0,0.04);
-				width: 100%;
-				max-width: 290px;
+				box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+				width: 280px;
+				box-sizing: border-box;
 				user-select: none;
+				z-index: 2;
 			}
 			.fm-minimap-node:hover {
 				transform: translateY(-2px);
-				border-color: #007bff;
-				box-shadow: 0 4px 12px rgba(0,123,255,0.15);
+				border-color: #0284c7;
+				box-shadow: 0 6px 16px rgba(2,132,199,0.18);
 			}
 			.fm-minimap-node.selected {
-				border-color: #007bff !important;
-				background: #f0f7ff !important;
-				box-shadow: 0 0 0 3px rgba(0,123,255,0.25), 0 4px 14px rgba(0,123,255,0.15);
+				border-color: #0284c7 !important;
+				background: #f0f9ff !important;
+				box-shadow: 0 0 0 3px rgba(2,132,199,0.25), 0 6px 16px rgba(2,132,199,0.15) !important;
+			}
+			.fm-minimap-node::before {
+				content: '';
+				position: absolute;
+				top: -5px;
+				left: 50%;
+				transform: translateX(-50%);
+				width: 8px;
+				height: 8px;
+				border-radius: 50%;
+				background: #0284c7;
+				border: 2px solid #fff;
+				box-shadow: 0 0 0 1px rgba(2,132,199,0.4);
+				z-index: 3;
+			}
+			.fm-minimap-node.has-children::after {
+				content: '';
+				position: absolute;
+				bottom: -5px;
+				left: 50%;
+				transform: translateX(-50%);
+				width: 8px;
+				height: 8px;
+				border-radius: 50%;
+				background: #0284c7;
+				border: 2px solid #fff;
+				box-shadow: 0 0 0 1px rgba(2,132,199,0.4);
+				z-index: 3;
 			}
 			.badge-selected {
-				background: #007bff;
+				background: #0284c7;
 				color: #fff;
 				font-size: 10px;
 			}
@@ -1310,11 +1451,25 @@ return view.extend({
 				overflow: hidden;
 				text-overflow: ellipsis;
 			}
+			.fm-mini-ip-row {
+				display: flex;
+				align-items: center;
+				gap: 6px;
+				margin-top: 3px;
+			}
+			.fm-mini-model {
+				font-size: 11px;
+				color: #64748b;
+				white-space: nowrap;
+				overflow: hidden;
+				text-overflow: ellipsis;
+				max-width: 140px;
+			}
 			.fm-mini-sub-badge {
 				display: flex;
 				align-items: center;
 				gap: 4px;
-				margin-top: 2px;
+				margin-top: 4px;
 				flex-wrap: wrap;
 			}
 			.fm-mini-upstream {
@@ -1336,7 +1491,7 @@ return view.extend({
 			}
 			.fm-mini-click-hint {
 				font-size: 11px;
-				color: #007bff;
+				color: #0284c7;
 				font-weight: 500;
 			}
 			.fm-focused-panel {
