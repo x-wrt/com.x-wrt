@@ -235,7 +235,7 @@ return view.extend({
 				E('tr', {}, [ E('td', { 'class': 'font-weight-bold' }, _('Hostname')), E('td', {}, node.hostname || '-') ]),
 				E('tr', {}, [ E('td', { 'class': 'font-weight-bold' }, _('Role')), E('td', {}, isController ? _('Controller (AC)') : (node.uplink && node.uplink.type === 'wired' ? _('Wired AP') : _('Agent Node'))) ]),
 				E('tr', {}, [ E('td', { 'class': 'font-weight-bold' }, _('Upstream Node')), E('td', {}, upstreamNodeName) ]),
-				E('tr', {}, [ E('td', { 'class': 'font-weight-bold' }, _('Cascade Hop')), E('td', {}, node.hop_count !== undefined ? (_('Hop ') + node.hop_count) : '-') ]),
+				E('tr', {}, [ E('td', { 'class': 'font-weight-bold' }, _('Cascade Hop')), E('td', {}, node.hop_count !== undefined ? (node.hop_count === 0 ? _('Root Node') : _('Hop %d').format(node.hop_count)) : '-') ]),
 				E('tr', {}, [ E('td', { 'class': 'font-weight-bold' }, _('IP Address')), E('td', {}, node.ip || '-') ]),
 				E('tr', {}, [ E('td', { 'class': 'font-weight-bold' }, _('MAC Address')), E('td', {}, node.mac || '-') ]),
 				E('tr', {}, [ E('td', { 'class': 'font-weight-bold' }, _('Hardware Model')), E('td', {}, node.model || '-') ]),
@@ -430,7 +430,7 @@ return view.extend({
 				E('div', { 'class': 'fm-node-name', 'title': node.hostname }, node.hostname || node.ip),
 				E('div', { 'class': 'fm-node-role' }, [
 					E('span', { 'class': 'badge ' + (isController ? 'badge-controller' : (isWired ? 'badge-wired' : 'badge-agent')) }, roleBadge),
-					(node.hop_count && node.hop_count > 0) ? E('span', { 'class': 'badge badge-hop' }, 'Hop ' + node.hop_count) : E([]),
+					(node.hop_count && node.hop_count > 0) ? E('span', { 'class': 'badge badge-hop' }, _('Hop %d').format(node.hop_count)) : E([]),
 					E('span', { 'class': 'fm-status-dot ' + (node.online ? 'online' : 'offline') })
 				])
 			])
@@ -541,7 +541,7 @@ return view.extend({
 
 		var subBadges = E('div', { 'class': 'fm-mini-sub-badge' }, [
 			E('span', { 'class': 'badge ' + (isController ? 'badge-controller' : (isWired ? 'badge-wired' : 'badge-agent')) }, roleBadge),
-			(node.hop_count && node.hop_count > 0) ? E('span', { 'class': 'badge badge-hop' }, 'Hop ' + node.hop_count) : E([]),
+			(node.hop_count && node.hop_count > 0) ? E('span', { 'class': 'badge badge-hop' }, _('Hop %d').format(node.hop_count)) : E([]),
 			isSelected ? E('span', { 'class': 'badge badge-selected' }, _('Currently Selected')) : E([]),
 			E('span', { 'class': 'fm-status-dot ' + (node.online ? 'online' : 'offline') })
 		]);
@@ -713,7 +713,7 @@ return view.extend({
 				E('div', { 'class': 'fm-hero-val' }, [
 					E('span', { 'class': 'badge ' + (isController ? 'badge-controller' : (isWired ? 'badge-wired' : 'badge-agent')) }, roleBadge),
 					' ',
-					(selectedNode.hop_count && selectedNode.hop_count > 0) ? E('span', { 'class': 'badge badge-hop' }, 'Hop ' + selectedNode.hop_count) : E([]),
+					(selectedNode.hop_count && selectedNode.hop_count > 0) ? E('span', { 'class': 'badge badge-hop' }, _('Hop %d').format(selectedNode.hop_count)) : E([]),
 					' ',
 					E('span', { 'class': 'fm-status-dot ' + (selectedNode.online ? 'online' : 'offline') })
 				])
@@ -759,7 +759,8 @@ return view.extend({
 
 		var terminalsBody = E([]);
 		if (filteredClients.length === 0) {
-			terminalsBody = E('div', { 'class': 'alert-message info' }, _('No matching devices'));
+			var emptyMsg = (allNodeClients.length === 0) ? _('No terminal devices currently connected to this node.') : _('No matching devices');
+			terminalsBody = E('div', { 'class': 'alert-message info' }, emptyMsg);
 		} else {
 			var clientCards = [];
 			filteredClients.forEach(function(c) {

@@ -328,7 +328,7 @@ msgid "Upstream Gateway"
 msgstr "上级网关"
 
 msgid "Node Details & Connected Devices"
-msgstr "节点放大看板与挂载终端"
+msgstr "节点详情与挂载终端"
 
 msgid "Connected Devices on this Node"
 msgstr "本节点挂载终端"
@@ -368,3 +368,13 @@ msgstr "角色与状态"
 
 msgid "Click any client to view deep details"
 msgstr "点击任意终端查看详细指标"
+
+msgid "Agent Node"
+msgstr "卫星节点"
+
+msgid "Root Node"
+msgstr "根节点"
+
+msgid "Hop %d"
+msgstr "第 %d 级"
+
