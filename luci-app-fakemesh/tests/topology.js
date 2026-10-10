@@ -84,5 +84,38 @@ while ((trMatch = trRegex.exec(source)) !== null) {
 	const s = trMatch[2];
 	assert.strictEqual(s, s.trim(), 'Translation key must not have leading or trailing whitespace: "' + s + '"');
 }
+// Verify that all strings in PO match strings in code with zero missing or unused entries
+const poPath = path.join(__dirname, '../files/luci/i18n/fakemesh.zh-cn.po');
+const poContent = fs.readFileSync(poPath, 'utf8');
+const poBlocks = poContent.split(/\n\n+/);
+const poMsgids = new Set();
+for (const b of poBlocks) {
+	const mId = b.match(/msgid\s+"(.*)"/);
+	if (mId && mId[1] !== '') {
+		poMsgids.add(mId[1].replace(/\\"/g, '"'));
+	}
+}
 
-console.log('8 frontend topology regression tests passed');
+const fakemeshJs = fs.readFileSync(path.join(__dirname, '../htdocs/luci-static/resources/view/fakemesh/fakemesh.js'), 'utf8');
+const menuJson = JSON.parse(fs.readFileSync(path.join(__dirname, '../root/usr/share/luci/menu.d/luci-app-fakemesh.json'), 'utf8'));
+
+const codeStrings = new Set();
+for (const src of [source, fakemeshJs]) {
+	const r = /(?:_|\btr)\(\s*([`'"])(.*?)\1\s*\)/g;
+	let m;
+	while ((m = r.exec(src)) !== null) {
+		codeStrings.add(m[2].replace(/\\'/g, "'"));
+	}
+}
+for (const k in menuJson) {
+	if (menuJson[k].title) codeStrings.add(menuJson[k].title);
+}
+
+for (const s of codeStrings) {
+	assert(poMsgids.has(s), 'Missing translation in PO for code string: ' + s);
+}
+for (const id of poMsgids) {
+	assert(codeStrings.has(id), 'Unused translation in PO: ' + id);
+}
+
+console.log('9 frontend topology regression tests passed');

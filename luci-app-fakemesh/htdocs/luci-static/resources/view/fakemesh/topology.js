@@ -231,7 +231,7 @@ return view.extend({
 			{ id: '5g', label: '5G' },
 			{ id: '2g', label: '2.4G' },
 			{ id: 'wired', label: _('Wired') },
-			{ id: 'vpn', label: 'VPN' }
+			{ id: 'vpn', label: _('VPN') }
 		].map(function(item) {
 			return E('button', {
 				'class': 'btn btn-sm ' + (self.filterBand === item.id ? 'btn-primary' : 'btn-secondary'),
