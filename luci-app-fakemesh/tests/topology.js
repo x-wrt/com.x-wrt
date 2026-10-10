@@ -55,5 +55,34 @@ assert.strictEqual(view.formatLastActive(86400), '1 days ago');
 assert.strictEqual(view.formatLastActive(90000), '1d 1h ago');
 assert.strictEqual(view.formatLastActive(-1), '-');
 assert.strictEqual(view.formatLastActive(null), '-');
+// Modal title translation regression tests
+let modalTitle = null;
+global.ui = {
+	showModal: function(title) { modalTitle = title; },
+	hideModal: function() {}
+};
+global._ = function(s) {
+	const dict = {
+		'Node Details': '节点详情',
+		'Client Details': '终端详情'
+	};
+	return dict[s] || s;
+};
+global.E = function() { return {}; };
+global.formatUptime = function() { return '1d'; };
 
-console.log('6 frontend topology regression tests passed');
+view.showNodeModal({ hostname: 'NodeA', ip: '192.168.1.1' });
+assert.strictEqual(modalTitle, '节点详情: NodeA');
+
+view.showClientModal({ hostname: 'PhoneB', mac: 'AA:BB:CC:DD:EE:FF' }, {});
+assert.strictEqual(modalTitle, '终端详情: PhoneB');
+
+// Ensure all _('...') translation keys have no leading or trailing whitespace
+const trRegex = /(?:_|\btr)\(\s*([`'"])(.*?)\1\s*\)/g;
+let trMatch;
+while ((trMatch = trRegex.exec(source)) !== null) {
+	const s = trMatch[2];
+	assert.strictEqual(s, s.trim(), 'Translation key must not have leading or trailing whitespace: "' + s + '"');
+}
+
+console.log('8 frontend topology regression tests passed');

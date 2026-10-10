@@ -198,6 +198,12 @@ msgstr "全部终端"
 msgid "Close"
 msgstr "关闭"
 
+msgid "Node Details"
+msgstr "节点详情"
+
+msgid "Client Details"
+msgstr "终端详情"
+
 msgid "Node Details: "
 msgstr "节点详情: "
 
@@ -345,11 +351,20 @@ msgstr "查看节点完整详情"
 msgid "Currently Selected"
 msgstr "当前选中"
 
+msgid "Upstream"
+msgstr "上级"
+
 msgid "Upstream: "
 msgstr "上级: "
 
+msgid "IP"
+msgstr "IP"
+
 msgid "IP: "
 msgstr "IP: "
+
+msgid "Model"
+msgstr "型号"
 
 msgid "Model: "
 msgstr "型号: "
