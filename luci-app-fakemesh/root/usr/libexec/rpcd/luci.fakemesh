@@ -365,7 +365,7 @@ local function fetch_agents_parallel(agents)
 	for _, a in ipairs(agents) do
 		local tag = a.ip:gsub("%.", "_")
 		local cmd = string.format(
-			"( curl -s --connect-timeout 1 -m 2 -X POST -H 'Content-Type: application/json' -d '%s' http://%s/ubus > /tmp/fmnode_%s.json 2>/dev/null || curl -s --connect-timeout 1 -m 2 http://%s/fakemesh.node > /tmp/fmnode_%s.json 2>/dev/null ) &",
+			"( wget -4 -q -T 2 --header='Content-Type: application/json' --post-data='%s' -O - 'http://%s/ubus' > /tmp/fmnode_%s.json 2>/dev/null || wget -4 -q -T 2 -O - 'http://%s/fakemesh.node' > /tmp/fmnode_%s.json 2>/dev/null ) &",
 			ubus_payload, a.ip, tag, a.ip, tag
 		)
 		cmds[#cmds + 1] = cmd
@@ -447,7 +447,7 @@ local methods = {
 				-- Fetch full topology from upstream controller
 				if ac_ip and ac_ip ~= "" then
 					local post_payload = '{"jsonrpc":"2.0","id":1,"method":"call","params":["00000000000000000000000000000000","luci.fakemesh","get_topology",{}]}'
-					local cmd = string.format("uclient-fetch -q -O - --timeout=3 'http://%s/ubus' --post-data='%s' 2>/dev/null", ac_ip, post_payload)
+					local cmd = string.format("wget -4 -q -T 3 --header='Content-Type: application/json' --post-data='%s' -O - 'http://%s/ubus' 2>/dev/null", post_payload, ac_ip)
 					local p = io.popen(cmd)
 					if p then
 						local raw = p:read("*a")
