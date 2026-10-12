@@ -496,7 +496,7 @@ for t in $targets; do
 	excludes="$excludes_basic"
 	case $t in
 		#>=32M flash
-		CONFIG_TARGET_DEVICE_mediatek_filogic_DEVICE_glinet_gl-be10000|\
+		TARGET_DEVICE_mediatek_filogic_DEVICE_glinet_gl-be10000|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_z-router_zr-2660|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_z-router_zr-2662|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_imou_hx21|\
@@ -657,7 +657,7 @@ for t in $targets; do
 	esac
 	case $t in
 		#>=14M flash
-		CONFIG_TARGET_DEVICE_mediatek_filogic_DEVICE_glinet_gl-be10000|\
+		TARGET_DEVICE_mediatek_filogic_DEVICE_glinet_gl-be10000|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_z-router_zr-2660|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_z-router_zr-2662|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_imou_hx21|\
@@ -967,6 +967,19 @@ for t in $targets; do
 			extra_utils=1
 		;;
 		#>8M flash <14M
+		TARGET_DEVICE_airoha_an7581_DEVICE_fiberhome_hg5382a|\
+		TARGET_DEVICE_airoha_an7581_DEVICE_fiberhome_hg5585f-ct|\
+		TARGET_DEVICE_airoha_an7581_DEVICE_fiberhome_hg5585f-cu|\
+		TARGET_DEVICE_airoha_an7581_DEVICE_gemtek_xg2010g|\
+		TARGET_DEVICE_airoha_an7581_DEVICE_h3c_hm2004-du|\
+		TARGET_DEVICE_airoha_an7581_DEVICE_nokia_xg-040g-md|\
+		TARGET_DEVICE_airoha_an7581_DEVICE_nokia_xg-040g-md-ubi|\
+		TARGET_DEVICE_airoha_an7581_DEVICE_nokia_xg-040g-tf-ubi|\
+		TARGET_DEVICE_airoha_an7581_DEVICE_unionman_ung00a|\
+		TARGET_DEVICE_airoha_an7581_DEVICE_znxt_zn504xg-d|\
+		TARGET_DEVICE_airoha_an7581_DEVICE_znxt_zn515xg-d|\
+		TARGET_DEVICE_airoha_an7583_DEVICE_nokia_xg-040g-mf|\
+		TARGET_DEVICE_airoha_an7583_DEVICE_nokia_xg-040g-mf-ubi|\
 		TARGET_DEVICE_econet_en751221_DEVICE_chinamobile_gs3101|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_cudy_re3000-v1|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_cudy_wr3000-v1|\
@@ -1351,6 +1364,14 @@ for t in $targets; do
 	#check usb
 	case $t in
 		#with usb3
+		TARGET_DEVICE_airoha_an7581_DEVICE_fiberhome_hg5585f-ct|\
+		TARGET_DEVICE_airoha_an7581_DEVICE_fiberhome_hg5585f-cu|\
+		TARGET_DEVICE_airoha_an7581_DEVICE_nokia_xg-040g-md|\
+		TARGET_DEVICE_airoha_an7581_DEVICE_nokia_xg-040g-md-ubi|\
+		TARGET_DEVICE_airoha_an7581_DEVICE_znxt_zn504xg-d|\
+		TARGET_DEVICE_airoha_an7581_DEVICE_znxt_zn515xg-d|\
+		TARGET_DEVICE_airoha_an7583_DEVICE_nokia_xg-040g-mf|\
+		TARGET_DEVICE_airoha_an7583_DEVICE_nokia_xg-040g-mf-ubi|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_tenda_tr9|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_netcore_n60-pro|\
 		TARGET_DEVICE_qualcommax_ipq60xx_DEVICE_jdcloud_re-cs-02|\
@@ -1562,6 +1583,15 @@ for t in $targets; do
 			has_usb=1
 		;;
 		#with usb2
+		TARGET_DEVICE_airoha_an7581_DEVICE_fiberhome_hg5585f-ct|\
+		TARGET_DEVICE_airoha_an7581_DEVICE_fiberhome_hg5585f-cu|\
+		TARGET_DEVICE_airoha_an7581_DEVICE_h3c_hm2004-du|\
+		TARGET_DEVICE_airoha_an7581_DEVICE_nokia_xg-040g-md|\
+		TARGET_DEVICE_airoha_an7581_DEVICE_nokia_xg-040g-md-ubi|\
+		TARGET_DEVICE_airoha_an7581_DEVICE_znxt_zn504xg-d|\
+		TARGET_DEVICE_airoha_an7581_DEVICE_znxt_zn515xg-d|\
+		TARGET_DEVICE_airoha_an7583_DEVICE_nokia_xg-040g-mf|\
+		TARGET_DEVICE_airoha_an7583_DEVICE_nokia_xg-040g-mf-ubi|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_z-router_zr-2660|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_z-router_zr-2662|\
 		TARGET_DEVICE_econet_en751221_DEVICE_chinamobile_gs3101|\
@@ -1751,7 +1781,11 @@ for t in $targets; do
 			has_usb=1
 		;;
 		#no usb
-		CONFIG_TARGET_DEVICE_mediatek_filogic_DEVICE_glinet_gl-be10000|\
+		TARGET_DEVICE_airoha_an7581_DEVICE_fiberhome_hg5382a|\
+		TARGET_DEVICE_airoha_an7581_DEVICE_gemtek_xg2010g|\
+		TARGET_DEVICE_airoha_an7581_DEVICE_nokia_xg-040g-tf-ubi|\
+		TARGET_DEVICE_airoha_an7581_DEVICE_unionman_ung00a|\
+		TARGET_DEVICE_mediatek_filogic_DEVICE_glinet_gl-be10000|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_imou_hx21|\
 		TARGET_DEVICE_airoha_an7563_DEVICE_xiaomi_be5000|\
 		TARGET_DEVICE_qualcommax_ipq50xx_DEVICE_cmcc_pz-l8|\
