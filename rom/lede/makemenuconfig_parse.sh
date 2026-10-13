@@ -496,6 +496,19 @@ for t in $targets; do
 	excludes="$excludes_basic"
 	case $t in
 		#>=32M flash
+		TARGET_DEVICE_airoha_an7581_DEVICE_fiberhome_hg5382a|\
+		TARGET_DEVICE_airoha_an7581_DEVICE_fiberhome_hg5585f-ct|\
+		TARGET_DEVICE_airoha_an7581_DEVICE_fiberhome_hg5585f-cu|\
+		TARGET_DEVICE_airoha_an7581_DEVICE_gemtek_xg2010g|\
+		TARGET_DEVICE_airoha_an7581_DEVICE_h3c_hm2004-du|\
+		TARGET_DEVICE_airoha_an7581_DEVICE_nokia_xg-040g-md|\
+		TARGET_DEVICE_airoha_an7581_DEVICE_nokia_xg-040g-md-ubi|\
+		TARGET_DEVICE_airoha_an7581_DEVICE_nokia_xg-040g-tf-ubi|\
+		TARGET_DEVICE_airoha_an7581_DEVICE_unionman_ung00a|\
+		TARGET_DEVICE_airoha_an7581_DEVICE_znxt_zn504xg-d|\
+		TARGET_DEVICE_airoha_an7581_DEVICE_znxt_zn515xg-d|\
+		TARGET_DEVICE_airoha_an7583_DEVICE_nokia_xg-040g-mf|\
+		TARGET_DEVICE_airoha_an7583_DEVICE_nokia_xg-040g-mf-ubi|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_glinet_gl-be10000|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_z-router_zr-2660|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_z-router_zr-2662|\
@@ -657,6 +670,19 @@ for t in $targets; do
 	esac
 	case $t in
 		#>=14M flash
+		TARGET_DEVICE_airoha_an7581_DEVICE_fiberhome_hg5382a|\
+		TARGET_DEVICE_airoha_an7581_DEVICE_fiberhome_hg5585f-ct|\
+		TARGET_DEVICE_airoha_an7581_DEVICE_fiberhome_hg5585f-cu|\
+		TARGET_DEVICE_airoha_an7581_DEVICE_gemtek_xg2010g|\
+		TARGET_DEVICE_airoha_an7581_DEVICE_h3c_hm2004-du|\
+		TARGET_DEVICE_airoha_an7581_DEVICE_nokia_xg-040g-md|\
+		TARGET_DEVICE_airoha_an7581_DEVICE_nokia_xg-040g-md-ubi|\
+		TARGET_DEVICE_airoha_an7581_DEVICE_nokia_xg-040g-tf-ubi|\
+		TARGET_DEVICE_airoha_an7581_DEVICE_unionman_ung00a|\
+		TARGET_DEVICE_airoha_an7581_DEVICE_znxt_zn504xg-d|\
+		TARGET_DEVICE_airoha_an7581_DEVICE_znxt_zn515xg-d|\
+		TARGET_DEVICE_airoha_an7583_DEVICE_nokia_xg-040g-mf|\
+		TARGET_DEVICE_airoha_an7583_DEVICE_nokia_xg-040g-mf-ubi|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_glinet_gl-be10000|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_z-router_zr-2660|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_z-router_zr-2662|\
@@ -967,19 +993,6 @@ for t in $targets; do
 			extra_utils=1
 		;;
 		#>8M flash <14M
-		TARGET_DEVICE_airoha_an7581_DEVICE_fiberhome_hg5382a|\
-		TARGET_DEVICE_airoha_an7581_DEVICE_fiberhome_hg5585f-ct|\
-		TARGET_DEVICE_airoha_an7581_DEVICE_fiberhome_hg5585f-cu|\
-		TARGET_DEVICE_airoha_an7581_DEVICE_gemtek_xg2010g|\
-		TARGET_DEVICE_airoha_an7581_DEVICE_h3c_hm2004-du|\
-		TARGET_DEVICE_airoha_an7581_DEVICE_nokia_xg-040g-md|\
-		TARGET_DEVICE_airoha_an7581_DEVICE_nokia_xg-040g-md-ubi|\
-		TARGET_DEVICE_airoha_an7581_DEVICE_nokia_xg-040g-tf-ubi|\
-		TARGET_DEVICE_airoha_an7581_DEVICE_unionman_ung00a|\
-		TARGET_DEVICE_airoha_an7581_DEVICE_znxt_zn504xg-d|\
-		TARGET_DEVICE_airoha_an7581_DEVICE_znxt_zn515xg-d|\
-		TARGET_DEVICE_airoha_an7583_DEVICE_nokia_xg-040g-mf|\
-		TARGET_DEVICE_airoha_an7583_DEVICE_nokia_xg-040g-mf-ubi|\
 		TARGET_DEVICE_econet_en751221_DEVICE_chinamobile_gs3101|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_cudy_re3000-v1|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_cudy_wr3000-v1|\
