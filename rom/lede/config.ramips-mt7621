@@ -1172,7 +1172,7 @@ CONFIG_TARGET_INIT_CMD="/sbin/init"
 CONFIG_TARGET_INIT_SUPPRESS_STDERR=y
 CONFIG_VERSIONOPT=y
 CONFIG_VERSION_DIST="X-WRT"
-CONFIG_VERSION_NUMBER="26.10_b202610162026"
+CONFIG_VERSION_NUMBER="26.10_b202610162149"
 CONFIG_VERSION_CODE="Stonking"
 CONFIG_VERSION_REPO="http://downloads.openwrt.org/snapshots"
 CONFIG_VERSION_HOME_URL="https://x-wrt.com/"
@@ -3645,6 +3645,7 @@ CONFIG_PACKAGE_ath10k-firmware-qca988x-ct=m
 # CONFIG_PACKAGE_ath11k-firmware-ipq5018-qcn6122 is not set
 # CONFIG_PACKAGE_ath11k-firmware-ipq6018 is not set
 # CONFIG_PACKAGE_ath11k-firmware-ipq8074 is not set
+# CONFIG_PACKAGE_ath11k-firmware-ipq9574 is not set
 # CONFIG_PACKAGE_ath11k-firmware-qca2066 is not set
 # CONFIG_PACKAGE_ath11k-firmware-qca6390 is not set
 # CONFIG_PACKAGE_ath11k-firmware-qcn9074 is not set
