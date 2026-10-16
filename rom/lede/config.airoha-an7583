@@ -59,6 +59,8 @@ CONFIG_TARGET_airoha_an7583=y
 CONFIG_TARGET_MULTI_PROFILE=y
 # CONFIG_TARGET_airoha_an7583_DEVICE_airoha_an7583-evb is not set
 # CONFIG_TARGET_airoha_an7583_DEVICE_airoha_an7583-evb-emmc is not set
+# CONFIG_TARGET_airoha_an7583_DEVICE_airoha_an7583-evb-emmc-kite is not set
+# CONFIG_TARGET_airoha_an7583_DEVICE_airoha_an7583-evb-emmc-eagle is not set
 # CONFIG_TARGET_airoha_an7583_DEVICE_nokia_xg-040g-mf is not set
 # CONFIG_TARGET_airoha_an7583_DEVICE_nokia_xg-040g-mf-ubi is not set
 
@@ -67,6 +69,8 @@ CONFIG_TARGET_MULTI_PROFILE=y
 #
 # CONFIG_TARGET_ALL_PROFILES is not set
 CONFIG_TARGET_PER_DEVICE_ROOTFS=y
+# CONFIG_TARGET_DEVICE_airoha_an7583_DEVICE_airoha_an7583-evb-emmc-kite is not set
+# CONFIG_TARGET_DEVICE_airoha_an7583_DEVICE_airoha_an7583-evb-emmc-eagle is not set
 # CONFIG_TARGET_DEVICE_airoha_an7583_DEVICE_airoha_an7583-evb-emmc is not set
 # CONFIG_TARGET_DEVICE_airoha_an7583_DEVICE_airoha_an7583-evb is not set
 CONFIG_TARGET_DEVICE_airoha_an7583_DEVICE_nokia_xg-040g-mf=y
@@ -464,7 +468,7 @@ CONFIG_TARGET_INIT_CMD="/sbin/init"
 CONFIG_TARGET_INIT_SUPPRESS_STDERR=y
 CONFIG_VERSIONOPT=y
 CONFIG_VERSION_DIST="X-WRT"
-CONFIG_VERSION_NUMBER="26.10_b202610140001"
+CONFIG_VERSION_NUMBER="26.10_b202610161541"
 CONFIG_VERSION_CODE="Stonking"
 CONFIG_VERSION_REPO="http://downloads.openwrt.org/snapshots"
 CONFIG_VERSION_HOME_URL="https://x-wrt.com/"
