@@ -255,8 +255,13 @@ return view.extend({
 		]);
 	},
 
+	closeDetailModalOnBackdrop: function(ev) {
+		if (ev.target === ev.currentTarget && ev.currentTarget.firstElementChild.classList.contains('fm-detail-modal'))
+			ui.hideModal();
+	},
+
 	showDetailModal: function(title, content) {
-		ui.showModal(title, [
+		var modal = ui.showModal(title, [
 			content,
 			E('div', { 'class': 'right' }, [
 				E('button', {
@@ -264,7 +269,8 @@ return view.extend({
 					'click': ui.hideModal
 				}, _('Close'))
 			])
-		]);
+		], 'fm-detail-modal');
+		modal.parentNode.addEventListener('click', this.closeDetailModalOnBackdrop);
 	},
 
 	showNodeModal: function(node) {
