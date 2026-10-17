@@ -219,7 +219,7 @@ test("only associated and authorized Wi-Fi clients are counted; PHY uses Mbps", 
 	state.ubus["hostapd.phy0-ap0"] = {
 		get_status = {ssid = "Test", freq = 5180},
 		get_clients = {clients = {
-			[client_mac] = {assoc = true, authorized = true, signal = -62, rate = {rx = 1201000, tx = 866700}},
+			[client_mac] = {assoc = true, authorized = true, signal = -62, rate = {rx = 120100000, tx = 86670000}},
 			[a_mac] = {assoc = false, authorized = false},
 			[b_mac] = {assoc = true, authorized = false},
 			[c_mac] = {assoc = 0, authorized = 1}
@@ -227,12 +227,16 @@ test("only associated and authorized Wi-Fi clients are counted; PHY uses Mbps", 
 	}
 	state.ubus.iwinfo = {assoclist = function(args)
 		assert(args.device == "phy0-ap0")
-		return {results = {{mac = client_mac, inactive = 250}}}
+		return {results = {{mac = client_mac, inactive = 250, rx = {rate = 1201000}, tx = {rate = 866700}}}}
 	end}
 	local node = instantiate(state).methods.get_node_info.call()
 	assert(#node.clients == 1 and node.downstream.total_count == 1)
 	assert(node.clients[1].rate_rx == 1201 and node.clients[1].rate_tx == 866.7)
 	assert(node.clients[1].inactive_ms == 250)
+	-- Older hostapd versions report kbps correctly; the result must be identical.
+	state.ubus["hostapd.phy0-ap0"].get_clients.clients[client_mac].rate = {rx = 1201000, tx = 866700}
+	node = instantiate(state).methods.get_node_info.call()
+	assert(node.clients[1].rate_rx == 1201 and node.clients[1].rate_tx == 866.7)
 	state.ubus["hostapd.phy0-ap0"].get_clients.clients[client_mac].assoc = 1
 	state.ubus["hostapd.phy0-ap0"].get_clients.clients[client_mac].authorized = 1
 	assert(#instantiate(state).methods.get_node_info.call().clients == 1)
@@ -241,6 +245,26 @@ test("only associated and authorized Wi-Fi clients are counted; PHY uses Mbps", 
 	local topology = instantiate(state).methods.get_topology.call()
 	assert(#topology.clients == 1 and topology.clients[1].mac == client_mac)
 	assert(topology.clients[1].idle_time == 0)
+	assert(topology.clients[1].rate_rx == 1201 and topology.clients[1].rate_tx == 866.7)
+end)
+
+test("Wi-Fi PHY rates handle missing iwinfo data and match MACs case-insensitively", function()
+	local state = fixture()
+	local mac = "AA:BB:CC:DD:EE:99"
+	state.objects = {"hostapd.phy0-ap0"}
+	state.ubus["hostapd.phy0-ap0"] = {
+		get_status = {ssid = "Test", freq = 5180},
+		get_clients = {clients = {[mac] = {assoc = true, authorized = true, rate = {rx = 120100000, tx = 86670000}}}}
+	}
+	local client = instantiate(state).methods.get_node_info.call().clients[1]
+	assert(client.rate_rx == 0 and client.rate_tx == 0)
+	state.ubus.iwinfo = {assoclist = {results = {{mac = mac:lower(), inactive = 100, rx = {rate = 5500}}}}}
+	client = instantiate(state).methods.get_node_info.call().clients[1]
+	assert(client.mac == mac and client.inactive_ms == 100)
+	assert(client.rate_rx == 5.5 and client.rate_tx == 0)
+	state.ubus.iwinfo.assoclist.results[1] = {mac = mac:lower(), rx = {rate = 0}, tx = {rate = 0}}
+	client = instantiate(state).methods.get_node_info.call().clients[1]
+	assert(client.rate_rx == 0 and client.rate_tx == 0)
 end)
 
 test("roaming ownership uses per-node activity before signal strength", function()

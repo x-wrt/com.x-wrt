@@ -281,9 +281,9 @@ local function collect_local_node_info()
 				local st = conn:call(obj, "get_status", {}) or {}
 				local cl = conn:call(obj, "get_clients", {}) or {}
 				local stations = conn:call("iwinfo", "assoclist", { device = ifname }) or {}
-				local activity_by_mac = {}
+				local stations_by_mac = {}
 				for _, station in ipairs(stations.results or {}) do
-					if station.mac then activity_by_mac[station.mac:upper()] = tonumber(station.inactive) end
+					if station.mac then stations_by_mac[station.mac:upper()] = station end
 				end
 				local freq = st.freq or cl.freq or 0
 				local band = "2.4G"
@@ -303,6 +303,7 @@ local function collect_local_node_info()
 					for cmac, cinfo in pairs(cl.clients) do
 						if flag_set(cinfo.assoc) and flag_set(cinfo.authorized) then
 							local mac_u = cmac:upper()
+							local station = stations_by_mac[mac_u] or {}
 							seen_macs[mac_u] = true
 							clients[#clients + 1] = {
 								mac = mac_u,
@@ -312,11 +313,12 @@ local function collect_local_node_info()
 								ssid = st.ssid or "",
 								associated = true,
 								authorized = true,
-								inactive_ms = activity_by_mac[mac_u],
+								inactive_ms = tonumber(station.inactive),
 								signal = cinfo.signal or 0,
 								noise = cinfo.noise or -95,
-								rate_rx = (cinfo.rate and cinfo.rate.rx) and (cinfo.rate.rx / 1000) or 0,
-								rate_tx = (cinfo.rate and cinfo.rate.tx) and (cinfo.rate.tx / 1000) or 0
+								-- iwinfo reports kbit/s; hostapd rate scaling varies by version.
+								rate_rx = (station.rx and tonumber(station.rx.rate) or 0) / 1000,
+								rate_tx = (station.tx and tonumber(station.tx.rate) or 0) / 1000
 							}
 						end
 					end
