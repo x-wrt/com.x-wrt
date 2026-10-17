@@ -30,6 +30,7 @@ for i in $IDXS; do
 	touch ./package/base-files/Makefile
 
 	last_arch=
+	last_small_flash=
 	for cfg in $CFGS; do
 		test -f .build_x/$cfg && continue
 		set -x
@@ -45,8 +46,10 @@ for i in $IDXS; do
 		sleep 2
 		new_arch=$(cat .config | grep CONFIG_TARGET_ARCH_PACKAGES | cut -d\" -f2)
 		new_subarch=$(cat .config | grep -o  "CONFIG_TARGET_[a-z0-9]*_[a-z0-9]*=y" | sed 's/=y//' | cut -d_ -f3,4)
+		new_small_flash=$(grep -q "^CONFIG_SMALL_FLASH=y" .config && echo 1 || echo 0)
 		test -n "$last_arch" || last_arch=$new_arch
 		test -n "$last_subarch" || last_subarch=$new_subarch
+		test -n "$last_small_flash" || last_small_flash=$new_small_flash
 		set +x
 		[ "x$WORKFLOW" = x1 ] || {
 			# skip touch if WORKFLOW == 1
@@ -71,6 +74,17 @@ for i in $IDXS; do
 		rm -rf build_dir/target-*/linux-*
 		rm -rf build_dir/target-*/u-boot-*
 		rm -rf build_dir/toolchain-*
+		if [ "$last_small_flash" != "$new_small_flash" ]; then
+			rm -rf build_dir/target-*/xz-*
+			last_small_flash=$new_small_flash
+		fi
+		for xz_cfg in build_dir/target-*/xz-*/config.h; do
+			[ -f "$xz_cfg" ] || continue
+			xz_has_small=$(grep -q "^#define HAVE_SMALL 1" "$xz_cfg" 2>/dev/null && echo 1 || echo 0)
+			if [ "$new_small_flash" != "$xz_has_small" ]; then
+				rm -rf "${xz_cfg%/config.h}"
+			fi
+		done
 		[ "x$TMPFS" = x1 ] && {
 			if [ "$last_arch" != "$new_arch" ]; then
 				rm -rf build_dir/target-*
@@ -89,6 +103,8 @@ for i in $IDXS; do
 			make package/feeds/packages/glib2/clean
 			make package/feeds/packages/i2c-tools/clean
 			make package/feeds/packages/kmod/clean
+			make package/feeds/packages/xz/clean
+			rm -rf build_dir/target-*/xz-*
 			touch ./feeds/packages/libs/libgpg-error/Makefile
 			$* || exit 255
 		}
