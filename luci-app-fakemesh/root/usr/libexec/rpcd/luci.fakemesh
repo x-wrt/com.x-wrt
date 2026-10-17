@@ -199,30 +199,39 @@ local function client_forwarded_downstream(client, candidates, node_by_id)
 	return false
 end
 
-local function collect_local_node_info()
-	local conn = ubus_has and ubus.connect()
+local function config_snapshot(conn, name)
+	local reply = conn and conn:call("uci", "get", { config = name })
+	local values = type(reply) == "table" and reply.values
+	return function(section, option)
+		if type(values) == "table" then
+			local record = values[section]
+			local value = type(record) == "table" and record[option]
+			return type(value) == "string" and value:gsub("%s+", "") or ""
+		end
+		return (exec("uci -q get " .. name .. "." .. section .. "." .. option .. " 2>/dev/null")):gsub("%s+", "")
+	end
+end
+
+local function collect_local_node_info(conn)
+	local own_connection = not conn
+	conn = conn or (ubus_has and ubus.connect())
+	local network_config = config_snapshot(conn, "network")
+	local mesh_config = config_snapshot(conn, "fakemesh")
+	local arp = read_file("/proc/net/arp")
 	local fdb = exec("bridge fdb show 2>/dev/null")
 
-	local mac = ""
-	local p = io.popen("uci get network.meshx0.hostname 2>/dev/null")
-	if p then
-		local h = p:read("*l") or ""
-		p:close()
-		mac = h:match("^MESH%-AGENT_([%x]+)") or ""
-		if #mac == 12 then
-			mac = mac:gsub("(..)", "%1:"):sub(1, 17):upper()
-		end
-	end
+	local mac = network_config("meshx0", "hostname"):match("^MESH%-AGENT_([%x]+)") or ""
+	if #mac == 12 then mac = mac:gsub("(..)", "%1:"):sub(1, 17):upper() end
 	if mac == "" then
 		mac = (read_file("/sys/class/net/br-lan/address")):upper()
 	end
 
 	local ip = (exec("ip -4 -o addr show br-lan 2>/dev/null | awk '{print $4}' | cut -d/ -f1 | head -n1")):gsub("%s+", "")
 	if ip == "" then
-		ip = (exec("uci -q get network.lan.ipaddr 2>/dev/null")):gsub("%s+", "")
+		ip = network_config("lan", "ipaddr")
 	end
 
-	local role = (exec("uci -q get fakemesh.default.role 2>/dev/null")):gsub("%s+", "")
+	local role = mesh_config("default", "role")
 	if role == "" then role = "agent" end
 
 	local uptime = 0
@@ -236,8 +245,8 @@ local function collect_local_node_info()
 		model = read_file("/tmp/sysinfo/model"),
 		uptime = uptime,
 		role = role,
-		mesh_id = (exec("uci -q get fakemesh.default.id 2>/dev/null")):gsub("%s+", ""),
-		band = (exec("uci -q get fakemesh.default.band 2>/dev/null")):gsub("%s+", "")
+		mesh_id = mesh_config("default", "id"),
+		band = mesh_config("default", "band")
 	}
 
 	if info.model == "" then
@@ -255,13 +264,13 @@ local function collect_local_node_info()
 
 	-- Upstream connection detection ("我连着上游谁")
 	if role == "controller" then
-		local wan_proto = (exec("uci -q get network.wan.proto 2>/dev/null")):gsub("%s+", "")
+		local wan_proto = network_config("wan", "proto")
 		local wan_ip = (exec("ip -4 -o addr show wan 2>/dev/null | awk '{print $4}' | cut -d/ -f1 | head -n1")):gsub("%s+", "")
 		if wan_ip == "" then
 			wan_ip = (exec("ip -4 -o addr show pppoe-wan 2>/dev/null | awk '{print $4}' | cut -d/ -f1 | head -n1")):gsub("%s+", "")
 		end
 		if wan_ip == "" then
-			wan_ip = (exec("uci -q get network.wan.ipaddr 2>/dev/null")):gsub("%s+", "")
+			wan_ip = network_config("wan", "ipaddr")
 		end
 		info.upstream = {
 			type = "root",
@@ -304,7 +313,6 @@ local function collect_local_node_info()
 			local gw_ip = def_route:match("via%s+([%d%.]+)") or ""
 			local gw_mac = ""
 			if gw_ip ~= "" then
-				local arp = read_file("/proc/net/arp")
 				for line in arp:gmatch("[^\r\n]+") do
 					local aip, amac = line:match("^([%d%.]+)%s+%S+%s+%S+%s+([%a%d:]+)")
 					if aip == gw_ip and amac then
@@ -431,7 +439,6 @@ local function collect_local_node_info()
 	end
 	local local_ips = {}
 	local local_ip6s = {}
-	local arp = read_file("/proc/net/arp")
 	for line in arp:gmatch("[^\r\n]+") do
 		local aip, flg, amac = line:match("^([%d%.]+)%s+%S+%s+(%S+)%s+([%a%d:]+)")
 		if aip and amac and flg ~= "0x0" then
@@ -476,8 +483,8 @@ local function collect_local_node_info()
 	info.clients = clients
 	info.wired_ports = wired_ports
 
-	if conn then conn:close() end
-	return info
+	if own_connection and conn then conn:close() end
+	return info, { arp = arp, ip6 = ip6_out }
 end
 
 local function valid_ipv4(ip)
@@ -642,7 +649,7 @@ local methods = {
 	get_topology = {
 		call = function()
 			local conn = ubus_has and ubus.connect()
-			local local_info = collect_local_node_info()
+			local local_info, snapshot = collect_local_node_info(conn)
 
 			if local_info.role ~= "controller" then
 				local topo, ac_ip = fetch_controller_topology(conn, local_info)
@@ -1039,22 +1046,18 @@ local methods = {
 
 			-- Gather ARP table from /proc/net/arp
 			local arp_ips = {}
-			local f_arp = io.open("/proc/net/arp", "r")
-			if f_arp then
-				for line in f_arp:lines() do
-					local aip, flg, amac = line:match("^([%d%.]+)%s+%S+%s+(%S+)%s+([%a%d:]+)")
-					if aip and amac and flg ~= "0x0" then
-						amac = amac:upper()
-						if not arp_ips[amac] then arp_ips[amac] = {} end
-						arp_ips[amac][aip] = true
-					end
+			for line in snapshot.arp:gmatch("[^\r\n]+") do
+				local aip, flg, amac = line:match("^([%d%.]+)%s+%S+%s+(%S+)%s+([%a%d:]+)")
+				if aip and amac and flg ~= "0x0" then
+					amac = amac:upper()
+					if not arp_ips[amac] then arp_ips[amac] = {} end
+					arp_ips[amac][aip] = true
 				end
-				f_arp:close()
 			end
 
 			-- Gather IPv6 neighbors
 			local ip6_neigh = {}
-			local ip6_out = exec("ip -6 -o neigh show 2>/dev/null")
+			local ip6_out = snapshot.ip6
 			for line in ip6_out:gmatch("[^\r\n]+") do
 				local aip6, amac = line:match("^([%a%d:]+)%s+dev%s+%S+%s+lladdr%s+([%a%d:]+)")
 				if aip6 and amac then
@@ -1453,7 +1456,7 @@ local methods = {
 			if conn then conn:close() end
 
 			return {
-				mesh_id = (exec("uci -q get fakemesh.default.id 2>/dev/null")):gsub("%s+", ""),
+				mesh_id = local_info.mesh_id,
 				controller_ip = ac_node.ip,
 				current_node_id = "ac",
 				timestamp = os.time(),

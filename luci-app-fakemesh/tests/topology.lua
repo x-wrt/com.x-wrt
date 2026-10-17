@@ -51,14 +51,19 @@ local function fixture()
 end
 
 local function instantiate(state)
+	state.shell_calls = {}
+	state.file_reads = {}
+	state.connections = 0
 	local env = setmetatable({arg = {}}, {__index = _G})
 	env.io = {
 		open = function(path)
+			state.file_reads[path] = (state.file_reads[path] or 0) + 1
 			if path == "/proc/uptime" then return stream(tostring(state.time)) end
 			if state.files[path] == nil then return nil end
 			return stream(state.files[path])
 		end,
 		popen = function(command)
+			state.shell_calls[#state.shell_calls + 1] = command
 			local data = ""
 			if command:find("uci ", 1, true) then
 				data = state.uci[command:match("get ([%w%._]+)")] or ""
@@ -86,9 +91,21 @@ local function instantiate(state)
 		end
 		if name == "ubus" then
 			return {connect = function()
+				state.connections = state.connections + 1
 				return {
 					call = function(_, object, method, args)
 						state.calls[#state.calls + 1] = object .. " " .. method
+						if object == "uci" and method == "get" then
+							local values = {}
+							for key, value in pairs(state.uci) do
+								local config, section, option = key:match("^([^.]+)%.([^.]+)%.([^.]+)$")
+								if config == args.config then
+									values[section] = values[section] or {}
+									values[section][option] = value
+								end
+							end
+							return {values = values}
+						end
 						local value = state.ubus[object] and state.ubus[object][method]
 						return type(value) == "function" and value(args) or value
 					end,
@@ -344,6 +361,23 @@ test("controller failures continue to validated gateway and reject wrong Mesh ID
 	for _, request in ipairs(state.requests) do
 		assert(request.method ~= "get_topology" or request.ip ~= "192.168.1.11")
 	end
+end)
+
+test("a controller refresh shares config, ARP, IPv6 and one ubus connection", function()
+	local state = fixture()
+	state.files["/proc/net/arp"] = "192.168.1.99 0x1 0x2 " .. client_mac .. " * br-lan\n"
+	state.fdb = client_mac .. " dev lan1 master br-lan\n"
+	local topology = instantiate(state).methods.get_topology.call()
+	assert(topology.clients[1].ip == "192.168.1.99")
+	assert(state.connections == 1 and state.file_reads["/proc/net/arp"] == 1)
+	local ipv6, configs = 0, 0
+	for _, command in ipairs(state.shell_calls) do
+		assert(not command:find("uci ", 1, true))
+		if command:find("ip -6 -o neigh show", 1, true) then ipv6 = ipv6 + 1 end
+	end
+	for _, call in ipairs(state.calls) do if call == "uci get" then configs = configs + 1 end end
+	assert(ipv6 == 1 and configs == 2)
+	assert(#state.shell_calls == 6)
 end)
 
 test("6 GHz clients and backhauls include low channels in both topology paths", function()
