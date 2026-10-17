@@ -345,6 +345,24 @@ test("controller failures continue to validated gateway and reject wrong Mesh ID
 	end
 end)
 
+test("offline and unknown uplinks never invent an Ethernet speed", function()
+	local state = fixture()
+	register(state, agent(a_mac, "192.168.1.2"))
+	state.agents["192.168.1.2"] = nil
+	local live = agent(b_mac, "192.168.1.3")
+	live.upstream.port_speed = nil
+	register(state, live)
+	local unknown = agent(c_mac, "192.168.1.4")
+	unknown.upstream = {type = "unknown"}
+	register(state, unknown)
+	local topology = instantiate(state).methods.get_topology.call()
+	local nodes = by_id(topology)
+	assert(nodes.node_020000000002.uplink.type == "unknown")
+	assert(nodes.node_020000000003.uplink.type == "wired" and nodes.node_020000000003.uplink.speed == nil)
+	assert(nodes.node_020000000004.uplink.type == "unknown")
+	assert(topology.summary.wired_nodes == 1 and topology.summary.offline_agents == 1)
+end)
+
 test("foreign, mismatched and malformed node reports only take that node offline", function()
 	local invalid = {
 		function(n) n.mesh_id = "other-mesh" end,

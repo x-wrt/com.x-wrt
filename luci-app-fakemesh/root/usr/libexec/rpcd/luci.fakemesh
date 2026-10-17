@@ -329,7 +329,7 @@ local function collect_local_node_info()
 			local up_speed = speed and speed > 0 and (speed .. "M") or ""
 
 			info.upstream = {
-				type = "wired",
+				type = (up_ifname ~= "" or gw_mac ~= "") and "wired" or "unknown",
 				ifname = up_ifname,
 				port = up_ifname:upper(),
 				port_speed = up_speed,
@@ -882,7 +882,10 @@ local methods = {
 			for _, n in ipairs(nodes) do
 				if n.id ~= "ac" then
 					local up = n.upstream or n.backhaul or {}
-					if up.type == "wireless" and up.parent_bssid and up.parent_bssid ~= "" then
+					if not n.online then
+						n.parent_id = "ac"
+						n.uplink = { type = "unknown" }
+					elseif up.type == "wireless" and up.parent_bssid and up.parent_bssid ~= "" then
 						local p_id = bssid_to_node[up.parent_bssid]
 						if not p_id and #up.parent_bssid >= 14 then
 							local prefix = up.parent_bssid:sub(1, 14)
@@ -913,22 +916,18 @@ local methods = {
 							n.uplink = {
 								type = "wired",
 								port = w.port or (up.port or "LAN"),
-								speed = (w.speed and w.speed ~= "") and w.speed or (up.port_speed or "1000M")
+								speed = (w.speed and w.speed ~= "") and w.speed or up.port_speed
 							}
-						elseif up.parent_mac and node_by_mac[up.parent_mac] then
-							p_id = node_by_mac[up.parent_mac]
+						elseif up.type == "wired" then
+							p_id = node_by_mac[up.parent_mac] or "ac"
 							n.uplink = {
 								type = "wired",
 								port = up.port or "LAN",
-								speed = up.port_speed or "1000M"
+								speed = up.port_speed
 							}
 						else
 							p_id = "ac"
-							n.uplink = {
-								type = "wired",
-								port = up.port or "LAN",
-								speed = up.port_speed or "1000M"
-							}
+							n.uplink = { type = "unknown" }
 						end
 						n.parent_id = p_id or "ac"
 					end

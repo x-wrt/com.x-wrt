@@ -276,7 +276,7 @@ return view.extend({
 	showNodeModal: function(node) {
 		var isController = (node.role === 'controller') || (!node.role && node.id === 'ac');
 		var isLocal = (this.data && this.data.current_node_id) ? (node.id === this.data.current_node_id) : false;
-		var uplinkText = _('Root Gateway');
+			var uplinkText = isController ? _('Root Gateway') : _('Unknown');
 		if (node.uplink && node.uplink.type === 'wireless') {
 			uplinkText = (node.uplink.band || '5G') + ' Mesh (' + (node.uplink.signal || 0) + ' dBm, ' + (node.uplink.rx_bitrate || 0) + ' Mbps)';
 		} else if (node.uplink && node.uplink.type === 'wired') {
@@ -450,6 +450,8 @@ return view.extend({
 
 	renderUplinkBadge: function(uplink) {
 		if (!uplink || uplink.type === 'root') return E([]);
+		if (uplink.type !== 'wired' && uplink.type !== 'wireless')
+			return E('div', { 'class': 'fm-uplink-badge' }, _('Unknown'));
 
 		if (uplink.type === 'wireless') {
 			var sig = uplink.signal || 0;
