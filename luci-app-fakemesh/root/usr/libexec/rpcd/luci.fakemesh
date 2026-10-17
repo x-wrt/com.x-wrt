@@ -283,7 +283,7 @@ local function collect_local_node_info()
 			local channel = tonumber(link:match("channel: (%d+)"))
 
 			local band = "5G"
-			if freq and freq >= 6000 then band = "6G"
+			if freq and freq >= 5925 then band = "6G"
 			elseif freq and freq < 3000 then band = "2.4G" end
 
 			info.upstream = {
@@ -360,8 +360,8 @@ local function collect_local_node_info()
 				end
 				local freq = st.freq or cl.freq or 0
 				local band = "2.4G"
-				if freq >= 5000 and freq < 6000 then band = "5G"
-				elseif freq >= 6000 then band = "6G" end
+				if freq >= 5000 and freq < 5925 then band = "5G"
+				elseif freq >= 5925 then band = "6G" end
 
 				radios[#radios + 1] = {
 					ifname = ifname,
@@ -691,6 +691,7 @@ local methods = {
 					client_count = #clients,
 					wifi_5g = 0,
 					wifi_2g = 0,
+					wifi_6g = 0,
 					wired = 0,
 					vpn = 0,
 					total_rx_speed = 0,
@@ -701,7 +702,8 @@ local methods = {
 				}
 				for _, c in ipairs(clients) do
 					if c.access_type == "wireless" then
-						if c.band == "5G" then summary.wifi_5g = summary.wifi_5g + 1
+						if c.band == "6G" then summary.wifi_6g = summary.wifi_6g + 1
+						elseif c.band == "5G" then summary.wifi_5g = summary.wifi_5g + 1
 						else summary.wifi_2g = summary.wifi_2g + 1 end
 					elseif c.access_type == "wired" then
 						summary.wired = summary.wired + 1

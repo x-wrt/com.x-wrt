@@ -64,6 +64,7 @@ local function instantiate(state)
 				data = state.uci[command:match("get ([%w%._]+)")] or ""
 			elseif command:find("ip -4 -o addr show br-lan", 1, true) then data = state.ip
 			elseif command:find("bridge fdb show", 1, true) then data = state.fdb
+			elseif command:find("iw dev meshx1 link", 1, true) then data = state.link or ""
 			elseif command:find("ip -4 route show", 1, true) then data = state.route
 			end
 			return stream(data)
@@ -342,6 +343,25 @@ test("controller failures continue to validated gateway and reject wrong Mesh ID
 	assert(topology and ip == "192.168.1.1")
 	for _, request in ipairs(state.requests) do
 		assert(request.method ~= "get_topology" or request.ip ~= "192.168.1.11")
+	end
+end)
+
+test("6 GHz clients and backhauls include low channels in both topology paths", function()
+	for _, role in ipairs({"controller", "agent"}) do
+		for _, freq in ipairs({5935, 5955, 6115}) do
+			local state = fixture()
+			state.uci["fakemesh.default.role"] = role
+			state.link = "Connected to " .. ac_mac .. "\nSSID: test-mesh\nfreq: " .. freq .. "\n"
+			state.objects = {"hostapd.phy0-ap0"}
+			state.ubus["hostapd.phy0-ap0"] = {
+				get_status = {ssid = "Test6G", freq = freq},
+				get_clients = {clients = {[client_mac] = {assoc = true, authorized = true}}}
+			}
+			local topology = instantiate(state).methods.get_topology.call()
+			assert(topology.clients[1].band == "6G")
+			assert(topology.summary.wifi_6g == 1 and topology.summary.wifi_2g == 0 and topology.summary.wifi_5g == 0)
+			if role == "agent" then assert(topology.nodes[2].upstream.band == "6G") end
+		end
 	end
 end)
 

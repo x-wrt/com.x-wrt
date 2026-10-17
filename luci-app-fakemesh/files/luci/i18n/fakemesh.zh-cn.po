@@ -162,8 +162,8 @@ msgstr "卫星节点"
 msgid "Total Clients"
 msgstr "全网终端"
 
-msgid "5G / 2.4G / Wired / VPN"
-msgstr "5G / 2.4G / 有线 / VPN"
+msgid "6G / 5G / 2.4G / Wired / VPN"
+msgstr "6G / 5G / 2.4G / 有线 / VPN"
 
 msgid "VPN"
 msgstr "VPN"

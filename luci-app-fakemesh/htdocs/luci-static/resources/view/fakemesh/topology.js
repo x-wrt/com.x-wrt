@@ -173,8 +173,10 @@ return view.extend({
 				E('div', { 'class': 'fm-stat-val text-info' }, String(summary.client_count || 0))
 			]),
 			E('div', { 'class': 'fm-stat-box' }, [
-				E('div', { 'class': 'fm-stat-title' }, _('5G / 2.4G / Wired / VPN')),
+				E('div', { 'class': 'fm-stat-title' }, _('6G / 5G / 2.4G / Wired / VPN')),
 				E('div', { 'class': 'fm-stat-val' }, [
+					E('span', { 'class': 'badge badge-6g' }, (summary.wifi_6g || 0) + ' 6G'),
+					' ',
 					E('span', { 'class': 'badge badge-5g' }, (summary.wifi_5g || 0) + ' 5G'),
 					' ',
 					E('span', { 'class': 'badge badge-2g' }, (summary.wifi_2g || 0) + ' 2.4G'),
@@ -228,6 +230,7 @@ return view.extend({
 
 		var bandButtons = [
 			{ id: 'all', label: _('All Clients') },
+			{ id: '6g', label: '6G' },
 			{ id: '5g', label: '5G' },
 			{ id: '2g', label: '2.4G' },
 			{ id: 'wired', label: _('Wired') },
@@ -380,7 +383,8 @@ return view.extend({
 			if (!match) return null;
 		}
 
-		if (self.filterBand === '5g' && (client.access_type !== 'wireless' || client.band !== '5G')) return null;
+		if (self.filterBand === '6g' && (client.access_type !== 'wireless' || client.band !== '6G')) return null;
+			if (self.filterBand === '5g' && (client.access_type !== 'wireless' || client.band !== '5G')) return null;
 		if (self.filterBand === '2g' && (client.access_type !== 'wireless' || client.band !== '2.4G')) return null;
 		if (self.filterBand === 'wired' && client.access_type !== 'wired') return null;
 		if (self.filterBand === 'vpn' && client.access_type !== 'vpn') return null;
@@ -388,7 +392,7 @@ return view.extend({
 		var badgeClass = 'badge-wired';
 		var badgeText = client.port || _('LAN');
 		if (client.access_type === 'wireless') {
-			badgeClass = client.band === '5G' ? 'badge-5g' : 'badge-2g';
+			badgeClass = ({ '6G': 'badge-6g', '5G': 'badge-5g', '2.4G': 'badge-2g' })[client.band] || 'badge-secondary';
 			badgeText = client.band || 'Wi-Fi';
 		} else if (client.access_type === 'vpn') {
 			badgeClass = 'badge-vpn';
@@ -728,7 +732,8 @@ return view.extend({
 				}
 				if (!match) return false;
 			}
-			if (self.filterBand === '5g' && (c.access_type !== 'wireless' || c.band !== '5G')) return false;
+			if (self.filterBand === '6g' && (c.access_type !== 'wireless' || c.band !== '6G')) return false;
+				if (self.filterBand === '5g' && (c.access_type !== 'wireless' || c.band !== '5G')) return false;
 			if (self.filterBand === '2g' && (c.access_type !== 'wireless' || c.band !== '2.4G')) return false;
 			if (self.filterBand === 'wired' && c.access_type !== 'wired') return false;
 			if (self.filterBand === 'vpn' && c.access_type !== 'vpn') return false;
@@ -1331,6 +1336,7 @@ return view.extend({
 				font-size: 10px;
 				color: #64748b;
 			}
+			.badge-6g { background: #dcfce7; color: #166534; font-weight: 600; font-size: 11px; }
 			.badge-5g { background: #e0f2fe; color: #0369a1; font-weight: 600; font-size: 11px; }
 			.badge-2g { background: #fef3c7; color: #b45309; font-weight: 600; font-size: 11px; }
 			.badge-wired { background: #e5e7eb; color: #374151; font-weight: 600; font-size: 11px; }
