@@ -170,7 +170,7 @@ return view.extend({
 	formatLastActive: formatLastActive,
 
 	load: function() {
-		return callGetTopology();
+		return callGetTopology().catch(function() { return null; });
 	},
 
 	renderSummaryBar: function(summary, meshId) {
@@ -306,23 +306,65 @@ return view.extend({
 			ui.hideModal();
 	},
 
-	showDetailModal: function(title, content) {
-		var modal = ui.showModal(title, [
-			content,
-			E('div', { 'class': 'right' }, [
-				E('button', {
-					'class': 'btn btn-primary',
-					'click': ui.hideModal
-				}, _('Close'))
-			])
-		], 'fm-detail-modal');
-		modal.parentNode.addEventListener('click', this.closeDetailModalOnBackdrop);
+	refreshStatusText: function() {
+		var message = this.lastSuccessfulRefresh ? _('Last successful refresh') + ': ' + new Date(this.lastSuccessfulRefresh).toLocaleTimeString() : _('Waiting for topology data');
+		if (this.refreshFailed) message = (this.lastSuccessfulRefresh ? _('Refresh failed; showing the last successful snapshot.') : _('Topology refresh failed.')) + ' ' + message;
+		return message;
+	},
+
+	renderRefreshStatus: function() {
+		return E('div', { 'data-fm-refresh-status': '', 'class': this.refreshFailed ? 'text-warning' : 'text-muted', 'aria-live': 'polite' }, this.refreshStatusText());
+	},
+
+	updateRefreshStatus: function() {
+		var self = this;
+		document.querySelectorAll('[data-fm-refresh-status]').forEach(function(element) {
+			element.replaceWith(self.renderRefreshStatus());
+		});
+	},
+
+	showDetailModal: function(title, content, detail) {
+		var self = this;
+		var children = [content, this.renderRefreshStatus(), E('div', { 'class': 'right' }, [
+			E('button', { 'class': 'btn btn-primary', 'click': function() {
+				self.detailModal = null;
+				ui.hideModal();
+			} }, _('Close'))
+		])];
+		var previous = this.detailModal;
+		var modal;
+		if (previous && previous.type === detail.type && previous.id === detail.id &&
+			previous.element.classList.contains('fm-detail-modal') && document.body.classList.contains('modal-overlay-active')) {
+			modal = previous.element;
+			syncChildren(modal, E('div', {}, [E('h4', {}, title), children]));
+		} else {
+			modal = ui.showModal(title, children, 'fm-detail-modal');
+			modal.parentNode.addEventListener('click', this.closeDetailModalOnBackdrop);
+		}
+		this.detailModal = { type: detail.type, id: detail.id, title: title, element: modal };
+	},
+
+	refreshDetailModal: function() {
+		var detail = this.detailModal;
+		if (!detail) return;
+		if (!document.body.classList.contains('modal-overlay-active') || !detail.element.classList.contains('fm-detail-modal')) {
+			this.detailModal = null;
+			return;
+		}
+		var item = detail.type === 'node' ? this.findNode(detail.id) : this.findClient(detail.id);
+		if (!item) {
+			this.showDetailModal(detail.title, E('div', { 'class': 'alert-message warning' }, _('This device is no longer present in the latest topology.')), detail);
+		} else if (detail.type === 'node') {
+			this.showNodeModal(item);
+		} else {
+			this.showClientModal(item, this.findNode(item.node_id));
+		}
 	},
 
 	showNodeModal: function(node) {
 		var isController = (node.role === 'controller') || (!node.role && node.id === 'ac');
 		var isLocal = (this.data && this.data.current_node_id) ? (node.id === this.data.current_node_id) : false;
-			var uplinkText = isController ? _('Root Gateway') : _('Unknown');
+		var uplinkText = isController ? _('Root Gateway') : _('Unknown');
 		if (node.uplink && node.uplink.type === 'wireless') {
 			uplinkText = (node.uplink.band || '5G') + ' Mesh (' + (node.uplink.signal || 0) + ' dBm, ' + (node.uplink.rx_bitrate || 0) + ' Mbps)';
 		} else if (node.uplink && node.uplink.type === 'wired') {
@@ -355,7 +397,7 @@ return view.extend({
 				E('span', { 'class': 'badge badge-local', 'style': 'font-size:12px; padding:6px 12px;' }, '📍 ' + _('Current Device (This Node)'))
 			]) : E([]))
 		]);
-		this.showDetailModal(_('Node Details') + ': ' + (node.hostname || node.ip), body);
+		this.showDetailModal(_('Node Details') + ': ' + (node.hostname || node.ip), body, { type: 'node', id: node.id });
 	},
 
 	showClientModal: function(client, node) {
@@ -402,7 +444,7 @@ return view.extend({
 				E('tr', {}, [ E('td', { 'class': 'font-weight-bold' }, _('Total Traffic')), E('td', {}, '↓ ' + formatBytes(client.rx_bytes || 0) + '  ↑ ' + formatBytes(client.tx_bytes || 0)) ])
 			])
 		]);
-		this.showDetailModal(_('Client Details') + ': ' + (client.hostname || client.mac), body);
+		this.showDetailModal(_('Client Details') + ': ' + (client.hostname || client.mac), body, { type: 'client', id: client.mac });
 	},
 
 	findNode: function(id) {
@@ -1681,8 +1723,16 @@ return view.extend({
 		var self = this;
 		poll.add(function() {
 			return callGetTopology().then(function(topo) {
-				self.data = topo || {};
+				if (!topo || !Array.isArray(topo.nodes) || !topo.nodes.length || !Array.isArray(topo.clients)) throw new Error('Invalid topology response');
+				self.data = topo;
+				self.lastSuccessfulRefresh = Date.now();
+				self.refreshFailed = false;
 				self.updateCanvas();
+				self.refreshDetailModal();
+				self.updateRefreshStatus();
+			}).catch(function() {
+				self.refreshFailed = true;
+				self.updateRefreshStatus();
 			});
 		}, 5);
 	},
@@ -1690,6 +1740,8 @@ return view.extend({
 	render: function(topoData) {
 		this.injectStyles();
 		this.data = topoData || {};
+		this.lastSuccessfulRefresh = topoData && Array.isArray(topoData.nodes) && topoData.nodes.length ? Date.now() : null;
+		this.refreshFailed = !this.lastSuccessfulRefresh;
 		if (this.data.current_node_id) {
 			this.selectedNodeId = this.data.current_node_id;
 		}
@@ -1708,6 +1760,7 @@ return view.extend({
 			E('div', { 'class': 'cbi-map-descr' }, _('Visual hierarchy of FakeMesh controller, agent nodes, and connected terminal devices.')),
 			summaryBar,
 			toolbar,
+			this.renderRefreshStatus(),
 			canvas
 		]);
 	},
