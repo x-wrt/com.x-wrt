@@ -222,3 +222,51 @@ msgstr "放通用户失败。"
 
 msgid "Failed to allow user: %s"
 msgstr "放通用户失败：%s"
+
+msgid "Settings"
+msgstr "设置"
+
+msgid "Traffic shaping mode"
+msgstr "流量整形模式"
+
+msgid "Choose whether to shape grouped rules via Linux Traffic Control (tc HTB) or Natflow internal token bucket queue."
+msgstr "选择通过 Linux 流量控制（tc HTB）还是 Natflow 内置令牌桶队列对分组规则进行限速整形。"
+
+msgid "External Linux Traffic Control (tc)"
+msgstr "外部 Linux 流量控制（tc）"
+
+msgid "Natflow Internal Engine"
+msgstr "Natflow 内置引擎"
+
+msgid "Buffer pacing delay (ms)"
+msgstr "缓存平滑时延（毫秒）"
+
+msgid "Maximum queue buffering delay in milliseconds (0..1000). Set to 0 to use drop policing. Applies to Natflow internal engine and per-client shaping."
+msgstr "队列最大缓存时延，单位毫秒（0..1000）。设为 0 则使用传统丢包模式。适用于 Natflow 内置引擎以及按客户端整形。"
+
+msgid "Current queue status"
+msgstr "当前队列状态"
+
+msgid "Buffer supported"
+msgstr "支持缓存"
+
+msgid "Buffered packets"
+msgstr "当前缓存数据包"
+
+msgid "Buffered memory"
+msgstr "当前缓存内存"
+
+msgid "Total queued"
+msgstr "累计入队"
+
+msgid "Total released"
+msgstr "累计放行"
+
+msgid "Total dropped"
+msgstr "累计丢弃"
+
+msgid "Yes"
+msgstr "是"
+
+msgid "No"
+msgstr "否"

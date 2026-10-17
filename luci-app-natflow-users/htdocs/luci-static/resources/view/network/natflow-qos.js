@@ -109,17 +109,62 @@ function speed_validate(v)
 	return false;
 }
 
+var callQosStatus = rpc.declare({
+	object: 'luci.natflow',
+	method: 'get_qos_status',
+	expect: { result: {} }
+});
+
 return view.extend({
         load: function() {
 		return Promise.all([
-			uci.load('natflow')
+			uci.load('natflow'),
+			L.resolveDefault(callQosStatus(), {})
 		]);
 	},
 
 	render: function(data) {
 		var m, s, o;
+		var qos_status = data[1] || {};
 
 		m = new form.Map('natflow', [_('Traffic Shaping')]);
+
+		s = m.section(form.NamedSection, 'main', 'natflow', _('Settings'));
+		s.addremove = false;
+		s.anonymous = false;
+
+		o = s.option(form.ListValue, 'tc_classid_mode', _('Traffic shaping mode'),
+			_('Choose whether to shape grouped rules via Linux Traffic Control (tc HTB) or Natflow internal token bucket queue.'));
+		o.value('1', _('External Linux Traffic Control (tc)'));
+		o.value('0', _('Natflow Internal Engine'));
+		o.default = '1';
+
+		o = s.option(form.Value, 'buffer_ms', _('Buffer pacing delay (ms)'),
+			_('Maximum queue buffering delay in milliseconds (0..1000). Set to 0 to use drop policing. Applies to Natflow internal engine and per-client shaping.'));
+		o.datatype = 'range(0, 1000)';
+		o.placeholder = '100';
+		o.default = '100';
+
+		if (qos_status && qos_status.buffer_supported !== undefined) {
+			o = s.option(form.DummyValue, '_stats', _('Current queue status'));
+			o.rawhtml = true;
+			o.cfgvalue = function() {
+				var mem_str = (qos_status.memory || 0) + ' B';
+				if (qos_status.memory >= 1048576) {
+					mem_str = (qos_status.memory / 1048576).toFixed(2) + ' MiB';
+				} else if (qos_status.memory >= 1024) {
+					mem_str = (qos_status.memory / 1024).toFixed(2) + ' KiB';
+				}
+				return '<em>%s:</em> %s | <em>%s:</em> %d | <em>%s:</em> %s | <em>%s:</em> %d | <em>%s:</em> %d | <em>%s:</em> %d'.format(
+					_('Buffer supported'), qos_status.buffer_supported ? _('Yes') : _('No'),
+					_('Buffered packets'), qos_status.packets || 0,
+					_('Buffered memory'), mem_str,
+					_('Total queued'), qos_status.queued || 0,
+					_('Total released'), qos_status.released || 0,
+					_('Total dropped'), qos_status.dropped || 0
+				);
+			};
+		}
 
 		s = m.section(form.GridSection, 'qos', _('Grouped traffic shaping rules'),
 				_('Match traffic by protocol, client, remote address, or port. Traffic matching the same rule shares that rule\'s bandwidth limits. Rules are checked in priority order until one matches.'));

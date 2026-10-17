@@ -627,6 +627,38 @@ local methods = {
 		call = function(args)
 			return set_user_status(args and args.token, 1)
 		end
+	},
+	get_qos_status = {
+		call = function()
+			local fd = nixio.open("/dev/natflow_qos_ctl", nixio.open_flags("rdonly"))
+			if not fd then
+				return { result = nil }
+			end
+			local data = fd:read(4096) or ""
+			fd:close()
+
+			local tc_classid_mode = tonumber(data:match("tc_classid_mode=(%d+)")) or 0
+			local buffer_supported = tonumber(data:match("buffer_supported=(%d+)")) or 0
+			local packets = tonumber(data:match("packets=(%d+)")) or 0
+			local memory = tonumber(data:match("memory=(%d+)")) or 0
+			local queued = tonumber(data:match("queued=(%d+)")) or 0
+			local released = tonumber(data:match("released=(%d+)")) or 0
+			local dropped = tonumber(data:match("dropped=(%d+)")) or 0
+			local buffer_ms = tonumber(data:match("buffer_ms=(%d+)")) or 0
+
+			return {
+				result = {
+					tc_classid_mode = tc_classid_mode,
+					buffer_supported = buffer_supported,
+					packets = packets,
+					memory = memory,
+					queued = queued,
+					released = released,
+					dropped = dropped,
+					buffer_ms = buffer_ms
+				}
+			}
+		end
 	}
 }
 
