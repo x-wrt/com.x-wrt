@@ -29,6 +29,79 @@ local function clone_table(t)
 	return r
 end
 
+local function valid_mac(mac)
+	return type(mac) == "string" and mac:match("^%x%x:%x%x:%x%x:%x%x:%x%x:%x%x$") ~= nil
+end
+
+local function valid_fields(record, strings, numbers)
+	if type(record) ~= "table" then return false end
+	for field in strings:gmatch("%S+") do
+		if record[field] ~= nil and type(record[field]) ~= "string" then return false end
+	end
+	for field in numbers:gmatch("%S+") do
+		local value = record[field]
+		if value ~= nil and (type(value) ~= "number" or value ~= value or math.abs(value) == math.huge) then return false end
+	end
+	return true
+end
+
+local function valid_array(values, validate)
+	if values == nil then return true end
+	if type(values) ~= "table" then return false end
+	local count = 0
+	for index, value in pairs(values) do
+		if type(index) ~= "number" or index < 1 or index % 1 ~= 0 or not validate(value) then return false end
+		count = count + 1
+	end
+	return count == #values
+end
+
+local function valid_client(client)
+	if not valid_fields(client, "mac node_id access_type ifname band ssid hostname ip port port_speed icon", "signal noise rate_rx rate_tx inactive_ms idle_time rx_speed tx_speed rx_bytes tx_bytes") then return false end
+	if type(client.mac) ~= "string" or client.mac == "" or (client.access_type ~= "vpn" and not valid_mac(client.mac)) then return false end
+	for _, field in ipairs({"associated", "authorized"}) do
+		local value = client[field]
+		if value ~= nil and type(value) ~= "boolean" and value ~= 0 and value ~= 1 then return false end
+	end
+	local function string_value(value) return type(value) == "string" end
+	return valid_array(client.ips, string_value) and valid_array(client.ip6, string_value)
+end
+
+local function valid_node_fields(node)
+	if not valid_fields(node, "id role mac ip hostname model mesh_id band mesh_bssid parent_id parent_name parent_hostname parent_ip", "uptime hop_count") then return false end
+	if node.online ~= nil and type(node.online) ~= "boolean" then return false end
+	for _, field in ipairs({"upstream", "backhaul", "uplink"}) do
+		local link = node[field]
+		if link ~= nil and not valid_fields(link, "type name parent_mac parent_bssid gateway_ip gateway_mac ifname port port_speed speed ssid band proto wan_ip", "signal rx_bitrate tx_bitrate channel freq") then return false end
+	end
+	if node.downstream ~= nil and not valid_fields(node.downstream, "", "total_count wireless_count wired_count vpn_count") then return false end
+	return valid_array(node.clients, valid_client) and valid_array(node.radios, function(radio)
+		return valid_fields(radio, "ifname bssid ssid band", "freq channel")
+	end) and valid_array(node.wired_ports, function(port)
+		return valid_fields(port, "mac port speed", "") and valid_mac(port.mac)
+	end)
+end
+
+local function valid_node_report(report, mesh_id, expected_mac)
+	return valid_node_fields(report) and valid_mac(report.mac) and report.mesh_id == mesh_id
+		and (not expected_mac or expected_mac == "" or report.mac:upper() == expected_mac:upper())
+end
+
+local function valid_topology_report(topology, mesh_id)
+	if not valid_fields(topology, "mesh_id controller_ip current_node_id", "timestamp") or topology.mesh_id ~= mesh_id then return false end
+	if type(topology.nodes) ~= "table" or type(topology.clients) ~= "table" then return false end
+	if topology.summary ~= nil and not valid_fields(topology.summary, "mesh_mode", "node_count online_agents offline_agents wireless_nodes wired_nodes client_count wifi_2g wifi_5g wifi_6g wired vpn total_rx_speed total_tx_speed max_hops") then return false end
+	local seen, root = {}, false
+	local nodes_valid = valid_array(topology.nodes, function(node)
+		if not valid_node_fields(node) or type(node.id) ~= "string" or node.id == "" or seen[node.id] then return false end
+		seen[node.id] = true
+		if node.id == "ac" and node.role == "controller" then root = true
+		elseif node.role ~= "agent" and node.role ~= "wap" then return false end
+		return true
+	end)
+	return nodes_valid and root and valid_array(topology.clients, valid_client)
+end
+
 local function get_device_icon(hostname, mac)
 	local h = (hostname or ""):lower()
 	if h:find("iphone") or h:find("moto") or h:find("android") or h:find("phone") or h:find("mi%-") or h:find("redmi") or h:find("huawei") or h:find("oppo") or h:find("vivo") or h:find("oneplus") or h:find("galaxy") or h:find("pixel") or h:find("honor") or h:find("meizu") or h:find("realme") or h:find("iqoo") then
@@ -495,10 +568,13 @@ local function fetch_nodes_parallel(nodes, method, timeout)
 	return finish_http_requests(requests, deadline)
 end
 
-local function fetch_agents_parallel(agents)
+local function fetch_agents_parallel(agents, mesh_id)
 	local reports = fetch_nodes_parallel(agents, "get_node_info", 2)
-	for ip, report in pairs(reports) do
-		if type(report.mac) ~= "string" then reports[ip] = nil end
+	for _, agent in ipairs(agents) do
+		local report = reports[agent.ip]
+		if not valid_node_report(report, mesh_id, agent.mac) or (report.role ~= "agent" and report.role ~= "wap") then
+			reports[agent.ip] = nil
+		end
 	end
 	return reports
 end
@@ -537,7 +613,7 @@ local function fetch_controller_topology(conn, local_info)
 	local controllers = {}
 	for _, candidate in ipairs(candidates) do
 		local report = reports[candidate.ip]
-		if report and report.role == "controller" and report.mesh_id == local_info.mesh_id then
+		if valid_node_report(report, local_info.mesh_id) and report.role == "controller" then
 			controllers[#controllers + 1] = candidate
 		end
 	end
@@ -545,7 +621,7 @@ local function fetch_controller_topology(conn, local_info)
 	local topologies = remaining > 0 and fetch_nodes_parallel(controllers, "get_topology", remaining) or {}
 	for _, controller in ipairs(controllers) do
 		local topology = topologies[controller.ip]
-		if topology and topology.mesh_id == local_info.mesh_id and type(topology.nodes) == "table" and type(topology.clients) == "table" then
+		if valid_topology_report(topology, local_info.mesh_id) then
 			for _, node in ipairs(topology.nodes) do
 				if node.id == "ac" and node.role == "controller" then
 					return topology, controller.ip
@@ -703,7 +779,7 @@ local methods = {
 			end
 
 			-- Concurrently request each Agent for real-time node reports
-			local agent_results = fetch_agents_parallel(agent_list)
+			local agent_results = fetch_agents_parallel(agent_list, local_info.mesh_id)
 
 			for _, a in ipairs(agent_list) do
 				local agent_data = agent_results[a.ip]

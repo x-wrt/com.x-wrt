@@ -314,8 +314,8 @@ test("bypass deployment discovers the matching controller instead of gateway", f
 		["_fakemesh_test-mesh._tcp"] = {AC = {ipv4 = "192.168.1.1"}},
 		["_fakemesh_other-mesh._tcp"] = {Other = {ipv4 = "192.168.1.10"}}
 	}}
-	state.agents["192.168.1.1"] = {role = "controller", mesh_id = "test-mesh"}
-	state.agents["192.168.168.1"] = {role = "agent", mesh_id = "test-mesh"}
+	state.agents["192.168.1.1"] = {mac = ac_mac, role = "controller", mesh_id = "test-mesh"}
+	state.agents["192.168.168.1"] = {mac = a_mac, role = "agent", mesh_id = "test-mesh"}
 	state.topologies["192.168.1.1"] = {mesh_id = "test-mesh", nodes = {{id = "ac", role = "controller"}}, clients = {}}
 	local topology = instantiate(state).methods.get_topology.call()
 	assert(topology.current_node_id == "node_020000000002")
@@ -332,15 +332,40 @@ test("controller failures continue to validated gateway and reject wrong Mesh ID
 		First = {ipv4 = "192.168.1.10"}, Wrong = {ipv4 = "192.168.1.11"}
 	}}}
 	state.files["/proc/net/route"] = "br-lan 00000000 0101A8C0 0003 0 0 10 00000000\n"
-	state.agents["192.168.1.10"] = {role = "controller", mesh_id = "test-mesh"}
-	state.agents["192.168.1.11"] = {role = "controller", mesh_id = "other-mesh"}
-	state.agents["192.168.1.1"] = {role = "controller", mesh_id = "test-mesh"}
+	state.agents["192.168.1.10"] = {mac = ac_mac, role = "controller", mesh_id = "test-mesh"}
+	state.agents["192.168.1.11"] = {mac = ac_mac, role = "controller", mesh_id = "other-mesh"}
+	state.agents["192.168.1.1"] = {mac = ac_mac, role = "controller", mesh_id = "test-mesh"}
+	state.topologies["192.168.1.10"] = {mesh_id = "test-mesh", nodes = {false}, clients = {}}
 	state.topologies["192.168.1.1"] = {mesh_id = "test-mesh", nodes = {{id = "ac", role = "controller"}}, clients = {}}
 	local api = instantiate(state)
 	local topology, ip = api.fetch_controller({call = function() return state.ubus.umdns.browse end}, {ip = "192.168.1.2", mesh_id = "test-mesh"})
 	assert(topology and ip == "192.168.1.1")
 	for _, request in ipairs(state.requests) do
 		assert(request.method ~= "get_topology" or request.ip ~= "192.168.1.11")
+	end
+end)
+
+test("foreign, mismatched and malformed node reports only take that node offline", function()
+	local invalid = {
+		function(n) n.mesh_id = "other-mesh" end,
+		function(n) n.mac = b_mac end,
+		function(n) n.role = "controller" end,
+		function(n) n.radios = "invalid" end,
+		function(n) n.clients = {{mac = client_mac, ips = {false}}} end,
+		function(n) n.upstream = {parent_bssid = {}} end,
+		function(n) n.wired_ports = {{mac = false}} end,
+		function(n) n.uptime = "invalid" end
+	}
+	for _, corrupt in ipairs(invalid) do
+		local state = fixture()
+		local bad = agent(a_mac, "192.168.1.2")
+		register(state, bad)
+		corrupt(bad)
+		register(state, agent(c_mac, "192.168.1.4", {}, {wired_client("LAN1")}))
+		local topology = instantiate(state).methods.get_topology.call()
+		local nodes = by_id(topology)
+		assert(nodes.node_020000000002.online == false)
+		assert(nodes.node_020000000004.online and #topology.clients == 1)
 	end
 end)
 
