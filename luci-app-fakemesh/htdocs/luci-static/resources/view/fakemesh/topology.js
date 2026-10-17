@@ -119,6 +119,48 @@ function getIconSvg(type) {
 	}
 }
 
+// Keep keyed cards and unchanged subtrees mounted during polling.
+function syncChildren(target, source) {
+	var keyed = new Map();
+	Array.from(target.children).forEach(function(child) {
+		var key = child.getAttribute('data-fm-key');
+		if (key) keyed.set(key, child);
+	});
+	var cursor = target.firstChild;
+	Array.from(source.childNodes).forEach(function(next) {
+		var key = next.nodeType === 1 && next.getAttribute('data-fm-key');
+		var current = key ? keyed.get(key) : cursor;
+		if (!key && current && current.nodeType === 1 && current.hasAttribute('data-fm-key')) current = null;
+		if (!current) {
+			target.insertBefore(next, cursor);
+			return;
+		}
+		if (current !== cursor) target.insertBefore(current, cursor);
+		if (current.nodeType !== next.nodeType || current.nodeName !== next.nodeName) {
+			target.replaceChild(next, current);
+			current = next;
+		} else if (!current.isEqualNode(next)) {
+			if (current.nodeType === 1) {
+				Array.from(current.attributes).forEach(function(attr) {
+					if (!next.hasAttribute(attr.name)) current.removeAttribute(attr.name);
+				});
+				Array.from(next.attributes).forEach(function(attr) {
+					if (current.getAttribute(attr.name) !== attr.value) current.setAttribute(attr.name, attr.value);
+				});
+				syncChildren(current, next);
+			} else {
+				current.nodeValue = next.nodeValue;
+			}
+		}
+		cursor = current.nextSibling;
+	});
+	while (cursor) {
+		var following = cursor.nextSibling;
+		target.removeChild(cursor);
+		cursor = following;
+	}
+}
+
 return view.extend({
 	data: null,
 	filterBand: 'all',
@@ -224,7 +266,8 @@ return view.extend({
 			'value': self.searchQuery,
 			'input': function(ev) {
 				self.searchQuery = ev.target.value.toLowerCase().trim();
-				self.updateCanvas();
+				window.clearTimeout(self.searchTimer);
+				self.searchTimer = window.setTimeout(function() { self.updateCanvas(); }, 150);
 			}
 		});
 
@@ -362,33 +405,26 @@ return view.extend({
 		this.showDetailModal(_('Client Details') + ': ' + (client.hostname || client.mac), body);
 	},
 
+	findNode: function(id) {
+		return ((this.data || {}).nodes || []).find(function(node) { return node.id === id; });
+	},
+
+	findClient: function(mac) {
+		return ((this.data || {}).clients || []).find(function(client) { return client.mac === mac; });
+	},
+
+	matchesClient: function(client) {
+		var band = ({ '2g': '2.4G', '5g': '5G', '6g': '6G' })[this.filterBand];
+		if (band && (client.access_type !== 'wireless' || client.band !== band)) return false;
+		if ((this.filterBand === 'wired' || this.filterBand === 'vpn') && client.access_type !== this.filterBand) return false;
+		var query = this.searchQuery;
+		return !query || [client.hostname, client.mac, client.ip].concat(client.ips || [], client.ip6 || []).some(function(value) {
+			return value && value.toLowerCase().indexOf(query) !== -1;
+		});
+	},
+
 	renderClientCard: function(client, node) {
 		var self = this;
-		var q = self.searchQuery;
-		if (q && q !== '') {
-			var match = false;
-			if (client.hostname && client.hostname.toLowerCase().indexOf(q) !== -1) match = true;
-			if (client.mac && client.mac.toLowerCase().indexOf(q) !== -1) match = true;
-			if (client.ip && client.ip.indexOf(q) !== -1) match = true;
-			if (client.ips) {
-				for (var i = 0; i < client.ips.length; i++) {
-					if (client.ips[i].indexOf(q) !== -1) { match = true; break; }
-				}
-			}
-			if (client.ip6) {
-				for (var j = 0; j < client.ip6.length; j++) {
-					if (client.ip6[j].toLowerCase().indexOf(q) !== -1) { match = true; break; }
-				}
-			}
-			if (!match) return null;
-		}
-
-		if (self.filterBand === '6g' && (client.access_type !== 'wireless' || client.band !== '6G')) return null;
-			if (self.filterBand === '5g' && (client.access_type !== 'wireless' || client.band !== '5G')) return null;
-		if (self.filterBand === '2g' && (client.access_type !== 'wireless' || client.band !== '2.4G')) return null;
-		if (self.filterBand === 'wired' && client.access_type !== 'wired') return null;
-		if (self.filterBand === 'vpn' && client.access_type !== 'vpn') return null;
-
 		var badgeClass = 'badge-wired';
 		var badgeText = client.port || _('LAN');
 		if (client.access_type === 'wireless') {
@@ -429,9 +465,11 @@ return view.extend({
 
 		var card = E('div', {
 			'class': 'fm-client-card',
+			'data-fm-key': 'client:' + client.mac,
 			'click': function(ev) {
 				ev.stopPropagation();
-				self.showClientModal(client, node);
+				var latest = self.findClient(client.mac);
+				if (latest) self.showClientModal(latest, self.findNode(latest.node_id));
 			}
 		}, [
 			E('div', { 'class': 'fm-client-icon', 'innerHTML': getIconSvg(client.icon || 'device') }),
@@ -519,7 +557,7 @@ return view.extend({
 		var clientsContainer = E('div', { 'class': 'fm-clients-container' });
 		var clientCount = 0;
 
-		(nodeClients || []).forEach(function(c) {
+		(nodeClients || []).filter(function(c) { return self.matchesClient(c); }).forEach(function(c) {
 			var card = self.renderClientCard(c, node);
 			if (card) {
 				clientsContainer.appendChild(card);
@@ -540,7 +578,7 @@ return view.extend({
 		return E('div', {
 			'class': 'fm-node-card ' + (isController ? 'controller-card' : 'agent-card') + (isLocal ? ' local-node' : ''),
 			'click': function() {
-				self.showNodeModal(node);
+				self.showNodeModal(self.findNode(node.id) || node);
 			}
 		}, [
 			header,
@@ -581,7 +619,7 @@ return view.extend({
 			]);
 		}
 
-		return E('div', { 'class': 'fm-node-branch depth-' + depth }, [
+		return E('div', { 'class': 'fm-node-branch depth-' + depth, 'data-fm-key': 'node:' + node.id }, [
 			uplinkElem,
 			nodeCard,
 			children.length > 0 ? E('div', { 'class': 'fm-connector-line' }) : E([]),
@@ -691,7 +729,7 @@ return view.extend({
 			}
 		}
 
-		return E('div', { 'class': 'fm-tree-node-wrapper depth-' + depth }, [
+		return E('div', { 'class': 'fm-tree-node-wrapper depth-' + depth, 'data-fm-key': 'node:' + node.id }, [
 			nodeChip,
 			childrenElem
 		]);
@@ -713,32 +751,7 @@ return view.extend({
 		var roleBadge = isController ? _('Controller (AC)') : (isWired ? _('Wired AP') : _('Agent Node'));
 		var allNodeClients = clientsByNode[selectedNode.id] || [];
 
-		var filteredClients = allNodeClients.filter(function(c) {
-			if (self.searchQuery && self.searchQuery !== '') {
-				var q = self.searchQuery;
-				var match = false;
-				if (c.hostname && c.hostname.toLowerCase().indexOf(q) !== -1) match = true;
-				if (c.mac && c.mac.toLowerCase().indexOf(q) !== -1) match = true;
-				if (c.ip && c.ip.indexOf(q) !== -1) match = true;
-				if (c.ips) {
-					for (var i = 0; i < c.ips.length; i++) {
-						if (c.ips[i].indexOf(q) !== -1) { match = true; break; }
-					}
-				}
-				if (c.ip6) {
-					for (var j = 0; j < c.ip6.length; j++) {
-						if (c.ip6[j].toLowerCase().indexOf(q) !== -1) { match = true; break; }
-					}
-				}
-				if (!match) return false;
-			}
-			if (self.filterBand === '6g' && (c.access_type !== 'wireless' || c.band !== '6G')) return false;
-				if (self.filterBand === '5g' && (c.access_type !== 'wireless' || c.band !== '5G')) return false;
-			if (self.filterBand === '2g' && (c.access_type !== 'wireless' || c.band !== '2.4G')) return false;
-			if (self.filterBand === 'wired' && c.access_type !== 'wired') return false;
-			if (self.filterBand === 'vpn' && c.access_type !== 'vpn') return false;
-			return true;
-		});
+		var filteredClients = allNodeClients.filter(function(client) { return self.matchesClient(client); });
 
 		var titleBar = E('div', { 'class': 'fm-focused-title-bar' }, [
 			E('div', { 'class': 'fm-focused-title-left' }, [
@@ -752,7 +765,7 @@ return view.extend({
 			E('div', { 'class': 'fm-focused-actions btn-group' }, [
 				E('button', {
 					'class': 'btn btn-sm btn-info',
-					'click': function() { self.showNodeModal(selectedNode); }
+					'click': function() { self.showNodeModal(self.findNode(selectedNode.id) || selectedNode); }
 				}, _('View Full Node Specs') + ' 🔍'),
 				isLocal ? E('span', {
 					'class': 'badge badge-local',
@@ -776,8 +789,9 @@ return view.extend({
 				'title': _('Click to inspect upstream node'),
 				'click': function(ev) {
 					ev.stopPropagation();
-					if (selectedNode.parent_id) {
-						self.selectedNodeId = selectedNode.parent_id;
+					var latest = self.findNode(selectedNode.id);
+					if (latest && latest.parent_id) {
+						self.selectedNodeId = latest.parent_id;
 						self.updateCanvas();
 					}
 				}
@@ -849,7 +863,7 @@ return view.extend({
 			terminalsBody = E('div', { 'class': 'fm-focused-clients-grid' }, clientCards);
 		}
 
-		return E('div', { 'class': 'fm-focused-panel' }, [
+		return E('div', { 'class': 'fm-focused-panel', 'data-fm-key': 'focused:' + selectedNode.id }, [
 			titleBar,
 			heroGrid,
 			terminalsHdr,
@@ -890,13 +904,18 @@ return view.extend({
 	},
 
 	updateCanvas: function() {
-		var summaryEl = document.getElementById('fm-topology-summary');
-		if (summaryEl && this.data) {
-			dom.content(summaryEl, this.renderSummaryBar(this.data.summary, this.data.mesh_id));
-		}
 		var canvas = document.getElementById('fm-topology-canvas');
 		if (!canvas || !this.data) return;
-		dom.content(canvas, this.renderTree(this.data));
+		var signature = JSON.stringify([this.data.mesh_id, this.data.current_node_id, this.data.summary, this.data.nodes, this.data.clients,
+			this.filterBand, this.searchQuery, this.viewMode, this.selectedNodeId], function(key, value) {
+			return key === 'children' ? undefined : value;
+		});
+		if (canvas === this.canvasElement && signature === this.canvasSignature) return;
+		var summaryEl = document.getElementById('fm-topology-summary');
+		if (summaryEl) syncChildren(summaryEl, E('div', {}, [this.renderSummaryBar(this.data.summary, this.data.mesh_id)]));
+		syncChildren(canvas, E('div', {}, [this.renderTree(this.data)]));
+		this.canvasElement = canvas;
+		this.canvasSignature = signature;
 	},
 
 	renderTree: function(data) {
