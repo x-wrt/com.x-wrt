@@ -206,9 +206,9 @@ local function config_snapshot(conn, name)
 		if type(values) == "table" then
 			local record = values[section]
 			local value = type(record) == "table" and record[option]
-			return type(value) == "string" and value:gsub("%s+", "") or ""
+			return type(value) == "string" and value or ""
 		end
-		return (exec("uci -q get " .. name .. "." .. section .. "." .. option .. " 2>/dev/null")):gsub("%s+", "")
+		return (exec("uci -q get " .. name .. "." .. section .. "." .. option .. " 2>/dev/null")):gsub("\n$", "")
 	end
 end
 

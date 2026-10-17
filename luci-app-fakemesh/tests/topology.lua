@@ -66,7 +66,8 @@ local function instantiate(state)
 			state.shell_calls[#state.shell_calls + 1] = command
 			local data = ""
 			if command:find("uci ", 1, true) then
-				data = state.uci[command:match("get ([%w%._]+)")] or ""
+				local value = state.uci[command:match("get ([%w%._]+)")]
+				data = value and (value .. "\n") or ""
 			elseif command:find("ip -4 -o addr show br-lan", 1, true) then data = state.ip
 			elseif command:find("bridge fdb show", 1, true) then data = state.fdb
 			elseif command:find("iw dev meshx1 link", 1, true) then data = state.link or ""
@@ -96,6 +97,7 @@ local function instantiate(state)
 					call = function(_, object, method, args)
 						state.calls[#state.calls + 1] = object .. " " .. method
 						if object == "uci" and method == "get" then
+							if state.uci_unavailable then return nil end
 							local values = {}
 							for key, value in pairs(state.uci) do
 								local config, section, option = key:match("^([^.]+)%.([^.]+)%.([^.]+)$")
@@ -360,6 +362,26 @@ test("controller failures continue to validated gateway and reject wrong Mesh ID
 	assert(topology and ip == "192.168.1.1")
 	for _, request in ipairs(state.requests) do
 		assert(request.method ~= "get_topology" or request.ip ~= "192.168.1.11")
+	end
+end)
+
+test("Mesh IDs preserve spaces through both config paths and mDNS discovery", function()
+	for _, legacy in ipairs({false, true}) do
+		local state = fixture()
+		local mesh_id = " room mesh "
+		state.uci_unavailable = legacy
+		state.uci["fakemesh.default.id"] = mesh_id
+		state.uci["fakemesh.default.role"] = "agent"
+		state.uci["network.meshx0.hostname"] = "MESH-AGENT_020000000002"
+		state.ip = "192.168.1.2"
+		state.ubus.umdns = {browse = {["_fakemesh_" .. mesh_id .. "._tcp"] = {AC = {ipv4 = "192.168.1.1"}}}}
+		state.agents["192.168.1.1"] = {mac = ac_mac, role = "controller", mesh_id = mesh_id}
+		state.topologies["192.168.1.1"] = {mesh_id = mesh_id, nodes = {{id = "ac", role = "controller"}}, clients = {}}
+		local api = instantiate(state)
+		assert(api.methods.get_node_info.call().mesh_id == mesh_id)
+		local topology = api.methods.get_topology.call()
+		assert(topology.mesh_id == mesh_id and #topology.nodes == 1)
+		assert(topology.current_node_id == "node_020000000002")
 	end
 end)
 
