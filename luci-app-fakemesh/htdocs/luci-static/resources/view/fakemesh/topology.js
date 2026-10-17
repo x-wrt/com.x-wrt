@@ -364,14 +364,14 @@ return view.extend({
 	showNodeModal: function(node) {
 		var isController = (node.role === 'controller') || (!node.role && node.id === 'ac');
 		var isLocal = (this.data && this.data.current_node_id) ? (node.id === this.data.current_node_id) : false;
-		var uplinkText = isController ? _('Root Gateway') : _('Unknown');
+		var uplinkText = isController ? _('Root Gateway') : _('Unknown link');
 		if (node.uplink && node.uplink.type === 'wireless') {
 			uplinkText = (node.uplink.band || '5G') + ' Mesh (' + (node.uplink.signal || 0) + ' dBm, ' + (node.uplink.rx_bitrate || 0) + ' Mbps)';
 		} else if (node.uplink && node.uplink.type === 'wired') {
 			uplinkText = _('Wired Ethernet') + ' (' + (node.uplink.port || 'LAN') + (node.uplink.speed ? (', ' + node.uplink.speed) : '') + ')';
 		}
 
-		var upstreamNodeName = isController ? (node.parent_name || _('Internet Gateway')) : (node.parent_name || node.parent_hostname || 'X-WRT');
+		var upstreamNodeName = this.formatUpstream(node);
 
 		var body = E('div', { 'class': 'fm-modal-body' }, [
 			E('table', { 'class': 'table' }, [
@@ -449,6 +449,19 @@ return view.extend({
 
 	findNode: function(id) {
 		return ((this.data || {}).nodes || []).find(function(node) { return node.id === id; });
+	},
+
+	formatUpstream: function(node) {
+		if (node.role === 'controller' || (!node.role && node.id === 'ac')) {
+			var upstream = node.upstream || node.backhaul || node.uplink || {};
+			var wan = upstream.wan_ip || node.parent_ip;
+			return _('Internet Gateway') + (wan ? ' (' + wan + ')' : '');
+		}
+		var parent = this.findNode(node.parent_id);
+		var hostname = (parent && parent.hostname) || node.parent_hostname || 'X-WRT';
+		var ip = node.parent_ip !== undefined ? node.parent_ip : (parent && parent.ip);
+		var name = hostname + (ip && ip !== hostname ? ' (' + ip + ')' : '');
+		return name + (parent && parent.online === false ? ' [' + _('Offline') + ']' : '');
 	},
 
 	findClient: function(mac) {
@@ -535,7 +548,7 @@ return view.extend({
 	renderUplinkBadge: function(uplink) {
 		if (!uplink || uplink.type === 'root') return E([]);
 		if (uplink.type !== 'wired' && uplink.type !== 'wireless')
-			return E('div', { 'class': 'fm-uplink-badge' }, _('Unknown'));
+			return E('div', { 'class': 'fm-uplink-badge' }, _('Unknown link'));
 
 		if (uplink.type === 'wireless') {
 			var sig = uplink.signal || 0;
@@ -586,7 +599,7 @@ return view.extend({
 
 		var upstreamLine = E('div', {}, [
 			E('span', { 'class': 'text-muted' }, _('Upstream') + ': '),
-			E('strong', {}, isRoot ? (node.parent_name || _('Internet Gateway')) : (node.parent_name || node.parent_hostname || 'X-WRT'))
+			E('strong', {}, self.formatUpstream(node))
 		]);
 
 		var meta = E('div', { 'class': 'fm-node-meta' }, [
@@ -696,7 +709,7 @@ return view.extend({
 			E('span', { 'class': 'fm-status-dot ' + (node.online ? 'online' : 'offline') })
 		]);
 
-		var upstreamText = isRoot ? (node.parent_name || _('Internet Gateway')) : (node.parent_name || node.parent_hostname || 'X-WRT');
+		var upstreamText = self.formatUpstream(node);
 		var upstreamLine = E('div', { 'class': 'fm-mini-upstream' }, [
 			E('span', { 'class': 'text-muted' }, _('Upstream') + ': '),
 			E('strong', { 'class': isRoot ? 'text-secondary' : 'text-primary' }, upstreamText)
@@ -823,7 +836,7 @@ return view.extend({
 
 		var upstreamDisplay = E([]);
 		if (isController) {
-			upstreamDisplay = E('span', { 'class': 'badge badge-secondary' }, selectedNode.parent_name || _('Internet Gateway'));
+			upstreamDisplay = E('span', { 'class': 'badge badge-secondary' }, self.formatUpstream(selectedNode));
 		} else {
 			upstreamDisplay = E('span', {
 				'class': 'badge badge-primary',
@@ -837,7 +850,7 @@ return view.extend({
 						self.updateCanvas();
 					}
 				}
-			}, (selectedNode.parent_name || selectedNode.parent_hostname || 'X-WRT') + ' ↗');
+			}, self.formatUpstream(selectedNode) + ' ↗');
 		}
 
 		var heroGrid = E('div', { 'class': 'fm-focused-hero' }, [
@@ -977,11 +990,7 @@ return view.extend({
 			return E('div', { 'class': 'alert-message warning' }, _('No FakeMesh nodes detected. Please verify FakeMesh configuration.'));
 		}
 
-		var upInfo = root.upstream || root.backhaul || {};
-		var wanLabel = _('Internet Gateway');
-		if (upInfo.wan_ip && upInfo.wan_ip !== '') {
-			wanLabel += ' (' + upInfo.wan_ip + ')';
-		}
+		var wanLabel = self.formatUpstream(root);
 		var wanBox = E('div', { 'class': 'fm-wan-box' }, [
 			E('div', { 'class': 'fm-wan-icon', 'innerHTML': getIconSvg('cloud') }),
 			E('div', { 'class': 'fm-wan-title' }, wanLabel)

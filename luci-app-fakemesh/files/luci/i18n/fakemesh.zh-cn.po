@@ -403,3 +403,8 @@ msgstr "拓扑刷新失败。"
 msgid "This device is no longer present in the latest topology."
 msgstr "最新拓扑中已没有此设备。"
 
+msgid "Unknown link"
+msgstr "未知链路"
+
+msgid "Offline"
+msgstr "离线"

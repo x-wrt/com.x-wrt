@@ -274,7 +274,6 @@ local function collect_local_node_info(conn)
 		end
 		info.upstream = {
 			type = "root",
-			name = "Internet Gateway",
 			proto = wan_proto ~= "" and wan_proto or "dhcp",
 			wan_ip = wan_ip,
 			online = (wan_ip ~= "")
@@ -666,7 +665,8 @@ local methods = {
 				my_node.online = true
 				my_node.parent_id = "ac"
 				my_node.parent_ip = ac_ip or ""
-				my_node.parent_name = (ac_ip and ac_ip ~= "") and ("X-WRT (" .. ac_ip .. ") [离线]") or "X-WRT (离线)"
+				my_node.parent_hostname = "X-WRT"
+				my_node.parent_name = (ac_ip and ac_ip ~= "") and ("X-WRT (" .. ac_ip .. ")") or "X-WRT"
 				my_node.hop_count = 1
 
 				local ac_stub = {
@@ -679,8 +679,7 @@ local methods = {
 					online = false,
 					uptime = 0,
 					hop_count = 0,
-					parent_name = "Internet Gateway",
-					upstream = { type = "root", name = "Internet Gateway", online = false },
+					upstream = { type = "root", online = false },
 					downstream = { total_count = 0, wireless_count = 0, wired_count = 0, vpn_count = 0 },
 					radios = {},
 					wired_ports = {}
@@ -994,7 +993,7 @@ local methods = {
 					n.parent_name = (p.hostname and p.hostname ~= "") and (p.hostname .. " (" .. p.ip .. ")") or p.ip
 				elseif n.id == "ac" then
 					local up = n.upstream or {}
-					n.parent_name = (up.wan_ip and up.wan_ip ~= "") and ("Internet (" .. up.wan_ip .. ")") or "Internet Gateway"
+					n.parent_name = up.wan_ip or ""
 					n.parent_ip = up.wan_ip or ""
 				end
 			end
