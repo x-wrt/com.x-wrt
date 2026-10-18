@@ -1265,8 +1265,12 @@ local methods = {
 
 					local seen_ips = {}
 					local ip_list = {}
+					local is_mesh_ip = false
 					local function add_ipv4(ip_str)
-						if ip_str and ip_str ~= "" and not ip_str:find(":") and not seen_ips[ip_str] and not mesh_node_ips[ip_str] then
+						if ip_str and mesh_node_ips[ip_str] then
+							-- Remember node ownership before removing its address.
+							is_mesh_ip = true
+						elseif ip_str and ip_str ~= "" and not ip_str:find(":") and not seen_ips[ip_str] then
 							seen_ips[ip_str] = true
 							ip_list[#ip_list + 1] = ip_str
 							if hname == "" and hosts_by_ip[ip_str] then
@@ -1283,11 +1287,7 @@ local methods = {
 						for aip, _ in pairs(arp_ips[cmac]) do add_ipv4(aip) end
 					end
 
-					local is_mesh_ip = false
-					for _, ip_str in ipairs(ip_list) do
-						if mesh_node_ips[ip_str] then is_mesh_ip = true; break end
-					end
-
+					if is_mesh_ip then handled_macs[cmac] = true end
 					if not is_mesh_ip then
 						local seen_ip6 = {}
 						local ip6_list = {}
@@ -1335,7 +1335,11 @@ local methods = {
 				local vip = (vu.ip and vu.ip[1]) or ""
 				local vmac = (vu.mac and vu.mac ~= "" and vu.mac ~= "00:00:00:00:00:00") and vu.mac:upper() or ""
 				local vkey = vmac ~= "" and vmac or ("VPN:" .. (vip ~= "" and vip or (vu.ifname or "client")))
-				if not handled_macs[vkey] and not (vmac ~= "" and handled_macs[vmac]) then
+				local is_mesh_ip = false
+				for _, ip_str in ipairs(vu.ip or {}) do
+					if mesh_node_ips[ip_str] then is_mesh_ip = true; break end
+				end
+				if not mesh_node_macs[vmac] and not is_mesh_ip and not handled_macs[vkey] and not (vmac ~= "" and handled_macs[vmac]) then
 					local dhcp = (vmac ~= "" and dhcp_hints[vmac]) or {}
 					local hname = (dhcp.hostname and dhcp.hostname ~= "") and dhcp.hostname or vu.hostname or ""
 					local ips = {}

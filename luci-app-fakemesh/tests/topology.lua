@@ -524,6 +524,33 @@ test("natflow mesh records need a live node report before becoming clients", fun
 	end
 end)
 
+test("node IPs exclude NAT-only aliases before address filtering", function()
+	for _, access_type in ipairs({"wired", "vpn"}) do
+		for _, address_source in ipairs({"natflow", "dhcp", "arp"}) do
+			local state = fixture()
+			local user = {mac = client_mac, access_type = access_type, ifname = access_type == "vpn" and "wg0" or "lan1", ip = {}}
+			if address_source == "natflow" then user.ip = {state.ip, "192.168.1.99"}
+			elseif address_source == "dhcp" then state.files["/tmp/dhcp.leases"] = "0 " .. client_mac .. " " .. state.ip .. " alias *\n"
+			else state.files["/proc/net/arp"] = state.ip .. " 0x1 0x2 " .. client_mac .. " * br-lan\n" end
+			state.ubus["luci.natflow"] = {get_mac_users = {result = {user,
+				{mac = b_mac, access_type = "wired", ip = {"192.168.1.98"}},
+				{mac = c_mac, access_type = "wired", ip = {}, ip6 = {"2001:db8::1"}}
+			}}}
+			local topology = instantiate(state).methods.get_topology.call()
+			assert(#topology.clients == 2 and topology.summary.wired == 2)
+			for _, client in ipairs(topology.clients) do assert(client.mac ~= client_mac) end
+		end
+	end
+	local state = fixture()
+	state.ubus["luci.natflow"] = {get_mac_users = {result = {
+		{mac = "00:00:00:00:00:00", access_type = "vpn", ifname = "wg0", ip = {"10.0.0.1", state.ip}},
+		{mac = ac_mac, access_type = "vpn", ifname = "wg0", ip = {"10.0.0.2"}},
+		{mac = "", access_type = "vpn", ifname = "wg1", ip = {"10.0.0.3"}}
+	}}}
+	local topology = instantiate(state).methods.get_topology.call()
+	assert(#topology.clients == 1 and topology.clients[1].ip == "10.0.0.3" and topology.summary.vpn == 1)
+end)
+
 test("request deadline kills and reaps stalled children and closes responses", function()
 	local state = fixture()
 	state.processes = {[1] = {done_at = 1000}, [2] = {done_at = math.huge}}
