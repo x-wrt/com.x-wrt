@@ -463,6 +463,33 @@ test("foreign, mismatched and malformed node reports only take that node offline
 	end
 end)
 
+test("standalone agents retain known wired, wireless and unknown backhauls", function()
+	for _, link in ipairs({"wired", "wireless", "unknown"}) do
+		local state = fixture()
+		state.uci["fakemesh.default.role"] = link == "wired" and "wap" or "agent"
+		if link == "wired" then
+			state.route = "default via 192.168.1.1 dev br-lan"
+			state.files["/proc/net/arp"] = "192.168.1.1 0x1 0x2 " .. ac_mac .. " * br-lan\n"
+			state.files["/sys/class/net/lan2/speed"] = "2500"
+			state.fdb = ac_mac .. " dev lan2 master br-lan\n"
+		elseif link == "wireless" then
+			state.link = "Connected to " .. ac_mac .. "\nSSID: test-mesh\nsignal: -51 dBm\nfreq: 5955\nrx bitrate: 1201.0 MBit/s\n"
+		end
+		local topology = instantiate(state).methods.get_topology.call()
+		local controller, node = topology.nodes[1], topology.nodes[2]
+		assert(controller.online == false and controller.uplink.type == "root")
+		assert(node.uplink.type == link and node.upstream.type == link and node.online)
+		assert(node.uplink ~= node.upstream and node.uplink ~= node.backhaul)
+		if link == "wired" then
+			assert(node.uplink.port == "LAN2" and node.uplink.speed == "2500M" and topology.summary.wired_nodes == 1)
+		elseif link == "wireless" then
+			assert(node.uplink.band == "6G" and node.uplink.signal == -51 and node.uplink.rx_bitrate == 1201 and topology.summary.wireless_nodes == 1)
+		else
+			assert(node.uplink.speed == nil and topology.summary.wired_nodes == 0 and topology.summary.wireless_nodes == 0)
+		end
+	end
+end)
+
 test("natflow mesh records need a live node report before becoming clients", function()
 	local state = fixture()
 	register(state, agent(a_mac, "192.168.1.2", {}, {{mac = client_mac, access_type = "wireless", band = "6G", associated = true, authorized = true}}))
