@@ -792,7 +792,7 @@ return view.extend({
 		]);
 	},
 
-	renderFocusedNodePanel: function(data, clientsByNode) {
+	resolveSelectedNode: function(data) {
 		var self = this;
 		var nodes = data.nodes || [];
 		var selectedNode = nodes.find(function(n) { return n.id === self.selectedNodeId; });
@@ -800,6 +800,12 @@ return view.extend({
 			selectedNode = nodes[0];
 			self.selectedNodeId = selectedNode.id;
 		}
+		return selectedNode;
+	},
+
+	renderFocusedNodePanel: function(data, clientsByNode) {
+		var self = this;
+		var selectedNode = self.resolveSelectedNode(data);
 		if (!selectedNode) return E([]);
 
 		var isController = (selectedNode.role === 'controller') || (!selectedNode.role && selectedNode.id === 'ac');
@@ -963,6 +969,7 @@ return view.extend({
 	updateCanvas: function() {
 		var canvas = document.getElementById('fm-topology-canvas');
 		if (!canvas || !this.data) return;
+		if (this.viewMode !== 'expanded') this.resolveSelectedNode(this.data);
 		var signature = JSON.stringify([this.data.mesh_id, this.data.current_node_id, this.data.summary, this.data.nodes, this.data.clients,
 			this.filterBand, this.searchQuery, this.viewMode, this.selectedNodeId], function(key, value) {
 			return key === 'children' ? undefined : value;
@@ -1016,6 +1023,7 @@ return view.extend({
 			_('Click any node to zoom in and inspect connected terminals')
 		]);
 
+		var focusedPanel = self.renderFocusedNodePanel(data, clientsByNode);
 		var minimapBranch = self.renderMinimapBranch(root, 0, clientsByNode);
 
 		var minimapContainer = E('div', { 'class': 'fm-minimap-container' }, [
@@ -1024,8 +1032,6 @@ return view.extend({
 			wanLink,
 			minimapBranch
 		]);
-
-		var focusedPanel = self.renderFocusedNodePanel(data, clientsByNode);
 
 		return E('div', { 'class': 'fm-topology-minimap-view' }, [
 			minimapContainer,

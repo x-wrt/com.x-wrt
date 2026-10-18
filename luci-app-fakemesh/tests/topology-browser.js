@@ -100,6 +100,7 @@ const luciPath = process.env.LUCI_JS || path.resolve(__dirname, '../../../luci/m
 			window.nextTopology.clients[0].node_id = 'ac';
 			await window.pollCallback();
 			check(document.querySelectorAll('.fm-minimap-node').length === 1, 'removed node remained in DOM');
+			check(document.querySelectorAll('.fm-minimap-node.selected').length === 1 && document.querySelector('[data-fm-key="node:ac"] > .fm-minimap-node.selected'), 'removed selection did not move to the fallback node in the same poll');
 			check(document.querySelectorAll('.fm-client-card').length === 1, 'roaming client lost or duplicated');
 		});
 		await page.evaluate(async () => {
