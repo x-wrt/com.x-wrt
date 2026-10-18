@@ -90,6 +90,7 @@ function formatLastActive(sec) {
 	return str.format ? str.format(d) : str.replace('%d', d);
 }
 
+// Fixed templates are the only topology content intentionally parsed as HTML.
 function getIconSvg(type) {
 	switch (type) {
 		case 'phone':
@@ -528,7 +529,7 @@ return view.extend({
 				if (latest) self.showClientModal(latest, self.findNode(latest.node_id));
 			}
 		}, [
-			E('div', { 'class': 'fm-client-icon', 'innerHTML': getIconSvg(client.icon || 'device') }),
+			E('div', { 'class': 'fm-client-icon' }, getIconSvg(client.icon || 'device')),
 			E('div', { 'class': 'fm-client-info' }, [
 				E('div', { 'class': 'fm-client-top' }, [
 					E('div', { 'class': 'fm-client-name', 'title': client.hostname || client.mac }, [client.hostname || client.mac]),
@@ -558,7 +559,7 @@ return view.extend({
 			else if (sig < -62) sigClass = 'link-fair';
 
 			return E('div', { 'class': 'fm-uplink-badge ' + sigClass }, [
-				E('span', { 'class': 'fm-uplink-icon', 'innerHTML': getIconSvg('wifi') }),
+				E('span', { 'class': 'fm-uplink-icon' }, getIconSvg('wifi')),
 				E('span', {}, [
 					E('strong', {}, [(uplink.band || '5G') + ' Mesh']),
 					sig ? (' · ' + sig + ' dBm') : '',
@@ -569,7 +570,7 @@ return view.extend({
 
 		// Wired uplink
 		return E('div', { 'class': 'fm-uplink-badge link-wired' }, [
-			E('span', { 'class': 'fm-uplink-icon', 'innerHTML': getIconSvg('ethernet') }),
+			E('span', { 'class': 'fm-uplink-icon' }, getIconSvg('ethernet')),
 			E('span', {}, [
 				E('strong', {}, _('Wired Ethernet')),
 				uplink.port ? (' · ' + uplink.port) : ' · LAN',
@@ -586,7 +587,7 @@ return view.extend({
 		var roleBadge = isController ? _('Controller (AC)') : (isWired ? _('Wired AP') : _('Agent Node'));
 
 		var header = E('div', { 'class': 'fm-node-header' }, [
-			E('div', { 'class': 'fm-node-icon ' + (isController ? 'icon-ac' : 'icon-agent'), 'innerHTML': getIconSvg(isController ? 'router' : (isWired ? 'router' : 'ap')) }),
+			E('div', { 'class': 'fm-node-icon ' + (isController ? 'icon-ac' : 'icon-agent') }, getIconSvg(isController ? 'router' : (isWired ? 'router' : 'ap'))),
 			E('div', { 'class': 'fm-node-titles' }, [
 				E('div', { 'class': 'fm-node-name', 'title': node.hostname }, [node.hostname || node.ip]),
 				E('div', { 'class': 'fm-node-role' }, [
@@ -692,7 +693,7 @@ return view.extend({
 		var roleBadge = isController ? _('Controller (AC)') : (isWired ? _('Wired AP') : _('Agent Node'));
 
 		var header = E('div', { 'class': 'fm-mini-header' }, [
-			E('div', { 'class': 'fm-mini-icon ' + (isController ? 'icon-ac' : 'icon-agent'), 'innerHTML': getIconSvg(isController ? 'router' : (isWired ? 'router' : 'ap')) }),
+			E('div', { 'class': 'fm-mini-icon ' + (isController ? 'icon-ac' : 'icon-agent') }, getIconSvg(isController ? 'router' : (isWired ? 'router' : 'ap'))),
 			E('div', { 'class': 'fm-mini-titles' }, [
 				E('div', { 'class': 'fm-mini-name', 'title': node.hostname || node.ip }, [node.hostname || node.ip]),
 				E('div', { 'class': 'fm-mini-ip-row' }, [
@@ -993,7 +994,7 @@ return view.extend({
 
 		var wanLabel = self.formatUpstream(root);
 		var wanBox = E('div', { 'class': 'fm-wan-box' }, [
-			E('div', { 'class': 'fm-wan-icon', 'innerHTML': getIconSvg('cloud') }),
+			E('div', { 'class': 'fm-wan-icon' }, getIconSvg('cloud')),
 			E('div', { 'class': 'fm-wan-title' }, [wanLabel])
 		]);
 

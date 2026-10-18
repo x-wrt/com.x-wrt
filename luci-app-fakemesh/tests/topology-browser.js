@@ -28,6 +28,14 @@ const luciPath = process.env.LUCI_JS || path.resolve(__dirname, '../../../luci/m
 				hideModal() {document.body.classList.remove('modal-overlay-active');}
 			};
 			window.check = (value, message) => {if (!value) throw new Error(message);};
+			window.checkIcons = () => {
+				const icons = document.querySelectorAll('.fm-client-icon, .fm-node-icon, .fm-mini-icon, .fm-uplink-icon, .fm-wan-icon');
+				check(icons.length > 0, 'no topology icons found');
+				icons.forEach(icon => {
+					check(icon.firstElementChild && icon.firstElementChild.namespaceURI === 'http://www.w3.org/2000/svg', 'icon lacks an SVG element');
+					check(!icon.hasAttribute('innerhtml'), 'SVG was stored in an attribute');
+				});
+			};
 			window.rpc = {declare: () => () => window.rpcFailure ? Promise.reject(new Error('offline')) : Promise.resolve(structuredClone(window.nextTopology))};
 		});
 		// Use LuCI's production DOM helpers: nested arrays must stringify as they do on the router.
@@ -49,19 +57,24 @@ const luciPath = process.env.LUCI_JS || path.resolve(__dirname, '../../../luci/m
 			};
 			document.body.append(t.render(structuredClone(window.nextTopology)));
 			t.updateCanvas();
+			checkIcons();
 			window.originalCard = document.querySelector('[data-fm-key="client:AA:BB:CC:DD:EE:01"]');
 			window.originalBranch = document.querySelector('[data-fm-key="node:A"]');
 			check(document.querySelector('.badge-6g'), '6 GHz badge missing');
 			window.nextTopology.clients.reverse();
 			window.nextTopology.clients[1].hostname = 'Updated phone';
 			window.nextTopology.clients[1].rx_speed = 999;
+			window.nextTopology.clients[1].icon = 'pc';
 			window.nextTopology.nodes[1].uptime = 15;
+			window.nextTopology.nodes[1].uplink = {type:'wireless', band:'6G', signal:-50};
 		});
 		await page.evaluate(async () => {
 			await window.pollCallback();
 			check(window.originalCard === document.querySelector('[data-fm-key="client:AA:BB:CC:DD:EE:01"]'), 'client DOM was replaced');
 			check(window.originalBranch === document.querySelector('[data-fm-key="node:A"]'), 'node DOM was replaced');
 			check(window.originalCard.textContent.includes('Updated phone'), 'card text did not update');
+			check(window.originalCard.querySelector('.fm-client-icon svg rect'), 'polled icon type did not update');
+			checkIcons();
 			window.originalCard.click();
 			check(document.querySelector('.modal').textContent.includes('Updated phone'), 'retained click handler read an old snapshot');
 			window.ui.hideModal();
@@ -140,12 +153,13 @@ const luciPath = process.env.LUCI_JS || path.resolve(__dirname, '../../../luci/m
 			const t = window.topology;
 			const payload = '<img src=x onerror=window.fmInjected=1>';
 			const node = {id:'ac', role:'controller', hostname:payload, model:payload, ip:'192.168.1.1', online:true, uplink:{type:'root'}};
-			const client = {mac:'AA:BB:CC:DD:EE:99', node_id:'ac', hostname:payload, ssid:payload, band:'6G', access_type:'wireless', ip:payload, ips:[payload], ip6:[payload]};
+			const client = {mac:'AA:BB:CC:DD:EE:99', node_id:'ac', hostname:payload, ssid:payload, icon:payload, band:'6G', access_type:'wireless', ip:payload, ips:[payload], ip6:[payload]};
 			window.nextTopology = {mesh_id:payload, current_node_id:'ac', nodes:[node], clients:[client]};
 			for (const mode of ['expanded', 'minimap']) {
 				t.viewMode = mode;
 				await window.pollCallback();
 				const card = document.querySelector('.fm-client-card');
+				checkIcons();
 				check(card.querySelector('.fm-client-name').textContent === payload, 'hostname is not literal text');
 				check(card.textContent.includes(payload), 'client details lost special characters');
 				check(document.querySelector('#fm-topology-summary').textContent.includes(payload), 'Mesh ID is not literal text');
