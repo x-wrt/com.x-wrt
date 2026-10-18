@@ -551,6 +551,23 @@ test("node IPs exclude NAT-only aliases before address filtering", function()
 	assert(#topology.clients == 1 and topology.clients[1].ip == "10.0.0.3" and topology.summary.vpn == 1)
 end)
 
+test("node IP aliases cannot bypass filtering through FDB or node reports", function()
+	for _, reporter in ipairs({"fdb", "agent"}) do
+		local state = fixture()
+		state.ubus["luci.natflow"] = {get_mac_users = {result = {{mac = b_mac, access_type = "wired", ip = {"192.168.1.98"}}}}}
+		if reporter == "fdb" then
+			state.fdb = client_mac .. " dev lan1 master br-lan\n"
+			state.files["/proc/net/arp"] = state.ip .. " 0x1 0x2 " .. client_mac .. " * br-lan\n"
+		else
+			local client = wired_client("LAN1")
+			client.ip = state.ip
+			register(state, agent(a_mac, "192.168.1.2", {}, {client}))
+		end
+		local topology = instantiate(state).methods.get_topology.call()
+		assert(#topology.clients == 1 and topology.clients[1].mac == b_mac and topology.summary.wired == 1)
+	end
+end)
+
 test("request deadline kills and reaps stalled children and closes responses", function()
 	local state = fixture()
 	state.processes = {[1] = {done_at = 1000}, [2] = {done_at = math.huge}}

@@ -1167,8 +1167,11 @@ local methods = {
 						-- Multi-IP aggregation (IPv4)
 						local seen_ips = {}
 						local ip_list = {}
+						local is_mesh_ip = false
 						local function add_ipv4(ip_str)
-							if ip_str and ip_str ~= "" and not ip_str:find(":") and not seen_ips[ip_str] and not mesh_node_ips[ip_str] then
+							if ip_str and mesh_node_ips[ip_str] then
+								is_mesh_ip = true
+							elseif ip_str and ip_str ~= "" and not ip_str:find(":") and not seen_ips[ip_str] then
 								seen_ips[ip_str] = true
 								ip_list[#ip_list + 1] = ip_str
 								if hname == "" and hosts_by_ip[ip_str] then
@@ -1246,7 +1249,7 @@ local methods = {
 
 						best_c.icon = get_device_icon(best_c.hostname, cmac)
 
-						final_clients[#final_clients + 1] = best_c
+						if not is_mesh_ip then final_clients[#final_clients + 1] = best_c end
 					end
 				end
 			end
