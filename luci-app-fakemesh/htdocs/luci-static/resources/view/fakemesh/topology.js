@@ -336,7 +336,7 @@ return view.extend({
 		if (previous && previous.type === detail.type && previous.id === detail.id &&
 			previous.element.classList.contains('fm-detail-modal') && document.body.classList.contains('modal-overlay-active')) {
 			modal = previous.element;
-			syncChildren(modal, E('div', {}, [E('h4', {}, title), children]));
+			syncChildren(modal, E('div', {}, [E('h4', {}, title)].concat(children)));
 		} else {
 			modal = ui.showModal(title, children, 'fm-detail-modal');
 			modal.parentNode.addEventListener('click', this.closeDetailModalOnBackdrop);
