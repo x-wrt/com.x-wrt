@@ -463,6 +463,40 @@ test("foreign, mismatched and malformed node reports only take that node offline
 	end
 end)
 
+test("natflow mesh records need a live node report before becoming clients", function()
+	local state = fixture()
+	register(state, agent(a_mac, "192.168.1.2", {}, {{mac = client_mac, access_type = "wireless", band = "6G", associated = true, authorized = true}}))
+	state.ubus["luci.natflow"] = {get_mac_users = {result = {
+		{mac = client_mac, access_type = "wireless_mesh", ifname = "meshx0", ip = {"192.168.1.99"}, idle_time = 900, rx_speed_bytes = 1024},
+		{mac = b_mac, access_type = "wired", ifname = "lan1", ip = {"192.168.1.98"}},
+		{mac = c_mac, access_type = "vpn", ifname = "wg0", ip = {"10.0.0.2"}}
+	}}}
+	local topology = instantiate(state).methods.get_topology.call()
+	assert(#topology.clients == 3 and topology.summary.wifi_6g == 1)
+	for _, client in ipairs(topology.clients) do
+		if client.mac == client_mac then
+			assert(client.node_id == "node_020000000002" and client.access_type == "wireless" and client.rx_speed == 1024)
+		end
+	end
+	state.agents["192.168.1.2"].clients[1].access_type = "wired"
+	state.agents["192.168.1.2"].clients[1].port = "LAN1"
+	topology = instantiate(state).methods.get_topology.call()
+	assert(#topology.clients == 3 and topology.summary.wired == 2)
+	for _, client in ipairs(topology.clients) do
+		if client.mac == client_mac then assert(client.node_id == "node_020000000002" and client.access_type == "wired") end
+	end
+	-- NAT state can outlive both an association and the node's HTTP report.
+	state.agents["192.168.1.2"].clients = {}
+	for _, offline in ipairs({false, true}) do
+		if offline then state.agents["192.168.1.2"] = nil end
+		topology = instantiate(state).methods.get_topology.call()
+		assert(#topology.clients == 2 and topology.summary.wired == 1 and topology.summary.vpn == 1)
+		for _, client in ipairs(topology.clients) do
+			assert(client.mac ~= client_mac and client.node_id == "ac")
+		end
+	end
+end)
+
 test("request deadline kills and reaps stalled children and closes responses", function()
 	local state = fixture()
 	state.processes = {[1] = {done_at = 1000}, [2] = {done_at = math.huge}}
