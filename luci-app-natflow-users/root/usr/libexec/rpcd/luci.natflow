@@ -644,7 +644,7 @@ local methods = {
 			local queued = tonumber(data:match("queued=(%d+)")) or 0
 			local released = tonumber(data:match("released=(%d+)")) or 0
 			local dropped = tonumber(data:match("dropped=(%d+)")) or 0
-			local buffer_ms = tonumber(data:match("buffer_ms=(%d+)")) or 0
+			local buffer_ms = tonumber(data:match("\nbuffer_ms=(%d+)")) or 0
 
 			return {
 				result = {
