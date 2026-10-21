@@ -42,6 +42,13 @@ wifi_get_phy()
 		fi
 	fi
 
+	local num="${radio#radio}"
+	[ "$num" = "$radio" ] && num="${radio#wifi}"
+	if [ -n "$num" ] && [ "$num" != "$radio" ] && [ -d "/sys/class/ieee80211/phy$num" ]; then
+		echo "phy$num"
+		return 0
+	fi
+
 	return 1
 }
 
@@ -77,6 +84,39 @@ wifi_is_single_bss()
 	# 3. 检查 debugfs 特征节点 (mt792x 独有的 deep-sleep 节点)
 	if test -e "/sys/kernel/debug/ieee80211/$phy/mt76/deep-sleep"; then
 		return 0
+	fi
+
+	return 1
+}
+
+wifi_is_cypress()
+{
+	local phy=$1
+	local radio=$2
+
+	case "$(uci get wireless.${radio}.path 2>/dev/null)" in
+		*bcma*|*brcm*|*bcm*) return 0 ;;
+	esac
+
+	[ -z "$phy" ] && return 1
+
+	case "$(readlink /sys/class/ieee80211/$phy/device/driver 2>/dev/null)" in
+		*brcm*|*b43*|*bcma*) return 0 ;;
+	esac
+
+	case "$(cat /sys/class/ieee80211/$phy/device/vendor 2>/dev/null)" in
+		0x02d0|0x14e4) return 0 ;;
+	esac
+
+	if command -v iwinfo >/dev/null 2>&1; then
+		if iwinfo "$phy" info 2>/dev/null | grep -qiE 'Cypress|Broadcom'; then
+			return 0
+		fi
+		local idx="${radio#radio}"
+		[ "$idx" = "$radio" ] && idx="${radio#wifi}"
+		if [ -n "$idx" ] && [ "$idx" != "$radio" ] && iwinfo "wlan$idx" info 2>/dev/null | grep -qiE 'Cypress|Broadcom'; then
+			return 0
+		fi
 	fi
 
 	return 1
@@ -126,6 +166,23 @@ wifi_setup_radio()
 
 		if [ "$(uci get wireless.${radio}.band 2>/dev/null)" = "2g" ] || [ "$(uci get wireless.${radio}.band 2>/dev/null)" = "5g" ]; then
 			htmode="$(uci get wireless.${radio}.htmode 2>/dev/null)"
+			if [ "$htmode" = "NOHT" ] || [ -z "$htmode" ]; then
+				if [ "$(uci get wireless.${radio}.band 2>/dev/null)" = "2g" ]; then
+					htmode='HT20'
+				else
+					local htmodes
+					if command -v iwinfo >/dev/null 2>&1 && [ -n "$phy" ]; then
+						htmodes="$(iwinfo "$phy" htmodelist 2>/dev/null)"
+					fi
+					case "$htmodes" in
+						*VHT80*) htmode='VHT80' ;;
+						*HT40*) htmode='HT40' ;;
+						*HT20*) htmode='HT20' ;;
+						*) htmode='VHT80' ;;
+					esac
+				fi
+				uci set wireless.${radio}.htmode="$htmode"
+			fi
 			if [ "${htmode//EHT}" != "${htmode}" ]; then
 				if  [ "$(uci get wireless.${radio}.band 2>/dev/null)" = "2g" ]; then
 					uci set wireless.${radio}.channel="1"
@@ -147,8 +204,8 @@ wifi_setup_radio()
 			uci set wireless.$obj.ssid="${SSID}"
 			uci set wireless.$obj.encryption='psk2'
 			uci set wireless.$obj.key="${SSID_PASSWD}"
-			if uci get wireless.${radio}.path | grep -q bcma || iwinfo wlan${radio:5} info | grep -qi Cypress; then
-				if [ "$(uci get wireless.${radio}.band)" = "2g" ]; then
+			if wifi_is_cypress "$phy" "${radio}"; then
+				if [ "$(uci get wireless.${radio}.band 2>/dev/null)" = "2g" ] || [ "$(uci get wireless.${radio}.hwmode 2>/dev/null)" = "11g" ]; then
 					uci set wireless.${radio}.channel='1'
 				else
 					uci set wireless.${radio}.channel='36'
