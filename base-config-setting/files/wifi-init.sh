@@ -1,15 +1,99 @@
 #!/bin/sh
 
+wifi_get_phy()
+{
+	local radio=$1
+	local phy="$(uci get wireless.${radio}.phy 2>/dev/null)"
+
+	if [ -n "$phy" ] && [ -d "/sys/class/ieee80211/$phy" ]; then
+		echo "$phy"
+		return 0
+	fi
+
+	local path="$(uci get wireless.${radio}.path 2>/dev/null)"
+	local offset=0 p index
+	if [ -n "$path" ]; then
+		# OpenWrt path +N selects the Nth PHY in wiphy index order.
+		case "$path" in
+			*+*) offset="${path##*+}"; path="${path%+*}" ;;
+		esac
+		[ -n "$path" ] || return 1
+		case "$offset" in
+			''|*[!0-9]*) return 1 ;;
+		esac
+
+		phy="$(
+			for p in /sys/class/ieee80211/*; do
+				[ -d "$p" ] || continue
+				case "$(readlink -f "$p/device" 2>/dev/null)" in
+					*"$path")
+						index="$(cat "$p/index" 2>/dev/null)"
+						case "$index" in
+							''|*[!0-9]*) continue ;;
+						esac
+						printf '%s %s\n' "$index" "${p##*/}"
+						;;
+				esac
+			done | sort -n | awk -v offset="$offset" 'NR == offset + 1 { print $2; exit }'
+		)"
+		if [ -n "$phy" ]; then
+			echo "$phy"
+			return 0
+		fi
+	fi
+
+	return 1
+}
+
+wifi_is_mt76()
+{
+	local phy=$1
+	[ -z "$phy" ] && return 1
+
+	test -e "/sys/kernel/debug/ieee80211/$phy/mt76" && return 0
+
+	case "$(readlink /sys/class/ieee80211/$phy/device/driver 2>/dev/null)" in
+		*mt7*) return 0 ;;
+	esac
+
+	return 1
+}
+
+wifi_is_single_bss()
+{
+	local phy=$1
+	[ -z "$phy" ] && return 1
+
+	# 1. 优先通过 iw 检查 AP 组合限制是否为 1 (通用判断)
+	if command -v iw >/dev/null 2>&1 && iw phy "$phy" info 2>/dev/null | grep -qE '#\{ AP \} <= 1([[:space:],]|$)'; then
+		return 0
+	fi
+
+	# 2. 检查驱动：mt792x 系列 (MT7921/MT7922/MT7925 等客户端芯片) 仅支持 1 个 AP BSS
+	case "$(readlink /sys/class/ieee80211/$phy/device/driver 2>/dev/null)" in
+		*mt792*) return 0 ;;
+	esac
+
+	# 3. 检查 debugfs 特征节点 (mt792x 独有的 deep-sleep 节点)
+	if test -e "/sys/kernel/debug/ieee80211/$phy/mt76/deep-sleep"; then
+		return 0
+	fi
+
+	return 1
+}
+
 wifi_setup_radio()
 {
 	local radio=$1
+	local phy="$(wifi_get_phy "$radio")"
 
 	if uci get wireless.${radio} >/dev/null 2>&1; then
 		#FIXME hack
 		local path htmode
 		if [ "${radio}" = "radio0" ] || [ "${radio}" = "radio1" ]; then
-		if test -e /sys/kernel/debug/ieee80211/phy0/mt76 &&
-		   [ "$(readlink /sys/class/ieee80211/phy0/device)" = "$(readlink /sys/class/ieee80211/phy1/device)" ]; then
+		if [ -e "/sys/class/ieee80211/phy0/device" ] && [ -e "/sys/class/ieee80211/phy1/device" ] &&
+		   [ "$(readlink /sys/class/ieee80211/phy0/device)" = "$(readlink /sys/class/ieee80211/phy1/device)" ] &&
+		   wifi_is_mt76 "phy0"; then
 			htmode="$(uci get wireless.${radio}.htmode)"
 			path="$(uci get wireless.${radio}.path)"
 			if test -z "${htmode##HE*}"; then
@@ -29,6 +113,7 @@ wifi_setup_radio()
 				uci set wireless.${radio}.band='2g'
 			fi
 			uci delete wireless.${radio}.path
+			phy="$(wifi_get_phy "$radio")"
 		fi
 		fi # radio0/radio1
 
@@ -81,7 +166,7 @@ wifi_setup_radio()
 				uci set wireless.$obj.ssid="${SSID}_6G"
 				uci delete wireless.$obj.ft_psk_generate_local
 			fi
-			if [ "$(uci get wireless.${radio}.band 2>/dev/null)" = "5g" ] && test -e /sys/kernel/debug/ieee80211/phy0/mt76; then
+			if [ "$(uci get wireless.${radio}.band 2>/dev/null)" = "5g" ] && wifi_is_mt76 "$phy" && ! wifi_is_single_bss "$phy"; then
 				obj=$(uci add wireless wifi-iface)
 				if test -n "$obj"; then
 					uci set wireless.$obj.device="${radio}"
