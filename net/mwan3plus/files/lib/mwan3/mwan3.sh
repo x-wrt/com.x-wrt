@@ -78,7 +78,7 @@ mwan3_ip6tables_nat_delete_rule()
 	done
 	stripped="${stripped}${line}"
 
-	ip6tables -t nat -D $stripped
+	ip6tables -w -t nat -D $stripped
 }
 
 mwan3_set_ipv6_native()
@@ -169,7 +169,7 @@ mwan3_ipv6_masq_help()
 	[ "$family" = "ipv6" ] || [ "$family" = "any" ] || return
 	setname="mwan3_${INTERFACE}_ipv6_src_from"
 
-	ip6tables -t nat -S POSTROUTING 2>/dev/null | awk -v tag="masq-help-${INTERFACE}-dev" \
+	ip6tables -w -t nat -S POSTROUTING 2>/dev/null | awk -v tag="masq-help-${INTERFACE}-dev" \
 		'$0 ~ tag { sub(/^-A /, ""); print }' | while read line; do
 		mwan3_ip6tables_nat_delete_rule "$line"
 	done
@@ -202,7 +202,7 @@ mwan3_ipv6_masq_help()
 		$IPS -! add "$setname" "$prefix"
 	done
 
-	ip6tables -t nat -A POSTROUTING -m set ! --match-set "$setname" src -o "$DEVICE" -m comment --comment "masq-help-${INTERFACE}-dev" -j MASQUERADE ||
+	ip6tables -w -t nat -A POSTROUTING -m set ! --match-set "$setname" src -o "$DEVICE" -m comment --comment "masq-help-${INTERFACE}-dev" -j MASQUERADE ||
 		LOG error "failed to install IPv6 masquerade helper for $INTERFACE on $DEVICE"
 
 	[ "$MWAN3_STARTUP" = "1" ] || mwan3_set_ipv6_native
@@ -212,7 +212,7 @@ mwan3_ipv6_masq_help()
 
 mwan3_ipv6_masq_cleanup()
 {
-	ip6tables -t nat -S POSTROUTING 2>/dev/null | awk '/masq-help-.*-dev/ { sub(/^-A /, ""); print }' | while read line; do
+	ip6tables -w -t nat -S POSTROUTING 2>/dev/null | awk '/masq-help-.*-dev/ { sub(/^-A /, ""); print }' | while read line; do
 		mwan3_ip6tables_nat_delete_rule "$line"
 	done
 	$IPS list -n | awk '/mwan3_.*_ipv6_src_from/' | while read line; do

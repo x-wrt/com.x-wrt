@@ -241,12 +241,19 @@ internal()
 
 start()
 {
-	local enabled hotplug_pids MWAN3_STARTUP
-	MWAN3_STARTUP=1
-
 	#Priority to get the lock
 	touch /var/run/mwan3.init
 	mwan3_lock "command" "mwan3"
+	start_locked
+	mwan3_unlock "command" "mwan3"
+	mwan3_rtmon
+}
+
+start_locked()
+{
+	local enabled hotplug_pids MWAN3_STARTUP
+	MWAN3_STARTUP=1
+
 	uci_toggle_state mwan3 globals enabled "1"
 	rm -f /var/run/mwan3.init
 
@@ -261,12 +268,19 @@ start()
 	mwan3_set_policies_iptables
 	mwan3_set_user_rules
 
-	mwan3_unlock "command" "mwan3"
-	mwan3_rtmon
 	unset MWAN3_STARTUP
 }
 
 stop()
+{
+	#Priority to get the lock
+	touch /var/run/mwan3.init
+	mwan3_lock "command" "mwan3"
+	stop_locked
+	mwan3_unlock "command" "mwan3"
+}
+
+stop_locked()
 {
 	local ipset ipsets rule IP IPTR IPT kill_pid family table tid
 
@@ -283,9 +297,6 @@ stop()
 		[ -n "$pids" ] && kill -"$sig" $pids 2>/dev/null
 	}
 
-	#Priority to get the lock
-	touch /var/run/mwan3.init
-	mwan3_lock "command" "mwan3"
 	uci_toggle_state mwan3 globals enabled "0"
 	rm -f /var/run/mwan3.init
 
@@ -355,13 +366,54 @@ stop()
 
 	mwan3_ipv6_masq_cleanup
 
-	mwan3_unlock "command" "mwan3"
-
 }
 
 restart() {
 	stop
 	start
+}
+
+firewall_rules_present()
+{
+	local ipt
+	for ipt in "$IPT4" "$IPT6"; do
+		[ "$ipt" = "$IPT4" ] && [ "$NEED_IPV4" -eq 0 ] && continue
+		[ "$ipt" = "$IPT6" ] && [ "$NEED_IPV6" -eq 0 ] && continue
+		$ipt -S mwan3_hook >/dev/null 2>&1 || return 1
+		$ipt -C PREROUTING -j mwan3_hook >/dev/null 2>&1 || return 1
+		$ipt -C OUTPUT -j mwan3_hook >/dev/null 2>&1 || return 1
+	done
+	return 0
+}
+
+firewall_reload()
+{
+	local enabled ret=0
+
+	mwan3_lock "command" "mwan3" || return 1
+	config_load mwan3 || {
+		mwan3_unlock "command" "mwan3"
+		return 1
+	}
+	config_get_bool enabled globals enabled 0
+	if [ "$enabled" = 1 ]; then
+		mwan3_init
+		if ! firewall_rules_present; then
+			LOG notice "Restoring mwan3 rules after firewall restart"
+			# Keep the lock across the enabled check and recovery. Calling
+			# the public restart here would acquire the same lock again.
+			stop_locked
+			mwan3_init
+			start_locked
+			mwan3_rtmon
+			firewall_rules_present || {
+				LOG err "Failed to restore mwan3 firewall hooks"
+				ret=1
+			}
+		fi
+	fi
+	mwan3_unlock "command" "mwan3"
+	return "$ret"
 }
 
 use() {
@@ -390,6 +442,10 @@ use() {
 }
 
 case "$1" in
+	firewall-reload)
+		firewall_reload
+		exit $?
+	;;
 	ifup|ifdown|interfaces|policies|rules|status|start|stop|restart|use|internal)
 		config_load mwan3
 		mwan3_init

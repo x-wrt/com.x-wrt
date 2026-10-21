@@ -10,7 +10,7 @@ include $(TOPDIR)/rules.mk
 
 PKG_NAME:=mwan3plus
 PKG_VERSION:=3.0.3
-PKG_RELEASE:=5
+PKG_RELEASE:=7
 PKG_MAINTAINER:=Minqiang Chen <ptpt52@gmail.com>
 PKG_LICENSE:=GPL-2.0
 
@@ -112,6 +112,10 @@ define Package/mwan3plus/install
 		$(1)/usr/sbin/
 	$(INSTALL_BIN) ./files/usr/sbin/mwan3track \
 		$(1)/usr/sbin/
+
+	$(INSTALL_DIR) $(1)/usr/share/mwan3
+	$(INSTALL_BIN) ./files/usr/share/mwan3/mwan3-reload.sh \
+		$(1)/usr/share/mwan3/
 
 	$(CP) $(PKG_BUILD_DIR)/libwrap_mwan3_sockopt.so.1.0 $(1)/lib/mwan3/
 
