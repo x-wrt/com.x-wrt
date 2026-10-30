@@ -1,0 +1,13 @@
+{
+	"admin/services/cloudflare-tunnel": {
+		"title": "Cloudflare Tunnel",
+		"order": 85,
+		"action": {
+			"type": "view",
+			"path": "cloudflare-tunnel/config"
+		},
+		"depends": {
+			"acl": [ "luci-app-cloudflare-tunnel" ]
+		}
+	}
+}

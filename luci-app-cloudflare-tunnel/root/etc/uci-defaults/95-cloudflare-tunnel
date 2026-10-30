@@ -1,0 +1,8 @@
+#!/bin/sh
+
+umask 077
+mkdir -p /etc/cloudflare-tunnel
+chmod 700 /etc/cloudflare-tunnel
+chmod 600 /etc/config/cloudflare-tunnel
+rm -f /tmp/luci-indexcache
+exit 0

@@ -1,0 +1,134 @@
+/* Stay within the LuCI theme; do not restyle other views. */
+.cf-tunnel .cbi-section {
+	margin: 1.4em 0;
+}
+.cf-tunnel .cf-status {
+	padding: 1.2em 1.4em;
+	border: 1px solid rgba(128, 128, 128, .3);
+	border-radius: 4px;
+	background: rgba(128, 128, 128, .035);
+}
+.cf-tunnel .cf-status-heading,
+.cf-tunnel .cf-access,
+.cf-tunnel .cf-link-actions {
+	display: flex;
+	align-items: center;
+	flex-wrap: wrap;
+	gap: .6em 1em;
+}
+.cf-tunnel .cf-status-heading {
+	justify-content: space-between;
+}
+.cf-tunnel .cf-status-heading h3 {
+	margin: 0;
+}
+.cf-tunnel .cf-connection-state {
+	border: 1px solid currentColor;
+	border-radius: 3px;
+	padding: .15em .65em;
+}
+.cf-tunnel .cf-state-label {
+	display: inline-block;
+	border-radius: 3px;
+	padding: .2em .5em;
+}
+.cf-tunnel .cf-state-success {
+	color: #166534;
+	background: #f0fdf4;
+	border-color: #86efac;
+}
+.cf-tunnel .cf-state-warning {
+	color: #854d0e;
+	background: #fefce8;
+	border-color: #fde047;
+}
+.cf-tunnel .cf-state-danger {
+	color: #991b1b;
+	background: #fef2f2;
+	border-color: #fecaca;
+}
+.cf-tunnel .cf-state-muted {
+	color: #52525b;
+	background: #f4f4f5;
+	border-color: #d4d4d8;
+}
+.cf-tunnel .cf-token-state {
+	font-size: .95em;
+}
+.cf-tunnel .cf-access {
+	border-top: 1px solid rgba(128, 128, 128, .25);
+	padding-top: 1em;
+	margin-top: 1em;
+	justify-content: space-between;
+}
+.cf-tunnel .cf-access-address {
+	min-width: 0;
+	overflow-wrap: anywhere;
+}
+.cf-tunnel .cf-access-address strong {
+	display: block;
+	margin-bottom: .3em;
+}
+.cf-tunnel .cf-access-address a {
+	text-decoration: underline;
+}
+.cf-tunnel .cf-link-actions .cbi-button {
+	margin: 0;
+	white-space: normal;
+}
+.cf-tunnel .alert-message.warning {
+	color: inherit;
+	background: rgba(255, 175, 0, .12);
+	border-left: 3px solid #b87900;
+	white-space: normal;
+	overflow-wrap: anywhere;
+}
+.cf-tunnel .alert-message p:last-child {
+	margin-bottom: 0;
+}
+.cf-tunnel .alert-message a {
+	color: inherit;
+	text-decoration: underline;
+}
+.cf-tunnel .cbi-value-description {
+	color: inherit;
+	opacity: 1;
+}
+.cf-tunnel .cf-help {
+	border-top: 1px solid rgba(128, 128, 128, .25);
+	padding-top: 1.2em;
+}
+.cf-tunnel #cf-token-guide {
+	margin-top: 1.2em;
+}
+.cf-tunnel #cf-token-guide summary {
+	display: list-item;
+	list-style: disclosure-closed inside;
+	cursor: pointer;
+	font-weight: bold;
+	padding: .4em 0;
+}
+.cf-tunnel #cf-token-guide[open] summary {
+	list-style-type: disclosure-open;
+}
+.cf-tunnel #cf-token-guide li {
+	margin: .6em 0;
+}
+.cf-tunnel #cf-token-guide .table {
+	margin: 1em 0;
+}
+@media (max-width: 600px) {
+	.cf-tunnel .cf-status {
+		padding: 1em;
+	}
+	.cf-tunnel .cbi-page-actions {
+		display: flex;
+		justify-content: flex-end;
+		flex-wrap: wrap;
+		gap: .6em;
+	}
+	.cf-tunnel .cbi-input-text {
+		max-width: 100%;
+		box-sizing: border-box;
+	}
+}

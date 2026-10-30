@@ -1,0 +1,199 @@
+msgid ""
+msgstr ""
+"Content-Type: text/plain; charset=UTF-8\n"
+"Language: zh_CN\n"
+
+msgid "Cloudflare Tunnel"
+msgstr "Cloudflare 隧道"
+
+msgid "Your router login page will be public"
+msgstr "注意：路由器管理登录页将公开到互联网"
+
+msgid "By default, this feature exposes the router’s management login page to the Internet. Other people can open the domain and attempt to log in. A weak password can be guessed or cracked, putting the router at risk."
+msgstr "此功能默认将路由器管理登录页公开到互联网，其他人可以打开该域名并尝试登录。弱密码可能被猜测或破解，导致路由器被他人控制。"
+
+msgid "Set a long, unique router password before enabling remote access."
+msgstr "请先为 Web 管理账号设置足够长、且不与其他网站共用的强密码，再启用远程访问。"
+
+msgid "Set router password"
+msgstr "设置 Web 管理密码"
+
+msgid "On the password page, select the account you use for Web login."
+msgstr "修改密码时，请选择实际用于 Web 登录的账号。"
+
+msgid "Cloudflare setup: create an account, add your domain, then create an API token."
+msgstr "Cloudflare 开通入口：先注册账号并接入自己的域名，再创建 API Token。"
+
+msgid "Register a Cloudflare account"
+msgstr "注册 Cloudflare 账号"
+
+msgid "Manage domains"
+msgstr "管理域名"
+
+msgid "Create API Token"
+msgstr "创建 API Token"
+
+msgid "Enter a Cloudflare API token and a complete access hostname, such as abc.example.com. The plugin automatically publishes this router’s management page."
+msgstr "输入 CF API Token 和完整访问域名，例如 abc.example.com，插件将自动配置隧道，让你通过域名访问这台路由器的管理页面。"
+
+msgid "CF API Token"
+msgstr "CF API Token"
+
+msgid "Token saved — leave blank to keep it"
+msgstr "Token 已保存，留空保持不变"
+
+msgid "Token not saved"
+msgstr "尚未保存 Token"
+
+msgid "Use one token with Account → Cloudflare Tunnel → Edit, Zone → DNS → Edit, and Zone → Zone → Read. Include the zone’s account and domain in its resource scopes. Leave blank to keep the saved token."
+msgstr "同一个 Token 需要账户 → Cloudflare Tunnel → 编辑、区域 → DNS → 编辑、区域 → Zone → 读取权限，资源范围包含所属账号及域名。留空保留已保存的 Token。"
+
+msgid "Access hostname"
+msgstr "访问域名"
+
+msgid "The domain must already be active in your Cloudflare account. Use a first-level subdomain, such as abc.example.com, for the free HTTPS certificate."
+msgstr "域名须已在你的 Cloudflare 账号下激活。使用 abc.example.com 这样的一级子域名，即可使用免费 HTTPS 证书。"
+
+msgid "Enter a Cloudflare API token."
+msgstr "请输入 Cloudflare API Token。"
+
+msgid "Enter a complete hostname, such as abc.example.com."
+msgstr "请输入完整访问域名，例如 abc.example.com。"
+
+msgid "Save and deploy"
+msgstr "保存并部署"
+
+msgid "Stop tunnel"
+msgstr "停止隧道"
+
+msgid "Visit router"
+msgstr "访问路由器"
+
+msgid "Tunnel settings"
+msgstr "隧道配置"
+
+msgid "Cloudflare setup guide"
+msgstr "Cloudflare 开通指引"
+
+msgid "Remote access through this domain will stop. Your saved settings will be kept."
+msgstr "停止后将无法通过此域名远程访问路由器，已保存的配置会保留。"
+
+msgid "Cancel"
+msgstr "取消"
+
+msgid "Status"
+msgstr "状态"
+
+msgid "Tunnel connection"
+msgstr "隧道连接"
+
+msgid "Connected"
+msgstr "已连接"
+
+msgid "Disconnected"
+msgstr "未连接"
+
+msgid "Access address"
+msgstr "访问地址"
+
+msgid "Copy link"
+msgstr "复制链接"
+
+msgid "Link copied."
+msgstr "链接已复制。"
+
+msgid "Could not copy the link. Select the access address and copy it manually."
+msgstr "未能复制链接，请选中访问地址手动复制。"
+
+msgid "Not configured"
+msgstr "尚未配置"
+
+msgid "Stopped"
+msgstr "已停止"
+
+msgid "Deploying…"
+msgstr "正在部署…"
+
+msgid "Finding the Cloudflare zone…"
+msgstr "正在查找所属域名区域…"
+
+msgid "Creating or reusing this router’s tunnel…"
+msgstr "正在创建或复用本机隧道…"
+
+msgid "Configuring DNS…"
+msgstr "正在配置域名解析…"
+
+msgid "Updating the tunnel route…"
+msgstr "正在更新隧道路由…"
+
+msgid "Starting the tunnel…"
+msgstr "正在启动隧道…"
+
+msgid "Checking the HTTPS address…"
+msgstr "正在验证 HTTPS 访问…"
+
+msgid "Connected — HTTPS verified"
+msgstr "已连接，HTTPS 验证通过"
+
+msgid "Connected — HTTPS verification pending"
+msgstr "已连接，等待 HTTPS 验证"
+
+msgid "Connecting…"
+msgstr "正在连接…"
+
+msgid "Deployment failed"
+msgstr "部署失败"
+
+msgid "The tunnel is connected, but HTTPS is not verified yet. DNS caches or certificate issuance may need more time. Retry deployment to check again."
+msgstr "隧道已连接，但 HTTPS 尚未验证通过，DNS 缓存更新或证书签发可能需要一些时间。稍后可重新部署以再次验证。"
+
+msgid "The operation could not be completed."
+msgstr "未能完成操作。"
+
+msgid "Public HTTPS is verified. If the link still opens an old website, allow the local DNS cache to refresh."
+msgstr "公网 HTTPS 已验证通过。如果点击链接仍打开旧网站，请等待本地 DNS 缓存刷新。"
+
+msgid "How to create a CF API Token"
+msgstr "如何创建 CF API Token"
+
+msgid "Open"
+msgstr "打开"
+
+msgid "Account API Tokens"
+msgstr "账户 API 令牌页面"
+
+msgid "Select the account that owns your domain, choose Create Token, and give it a name."
+msgstr "选择域名所属账号，点击创建令牌（Create Token），填写令牌名称。"
+
+msgid "Add all three permissions below to the same token."
+msgstr "在同一个令牌中添加下表的三项权限。"
+
+msgid "Choose the account and zone resource scopes described below."
+msgstr "按下面说明选择账户和域名的资源范围。"
+
+msgid "Select Continue to summary → Create Token, then paste the generated token into CF API Token."
+msgstr "点击继续以显示摘要（Continue to summary）→ 创建令牌（Create Token），将生成的令牌粘贴到 CF API Token 输入框。"
+
+msgid "Type"
+msgstr "类型"
+
+msgid "Permission"
+msgstr "权限"
+
+msgid "Access"
+msgstr "访问级别"
+
+msgid "Specific resources (recommended)"
+msgstr "指定资源（推荐）"
+
+msgid "Create the token in the domain’s account. Limit zone permissions to the specific domain you want to use."
+msgstr "在域名所属账号下创建令牌，将区域权限范围限制为你要使用的特定域名。"
+
+msgid "Simple resource selection"
+msgstr "简便的资源范围选择"
+
+msgid "Select All zones in the current account. The same three permissions apply to all domains in this account."
+msgstr "选择当前账户的全部区域（All zones），上述三项权限会作用于这个账户下的全部域名。"
+
+msgid "To update an existing token, open Edit on the Account API Tokens page, keep all three permissions, and save the zone scopes."
+msgstr "修改现有令牌时，在账户 API 令牌页面打开编辑（Edit），保留上述三项权限并保存域名的资源范围。"

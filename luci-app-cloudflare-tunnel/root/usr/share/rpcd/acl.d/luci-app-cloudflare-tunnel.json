@@ -1,0 +1,15 @@
+{
+	"luci-app-cloudflare-tunnel": {
+		"description": "Configure this router's Cloudflare Tunnel",
+		"read": {
+			"ubus": {
+				"luci.cloudflare_tunnel": [ "settings", "status" ]
+			}
+		},
+		"write": {
+			"ubus": {
+				"luci.cloudflare_tunnel": [ "deploy", "stop" ]
+			}
+		}
+	}
+}

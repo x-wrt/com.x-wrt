@@ -1,0 +1,22 @@
+#!/usr/bin/lua
+-- SPDX-License-Identifier: GPL-3.0-only
+local json = require "luci.jsonc"
+local runtime = require "cloudflare_tunnel.runtime"
+
+if arg[1] == "list" then
+	-- jsonc encodes an empty Lua table as [], while rpcd requires {} to
+	-- declare an object argument. Keep this protocol schema explicit.
+	print('{"settings":{},"status":{},"deploy":{"settings":{}},"stop":{}}')
+elseif arg[1] == "call" then
+	local methods = { settings = runtime.settings, status = runtime.status, stop = runtime.stop }
+	print(json.stringify(runtime.safe(function()
+		if arg[2] == "deploy" then
+			local raw = io.read(16385) or ""
+			if #raw > 16384 then error({ code = "settings", message = "Configuration is too large." }, 0) end
+			local input = json.parse(raw)
+			return runtime.deploy(type(input) == "table" and input.settings or nil)
+		end
+		if not methods[arg[2]] then error({ code = "method", message = "Unknown method." }, 0) end
+		return methods[arg[2]]()
+	end)))
+end

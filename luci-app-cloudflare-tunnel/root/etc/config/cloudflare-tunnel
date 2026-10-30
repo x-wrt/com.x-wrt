@@ -1,0 +1,6 @@
+config tunnel 'main'
+	option enabled '0'
+	option api_token ''
+	option hostname ''
+	option origin 'http://127.0.0.1:80'
+	option protocol 'auto'
