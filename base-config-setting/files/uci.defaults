@@ -487,6 +487,22 @@ test $version -lt 30 && {
 	version=30
 }
 
+test $version -lt 31 && {
+	# BEGIN configured-web-login migration
+	config_luci_login=%LUCI_LOGIN%
+	if [ -n "$config_luci_login" ] && [ "$config_luci_login" != root ]; then
+		# -X keeps anonymous section IDs stable while sections are deleted.
+		for section in $(uci -q -X show rpcd | sed -n 's/^rpcd\.\([^.=]*\)=login$/\1/p'); do
+			if [ "$(uci -q get "rpcd.$section.username")" = root ]; then
+				uci -q delete "rpcd.$section"
+			fi
+		done
+		uci -q commit rpcd
+	fi
+	# END configured-web-login migration
+	version=31
+}
+
 rm -f "/lib/modules/$(uname -r)/crypto_safexcel.ko"
 rmmod crypto_safexcel &>/dev/null
 
