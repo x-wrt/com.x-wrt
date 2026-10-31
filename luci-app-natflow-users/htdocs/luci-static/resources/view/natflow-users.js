@@ -105,6 +105,9 @@ function addStyles(wrapper) {
 
 		@media screen and (max-width: 800px) {
 			.natflow-users-table .table-titles { display: none !important; }
+			/* The card layout supplies its own structure; theme column labels overlap its content. */
+			.natflow-users-table .td[data-title]::before,
+			.natflow-users-table .td[data-title]::after { content: none !important; display: none !important; }
 			.natflow-users-table .tr:not(.table-titles) {
 				flex-direction: row; flex-wrap: wrap; align-items: flex-start;
 				background: rgba(0,0,0,0.02); border-radius: 12px; margin-bottom: 12px;
