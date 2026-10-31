@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="356" viewBox="0 0 1200 356" role="img" aria-labelledby="title description">
+  <title id="title">从购买域名到远程访问路由器的操作流程</title>
+  <desc id="description">购买域名并添加到 Cloudflare，修改 NS 并选择一级子域名，创建 API Token 并安装插件和设置强密码，最后保存部署并通过移动网络验证。</desc>
+  <defs>
+    <marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto">
+      <path d="M0 0 L8 4 L0 8" fill="#64748b"/>
+    </marker>
+  </defs>
+  <rect width="1200" height="356" rx="12" fill="#f8fafc"/>
+  <g font-family="Noto Sans CJK SC, Microsoft YaHei, sans-serif" fill="#172033">
+    <text x="32" y="43" font-size="28" font-weight="700">先准备域名，再让插件自动部署</text>
+    <text x="32" y="74" font-size="17" fill="#475569">按 1—8 的顺序完成；已有域名或已接入 Cloudflare 的步骤可以跳过。</text>
+    <g stroke="#cbd5e1" fill="#fff">
+      <rect x="32" y="100" width="260" height="176" rx="8"/>
+      <rect x="324" y="100" width="260" height="176" rx="8"/>
+      <rect x="616" y="100" width="260" height="176" rx="8"/>
+      <rect x="908" y="100" width="260" height="176" rx="8"/>
+    </g>
+    <g stroke="#64748b" stroke-width="2" marker-end="url(#arrow)">
+      <path d="M300 188 H314"/>
+      <path d="M592 188 H606"/>
+      <path d="M884 188 H898"/>
+    </g>
+    <g font-size="21" font-weight="700">
+      <text x="52" y="138" fill="#9a3412">购买与接入</text>
+      <text x="344" y="138" fill="#9a3412">生效与命名</text>
+      <text x="636" y="138" fill="#1d4ed8">授权与准备</text>
+      <text x="928" y="138" fill="#166534">部署与验证</text>
+    </g>
+    <g font-size="18">
+      <text x="52" y="179">1. 购买 example.com</text>
+      <text x="52" y="213">2. 添加到 Cloudflare</text>
+      <text x="344" y="179">3. 在注册商处修改 NS</text>
+      <text x="344" y="213">4. 选择一级子域名</text>
+      <text x="636" y="179">5. 创建 API Token</text>
+      <text x="636" y="213">6. 装插件、设置强密码</text>
+      <text x="928" y="179">7. 填两项，保存并部署</text>
+      <text x="928" y="213">8. 用移动网络访问</text>
+    </g>
+    <g font-size="15" fill="#475569">
+      <text x="52" y="251">购买价和续费价分别核对</text>
+      <text x="344" y="251">先等域名显示 Active</text>
+      <text x="636" y="251">同一 Token 包含三项权限</text>
+      <text x="928" y="251">确认 HTTPS 和登录均正常</text>
+    </g>
+    <rect x="32" y="298" width="1136" height="38" rx="6" fill="#ecfdf5" stroke="#bbf7d0"/>
+    <text x="52" y="324" font-size="18" fill="#166534">最终访问：https://router.example.com/　　示例域名请替换为你自己的域名。</text>
+  </g>
+</svg>

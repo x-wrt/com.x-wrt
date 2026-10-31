@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="368" viewBox="0 0 1200 368" role="img" aria-labelledby="title description">
+  <title id="title">将 Cloudflare 分配的 NS 填回域名注册商的示意图</title>
+  <desc id="description">在 Cloudflare 添加根域名并选择免费计划，复制页面分配的全部名称服务器地址，填入域名注册商的第三方 DNS 设置，保存后等待域名状态变为 Active。域名继续在原注册商续费。</desc>
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto">
+      <path d="M0 0 L10 5 L0 10" fill="#b45309"/>
+    </marker>
+  </defs>
+  <rect width="1200" height="368" rx="12" fill="#f8fafc"/>
+  <g font-family="Noto Sans CJK SC, Microsoft YaHei, sans-serif" fill="#172033">
+    <text x="32" y="43" font-size="28" font-weight="700">DNS 托管切换示意：Cloudflare 给值，注册商处修改</text>
+    <text x="32" y="74" font-size="17" fill="#475569">先在右侧取得分配给自己域名的 NS，再把这些地址完整填到左侧。</text>
+    <rect x="32" y="100" width="450" height="192" rx="8" fill="#fff" stroke="#cbd5e1"/>
+    <rect x="718" y="100" width="450" height="192" rx="8" fill="#fff" stroke="#fdba74"/>
+    <text x="54" y="139" font-size="22" font-weight="700">域名注册商</text>
+    <text x="740" y="139" font-size="22" font-weight="700" fill="#9a3412">Cloudflare：example.com</text>
+    <g font-size="18">
+      <text x="54" y="177">进入 Nameservers／DNS 服务器设置</text>
+      <text x="54" y="212">选择第三方／自定义 DNS</text>
+      <text x="54" y="247">用 Cloudflare 分配的全部 NS 替换原值</text>
+      <text x="740" y="177">添加根域名，选择 Free 计划</text>
+      <text x="740" y="212">复制页面分配的全部 Nameservers</text>
+      <text x="740" y="247">注册商保存修改后，等待显示 Active</text>
+    </g>
+    <path d="M698 203 H506" stroke="#b45309" stroke-width="3" marker-end="url(#arrow)"/>
+    <text x="600" y="184" text-anchor="middle" font-size="18" font-weight="700" fill="#9a3412">复制 NS 地址</text>
+    <text x="600" y="232" text-anchor="middle" font-size="15" fill="#475569">不是复制其他人的示例值</text>
+    <rect x="32" y="312" width="1136" height="36" rx="6" fill="#eff6ff"/>
+    <text x="52" y="337" font-size="17" fill="#1e40af">这里修改域名的权威 DNS 服务器；域名仍在原注册商处续费，路由器和电脑的 DNS 地址无需随之修改。</text>
+  </g>
+</svg>

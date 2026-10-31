@@ -1,6 +1,6 @@
 # Cloudflare Tunnel for X-WRT
 
-中文使用教程：[从购买域名到远程访问路由器](TUTORIAL.zh-CN.md)。
+中文图文教程：[从购买域名到远程访问路由器](TUTORIAL.zh-CN.md)。
 
 LuCI JavaScript view, following the structure of `luci-app-fakemesh`. The page
 is under **Services → Cloudflare Tunnel** and has two inputs:
