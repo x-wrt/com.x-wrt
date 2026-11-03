@@ -496,16 +496,15 @@ for t in $targets; do
 	extra_utils=0
 	excludes="$excludes_basic"
 	case $t in
+		# Require RAM >265 MiB, except >128 MiB for:
+		# ramips_mt7621, bcm53xx, ath79_nand,
+		# ipq806x_generic and ipq40xx_generic.
+		# Omit unknown RAM; always include x86_64/armsr_armv8 generic profiles.
 		# Room for extra packages and Cloudflare Tunnel, including factory limits
 		# and fixed-size ext4 rootfs images, not just the installed partition.
 		TARGET_DEVICE_airoha_an7563_DEVICE_xiaomi_be5000|\
 		TARGET_DEVICE_ath79_nand_DEVICE_arris_sbr-ac1750|\
 		TARGET_DEVICE_ath79_nand_DEVICE_domywifi_dw33d|\
-		TARGET_DEVICE_ath79_nand_DEVICE_glinet_gl-ar300m-nand|\
-		TARGET_DEVICE_ath79_nand_DEVICE_glinet_gl-ar750s-nor-nand|\
-		TARGET_DEVICE_ath79_nand_DEVICE_glinet_gl-e750|\
-		TARGET_DEVICE_ath79_nand_DEVICE_glinet_gl-x1200-nor-nand|\
-		TARGET_DEVICE_ath79_nand_DEVICE_glinet_gl-xe300|\
 		TARGET_DEVICE_bcm4908_generic_DEVICE_asus_gt-ac5300|\
 		TARGET_DEVICE_bcm53xx_generic_DEVICE_asus_rt-ac3100|\
 		TARGET_DEVICE_bcm53xx_generic_DEVICE_asus_rt-ac3200|\
@@ -517,7 +516,6 @@ for t in $targets; do
 		TARGET_DEVICE_bcm53xx_generic_DEVICE_asus_rt-n18u|\
 		TARGET_DEVICE_bcm53xx_generic_DEVICE_dlink_dir-885l|\
 		TARGET_DEVICE_bcm53xx_generic_DEVICE_linksys_ea9200|\
-		TARGET_DEVICE_econet_en751221_DEVICE_chinamobile_gs3101|\
 		TARGET_DEVICE_ipq40xx_generic_DEVICE_alfa-network_ap120c-ac|\
 		TARGET_DEVICE_ipq40xx_generic_DEVICE_avm_fritzbox-7530|\
 		TARGET_DEVICE_ipq40xx_generic_DEVICE_glinet_gl-b2200|\
@@ -537,22 +535,13 @@ for t in $targets; do
 		TARGET_DEVICE_mediatek_filogic_DEVICE_cmcc_rax3000m-emmc-ubootlayout|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_cmcc_rax3000m-nand-ubootlayout|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_cudy_ap3000-v1|\
-		TARGET_DEVICE_mediatek_filogic_DEVICE_cudy_ap3000outdoor-v1|\
-		TARGET_DEVICE_mediatek_filogic_DEVICE_cudy_m3000-v1|\
-		TARGET_DEVICE_mediatek_filogic_DEVICE_cudy_m3000-v2-yt8821|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_cudy_tr3000-256mb-v1|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_cudy_tr3000-v1|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_cudy_tr3000-v1-ubootmod|\
-		TARGET_DEVICE_mediatek_filogic_DEVICE_cudy_wr3000h-v1|\
-		TARGET_DEVICE_mediatek_filogic_DEVICE_cudy_wr3000s-v1|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_glinet_gl-x3000|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_glinet_gl-xe3000|\
-		TARGET_DEVICE_mediatek_filogic_DEVICE_netcore_n60|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_netcore_n60-pro|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_netgear_wax220|\
-		TARGET_DEVICE_mediatek_filogic_DEVICE_netis_nx30v2|\
-		TARGET_DEVICE_mediatek_filogic_DEVICE_netis_nx31|\
-		TARGET_DEVICE_mediatek_filogic_DEVICE_nokia_ea0326gmp|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_openwrt_one|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_ruijie_rg-x60|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_ruijie_rg-x60-pro|\
@@ -569,7 +558,6 @@ for t in $targets; do
 		TARGET_DEVICE_qualcommax_ipq807x_DEVICE_linksys_mx5300|\
 		TARGET_DEVICE_qualcommax_ipq807x_DEVICE_qnap_301w|\
 		TARGET_DEVICE_qualcommax_ipq807x_DEVICE_zbtlink_zbt-z800ax|\
-		TARGET_DEVICE_ramips_mt7620_DEVICE_xiaomi_miwifi-r3|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_asus_rt-ac65p|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_asus_rt-ac85p|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_asus_rt-ax53u|\
@@ -582,11 +570,8 @@ for t in $targets; do
 		TARGET_DEVICE_ramips_mt7621_DEVICE_linksys_ea7500-v2|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_linksys_ea8100-v1|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_linksys_ea8100-v2|\
-		TARGET_DEVICE_ramips_mt7621_DEVICE_netgear_r6260|\
-		TARGET_DEVICE_ramips_mt7621_DEVICE_netgear_r6350|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_netgear_r6700-v2|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_netgear_r6800|\
-		TARGET_DEVICE_ramips_mt7621_DEVICE_netgear_r6850|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_netgear_wax202|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_planex_vr500|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_raisecom_msg1500-x-00|\
@@ -595,18 +580,10 @@ for t in $targets; do
 		TARGET_DEVICE_ramips_mt7621_DEVICE_ubnt_edgerouter-x-sfp|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_xiaomi_mi-router-3-pro|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_xiaomi_mi-router-3g|\
-		TARGET_DEVICE_ramips_mt7621_DEVICE_xiaomi_mi-router-4|\
-		TARGET_DEVICE_ramips_mt7621_DEVICE_xiaomi_mi-router-ac2100|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_xiaomi_mi-router-cr660x|\
-		TARGET_DEVICE_ramips_mt7621_DEVICE_xiaomi_redmi-router-ac2100|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_xwrt_5g-cpe1801k|\
-		TARGET_DEVICE_ramips_mt7621_DEVICE_xwrt_fm10-ax-nand|\
-		TARGET_DEVICE_ramips_mt7621_DEVICE_xwrt_nxc2005ex|\
-		TARGET_DEVICE_ramips_mt7621_DEVICE_xwrt_nxc2009e-v100|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_xwrt_wr1800k-ax-nand|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_xwrt_wr1800k-ax-norplusemmc|\
-		TARGET_DEVICE_sunxi_cortexa7_DEVICE_friendlyarm_nanopi-neo|\
-		TARGET_DEVICE_sunxi_cortexa7_DEVICE_xunlong_orangepi-r1|\
 		TARGET_DEVICE_airoha_an7581_DEVICE_fiberhome_hg5382a|\
 		TARGET_DEVICE_airoha_an7581_DEVICE_fiberhome_hg5585f-ct|\
 		TARGET_DEVICE_airoha_an7581_DEVICE_fiberhome_hg5585f-cu|\
@@ -621,18 +598,17 @@ for t in $targets; do
 		TARGET_DEVICE_airoha_an7583_DEVICE_nokia_xg-040g-mf|\
 		TARGET_DEVICE_airoha_an7583_DEVICE_nokia_xg-040g-mf-ubi|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_glinet_gl-be10000|\
+		TARGET_DEVICE_mediatek_filogic_DEVICE_glinet_gl-be10000-ubootmod|\
+		TARGET_DEVICE_mediatek_filogic_DEVICE_glinet_gl-be14000|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_z-router_zr-2660|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_z-router_zr-2662|\
-		TARGET_DEVICE_mediatek_filogic_DEVICE_imou_hx21|\
 		TARGET_DEVICE_qualcommax_ipq60xx_DEVICE_jdcloud_re-cs-02|\
 		TARGET_DEVICE_qualcommax_ipq60xx_DEVICE_jdcloud_re-cs-07|\
 		TARGET_DEVICE_qualcommax_ipq60xx_DEVICE_jdcloud_re-ss-01|\
 		TARGET_DEVICE_rockchip_armv8_DEVICE_hinlink_h28k|\
 		TARGET_DEVICE_rockchip_armv8_DEVICE_hinlink_h66k|\
 		TARGET_DEVICE_rockchip_armv8_DEVICE_hinlink_h68k|\
-		TARGET_DEVICE_qualcommax_ipq50xx_DEVICE_cmcc_pz-l8|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_cudy_wr3000p-v1|\
-		TARGET_DEVICE_mediatek_filogic_DEVICE_cudy_wr3000e-v1|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_glinet_gl-mt3600be|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_tenda_be12-pro|\
 		TARGET_DEVICE_airoha_an7563_DEVICE_tenda_be6l-pro|\
@@ -670,15 +646,8 @@ for t in $targets; do
 		TARGET_DEVICE_x86_64_DEVICE_generic|\
 		TARGET_DEVICE_qualcommax_ipq807x_DEVICE_linksys_mx4200v1|\
 		TARGET_DEVICE_qualcommax_ipq807x_DEVICE_linksys_mx4200v2|\
-		TARGET_DEVICE_mediatek_filogic_DEVICE_zbtlink_zbt-z8103ax|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_jdcloud_re-cp-03|\
 		TARGET_DEVICE_qualcommax_ipq807x_DEVICE_cmcc_rm2-6|\
-		TARGET_DEVICE_mediatek_filogic_DEVICE_abt_asr3000-ubootlayout|\
-		TARGET_DEVICE_mediatek_filogic_DEVICE_abt_asr3000|\
-		TARGET_DEVICE_mediatek_filogic_DEVICE_cmcc_a10-ubootlayout|\
-		TARGET_DEVICE_mediatek_filogic_DEVICE_cmcc_a10-ubootmod|\
-		TARGET_DEVICE_mediatek_filogic_DEVICE_cmcc_a10-stock|\
-		TARGET_DEVICE_mediatek_filogic_DEVICE_imou_lc-hx3001-ubootlayout|\
 		TARGET_DEVICE_qualcommax_ipq807x_DEVICE_zte_mf269|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_glinet_gl-mt2500|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_glinet_gl-mt2500-airoha|\
@@ -689,28 +658,14 @@ for t in $targets; do
 		TARGET_DEVICE_mediatek_filogic_DEVICE_glinet_gl-mt6000|\
 		TARGET_DEVICE_qualcommax_ipq807x_DEVICE_netgear_wax620|\
 		TARGET_DEVICE_qualcommax_ipq807x_DEVICE_netgear_rax120v2|\
-		TARGET_DEVICE_mediatek_filogic_DEVICE_jcg_q30-pro|\
-		TARGET_DEVICE_mediatek_filogic_DEVICE_jcg_q30-pro-nmbm|\
-		TARGET_DEVICE_mediatek_filogic_DEVICE_h3c_magic-nx30-pro|\
-		TARGET_DEVICE_mediatek_filogic_DEVICE_h3c_magic-nx30-pro-nmbm|\
-		TARGET_DEVICE_mediatek_filogic_DEVICE_konka_komi-a31-nmbm|\
-		TARGET_DEVICE_mediatek_filogic_DEVICE_konka_komi-a31|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_mercusys_mr90x-v1|\
-		TARGET_DEVICE_mediatek_filogic_DEVICE_cetron_ct3003|\
-		TARGET_DEVICE_mediatek_filogic_DEVICE_cetron_ct3003-ubootlayout|\
 		TARGET_DEVICE_armsr_armv8_DEVICE_generic|\
 		TARGET_DEVICE_qualcommax_ipq807x_DEVICE_netgear_wax218|\
 		TARGET_DEVICE_ipq806x_generic_DEVICE_netgear_xr450|\
 		TARGET_DEVICE_ipq40xx_generic_DEVICE_glinet_gl-ap1300|\
-		TARGET_DEVICE_mediatek_filogic_DEVICE_tenbay_wr3000k-gsw-emmc-nor|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_glinet_gl-mt3000|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_asus_tuf-ax4200|\
-		TARGET_DEVICE_mediatek_filogic_DEVICE_tenbay_ac-2210e|\
-		TARGET_DEVICE_mediatek_filogic_DEVICE_tenbay_ac-2205ex|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_tenbay_wr3000k|\
-		TARGET_DEVICE_mediatek_filogic_DEVICE_qihoo_360t7-ubootlayout|\
-		TARGET_DEVICE_mediatek_filogic_DEVICE_qihoo_360t7|\
-		TARGET_DEVICE_mediatek_filogic_DEVICE_qihoo_360t7-ubi|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_asus_tuf-ax6000|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_tplink_tl-xdr6086|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_tplink_tl-xdr6088|\
@@ -724,16 +679,10 @@ for t in $targets; do
 		TARGET_DEVICE_mediatek_filogic_DEVICE_xiaomi_redmi-router-ax6000-ubootmod|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_xiaomi_redmi-router-ax6000-stock|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_xiaomi_redmi-router-ax6000-ubootlayout|\
-		TARGET_DEVICE_mediatek_filogic_DEVICE_xiaomi_mi-router-wr30u-112m-nmbm|\
-		TARGET_DEVICE_mediatek_filogic_DEVICE_xiaomi_mi-router-wr30u-stock|\
-		TARGET_DEVICE_mediatek_filogic_DEVICE_xiaomi_mi-router-wr30u-ubootmod|\
-		TARGET_DEVICE_mediatek_filogic_DEVICE_xiaomi_mi-router-ax3000t|\
-		TARGET_DEVICE_mediatek_filogic_DEVICE_xiaomi_mi-router-ax3000t-ubootmod|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_acer_predator-w6|\
 		TARGET_DEVICE_mediatek_mt7622_DEVICE_linksys_e8450-ubi|\
 		TARGET_DEVICE_mediatek_mt7622_DEVICE_linksys_e8450|\
 		TARGET_DEVICE_mediatek_mt7622_DEVICE_bananapi_bpi-r64|\
-		TARGET_DEVICE_mediatek_mt7622_DEVICE_xiaomi_redmi-router-ax6s|\
 		TARGET_DEVICE_bcm4908_generic_DEVICE_netgear_r8000p|\
 		TARGET_DEVICE_ipq806x_generic_DEVICE_ruijie_rg-mtfi-m520|\
 		TARGET_DEVICE_ipq806x_generic_DEVICE_tplink_ad7200|\
@@ -744,14 +693,12 @@ for t in $targets; do
 		TARGET_DEVICE_ipq40xx_generic_DEVICE_netgear_ex6150v2|\
 		TARGET_DEVICE_ipq40xx_generic_DEVICE_netgear_ex6100v2|\
 		TARGET_DEVICE_ipq40xx_generic_DEVICE_glinet_gl-b1300|\
-		TARGET_DEVICE_ipq40xx_generic_DEVICE_engenius_eap1300|\
 		TARGET_DEVICE_ipq40xx_generic_DEVICE_compex_wpj428|\
 		TARGET_DEVICE_ipq40xx_generic_DEVICE_asus_map-ac2200|\
 		TARGET_DEVICE_ipq40xx_generic_DEVICE_linksys_ea8300|\
 		TARGET_DEVICE_bcm53xx_generic_DEVICE_phicomm_k3|\
 		TARGET_DEVICE_bcm53xx_generic_DEVICE_netgear_r8500|\
 		TARGET_DEVICE_mvebu_cortexa9_DEVICE_linksys_wrt32x|\
-		TARGET_DEVICE_ipq40xx_generic_DEVICE_asus_rt-ac58u|\
 		TARGET_DEVICE_ipq40xx_generic_DEVICE_asus_rt-ac42u|\
 		TARGET_DEVICE_ipq40xx_generic_DEVICE_asus_rt-acrh17|\
 		TARGET_DEVICE_ipq40xx_generic_DEVICE_p2w_r619ac-128m|\
@@ -766,10 +713,8 @@ for t in $targets; do
 		TARGET_DEVICE_ipq806x_generic_DEVICE_netgear_r7500v2|\
 		TARGET_DEVICE_ipq806x_generic_DEVICE_netgear_r7500|\
 		TARGET_DEVICE_ipq806x_generic_DEVICE_netgear_d7800|\
-		TARGET_DEVICE_kirkwood_DEVICE_linksys_viper|\
 		TARGET_DEVICE_bcm53xx_generic_DEVICE_netgear_r8000|\
 		TARGET_DEVICE_mvebu_cortexa9_DEVICE_linksys_wrt1200ac|\
-		TARGET_DEVICE_mvebu_cortexa9_DEVICE_linksys_wrt1900ac-v1|\
 		TARGET_DEVICE_mvebu_cortexa9_DEVICE_linksys_wrt1900acs|\
 		TARGET_DEVICE_mvebu_cortexa9_DEVICE_linksys_wrt1900ac-v2|\
 		TARGET_DEVICE_mvebu_cortexa9_DEVICE_linksys_wrt3200acm)
@@ -782,6 +727,22 @@ for t in $targets; do
 	esac
 	case $t in
 		#>=14M flash
+		# Keep all devices from the first case in this tier.
+		TARGET_DEVICE_bcm53xx_generic_DEVICE_asus_rt-ac3100|\
+		TARGET_DEVICE_bcm53xx_generic_DEVICE_asus_rt-ac3200|\
+		TARGET_DEVICE_bcm53xx_generic_DEVICE_asus_rt-ac5300|\
+		TARGET_DEVICE_ramips_mt7621_DEVICE_asus_rt-ac65p|\
+		TARGET_DEVICE_ramips_mt7621_DEVICE_asus_rt-ac85p|\
+		TARGET_DEVICE_ramips_mt7621_DEVICE_asus_rt-ax53u|\
+		TARGET_DEVICE_ramips_mt7621_DEVICE_haier_har-20s2u1|\
+		TARGET_DEVICE_ramips_mt7621_DEVICE_hiwifi_hc5962|\
+		TARGET_DEVICE_ramips_mt7621_DEVICE_jcg_q20|\
+		TARGET_DEVICE_ramips_mt7621_DEVICE_linksys_ea7300-v1|\
+		TARGET_DEVICE_ramips_mt7621_DEVICE_linksys_ea7300-v2|\
+		TARGET_DEVICE_ramips_mt7621_DEVICE_linksys_ea7500-v2|\
+		TARGET_DEVICE_ramips_mt7621_DEVICE_linksys_ea8100-v2|\
+		TARGET_DEVICE_ramips_mt7621_DEVICE_sim_simax1800t|\
+		TARGET_DEVICE_ramips_mt7621_DEVICE_xiaomi_mi-router-cr660x|\
 		TARGET_DEVICE_airoha_an7581_DEVICE_fiberhome_hg5382a|\
 		TARGET_DEVICE_airoha_an7581_DEVICE_fiberhome_hg5585f-ct|\
 		TARGET_DEVICE_airoha_an7581_DEVICE_fiberhome_hg5585f-cu|\
@@ -796,6 +757,8 @@ for t in $targets; do
 		TARGET_DEVICE_airoha_an7583_DEVICE_nokia_xg-040g-mf|\
 		TARGET_DEVICE_airoha_an7583_DEVICE_nokia_xg-040g-mf-ubi|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_glinet_gl-be10000|\
+		TARGET_DEVICE_mediatek_filogic_DEVICE_glinet_gl-be10000-ubootmod|\
+		TARGET_DEVICE_mediatek_filogic_DEVICE_glinet_gl-be14000|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_z-router_zr-2660|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_z-router_zr-2662|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_imou_hx21|\
@@ -1108,13 +1071,9 @@ for t in $targets; do
 		TARGET_DEVICE_econet_en751221_DEVICE_chinamobile_gs3101|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_cudy_re3000-v1|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_cudy_wr3000-v1|\
-		TARGET_DEVICE_bcm53xx_generic_DEVICE_asus_rt-ac3100|\
-		TARGET_DEVICE_bcm53xx_generic_DEVICE_asus_rt-ac3200|\
-		TARGET_DEVICE_bcm53xx_generic_DEVICE_asus_rt-ac5300|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_ruijie_rg-ew1200g-pro-v1.1|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_jdcloud_re-cp-02|\
 		TARGET_DEVICE_ath79_generic_DEVICE_huawei_ap5030dn|\
-		TARGET_DEVICE_ramips_mt7621_DEVICE_asus_rt-ax53u|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_tplink_ex220-v1|\
 		TARGET_DEVICE_ath79_generic_DEVICE_comfast_cf-e5|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_asus_rt-ac57u-v1|\
@@ -1129,8 +1088,6 @@ for t in $targets; do
 		TARGET_DEVICE_ath79_nand_DEVICE_glinet_gl-x1200-nor-nand|\
 		TARGET_DEVICE_ramips_mt76x8_DEVICE_hiwifi_hc5611|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_ruijie_rg-ew1800gx|\
-		TARGET_DEVICE_ramips_mt7621_DEVICE_haier_har-20s2u1|\
-		TARGET_DEVICE_ramips_mt7621_DEVICE_sim_simax1800t|\
 		TARGET_DEVICE_ramips_mt7620_DEVICE_youku_x2|\
 		TARGET_DEVICE_ath79_generic_DEVICE_hiwifi_hc6361|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_zbtlink_zbt-wg1608-16m|\
@@ -1138,21 +1095,14 @@ for t in $targets; do
 		TARGET_DEVICE_ramips_mt7621_DEVICE_thunder_timecloud|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_dlink_dir-882-a1|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_dlink_dir-882-r1|\
-		TARGET_DEVICE_ramips_mt7621_DEVICE_jcg_q20|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_jcg_jhr-ac876m|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_xiaomi_mi-router-4|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_glinet_gl-mt1300|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_jcg_y2|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_totolink_x5000r|\
-		TARGET_DEVICE_ramips_mt7621_DEVICE_linksys_ea8100-v2|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_linksys_ea8100-v1|\
-		TARGET_DEVICE_ramips_mt7621_DEVICE_linksys_ea7300-v2|\
-		TARGET_DEVICE_ramips_mt7621_DEVICE_linksys_ea7300-v1|\
-		TARGET_DEVICE_ramips_mt7621_DEVICE_asus_rt-ac85p|\
-		TARGET_DEVICE_ramips_mt7621_DEVICE_asus_rt-ac65p|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_asus_rt-ac57u|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_xiaoyu_xy-c5|\
-		TARGET_DEVICE_ramips_mt7621_DEVICE_linksys_ea7500-v2|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_adslr_g7|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_youku_yk-l2|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_tenbay_mac500f|\
@@ -1181,8 +1131,6 @@ for t in $targets; do
 		TARGET_DEVICE_ramips_mt7621_DEVICE_zbtlink_zbt-wg3526-16m|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_buffalo_wsr-1166dhp|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_lenovo_newifi-d1|\
-		TARGET_DEVICE_ramips_mt7621_DEVICE_hiwifi_hc5962|\
-		TARGET_DEVICE_ramips_mt7621_DEVICE_xiaomi_mi-router-cr660x|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_tplink_archer-c6-v3|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_tplink_archer-a6-v3|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_linksys_e5600|\
@@ -1911,6 +1859,8 @@ for t in $targets; do
 		TARGET_DEVICE_airoha_an7581_DEVICE_nokia_xg-040g-tf-ubi|\
 		TARGET_DEVICE_airoha_an7581_DEVICE_unionman_ung00a|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_glinet_gl-be10000|\
+		TARGET_DEVICE_mediatek_filogic_DEVICE_glinet_gl-be10000-ubootmod|\
+		TARGET_DEVICE_mediatek_filogic_DEVICE_glinet_gl-be14000|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_imou_hx21|\
 		TARGET_DEVICE_airoha_an7563_DEVICE_xiaomi_be5000|\
 		TARGET_DEVICE_qualcommax_ipq50xx_DEVICE_cmcc_pz-l8|\
