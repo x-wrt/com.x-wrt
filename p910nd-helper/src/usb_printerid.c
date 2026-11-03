@@ -41,7 +41,7 @@ int
 main (int argc, char *argv[])
 {
     int			fd;
-    unsigned char	argp[1024];
+    unsigned char	argp[1024] = {0};
     int			length;
 
     --argc;
@@ -57,7 +57,12 @@ main (int argc, char *argv[])
     if (ioctl(fd, LPIOC_GET_DEVICE_ID(sizeof(argp)), argp) < 0)
 	error(1, "GET_DEVICE_ID on '%s'\n", argv[0]);
 
-    length = (argp[0] << 8) + argp[1] - 2;
+    length = (argp[0] << 8) + argp[1];
+    if (length < 2 || length > (int)sizeof(argp)) {
+	errno = EINVAL;
+	error(1, "invalid device ID length %d on '%s'\n", length, argv[0]);
+    }
+    length -= 2;
     printf("GET_DEVICE_ID string:\n");
     fwrite(argp + 2, 1, length, stdout);
     printf("\n");
