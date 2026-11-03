@@ -663,6 +663,7 @@ void server(int lpnumber)
 	clientlen = sizeof(client);
 	memset(&client, 0, sizeof(client));
 	while ((fd = accept(netfd, (struct sockaddr *)&client, &clientlen)) >= 0) {
+		int open_printer_fail = 0;
 		char host[INET6_ADDRSTRLEN];
 #ifdef	USE_LIBWRAP
 		if (hosts_ctl("p910nd", STRING_UNKNOWN, get_ip_str((struct sockaddr *)&client, host, sizeof(host)), STRING_UNKNOWN) == 0) {
@@ -676,8 +677,15 @@ void server(int lpnumber)
 		/*write(fd, "Printing", 8); */
 
 		/* Make sure lp device is open... */
-		while ((lp = open_printer(lpnumber)) == -1)
+		while ((lp = open_printer(lpnumber)) == -1 && open_printer_fail < 3) {
+			open_printer_fail++;
 			sleep(10);
+		}
+		if (lp == -1) {
+			dolog(LOG_NOTICE, "Abort. printer open failed for %s:%hu\n", get_ip_str((struct sockaddr *)&client, host, sizeof(host)), get_port((struct sockaddr *)&client));
+			(void)close(fd);
+			continue;
+		}
 
 		if (copy_stream(fd, lp) < 0)
 			dolog(LOGOPTS, "copy_stream: %m\n");
