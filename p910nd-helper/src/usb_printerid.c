@@ -48,9 +48,10 @@ main (int argc, char *argv[])
     ++argv;
 
     if (argc != 1)
-	error(1, "usage: usb_printerid /dev/usb/lp0\n");
+	error(1, "usage: usb_printerid <device|->\n");
 
-    fd = open(argv[0], O_RDWR);
+    /* Reuse an open device on stdin so callers can retain it for writing. */
+    fd = strcmp(argv[0], "-") == 0 ? STDIN_FILENO : open(argv[0], O_RDWR);
     if (fd < 0)
 	error(1, "can't open '%s'\n", argv[0]);
 

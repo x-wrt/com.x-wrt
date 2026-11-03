@@ -1,10 +1,10 @@
 
-[ "$ACTION" = "add" -o "$ACTION" = "bind" ] || exit 0
+[ "$ACTION" = "add" ] || [ "$ACTION" = "bind" ] || exit 0
 [ "$DEVTYPE" = "usb_interface" ] || exit 0
 
 FIRMWARE=
-DEVICES=$(listlp | grep ",$PRODUCT," | cut -d, -f1)
-logger -t p910nd-helper "Loading device[$PRODUCT] dev[$DEVICES]"
+INTERFACE="/sys$DEVPATH"
+logger -t p910nd-helper "Loading device[$PRODUCT] path[$DEVPATH]"
 
 case "$PRODUCT" in
 	#HP LaserJet 1000
@@ -62,33 +62,46 @@ case "$PRODUCT" in
 esac
 
 test -e "$FIRMWARE" || exit 0
+[ -n "$DEVPATH" ] || exit 0
+read -r INTERFACE_CLASS < "$INTERFACE/bInterfaceClass" || exit 0
+[ "$INTERFACE_CLASS" = "07" ] || exit 0
 
 (
-mkdir -p /var/run
-lock /var/run/p910nd-helper.lck
+	mkdir -p /var/run
+	lock /var/run/p910nd-helper.lck || exit 1
 
-for DEVICE in $DEVICES; do
-
-for i in $(seq 30); do
-	if [ -c "$DEVICE" ] && DEVICE_ID=$(usb_printerid "$DEVICE" 2>/dev/null); then
-		if printf '%s\n' "$DEVICE_ID" | grep -q FWVER; then
-			logger -t p910nd-helper "Firmware already there on $DEVICE[$PRODUCT]"
+	for attempt in $(seq 30); do
+		grep -Fqx "PRODUCT=$PRODUCT" "$INTERFACE/uevent" 2>/dev/null || break
+		DEVICE=
+		for PRINTER in "$INTERFACE"/usbmisc/lp*; do
+			[ -e "$PRINTER" ] || continue
+			DEVICE="/dev/usb/${PRINTER##*/}"
 			break
-		else
+		done
+
+		if [ -n "$DEVICE" ] && [ -c "$DEVICE" ] && (
+			# Keep the device open so a recycled lpN cannot receive this upload.
+			exec 3<> "$DEVICE" || exit 1
+			[ "$(readlink -f "/sys/class/usbmisc/${DEVICE##*/}/device")" = "$INTERFACE" ] || exit 1
+			grep -Fqx "PRODUCT=$PRODUCT" "$INTERFACE/uevent" 2>/dev/null || exit 1
+			DEVICE_ID=$(usb_printerid - <&3 2>/dev/null) || exit 1
+			if printf '%s\n' "$DEVICE_ID" | grep -q FWVER; then
+				logger -t p910nd-helper "Firmware already there on $DEVICE[$PRODUCT]"
+				exit 0
+			fi
 			logger -t p910nd-helper "No Firmware found on $DEVICE[$PRODUCT], sending..."
-			if cat "$FIRMWARE" > "$DEVICE"; then
+			if cat "$FIRMWARE" >&3; then
 				logger -t p910nd-helper "Done. Firmware download to $DEVICE[$PRODUCT]"
-				break
+				exit 0
 			fi
 			logger -t p910nd-helper "Firmware download failed on $DEVICE[$PRODUCT]"
+			exit 1
+		); then
+			break
 		fi
-	else
-		logger -t p910nd-helper "Device $DEVICE[$PRODUCT] not found..."
-	fi
-	sleep 1
-done
-
-done
-sleep 15
-lock -u /var/run/p910nd-helper.lck
+		logger -t p910nd-helper "Device $DEVICE[$PRODUCT] not ready (attempt $attempt/30)..."
+		sleep 1
+	done
+	sleep 15
+	lock -u /var/run/p910nd-helper.lck
 ) &

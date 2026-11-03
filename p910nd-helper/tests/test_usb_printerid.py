@@ -19,6 +19,7 @@ class PrinterIdTests(unittest.TestCase):
         wrapper = work / "ioctl.c"
         wrapper.write_text(r"""
 #include <stdarg.h>
+#include <errno.h>
 #include <stdlib.h>
 #include <string.h>
 #include <sys/ioctl.h>
@@ -27,6 +28,10 @@ int __wrap_open(const char *path, int flags, ...)
 {
     (void)path;
     (void)flags;
+    if (getenv("MOCK_STDIN_DEVICE")) {
+        errno = EBUSY;
+        return -1;
+    }
     return 100;
 }
 
@@ -43,7 +48,10 @@ int __wrap_ioctl(int fd, unsigned long request, ...)
     int declared = atoi(getenv("MOCK_ID_LENGTH"));
     size_t copied = declared < 2 ? 2 : declared >= 1024 ? 1023 : declared;
 
-    (void)fd;
+    if (getenv("MOCK_STDIN_DEVICE") && fd != 0) {
+        errno = EBADF;
+        return -1;
+    }
     va_start(ap, request);
     out = va_arg(ap, unsigned char *);
     va_end(ap);
@@ -67,11 +75,19 @@ int __wrap_ioctl(int fd, unsigned long request, ...)
             "-o", str(cls.binary),
         ], check=True)
 
-    def query(self, length):
+    def query(self, length, stdin_device=False):
+        env = dict(os.environ, MOCK_ID_LENGTH=str(length))
+        if stdin_device:
+            env["MOCK_STDIN_DEVICE"] = "1"
         return subprocess.run(
-            [str(self.binary), "/mock/lp0"], capture_output=True, timeout=5,
-            env=dict(os.environ, MOCK_ID_LENGTH=str(length)),
+            [str(self.binary), "-" if stdin_device else "/mock/lp0"],
+            capture_output=True, timeout=5, env=env,
         )
+
+    def test_queries_inherited_device_without_reopening_it(self):
+        result = self.query(32, stdin_device=True)
+        self.assertEqual(result.returncode, 0, result.stderr)
+        self.assertEqual(result.stdout, b"GET_DEVICE_ID string:\n" + b"A" * 30 + b"\n")
 
     def test_valid_lengths(self):
         for length in (2, 32, 1023):
