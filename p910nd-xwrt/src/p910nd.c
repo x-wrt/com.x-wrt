@@ -401,11 +401,13 @@ int copy_stream(int fd, int lp)
 		struct timeval now;
 		struct timeval then;
 		struct timeval timeout;
+		struct timeval last_read_time;
 		int timer = 0;
 		Buffer_t printerToNetworkBuffer;
 		initBuffer(&printerToNetworkBuffer, lp, fd, 0);
 		fd_set readfds;
 		fd_set writefds;
+		gettimeofday(&last_read_time, 0);
 		/* Finish when network sent EOF. */
 		/* Although the printer to network stream may not be finished (does this matter?) */
 		while (!networkToPrinterBuffer.eof_sent && !networkToPrinterBuffer.err) {
@@ -433,8 +435,15 @@ int copy_stream(int fd, int lp)
 			if (FD_ISSET(fd, &readfds)) {
 				/* Read network data. */
 				result = readBuffer(&networkToPrinterBuffer);
-				if (result > 0)
+				if (result > 0) {
 					dolog(LOG_DEBUG,"read %d bytes from network\n",result);
+					gettimeofday(&last_read_time, 0);
+				}
+			}
+			gettimeofday(&now, 0);
+			if (now.tv_sec - last_read_time.tv_sec >= 30) {
+				dolog(LOG_NOTICE,"read no data from network for 30s, stop copy stream\n");
+				break;
 			}
 			if (FD_ISSET(lp, &readfds)) {
 				/* Read printer data, but pace it more slowly. */
