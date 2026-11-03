@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+import hashlib
 import os
 from pathlib import Path
 import shutil
@@ -62,7 +63,7 @@ usb_printerid() {
     fi
     case "$MODE" in
         loaded_then_busy|query_busy_once) printf '%s\n' 'MDL:HP LaserJet 1018;FWVER:20260101;' ;;
-        *) printf '%s\n' 'MDL:HP LaserJet 1018;' ;;
+        *) printf '%s\n' "$MOCK_DEVICE_ID" ;;
     esac
 }
 cat() {
@@ -77,7 +78,7 @@ cat() {
 }
 ACTION=$MOCK_ACTION
 DEVTYPE=usb_interface
-PRODUCT=3f0/4117/100
+PRODUCT=$MOCK_PRODUCT
 DEVPATH=/devices/port-A/1-1:1.0
 . "$HOTPLUG"
 wait
@@ -91,7 +92,8 @@ class HotplugTests(unittest.TestCase):
         if cls.busybox is None:
             raise unittest.SkipTest("BusyBox ash is required")
 
-    def run_hotplug(self, mode, action="bind"):
+    def run_hotplug(self, mode, action="bind", product="3f0/4117/100",
+                    device_id="MDL:HP LaserJet 1018;", missing_firmware=None):
         with tempfile.TemporaryDirectory(prefix="p910nd-hotplug-test-") as td:
             root = Path(td)
             for name in ("queries", "uploads"):
@@ -100,12 +102,14 @@ class HotplugTests(unittest.TestCase):
             device = root / "dev/usb/lp0"
             device.parent.mkdir(parents=True)
             device.symlink_to("/dev/null")
-            firmware = root / "usr/share/p910nd/firmware/sihp1018.dl"
-            firmware.parent.mkdir(parents=True)
-            firmware.write_bytes(b"firmware")
+            firmware_dir = root / "usr/share/p910nd/firmware"
+            firmware_dir.mkdir(parents=True)
+            for source in (PACKAGE / "firmware").glob("*.dl"):
+                if source.name != missing_firmware:
+                    (firmware_dir / source.name).write_bytes(source.name.encode())
             interface = root / "sys/devices/port-A/1-1:1.0"
             (interface / "usbmisc/lp0").mkdir(parents=True)
-            (interface / "uevent").write_text("PRODUCT=3f0/4117/100\n")
+            (interface / "uevent").write_text("PRODUCT=" + product + "\n")
             (interface / "bInterfaceClass").write_text("07\n")
             usbmisc = root / "sys/class/usbmisc/lp0"
             usbmisc.mkdir(parents=True)
@@ -134,7 +138,8 @@ class HotplugTests(unittest.TestCase):
                 [self.busybox, "ash", "-c", HARNESS],
                 capture_output=True, text=True, timeout=5,
                 env=dict(os.environ, MOCK_DIR=td, MOCK_INTERFACE=str(interface),
-                         MODE=mode, MOCK_ACTION=action, HOTPLUG=str(script)),
+                         MODE=mode, MOCK_ACTION=action, HOTPLUG=str(script),
+                         MOCK_PRODUCT=product, MOCK_DEVICE_ID=device_id),
             )
             self.assertEqual(result.returncode, 0, result.stderr)
             self.assertEqual(result.stderr, "")
@@ -161,6 +166,110 @@ class HotplugTests(unittest.TestCase):
         trace = self.run_hotplug("needs_firmware")
         self.assertEqual(sum(line.startswith("UPLOAD ") for line in trace), 1, trace)
         self.assertTrue(any("Done. Firmware download" in line for line in trace), trace)
+
+    def test_supported_models_select_their_firmware(self):
+        printers = (
+            ("517", "hp LaserJet 1000", "sihp1000.dl"),
+            ("1317", "hp LaserJet 1005 series", "sihp1005.dl"),
+            ("4117", "HP LaserJet 1018", "sihp1018.dl"),
+            ("4117", "HP LaserJet 1018s", "sihp1018.dl"),
+            ("2b17", "HP LaserJet 1020", "sihp1020.dl"),
+            ("2b17", "HP LaserJet 1020 Plus", "sihp1020.dl"),
+            ("3d17", "HP LaserJet P1005", "sihpP1005.dl"),
+            ("3e17", "HP LaserJet P1006", "sihpP1006.dl"),
+            ("3e17", "HP LaserJet P1009", "sihpP1008.dl"),
+            ("4817", "HP LaserJet P1007", "sihpP1007.dl"),
+            ("4917", "HP LaserJet P1008", "sihpP1008.dl"),
+            ("3f17", "HP LaserJet P1505", "sihpP1505.dl"),
+        )
+        for pid, model, firmware in printers:
+            with self.subTest(model=model):
+                trace = self.run_hotplug(
+                    "needs_firmware", product="3f0/" + pid + "/120",
+                    device_id="GET_DEVICE_ID string:\nMFG:Hewlett-Packard;MDL:" + model + ";",
+                )
+                uploads = [line for line in trace if line.startswith("UPLOAD ")]
+                self.assertEqual(len(uploads), 1, trace)
+                self.assertTrue(uploads[0].endswith("/" + firmware), trace)
+
+    def test_p1009_model_field_and_case_variants(self):
+        for device_id in (
+            "mdl:hp laserjet p1009;",
+            "MODEL:LaserJet P1009;",
+            "MFG:HP; MDL: HP LaserJet P1009 ;",
+        ):
+            with self.subTest(device_id=device_id):
+                trace = self.run_hotplug(
+                    "needs_firmware", product="3f0/3e17/100", device_id=device_id,
+                )
+                uploads = [line for line in trace if line.startswith("UPLOAD ")]
+                self.assertEqual(len(uploads), 1, trace)
+                self.assertTrue(uploads[0].endswith("/sihpP1008.dl"), trace)
+
+    def test_p1009_reused_payload_matches_audited_hplip_firmware(self):
+        # HPLIP 3.26.4: gzip-decompressed hp_laserjet_p1009.fw.gz.
+        # Changing this shared blob requires rechecking P1009 compatibility.
+        payload = (PACKAGE / "firmware/sihpP1008.dl").read_bytes()
+        self.assertEqual(
+            hashlib.sha256(payload).hexdigest(),
+            "dcb23baee83d463f7f8fa8d3235302280535ee7c673d4f21cdbe2146d446ec33",
+        )
+
+    def test_resident_firmware_and_unverified_models_are_not_flashed(self):
+        printers = (
+            ("3b17", "M1005"),
+            ("2c17", "1022"),
+            ("2d17", "1022n"),
+            ("3017", "1022nw"),
+            ("4017", "P1505n"),
+            ("2a", "Professional P1102"),
+            ("32a", "Professional P1102w"),
+            ("102a", "Professional P 1102w"),
+            ("92a", "Professional P1566"),
+            ("92a", "Professional P1567"),
+            ("92a", "Professional P1568"),
+            ("92a", "Professional P1569"),
+        )
+        for pid, model in printers:
+            with self.subTest(model=model):
+                trace = self.run_hotplug(
+                    "needs_firmware", product="3f0/" + pid + "/100",
+                    device_id="MDL:HP LaserJet " + model + ";",
+                )
+                self.assertFalse(any(line.startswith(("LOCK ", "QUERY ", "UPLOAD "))
+                                     for line in trace), trace)
+
+    def test_shared_or_stale_usb_id_requires_a_matching_model(self):
+        for pid, device_id in (
+            ("4117", "MDL:HP LaserJet P1505n;"),
+            ("3e17", "MDL:HP LaserJet P1102;"),
+            ("3e17", "MDL:HP LaserJet P10090;"),
+            ("3e17", "DES:HP LaserJet P1009;"),
+            ("3e17", "MDL:;"),
+            ("3e17", ""),
+            ("3f17", "MDL:HP LaserJet P1505n;"),
+        ):
+            with self.subTest(pid=pid, device_id=device_id):
+                trace = self.run_hotplug(
+                    "needs_firmware", product="3f0/" + pid + "/100",
+                    device_id=device_id,
+                )
+                self.assertFalse(any(line.startswith("UPLOAD ") for line in trace), trace)
+                self.assertTrue(any("Skipping unexpected printer model" in line
+                                    for line in trace), trace)
+
+    def test_missing_p1009_payload_never_falls_back_to_p1006(self):
+        trace = self.run_hotplug(
+            "needs_firmware", product="3f0/3e17/100",
+            device_id="MDL:HP LaserJet P1009;", missing_firmware="sihpP1008.dl",
+        )
+        self.assertFalse(any(line.startswith("UPLOAD ") for line in trace), trace)
+
+    def test_firmware_marker_must_be_a_device_id_field(self):
+        trace = self.run_hotplug(
+            "needs_firmware", device_id="MDL:HP LaserJet 1018;DES:FWVER:fake;",
+        )
+        self.assertEqual(sum(line.startswith("UPLOAD ") for line in trace), 1, trace)
 
     def test_failed_upload_is_retried_before_reporting_success(self):
         trace = self.run_hotplug("write_failure_once")

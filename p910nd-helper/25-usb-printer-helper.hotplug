@@ -6,54 +6,51 @@ FIRMWARE=
 INTERFACE="/sys$DEVPATH"
 logger -t p910nd-helper "Loading device[$PRODUCT] path[$DEVPATH]"
 
-case "$PRODUCT" in
+# Match VID/PID; bcdDevice revisions do not select a different firmware.
+# See README.md for the audited model/firmware mappings.
+case "${PRODUCT%/*}" in
 	#HP LaserJet 1000
-	"3f0/517/120")
+	"3f0/517")
 	FIRMWARE=/usr/share/p910nd/firmware/sihp1000.dl
 	;;
 
-	#HP LaserJet 1005/M1005
-	"3f0/3b17/100"|\
-	"3f0/1317/120")
+	#HP LaserJet 1005 (the M1005 MFP has resident firmware)
+	"3f0/1317")
 	FIRMWARE=/usr/share/p910nd/firmware/sihp1005.dl
 	;;
 
 	#HP LaserJet 1018
-	"3f0/4117/100")
+	"3f0/4117")
 	FIRMWARE=/usr/share/p910nd/firmware/sihp1018.dl
 	;;
 
 	#HP LaserJet 1020
-	"3f0/3017/100"|\
-	"3f0/2d17/100"|\
-	"3f0/2c17/100"|\
-	"3f0/2b17/100")
+	"3f0/2b17")
 	FIRMWARE=/usr/share/p910nd/firmware/sihp1020.dl
 	;;
 
 	#HP LaserJet P1005
-	"3f0/3d17/100")
+	"3f0/3d17")
 	FIRMWARE=/usr/share/p910nd/firmware/sihpP1005.dl
 	;;
 
-	#HP LaserJet P1006
-	"3f0/3e17/100")
+	#HP LaserJet P1006/P1009 (select P1009 firmware after querying MDL)
+	"3f0/3e17")
 	FIRMWARE=/usr/share/p910nd/firmware/sihpP1006.dl
 	;;
 
 	#HP LaserJet P1007
-	"3f0/4817/100")
+	"3f0/4817")
 	FIRMWARE=/usr/share/p910nd/firmware/sihpP1007.dl
 	;;
 
 	#HP LaserJet P1008
-	"3f0/4917/100")
+	"3f0/4917")
 	FIRMWARE=/usr/share/p910nd/firmware/sihpP1008.dl
 	;;
 
-	#HP LaserJet P1505
-	"3f0/4017/100"|\
-	"3f0/3f17/100")
+	#HP LaserJet P1505 (the P1505n has resident firmware)
+	"3f0/3f17")
 	FIRMWARE=/usr/share/p910nd/firmware/sihpP1505.dl
 	;;
 	*)
@@ -61,6 +58,9 @@ case "$PRODUCT" in
 	;;
 esac
 
+FIRMWARE_MODEL=${FIRMWARE##*/}
+FIRMWARE_MODEL=${FIRMWARE_MODEL#sihp}
+FIRMWARE_MODEL=${FIRMWARE_MODEL%.dl}
 test -e "$FIRMWARE" || exit 0
 [ -n "$DEVPATH" ] || exit 0
 read -r INTERFACE_CLASS < "$INTERFACE/bInterfaceClass" || exit 0
@@ -85,10 +85,39 @@ read -r INTERFACE_CLASS < "$INTERFACE/bInterfaceClass" || exit 0
 			[ "$(readlink -f "/sys/class/usbmisc/${DEVICE##*/}/device")" = "$INTERFACE" ] || exit 1
 			grep -Fqx "PRODUCT=$PRODUCT" "$INTERFACE/uevent" 2>/dev/null || exit 1
 			DEVICE_ID=$(usb_printerid - <&3 2>/dev/null) || exit 1
-			if printf '%s\n' "$DEVICE_ID" | grep -q FWVER; then
+			if printf '%s\n' "$DEVICE_ID" | grep -Eq '(^|;)[[:space:]]*FWVER:'; then
 				logger -t p910nd-helper "Firmware already there on $DEVICE[$PRODUCT]"
 				exit 0
 			fi
+			# Require the actual IEEE 1284 model as well as the USB ID.
+			# models.dat contains shared/stale USB IDs for several HP models.
+			MODEL=$(printf '%s\n' "$DEVICE_ID" |
+				LC_ALL=C tr 'a-z;' 'A-Z\n' |
+				sed -n '/^[[:space:]]*\(MDL\|MODEL\):/ {
+					s/^[^:]*:[[:space:]]*//
+					s/[[:space:]]*$//
+					p
+					q
+				}')
+			MODEL=${MODEL#HP }
+			MODEL=${MODEL#LASERJET }
+			MODEL=${MODEL% SERIES}
+			case "$MODEL" in
+				1018S) MODEL=1018 ;;
+				1020\ PLUS) MODEL=1020 ;;
+			esac
+			case "$FIRMWARE_MODEL:$MODEL" in
+				P1006:P1009)
+					# HPLIP's P1009 payload is byte-identical to sihpP1008.dl.
+					FIRMWARE=/usr/share/p910nd/firmware/sihpP1008.dl
+					;;
+				"$FIRMWARE_MODEL:$FIRMWARE_MODEL") ;;
+				*)
+					logger -t p910nd-helper "Skipping unexpected printer model[$MODEL] on $DEVICE[$PRODUCT]"
+					exit 0
+					;;
+			esac
+			test -s "$FIRMWARE" || exit 1
 			logger -t p910nd-helper "No Firmware found on $DEVICE[$PRODUCT], sending..."
 			if cat "$FIRMWARE" >&3; then
 				logger -t p910nd-helper "Done. Firmware download to $DEVICE[$PRODUCT]"
