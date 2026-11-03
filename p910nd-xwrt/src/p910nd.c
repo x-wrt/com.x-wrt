@@ -651,7 +651,7 @@ void server(int lpnumber)
 			res = res->ai_next;
 			continue;
 		}
-		if (listen(netfd, 5) < 0) {
+		if (listen(netfd, 30) < 0) {
 			dolog(LOGOPTS, "listen: %m\n");
 			close(netfd);
 			res = res->ai_next;
