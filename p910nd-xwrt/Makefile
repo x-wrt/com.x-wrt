@@ -7,35 +7,35 @@
 
 include $(TOPDIR)/rules.mk
 
-PKG_NAME:=p910nd
+PKG_NAME:=p910nd-xwrt
 PKG_VERSION:=0.97
 PKG_RELEASE:=15
 
-PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.bz2
-PKG_SOURCE_URL:=@SF/p910nd
 PKG_LICENSE:=GPL-2.0-only
 PKG_LICENSE_FILES:=COPYING
-PKG_HASH:=4ac980a3ae24babae6f70f0a692625ece03a4a92c357fbb10d2e368386c3c26f
-PKG_MAINTAINER:=Philipp Kerling <pkerling@casix.org>
+PKG_MAINTAINER:=Chen Minqiang <ptpt52@gmail.com>
 
 PKG_INSTALL:=1
 
 include $(INCLUDE_DIR)/package.mk
 
-define Package/p910nd
+define Package/p910nd-xwrt
   SECTION:=net
   CATEGORY:=Network
   SUBMENU:=Printing
-  TITLE:=A small non-spooling printer server
+  TITLE:=A small non-spooling printer server (X-Wrt)
+  PROVIDES:=p910nd
+  CONFLICTS:=p910nd
   URL:=https://github.com/kenyapcomau/p910nd
   USERID:=p910nd=393:lp=7
 endef
 
-define Package/p910nd/conffiles
+define Package/p910nd-xwrt/conffiles
 /etc/config/p910nd
 endef
 
-define Package/p910nd/description
+define Package/p910nd-xwrt/description
+ X-Wrt variant of p910nd, built from the sources in src/.
  p910nd is a small daemon that copies any data received on
  the port it is listening on to the corresponding printer
  port. It is primarily intended for diskless Linux hosts
@@ -48,7 +48,7 @@ endef
 MAKE_FLAGS += \
 	CFLAGS="$(TARGET_CFLAGS) -DLOCKFILE_DIR=\"\\\"/tmp\"\\\""
 
-define Package/p910nd/install
+define Package/p910nd-xwrt/install
 	$(INSTALL_DIR) $(1)/usr/sbin
 	$(CP) $(PKG_INSTALL_DIR)/usr/sbin/p910nd $(1)/usr/sbin/
 	$(INSTALL_DIR) $(1)/etc/config
@@ -59,4 +59,4 @@ define Package/p910nd/install
 	$(INSTALL_BIN) ./files/p910nd.hotplug $(1)/etc/hotplug.d/usbmisc/20-p910nd
 endef
 
-$(eval $(call BuildPackage,p910nd))
+$(eval $(call BuildPackage,p910nd-xwrt))
