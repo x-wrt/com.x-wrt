@@ -27,7 +27,7 @@ SCRIPTDIR = /etc/init.d
 MANDIR = /usr/share/man/man8
 
 $(PROG):	p910nd.c
-	$(CC) -o $@ $^ $(CFLAGS) $(DEFINES) $(LIBS)
+	$(CC) $(CPPFLAGS) $(CFLAGS) $(DEFINES) $(LDFLAGS) -o $@ $^ $(LIBS)
 
 strip: $(PROG)
 	$(STRIP) -s $(PROG)
