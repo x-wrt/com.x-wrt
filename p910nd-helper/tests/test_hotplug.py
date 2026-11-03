@@ -34,6 +34,10 @@ cat() {
     count=$((count + 1))
     printf '%s\n' "$count" > "$MOCK_DIR/uploads"
     log "UPLOAD $count $*"
+    case "$MODE:$count" in
+        write_failure:*|write_failure_once:1) return 1 ;;
+    esac
+    return 0
 }
 ACTION=bind
 DEVTYPE=usb_interface
@@ -98,6 +102,20 @@ class HotplugTests(unittest.TestCase):
         trace = self.run_hotplug("needs_firmware")
         self.assertEqual(sum(line.startswith("UPLOAD ") for line in trace), 1, trace)
         self.assertTrue(any("Done. Firmware download" in line for line in trace), trace)
+
+    def test_failed_upload_is_retried_before_reporting_success(self):
+        trace = self.run_hotplug("write_failure_once")
+        self.assertEqual(sum(line.startswith("UPLOAD ") for line in trace), 2, trace)
+        failures = [i for i, line in enumerate(trace) if "Firmware download failed" in line]
+        successes = [i for i, line in enumerate(trace) if "Done. Firmware download" in line]
+        self.assertEqual(len(failures), 1, trace)
+        self.assertEqual(len(successes), 1, trace)
+        self.assertLess(failures[0], successes[0], trace)
+
+    def test_persistent_upload_failure_is_never_reported_as_success(self):
+        trace = self.run_hotplug("write_failure")
+        self.assertEqual(sum(line.startswith("UPLOAD ") for line in trace), 30, trace)
+        self.assertFalse(any("Done. Firmware download" in line for line in trace), trace)
 
 
 if __name__ == "__main__":

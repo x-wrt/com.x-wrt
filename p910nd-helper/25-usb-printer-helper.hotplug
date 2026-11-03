@@ -73,12 +73,15 @@ for i in $(seq 30); do
 	if [ -c "$DEVICE" ] && DEVICE_ID=$(usb_printerid "$DEVICE" 2>/dev/null); then
 		if printf '%s\n' "$DEVICE_ID" | grep -q FWVER; then
 			logger -t p910nd-helper "Firmware already there on $DEVICE[$PRODUCT]"
+			break
 		else
 			logger -t p910nd-helper "No Firmware found on $DEVICE[$PRODUCT], sending..."
-			cat $FIRMWARE > $DEVICE
-			logger -t p910nd-helper "Done. Firmware download to $DEVICE[$PRODUCT]"
+			if cat "$FIRMWARE" > "$DEVICE"; then
+				logger -t p910nd-helper "Done. Firmware download to $DEVICE[$PRODUCT]"
+				break
+			fi
+			logger -t p910nd-helper "Firmware download failed on $DEVICE[$PRODUCT]"
 		fi
-		break
 	else
 		logger -t p910nd-helper "Device $DEVICE[$PRODUCT] not found..."
 	fi
