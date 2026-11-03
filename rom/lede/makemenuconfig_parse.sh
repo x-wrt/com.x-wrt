@@ -19,7 +19,7 @@ lucistd="luci \
 lucidashboard="luci-mod-dashboard luci-i18n-dashboard-zh-cn"
 
 usbprint="kmod-usb-printer \
-		  p910nd \
+		  p910nd-xwrt \
 		  luci-app-p910nd \
 		  luci-i18n-p910nd-en \
 		  luci-i18n-p910nd-zh-cn"
@@ -2416,6 +2416,9 @@ rt73-usb-firmware"
 
 	if [ "x$flash_gt16m" = "x1" ] && [ "x$has_usb" = "x1" ]; then
 		mods="$mods kmod-usb-net-asix-ax88179 kmod-usb-net-rtl8152"
+		if [ "x$flash_gt32m" = "x1" ]; then
+			mods="$mods p910nd-helper"
+		fi
 	fi
 
 	if [ "x$flash_gt32m" = "x1" ]; then
