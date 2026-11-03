@@ -9,7 +9,7 @@ include $(TOPDIR)/rules.mk
 
 PKG_NAME:=p910nd-xwrt
 PKG_VERSION:=0.97
-PKG_RELEASE:=15
+PKG_RELEASE:=16
 
 PKG_LICENSE:=GPL-2.0-only
 PKG_LICENSE_FILES:=COPYING
@@ -35,7 +35,7 @@ define Package/p910nd-xwrt/conffiles
 endef
 
 define Package/p910nd-xwrt/description
- X-Wrt variant of p910nd, built from the sources in src/.
+ X-Wrt variant of the p910nd printer server.
  p910nd is a small daemon that copies any data received on
  the port it is listening on to the corresponding printer
  port. It is primarily intended for diskless Linux hosts

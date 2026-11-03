@@ -1,5 +1,5 @@
 #!/bin/sh
-# shellcheck disable=SC3043 # aka 'local VAR'
+# shellcheck disable=SC3043
 # c 2024 systemcrash (GitHub)
 
 #hotplug.d triggers this script on the plug {in|out} of USB printers
@@ -59,6 +59,16 @@ if [ -n "$1" ] && [ "$1" = "-d" ]; then
 	ACTION="add"
 fi
 
+# Other usbmisc devices and removal events have no printer attributes to read.
+[ "$ACTION" = add ] || exit 0
+case "$DEVNAME" in
+	usb/lp*) ;;
+	*) exit 0 ;;
+esac
+case "${DEVNAME#usb/lp}" in
+	''|*[!0-9]*) exit 0 ;;
+esac
+
 # For usbmisc, hotplug passes the following usable variables:
 # $0: /sbin/hotplug-call
 # $1: usbmisc
@@ -104,7 +114,7 @@ PARENT_DEVPATH=$( dirname "${ACTUAL_DEVPATH}" )
 
 # https://www.usb.org/sites/default/files/usbprint11a021811.pdf
 # Check whether connected device is a "Printer"
-[ "$(cat "$ACTUAL_DEVPATH/bInterfaceClass")" = "07" ] && [ "$(cat "$ACTUAL_DEVPATH/bInterfaceSubClass")" = "01" ] && iAmAPrinter=true
+[ "$(cat "$ACTUAL_DEVPATH/bInterfaceClass" 2>/dev/null)" = "07" ] && [ "$(cat "$ACTUAL_DEVPATH/bInterfaceSubClass" 2>/dev/null)" = "01" ] && iAmAPrinter=true
 # Not a printer? Bail.
 [ ! "$iAmAPrinter" ] && exit 0
 
@@ -125,7 +135,7 @@ esac
 if ! uci -q get $DAEMON; then
 	touch /etc/config/$DAEMON
 	uci -q add $DAEMON $DAEMON
-	uci -q commit
+	uci -q commit "$DAEMON"
 fi
 
 # Next, we need THIS_USB_VIDPID. This is to ensure that we send the right blob
@@ -155,69 +165,63 @@ ieee1284info=$(cat "$ACTUAL_DEVPATH/ieee1284_id" )
 
 
 # Absent the uci daemon hotplug config group, set it to a default
-[ -z "$(uci -q get $DAEMON.@hotplug[0])" ] && uci -q add $DAEMON hotplug
+[ -z "$(uci -q get "$DAEMON.@hotplug[0]")" ] && uci -q add "$DAEMON" hotplug
 
 # # Absent the driver_home path config, set it to a default
-[ -z "$(uci -q get $DAEMON.@hotplug[0].driver_home)" ] && uci -q set $DAEMON.@hotplug[-1].driver_home=$DRIVER_HOME_DEFAULT && uci -q commit $DAEMON
+[ -z "$(uci -q get "$DAEMON.@hotplug[0].driver_home")" ] && uci -q set "$DAEMON.@hotplug[0].driver_home=$DRIVER_HOME_DEFAULT"
+DRIVER_HOME=$(uci -q get "$DAEMON.@hotplug[0].driver_home")
+# Preserve the root path while trimming a trailing slash.
+[ "$DRIVER_HOME" = / ] || DRIVER_HOME=${DRIVER_HOME%/}
 
 # Make the driver folder hierarchy
-if ! mkdir -p "$DRIVER_HOME_DEFAULT"; then
-	logger -t "$DAEMON_HOTPLUG" -p "$DAEMON_ERR" Error running 'mkdir -p' "$DRIVER_HOME_DEFAULT".
+if ! mkdir -p "$DRIVER_HOME"; then
+	logger -t "$DAEMON_HOTPLUG" -p "$DAEMON_ERR" Error running 'mkdir -p' "$DRIVER_HOME".
 fi
 
 # Help the folder survive a sysupgrade:
-if ! grep -q "^$DRIVER_HOME_DEFAULT$" "$SYSUPGRADE_CONF" ; then
+if ! grep -Fqx -- "$DRIVER_HOME" "$SYSUPGRADE_CONF" ; then
 	# TODO: remove old non-existent p910nd paths from $SYSUPGRADE_CONF?
 	# Absent the path, try to add it to $SYSUPGRADE_CONF
-	if ! echo $DRIVER_HOME_DEFAULT >> $SYSUPGRADE_CONF; then
-		logger -t "$DAEMON_HOTPLUG" -p "$DAEMON_ERR" Problem adding "$DRIVER_HOME_DEFAULT" path to "$SYSUPGRADE_CONF."
+	if ! printf '%s\n' "$DRIVER_HOME" >> "$SYSUPGRADE_CONF"; then
+		logger -t "$DAEMON_HOTPLUG" -p "$DAEMON_ERR" Problem adding "$DRIVER_HOME" path to "$SYSUPGRADE_CONF."
 	else
-		logger -t "$DAEMON_HOTPLUG" -p "$DAEMON_INFO" Added "$DRIVER_HOME_DEFAULT" path to "$SYSUPGRADE_CONF".
+		logger -t "$DAEMON_HOTPLUG" -p "$DAEMON_INFO" Added "$DRIVER_HOME" path to "$SYSUPGRADE_CONF".
 	fi
 fi
 
-DRIVER_HOME=$(uci -q get $DAEMON.@hotplug[-1].driver_home)
 [ "$DEBUG" ] && echo DRIVER_HOME is "$DRIVER_HOME"
-# Trim trailing forward slash if it crept in somehow.
-DRIVER_HOME=${DRIVER_HOME%/}
 DRIVER_BLOBNAME_TAIL="$idVendor"_"$idProduct".bin
 [ "$DEBUG" ] && echo DRIVER_BLOBNAME_TAIL is "$DRIVER_BLOBNAME_TAIL"
 
 
 # Global device config number variable
-UCI_DEV_CFG_NUMBER=-1
+UCI_DEV_SECTION=
 
 
 # find which daemon configs have the matching lpX interface
 match_current_device() {
-	# Build array of /dev/usb/lpX character devices already configured
-
-	set -- "$(IFS=$(printf '\n') && uci -q batch <<- EOI
-	get "$DAEMON".@"$DAEMON"[0].device
-	get "$DAEMON".@"$DAEMON"[1].device
-	get "$DAEMON".@"$DAEMON"[2].device
-	get "$DAEMON".@"$DAEMON"[3].device
-	get "$DAEMON".@"$DAEMON"[4].device
-	get "$DAEMON".@"$DAEMON"[5].device
-	get "$DAEMON".@"$DAEMON"[6].device
-	get "$DAEMON".@"$DAEMON"[7].device
-	get "$DAEMON".@"$DAEMON"[8].device
-	get "$DAEMON".@"$DAEMON"[9].device
-	EOI
-	)"
-	# $1-$10 are now set
-
-	x=0
-	# shellcheck disable=SC2068
-	for i in $@; do
-		# $DEVNAME is passed by hotplug
-		[ "$DEBUG" ] && echo UCI_DEV_CFG_NUMBER is $UCI_DEV_CFG_NUMBER and CHAR_DEV is "$CHAR_DEV"
-		[ "$DEVNAME" = "${i#/dev/}" ] && UCI_DEV_CFG_NUMBER=$x && CHAR_DEV=$i
-		# TODO: multiple configured devices could have same CHAR_DEV if not connected concurrently
-		x=$(( x+1 ))
+	local x=0 current_device
+	UCI_DEV_SECTION=
+	CHAR_DEV="/dev/$DEVNAME"
+	# Query each section separately so missing device options cannot shift indices.
+	while uci -q get "$DAEMON.@$DAEMON[$x]" >/dev/null; do
+		current_device=$(uci -q get "$DAEMON.@$DAEMON[$x].device")
+		if [ "$CHAR_DEV" = "$current_device" ]; then
+			UCI_DEV_SECTION="@$DAEMON[$x]"
+			return 0
+		fi
+		x=$((x + 1))
 	done
 }
 
+set_printer_default() {
+	local option="$1" value="$2"
+	[ -n "$value" ] || return 0
+	if [ -z "$(uci -q get "$DAEMON.$UCI_DEV_SECTION.$option")" ]; then
+		# Device-provided strings are data, never shell code.
+		uci -q set "$DAEMON.$UCI_DEV_SECTION.$option=$value"
+	fi
+}
 
 get_and_store_printer_info() {
 	# gets /sys/bus/usb/devices/2-1:1.0/ieee1284_id:
@@ -236,83 +240,76 @@ get_and_store_printer_info() {
 	local CMT
 	local SN
 	local VER
+	local info="$ieee1284info" i
 
 
 	# Build array of /dev/usb/lpX character devices already configured
 	match_current_device
-
-	uqgddu_cmd='uci -q get '"$DAEMON".@"$DAEMON"[$UCI_DEV_CFG_NUMBER]
-	uqsddu_cmd='uci -q set '"$DAEMON".@"$DAEMON"[$UCI_DEV_CFG_NUMBER]
-
-	# set Internal Field Separator to semicolon found in ieee1284_id files
-	IFS=";"
-	# Got 1284 Device ID string
-	set -- "$ieee1284info"
+	if [ -z "$UCI_DEV_SECTION" ]; then
+		UCI_DEV_SECTION=$(uci -q add "$DAEMON" "$DAEMON") || return 1
+		uci -q set "$DAEMON.$UCI_DEV_SECTION.device=$CHAR_DEV"
+	fi
 	[ "$DEBUG" ] && echo ieee1284info: "$ieee1284info"
 
-	# shellcheck disable=SC2068
-	for i in $@; do
+	# Split without changing IFS or expanding device-supplied wildcards.
+	while [ -n "$info" ]; do
+		i=${info%%;*}
+		case "$info" in
+			*';'*) info=${info#*;} ;;
+			*) info= ;;
+		esac
 		[ "$DEBUG" ] && echo i:"$i"
 
 		case $i in
 			MFG:* | MANUFACTURER:* | MFR:* ) 
-				MFG=${i##*:};;
+				MFG=${i#*:};;
 			MDL:* | MODEL:* )
-				MDL=${i##*:};;
-			CMD:* | "COMMAND SET:*" )
-				CMD=${i##*:};;
+				MDL=${i#*:};;
+			CMD:* | "COMMAND SET:"* )
+				CMD=${i#*:};;
 			CLS:* )
-				CLS=${i##*:};;
+				CLS=${i#*:};;
 			DES:* | DESCRIPTION:* )
-				DES=${i##*:};;
+				DES=${i#*:};;
 			DRV:* )
-				DRV=${i##*:};;
+				DRV=${i#*:};;
 			CID:* | COMPATIBLEID:* )
-				CID=${i##*:};;
+				CID=${i#*:};;
 			COMMENT:* )
-				CMT=${i##*:};;
+				CMT=${i#*:};;
 			SN:* | SERIALNUMBER:* | SERN:* )
-				SN=${i##*:};;
+				SN=${i#*:};;
 			VER:* )
-				VER=${i##*:};;
+				VER=${i#*:};;
 		esac
 
-		[ -n "$SN" ] || SN="$iSerialNumber"
-		[ "$DEBUG" ] && echo ${MFG:+MFG=$MFG} ${MDL:+MDL=$MDL} ${CMD:+CMD=$CMD} ${CLS:+CLS=$CLS} ${DES:+DES=$DES} ${SN:+SN=$SN}
-
-		[ "$DEBUG" ] && echo 'uci set' for UCI_DEV_CFG_NUMBER: $UCI_DEV_CFG_NUMBER
-		[ -z "$(eval "$uqgddu_cmd".bidirectional)" ] && eval "$uqsddu_cmd.bidirectional='$BIDIR'"
-		[ -z "$(eval "$uqgddu_cmd".port)" ] && eval "$uqsddu_cmd.port='0'"
-		[ -z "$(eval "$uqgddu_cmd".enabled)" ] && eval "$uqsddu_cmd.enabled='1'"
-		[ -z "$(eval "$uqgddu_cmd".usbvidpid)" ] && [ -n "$THIS_USB_VIDPID" ] && eval "$uqsddu_cmd.usbvidpid='$THIS_USB_VIDPID'"
-		# Safe to default to on for mDNS if we found one of the mandatory properties (e.g. MDL)
-		[ -z "$(eval "$uqgddu_cmd".mdns)" ] && [ -n "$MDL" ] && eval "$uqsddu_cmd.mdns='1'"
-		[ -z "$(eval "$uqgddu_cmd".mdns_ty)" ] && [ -n "$DES" ] && eval "$uqsddu_cmd.mdns_ty='$DES'"
-		[ -z "$(eval "$uqgddu_cmd".mdns_product)" ] && [ -n "$DES" ] && eval "$uqsddu_cmd.mdns_product='($DES)'"
-		[ -z "$(eval "$uqgddu_cmd".mdns_mfg)" ] && [ -n "$MFG" ] && eval "$uqsddu_cmd.mdns_mfg='$MFG'"
-		[ -z "$(eval "$uqgddu_cmd".mdns_mdl)" ] && [ -n "$MDL" ] && eval "$uqsddu_cmd.mdns_mdl='$MDL'"
-		[ -z "$(eval "$uqgddu_cmd".mdns_cmd)" ] && [ -n "$CMD" ] && eval "$uqsddu_cmd.mdns_cmd='$CMD'"
-		[ -z "$(eval "$uqgddu_cmd".mdns_note)" ] && eval "$uqsddu_cmd.mdns_note='Located near router'"
-		# Optional ieee1284_id parameters
-		[ -z "$(eval "$uqgddu_cmd".mdns_cid)" ] && [ -n "$CID" ] && eval "$uqsddu_cmd.mdns_cid='$CID'"
-		[ -z "$(eval "$uqgddu_cmd".mdns_cls)" ] && [ -n "$CLS" ] && eval "$uqsddu_cmd.mdns_cls='$CLS'"
-		[ -z "$(eval "$uqgddu_cmd".mdns_cmt)" ] && [ -n "$CMT" ] && eval "$uqsddu_cmd.mdns_cmt='$CMT'"
-		[ -z "$(eval "$uqgddu_cmd".mdns_drv)" ] && [ -n "$DRV" ] && eval "$uqsddu_cmd.mdns_drv='$DRV'"
-		[ -z "$(eval "$uqgddu_cmd".mdns_sn)" ] && [ -n "$SN" ] && eval "$uqsddu_cmd.mdns_sn='$SN'"
-		[ -z "$(eval "$uqgddu_cmd".mdns_ver)" ] && [ -n "$VER" ] && eval "$uqsddu_cmd.mdns_ver='$VER'"
-
-		# No previously configured device? Configure this instance. Set CHAR_DEV so we can send driver.
-		[ $UCI_DEV_CFG_NUMBER -eq -1 ] && eval "$uqsddu_cmd.device=/dev/'$DEVNAME'" && CHAR_DEV=/dev/"$DEVNAME"
-
-		if [ -n "$MFG" ] && [ -n "$MDL" ] && [ -n "$DRIVER_BLOBNAME_TAIL" ] && [ -z "$(eval "$uqgddu_cmd".driver_file)" ]; then
-			DRIVER_FILE="$MFG"_"$MDL"_"$DRIVER_BLOBNAME_TAIL"
-			# Make blob filename more friendly: change space to underscore
-			DRIVER_FILE="$DRIVER_HOME"/"$(echo "$DRIVER_FILE" | sed 's/ /_/g')"
-			[ "$DEBUG" ] && echo DRIVER_FILE: "$DRIVER_FILE"
-			uci set "$DAEMON".@"$DAEMON"[$UCI_DEV_CFG_NUMBER].driver_file="$DRIVER_FILE"
-		fi
-
 	done
+
+	[ -n "$SN" ] || SN="$iSerialNumber"
+	set_printer_default bidirectional "$BIDIR"
+	set_printer_default port 0
+	set_printer_default enabled 1
+	set_printer_default usbvidpid "$THIS_USB_VIDPID"
+	[ -n "$MDL" ] && set_printer_default mdns 1
+	set_printer_default mdns_ty "$DES"
+	[ -n "$DES" ] && set_printer_default mdns_product "($DES)"
+	set_printer_default mdns_mfg "$MFG"
+	set_printer_default mdns_mdl "$MDL"
+	set_printer_default mdns_cmd "$CMD"
+	set_printer_default mdns_note 'Located near router'
+	set_printer_default mdns_cid "$CID"
+	set_printer_default mdns_cls "$CLS"
+	set_printer_default mdns_cmt "$CMT"
+	set_printer_default mdns_drv "$DRV"
+	set_printer_default mdns_sn "$SN"
+	set_printer_default mdns_ver "$VER"
+
+	if [ -n "$MFG" ] && [ -n "$MDL" ] && [ -n "$DRIVER_BLOBNAME_TAIL" ]; then
+		# USB strings must not introduce path components into a firmware name.
+		DRIVER_FILE=$(printf '%s_%s_%s' "$MFG" "$MDL" "$DRIVER_BLOBNAME_TAIL" |
+			LC_ALL=C tr -c 'A-Za-z0-9._-' '_')
+		set_printer_default driver_file "${DRIVER_HOME%/}/$DRIVER_FILE"
+	fi
 
 }
 
@@ -325,7 +322,7 @@ daemon_stop() {
 	/etc/init.d/$DAEMON stop
 }
 send_driver() {
-	DRIVER_FILE=$( uci -q get "$DAEMON".@"$DAEMON"[$UCI_DEV_CFG_NUMBER].driver_file )
+	DRIVER_FILE=$( uci -q get "$DAEMON.$UCI_DEV_SECTION.driver_file" )
 
 	if [ -e "$DRIVER_FILE" ]; then
 		logger -t "$DAEMON_HOTPLUG" -p "$DAEMON_INFO" "Sending driver to $DAEMON printer $THIS_USB_VIDPID"
@@ -348,7 +345,7 @@ case "$ACTION" in
 			chgrp lp /dev/"$DEVNAME"
 		}
 
-		get_and_store_printer_info
+		get_and_store_printer_info || exit 1
 
 		[ "$DEBUG" ] && echo THIS_USB_VIDPID: "$THIS_USB_VIDPID"
 		[ "$DEBUG" ] && echo CHAR_DEV: "$CHAR_DEV"
@@ -364,7 +361,7 @@ case "$ACTION" in
 		# Ensure dev is character device
 		if [ -n "$THIS_USB_VIDPID" ] && [ -c "$CHAR_DEV" ]; then
 			# if zero string, i.e. usb_ID is a match for $PRODUCT supplied by hotplug
-			if [ "$(uci -q get "$DAEMON".@"$DAEMON"[$UCI_DEV_CFG_NUMBER].usbvidpid)" = "$THIS_USB_VIDPID" ]; then
+			if [ "$(uci -q get "$DAEMON.$UCI_DEV_SECTION.usbvidpid")" = "$THIS_USB_VIDPID" ]; then
 				[ "$DEBUG" ] && echo "THIS_USB_VIDPID match for $DAEMON device $THIS_USB_VIDPID."
 
 				send_driver
@@ -374,6 +371,8 @@ case "$ACTION" in
 			fi
 		fi
 
+		# Persist only this package before restarting the service.
+		uci -q commit "$DAEMON" || exit 1
 		daemon_restart
 
 		;;
@@ -388,6 +387,3 @@ case "$ACTION" in
 	# 	# special action
 	# 	;;
 esac
-
-# Commit any changes
-[ -n "$( uci -q changes $DAEMON )" ] && uci commit $DAEMON
