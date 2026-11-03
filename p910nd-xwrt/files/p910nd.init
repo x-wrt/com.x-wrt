@@ -87,6 +87,8 @@ start_p910nd() {
 			# Call procd_add_mdns with the positional parameters
 			MDNS_INSTANCE_NAME="$mdns_ty" procd_add_mdns "$@"
 		fi
+		procd_set_param stdout 1 # relay stdout to logd
+		procd_set_param stderr 1 # relay stderr to logd
 		procd_close_instance
 	fi
 }
