@@ -496,7 +496,8 @@ for t in $targets; do
 	extra_utils=0
 	excludes="$excludes_basic"
 	case $t in
-		#>32M available for the installed rootfs/UBI/firmware
+		# Room for extra packages and Cloudflare Tunnel, including factory limits
+		# and fixed-size ext4 rootfs images, not just the installed partition.
 		TARGET_DEVICE_airoha_an7563_DEVICE_xiaomi_be5000|\
 		TARGET_DEVICE_ath79_nand_DEVICE_arris_sbr-ac1750|\
 		TARGET_DEVICE_ath79_nand_DEVICE_domywifi_dw33d|\
@@ -505,11 +506,6 @@ for t in $targets; do
 		TARGET_DEVICE_ath79_nand_DEVICE_glinet_gl-e750|\
 		TARGET_DEVICE_ath79_nand_DEVICE_glinet_gl-x1200-nor-nand|\
 		TARGET_DEVICE_ath79_nand_DEVICE_glinet_gl-xe300|\
-		TARGET_DEVICE_ath79_nand_DEVICE_netgear_r6100|\
-		TARGET_DEVICE_ath79_nand_DEVICE_netgear_wndr3700-v4|\
-		TARGET_DEVICE_ath79_nand_DEVICE_netgear_wndr4300|\
-		TARGET_DEVICE_ath79_nand_DEVICE_netgear_wndr4300-v2|\
-		TARGET_DEVICE_ath79_nand_DEVICE_netgear_wndr4500-v3|\
 		TARGET_DEVICE_bcm4908_generic_DEVICE_asus_gt-ac5300|\
 		TARGET_DEVICE_bcm53xx_generic_DEVICE_asus_rt-ac3100|\
 		TARGET_DEVICE_bcm53xx_generic_DEVICE_asus_rt-ac3200|\
@@ -570,7 +566,6 @@ for t in $targets; do
 		TARGET_DEVICE_qualcommax_ipq60xx_DEVICE_netgear_wax214|\
 		TARGET_DEVICE_qualcommax_ipq60xx_DEVICE_qihoo_360v6|\
 		TARGET_DEVICE_qualcommax_ipq807x_DEVICE_arcadyan_aw1000|\
-		TARGET_DEVICE_qualcommax_ipq807x_DEVICE_asus_rt-ax89x|\
 		TARGET_DEVICE_qualcommax_ipq807x_DEVICE_linksys_mx5300|\
 		TARGET_DEVICE_qualcommax_ipq807x_DEVICE_qnap_301w|\
 		TARGET_DEVICE_qualcommax_ipq807x_DEVICE_zbtlink_zbt-z800ax|\
@@ -664,6 +659,13 @@ for t in $targets; do
 		TARGET_DEVICE_rockchip_armv8_DEVICE_friendlyarm_nanopi-r6s|\
 		TARGET_DEVICE_rockchip_armv8_DEVICE_radxa_rock-5a|\
 		TARGET_DEVICE_rockchip_armv8_DEVICE_radxa_rock-5b|\
+		TARGET_DEVICE_rockchip_armv8_DEVICE_friendlyarm_nanopi-r2c|\
+		TARGET_DEVICE_rockchip_armv8_DEVICE_friendlyarm_nanopi-r2c-plus|\
+		TARGET_DEVICE_rockchip_armv8_DEVICE_friendlyarm_nanopi-r2s|\
+		TARGET_DEVICE_rockchip_armv8_DEVICE_friendlyarm_nanopi-r4s|\
+		TARGET_DEVICE_rockchip_armv8_DEVICE_friendlyarm_nanopi-r4s-enterprise|\
+		TARGET_DEVICE_rockchip_armv8_DEVICE_friendlyarm_nanopi-r5c|\
+		TARGET_DEVICE_rockchip_armv8_DEVICE_friendlyarm_nanopi-r5s|\
 		TARGET_DEVICE_qualcommax_ipq807x_DEVICE_linksys_mx8500|\
 		TARGET_DEVICE_x86_64_DEVICE_generic|\
 		TARGET_DEVICE_qualcommax_ipq807x_DEVICE_linksys_mx4200v1|\
@@ -735,13 +737,6 @@ for t in $targets; do
 		TARGET_DEVICE_bcm4908_generic_DEVICE_netgear_r8000p|\
 		TARGET_DEVICE_ipq806x_generic_DEVICE_ruijie_rg-mtfi-m520|\
 		TARGET_DEVICE_ipq806x_generic_DEVICE_tplink_ad7200|\
-		TARGET_DEVICE_rockchip_armv8_DEVICE_friendlyarm_nanopi-r2c|\
-		TARGET_DEVICE_rockchip_armv8_DEVICE_friendlyarm_nanopi-r2c-plus|\
-		TARGET_DEVICE_rockchip_armv8_DEVICE_friendlyarm_nanopi-r2s|\
-		TARGET_DEVICE_rockchip_armv8_DEVICE_friendlyarm_nanopi-r4s|\
-		TARGET_DEVICE_rockchip_armv8_DEVICE_friendlyarm_nanopi-r4s-enterprise|\
-		TARGET_DEVICE_rockchip_armv8_DEVICE_friendlyarm_nanopi-r5c|\
-		TARGET_DEVICE_rockchip_armv8_DEVICE_friendlyarm_nanopi-r5s|\
 		TARGET_DEVICE_bcm27xx_bcm2709_DEVICE_rpi-2|\
 		TARGET_DEVICE_bcm27xx_bcm2710_DEVICE_rpi-3|\
 		TARGET_DEVICE_bcm27xx_bcm2711_DEVICE_rpi-4|\
