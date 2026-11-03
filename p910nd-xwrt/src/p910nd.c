@@ -159,6 +159,8 @@ typedef struct {
 	int eof_read;		/* Nonzero indicates the input file has reached EOF. */
 	int eof_sent;		/* Nonzero indicates the output file has fully received all data. */
 	int err;		/* Nonzero indicates an error detected on the output file. */
+#define READ_ERR  0x01
+#define WRITE_ERR 0x02
 	char buffer[BUFFER_SIZE];	/* Buffered data goes here. */
 } Buffer_t;
 
@@ -293,7 +295,7 @@ void initBuffer(Buffer_t * b, int infd, int outfd, int detectEof)
 /* Sets the readfds and writefds (used by select) based on current buffer state. */
 void prepBuffer(Buffer_t * b, fd_set * readfds, fd_set * writefds)
 {
-	if (b->outfd>=0 && !b->err && (b->bytes != 0 || b->eof_read)) {
+	if (b->outfd>=0 && (!(b->err & WRITE_ERR)) && (b->bytes != 0 || b->eof_read)) {
 		FD_SET(b->outfd, writefds);
 	}
 	if (b->infd>=0 && !b->eof_read && b->bytes < sizeof(b->buffer)) {
@@ -334,7 +336,7 @@ ssize_t readBuffer(Buffer_t * b)
 			}
 		} else if (result < 0) {
 			dolog(LOGOPTS, "read: %m\n");
-			b->err = 1;
+			b->err |= READ_ERR;
 		}
 		else if (b->detectEof) {
 			dolog(LOG_DEBUG, "read: eof\n");
@@ -351,15 +353,11 @@ ssize_t writeBuffer(Buffer_t * b)
 {
 	int avail;
 	ssize_t result = 0;
-	if (b->bytes == 0 || b->err) {
+	if (b->bytes == 0 || (b->err & WRITE_ERR)) {
 		/* Buffer is empty. */
 		avail = 0;
-	} else if (b->endidx > b->startidx) {
-		/* Buffer is not wrapped. Can write all the data. */
-		avail = b->endidx - b->startidx;
 	} else {
-		/* Buffer is wrapped. Can only write the top (first) part. */
-		avail = sizeof(b->buffer) - b->startidx;
+		avail = b->bytes;
 	}
 	if (avail) {
 		if (b->outfd>=0)
@@ -369,7 +367,7 @@ ssize_t writeBuffer(Buffer_t * b)
 		if (result < 0) {
 			/* Mark the output file in an error condition. */
 			dolog(LOGOPTS, "write: %m\n");
-			b->err = 1;
+			b->err |= WRITE_ERR;
 		} else {
 			/* Zero or more bytes were written. */
 			b->startidx += result;
@@ -382,8 +380,10 @@ ssize_t writeBuffer(Buffer_t * b)
 			}
 		}
 	}
-	else if (b->eof_read)
+	else if (b->eof_read) {
 		b->eof_sent = 1;
+		dolog(LOG_DEBUG, "write: eof\n");
+	}
 	
 	/* Return the write() result, -1 (error) or #bytes written. */
 	return result;
@@ -393,6 +393,7 @@ ssize_t writeBuffer(Buffer_t * b)
 /* If bidir, also copy data from printer (lp) to network (fd). */
 int copy_stream(int fd, int lp)
 {
+	int need_clear_lp = 0;
 	int result;
 	Buffer_t networkToPrinterBuffer;
 	initBuffer(&networkToPrinterBuffer, fd, lp, 1);
@@ -410,7 +411,7 @@ int copy_stream(int fd, int lp)
 		gettimeofday(&last_read_time, 0);
 		/* Finish when network sent EOF. */
 		/* Although the printer to network stream may not be finished (does this matter?) */
-		while (!networkToPrinterBuffer.eof_sent && !networkToPrinterBuffer.err) {
+		while (!networkToPrinterBuffer.eof_sent && !(networkToPrinterBuffer.err & WRITE_ERR) && !(printerToNetworkBuffer.err & WRITE_ERR)) {
 			FD_ZERO(&readfds);
 			FD_ZERO(&writefds);
 			prepBuffer(&networkToPrinterBuffer, &readfds, &writefds);
@@ -427,6 +428,7 @@ int copy_stream(int fd, int lp)
 				else
 					FD_CLR(lp, &readfds);
 			}
+			gettimeofday(&now, 0);
 			timeout.tv_sec = 0;
 			timeout.tv_usec = 100000;
 			result = select(maxfd + 1, &readfds, &writefds, 0, &timeout);
@@ -436,11 +438,10 @@ int copy_stream(int fd, int lp)
 				/* Read network data. */
 				result = readBuffer(&networkToPrinterBuffer);
 				if (result > 0) {
-					dolog(LOG_DEBUG,"read %d bytes from network\n",result);
+					dolog(LOG_DEBUG,"%d.%d: read %d bytes from network\n", (int)now.tv_sec, (int)now.tv_usec, result);
 					gettimeofday(&last_read_time, 0);
 				}
 			}
-			gettimeofday(&now, 0);
 			if (now.tv_sec - last_read_time.tv_sec >= 30) {
 				dolog(LOG_NOTICE,"read no data from network for 30s, stop copy stream\n");
 				break;
@@ -449,7 +450,7 @@ int copy_stream(int fd, int lp)
 				/* Read printer data, but pace it more slowly. */
 				result = readBuffer(&printerToNetworkBuffer);
 				if (result > 0) {
-					dolog(LOG_DEBUG,"read %d bytes from printer\n",result);
+					dolog(LOG_DEBUG,"%d.%d: read %d bytes from printer\n", (int)now.tv_sec, (int)now.tv_usec, result);
 					gettimeofday(&then, 0);
 					// wait 100 msec before reading again.
 					then.tv_usec += 100000;
@@ -457,16 +458,35 @@ int copy_stream(int fd, int lp)
 						then.tv_usec -= 1000000;
 						then.tv_sec++;
 					}
-					timer = 1;
+					if (!need_clear_lp) {
+						timer = 1;
+					}
 				}
 			}
 			if (FD_ISSET(lp, &writefds)) {
 				/* Write data to printer. */
 				result = writeBuffer(&networkToPrinterBuffer);
-				if (result > 0)
-					dolog(LOG_DEBUG,"wrote %d bytes to printer\n",result);
+				if (result > 0) {
+					if (need_clear_lp) {
+						need_clear_lp = 0;
+						printerToNetworkBuffer.startidx = 0;
+						printerToNetworkBuffer.endidx = 0;
+						printerToNetworkBuffer.bytes = 0;
+						printerToNetworkBuffer.totalin = 0;
+						printerToNetworkBuffer.totalout = 0;
+					}
+					dolog(LOG_DEBUG,"%d.%d: wrote %d bytes to printer\n", (int)now.tv_sec, (int)now.tv_usec, result);
+				}
 			}
 			if (FD_ISSET(fd, &writefds) || printerToNetworkBuffer.outfd == -1) {
+				if (need_clear_lp) {
+					printerToNetworkBuffer.startidx = 0;
+					printerToNetworkBuffer.endidx = 0;
+					printerToNetworkBuffer.bytes = 0;
+					printerToNetworkBuffer.totalin = 0;
+					printerToNetworkBuffer.totalout = 0;
+					continue;
+				}
 				/* Write data to network. */
 				result = writeBuffer(&printerToNetworkBuffer);
 				/* If socket write error, discard further data from printer */
@@ -475,13 +495,18 @@ int copy_stream(int fd, int lp)
 					printerToNetworkBuffer.err = 0;
 					result = 0;
 					dolog(LOG_DEBUG,"network write error, discarding further printer data\n",result);
+					break;
 				}
 				else if (result > 0) {
 					if (printerToNetworkBuffer.outfd == -1)
 						dolog(LOG_DEBUG,"discarded %d bytes from printer\n",result);				
 					else
-						dolog(LOG_DEBUG,"wrote %d bytes to network\n",result);
+						dolog(LOG_DEBUG,"%d.%d: wrote %d bytes to network\n", (int)now.tv_sec, (int)now.tv_usec, result);
 				}
+			}
+			if ((networkToPrinterBuffer.err & READ_ERR) && now.tv_sec - last_read_time.tv_sec >= 10) {
+				dolog(LOG_NOTICE,"read no data from network err, stop copy stream in 10s\n");
+				break;
 			}
 		}
 		dolog(LOG_NOTICE,
