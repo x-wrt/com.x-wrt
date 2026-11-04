@@ -727,7 +727,7 @@ for t in $targets; do
 	esac
 	case $t in
 		#>=14M flash
-		# Keep all devices from the first case in this tier.
+		# Keep first-case devices here, except ipq50xx with RAM <=256 MiB.
 		TARGET_DEVICE_bcm53xx_generic_DEVICE_asus_rt-ac3100|\
 		TARGET_DEVICE_bcm53xx_generic_DEVICE_asus_rt-ac3200|\
 		TARGET_DEVICE_bcm53xx_generic_DEVICE_asus_rt-ac5300|\
@@ -769,7 +769,6 @@ for t in $targets; do
 		TARGET_DEVICE_rockchip_armv8_DEVICE_hinlink_h28k|\
 		TARGET_DEVICE_rockchip_armv8_DEVICE_hinlink_h66k|\
 		TARGET_DEVICE_rockchip_armv8_DEVICE_hinlink_h68k|\
-		TARGET_DEVICE_qualcommax_ipq50xx_DEVICE_cmcc_pz-l8|\
 		TARGET_DEVICE_qualcommax_ipq50xx_DEVICE_cmcc_mr3000d-ci|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_cudy_wr3000p-v1|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_cudy_wr3000e-v1|\
@@ -1068,6 +1067,8 @@ for t in $targets; do
 			extra_utils=1
 		;;
 		#>8M flash <14M
+		# qualcommax_ipq50xx devices with RAM <=256 MiB use this tier.
+		TARGET_DEVICE_qualcommax_ipq50xx_DEVICE_cmcc_pz-l8|\
 		TARGET_DEVICE_econet_en751221_DEVICE_chinamobile_gs3101|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_cudy_re3000-v1|\
 		TARGET_DEVICE_mediatek_filogic_DEVICE_cudy_wr3000-v1|\
