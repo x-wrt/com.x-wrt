@@ -105,10 +105,41 @@ CLI commands (configuration must already be saved):
 `check` performs a read-only preflight of zone discovery, API read scopes and
 the local web service. Cloudflare validates write scopes on deployment.
 
+### TLS handshake errors
+
+Network errors include curl's diagnostic text, with the API token redacted.
+`curl exit 35` means the TLS handshake failed; it does not identify an API token
+permission problem. If mbedTLS reports `-0x3A00` / `Elliptic curve is unsupported`,
+check the compiled certificate curves. Cloudflare's certificate chain can
+include P-384 even when its leaf certificate uses P-256.
+
+This package selects `CONFIG_MBEDTLS_ECP_DP_SECP384R1_ENABLED=y` when libcurl
+uses mbedTLS. Existing routers need the rebuilt **libmbedtls** package as well as
+the plugin update; updating only the Lua files cannot add the missing curve.
+From the firmware build root, with this package selected, run:
+
+```sh
+make defconfig
+make package/libs/mbedtls/compile V=s
+make package/feeds/x/luci-app-cloudflare-tunnel/compile V=s
+```
+
+For diagnostics on the router, these commands need no API token:
+
+```sh
+date -u
+curl -V
+curl -q -v --connect-timeout 10 --max-time 20 -o /dev/null https://api.cloudflare.com/client/v4/
+```
+
+An HTTP response confirms that TLS completed, even if the unauthenticated API
+request is rejected. Keep certificate verification enabled.
+
 ## Validation
 
 ```sh
 lua feeds/x/luci-app-cloudflare-tunnel/tests/deploy.lua
+lua feeds/x/luci-app-cloudflare-tunnel/tests/runtime.lua
 node feeds/x/luci-app-cloudflare-tunnel/tests/view.js
 ```
 

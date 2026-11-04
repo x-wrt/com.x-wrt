@@ -239,6 +239,15 @@ opkg install luci-app-cloudflare-tunnel
 
 确认路由器能正常上网、解析域名和访问 Cloudflare API，并检查系统时间。Tunnel 需要向 Cloudflare 发起 **7844 端口的出站连接**：QUIC 使用 UDP，HTTP/2 使用 TCP；相关要求见[官方防火墙说明](https://developers.cloudflare.com/cloudflare-one/networks/connectors/cloudflare-tunnel/configure-tunnels/tunnel-with-firewall/)。这里检查的是出站通信，无需为路由器管理页开放 WAN 入站端口。
 
+如果部署时报 `curl exit 35`，表示访问 Cloudflare API 的 TLS 握手失败。可以在路由器上执行以下不含 Token 的命令，查看 TLS 库版本和具体错误：
+
+```sh
+curl -V
+curl -q -v --connect-timeout 10 --max-time 20 -o /dev/null https://api.cloudflare.com/client/v4/
+```
+
+如果出现 `-0x3A00` 或 `Elliptic curve is unsupported`，通常是固件裁剪了 mbedTLS 的证书曲线支持。Cloudflare 证书链可能包含 P-384，末端网站证书使用 P-256 也仍然需要解析这条链。编译固件时需要启用 `CONFIG_MBEDTLS_ECP_DP_SECP384R1_ENABLED=y`；本插件会在 libcurl 使用 mbedTLS 时自动选择此项。已有路由器还需要安装重新编译的 **libmbedtls** 包，单独更新插件无法补上曲线支持，编译命令见 [README 的 TLS 排查说明](README.md#tls-handshake-errors)。保留证书校验，不要通过添加 `-k` 来处理。
+
 ### 6. 出现 HTTP 502，或提示本地管理服务不可达
 
 先在局域网确认路由器 Web 管理页面正常。本插件默认连接本机 `http://127.0.0.1:80`，会处理管理页跳转到 HTTPS 的情况。如果自行改过管理端口，需要同步调整插件的本地服务地址，操作见 [README 的运行说明](README.md#runtime)。

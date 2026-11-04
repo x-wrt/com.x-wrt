@@ -4,7 +4,7 @@ include $(TOPDIR)/rules.mk
 
 PKG_NAME:=luci-app-cloudflare-tunnel
 PKG_VERSION:=1.0.0
-PKG_RELEASE:=7
+PKG_RELEASE:=8
 PKG_LICENSE:=GPL-3.0-only
 PKG_MAINTAINER:=Chen Minqiang <ptpt52@gmail.com>
 PKG_BUILD_DEPENDS:=luci-base/host
@@ -17,6 +17,8 @@ define Package/luci-app-cloudflare-tunnel
 	TITLE:=Automatically publish this router through Cloudflare Tunnel
 	PKGARCH:=all
 	DEPENDS:=+luci-base +cloudflared +curl +ca-bundle +lua +libuci-lua +libubus-lua +luci-lib-jsonc +luci-lib-nixio
+	# Cloudflare's certificate chain can include a P-384 intermediate/root.
+	DEPENDS+=+@LIBCURL_MBEDTLS:MBEDTLS_ECP_DP_SECP384R1_ENABLED
 endef
 
 define Package/luci-app-cloudflare-tunnel/description

@@ -56,24 +56,38 @@ local function update_config(values)
 	if not ok then core.fail("storage", "Cannot commit the router configuration.") end
 end
 
+local function read_output(file, limit)
+	file:seek(0, "set")
+	local chunks, size = {}, 0
+	while size <= limit do
+		local chunk = file:read(math.min(8192, limit - size + 1))
+		if not chunk or chunk == "" then break end
+		chunks[#chunks + 1] = chunk
+		size = size + #chunk
+	end
+	file:close()
+	return size <= limit and table.concat(chunks) or nil
+end
+
 -- No shell is involved. API credentials travel through an unlinked 0600
 -- stdin file, never argv, a world-readable file, or the RPC response.
 local function execute(argv, input, timeout)
 	local output = nixio.mkstemp("cloudflare-response")
 	local stdin = nixio.mkstemp("cloudflare-request")
-	if not output or not stdin then
+	local stderr = nixio.mkstemp("cloudflare-error")
+	if not output or not stdin or not stderr then
 		if output then output:close() end
 		if stdin then stdin:close() end
+		if stderr then stderr:close() end
 		core.fail("storage", "Cannot allocate a temporary request file.")
 	end
 	stdin:writeall(input or "")
 	stdin:seek(0, "set")
 	local pid = nixio.fork()
-	if not pid then stdin:close(); output:close(); core.fail("process", "Cannot start a helper process.") end
+	if not pid then stdin:close(); output:close(); stderr:close(); core.fail("process", "Cannot start a helper process.") end
 	if pid == 0 then
-		local null = nixio.open("/dev/null", "r+")
-		if not null or not nixio.dup(stdin, nixio.stdin) or not nixio.dup(output, nixio.stdout) or not nixio.dup(null, nixio.stderr) then os.exit(127) end
-		stdin:close(); output:close(); null:close()
+		if not nixio.dup(stdin, nixio.stdin) or not nixio.dup(output, nixio.stdout) or not nixio.dup(stderr, nixio.stderr) then os.exit(127) end
+		stdin:close(); output:close(); stderr:close()
 		nixio.exec(unpack(argv))
 		os.exit(127)
 	end
@@ -85,17 +99,11 @@ local function execute(argv, input, timeout)
 		nixio.poll({}, 100)
 	end
 	if not code then nixio.kill(pid, 9); nixio.waitpid(pid); code = 124 end
-	output:seek(0, "set")
-	local chunks, size = {}, 0
-	while size <= 2097152 do
-		local chunk = output:read(8192)
-		if not chunk or chunk == "" then break end
-		chunks[#chunks + 1] = chunk
-		size = size + #chunk
-	end
-	output:close()
-	if size > 2097152 then return "", 125 end
-	return table.concat(chunks), code
+	local raw = read_output(output, 2097152)
+	-- Discard oversized diagnostics so a truncated token cannot be exposed.
+	local detail = read_output(stderr, 8192) or ""
+	if not raw then return "", 125 end
+	return raw, code, detail
 end
 
 local function curl_quote(value)
@@ -116,9 +124,12 @@ local function request(url, options)
 	if options.resolve then lines[#lines + 1] = "resolve = " .. curl_quote(options.resolve) end
 	if options.insecure then lines[#lines + 1] = "insecure" end
 	if options.include then lines[#lines + 1] = "include" end
-	local raw, code = execute({ "/usr/bin/curl", "--config", "-" }, table.concat(lines, "\n") .. "\n", (options.timeout or 35) + 5)
+	-- Ignore ambient curlrc options such as verbose logging or insecure TLS.
+	local raw, code, detail = execute({ "/usr/bin/curl", "-q", "--config", "-" }, table.concat(lines, "\n") .. "\n", (options.timeout or 35) + 5)
+	if options.token then detail = (detail or ""):gsub(options.token:gsub("([^%w])", "%%%1"), "[redacted]") end
+	detail = (detail or ""):gsub("%c", " "):match("^%s*(.-)%s*$"):sub(1, 1000)
 	local body, status = raw:match("^(.*)\n(%d%d%d)$")
-	return body or "", tonumber(status) or 0, code
+	return body or "", tonumber(status) or 0, code, detail
 end
 
 local permissions = {
@@ -129,15 +140,26 @@ local permissions = {
 
 local function client(token)
 	return function(method, path, body, scope)
-		local raw, status, code
+		local raw, status, code, detail
 		for attempt = 1, 3 do
-			raw, status, code = request("https://api.cloudflare.com/client/v4" .. path,
+			raw, status, code, detail = request("https://api.cloudflare.com/client/v4" .. path,
 				{ method = method, token = token, body = body })
 			-- Retrying a POST after a lost response can create duplicate resources.
 			if method ~= "GET" or (status ~= 429 and status < 500) or attempt == 3 then break end
 			nixio.poll({}, attempt * 1000)
 		end
-		if code ~= 0 then core.fail("network", "Cannot reach Cloudflare (curl exit " .. code .. "). Check Internet access and the router clock.") end
+		if code ~= 0 then
+			local hint = "Check Internet access and the router clock."
+			if code == 35 then
+				hint = "TLS handshake failed. Check the router's TLS library and proxy settings."
+				if detail:find("-0x3A00", 1, true) or detail:find("Elliptic curve is unsupported", 1, true) then
+					hint = "The router's mbedTLS build lacks a certificate curve. Rebuild libmbedtls with CONFIG_MBEDTLS_ECP_DP_SECP384R1_ENABLED=y."
+				end
+			elseif code == 60 or code == 77 then
+				hint = "Check the router clock and CA certificates (ca-bundle)."
+			end
+			core.fail("network", "Cannot reach Cloudflare (curl exit " .. code .. "). " .. hint .. (detail ~= "" and " Details: " .. detail or ""))
+		end
 		if status == 401 or status == 403 then
 			core.fail("permission_" .. (scope or "zone"), "Cloudflare rejected this operation. The same API token needs " .. (permissions[scope] or permissions.zone) .. ".")
 		end
