@@ -3,8 +3,22 @@
 m = Map("xwan", translate("Multi-WAN Dialing"))
 
 s = m:section(TypedSection, "xwan", translate("Multi-WAN Dialing Settings"))
-s.addremove = false
+s.addremove = true
 s.anonymous = true
+
+e = s:option(ListValue, "interface", translate("Source WAN interface"))
+m.uci:foreach("network", "interface", function(section)
+	local name = section[".name"]
+	local proto = section.proto
+	local generated = section.xwan == "1" or name:match("^x.+%d%d$") or
+		(section.device or ""):match("^mv.+%d%d$") or
+		(section.ifname or ""):match("^mv.+%d%d$")
+	if name ~= "loopback" and name ~= "lan" and proto ~= "dhcpv6" and not generated then
+		e:value(name, name .. (section.device and " (" .. section.device .. ")" or ""))
+	end
+end)
+e.rmempty = false
+e.default = "wan"
 
 e = s:option(Flag, "enabled", translate("Enable multi-WAN dialing"), translate("Create multiple WAN connections on a single physical interface."))
 e.default = e.disabled

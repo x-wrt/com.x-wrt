@@ -6,198 +6,328 @@ boot() {
 	XBOOT=1 #do nothing
 }
 
+owned() {
+	[ "$(uci -q get "$1.xwan")" = "1" ]
+}
+
+set_options() {
+	local section="$1" option key
+	shift
+	for option; do
+		key="$section.${option%%=*}"
+		[ "$(uci -q get "$key")" = "${option#*=}" ] || uci set "$key=${option#*=}"
+	done
+}
+
+ensure_owned() {
+	local type owner source="${3:-}"
+	type=$(uci -q get "$1")
+	if [ -n "$type" ]; then
+		owner=$(uci -q get "$1.xwan_source")
+		if ! owned "$1" || [ "$type" != "$2" ] ||
+			{ [ -n "$source" ] && [ -n "$owner" ] && [ "$owner" != "$source" ]; }; then
+			logger -t xwan "Keeping existing section: $1"
+			return 1
+		fi
+	else
+		uci set "$1=$2" || return 1
+		uci set "$1.xwan=1" || return 1
+	fi
+	[ -z "$source" ] || set_options "$1" "xwan_source=$source"
+	XWAN_KEEP="$XWAN_KEEP $1"
+}
+
+wan_zones() {
+	local zone
+	for zone in $(uci -q -X show firewall | sed -n 's/^firewall\.\([^.=]*\)=zone$/\1/p'); do
+		[ "$(uci -q get firewall.$zone.name)" != wan ] || echo "firewall.$zone"
+	done
+}
+
+cleanup_xwan() {
+	local package section zone
+	# Names alone (including legacy xwanNN names) do not establish ownership.
+	for package in network mwan3; do
+		for section in $(uci -q -X show "$package" | sed -n "s/^$package\.\([^.=]*\)=.*/\1/p"); do
+			owned "$package.$section" || continue
+			case " $XWAN_KEEP " in *" $package.$section "*) continue ;; esac
+			if [ "$package" = network ] && [ "$(uci -q get network.$section.xwan_firewall)" = 1 ]; then
+				for zone in $(wan_zones); do
+					case " $(uci -q get $zone.network) " in
+						*" $section "*) uci del_list "$zone.network=$section" ;;
+					esac
+				done
+			fi
+			uci delete "$package.$section"
+		done
+	done
+}
+
 mwan3_add_one() {
-	local intf=$1
-	uci set mwan3.${intf}=interface
-	uci set mwan3.${intf}.enabled='1'
-	test -n "$family" && uci set mwan3.${intf}.family="$family"
-	uci set mwan3.${intf}.initial_state='online'
-	uci delete mwan3.${intf}.track_ip 2>/dev/null
-	for tip in $track_ip; do uci add_list mwan3.${intf}.track_ip="$tip"; done
-	uci set mwan3.${intf}.track_method='ping'
-	uci set mwan3.${intf}.reliability='1'
-	uci set mwan3.${intf}.count='1'
-	uci set mwan3.${intf}.size='56'
-	uci set mwan3.${intf}.max_ttl='60'
-	uci set mwan3.${intf}.check_quality='0'
-	uci set mwan3.${intf}.timeout='2'
-	uci set mwan3.${intf}.interval='20'
-	uci set mwan3.${intf}.failure_interval='5'
-	uci set mwan3.${intf}.recovery_interval='5'
-	uci set mwan3.${intf}.down='3'
-	uci set mwan3.${intf}.up='3'
+	local intf="$1" member="xwan_${1}_m100_w100" type
+	# mwan3_iface_in_ leaves 13 characters in an xtables chain name.
+	[ ${#intf} -le 13 ] || {
+		logger -t xwan "Source name too long for mwan3 tracking: $intf"
+		return
+	}
+	# Existing source tracking may be user-managed: reuse it without changing it.
+	type=$(uci -q get mwan3.$intf)
+	[ -z "$type" ] || [ "$type" = interface ] || return
+	if uci -q get mwan3.$member >/dev/null && ! owned mwan3.$member; then
+		logger -t xwan "Keeping existing mwan3 section: $member"
+		return
+	fi
+	if [ -z "$type" ] || owned mwan3.$intf; then
+		ensure_owned mwan3.$intf interface || return
+		set_options mwan3.$intf enabled=1 "family=${family:-any}" initial_state=online
+		if [ "$(uci -q get mwan3.$intf.track_ip)" != "$track_ip" ]; then
+			uci -q get mwan3.$intf.track_ip >/dev/null && uci delete mwan3.$intf.track_ip
+			for tip in $track_ip; do uci add_list mwan3.$intf.track_ip="$tip"; done
+		fi
+		set_options mwan3.$intf track_method=ping reliability=1 count=1 size=56 max_ttl=60 check_quality=0 \
+			timeout=2 interval=20 failure_interval=5 recovery_interval=5 down=3 up=3
+	elif [ "$(uci -q get mwan3.$intf.enabled)" != 1 ]; then
+		# Reusing a disabled user interface would leave a non-functional member.
+		return
+	fi
+	ensure_owned mwan3.$member member || return
+	set_options mwan3.$member "interface=$intf" metric=100 weight=100
+	XWAN_MEMBERS="${XWAN_MEMBERS:+$XWAN_MEMBERS }$member"
+}
 
-	uci set mwan3.${intf}_m100_w100=member
-	uci set mwan3.${intf}_m100_w100.interface="${intf}"
-	uci set mwan3.${intf}_m100_w100.metric='100'
-	uci set mwan3.${intf}_m100_w100.weight='100'
+balancing_available() {
+	local section
+	# Do not overwrite even a namespaced section unless we created it.
+	for section in xwan_balanced xwan_https xwan_https_v6 xwan_default xwan_default_v6; do
+		if uci -q get mwan3.$section >/dev/null && ! owned mwan3.$section; then
+			logger -t xwan "Automatic balancing skipped: existing mwan3 section $section"
+			return 1
+		fi
+	done
+	return 0
+}
 
-	uci add_list mwan3.balanced.use_member="${intf}_m100_w100"
+# Insert only our rules, keeping the relative order of all user rules.
+# Insert before matching broad defaults/unqualified TCP/443 rules so they do
+# not hide automatic balancing. Earlier specific user rules retain precedence.
+order_mwan_rule() {
+	local rule="$1" family="$2" section pos=-1 value option
+	for section in $(uci -q -X show mwan3 | sed -n 's/^mwan3\.\([^.=]*\)=.*/\1/p'); do
+		pos=$((pos + 1))
+		[ "$section" != "$rule" ] || return 0
+		[ "$(uci -q get mwan3.$section)" = rule ] || continue
+		case "$(uci -q get mwan3.$section.family)" in ""|any|"$family") ;; *) continue ;; esac
+		case "$(uci -q get mwan3.$section.dest_ip)" in
+			"") ;;
+			0.0.0.0/0) [ "$family" = ipv4 ] || continue ;;
+			::/0) [ "$family" = ipv6 ] || continue ;;
+			*) continue ;;
+		esac
+		value=
+		for option in src_ip src_port src_iface ipset; do
+			value="$value$(uci -q get mwan3.$section.$option)"
+		done
+		[ -z "$value" ] || continue
+		case "$(uci -q get mwan3.$section.proto):$(uci -q get mwan3.$section.dest_port)" in
+			:|all:) ;;
+			tcp:443) case "$rule" in xwan_https*) ;; *) continue ;; esac ;;
+			*) continue ;;
+		esac
+		uci reorder "mwan3.$rule=$pos"
+		return $?
+	done
+	return 0
+}
+
+configure_mwan_rules() {
+	local member family suffix destination rule
+	[ -n "$XWAN_MEMBERS" ] || return 0
+	ensure_owned mwan3.xwan_balanced policy || return 1
+	set_options mwan3.xwan_balanced last_resort=unreachable
+	if [ "$(uci -q get mwan3.xwan_balanced.use_member)" != "$XWAN_MEMBERS" ]; then
+		uci -q get mwan3.xwan_balanced.use_member >/dev/null && uci delete mwan3.xwan_balanced.use_member
+		for member in $XWAN_MEMBERS; do uci add_list mwan3.xwan_balanced.use_member="$member"; done
+	fi
+	# One shared policy; each rule has an explicit family and placement.
+	for family in ipv4 ipv6; do
+		suffix= destination=0.0.0.0/0
+		[ "$family" != ipv6 ] || { suffix=_v6; destination=::/0; }
+		rule=xwan_https$suffix
+		ensure_owned mwan3.$rule rule || return 1
+		set_options mwan3.$rule "family=$family" sticky=1 dest_port=443 proto=tcp use_policy=xwan_balanced
+		order_mwan_rule "$rule" "$family"
+		rule=xwan_default$suffix
+		ensure_owned mwan3.$rule rule || return 1
+		set_options mwan3.$rule "dest_ip=$destination" use_policy=xwan_balanced "family=$family"
+		order_mwan_rule "$rule" "$family"
+	done
 }
 
 add_to_zone_wan() {
-	local idx=0
-
-	while uci get firewall.@zone[$idx] >/dev/null 2>&1; do
-		if [ "$(uci get firewall.@zone[$idx].name)" = "wan" ]; then
-			networks=`uci get firewall.@zone[$idx].network`;
-			for nw in $networks; do
-				[ "$nw" = "$1" ] && return
-			done
-			uci set firewall.@zone[$idx].network="`echo $networks $1`"
-			uci commit firewall
-			return
-		fi
-		idx=$((idx + 1))
+	local zone
+	for zone in $(wan_zones); do
+		case " $(uci -q get $zone.network) " in *" $1 "*) return 0 ;; esac
+		uci add_list "$zone.network=$1"
+		uci set "network.$1.xwan_firewall=1"
+		return
 	done
 }
 
 add_xwan() {
-	local cfg="$1"
-	local enabled number balanced
-	local device id idx ifname
-	local change=0
-
+	local cfg="$1" enabled number balanced base family track_ip
+	local device ifname base_metric id idx intf devsection option devname
 	config_get enabled "$cfg" enabled
+	[ "$enabled" = 1 ] || return 0
 	config_get number "$cfg" number
 	config_get balanced "$cfg" balanced
+	config_get base "$cfg" interface wan
 	config_get family "$cfg" family
 	config_get track_ip "$cfg" track_ip
+	case "$base" in
+		""|*[!A-Za-z0-9_]*|x*[0-9][0-9]) return 1 ;;
+	esac
+	[ "$(uci -q get network.$base)" = interface ] || return 1
+	owned network.$base && return 1
+	device=$(uci -q get network.$base.device)
+	ifname=$(uci -q get network.$base.ifname)
+	case "$device $ifname" in
+		mv*[0-9][0-9]\ *|*\ mv*[0-9][0-9]) return 1 ;;
+	esac
+	[ -n "$device$ifname" ] || return 1
+	case "$number" in
+		""|*[!0-9]*) return 1 ;;
+	esac
+	[ "$number" -ge 1 ] && [ "$number" -le 60 ] || return 1
+	case " $XWAN_SOURCES " in
+		*" $base "*) logger -t xwan "Duplicate source interface: $base"; return 1 ;;
+	esac
+	XWAN_SOURCES="${XWAN_SOURCES:+$XWAN_SOURCES }$base"
+	case "$family" in ""|ipv4|ipv6) ;; *) return 1 ;; esac
+	base_metric=$(uci -q get network.$base.metric)
+	case "$base_metric" in *[!0-9]*) return 1 ;; esac
+	base_metric=${base_metric:-40}
+	set_options network.$base "metric=$base_metric"
+	[ "$XWAN_BALANCING" = 1 ] || balanced=0
+	if [ "$balanced" = 1 ]; then family="" mwan3_add_one "$base" || return 1; fi
+	id=1
+	while [ "$id" -lt "$number" ]; do
+		idx=$(printf %02u "$id")
+		intf="x${base}${idx}"
+		# Leave room for netifd's pppoe- prefix (Linux IFNAMSIZ is 16).
+		[ ${#intf} -le 9 ] || intf="x$(printf %s "$base" | md5sum | head -c6)$idx"
+		devsection="dev_$intf"
+		devname="mv${base}${idx}"
+		[ ${#devname} -le 15 ] || devname="mv$(printf %s "$base" | md5sum | head -c10)$idx"
+		ensure_owned network.$devsection device "$base" || return 1
+		set_options network.$devsection "ifname=${ifname:-$device}" type=macvlan mode=vepa "name=$devname"
+		if ! uci -q get network.$intf >/dev/null; then
+			ensure_owned network.$intf interface "$base" || return 1
+			for option in $(uci -q show network.$base | sed -n "s/^network\.$base\.\([^=]*\)=.*/\1/p"); do
+				case "$option" in xwan|xwan_source|xwan_firewall) continue ;; esac
+				uci set "network.$intf.$option=$(uci -q get network.$base.$option)"
+			done
+			[ -z "$device" ] || uci set network.$intf.device="$devname"
+			[ -z "$ifname" ] || uci set network.$intf.ifname="$devname"
+			uci set network.$intf.metric=$((base_metric + id))
+			[ "$(uci -q get network.$base.proto)" != static ] || uci set network.$intf.auto='0'
+		else
+			ensure_owned network.$intf interface "$base" || return 1
+		fi
+		add_to_zone_wan "$intf"
+		if [ "$balanced" = 1 ]; then mwan3_add_one "$intf" || return 1; fi
+		id=$((id + 1))
+	done
+	return 0
+}
 
-	xwan_new=$(uci show xwan | md5sum | head -c32)
-	xwan_old=$(uci get mwan3.globals.xwan_md5)
+# config_foreach does not propagate every callback's failure.
+stage_xwan() {
+	if ! add_xwan "$1"; then
+		logger -t xwan "Cannot configure enabled group $1; no changes committed"
+		XWAN_ERROR=1
+	fi
+}
 
-	[ "x$enabled" = "x1" ] || return 0
-
-	[ "x${xwan_new}" = "x${xwan_old}" ] || {
-		while uci delete mwan3.@interface[0] >/dev/null 2>&1; do :; done
-		while uci delete mwan3.@member[0] >/dev/null 2>&1; do :; done
-		while uci delete mwan3.@policy[0] >/dev/null 2>&1; do :; done
-		change=1
+start() (
+	local stage package packages="network firewall" pending changed=
+	mkdir /var/lock/xwan-config.lock 2>/dev/null || {
+		logger -t xwan "Another xwan configuration run is in progress"
+		return 1
 	}
-
-	id=0
-	device=$(uci get network.wan.device 2>/dev/null)
-	ifname=$(uci get network.wan.ifname 2>/dev/null)
-
-	if [ "x$enabled" = "x1" ] && test $number -ge 1 && test -n "$device$ifname"; then
-		uci get network.wan.metric >/dev/null 2>&1 || {
-			uci set network.wan.metric=40
-			change=1
+	trap 'rm -rf "$stage"; rmdir /var/lock/xwan-config.lock' EXIT
+	trap 'exit 1' HUP INT TERM
+	umask 077
+	stage=$(mktemp -d /tmp/xwan.XXXXXX) || return 1
+	# mwan3 is optional when only creating additional network interfaces.
+	if [ -f /etc/config/mwan3 ]; then
+		packages="$packages mwan3"
+	else
+		logger -t xwan "No mwan3 configuration; automatic balancing is unavailable"
+	fi
+	# Never mix this run with pending edits, including edits to its input.
+	for package in xwan $packages; do
+		pending=$(uci changes "$package") || return 1
+		[ -z "$pending" ] || {
+			logger -t xwan "Pending UCI changes in $package; apply or revert them first"
+			return 1
 		}
-		[ "x$balanced" = "x1" ] && {
-			uci delete mwan3.balanced 2>/dev/null
-			uci set mwan3.balanced=policy
-			uci set mwan3.balanced.last_resort='unreachable'
-			uci get mwan3.wan >/dev/null 2>&1 || {
-				family="" track_ip="$track_ip" mwan3_add_one wan
-				change=1
-			}
-			uci get mwan3.https &>/dev/null || {
-				uci set mwan3.https=rule
-				uci set mwan3.https.sticky='1'
-				uci set mwan3.https.dest_port='443'
-				uci set mwan3.https.proto='tcp'
-				uci set mwan3.https.use_policy='balanced'
-				uci set mwan3.default_rule_v4=rule
-				uci set mwan3.default_rule_v4.dest_ip='0.0.0.0/0'
-				uci set mwan3.default_rule_v4.use_policy='balanced'
-				uci set mwan3.default_rule_v4.family='ipv4'
-				uci set mwan3.default_rule_v6=rule
-				uci set mwan3.default_rule_v6.dest_ip='::/0'
-				uci set mwan3.default_rule_v6.use_policy='balanced'
-				uci set mwan3.default_rule_v6.family='ipv6'
-			}
+		uci export "$package" > "$stage/$package.before" || return 1
+	done
+	config_load xwan || return 1
+	# All generation and cleanup use native UCI private deltas. Mutation errors
+	# are remembered even when a caller ignores their exit status.
+	uci() {
+		local op="$1" status
+		[ "$op" != -q ] || op="$2"
+		command uci -t "$stage" "$@" && return 0
+		status=$?
+		case "$op" in
+			set|delete|add_list|del_list|reorder)
+				XWAN_ERROR=1
+				logger -t xwan "UCI $op failed; no changes committed"
+				;;
+		esac
+		return "$status"
+	}
+	XWAN_KEEP= XWAN_SOURCES= XWAN_MEMBERS= XWAN_ERROR= XWAN_BALANCING=0
+	[ ! -f /etc/config/mwan3 ] || { balancing_available && XWAN_BALANCING=1; }
+	config_foreach stage_xwan xwan
+	[ -z "$XWAN_ERROR" ] || return 1
+	configure_mwan_rules || return 1
+	[ -z "$XWAN_ERROR" ] || return 1
+	# Only a complete, successfully generated keep set authorizes removals.
+	cleanup_xwan
+	[ -z "$XWAN_ERROR" ] || return 1
+	for package in xwan $packages; do
+		pending=$(command uci changes "$package") || return 1
+		command uci export "$package" > "$stage/$package.now" || return 1
+		if [ -n "$pending" ] || ! cmp -s "$stage/$package.before" "$stage/$package.now"; then
+			logger -t xwan "Configuration changed during generation: $package; retry after applying edits"
+			return 1
+		fi
+	done
+	for package in $packages; do
+		pending=$(uci changes "$package") || return 1
+		[ -z "$pending" ] || changed="$changed $package"
+	done
+	# UCI commits packages individually, not as a cross-package transaction.
+	# On a commit error stop and do not reload partially committed configuration.
+	for package in $changed; do
+		uci commit "$package" || {
+			logger -t xwan "Commit failed for $package; earlier packages may be committed; services not reloaded"
+			return 1
 		}
-		while test $number -ge 2; do
-			id=$((id + 1))
-			idx=$(printf %02u $id)
-			uci get network.device$idx >/dev/null 2>&1 || {
-				uci set network.device$idx=device
-				test -n "$device" && uci set network.device$idx.ifname="$device"
-				test -n "$ifname" && uci set network.device$idx.ifname="$ifname"
-				uci set network.device$idx.type="macvlan"
-				uci set network.device$idx.mode="vepa"
-				uci set network.device$idx.name="mvlan$idx"
-				change=1
-			}
-
-			uci get network.xwan$idx >/dev/null 2>&1 || {
-				uci set network.xwan$idx=interface
-				uci show network.wan | grep "network\.wan\." | sed "s/^network\.wan\.//g;s/=/ /;s,',,g" | while read _k _v; do
-					uci set network.xwan$idx.$_k="$_v"
-				done
-				test -n "$device" && uci set network.xwan$idx.device="mvlan$idx"
-				test -n "$ifname" && uci set network.xwan$idx.ifname="mvlan$idx"
-				uci set network.xwan$idx.metric=$((40 + id))
-				[ "x`uci get network.wan.proto 2>/dev/null`" = "xstatic" ] && \
-				uci set network.xwan$idx.auto='0'
-				change=1
-			}
-
-			add_to_zone_wan xwan$idx
-
-			[ "x$balanced" = "x1" ] && {
-				uci get mwan3.xwan$idx >/dev/null 2>&1 || {
-					family="$family" track_ip="$track_ip" mwan3_add_one xwan$idx
-					change=1
-				}
-			}
-			test $id -ge $((number - 1)) && break
+	done
+	if [ "$XRELOAD" = 1 ]; then
+		for package in $packages; do
+			case " $changed " in
+				*" $package "*) /etc/init.d/$package reload ;;
+				*" network "*) [ "$package" != mwan3 ] || /etc/init.d/mwan3 reload ;;
+			esac
 		done
 	fi
-
-	#clean up firewall
-	id=$((number))
-	idx=0
-	while uci get firewall.@zone[$idx] >/dev/null 2>&1; do
-		if [ "$(uci get firewall.@zone[$idx].name)" = "wan" ]; then
-			networks=`uci get firewall.@zone[$idx].network`;
-			uci delete firewall.@zone[$idx].network >/dev/null 2>&1
-			for nw in $networks; do
-				num=${nw:4}
-				[ "${nw:0:4}" = "xwan" ] && [ ${#num} = 2 ] && [ $num -ge $id ] && continue
-				uci add_list firewall.@zone[$idx].network="$nw"
-			done
-			uci commit firewall
-			break
-		fi
-		idx=$((idx + 1))
-	done
-	
-	#clean up
-	id=$((number))
-	idx=$(printf %02u $id)
-	while :; do
-		uci get network.device$idx >/dev/null 2>&1 && {
-			uci delete network.device$idx
-			change=1
-		}
-		uci get network.xwan$idx >/dev/null 2>&1 && {
-			uci delete network.xwan$idx
-			change=1
-		}
-		id=$((id + 1))
-		idx=$(printf %02u $id)
-		uci get network.device$idx >/dev/null 2>&1 || uci get network.xwan$idx >/dev/null 2>&1 || break
-	done
-
-	[ "x$change" = "x1" ] && {
-		uci commit network
-		uci set mwan3.globals.xwan_md5="${xwan_new}"
-		uci commit mwan3
-		[ "x$XRELOAD" = "x1" ] && {
-			/etc/init.d/network reload
-			/etc/init.d/firewall reload
-			/etc/init.d/mwan3 reload
-		}
-	}
-}
-
-start() {
-	config_load xwan
-	config_foreach add_xwan xwan
-}
+	return 0
+)
 
 restart() {
 	XRELOAD=1 start
