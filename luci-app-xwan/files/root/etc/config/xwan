@@ -1,4 +1,5 @@
 config xwan
+	option interface 'wan'
 	option enabled '0'
 	option number '1'
 	option balanced '1'
