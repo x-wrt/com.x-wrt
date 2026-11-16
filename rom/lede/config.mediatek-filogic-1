@@ -97,6 +97,7 @@ CONFIG_TARGET_MULTI_PROFILE=y
 # CONFIG_TARGET_mediatek_filogic_DEVICE_bananapi_bpi-r4-pro-8x is not set
 # CONFIG_TARGET_mediatek_filogic_DEVICE_bananapi_bpi-r4-lite is not set
 # CONFIG_TARGET_mediatek_filogic_DEVICE_bazis_ax3000wm is not set
+# CONFIG_TARGET_mediatek_filogic_DEVICE_benton_sn-r1 is not set
 # CONFIG_TARGET_mediatek_filogic_DEVICE_buffalo_wsr-3000ax4p is not set
 # CONFIG_TARGET_mediatek_filogic_DEVICE_buffalo_wsr-6000ax8 is not set
 # CONFIG_TARGET_mediatek_filogic_DEVICE_cetron_ct3003-ubootlayout is not set
@@ -356,6 +357,7 @@ CONFIG_TARGET_DEVICE_PACKAGES_mediatek_filogic_DEVICE_bananapi_bpi-r4-lite="apk-
 # CONFIG_TARGET_DEVICE_mediatek_filogic_DEVICE_bananapi_bpi-r4-pro-4e is not set
 # CONFIG_TARGET_DEVICE_mediatek_filogic_DEVICE_bananapi_bpi-r4-pro-8x is not set
 # CONFIG_TARGET_DEVICE_mediatek_filogic_DEVICE_bazis_ax3000wm is not set
+# CONFIG_TARGET_DEVICE_mediatek_filogic_DEVICE_benton_sn-r1 is not set
 # CONFIG_TARGET_DEVICE_mediatek_filogic_DEVICE_buffalo_wsr-3000ax4p is not set
 # CONFIG_TARGET_DEVICE_mediatek_filogic_DEVICE_buffalo_wsr-6000ax8 is not set
 CONFIG_TARGET_DEVICE_mediatek_filogic_DEVICE_cetron_ct3003=y
@@ -620,6 +622,7 @@ CONFIG_MODULE_DEFAULT_fitblk=y
 CONFIG_DEFAULT_fstools=y
 CONFIG_MODULE_DEFAULT_fstools=y
 CONFIG_MODULE_DEFAULT_gdisk=y
+CONFIG_MODULE_DEFAULT_glinet-panel-ui=y
 CONFIG_MODULE_DEFAULT_input-support=y
 CONFIG_MODULE_DEFAULT_kmod-backlight-pwm=y
 CONFIG_DEFAULT_kmod-crypto-hw-safexcel=y
@@ -1055,7 +1058,7 @@ CONFIG_TARGET_INIT_CMD="/sbin/init"
 CONFIG_TARGET_INIT_SUPPRESS_STDERR=y
 CONFIG_VERSIONOPT=y
 CONFIG_VERSION_DIST="X-WRT"
-CONFIG_VERSION_NUMBER="26.10_b202611070854"
+CONFIG_VERSION_NUMBER="26.10_b202611162026"
 CONFIG_VERSION_CODE="Stonking"
 CONFIG_VERSION_REPO="http://downloads.openwrt.org/snapshots"
 CONFIG_VERSION_HOME_URL="https://x-wrt.com/"
@@ -4164,6 +4167,7 @@ CONFIG_PACKAGE_kmod-i2c-mux-pca954x=m
 CONFIG_PACKAGE_kmod-hid=m
 CONFIG_PACKAGE_kmod-hid-alps=m
 # CONFIG_PACKAGE_kmod-hid-generic is not set
+# CONFIG_PACKAGE_kmod-hid-multitouch is not set
 # CONFIG_PACKAGE_kmod-input-adc-keys is not set
 CONFIG_PACKAGE_kmod-input-core=m
 CONFIG_PACKAGE_kmod-input-evdev=m
@@ -6407,7 +6411,7 @@ CONFIG_WOLFSSL_ALT_NAMES=y
 # CONFIG_PACKAGE_libassimp is not set
 # CONFIG_PACKAGE_libcairo is not set
 # CONFIG_PACKAGE_libdisplay-info is not set
-# CONFIG_PACKAGE_libdrm is not set
+CONFIG_PACKAGE_libdrm=m
 # CONFIG_PACKAGE_libdrm-amdgpu is not set
 # CONFIG_PACKAGE_libdrm-etnaviv is not set
 # CONFIG_PACKAGE_libdrm-nouveau is not set
@@ -7448,6 +7452,7 @@ CONFIG_PACKAGE_luci-i18n-base-zh-cn=y
 CONFIG_PACKAGE_luci-i18n-dashboard-zh-cn=m
 # CONFIG_PACKAGE_luci-i18n-dashboard-zh-tw is not set
 # CONFIG_PACKAGE_luci-i18n-dawn-cs is not set
+# CONFIG_PACKAGE_luci-i18n-dawn-da is not set
 # CONFIG_PACKAGE_luci-i18n-dawn-de is not set
 # CONFIG_PACKAGE_luci-i18n-dawn-es is not set
 # CONFIG_PACKAGE_luci-i18n-dawn-fr is not set
@@ -7467,6 +7472,7 @@ CONFIG_PACKAGE_luci-i18n-dashboard-zh-cn=m
 # CONFIG_PACKAGE_luci-i18n-dawn-ta is not set
 # CONFIG_PACKAGE_luci-i18n-dawn-tr is not set
 # CONFIG_PACKAGE_luci-i18n-dawn-uk is not set
+# CONFIG_PACKAGE_luci-i18n-dawn-vi is not set
 CONFIG_PACKAGE_luci-i18n-dawn-zh-cn=m
 # CONFIG_PACKAGE_luci-i18n-dawn-zh-tw is not set
 # CONFIG_PACKAGE_luci-i18n-ddns-ar is not set
@@ -7590,12 +7596,14 @@ CONFIG_PACKAGE_luci-i18n-firewall-zh-cn=y
 CONFIG_PACKAGE_luci-i18n-ksmbd-zh-cn=m
 # CONFIG_PACKAGE_luci-i18n-ksmbd-zh-tw is not set
 # CONFIG_PACKAGE_luci-i18n-ledtrig-rssi-cs is not set
+# CONFIG_PACKAGE_luci-i18n-ledtrig-rssi-da is not set
 # CONFIG_PACKAGE_luci-i18n-ledtrig-rssi-de is not set
 # CONFIG_PACKAGE_luci-i18n-ledtrig-rssi-es is not set
 # CONFIG_PACKAGE_luci-i18n-ledtrig-rssi-fr is not set
 # CONFIG_PACKAGE_luci-i18n-ledtrig-rssi-ga is not set
 # CONFIG_PACKAGE_luci-i18n-ledtrig-rssi-hu is not set
 # CONFIG_PACKAGE_luci-i18n-ledtrig-rssi-it is not set
+# CONFIG_PACKAGE_luci-i18n-ledtrig-rssi-ja is not set
 # CONFIG_PACKAGE_luci-i18n-ledtrig-rssi-ko is not set
 # CONFIG_PACKAGE_luci-i18n-ledtrig-rssi-lo is not set
 # CONFIG_PACKAGE_luci-i18n-ledtrig-rssi-lt is not set
@@ -7605,17 +7613,21 @@ CONFIG_PACKAGE_luci-i18n-ksmbd-zh-cn=m
 # CONFIG_PACKAGE_luci-i18n-ledtrig-rssi-ro is not set
 # CONFIG_PACKAGE_luci-i18n-ledtrig-rssi-ru is not set
 # CONFIG_PACKAGE_luci-i18n-ledtrig-rssi-sv is not set
+# CONFIG_PACKAGE_luci-i18n-ledtrig-rssi-ta is not set
 # CONFIG_PACKAGE_luci-i18n-ledtrig-rssi-tr is not set
 # CONFIG_PACKAGE_luci-i18n-ledtrig-rssi-uk is not set
+# CONFIG_PACKAGE_luci-i18n-ledtrig-rssi-vi is not set
 CONFIG_PACKAGE_luci-i18n-ledtrig-rssi-zh-cn=m
 # CONFIG_PACKAGE_luci-i18n-ledtrig-rssi-zh-tw is not set
 # CONFIG_PACKAGE_luci-i18n-ledtrig-switch-cs is not set
+# CONFIG_PACKAGE_luci-i18n-ledtrig-switch-da is not set
 # CONFIG_PACKAGE_luci-i18n-ledtrig-switch-de is not set
 # CONFIG_PACKAGE_luci-i18n-ledtrig-switch-es is not set
 # CONFIG_PACKAGE_luci-i18n-ledtrig-switch-fr is not set
 # CONFIG_PACKAGE_luci-i18n-ledtrig-switch-ga is not set
 # CONFIG_PACKAGE_luci-i18n-ledtrig-switch-hu is not set
 # CONFIG_PACKAGE_luci-i18n-ledtrig-switch-it is not set
+# CONFIG_PACKAGE_luci-i18n-ledtrig-switch-ja is not set
 # CONFIG_PACKAGE_luci-i18n-ledtrig-switch-ko is not set
 # CONFIG_PACKAGE_luci-i18n-ledtrig-switch-lo is not set
 # CONFIG_PACKAGE_luci-i18n-ledtrig-switch-lt is not set
@@ -7625,8 +7637,10 @@ CONFIG_PACKAGE_luci-i18n-ledtrig-rssi-zh-cn=m
 # CONFIG_PACKAGE_luci-i18n-ledtrig-switch-ro is not set
 # CONFIG_PACKAGE_luci-i18n-ledtrig-switch-ru is not set
 # CONFIG_PACKAGE_luci-i18n-ledtrig-switch-sv is not set
+# CONFIG_PACKAGE_luci-i18n-ledtrig-switch-ta is not set
 # CONFIG_PACKAGE_luci-i18n-ledtrig-switch-tr is not set
 # CONFIG_PACKAGE_luci-i18n-ledtrig-switch-uk is not set
+# CONFIG_PACKAGE_luci-i18n-ledtrig-switch-vi is not set
 CONFIG_PACKAGE_luci-i18n-ledtrig-switch-zh-cn=y
 # CONFIG_PACKAGE_luci-i18n-ledtrig-switch-zh-tw is not set
 # CONFIG_PACKAGE_luci-i18n-ledtrig-usbport-cs is not set
@@ -7637,6 +7651,7 @@ CONFIG_PACKAGE_luci-i18n-ledtrig-switch-zh-cn=y
 # CONFIG_PACKAGE_luci-i18n-ledtrig-usbport-ga is not set
 # CONFIG_PACKAGE_luci-i18n-ledtrig-usbport-hu is not set
 # CONFIG_PACKAGE_luci-i18n-ledtrig-usbport-it is not set
+# CONFIG_PACKAGE_luci-i18n-ledtrig-usbport-ja is not set
 # CONFIG_PACKAGE_luci-i18n-ledtrig-usbport-ko is not set
 # CONFIG_PACKAGE_luci-i18n-ledtrig-usbport-lo is not set
 # CONFIG_PACKAGE_luci-i18n-ledtrig-usbport-lt is not set
@@ -7646,8 +7661,10 @@ CONFIG_PACKAGE_luci-i18n-ledtrig-switch-zh-cn=y
 # CONFIG_PACKAGE_luci-i18n-ledtrig-usbport-ro is not set
 # CONFIG_PACKAGE_luci-i18n-ledtrig-usbport-ru is not set
 # CONFIG_PACKAGE_luci-i18n-ledtrig-usbport-sv is not set
+# CONFIG_PACKAGE_luci-i18n-ledtrig-usbport-ta is not set
 # CONFIG_PACKAGE_luci-i18n-ledtrig-usbport-tr is not set
 # CONFIG_PACKAGE_luci-i18n-ledtrig-usbport-uk is not set
+# CONFIG_PACKAGE_luci-i18n-ledtrig-usbport-vi is not set
 CONFIG_PACKAGE_luci-i18n-ledtrig-usbport-zh-cn=m
 # CONFIG_PACKAGE_luci-i18n-ledtrig-usbport-zh-tw is not set
 # CONFIG_PACKAGE_luci-i18n-mwan3-ar is not set
@@ -7842,12 +7859,14 @@ CONFIG_PACKAGE_luci-i18n-package-manager-zh-cn=y
 CONFIG_PACKAGE_luci-i18n-sqm-zh-cn=m
 # CONFIG_PACKAGE_luci-i18n-sqm-zh-tw is not set
 # CONFIG_PACKAGE_luci-i18n-strongswan-swanctl-cs is not set
+# CONFIG_PACKAGE_luci-i18n-strongswan-swanctl-da is not set
 # CONFIG_PACKAGE_luci-i18n-strongswan-swanctl-de is not set
 # CONFIG_PACKAGE_luci-i18n-strongswan-swanctl-es is not set
 # CONFIG_PACKAGE_luci-i18n-strongswan-swanctl-fr is not set
 # CONFIG_PACKAGE_luci-i18n-strongswan-swanctl-ga is not set
 # CONFIG_PACKAGE_luci-i18n-strongswan-swanctl-hu is not set
 # CONFIG_PACKAGE_luci-i18n-strongswan-swanctl-it is not set
+# CONFIG_PACKAGE_luci-i18n-strongswan-swanctl-ja is not set
 # CONFIG_PACKAGE_luci-i18n-strongswan-swanctl-ko is not set
 # CONFIG_PACKAGE_luci-i18n-strongswan-swanctl-lo is not set
 # CONFIG_PACKAGE_luci-i18n-strongswan-swanctl-lt is not set
@@ -7860,6 +7879,7 @@ CONFIG_PACKAGE_luci-i18n-sqm-zh-cn=m
 # CONFIG_PACKAGE_luci-i18n-strongswan-swanctl-ta is not set
 # CONFIG_PACKAGE_luci-i18n-strongswan-swanctl-tr is not set
 # CONFIG_PACKAGE_luci-i18n-strongswan-swanctl-uk is not set
+# CONFIG_PACKAGE_luci-i18n-strongswan-swanctl-vi is not set
 CONFIG_PACKAGE_luci-i18n-strongswan-swanctl-zh-cn=m
 # CONFIG_PACKAGE_luci-i18n-strongswan-swanctl-zh-tw is not set
 # CONFIG_PACKAGE_luci-i18n-tailscale-community-cs is not set
@@ -7880,8 +7900,10 @@ CONFIG_PACKAGE_luci-i18n-strongswan-swanctl-zh-cn=m
 # CONFIG_PACKAGE_luci-i18n-tailscale-community-ro is not set
 # CONFIG_PACKAGE_luci-i18n-tailscale-community-ru is not set
 # CONFIG_PACKAGE_luci-i18n-tailscale-community-sv is not set
+# CONFIG_PACKAGE_luci-i18n-tailscale-community-ta is not set
 # CONFIG_PACKAGE_luci-i18n-tailscale-community-tr is not set
 # CONFIG_PACKAGE_luci-i18n-tailscale-community-uk is not set
+# CONFIG_PACKAGE_luci-i18n-tailscale-community-vi is not set
 CONFIG_PACKAGE_luci-i18n-tailscale-community-zh-cn=m
 # CONFIG_PACKAGE_luci-i18n-tailscale-community-zh-tw is not set
 # CONFIG_PACKAGE_luci-i18n-upnp-ar is not set
@@ -8292,7 +8314,6 @@ CONFIG_PACKAGE_ddns-scripts=y
 # CONFIG_PACKAGE_ddns-scripts-beget is not set
 # CONFIG_PACKAGE_ddns-scripts-blazingfast is not set
 # CONFIG_PACKAGE_ddns-scripts-cloudflare is not set
-# CONFIG_PACKAGE_ddns-scripts-cnkuai is not set
 # CONFIG_PACKAGE_ddns-scripts-digitalocean is not set
 # CONFIG_PACKAGE_ddns-scripts-dnspod is not set
 # CONFIG_PACKAGE_ddns-scripts-dnspod-v3 is not set
@@ -10115,6 +10136,7 @@ CONFIG_FWUPD_PLUGIN_MODEMMANAGER=y
 # CONFIG_PACKAGE_giflib-utils is not set
 # CONFIG_PACKAGE_gkermit is not set
 # CONFIG_PACKAGE_gl-puli-mcu is not set
+CONFIG_PACKAGE_glinet-panel-ui=m
 # CONFIG_PACKAGE_gnuplot is not set
 # CONFIG_PACKAGE_gpioctl-sysfs is not set
 # CONFIG_PACKAGE_gpiod-tools is not set
@@ -10388,6 +10410,7 @@ CONFIG_PACKAGE_ubi-utils=y
 # CONFIG_PACKAGE_ucode-mod-bpf is not set
 CONFIG_PACKAGE_ucode-mod-html=y
 CONFIG_PACKAGE_ucode-mod-lua=y
+CONFIG_PACKAGE_ucode-mod-lvgl=m
 # CONFIG_PACKAGE_ucode-mod-pkgen is not set
 # CONFIG_PACKAGE_ucode-mod-uclient is not set
 # CONFIG_PACKAGE_ucode-mod-udebug is not set
@@ -10500,6 +10523,77 @@ CONFIG_BUILD_qt5base-gui_OPENGL_NONE=y
 # CONFIG_PACKAGE_qt5svg is not set
 # CONFIG_PACKAGE_qt5translations is not set
 # CONFIG_PACKAGE_qt5virtualkeyboard is not set
+# CONFIG_PACKAGE_qt6base-concurrent is not set
+# CONFIG_PACKAGE_qt6base-core is not set
+# CONFIG_PACKAGE_qt6base-gui is not set
+CONFIG_BUILD_qt6base-gui_DRM=y
+# CONFIG_BUILD_qt6base-gui_OPENGL_OPENGLES2 is not set
+CONFIG_BUILD_qt6base-gui_OPENGL_NONE=y
+# CONFIG_PACKAGE_qt6base-network is not set
+# CONFIG_PACKAGE_qt6base-plugin-imageformats-gif is not set
+# CONFIG_PACKAGE_qt6base-plugin-imageformats-jpeg is not set
+# CONFIG_PACKAGE_qt6base-plugin-input-evdevkeyboard is not set
+# CONFIG_PACKAGE_qt6base-plugin-input-evdevmouse is not set
+# CONFIG_PACKAGE_qt6base-plugin-input-evdevtablet is not set
+# CONFIG_PACKAGE_qt6base-plugin-input-evdevtouch is not set
+# CONFIG_PACKAGE_qt6base-plugin-platforms-linuxfb is not set
+# CONFIG_PACKAGE_qt6base-plugin-platforms-minimal is not set
+# CONFIG_PACKAGE_qt6base-plugin-platforms-offscreen is not set
+# CONFIG_PACKAGE_qt6base-plugin-platforms-vnc is not set
+# CONFIG_PACKAGE_qt6base-test is not set
+# CONFIG_PACKAGE_qt6base-widgets is not set
+# CONFIG_PACKAGE_qt6base-xml is not set
+# CONFIG_PACKAGE_qt6labs-animation is not set
+# CONFIG_PACKAGE_qt6labs-folderlistmodel is not set
+# CONFIG_PACKAGE_qt6labs-platform is not set
+# CONFIG_PACKAGE_qt6labs-qmlmodels is not set
+# CONFIG_PACKAGE_qt6labs-settings is not set
+# CONFIG_PACKAGE_qt6labs-sharedimage is not set
+# CONFIG_PACKAGE_qt6labs-wavefrontmesh is not set
+# CONFIG_PACKAGE_qt6quick is not set
+# CONFIG_PACKAGE_qt6quick-controls2 is not set
+# CONFIG_PACKAGE_qt6quick-dialogs2 is not set
+# CONFIG_PACKAGE_qt6quick-effects is not set
+# CONFIG_PACKAGE_qt6quick-layouts is not set
+# CONFIG_PACKAGE_qt6quick-particles is not set
+# CONFIG_PACKAGE_qt6quick-qml is not set
+# CONFIG_PACKAGE_qt6quick-qml-core is not set
+# CONFIG_PACKAGE_qt6quick-qml-debug is not set
+# CONFIG_PACKAGE_qt6quick-qml-meta is not set
+# CONFIG_PACKAGE_qt6quick-qml-mod-qtcore is not set
+# CONFIG_PACKAGE_qt6quick-qml-mod-qtlabs-animation is not set
+# CONFIG_PACKAGE_qt6quick-qml-mod-qtlabs-folderlistmodel is not set
+# CONFIG_PACKAGE_qt6quick-qml-mod-qtlabs-platform is not set
+# CONFIG_PACKAGE_qt6quick-qml-mod-qtlabs-qmlmodels is not set
+# CONFIG_PACKAGE_qt6quick-qml-mod-qtlabs-settings is not set
+# CONFIG_PACKAGE_qt6quick-qml-mod-qtlabs-sharedimage is not set
+# CONFIG_PACKAGE_qt6quick-qml-mod-qtlabs-wavefrontmesh is not set
+# CONFIG_PACKAGE_qt6quick-qml-mod-qtnetwork is not set
+# CONFIG_PACKAGE_qt6quick-qml-mod-qtqml is not set
+# CONFIG_PACKAGE_qt6quick-qml-mod-qtqml-models is not set
+# CONFIG_PACKAGE_qt6quick-qml-mod-qtqml-workerscript is not set
+# CONFIG_PACKAGE_qt6quick-qml-mod-qtqml-xmllistmodel is not set
+# CONFIG_PACKAGE_qt6quick-qml-mod-qtquick is not set
+# CONFIG_PACKAGE_qt6quick-qml-mod-qtquick-controls is not set
+# CONFIG_PACKAGE_qt6quick-qml-mod-qtquick-dialogs is not set
+# CONFIG_PACKAGE_qt6quick-qml-mod-qtquick-effects is not set
+# CONFIG_PACKAGE_qt6quick-qml-mod-qtquick-layouts is not set
+# CONFIG_PACKAGE_qt6quick-qml-mod-qtquick-particles is not set
+# CONFIG_PACKAGE_qt6quick-qml-mod-qtquick-shapes is not set
+# CONFIG_PACKAGE_qt6quick-qml-mod-qtquick-templates is not set
+# CONFIG_PACKAGE_qt6quick-qml-mod-qtquick-window is not set
+# CONFIG_PACKAGE_qt6quick-qml-mod-qttest is not set
+# CONFIG_PACKAGE_qt6quick-qml-models is not set
+# CONFIG_PACKAGE_qt6quick-qml-network is not set
+# CONFIG_PACKAGE_qt6quick-qml-workerscript is not set
+# CONFIG_PACKAGE_qt6quick-qml-xmllistmodel is not set
+# CONFIG_PACKAGE_qt6quick-shapes is not set
+# CONFIG_PACKAGE_qt6quick-templates2 is not set
+# CONFIG_PACKAGE_qt6quick-test is not set
+# CONFIG_PACKAGE_qt6quick-widgets is not set
+# CONFIG_PACKAGE_qt6svg is not set
+# CONFIG_PACKAGE_qt6svg-widgets is not set
+# CONFIG_PACKAGE_qt6translations is not set
 # CONFIG_PACKAGE_wayland-protocols is not set
 # CONFIG_PACKAGE_wayland-scanner is not set
 # CONFIG_PACKAGE_weston is not set
