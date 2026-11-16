@@ -17,7 +17,6 @@ SYSUPGRADE_CONF="/etc/sysupgrade.conf"
 # character device upon plug/unplug unless connection hierarchy/tree is
 # unchanged i.e. reboot gives the same order if connection topology is identical. 
 # * Depends on udev. char dev number assignment order not guaranteed.
-# * most users likely only have a single printer connected (mDNS announces one)
 
 # Step 1. Get /dev/usb/lpX and build THIS_USB_VIDPID from hotplug passed device.
 
@@ -59,14 +58,25 @@ if [ -n "$1" ] && [ "$1" = "-d" ]; then
 	ACTION="add"
 fi
 
-# Other usbmisc devices and removal events have no printer attributes to read.
-[ "$ACTION" = add ] || exit 0
+# Only handle printer character devices.
 case "$DEVNAME" in
 	usb/lp*) ;;
 	*) exit 0 ;;
 esac
 case "${DEVNAME#usb/lp}" in
 	''|*[!0-9]*) exit 0 ;;
+esac
+
+daemon_reload() {
+	logger -t "$DAEMON_HOTPLUG" -p "$DAEMON_INFO" "Reloading $DAEMON"
+	/etc/init.d/$DAEMON reload
+}
+
+# Removal has no printer attributes to read. Drop only the missing instance.
+case "$ACTION" in
+	remove) daemon_reload; exit $? ;;
+	add) ;;
+	*) exit 0 ;;
 esac
 
 # For usbmisc, hotplug passes the following usable variables:
@@ -320,7 +330,7 @@ get_and_store_printer_info() {
 	set_printer_default enabled 1
 	set_printer_default usbvidpid "$THIS_USB_VIDPID"
 	[ -n "$MDL" ] && set_printer_default mdns 1
-	set_printer_default mdns_ty "$DES"
+	set_printer_default mdns_ty "${DES:-$MDL}"
 	[ -n "$DES" ] && set_printer_default mdns_product "($DES)"
 	set_printer_default mdns_mfg "$MFG"
 	set_printer_default mdns_mdl "$MDL"
@@ -342,14 +352,6 @@ get_and_store_printer_info() {
 
 }
 
-daemon_restart() {
-	logger -t "$DAEMON_HOTPLUG" -p "$DAEMON_INFO" "(Re)starting $DAEMON"
-	/etc/init.d/$DAEMON restart
-}
-daemon_stop() {
-	logger -t "$DAEMON_HOTPLUG" -p "$DAEMON_INFO" "Stopping $DAEMON"
-	/etc/init.d/$DAEMON stop
-}
 send_driver() {
 	DRIVER_FILE=$( uci -q get "$DAEMON.$UCI_DEV_SECTION.driver_file" )
 
@@ -400,13 +402,10 @@ case "$ACTION" in
 			fi
 		fi
 
-		# Persist only this package before restarting the service.
+		# Update named instances without interrupting other printers.
 		uci -q commit "$DAEMON" || exit 1
-		daemon_restart
+		daemon_reload
 
-		;;
-	remove)
-		# device is gone
 		;;
 	# Special actions available to "usb" subsystem
 	# bind)

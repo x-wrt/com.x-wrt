@@ -10,11 +10,82 @@ start_service() {
 	config_foreach start_p910nd $CONFIG
 }
 
+mdns_name_valid() {
+	local name="$1" bytes
+	# umdns joins the instance and service as a dotted DNS name without escaping.
+	case "$name" in
+		''|*.*|*\\*) return 1 ;;
+	esac
+	[ "$(printf '%s' "$name" | LC_ALL=C tr -d '\000-\037\177')" = "$name" ] || return 1
+	bytes=$(printf '%s' "$name" | wc -c)
+	[ "$bytes" -le 63 ]
+}
+
+mdns_default_name() {
+	local section="$1" model host port name
+	config_get port "$section" port 0
+	case "$port" in
+		[0-9]) ;;
+		*) return 1 ;;
+	esac
+	config_get model "$section" mdns_ty
+	[ -n "$model" ] || config_get model "$section" mdns_mdl
+	model=$(printf '%s' "$model" | LC_ALL=C tr -d '\000-\037\177' | tr '\\.' '__')
+	host=$(uname -n)
+	host=$(printf '%s' "$host" | LC_ALL=C tr -c 'A-Za-z0-9_-' '_')
+	name="${model:-Printer} @ $host ($((port+9100)))"
+	# Keep the port suffix and valid UTF-8 instead of cutting a label mid-character.
+	mdns_name_valid "$name" || name="Printer @ $host ($((port+9100)))"
+	mdns_name_valid "$name" || name="Printer ($((port+9100)))"
+	printf '%s' "$name"
+}
+
+mdns_fold_name() {
+	# DNS compares ASCII case; some BusyBox builds lack tr character classes.
+	# shellcheck disable=SC2018,SC2019
+	LC_ALL=C tr 'A-Z' 'a-z'
+}
+
+mdns_check_name() {
+	local other="$1" section="$2" name="$3" enabled mdns custom default
+	[ "$other" = "$section" ] && return 0
+	config_get_bool enabled "$other" enabled 0
+	config_get_bool mdns "$other" mdns 0
+	[ "$enabled" -eq 1 ] && [ "$mdns" -eq 1 ] || return 0
+	default=$(mdns_default_name "$other") || return 0
+	config_get custom "$other" mdns_name
+	default=$(printf '%s' "$default" | mdns_fold_name)
+	custom=$(printf '%s' "$custom" | mdns_fold_name)
+	# Reserve default names too, so another printer can always fall back safely.
+	[ "$name" = "$default" ] || [ "$name" = "$custom" ] || return 0
+	mdns_name_conflict=1
+}
+
+mdns_instance_name() {
+	local section="$1" name default folded mdns_name_conflict=0
+	default=$(mdns_default_name "$section") || return 1
+	config_get name "$section" mdns_name
+	if [ -n "$name" ]; then
+		if mdns_name_valid "$name"; then
+			folded=$(printf '%s' "$name" | mdns_fold_name)
+			# Include disconnected configured printers to keep names stable on unplug.
+			config_foreach mdns_check_name "$CONFIG" "$section" "$folded"
+			if [ "$mdns_name_conflict" -eq 0 ]; then
+				printf '%s' "$name"
+				return 0
+			fi
+		fi
+		logger -t "$DAEMON_NAME" "Invalid or duplicate mdns_name for $section; using $default"
+	fi
+	printf '%s' "$default"
+}
+
 
 start_p910nd() {
 	local section="$1" runas_root enabled device port bind bidirectional mdns
 	local mdns_note mdns_ty mdns_product mdns_mfg mdns_mdl mdns_cmd
 	local mdns_cid mdns_cls mdns_cmt mdns_des mdns_drv mdns_sn mdns_ver
+	local mdns_instance mdns_txt mdns_id
 	config_get_bool "enabled" "$section" "enabled" '0'
 	config_get device "$section" device
 	# If the device path exists, the device is connected; set it up:
@@ -31,7 +102,7 @@ start_p910nd() {
 		set -- "$@" -f "$device"
 		[ -n "$bind" ] && set -- "$@" -i "$bind"
 		set -- "$@" "$port"
-		procd_open_instance
+		procd_open_instance "$section"
 		procd_set_param command "$@"
 		procd_set_param respawn
 
@@ -46,6 +117,7 @@ start_p910nd() {
 			config_get mdns_mfg "$section" mdns_mfg
 			config_get mdns_mdl "$section" mdns_mdl
 			config_get mdns_cmd "$section" mdns_cmd
+			[ -n "$mdns_ty" ] || mdns_ty="$mdns_mdl"
 			# Optional parameters
 			config_get mdns_cid "$section" mdns_cid
 			config_get mdns_cls "$section" mdns_cls
@@ -56,8 +128,7 @@ start_p910nd() {
 			config_get mdns_ver "$section" mdns_ver
 
 			# Set initial arguments
-			set -- "pdl-datastream" "tcp" "$((port+9100))"
-			set -- "$@" "txtvers=1"
+			set -- "txtvers=1"
 			# bonjourprinting-1.2.1.pdf spec mandates (at least) MFG, MDL, CMD for Socket type
 			[ -n "$mdns_note" ] && set -- "$@" "note=$mdns_note"
 			[ -n "$mdns_ty" ] && set -- "$@" "ty=$mdns_ty"
@@ -74,8 +145,25 @@ start_p910nd() {
 			[ -n "$mdns_sn" ] && set -- "$@" "usb_SN=$mdns_sn"
 			[ -n "$mdns_ver" ] && set -- "$@" "usb_VER=$mdns_ver"
 
-			# Call procd_add_mdns with the positional parameters
-			MDNS_INSTANCE_NAME="$mdns_ty" procd_add_mdns "$@"
+			mdns_instance=$(mdns_instance_name "$section")
+			# Replace the ID on rename so umdns withdraws the old instance. Keep
+			# it for same-name updates: a goodbye would also withdraw the new PTR.
+			mdns_id=$(printf '%s' "$mdns_instance" | mdns_fold_name | md5sum)
+			mdns_id=${mdns_id%% *}
+			procd_open_data
+			json_add_object mdns
+			json_add_object "p910nd_${section}_$mdns_id"
+			json_add_string instance "$mdns_instance"
+			json_add_string service "_pdl-datastream._tcp.local"
+			json_add_int port "$((port+9100))"
+			json_add_array txt
+			for mdns_txt in "$@"; do
+				json_add_string "" "$mdns_txt"
+			done
+			json_close_array
+			json_close_object
+			json_close_object
+			procd_close_data
 		fi
 		procd_set_param stdout 1 # relay stdout to logd
 		procd_set_param stderr 1 # relay stderr to logd

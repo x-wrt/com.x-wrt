@@ -1,5 +1,6 @@
 #!/bin/sh
 # Usage: UCI=/path/to/native/uci tests/run.sh /path/to/patched/p910nd-source
+# Service JSON tests also need PROCD_SH, JSHN_SH and native jshn on PATH.
 set -eu
 # shellcheck disable=SC2169
 ulimit -c 0
