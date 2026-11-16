@@ -41,23 +41,29 @@ int
 main (int argc, char *argv[])
 {
     int			fd;
-    unsigned char	argp[1024];
+    unsigned char	argp[1024] = {0};
     int			length;
 
     --argc;
     ++argv;
 
     if (argc != 1)
-	error(1, "usage: usb_printerid /dev/usb/lp0\n");
+	error(1, "usage: usb_printerid <device|->\n");
 
-    fd = open(argv[0], O_RDWR);
+    /* Reuse an open device on stdin so callers can retain it for writing. */
+    fd = strcmp(argv[0], "-") == 0 ? STDIN_FILENO : open(argv[0], O_RDWR);
     if (fd < 0)
 	error(1, "can't open '%s'\n", argv[0]);
 
     if (ioctl(fd, LPIOC_GET_DEVICE_ID(sizeof(argp)), argp) < 0)
 	error(1, "GET_DEVICE_ID on '%s'\n", argv[0]);
 
-    length = (argp[0] << 8) + argp[1] - 2;
+    length = (argp[0] << 8) + argp[1];
+    if (length < 2 || length > (int)sizeof(argp)) {
+	errno = EINVAL;
+	error(1, "invalid device ID length %d on '%s'\n", length, argv[0]);
+    }
+    length -= 2;
     printf("GET_DEVICE_ID string:\n");
     fwrite(argp + 2, 1, length, stdout);
     printf("\n");
