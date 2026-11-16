@@ -130,7 +130,7 @@ return view.extend({
 	render: function(data) {
 		var m, s, ss, o;
 		var _this = this;
-		var scanRes = {};
+		var scanRes = [];
 		var lan_mac = "";
 		var wifi_mac = "";
 
@@ -249,7 +249,11 @@ return view.extend({
 							return 1;
 					});
 
-					scanRes = results;
+					// Keep the strongest supported result for each SSID.
+					var seenSsids = Object.create(null);
+					scanRes = [];
+					this.keylist = [];
+					this.vallist = [];
 
 					for (var i = 0; i < results.length; i++) {
 						if (results[i].ssid == undefined) {
@@ -259,6 +263,11 @@ return view.extend({
 						if (ssidValid(network.formatWifiEncryption(results[i].encryption)) == null) {
 							continue;
 						}
+						if (seenSsids[results[i].ssid]) {
+							continue;
+						}
+						seenSsids[results[i].ssid] = true;
+						scanRes.push(results[i]);
 						this.value(results[i].ssid, results[i].ssid + " (" + _('Channel') + " " + results[i].channel + " " + network.formatWifiEncryption(results[i].encryption) + ")");
 						if (current_ssid == results[i].ssid) {
 							current_ssid = undefined;
