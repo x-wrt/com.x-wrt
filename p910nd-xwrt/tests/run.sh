@@ -13,7 +13,7 @@ trap 'rm -r "$test_build"' EXIT HUP INT TERM
 	-DP910ND_SOURCE="\"$source_dir/p910nd.c\"" \
 	"$test_dir/test_forwarding.c" -o "$test_build/test_forwarding"
 export ASAN_OPTIONS=detect_stack_use_after_return=1
-for testcase in wrapped errors partial device busy closed-status large-job; do
+for testcase in wrapped errors partial device busy closed-status large-job idle-uni idle-bidi stdout-log; do
 	"$test_build/test_forwarding" "$testcase"
 	printf 'PASS: %s\n' "$testcase"
 done

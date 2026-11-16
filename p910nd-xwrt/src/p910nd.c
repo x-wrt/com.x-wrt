@@ -147,6 +147,7 @@ extern int hosts_ctl(char *daemon, char *client_name, char *client_addr, char *c
 #define		LOGOPTS		LOG_ERR
 
 #define		BUFFER_SIZE	8192
+#define		NETWORK_IDLE_TIMEOUT	90
 
 /* Circular buffer used for each direction. */
 typedef struct {
@@ -225,9 +226,10 @@ void dolog(int level, char* msg, ...)
 {
 	va_list argp;
 	va_start(argp, msg);
-	if (log_to_stdout)
+	if (log_to_stdout) {
 		vfprintf(stdout, msg, argp);
-	else if (level != LOG_DEBUG)
+		fflush(stdout);
+	} else if (level != LOG_DEBUG)
 		vsyslog(level, msg, argp);
 	va_end(argp);	
 }
@@ -459,8 +461,8 @@ int copy_stream(int fd, int lp)
 			/* A busy printer may take longer than the network idle timeout.
 			 * Drain queued data, including after EOF, before ending the job. */
 			if (!networkToPrinterBuffer.eof_read && networkToPrinterBuffer.bytes == 0 &&
-			    now.tv_sec - last_read_time.tv_sec >= 30) {
-				dolog(LOG_NOTICE,"read no data from network for 30s, stop copy stream\n");
+			    now.tv_sec - last_read_time.tv_sec >= NETWORK_IDLE_TIMEOUT) {
+				dolog(LOG_NOTICE,"read no data from network for %ds, stop copy stream\n", NETWORK_IDLE_TIMEOUT);
 				break;
 			}
 			if (FD_ISSET(lp, &readfds)) {
@@ -511,6 +513,19 @@ int copy_stream(int fd, int lp)
 		while (!networkToPrinterBuffer.eof_sent && !(networkToPrinterBuffer.err & WRITE_ERR)) {
 			/* Complete short writes before waiting for more network input. */
 			if (networkToPrinterBuffer.bytes == 0 && !networkToPrinterBuffer.eof_read) {
+				fd_set readfds;
+				struct timeval timeout = { NETWORK_IDLE_TIMEOUT, 0 };
+				FD_ZERO(&readfds);
+				FD_SET(fd, &readfds);
+				result = select(fd + 1, &readfds, NULL, NULL, &timeout);
+				if (result < 0 && errno == EINTR)
+					continue;
+				if (result < 0)
+					return result;
+				if (result == 0) {
+					dolog(LOG_NOTICE,"read no data from network for %ds, stop copy stream\n", NETWORK_IDLE_TIMEOUT);
+					break;
+				}
 				result = readBuffer(&networkToPrinterBuffer);
 				if (result > 0)
 					dolog(LOG_DEBUG,"read %d bytes from network\n",result);

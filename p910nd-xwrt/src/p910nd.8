@@ -24,6 +24,10 @@ of all interfaces which is the default.
 .LP
 The \fB-b\fR option turns on bidirectional copying.
 .LP
+In either mode, a client that sends no data for 90 seconds is disconnected
+when no data remains buffered for the printer. Successful writes to the
+printer restart the idle period.
+.LP
 The \fB-v\fR option shows the version number.
 .LP
 The \fB-d\fR option causes the daemon to run in the foreground in

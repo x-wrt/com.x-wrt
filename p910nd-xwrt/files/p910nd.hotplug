@@ -214,6 +214,29 @@ match_current_device() {
 	done
 }
 
+find_available_port() {
+	local x=0 port used=" "
+	while uci -q get "$DAEMON.@$DAEMON[$x]" >/dev/null; do
+		if [ "@$DAEMON[$x]" != "$UCI_DEV_SECTION" ]; then
+			port=$(uci -q get "$DAEMON.@$DAEMON[$x].port")
+			# A missing port defaults to zero in the init script.
+			port=${port:-0}
+			case "$port" in
+				[0-9]) used="$used$port " ;;
+			esac
+		fi
+		x=$((x + 1))
+	done
+	for port in 0 1 2 3 4 5 6 7 8 9; do
+		case "$used" in
+			*" $port "*) ;;
+			*) printf '%s\n' "$port"; return 0 ;;
+		esac
+	done
+	logger -t "$DAEMON_HOTPLUG" -p "$DAEMON_ERR" "No free printer ports (9100-9109) for /dev/$DEVNAME"
+	return 1
+}
+
 set_printer_default() {
 	local option="$1" value="$2"
 	[ -n "$value" ] || return 0
@@ -241,13 +264,20 @@ get_and_store_printer_info() {
 	local SN
 	local VER
 	local info="$ieee1284info" i
+	local port=
 
 
 	# Build array of /dev/usb/lpX character devices already configured
 	match_current_device
+	if [ -z "$UCI_DEV_SECTION" ] || [ -z "$(uci -q get "$DAEMON.$UCI_DEV_SECTION.port")" ]; then
+		port=$(find_available_port) || return 1
+	fi
 	if [ -z "$UCI_DEV_SECTION" ]; then
 		UCI_DEV_SECTION=$(uci -q add "$DAEMON" "$DAEMON") || return 1
 		uci -q set "$DAEMON.$UCI_DEV_SECTION.device=$CHAR_DEV"
+	fi
+	if [ -n "$port" ]; then
+		uci -q set "$DAEMON.$UCI_DEV_SECTION.port=$port" || return 1
 	fi
 	[ "$DEBUG" ] && echo ieee1284info: "$ieee1284info"
 
@@ -287,7 +317,6 @@ get_and_store_printer_info() {
 
 	[ -n "$SN" ] || SN="$iSerialNumber"
 	set_printer_default bidirectional "$BIDIR"
-	set_printer_default port 0
 	set_printer_default enabled 1
 	set_printer_default usbvidpid "$THIS_USB_VIDPID"
 	[ -n "$MDL" ] && set_printer_default mdns 1

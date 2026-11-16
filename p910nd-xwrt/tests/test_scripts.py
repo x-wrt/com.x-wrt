@@ -41,15 +41,16 @@ class ScriptTests(unittest.TestCase):
         for key, value in options.items():
             self.uci("set", "p910nd.{}.{}={}".format(name, key, value))
 
-    def shell(self, script):
+    def shell(self, script, expected_returncode=0):
         result = subprocess.run(
             ["busybox", "ash"], input=self.prelude + script,
             text=True, capture_output=True, timeout=10, cwd=self.root,
         )
-        self.assertEqual(result.returncode, 0, result.stderr)
+        self.assertEqual(result.returncode, expected_returncode, result.stderr)
         return result
 
-    def hotplug(self, info="MFG:Acme;MDL:Printer;", devname="usb/lp0"):
+    def hotplug(self, info="MFG:Acme;MDL:Printer;", devname="usb/lp0",
+                expected_returncode=0):
         source = HOTPLUG.read_text()
         functions = source[source.index("match_current_device() {"):
                            source.index("daemon_restart() {")]
@@ -60,8 +61,10 @@ class ScriptTests(unittest.TestCase):
             DRIVER_BLOBNAME_TAIL="1234_5678.bin", iSerialNumber="serial",
         )
         setup = "".join("{}={}\n".format(k, shlex.quote(v)) for k, v in values.items())
-        self.shell(setup + functions + '\nget_and_store_printer_info\n'
-                   + "printf '%s' \"$IFS\" > ifs\n")
+        self.shell(setup + functions
+                   + '\nlogger() { printf "%s\\n" "$@" > logger.log; }\n'
+                   + 'get_and_store_printer_info || exit $?\n'
+                   + "printf '%s' \"$IFS\" > ifs\n", expected_returncode)
 
     def test_usb_metadata_is_not_executed(self):
         self.section("printer", "/dev/usb/lp0")
@@ -87,11 +90,39 @@ class ScriptTests(unittest.TestCase):
         self.assertNotIn("p910nd.printer12.mdns_mfg", self.uci("show", "p910nd"))
 
     def test_new_device_gets_its_own_section(self):
-        self.section("existing", "/dev/usb/lp0", mdns_mfg="Existing")
+        self.section("existing", "/dev/usb/lp0", port="0", mdns_mfg="Existing")
         self.hotplug(devname="usb/lp1")
         self.assertEqual(self.uci("get", "p910nd.existing.device"), "/dev/usb/lp0")
         self.assertEqual(self.uci("get", "p910nd.@p910nd[1].device"), "/dev/usb/lp1")
         self.assertEqual(self.uci("get", "p910nd.@p910nd[1].mdns_mfg"), "Acme")
+        self.assertEqual(self.uci("get", "p910nd.@p910nd[1].port"), "1")
+
+    def test_new_device_uses_first_free_port(self):
+        self.section("default", "/dev/usb/lp0")
+        self.section("one", "/dev/usb/lp1", port="1")
+        self.section("three", "/dev/usb/lp3", port="3", enabled="0")
+        self.hotplug(devname="usb/lp2")
+        self.assertEqual(self.uci("get", "p910nd.@p910nd[3].port"), "2")
+
+    def test_existing_port_is_preserved(self):
+        self.section("existing", "/dev/usb/lp0", port="7")
+        self.hotplug()
+        self.assertEqual(self.uci("get", "p910nd.existing.port"), "7")
+
+    def test_missing_port_avoids_other_printers(self):
+        self.section("existing", "/dev/usb/lp0", port="0")
+        self.section("missing", "/dev/usb/lp1")
+        self.hotplug(devname="usb/lp1")
+        self.assertEqual(self.uci("get", "p910nd.missing.port"), "1")
+
+    def test_no_free_port_does_not_add_conflicting_device(self):
+        for port in range(10):
+            self.section("printer{}".format(port), "/dev/usb/lp{}".format(port),
+                         port=str(port))
+        before = self.uci("show", "p910nd")
+        self.hotplug(devname="usb/lp10", expected_returncode=1)
+        self.assertEqual(self.uci("show", "p910nd"), before)
+        self.assertIn("No free printer ports", (self.root / "logger.log").read_text())
 
     def test_metadata_keeps_colons_wildcards_and_ifs(self):
         self.section("printer", "/dev/usb/lp0", enabled="0", mdns="0")

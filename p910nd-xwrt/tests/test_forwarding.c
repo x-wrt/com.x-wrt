@@ -2,6 +2,7 @@
 #include <errno.h>
 #include <limits.h>
 #include <signal.h>
+#include <stdint.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -13,15 +14,21 @@
 static int read_error, write_error;
 static size_t write_limit;
 static int accelerate_time;
+static int simulate_idle, select_error;
+static uint64_t idle_microseconds;
 static ssize_t test_read(int fd, void *buf, size_t count);
 static ssize_t test_write(int fd, const void *buf, size_t count);
 static int test_gettimeofday(struct timeval *tv, void *tz);
+static int test_select(int nfds, fd_set *readfds, fd_set *writefds,
+		       fd_set *exceptfds, struct timeval *timeout);
 
 #define main p910nd_main
 #define read test_read
 #define write test_write
 #define gettimeofday test_gettimeofday
+#define select test_select
 #include P910ND_SOURCE
+#undef select
 #undef gettimeofday
 #undef write
 #undef read
@@ -30,12 +37,37 @@ static int test_gettimeofday(struct timeval *tv, void *tz);
 static int test_gettimeofday(struct timeval *tv, void *tz)
 {
 	static time_t extra;
+	if (simulate_idle) {
+		tv->tv_sec = idle_microseconds / 1000000;
+		tv->tv_usec = idle_microseconds % 1000000;
+		return 0;
+	}
 	int result = gettimeofday(tv, tz);
 	if (accelerate_time) {
 		tv->tv_sec += extra;
-		extra += 10;
+		extra += 30;
 	}
 	return result;
+}
+
+static int test_select(int nfds, fd_set *readfds, fd_set *writefds,
+		       fd_set *exceptfds, struct timeval *timeout)
+{
+	if (select_error) {
+		errno = select_error;
+		select_error = 0;
+		return -1;
+	}
+	if (simulate_idle) {
+		assert(timeout && (timeout->tv_sec || timeout->tv_usec));
+		idle_microseconds += (uint64_t)timeout->tv_sec * 1000000 + timeout->tv_usec;
+		if (readfds)
+			FD_ZERO(readfds);
+		if (writefds)
+			FD_ZERO(writefds);
+		return 0;
+	}
+	return select(nfds, readfds, writefds, exceptfds, timeout);
 }
 
 static ssize_t test_read(int fd, void *buf, size_t count)
@@ -196,7 +228,7 @@ static void busy_printer(void)
 	close(net[1]);
 	close(printer[1]);
 	assert(write(net[0], "job", 3) == 3);
-	/* Simulate over 30 seconds without printer write readiness. */
+	/* Simulate over 90 seconds without printer write readiness. */
 	usleep(600000);
 	while (pending) {
 		count = read(printer[0], data, pending < sizeof(data) ? pending : sizeof(data));
@@ -242,6 +274,48 @@ static void closed_status_channel(void)
 	close(printer[0]);
 }
 
+static void idle_timeout(int bidirectional)
+{
+	int net[2], printer[2];
+	assert(socketpair(AF_UNIX, SOCK_STREAM, 0, net) == 0);
+	assert(socketpair(AF_UNIX, SOCK_STREAM, 0, printer) == 0);
+	bidir = bidirectional;
+	simulate_idle = 1;
+	select_error = EINTR;
+	alarm(3);
+	assert(copy_stream(net[1], printer[1]) == 0);
+	assert(idle_microseconds >= 90000000 && idle_microseconds < 91000000);
+	close(net[0]);
+	close(net[1]);
+	close(printer[0]);
+	close(printer[1]);
+}
+
+static void stdout_logging(void)
+{
+	int logs[2], status;
+	char data[16];
+	assert(pipe(logs) == 0);
+	pid_t child = fork();
+	assert(child >= 0);
+	if (child == 0) {
+		close(logs[0]);
+		assert(dup2(logs[1], STDOUT_FILENO) == STDOUT_FILENO);
+		close(logs[1]);
+		assert(setvbuf(stdout, NULL, _IOFBF, BUFSIZ) == 0);
+		log_to_stdout = 1;
+		dolog(LOG_NOTICE, "test log\n");
+		/* Do not let process exit flush the log on our behalf. */
+		_exit(0);
+	}
+	close(logs[1]);
+	assert(waitpid(child, &status, 0) == child);
+	assert(WIFEXITED(status) && WEXITSTATUS(status) == 0);
+	assert(read(logs[0], data, sizeof(data)) == 9);
+	assert(memcmp(data, "test log\n", 9) == 0);
+	close(logs[0]);
+}
+
 int main(int argc, char **argv)
 {
 	assert(argc == 2);
@@ -253,6 +327,9 @@ int main(int argc, char **argv)
 	else if (!strcmp(argv[1], "busy")) busy_printer();
 	else if (!strcmp(argv[1], "closed-status")) closed_status_channel();
 	else if (!strcmp(argv[1], "large-job")) large_job_counters();
+	else if (!strcmp(argv[1], "idle-uni")) idle_timeout(0);
+	else if (!strcmp(argv[1], "idle-bidi")) idle_timeout(1);
+	else if (!strcmp(argv[1], "stdout-log")) stdout_logging();
 	else abort();
 	return 0;
 }
