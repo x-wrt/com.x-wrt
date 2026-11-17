@@ -1,4 +1,41 @@
-# mwan3plus firewall recovery
+# mwan3plus runtime recovery
+
+Route monitoring shares the mwan3 lifecycle lock with startup, shutdown and
+interface hotplug. This prevents a LAN route event from being discarded while
+hotplug has flushed a WAN table and has not yet restored its default route.
+The monitor reloads configuration under the lock, checks the runtime enable
+state, and reconciles non-default routes when it starts. It starts under the
+command lock so that a concurrent stop cannot finish before the monitor is
+launched.
+The monitor retries a nonblocking lock: OpenWrt's BusyBox `lock` forks a
+persistent lock owner, so killing a blocked lock waiter during stop could
+otherwise leave an orphan that acquires the lock and blocks the next start.
+
+The monitor also listens for link events. A LAN bridge can be logically up
+while all cables are disconnected: its main-table routes have `linkdown`,
+so startup excludes them from the WAN tables. Plugging in a cable clears
+that flag without emitting a route update. On an administratively up link
+with carrier (`UP,LOWER_UP`), mwan3 now reconciles the main-table routes into
+active WAN tables. Link-down and deleted-link events do not activate tables.
+
+Startup, hotplug and monitor events use the same connected-route metrics:
+the owning WAN table omits the main-table metric; other tables retain that
+metric, or use the source table ID (256 for an unmanaged interface) when the
+main route has none. Delete events use the same normalized route key. Route
+replacement is limited to the current table; an insertion failure never
+deletes matching routes in other tables. WANs with overlapping prefixes should
+still use distinct network route metrics.
+
+Run the isolated route synchronization tests with:
+
+```sh
+python3 tests/test_route_sync.py -v
+```
+
+These cover missing LAN routes, carrier-only recovery, hotplug/monitor
+serialization, stopping a lock waiter, connected-route deletion and recovery,
+gateway changes, failed replacements, runtime disable, and IPv6 route expiry
+attributes. The fixtures do not modify host networking.
 
 The package installs `/usr/share/mwan3/mwan3-reload.sh` and registers it as
 the `firewall.mwan3` script include during installation or upgrade. The old

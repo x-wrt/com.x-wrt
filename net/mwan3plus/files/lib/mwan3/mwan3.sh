@@ -414,6 +414,10 @@ mwan3_lock() {
 	#LOG debug "$1 $2 (lock)"
 }
 
+mwan3_try_lock() {
+	lock -n /var/run/mwan3.lock 2>/dev/null
+}
+
 mwan3_unlock() {
 	#LOG debug "$1 $2 (unlock)"
 	lock -u /var/run/mwan3.lock
@@ -837,9 +841,48 @@ mwan3_create_iface_route()
 	$cmd || LOG warn "ip cmd failed $cmd"
 }
 
+mwan3_prepare_route()
+{
+	local result_var route_line id tid word result skip has_metric own_link
+	result_var=$1
+	route_line=$2
+	id=$3
+	tid=$4
+	result=
+	skip=0
+	has_metric=0
+	own_link=0
+	[ "$tid" = "$id" ] && [ -z "${route_line##* scope link*}" ] && own_link=1
+
+	# Apply the same route key to snapshots and monitor add/delete events.
+	# Remove only the metric value, preserving any following route attributes.
+	for word in $route_line; do
+		if [ "$skip" = 1 ]; then
+			skip=0
+			continue
+		fi
+		case "$word" in
+			expires) skip=1; continue ;;
+			linkdown) continue ;;
+			metric)
+				if [ "$own_link" = 1 ]; then
+					skip=1
+					continue
+				fi
+				has_metric=1
+			;;
+		esac
+		result="${result:+$result }$word"
+	done
+	if [ "$tid" != "$id" ] && [ -z "${route_line##* scope link*}" ] && [ "$has_metric" = 0 ]; then
+		result="$result metric ${tid:-256}"
+	fi
+	export -n "$result_var=$result"
+}
+
 mwan3_add_non_default_iface_route()
 {
-	local tid route_line family IP id
+	local tid route_line family IP id route
 	config_get family "$1" family "any"
 	mwan3_get_iface_id id "$1"
 
@@ -858,28 +901,16 @@ mwan3_add_non_default_iface_route()
 	mwan3_update_dev_to_table
 	$IP route list table main | grep -v "^default\|linkdown\|^::/0\|^fe80::/64\|^unreachable" | while read -r route_line; do
 		mwan3_route_line_dev "tid" "$route_line" "$family"
-		[ -n "${route_line##* expires *}" ] || route_line="${route_line%expires *}${route_line#* expires * }"
-		[ "$tid" != "$id" ] && [ -z "${route_line##* scope link*}" ] && \
-		[ -n "${route_line##* metric *}" ] && \
-		$IP route add table $id $route_line metric ${tid:-256} && {
-			LOG debug "adjusting route $device: $IP route add table $id $route_line metric ${tid:-256}"
-			continue
-		}
-		[ "$tid" == "$id" ] && [ -z "${route_line##* scope link*}" ] && \
-		[ -z "${route_line##* metric *}" ] && \
-		$IP route add table $id ${route_line%% metric *} && {
-			LOG debug "adjusting route $device: $IP route add table $id ${route_line%% metric *}"
-			continue
-		}
-		$IP route add table $id $route_line ||
-			LOG warn "failed to add $route_line to table $id"
+		mwan3_prepare_route route "$route_line" "$id" "$tid"
+		$IP route replace table "$id" $route ||
+			LOG warn "failed to copy $route_line to table $id"
 
 	done
 }
 
 mwan3_add_all_nondefault_routes()
 {
-	local tid IP route_line ipv family active_tbls tid id
+	local tid IP route_line ipv family active_tbls id route
 
 	add_active_tbls()
 	{
@@ -897,25 +928,13 @@ mwan3_add_all_nondefault_routes()
 		let id++
 		[ "$id" -gt "$MWAN3_INTERFACE_MAX" ] && return
 		[ -n "${active_tbls##* $id *}" ] && return
-		[ -n "${route_line##* expires *}" ] || route_line="${route_line%expires *}${route_line#* expires * }"
-		[ "$tid" != "$id" ] && [ -z "${route_line##* scope link*}" ] && \
-		[ -n "${route_line##* metric *}" ] && \
-		$IP route add table $id $route_line metric ${tid:-256} && {
-			LOG debug "adjusting route $device: $IP route add table $id $route_line metric ${tid:-256}"
-			return
-		}
-		[ "$tid" == "$id" ] && [ -z "${route_line##* scope link*}" ] && \
-		[ -z "${route_line##* metric *}" ] && \
-		$IP route add table $id ${route_line%% metric *} && {
-			LOG debug "adjusting route $device: $IP route add table $id ${route_line%% metric *}"
-			return
-		}
-		$IP route add table $id $route_line ||
-			LOG warn "failed to add $route_line to table $id"
+		mwan3_prepare_route route "$route_line" "$id" "$tid"
+		$IP route replace table "$id" $route ||
+			LOG warn "failed to copy $route_line to table $id"
 	}
 
 	mwan3_update_dev_to_table
-	for ipv in ipv4 ipv6; do
+	for ipv in ${1:-ipv4 ipv6}; do
 		if [ "$ipv" = "ipv4" ] && [ $NEED_IPV4 -ne 0 ]; then
 			IP="$IP4"
 		elif [ "$ipv" = "ipv6" ] && [ $NEED_IPV6 -ne 0 ]; then

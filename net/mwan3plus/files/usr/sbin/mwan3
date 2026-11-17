@@ -245,8 +245,8 @@ start()
 	touch /var/run/mwan3.init
 	mwan3_lock "command" "mwan3"
 	start_locked
-	mwan3_unlock "command" "mwan3"
 	mwan3_rtmon
+	mwan3_unlock "command" "mwan3"
 }
 
 start_locked()
