@@ -69,7 +69,15 @@ mwan3_rtmon_route_handle()
 	mwan3_update_dev_to_table
 	mwan3_route_line_dev "tid" "$route_line" "$route_family"
 	handle_route() {
-		tbl=$($IP route list table $id 2>/dev/null)
+		local table_route
+		# Kernel-added linkdown/expiry attributes are not part of the route key.
+		# Normalize them on both sides of the comparison, keeping table metrics.
+		tbl=$(
+			$IP route list table "$id" 2>/dev/null | while read -r table_route; do
+				mwan3_prepare_route table_route "$table_route"
+				printf '%s\n' "$table_route"
+			done
+		)
 		if [ $action = "add" ]; then
 			case "
 $tbl" in

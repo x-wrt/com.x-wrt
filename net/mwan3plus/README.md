@@ -21,7 +21,8 @@ active WAN tables. Link-down and deleted-link events do not activate tables.
 Startup, hotplug and monitor events use the same connected-route metrics:
 the owning WAN table omits the main-table metric; other tables retain that
 metric, or use the source table ID (256 for an unmanaged interface) when the
-main route has none. Delete events use the same normalized route key. Route
+main route has none. Delete events use the same normalized route key, ignoring
+transient `linkdown` and expiry attributes in both events and table entries. Route
 replacement is limited to the current table; an insertion failure never
 deletes matching routes in other tables. WANs with overlapping prefixes should
 still use distinct network route metrics.
@@ -34,8 +35,9 @@ python3 tests/test_route_sync.py -v
 
 These cover missing LAN routes, carrier-only recovery, hotplug/monitor
 serialization, stopping a lock waiter, connected-route deletion and recovery,
-gateway changes, failed replacements, runtime disable, and IPv6 route expiry
-attributes. The fixtures do not modify host networking.
+route withdrawal without carrier, gateway changes, failed replacements, runtime
+disable, and IPv6 route expiry attributes. The fixtures do not modify host
+networking.
 
 The package installs `/usr/share/mwan3/mwan3-reload.sh` and registers it as
 the `firewall.mwan3` script include during installation or upgrade. The old

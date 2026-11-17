@@ -846,13 +846,14 @@ mwan3_prepare_route()
 	local result_var route_line id tid word result skip has_metric own_link
 	result_var=$1
 	route_line=$2
-	id=$3
-	tid=$4
+	# Omit table IDs to normalize existing table entries without changing metrics.
+	id=${3:-}
+	tid=${4:-}
 	result=
 	skip=0
 	has_metric=0
 	own_link=0
-	[ "$tid" = "$id" ] && [ -z "${route_line##* scope link*}" ] && own_link=1
+	[ -n "$id" ] && [ "$tid" = "$id" ] && [ -z "${route_line##* scope link*}" ] && own_link=1
 
 	# Apply the same route key to snapshots and monitor add/delete events.
 	# Remove only the metric value, preserving any following route attributes.
@@ -874,7 +875,7 @@ mwan3_prepare_route()
 		esac
 		result="${result:+$result }$word"
 	done
-	if [ "$tid" != "$id" ] && [ -z "${route_line##* scope link*}" ] && [ "$has_metric" = 0 ]; then
+	if [ -n "$id" ] && [ "$tid" != "$id" ] && [ -z "${route_line##* scope link*}" ] && [ "$has_metric" = 0 ]; then
 		result="$result metric ${tid:-256}"
 	fi
 	export -n "$result_var=$result"

@@ -67,6 +67,8 @@ mwan3_set_connected_ipv4() { :; }
 mwan3_set_local_ipv6() { :; }
 mwan3_set_connected_ipv6() { :; }
 LOG() { printf '%s\n' "$*" >> "$TEST_ROOT/log"; }
+# Keep standalone BusyBox shells from resolving their built-in ip applet.
+ip() { "$TEST_ROOT/bin/ip" "$@"; }
 IP4="ip -4"
 IP6="ip -6"
 NEED_IPV4=1
@@ -103,7 +105,8 @@ if action in ("list", "show"):
                 words[1:1] = ["table", tid]
                 print(" ".join(words))
     else:
-        print("\n".join(routes))
+        for entry in routes:
+            print(entry)
     sys.exit(0)
 if action == "flush":
     routes.clear()
@@ -325,6 +328,30 @@ mwan3_unlock
         self.assertIn(expected, self.tables(family="-6")["3"])
         self.event("Deleted " + route, "ipv6")
         self.assertEqual(self.tables(family="-6")["3"], ["default dev eth6 metric 42"])
+
+    def test_ipv6_linkdown_route_delete_does_not_leave_stale_routes(self):
+        default = "default dev eth6 metric 42"
+        route = "2001:db8:2::/64 dev br-lan proto static metric 1024 linkdown pref medium"
+        other = "2001:db8:3::/64 dev eth6 proto static metric 1024 pref medium"
+        # Carrier loss marks copies linkdown too. The main route is then
+        # withdrawn while the interface remains administratively up.
+        self.tables({"main": [], "3": [default, route, other]}, "-6")
+        self.event("[ROUTE]Deleted " + route, "ipv6")
+        self.assertEqual(self.tables(family="-6")["3"], [default, other])
+        self.event("[LINK]5: br-lan: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 state UP", "ipv6")
+        self.assertEqual(self.tables(family="-6")["3"], [default, other])
+
+    def test_ipv4_linkdown_delete_preserves_metric_normalization_and_attributes(self):
+        route = WAN + " linkdown mtu 1400"
+        own_route = route.replace(" metric 40", "")
+        tables = self.tables()
+        tables["main"] = []
+        tables["1"] = [DEFAULTS[0], own_route]
+        tables["2"] = [DEFAULTS[1], route]
+        self.tables(tables)
+        self.event("[ROUTE]Deleted " + route)
+        self.assertEqual(self.tables()["1"], [DEFAULTS[0]])
+        self.assertEqual(self.tables()["2"], [DEFAULTS[1]])
 
     def test_hotplug_snapshot_keeps_one_metric_for_own_wan(self):
         self.run_shell("mwan3_add_non_default_iface_route wan eth0 ipv4")
