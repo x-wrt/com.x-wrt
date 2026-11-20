@@ -71,6 +71,7 @@ CONFIG_TARGET_MULTI_PROFILE=y
 # CONFIG_TARGET_qualcommax_ipq50xx_DEVICE_linksys_mx5500 is not set
 # CONFIG_TARGET_qualcommax_ipq50xx_DEVICE_linksys_mx6200 is not set
 # CONFIG_TARGET_qualcommax_ipq50xx_DEVICE_linksys_spnmx56 is not set
+# CONFIG_TARGET_qualcommax_ipq50xx_DEVICE_liteon_wpx8324 is not set
 # CONFIG_TARGET_qualcommax_ipq50xx_DEVICE_mercusys_mr80x-v2 is not set
 # CONFIG_TARGET_qualcommax_ipq50xx_DEVICE_tplink_archer-ax55-v1 is not set
 # CONFIG_TARGET_qualcommax_ipq50xx_DEVICE_tplink_eap650-outdoor-v1 is not set
@@ -108,6 +109,7 @@ CONFIG_TARGET_DEVICE_PACKAGES_qualcommax_ipq50xx_DEVICE_glinet_gl-b3000="apk-ope
 # CONFIG_TARGET_DEVICE_qualcommax_ipq50xx_DEVICE_linksys_mx5500 is not set
 # CONFIG_TARGET_DEVICE_qualcommax_ipq50xx_DEVICE_linksys_mx6200 is not set
 # CONFIG_TARGET_DEVICE_qualcommax_ipq50xx_DEVICE_linksys_spnmx56 is not set
+# CONFIG_TARGET_DEVICE_qualcommax_ipq50xx_DEVICE_liteon_wpx8324 is not set
 # CONFIG_TARGET_DEVICE_qualcommax_ipq50xx_DEVICE_mercusys_mr80x-v2 is not set
 # CONFIG_TARGET_DEVICE_qualcommax_ipq50xx_DEVICE_tplink_archer-ax55-v1 is not set
 # CONFIG_TARGET_DEVICE_qualcommax_ipq50xx_DEVICE_tplink_eap650-outdoor-v1 is not set
@@ -499,7 +501,7 @@ CONFIG_HAS_BPF_TOOLCHAIN=y
 CONFIG_USE_MUSL=y
 CONFIG_BINUTILS_VERSION_2_46=y
 CONFIG_BINUTILS_VERSION="2.46.1"
-CONFIG_GCC_VERSION="14.4.0"
+CONFIG_GCC_VERSION="15.3.0"
 CONFIG_GCC_USE_DEFAULT_VERSION=y
 CONFIG_LIBC="musl"
 CONFIG_TARGET_SUFFIX="musl"
@@ -526,7 +528,7 @@ CONFIG_TARGET_INIT_CMD="/sbin/init"
 CONFIG_TARGET_INIT_SUPPRESS_STDERR=y
 CONFIG_VERSIONOPT=y
 CONFIG_VERSION_DIST="X-WRT"
-CONFIG_VERSION_NUMBER="26.10_b202611171234"
+CONFIG_VERSION_NUMBER="26.10_b202611201234"
 CONFIG_VERSION_CODE="Stonking"
 CONFIG_VERSION_REPO="http://downloads.openwrt.org/snapshots"
 CONFIG_VERSION_HOME_URL="https://x-wrt.com/"
@@ -3001,6 +3003,7 @@ CONFIG_PACKAGE_ipq-wifi-glinet_gl-b3000=m
 # CONFIG_PACKAGE_ipq-wifi-linksys_mx8500 is not set
 # CONFIG_PACKAGE_ipq-wifi-linksys_spnmx56 is not set
 # CONFIG_PACKAGE_ipq-wifi-linksys_whw03 is not set
+# CONFIG_PACKAGE_ipq-wifi-liteon_wpx8324 is not set
 # CONFIG_PACKAGE_ipq-wifi-meraki_mr30h is not set
 # CONFIG_PACKAGE_ipq-wifi-meraki_underdog is not set
 # CONFIG_PACKAGE_ipq-wifi-meraki_z3 is not set
@@ -7457,6 +7460,7 @@ CONFIG_PACKAGE_luci-i18n-zerotier-zh-cn=m
 #
 # BitTorrent
 #
+# CONFIG_PACKAGE_dhtd is not set
 # CONFIG_PACKAGE_mktorrent is not set
 # CONFIG_PACKAGE_opentracker is not set
 # CONFIG_PACKAGE_rtorrent is not set
@@ -7701,6 +7705,7 @@ CONFIG_PACKAGE_ddns-scripts=y
 # CONFIG_PACKAGE_ddns-scripts-blazingfast is not set
 # CONFIG_PACKAGE_ddns-scripts-cloudflare is not set
 # CONFIG_PACKAGE_ddns-scripts-digitalocean is not set
+# CONFIG_PACKAGE_ddns-scripts-dnsimple is not set
 # CONFIG_PACKAGE_ddns-scripts-dnspod is not set
 # CONFIG_PACKAGE_ddns-scripts-dnspod-v3 is not set
 # CONFIG_PACKAGE_ddns-scripts-freedns is not set
@@ -7726,7 +7731,6 @@ CONFIG_PACKAGE_ddns-scripts-services=y
 # CONFIG_PACKAGE_ddns-scripts-transip is not set
 # CONFIG_PACKAGE_ddns-scripts-utils is not set
 CONFIG_PACKAGE_ddns-scripts_aliyun=y
-# CONFIG_PACKAGE_dhtd is not set
 # CONFIG_PACKAGE_dns-over-https is not set
 # CONFIG_PACKAGE_dnscrypt-proxy2 is not set
 # CONFIG_PACKAGE_dnsdist is not set
