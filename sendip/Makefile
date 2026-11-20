@@ -9,12 +9,12 @@ include $(TOPDIR)/rules.mk
 
 PKG_NAME:=sendip
 PKG_VERSION:=2.5
-PKG_RELEASE:=1
-PKG_TAG:=20261121
+PKG_RELEASE:=3
+PKG_TAG:=20261122
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION)-r1-$(PKG_TAG).tar.gz
 PKG_SOURCE_URL:=https://codeload.github.com/ptpt52/sendip/tar.gz/$(PKG_TAG)?
-PKG_HASH:=88929d1d8cb69281e941e277c1df1331603e117b0cf4660f9f6dbd1dc4a2af5c
+PKG_HASH:=26cf44cb4bf9fcf7a1bf4a3609f1cb618d437a79f77ffe892c18802a4871a801
 
 PKG_MAINTAINER:=Chen Minqiang <ptpt52@gmail.com>
 PKG_LICENSE:=GPL-2.0
