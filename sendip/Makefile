@@ -8,10 +8,11 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=sendip
-PKG_VERSION:=2.5-r1
+PKG_VERSION:=2.5
+PKG_RELEASE:=2
 PKG_TAG:=20220426
 
-PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION)-$(PKG_TAG).tar.gz
+PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION)-r1-$(PKG_TAG).tar.gz
 PKG_SOURCE_URL:=https://codeload.github.com/ptpt52/sendip/tar.gz/$(PKG_TAG)?
 PKG_HASH:=1abf430f93741ff946fcd38152aea420b6745d5bc250dd507e4d15b40d04e524
 
@@ -25,6 +26,8 @@ include $(INCLUDE_DIR)/package.mk
 
 TAR_OPTIONS+= --strip-components 1
 TAR_CMD=$(HOST_TAR) -C $(1) $(TAR_OPTIONS)
+
+TARGET_CFLAGS += -std=gnu17
 
 define Package/sendip
   CATEGORY:=X
