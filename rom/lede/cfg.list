@@ -28,3 +28,4 @@ config.x86_64-docker
 config.ath79-generic-nosymbol
 config.ath79-generic
 config.ath79-nand
+config.zte-zx279133

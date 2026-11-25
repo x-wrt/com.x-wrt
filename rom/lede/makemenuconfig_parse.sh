@@ -728,6 +728,7 @@ for t in $targets; do
 	case $t in
 		#>=14M flash
 		# Keep first-case devices here, except ipq50xx with RAM <=256 MiB.
+		TARGET_DEVICE_zte_zx279133_DEVICE_zte_zxslc-sr1010|\
 		TARGET_DEVICE_bcm53xx_generic_DEVICE_asus_rt-ac3100|\
 		TARGET_DEVICE_bcm53xx_generic_DEVICE_asus_rt-ac3200|\
 		TARGET_DEVICE_bcm53xx_generic_DEVICE_asus_rt-ac5300|\
@@ -1438,6 +1439,7 @@ for t in $targets; do
 	#check usb
 	case $t in
 		#with usb3
+		TARGET_DEVICE_zte_zx279133_DEVICE_zte_zxslc-sr1010|\
 		TARGET_DEVICE_airoha_an7581_DEVICE_fiberhome_hg5585f-ct|\
 		TARGET_DEVICE_airoha_an7581_DEVICE_fiberhome_hg5585f-cu|\
 		TARGET_DEVICE_airoha_an7581_DEVICE_nokia_xg-040g-md|\
@@ -1657,15 +1659,7 @@ for t in $targets; do
 			has_usb=1
 		;;
 		#with usb2
-		TARGET_DEVICE_airoha_an7581_DEVICE_fiberhome_hg5585f-ct|\
-		TARGET_DEVICE_airoha_an7581_DEVICE_fiberhome_hg5585f-cu|\
 		TARGET_DEVICE_airoha_an7581_DEVICE_h3c_hm2004-du|\
-		TARGET_DEVICE_airoha_an7581_DEVICE_nokia_xg-040g-md|\
-		TARGET_DEVICE_airoha_an7581_DEVICE_nokia_xg-040g-md-ubi|\
-		TARGET_DEVICE_airoha_an7581_DEVICE_znxt_zn504xg-d|\
-		TARGET_DEVICE_airoha_an7581_DEVICE_znxt_zn515xg-d|\
-		TARGET_DEVICE_airoha_an7583_DEVICE_nokia_xg-040g-mf|\
-		TARGET_DEVICE_airoha_an7583_DEVICE_nokia_xg-040g-mf-ubi|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_z-router_zr-2660|\
 		TARGET_DEVICE_ramips_mt7621_DEVICE_z-router_zr-2662|\
 		TARGET_DEVICE_econet_en751221_DEVICE_chinamobile_gs3101|\
