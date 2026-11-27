@@ -7,6 +7,9 @@ msgstr "单线多拨"
 msgid "Multi-WAN Dialing Settings"
 msgstr "单线多拨设置"
 
+msgid "Source WAN interface"
+msgstr "源 WAN 接口"
+
 msgid "Enable multi-WAN dialing"
 msgstr "启用多拨"
 
