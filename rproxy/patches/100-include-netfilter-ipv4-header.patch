@@ -1,0 +1,14 @@
+Subject: [PATCH] rproxy: include the IPv4 netfilter header directly
+
+Linux 7.3 no longer exposes NF_IP_PRI_LAST through the existing includes.
+
+--- a/rproxy.c
++++ b/rproxy.c
+@@ -17,6 +17,7 @@
+ #include <linux/module.h>
+ #include <linux/netdevice.h>
+ #include <linux/netfilter.h>
++#include <linux/netfilter_ipv4.h>
+ #include <linux/inetdevice.h>
+ #include <linux/skbuff.h>
+ #include <linux/socket.h>
